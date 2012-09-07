@@ -1,0 +1,373 @@
+這是 2009 年在`醉資心 <>`_上的一個討論，有參考價值。
+
+::
+
+	下方原文照列
+
+	 作者  dcfgh (笨蛋魚)                                       站內  homework102A
+	 標題  [程設]作業4
+	 時間  2009/11/20 Fri 15:49:21
+
+
+
+	有鑑於教授的作業單太奇妙，
+
+	有的人沒聽到教授的解釋，
+
+	所以來大概說明一下......
+	--------------------------------
+
+	board_main.c 裡面大概長這樣
+
+	#include"board.h"
+
+	int main (void)
+	{
+	內容.....
+	}
+	--------------------------------
+	board.c 裡面大概長這樣
+
+
+	#include"board.h"
+
+	void function1()
+	{
+	內容......
+	}
+
+	void function2()
+	{
+	內容......
+	}
+
+	void function3()
+	{
+	內容......
+	}
+
+	.........
+
+	--------------------------------
+
+	board.h裡面長這樣
+
+
+	#include<stdio.h>
+	#include<stdlib.h>  /*看你有沒有用到他*/
+	#define n 16
+
+	void function1();   /*就是把原本會main()上面的prototype都搬過來就是了*/
+	void function2();
+	void function3();
+	......
+	-----------------------------------------------------
+
+	.dat檔好像跟.txt 差不多...吧
+	存檔/讀檔 參照販賣機就可以了
+
+
+
+	然後 compile的時候
+
+	gcc board_main.c board.c
+	它就會自動幫你組起來
+	產生一個a.out的執行檔
+
+	就能執行了
+
+
+	以上......有錯不要找我((喂
+
+
+	--
+	※ Origin: 成功大學資訊工程學系[醉資心BBS] <goodguy.csie.ncku.edu.tw>
+	◆ From: 218-175-223-167.dynamic.hinet.net
+	→ fivil52 推：我發現board.h裡面 可以不用再宣告一次function耶         09/11/20
+	→ CrBoy 推：樓上怎麼寫的？照理來說 要是這樣的話你在main裡面用到那些  09/11/20
+	→ CrBoy 推：function的時候...會.......出........錯.....阿我知道了!!! 09/11/20
+	→ CrBoy 推：因為implicit declaration的關係 所以compile的時候不會出錯 09/11/20
+	→ CrBoy 推：但是這樣的習慣「非常不好」 而且容易發生錯誤！            09/11/20
+	→ pcyu16 推：我們請專業的小畢為我們po版解釋link (拍手)               09/11/20
+	→ TonyYang 推：畢畢畢~~(拍手~~)                                      09/11/20
+	→ julieting 推： 玉玉玉~~(拍手~~)                                    09/11/20
+	→ fivil52 推：恩恩 大概知道什麼意思 可以請小畢解釋不好的原因嗎?      09/11/20
+	→ BlackJackWei 推：泉泉泉~~(拍手~~)                                  09/11/20
+
+
+
+	 作者  pcyu16 (hide and see)                                站內  homework102A
+	 標題  Re: [程設]作業4
+	 時間  2009/11/22 Sun 01:37:32
+
+
+	先簡單的講個範例
+
+	main.c
+	==============================
+	#include <stdio.h>
+	#include "func.h"
+
+	int main()
+	{
+		printf("%d\n", func(1));
+		retrun 0;
+	}
+	==============================
+
+	func.c
+	==================
+	#include "func.h"
+	int func(int x)
+	{
+		return x;
+	}
+	==================
+
+	func.h
+	===============
+	#ifndef FUNC_H
+	#define FUNC_H
+
+	int func(int);
+
+	#endif
+	===============
+
+	編譯:
+	gcc -c main.c
+	gcc -c func.c
+	gcc -o prog main.o func.o
+
+	執行:
+	./prog
+
+	/////////////////////////////////////////////////////////////////////
+
+	先解釋這個 link 方法
+
+	gcc -c 是編譯成為 object file, 不做 link 的動作
+
+	預設會產生同名的 .o 檔, 也就是 object file
+
+	他會確認所有函數宣告都是正確的..
+
+	這個時候他會提示所有的 undefined reference
+
+
+	func.h 裡面的 #ifndef - #endif
+
+	是為了避免重複引用相同 header, 請養成習慣加上去..
+
+	至於那個東西到底怎麼寫.. 我想上面例子應該不難理解才對
+
+	就是 if 對應 endif, 中間就是條件式成立要做的事
+
+	當條件式第一次成立的時候會定義 FUNC_H
+
+	第二次遇到這個條件式的時候就不會成立了.. 這就是原理
+
+
+	現在來講一下上一篇的方法哪邊不好..
+
+
+	gcc board_main.c board.c
+
+	這個指令會把這幾個 source file 一起編譯
+
+	這樣編譯當然是會成功的  其實看起來也沒啥問題Orz
+
+	除了那個 define n 以外, 其實這樣 header 連 function 宣告都不用寫Orz
+
+	因為 function 中間的連結被直接用 gcc 指令連起來了- -
+
+
+	小畢推文提到的 implicit declaration
+
+	翻成中文應該是 隱含的宣告函式
+
+	如果 header 裡面沒有定義函數, 又用 gcc 加上全部 source file 來編譯
+
+	當漏掉 board.c 的時候, board_main.c 就會因為找不到 function 定義而 error
+
+	這個應該大家都能理解..
+
+	在這次的作業當中, 頂多不過就兩三個檔案, header 也不多, 這樣不會有什麼問題
+
+	如果遇到 source file 爆炸多的情況
+
+	直接用 gcc 後面加上全部 source file.. 錯漏的時候很難找= =a
+
+	再說如果真的是很龐大的 project.. 重新編譯全部檔案的時間也很可觀
+
+
+	總之~ 希望大家用正確的方式來寫
+
+	培養正確的習慣~ 這樣對大家都好~
+
+	寫到這句讓我想到goto..(汗)  請大家不要再折磨助教了XD
+
+
+	下台一鞠躬
+
+	--
+	※ Origin: 成功大學資訊工程學系[醉資心BBS] <goodguy.csie.ncku.edu.tw>
+	◆ From: academy.csie.ncku.edu.tw
+	→ shadeel 推：小玉好文必推 小畢的呢? XD                              09/11/22
+	→ lavchi 推：感謝小玉 Q_Q   //小畢要發一篇完整 code 的(誤)           09/11/22
+	→ julieting 推：好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ callawaft 推：好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ Yami 推：     好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ fivil52 推：  好文必推 小玉好厲害好厲害:)  (拍手~)                 09/11/22
+	→ fivil52 推：....被微軟新注音婊了                                   09/11/22
+	→ Rickz008 推： 好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ colie4 推：   好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ mike771115 推： 文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ lionking 推：順便推廣一下: 對於像這種有多個 source file 的 project 09/11/22
+	→ lionking 推：可以學學看怎麼寫 makefile~~很有用喔!                  09/11/22
+	→ pcyu16 推：詳見作業100a 精華區3-5-7                                09/11/22
+	→ pcyu16 推：不懂想學可以問樓上上XD  他寫的                          09/11/22
+	→ lionking 推：............                                          09/11/22
+	→ dcfgh 推：    好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ CrBoy 推：    好文必推  小玉好厲害:)  (拍手~)                      09/11/22
+	→ CrBoy 推：undefined reference是在link stage才會出現的....          09/11/22
+	→ CrBoy 推：compilation stage頂多告訴你 undeclared function/variable 09/11/22
+	→ CrBoy 推：即使是compile單一檔案也會有implicit declaration的情形    09/11/22
+	→ CrBoy 推：這是因為你要是沒有先宣告 那他會隱含宣告一個回傳int的函式 09/11/22
+	→ CrBoy 推：要是我沒記錯的話啦╮(￣▽￣")╭                          09/11/22
+	→ cc123 推：             if(m==1)                                    09/11/23
+	→ cc123 推：    好文必推  小玉好厲害:)  (拍手~)                      09/11/23
+
+
+
+	 作者  CrBoy (VIM rocks!)                                   站內  homework102A
+	 標題  Re: [程設]作業4
+	 時間  2009/11/23 Mon 04:52:03
+
+	→ CrBoy 推：因為implicit declaration的關係 所以compile的時候不會出錯 09/11/20
+	→ CrBoy 推：但是這樣的習慣「非常不好」 而且容易發生錯誤！            09/11/20
+	→ pcyu16 推：我們請專業的小畢為我們po版解釋link (拍手)               09/11/20
+	→ fivil52 推：恩恩 大概知道什麼意思 可以請小畢解釋不好的原因嗎?      09/11/20
+
+	寫作業寫累了orz 來寫點文章
+
+	這邊我會省略很多小細節 因為天黑了 講太詳細會有飆車族
+
+	你在compile的時候呢 其實會分成幾個階段：
+	1. preprocess
+	2. compile
+	3. assemble (但是其實這個步驟會跟compile一起 但也可以分開處理)
+	4. link
+
+	拜託不要問我中文 很恐怖...(前置處理、編譯、組譯、連結)
+
+	preprocess的時候呢 是經由preprocessor來處理的 他只會去把你的那些#開頭的東西
+
+	給處理過 例如#include, #define, #ifndef之類的這些preprocessor directive
+
+	compile的時候呢 當然就是交給compiler囉~他會幫你分析你的code
+
+	然後把你的code轉換成組合語言(更精確的說是instructions)
+
+	然後assemble是透過assembler來處理 他是把組合語言轉換成二進位的機器語言
+
+	但是就像上面說的 其實compiler也可以直接把C轉換成機器語言這樣...沒啥差
+
+	link嘛...就是很多人常常忽略 卻非常重要非常需要明白的觀念了！
+
+	他是由linker來做的 但是我直接講link一定很多人聽不懂 所以我要從compile講起...
+
+
+	(以下這段請慢慢閱讀 並配合大腦思考 看不懂小弟不負任何責任= =)
+
+	compile事實上只會幫你檢查該宣告的宣告了沒 那一類的事情而已
+
+	他不管你用到的function有沒有定義！
+
+	我舉個例你們就會懂了 大家都用過printf吧...
+
+	printf在哪定義的？printf這個function寫在哪？
+
+	應該很多人會說"系統給的" 但是其實不對唷...所謂系統給的 他也應該存在某個地方吧
+
+	那應該也很多人記得萬一沒有#include <stdio.h>就沒辦法用printf吧？
+
+	這又是為什麼呢？因為 stdio.h裡面包含了printf這個function的宣告！
+
+	不知道有沒有人注意到我用「宣告」跟「定義」這兩個詞？他們的英文分別是
+
+	declaration(declare)跟definition(define) 看錯誤訊息的時候應該都會稍微看到
+
+	宣告是說「有這個東西存在」
+
+	定義是說「這個東西實際上是什麼樣子」
+
+	你寫function的prototype(例：int f(int x);)就是宣告
+
+	你寫function的實體(例：int f(int x){return x;})就是定義
+
+	好 所以compile的時候 只要有宣告他就當你有這個function compile就可以通過了！
+
+	但是 如果你的程式實際要跑 總不可能要電腦去執行一個不知道實際上幹嘛的函式吧= =
+
+	所以 在真的變成執行檔之前 他一定要知道function的定義所在！
+
+	這就是linker在做的事情.....
+
+	(什麼？要是看不懂請反覆閱讀加上仔細思考...)
+
+	好 現在回到本來的問題上 為什麼要寫.h檔？(其實他叫做header file)
+
+	因為可能很多個檔案都要使用同一個函式 你每次都要在那些用到的檔案裡宣告一次
+
+	實在很辛苦 更重要的是 修改不易！萬一你的function需要加一個參數怎麼辦？
+
+	所以就把這些 每個檔案裡面都會也都應該一樣的宣告抽出來放在header file裡面就好
+
+	這樣每個個別檔案在compile的時候就不會發生undeclare的錯誤了...:P
+
+	至於有時候可能會有人遇到undefined reference的error 這是發生在link stage的
+
+	意思就是說 雖然compile的時候知道有個function被呼叫
+
+	但是在link的時候發現這個function根本不知道在哪裡 linker當然就會對你發出抱怨了
+
+	這樣懂嗎？欸我打得很辛苦捧個場吧....XD
+
+
+	有些人會不小心造成implict declaration 運氣好說不定不會出錯
+
+	運氣不好 link的時候就會發現原來implict declare的東西跟他的實體其實並不一樣
+
+	這樣就囧了....
+
+	所以說.....   = = 建議千萬別這樣做 上次有人這樣 結果.....
+
+	結果link的時候出錯 很不方便
+
+	寫程式跟看醫生一樣 最好都可以早期發現早期治療
+
+	可以在compilation time發現的錯誤 那就這時候把他找出來！
+
+	所以推薦各位在compile的時候加上-Wall這個參數(ex: $ gcc -Wall -o hw hw.c )
+
+	他會把所有的warning都列出來 其實warning就表示「潛在的錯誤」 請記得！
+
+	可以在link的時候發現的問題 當然就在link的時候發現(我真想不到例子XD)
+
+	因為 萬一程式開始執行之後 才發現的問題 通常都會花很多時間才找到答案
+
+	應該很多人很有經驗= = 所以....嗯 就這樣~
+
+	fivil52這樣有滿意嗎XD
+
+	--
+	※ Origin: 成功大學資訊工程學系[醉資心BBS] <goodguy.csie.ncku.edu.tw>
+	◆ From: 122-122-218-253.dynamic.hinet.net
+	→ CrBoy 推：我賭很多人直接按end!ˊˋ 這觀念很重要又很少人會講耶！    09/11/23
+	→ TonyYang 推： 小畢出品   大碗滿意      實在很感謝 不過現在沒大腦.. 09/11/23
+	→ fivil52 推：這是控制碼嗎                                           09/11/23
+	→ fivil52 推：感謝小畢專業解答~                                      09/11/23
+	→ kelly2019 推：感謝~~~~:D                                           09/11/23
+	→ locke2833 推：推!                                                  09/11/23
+	→ pop1210 推：講的好詳盡,辛苦了                                      09/11/23
