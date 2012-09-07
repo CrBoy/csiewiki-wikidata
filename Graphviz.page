@@ -1,0 +1,148 @@
+
+介紹
+----
+
+Graphviz_\ 是一套open source的圖形視覺化軟體，
+
+簡單的來說我們可以用文字描述nodes之間的關係，就可以將圖畫出來。
+
+.. _Graphviz: http://www.graphviz.org/Home.php
+
+安裝
+----
+
+從\ Graphviz_\ 官網的Download頁面就可以下載到各作業系統的版本，
+
+包含Linux, Solaris, Windows, Mac。
+
+如果是Linux的話也可以直接從套件庫安裝，以Ubuntu/Debian為例的話
+
+::
+
+	sudo apt-get install graphviz
+
+語法
+----
+
+Graphviz_\ 是是使用一種稱作dot語言的圖形描述語言來描述圖形，
+
+而在\ Graphviz_\ 中又分為無向圖和有向圖，底下各舉一個範例。
+
+- 無向圖
+
+::
+
+	graph G
+	{
+		A -- B;
+	}
+
+上面的code可以畫出下面這張圖
+
+.. image:: https://github.com/a13524000/float-blog/raw/master/img/undirected_graph.jpg
+
+- 有向圖
+
+::
+
+	digraph G
+	{
+		A -> B;
+	}
+
+這段則可以畫出下面這張
+
+.. image:: https://github.com/a13524000/float-blog/raw/master/img/directed_graph.jpg
+
+有向圖和無向圖的差異主要有兩個地方，第一個是宣告圖形的關鍵字，
+
+無向圖是\ **graph**\ ，有向圖是\ **digraph**\ ，另一個是圖形連接用的符號，
+
+無向圖是用\ **--**\ ，有向圖是用\ **->**\ 。
+
+編譯方式
+--------
+
+Graphviz_\ 包含了dot, neato, circo, twopi, fdp, dotty, lefty等工具，
+
+其中dot, neato, circo, twopi, fdp都是產生圖形的工具，差異是產的圖形的方式不同，
+
+dotty，lefty則是圖形化的修改工具。
+
+以dot來舉例，假設輸入檔案為input.dot，希望輸出jpg格式的檔案，命名為output.jpg，
+
+可以用下面兩種方式：
+
+::
+
+	dot -T jpg input.dot -o output.jpg
+
+or
+
+::
+
+	dot -T jpg input.dot > output.jpg
+
+形狀和排列
+----------
+
+有時候輸出的圖形可能和我們想像的不一樣，像是
+
+::
+
+	digraph G
+	{
+		a -> b;
+		a -> c;
+	}
+
+.. image:: https://github.com/a13524000/float-blog/raw/master/img/graphviz_ex1.jpg
+
+如果希望a和b可以擺在相同高度，那可以這樣修改
+
+::
+
+	digraph G
+	{
+		a -> b;
+		a -> c;
+		{rank=same; a; b;}
+	}
+
+.. image:: https://github.com/a13524000/float-blog/raw/master/img/graphviz_ex2.jpg
+
+另外，node和arrow等等的形狀、顏色都是可以修改的在\ document_\ 裡面可以找到很多範例
+
+下面隨便舉個例子(從\ node-shape_\ 的範例修改）
+
+::
+
+	digraph G                                                                       
+	{ 
+		rankdir=LR
+		node [shape=box, color=blue]
+		node1 [style=filled]
+		node2 [style=filled, fillcolor=red]
+		node0 -> node1;
+		node1-> node2[arrowhead=vee]; 
+	}
+
+.. image:: https://github.com/a13524000/float-blog/raw/master/img/graphviz_ex3.jpg
+
+
+.. _document: http://www.graphviz.org/Documentation.php
+
+.. _node-shape: http://www.graphviz.org/content/node-shapes
+
+參考資料
+--------
+
+http://www.graphviz.org/Home.php
+
+http://blog.derjohng.com/2008/08/01/graphviz-%E7%AD%86%E8%A8%98/
+
+http://chocolatehana.blogspot.tw/2009/09/graphviz.html
+
+http://chocolatehana.blogspot.tw/2009/09/graphviz-2.html
+
+轉載自： http://blog.float.tw/2012/06/graphviz.html
