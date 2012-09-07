@@ -8,24 +8,24 @@ categories: vim vim-plugin
 Syntastic
 ---------
 
-- 簡介
+**簡介**
 
-    可以在使用 vim 存檔（:w）時幫你檢查語意、語法的錯誤，支援多種語言（c/c++, python, perl, php ...）
+可以在使用 vim 存檔（:w）時幫你檢查語意、語法的錯誤，支援多種語言（c/c++, python, perl, php ...）
 
-- 相關連結
+**相關連結**
 
-    repo on github: https://github.com/scrooloose/syntastic
+repo on github: https://github.com/scrooloose/syntastic
 
 
 taglist
 -------
 
-- 簡介
+**簡介**
 
-    可以在 vim 的左側建立分割視窗，列出程式中的變數、函式等方便檢視、跳躍。
+可以在 vim 的左側建立分割視窗，列出程式中的變數、函式等方便檢視、跳躍。
 
-- 相關連結
+**相關連結**
 
-    vim-scripts page: http://www.vim.org/scripts/script.php?script_id=273
+vim-scripts page: http://www.vim.org/scripts/script.php?script_id=273
 
-    repo on github: https://github.com/vim-scripts/taglist.vim
+repo on github: https://github.com/vim-scripts/taglist.vim
