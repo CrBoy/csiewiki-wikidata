@@ -19,11 +19,12 @@
 =======
 
 - 《`Making Embedded Systems: Design Patterns for Great Software<http://shop.oreilly.com/product/0636920017776.do>`_》
-- 《`STM32自學筆記<http://bbs.cepark.com/thread-36009-1-1.html>`_》
+- 《`STM32自學筆記<http://bbs.cepark.com/thread-36009-1-1.html>`_》 (簡體中文)
 
 ========================
 Jonathan Valvano 系列教材
 ========================
+
 - Volume 1, 《`Introduction to ARM Cortex-M3 Microcontrollers<http://users.ece.utexas.edu/~valvano/arm/outline1.htm>`_》, ISBN: 978-1477508992
 - Volume 2, 《`Real-Time Interfacing to the ARM Cortex-M3<http://users.ece.utexas.edu/~valvano/arm/outline.htm>`_》, ISBN: 978-1463590154,
 - Volume 3, 《`Real-Time Operating Systems for the ARM Cortex-M3<http://users.ece.utexas.edu/~valvano/arm/outline3.htm>`_》, ISBN: 978-1466468863
