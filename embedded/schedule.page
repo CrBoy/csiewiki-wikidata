@@ -2,25 +2,27 @@
 Fall 2012
 =========
 
-====     =======                           ==========
-Date     Subject                           Assignment
-====     =======                           ==========
-Sep 18   Overview                          Lab 1:
-Sep 25   ARM                               Lab 2:
-Oct  2                                     Lab
-Oct  9                                     Lab
-Oct 16                                     Lab
-Oct 23                                     Lab
-Oct 30                                     Lab
-Nov  6   Embedded Linux Conference Europe  N/A
-Nov 13                                     Lab
-Nov 20                                     Lab
-Nov 27                                     Lab
-Dec  4                                     Lab
-Dec 11                                     Lab
-Dec 18                                     Lab
-Dec 25                                     Lab
-Jan  1                                     Lab
-Jan  8                                     Lab
-Jan 15                                     Lab
-====     =======                           ==========
+====     =======                              ==========
+Date     Subject                              Assignment
+====     =======                              ==========
+Sep 18   Overview                             Lab 1:
+Sep 25   ARM                                  Lab 2:
+Oct  2                                        Lab
+Oct  9                                        Lab
+Oct 16                                        Lab
+Oct 23                                        Lab
+Oct 30                                        Lab
+Nov  6   `Embedded Linux Conference Europe`_  N/A
+Nov 13                                        Lab
+Nov 20                                        Lab
+Nov 27                                        Lab
+Dec  4                                        Lab
+Dec 11                                        Lab
+Dec 18                                        Lab
+Dec 25                                        Lab
+Jan  1                                        Lab
+Jan  8                                        Lab
+Jan 15                                        Lab
+====     =======                              ==========
+
+.. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
