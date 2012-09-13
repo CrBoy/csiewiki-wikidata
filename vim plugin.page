@@ -29,3 +29,16 @@ taglist
 vim-scripts page: http://www.vim.org/scripts/script.php?script_id=273
 
 repo on github: https://github.com/vim-scripts/taglist.vim
+
+
+
+
+Snipmate
+--------
+
+自動完成工具，只要輸入 keyword 再按下 tab，Snipmate 便會幫你產生片段程式碼。
+
+Vim Scripts: http://www.vim.org/scripts/script.php?script_id=2540
+
+Github: https://github.com/msanders/snipmate.vim
+
