@@ -28,7 +28,7 @@ categories: 系統頁面
 
 像是程式碼
 
-::
+.. code-block:: prettyprint linenums
 
     #include <stdio.h>
 
