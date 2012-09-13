@@ -3,6 +3,8 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-09-14: Make CHANGELOG non-editable and non-deletable
+
 2012-09-14: Add changelog to category "系統頁面"
 
 2012-09-14: Add an automatic changelog generating script
