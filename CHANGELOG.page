@@ -1,0 +1,40 @@
+---
+title: ChangeLog
+categories: 系統頁面
+...
+
+2012-09-14: Add changelog to category "系統頁面"
+
+2012-09-14: Add an automatic changelog generating script
+
+2012-09-14: Prettify!
+
+2012-09-13: Fix the problem with prettify on preview
+
+2012-09-13: Add support for Google Code Prettify
+
+2012-09-13: Special background for code
+
+2012-09-13: Fix the theme with input[type='button']
+
+2012-09-12: NCKU CSIE Wiki configurartion
+
+2012-09-12: Improve the service script
+
+2012-09-12: Add support for Google Analytics
+
+2012-09-12: Add support for Disqus
+
+2012-09-12: Make it beautiful
+
+2012-09-12: Put text "no logo" to replace the default logo
+
+2012-09-12: Import system-wide css
+
+2012-09-12: Update wiki script for restarting
+
+2012-09-12: Update wiki.conf for a test wiki site
+
+2012-09-05: Add README for usage description and known issues
+
+2012-09-05: My coarse configuration for gitit wiki; Chinese translation
