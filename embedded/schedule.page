@@ -6,13 +6,13 @@ Fall 2012
 Date     Subject                              Assignment
 ====     =======                              ==========
 Sep 18   Overview: Embedded - Why and How     Lab 1: QEMU
-Sep 25   ARM Architecture (Basic)             Lab 2: GNU Toolchain
-Oct  2   Realtime Operating System (Basic)    Lab 3: RTOS for MCU
-Oct  9                                        Lab
-Oct 16                                        Lab
+Sep 25   ARM Architecture (Basic)             Lab 2: GNU Toolchain (1)
+Oct  2   Realtime Operating System (Basic)    Lab 3: GNU Toolchain (2)
+Oct  9   Timer, Interrupt, Exception in ARM   Lab 4: RTOS for MCU
+Oct 16   RTOS Design and Implementation       Lab 5: RTOS modifications
 Oct 23                                        Lab
 Oct 30                                        Lab
-Nov  6   `Embedded Linux Conference Europe`_  N/A
+Nov  6   `Embedded Linux Conference Europe`_  
 Nov 13                                        Lab
 Nov 20                                        Lab
 Nov 27                                        Lab
@@ -20,9 +20,9 @@ Dec  4                                        Lab
 Dec 11                                        Lab
 Dec 18                                        Lab
 Dec 25                                        Lab
-Jan  1                                        Lab
-Jan  8                                        Lab
-Jan 15                                        Lab
+Jan  1   Happy New Year - 2013                N/A
+Jan  8   Final project review                 N/A
+Jan 15   Make Your Own System (and profit)    DONE
 ====     =======                              ==========
 
 .. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
