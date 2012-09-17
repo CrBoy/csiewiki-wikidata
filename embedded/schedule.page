@@ -10,16 +10,16 @@ Week  Date     Subject                              Assignment
 #3    Oct  2   Realtime Operating System (Basic)    Lab 3: GNU Toolchain (2)
 #4    Oct  9   Timer, Interrupt, Exception in ARM   Lab 4: RTOS for MCU
 #5    Oct 16   RTOS Design and Implementation       Lab 5: RTOS modifications
-#6    Oct 23   Peripherals and hardware interface   Lab 6: Harware
+#6    Oct 23   Peripherals and hardware interface   Lab 6: Hardware
 #7    Oct 30   ARM Cortex-M series                  Lab 7: MCU
 #8    Nov  6   `Embedded Linux Conference Europe`_  N/A
-#9    Nov 13   Group Presentation (1)               N/A
+#9    Nov 13   Group Presentation (1)               Lab 8: RTOS + MCU
 #10   Nov 20   Group Presentation (2)               Bran storming (for final project)
-#11   Nov 27                                        Lab
-#12   Dec  4                                        Lab
-#13   Dec 11                                        Lab
-#14   Dec 18                                        Lab
-#15   Dec 25                                        Lab
+#11   Nov 27   Microkernel overview                 Lab 9: RTOS + MCU/Peripherals
+#12   Dec  4   Virtualization technologies          Lab 10: Microkernel + MCU
+#13   Dec 11   Learning by Doing                    Hack!
+#14   Dec 18   Learning by Doing                    Hack!
+#15   Dec 25   Learning by Doing                    Hack!
 #16   Jan  1   Happy New Year - 2013                N/A
 #17   Jan  8   Final project review                 N/A
 #18   Jan 15   Make Your Own System (and profit)    DONE
