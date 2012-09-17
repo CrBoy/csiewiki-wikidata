@@ -6,8 +6,8 @@ Fall 2012
 Date     Subject                              Assignment
 ====     =======                              ==========
 Sep 18   Overview: Embedded - Why and How     Lab 1: QEMU
-Sep 25   ARM                                  Lab 2:
-Oct  2                                        Lab
+Sep 25   ARM Architecture (Basic)             Lab 2: GNU Toolchain
+Oct  2   Realtime Operating System (Basic)    Lab 3: RTOS for MCU
 Oct  9                                        Lab
 Oct 16                                        Lab
 Oct 23                                        Lab
