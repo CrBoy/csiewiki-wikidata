@@ -10,11 +10,11 @@ Sep 25   ARM Architecture (Basic)             Lab 2: GNU Toolchain (1)
 Oct  2   Realtime Operating System (Basic)    Lab 3: GNU Toolchain (2)
 Oct  9   Timer, Interrupt, Exception in ARM   Lab 4: RTOS for MCU
 Oct 16   RTOS Design and Implementation       Lab 5: RTOS modifications
-Oct 23                                        Lab
-Oct 30                                        Lab
+Oct 23   Peripherals and hardware interface   Lab 6: Harware
+Oct 30   ARM Cortex-M series                  Lab 7: MCU
 Nov  6   `Embedded Linux Conference Europe`_  
-Nov 13                                        Lab
-Nov 20                                        Lab
+Nov 13   Group Presentation (1)               N/A
+Nov 20   Group Presentation (2)               Bran storming (for final project)
 Nov 27                                        Lab
 Dec  4                                        Lab
 Dec 11                                        Lab
