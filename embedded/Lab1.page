@@ -57,6 +57,12 @@ STM32 + QEMU
 - STM32 的程式須能與使用者互動，允許透過 UART 下指令控制週邊的狀態，至少要控制 LED 與查詢 Button 的狀態 (如按下的次數)
 - (加分) 使用 Software interrupt
 
+繳交作業
+-------
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: "[HW1]" 開頭，後面加學號與姓名
+  - 可以的話，附上一份自介
+
 補充
 ----
 - git log
