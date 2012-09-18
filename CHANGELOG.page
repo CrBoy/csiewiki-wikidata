@@ -3,6 +3,14 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-09-18: Move Google analytics code to <head> for webmaster
+
+2012-09-18: Change the max-upload-size to 16M
+
+2012-09-17: Refix the margin
+
+2012-09-17: Fix the margin of lists and blockquote
+
 2012-09-14: Make CHANGELOG non-editable and non-deletable
 
 2012-09-14: Add changelog to category "系統頁面"
