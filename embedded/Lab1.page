@@ -2,6 +2,12 @@
 QEMU Modeling
 =============
 
+Prerquisites
+------------
+- sudo apt-get install zlib1g-dev libsdl1.2-dev
+- http://0xlab.org/~jserv/tmp/toolchain-2012_03.tar.bz2
+  - Extract to Directory /usr/local/csl/arm-2012.03
+
 STM32 Overview
 --------------
 - Powerful but Cheap
