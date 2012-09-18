@@ -20,7 +20,7 @@ Graphviz_\ 是一套open source的圖形視覺化軟體，
 
 如果是Linux的話也可以直接從套件庫安裝，以Ubuntu/Debian為例的話
 
-::
+.. code-block:: prettyprint linenums
 
 	sudo apt-get install graphviz
 
@@ -33,7 +33,7 @@ Graphviz_\ 是是使用一種稱作dot語言的圖形描述語言來描述圖形
 
 - 無向圖
 
-::
+.. code-block:: prettyprint linenums
 
 	graph G
 	{
@@ -46,7 +46,7 @@ Graphviz_\ 是是使用一種稱作dot語言的圖形描述語言來描述圖形
 
 - 有向圖
 
-::
+.. code-block:: prettyprint linenums
 
 	digraph G
 	{
@@ -76,13 +76,13 @@ dotty，lefty則是圖形化的修改工具。
 
 可以用下面兩種方式：
 
-::
+.. code-block:: prettyprint linenums
 
 	dot -T jpg input.dot -o output.jpg
 
 or
 
-::
+.. code-block:: prettyprint linenums
 
 	dot -T jpg input.dot > output.jpg
 
@@ -91,7 +91,7 @@ or
 
 有時候輸出的圖形可能和我們想像的不一樣，像是
 
-::
+.. code-block:: prettyprint linenums
 
 	digraph G
 	{
@@ -103,7 +103,7 @@ or
 
 如果希望a和b可以擺在相同高度，那可以這樣修改
 
-::
+.. code-block:: prettyprint linenums
 
 	digraph G
 	{
@@ -118,7 +118,7 @@ or
 
 下面隨便舉個例子(從\ node-shape_\ 的範例修改）
 
-::
+.. code-block:: prettyprint linenums
 
 	digraph G                                                                       
 	{ 
