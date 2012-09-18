@@ -60,11 +60,13 @@ STM32 + QEMU
 作業提示
 -------
 - 可直接修改在現有目錄下 (如 button/ 或 blink_flash/ 等等) 的 main.c 檔案，然後打包壓縮後寄送即可
+- 同名的 header file，如 "stm32f10x_conf.h"，很可能在不同目錄有不的內容，從而會定義不同的 function
 
 繳交作業
 -------
 - 寄件到 <jserv.tw@gmail.com>
   - 標題: "[HW1]" 開頭，後面加學號與姓名
+  - 內文是測試方法，包含自訂指令，如 "info led" 與 "info button" 的預期結果
   - 可以的話，附上一份自介
 
 補充
