@@ -46,7 +46,8 @@ STM32 + QEMU
     git checkout -b final origin/final
     make all
     make blink_flash_QEMURUN
-    make uart_echo_QEMURUN_TEL
+    make button_QEMURUN
+    make uart_echo_QEMURUN
 
 --------------------------------
 
