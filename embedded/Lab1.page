@@ -7,7 +7,7 @@ Prerquisites
 - sudo apt-get install zlib1g-dev libsdl1.2-dev
 - http://0xlab.org/~jserv/tmp/toolchain-2012_03.tar.bz2
   - Extract to Directory /usr/local/csl/arm-2012.03
-- http://csiewiki.crboy.net/embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch
+- `PATCH </embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
 
 
 STM32 Overview
