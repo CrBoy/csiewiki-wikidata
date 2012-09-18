@@ -1,0 +1,81 @@
+From 9b2a502394abc055bfbb4fdcf19ea3a2e5189591 Mon Sep 17 00:00:00 2001
+From: Jim Huang <jserv@0xlab.org>
+Date: Tue, 18 Sep 2012 12:00:28 +0800
+Subject: [PATCH] Fix build due to old APIs
+
+---
+ hw/stm32_afio.c |    2 +-
+ hw/stm32_exti.c |    2 +-
+ hw/stm32_gpio.c |    2 +-
+ hw/stm32_rcc.c  |    2 +-
+ hw/stm32_uart.c |    2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/hw/stm32_afio.c b/hw/stm32_afio.c
+index 89e963b..791abe2 100644
+--- a/hw/stm32_afio.c
++++ b/hw/stm32_afio.c
+@@ -208,7 +208,7 @@ static int stm32_afio_dev_init(SysBusDevice *dev)
+ 
+ 	iomemtype = cpu_register_io_memory(stm32_afio_readfn,
+ 									   stm32_afio_writefn,
+-									   s->periph_info);
++									   s->periph_info, DEVICE_NATIVE_ENDIAN);
+ 	sysbus_init_mmio(dev, 0x03ff, iomemtype);
+ 
+     stm32_afio_reset(s);
+diff --git a/hw/stm32_exti.c b/hw/stm32_exti.c
+index 7c99f3a..a9ed69e 100644
+--- a/hw/stm32_exti.c
++++ b/hw/stm32_exti.c
+@@ -243,7 +243,7 @@ static int stm32_exti_dev_init(SysBusDevice *dev)
+ 
+ 	iomemtype = cpu_register_io_memory(stm32_exti_readfn,
+ 									   stm32_exti_writefn,
+-									   s->periph_info);
++									   s->periph_info, DEVICE_NATIVE_ENDIAN);
+ 	sysbus_init_mmio(dev, 0x03ff, iomemtype);
+ 
+ 	sysbus_init_irq(dev, &s->irq[0]);  //EXTI0
+diff --git a/hw/stm32_gpio.c b/hw/stm32_gpio.c
+index 10865e5..c391fc6 100644
+--- a/hw/stm32_gpio.c
++++ b/hw/stm32_gpio.c
+@@ -321,7 +321,7 @@ static int stm32_gpio_dev_init(SysBusDevice *dev)
+ 
+ 	iomemtype = cpu_register_io_memory(stm32_gpio_readfn,
+ 									   stm32_gpio_writefn,
+-									   s->periph_info);
++									   s->periph_info, DEVICE_NATIVE_ENDIAN);
+ 	sysbus_init_mmio(dev, 0x03ff, iomemtype);
+ 
+ 	qdev_init_gpio_in(&dev->qdev, stm32_gpio_in_trigger, 16);
+diff --git a/hw/stm32_rcc.c b/hw/stm32_rcc.c
+index 3bcaf21..9e2d1e4 100644
+--- a/hw/stm32_rcc.c
++++ b/hw/stm32_rcc.c
+@@ -1260,7 +1260,7 @@ static int stm32_rcc_dev_init(SysBusDevice *dev)
+ 
+ 	iomemtype = cpu_register_io_memory(stm32_rcc_readfn,
+ 									   stm32_rcc_writefn,
+-									   s->periph_info);
++									   s->periph_info, DEVICE_NATIVE_ENDIAN);
+ 	sysbus_init_mmio(dev, 0x03ff, iomemtype);
+ 
+     sysbus_init_irq(dev, &s->irq);
+diff --git a/hw/stm32_uart.c b/hw/stm32_uart.c
+index ce040c8..f6d74be 100644
+--- a/hw/stm32_uart.c
++++ b/hw/stm32_uart.c
+@@ -735,7 +735,7 @@ static int stm32_uart_dev_init(SysBusDevice *dev)
+ 
+ 	iomemtype = cpu_register_io_memory(stm32_uart_readfn,
+ 									   stm32_uart_writefn,
+-									   s->periph_info);
++									   s->periph_info, DEVICE_NATIVE_ENDIAN);
+ 	sysbus_init_mmio(dev, 0x03ff, iomemtype);
+ 
+     sysbus_init_irq(dev, &s->irq);
+-- 
+1.7.10.4
+
