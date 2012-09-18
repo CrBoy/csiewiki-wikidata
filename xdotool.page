@@ -23,7 +23,7 @@ categories: 工具軟體
 
 ubuntu/debian
 
-::
+.. code-block:: prettyprint linenums
 
     sudo apt-get install xdotool
 
@@ -36,39 +36,39 @@ ubuntu/debian
 
 - 鍵盤輸入a
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool key a
 
 - 按住a/放開a
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool keydown a
     xdotool keyup a
 
 - 滑鼠移動到 (100, 200) 的位置
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool mousemove 100 200
 
 - 按下滑鼠左鍵（左鍵：1、滾輪：2、右鍵：3、滾輪上/下：4/5）
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool click 1
  
 - 按住滑鼠放開滑鼠
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool mousedown
     xdotool mouseup
 
 - 取得目前滑鼠位置
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool getmouselocation
 
@@ -76,7 +76,7 @@ ubuntu/debian
 
 - 送出ctrl+c到所有title是'gdb'的視窗中
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool search --name gdb key ctrl+c
 
@@ -91,13 +91,13 @@ ubuntu/debian
 
 像上面範例中的作法一樣，直接在CLI上輸入
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool click
 
 - 從檔案中讀取指令
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool filename
 
@@ -105,14 +105,14 @@ ubuntu/debian
 
 可以搭配redirection來從檔案中讀取
 
-::
+.. code-block:: prettyprint linenums
 
     xdotool -
     xdotool - < filename
 
 - 寫成script
 
-::
+.. code-block:: prettyprint linenums
 
     #!/usr/bin/xdotool
     
