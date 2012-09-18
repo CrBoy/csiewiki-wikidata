@@ -60,6 +60,8 @@ STM32 + QEMU
 -------
 - 可直接修改在現有目錄下 (如 button/ 或 blink_flash/ 等等) 的 main.c 檔案，然後打包壓縮後寄送即可
 - 若 makefile 內容有修改，請一併附上
+- 避開使用 putc(), printf() 一類的函式，畢竟標準 I/O 函式在嵌入式環境不見得完整支援
+- 避開使用 sprintf() 一類需要作特別格式處理的函式，因為很可能在給定的環境中，沒有充分的支援
 - 同名的 header file，如 "stm32f10x_conf.h"，很可能在不同目錄有不的內容，從而會定義不同的 function
 - 不同程式的 makefile 的編譯方式不同，請留意。以下是 uart_echo 的編譯條件：
 
