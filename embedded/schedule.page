@@ -25,13 +25,13 @@ Week  Date     Subject                                 Assignment
 #18   Jan 15   Make Your Own System (and profit)       DONE
 ====  ====     =======                                 ==========
 
-.. _`Overview: Embedded - Why and How`: embedded/2012w1
-.. _`ARM Architecture`: embedded/2012w2
-.. _`Realtime Operating System`: embedded/2012w3
-.. _`Timer, Interrupt, Exception in ARM`: embedded/2012w4
-.. _`RTOS Design and Implementation`: embedded/2012w5
-.. _`Peripherals and hardware interface`: embedded/2012w6
-.. _`ARM Cortex-M series`: embedded/2012w7
-.. _`Microkernel overview`: embedded/2012w11
-.. _`Virtualization technologies`: embedded/2012w12
+.. _`Overview: Embedded - Why and How`: 2012w1
+.. _`ARM Architecture`: 2012w2
+.. _`Realtime Operating System`: 2012w3
+.. _`Timer, Interrupt, Exception in ARM`: 2012w4
+.. _`RTOS Design and Implementation`: 2012w5
+.. _`Peripherals and hardware interface`: 2012w6
+.. _`ARM Cortex-M series`: 2012w7
+.. _`Microkernel overview`: 2012w11
+.. _`Virtualization technologies`: 2012w12
 .. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
