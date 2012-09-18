@@ -9,9 +9,10 @@ STM32 Overview
   - Computing/Prototyping
   - One for most use cases
   - open source: http://code.google.com/hosting/search?q=label:STM32 
-- http://0xlab.org/~jserv/tmp/CM-STM32.pdf
+  - http://0xlab.org/~jserv/tmp/CM-STM32.pdf
 
 .. image:: /STM32-P103-01.jpg
+
 STM32 + QEMU
 ------------
 
@@ -36,3 +37,8 @@ STM32 + QEMU
     make uart_echo_QEMURUN_TEL
 
 --------------------------------
+
+作業要求
+-------
+- 設計 STM32 的程式，使得在按下 Button 時，於 UART 輸出 "Hello!"
+- STM32 的程式須能與使用者互動，允許透過 UART 下指令控制週邊的狀態，至少要控制 LED 與查詢 Button 的狀態 (如按下的次數)
