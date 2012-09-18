@@ -1,0 +1,37 @@
+=============
+QEMU Modeling
+=============
+
+STM32 Overview
+--------------
+- Powerful but Cheap
+  - Wireless Connectivity
+  - Computing/Prototyping
+  - One for most use cases
+  - open source: http://code.google.com/hosting/search?q=label:STM32 
+- http://0xlab.org/~jserv/tmp/CM-STM32.pdf
+
+STM32 + QEMU
+------------
+
+.. code-block:: prettyprint
+
+    git://github.com/beckus/stm32_p103_demos.git
+    git clone git://github.com/beckus/SandboxQemu2.git qemu_stm32
+
+    cd qemu_stm32
+    ./configure --disable-werror --enable-debug \
+        --enable-debug-tcg \
+        --target-list="arm-softmmu" \
+        --extra-cflags=-DDEBUG_CLKTREE \
+        --extra-cflags=-DDEBUG_STM32_UART \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
+    make
+    cd ../stm32_p103_demos
+    git checkout -b final origin/final
+    make all
+    make blink_flash_QEMURUN
+    make uart_echo_QEMURUN_TEL
+
+--------------------------------
