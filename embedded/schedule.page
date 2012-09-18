@@ -5,7 +5,7 @@ Fall 2012
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Sep 18   `Overview: Embedded - Why and How`_     Lab 1: QEMU
+#1    Sep 18   `Overview: Embedded - Why and How`_     `Lab 1`_: QEMU
 #2    Sep 25   `ARM Architecture`_ (Basic)             Lab 2: GNU Toolchain (1)
 #3    Oct  2   `Realtime Operating System`_ (Basic)    Lab 3: GNU Toolchain (2)
 #4    Oct  9   `Timer, Interrupt, Exception in ARM`_   Lab 4: RTOS for MCU
@@ -35,3 +35,4 @@ Week  Date     Subject                                 Assignment
 .. _`Microkernel overview`: 2012w11
 .. _`Virtualization technologies`: 2012w12
 .. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
+.. _`Lab 1`: Lab1
