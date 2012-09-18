@@ -59,3 +59,4 @@ STM32 + QEMU
 ----
 - git log
 - git log -p
+- export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
