@@ -60,7 +60,20 @@ STM32 + QEMU
 作業提示
 -------
 - 可直接修改在現有目錄下 (如 button/ 或 blink_flash/ 等等) 的 main.c 檔案，然後打包壓縮後寄送即可
+- 若 makefile 內容有修改，請一併附上
 - 同名的 header file，如 "stm32f10x_conf.h"，很可能在不同目錄有不的內容，從而會定義不同的 function
+- 不同程式的 makefile 的編譯方式不同，請留意。以下是 uart_echo 的編譯條件：
+
+.. code-block:: prettyprint
+
+    demos/uart_echo/main.elf: demos/uart_echo/main.c
+    demos/uart_echo/main.elf: $(STD_PERIPH_SRC)/stm32f10x_rcc.c
+    demos/uart_echo/main.elf: $(STD_PERIPH_SRC)/stm32f10x_gpio.c
+    demos/uart_echo/main.elf: $(STD_PERIPH_SRC)/stm32f10x_usart.c
+    demos/uart_echo/main.elf: $(SYS_FILES)
+            $(CC) $(CFLAGS_LINK) -Idemos/uart_echo/ -o $@ $^
+
+--------------------------------
 
 繳交作業
 -------
