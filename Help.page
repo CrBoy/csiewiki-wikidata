@@ -1,14 +1,12 @@
-Navigating
-==========
+瀏覽
+====
 
-The most natural way of navigating is by clicking wiki links that
-connect one page with another. The “Front page” link in the navigation
-bar will always take you to the Front Page of the wiki. The “All pages”
-link will take you to a list of all pages on the wiki (organized into
-folders if directories are used). Alternatively, you can search using
-the search box. Note that the search is set to look for whole words, so
-if you are looking for “gremlins”, type that and not “gremlin”. The “go”
-box will take you directly to the page you type.
+最簡單的瀏覽方式就是點選頁面中的 wiki 連結，可在 wiki 頁面之間切換。
+點選導覽選單中的「首頁」可直接回到 wiki 首頁。
+「所有頁面」則會顯示本站所有 wiki 頁面，若頁面在目錄中，則會顯示目錄，你可以點選目錄進到下一層。
+除此之外，你也可以使用搜尋功能尋找你要的資料。
+需要注意的是，如果你搜尋的是英文單字，必須完整打出。如「gremlins」不可以打成「gremlin」。
+最後，「前往」的功能可以讓你直接連結到你指定的頁面。
 
 Creating and modifying pages
 ============================
