@@ -85,10 +85,8 @@ STM32 on QEMU 環境建立與測試
   - 內文是測試方法，包含自訂指令，如 "info led" 與 "info button" 的預期結果
   - 可以的話，附上一份自介
 
-補充
-----
-- git log
-- git log -p
+小提醒
+-----
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
 - 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
 - Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
