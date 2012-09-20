@@ -5,11 +5,11 @@ QEMU Modeling
 Prerquisites
 ------------
 - sudo apt-get install zlib1g-dev libsdl1.2-dev
-- http://0xlab.org/~jserv/tmp/toolchain-2012_03.tar.bz2
+- 取得 GNU Toolchain: http://0xlab.org/~jserv/tmp/toolchain-2012_03.tar.bz2
   - Extract to Directory /usr/local/csl/arm-2012.03
     - cd  /
-    - tar jxvf toolchain-2012_03.tar.bz2
-- `PATCH </embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
+    - sudo tar jxvf toolchain-2012_03.tar.bz2
+- 取得檔案 `0001-Fix-build-due-to-old-APIs.patch </embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
 
 
 STM32 Overview
