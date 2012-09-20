@@ -6,6 +6,8 @@ Prerquisites
 ------------
 - 安裝 Ubuntu Linux，建議版本為 12.04
 - sudo apt-get install zlib1g-dev libsdl1.2-dev
+- 若 Ubuntu 使用 **64bit 版本**，請額外安裝 lib32gcc1 之套件
+  - sudo apt-get install lib32gcc1
 - 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2 </embedded/Lab1/toolchain-2012_03.tar.bz2>`_
   - 解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
     - cd  /
