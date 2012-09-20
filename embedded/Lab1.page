@@ -6,7 +6,7 @@ Prerquisites
 ------------
 - sudo apt-get install zlib1g-dev libsdl1.2-dev
 - 取得 GNU Toolchain: http://0xlab.org/~jserv/tmp/toolchain-2012_03.tar.bz2
-  - Extract to Directory /usr/local/csl/arm-2012.03
+  - 解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
     - cd  /
     - sudo tar jxvf toolchain-2012_03.tar.bz2
 - 取得檔案 `0001-Fix-build-due-to-old-APIs.patch </embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
@@ -90,3 +90,5 @@ STM32 on QEMU 環境建立與測試
 - git log -p
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
 - 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
+- Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
+  - ln -s ~/下載 ~/Downloads
