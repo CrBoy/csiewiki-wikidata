@@ -10,7 +10,7 @@ Prerquisites
   - 解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
     - cd  /
     - sudo tar jxvf toolchain-2012_03.tar.bz2
-- 取得檔案 `0001-Fix-build-due-to-old-APIs.patch </embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
+- 取得檔案 `0001-Fix-build-due-to-old-APIs.patch </_showraw/embedded/Lab1/0001-Fix-build-due-to-old-APIs.patch>`_
 
 
 STM32 Overview
