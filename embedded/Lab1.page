@@ -43,6 +43,7 @@ STM32 on QEMU 環境建立與測試
     make
     cd ../stm32_p103_demos
     git checkout -b final origin/final
+    export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
     make all
     make blink_flash_QEMURUN
     make button_QEMURUN
@@ -87,6 +88,5 @@ STM32 on QEMU 環境建立與測試
 ----
 - git log
 - git log -p
-- export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
 - 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
