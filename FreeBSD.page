@@ -1,6 +1,27 @@
 FreeBSD 為一個 `Unix-Like <>`_ 作業系統，由 `BSD <>`_ 衍生出來的一個版本，受到不少人喜愛。後來由 FreeBSD 延伸出其他發行版，如 `PC-BSD <http://www.pcbsd.org/>`_、Desktop-BSD、`FreeNAS <http://www.freenas.org/>`_ 等。
 
 
+安裝
+====
+舊版的 FreeBSD 對電腦硬體支援較少，但現在常見的硬體驅動都已支援，也可以在虛擬機器上安裝。
+
+以下安裝步驟以 FreeBSD 9.0 為主：
+ 1. 由光碟開機，出現開機選單時選擇第一個選項「1. Boot [Enter]」。
+ 1. 歡迎畫面可以選擇要安裝、使用 Shell 或是使用 LiveCD 方式操作。安裝作業系統選擇「Install」即可。
+ 1. 選擇鍵盤對應，一般情況不需要更改。    
+    之後的安裝介面均使用鍵盤操作，Tab 切換按鈕選擇、空白鍵核取選項、Enter 表示按下按鈕或下一個步驟。
+ 1. 設定網域名稱，沒有則留空。
+ 1. Distribution Select 選單中，可選擇欲安裝的項目：
+    - doc: 手冊、說明文件
+    - games: 遊戲，通常 server 不需要安裝。
+    - lib32: 給 32bit 所使用的 binary。
+    - ports: Ports collection 為 FreeBSD 的套件庫，之後搜尋、安裝套件較簡單方便。Ports colection 會使用相當大的硬碟空間，可視情況安裝，或是之後需要再由 syssintall 安裝。
+    - src: FreeBSD kernel srouce code，若有需要自行編譯核心可安裝。
+ 1. Partition 選單：做磁碟分割定掛載分割區。
+ 1. 安裝系統至硬碟上。
+
+
+
 Reference
 =========
 - `FreeBSD.org <http://www.freebsd.org/>`_
