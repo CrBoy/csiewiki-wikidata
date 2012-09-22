@@ -1,0 +1,57 @@
+---
+categories: 版本控制
+...
+
+簡介
+====
+
+關於 git 的簡介可以參考 http://zh.wikipedia.org/wiki/Git
+
+安裝
+====
+
+在 Ubuntu/Debian 上，``sudo apt-get install git-core``
+
+簡單操作
+=======
+
+初始化
+-----
+
+``git init``
+
+將檔案加入追蹤
+------------
+
+``git add filename``
+
+commit
+------
+
+``git commit``
+
+接著撰寫 log
+
+或 ``git commit -m 'log log log.....'``
+
+查看目前狀態
+----------
+
+``git status``
+
+會列出目前尚未追蹤、有改變、移除或更名等檔案的狀態，同時會有提示告訴你，
+
+該下什麼指令來作到什麼事。
+
+查看 log
+--------
+
+``git log`` 可以加上參數增加其他資訊
+
+如
+
+``git log --graph`` 為 branch 畫圖
+
+``git log --all`` 列出所有 branch 等
+
+log 中通常會包含 commit 編號、作者、日期和 log 內容等紀錄
