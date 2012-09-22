@@ -3,14 +3,18 @@ Week #1 : Sep 18
 ================
 
 Materials
----------
-- http://code.google.com/p/mosut/wiki/meeting_20120602
-- http://code.google.com/p/mosut/wiki/meeting_20120616
+----------
+- `淺談開放原始碼軟體衝擊下的新思維 </embedded/2012w1/opensource.pdf>`_
 
 Demo
 ----
 - http://www.youtube.com/watch?v=AqrUI1yvz7I - 屬 LED Matrix 的推廣應用，具有 3D 立體圖像的效果，其原理透過共陽或者共陰的接腳方式控制LED Cube的型態。搭配音樂的節奏可做數位藝術的呈現
 - http://www.youtube.com/watch?v=7fERqPyQGRY - LED 跑馬燈 (手機透過藍芽直接修改跑馬燈的文字內容)，透過ARDUINO驅動LED Matrix做出跑馬燈的效果，手機使用藍芽將資訊放進ARDUINO中，達到直接修改內容的效果
+
+延伸應用
+-------
+- http://code.google.com/p/mosut/wiki/meeting_20120602
+- http://code.google.com/p/mosut/wiki/meeting_20120616
 
 Reference
 ---------
