@@ -1,0 +1,36 @@
+---
+categories: markup-language
+...
+
+簡介
+====
+
+
+工具
+====
+
+docutils
+--------
+
+rst 轉換工具，在 Ubuntu/Debian 下的安裝方式
+
+.. code-block:: prettyprint linenums
+
+  sudo apt-get install python-docutils
+  or
+  sudo apt-get install python3-docutils
+
+轉為 html
+
+.. code-block:: prettyprint linenums
+
+  rst2html inputfile.rst > outputfile.html
+
+也包含 rst2XXX 可以轉為 mampage, xml, latex, odt 等等其他格式
+
+Online reStructuredText editor
+------------------------------
+
+  http://rst.ninjs.org/
+
+  可以立即看到 rst 轉換後的結果，並在語法錯誤時顯示錯誤。
