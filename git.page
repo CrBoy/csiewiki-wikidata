@@ -55,3 +55,10 @@ commit
 ``git log --all`` 列出所有 branch 等
 
 log 中通常會包含 commit 編號、作者、日期和 log 內容等紀錄
+
+參考資料
+=======
+
+http://git-scm.com/doc
+
+http://blog.longwin.com.tw/2009/05/git-learn-initial-command-2009/
