@@ -19,7 +19,14 @@ FreeBSD 為一個 `Unix-Like <>`_ 作業系統，由 `BSD <>`_ 衍生出來的�
     - src: FreeBSD kernel srouce code，若有需要自行編譯核心可安裝。
  1. Partition 選單：做磁碟分割定掛載分割區。
  1. 安裝系統至硬碟上。
-
+ 1. 設定 root 密碼。
+ 1. 網路設定。
+ 1. 設定系統時間。
+ 1. 啟動系統服務。
+ 1. 選擇是否需要使用匯出系統錯誤資訊。
+ 1. 建立新使用者，在此可以新增一個非 root 帳號。注意：在 FreeBSD 系統中，使用者必須在 wheel 群組當中，才能夠使用 su 切換身份至 root，管理員帳號應該在「Invite into another group」中輸入「wheel」。
+ 1. Final configuration 選單中，可讓使用者在重新開機之前做最後的調整。
+ 1. 移除光碟片，重新開機。
 
 
 Reference
