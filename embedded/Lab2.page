@@ -17,10 +17,9 @@ toc: no
 
 - 將註冊的帳號名稱，通知課程主持人或助教，於 `Organization **embedded2012**<https://gitcafe.com/embedded2012>`_ 加入用於紀錄開發動態的 Git repository
   - 範例: `P-jserv<https://gitcafe.com/embedded2012/P-jserv>`_
-  - 點選 **SSH (Read+Write)** 可得到 git repository 的位址，如上例為：
-.. code-block:: prettyprint
+  - 點選 **SSH (Read+Write)** 可得到 git repository 的位址，如上例為
 
-    git@gitcafe.com:embedded2012/P-jserv.git
+    ``git@gitcafe.com:embedded2012/P-jserv.git``
 
 - 注意：到年底前，repository 的存取權限應該設定為 private
 - 參閱 `Git 簡易操作</git>`_
