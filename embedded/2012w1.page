@@ -13,6 +13,22 @@ Demo
   * 屬 LED Matrix 的推廣應用，具有 3D 立體圖像的效果，其原理透過共陽或者共陰的接腳方式控制 LED cube 的型態。搭配音樂的節奏可做數位藝術的呈現
 - http://www.youtube.com/watch?v=7fERqPyQGRY
   * LED 跑馬燈 (手機透過藍芽直接修改跑馬燈的文字內容)，透過 Arduino 驅動 LED Matrix 做出跑馬燈的效果，手機使用藍芽將資訊放進 Arduino 中，達到直接修改內容的效果
+- Funny Arduino Robot
+  * http://www.youtube.com/watch?v=CIiEXBcBZTI
+- ArduSpider
+  * http://www.youtube.com/watch?v=xqUhlYrN_Po
+- Arduino + Bluetooth + APP
+  * http://www.youtube.com/watch?v=0-Br4xZRCo8
+- ArduPilot Mega
+  * http://www.youtube.com/watch?v=N3PM16IQ1zw
+- ArduPilot V2.0
+  * http://www.youtube.com/watch?v=IvR3QM0iTPw
+- Arduino Tank
+  * http://www.youtube.com/watch?v=saK9S_zt5uM
+- UAV
+  * http://www.youtube.com/watch?v=-hxEV3ASAAY
+- 四軸迷你直昇機
+  * http://www.youtube.com/watch?v=AZ7Xt2b61Us
 
 延伸應用
 -------
