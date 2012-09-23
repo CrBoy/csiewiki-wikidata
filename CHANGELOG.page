@@ -3,6 +3,8 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-09-24: Add license in the footer
+
 2012-09-23: Change upload size limit to 48M
 
 2012-09-23: Fix DOM (remove some yui classes)
