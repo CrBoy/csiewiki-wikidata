@@ -22,8 +22,51 @@ categories: 版本控制
 
 將檔案加入追蹤
 ------------
+在工作目錄 (working directory) 下，git 不會自動追蹤新建立的檔案，必須透過 ``git add`` 指令先將檔案納入容器索引 (index) 才能 commit 進版本庫中。
 
-``git add filename``
+
+在一個新的版本庫中新增一個檔案，並使用 ``git status`` 查看版本庫狀態。Git 會提示發現新的檔案，但是不會自動列入追蹤。
+
+.. code-block:: prettyprint
+
+    $ echo "Hellow World" > new.txt
+    $ git status
+    # On branch master
+    #
+    # Initial commit
+    #
+    # Untracked files:
+    #   (use "git add <file>..." to include in what will be committed)
+    #
+    #       new.txt
+    nothing added to commit but untracked files present (use "git add" to track)
+---------------------------
+
+使用 ``git add`` 將檔案列入追蹤後，git 會顯示檔案預計在下一次提交時送出。
+
+.. code-block:: prettyprint
+
+    $ git status
+    # On branch master
+    #
+    # Initial commit
+    #
+    # Changes to be committed:
+    #   (use "git rm --cached <file>..." to unstage)
+    #
+    #       new file:   new.txt
+    #
+--------------------------
+
+
+``git add`` 指令後方除了檔名之外，也可以使用目錄名稱或是萬用字元當作輸入：
+
+- git add **.**：將目前所在目錄下的所有檔案 (包含子目錄) 加入追蹤。
+- git add *.c：將所有以「.c」結尾的檔案 (不包含子目錄) 加入追蹤。
+
+
+
+
 
 commit
 ------
