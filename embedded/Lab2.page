@@ -3,6 +3,11 @@ title: Lab2: GNU Toolchain and Git
 toc: no
 ...
 
+預期目標
+-------
+- 進一步學習 GNU Toolchain
+- 以 Git 管理與追蹤開發過程
+
 預先準備
 -------
 - 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
