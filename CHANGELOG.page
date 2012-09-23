@@ -3,6 +3,16 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-09-23: Change upload size limit to 48M
+
+2012-09-23: Fix DOM (remove some yui classes)
+
+2012-09-23: Move atom icon into link
+
+2012-09-23: Fix little for W3C validator
+
+2012-09-23: Refactor disqus js
+
 2012-09-18: Move Google analytics code to <head> for webmaster
 
 2012-09-18: Change the max-upload-size to 16M
