@@ -4,16 +4,14 @@ toc: no
 categories: 系統頁面
 ...
 
-這是成大資工的 wiki 系統，你可以自由地在此編撰與閱讀學習筆記。
+這是成大資工的 wiki 系統，您可自由地在此編撰與閱讀學習筆記。
 注意：**Wiki 不等於 Wikipedia (維基百科)**。
-Wiki 泛指一種提供多人合作撰寫的平台，而 Wikipedia 是利用 wiki 系統建立的百科全書 (encyclopedia)。
+Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikipedia.org/>`_ 是藉由 wiki 系統建立的百科全書 (encyclopedia)。
 
 公告
 =====
 
-本站網址為 `wiki.csie.ncku.edu.tw <http://wiki.csie.ncku.edu.tw>`_，預計未來系統將由目前的暫時主機轉移至資工系主機。服務與資料都不會中斷，請安心使用。
-
-目前本站主機狀態：從本來那台暫時主機移至另一台暫時主機........XD (若有任何問題煩請回報，謝謝！)
+本站網址為 `wiki.csie.ncku.edu.tw <http://wiki.csie.ncku.edu.tw>`_，預計未來系統將由目前的暫時主機轉移至資工系主機。移機過程相關問題請回報予 `CrBoy</User/CrBoy>`_ 或 `float</User/float>`_。
 
 進階嵌入式系統開發與實作 (2012 Fall)
 ================================
