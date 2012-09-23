@@ -10,17 +10,23 @@
 -------
 - Classic game of Snake on an ARM controller
   * http://hackaday.com/2012/09/21/classic-game-of-snake-on-an-arm-controller/
+
 - An STM32 processor powers this PC
   * http://hackaday.com/2012/09/03/an-stm32-processor-powers-this-pc/
   * http://www.embedds.com/this-stm32-computer-looks-awesome/
+
 - GLiP
   * https://plus.google.com/105853359553887550708/posts/48xsSjcaGyz
   * http://hackaday.com/2010/07/02/great-interactive-led-puzzle/
+
 - STM32 is executing simple PWM algorithm and controlling LD294 motor driver
   * https://plus.google.com/106282404336573363551/posts/AXztvxixQSF
+
 - STM32 running Quake
   * https://plus.google.com/103257746843984378946/posts/Hmd3kixSzHH
+
 - Micomouse maze solving contest
   * https://plus.google.com/110137716201533987775/posts/4mRy1vnXX65
+
 - FreeRTOS on STM32
   * http://www.electronics-lab.com/blog/?p=15828
