@@ -1,0 +1,10 @@
+---
+title: Lab1: GNU Toolchain and Git
+toc: no
+...
+
+預先準備
+-------
+- 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
+- 將註冊的帳號名稱，通知課程主持人或助教，於 `Organization **embedded2012**<https://gitcafe.com/embedded2012>`_ 加入用於紀錄開發動態的 Git repository
+  - 範例: `P-jserv<https://gitcafe.com/embedded2012/P-jserv>`_
