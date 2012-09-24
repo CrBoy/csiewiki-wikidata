@@ -155,19 +155,19 @@ Use the preview button if you’re in doubt.
 Wiki links
 ----------
 
-Links to other wiki pages are formed this way: ```Page Name <>`_``.
-(Gitit converts markdown links with empty targets into wikilinks.)
+連結到其他 wiki 頁面的寫法為: ```頁面名稱 <>`_``.
+(Gitit 系統會轉換沒有標的之連結為 wikilinks.)
 
-To link to a wiki page using something else as the link text: either
-```something else <Page+Name>`_`` or
+若新增非頁面名稱所標示的連結，可這麼寫:
+```其他名稱或描述 <頁面名稱>`_`` 或
 
 ::
 
-    `something else`_
+    `其他名稱或描述`_
 
-    .. _`something else`: Page Name
+    .. _`其他名稱或描述`: 頁面名稱
 
-Note that page names may contain spaces and some special characters.
+注意：頁面名稱允許包含空白與部份特殊字元。
 They need not be CamelCase. CamelCase words are *not* automatically
 converted to wiki links.
 
