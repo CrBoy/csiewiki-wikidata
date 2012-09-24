@@ -48,3 +48,12 @@ categories: 系統頁面
 
 4. 較大的檔案無法正確下載，可能要重複下載動作，才能完全下載
   - confirmed by CrBoy
+
+5. Reset Password無作用
+  - 發生位置
+
+    `Reset Password<_resetPassword>`_
+
+  - 描述
+
+    輸入已註冊的名稱，並點下「Reset Password」後，出現錯誤訊息：「Server error: <stderr>: hPutChar: hardware fault(Input/output error)」。
