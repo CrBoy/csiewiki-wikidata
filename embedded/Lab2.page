@@ -11,6 +11,7 @@ toc: no
 
 預先準備
 -------
+- 在本 wiki 註冊帳號
 - 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
   - 確認在 Account Settings 加入 SSH Key
   - 可參考「`產生 SSH key 給 Bitbucket/Github 使用<http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/>`_」一文
@@ -23,7 +24,7 @@ toc: no
     - admin:x:115:ncku,帳戶名稱
 
 - 將註冊的帳號名稱，通知課程主持人或助教，於 `Organization **embedded2012**<https://gitcafe.com/embedded2012>`_ 加入用於紀錄開發動態的 Git repository
-  - 範例: `P-jserv<https://gitcafe.com/embedded2012/P-jserv>`_
+  - 範例: `P-jserv<https://gitcafe.com/embedded2012/P-jserv>`_，最好與 wiki 帳號名稱一致，以利於識別
   - 點選 **SSH (Read+Write)** 可得到 git repository 的位址，如上例為
 
     ``git@gitcafe.com:embedded2012/P-jserv.git``
