@@ -29,3 +29,9 @@ toc: no
 
 - 注意：到 2012 年年底前，repository 的存取權限應該設定為 private
 - 參閱 `Git 簡易操作</git>`_
+
+小提示
+-----
+- Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
+
+    ``sudo update-alternatives --config editor``
