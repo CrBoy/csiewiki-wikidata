@@ -28,7 +28,7 @@ categories: 系統頁面
 
     輸入框在游標 on 的時候邊框會消失
 
-2. 連線不穩
+2. 連線不穩 (*已解決 using nginx reverse proxy*)
   - 發生位置
 
     任何頁面
