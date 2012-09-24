@@ -46,8 +46,11 @@ categories: 系統頁面
 
     表格沒有框線，程式碼區段不夠明顯。
 
-4. 較大的檔案無法正確下載，可能要重複下載動作，才能完全下載
-  - confirmed by CrBoy
+4. 較大的檔案無法正確地完整下載
+  - 發生位置：任何
+  - 描述
+    * 較大的檔案無法正確下載，可能要重複下載動作，才能完全下載
+    * confirmed by CrBoy
 
 5. Reset Password無作用
   - 發生位置
@@ -57,3 +60,8 @@ categories: 系統頁面
   - 描述
 
     輸入已註冊的名稱，並點下「Reset Password」後，出現錯誤訊息：「Server error: <stderr>: hPutChar: hardware fault(Input/output error)」。
+
+6. 左側 Export 功能無效
+ - 發生位置：任何
+ - 描述
+   * 持續出現錯誤: /usr/share/pandoc-1.9.4.2/templates/*: openFile: does not exist 
