@@ -221,6 +221,18 @@ Coroutines
 - QEMU Monitor 功能一覽
   * http://en.wikibooks.org/wiki/QEMU/Monitor
 
+評分方法
+-------
+- 請留意所有的大小寫與用語，因為日後的 Lab 皆以程式來評分
+- 自我驗證方式：
+
+.. code-block:: prettyprint
+
+    cd Lab-2
+    make -C demo gdbauto
+    make -C coroutine emu
+
+
 小提示
 -----
 - Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
