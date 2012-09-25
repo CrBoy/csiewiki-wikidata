@@ -16,6 +16,7 @@ toc: no
 - 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
   - 確認在 Account Settings 加入 SSH Key
   - 可參考「`產生 SSH key 給 Bitbucket/Github 使用<http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/>`_」一文
+  - 於 GitCafe 中的 SSH key 設定，可參閱「`GitCafe SSH key設定官方說明  <https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md/>`_」
 
 - 注意：若使用公用電腦，可切換到 root 後，建立新的使用者帳號
   - sudo su
