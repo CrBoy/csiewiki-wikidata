@@ -153,6 +153,28 @@ Coroutines
 - 淺談coroutine與gevent
   * http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/
 
+- 開啟一個終端機，作以下輸入
+
+.. code-block:: prettyprint
+
+    cd Lab-2/coroutine
+    make
+    ./sample
+
+- 用 GDB 觀察執行
+  * 可用 next 與 stepi 指令
+
+- 注意：本範例使用 setjmp/longjmp 來實做 coroutine
+
+作業 (B)
+--------
+- 移植 coroutine 到 STM32 平台 (p103)
+  * 必須修改 SAVE_STACK_POINTER_ASM 與 RESTORE_STACK_ASM 這兩個 macro
+- 系統最少要有兩個 routine，一者傾聽 UART 端來自使用者的輸入，另一者將輸入透過 `ROT13<http://en.wikipedia.org/wiki/ROT13>`_ 編碼演算法印列在 UART 上
+  * 注意：`ROT13<http://en.wikipedia.org/wiki/ROT13>`_ 應以 inline assembly 實做
+- 倘若使用者按下 button 時，系統結束運作，不再畫面作輸出，同時也該清掉任何 buffer，直到使用者再次按下 button 時，才如同之前描述般繼續運作
+
+
 參考資訊
 -------
 - debugger 和 software emulator
@@ -165,7 +187,10 @@ Coroutines
 - GDB Manual
   * http://sourceware.org/gdb/current/onlinedocs/gdb/
   * Commands, Remote Debugging, Extending GDB
-
+- ARM GCC Inline Assembler Cookbook
+  * http://www.ethernut.de/en/documents/arm-inline-asm.html
+- CS360 Lecture notes -- Setjmp
+  * http://web.eecs.utk.edu/~plank/plank/classes/cs360/360/notes/Setjmp/lecture.html
 小提示
 -----
 - Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
