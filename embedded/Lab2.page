@@ -166,6 +166,7 @@ Coroutines
 
 - 注意：本範例使用 setjmp/longjmp 來實做 coroutine
 
+
 作業 (B)
 --------
 - 移植 coroutine 到 STM32 平台 (p103)
@@ -180,17 +181,24 @@ Coroutines
 - debugger 和 software emulator
   * opencsl.openfoundry.org/Lab05_debugger.rst.html
   * http://www.cis.nctu.edu.tw/~is92004/article/gdb.htm
+
 - GDB 筆記
   * http://loda.hala01.com/2012/04/gdb%E7%AD%86%E8%A8%98/
+
 - 以 GDB 重新學習 C 語言程式設計
   * http://www.slideshare.net/jserv/clang-usinggdb
+
 - GDB Manual
   * http://sourceware.org/gdb/current/onlinedocs/gdb/
   * Commands, Remote Debugging, Extending GDB
+
 - ARM GCC Inline Assembler Cookbook
   * http://www.ethernut.de/en/documents/arm-inline-asm.html
+
 - CS360 Lecture notes -- Setjmp
   * http://web.eecs.utk.edu/~plank/plank/classes/cs360/360/notes/Setjmp/lecture.html
+
+
 小提示
 -----
 - Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
