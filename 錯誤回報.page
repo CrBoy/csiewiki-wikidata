@@ -61,7 +61,7 @@ categories: 系統頁面
 
     輸入已註冊的名稱，並點下「Reset Password」後，出現錯誤訊息：「Server error: <stderr>: hPutChar: hardware fault(Input/output error)」。
 
-6. 左側 Export 功能無效
+6. 左側 Export 功能無效 (*已解決，新主機尚未安裝 pandoc*)
  - 發生位置：任何
  - 描述
    * 持續出現錯誤: /usr/share/pandoc-1.9.4.2/templates/*: openFile: does not exist 
