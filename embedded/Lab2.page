@@ -38,6 +38,7 @@ toc: no
 Git repository for Labs
 -----------------------
 - https://gitcafe.com/embedded2012/Labs
+- git init
 - ``git remote add labs git@gitcafe.com:embedded2012/Labs.git``
 - git fetch labs
 - git merge labs/master HEAD 
