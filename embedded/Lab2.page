@@ -57,6 +57,9 @@ QEMU_STM32 + QEMU 操作
     make qemudbg
 
 - 開啟另一個終端機，準備透過 gdb 來追蹤程式。下列 (gdb) 開頭的指令表示在 GDB 內部操作
+- PS. 使用 Ubuntu 64bit 版本時，需要另外安裝 lib32ncurses5
+  - sudo apt-get install lib32ncurses5
+
 
 .. code-block:: prettyprint
 
