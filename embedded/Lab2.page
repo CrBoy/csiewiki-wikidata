@@ -33,6 +33,13 @@ toc: no
 - 注意：到 2012 年年底前，repository 的存取權限應該設定為 private
 - 參閱 `Git 簡易操作</git>`_
 
+
+Git repository for Labs
+-----------------------
+- https://gitcafe.com/embedded2012/Labs
+- ``git remote add labs git@gitcafe.com:embedded2012/Labs.git``
+
+
 QEMU_STM32 + QEMU 操作
 ----------------------
 - 在 Lab-2 目錄下，預先 git clone 與編譯 qemu_stm32
