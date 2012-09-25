@@ -32,6 +32,55 @@ toc: no
 - 注意：到 2012 年年底前，repository 的存取權限應該設定為 private
 - 參閱 `Git 簡易操作</git>`_
 
+QEMU_STM32 + QEMU 操作
+----------------------
+- 開啟一個終端機，作以下輸入
+
+.. code-block:: prettyprint
+
+    cd Lab-2/demo
+    make qemudbg
+
+- 開啟另一個終端機，準備透過 gdb 來追蹤程式。下列 (gdb) 開頭的指令表示在 GDB 內部操作
+
+.. code-block:: prettyprint
+
+    cd Lab-2/demo
+    arm-none-eabi-gdb
+    (gdb) file main.elf 
+    Reading symbols from Lab-2/demo/main.elf...done.
+    (gdb) b main
+    Breakpoint 1 at 0x2206: file main.c, line 8.
+    (gdb) target remote :3333
+    Remote debugging using :3333
+    Reset_Handler ()
+        at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s:67
+    67	  movs	r1, #0
+    (gdb) c
+    Continuing.
+    
+    Breakpoint 1, main () at main.c:8
+    8		RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    (gdb) list
+    3	
+    4	int main(void)
+    5	{
+    6		int last_button_state, new_button_state;
+    7	
+    8		RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    9		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOA, ENABLE);
+    10						
+    11		/* Configure PC.12 as output push-pull (LED) */
+    12		GPIO_WriteBit(GPIOC,GPIO_Pin_12,Bit_SET);
+    (gdb) b 23
+    Breakpoint 2 at 0x2264: file main.c, line 23.
+    (gdb) c
+    Continuing.
+    
+    Breakpoint 2, main () at main.c:23
+    23			new_button_state = GPIOA->IDR & 0x00000001;
+
+
 Coroutines
 ----------
 - "Coroutines are computer program components that generalize subroutines to allow multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, iterators, infinite lists and pipes."
