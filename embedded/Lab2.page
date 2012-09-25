@@ -8,6 +8,7 @@ toc: no
 - 學習 GNU Toolchain 的使用
 - 藉由 `coroutine<http://en.wikipedia.org/wiki/Coroutine>`_ 的實做，作為日後 RTOS 學習的準備
 - 以 Git 管理與追蹤開發過程
+- 引入自動評分機制
 
 預先準備
 -------
@@ -173,7 +174,26 @@ Coroutines
   * 必須修改 SAVE_STACK_POINTER_ASM 與 RESTORE_STACK_ASM 這兩個 macro
 - 系統最少要有兩個 routine，一者傾聽 UART 端來自使用者的輸入，另一者將輸入透過 `ROT13<http://en.wikipedia.org/wiki/ROT13>`_ 編碼演算法印列在 UART 上
   * 注意：`ROT13<http://en.wikipedia.org/wiki/ROT13>`_ 應以 inline assembly 實做
+
 - 倘若使用者按下 button 時，系統結束運作，不再畫面作輸出，同時也該清掉任何 buffer，直到使用者再次按下 button 時，才如同之前描述般繼續運作
+
+- 在 Makefile 已有 'emu' 的 target，可接受來自 stdio 的輸入，自動控制 QEMU 的執行
+  * make emu
+  * emulate.sh 
+.. code-block:: prettyprint
+
+    emulate () {
+      $QEMU_STM32 \
+        -M stm32-p103 \
+        -kernel $1 \
+        -serial stdio \
+        -parallel none \
+        -monitor tcp:localhost:4444,server,nowait <&0 & pid=$!
+    }
+
+  * telnet localhost 4444
+
+- 提示：可修改 emulate.sh 與 test.script
 
 
 參考資訊
@@ -198,6 +218,8 @@ Coroutines
 - CS360 Lecture notes -- Setjmp
   * http://web.eecs.utk.edu/~plank/plank/classes/cs360/360/notes/Setjmp/lecture.html
 
+- QEMU Monitor 功能一覽
+  * http://en.wikibooks.org/wiki/QEMU/Monitor
 
 小提示
 -----
