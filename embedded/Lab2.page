@@ -98,6 +98,7 @@ QEMU_STM32 + QEMU 操作
     Breakpoint 2, main () at main.c:23
     23			new_button_state = GPIOA->IDR & 0x00000001;
     (gdb) n
+    24			if(new_button_state ^ last_button_state) {
     (gdb) p new_button_state
     $1 = 0
     (gdb) info breakpoints 
