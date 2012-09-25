@@ -111,6 +111,30 @@ QEMU_STM32 + QEMU 操作
     main () at main.c:29
     29			last_button_state = new_button_state;
 
+- 事實上 GPIOC 是個 macro，可透過 GDB 驗證
+
+.. code-block:: prettyprint
+
+    (gdb) info macro GPIOC
+    Defined at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h:1410
+      included at Lab-2/demo/main.c:2
+    #define GPIOC ((GPIO_TypeDef *) GPIOC_BASE)
+
+
+作業 (A)
+-------
+- 適度修改 Lab-2/demo 目錄底下的檔案，使其僅作基本的 UART 初始化動作
+- 撰寫特別的 GDB script，使得 QEMU 能自動在 UART 畫面印出 "Hello!" 字樣。main.c 檔案的行數應該越少越好 (作為評分依據)，處理動作最好全權交給 GDB
+- 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
+  * 提示: ``gdb -x`` 後面接檔名，可自動執行指定的 GDB script，如：
+
+.. code-block:: prettyprint
+
+    file main.elf
+    target remote :3333
+    b main
+    c
+
 
 Coroutines
 ----------
@@ -135,6 +159,9 @@ Coroutines
   * http://loda.hala01.com/2012/04/gdb%E7%AD%86%E8%A8%98/
 - 以 GDB 重新學習 C 語言程式設計
   * http://www.slideshare.net/jserv/clang-usinggdb
+- GDB Manual
+  * http://sourceware.org/gdb/current/onlinedocs/gdb/
+  * Commands, Remote Debugging, Extending GDB
 
 小提示
 -----
