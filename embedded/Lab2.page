@@ -32,6 +32,20 @@ toc: no
 - 注意：到 2012 年年底前，repository 的存取權限應該設定為 private
 - 參閱 `Git 簡易操作</git>`_
 
+Coroutines
+----------
+- "Coroutines are computer program components that generalize subroutines to allow multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing more familiar program components such as cooperative tasks, iterators, infinite lists and pipes."
+  * http://en.wikipedia.org/wiki/Coroutine
+
+- 使用 coroutine 實做 user-level thread
+  * http://blog.linux.org.tw/~jserv/archives/001848.html
+
+- Coroutine in FPPA
+  * http://godspeedlee.myweb.hinet.net/coroutine.html
+
+- 淺談coroutine與gevent
+  * http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/
+
 小提示
 -----
 - Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
