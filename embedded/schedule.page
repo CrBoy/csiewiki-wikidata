@@ -7,7 +7,7 @@ toc: no
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Sep 18   `Overview: Embedded - Why and How`_     `Lab 1`_: QEMU
-#2    Sep 25   `ARM Architecture`_ (Basic)             `Lab 2`_: GNU Toolchain + QEMU
+#2    Sep 25   `ARM Architecture`_ (Basic)             `Lab 2`_: GNU Toolchain + QEMU/ARM
 #3    Oct  2   `Realtime Operating System`_ (Basic)    `Lab 3`_: GNU Toolchain + RTOS
 #4    Oct  9   `Timer, Interrupt, Exception in ARM`_   Lab 4: RTOS for MCU
 #5    Oct 16   `RTOS Design and Implementation`_       Lab 5: RTOS modifications
