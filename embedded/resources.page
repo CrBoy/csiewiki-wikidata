@@ -14,6 +14,10 @@
 - 碳纖維輕量化迷你六足 (毛筆字書寫「你好」)
   * https://www.youtube.com/watch?v=WRdwvQpyOZI
 
+- 用 MCU 玩俄羅斯方塊 (純軟體！)
+  * 以 STM32 實做 USB Video Camera class (UVC)，並以內建的移動感測器作為輸入，整個俄羅斯方塊遊戲就在不需要安裝任何 MS-Windows 驅動程式的前提下，Plug-n-Play
+  * http://code.google.com/p/lxyppc-tetrix/
+
 - Classic game of Snake on an ARM controller
   * http://hackaday.com/2012/09/21/classic-game-of-snake-on-an-arm-controller/
 
