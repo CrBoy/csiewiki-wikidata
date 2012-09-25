@@ -52,6 +52,7 @@ QEMU_STM32 + QEMU 操作
 - 開啟一個終端機，作以下輸入
 
 .. code-block:: prettyprint
+
     export QEMU_STM32=qemu-system-arm的路徑/qemu-system-arm
     cd Lab-2/demo
     make qemudbg
