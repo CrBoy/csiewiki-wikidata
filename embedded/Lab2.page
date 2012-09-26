@@ -46,14 +46,14 @@ Git repository for Labs
 
 QEMU_STM32 + QEMU 操作
 ----------------------
-- 在 Lab-2 目錄下，預先 git clone 與編譯 qemu_stm32
-  * 可直接建立 symbolic link，指向 Lab-1 所使用的目錄
+- 在 Lab-2 目錄下，預先建立 symbolic link，指向 Lab-1 所使用 QEMU 的目錄
+  * 類似以下操作：
+  * ln -s QEMU_STM32的路徑  qemu_stm32
 
 - 開啟一個終端機，作以下輸入
 
 .. code-block:: prettyprint
 
-    export QEMU_STM32=qemu-system-arm的路徑/qemu-system-arm
     cd Lab-2/demo
     make qemudbg
 
