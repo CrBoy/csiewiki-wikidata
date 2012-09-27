@@ -161,6 +161,8 @@ QEMU_STM32 + QEMU 操作
 
 - 提示：
   * 可讓 QEMU 在背景執行，可參考或修改 emulate.sh 的內容
+  * 不需要將 QEMU 關閉 (kill)
+
 
 Coroutines
 ----------
