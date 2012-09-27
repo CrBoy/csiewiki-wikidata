@@ -149,6 +149,7 @@ QEMU_STM32 + QEMU 操作
 - 適度修改 Lab-2/demo 目錄底下的檔案，使其僅作基本的 UART 初始化動作
 - 撰寫特別的 GDB script，使得 QEMU 能自動在 UART 畫面印出 "Hello!" 字樣。main.c 檔案的行數應該越少越好 (作為評分依據)，處理動作最好全權交給 GDB
 - 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
+  * 也就是預期執行 ``make gdbauto`` 之後，能呼叫 QEMU
   * 提示: ``gdb -x`` 後面接檔名，可自動執行指定的 GDB script，如：
 
 .. code-block:: prettyprint
@@ -158,6 +159,8 @@ QEMU_STM32 + QEMU 操作
     b main
     c
 
+- 提示：
+  * 可讓 QEMU 在背景執行，可參考或修改 emulate.sh 的內容
 
 Coroutines
 ----------
