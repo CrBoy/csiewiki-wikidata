@@ -13,6 +13,7 @@ toc: no
 預先準備
 -------
 - 在本 wiki 註冊帳號
+- 加入/訂閱位於 Google Groups 的 `embedded2012 郵件討論群組，以獲得討論資訊<https://groups.google.com/group/embedded2012>`_
 - 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
   - 確認在 Account Settings 加入 SSH Key
   - 可參考「`產生 SSH key 給 Bitbucket/Github 使用<http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/>`_」一文
