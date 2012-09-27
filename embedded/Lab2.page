@@ -35,10 +35,12 @@ toc: no
 - 參閱 `Git 簡易操作</git>`_
 
 
-Git repository for Labs
------------------------
-- https://gitcafe.com/embedded2012/Labs
-- 已取得 GitCafe Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發。以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
+自本次開始所採用的 Git repository
+-------------------------------
+- 線上瀏覽
+  * https://gitcafe.com/embedded2012/Labs
+
+- 已取得 `GitCafe<https://gitcafe.com>`_ Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發。以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
 
 .. code-block:: prettyprint
 
