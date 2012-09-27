@@ -32,7 +32,7 @@ toc: no
     ``git@gitcafe.com:embedded2012/P-jserv.git``
 
 - 注意：到 2012 年年底前，repository 的存取權限應該設定為 private
-- 參閱 `Git 簡易操作</git>`_
+- 參閱 `Git 簡易操作</git>`_ 與 `寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_
 
 
 自本次開始所採用的 Git repository
@@ -50,7 +50,8 @@ toc: no
     git fetch labs
     git merge labs/master HEAD
 
-- 或，僅想測試 Labs 的操作
+- 往後只要重複執行前項的後兩個指令 (git fetch 與 git merge)，即可取得最新的作業及參考內容
+- 或，僅想測試 Labs 的操作 (適合在課堂 / 電腦教室的環境)
   * ``git clone git://gitcafe.com/embedded2012/Labs.git``
 
 
