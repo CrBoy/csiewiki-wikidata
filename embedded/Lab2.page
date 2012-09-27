@@ -54,7 +54,8 @@ toc: no
 - 將過程所需要的檔案透過 ``git add`` 指令加入到工作區，接著透過 ``git push`` 來提交修改
 - 確認詳加閱讀「`寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_」投影片以得知 Git 基本操作
 - 或，僅想測試 Labs 的操作 (適合在課堂 / 電腦教室的環境)
-  * ``git clone git://gitcafe.com/embedded2012/Labs.git``
+
+    ``git clone git://gitcafe.com/embedded2012/Labs.git``
 
 
 QEMU_STM32 + QEMU 操作
