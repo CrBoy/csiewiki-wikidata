@@ -51,7 +51,7 @@ toc: no
     git fetch labs
     git rebase labs/master
 
-- 往後只要重複執行前項的後兩個指令 (``git fetch`` 與 ``git merge``)，即可取得最新的作業及參考內容
+- 往後只要重複執行前項的後兩個指令 (``git fetch`` 與 ``git rebase``)，即可取得最新的作業及參考內容
 - 將過程所需要的檔案透過 ``git add`` 指令加入到工作區，接著透過 ``git push`` 來提交修改
 - 確認詳加閱讀「`寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_」投影片以得知 Git 基本操作
 - 或，僅想測試 Labs 的操作 (適合在課堂 / 電腦教室的環境)
