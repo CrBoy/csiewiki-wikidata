@@ -52,6 +52,17 @@ FreeBSD 官方網站以及其他使用者提供不少可直接安裝的套件，
 -----------------------------
 
 
+pkg_add 提供 ``-r`` 參數，讓 pkg_add 自動從網路套件列表搜尋符合的套件下載安裝，並自動解決相依性問題：
+
+.. code-block:: pretty-print
+
+    $ pkg_add -r bash
+    Fetching bash.tbz... Done.   
+    Fetching libiconv-1.13.1_1.tbz... Done.  # 因相依性而自動下載、安裝的套件
+    Fetching gettext-0.18.1.1.tbz... Done.
+    $ rehash
+    $ bash 
+-----------------------------
 
 
 Reference
