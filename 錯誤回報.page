@@ -65,3 +65,12 @@ categories: 系統頁面
  - 發生位置：任何
  - 描述
    * 持續出現錯誤: /usr/share/pandoc-1.9.4.2/templates/*: openFile: does not exist 
+
+7. RSS 訂閱連結為 localhost
+  - 發生位置
+    
+    RSS client
+
+  - 描述
+    
+    在 RSS 訂閱中開啟連結時，其 domain name 為 localhost
