@@ -6,8 +6,7 @@ Materials
 ---------
 - The ARM Architecture (with focus on Cortex-M3)
   * http://users.ece.gatech.edu/~hamblen/3055/course/Slides&Handouts/ARM_Presentation_M3_Q3%2711.pptx
-- 快快樂樂設計即時多工作業系統
-  * http://0xlab.org/~jserv/tmp/HappyRTOS.pdf
+- `快快樂樂設計即時多工作業系統</embedded/2012w3/HappyRTOS.pdf>`_
 
 Reference
 ---------
