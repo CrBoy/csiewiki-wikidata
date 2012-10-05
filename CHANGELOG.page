@@ -3,7 +3,19 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
-2012-09-24: Add license in the footer
+2012-10-05: 修正匯出按鈕和選擇框高度不同 (by C4Labs)
+
+2012-10-05: 修正搜尋、前往與字串框高度不一問題（by Kuoe0）
+
+2012-10-05: 修正 diff 沒有新增，刪減的顏色(by zero)
+
+2012-10-01: Display icon for uploaded files
+
+2012-10-01: Add license (CC-BY-SA)
+
+2012-10-01: Major change of the theme! Apply bootstrap for pretty look
+
+2012-09-25: Fix the layout problem (centered text) in IE
 
 2012-09-23: Change upload size limit to 48M
 
