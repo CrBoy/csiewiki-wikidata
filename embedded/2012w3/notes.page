@@ -36,7 +36,7 @@ GDB 七百多頁
 最難的東西就是最簡單的  就跟使用者體驗很像
 最簡單就是做雲端 因為大家不知道標準在哪
 
-手機只要一朝回 產品線就報銷了
+手機只要一召回 產品線就報銷了
 所以要能遠端debug
 
 工程模式越精簡越好
@@ -44,18 +44,17 @@ GDB 七百多頁
 
 iPhone主板跟口香糖寬度一樣XD
 
-
 燒錄空間限制: 4K 
 還要夾帶一些東西30k 64k LinuxKernel 3.2M
-
 
 NASA  1960
 
 不要只停在API call
 
 面試愛考
-Span lock /  mutex
-deadlock 四大條件
+Spinlock /  mutex
+deadlock 四大條件 -- mutual exclusion, hold and wait, no preemption, circular wait
+
 死台大的題目還沒問完就回答定義了
 
 定義我自己google就考了
@@ -126,7 +125,7 @@ M star
 跟公司的工程師聊天
 跟他們工程師想工程上的事情 這工程師就發了XD
 
-快快樂樂設計嵌入式及時作業系統
+快快樂樂設計嵌入式即時作業系統
 
 2007年嵌入式的定義是為特定用途的
 iPhone已經是電腦了XD
@@ -164,7 +163,7 @@ soft -> hard realtime非常hard
 
 
 
-可預測的(predicatble) 通常就是在講io
+可預測的(predictable) 通常就是在講io
 
 
 當時連學企管的都來學了
@@ -188,19 +187,19 @@ RTOS
 
 GPOS  可以忽略很多細節
 印出hello world
-千百個task 這字串長度都不同 printf要怎麼很有效率處理
+千百個tasks 這字串長度都不同 printf要怎麼很有效率處理
 
-Hello world反組譯 超乎想像的複雜
+Hello world反組譯 超乎想像地複雜
 大部分都要處理字串處理buffer
 
 聽些研討會聽一聽蠻痛苦的
-下載app到手機就叫embeded?
+下載app到手機就叫embedded?
 
 
 成大會計  藉由衝突來提升 Transactional Memory 效能之研究
 
 
-不要問我有沒有錯 你自己做應用就能知道能不能符合曲球
+不要問我有沒有錯 你自己做應用就能知道能不能符合需求
 
 
 什麼課程都是博士生在上
