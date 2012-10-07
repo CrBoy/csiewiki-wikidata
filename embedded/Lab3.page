@@ -6,4 +6,4 @@ toc: no
 預期目標
 -------
 - 學習 GNU Toolchain 的使用
-- 在 QEMU 模擬的 STM32 環境中，嘗試執行 FreeRTOS 並且學習相關的操作
+- 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
