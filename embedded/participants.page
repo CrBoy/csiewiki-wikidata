@@ -8,9 +8,11 @@ ID                             期望參與的項目
 =======                        ============
 `jserv`_                       雙足機器人, 電玩遊樂機, 復古個人電腦
 `float`_                       `電子魔術方塊`_ (觸控?)
+`feather`_                     遙控汽車
 You!                           -
 =======                        ============
 
 .. _`jserv`: /User/jserv
 .. _`float`: /User/float
+.. _`feather`: /User/feather
 .. _`電子魔術方塊`: http://blog.yam.com/auk109/article/18429666
