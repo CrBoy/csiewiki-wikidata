@@ -19,6 +19,9 @@
   * rotating-cube: https://github.com/szczys/STM32-rotating-cube
   * snake: https://github.com/szczys/stm32-snake-game
 
+- STM32-based servo/CNC/3D-printer controller
+  * https://github.com/dccharacter/STM32_Servo_Controller
+
 - Shippo - 情感運算
   * http://www.youtube.com/watch?v=qvHcBq7UaY0
 
