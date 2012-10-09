@@ -7,5 +7,26 @@ toc: no
 -------
 - 學習 GNU Toolchain 的使用
 - 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+- 對 RTOS 內部運作進行視覺化，以銜接未來的硬體操作
+
+
+GTKWave
+--------------
+- `GTKWave<http://gtkwave.sourceforge.net/>`_: 強大的 wave viewer
+- 在 Ubuntu Linux 的安裝與操作
+
+.. code-block:: prettyprint
+
+    sudo apt-get install gtkwave
+    cp -af /usr/share/doc/gtkwave/examples/ && cd examples
+    vzt2vcd des.vzt > des.vcd
+    gtkwave des.vcd
+
+- 參考輸出畫面。記得要先選取左下方 Type / SIgnals 並以 Append 加入到分析的清單中
+
+.. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
+
+作業 (A)
+-------------
 
 .. image:: /embedded/Lab3/gtkwave.png
