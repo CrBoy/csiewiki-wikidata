@@ -46,7 +46,20 @@ FreeRTOS for STM32
     cd Lab-3
 
 - 取得最新的 QEMU-STM32，注意：與 `Lab-1</embedded/Lab1>`_ 的 QEMU 是不同版本
-    ``git://gitcafe.com/embedded2012/qemu_stm32.git``
+    ``git clone git://gitcafe.com/embedded2012/qemu_stm32.git``
+
+- 配置 QEMU-STM32 組態並編譯
+
+.. code-block:: prettyprint
+
+    cd qemu_stm32
+    ./configure --disable-werror --enable-debug --target-list="arm-softmmu" \
+        --extra-cflags=-DDEBUG_CLKTREE \
+        --extra-cflags=-DDEBUG_STM32_RCC \
+        --extra-cflags=-DDEBUG_STM32_UART \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
+    make && cd ..
 
 - 仿造 `Lab-2</embedded/Lab2>`_ 的操作，編譯並執行 FreeRTOS 程式
 
