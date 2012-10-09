@@ -4,6 +4,7 @@ Week #4 : Oct  9
 
 Materials
 ---------
+- `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
 - `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
 - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
   * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
