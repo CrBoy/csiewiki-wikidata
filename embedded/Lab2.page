@@ -5,6 +5,7 @@ toc: no
 
 預期目標
 -------
+* 搭配`第二周<http://wiki.csie.ncku.edu.tw/embedded/2012w2>`_學習進度
 - 學習 GNU Toolchain 的使用
 - 藉由 `coroutine<http://en.wikipedia.org/wiki/Coroutine>`_ 的實做，作為日後 RTOS 學習的準備
 - 以 Git 管理與追蹤開發過程
