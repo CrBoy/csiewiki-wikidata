@@ -1,13 +1,14 @@
-================
-Week #1 : Sep 18
-================
+---
+title: Week #1 (Sep 18) :: Overview: Embedded - Why and How 	
+toc: no
+...
 
-Materials
+教材
 ----------
 - `ASEE Workshop on Embedded Systems<http://users.ece.utexas.edu/~valvano/ASEE2012.ppt>`_
 - `淺談開放原始碼軟體衝擊下的新思維 </embedded/2012w1/opensource.pdf>`_
 
-Demo
+作品展示
 ----
 - http://hackaday.com/tag/stm32
 - LED Matrix 的推廣應用
@@ -19,7 +20,7 @@ Demo
   * 透過 Arduino 驅動 LED Matrix 做出跑馬燈的效果，手機使用藍芽將資訊放進 Arduino 中，達到直接修改內容的效果
 
 
-Reference
+參考資訊
 ---------
 - Jonathan W. Valvano: http://users.ece.utexas.edu/~valvano/
 - MIT Operating System Engineering: http://pdos.csail.mit.edu/6.828/2012/
