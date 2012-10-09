@@ -1,14 +1,15 @@
-================
-Week #3 : Oct  2
-================
+---
+title: Week #3 (Oct 2) ::  	Realtime Operating System
+toc: no
+...
 
-Materials
+教材
 ---------
 - `The ARM Architecture (with focus on Cortex-M3)</embedded/2012w3/arm-cortex-m3.pptx>`_
 - `快快樂樂設計即時多工作業系統</embedded/2012w3/HappyRTOS.pdf>`_
 - `課堂筆記：前半段</embedded/2012w3/notes>`_
 
-Reference
+參考資訊
 ---------
 - Real Time Systems and RTOS
   * http://www.slideshare.net/cherviralavm/real-time-systems-amp-rtos
