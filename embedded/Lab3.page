@@ -20,7 +20,7 @@ GTKWave
 .. code-block:: prettyprint
 
     sudo apt-get install gtkwave
-    cp -af /usr/share/doc/gtkwave/examples/ && cd examples
+    cp -af /usr/share/doc/gtkwave/examples . && cd examples
     vzt2vcd des.vzt > des.vcd
     gtkwave des.vcd
 
