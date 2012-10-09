@@ -75,3 +75,8 @@ FreeRTOS for STM32
 -------------
 
 .. image:: /embedded/Lab3/gtkwave.png
+
+參考資訊
+--------------
+- Efficient Debugging and Tracing of System Level Designs
+  * http://www.cecs.uci.edu/technical_report/TR06-08.pdf
