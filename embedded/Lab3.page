@@ -26,6 +26,32 @@ GTKWave
 
 .. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
 
+- 建立 sample.vcd 檔案，觀察 GTKWave 輸出。內容如下：
+
+.. code-block:: prettyprint
+
+    $version
+    $end
+    $timescale 1
+    $end
+    $var wire 8 0x01 0x01 $end
+    $var wire 8 0x02 0x02 $end
+    $var wire 8 0x03 0x03 $end
+    $var wire 8 0x04 0x04 $end
+    $var wire 8 0x05 0x05 $end
+    $var wire 8 0x06 0x06 $end
+    $dumpvars
+    #0
+    b00000110 0x01
+    #174542
+    b00000101 0x01
+    #174548
+    b00000110 0x01
+    #3512733
+    b00000000 0x01
+    $end
+
+
 FreeRTOS for STM32
 ----------------------------------
 - 仿造 `Lab-2</embedded/Lab2>`_ 操作，取得最新的 Lab3 程式碼
