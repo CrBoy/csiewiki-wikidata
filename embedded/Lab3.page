@@ -26,6 +26,28 @@ GTKWave
 
 .. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
 
+FreeRTOS for STM32
+----------------------------------
+- 仿造 `Lab-2</embedded/Lab2>`_ 操作，取得最新的 Lab2
+- 狀況一：只是在課堂練習
+
+.. code-block:: prettyprint
+
+    git clone git://gitcafe.com/embedded2012/Labs.git
+    cd Labs/Lab-3
+
+- 狀況二：整合到 P-<username>，準備可提交作業的環境。以 `jserv</User/jserv>`_ 為例：
+
+.. code-block:: prettyprint
+
+    cd P-jserv
+    git fetch labs
+    git rebase labs/master
+    cd Lab-3
+
+
+.. code-block:: prettyprint
+
 作業 (A)
 -------------
 
