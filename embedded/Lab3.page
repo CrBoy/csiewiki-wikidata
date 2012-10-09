@@ -138,5 +138,9 @@ FreeRTOS for STM32
 --------------
 - Efficient Debugging and Tracing of System Level Designs
   * http://www.cecs.uci.edu/technical_report/TR06-08.pdf
+
 - Reentrancy
   * http://en.wikipedia.org/wiki/Reentrancy_%28computing%29
+
+- RTOS Design Tutorial
+  * http://www.freertos.org/tutorial/
