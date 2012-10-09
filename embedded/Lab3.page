@@ -116,6 +116,9 @@ FreeRTOS for STM32
 
 .. image:: /embedded/Lab3/gtkwave.png
 
+- 提示：
+  * 舉凡 FreeRTOS, main.c, GDB scripts, emulate.sh 等檔案都能修改，重點是建立 mini tracer 的機制，以利後續 RTOS 追蹤分析使用
+
 
 作業 (B)
 -------------
