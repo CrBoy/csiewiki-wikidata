@@ -69,6 +69,7 @@ FreeRTOS for STM32
     make
     make qemu
 
+- 按下 Ctrl-Alt-2 切換到 serial0 畫面時，可發現 FreeRTOS 示範程式中的 thread 已主動作了輸出，並且可在該畫面中，進行輸入操作。請觀察其行為並比對程式碼
 
 作業 (A)
 -------------
