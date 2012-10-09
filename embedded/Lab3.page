@@ -5,9 +5,11 @@ toc: no
 
 預期目標
 -------
-- 學習 GNU Toolchain 的使用
+- 更進一步學習 GNU Toolchain 的使用，特別用在自動化分析環境
 - 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+- 熟悉 FreeRTOS 的內部運作機制
 - 對 RTOS 內部運作進行視覺化，以銜接未來的硬體操作
+- 實地練習 Multi-tasking 程式設計
 
 
 GTKWave
