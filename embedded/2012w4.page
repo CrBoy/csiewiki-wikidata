@@ -1,9 +1,9 @@
-================
-Week #4 : Oct  9
-================
-Timer, Interrupt, Exception in ARM
+---
+title: Week #3 (Oct 2) ::  	Timer, Interrupt, Exception in ARM
+toc: no
+...
 
-Materials
+教材
 ---------
 - `Timer, Interrupt, Exception in ARM</embedded/2012w4/tim-int-ex.pdf>`_
 - `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
@@ -11,7 +11,7 @@ Materials
 - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
   * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
 
-Reference
+參考資訊
 ---------
 - `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
 
