@@ -10,6 +10,7 @@ ID                                      期望參與的項目
 `float`_                           `電子魔術方塊`_ (觸控?)
 `feather`_                     遙控汽車
 `zector`_                       四足機器人、運動相關裝置
+`RoyLee`_ `BruceChen`_                       四軸飛行器              
 You!                                 -
 =======                        ============
 
@@ -17,4 +18,6 @@ You!                                 -
 .. _`float`: /User/float
 .. _`feather`: /User/ctc8631
 .. _`zector`: /User/zector
+.. _`RoyLee`: /User/RoyLee
+.. _`BruceChen`: /User/BruceChen
 .. _`電子魔術方塊`: http://blog.yam.com/auk109/article/18429666
