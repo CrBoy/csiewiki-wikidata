@@ -73,6 +73,8 @@ FreeRTOS for STM32
     git rebase labs/master
     cd Lab-3
 
+- 上個階段可能會面臨 GIT merge 失敗的狀況，可以先 ``git commit -a`` 然後 ``git rebase --skip`` 繼續
+
 - 取得最新的 QEMU-STM32，注意：與 `Lab-1</embedded/Lab1>`_ 的 QEMU 是不同版本
     ``git clone git://gitcafe.com/embedded2012/qemu_stm32.git``
 
