@@ -45,8 +45,9 @@ FreeRTOS for STM32
     git rebase labs/master
     cd Lab-3
 
+- 取得最新的 QEMU-STM32，注意：與 `Lab-1</embedded/Lab1>`_ 的 QEMU 是不同版本
+    ``git://gitcafe.com/embedded2012/qemu_stm32.git``
 
-.. code-block:: prettyprint
 
 作業 (A)
 -------------
