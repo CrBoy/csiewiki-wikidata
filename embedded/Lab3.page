@@ -150,6 +150,6 @@ FreeRTOS for STM32
   * http://www.freertos.org/tutorial/
 
 - FreeRTOS Training
-  * Task Management: http://www.slideshare.net/amraldo/free-freertos-coursetask-management
-  * Queue Management: http://www.slideshare.net/amraldo/m3-introduction-to-free-rtos-v605
-  * Semaphore/Mutex Management: http://www.slideshare.net/amraldo/freertos-course-semaphoremutex-management
+  * `Task Management<http://www.slideshare.net/amraldo/free-freertos-coursetask-management>`_
+  * `Queue Management<http://www.slideshare.net/amraldo/m3-introduction-to-free-rtos-v605>`_
+  * `Semaphore/Mutex Management<http://www.slideshare.net/amraldo/freertos-course-semaphoremutex-management>`_
