@@ -11,3 +11,7 @@ Materials
 Reference
 ---------
 - `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
+- ARM "Cortex-M3 Technical Reference Manual"
+  * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0337i/
+- ARMv7-M Architecture Reference Manual
+  * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0403c/
