@@ -5,6 +5,7 @@ Timer, Interrupt, Exception in ARM
 
 Materials
 ---------
+- `Timer, Interrupt, Exception in ARM</embedded/2012w4/tim-int-ex.pdf>`_
 - `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
 - `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
 - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
