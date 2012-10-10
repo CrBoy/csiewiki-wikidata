@@ -1,0 +1,9 @@
+---
+title: acm 用 vimrc
+categories: vim, acm, contest
+...
+
+.. code-block:: prettyprint linenums
+
+  set ruler nu smd sw=4 ts=4 bs=2 is hls  nocp sc ai cin cul title udf ul=1000 ls=2
+  syn on
