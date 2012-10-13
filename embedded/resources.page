@@ -85,3 +85,8 @@ Arduino 作品
 
 - 四軸迷你直昇機
   * http://www.youtube.com/watch?v=AZ7Xt2b61Us
+
+QEMU
+----
+- NXP LPC1768
+  * https://github.com/myokota/qemu-cortex-m3
