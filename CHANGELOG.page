@@ -3,6 +3,10 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-10-13: 以 jQuery 改寫 previewButton 的 prettify hook，以避免 javascript 錯誤
+
+2012-10-13: 將文章「分類」獨立並加上樣式
+
 2012-10-13: 修正編輯區非等寬文字問題
 
 2012-10-05: 修正匯出按鈕和選擇框高度不同 (by C4Labs)
