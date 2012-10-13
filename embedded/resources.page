@@ -90,3 +90,6 @@ QEMU
 ----
 - NXP LPC1768
   * https://github.com/myokota/qemu-cortex-m3
+
+- Android x86 應用兼容的探討
+  * http://www.cnblogs.com/binsys/archive/2012/08/25/2655882.html
