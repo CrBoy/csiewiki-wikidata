@@ -25,7 +25,7 @@ GTKWave
     vzt2vcd des.vzt > des.vcd
     gtkwave des.vcd
 
-- 參考輸出畫面。記得要先選取左下方 Type / SIgnals 並以 Append 加入到分析的清單中
+- 參考輸出畫面。記得要先選取左下方 Type / Signals 並以 Append 加入到分析的清單中
 
 .. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
 
@@ -76,7 +76,7 @@ FreeRTOS for STM32
 
 - 上個階段可能會面臨 GIT merge 失敗的狀況，可以先 ``git commit -a`` 然後 ``git rebase --skip`` 繼續
 
-- 取得最新的 QEMU-STM32，注意：與 `Lab-1</embedded/Lab1>`_ 的 QEMU 是不同版本
+- 取得最新的 QEMU-STM32：
     ``git clone git://gitcafe.com/embedded2012/qemu_stm32.git``
 
 - 配置 QEMU-STM32 組態並編譯
