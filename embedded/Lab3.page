@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-* 搭配`第三周<http://wiki.csie.ncku.edu.tw/embedded/2012w3>`_與`第四周<http://wiki.csie.ncku.edu.tw/embedded/2012w4>`_課程進度
+* 搭配`第三周</embedded/2012w3>`_與`第四周</embedded/2012w4>`_課程進度
 - 更進一步學習 GNU Toolchain 的使用，特別用在自動化分析環境
 - 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
 - 熟悉 FreeRTOS 的內部運作機制
