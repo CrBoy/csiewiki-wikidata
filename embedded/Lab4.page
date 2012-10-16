@@ -1,0 +1,11 @@
+教學影片觀賞
+----------
+- `開放教材/嵌入式系統導論<http://ocw.nctu.edu.tw/course_detail_3.php?bgid=9&gid=0&nid=246#.UHzse3alYs2>`_, 交大資工/曹孝櫟教授
+  * Introduction to ARM architecture and extension bus
+  * Introduction to Embedded Software
+
+- `EE192C - Embedded Systems Engineering<http://www.cmax.net/ee192c-0708/>`_, Max Klein, Stanford University
+  * Lecture 9: Real Time Systems. Interrupts (IRQ and ISR). Timers. Pulse-width modulation (PWM)
+  * Lecture 10: IRQ and PWM Follow-up. AVR-SCPNT Development Boards. Real Time Operating Systems. Intro to FreeRTOS: Task Creation.
+  * Lecture 11: IRQ updates. Intro to FreeRTOS: Delays, Queues.
+  * Lecture 12: Intro to FreeRTOS: Semaphores. Beginning of Hardware section of class
