@@ -3,6 +3,10 @@ title: ChangeLog
 categories: 系統頁面
 ...
 
+2012-10-21: 修改 doctype 為 html
+
+2012-10-21: 新增 social share 功能(分享到plurk, twitter, facebook)
+
 2012-10-13: 以 jQuery 改寫 previewButton 的 prettify hook，以避免 javascript 錯誤
 
 2012-10-13: 將文章「分類」獨立並加上樣式
