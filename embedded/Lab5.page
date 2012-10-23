@@ -24,6 +24,7 @@ Code Coverage
 --------------
 - GNU code coverage tool `gcov<http://gcc.gnu.org/onlinedocs/gcc/Gcov.html>`_ is generally used to dump the coverage data when the program exits
   * for some embedded systems or for server processes you need a means to dump coverage data of particular situations, i.e. when a client connects.
+
 - Code quality analysis for embedded systems
   * Memory management with Valgrind
   * Code coverage testing with Gcov
