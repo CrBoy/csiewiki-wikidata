@@ -6,3 +6,14 @@ toc: no
 預期目標
 -------
 * 搭配`第五周</embedded/2012w4>`_課程進度
+
+Code Coverage
+--------------
+- GNU code coverage tool `gcov<http://gcc.gnu.org/onlinedocs/gcc/Gcov.html>`_ is generally used to dump the coverage data when the program exits
+  * for some embedded systems or for server processes you need a means to dump coverage data of particular situations, i.e. when a client connects.
+- Code quality analysis for embedded systems
+  * Memory management with Valgrind
+  * Code coverage testing with Gcov
+
+- `Code Quality Analysis Toolset for Embedded Systems<http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf>`_
+- `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
