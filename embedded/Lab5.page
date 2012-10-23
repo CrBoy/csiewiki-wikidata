@@ -9,6 +9,9 @@ toc: no
 
 預先準備
 -------
+- 安裝 lcov
+  * sudo apt-get install lcov
+
 - 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
 
 .. code-block:: prettyprint
@@ -37,6 +40,7 @@ Code Coverage
 
 .. code-block:: prettyprint
 
+  cd Lab-5/coverage
   make
   make run
   gcov hello
