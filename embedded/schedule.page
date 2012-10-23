@@ -11,7 +11,7 @@ Week  Date     Subject                                 Assignment
 #3    Oct  2   `Realtime Operating System`_ (Basic)    `Lab 2`_s: GNU Toolchain + QEMU/ARM
 #4    Oct  9   `Timer, Interrupt, Exception in ARM`_   `Lab 3`_: GNU Toolchain + RTOS
 #5    Oct 16   `RTOS Design and Implementation`_       `Lab 4`_: RTOS for MCU
-#6    Oct 23   Code review of Lab assignments          `Lab 5`_: RTOS modifications
+#6    Oct 23   `Code review of Lab assignments`_       `Lab 5`_: RTOS modifications
 #7    Oct 30   `Peripherals and hardware interface`_   Lab 6: Hardware
 #8    Nov  6   `Embedded Linux Conference Europe`_     Lab 7: MCU
 #9    Nov 13   Group Presentation (1)                  Lab 8: RTOS + MCU
@@ -31,7 +31,8 @@ Week  Date     Subject                                 Assignment
 .. _`Realtime Operating System`: 2012w3
 .. _`Timer, Interrupt, Exception in ARM`: 2012w4
 .. _`RTOS Design and Implementation`: 2012w5
-.. _`Peripherals and hardware interface`: 2012w6
+.. _`Code review of Lab assignments`: https://gitcafe.com/embedded2012/P-jserv
+.. _`Peripherals and hardware interface`: 2012w7
 .. _`ARM Cortex-M series`: 2012w7
 .. _`Microkernel overview`: 2012w11
 .. _`Virtualization technologies`: 2012w12
