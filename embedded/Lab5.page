@@ -16,5 +16,56 @@ Code Coverage
   * Code coverage testing with Gcov
 
 - `Code Quality Analysis Toolset for Embedded Systems<http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf>`_
-- `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
 - `Using gcov and lcov<http://www.slideshare.net/maguschen/using-gcov-and-lcov>`_
+
+Dumping gcov data at runtime
+----------------------------
+- `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
+- Instructions for invoking gcov
+
+.. code-block:: prettyprint
+
+  make
+  make run
+  gcov hello
+
+- Reference output
+
+.. code-block:: prettyprint
+
+  File ’hello.c’
+  Lines executed:100.00% of 15
+  hello.c:creating ’hello.c.gcov’
+
+- Analyze gcov output
+
+.. code-block:: prettyprint
+
+    tail hello.c.gcov
+
+- Reference output
+
+.. code-block:: prettyprint
+
+    1:
+    34: new_action.sa_flags = 0;
+    -:
+    35:
+    1:
+    36: sigaction(SIGUSR1, NULL, &old_action);
+    1:
+    37: if (old_action.sa_handler != SIG_IGN)
+    1:
+    38:
+    sigaction (SIGUSR1, &new_action, NULL);
+    -:
+    39:
+    -:
+    40: /* infinite loop - to exemplify dumping coverage data while program runs */
+    186275468151:
+    41: for(n = 0; ; n++)
+    372550936302:
+    42:
+    i++;
+    -:
+    43:}
