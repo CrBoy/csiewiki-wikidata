@@ -7,9 +7,15 @@ toc: no
 -------
 * 搭配`第五周</embedded/2012w4>`_課程進度
 
-Prepare
+預先準備
 -------
-- git clone git://gitcafe.com/embedded2012/Labs.git
+- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+
+.. code-block:: prettyprint
+
+    git clone git://gitcafe.com/embedded2012/Labs.git
+    cd Labs/Lab-5
+
 
 Code Coverage
 --------------
