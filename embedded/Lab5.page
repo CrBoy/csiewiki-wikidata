@@ -7,6 +7,10 @@ toc: no
 -------
 * 搭配`第五周</embedded/2012w4>`_課程進度
 
+Prepare
+-------
+- git clone git://gitcafe.com/embedded2012/Labs.git
+
 Code Coverage
 --------------
 - GNU code coverage tool `gcov<http://gcc.gnu.org/onlinedocs/gcc/Gcov.html>`_ is generally used to dump the coverage data when the program exits
