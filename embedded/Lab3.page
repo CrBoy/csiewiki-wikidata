@@ -135,7 +135,7 @@ FreeRTOS for STM32
 
 .. code-block:: prettyprint
 
-    Host frequent input: the
+    Most frequent input: the
     Length of the longest word: 9
 
 - 提示：
