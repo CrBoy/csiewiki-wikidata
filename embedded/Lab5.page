@@ -76,3 +76,6 @@ Code Coverage
 ----
 - Lab-5/filesys
 - 整合檔案系統到 FreeRTOS 中，並在 UART 顯示檔案系統中 test.txt 的內容
+- 提示：
+  * 會需要修改到 linker script 以及 SRAM 的配置
+  * 會需要補充基本的標準 C 函式，讓系統得以運作
