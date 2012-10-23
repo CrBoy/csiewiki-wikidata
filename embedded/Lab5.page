@@ -88,8 +88,18 @@ Code Coverage
 
 作業
 ----
-- Lab-5/filesys
-- 整合檔案系統到 FreeRTOS 中，並在 UART 顯示檔案系統中 test.txt 的內容
+- 研讀檔案系統 (romfs) 的實做方法
+  * Lab-5/filesys
+- 要求整合檔案系統到 FreeRTOS 中，並在 UART 顯示檔案系統 (romfs) 中 test.txt 的內容
+- 最終預期在 filesys 目錄下，當 ``make qemuauto`` 執行後，會自動啟動 QEMU + GDB + FreeRTOS，並在 5 秒後 kill QEMU/GDB，最終的終端機畫面為 test.txt 的檔案內容
+  * 在 QEMU 啟動的參數可改為 ``-serial stdio``，即可要求 QEMU 將 UART 導向到 Host 端的 stdio
+
 - 提示：
+  * 可在 Host 端先行測試與驗證以下檔案：
+    - romfs.c
+    - hash-djb2.c
+    - filesystem.c
+    - fio.c
+
   * 會需要修改到 linker script 以及 SRAM 的配置
   * 會需要補充基本的標準 C 函式，讓系統得以運作
