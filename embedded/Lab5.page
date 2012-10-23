@@ -17,3 +17,4 @@ Code Coverage
 
 - `Code Quality Analysis Toolset for Embedded Systems<http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf>`_
 - `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
+- `Using gcov and lcov<http://www.slideshare.net/maguschen/using-gcov-and-lcov>`_
