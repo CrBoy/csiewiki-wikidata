@@ -17,9 +17,11 @@ Code Coverage
 
 - `Code Quality Analysis Toolset for Embedded Systems<http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf>`_
 - `Using gcov and lcov<http://www.slideshare.net/maguschen/using-gcov-and-lcov>`_
+- 新酷音輸入法系統的核心函式庫 (libchewing) 分析
+  * http://kanru.info/chewing/lcov-check
 
-Dumping gcov data at runtime
-----------------------------
+執行時期輸出 gcov 資料
+--------------------
 - `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
 - Instructions for invoking gcov
 
