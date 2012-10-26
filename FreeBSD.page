@@ -65,6 +65,49 @@ pkg_add 提供 ``-r`` 參數，讓 pkg_add 自動從網路套件列表搜尋符�
 -----------------------------
 
 
+使用 ports 安裝套件
+-------------------
+FreeBSD 的 ports 系統整理了成千上萬的套件，可以輕鬆的透過搜尋找到需要的套件，並客製化套件設定與安裝。
+
+
+搜尋
+~~~~
+
+先切換至 /usr/ports 目錄下，接著使用 make search 搜尋欲安裝之套件：
+
+.. code-block:: pretty-print
+
+    $ cd /usr/ports
+    $ make search name=git
+----------------------------
+
+若 ports 中有符合的項目，則會列出以下資訊：
+
+- Port：套件名稱
+- Path：套件所在路徑
+- Info：套件簡述
+- Maint：套件維護人員
+- B-deps、R-deps：相依性
+- WWW：套件網站
+
+
+設定與安裝
+~~~~~~~~~~
+
+安裝套件，只需要切換到套件所在路徑，設定 (config)、編譯 (make)、安裝 (install) 並清除 (clean) 暫存檔。
+
+.. code-block:: pretty-print
+
+    $ cd /usr/ports/devel/git   # 切換至 git 所在目錄
+    $ make config               # 套件設定
+----------------------------
+
+make config 可看到許多能客製化的項目，使用 tab、空白鍵來移動選取項目，設定完畢後，系統會自動編譯所需要的套件來滿足相依性。
+
+接下來就可以輸入 make 進行編譯，系統會自動從網路下載所需的原始碼編譯。編譯完成後，輸入 make install 安裝，最後再 make clean 清除不再使用的檔案。
+
+懶人筆記：若只要預設值，輸入「make install clean」即可。
+
 Reference
 =========
 - `FreeBSD.org <http://www.freebsd.org/>`_
