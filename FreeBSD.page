@@ -18,6 +18,8 @@ FreeBSD 為一個 `Unix-Like <>`_ 作業系統，由 `BSD <>`_ 衍生出來的�
     - lib32: 給 32bit 所使用的 binary。
     - ports: Ports collection 為 FreeBSD 的套件庫，之後搜尋、安裝套件較簡單方便。Ports colection 會使用相當大的硬碟空間，可視情況安裝，或是之後需要再由 syssintall 安裝。
     - src: FreeBSD kernel srouce code，若有需要自行編譯核心可安裝。
+      * 若沒有安裝 src 且使用 sysinstall 也無法安裝可以參考 http://forums.freebsd.org/showthread.php?t=29172 使用 svn checkout
+
  1. Partition 選單：做磁碟分割定掛載分割區。
  1. 安裝系統至硬碟上。
  1. 設定 root 密碼。
