@@ -12,7 +12,7 @@ Week  Date     Subject                                 Assignment
 #4    Oct  9   `Timer, Interrupt, Exception in ARM`_   `Lab 3`_: GNU Toolchain + RTOS
 #5    Oct 16   `RTOS Design and Implementation`_       `Lab 4`_: RTOS for MCU
 #6    Oct 23   `Code review of Lab assignments`_       `Lab 5`_: RTOS modifications
-#7    Oct 30   `Peripherals and hardware interface`_   Lab 6: Hardware
+#7    Oct 30   `Peripherals and hardware interface`_   `Lab 6`_: Hardware
 #8    Nov  6   `Embedded Linux Conference Europe`_     Lab 7: MCU
 #9    Nov 13   Group Presentation (1)                  Lab 8: RTOS + MCU
 #10   Nov 20   Group Presentation (2)                  Brain storming (for final project)
@@ -42,3 +42,4 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 3`: Lab3
 .. _`Lab 4`: Lab4
 .. _`Lab 5`: Lab5
+.. _`Lab 6`: Lab6
