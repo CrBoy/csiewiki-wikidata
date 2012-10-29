@@ -1,0 +1,9 @@
+---
+title: Lab6: Hardware
+toc: no
+...
+
+預期目標
+-------
+- 實際體驗 STM32 硬體操作
+- 以 `STM32F4-Discovery<http://www.st.com/jp/evalboard/product/252419.jsp>`_ 為參考硬體，探討相關的軟體開發工具與流程
