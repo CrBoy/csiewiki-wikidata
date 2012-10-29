@@ -3,7 +3,29 @@ title: Lab6: Hardware
 toc: no
 ...
 
+
 預期目標
 -------
 - 實際體驗 STM32 硬體操作
 - 以 `STM32F4-Discovery<http://www.st.com/internet/evalboard/product/252419.jsp>`_ 為參考硬體，探討相關的軟體開發工具與流程
+
+
+開發工具介紹
+-----------
+- GNU Toolchain: 同之前 Lab
+- ICE = In-Circuit Emulator
+- st-link
+- `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
+- sudo apt-get install git automake libusb-1.0-0-dev
+- sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
+- USB list: /var/lib/usbutils/usb.ids
+- Neocon 離開方法: ~. -> exit
+  * neocon /dev/ttyACM0
+
+- http://wiki.openmoko.org/wiki/NeoCon
+- http://wiki.openmoko.org/wiki/CDC_ACM
+
+
+參考資訊
+-------
+- `STM32F4-Discovery 繁體中文簡易操作<http://cms.mcuapps.com/products/stm32f4-discovery/README.html>`_
