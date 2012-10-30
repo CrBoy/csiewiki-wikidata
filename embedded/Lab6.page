@@ -86,6 +86,12 @@ Programming STM32 F2, F4 ARMs under Linux
 - http://wiki.openmoko.org/wiki/CDC_ACM
 
 
+作業
+----
+- 透過 OpenOCD 對 STM32F4Discovery 內建的 ST-Link/V2 介面，設計一個驗證硬體的 unit test 環境
+- 藉由 OpenOCD + GDB，實做 firmware download 程式，可視為 boot loader
+- 一旦系統藉由特製的 boot loader 載入於 STM32F4-Discovery 硬體並啟動後，可監控系統運作並執行特定的 unit test 程式
+
 
 參考資訊
 -------
