@@ -15,18 +15,22 @@ toc: no
 ----------------
 - GNU Toolchain: 同之前 Lab
 - ICE = In-Circuit Emulator
-- st-link
-  * git clone https://github.com/texane/stlink.git
-
 - `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
-- sudo apt-get install git automake libusb-1.0-0-dev
-- sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
+
+.. code-block:: prettyprint
+
+    sudo apt-get install automake* libusb-1.0-0-dev
+    git clone https://github.com/texane/stlink.git
+    cd stlink
+    ./autogen.sh
+    ./configure
+    make
+    sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
 
 - 安裝必要的 Ubuntu 套件
 
 .. code-block:: prettyprint
 
-    sudo apt-get install automake*
     sudo apt-get install libjim-dev
 
 - 取得 OpenOCD 原始程式碼
