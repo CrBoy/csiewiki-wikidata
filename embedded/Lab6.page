@@ -8,6 +8,7 @@ toc: no
 -------
 - 實際體驗 STM32 硬體操作
 - 以 `STM32F4-Discovery<http://www.st.com/internet/evalboard/product/252419.jsp>`_ 為參考硬體，探討相關的軟體開發工具與流程
+- Unit Test 概念的落實
 
 
 開發工具介紹
@@ -20,6 +21,17 @@ toc: no
 - `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
 - sudo apt-get install git automake libusb-1.0-0-dev
 - sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
+
+Programming STM32 F2, F4 ARMs under Linux: A Tutorial from Scratch
+-------------------------------------------------------------------
+- `A Tutorial from Scratch<http://www.triplespark.net/elec/pdev/arm/stm32.html>`_
+- Introduction STM32, STM32F2, STM32F4
+- Obtaining and Setting Up OpenOCD
+- Setting up the Hardware: STM32F4Discovery with integrated ST-Link/V2
+- The Minimalistic Hello-World Program
+- Running the Minimalistic Hello-World Program
+- Debugging
+- Automating the Steps
 
 
 具備互動操作的 USB serial 實做
