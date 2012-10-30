@@ -65,8 +65,6 @@ Programming STM32 F2, F4 ARMs under Linux
   * Debugging
   * Automating the Steps
 
-必要工具的準備
--------------
 
 具備互動操作的 USB serial 實做
 ----------------------------
