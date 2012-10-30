@@ -73,14 +73,21 @@ Programming STM32 F2, F4 ARMs under Linux
   * Debugging
   * Automating the Steps
 
+工作環境
+-------
+- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+
+.. code-block:: prettyprint
+
+    git clone git://gitcafe.com/embedded2012/Labs.git
+    cd Labs/Lab-6
+
 
 具備互動操作的 USB serial 實做
 ----------------------------
-- http://wenku.baidu.com/view/595ae5124431b90d6c85c741.html
-- http://wenku.baidu.com/view/72c30fc59ec3d5bbfd0a74cf.html
 - http://www.sparetimelabs.com/usbcdcacm/ (文末提到與之前指定作業相關的技術議題)
 - USB list: /var/lib/usbutils/usb.ids
-- Neocon 離開方法: ~. -> exit
+- neocon 離開方法: ``~.``
   * neocon /dev/ttyACM0
 
 - http://wiki.openmoko.org/wiki/NeoCon
