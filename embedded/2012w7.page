@@ -47,6 +47,9 @@ toc: no
 
 - `番外篇：初探 F4</embedded/learn-stm32-part-N.pdf>`_
 
+
 STM32F4 Discovery
 ------------------
 - `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
+- STM32F4-DISCOVERY kit for STM32 F4 series - with STM32F407 MCU
+  * http://www.st.com/internet/evalboard/product/252419.jsp
