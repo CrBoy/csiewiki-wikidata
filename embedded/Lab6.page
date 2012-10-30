@@ -20,7 +20,7 @@ toc: no
 .. code-block:: prettyprint
 
     sudo apt-get install automake* libusb-1.0-0-dev
-    git clone https://github.com/texane/stlink.git
+    git clone http://github.com/texane/stlink.git
     cd stlink
     ./autogen.sh
     ./configure --prefix=/usr
