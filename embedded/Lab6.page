@@ -52,6 +52,7 @@ toc: no
         --enable-stlink \
         --disable-libftdi \
         --disable-internal-jimtcl
+    echo -e "all:\ninstall:" > doc/Makefile
     make
     sudo make install
 
