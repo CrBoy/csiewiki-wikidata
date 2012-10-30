@@ -6,14 +6,26 @@ toc: no
 重大事項宣佈
 -----------
 - Nov 6: 硬體教學課程 (助教)
-- Nov 13 / Nov 20: 分組報告個別週邊與 FreeRTOS 介面包裝的狀況
+- Nov 13 / Nov 20: 分組報告個別週邊與 FreeRTOS 介面包裝的狀況 (利用 wiki 作共筆平台)
+  * `GPIO</embedded/GPIO>`_
+  * `USART</embedded/USART>`_
+  * `ADC</embedded/ADC>`_
+  * `RTC</embedded/RTC>`_
+  * `PWM</embedded/PWM>`_
+  * `USB</embedded/USB>`_ (含 OTG)
+  * `SPI</embedded/SPI>`_
+  * `Flash</embedded/Flash>`_
+  * 或者：
+    - 驗證 (重新實做) `現有硬體與專案</embedded/resources>`_ (open source)
+
+- 為 FreeRTOS 建立類似 Arduino 的 API driver model
+  * 可參考 RT-Thread / ART 的 `libarduino<https://github.com/RT-Thread/ART/tree/master/software/platform>`_
+  * 每組需要提供延伸自 FreeRTOS 的週邊 API 與參考的軟硬體實做
+  * 透過示波器解說硬體特性
 
 
-教材
-----
-
-稀里糊塗學 STM32
----------------
+教材：稀里糊塗學 STM32
+--------------------
 - 來源: http://www.amobbs.com/thread-4548727-1-1.html / Ling.Ju
 - `第一講：涇渭分明</embedded/learn-stm32-part-1.pdf>`_
   * 涇河水清，渭河水渾，涇河的水流入渭河時，清濁不混。比喻界限清楚或是非分明。同樣，學習 STM32 的過程也如同大河匯聚一樣，無數的支流匯聚成大江，聚少成多，積沙成塔。
