@@ -28,12 +28,6 @@ toc: no
     sudo make install
     sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
 
-- 安裝必要的 Ubuntu 套件
-
-.. code-block:: prettyprint
-
-    sudo apt-get install libjim-dev
-
 - 取得 OpenOCD 原始程式碼
 
 .. code-block:: prettyprint
@@ -47,16 +41,13 @@ toc: no
 .. code-block:: prettyprint
 
     cd openocd
-    export SKIP_SUBMODULE=1
-    mkdir -p jimtcl
     ./bootstrap
     ./configure --prefix=/opt/openocd \
         --enable-jlink \
         --enable-amtjtagaccel \
         --enable-buspirate \
         --enable-stlink \
-        --disable-libftdi \
-        --disable-internal-jimtcl
+        --disable-libftdi
     echo -e "all:\ninstall:" > doc/Makefile
     make
     sudo make install
