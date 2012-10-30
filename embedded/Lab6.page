@@ -42,6 +42,8 @@ toc: no
 .. code-block:: prettyprint
 
     cd openocd
+    export SKIP_SUBMODULE=1
+    mkdir -p jimtcl
     ./bootstrap
     ./configure --prefix=/opt/openocd \
         --enable-jlink \
