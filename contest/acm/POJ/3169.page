@@ -1,5 +1,5 @@
 ---
-title: 題解樣板
+title: [POJ] 3169 Layout
 toc: no
 categories: POJ shortest_path_最短路徑 system_of_difference_constraints_差分約束系統
 ...
@@ -60,4 +60,3 @@ D，此時即可列出式子 xB - xA ≤ D。若 A 牛與 B
 的牛的距離為無限大（即無法抵達），表示有任意解，輸出 -2。
 
     Time Complexity: O( N × (ML + MD ) )
-
