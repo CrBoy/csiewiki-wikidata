@@ -48,5 +48,5 @@ for (int i=1; i<=n; ++i)
 
 要把 m 改成質數，從大質數開始加
 
-m -> p[n-i] //p為直數表的list
+m -> p[n-i] //p為質數表的list
 
