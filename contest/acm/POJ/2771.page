@@ -82,12 +82,12 @@ Technique details
 
 複雜度:
 
-兩兩之間建邊，O(N^2)
+兩兩之間建邊，O(N :sup:`2`)
 
 Maximum Bipartite Matching，依照implement而不同
 
-用EK的話是O(NE^2)，Dinic則是(EN^2)
+用EK的話是O(NE :sup:`2`)，Dinic則是(EN :sup:`2`)
 
-總複雜度O(EN^2)或O(NE^2+N^2)
+總複雜度O(EN :sup:`2`)或O(NE :sup:`2`+N :sup:`2`)
 
  - 註: Maximum Bipartite Matching 也可用匈牙利~
