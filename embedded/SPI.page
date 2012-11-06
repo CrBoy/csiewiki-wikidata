@@ -1,0 +1,29 @@
+---
+title: SPI
+...
+
+Outline
+=======
+Interface
+=========
+Operation
+=========
+Data transmission
+-----------------
+Clock polarity and phase
+~~~~~~~~~~~~~~~~~~~~~~~~
+Mode numbers
+~~~~~~~~~~~~~
+..
+    may know used structure
+    guess: interrupt
+Independent slave SPI configuration
+-----------------------------------
+Daisy chain SPI configuration
+------------------------------
+Valid SPI communication
+-----------------------
+interrupts
+----------
+Example of bit-banging the SPI master protocol
+----------------------------------------------
