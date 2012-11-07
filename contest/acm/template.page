@@ -1,15 +1,16 @@
 ---
-title: 題解樣板
+title: [OJ Name] 題號 - 題目名稱
 toc: no
 categories: 題解
 ...
 
-關於 meta data 
-==============
+..
 
-title: [OJ Name] 題號 - 題目名稱
+  上方由 --- ... 所包起來的是 meta data 請依照題目填寫
 
-categories: 題解、題目類型、演算法名稱、資料結構名稱
+  title: [OJ Name] 題號 - 題目名稱
+
+  categories: 題解、題目類型、演算法名稱、資料結構名稱
 
 網址
 ====
