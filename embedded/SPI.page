@@ -4,6 +4,7 @@ title: SPI
 
 Outline
 =======
+.. image:: /SPI_single_slave.svg
 Interface
 =========
  SPI 匯流排有規範4個腳位
