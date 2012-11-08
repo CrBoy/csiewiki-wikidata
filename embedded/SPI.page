@@ -40,4 +40,10 @@ Valid SPI communication
 interrupts
 ----------
 Example of bit-banging the SPI master protocol
-----------------------------------------------
+===============================================
+
+Reference
+=========
+`Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia`_
+
+.. _`Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia`: http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus
