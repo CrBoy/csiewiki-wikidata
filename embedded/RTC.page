@@ -10,5 +10,7 @@ LSE OSC : 32.768 kHz
 
 HSE OSC : 4-26 MHz
 
+.. image:: /clock source.png
+
 Configuration
 ================
