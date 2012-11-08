@@ -11,7 +11,8 @@ SPI 匯流排是由Motorla所命名的匯流排名稱。它是一個可同步序
 .. image:: /SPI_single_slave.svg
 Interface
 =========
- SPI 匯流排有規範4個腳位
+SPI 匯流排有規範4個腳位
+
     SCLK: serial clock (output from master);
 
     MOSI: master output, slave input (output from master);
