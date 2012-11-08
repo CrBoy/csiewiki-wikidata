@@ -6,6 +6,15 @@ Outline
 =======
 Interface
 =========
+ SPI 匯流排有規範4個腳位
+    SCLK: serial clock (output from master);
+
+    MOSI: master output, slave input (output from master);
+
+    MISO: master input, slave output (output from slave);
+
+    SS: slave select (active low, output from master).
+
 Operation
 =========
 Data transmission
