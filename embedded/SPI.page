@@ -4,6 +4,10 @@ title: SPI
 
 Outline
 =======
+SPI 匯流排是由Motorla所命名的匯流排名稱。它是一個可同步序列資料連結的標準也可以在全雙功的模式下運作。
+在資料傳輸的過程當中是以Master/Slave的角色來傳遞資料，必須要由Master來主動提取資料，而Slave只能被
+動地接收命令或傳送資料。而傳送資料的同時，Master也可以傳送命令給Slave無須等對方完全收到資料才進行下一步。
+
 .. image:: /SPI_single_slave.svg
 Interface
 =========
