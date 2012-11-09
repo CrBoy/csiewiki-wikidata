@@ -1,0 +1,69 @@
+---
+title: [POJ] 3041 - Asteroids
+toc: no
+categories: 題解 POJ Minimum_Vertex_Cover Bipartite_Matching
+...
+
+網址
+====
+
+http://poj.org/problem?id=3041
+
+題目概述
+====
+
+在**N**x**N**的棋盤當中，包含了**K**個asteroids，
+
+一次shot可以選擇射在一整行或一整列，可以消滅該整行/列的所有asteroids
+
+問最少要多少次shot才能把**K**個asteroids都消滅?
+
+Technique details
+=================
+
+  - 1 <= **N** <= 500
+
+  - 1 <= **K** <= 10000
+
+輸入格式
+-----
+
+只有一筆測資
+
+第一行有兩個數字，分別是N和K
+
+接下來K行，每行兩個數字，代表該asteroid所在的row col
+
+輸出格式
+------
+
+輸出一個整數，代表最少要多少次shot
+
+解題思路
+======
+
+針對每一個asteroid，只要選擇row或者選擇col就好
+
+把每一個asteroid所對應到的row,col，想成row->col建一條邊
+
+則asteroid本身代表的就是那條邊
+
+問題就變成:
+
+選擇最少的row或col，使得所有的邊(asteroid)都被覆蓋到
+
+也就是Minimum Vertex Cover問題
+
+又因為row跟row彼此之間沒有邊
+
+col跟col彼此之間也沒有邊
+
+所以問題變成in Bipartite Graph
+
+而Minimum Vertex Cover in Bipartite Graph的答案
+
+又等同於Maximum Bipartite Matching的答案
+
+因此匈牙利即可
+
+時間複雜度 O(N^2)
