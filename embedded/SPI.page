@@ -21,6 +21,13 @@ SPI 匯流排有規範4個腳位
 
     SS: slave select (active low, output from master).
 
+STM32F4XX 
+=========
+It has up to 3 SPIs (37.5 Mbits/s), 2 with muxed full-duplex I2S to achieve audio class 
+accuracy via internal audio PLL or external clock
+
+SPI1 can communicate at up to 37.5 Mbits/s, SPI2 and SPI3 can communicate at up to 21 Mbit/s.
+
 Operation
 =========
 Data transmission
