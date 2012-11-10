@@ -1,0 +1,71 @@
+---
+title: [UVa] 10408
+toc: no
+categories: 題解
+...
+
+..
+
+  上方由 --- ... 所包起來的是 meta data 請依照題目填寫
+
+  title: [UVa] 10408 
+
+  categories: 題解、UVa、數論、priority_queue
+
+網址
+====
+
+http://uva.onlinejudge.org/external/104/10408.html
+
+題目概述
+====
+
+求出 Farey sequences 的第 k 個數字
+
+Farey sequences ( n = 5 ): 1/5, 1/4, 1/3, 2/5, ... , 1/1
+
+分子 = x, 分母 = y
+
+x <= y 
+
+x/y 由小到大 value 不重複排序
+
+Technique details
+=================
+
+1 <= n <= 1000
+
+k 在合理範圍
+
+輸入格式
+-----
+
+每一行是一組測資 : n, k
+
+輸出格式
+------
+
+每一行是一組測資輸出 : Farey sequences 的第 k 個數字
+
+解題思路
+======
+
+運用 priority_queue ( min heap)
+
+一開始先建立 1/n, 1/n-1, ... 1/1
+
+之後每次 pop 最小的 x/y
+
+push (x+1)/y
+
+pop 到第 k 個就是答案
+
+想法簡單，但是要小心幾個地方：
+
+1. 雖然 2/4 = 1/2, 但是 2/4 也要 push 進去，不然之後會漏掉 3/4
+
+2. 每次 pop x/y 之後，就要去檢查 visit [ x / gcd(x,y) ] [ y / gcd(x,y) ] 是否出現過，
+
+若有 k 要 +1 ，因為已計算過 (ex: 1/2, 2/4 只算一次)
+
+若沒出現過則記錄 visit [ x / gcd(x,y) ] [ y / gcd(x,y) ] = true
