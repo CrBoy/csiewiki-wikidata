@@ -2,6 +2,22 @@ Introduction
 =============
 A real-time clock (RTC) is a computer clock that keeps track of the current time. RTCs are also present in almost any electronic device that requires accurate time keeping. The real-time clock (RTC) embedded in STM32 microcontrollers acts as an independent BCD timer/ counter.
 
+Features
+===============
+- Calendar
+- Alarm
+- Auto wakeup
+- Timestamp
+- Tamper detection
+
+- Programmable daylight saving time
+- Didigal calibration
+- Synchronization
+- Reference clock detection
+- Backup register
+- Alternative function IO
+
+
 Clock Source
 =============
 LSI  RC : 32 kHz
