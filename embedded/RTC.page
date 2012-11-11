@@ -2,24 +2,13 @@ Introduction
 =============
 A real-time clock (RTC) is a computer clock that keeps track of the current time. RTCs are also present in almost any electronic device that requires accurate time keeping. The real-time clock (RTC) embedded in STM32 microcontrollers acts as an independent BCD timer/ counter.
 
-Features
-===============
-- Calendar
-- Alarm
-- Auto wakeup
-- Timestamp
-- Tamper detection
 
-- Programmable daylight saving time
-- Didigal calibration
-- Synchronization by shifting
-- Reference clock detection
-- Backup register
-- Alternative function IO
+Functionality
+===============
 
 
 Clock Source
-=============
+--------------------
 LSI  RC : 32 kHz
 
 LSE OSC : 32.768 kHz
@@ -28,8 +17,9 @@ HSE OSC : 4-26 MHz
 
 .. image:: /stm32F4 RTC clock source
 
+
 Prescaler
-=============
+----------
 Prescaler generates the clock to update update the calendar.
 
 To minimize power comsuption the prescaler is split into two prescalers, asynchronous and synchronous. It is recommended to configure the asynchronous prescaler to a high value to minimize consumption.
@@ -38,24 +28,63 @@ asynchronous prescaler clocks subsecond of calendar and propagates to synchronou
 
 One can configure them through ``PREDIV_A`` and ``PREDIV_S`` bits in ``RTC_PRER``
 
-Calendar
-=============
+
+Calendar and Alarm
+--------------------
 A calendar keeps track of the date (day, week, month, year) and time (hours, minutes and seconds) and even subseconds. It manages of numbers of days of mouths automaticly. Daylight saving time adjustment is programmable by software.
 
 Binary repersentation is in binary-coded decimal (BCD) format. 
 
 Data can be read indirectly from shadow registers or directly from connters. The former method delays some clocks but ensures consistency between date and time registers; the later is opposite but this is especially useful after exiting from low power modes, since the shadow registers are not updated during these modes.
 
-Data, time, and subsecond corresponds to ``RTC_DR``, ``RTC_TR``, and ``RTC_SSR``. With ``BYPSHAD`` bit set, data can be read directly from counter.
+Data, time, and subsecond are separately recorded in ``RTC_DR``, ``RTC_TR``, and ``RTC_SSR``. With ``BYPSHAD`` bit set, data can be read directly from counter.
+
+An alarm consists of a register with the same length as the RTC time counter. When the RTC time counter reaches the value programmed in the alarm register, a flag is set to indicate that an alarm event occurred.
+
+In addition to the time to trigger, alarm can be configured to mask some fields and do not compare.
+
+
+Auto periodic wakeup
+------------------------------
+A periodic timebase and wakeup unit that can wake up the system from low power modes. When this counter reaches zero, a flag and an interrupt are generated.
+
+It's source clock can be RTC clock or prescaler. Time range can be configured through ``WUCKSEL``
+
+
+Timestamp
+----------
+The calendar is saved in timestamp registers when timestamp event is detected on the pin which timestamp alternate function is mapped.
+
+
+Tamper detection
+--------------------
+It can be used for edge detection or level detection with filtering according to ``TAMPFLT``. Set to 00 is edge detection, others arg level detection.
+
+When ``TAMPTS`` set to 1, tamper event trigger timestamp event automatically.
+
+
+Backup registers
+--------------------
+Program can read or write data from or to these registers, which are not reset by system reset or power-on reset. They are  reset when tamper detection event occurs.
+
 
 Synchronization and Reference clock detection
-====================================================
+--------------------------------------------------
 RTC can be synchronized to remote clock by adding a 'shift' to counter continuously to delay, or vice versa. 
 With reference clock detection, RTC shifts misaligned 1 Hz clock to align it with the nearst referenced edge (found in a given time window).
 
 One can adjust time by configuring shift through ``RTC_SHIFTR``.
 
 When reference clock detection is enabled (``REFCKON``), must not write ``RTC_SHIFTR`` and not enable calibration and set prescalers (``PREDIV_A`` and ``PREDIV_S``) to default.
+
+
+Digital calibration
+--------------------
+Calibration can be used to compensate inaccuracy of oscillator by adding or substracting clock cycles in each calibration cycle.
+
+There are two calibration methods : coarse and smooth. They should not be used togather. The cycle of the later is smaller than the former. It makes the later is more flexible to adjust clock. A smooth calibration can be performed on the fly so that it can be changed to handle changed envirenment variables.
+
+coarse calibration is provided for capability reasons. It can only be configured in initialization mode and start when INIT bit is cleared. Also it is recommaned using it for static correction only.
 
 
 Configuration
