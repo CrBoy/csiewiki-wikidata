@@ -68,6 +68,15 @@ Backup registers
 Program can read or write data from or to these registers, which are not reset by system reset or power-on reset. They are  reset when tamper detection event occurs.
 
 
+Alternate function outputs
+------------------------------
+Two outputs are avalible : ``RTC_CALIB`` and ``RTC_ALARM``.
+
+``RTC_CALIB`` output is used to generate a variable-frequency signal. It can use either asynchronous or synchronous prescaler as clock.
+
+besides alarm, ``RTC_ALARM`` can use wakeup timer as source.
+
+
 Synchronization and Reference clock detection
 --------------------------------------------------
 RTC can be synchronized to remote clock by adding a 'shift' to counter continuously to delay, or vice versa. 
@@ -87,5 +96,40 @@ There are two calibration methods : coarse and smooth. They should not be used t
 coarse calibration is provided for capability reasons. It can only be configured in initialization mode and start when INIT bit is cleared. Also it is recommaned using it for static correction only.
 
 
+Low power modes
+--------------------
+The RTC is designed to minimize the power consumption. 
+
+The RTC runs as usual in Sleep mode. 
+
+In Stop mode and Standby mode, the RTC remains active when clock source is LSE or LSI.
+
+Alarm, tamper event, time stamp event, and wakeup cause the device to exit low power mode.
+
+
 Configuration
 ================
+
+Register write protection
+------------------------------
+After system reset, the RTC registers are protected and need to disable backup domain protection.
+
+    set ``DBP`` bit in ``PWR_CR``
+
+After power-up reset, the RTC registers are also protected and need to write a key into protection register. RTC_ISR[13:8], RTC_TAFCR, and RTC_BKPxR are except. Write a wrong key will enable protection.
+
+    write ``0xCA`` to ``RTC_WPR``
+
+    write ``0x53`` to ``RTC_WPR``
+
+Initialization mode
+--------------------
+Modifications of ``RTC_DR``, ``RTC_TR``, and ``RTC_PRER`` must be done in Initialization mode.
+
+    set ``INIT`` bit of ``RTC_ISR`` to enter Initialization mode
+
+    wait until ``RTC_ISR`` / ``INITF`` is set then ready to write
+
+    reset ``INIT`` bit of ``RTC_ISR`` to exit Initialization mode
+
+Counter does not run in Initialization mode.
