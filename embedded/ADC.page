@@ -1,0 +1,14 @@
+---
+title: ADC
+...
+
+Outline
+=======
+數位類比轉換器(Analog-to-digital coverter)，
+用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
+
+Reference
+=========
+`Analog-to-digital converter - Wikipedia, the free encyclopedia`_
+
+.. _`Analog-to-digital converter - Wikipedia, the free encyclopedia`: http://en.wikipedia.org/wiki/Analog-to-digital_converter
