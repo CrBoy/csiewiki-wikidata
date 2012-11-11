@@ -28,5 +28,13 @@ HSE OSC : 4-26 MHz
 
 .. image:: /stm32F4 RTC clock source
 
+Prescaler
+=============
+Prescaler generates the clock to update update the calendar.
+
+To minimize power comsuption the prescaler is split into two prescalers, asynchronous and synchronous. It is recommended to configure the asynchronous prescaler to a high value to minimize consumption.
+
+asynchronous prescaler clocks subsecond of calendar and propagate to synchronous prescaler to update date and time by second.
+
 Configuration
 ================
