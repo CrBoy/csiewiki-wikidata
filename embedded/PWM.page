@@ -4,11 +4,20 @@ title: Pulse-width modulation(PWM)
 
 Introduction
 ============
-又稱pulse-duration modulation(PDM)，PWM 是將類比信號轉為脈波的一種技術，一般轉換後脈波的週期固定，但脈波的`占空比（Mark-Space Ratio）<http://foo.org>`_會依類比信號的大小而改變。
+又稱pulse-duration modulation(PDM)，是將類比信號轉為脈波的一種技術。
+
+.. image:: /pwm.png
+
+如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般 switching 輸出電路只能輸
+出固定振幅的電壓,為了輸出類似正弦波之類電壓振幅變化的信號,因此必需將電壓振幅轉換成脈衝信號。
+
+
 
 Reference
 ============
 http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
 
 http://www.google.com.tw/url?sa=t&rct=j&q=%E8%BC%B8%E5%87%BA+%E9%9B%BB%E5%A3%93+%E6%8C%AF%E5%B9%85+%E5%9B%BA%E5%AE%9A+%E5%AF%AC%E5%BA%A6&source=web&cd=3&cad=rja&ved=0CC8QFjAC&url=http%3A%2F%2Feshare.stut.edu.tw%2FEshareFile%2F2010_6%2F2010_6_935f47df.pdf&ei=KDKhUOSfIavqmAWv7YGAAQ&usg=AFQjCNFMLHR8y9DKmRGmuN0fZGADQ612yg
+
+
 
