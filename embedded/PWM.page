@@ -4,3 +4,4 @@ title: Pulse-width modulation(PWM)
 
 Introduction
 ============
+PWM 是將類比信號轉為脈波的一種技術，一般轉換後脈波的週期固定，但脈波的占空比會依類比信號的大小而改變。
