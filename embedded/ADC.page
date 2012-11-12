@@ -4,7 +4,7 @@ title: ADC
 
 Introduction
 ============
-數位類比轉換器(Analog-to-digital coverter)，用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
+**數位類比轉換器(Analog-to-digital coverter)**，用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
 
 ADC on STM32F4
 ===============
@@ -12,10 +12,12 @@ ADC on STM32F4
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16 bit暫存器中。
 
+.. image:: /ADC on STM32F4
+
 Reference
 =========
 - `Analog-to-digital converter - Wikipedia, the free encyclopedia<http://en.wikipedia.org/wiki/Analog-to-digital_converter>`_
 
 - `稀里糊塗學 STM32 - 第四講：白駒過隙</embedded/learn-stm32-part-4.pdf>`_
 
-- `STM32 F4 Datasheet<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
+- `STM32F407xx Datasheet<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
