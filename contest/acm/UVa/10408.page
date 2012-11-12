@@ -42,6 +42,8 @@ k 在合理範圍
 解題思路
 ======
 
+解法一、時間複雜度 ( O(KlogN) )
+
 運用 priority_queue ( min heap)
 
 一開始先建立 1/n, 1/n-1, ... 1/1
@@ -61,3 +63,42 @@ pop 到第 k 個就是答案
 若有 k 要 +1 ，因為已計算過 (ex: 1/2, 2/4 只算一次)
 
 若沒出現過則記錄 visit [ x / gcd(x,y) ] [ y / gcd(x,y) ] = true
+
+解法二、時間複雜度 ( O(K) )
+
+給一個 N = 5 的例子 ( 下面都會以這個例子解釋 )
+
+令 1/4 = prevx/prevy,
+
+1/3 = x/y,
+
+2/5 = nextx/nexty
+
+代表任 3 個連續的數列
+
+Farey sequences 有一個特性： prevy * x - prevx * y = 1
+
+那要怎麼運用這個特性求出 nextx / nexty 呢？
+
+我們可以觀察到另一個等式，會符合上面的特性
+
+nextx = x * k - prevx  // 2 = 1 * 3 - 1
+
+nexty = y * k - prevx //  5 = 3 * 3 - 4
+
+k 可以是任何整數
+
+但是 Farey sequences 是 x/y 小者為優先
+
+所以要讓 k 越大越好，而且算出來的 nextx / nexty 是在合理的範圍內
+
+因為分母一定比分子大，所以算 k 只要看分母就好
+
+因為 y * k - prevy <= N  //nexty不可以超過 N
+
+所以 k = ( prevy + N ) / y
+
+例如：( 4 + 5 ) / 3 = 3
+
+知道了 k 和 nextx, nexty 的算法，就可以求出整個數列。
+
