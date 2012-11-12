@@ -20,7 +20,7 @@ HSE OSC : 4-26 MHz
 
 Prescaler
 ----------
-Prescaler generates the clock to update update the calendar.
+Prescaler generates the clock to update the calendar.
 
 To minimize power comsuption the prescaler is split into two prescalers, asynchronous and synchronous. It is recommended to configure the asynchronous prescaler to a high value to minimize consumption.
 
