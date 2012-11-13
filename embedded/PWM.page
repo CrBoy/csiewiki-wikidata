@@ -47,7 +47,7 @@ GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與T
 
 ------------
 
-.. image:: /t75.png
+.. image:: /1275.PNG
 
 ------------
 
