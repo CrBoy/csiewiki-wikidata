@@ -37,7 +37,7 @@ ADC Voltage Measurement
 
 ADC Temperature Measurement
 ----------------------------
-.. image:: /COUNTING.png
+.. image:: /formula.png
 ::
   
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
