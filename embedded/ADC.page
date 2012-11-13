@@ -30,12 +30,14 @@ ADC on STM32F4
 
 ADC Voltage Measurement
 ------------------------
+::
 
   ADC3ConvertedVoltage = ADC3ConvertedValue*VDD/4095;
 
 ADC Temperature Measurement
 ----------------------------
-
+::
+  
   ADC1ConverTemp= ((((ADC1ConverValue*VDD)/4095)-V25)/Slope + 25;
 
 Reference
