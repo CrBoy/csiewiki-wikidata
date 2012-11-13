@@ -32,13 +32,14 @@ ADC Voltage Measurement
 ------------------------
 ::
 
-  ADC3ConvertedVoltage = ADC3ConvertedValue*VDD/4095;
+  ConvertedVoltage = ConvertedValue*VDD/4095;
 
 ADC Temperature Measurement
 ----------------------------
+.. image:: /COUNTING.png
 ::
   
-  ADC1ConverTemp= ((((ADC1ConverValue*VDD)/4095)-V25)/Slope + 25;
+  ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
 
 Reference
 =========
