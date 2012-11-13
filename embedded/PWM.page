@@ -13,6 +13,9 @@ Introduction
 
 Timer
 ============
+- 通用定时器(TIMx)
+- 基本定时器(TIM6 和 TIM7)
+- 高级控制定时器(TIM1 和 TIM8)
 
 Timer set
 ==============
