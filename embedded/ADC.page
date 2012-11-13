@@ -29,6 +29,17 @@ ADC on STM32F4
 
 .. image:: /ADC on STM32F4
 
+Independent Mode
+-----------------
+Single-channel, single conversion mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Multichannel (scan), single conversion mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Single-channel continuous conversion mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Multichannel (scan) continuous conversion mode
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ADC Voltage Measurement
 ------------------------
 ::
