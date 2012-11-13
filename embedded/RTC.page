@@ -35,7 +35,7 @@ A calendar keeps track of the date (day, week, month, year) and time (hours, min
 
 Binary repersentation is in binary-coded decimal (BCD) format. 
 
-Data can be read indirectly from shadow registers or directly from connters. The former method delays some clocks but ensures consistency between date and time registers; the later is opposite but this is especially useful after exiting from low power modes, since the shadow registers are not updated during these modes.
+Data can be read indirectly from shadow registers or directly from counters. The former method delays some clocks but ensures consistency between date and time registers; the later is opposite but this is especially useful after exiting from low power modes, since the shadow registers are not updated during these modes.
 
 Data, time, and subsecond are separately recorded in ``RTC_DR``, ``RTC_TR``, and ``RTC_SSR``. With ``BYPSHAD`` bit set, data can be read directly from counter.
 
