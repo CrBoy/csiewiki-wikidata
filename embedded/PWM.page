@@ -42,8 +42,14 @@ GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與T
 
 - TIM4->CCR1 //設定Timer幾個tik後發出脈衝
 
-.. image:: /75.png
 
+- CCR與Period關係示意圖在不同模式下
+
+------------
+
+.. image:: /t75.png
+
+------------
 
 Reference
 ============
