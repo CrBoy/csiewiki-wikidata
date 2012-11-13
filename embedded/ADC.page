@@ -33,15 +33,25 @@ Independent Mode
 -----------------
 Single-channel, single conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- ADC在此模式只會針對單一通道執行單次轉換，且完成轉換後則停止。
+- 此模式只會針對單一通道執行單次轉換，且完成轉換後則停止。
 - 可用來檢查電壓來決定系統是否可以啟動。
 
 Multichannel (scan), single conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 此模式可使用多個通道依序執行單次轉換，最多可以達到16個通道且可使用不同的取樣時間及不同的通道順序。
+- 可用來檢查多種訊號(如電壓、壓力、溫度等)來確保系統可以啟動。
+
 Single-channel continuous conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 此模式以單一通道連續執行轉換。
+- 可讓ADC在背景連續執行，且CPU不會干預。
+- 另外可利用DMA的circular mode降低CPU的負擔。
+- 可用來監控電池電壓或是量測溫度。
+
 Multichannel (scan) continuous conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 此模式與Multichannel (scan), single conversion mode類似，但執行至最後一個通道後不會停止，而是會回到第一個通道執行轉換。
+- 可用來量測多組電壓及溫度，像是電池充電器，可監控每個電池的電壓及溫度，當電壓或溫度到達最達最大值時必須能將電池斷路。
 
 ADC Voltage Measurement
 ------------------------
@@ -65,7 +75,7 @@ Questions
 - 5. 測試的接法?
 - 6. ADC的公式在哪裡找到?
 - 7. 溫度的範圍?
-- 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少
+- 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少?
 - 9. 如何先做溫度上的較準?
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
@@ -76,10 +86,10 @@ Questions
     DMA透過ADC得到溫度,不需要透過CPU來做處理,DMA直接將直存在memory上。
 
 - 16. 為什麼要設定DMA,照我們我的作法是跑迴圈的方式去polling溫度的值?要做DMA的話會花幾個cycle?
-- 17. DMA_Mode_Circulur這mode在做甚麼用
+- 17. DMA_Mode_Circulur這mode在做甚麼用?
 - 18. DMA2_Stream0是甚麼?為什麼是以Stream的方式?
-- 19. 用while loop可能會取得錯誤的值,也可能會浪費資源
-- 20. 溫度的sample rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
+- 19. 用while loop可能會取得錯誤的值,也可能會浪費資源?
+- 20. 溫度的sampling rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
 
 Reference
 =========
