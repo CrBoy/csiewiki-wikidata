@@ -11,13 +11,28 @@ Introduction
 如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般 switching 輸出電路只能輸
 出固定振幅的電壓，為了輸出類似正弦波之類電壓振幅變化的信號，因此必需將電壓振幅轉換成脈衝信號。一般轉換後脈波的週期固定，脈波的占空比會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。而脈衝寬度必須以Timer實作調整,再搭配Timer的時間設定脈衝輸出時間,達到脈波佔空比的調整.
 
+Timer
+============
 
+Timer set
+============
+GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
+
+//設定LED(即Pin12 13 14 15) 用來做PWM
+GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;      //設定這些腳位PWM模式 為交流(高-低)
+GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+
+TIM_ClockDivision  //變數設定將clock做除頻
+TIM_Period         //設定週期數
+TIM_Prescaler      //
 
 Reference
 ============
 http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
 
 http://ppt.cc/nIAF
-
 
 
