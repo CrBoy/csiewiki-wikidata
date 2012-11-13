@@ -102,6 +102,8 @@ Questions
     主要用來處理circular buffers和連續的data flow(像是ADC的scan mode)。當此模式啟動時，會將要傳送的資料載入在stream config所設定的初始值，且DMA request會持續服務。
 
 - 18. DMA2_Stream0是甚麼?為什麼是以Stream的方式?
+    DMA Stream 提供了一個source to destination的單方向傳輸的連結，像是周邊到記憶體或是記憶體到周邊。
+
 - 19. 用while loop可能會取得錯誤的值,也可能會浪費資源?
 - 20. 溫度的sampling rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
 
