@@ -133,3 +133,8 @@ Modifications of ``RTC_DR``, ``RTC_TR``, and ``RTC_PRER`` must be done in Initia
     reset ``INIT`` bit of ``RTC_ISR`` to exit Initialization mode
 
 Counter does not run in Initialization mode.
+
+
+Reference
+================
+`RTC application note<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/APPLICATION_NOTE/DM00025071.pdf>`_
