@@ -33,8 +33,12 @@ Independent Mode
 -----------------
 Single-channel, single conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- ADC在此模式只會針對單一通道執行單次轉換，且完成轉換後則停止。
+- 可用來檢查電壓來決定系統是否可以啟動。
+
 Multichannel (scan), single conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- 
 Single-channel continuous conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Multichannel (scan) continuous conversion mode
