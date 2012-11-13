@@ -89,10 +89,11 @@ Questions
 - 7. 溫度的範圍?
     `STM32F407xx Datasheet<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ 在Table 9. Thermal characteristics 中提到 Storage temperature range為 –65 to +150(度C)，Maximum junction temperature為 125(度C)
 - 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少?
-- 9. 如何先做溫度上的較準?
+- 9. 如何先做溫度上的校準?
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
 - 12. 若想要取得其他外部Sensor的Anolog值,要如何取得?
+    利用GPIO，設定要接出的Pin腳，並連接至外部訊號上。
 - 13. 頻率除以4要幹嘛?不除頻又會怎樣?
 - 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
 - 15. DMA跟ADC之間是在幹嘛的?
