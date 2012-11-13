@@ -15,15 +15,24 @@ Timer
 ============
 
 Timer set
-============
+==============
 GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
 
+-----------
+
 //設定LED(即Pin12 13 14 15) 用來做PWM
+
 GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
+
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;      //設定這些腳位PWM模式 為交流(高-低)
+
 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+
 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+
 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+
+-----------
 
 TIM_ClockDivision  //變數設定將clock做除頻
 TIM_Period         //設定週期數
@@ -34,5 +43,4 @@ Reference
 http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
 
 http://ppt.cc/nIAF
-
 
