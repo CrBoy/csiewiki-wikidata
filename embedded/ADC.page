@@ -56,6 +56,31 @@ ADC Temperature Measurement
   
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
 
+Questions
+=========
+- 1. ADC的轉換時間有多快?
+- 2. Bandwidth大小為多少?
+- 3. 頻率響應為多少,可容忍的最大頻率呢?
+- 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
+- 5. 測試的接法?
+- 6. ADC的公式在哪裡找到?
+- 7. 溫度的範圍?
+- 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少
+- 9. 如何先做溫度上的較準?
+- 10. 整個程式上的架構為如何?
+- 11. 如何選擇mode? Scan or Continuous?
+- 12. 若想要取得其他外部Sensor的Anolog值,要如何取得?
+- 13. 頻率除以4要幹嘛?不除頻又會怎樣?
+- 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
+- 15. DMA跟ADC之間是在幹嘛的?
+    DMA透過ADC得到溫度,不需要透過CPU來做處理,DMA直接將直存在memory上。
+
+- 16. 為什麼要設定DMA,照我們我的作法是跑迴圈的方式去polling溫度的值?要做DMA的話會花幾個cycle?
+- 17. DMA_Mode_Circulur這mode在做甚麼用
+- 18. DMA2_Stream0是甚麼?為什麼是以Stream的方式?
+- 19. 用while loop可能會取得錯誤的值,也可能會浪費資源
+- 20. 溫度的sample rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
+
 Reference
 =========
 - `Analog-to-digital converter - Wikipedia, the free encyclopedia<http://en.wikipedia.org/wiki/Analog-to-digital_converter>`_
