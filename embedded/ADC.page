@@ -176,6 +176,11 @@ Ans:
 - 19. 用while loop可能會取得錯誤的值,也可能會浪費資源?
 - 20. 溫度的sampling rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
 
+Ans: 
+     溫度的SAMPLE TIME是經由公式計算出，無法設定，DATASHEET有提供公式，需要設定是SAMPLE TIME必須大於取樣時間的MAX值，
+
+     您的問題應該是Sampling RATE ，取樣頻率，就根據使用者需求來設定轉換模式，並算出轉換頻率
+
 Reference
 =========
 - `Analog-to-digital converter - Wikipedia, the free encyclopedia<http://en.wikipedia.org/wiki/Analog-to-digital_converter>`_
