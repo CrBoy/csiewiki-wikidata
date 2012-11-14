@@ -97,6 +97,13 @@ Ans: 在Datasheet中，因為我們參考電壓VDD為2.97V，故Frequency為[0.6
 .. image:: /table6.jpg
 
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
+
+Ans: 有External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core，
+
+     Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...。
+
+`STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 參照P264 ADC block diagram 
+
 - 5. 測試的接法?
 - 6. ADC的公式在哪裡找到?
     `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 10.10 Temperature sensor 中溫度轉換公式為
