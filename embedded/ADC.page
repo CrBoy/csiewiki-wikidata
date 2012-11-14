@@ -114,6 +114,8 @@ Ans: 有External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/
 
      Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...。
 
+.. image:: /22.JPG
+
 `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 參照P264 ADC block diagram 
 
 - 5. 測試的接法?
