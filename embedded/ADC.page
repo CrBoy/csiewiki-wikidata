@@ -132,7 +132,9 @@ Ans: 有External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/
 - 9. 如何先做溫度上的校準?
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
+
 Ans:
+ 
   Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
 
   1.Single conversion mode => ADC dose one conversions。
