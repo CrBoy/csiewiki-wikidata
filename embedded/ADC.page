@@ -91,6 +91,11 @@ Questions
 - 1. ADC的轉換時間有多快?
 - 2. Bandwidth大小為多少?
 - 3. 頻率響應為多少,可容忍的最大頻率呢?
+
+Ans: 在Datasheet中，因為我們參考電壓VDD為2.97V，故Frequency為[0.6-36]MHz
+
+.. image:: /table6.jpg
+
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
 - 5. 測試的接法?
 - 6. ADC的公式在哪裡找到?
