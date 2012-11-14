@@ -133,11 +133,11 @@ Ans: 有External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
 Ans:
-     - Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
-     - 1.Single conversion mode => ADC dose one conversions。
-     - 2.Continuous conversion mode => ADC stars a new conversion as soon as is finishes one。
-     - 3.Scan mode => This mode is used to scan a groupof analog channels。
-     - 4.Discontinuous mode => Regular group。( n conversions,n<=8 )
+- Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
+- 1.Single conversion mode => ADC dose one conversions。
+- 2.Continuous conversion mode => ADC stars a new conversion as soon as is finishes one。
+- 3.Scan mode => This mode is used to scan a groupof analog channels。
+- 4.Discontinuous mode => Regular group。( n conversions,n<=8 )
 
 - 12. 若想要取得其他外部Sensor的Anolog值,要如何取得?
     利用GPIO，設定要接出的Pin腳，並連接至外部訊號上。
