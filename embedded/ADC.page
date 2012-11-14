@@ -92,12 +92,17 @@ Questions
 
 Ans: 不一定隨著條件而變， Tconv = Sample Time + 12 cycles ( 12-bit resolution ) ，Sample Time為[3 - 480] cycles ，
      
-     Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz
+     Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz ，所以我們選擇的取樣時間必須 > 16.4µs 。
 
 .. image:: /table7.jpg
 
 - 2. Bandwidth大小為多少?
+<<<<<<< edited
+
+- 3. 頻率響應為多少,可容忍的最大頻率呢?
+=======
 -3. 頻率響應為多少,可容忍的最大頻率呢?
+>>>>>>> 70113e04be8cca7f2eaa0f5818c7d1c682778ab3
 
 Ans: 在Datasheet中，因為我們參考電壓VDD為2.97V，故Frequency為[0.6-36]MHz
 
