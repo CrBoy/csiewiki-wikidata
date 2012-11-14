@@ -159,6 +159,13 @@ Ans:
 - 15. DMA跟ADC之間是在幹嘛的?
     DMA透過ADC得到溫度,不需要透過CPU來做處理,DMA直接將直存在memory上。
 
+Ans:
+
+   規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
+   
+   只有在規則通道轉換結束後才能產生DMA的請求，並且將轉換後的數據從ADC_DR的暫存器傳輸到用戶指定的目的地位址。
+
+
 - 16. 為什麼要設定DMA,照我們我的作法是跑迴圈的方式去polling溫度的值?要做DMA的話會花幾個cycle?
 - 17. DMA_Mode_Circulur這mode在做甚麼用?
     主要用來處理circular buffers和連續的data flow(像是ADC的scan mode)。當此模式啟動時，會將要傳送的資料載入在stream config所設定的初始值，且DMA request會持續服務。
