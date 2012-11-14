@@ -148,6 +148,13 @@ Ans:
 - 12. 若想要取得其他外部Sensor的Anolog值,要如何取得?
     利用GPIO，設定要接出的Pin腳，並連接至外部訊號上。
 - 13. 頻率除以4要幹嘛?不除頻又會怎樣?
+
+Ans: 
+
+   頻率目的是方便操作與計算，因為我們設定Sample/Convert Time，單位是cycle， 而 ADCCLK generates from APB2，fPCLK = 84MHz，1 cycle = 84 µs，
+
+   因此若設定1個cycle=84 µs，但我們不需要那麼多的時間(e.g.溫度感測時間只需要17 µs)
+
 - 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
 - 15. DMA跟ADC之間是在幹嘛的?
     DMA透過ADC得到溫度,不需要透過CPU來做處理,DMA直接將直存在memory上。
