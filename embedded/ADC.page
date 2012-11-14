@@ -78,6 +78,14 @@ ADC Temperature Measurement
   
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
 
+Demo
+=========
+
+.. image:: /ADC_battery.jpg
+
+.. image:: /ADC_pin.jpg
+
+
 Questions
 =========
 - 1. ADC的轉換時間有多快?
