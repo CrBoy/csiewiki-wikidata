@@ -153,9 +153,9 @@ Ans:
 
 Ans: 
 
-   頻率目的是方便操作與計算，因為我們設定Sample/Convert Time，單位是cycle， 而 ADCCLK generates from APB2，fPCLK = 84MHz，1 cycle = 84 µs，
+   頻率目的是方便操作與計算，因為我們設定Sample/Convert Time，單位是cycle， 而 ADCCLK generates from APB2，fPCLK = 84MHz，1 cycle = 0.0119 µs，
 
-   因此若設定1個cycle=84 µs，但我們不需要那麼多的時間(e.g.溫度感測時間只需要17 µs)
+   溫度感測時間需要17 µs，若設定1個cycle=0.0119 µs，則需要1428個cycles。
 
 - 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
 
