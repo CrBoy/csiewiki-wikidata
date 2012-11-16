@@ -89,7 +89,8 @@ Demo
 Questions
 =========
 - 1. ADC的轉換時間有多快?
-    不一定隨著條件而變，Sample Time跟温度以及内部電路的rc有關， 
+    不一定隨著條件而變，Sample Time跟温度以及内部電路的rc有關
+ 
 ::
 
   Tconv = Sample Time + 12 cycles ( 12-bit resolution )
@@ -129,6 +130,7 @@ Questions
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
     Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
+
 :: 
 
   1.Single conversion mode => ADC dose one conversions。
@@ -147,24 +149,18 @@ Questions
 
 - 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
 
-Ans: 
-
-1.ExternalTrigConvEdge
+    1.ExternalTrigConvEdge
 
 .. image:: /table9.jpg
 
-2.ExternalTrigConv
+    2.ExternalTrigConv
 
 .. image:: /table10.jpg
 
 - 15. DMA跟ADC之間是在幹嘛的?
-    DMA透過ADC得到溫度,不需要透過CPU來做處理,DMA直接將直存在memory上。
+    規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
 
-Ans:
-
-   規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
-   
-   只有在規則通道轉換結束後才能產生DMA的請求，並且將轉換後的數據從ADC_DR的暫存器傳輸到用戶指定的目的地位址。
+    只有在規則通道轉換結束後才能產生DMA的請求，並且將轉換後的數據從ADC_DR的暫存器傳輸到用戶指定的目的地位址。
 
 
 - 16. 為什麼要設定DMA,照我們我的作法是跑迴圈的方式去polling溫度的值?要做DMA的話會花幾個cycle?
@@ -176,11 +172,9 @@ Ans:
 
 - 19. 用while loop可能會取得錯誤的值,也可能會浪費資源?
 - 20. 溫度的sampling rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
+    溫度的SAMPLE TIME是經由公式計算出，無法設定，DATASHEET有提供公式，需要設定是SAMPLE TIME必須大於取樣時間的MAX值，
 
-Ans: 
-     溫度的SAMPLE TIME是經由公式計算出，無法設定，DATASHEET有提供公式，需要設定是SAMPLE TIME必須大於取樣時間的MAX值，
-
-     您的問題應該是Sampling RATE ，取樣頻率，就根據使用者需求來設定轉換模式，並算出轉換頻率。
+    您的問題應該是Sampling RATE ，取樣頻率，就根據使用者需求來設定轉換模式，並算出轉換頻率。
 
 .. image:: /table8.jpg
 
