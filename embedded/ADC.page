@@ -94,20 +94,20 @@ Questions
 ::
 
   Tconv = Sample Time + 12 cycles ( 12-bit resolution )
-  Sample Time為[3 - 480] cycles
+  Sample Time = [3 - 480] cycles
   Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
-  所以我們選擇的取樣時間必須 > 16.4µs 。
+  So, Sample Time must > 16.4µs 。
 
 .. image:: /table7.jpg
 
 - 2. Bandwidth大小為多少?
 - 3. 頻率響應為多少,可容忍的最大頻率呢?
-    在Datasheet中，因為我們參考電壓VDD為2.97V，故Frequency為[0.6-36]MHz
+    在Datasheet中，因為我們參考電壓VDD為2.97V，故**Frequency為[0.6-36]MHz**。
 
 .. image:: /table6.jpg
 
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
-    有External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core， Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...。
+    有**External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core， Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...**。
 
 .. image:: /22.JPG
 
@@ -144,37 +144,41 @@ Questions
 - 12. 若想要取得其他外部Sensor的Anolog值,要如何取得?
     利用GPIO，設定要接出的Pin腳，並連接至外部訊號上。
 - 13. 頻率除以4要幹嘛?不除頻又會怎樣?
-    頻率目的是方便操作與計算，因為我們設定Sample/Convert Time，單位是cycle， 而 ADCCLK generates from APB2，fPCLK = 84MHz，1 cycle = 0.0119 µs，
-    溫度感測時間需要17 µs，若設定1個cycle=0.0119 µs，則需要1428個cycles，但是ADC_Sample_Time 支援上限為480 Cycles。
+    頻率目的是方便操作與計算，因為我們設定Sample/Convert Time，單位是cycle， 
+
+    而 ADCCLK generates from APB2，fPCLK = 84MHz，1 cycle = 0.0119 µs，溫度感測時間需要17 µs。
+
+    若設定1個cycle=0.0119 µs，則需要1428個cycles，但是ADC_Sample_Time 支援上限為480 Cycles。
 
 - 14. ExternalTrigConvEdge和ExternalTrigConv是甚麼?觸發又是在幹嘛?
+    分別為以下︰
+    - 1.ExternalTrigConvEdge  
 
-    1.ExternalTrigConvEdge
+    .. image:: /table9.jpg
 
-.. image:: /table9.jpg
+    - 2.ExternalTrigConv  
 
-    2.ExternalTrigConv
-
-.. image:: /table10.jpg
+    .. image:: /table10.jpg
 
 - 15. DMA跟ADC之間是在幹嘛的?
     規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
 
     只有在規則通道轉換結束後才能產生DMA的請求，並且將轉換後的數據從ADC_DR的暫存器傳輸到用戶指定的目的地位址。
 
-
 - 16. 為什麼要設定DMA,照我們我的作法是跑迴圈的方式去polling溫度的值?要做DMA的話會花幾個cycle?
 - 17. DMA_Mode_Circulur這mode在做甚麼用?
-    主要用來處理circular buffers和連續的data flow(像是ADC的scan mode)。當此模式啟動時，會將要傳送的資料載入在stream config所設定的初始值，且DMA request會持續服務。
+    主要用來處理circular buffers和連續的data flow(像是ADC的scan mode)。
+
+    當此模式啟動時，會將要傳送的資料載入在stream config所設定的初始值，且DMA request會持續服務。
 
 - 18. DMA2_Stream0是甚麼?為什麼是以Stream的方式?
     DMA Stream 提供了一個source to destination的單方向傳輸的連結，像是周邊到記憶體或是記憶體到周邊。
 
 - 19. 用while loop可能會取得錯誤的值,也可能會浪費資源?
 - 20. 溫度的sampling rate設成20MHz會不會太高,或許1KHz會差不多,開發程式中要call api時,config中值是否可參數化?
-    溫度的SAMPLE TIME是經由公式計算出，無法設定，DATASHEET有提供公式，需要設定是SAMPLE TIME必須大於取樣時間的MAX值，
+    溫度的Sample Time是經由公式計算出，無法設定，Datasheet有提供公式，需要設定是Sample Time必須大於取樣時間的MAX值，
 
-    您的問題應該是Sampling RATE ，取樣頻率，就根據使用者需求來設定轉換模式，並算出轉換頻率。
+    您的問題應該是Sampling Rate(取樣頻率)，就根據使用者需求來設定轉換模式，並算出轉換頻率。
 
 .. image:: /table8.jpg
 
