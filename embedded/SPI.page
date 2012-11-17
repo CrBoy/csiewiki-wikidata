@@ -7,9 +7,11 @@ title: SPI
     圖例
     datasheet
 
-Overview
-=======
-- SPI 為同步式的資料傳輸標準，以全雙工運作。
+
+SPI 為資料傳輸協定，以下為其特色：
+- 同步式的傳輸標準，可以全雙工或半雙工運作。
+
+
 - 採用主從式設計，可由獨立的 slave select 和多個 slave 連結。
 
 
@@ -31,6 +33,10 @@ SPI 匯流排有規範4個腳位
     MISO: master input, slave output (output from slave);
 
     SS: slave select (active low, output from master).
+
+|SPI block diagram|
+
+.. |SPI block diagram| image:: /SPI block diagram.png
 
 STM32F4XX 
 =========
@@ -64,3 +70,4 @@ Example of bit-banging the SPI master protocol
 Reference
 =========
 - `Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus>`_
+
