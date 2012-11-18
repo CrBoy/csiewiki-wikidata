@@ -26,6 +26,11 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 以向上計數，PWM模式1為例：
 
 .. image:: /timer.png
+
+PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
+PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
+
+
 GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
 
 -----------
@@ -67,6 +72,5 @@ http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%A
 http://ppt.cc/nIAF
 
 http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
-
 
 
