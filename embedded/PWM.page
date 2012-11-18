@@ -23,7 +23,7 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 - 高級控制定時器(TIM1 和 TIM8)
 - 通用定時器(TIMx):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
 
-以向上計數為例：
+以LED為例：
 
 .. image:: /timer.png
 
@@ -31,7 +31,7 @@ PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出
 
 PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
 
-脈波週期 = TIM_Period * T_SYSCLK(1/168000000)，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖PWM 2的LED看起來會比PWM 1亮。
+脈波週期 = TIM_Period * T_SYSCLK(1/168000000)，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖PWM 2 duty cycle=75%>PWM 1 duty cycle=25%，PWM 2 Mode看起來會比PWM 1 Mode亮。
 
 
 -----------
@@ -78,4 +78,3 @@ http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%A
 http://ppt.cc/nIAF
 
 http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
-
