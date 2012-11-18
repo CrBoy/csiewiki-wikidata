@@ -25,7 +25,7 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 
 以向上計數，PWM模式1為例：
 
-.. image:: /timer.PNG
+.. image:: /timer.png
 GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
 
 -----------
