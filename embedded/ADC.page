@@ -122,7 +122,7 @@ Refer from: STM32F407xx Datasheet P124
 - 5. 測試的接法?
      請參考Demo.
 - 6. ADC的公式在哪裡找到?
-    `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 10.10 Temperature sensor 中溫度轉換公式為
+    `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中溫度轉換公式為
 
 ::
 
