@@ -31,7 +31,7 @@ PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出
 
 PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
 
-脈波週期 = TIM_Period * T_SYSCLK(1/168000000)，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖PWM 2 duty cycle=75%>PWM 1 duty cycle=25%，PWM 2 Mode看起來會比PWM 1 Mode亮。
+脈波週期 = TIM_Period * T_SYSCLK(1/168000000)，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 2 duty cycle(75%)>PWM 1 duty cycle(25%)，PWM 2 Mode看起來會比PWM 1 Mode亮。
 
 
 -----------
