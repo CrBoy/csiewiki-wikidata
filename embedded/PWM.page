@@ -12,19 +12,20 @@ Introduction
 
 .. image:: /pwm.png
 
-如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般轉換後脈波的週期固定，脈波的占空比會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。
+如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般轉換後脈波的週期固定，脈波的占空比(duty cycle)會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。
 
 
 Implementation
 ==============
 PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
+
 - 基本定時器(TIM6 和 TIM7)
 - 高級控制定時器(TIM1 和 TIM8)
 - 通用定時器(TIMx):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
 
 以向上計數，PWM模式1為例：
 
-.. image:: /1275.PNG
+.. image:: /timer.PNG
 GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
 
 -----------
@@ -51,9 +52,7 @@ GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與T
 
 - CCR與Period關係示意圖在不同模式下
 
-------------
 
-.. image:: /1275.PNG
 
 ------------
 
@@ -68,3 +67,6 @@ http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%A
 http://ppt.cc/nIAF
 
 http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
+
+
+
