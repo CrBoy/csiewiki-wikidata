@@ -101,11 +101,16 @@ Questions
 
 .. image:: /table7.jpg
 
+Refer from: STM32F407xx Datasheet P125
+
+
 - 2. Bandwidth大小為多少?
 - 3. 頻率響應為多少,可容忍的最大頻率呢?
     在Datasheet中，因為我們參考電壓VDD為2.97V，故**Frequency為[0.6-36]MHz**。
 
 .. image:: /table6.jpg
+
+Refer from: STM32F407xx Datasheet P124
 
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
     有**External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core， Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...**。
@@ -115,6 +120,7 @@ Questions
 `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 參照P264 ADC block diagram 
 
 - 5. 測試的接法?
+     請參考Demo.
 - 6. ADC的公式在哪裡找到?
     `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 10.10 Temperature sensor 中溫度轉換公式為
 
