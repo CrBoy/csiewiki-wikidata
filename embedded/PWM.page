@@ -54,7 +54,7 @@ GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與T
 
 ------------
 
-效果呈現
+Demo
 ============
 
 
