@@ -331,7 +331,18 @@ Flash模組的組成如下：
   FLASH_Lock(); 
   STM_EVAL_LEDOff(LED4);
 
+- 7.9 VERIFICATION
 
+::
+
+  while (Address < FLASH_USER_END_ADDR){
+    data32 = *(__IO uint32_t*)Address;
+    if (data32 != DATA_32){
+      STM_EVAL_LEDOn(LED3);
+      MemoryProgramStatus++;  
+    }
+    Address = Address + 4;
+  } 
 
 8.ref
  ============
