@@ -58,8 +58,24 @@ categories: STM32F4
 
 - 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
-4.flash 簡介(wiki)(user)(操作)
+4.Flash 簡介(wiki)(user)(操作)
  ============
+
+- 快閃記憶體(Flash Memory、閃存)，主要用於一般姓資料儲存，以及在電腦及其他數位產品間交換傳輸資料。如記憶卡、隨身碟等。快閃記憶體是一種特殊的、以大區塊抹寫的EEPROM(電子抹除式可複寫唯讀記憶體)。
+
+- 快閃記憶體晶片的低階介面通常與透過支援外界的定址匯流排行隨機存取的DRAM、ROM、EEPROM等記憶體不同。 NOR Flash本身為讀取操作(支援隨機存取)提供外部定址匯流排；至於解鎖、抹除與寫入則須以區塊-區塊(Block-by-block)的方式進行，典型的區塊大小為64、128或256位元組。NAND Flash所有的動作都必須以區塊性基礎(Block-wise fashion)執行，包含讀、寫、解鎖與抹除。
+
+- NOR Flash Structure :
+
+.. image:: /NOR flash.JPG
+
+- NAND Flash Structure :
+
+.. image:: /NAND flash.JPG
+
+** 關於NAND Flash 與 NOR Flash的比較可參考 (http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF)。 *
+
+
 5.flash 記憶體架構介紹
  ============
 6.flash register
