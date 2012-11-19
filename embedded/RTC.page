@@ -33,6 +33,17 @@ LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
 
 LSI: 32kHz / (127+1) /(249+1) =1Hz
 
+Alarm
+--------------------
+鬧鐘。
+
+calendar register與alarm作比較，如果相同則將對應的flag拉起來。
+
+.. image:: /embedded/RTC/alarm_pass.png
+
+
+
+
 Functionality
 ===============
 
@@ -247,5 +258,4 @@ setting alarm time
 Reference
 ================
 `RTC application note<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/APPLICATION_NOTE/DM00025071.pdf>`_
-
 
