@@ -483,11 +483,12 @@ Address offset : 0x10, Reset value: **0x8000** 0000.
 
 8.ref
  ============
-http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-1.pdf
-http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-6.pdf
-http://www.triplespark.net/elec/pdev/arm/stm32.html
-http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB
-http://cms.mcuapps.com/products/stm32f4-discovery/README.html
-http://cms.mcuapps.com/techinfo/toolchains/openocd/
-http://www.st.com/internet/mcu/product/252140.jsp
-http://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98
+
+- http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-1.pdf
+- http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-6.pdf
+- http://www.triplespark.net/elec/pdev/arm/stm32.html
+- http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB
+- http://cms.mcuapps.com/products/stm32f4-discovery/README.html
+- http://cms.mcuapps.com/techinfo/toolchains/openocd/
+- http://www.st.com/internet/mcu/product/252140.jsp
+- http://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98
