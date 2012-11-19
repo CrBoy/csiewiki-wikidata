@@ -297,12 +297,40 @@ Flash模組的組成如下：
  ============
 - 7.1 FLASH_UNLOCK
 - 7.2 GREEN LED ON
+
+  ::
+
+  FLASH_Unlock();
+  STM_EVAL_LEDOn(LED4);
+  FLASH_ClearFlag(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
+                  FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
+
 - 7.3 WRITE FROM SECTOR 2 TO SECTOR 5 AS "12345678"
 - 7.4 BLUE LED ON
 - 7.5 FINISHED WRITE PROCESS
 - 7.6 BLUE LED OFF
+
+  ::
+
+  while (Address < FLASH_USER_END_ADDR){
+    STM_EVAL_LEDOn(LED6);
+    if (FLASH_ProgramWord(Address, DATA_32) == FLASH_COMPLETE) Address = Address + 4;
+    else{
+      /* Error occurred while writing data in Flash memory. 
+         User can add here some code to deal with this error */
+      STM_EVAL_LEDOn(LED3);
+    }
+    STM_EVAL_LEDOff(LED6);
+  }
+
 - 7.7 FLASH_LOCK
 - 7.8 GREEN LED OFF
+  ::
+
+  FLASH_Lock(); 
+  STM_EVAL_LEDOff(LED4);
+
+
 
 8.ref
  ============
