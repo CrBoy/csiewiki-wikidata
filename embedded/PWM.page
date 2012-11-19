@@ -46,8 +46,11 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 .. image:: /timer.png
 
 TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
+
 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
+
             = (1999+1) * (499+1) * (0+1)/84000000 ≒ 0.012 s
+
 0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 2 duty cycle(75%)>PWM 1 duty cycle(25%)，PWM 2 Mode看起來會比PWM 1 Mode亮。
 
 -----------
