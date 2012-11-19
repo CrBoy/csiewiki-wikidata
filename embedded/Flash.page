@@ -355,8 +355,79 @@ Flash模組的組成如下：
 .. image:: /flash module organization.JPG
 
 
-6.flash register
+6.Flash interface registers
  ============
+
+- 6.1 Flash access control register (FLASH_ACR)
+-----------------------------------------------
+
+Address offset : 0x00, Reset value: 0x0000 0000.
+
+.. image:: /Flash_acr.JPG
+
+::
+
+  Bits 31:11 保留位置，必須保持淨空。
+  Bit 12 DCRST : Data cache reset. 0: not reset; 1: reset. (當D cache未啟用時才可寫入)
+  Bit 11 ICRST : Instruction cache reset. 0: not reset ; 1: reset. (當I cache未啟用時才可寫入)
+  Bit 10 DCEN : Data cache enable. 0: disabled; 1: enabled.
+  Bit 9 ICEN : Instruction cache enable. 0: disabled; 1: enabled.
+  Bit 8 PRFTEN : Prefetch enable. 0: disabled; 1: enabled;
+  Bits 7:3 保留位置，必須保持淨空。
+  Bits 2:0 LATENCY : Latency.
+
+- 6.2 Flash key register (FLASH_KEYR)
+-------------------------------------
+
+Address offset : 0x04, Reset value: 0x0000 0000.
+
+.. image:: /flash_keyr.JPG
+
+::
+
+  Bits 31:0 FKEYR : FPEC key. 解鎖用，前方已經描述過如何解鎖FLASH_CR，在此不贅述。
+
+- 6.3 Flash status register (FLASH_SR)
+--------------------------------------
+
+Address offset : 0x0C, Reset value: 0x0000 0000.
+
+.. image:: /flash_sr.JPG
+
+::
+
+  Bits 31:17 保留位置，必須保持淨空。
+  Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。
+  Bits 15:8 保留位置，必須保持淨空。
+  Bit 7 PGSERR : Programming sequence error. 當程式出現錯誤時會設值。若寫入1則清空。
+  Bit 6 PGPERR : Programming parallelism error. 當程式寫入大小與型態不符(對照PSIZE)時會設值。若寫入1則清空。
+  Bit 5 PGAERR : Programming alignment error. 當資料寫入時無法塞入128-bit的Flash memory row會設值。若寫入1則清空。
+  Bit 4 WRPERR : Write protection error. 當嘗試寫入/抹除一個寫入保護的Flash memory區域時會設值。若寫入1則清空。
+  Bit 3:2 保留位置，必須保持淨空。
+  Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這個bit只會在ERRIE(Error Interrupts)啟用時生效。
+  Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
+
+- 6.4 Flash control register (FLASH_CR)
+---------------------------------------
+
+Address offset : 0x10, Reset value: **0x8000** 0000.
+
+.. image:: /flash_cr.JPG
+
+::
+
+  Bit 31 LOCK : Lock. 只能寫為1，當值為1時，FLASH_CR將鎖住不可更改，唯有偵測到解鎖序列才會清除。
+  Bits 30:26 保留位置，必須保持淨空。
+  Bit 25 ERRIE: Error interrupt enable. 0: Disabled; 1: Enabled.
+  Bit 24 EOPIE: End of operation interrupt enable. 0: Disabled; 1: Enabled.
+  Bits 23:17 保留位置，必須保持淨空。
+  Bit 16 STRT: Start. 只能由軟體設置，且在BSY bit清空時會一併清空。
+  Bits 15:10 保留位置，必須保持淨空。
+  Bits 9:8 PSIZE: Program size. 前方有提過PSIZE的設置，在此不贅述。
+  Bits 6:3 SNB: Sector number. 前方有提過SNB的設置，在此不贅述。
+  Bit 2 MER: Mass Erase.
+  Bit 1 SER: Sector Erase.
+  Bit 0 PG: Programming.
 
 
 7.example(範例流程)
@@ -412,3 +483,11 @@ Flash模組的組成如下：
 
 8.ref
  ============
+http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-1.pdf
+http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-6.pdf
+http://www.triplespark.net/elec/pdev/arm/stm32.html
+http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB
+http://cms.mcuapps.com/products/stm32f4-discovery/README.html
+http://cms.mcuapps.com/techinfo/toolchains/openocd/
+http://www.st.com/internet/mcu/product/252140.jsp
+http://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98
