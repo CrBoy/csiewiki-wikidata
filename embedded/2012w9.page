@@ -1,3 +1,8 @@
+---
+title: Week #9 (Nov 13) ::  	Group Presentation (1)
+toc: no
+...
+
 - 分組報告個別週邊與 FreeRTOS 介面包裝的狀況
   * `ADC</embedded/ADC>`_
   * `RTC</embedded/RTC>`_
