@@ -7,17 +7,31 @@ categories: STM32F4
 - STM32F407VG版子外觀與模組如下圖所示：
 
 .. image:: /STM32F4.jpg
-- 中央的晶片為ARM® Cortex™-M4F core with embedded Flash and SRAM，其內部結構如下圖所示：
+
+- 上方USB Programmer/Debugger為ST-Link
+- 石英晶體震盪器(Crystal)，可參考(http://zh.wikipedia.org/zh-tw/%E7%9F%B3%E8%8B%B1%E6%99%B6%E4%BD%93%E8%B0%90%E6%8C%AF%E5%99%A8)
+- 中央的晶片為ARM® Cortex™-M4F core with embedded Flash and SRAM，其內部結構如Figure 5所示。
+- 三軸加速度感知器(3-axis Accelerometer)
+- 音頻數位類比轉換(Audio DAC)
+- 麥克風晶片(Chip Microphone)
+- USB On The Go (http://forum.slime.com.tw/thread180246.html)
+- 音效輸出(Audio Jack)
+- 此外，板子上有兩顆按鈕，藍色按鈕為User Button，黑色按鈕為Reset。
 
 .. image:: /block_diag_1.JPG
 
 .. image:: /block_diag_2.JPG
 
-- 
 2.Software STM32F4 Lib
  ============
+
+.. image:: /lib_1.JPG
+
 3.debug gdb(介紹指令和操作方式)(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
  ============
+
+.. image:: /gdb_1.JPG
+
 4.flash 簡介(wiki)(user)(操作)
  ============
 5.flash 記憶體架構介紹
