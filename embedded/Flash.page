@@ -96,7 +96,7 @@ categories: STM32F4
 
 **抹除步驟：**
 
-- 區塊抹除(Sector Erase):
+- **區塊抹除(Sector Erase)**:
 
 1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
 2. 設定FLASH_CR中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
@@ -109,15 +109,21 @@ categories: STM32F4
   1011 sector 11
   不得超過此範圍。
 
-3. 
+3. 設定FLASH_CR中的STRT(Start) bit。
+4. 等待FLASH_SR中的BSY清空。
 
+- **大量抹除(Mass Erase)**:
 
+1. 檢查FLASH_SR中BSY bit是否為0。
+2. 設定FLASH_CR中的MER(Mass Erase) bit。
+3. 設定FLASH_CR中的STRT bit。
+4. 等待FLASH_SR中的BSY清空。
 
 **寫入步驟：**
 
-1. 檢查FLASH_SR register中的BSY(Busy) bit，0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中。
-2. 設定FLASH_CR register中的PG(Programming)。
-3. 在指定的位置(主要記憶體區塊或OTP區塊)執行資料寫入的動作。關於記憶體區塊將於下一節介紹。
+1. 檢查FLASH_SR中BSY bit是否為0。
+2. 設定FLASH_CR中的PG(Programming)。
+3. 在指定的位置(主要記憶體區塊或OTP區塊)執行資料寫入的動作。(關於記憶體區塊將於下一節介紹)
 
 - 以下是各種型態單次寫入時所需的大小
 - **Byte : x8**
@@ -125,9 +131,14 @@ categories: STM32F4
 - **Word : x32**
 - **Double-word : x64**
 
-- 而寫入之前必須於FLASH_CR register中指定對應的PSIZE，如下表所示：
+- 而寫入之前必須於FLASH_CR中指定對應的PSIZE，如下表所示：
 
 .. image:: /parallelism.JPG
+
+
+**當bit寫入由1寫成0時，不需要先Erase；但若將0寫為1時，則需要先Erase才能寫。**
+
+4. 等待FLASH_SR中的BSY清空。
 
 5.flash 記憶體架構介紹
  ============
