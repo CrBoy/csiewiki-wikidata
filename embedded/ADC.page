@@ -135,7 +135,14 @@ Refer from: STM32F407xx Datasheet P124
     `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中提到 Supported temperature range: –40 to 125 °C, Precision: ±1.5 °C。
 
 - 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少?
+
 - 9. 如何先做溫度上的校準?
+    利用內建溫度感測計在做實驗時,由於無法獨立出一個sensor出來測,所以實驗的環境下是在室溫的環境下,並利用溫度計來量測室溫為多少,來比對板子上所抓到的溫度與溫度計上的溫度.
+
+    補:
+     `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中一張中的Note提到,此開發版的內部溫度感測器適合來偵測溫度的變化,依據溫度感測公式來看,是基於25°C下與offset得到的溫度值,也就是適合觀察溫度變化,並不適合來取得室溫上的絕對溫度. 所以若要測量精確的絕對溫度的話,Manual上建議外接溫度感測器較為合適.
+
+
 - 10. 整個程式上的架構為如何?
 - 11. 如何選擇mode? Scan or Continuous?
     Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
