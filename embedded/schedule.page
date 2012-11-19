@@ -14,9 +14,9 @@ Week  Date     Subject                                 Assignment
 #6    Oct 23   `Code review of Lab assignments`_       `Lab 5`_: RTOS modifications
 #7    Oct 30   `Peripherals and hardware interface`_   `Lab 6`_: Hardware
 #8    Nov  6   `Embedded Linux Conference Europe`_     分組準備與討論
-#9    Nov 13   Group Presentation (1)                  分組準備與討論
-#10   Nov 20   Group Presentation (2)                  Lab 7: MCU
-#11   Nov 27   Group Presentation (3)                  Lab 8: RTOS + MCU
+#9    Nov 13   `Group Presentation (1)`_               分組準備與討論
+#10   Nov 20   `Group Presentation (2)`_               Lab 7: MCU
+#11   Nov 27   `Group Presentation (3)`_               Lab 8: RTOS + MCU
 #12   Dec  4   `Microkernel overview`_                 Lab 9: RTOS + MCU/Peripherals
 #13   Dec 11   Learning by Doing                       Lab 10: Microkernel + MCU
 #14   Dec 18   Learning by Doing                       Hack!
@@ -34,9 +34,11 @@ Week  Date     Subject                                 Assignment
 .. _`Code review of Lab assignments`: https://gitcafe.com/embedded2012/P-jserv
 .. _`Peripherals and hardware interface`: 2012w7
 .. _`ARM Cortex-M series`: 2012w7
-.. _`Microkernel overview`: 2012w11
-.. _`Virtualization technologies`: 2012w12
+.. _`Microkernel overview`: 2012w12
 .. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
+.. _`Group Presentation (1)`: 2012w9
+.. _`Group Presentation (2)`: 2012w10
+.. _`Group Presentation (3)`: 2012w11
 .. _`Lab 1`: Lab1
 .. _`Lab 2`: Lab2
 .. _`Lab 3`: Lab3
