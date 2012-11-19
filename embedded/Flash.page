@@ -90,7 +90,7 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
   
   break 100                     在第100行中斷並且執行command...end中的gdb命令
   commands
-    printf "x is %d\n",x
+    p/x var
   end
   
 - run                        開始跑程式
@@ -109,7 +109,7 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
 
 ::
 
-  list x 從第x行的source code印出，x不寫從目前行印出
+  list x 從第x行的source code印出，x不寫則印出目前中斷點前後的code
   list *addr  秀出addr所在source code的行
               可以先用info program找出目前PC的值
               再用list *addr
