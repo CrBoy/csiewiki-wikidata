@@ -188,6 +188,52 @@ Refer from: STM32F407xx Datasheet P124
     您的問題應該是Sampling Rate(取樣頻率)，就根據使用者需求來設定轉換模式，並算出轉換頻率。
 
 .. image:: /table8.jpg
+Sample Code
+===========
+- main
+
+.. code-block:: prettyprint
+
+    int main()
+    {
+        ...
+    
+    	/* Start the tasks defined within this file/specific to this demo. */
+    	xTaskCreate( vLEDTask, ( signed portCHAR * ) "LED3", configMINIMAL_STACK_SIZE, (void *)LEDS[0], tskIDLE_PRIORITY, &xLED_Tasks[0] );
+    	xTaskCreate( vLEDTask, ( signed portCHAR * ) "LED4", configMINIMAL_STACK_SIZE, (void *)LEDS[1], tskIDLE_PRIORITY, &xLED_Tasks[1] );
+    	xTaskCreate( vLEDTask, ( signed portCHAR * ) "LED5", configMINIMAL_STACK_SIZE, (void *)LEDS[2], tskIDLE_PRIORITY, &xLED_Tasks[2] );
+    	xTaskCreate( vLEDTask, ( signed portCHAR * ) "LED6", configMINIMAL_STACK_SIZE, (void *)LEDS[3], tskIDLE_PRIORITY, &xLED_Tasks[3] );
+    	xTaskCreate( vADC_DMATask, ( signed portCHAR * ) "ADC", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+    	xTaskCreate( vSWITCHTask, ( signed portCHAR * ) "SWITCH", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL );
+    	xTaskCreate( vMEMSTask, ( signed portCHAR * ) "MEMS", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xMEMS_Task );
+    	xTaskCreate( vBALANCETask, ( signed portCHAR * ) "BALANCE", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xBALANCE_Task );
+    
+        ...  
+    }
+
+- vADC_DMATask
+
+.. code-block:: prettyprint
+
+    void vADC_DMATask( void *pvParameters )
+    {
+    	NVIC_InitTypeDef NVIC_InitStructure;
+    	/**/
+    	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+    	NVIC_InitStructure.NVIC_IRQChannel = DMA2_Stream0_IRQn;
+    	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    	NVIC_Init(&NVIC_InitStructure);
+    	/**/
+    	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+    	NVIC_InitStructure.NVIC_IRQChannel = ADC_IRQn;
+    	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
+    	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    	NVIC_Init(&NVIC_InitStructure);
+    	for(;;);
+    }
 
 Reference
 =========
