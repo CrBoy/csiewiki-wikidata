@@ -42,6 +42,12 @@ categories: STM32F4
 
   gdbserver 192.168.0.30:3333 myapplication
 
+如果已經將程式燒入flash, 要透過MCU內建的gdb server來debug, 則必須使用st-util:
+
+::
+
+  st-util -p 3333
+
 (2) 開啟Host端ddd，忽略警告訊息。
 (3) 連接到Target端的gdbserver，如
 
