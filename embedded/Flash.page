@@ -2,10 +2,18 @@
 title: Flash
 categories: STM32F4
 ...
-1.STM32F407VG 硬體介紹(DM00037051.pdf)
+1.STM32F407VG 硬體介紹
  ============
+- STM32F407VG版子外觀與模組如下圖所示：
 
 .. image:: /STM32F4.jpg
+- 中央的晶片為ARM® Cortex™-M4F core with embedded Flash and SRAM，其內部結構如下圖所示：
+
+.. image:: /block_diag_1.JPG
+
+.. image:: /block_diag_2.JPG
+
+- 
 2.Software STM32F4 Lib
  ============
 3.debug gdb(介紹指令和操作方式)(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
