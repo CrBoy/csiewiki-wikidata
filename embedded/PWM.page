@@ -25,21 +25,29 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
   - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
   - CK_INT -> AHB Prescaler(/1、2、...、512) -> APB1 Prescaler(/1、2、4、8、16) or APB2 Prescaler(/1、2、4、8、16)。
   - Time Base Configuration :
+    - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
     - TIM_Prescaler  -  將TIMxCLK除以(TIM_Prescaler+1)
     - TIM_CounterMode  -  選擇計數模式
-    - TIM_Period  -  count週期
-    - TIM_ClockDivision  -  
+    - TIM_Period  -  TIMx_ARR，counter 週期
+
+  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
+  - PWM configuration
+    - TIM_OCMode  - PWM模式
+      - PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
+      - PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
+
+    - TIM_Pulse  -  TIMx_CCRx，脈衝寬度
+    - TIM_OCPolarity  -  設置輸出極性，例如:TIM_OCPolarity_High // PWM輸出關閉時默認為低電位。 
+    
 
 
 以LED為例：
 
 .. image:: /timer.png
 
-PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
 
-PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
 
-脈波週期 = TIM_Period * T_SYSCLK(1/168000000)，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 2 duty cycle(75%)>PWM 1 duty cycle(25%)，PWM 2 Mode看起來會比PWM 1 Mode亮。
+，以TIM_Period=2000為例，脈波週期 = 2000*(1/168000000)≒0.019ms，遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 2 duty cycle(75%)>PWM 1 duty cycle(25%)，PWM 2 Mode看起來會比PWM 1 Mode亮。
 
 
 -----------
@@ -90,4 +98,3 @@ http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQ
 http://hi.baidu.com/snic_k/item/0f045e3288e6683d2e20c42b
 
 陈志旺（2012）。STM32 嵌入式微控制器快速上手。中國：电子工业出版社。
-
