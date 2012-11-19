@@ -27,8 +27,9 @@ categories: STM32F4
 
 .. image:: /lib_1.JPG
 
-3.debug gdb(介紹指令和操作方式)
+3.debug gdb
  ============
+- gdb指令介紹 : 
 
 - Debug設定大致如下圖所示(TCP/IP) : 
 
