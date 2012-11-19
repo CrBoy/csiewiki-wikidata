@@ -141,6 +141,7 @@ In Stop mode and Standby mode, the RTC remains active when clock source is LSE o
 
 Alarm, tamper event, time stamp event, and wakeup cause the device to exit low power mode.
 
+.. image:: /RTC in low power mode.png
 
 Configuration
 ================
