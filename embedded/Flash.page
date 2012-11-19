@@ -33,6 +33,123 @@ categories: STM32F4
  ============
 - gdb指令介紹 : 
 --------------
+檔案處理
+========
+
+- file a.elf                 載入可執行檔a.elf
+- path                       告訴gdb obj code在那
+- directory                  告訴gdb source code在那裡
+
+SHELL
+=====
+
+- shell ls                   就會執行ls了
+
+
+流程控制
+========
+
+- break		設定中斷點 
+
+::
+  
+  break                         在目前位置設中斷點
+  break 100                     在100行中斷
+  break main                    在main()中斷
+  break +100                    目前位置+100行中斷
+  break *0x08048123             在這位址中斷
+  break file.c:100              因為如果是多個c檔案時指定file.c
+  tbreak                        同break的寫法 不過中斷一次後 此中斷點就失效
+  break 100 if (var == 5)       條件中斷: 如果var=5就在line 100中斷
+
+- delete		清除中斷點
+
+::
+
+  delete 1                      刪除編號為1的中斷點
+  delete                        刪除所有中斷點
+
+- disable		暫時使中斷失效
+- enable		把失效的中斷恢復
+
+::
+
+  disable 3                  暫時使3號中斷點沒作用  後面是中斷點流水編號
+  enable 2                   使2號中斷點作用  後面是中斷點流水編號
+  
+condition   進一步設中斷點的條件 如果條件為true則中斷
+
+::
+
+  condition 3 (var > 3)      設3號中斷點的條件 如果條件為true則中斷
+  condition 3                清除3號中斷點的條件
+  
+- commands    如果中斷發生了則執行commands與end中的一連串gdb命令
+
+::
+  
+  break 100                     在第100行中斷並且執行command...end中的gdb命令
+  commands
+    printf "x is %d\n",x
+  end
+  
+- run                        開始跑程式
+- continue                   中斷後繼續跑
+- next                       往下一步: 如果有副程式 執行完整個副程式
+- step                       往下一步: 如果有副程式 追進副程式
+- until                      跳離一個while for迴圈
+- nexti                      往下一步CPU組語的指令(Instruction)執行完整個副程式
+- stepi                      往下一步CPU組語的指令(Instruction)追進副程式
+
+
+訊息觀看與設定
+==============
+
+- list                       看原始碼
+
+::
+
+  list x 從第x行的source code印出，x不寫從目前行印出
+  list *addr  秀出addr所在source code的行
+              可以先用info program找出目前PC的值
+              再用list *addr
+  search REGEXP 在目前source code用正規表示式搜尋
+
+- whatis var                 告訴我var的資料型別是啥 int, char or double
+- ptype var                  告訴我var的資料型別是啥 這用來看struct用的
+- set                        設定gdb, 系統的控制變數值(這些變數不是program內的)
+
+::
+
+  set listsize xx  設定要看xx行source code
+  set $pc xx       把PC設到 xx
+  set convenience可以自己設變數
+						   
+程式變數值(data)處理
+====================
+- print var                  看var的值
+- print &var                 印出var的位址
+- print *var                 印出位於位址var的值
+- display var                display會每次step, next時都會印出值來, print只印一次
+- print (var=value)          設var的值為value
+- p/x
+
+::
+
+  p/x 表示印16進位值
+  p/u 表示unsigned digit
+  p/d signed digit
+  p/t 二進位值
+                           
+                           
+- x/3uh 0x8000000          印出記憶體
+
+::
+
+  其中
+  3表示看3個 (0x8000000 - 0x8000003)
+  u      unsigned digit(跟上面p命令一樣意義) 
+  h      halfword就是2bytes(bhwg分別是1248bytes)
 
 - Debug設定(TCP/IP) : 
 ---------------------
