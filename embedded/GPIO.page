@@ -26,4 +26,24 @@ Main Feature
 - Fast toggle capable of changing every two clock cycles
 - Highly flexible pin multiplexing allows the use of I/O pins as GPIOs or as one of several peripheral functions
 
+Functional Description
+======================
+Subject to the specific hardware characteristics of each I/O port listed in the datasheet, each port bit of the general-purpose I/O (GPIO) ports can be individually configured by software in several modes:
 
+- Input floating
+- Input pull-up
+- Input-pull-down
+- Analog
+- Output open-drain with pull-up or pull-down capability
+- Output push-pull with pull-up or pull-down capability
+- Alternate function push-pull with pull-up or pull-down capability
+- Alternate function open-drain with pull-up or pull-down capability
+
+Each I/O port bit is freely programmable, however the I/O port registers have to be accessed
+as 32-bit words, half-words or bytes. The purpose of the GPIOx_BSRR register is to allow
+atomic read/modify accesses to any of the GPIO registers. In this way, there is no risk of an
+IRQ occurring between the read and the modify access.
+
+Figure below shows the basic structure of a 5 V tolerant I/O port bit:
+
+.. image:: /GPIO_basic_src.PNG
