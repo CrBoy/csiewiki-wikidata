@@ -182,6 +182,7 @@ initialize RTC alarm
 --------------------
 
 .. code-block:: prettyprint
+
 	EXTI_InitTypeDef EXTI_InitStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
