@@ -30,16 +30,6 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
     - TIM_Period  -  count週期
     - TIM_ClockDivision  -  
 
-  
-
-一般：APB2下的时间为72MHz,APB1下的时间为 APB1x2   
-
-The timer clock frequencies are automatically fixed by hardware. There are two cases:
-         1. if the APB prescaler is 1, the timer clock frequencies are set to the same frequency as
-that of the APB domain to which the timers are connected.
-        2. otherwise, they are set to twice (×2) the frequency of the APB domain to which the
-timers are connected.
-
 
 以LED為例：
 
