@@ -72,6 +72,8 @@ Data can be read indirectly from shadow registers or directly from counters. The
 
 Data, time, and subsecond are separately recorded in ``RTC_DR``, ``RTC_TR``, and ``RTC_SSR``. With ``BYPSHAD`` bit set, data can be read directly from counter.
 
+Two programmable alarms (Alarm A, Alarm B) with **interrupt function**. The alarms can be triggered by any **combination** of the calendar fields.
+
 An alarm consists of a register with the same length as the RTC time counter. When the RTC time counter reaches the value programmed in the alarm register, a flag is set to indicate that an alarm event occurred.
 
 In addition to the time to trigger, alarm can be configured to mask some fields and do not compare.
