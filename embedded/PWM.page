@@ -21,7 +21,7 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 
 - 基本定時器(TIM6 和 TIM7)
 - 高級控制定時器(TIM1 和 TIM8)
-- 通用定時器(TIMx):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
+- 通用定時器TIMx(TIM2、TIM3、TIM4、TIM5):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
 
 
 一般：APB2下的时间为72MHz,APB1下的时间为 APB1x2   
@@ -90,3 +90,5 @@ http://ppt.cc/nIAF
 http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
 
 http://hi.baidu.com/snic_k/item/0f045e3288e6683d2e20c42b
+
+陈志旺（2012）。STM32 嵌入式微控制器快速上手。中國：电子工业出版社。
