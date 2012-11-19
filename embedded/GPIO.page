@@ -45,3 +45,50 @@ IRQ occurring between the read and the modify access.
 Figure below shows the basic structure of a 5 V tolerant I/O port bit:
 
 .. image:: /GPIO_basic_src.PNG
+
+Configuration
+=============
+Input configuration
+-------------------
+When the I/O port is programmed as Input:
+
+- the output buffer is disabled
+- the Schmitt trigger input is activated
+- the pull-up and pull-down resistors are activated depending on the value in the GPIOx_PUPDR register
+- The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
+- A read access to the input data register provides the I/O State
+
+Output configuration
+--------------------
+When the I/O port is programmed as output:
+
+- The output buffer is enabled:
+   - Open drain mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register leaves the port in Hi-Z (the P-MOS is never activated)
+   - Push-pull mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register activates the P-MOS
+- The Schmitt trigger input is activated
+- The weak pull-up and pull-down resistors are activated or not depending on the value in the GPIOx_PUPDR register
+- The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
+- A read access to the input data register gets the I/O state
+- A read access to the output data register gets the last written value
+
+Alternate function configuration
+--------------------------------
+When the I/O port is programmed as alternate function:
+
+- The output buffer can be configured as open-drain or push-pull
+- The output buffer is driven by the signal coming from the peripheral (transmitter enable and data)
+- The Schmitt trigger input is activated
+- The weak pull-up and pull-down resistors are activated or not depending on the value in the GPIOx_PUPDR register
+- The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
+- A read access to the input data register gets the I/O state
+
+Analog configuration
+--------------------
+When the I/O port is programmed as analog configuration:
+
+- The output buffer is disabled
+- The Schmitt trigger input is deactivated, providing zero consumption for every analog value of the I/O pin. The output of the Schmitt trigger is forced to a constant value (0).
+- The weak pull-up and pull-down resistors are disabled
+- Read access to the input data register gets the value “0”
+
+Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
