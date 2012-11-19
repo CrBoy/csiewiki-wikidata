@@ -201,6 +201,72 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
 
 - Flash 操作
 -------------
+**讀取：**
+
+- 要正確的從Flash中讀取資料，必須在FLASH_ACR中依據CPU clock(HCLK)頻率與供應的電壓來設定正確的WS(Wait State)。
+- WS與HCLK關係如下表所示 :
+
+.. image:: /ws_hclk.JPG
+
+- 在Reset之後，HCLK為16MHz，而FLASH_ACR中的ws為0。
+- 官方文件建議用以下方法(增加/減少CPU frequency)，依據CPU frequency調試存取Flash所需的ws數。
+
+**增加CPU frequency**
+
+1. 在FLASH_ACR中的LATENCY bits設定新的ws值。
+
+::
+
+  000: 0ws(1 CPU cycle)
+  001: 1ws(2 CPU cycle)
+  010: 2ws(3 CPU cycle)
+  011: 3ws(4 CPU cycle)
+  100: 4ws(5 CPU cycle)
+  101: 5ws(6 CPU cycle)
+  110: 6ws(7 CPU cycle)
+  111: 7ws(8 CPU cycle)
+
+
+2. 透過讀取FLASH_ACR確認新的ws值有被設定成功。
+3. 透過寫入RCC_CFGR(Reset and Clock Control Configuration Register)中的SW(System clock switch) bits來修正 CPU clock source.
+
+::
+
+  sw : 
+  00 : HSI (High Speed Internal)
+  01 : HSE (High Speed External)
+  10 : PLL (Phase Lock Loop)
+  11 : not allowed
+
+- 當離開Stop或Standby模式時，或者當HSE Failure時，將由硬體強制轉為HSI。
+
+可參考(http://blog.csdn.net/joji_h/article/details/5581340)
+
+4. 如果需要的話，可透過寫入RCC_CFGR中的HPRE(AHB Prescaler) bits來修改CPU clock prescaler.
+
+::
+
+  HPRE bits:
+  0xxx : System clock not divided
+  1000 : System clock divided by 2
+  1001 : System clock divided by 4
+  1010 : System clock divided by 8
+  ...
+  1111 : System clock divided by 512
+
+
+5. 透過讀取讀取RCC_CFGR中的SWS(System clock switch status) bits 來確認新的sw有被設定成功；透過讀取RCC_CFGR中的HPRE bits來確定新的HPRE值有被設定成功。
+
+**減少CPU frequency**
+
+1. 修正RCC_CFGR中SW bits.
+2. 如果需要的話，可透過寫入RCC_CFGR中的HPRE bits來修改CPU clock prescaler.
+3. 透過讀取讀取RCC_CFGR中的SWS bits 來確認新的sw有被設定成功；透過讀取RCC_CFGR中的HPRE bits來確定新的HPRE值有被設定成功。
+4. 在FLASH_ACR中的LATENCY bits設定新的ws值。
+5. 透過讀取FLASH_ACR確認新的ws值有被設定成功。
+
+**抹除與寫入：**
+
 
 在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
 
