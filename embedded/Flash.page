@@ -2,19 +2,21 @@
 title: Flash
 categories: STM32F4
 ...
- - 1.STM32F407VG 硬體介紹(DM00037051.pdf)
-============
+1.STM32F407VG 硬體介紹(DM00037051.pdf)
+ ============
+
 .. image:: /STM32F4.jpg
- - 2.Software STM32F4 Lib
-============
- - 3.debug gdb(介紹指令和操作方式)(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
-============
- - 4.flash 簡介(wiki)(user)(操作)
-============
- - 5.flash 記憶體架構介紹
-============
- - 6.flash register
-============
- - 7.example(範例流程)
-============
+2.Software STM32F4 Lib
+ ============
+3.debug gdb(介紹指令和操作方式)(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
+ ============
+4.flash 簡介(wiki)(user)(操作)
+ ============
+5.flash 記憶體架構介紹
+ ============
+6.flash register
+ ============
+7.example(範例流程)
+ ============
 8.ref
+ ============
