@@ -7,8 +7,6 @@ Introduction
 ============
 **General Purpose Input/Output (GPIO)** is a generic pin on a chip whose behavior (including whether it is an input or output pin) can be controlled (programmed) by the user at run time.
 
-GPIO pins have no special purpose defined, and go unused by default. The idea is that sometimes the system integrator building a full system that uses the chip might find it useful to have a handful of additional digital control lines, and having these available from the chip can save the hassle of having to arrange additional circuitry to provide them. For example, the Realtek ALC260 chips (audio codec) have 8 GPIO pins, which go unused by default. Some system integrators (Acer Inc. laptops) employing the ALC260 use the first GPIO (GPIO0) to turn on the amplifier used for the laptop's internal speakers and external headphone jack.
-
 In STM32F4-Discovery, each general-purpose I/O port has four 32-bit configuration registers (GPIOx_MODER, GPIOx_OTYPER, GPIOx_OSPEEDR and GPIOx_PUPDR), two 32-bit data registers (GPIOx_IDR and GPIOx_ODR), a 32-bit set/reset register (GPIOx_BSRR), a 32-bit locking register (GPIOx_LCKR) and two 32-bit alternate function selection register (GPIOx_AFRH and GPIOx_AFRL).
 
 Main Feature
