@@ -2,18 +2,36 @@ Introduction
 =============
 Real-Time Clock(RTC)是負責記錄時間的元件，出現在需要長期使用時鐘的電子設備中。
 
+RTC block diagram
+--------------------
 
 .. image:: /rtc_block.png
 
 
-Clock Source
+
+
+How it works
+=============
+
+Generate 1Hz
 --------------------
 
-.. image:: /stm32F4 RTC clock source
+RTC基本計算單位為一秒鐘。
+
+由於clock source速度太快，我們需要用prescaler去轉換成一秒鐘。
+
+.. image:: /embedded/RTC/rtc_generate_clock.png
+
+基於省電需求，將prescaler分為兩個區塊，首先經由較省電的Asynchronous prescaler，再透過較耗能量的Synchronous prescaler輸出1Hz。
+
+根據clock source的頻率不同，我們調整不同的prescaler參數。
 
 
+.. image:: /embedded/RTC/ck_spre_formula.png
 
+LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
 
+LSI: 32kHz / (127+1) /(249+1) =1Hz
 
 Functionality
 ===============
@@ -229,6 +247,5 @@ setting alarm time
 Reference
 ================
 `RTC application note<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/APPLICATION_NOTE/DM00025071.pdf>`_
-
 
 
