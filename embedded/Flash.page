@@ -2,8 +2,10 @@
 title: Flash
 categories: STM32F4
 ...
+
 1.STM32F407VG 硬體介紹
- ============
+ =============
+
 - STM32F407VG版子外觀與模組如下圖所示：
 
 .. image:: /STM32F4_2.jpg
@@ -30,8 +32,10 @@ categories: STM32F4
 3.debug gdb
  ============
 - gdb指令介紹 : 
+--------------
 
-- Debug設定大致如下圖所示(TCP/IP) : 
+- Debug設定(TCP/IP) : 
+---------------------
 
 .. image:: /gdb_1.JPG
 
@@ -59,8 +63,10 @@ categories: STM32F4
 
 - 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
-4.Flash 簡介(wiki)(user)(操作)
+4.Flash 簡介
  ============
+- 簡介
+------
 
 - 快閃記憶體(Flash Memory、閃存)，主要用於一般姓資料儲存，以及在電腦及其他數位產品間交換傳輸資料。如記憶卡、隨身碟等。快閃記憶體是一種特殊的、以大區塊抹寫的EEPROM(電子抹除式可複寫唯讀記憶體)。
 
@@ -74,8 +80,54 @@ categories: STM32F4
 
 .. image:: /NAND flash.JPG
 
-** 關於NAND Flash 與 NOR Flash的比較可參考 (http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF)。 *
+**關於NAND Flash 與 NOR Flash的比較可參考**(http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF)。
 
+- Flash 操作
+-------------
+
+在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
+
+1. 在Flash key register(FLASH_KEYR)中寫入0x45670123。
+2. 在Flash key register(FLASH_KEYR)中寫入0xCDEF89AB。
+
+ **必須連續執行1與2才會解鎖**
+
+此外，FLASH_CR在FLASH_SR的BSY值為1時是同樣不可寫入的。
+
+**抹除步驟：**
+
+- 區塊抹除(Sector Erase):
+
+1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
+2. 設定FLASH_CR中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
+
+::
+
+  0000 sector 0
+  0001 sector 1
+  ...
+  1011 sector 11
+  不得超過此範圍。
+
+3. 
+
+
+
+**寫入步驟：**
+
+1. 檢查FLASH_SR register中的BSY(Busy) bit，0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中。
+2. 設定FLASH_CR register中的PG(Programming)。
+3. 在指定的位置(主要記憶體區塊或OTP區塊)執行資料寫入的動作。關於記憶體區塊將於下一節介紹。
+
+- 以下是各種型態單次寫入時所需的大小
+- **Byte : x8**
+- **Half-word : x16**
+- **Word : x32**
+- **Double-word : x64**
+
+- 而寫入之前必須於FLASH_CR register中指定對應的PSIZE，如下表所示：
+
+.. image:: /parallelism.JPG
 
 5.flash 記憶體架構介紹
  ============
