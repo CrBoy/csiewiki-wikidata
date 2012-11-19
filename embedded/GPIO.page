@@ -92,3 +92,13 @@ When the I/O port is programmed as analog configuration:
 - Read access to the input data register gets the value “0”
 
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
+
+Demo
+====
+
+Reference
+=========
+- `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
+- `STM32F407xx Datasheet<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
+- `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
+- `稀里糊塗學 STM32 第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
