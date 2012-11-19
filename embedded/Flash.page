@@ -6,7 +6,7 @@ categories: STM32F4
  ============
 - STM32F407VG版子外觀與模組如下圖所示：
 
-.. image:: /STM32F4.jpg
+.. image:: /STM32F4_2.jpg
 
 - 上方USB Programmer/Debugger為ST-Link
 - 石英晶體震盪器(Crystal)，可參考(http://zh.wikipedia.org/zh-tw/%E7%9F%B3%E8%8B%B1%E6%99%B6%E4%BD%93%E8%B0%90%E6%8C%AF%E5%99%A8)
@@ -27,10 +27,31 @@ categories: STM32F4
 
 .. image:: /lib_1.JPG
 
-3.debug gdb(介紹指令和操作方式)(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
+3.debug gdb(介紹指令和操作方式)
  ============
 
+- Debug設定大致如下圖所示(TCP/IP) : 
+
 .. image:: /gdb_1.JPG
+
+- Debug流程主要為 :
+
+(1) 在Target端開啟App與gdbserver。如
+
+::
+
+  gdbserver 192.168.0.30:3333 myapplication
+
+(2) 開啟Host端ddd，忽略警告訊息。
+(3) 連接到Target端的gdbserver，如
+
+::
+
+  target extended-remote 10.47.199.199:3333 myapplication
+
+(4) 當應用程式就緒後，可指定中斷點，接著按c，就會在指定的中斷點停下來。
+
+- 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
 4.flash 簡介(wiki)(user)(操作)
  ============
