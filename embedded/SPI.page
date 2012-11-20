@@ -5,14 +5,15 @@ title: SPI
 ..
     關聯在哪？舉例。
     圖例
-    datasheet
 
+SPI 為資料傳輸協定，有著以下幾點特色：
 
-SPI 為資料傳輸協定，以下為其特色：
-- 同步式的傳輸標準，可以全雙工或半雙工運作。
-
-
-- 採用主從式設計，可由獨立的 slave select 和多個 slave 連結。
+- 同步式 
+- 全雙工
+    - 可以半雙工或單工
+- 主從式
+- 多個 master
+.. BIDI mode / RXONLY (p. 801)
 
 
 ..
@@ -71,3 +72,4 @@ Reference
 =========
 - `Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus>`_
 
+Z
