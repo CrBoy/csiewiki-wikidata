@@ -323,7 +323,15 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
 
 4. 等待FLASH_SR中的BSY清空。
 
-5.flash 記憶體架構介紹
+- 關於寫入保護(Write Protections) :
+----------------------------------
+
+在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
+
+若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
+
+
+5.Flash 記憶體架構介紹
  ============
 
 .. image:: /Flash_system_architecture.JPG
