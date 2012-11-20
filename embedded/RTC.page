@@ -20,7 +20,7 @@ RTC基本計算單位為一秒鐘。
 
 由於clock source速度太快，我們需要用prescaler去轉換成一秒鐘。
 
-.. image:: /embedded/RTC/rtc_generate_clock.png
+.. image:: /stm32 RTC prescaler.png
 
 基於省電需求，將prescaler分為兩個區塊，首先經由較省電的Asynchronous prescaler，再透過較耗能量的Synchronous prescaler輸出1Hz。
 
