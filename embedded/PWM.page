@@ -63,7 +63,7 @@ TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
            
            = (1999+1) * (499+1) * (0+1)/84000000 ≒ 0.012 s
 
-0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 2 duty cycle(75%)>PWM 1 duty cycle(25%)，PWM 2 Mode看起來會比PWM 1 Mode亮。
+0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
 -----------
 
