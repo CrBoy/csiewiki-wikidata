@@ -145,7 +145,7 @@ Unit Test
 
 - 藉由 OpenOCD + GDB，實做 firmware download 程式，可視為 boot loader
 - 一旦系統藉由特製的 boot loader 載入於 STM32F4-Discovery 硬體並啟動後，可監控系統運作並執行特定的 unit test 程式
-- 驗證方式: ``cd Labs/Lab-6 && make all``
+- 驗證方式: ``cd Labs/Lab-6 && make all check``
 
 
 參考資訊
