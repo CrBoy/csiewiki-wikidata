@@ -44,7 +44,7 @@ IRQ occurring between the read and the modify access.
 
 Figure below shows the basic structure of a 5 V tolerant I/O port bit:
 
-.. image:: /GPIO_basic_src.PNG
+.. image:: /embedded/GPIO_basic_src.PNG
 
 Configuration
 =============
