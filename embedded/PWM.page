@@ -98,8 +98,14 @@ GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與T
 
 ------------
 
-Demo
+Demo_Video
 ============
+
+http://youtu.be/RHzLguvuOKY
+
+http://youtu.be/guG6MdLIwfI
+
+http://youtu.be/jJfebbbMDPw
 
 
 Reference
