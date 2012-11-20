@@ -15,10 +15,10 @@ Week  Date     Subject                                 Assignment
 #7    Oct 30   `Peripherals and hardware interface`_   `Lab 6`_: Hardware
 #8    Nov  6   `Embedded Linux Conference Europe`_     分組準備與討論
 #9    Nov 13   `Group Presentation (1)`_               分組準備與討論
-#10   Nov 20   `Group Presentation (2)`_               Lab 7: MCU
-#11   Nov 27   `Group Presentation (3)`_               Lab 8: RTOS + MCU
-#12   Dec  4   `Microkernel overview`_                 Lab 9: RTOS + MCU/Peripherals
-#13   Dec 11   Learning by Doing                       Lab 10: Microkernel + MCU
+#10   Nov 20   `Group Presentation (2)`_               `Lab 6`_s: Hardware + Unit Test
+#11   Nov 27   `Group Presentation (3)`_               Lab 7: RTOS + MCU
+#12   Dec  4   `Microkernel overview`_                 Lab 8: RTOS + MCU/Peripherals
+#13   Dec 11   Learning by Doing                       Lab 9: Microkernel + MCU
 #14   Dec 18   Learning by Doing                       Hack!
 #15   Dec 25   Learning by Doing                       Hack!
 #16   Jan  1   Happy New Year - 2013                   N/A
