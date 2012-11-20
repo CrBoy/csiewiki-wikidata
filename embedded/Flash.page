@@ -437,6 +437,28 @@ Address offset : 0x10, Reset value: **0x8000** 0000.
   Bit 1 SER: Sector Erase.
   Bit 0 PG: Programming.
 
+- 6.5 Flash option control register (FLASH_OPTCR)
+-------------------------------------------------
+
+Address offset : 0x14, Reset value: **0x0FFF AAED**.
+
+.. image:: /flash_optcr.JPG
+
+::
+
+  Bits 31:28 保留位置，必須保持淨空。
+  Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.
+  Bits 15:8 RDP: Read protect. 0xAA : Level 0, read protection not active; 0xCC : Level 2, chip read protection active; Others : Level 1, read protection of memories active.
+  Bits 7:5 USER: User option bytes
+  Bit 4 保留位置，必須保持淨空。
+  Bits 3:2 BOR_Level: BOR reset level.
+    00 : BOR level 3, 電壓 2.70~3.60V
+    01 : BOR level 2, 電壓 2.40~2.70V
+    10 : BOR level 1, 電壓 2.10~2.40V
+    11 : BOR off, 電壓 1.80~2.10V
+  Bit 1 OPTSTRT: Option start.
+  Bit 0 OPTLOCK: Option lock.
+
 
 7.example(範例流程)
  ============
