@@ -67,6 +67,10 @@ TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
 
 -----------
 
+Code_section
+=============
+
+//====set pin enable========
 
 GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); //將GPIO D12腳位與TIM4做連結
 
