@@ -144,6 +144,20 @@ Refer from: STM32F407xx Datasheet P124
 
 
 - 10. 整個程式上的架構為如何?
+    一開始程式先初始化ADC會用到的硬體資源,其中包含Interrupt、ADC、DMA的初始,之後將ADC的TASK註冊到freertos裡面,Task中是做了DMA所註冊的通道與NVIC的channel設定,而當中我們註冊了 DMA_Stream0_IRQHandler(void),此Interrupt handler會在每次資料由peripheral到memory傳完之後,產生DMA的interrupt,去更新溫度值或電壓值.
+
+- Structure
+
+.. code-block:: prettyprint
+
+
+    int main()
+    {
+        prvSetupHardware();
+        xTaskCreate(vADC_DMATask, .., .., .., ..);
+        vTaskStartScheduler();
+    }
+
 - 11. 如何選擇mode? Scan or Continuous?
     Two groups => a.Regular group。(16 channels)   b.Injected group。(2 channels)
 
