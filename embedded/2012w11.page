@@ -1,0 +1,8 @@
+---
+title: Week #11 (Nov 27) ::  	Group Presentation (3)
+toc: no
+...
+
+- 分組報告個別週邊與 FreeRTOS 介面包裝的狀況
+  * `Flash</embedded/Flash>`_
+  * `SPI</embedded/SPI>`_
