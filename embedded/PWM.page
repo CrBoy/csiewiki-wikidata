@@ -130,6 +130,14 @@ RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4 | RCC_APB1Periph_TIM3, ENABLE ); //�
 - EXTI_Init(&EXTI_InitStructure);
 - EXTI_GenerateSWInterrupt(EXTI_Line3);
 
+- //===給予中斷分組與優先權的設定===
+- NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);      //選擇中斷分組2
+- NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn  ;     //選擇中斷通道2
+- NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; //搶占式中斷優先級設置為0
+- NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;        //響應式中斷優先級設置為0
+- NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;           //enable中断
+- NVIC_Init(&NVIC_InitStructure);
+
 //=======================================
 
 //
