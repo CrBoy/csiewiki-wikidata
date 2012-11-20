@@ -226,3 +226,23 @@ void EXTI3_IRQHandler(void)  //減少脈波頻寬的中斷subroutine
 }
 
 //=======================================
+
+Demo
+=============
+http://youtu.be/RHzLguvuOKY
+
+http://youtu.be/guG6MdLIwfI
+
+http://youtu.be/jJfebbbMDPw
+
+Reference
+=============
+http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
+
+http://ppt.cc/nIAF
+
+http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
+
+http://hi.baidu.com/snic_k/item/0f045e3288e6683d2e20c42b
+
+陳志旺（2012），STM32 嵌入式微控制器快速上手，中國：電子工業出版社。
