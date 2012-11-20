@@ -115,6 +115,7 @@ Unit Test
 
 - http://www.dotblogs.com.tw/hatelove/archive/2012/05/08/unit-test-introduction.aspx
 - http://teddy-chen-tw.blogspot.tw/2011/11/unit-tests.html
+- Android CTS: http://source.android.com/compatibility/cts-intro.html
 - CUnit: A Unit Testing Framework for C
   * http://cunit.sourceforge.net/screenshots.html
   * sudo apt-get install libcunit1-dev
