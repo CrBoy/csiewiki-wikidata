@@ -105,10 +105,43 @@ Programming STM32 F2, F4 ARMs under Linux
     cd ../serialUSB/
     make flash
 
+Unit Test
+---------
+- 「在以往我們常常不停地改寫程式，在這個過程中，有意無意地常常會有東西被改壞掉還不知道，而我們檢查的方式可能很常是透過一直修改程式碼或輸入的資料來測試，但是當程式越來越大，我們測試時只專注在一個地方，此時所要測試的程式越來越多，不小心出錯的可能也越來越多，每改寫一次就是一次昂貴的人力檢查，最後程式就像一艘漏水的船，補了這裡，那裡卻又多了一個洞，船員像無頭蒼蠅一樣四處補洞，這樣的情況就是Unit Test能解決的問題，透過Unit Test，每次寫的程式碼都交給程式自動測試，一來測試的速度很快，不管是一百次還是一千次，總比人工測試來得快速、正確、廣範，但這不是免費的，代價就是程式設計師要寫很多Unit Test的程式碼，還要想要如何寫Unit Test的程式，進一步的還有測試導向的開發模式(Test-driven development)，程式是在Unit Test寫完之後才開始寫，這樣一來迫使程式設計師在一開始就得把設計想好」
+  * http://blog.ez2learn.com/2009/01/21/try-google-unit-test-framework/
+
+- http://www.dotblogs.com.tw/hatelove/archive/2012/05/08/unit-test-introduction.aspx
+- http://teddy-chen-tw.blogspot.tw/2011/11/unit-tests.html
+- CUnit: A Unit Testing Framework for C
+  * http://cunit.sourceforge.net/screenshots.html
+  * sudo apt-get install libcunit1-dev
+  * make check
+
+- 參考輸出：
+
+.. code-block:: prettyprint
+
+    ./unit-test
+
+
+         CUnit - A Unit testing framework for C - Version 2.1-0
+         http://cunit.sourceforge.net/
+    
+    Suite: Suite_1
+      Test: test of fprintf() ... passed
+      Test: test of fread() ... passed
+    
+    --Run Summary: Type      Total     Ran  Passed  Failed
+                   suites        1       1     n/a       0
+                   tests         2       2       2       0
+                   asserts       5       5       5       0
+
 
 作業
 ----
 - 透過 OpenOCD 對 STM32F4Discovery 內建的 ST-Link/V2 介面，設計一個驗證硬體的 unit test 環境
+  * 可參照 Group Presentation 的週邊測試方式
+  * 至少需要包含 USB, ADC, RTC
 - 藉由 OpenOCD + GDB，實做 firmware download 程式，可視為 boot loader
 - 一旦系統藉由特製的 boot loader 載入於 STM32F4-Discovery 硬體並啟動後，可監控系統運作並執行特定的 unit test 程式
 - 驗證方式: ``cd Labs/Lab-6 && make all``
