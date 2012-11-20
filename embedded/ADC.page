@@ -84,13 +84,13 @@ Demo
 - Video
     1. 溫度 : http://youtu.be/93aU9fYuZaQ
 
-- ADC Voltage Convertion
+- ADC Voltage Convertion(Power Supply)
 
 .. image:: /ADC_PowerSupply.jpg
 
 .. image:: /ADC_Convert.jpg
 
-- 連接方式
+- ADC Voltage Convertion(Battery)
 
 .. image:: /ADC_battery.jpg
 
