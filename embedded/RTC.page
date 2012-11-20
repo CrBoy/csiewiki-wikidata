@@ -143,6 +143,10 @@ Alarm, tamper event, time stamp event, and wakeup cause the device to exit low p
 
 .. image:: /RTC in low power mode.png
 
+wakeup, effectiveness and voltage in three lowpower modes
+
+.. image:: /embedded/RTC/stm32 low power mode summary.png
+
 Configuration
 ================
 
