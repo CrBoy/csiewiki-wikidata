@@ -73,6 +73,14 @@ Programming STM32 F2, F4 ARMs under Linux
     git clone git://gitcafe.com/embedded2012/Labs.git
     cd Labs/Lab-6
 
+或是
+
+.. code-block:: prettyprint
+
+    cd Labs/Lab-6
+    git pull
+
+
 
 具備互動操作的 USB serial 實做
 ----------------------------
