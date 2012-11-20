@@ -118,6 +118,8 @@ Unit Test
 - CUnit: A Unit Testing Framework for C
   * http://cunit.sourceforge.net/screenshots.html
   * sudo apt-get install libcunit1-dev
+    + 如果找不到該套件，請執行 sudo apt-get update
+
   * make check
 
 - 參考輸出：
