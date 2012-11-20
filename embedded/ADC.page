@@ -84,13 +84,13 @@ Demo
 - Video
     1. 溫度 : http://youtu.be/93aU9fYuZaQ
 
-- ADC Voltage Convertion(Power Supply)
+- ADC Voltage Convertion(with Power Supply)
 
 .. image:: /ADC_PowerSupply.jpg
 
 .. image:: /ADC_Convert.jpg
 
-- ADC Voltage Convertion(Battery)
+- ADC Voltage Convertion(with Battery)
 
 .. image:: /ADC_battery.jpg
 
@@ -156,7 +156,7 @@ Refer from: STM32F407xx Datasheet P124
 
     詳細的設定請參考下方的Sample code
 
-- Structure
+    - Structure
 
 .. code-block:: prettyprint
 
