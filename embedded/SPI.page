@@ -31,39 +31,43 @@ SPI 為資料傳輸協定，有著以下幾點特色：
 Device overview
 ===============
 
-|STM32F40x block diagram|
+.. image:: /embedded/SPI/STM32F40x block diagram.png
+STM32F40x block diagram [#]_
 
-.. |STM32F40x block diagram| image:: /embedded/SPI/STM32F40x block diagram.png
+.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.
 
 
 SPI functional description
 ==========================
 
-|SPI block diagram|
+.. 介紹 pin
 
-.. |SPI block diagram| image:: /embedded/SPI/SPI block diagram.png
+.. image:: /embedded/SPI/SPI block diagram.png
+SPI block diagram [#]_
 
-MISO: Master In / Slave Out data
-MISO: Master Out / Slave In data
-SCK: Serial Clock ( Master -> Slave )
-NSS: *optional* select slave, low-driven
+.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.793
+
+- MISO: Master In / Slave Out data
+- MISO: Master Out / Slave In data
+- SCK: Serial Clock ( Master -> Slave )
+- NSS: *(optional)* select slave, low-driven
+
+Clock phase and clock polarity
+------------------------------
 
 
+..
+    Register
+    ========
+    MSTR: Master selection
+    SSOE: SS output enable
+    SSM: software SS management
+
+|SPI single master/single slave application|
+
+.. |SPI single master/single slave application| image:: /embedded/SPI/SPI 1-1 application.png
 
 
-
-.. image:: /SPI_single_slave.svg
-Interface
-=========
-SPI 匯流排有規範4個腳位
-
-    SCLK: serial clock (output from master);
-
-    MOSI: master output, slave input (output from master);
-
-    MISO: master input, slave output (output from slave);
-
-    SS: slave select (active low, output from master).
 
 
 STM32F4XX 
@@ -95,6 +99,14 @@ interrupts
 Example of bit-banging the SPI master protocol
 ===============================================
 
+
 Reference
 =========
 - `Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus>`_
+- Reference manual: `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
+- Datasheet: `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
+
+.. need improve
+
+.. _`Reference manual`: http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf
+
