@@ -86,11 +86,13 @@ Data format
 - LSB-first or MSB first
 - 一次傳送的資料量為 8-bit 或 16-bit
 
-confiurataion in master mode
--------------------------------
+..
+    confiurataion in master mode
+    -------------------------------
 
-confiurataion in slave mode
--------------------------------
+..
+    confiurataion in slave mode
+    -------------------------------
 
 half-duplex communication
 --------------------------
@@ -145,6 +147,7 @@ Code section
     cd stm32_spi_demo/
 
 自定義變數：
+
 .. code-block:: prettyprint
 
     unsigned char readData[32];
@@ -152,11 +155,6 @@ Code section
     int rxCounter, txCounter;
 
 初始化 SPI：
-
-..
-    find 
-    GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
 - Master:
 
@@ -186,7 +184,6 @@ Code section
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
-
 
         GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7 \|GPIO_Pin_3;
         GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
@@ -416,6 +413,17 @@ main
             STM_EVAL_LEDOff(LED5);
             return 0;
     }
+
+FAQ
+===
+
+怎麼知道要使用哪些腳位？
+------------------------
+
+.. image:: /embeded/SPI/GPIO Alternative function PortA.png
+Alternate function mapping[#]_
+
+.. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.58
 
 Reference
 =========
