@@ -17,8 +17,8 @@ Week  Date     Subject                                 Assignment
 #9    Nov 13   `Group Presentation (1)`_               分組準備與討論
 #10   Nov 20   `Group Presentation (2)`_               `Lab 6`_s: Hardware + Unit Test
 #11   Nov 27   `Group Presentation (3)`_               Lab 7: RTOS + MCU
-#12   Dec  4   `Microkernel overview`_                 Lab 8: RTOS + MCU/Peripherals
-#13   Dec 11   Learning by Doing                       Lab 9: Microkernel + MCU
+#12   Dec  4   `Group Presentation (4)`_               Lab 8: RTOS + MCU/Peripherals
+#13   Dec 11   `Microkernel overview`_                 Lab 9: Microkernel + MCU
 #14   Dec 18   Learning by Doing                       Hack!
 #15   Dec 25   Learning by Doing                       Hack!
 #16   Jan  1   Happy New Year - 2013                   N/A
@@ -39,6 +39,7 @@ Week  Date     Subject                                 Assignment
 .. _`Group Presentation (1)`: 2012w9
 .. _`Group Presentation (2)`: 2012w10
 .. _`Group Presentation (3)`: 2012w11
+.. _`Group Presentation (4)`: 2012w12
 .. _`Lab 1`: Lab1
 .. _`Lab 2`: Lab2
 .. _`Lab 3`: Lab3
