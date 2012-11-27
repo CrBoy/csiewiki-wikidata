@@ -2,15 +2,12 @@
 title: SPI
 ...
 
-
 Overview
 ========
 
-..
-    關聯在哪？舉例。
-    圖例
-
 SPI 為資料傳輸協定，有著以下幾點特色：
+
+.. benfit is what?
 
 - 同步式 
 - 全雙工
@@ -25,8 +22,7 @@ SPI 為資料傳輸協定，有著以下幾點特色：
 - Hardware CRC
 - DMA capability
 .. BIDI mode / RXONLY (p. 801)
-..
-    I2S feature
+..  I2S feature
 
 Device overview
 ===============
@@ -34,12 +30,19 @@ Device overview
 .. image:: /embedded/SPI/STM32F40x block diagram.png
 STM32F40x block diagram [#]_
 
-.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.
+.. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.18
 
+- 3 SPI
+  - SPI1: 37.5 Mbits/s
+  - SPI2 & SPI3: 21 Mbits/s
+
+.. Datasheet: p.32
 
 SPI functional description
 ==========================
 
+general
+-------
 .. 介紹 pin
 
 .. image:: /embedded/SPI/SPI block diagram.png
@@ -52,52 +55,67 @@ SPI block diagram [#]_
 - SCK: Serial Clock ( Master -> Slave )
 - NSS: *(optional)* select slave, low-driven
 
+.. image:: /embedded/SPI/single master _ single slave application.png
+SPI single master/single slave application [#]_
+
+.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.794
+
+.. baud rate ref menual p.834
+
+..
+    Slave select(NSS) pin management
+    ''''''''''''''''''''''''''''''''
+
+
 Clock phase and clock polarity
-------------------------------
+''''''''''''''''''''''''''''''
 
+.. image:: /embedded/SPI/SPI Dota clock timing diagram.png
+Data clock timing diagram[#]_
 
-..
-    Register
-    ========
-    MSTR: Master selection
-    SSOE: SS output enable
-    SSM: software SS management
+.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.796
 
-|SPI single master/single slave application|
+SPI_PR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，
 
-.. |SPI single master/single slave application| image:: /embedded/SPI/SPI 1-1 application.png
+- CPOL(clock polarity) 決定閒置時 clock 的電位，CPOL = 0 表閒置時為低電位。
+- CPHA(clock phase) 決定在 clock 的哪個 edge 取值， CPHA = 0 表示在第一個 edge (到不同電位時)取值。
 
+Data format
+'''''''''''
 
+- LSB-first or MSB first
+- 一次傳送的資料量為 8-bit 或 16-bit
 
+confiurataion in master mode
+-------------------------------
 
-STM32F4XX 
-=========
-It has up to 3 SPIs (37.5 Mbits/s), 2 with muxed full-duplex I2S to achieve audio class 
-accuracy via internal audio PLL or external clock
+confiurataion in slave mode
+-------------------------------
 
-SPI1 can communicate at up to 37.5 Mbits/s, SPI2 and SPI3 can communicate at up to 21 Mbit/s.
+half-duplex communication
+--------------------------
 
-Operation
-=========
-Data transmission
------------------
-Clock polarity and phase
-~~~~~~~~~~~~~~~~~~~~~~~~
-Mode numbers
-~~~~~~~~~~~~~
-..
-    may know used structure
-    guess: interrupt
-Independent slave SPI configuration
------------------------------------
-Daisy chain SPI configuration
-------------------------------
-Valid SPI communication
------------------------
-interrupts
-----------
-Example of bit-banging the SPI master protocol
-===============================================
+- BIDMODE 判斷是否為全雙工
+- RXONLY 判斷半雙工時為傳送端或接收端。
+
+SPI 可以只做半雙工，在半雙工時，沒用到的另一隻 pin 可作為一般的 GPIO 使用。
+
+.. RXONLY 在 BIDMODE 時有作用否？
+
+data transmission and reception procedures
+------------------------------------------
+
+CRC calculation
+---------------
+
+Status flag
+-----------
+
+Disabling SPI
+-------------
+
+Code section
+============
 
 
 Reference
