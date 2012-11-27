@@ -86,7 +86,8 @@ Programming STM32 F2, F4 ARMs under Linux
 ----------------------------
 - http://www.sparetimelabs.com/usbcdcacm/ (文末提到與之前指定作業相關的技術議題)
 - USB list: /var/lib/usbutils/usb.ids
-  * in Arch Linux: /usr/share/hwdata/usb.ids
+  * ArchLinux: /usr/share/hwdata/usb.ids
+
 - neocon 離開方法: ``~.``
   * neocon /dev/ttyACM0
 
