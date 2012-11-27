@@ -136,6 +136,14 @@ Disabling SPI
 
 Code section
 ============
+
+完整程式碼：
+
+.. code-block:: prettyprint
+
+    git clone git://gitcafe.com/EricCheng/stm32_spi_demo.git
+    cd stm32_spi_demo/
+
 自定義變數：
 .. code-block:: prettyprint
 
@@ -145,14 +153,15 @@ Code section
 
 初始化 SPI：
 
-
 ..
     find 
     GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
 - Master:
+
 .. code-block:: prettyprint
+
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
@@ -208,6 +217,7 @@ Code section
 - Slave mode
 
 .. code-block:: prettyprint
+
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
@@ -261,7 +271,9 @@ Code section
 
 
 初始化 LED:
+
 .. code-block:: prettyprint
+
     /in  libstm/Utilities/STM32F4-Discovery/discoveryf4utils.c
     STM_EVAL_LEDInit(LED4);
     STM_EVAL_LEDInit(LED3);
@@ -274,7 +286,9 @@ Code section
     STM_EVAL_LEDOff(LED6);
 
 初始化按鍵:
+
 .. code-block:: prettyprint
+
         GPIO_InitTypeDef GPIO_InitStruct;
 
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -293,7 +307,9 @@ Code section
 
 Master 設定
 - 傳送訊號
+
 .. code-block:: prettyprint
+
     uint32_t TimeOutLed=10000;
     GPIO_SetBits(GPIOE,GPIO_Pin_7);  //Chip Select
 
@@ -309,7 +325,9 @@ Master 設定
 
 
 - task:
+
 .. code-block:: prettyprint
+
     void pb_task(void \*pvParameters)
     {
         uint8_t bNewLedOnOff=0 ,bOldLedOnOff=0,bLedOnOff=0;
@@ -346,130 +364,58 @@ Slave  設定：
 - 接收訊息
 
 .. code-block:: prettyprint
+
     uint8_t rcv_tmp = 0;
-
     uint32_t TimeOutLed = 10000;
-
-
-
     while(1)
-
     {
-
-
-
-            while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_RXNE)== RESET);
-
-    
-
-            rcv_tmp = (uint8_t)SPI_I2S_ReceiveData(SPI1);
-
-            
-
-            if(rcv_tmp == LED_ON)
-
-            {
-
-                    STM_EVAL_LEDOff(LED4);
-
+        while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_RXNE)== RESET);
+        rcv_tmp = (uint8_t)SPI_I2S_ReceiveData(SPI1);
+        if(rcv_tmp == LED_ON)
+        {
+            STM_EVAL_LEDOff(LED4);
             STM_EVAL_LEDOff(LED3);
-
             STM_EVAL_LEDOff(LED5);
-
             STM_EVAL_LEDOff(LED6);
-
-
-
-            }
-
-            else if(rcv_tmp == LED_OFF)
-
-            {
-
-                    STM_EVAL_LEDOn(LED4);
-
+        }
+        else if(rcv_tmp == LED_OFF)
+        {
+            STM_EVAL_LEDOn(LED4);
             STM_EVAL_LEDOn(LED3);
-
             STM_EVAL_LEDOn(LED5);
-
             STM_EVAL_LEDOn(LED6);
-
-            }
-
+        }
     }
-
 
 main
 
 .. code-block:: prettyprint
+
     int main(void)
-
     {
-
             uint8_t  pressed=0,new_button_state,last_button_state;
-
-
-
             init_SPI();
-
-
-
             init_LED();
-
-            
-
             init_PB();
 
-
-
-     
-
-
-
     #ifdef MASTER
-
             STM_EVAL_LEDOff(LED4);
-
-        STM_EVAL_LEDOff(LED3);
-
-        STM_EVAL_LEDOn(LED5);
-
-        STM_EVAL_LEDOff(LED6);
-
+            STM_EVAL_LEDOff(LED3);
+            STM_EVAL_LEDOn(LED5);
+            STM_EVAL_LEDOff(LED6);
             xTaskCreate(pb_task,
-
                         (signed portCHAR \*) "Push Button Task",
-
                         512 /* stack size \*/, NULL, tskIDLE_PRIORITY + 2, NULL);
-
     #else
-
-
-
             xTaskCreate(spi_recv_msg_task,
-
                         (signed portCHAR *) "SPI Recv Task",
-
                         512 /* stack size \*/, NULL, tskIDLE_PRIORITY + 2, NULL);
-
     #endif
-
-
-
             /* Start running the tasks. \*/
-
             vTaskStartScheduler();
-
-            
-
             STM_EVAL_LEDOff(LED5);
-
-
-
             return 0;
-
     }
-
 
 Reference
 =========
@@ -480,4 +426,5 @@ Reference
 .. need improve
 
 .. _`Reference manual`: http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf
+
 
