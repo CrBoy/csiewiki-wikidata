@@ -7,22 +7,23 @@ Overview
 
 SPI 為資料傳輸協定，有著以下幾點特色：
 
-.. benfit is what?
-
 - 同步式 
 - 全雙工
-    - 可以半雙工或單工
+  * 可以半雙工或單工
+
 - 主從式
-    - dynamic change of master/ slave
-    - 多個 master
+  * dynamic change of master/ slave
+  * 多個 master
+
 - 8 master baud rate prescalers
 - slave mode frequency
 - SPI TI / motorola mode 
 - MSB-first or LSB-first
 - Hardware CRC
 - DMA capability
+
 .. BIDI mode / RXONLY (p. 801)
-..  I2S feature
+.. I2S feature
 
 Device overview
 ===============
@@ -33,8 +34,8 @@ STM32F40x block diagram [#]_
 .. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.18
 
 - 3 SPI
-  - SPI1: 37.5 Mbits/s
-  - SPI2 & SPI3: 21 Mbits/s
+  * SPI1: 37.5 Mbits/s
+  * SPI2 & SPI3: 21 Mbits/s
 
 .. Datasheet: p.32
 
@@ -141,14 +142,14 @@ Code section
 
 完整程式碼：
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     git clone git://gitcafe.com/EricCheng/stm32_spi_demo.git
     cd stm32_spi_demo/
 
 自定義變數：
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     unsigned char readData[32];
     unsigned char writeData[32];
@@ -158,7 +159,7 @@ Code section
 
 - Master:
 
-.. code-block:: prettyprint
+.. code-block:: c
 
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -213,7 +214,7 @@ Code section
 
 - Slave mode
 
-.. code-block:: prettyprint
+.. code-block:: c
 
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -269,7 +270,7 @@ Code section
 
 初始化 LED:
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     /in  libstm/Utilities/STM32F4-Discovery/discoveryf4utils.c
     STM_EVAL_LEDInit(LED4);
@@ -284,7 +285,7 @@ Code section
 
 初始化按鍵:
 
-.. code-block:: prettyprint
+.. code-block:: c
 
         GPIO_InitTypeDef GPIO_InitStruct;
 
@@ -305,7 +306,7 @@ Code section
 Master 設定
 - 傳送訊號
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     uint32_t TimeOutLed=10000;
     GPIO_SetBits(GPIOE,GPIO_Pin_7);  //Chip Select
@@ -323,7 +324,7 @@ Master 設定
 
 - task:
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     void pb_task(void \*pvParameters)
     {
@@ -360,7 +361,7 @@ Master 設定
 Slave  設定：
 - 接收訊息
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     uint8_t rcv_tmp = 0;
     uint32_t TimeOutLed = 10000;
@@ -386,7 +387,7 @@ Slave  設定：
 
 main
 
-.. code-block:: prettyprint
+.. code-block:: c
 
     int main(void)
     {
