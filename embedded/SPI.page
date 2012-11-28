@@ -1,5 +1,6 @@
 ---
 title: SPI
+categories: STM32, Communcation Protocol, SPI
 ...
 
 Overview
@@ -14,12 +15,15 @@ SPI 為資料傳輸協定，有著以下幾點特色：
 - 主從式
   * dynamic change of master/ slave
   * 多個 master
+.. example
 
 - 8 master baud rate prescalers
 - slave mode frequency
 - SPI TI / motorola mode 
 - MSB-first or LSB-first
 - Hardware CRC
+.. Why we need CRC?
+.. speed rate of Motion sensor
 - DMA capability
 
 .. BIDI mode / RXONLY (p. 801)
@@ -425,6 +429,7 @@ FAQ
 Alternate function mapping[#]_
 
 .. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.58
+
 
 Reference
 =========
