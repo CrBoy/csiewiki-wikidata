@@ -5,10 +5,29 @@ title: usb
 標準USB介面
 ^^^^^^^^^^
 
-USB插頭
 USB訊號使用分別標記為D+ 和D- 的雙絞線傳輸，它們各自使用半雙工的差動訊號並協同工作，以抵消長導線的電磁干擾。
 
-ps. 差動訊號：一條為 high 則另一條為 low 
+ps. 差動訊號：一條為 high 則另一條為 low
+
+USB 封包簡介
+^^^^^^^^^^^
+
+封包是組成USB傳輸的最小單位。一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包
+
+Token 封包
+==========
+
+每個 Transaction 以 Token 封包做起始。Token封包定義裝置、Endpoint數量，傳輸的方向。其中 SOF (Start Of Frame) Token 包含目前的 frame 數，而且會廣播 (broadcast) 給所有的 full-speed 裝置知道。SOF 也是唯一一個不指定目標的 Token。 Token Packet 長度固定為 4 個 Byte。
+
+Data 封包
+=========
+
+Data封包包含處理此動作的資料。一個Transaction中，Data封包最大的資料量為1023個Bytes，高速模式時可達1024個Bytes以上，其中Data0及Data1是兩個基本的資料封包，這些資料封包都是接續在Address之後，且Data0及Data1採取交互出現方式以達到同步與除錯的效果。另外在USB2.0當中更增加了Data2及MData資料封包，用於執行高速的即時傳輸(Isochronous Transfers)。
+
+Handshake 封包
+==============
+
+除了即時型傳輸(Isochronous)之外，所有的傳輸都保證資料的傳遞正確。 Handshake 封包回應資料是否正確的被收到。若執行處理動作中發生錯誤，此處理動作將重新執行。
 
 temporal notes
 ^^^^^^^^^^^^^^^
