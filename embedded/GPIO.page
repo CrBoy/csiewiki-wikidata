@@ -82,6 +82,14 @@ When the I/O port is programmed as alternate function:
 - The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
 - A read access to the input data register gets the I/O state
 
+Supplement：
+
+GPIOx_AFRL[31:0] and GPIOx_ARHL[31:0] provide ways to select alternation functions. However, different alternate functions maps to different bits of ports. Table below is part of alternate function mapping, which is mainly about USART2/3.
+
+For more information, please refer to **Table 8. Alternate function mapping** from P.58-62 in STM32F407xx Datasheet.
+
+.. image:: /embedded/af_mapping.png
+
 Analog configuration
 --------------------
 When the I/O port is programmed as analog configuration:
