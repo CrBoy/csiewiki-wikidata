@@ -239,6 +239,20 @@ http://youtu.be/guG6MdLIwfI
 
 http://youtu.be/jJfebbbMDPw
 
+補充
+=============
+1. PWM較省電?
+2. Nyquist-Shannen Sampling Theorem
+3. overflow 和 UEV UIF的關係
+4. 向上計數和向下計數的差別
+5. timer 和 RTC的差別
+6. TIM_OCMode??
+   timer output compare mode,
+7. PWM1 先高後低 和 PWM2 先低後高 有什麼差別?
+8. 改成中央對齊計數方式會怎麼樣?
+9. 為什麼 GPIO 要寫成 API ?
+10. 馬達
+
 Reference
 =============
 - http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
