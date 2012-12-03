@@ -54,6 +54,10 @@ temporal notes
     - DP/DM integrated pull-up and pull-down resistors controlled by the OTG_FS core depending on the current role of the device. As a peripheral, it enables the DP pull-up resistor to signal full-speed peripheral connections as soon as VBUS is sensed to be at a valid level (B-session valid). 
     - In host mode, pull-down resistors are enabled on both DP/DM. Pull-up and pull-down resistors are dynamically switched when the device’s role is changed via the host negotiation protocol (HNP).
 
+USB host and device
+^^^^^^^^^^^^^^^^^^^^^^
+.. image:: /embedded/usb host:device .png
+
 demo
 ^^^^
 
