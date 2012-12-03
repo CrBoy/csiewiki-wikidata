@@ -32,17 +32,25 @@ Handshake 封包
 
 除了即時型傳輸(Isochronous)之外，所有的傳輸都保證資料的傳遞正確。 Handshake 封包回應資料是否正確的被收到。若執行處理動作中發生錯誤，此處理動作將重新執行。
 
-HID class
+HID Class
 ^^^^^^^^^
 
 Human Interface Device class，HID 設備屬於人機交互操作的設備，用於操作電腦，如 USB 滑鼠，USB 鍵盤，USB 觸控版，USB 軌跡球等等設備。HID 設備不一定非要是這些人機交互設備，只要符合HID設備級定義規範要求的都可以認為是 HID 設備。
 
 使用 HID 設備的一個好處就是，操作系統自帶了 HID 類的驅動程序，而用戶無需去開發很麻煩的驅動程序，只要直接使用 API 調用即可完成通信。所以很多簡單的 USB 設備，喜歡枚舉成 HID 設備，這樣就可以不用安裝驅動而直接使用。
 
-CDC class
+CDC Class
 ^^^^^^^^^
 
 Communications Device Class，CDC 類是 USB 通信設備類的簡稱。CDC 類是 USB 組織定義的一類專門給各種通信設備（電信通信設備和中速網絡通信設備）使用的 USB 子類。大部分的作業系統都帶有支持 CDC 類的設備驅動程序，可以自動識別 CDC 類的設備，這樣不僅免去了寫專用設備驅動的負擔，同時簡化了設備驅動的安裝。
+
+Audio Class
+^^^^^^^^^^^
+
+
+USB 非常適合作為以 PC 為平台的音頻（包括語音和音樂等）傳輸協議，而基於 PC 的電話系統從一開始就是 USB 接口發展的重要考量和推動力。從另一方面來說，USB 接口擁有遠遠高於音頻需求的帶寬，可以傳輸極高品質（高採樣率，高編碼率，多聲道）的音頻數據。因此，例如電話，音樂回放，錄音等音頻功能都可以很容易在 USB 接口實現。
+
+USB 音頻類包括了所有和 USB 接口兼容的音頻流和音頻控制功能，甚至包括使用模擬音源，利用 USB 接口作為控制接口的設備也被歸入 USB 音頻類設備。
 
 temporal notes
 ^^^^^^^^^^^^^^^
@@ -75,5 +83,7 @@ demo
 ^^^^^^^
 
 http://www.zeroplus.com.tw/E-paper/201112/images/201112-USB20ProtocolAnalyzer.pdf
+
+http://baike.baidu.com/view/7879812.htm
 
 http://chamberplus.myweb.hinet.net/usb.htm
