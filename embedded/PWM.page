@@ -247,18 +247,7 @@ http://youtu.be/jJfebbbMDPw
 4. 向上計數和向下計數的差別
 5. timer 和 RTC的差別
 6. TIM_OCMode (timer output compare mode)
-
-   TIM_OCMode_Timing   | TIM輸出比較時間模式
-  ------------------------------------------
-   TIM_OCMode_Active   | TIM輸出比較主動模式
-  ------------------------------------------
-   TIM_OCMode_Inactive | TIM輸出比較非主動模式
-  ------------------------------------------
-   TIM_OCMode_Toggle   | TIM輸出比較觸發模式
-  ------------------------------------------
-   TIM_OCMode_PWM1     | TIM脈衝寬度調制模式1
-  ------------------------------------------
-   TIM_OCMode_PWM2     | TIM脈衝寬度調制模式1
+.. image:: /TIM_OCMode.png
 
 7. PWM1 先高後低 和 PWM2 先低後高 有什麼差別?
 8. 改成中央對齊計數方式會怎麼樣?
