@@ -44,6 +44,11 @@ demo
 
 ::
 
+  git clone git://gitcafe.com/KuoE0/DiscoveryF4-USB.git
+
+
+::
+
   tail -f /var/log/syslog
   sudo cat /sys/kernel/debug/usb/usbmon/0u
 
