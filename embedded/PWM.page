@@ -252,8 +252,6 @@ http://youtu.be/jJfebbbMDPw
 
 7. PWM1 先高後低 和 PWM2 先低後高 有什麼差別?
 8. 改成中央對齊計數方式會怎麼樣?
-9. 為什麼 GPIO 要寫成 API ?
-10. 馬達
 
 Reference
 =============
