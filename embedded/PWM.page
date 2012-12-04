@@ -249,7 +249,9 @@ http://youtu.be/jJfebbbMDPw
 UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs
 , if you don't clean the flag, it will remain triggered. 
 Reference
+
 3. 向上計數和向下計數的差別
+
 4. timer 和 RTC的差別
 The system timer is what makes everything in the computer run at the same speed. 
 For example, your CPU won't look for a fresh batch of data while the Memory is 
