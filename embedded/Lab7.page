@@ -1,0 +1,9 @@
+---
+title: Lab7: RTOS
+toc: no
+...
+
+預期目標
+-------
+- 學習 OpenOCD 的操作與擴充
+- ARM Semihosting 機制的應用
