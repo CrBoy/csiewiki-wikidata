@@ -246,6 +246,7 @@ http://youtu.be/jJfebbbMDPw
    因為一般類比電壓要降低電壓輸出需靠增加電阻，源頭輸出電壓"持續"都為同一電壓，不過利用電阻改變最後輸出電壓，而PWM他靠的是一段時間內輸出的頻率來模擬類比電壓，"不需要持續的輸出"，故不會降電浪費在電阻上，即可達到省電效果。
 
 2. overflow 和 UEV UIF的關係
+
 UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs
 , if you don't clean the flag, it will remain triggered. 
 Reference
@@ -253,6 +254,7 @@ Reference
 3. 向上計數和向下計數的差別
 
 4. timer 和 RTC的差別
+
 The system timer is what makes everything in the computer run at the same speed. 
 For example, your CPU won't look for a fresh batch of data while the Memory is 
 still trying to feed it the last batch.
