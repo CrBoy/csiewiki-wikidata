@@ -56,4 +56,4 @@ OpenOCD + STM32F4
 
 * ``factorial.c`` 的 printf() 呼叫，將改以 semihost 方式執行
 * 評分測試方法：
-  - ``make auto``
+  - ``cd Labs/Lab7 && make all auto``
