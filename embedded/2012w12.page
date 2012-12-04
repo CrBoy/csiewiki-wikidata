@@ -3,6 +3,11 @@ title: Week #12 (Dec 4) ::  	Group Presentation (4)
 toc: no
 ...
 
+- 重大事項宣佈
+  * 本周開始進行期末專題，請在本日確認分組
+  * 期末期末的預算表請在分組時，一併提交。購買電子零組件，務必要求廠商開發票，實報實銷
+  * 在本週結束前，在 wiki 上更新期末專題的提案描述
+
 - 分組報告個別週邊與 FreeRTOS 介面包裝的狀況
   * `GPIO<embedded/GPIO>`_
   * `USART<embedded/USART>`_
