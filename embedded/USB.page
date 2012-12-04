@@ -58,7 +58,11 @@ Mass Storage device Class，大容量存儲裝置類別。一種電腦和行動�
 
 MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統經過版本升級或者係統補丁也能實現對 MSC 的支持。MSC 的通用性和操作簡單使他成為行動裝置上最常見的文件系統，USB MSC 並不需要任何特定的文件系統, 它提供了一個簡單的界面來讀寫接口用於訪問任何硬碟驅動。
 
-temporal notes
+USB host and device
+^^^^^^^^^^^^^^^^^^^^^^
+.. image:: /embedded/usb host:device .png
+
+Block Diagram
 ^^^^^^^^^^^^^^^
 
 .. image:: /USB_block_diagram.png
@@ -68,9 +72,6 @@ temporal notes
     - DP/DM integrated pull-up and pull-down resistors controlled by the OTG_FS core depending on the current role of the device. As a peripheral, it enables the DP pull-up resistor to signal full-speed peripheral connections as soon as VBUS is sensed to be at a valid level (B-session valid). 
     - In host mode, pull-down resistors are enabled on both DP/DM. Pull-up and pull-down resistors are dynamically switched when the device’s role is changed via the host negotiation protocol (HNP).
 
-USB host and device
-^^^^^^^^^^^^^^^^^^^^^^
-.. image:: /embedded/usb host:device .png
 
 demo
 ^^^^
