@@ -14,7 +14,7 @@ ARM Semihost
   - http://albert-oma.blogspot.tw/2012/04/semihosting.html
 * Semihost 的實作是透過使用定義好的軟體中斷 (SVCs)，使程式在執行過程中產生中斷。一旦目標系統上的程式呼叫到對應的指令 (semihosting call)，便產生軟體中斷，接著 Debug Agent 就會負責處理此中斷，進行與主機的溝通
   - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html
-* sudo apt-get install qemu-user
+* sudo apt-get install qemu-user-static
 * cd Labs/Lab7
 * make factorial
 * ./factorial
@@ -24,3 +24,8 @@ OpenOCD + STM32F4
 * OpenOCD 的安裝請見 `Lab-6</embedded/Lab6>`_
 * ARM On-Chip Debugging demonstration: http://www.youtube.com/watch?v=NSVOuHToJ6c
 * Beginner’s look at On-Chip Debugging: http://hackaday.com/2012/09/27/beginners-look-at-on-chip-debugging/
+* Architecture and Core Commands of OpenOCD
+  - http://openocd.sourceforge.net/doc/html/Architecture-and-Core-Commands.html
+  - Command: arm semihosting [enable|disable]
+    + Display status of semihosting, after optionally changing that status.
+    + "Semihosting allows for code executing on an ARM target to use the I/O facilities on the host computer i.e. the system where OpenOCD is running. The target application must be linked against a library implementing the ARM semihosting convention that forwards operation requests by using a special SVC instruction that is trapped at the Supervisor Call vector by OpenOCD."
