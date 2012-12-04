@@ -7,3 +7,20 @@ toc: no
 -------
 - 學習 OpenOCD 的操作與擴充
 - ARM Semihosting 機制的應用
+
+ARM Semihost
+------------
+* 使用 ARM 所開發的目標系統 (target system)，不一定會提供所有的輸入/輸出設備。因此 ARM 設計了 semihost 這種機制，讓運行 ARM debugger 的主機可以與目標系統進行 I/O 溝通，以利產品開發
+  - http://albert-oma.blogspot.tw/2012/04/semihosting.html
+* Semihost 的實作是透過使用定義好的軟體中斷 (SVCs)，使程式在執行過程中產生中斷。一旦目標系統上的程式呼叫到對應的指令 (semihosting call)，便產生軟體中斷，接著 Debug Agent 就會負責處理此中斷，進行與主機的溝通
+  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html
+* sudo apt-get install qemu-user
+* cd Labs/Lab7
+* make factorial
+* ./factorial
+
+OpenOCD + STM32F4
+------------------
+* OpenOCD 的安裝請見 `Lab-6</embedded/Lab6>`_
+* ARM On-Chip Debugging demonstration: http://www.youtube.com/watch?v=NSVOuHToJ6c
+* Beginner’s look at On-Chip Debugging: http://hackaday.com/2012/09/27/beginners-look-at-on-chip-debugging/
