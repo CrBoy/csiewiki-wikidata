@@ -10,95 +10,95 @@ High speed data communication is possible by using the DMA for multibuffer confi
 MAIN FEATURES
 ...................
 
-● Full duplex, asynchronous communications
+- Full duplex, asynchronous communications
 
-● NRZ standard format (Mark/Space)
+- NRZ standard format (Mark/Space)
 
-● Configurable oversampling method by 16 or by 8 to give flexibility between speed  and clock tolerance
+- Configurable oversampling method by 16 or by 8 to give flexibility between speed  and clock tolerance
 
-● Fractional baud rate generator systems
+- Fractional baud rate generator systems
 
-– Common programmable transmit and receive baud rate (refer to the datasheets
-for the value of the baud rate at the maximum APB frequency.
+ - Common programmable transmit and receive baud rate (refer to the datasheets for the value of the baud rate at the maximum APB frequency).
 
-● Programmable data word length (8 or 9 bits)
+- Programmable data word length (8 or 9 bits)
 
-● Configurable stop bits - support for 1 or 2 stop bits
+- Configurable stop bits - support for 1 or 2 stop bits
 
-● LIN Master Synchronous Break send capability and LIN slave break detection
-capability
+- LIN Master Synchronous Break send capability and LIN slave break detection capability
 
-– 13-bit break generation and 10/11 bit break detection when USART is hardware
-configured for LIN
+ –  13-bit break generation and 10/11 bit break detection when USART is hardware configured for LIN
 
-● Transmitter clock output for synchronous transmission
+- Transmitter clock output for synchronous transmission
 
-● IrDA SIR encoder decoder
+- IrDA SIR encoder decoder
 
-– Support for 3/16 bit duration for normal mode
+ – Support for 3/16 bit duration for normal mode
 
-● Smartcard emulation capability
+- Smartcard emulation capability
 
-– The Smartcard interface supports the asynchronous protocol Smartcards as
-defined in the ISO 7816-3 standards
+ – The Smartcard interface supports the asynchronous protocol Smartcards as defined in the ISO 7816-3 standards
 
-– 0.5, 1.5 stop bits for Smartcard operation
+ – 0.5, 1.5 stop bits for Smartcard operation
 
-● Single-wire half-duplex communication
+- Single-wire half-duplex communication
 
-● Configurable multibuffer communication using DMA (direct memory access)
+- Configurable multibuffer communication using DMA (direct memory access)
 
-– Buffering of received/transmitted bytes in reserved SRAM using centralized DMA
+ – Buffering of received/transmitted bytes in reserved SRAM using centralized DMA
 
-● Separate enable bits for transmitter and receiver
+- Separate enable bits for transmitter and receiver
 
-● Transfer detection flags:
+- Transfer detection flags:
 
-– Receive buffer full
+ – Receive buffer full
 
-– Transmit buffer empty
+ – Transmit buffer empty
 
-– End of transmission flags
+ – End of transmission flags
 
-● Parity control:
+- Parity control:
 
-– Transmits parity bit
+ – Transmits parity bit
 
-– Checks parity of received data byte
+ – Checks parity of received data byte
 
-● Four error detection flags:
-– Overrun error
-– Noise detection
-– Frame error
-– Parity error
+- Four error detection flags:
 
-● Ten interrupt sources with flags:
+ – Overrun error
 
-– CTS changes
+ – Noise detection
 
-– LIN break detection
+ – Frame error
 
-– Transmit data register empty
+ – Parity error
 
-– Transmission complete
+- Ten interrupt sources with flags:
 
-– Receive data register full
+ – CTS changes
 
-– Idle line received
+ – LIN break detection
 
-– Overrun error
+ – Transmit data register empty
 
-– Framing error
+ – Transmission complete
 
-– Noise error
+ – Receive data register full
 
-– Parity error
+ – Idle line received
 
-● Multiprocessor communication - enter into mute mode if address match does not occur
+ – Overrun error
 
-● Wake up from mute mode (by idle line detection or address mark detection)
+ – Framing error
 
-● Two receiver wakeup modes: Address bit (MSB, 9th bit), Idle line
+ – Noise error
+
+ – Parity error
+
+- Multiprocessor communication - enter into mute mode if address match does not occur
+
+- Wake up from mute mode (by idle line detection or address mark detection)
+
+- Two receiver wakeup modes: Address bit (MSB, 9th bit), Idle line
 
 USART BLOCK DIAGRAM
 .....................
@@ -144,6 +144,36 @@ When CTSE=1, the CTSIF status bit is automatically set by hardware as soon as th
 
 .. image:: /cst_flow_control.png
 
+
+PARITY CONTROL
+..............
+Parity control (generation of parity bit in transmission and parity checking in reception) can be enabled by setting the PCE bit in the USART_CR1 register. Depending on the frame length defined by the M bit, the possible USART frame formats are as listed in Table 118.
+
+.. image:: /frame_formats.png
+
+
+Even parity
+=====================
+The parity bit is calculated to obtain an even number of “1s” inside the frame made of the 7 or 8 LSB bits (depending on whether M is equal to 0 or 1) and the parity bit.
+
+E.g.: data=00110101; 4 bits set => parity bit will be 0 if even parity is selected (PS bit in USART_CR1 = 0).
+
+
+Odd parity
+=============
+The parity bit is calculated to obtain an odd number of “1s” inside the frame made of the 7 or 8 LSB bits (depending on whether M is equal to 0 or 1) and the parity bit.
+
+E.g.: data=00110101; 4 bits set => parity bit will be 1 if odd parity is selected (PS bit in USART_CR1 = 1).
+
+
+Parity checking in reception
+=========================================
+If the parity check fails, the PE flag is set in the USART_SR register and an interrupt is generated if PEIE is set in the USART_CR1 register. The PE flag is cleared by a software sequence (a read from the status register followed by a read or write access to the USART_DR data register).
+
+
+Parity generation in transmission
+======================================
+If the PCE bit is set in USART_CR1, then the MSB bit of the data written in the data register is transmitted but is changed by the parity bit (even number of “1s” if even parity is selected (PS=0) or an odd number of “1s” if odd parity is selected (PS=1)).
 
 CODE SECTION
 ...................
