@@ -100,6 +100,27 @@ defined in the ISO 7816-3 standards
 
 ● Two receiver wakeup modes: Address bit (MSB, 9th bit), Idle line
 
+USART BLOCK DIAGRAM
+.....................
+.. image:: /usart_block_diagram.png
+
+USART SYNCHRONOUS MODE
+......................
+The synchronous mode is selected by writing the CLKEN bit in the USART_CR2 register to
+
+1. In synchronous mode, the following bits must be kept cleared:
+
+● LINEN bit in the USART_CR2 register,
+
+● SCEN, HDSEL and IREN bits in the USART_CR3 register.
+
+The SCLK pin works in conjunction with the TX pin. Thus, the clock is provided only if the transmitter is enabled (TE=1) and a data is being transmitted (the data register USART_DR has been written). This means that it is not possible to receive a synchronous data without transmitting data.
+
+The LBCL, CPOL and CPHA bits have to be selected when both the transmitter and the
+receiver are disabled (TE=RE=0) to ensure that the clock pulses function correctly. These bits should not be changed while the transmitter or the receiver is enabled.
+
+.. image:: /synchronous_transmission.png
+
 CODE SECTION
 ...................
 main()
