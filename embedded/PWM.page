@@ -247,19 +247,13 @@ http://youtu.be/jJfebbbMDPw
 
 2. overflow 和 UEV UIF的關係
 
-<<<<<<< edited
-UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain triggered. 
-=======
-UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs
-, if you don't clean the flag, it will remain triggered. 
-Reference
->>>>>>> 39ea17c62218ce018f2a8279e125b9314a21b9f0
+    UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain   triggered. 
 
 3. 向上計數和向下計數的差別
 
 4. timer 和 RTC的差別
 
-The system timer is what makes everything in the computer run at the same speed. 
+    The system timer is what makes everything in the computer run at the same speed. 
 
 For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.
 
@@ -271,8 +265,6 @@ The Real Time Clock tells the system what day/time it is.
 
 6. PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
 7. 改成中央對齊計數方式會怎麼樣?
-8. Nyquist-Shannon Sampling Theorem
-如果信號是帶限(某個頻率以上及以下~0)的，並且採樣頻率高於信號帶寬的一倍，那麼，原來的連續信號可以從採樣樣本中完全重建出來。
 
 
 =============
