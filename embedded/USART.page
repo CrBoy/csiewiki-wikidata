@@ -121,6 +121,30 @@ receiver are disabled (TE=RE=0) to ensure that the clock pulses function correct
 
 .. image:: /synchronous_transmission.png
 
+
+HARDWARE FLOW CONTROL
+......................
+It is possible to control the serial data flow between 2 devices by using the nCTS input and the nRTS output.
+
+.. image:: /hardware_control_2usarts.png
+
+
+RTS Flow Control
+========================
+If the RTS flow control is enabled (RTSE=1), then nRTS is asserted (tied low) as long as the USART receiver is ready to receive a new data. When the receive register is full, nRTS is deasserted, indicating that the transmission is expected to stop at the end of the current frame.
+
+.. image:: /rst_flow_control.png
+
+
+CTS Flow Control
+========================
+If the CTS flow control is enabled (CTSE=1), then the transmitter checks the nCTS input before transmitting the next frame. If nCTS is asserted (tied low), then the next data is transmitted (assuming that a data is to be transmitted, in other words, if TXE=0), else the transmission does not occur. When nCTS is deasserted during a transmission, the current transmission is completed before the transmitter stops.
+
+When CTSE=1, the CTSIF status bit is automatically set by hardware as soon as the nCTS input toggles. It indicates when the receiver becomes ready or not ready for communication. An interrupt is generated if the CTSIE bit in the USART_CR3 register is set. The figure below shows an example of communication with CTS flow control enabled.
+
+.. image:: /cst_flow_control.png
+
+
 CODE SECTION
 ...................
 main()
