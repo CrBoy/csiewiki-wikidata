@@ -252,7 +252,7 @@ http://youtu.be/jJfebbbMDPw
 
 .. image:: /TIM_OCMode.png
 
-6. PWM1 先高後低 和 PWM2 先低後高 有什麼差別?
+6. PWM1 先高後低 和 PWM2 先低後高 在步進馬達上表現有什麼差別?
 7. 改成中央對齊計數方式會怎麼樣?
 
 Reference
