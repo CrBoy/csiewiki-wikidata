@@ -41,11 +41,14 @@ OpenOCD + STM32F4
 作業
 ----
 * 適度修改 Makefile 與 OpenOCD 設定檔，使 Host 端可以自動下載 ELF image 到 STM32F4-Discovery 環境中，並且執行程式，預期將輸出以下：
-  - factorial(0) = 1
-  - factorial(1) = 1
-  - factorial(2) = 2
-  - ...
-  - factorial(9) = 362880
+
+.. code-block:: prettyprint
+
+    factorial(0) = 1
+    factorial(1) = 1
+    factorial(2) = 2
+    ...
+    factorial(9) = 362880
 
 * ``factorial.c`` 的 printf() 呼叫，將改以 semihost 方式執行
 * 評分測試方法：
