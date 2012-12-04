@@ -264,6 +264,9 @@ The Real Time Clock tells the system what day/time it is.
 .. image:: /TIM_OCMode.png
 
 6. PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
+
+   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
+
 7. 改成中央對齊計數方式會怎麼樣?
 
 
