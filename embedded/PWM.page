@@ -255,9 +255,7 @@ http://youtu.be/jJfebbbMDPw
 
     The system timer is what makes everything in the computer run at the same speed. 
 
-For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.
-
-The Real Time Clock tells the system what day/time it is.
+    For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.The Real Time Clock tells the system what day/time it is.
 
 5. TIM_OCMode (timer output compare mode)
 
