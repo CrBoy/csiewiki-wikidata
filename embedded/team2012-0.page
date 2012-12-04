@@ -1,0 +1,28 @@
+---
+title: 期末專題: Team #0
+toc: no
+...
+
+題目
+---
+  * 在 STM32F4 打造類似 L4 Microkernel 的基礎建設
+
+預期目標
+-------
+ * 在 STM32F4 平台實作 L4 Microkernel 與 kernel API
+ * 小而美的設計
+ * 預先整合 Debugger 與 Profiler
+
+組員
+----
+ * `jserv</User/jserv>`_
+
+預算
+----
+ * JTAG/SWD Emulator (NTD$ 1500)
+   + http://www.segger.com/jlink.html
+
+參考資訊
+-------
+ * L4 Microkernel Design Overview, Jim Huang
+   - http://www.slideshare.net/jserv/l4-microkernel-design-overview
