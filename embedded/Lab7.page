@@ -20,6 +20,10 @@ ARM Semihost
   - lib/semifs.c
   - mbed (mbed.org) target supports semihosted local filesystem, accessible via the mbed USB interface. Should also work with semihosting-compatible debuggers.
 
+* QEMU ARM semihosting
+  - http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/
+
+
 User-mode Emulation
 --------------------
 * 透過模擬器執行 printf() 一類需要系統呼叫的 ARM 程式
