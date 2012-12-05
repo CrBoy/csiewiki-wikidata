@@ -25,16 +25,13 @@ GPIO雖然建立起記憶體與設備之間的橋梁，但也並非我們就可�
 
 Functional Description
 ======================
-Subject to the specific hardware characteristics of each I/O port listed in the datasheet, each port bit of the general-purpose I/O (GPIO) ports can be individually configured by software in several modes:
+input floating vs. input pull-up/pull-down
+-------------------
+當input pin被處在高阻抗的模式下，若沒有外部訊號源進來的話，此時是無法確定pin的狀態(不能確定現在處在高電位或低電位)，除非有外部訊號來驅動電路。換句話說，input floating，這個input電位狀態完全是由外部訊號來決定，沒有訊號驅動的話，就會呈現高阻抗狀態。
 
-- Input floating
-- Input pull-up
-- Input-pull-down
-- Analog
-- Output open-drain with pull-up or pull-down capability
-- Output push-pull with pull-up or pull-down capability
-- Alternate function push-pull with pull-up or pull-down capability
-- Alternate function open-drain with pull-up or pull-down capability
+剛剛提到floating在沒有外部訊號驅動的情況下是呈現高阻抗狀態(無法確定電位狀態=>不能明確表示現在值是0或1)，如果我們需要這個pin有一個明確的預設狀態時，必須借助pull-up(pull-down)resistor來做調整，在pull-up resistor(pull-up外接高電壓，pull-down通常會接地)加入之下，讓pin的維持在明確的高電壓狀態(pull-down則是讓pin維持在低電壓狀態)。舉例來說，如果我們定電壓在3-4 V之間是1的狀態，0-1之間是0的狀態，高阻抗的時候，電壓是不明確的，有可能電壓值會落在1-3之間的不明確地帶，甚至是沒有在任何一個狀態維持一段時間，此時的狀態是未定的，但如果我們加入pull-up resistor的話，這個pin接受來自pull-up另一端的電壓供應，讓pin至少維持在3v以上時，我們就可以蠻確定在沒有外部訊號驅動時，pin是維持在高電位狀態。
+
+
 
 Each I/O port bit is freely programmable, however the I/O port registers have to be accessed
 as 32-bit words, half-words or bytes. The purpose of the GPIOx_BSRR register is to allow
