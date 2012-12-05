@@ -7,7 +7,7 @@ Introduction
 ============
 **General Purpose Input/Output (GPIO)** is a generic pin on a chip whose behavior (including whether it is an input or output pin) can be controlled (programmed) by the user at run time.
 
-通常我們program使用的data都是放在memory比較多，而GPIO也提供類似的操作方法給programmer(讓我們去更改記憶體內容就可以去控制pin，並影響周遭設備的運性)，但真正的設備的位置並非真正落在記憶體上(如:LED、Button、...等)，故GPIO的核心是記憶體操作與設備之間的一些電路特性。
+通常我們program使用的data都是放在memory比較多，而GPIO也提供類似的操作方法給programmer(讓我們去更改記憶體內容就可以去控制pin，並影響周遭設備的運行)，但真正的設備的位置並非真正落在記憶體上(如:LED、Button、...等)，故GPIO的核心是記憶體操作與設備之間的一些電路特性。
 
 Main Feature
 ============
