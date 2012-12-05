@@ -11,18 +11,17 @@ Introduction
 
 Main Feature
 ============
-- Up to 16 I/Os under control
-- Output states: push-pull or open drain + pull-up/down
-- Output data from output data register (GPIOx_ODR) or peripheral (alternate function output)
-- Speed selection for each I/O
-- Input states: floating, pull-up/down, analog
-- Input data to input data register (GPIOx_IDR) or peripheral (alternate function input)
-- Bit set and reset register (GPIOx_BSRR) for bitwise write access to GPIOx_ODR
-- Locking mechanism (GPIOx_LCKR) provided to freeze the I/O configuration
-- Analog function
-- Alternate function input/output selection registers (at most 16 AFs per I/O)
-- Fast toggle capable of changing every two clock cycles
-- Highly flexible pin multiplexing allows the use of I/O pins as GPIOs or as one of several peripheral functions
+GPIO雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
+
+一個pin一次只能被設定成是input或output，而input會有三種狀態表現(floating, pull-up/down, analog)，而output只有兩種狀態表現(push-pull or open drain + pull-up/down)。
+
+- input/output方向解說 : input是指記憶體方接收來自設備的訊號源，output是指記憶體傳送訊號給設備。
+
+當pin被設定成input時，非analog的設定下，我們可以利用GPIO的input data register(GPIOx_IDR) 或是memory中提供給目標設備的data register (當設成alternate function的時候)去接收data。
+
+當pin被設定成output時，非analog的設定下，GPIO本身有提供output data register (GPIOx_ODR)來對目標設備做控制，但要是pin不是使用原本預先定義好的功能時(非預先定義的功能都算是alternate function的類別)，此時要用memory中，另外規劃給目標設備用的register。
+
+如果pin被設成analog的話，無論input or output都會由adc那邊做處理。
 
 Functional Description
 ======================
