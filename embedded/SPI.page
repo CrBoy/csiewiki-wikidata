@@ -421,31 +421,56 @@ Questions
 =========
 
 怎麼知道要使用哪些腳位？
-------------------------
+---------------------
 
 .. image:: /embeded/SPI/GPIO Alternative function PortA.png
 Alternate function mapping[#]_
 
 .. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.58
 
-為何要定義為　low-active？
---------------------------
 
-在 (最高速 BUS) 上最低速的裝置為何？
---------------------------
-
-有沒有 bypass 的可能？
+為何要定義為low-active？
 ----------------------
 
+當系統一有電源時，此時所有的Pin腳會由Low Level 轉換成系統設定的High Level,這樣Slave device 會因為這樣而
+誤以為它是被觸發而開始動作.為了避免這類的問題發生通常chip select都會設定Low-Active.
+
+
+在 (最高速 BUS) 上最低速的裝置為何？
+--------------------------------
+
+
+
+有沒有 SPI 串接的可能？
+---------------------
+
+可參考http://www.mct.net/faq/spi.html
+這種做法是用在Master的Chip Select腳位很少的情況所使用的。這樣也可以節省硬體的線路，不用在Layout 多餘的線路。
+但這必須要Master 與 Slave軟體上的搭配才可行。
+
+
+
 在設計 LA 時，要怎麼判斷何 MOSI, MISO？
----------------------------------------
+------------------------------------
+
+因為MASTER的MOSI是主動發送訊號線,所以可以設定LA查看哪一條線被先傳送訊號，就可以判定MOSI。
+
 
 為何不能一次和多個 slave 端通訊？
----------------------------------
+------------------------------
 
-.. Why we need CRC?
+因為會造成多個Slave會一起傳送資料，這樣會造成匯流排互相搶資源，而造成Master會誤判資料。Master同一時間只能與一個Slave作資料的溝通。
+
+Why we need CRC?
+--------------------
+
+CRC(Cyclic redundancy check)，是一種錯誤偵測的方法。是防止在傳輸資料或儲存資料過程當中因為意外事件而造成原始資料變動，所設計的方法。
+只要在傳輸資料後面加入已經運算出CRC碼，傳送給對方。對方收到後，透過原始資料運算出CRC碼，比對對方所寫入的CRC碼是否一致就可以知道資料有沒
+有因為意外事件而造成資料的變動。
+
+
 .. speed rate of Motion sensor
-
+------------------------------
 
 Reference
 =========
@@ -456,4 +481,3 @@ Reference
 .. need improve
 
 .. _`Reference manual`: http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf
-
