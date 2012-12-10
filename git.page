@@ -98,7 +98,9 @@ commit
 
 ``git log --all`` 列出所有 branch 等
 
-log 中通常會包含 commit 編號、作者、日期和 log 內容等紀錄
+log 中通常會包含 commit 編號、作者、日期和 log 內容等紀錄。
+
+若暫不需詳細資訊，可以使用 ``--oneline`` 將每個 commit log 縮短至一行。
 
 參考資料
 =======
