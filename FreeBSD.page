@@ -110,6 +110,73 @@ make config 可看到許多能客製化的項目，使用 tab、空白鍵來移�
 
 懶人筆記：若只要預設值，輸入「make install clean」即可。
 
+
+
+套件管理
+~~~~~~~~
+FreeBSD 套件管理指令均以「pkg_」開頭，如：pkg_info、pkg_delete、pkg_create 等。
+
+
+pkg_info
+^^^^^^^^
+
+pkg_info 用於檢視套件資訊：
+
+.. code-block:: pretty-print
+
+    $ pkg_info
+    johnroyer@bsd:~$ pkg_info
+    ImageMagick-nox11-6.7.9.4 Image processing tools
+    apache22-2.2.23_2   Version 2.2.x of Apache web server with prefork MPM.
+    autoconf-2.69       Automatically configure source code on many Un*x platforms
+    automake-1.12.4     GNU Standards-compliant Makefile generator
+    bash-4.2.37         The GNU Project's Bourne Again SHell
+    ....
+----------------------------
+
+若在後方加上套件名稱，則會顯示該套件的詳細資訊：
+
+.. code-block:: pretty-print
+
+    $  pkg_info bash-4.2.37
+    Information for bash-4.2.37:
+    
+    Comment:
+    The GNU Project's Bourne Again SHell
+    
+    Required by:
+    bash-completion-2.0,1
+---------------------------------
+
+注意：套件名稱必須是完整的名稱，「bash-4.2.37」而不是「bash」。
+
+使用 ``-L`` 可以顯示該套件安裝了哪些檔案：
+
+.. code-block:: pretty-print
+
+    $  pkg_info -L bash-4.2.37
+    Information for bash-4.2.37:
+    
+    Files:
+    /usr/local/man/man1/bash.1.gz
+    /usr/local/man/man1/bashbug.1.gz
+    /usr/local/bin/bash
+    /usr/local/bin/rbash
+    /usr/local/bin/bashbug
+    .......
+---------------------------------
+
+使用 ``-W`` 可以查詢該檔案被是屬於哪一個套件的：
+
+.. code-block:: pretty-print
+
+    $ pkg_info -W /usr/local/bin/bash
+    /usr/local/bin/bash was installed by package bash-4.2.37
+---------------------------------
+
+
+
+
 Reference
 =========
 - `FreeBSD.org <http://www.freebsd.org/>`_
