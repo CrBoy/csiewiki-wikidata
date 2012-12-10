@@ -1,0 +1,32 @@
+---
+title: 期末專題: Team #6
+toc: no
+...
+
+題目
+---
+  * 視覺暫留顯示器
+
+預期目標
+-------
+ * 讓霍爾感測器經過磁鐵便會感應，使得畫面可以同步，避免剛啟動時圖形位移或錯亂。
+
+組員
+----
+ * `wfrie</User/wfrei>`_
+ * `linchun</User/linchun>`_
+ * `f410018</User/f410018>`_
+ * `bisim</User/bisim>`_
+
+預算
+----
+ * USB TO TTL模組
+ * 馬達
+ * LED燈
+ * 霍爾效應感測器
+ * 萬用電路板
+ * 杜邦線
+
+參考資訊
+-------
+ * http://www.youtube.com/watch?v=2hASOre63Nk
