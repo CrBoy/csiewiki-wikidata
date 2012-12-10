@@ -251,6 +251,8 @@ http://youtu.be/jJfebbbMDPw
 
 3. 向上計數和向下計數的差別
 
+   以四位元向上計數器為例，由四個JK正反器串接而成，輸出DCBA由0000依據二進位的變化至1111。下一個脈波來時，又回到0000。依此類推故此計數器可由0計數到15。而向下計數器與向上計數器不同點是下一級的CLK接於前一級的Q，輸出DCBA由1111向下計數到0000，待下一個時脈輸入時又變為1111，再依序變化。
+
 4. timer 和 RTC的差別
 
     The system timer is what makes everything in the computer run at the same speed. 
