@@ -19,7 +19,9 @@ categories: 版本控制
 初始化
 -----
 
-``git init``
+使用 ``git init`` 可在目前的目錄下初始化一個 git repository。
+
+若需要建立一個沒有工作目錄 (working directory) 的 repository，可以使用 ``git init --bare`` 來初始化，所建立的 repository 僅有 git 容器內容，通常用於 repository server。
 
 將檔案加入追蹤
 ------------
