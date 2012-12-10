@@ -7,7 +7,7 @@ Introduction
 ============
 **數位類比轉換器(Analog-to-digital coverter)**，用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
 
-.. image:: /圖片2.png
+.. image:: /embedded/ADC/圖片2.png
 取樣率(Sampling rate)
 ----------------------
 - 類比訊號在時域上是連續的，因此可以將它轉換為時間上連續的一系列數位訊號。這樣就要求定義一個參數來表示新的數位訊號取樣自類比訊號速率。
@@ -19,7 +19,7 @@ Introduction
 - 這些訊號值通常用二進制數來存儲，因此解析度經常用位元作為單位，且這些離散值的個數是2的冪指數。
 - 例如，一個具有8位解析度的類比數位轉換器可以將類比訊號編碼成256個不同的離散值（因為2^8 = 256）。
 
-.. image:: /adc_convert.png
+.. image:: /embedded/ADC/adc_convert.png
 
 ADC on STM32F4
 ===============
@@ -28,7 +28,7 @@ ADC on STM32F4
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
 
-.. image:: /ADC on STM32F4
+.. image:: /embedded/ADC/ADC on STM32F4
 
 Independent Mode
 -----------------
@@ -37,18 +37,18 @@ Single-channel, single conversion mode
 - 此模式只會針對單一通道執行單次轉換，且完成轉換後則停止。
 - 可用來檢查電壓來決定系統是否可以啟動。
 
-.. image:: /SSM.png
+.. image:: /embedded/ADC/SSM.png
 
 Multichannel (scan), single conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 此模式可使用多個通道依序執行單次轉換，最多可以達到16個通道且可使用不同的取樣時間及不同的通道順序。
 - 可用來檢查多種訊號(如電壓、壓力、溫度等)來確保系統可以啟動。
 
-.. image:: /MSM.png
+.. image:: /embedded/ADC/MSM.png
 
 - 下圖是個例子:
 
-.. image:: /MSMex.png
+.. image:: /embedded/ADC/MSMex.png
 
 Single-channel continuous conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,14 +57,14 @@ Single-channel continuous conversion mode
 - 另外可利用DMA的circular mode降低CPU的負擔。
 - 可用來監控電池電壓或是量測溫度。
 
-.. image:: /SCM.png
+.. image:: /embedded/ADC/SCM.png
 
 Multichannel (scan) continuous conversion mode
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - 此模式與Multichannel (scan), single conversion mode類似，但執行至最後一個通道後不會停止，而是會回到第一個通道執行轉換。
 - 可用來量測多組電壓及溫度，像是電池充電器，可監控每個電池的電壓及溫度，當電壓或溫度到達最達最大值時必須能將電池斷路。
 
-.. image:: /MCM.png
+.. image:: /embedded/ADC/MCM.png
 
 ADC Voltage Measurement
 ------------------------
@@ -74,7 +74,7 @@ ADC Voltage Measurement
 
 ADC Temperature Measurement
 ----------------------------
-.. image:: /formula.png
+.. image:: /embedded/ADC/formula.png
 ::
   
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
@@ -86,15 +86,15 @@ Demo
 
 - ADC Voltage Convertion(with Power Supply)
 
-.. image:: /ADC_PowerSupply.jpg
+.. image:: /embedded/ADC/ADC_PowerSupply.jpg
 
-.. image:: /ADC_Convert.jpg
+.. image:: /embedded/ADC/ADC_Convert.jpg
 
 - ADC Voltage Convertion(with Battery)
 
-.. image:: /ADC_battery.jpg
+.. image:: /embedded/ADC/ADC_battery.jpg
 
-.. image:: /ADC_pin.jpg
+.. image:: /embedded/ADC/ADC_pin.jpg
 
 
 Questions
@@ -109,7 +109,7 @@ Questions
   Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
   So, Sample Time must > 16.4µs 。
 
-.. image:: /table7.jpg
+.. image:: /embedded/ADC/table7.jpg
 
 Refer from: STM32F407xx Datasheet P125
 
@@ -118,14 +118,14 @@ Refer from: STM32F407xx Datasheet P125
 - 3. 頻率響應為多少,可容忍的最大頻率呢?
     在Datasheet中，因為我們參考電壓VDD為2.97V，故**Frequency為[0.6-36]MHz**。
 
-.. image:: /table6.jpg
+.. image:: /embedded/ADC/table6.jpg
 
 Refer from: STM32F407xx Datasheet P124
 
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
     有**External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core， Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...**。
 
-.. image:: /22.JPG
+.. image:: /embedded/ADC/22.JPG
 
 `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 參照P264 ADC block diagram 
 
@@ -194,11 +194,11 @@ Refer from: STM32F407xx Datasheet P124
     分別為以下︰
     - 1.ExternalTrigConvEdge  
 
-    .. image:: /table9.jpg
+    .. image:: /embedded/ADC/table9.jpg
 
     - 2.ExternalTrigConv  
 
-    .. image:: /table10.jpg
+    .. image:: /embedded/ADC/table10.jpg
 
 - 15. DMA跟ADC之間是在幹嘛的?
     規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
@@ -220,7 +220,7 @@ Refer from: STM32F407xx Datasheet P124
 
     您的問題應該是Sampling Rate(取樣頻率)，就根據使用者需求來設定轉換模式，並算出轉換頻率。
 
-.. image:: /table8.jpg
+.. image:: /embedded/ADC/table8.jpg
 Sample Code
 ===========
 - main
