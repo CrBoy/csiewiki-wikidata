@@ -432,19 +432,20 @@ Alternate function mapping[#]_
 為何要定義為low-active？
 ----------------------
 
-當系統一有電源時，此時所有的Pin腳會由Low Level 轉換成系統設定的High Level,這樣Slave device 會因為這樣而
+當系統一有電源時，此時所有的Pin腳會由Low Level 轉換成系統設定的High Level,Slave device 會因為這樣而
 誤以為它是被觸發而開始動作.為了避免這類的問題發生通常chip select都會設定Low-Active.
 
 
 在 (最高速 BUS) 上最低速的裝置為何？
 --------------------------------
 
+這樣取決於STM32所可以接受的通訊方式，如果以STM32F4來講，最低速的應該是USART。
 
 
 有沒有 SPI 串接的可能？
 ---------------------
 
-可參考http://www.mct.net/faq/spi.html
+可參考<http://www.mct.net/faq/spi.html>
 這種做法是用在Master的Chip Select腳位很少的情況所使用的。這樣也可以節省硬體的線路，不用在Layout 多餘的線路。
 但這必須要Master 與 Slave軟體上的搭配才可行。
 
@@ -469,8 +470,9 @@ CRC(Cyclic redundancy check)，是一種錯誤偵測的方法。是防止在傳�
 有因為意外事件而造成資料的變動。
 
 
-.. speed rate of Motion sensor
+Speed rate of Motion sensor
 ------------------------------
+LIS302DL 資料傳送速度是100Hz 或 400Hz。<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/CD00135460.pdf>
 
 Reference
 =========
