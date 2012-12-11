@@ -64,16 +64,18 @@ MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統�
 USB host and device
 ^^^^^^^^^^^^^^^^^^^^^^
 .. image:: /embedded/usb host:device .png
-  1. SIE(SERIAL INTERFACE ENGINE)
+  
+ 1. SIE(SERIAL INTERFACE ENGINE)
 
 Block Diagram
 ^^^^^^^^^^^^^^^
 
 .. image:: /USB_block_diagram.png
 
- 1. AHB(Advanced High-performance Bus)
- 2. DP/DM description -- in reference manual 30.3.2
-   
+ 1. ID pin 用來辨識OTG(on the go)裝置是主機還是週邊
+ 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A插主機，marco-B插週邊） 
+ 3. DP/DM description -- in reference manual 30.3.2
+ 4. AHB(Advanced High-performance Bus)  
 
 
 demo
