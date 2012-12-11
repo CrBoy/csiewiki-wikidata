@@ -203,6 +203,73 @@ the RDR at the same time as the new (and lost) data is received. It may also occ
 when the new data is received during the reading sequence (between the USART_SR
 register read access and the USART_DR read access).
 
+
+Selecting the proper oversampling method
+============================================
+The receiver implements different user-configurable oversampling techniques (except in
+synchronous mode) for data recovery by discriminating between valid incoming data and
+noise.
+
+The oversampling method can be selected by programming the OVER8 bit in the
+USART_CR1 register and can be either 16 or 8 times the baud rate clock (Figure 250 and
+Figure 251).
+
+Depending on the application:
+
+● select oversampling by 8 (OVER8=1) to achieve higher speed (up to fPCLK/8). In this
+case the maximum receiver tolerance to clock deviation is reduced (refer to
+Section 26.3.5: USART receiver tolerance to clock deviation on page 760)
+
+● select oversampling by 16 (OVER8=0) to increase the tolerance of the receiver to clock
+deviations. In this case, the maximum speed is limited to maximum fPCLK/16
+Programming the ONEBIT bit in the USART_CR3 register selects the method used to
+evaluate the logic level. There are two options:
+
+● the majority vote of the three samples in the center of the received bit. In this case,
+when the 3 samples used for the majority vote are not equal, the NF bit is set
+
+● a single sample in the center of the received bit
+
+  Depending on the application:
+
+  – select the three samples’ majority vote method (ONEBIT=0) when operating in a
+  noisy environment and reject the data when a noise is detected (refer to
+  Figure 105) because this indicates that a glitch occurred during the sampling.
+
+  – select the single sample method (ONEBIT=1) when the line is noise-free to
+  increase the receiver’s tolerance to clock deviations (see Section 26.3.5: USART
+  receiver tolerance to clock deviation on page 760). In this case the NF bit will
+  never be set.
+
+When noise is detected in a frame:
+
+● The NF bit is set at the rising edge of the RXNE bit.
+
+● The invalid data is transferred from the Shift register to the USART_DR register.
+
+● No interrupt is generated in case of single byte communication. However this bit rises
+at the same time as the RXNE bit which itself generates an interrupt. In case of
+multibuffer communication an interrupt will be issued if the EIE bit is set in the
+USART_CR3 register.
+
+The NF bit is reset by a USART_SR register read operation followed by a USART_DR
+register read operation.
+
+Note: Oversampling by 8 is not available in the Smartcard, IrDA and LIN modes. In those modes,
+the OVER8 bit is forced to ‘0 by hardware.
+
+.. image:: /oversampling16.png
+
+
+.. image:: /oversampling8.png
+
+
+.. image:: /noisedetection.png
+
+.. image:: /noisedetectionsampledata.png
+
+
+
 IrDA low-power mode 
 ............................
 
