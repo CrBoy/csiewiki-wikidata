@@ -270,6 +270,27 @@ the OVER8 bit is forced to ‘0 by hardware.
 
 
 
+Fractional baud rate generation
+====================================
+The baud rate for the receiver and transmitter (Rx and Tx) are both set to the same value as
+programmed in the Mantissa and Fraction values of USARTDIV.
+
+.. image:: /baud.png
+
+USARTDIV is an unsigned fixed point number that is coded on the USART_BRR register.
+
+● When OVER8=0, the fractional part is coded on 4 bits and programmed by the
+DIV_fraction[3:0] bits in the USART_BRR register
+
+● When OVER8=1, the fractional part is coded on 3 bits and programmed by the
+DIV_fraction[2:0] bits in the USART_BRR register, and bit DIV_fraction[3] must be kept
+cleared.
+
+Note: The baud counters are updated to the new value in the baud registers after a write operation
+to USART_BRR. Hence the baud rate register value should not be changed during
+communication.
+
+
 IrDA low-power mode 
 ............................
 
