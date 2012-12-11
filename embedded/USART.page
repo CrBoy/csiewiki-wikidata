@@ -100,13 +100,19 @@ MAIN FEATURES
 
 - Two receiver wakeup modes: Address bit (MSB, 9th bit), Idle line
 
+
+USART functional description
+.................................
+
+
 USART BLOCK DIAGRAM
-.....................
+======================================
 .. image:: /usart_block_diagram.png
 
 
+
 USART character description
-......................
+======================================
 Word length may be selected as being either 8 or 9 bits by programming the M bit in the
 USART_CR1 register (see Figure 246).
 
@@ -123,6 +129,79 @@ The details of each block is given below.
 
 .. image:: /idleandbreak.png
 
+
+Transmitter
+============================
+The transmitter can send data words of either 8 or 9 bits depending on the M bit status.
+When the transmit enable bit (TE) is set, the data in the transmit shift register is output on
+the TX pin and the corresponding clock pulses are output on the SCLK pin.
+
+
+Character transmission
+------------------------------------
+During an USART transmission, data shifts out least significant bit first on the TX pin. In this
+mode, the USART_DR register consists of a buffer (TDR) between the internal bus and the
+transmit shift register (see Figure 245).
+
+Every character is preceded by a start bit which is a logic level low for one bit period. The
+character is terminated by a configurable number of stop bits.
+
+The following stop bits are supported by USART: 0.5, 1, 1.5 and 2 stop bits.
+
+
+Receiver
+====================================
+The USART can receive data words of either 8 or 9 bits depending on the M bit in the
+USART_CR1 register.
+
+
+
+Break character
+====================================
+When a break character is received, the USART handles it as a framing error.
+
+
+Idle character
+====================================
+When an idle frame is detected, there is the same procedure as a data received character
+plus an interrupt if the IDLEIE bit is set.
+
+
+Overrun error
+====================================
+An overrun error occurs when a character is received when RXNE has not been reset. Data
+can not be transferred from the shift register to the RDR register until the RXNE bit is
+cleared.
+
+The RXNE flag is set after every byte received. An overrun error occurs if RXNE flag is set
+when the next data is received or the previous DMA request has not been serviced. When
+an overrun error occurs:
+
+● The ORE bit is set.
+
+● The RDR content will not be lost. The previous data is available when a read to
+USART_DR is performed.
+
+● The shift register will be overwritten. After that point, any data received during overrun
+is lost.
+
+● An interrupt is generated if either the RXNEIE bit is set or both the EIE and DMAR bits
+are set.
+
+● The ORE bit is reset by a read to the USART_SR register followed by a USART_DR
+register read operation.
+
+Note: The ORE bit, when set, indicates that at least 1 data has been lost. There are two
+possibilities:
+
+● if RXNE=1, then the last valid data is stored in the receive register RDR and can be
+read,
+
+● if RXNE=0, then it means that the last valid data has already been read and thus there
+is nothing to be read in the RDR. This case can occur when the last valid data is read in
+the RDR at the same time as the new (and lost) data is received. It may also occur
+when the new data is received during the reading sequence (between the USART_SR
+register read access and the USART_DR read access).
 
 IrDA low-power mode 
 ............................
