@@ -105,6 +105,25 @@ USART BLOCK DIAGRAM
 .. image:: /usart_block_diagram.png
 
 
+USART character description
+......................
+Word length may be selected as being either 8 or 9 bits by programming the M bit in the
+USART_CR1 register (see Figure 246).
+
+The TX pin is in low state during the start bit. It is in high state during the stop bit.
+An Idle character is interpreted as an entire frame of “1”s followed by the start bit of the next
+frame which contains data (The number of “1” ‘s will include the number of stop bits).
+A Break character is interpreted on receiving “0”s for a frame period. At the end of the
+break frame the transmitter inserts either 1 or 2 stop bits (logic “1” bit) to acknowledge the
+start bit.
+
+Transmission and reception are driven by a common baud rate generator, the clock for each
+is generated when the enable bit is set respectively for the transmitter and receiver.
+The details of each block is given below.
+
+.. image:: /idleandbreak.png
+
+
 IrDA low-power mode 
 ............................
 
