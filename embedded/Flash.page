@@ -3,184 +3,7 @@ title: Flash
 categories: STM32F4
 ...
 
-1.STM32F407VG 硬體介紹
- =============
-
-- STM32F407VG版子外觀與模組如下圖所示：
-
-.. image:: /STM32F4_2.jpg
-
-- 上方USB Programmer/Debugger為ST-Link
-- 石英晶體震盪器(Crystal)，可參考(http://zh.wikipedia.org/zh-tw/%E7%9F%B3%E8%8B%B1%E6%99%B6%E4%BD%93%E8%B0%90%E6%8C%AF%E5%99%A8)
-- 中央的晶片為ARM® Cortex™-M4F core with embedded Flash and SRAM，其內部結構如Figure 5所示。
-- 三軸加速度感知器(3-axis Accelerometer)
-- 音頻數位類比轉換(Audio DAC)
-- 麥克風晶片(Chip Microphone)
-- USB On The Go (http://forum.slime.com.tw/thread180246.html)
-- 音效輸出(Audio Jack)
-- 此外，板子上有兩顆按鈕，藍色按鈕為User Button，黑色按鈕為Reset。
-
-.. image:: /block_diag_1.JPG
-
-.. image:: /block_diag_2.JPG
-
-2.Software STM32F4 Lib
- ============
-
-.. image:: /lib_1.JPG
-
-3.debug gdb
- ============
-- gdb指令介紹 : 
---------------
-檔案處理
-========
-
-- file a.elf                 載入可執行檔a.elf
-- path                       告訴gdb obj code在那
-- directory                  告訴gdb source code在那裡
-
-SHELL
-=====
-
-- shell ls                   就會執行ls了
-
-
-流程控制
-========
-
-- break		設定中斷點 
-
-::
-  
-  break                         在目前位置設中斷點
-  break 100                     在100行中斷
-  break main                    在main()中斷
-  break +100                    目前位置+100行中斷
-  break *0x08048123             在這位址中斷
-  break file.c:100              因為如果是多個c檔案時指定file.c
-  tbreak                        同break的寫法 不過中斷一次後 此中斷點就失效
-  break 100 if (var == 5)       條件中斷: 如果var=5就在line 100中斷
-
-- delete		清除中斷點
-
-::
-
-  delete 1                      刪除編號為1的中斷點
-  delete                        刪除所有中斷點
-
-- disable		暫時使中斷失效
-- enable		把失效的中斷恢復
-
-::
-
-  disable 3                  暫時使3號中斷點沒作用  後面是中斷點流水編號
-  enable 2                   使2號中斷點作用  後面是中斷點流水編號
-  
-condition   進一步設中斷點的條件 如果條件為true則中斷
-
-::
-
-  condition 3 (var > 3)      設3號中斷點的條件 如果條件為true則中斷
-  condition 3                清除3號中斷點的條件
-  
-- commands    如果中斷發生了則執行commands與end中的一連串gdb命令
-
-::
-  
-  break 100                     在第100行中斷並且執行command...end中的gdb命令
-  commands
-    p/x var
-  end
-  
-- run                        開始跑程式
-- continue                   中斷後繼續跑
-- next                       往下一步: 如果有副程式 執行完整個副程式
-- step                       往下一步: 如果有副程式 追進副程式
-- until                      跳離一個while for迴圈
-- nexti                      往下一步CPU組語的指令(Instruction)執行完整個副程式
-- stepi                      往下一步CPU組語的指令(Instruction)追進副程式
-
-
-訊息觀看與設定
-==============
-
-- list                       看原始碼
-
-::
-
-  list x 從第x行的source code印出，x不寫則印出目前中斷點前後的code
-  list *addr  秀出addr所在source code的行
-              可以先用info program找出目前PC的值
-              再用list *addr
-  search REGEXP 在目前source code用正規表示式搜尋
-
-- whatis var                 告訴我var的資料型別是啥 int, char or double
-- ptype var                  告訴我var的資料型別是啥 這用來看struct用的
-- set                        設定gdb, 系統的控制變數值(這些變數不是program內的)
-
-::
-
-  set listsize xx  設定要看xx行source code
-  set $pc xx       把PC設到 xx
-  set convenience可以自己設變數
-						   
-程式變數值(data)處理
-====================
-- print var                  看var的值
-- print &var                 印出var的位址
-- print *var                 印出位於位址var的值
-- display var                display會每次step, next時都會印出值來, print只印一次
-- print (var=value)          設var的值為value
-- p/x
-
-::
-
-  p/x 表示印16進位值
-  p/u 表示unsigned digit
-  p/d signed digit
-  p/t 二進位值
-                           
-                           
-- x/3uh 0x8000000          印出記憶體
-
-::
-
-  其中
-  3表示看3個 (0x8000000 - 0x8000003)
-  u      unsigned digit(跟上面p命令一樣意義) 
-  h      halfword就是2bytes(bhwg分別是1248bytes)
-
-- Debug設定(TCP/IP) : 
----------------------
-
-.. image:: /gdb_1.JPG
-
-- Debug流程主要為 :
-
-(1) 在Target(MCU)端開啟App與gdbserver。如果已經將程式燒入flash, 要透過MCU內建的gdb server來debug, 則必須使用st-util:
-
-::
-
-  st-util -p 3333
-
-(2) 開啟Host端的gdb：
-
-::
-
-  arm-none-eabi-gdb your_elf_image.elf
-
-(3) 連接到Target端的gdbserver，如
-
-::
-
-  target extended-remote : 3333 
-
-(4) 當應用程式就緒後，可指定中斷點，接著按c，就會在指定的中斷點停下來。
-
-- 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
-
-4.Flash 簡介
+1.Flash 簡介
  ============
 - 簡介
 ------
@@ -331,7 +154,7 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
 
-5.Flash 記憶體架構介紹
+2.Flash 記憶體架構介紹
  ============
 
 .. image:: /Flash_system_architecture.JPG
@@ -363,10 +186,10 @@ Flash模組的組成如下：
 .. image:: /flash module organization.JPG
 
 
-6.Flash interface registers
+3.Flash interface registers
  ============
 
-- 6.1 Flash access control register (FLASH_ACR)
+- 3.1 Flash access control register (FLASH_ACR)
 -----------------------------------------------
 
 Address offset : 0x00, Reset value: 0x0000 0000.
@@ -384,7 +207,7 @@ Address offset : 0x00, Reset value: 0x0000 0000.
   Bits 7:3 保留位置，必須保持淨空。
   Bits 2:0 LATENCY : Latency.
 
-- 6.2 Flash key register (FLASH_KEYR)
+- 3.2 Flash key register (FLASH_KEYR)
 -------------------------------------
 
 Address offset : 0x04, Reset value: 0x0000 0000.
@@ -395,7 +218,7 @@ Address offset : 0x04, Reset value: 0x0000 0000.
 
   Bits 31:0 FKEYR : FPEC key. 解鎖用，前方已經描述過如何解鎖FLASH_CR，在此不贅述。
 
-- 6.3 Flash status register (FLASH_SR)
+- 3.3 Flash status register (FLASH_SR)
 --------------------------------------
 
 Address offset : 0x0C, Reset value: 0x0000 0000.
@@ -415,7 +238,7 @@ Address offset : 0x0C, Reset value: 0x0000 0000.
   Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這個bit只會在ERRIE(Error Interrupts)啟用時生效。
   Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
 
-- 6.4 Flash control register (FLASH_CR)
+- 3.4 Flash control register (FLASH_CR)
 ---------------------------------------
 
 Address offset : 0x10, Reset value: **0x8000** 0000.
@@ -437,7 +260,7 @@ Address offset : 0x10, Reset value: **0x8000** 0000.
   Bit 1 SER: Sector Erase.
   Bit 0 PG: Programming.
 
-- 6.5 Flash option control register (FLASH_OPTCR)
+- 3.5 Flash option control register (FLASH_OPTCR)
 -------------------------------------------------
 
 Address offset : 0x14, Reset value: **0x0FFF AAED**.
@@ -460,7 +283,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   Bit 0 OPTLOCK: Option lock.
 
 
-7.example(範例流程)
+4.example(範例流程)
  ============
 - LED LEGEND
 
@@ -469,8 +292,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 **RED   : FLASH is erasing.**
 **YELLOW: FLASH is reading.**
 
-- 7.1 FLASH_UNLOCK
-- 7.2 GREEN LED ON
+-git repo: https://gitcafe.com/xturtle/NCKU-Embedded-2012-Flash-Demo
+
+- 4.1 FLASH_UNLOCK
+- 4.2 GREEN LED ON
 
 ::
 
@@ -479,10 +304,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   FLASH_ClearFlag(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
                   FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
 
-- 7.3 WRITE FROM SECTOR 2 TO SECTOR 5 AS "12345678"
-- 7.4 BLUE LED ON
-- 7.5 FINISHED WRITE PROCESS
-- 7.6 BLUE LED OFF
+- 4.3 WRITE FROM SECTOR 2 TO SECTOR 5 AS "12345678"
+- 4.4 BLUE LED ON
+- 4.5 FINISHED WRITE PROCESS
+- 4.6 BLUE LED OFF
 
 ::
 
@@ -497,15 +322,15 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     STM_EVAL_LEDOff(LED6);
   }
 
-- 7.7 FLASH_LOCK
-- 7.8 GREEN LED OFF
+- 4.7 FLASH_LOCK
+- 4.8 GREEN LED OFF
 
 ::
 
   FLASH_Lock(); 
   STM_EVAL_LEDOff(LED4);
 
-- 7.9 VERIFICATION
+- 4.9 VERIFICATION
 
 ::
 
@@ -518,6 +343,183 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     }
     Address = Address + 4;
   } 
+
+5.STM32F407VG 硬體介紹
+ =============
+
+- STM32F407VG版子外觀與模組如下圖所示：
+
+.. image:: /STM32F4_2.jpg
+
+- 上方USB Programmer/Debugger為ST-Link
+- 石英晶體震盪器(Crystal)，可參考(http://zh.wikipedia.org/zh-tw/%E7%9F%B3%E8%8B%B1%E6%99%B6%E4%BD%93%E8%B0%90%E6%8C%AF%E5%99%A8)
+- 中央的晶片為ARM® Cortex™-M4F core with embedded Flash and SRAM，其內部結構如Figure 5所示。
+- 三軸加速度感知器(3-axis Accelerometer)
+- 音頻數位類比轉換(Audio DAC)
+- 麥克風晶片(Chip Microphone)
+- USB On The Go (http://forum.slime.com.tw/thread180246.html)
+- 音效輸出(Audio Jack)
+- 此外，板子上有兩顆按鈕，藍色按鈕為User Button，黑色按鈕為Reset。
+
+.. image:: /block_diag_1.JPG
+
+.. image:: /block_diag_2.JPG
+
+6.Software STM32F4 Lib
+ ============
+
+.. image:: /lib_1.JPG
+
+7.debug gdb
+ ============
+- gdb指令介紹 : 
+--------------
+檔案處理
+========
+
+- file a.elf                 載入可執行檔a.elf
+- path                       告訴gdb obj code在那
+- directory                  告訴gdb source code在那裡
+
+SHELL
+=====
+
+- shell ls                   就會執行ls了
+
+
+流程控制
+========
+
+- break		設定中斷點 
+
+::
+  
+  break                         在目前位置設中斷點
+  break 100                     在100行中斷
+  break main                    在main()中斷
+  break +100                    目前位置+100行中斷
+  break *0x08048123             在這位址中斷
+  break file.c:100              因為如果是多個c檔案時指定file.c
+  tbreak                        同break的寫法 不過中斷一次後 此中斷點就失效
+  break 100 if (var == 5)       條件中斷: 如果var=5就在line 100中斷
+
+- delete		清除中斷點
+
+::
+
+  delete 1                      刪除編號為1的中斷點
+  delete                        刪除所有中斷點
+
+- disable		暫時使中斷失效
+- enable		把失效的中斷恢復
+
+::
+
+  disable 3                  暫時使3號中斷點沒作用  後面是中斷點流水編號
+  enable 2                   使2號中斷點作用  後面是中斷點流水編號
+  
+condition   進一步設中斷點的條件 如果條件為true則中斷
+
+::
+
+  condition 3 (var > 3)      設3號中斷點的條件 如果條件為true則中斷
+  condition 3                清除3號中斷點的條件
+  
+- commands    如果中斷發生了則執行commands與end中的一連串gdb命令
+
+::
+  
+  break 100                     在第100行中斷並且執行command...end中的gdb命令
+  commands
+    p/x var
+  end
+  
+- run                        開始跑程式
+- continue                   中斷後繼續跑
+- next                       往下一步: 如果有副程式 執行完整個副程式
+- step                       往下一步: 如果有副程式 追進副程式
+- until                      跳離一個while for迴圈
+- nexti                      往下一步CPU組語的指令(Instruction)執行完整個副程式
+- stepi                      往下一步CPU組語的指令(Instruction)追進副程式
+
+
+訊息觀看與設定
+==============
+
+- list                       看原始碼
+
+::
+
+  list x 從第x行的source code印出，x不寫則印出目前中斷點前後的code
+  list *addr  秀出addr所在source code的行
+              可以先用info program找出目前PC的值
+              再用list *addr
+  search REGEXP 在目前source code用正規表示式搜尋
+
+- whatis var                 告訴我var的資料型別是啥 int, char or double
+- ptype var                  告訴我var的資料型別是啥 這用來看struct用的
+- set                        設定gdb, 系統的控制變數值(這些變數不是program內的)
+
+::
+
+  set listsize xx  設定要看xx行source code
+  set $pc xx       把PC設到 xx
+  set convenience可以自己設變數
+						   
+程式變數值(data)處理
+====================
+- print var                  看var的值
+- print &var                 印出var的位址
+- print *var                 印出位於位址var的值
+- display var                display會每次step, next時都會印出值來, print只印一次
+- print (var=value)          設var的值為value
+- p/x
+
+::
+
+  p/x 表示印16進位值
+  p/u 表示unsigned digit
+  p/d signed digit
+  p/t 二進位值
+                           
+                           
+- x/3uh 0x8000000          印出記憶體
+
+::
+
+  其中
+  3表示看3個 (0x8000000 - 0x8000003)
+  u      unsigned digit(跟上面p命令一樣意義) 
+  h      halfword就是2bytes(bhwg分別是1248bytes)
+
+- Debug設定(TCP/IP) : 
+---------------------
+
+.. image:: /gdb_1.JPG
+
+- Debug流程主要為 :
+
+(1) 在Target(MCU)端開啟App與gdbserver。如果已經將程式燒入flash, 要透過MCU內建的gdb server來debug, 則必須使用st-util:
+
+::
+
+  st-util -p 3333
+
+(2) 開啟Host端的gdb：
+
+::
+
+  arm-none-eabi-gdb your_elf_image.elf
+
+(3) 連接到Target端的gdbserver，如
+
+::
+
+  target extended-remote : 3333 
+
+(4) 當應用程式就緒後，可指定中斷點，接著按c，就會在指定的中斷點停下來。
+
+- 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
 8.ref
  ============
