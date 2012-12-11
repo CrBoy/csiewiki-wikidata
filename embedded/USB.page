@@ -64,6 +64,7 @@ MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統�
 USB host and device
 ^^^^^^^^^^^^^^^^^^^^^^
 .. image:: /embedded/usb host:device .png
+  1. SIE(SERIAL INTERFACE ENGINE)
 
 Block Diagram
 ^^^^^^^^^^^^^^^
