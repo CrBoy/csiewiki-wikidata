@@ -46,7 +46,8 @@ analog
 
 - 施密特觸發器(Schmitt trigger) : 將類比訊號的波形整成數位電路所能處理的方波波形(處理完只能分辨出高低電位的差別)。
 
-
+.. image:: /embedded/Schmitt_trigger.jpg
+(施密特觸發器具有整流效果)
 
 basic of structure (P.186, **Figure 17. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
 -------------------------------------------------------------------------------------------------------------------
