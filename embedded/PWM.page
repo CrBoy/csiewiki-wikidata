@@ -30,11 +30,11 @@ PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 
 -----------
 
-  .. image:: /down mode.bmp
+  .. image:: /embedded/PWM-Timer_down_mode.bmp
 
 -----------
 
-  .. image:: /center aligned.jpg
+  .. image:: /embedded/PWM-Timer_center_aligned.jpg
 
 
     - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
