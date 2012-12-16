@@ -15,7 +15,7 @@ How it works
 
 Generate 1Hz
 --------------------
-
+http://wiki.csie.ncku.edu.tw/embedded/RTC
 RTC基本計算單位為一秒鐘。
 
 由於clock source速度太快，我們需要用prescaler去轉換成一秒鐘。
@@ -263,6 +263,19 @@ setting alarm time
 	RTC_ITConfig(RTC_IT_ALRA, ENABLE);
 	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
 	RTC_ClearFlag(RTC_FLAG_ALRAF);
+
+
+
+complete code
+--------------------
+
+.. code-block:: c
+
+    git clone git@gitcafe.com:ctc8631/RTC-example.git
+    cd RTC-example/
+    make flash
+
+
 
 Reference
 ================
