@@ -122,6 +122,16 @@ Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
 
 Demo
 ====
+工具介紹
+-------
+.. image:: /embedded/BNC line.JPG
+
+- BNC對鱷魚夾線
+
+.. image:: /embedded/oscilloscope.JPG
+
+- 示波器(oscilloscope) 畫面很差...
+
 示波器驗證
 ---------
 .. image:: /embedded/stable.JPG
