@@ -101,7 +101,7 @@ When the I/O port is programmed as alternate function:
 - The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
 - A read access to the input data register gets the I/O state
 
-Supplement：
+Remark：
 
 GPIOx_AFRL[31:0] and GPIOx_ARHL[31:0] provide ways to select alternation functions. However, different alternate functions maps to different bits of ports. Table below is part of alternate function mapping, which is mainly about USART2/3.
 
@@ -155,10 +155,21 @@ Demo
 - 我們在接Pin的過程的時候，發現有些燈會亮起來，圖中紅色鱷魚夾線把PD12跟PD14同時夾起來，LED5在LED4亮起來的時候也會亮，對照PD14的位置是LED5。
 - 我們觀察示波器用的Code只有對button跟LED4做設定，我們推測原因是LED4亮起來的時候，PD12處於高電位狀態，而鱷魚夾線連通PD14讓此腳位也處於高電位使LED5也亮起來了。
 
+Supplement
+==========
+- 一些有預設控制元件的腳位(詳見- STM32F4-Discovery 中文使用手冊P.16)
+  - LD3：橙色，連接到STM32F407VGT6的PD13
+  - LD4：綠色，連接到STM32F407VGT6的PD12
+  - LD5：红色，連接到STM32F407VGT6的PD14
+  - LD6：藍色，連接到STM32F407VGT6的PD15
+  - B1(USER)：連接到STM32F407VGT6的PA0
+  - B2(RESET)：連接到NRST，用於重置STM32F407VGT6
+
 Reference
 =========
 - `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
 - `STM32F407xx Datasheet<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
 - `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
+- `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
 - `稀里糊塗學 STM32 第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
 - `GPIO PPT</embedded/GPIO_v3.ppt>`_
