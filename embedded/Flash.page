@@ -21,7 +21,7 @@ categories: STM32F4
 
 .. image:: /NAND flash.JPG
 
-**關於NAND Flash 與 NOR Flash的比較可參考**(http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF)。
+**關於NAND Flash 與 NOR Flash的比較可參考** http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF
 
 1.2 Flash 操作
 -------------
