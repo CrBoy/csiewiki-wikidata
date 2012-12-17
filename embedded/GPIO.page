@@ -122,6 +122,13 @@ Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
 
 Demo
 ====
+示波器驗證
+---------
+.. image:: /embedded/stable.JPG
+.. image:: /embedded/button_pressed.JPG
+.. image:: /embedded/LEDOn_2.8v.JPG
+.. image:: /embedded/PD12_PD14CNT.JPG
+.. image:: /embedded/PD12_PD14CNT2.JPG
 
 Reference
 =========
