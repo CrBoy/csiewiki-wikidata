@@ -67,10 +67,6 @@ USB host and device
   
  1. SIE(SERIAL INTERFACE ENGINE)
 
-USB OTG(on-the-go)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上鍵盤。
 
 Block Diagram
 ^^^^^^^^^^^^^^^
@@ -83,7 +79,10 @@ Block Diagram
  4. AHB -- Advanced High-performance Bus  
  5. UTMI -- USB 2.0 transceiver macrocell interface
 
+USB OTG(on-the-go)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上鍵盤。
 
 demo
 ^^^^
