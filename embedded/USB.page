@@ -103,9 +103,9 @@ demo
 USB 定義了四種傳輸型態：
 
  - Control Transfers ：用於控制傳輸命令及狀態操作。
- - Bulk Transfers ：常用於大量資料傳輸（如傳給印表機），沒有速度限制，若傳輸失敗就會重傳以確保資料無誤。
+ - Bulk Transfers ：用於大量資料傳輸（如傳給印表機），沒有速度限制，若傳輸失敗就會重傳以確保資料無誤。
  - Interrupt Transfers ：與一般常見的 interrupt 不同，需要 host 端先詢問才會執行 interrupt 。
- - Isochronous Transfers ：長用於與時間密切相關的資料，例如音訊或影片等，就算沒通過CRC的錯誤檢查也不會重傳。
+ - Isochronous Transfers ：用於與時間密切相關的資料，例如音訊或影片等，就算沒通過CRC的錯誤檢查也不會重傳。
 
 每種型態有不同的工作流程（stage），每個 stage 會需要不同的封包類型（packet）來實現，如同下表：
 
