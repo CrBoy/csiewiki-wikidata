@@ -1,0 +1,24 @@
+---
+title: 期末專題: Team #9
+toc: no
+...
+
+題目
+---
+ * KB/Mouse Logger
+
+預期目標
+-------
+ * 以STM32F4 Discovery為核心運算平台
+ * 可以記錄滑鼠座標，key event log達十組
+ * 可透過USB Storage介面存取與修改log
+ * 可"播放"紀錄的滑鼠座標或key event
+
+組員
+----
+ * `xturtle</User/xturtle>`_
+ * `sdcom</User/sdcom>`_
+
+預算
+----
+暫無，可能會加個SD卡座跟usb hub
