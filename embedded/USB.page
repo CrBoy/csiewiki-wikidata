@@ -35,6 +35,38 @@ Handshake 封包
 除了即時型傳輸(Isochronous)之外，所有的傳輸都保證資料的傳遞正確。 Handshake 封包回應資料是否正確的被收到。若執行處理動作中發生錯誤，此處理動作將重新執行。
 
 
+
+USB Descriptors
+^^^^^^^^^^^^^^^
+
+Device Descriptors
+==================
+
+Device descriptor 提供裝置基本資訊，例如：USB 版本、最大的 packet 大小、廠商與型號資訊。每個 USB 裝置只能 Device Descriptors 只能有一個！就像男人一樣，只有一個。
+
+Configuration Descriptors
+=========================
+
+Configure descriptor 指出 USB 裝置的供電方式、interface 數量。每個 USB 裝置可以擁有不只一個 Configure Descriptor，可視為 interface descriptor 之 header。
+
+Interface Descriptors
+=====================
+
+Interface descriptor 提供介面資訊，可視為 endpint descriptor 之 header。在 configuration descriptor 中會指定該 configuration 所擁有的 interface 數量，因此 interface descriptor 可以擁有一個以上。
+
+Endpoint Descriptors
+====================
+
+Endpoint descriptor 描述 endpoint 之行為與頻寬。
+
+
+String Descriptors
+==================
+
+String descriptor 提供人類可讀的資訊。
+
+
+
 USB Device Class
 ^^^^^^^^^^^^^^^^
 USB 依照裝置的不同，定義許多不同的 class code ，用來聯絡 host 端與 device 端該做出什麼適當的反應，以下為幾個常見分類：
