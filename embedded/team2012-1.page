@@ -70,3 +70,10 @@ http://www.youtube.com/watch?v=9zglGUCWN5E
 - 41K ohm -> 5K ohm: 對焦
 - 41K ohm -> 2K ohm: 拍照
 - 41K ohm -> 5K ohm -> 2K ohm: 先對焦後拍照（未實驗）
+
+servo Specifications
+--------------------
+
+- Parallax Continuous Servo
+
+  http://www.robotshop.com/content/PDF/continuous-rotation-servo-v2.0-900-00008.pdf
