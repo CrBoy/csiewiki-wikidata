@@ -65,7 +65,8 @@ http://www.youtube.com/watch?v=9zglGUCWN5E
 - 2.5 mm 四環音源線
 - 2K, 3K 電阻
 
-2K：拍照
+對焦方法：
 
-5K：對焦
-
+- 41K ohm -> 5K ohm: 對焦
+- 41K ohm -> 2K ohm: 拍照
+- 41K ohm -> 5K ohm -> 2K ohm: 先對焦後拍照（未實驗）
