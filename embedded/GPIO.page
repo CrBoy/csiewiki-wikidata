@@ -155,6 +155,233 @@ Demo
 - 我們在接Pin的過程的時候，發現有些燈會亮起來，圖中紅色鱷魚夾線把PD12跟PD14同時夾起來，LED5在LED4亮起來的時候也會亮，對照PD14的位置是LED5。
 - 我們觀察示波器用的Code只有對button跟LED4做設定，我們推測原因是LED4亮起來的時候，PD12處於高電位狀態，而鱷魚夾線連通PD14讓此腳位也處於高電位使LED5也亮起來了。
 
+Code Section
+-------------
+
+sample code download : 
+
+.. code-block:: c
+
+    git clone git://gitcafe.com/akasha00/stm32_GPIO_demo.git
+    cd stm32_GPIO_demo/
+
+test for code :
+
+.. code-block:: c
+
+    make
+    make flash
+
+測試方法 : 
+
+- input使用button作為範例，output是LED控制。
+
+stm32f4_discovery library的預先定義(in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.h) :
+
+.. code-block:: c
+
+    #define LEDn                             4
+
+    #define LED4_PIN                         GPIO_Pin_12
+    #define LED4_GPIO_PORT                   GPIOD
+    #define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
+  
+    #define LED3_PIN                         GPIO_Pin_13
+    #define LED3_GPIO_PORT                   GPIOD
+    #define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
+  
+    #define LED5_PIN                         GPIO_Pin_14
+    #define LED5_GPIO_PORT                   GPIOD
+    #define LED5_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
+  
+    #define LED6_PIN                         GPIO_Pin_15
+    #define LED6_GPIO_PORT                   GPIOD
+    #define LED6_GPIO_CLK                    RCC_AHB1Periph_GPIOD
+
+    #define BUTTONn                          1  
+
+    #define USER_BUTTON_PIN                GPIO_Pin_0
+    #define USER_BUTTON_GPIO_PORT          GPIOA
+    #define USER_BUTTON_GPIO_CLK           RCC_AHB1Periph_GPIOA
+    #define USER_BUTTON_EXTI_LINE          EXTI_Line0
+    #define USER_BUTTON_EXTI_PORT_SOURCE   EXTI_PortSourceGPIOA
+    #define USER_BUTTON_EXTI_PIN_SOURCE    EXTI_PinSource0
+    #define USER_BUTTON_EXTI_IRQn          EXTI0_IRQn 
+
+- LED是屬於GPIO port D，第12-15個pin分別是控制，LED4、LED3、LED5、LED6。
+- Button是屬於GPIO port A，第0個pin是可以用來檢查button狀態的腳位。在文件中，有時會看到Wake-up button這一名稱，其實就是在說User button，兩者是指同一個東西。
+
+
+input 設定 :
+
+- button initialization(in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.c) :
+
+.. code-block:: c
+
+    void STM_EVAL_PBInit(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
+    {
+       GPIO_InitTypeDef GPIO_InitStructure;
+       EXTI_InitTypeDef EXTI_InitStructure;
+       NVIC_InitTypeDef NVIC_InitStructure;
+
+       /* 要設定好Clock才能正確更新Button的State，BUTTON_CLK[Button]是指RCC_AHB1Periph_GPIOA */
+       RCC_AHB1PeriphClockCmd(BUTTON_CLK[Button], ENABLE);
+       RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+
+       /* 設定為input mode，我們不給pin任何預設狀態，所PuPd的部份設成NOPULL */
+       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+       GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+       GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+       GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
+
+       if (Button_Mode == BUTTON_MODE_EXTI)
+       {
+         /* 啟用interrupt並建立好與button腳位的連結 */
+         SYSCFG_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);
+
+         /* Configure Button EXTI line */
+         EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+         EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+         EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+         EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+         EXTI_Init(&EXTI_InitStructure);
+
+         /* Enable and set Button EXTI Interrupt to the lowest priority */
+         NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+         NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+         NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+         NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+         NVIC_Init(&NVIC_InitStructure); 
+       }
+     }
+
+- Button interrupt handler(in main.c)
+
+.. code-block:: c
+
+    void EXTI0_IRQHandler(void) 
+    {
+      /* 當Button按下後觸發interrupt，用自定義變數紀錄Button state的改變。 */
+      UserButtonPressed = 0x01;
+  
+      /* Clear the EXTI line pending bit */
+      EXTI_ClearITPendingBit(USER_BUTTON_EXTI_LINE);
+    }
+
+output 設定 :
+
+- LED initialization (in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.c) :
+
+.. code-block:: c
+
+    void STM_EVAL_LEDInit(Led_TypeDef Led)
+    {
+      GPIO_InitTypeDef  GPIO_InitStructure;
+  
+      /* LED是屬於Port D，要設定好Clk讓Port D可以正確被更新 */
+      RCC_AHB1PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+
+      /* 設定各LED對應的腳位，output type設成push-pull，並使用pull-up電阻，LED初始化完成時，會呈現高電位狀態(亮燈)。 */
+      GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+      GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+      GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+      GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+      GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+      GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+    }
+
+main.c : 
+
+- main function :
+
+.. code-block:: c
+
+    int main(void)
+    {
+      RCC_ClocksTypeDef RCC_Clocks;
+  
+      /* button初始化，並使用interrupt。 */
+      STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI); 
+
+      /* 初始化需要用到的LED。 */
+      STM_EVAL_LEDInit(LED4);
+      STM_EVAL_LEDInit(LED3);
+      STM_EVAL_LEDInit(LED5);
+      STM_EVAL_LEDInit(LED6);
+
+      /* 初始化有使用到pull-up電阻，預設會亮燈，在這邊把燈關掉。 */
+      STM_EVAL_LEDOff(LED4);
+      STM_EVAL_LEDOff(LED3);
+      STM_EVAL_LEDOff(LED5);
+      STM_EVAL_LEDOff(LED6);
+    
+      /* 初始化自定義變數 */
+      UserButtonPressed = 0x00;
+
+      /* Create a task to flash the LED. */
+      xTaskCreate(LED_task,
+             (signed portCHAR *) "LED Flash",
+             512 /* stack size */, NULL,
+             tskIDLE_PRIORITY + 5, NULL);
+
+      /* Create a task to button check. */
+      xTaskCreate(button_task,
+             (signed portCHAR *) "User Button",
+             512 /* stack size */, NULL,
+             tskIDLE_PRIORITY + 5, NULL);
+
+      /* Start running the tasks. */
+      vTaskStartScheduler(); 
+
+      return 0;
+    }
+
+- LED control task
+
+.. code-block:: c
+
+    static void LED_task(void *pvParameters)
+    {
+      RCC_ClocksTypeDef RCC_Clocks;
+      uint8_t togglecounter = 0x00;
+
+      while(1)
+      {    
+          /* Toggle LED5 */
+          STM_EVAL_LEDToggle(LED5);
+          vTaskDelay(100);
+          /* Toggle LED6 */
+          STM_EVAL_LEDToggle(LED6);
+          vTaskDelay(100);
+      }
+    }
+
+- Button check task :
+
+.. code-block:: c
+
+    static void button_task(void *pvParameters)
+    {
+       	    while (1)
+            {
+                /* Waiting User Button is pressed */
+    	        if (UserButtonPressed == 0x01)
+    	        {
+      	            /* Toggle LED4 */
+      	            STM_EVAL_LEDToggle(LED4);
+      	            vTaskDelay(100);
+      	            /* Toggle LED3 */
+      	            STM_EVAL_LEDToggle(LED3);
+      	            vTaskDelay(100);
+      	        }
+      	        /* Waiting User Button is Released */
+      	        while (STM_EVAL_PBGetState(BUTTON_USER) == Bit_SET);
+      	        UserButtonPressed = 0x00;
+      	   }
+      }
+
+
 Supplement
 ==========
 - 一些有預設控制元件的腳位(詳見- STM32F4-Discovery 中文使用手冊P.16)
