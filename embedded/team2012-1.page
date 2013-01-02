@@ -108,3 +108,15 @@ jpeg encoder
 ------------
 
 http://code.google.com/p/jpegant/
+
+OV7670 + AL422B
+---------------
+
+sccb
+^^^^
+
+似乎跟 i2c 相容
+
+stm32f4 i2c example
+
+https://github.com/Torrentula/STM32F4-examples
