@@ -5,13 +5,14 @@ toc: no
 
 題目
 ---
- * Smart Phone藍芽遙控車
+ * Smart Phone藍芽防撞遙控車
 
 預期目標
 -------
  * 以STM32F4 Discovery為核心運算平台牽動模型車
  * 用Android作業系統手機 連接平台下指令操作模型車
  * 利用手機可遙控車做 前走 後退 左轉 右轉 動作
+ * 避免遙控車撞到牆壁 遇到前方障礙進行轉彎動作
 
 組員
 ----
@@ -25,6 +26,7 @@ toc: no
 - 馬達驅動模組  200 http://goods.ruten.com.tw/item/show?21201068138215
 - 藍牙通訊模組  195 http://goods.ruten.com.tw/item/show?21112269813433
 - 電池盒底座    35  http://goods.ruten.com.tw/item/show?21206283948072
+- 超音波測距模組 100 http://blog.kenyang.net/2012/07/android-bluetooth-api.html
 
 
 參考資訊
