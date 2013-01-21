@@ -6,7 +6,7 @@ toc: no
 題目
 ---
  * 餵魚機
-http://wiki.csie.ncku.edu.tw/%E6%AD%A3%E9%9D%A2.jpg
+.. image:: http://wiki.csie.ncku.edu.tw/%E6%AD%A3%E9%9D%A2.jpg
 預期目標
 -------
  * 可以控制每日餵食次數並以七段顯示器顯示
