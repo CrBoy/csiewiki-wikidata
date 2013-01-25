@@ -395,3 +395,20 @@ REFERENCE
 - `Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
 
 - `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
+Q&A
+1.Uart 原理
+
+DTE（Data Terminal Equipment）簡稱數據終端設備；DCE（Data Communications Equipment）簡稱數據通信設備。
+事實上，RS-232C標準的正規名稱是"數據終端設備和數據通信設備之間串行二進制數據交換的接口"。通常，將通信線路終端一側的計算機或終端稱為DTE，而把連接通信線路一側的調製解調器稱為DCE。
+RS-232C標準中所提到的"發送"和"接收"，都是站在DTE立場上，而不是站在DCE的立場來定義的。由於在計算機系統中往往是CPU和I/O設備之間傳送信息，兩者都是DTE，因此雙方都能發送接收。
+所謂"串行通信"是指DTE和DCE之間使用一根數據信號線（另外需要地線，可能還需要控制線），數據在一根數據信號線上一位一位地進行傳輸，每一位數據都佔據一個固定的時間長度。這種通信方式使用的數據線少，在遠距離通信中可以節約通信成本，當然，其傳輸速度比並行傳輸慢。
+
+2.高速UART及低速UART之應用?
+
+嵌入在ElanSC520微控制器中的高速UART通信的速度可以高達1.1152Mbps，另外
+利用計算機軟件技術(EDA技術)和FPGA／CPLD的靈活性可以方便快速地設計高速和低
+速的UART。高速的UART可以用在光纖通信上，低速的UART可以用在FPGA／CPLD和單片機的通信上。
+
+3.紅外線高速之應用?
+
+低速紅外線是指其傳輸速率在每秒115.2Kbits者而言，它適用於傳送簡短的訊息、文字或是檔案。有低速紅外線也有高速紅外線（Fast IR），它是指傳輸速率在每秒1或是4Mbits者而言，其他更高傳輸速率則仍在發展中。對於網路解決方案而言，高速紅外線可以說是其基礎，包括檔案傳輸、區域網路連結甚至是多媒體傳輸。
