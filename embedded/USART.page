@@ -395,7 +395,10 @@ REFERENCE
 - `Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
 
 - `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
+
 Q&A
+...................
+
 1.Uart 原理
 
 DTE（Data Terminal Equipment）簡稱數據終端設備；DCE（Data Communications Equipment）簡稱數據通信設備。
