@@ -30,10 +30,9 @@ toc: no
 
 照片
 ----
-![2](2.jpg).
-![1](1.jpg).
-.. image:: /2.png
-.. image:: /1.png
+
+.. image:: /2.jpg
+.. image:: /1.jpg
 
 參考資訊
 -------
