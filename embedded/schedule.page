@@ -23,7 +23,7 @@ Week    Date          Subject                                            Assignm
 #12      May  7  
 #13      May 14  
 #14      May 21  
-#15      May 28       `Automotive Linux Summit (Spring)`_
+#15      May 28       `Automotive Linux Summit (Spring)`_  
 #16      Jun  4
 #17      Jun 11
 ====  =====     ======                                         ==========
@@ -32,8 +32,8 @@ Week    Date          Subject                                            Assignm
 .. _`Operating System Engineering`: 2013w2
 .. _`Lab 1`: Lab1
 .. _`Lab 2`: Lab2
-.._`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
-.._`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
+.. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
+.. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
 
 進階嵌入式系統開發與實作 (Fall 2012)
 ------------------------------------------------------
