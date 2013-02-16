@@ -9,12 +9,14 @@ toc: no
 ====  =====     ======                                         ==========
 Week    Date          Subject                                            Assignment
 ====  =====     ======                                         ==========
-#1        Feb 19       `課程介紹 + 期初考`_                               Lab 1
-#2        Feb 26       `Operating System Engineering`_          Lab 2
+#1        Feb 19       `課程介紹 + 期初考`_                               `Lab 1`: 開放教材觀賞 + 背景知識複習 
+#2        Feb 26       `Operating System Engineering`_          `Lab 2`: GNU Toolchain + RTOS
 ====  =====     ======                                         ==========
 
 .. _`課程介紹 + 期初考`: 2013w1
 .. _`Operating System Engineering`: 2013w2
+.. _`Lab 1`: Lab1
+.. _`Lab 2`: Lab2
 
 進階嵌入式系統開發與實作 (Fall 2012)
 ------------------------------------------------------
