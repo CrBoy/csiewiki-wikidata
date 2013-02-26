@@ -123,6 +123,7 @@ FreeRTOS for STM32
 .. code-block:: prettyprint
 
     cd freertos
+    export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
     make
     make qemu
 
