@@ -142,6 +142,7 @@ FreeRTOS for STM32
 - 在 March 8, 2013 (含) 之前
 - 寄件到 <jserv.tw@gmail.com>
   - 標題: "[NCKU/Lab8]" 開頭，後面加學號與姓名
+    * 格式不合者，不計分！
   - 內容：(回答以下問題)
     * context switch 的精確度
     * 目前視覺化的問題
