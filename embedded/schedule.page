@@ -10,8 +10,8 @@ toc: no
 
 * Week / Date / Subject / Assignment
 * #1 / Feb 19 / `課程介紹 + 期初考`_ / N/A
-* #2 / Feb 26 / `Operating System Engineering`_ / `Lab 8`_ : GNU Toolchain + RTOS
-* #3 / Mar  5 / --- / `Lab 9`_ :
+* #2 / Feb 26 / `Embedded Operating System Concepts`_ / `Lab 8`_ : GNU Toolchain + RTOS
+* #3 / Mar  5 / `RTOS Characteristics`_ / `Lab 9`_ :
 * #4 / Mar 12 / --- / ---
 * #5 / Mar 19 / --- / ---
 * #6 / Mar 26 / --- / ---
@@ -28,7 +28,8 @@ toc: no
 * #17 / Jun 11 / --- / ---
 
 .. _`課程介紹 + 期初考`: 2013w1
-.. _`Operating System Engineering`: 2013w2
+.. _`Embedded Operating System Concepts`: 2013w2
+.. _`RTOS Characteristics`: 2013w3
 .. _`Lab 8`: Lab8
 .. _`Lab 9`: Lab9
 .. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
