@@ -98,11 +98,11 @@ FreeRTOS for STM32
 - 取得最新的 QEMU-STM32：
     ``git clone git://gitcafe.com/embedded2012/qemu_stm32.git``
 
-若 git 取得失敗的話，請改用以下：
+若 git 取得失敗的話，請改用以下： `qemu_stm32-git.tar.bz2</embedded/qemu_stm32-git.tar.bz2>`_
 
 .. code-block:: prettyprint
 
-    tar jxvf `qemu_stm32-git.tar.bz2</embedded/qemu_stm32-git.tar.bz2>`_
+    tar jxvf qemu_stm32-git.tar.bz2
 
 - 配置 QEMU-STM32 組態並編譯
 
