@@ -114,7 +114,8 @@ FreeRTOS for STM32
         --extra-cflags=-DDEBUG_STM32_RCC \
         --extra-cflags=-DDEBUG_STM32_UART \
         --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
-        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
+        --extra-ldflags="-lrt"
     make && cd ..
 
 - 仿造 `Lab-2</embedded/Lab2>`_ 的操作，編譯並執行 FreeRTOS 程式
