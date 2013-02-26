@@ -8,7 +8,6 @@ toc: no
 
 .. image:: /embedded/logo-2012-small.png
 
-
 * Week / Date / Subject / Assignment
 * #1 / Feb 19 / `課程介紹 + 期初考`_ / N/A
 * #2 / Feb 26 / `Operating System Engineering`_ / `Lab 8`_ : GNU Toolchain + RTOS
@@ -27,6 +26,7 @@ toc: no
 * #15 / May 28 / `Automotive Linux Summit (Spring)`_ / `LinuxCon Japan`_ / ...
 * #16 / Jun  4 / --- / ---
 * #17 / Jun 11 / --- / ---
+
 .. _`課程介紹 + 期初考`: 2013w1
 .. _`Operating System Engineering`: 2013w2
 .. _`Lab 8`: Lab8
