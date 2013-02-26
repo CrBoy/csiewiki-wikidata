@@ -92,7 +92,7 @@ FreeRTOS for STM32
 
 .. code-block:: prettyprint
 
-    git clone git://gitcafe.com/embedded2012/Labs.git
+    git clone git://gitcafe.com/embedded2013/Labs.git
     cd Labs/Lab-8
 
 - 取得最新的 QEMU-STM32：
