@@ -8,24 +8,26 @@ toc: no
 
 .. image:: /embedded/logo-2012-small.png
 
-* Week / Date / Subject / Assignment
-* #1 / Feb 19 / `課程介紹 + 期初考`_ / N/A
-* #2 / Feb 26 / `Embedded Operating System Concepts`_ / `Lab 8`_ : GNU Toolchain + RTOS
-* #3 / Mar  5 / `RTOS Characteristics`_ / `Lab 9`_ :
-* #4 / Mar 12 / --- / ---
-* #5 / Mar 19 / --- / ---
-* #6 / Mar 26 / --- / ---
-* #7 / Apr  2 / --- / ---
-* #8 / Apr  9 / --- / ---
-* #9 / Apr 16 / --- / ---
-* #10 / Apr 23 / --- / ---
-* #11 / Apr 30 / --- / ---
-* #12 / May 7 / --- / ---
-* #13 / May 14 / --- / ---
-* #14 / May 21 / --- / ---
-* #15 / May 28 / `Automotive Linux Summit (Spring)`_ / `LinuxCon Japan`_ / ...
-* #16 / Jun  4 / --- / ---
-* #17 / Jun 11 / --- / ---
+====  ====     =======                                 ==========
+Week  Date     Subject                                 Assignment
+====  ====     =======                                 ==========
+#1    Feb 19   `課程介紹 + 期初考`_                       N/A
+#2    Feb 26   `Embedded Operating System Concepts`_   `Lab 8`_ : GNU Toolchain + RTOS
+#3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ :
+#4    Mar 12                                           -
+#5    Mar 19                                           -
+#6    Mar 26                                           -
+#7    Apr  2                                           -
+#8    Apr  9                                           -
+#9    Apr 16                                           -
+#10   Apr 23                                           - 
+#11   Apr 30                                           -
+#12   May  7                                           - 
+#13   May 14                                           - 
+#14   May 21                                           -
+#15   May 28   `Automotive Linux Summit (Spring)`_     -
+#16   Jun  4                                           -
+#17   Jun 11   The End
 
 .. _`課程介紹 + 期初考`: 2013w1
 .. _`Embedded Operating System Concepts`: 2013w2
