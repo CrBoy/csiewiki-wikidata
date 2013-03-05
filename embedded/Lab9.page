@@ -13,6 +13,7 @@ toc: no
 -------
 - 確保 `Lab 8</embedded/Lab8>`_ 的環境設定一切無誤
 - 參閱 `Git 簡易操作</git>`_ 與 `寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_
+- 強者我同事的演講: `MCLinker -- an LLVM Linker for Mobile Computing<http://www.youtube.com/watch?v=nCAlAoXKWVk>`_
 
 QEMU + GDB 操作
 ----------------------
