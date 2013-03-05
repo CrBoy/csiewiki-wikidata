@@ -22,6 +22,7 @@ toc: no
 - YouTube: 
   * `登月機具：導航系統<http://www.youtube.com/watch?v=INO_3daAFtY>`_
   * `What most schools don't teach<http://blog.youtubelearn.com/what-most-schools-dont-teach/>`_
+
 - `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
   * `使用 coroutine 實做 user-level thread<http://blog.linux.org.tw/~jserv/archives/001848.html>`_
   * `Coroutine in FPPA<http://godspeedlee.myweb.hinet.net/coroutine.html>`_
