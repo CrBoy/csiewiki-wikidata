@@ -19,7 +19,7 @@ Week  Date     Subject                                 Assignment
 #1    Feb 19   `課程介紹 + 期初考`_                       
 #2    Feb 26   `Embedded Operating System Concepts`_   `Lab 8`_ : GNU Toolchain + RTOS
 #3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming
-#4    Mar 12                                           -
+#4    Mar 12   `從火星探測號談 scheduling 議題`_          `Lab 10`_:
 #5    Mar 19                                           -
 #6    Mar 26                                           -
 #7    Apr  2                                           -
@@ -38,8 +38,10 @@ Week  Date     Subject                                 Assignment
 .. _`課程介紹 + 期初考`: 2013w1
 .. _`Embedded Operating System Concepts`: 2013w2
 .. _`RTOS Characteristics`: 2013w3
+.. _`從火星探測號談 scheduling 議題`: 2013w4
 .. _`Lab 8`: Lab8
 .. _`Lab 9`: Lab9
+.. _`Lab 10`: Lab10
 .. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
 .. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
 
