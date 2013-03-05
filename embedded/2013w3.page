@@ -13,8 +13,11 @@ toc: no
   * `登月機具：導航系統<http://www.youtube.com/watch?v=INO_3daAFtY>`_
   * `What most schools don't teach<http://blog.youtubelearn.com/what-most-schools-dont-teach/>`_
 - `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
-  * `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
-  * `Quick Co-routine Example<http://www.freertos.org/coroutine-example-code.html>`
+  * `使用 coroutine 實做 user-level thread<http://blog.linux.org.tw/~jserv/archives/001848.html>`_
+  * `Coroutine in FPPA<http://godspeedlee.myweb.hinet.net/coroutine.html>`_
+  * `淺談coroutine與gevent<http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/>`_
+  * FreeRTOS: `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
+  * FreeRTOS: `Quick Co-routine Example<http://www.freertos.org/coroutine-example-code.html>`
 - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
   * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
 
