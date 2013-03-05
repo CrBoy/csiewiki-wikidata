@@ -35,7 +35,7 @@ QEMU + GDB 操作
 
 .. code-block:: prettyprint
 
-    cd Lab-2/demo
+    cd Lab-9/mtask
     arm-none-eabi-gdb
     (gdb) file main.elf 
     Reading symbols from Lab-2/demo/main.elf...done.
@@ -115,7 +115,7 @@ QEMU + GDB 操作
 
 作業
 -------
-- 適度修改 Lab-2/mtask 目錄底下的檔案，以 co-routine 改寫原本 task 的操作
+- 適度修改 Lab-9/mtask 目錄底下的檔案，以 co-routine 改寫原本 task 的操作
   * 注意：有些如 UART 處理 (輸出與輸入)，需要相當謹慎，務求功能一致
   * 只需要繳交「修改過」的檔案即可
 
