@@ -28,7 +28,8 @@ toc: no
   * `Coroutine in FPPA<http://godspeedlee.myweb.hinet.net/coroutine.html>`_
   * `淺談coroutine與gevent<http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/>`_
   * FreeRTOS: `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
-  * FreeRTOS: `Quick Co-routine Example<http://www.freertos.org/coroutine-example-code.html>`
+  * FreeRTOS: `Quick Co-routine Example<http://www.freertos.org/coroutine-example-code.html>`_
+
 - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
   * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
 
