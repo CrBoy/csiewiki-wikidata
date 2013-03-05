@@ -12,3 +12,11 @@ toc: no
 - YouTube: 
   * `登月機具：導航系統<http://www.youtube.com/watch?v=INO_3daAFtY>`_
   * `What most schools don't teach<http://blog.youtubelearn.com/what-most-schools-dont-teach/>`_
+- `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
+- `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
+- `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
+參考資訊
+---------
+- `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
