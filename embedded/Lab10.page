@@ -50,6 +50,25 @@ toc: no
 
     ``git clone https://gitcafe.com/embedded2013/Labs.git``
 
+FreeRTOS
+----------------
+- `FreeRTOS Tutorial<http://www.socialledge.com/sjsu/index.php?title=FreeRTOS_Tutorial>`_
+- `CptS 466: Spring, 2013: Embedded Systems<http://eecs.wsu.edu/~aofallon/cpts466/schedule.htm>`_
+
+作業要求
+------------
+* 適度修改 Lab-10/mtask 目錄底下的檔案，藉由 FreeRTOS 的 Semaphores 與 IPC 機制，模擬出 Mars Pathfinder 的 priority inversion 狀況
+* 程式碼需要提交到 Git
+* 來信告知模擬的情況
+
+繳交作業
+------------
+* 截止日期：
+  * 成大/中正: March 22, 2013 (含) 之前
+  * 寄件到 <jserv.tw@gmail.com>
+  * 標題: “[NCKU/Lab9]” 開頭，後面加學號與姓名
+    * 中正: 改為 “[CCU/Lab9]” 開頭
+ * 格式不合者，不計分！
 
 小提示
 -----
