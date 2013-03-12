@@ -63,3 +63,5 @@ toc: no
 - Ubuntu Linux 預設的文字編輯器為 nano，對許多習慣於 vi/vim 的使用者來說，較為不便，可透過以下指令選擇：
 
     ``sudo update-alternatives --config editor``
+
+- 可安裝 ``tig``，一個輕便好用的 Git client 軟體
