@@ -44,7 +44,7 @@ toc: no
 
     git clone git@gitcafe.com:embedded2013/P-jserv.git
     cd P-jserv
-    git remote add labs git://gitcafe.com/embedded2013/Labs.git
+    git remote add labs https://gitcafe.com/embedded2013/Labs.git
     git fetch labs
     git rebase labs/master
 
