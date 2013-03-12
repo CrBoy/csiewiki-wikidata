@@ -6,7 +6,7 @@ toc: no
 預期目標
 -------
 - 以 Git 管理與追蹤開發過程
-- 引入自動評分機制
+- 使用 FreeRTOS 進行開發，體驗 priority inversion
 
 預先準備
 -------
