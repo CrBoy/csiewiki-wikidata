@@ -6,7 +6,7 @@ toc: no
 預期目標
 -------
 - 以 Git 管理與追蹤開發過程
-- 使用 FreeRTOS 進行開發，體驗 priority inversion
+- 學習使用 FreeRTOS 進行系統開發，體驗 priority inversion
 
 預先準備
 -------
@@ -17,7 +17,8 @@ toc: no
   - 可參考「`產生 SSH key 給 Bitbucket/Github 使用<http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/>`_」一文
   - 於 GitCafe 中的 SSH key 設定，可參閱「`GitCafe SSH key設定官方說明  <https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md/>`_」
 
-- 將註冊的帳號名稱，通知講師 <jserv.tw@gmail.com>，於 `Organization **embedded2013**<https://gitcafe.com/embedded2013>`_ 加入用於紀錄開發動態的 Git repository
+- 將註冊的帳號名稱，通知講師 <jserv.tw@gmail.com>，
+  - 於 `Organization **embedded2013**<https://gitcafe.com/embedded2013>`_ 加入用於紀錄開發動態的 Git repository
   - 範例: `P-jserv<https://gitcafe.com/embedded2013/P-jserv>`_，最好與 wiki 帳號名稱一致，以利於識別
   - 點選 **SSH (Read+Write)** 可得到 git repository 的位址，如上例為
 
@@ -31,7 +32,8 @@ toc: no
 - 線上瀏覽
   * https://gitcafe.com/embedded2013/Labs
 
-- 已取得 `GitCafe<https://gitcafe.com>`_ Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發。以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
+- 已取得 `GitCafe<https://gitcafe.com>`_ Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發
+- 以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
 
 .. code-block:: prettyprint
 
@@ -57,7 +59,8 @@ FreeRTOS
 
 作業要求
 ------------
-* 適度修改 Lab-10/mtask 目錄底下的檔案，藉由 FreeRTOS 的 Semaphores 與 IPC 機制，模擬出 Mars Pathfinder 的 priority inversion 狀況
+* 適度修改 Lab-10/mtask 目錄底下的檔案
+* 藉由 FreeRTOS 的 Semaphores 與 IPC 機制，模擬出 Mars Pathfinder 的 priority inversion 狀況
 * 程式碼需要提交到 Git
    * 在信件中要提及 Git repository 與簡述修改
 * 來信告知模擬的情況
