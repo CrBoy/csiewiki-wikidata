@@ -6,30 +6,25 @@ toc: no
 預期目標
 -------
 - 學習 ARM 系統開發
+- 實作 RTOS 的基礎特徵: priority-based schedule 與 message queue
 
-自本次開始所採用的 Git repository
+自 Git repository 取得程式碼
 -------------------------------
-- 線上瀏覽
-  * https://gitcafe.com/embedded2013/Labs
-
-- 已取得 `GitCafe<https://gitcafe.com>`_ Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發
-- 以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
+- 請參照 `Lab-10</embedded/Lab10>`_ 得知 Git 使用方式
+- 取得最新的作業及參考內容
 
 .. code-block:: prettyprint
 
-    git clone git@gitcafe.com:embedded2013/P-jserv.git
-    cd P-jserv
-    git remote add labs https://gitcafe.com/embedded2013/Labs.git
     git fetch labs
     git rebase labs/master
 
-- 往後只要重複執行前項的後兩個指令 (``git fetch`` 與 ``git rebase``)，即可取得最新的作業及參考內容
 - 將過程所需要的檔案透過 ``git add`` 指令加入到工作區，接著透過 ``git push`` 來提交修改
   * 最好事先以 ``git pull`` 確認整合伺服器端的修改
 
 - 僅想測試 Labs 的操作 (適合在課堂 / 電腦教室的環境)
 
     ``git clone https://gitcafe.com/embedded2013/Labs.git``
+
 
 QEMU執行
 ----------------
