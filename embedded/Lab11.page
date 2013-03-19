@@ -58,6 +58,8 @@ QEMU執行
    * message queue
 
 * 預期執行時期的行為應該與 `Lab-9</embedded/Lab9>`_ 相同
+* 提示
+  * 可參考 FreeRTOS 的原始程式碼，參照 TCB 與其對應的 stack
 
 繳交作業
 ------------
