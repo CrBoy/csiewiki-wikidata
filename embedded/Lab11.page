@@ -33,7 +33,7 @@ toc: no
 
 QEMU執行
 ----------------
-* 編譯給定的迷你作頁系統
+* 編譯給定的迷你作業系統
 
 .. code-block:: prettyprint
 
