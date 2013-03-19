@@ -33,20 +33,13 @@ toc: no
 
 作業要求
 ------------
-* 適度修改 Lab-10/mtask 目錄底下的檔案
-* 藉由 FreeRTOS 的 Semaphores 與 IPC 機制，模擬出 Mars Pathfinder 的 priority inversion 狀況
-* 程式碼需要提交到 Git
-   * 在信件中要提及 Git repository 與簡述修改
+* 適度修改 Lab-11/ 目錄，將原本單純的 ARM 多工作業系統改為支援以下：
+   * priority-based scheduling
+   * message queue
 
-* 來信告知在 FreeRTOS 模擬 Mars Pathfinder 的情況
+* 預期執行時期的行為應該與 `Lab-9</embedded/Lab9>`_ 相同
 
 繳交作業
 ------------
 * 截止日期：
-  * 成大/中正: March 22, 2013 (含) 之前
-
-* 寄件到 <jserv.tw@gmail.com>
-  * 標題: “[NCKU/Lab10]” 開頭，後面加學號與姓名
-    * 中正: 改為 “[CCU/Lab10]” 開頭
-
-  * 格式不合者，不計分！
+  * 成大/中正: Apr 8, 2013 (含) 之前
