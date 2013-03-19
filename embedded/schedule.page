@@ -20,7 +20,7 @@ Week  Date     Subject                                 Assignment
 #2    Feb 26   `Embedded Operating System Concepts`_   `Lab 8`_ : GNU Toolchain + RTOS
 #3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming
 #4    Mar 12   `從火星探測號談 scheduling`_                   `Lab 10`_ : Priority Inversion
-#5    Mar 19                                           -
+#5    Mar 19   `ARM Architecture`_                     `Lab 11`_: Build RTOS for ARM
 #6    Mar 26                                           -
 #7    Apr  2                                           -
 #8    Apr  9                                           -
@@ -39,6 +39,7 @@ Week  Date     Subject                                 Assignment
 .. _`Embedded Operating System Concepts`: 2013w2
 .. _`RTOS Characteristics`: 2013w3
 .. _`從火星探測號談 scheduling`: 2013w4
+.. _`ARM Architecture`: 2013w5
 .. _`Lab 8`: Lab8
 .. _`Lab 9`: Lab9
 .. _`Lab 10`: Lab10
