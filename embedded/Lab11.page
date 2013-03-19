@@ -31,6 +31,31 @@ toc: no
 
     ``git clone https://gitcafe.com/embedded2013/Labs.git``
 
+QEMU執行
+----------------
+* 編譯給定的迷你作頁系統
+
+.. code-block:: prettyprint
+
+    make
+
+* 安裝 QEMU ARM system emulation
+
+.. code-block:: prettyprint
+
+    sudo apt-get install qemu-system-arm
+
+* 啟動 QEMU
+
+.. code-block:: prettyprint
+
+    qemu-system-arm \
+        -M versatilepb -cpu arm926 \
+        -nographic \
+        -kernel kernel.elf
+
+* 離開 QEMU 模擬環境: 先按下 Ctrl-A 再按下 x 
+
 作業要求
 ------------
 * 適度修改 Lab-11/ 目錄，將原本單純的 ARM 多工作業系統改為支援以下：
