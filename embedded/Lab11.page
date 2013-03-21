@@ -38,6 +38,12 @@ QEMU執行
 
 .. code-block:: prettyprint
 
+    sudo apt-get install qemu-system
+
+或者安裝單一 ARM 平台
+
+.. code-block:: prettyprint
+
     sudo apt-get install qemu-system-arm
 
 * 啟動 QEMU
