@@ -7,3 +7,26 @@ toc: no
 -------
 - 延展過去幾次的實驗與作業，提出一個具體的 RTOS 視覺化機制
 - 學習 Grasp 視覺化工具
+
+作業
+-------
+- 適度修改 Lab-12/freertos 目錄底下的檔案，以 Grasp 重新實作視覺化機制
+   * 需要包含 context-switch
+   * 需要包含 mutex 的視覺化
+
+- 可整合 Grasp Recorder 以在 FreeRTOS 作事件紀錄
+- 程式碼一律提交到 Git repository，操作方式請參考之前 Lab
+   * ``make gdbauto`` 時，應該要產生 ``sched.grasp`` 檔案
+
+繳交作業
+-------
+- 截止日期：
+   * 成大/中正: Apr 12, 2013 (含) 之前
+
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: 
+    * 成大: "[NCKU/Lab12]" 開頭，後面加學號與姓名
+    * 中正: "[CCU/Lab12]" 開頭，後面加學號與姓名
+    * 格式不合者，不計分！
+
+- 信件內應該描述開發的想法、面臨的技術問題以及如何克服，以及關於 context-swicth / mutex 的畫面輸出
