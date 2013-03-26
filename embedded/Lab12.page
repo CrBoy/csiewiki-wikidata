@@ -16,11 +16,11 @@ Grasp
 
 作業
 -------
-- 適度修改 Lab-12/freertos 目錄底下的檔案，以 Grasp 重新實作視覺化機制
+- 適度修改 Lab-12/freertos 目錄底下的檔案，以 `Grasp<http://www.win.tue.nl/san/grasp/>`_ 重新實作視覺化機制
    * 需要包含 context-switch
    * 需要包含 mutex 的視覺化
 
-- 可整合 Grasp Recorder 以在 FreeRTOS 作事件紀錄
+- 可參考 Grasp Recorder 的 instrumentation，以便在 FreeRTOS 作事件紀錄
 - 程式碼一律提交到 Git repository，操作方式請參考之前 Lab
    * ``make gdbauto`` 時，應該要產生 ``sched.grasp`` 檔案
 
