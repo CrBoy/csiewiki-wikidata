@@ -13,6 +13,7 @@ toc: no
    * red-black tree
    * Probability
    * sequence of memory references, cache invalidates on a write hit
+
 - #1: Mar 26, 2013
 - #2: Apr 30, 2013
 - #3: May 28, 2013 
