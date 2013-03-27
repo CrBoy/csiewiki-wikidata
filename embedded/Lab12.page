@@ -15,6 +15,14 @@ Grasp
 - `Grasp<http://www.win.tue.nl/san/grasp/>`_ is a tool for tracing, visualizing and measuring the behavior of real-time systems. It provides a simple plugin infrastructure for extending Grasp with custom visualization and measurement methods.
 - PDF: `Grasp: Tracing, Visualizing and Measuring the Behavior of Real-Time Systems<http://www.win.tue.nl/~mholende/publications/Holenderski2010.pdf>`_
 
+- mutex 視覺化輸出
+
+.. image:: /embedded/Lab12/mutex.png
+
+- RTOS scheduling 視覺化輸出
+
+.. image:: /embedded/Lab12/hsf.png
+
 作業
 -------
 - 適度修改 Lab-12/freertos 目錄底下的檔案，以 `Grasp<http://www.win.tue.nl/san/grasp/>`_ 重新實作視覺化機制
