@@ -24,7 +24,7 @@ Week  Date     Subject                                 Assignment
 #5    Mar 19   `ARM Architecture Intro`_                     `Lab 11`_: Build RTOS for ARM
 #6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization
 #7    Apr  2   春假                                        -
-#8    Apr  9                                           -
+#8    Apr  9   I/O, Interrupt, Exception (ARM)         Lab 13: ARM Programming with GNU Toolchain
 #9    Apr 16                                           -
 #10   Apr 23                                           - 
 #11   Apr 30                                           -
