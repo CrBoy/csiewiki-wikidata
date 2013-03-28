@@ -25,9 +25,9 @@ Week  Date     Subject                                 Assignment
 #6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization
 #7    Apr  2   春假                                        -
 #8    Apr  9   I/O, Interrupt, Exception (ARM)         Lab 13: ARM Programming with GNU Toolchain
-#9    Apr 16                                           -
-#10   Apr 23                                           - 
-#11   Apr 30                                           -
+#9    Apr 16   RTOS Design and Implementation          Lab 14: Extend RTOS
+#10   Apr 23   Synchronization and Scheduling          Lab 15: Validation and benchmarking
+#11   Apr 30   Tickless scheduling                     Lab 16: Hardware enablement
 #12   May  7                                           - 
 #13   May 14                                           - 
 #14   May 21                                           -
