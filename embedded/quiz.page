@@ -14,6 +14,12 @@ toc: no
    * Probability
    * sequence of memory references, cache invalidates on a write hit
 
-- #1: Mar 26, 2013
+- #1: `Mar 26, 2013</embedded/exam-2013-1-full.doc>`_
+   * critical section
+   * Rate Monotonic scheduling; Earlies Deadline First scheduling
+   * synchronization
+   * priority inversion
+   * FreeRTOS programming: semaphore API
+
 - #2: Apr 30, 2013
 - #3: May 28, 2013 
