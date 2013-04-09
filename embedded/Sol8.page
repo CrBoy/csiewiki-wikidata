@@ -1,0 +1,35 @@
+---
+title: Lab8: GNU Toolchain and RTOS (Solution)
+toc: no
+...
+
+Information
+------------------
+- Provided by Lucas Wei <lucas.weisr@gmail.com>
+
+context switch 的精確度
+-----------------------------------
+* 最初的程式碼在計算 context switch 的精確度上有兩個問題：
+  * 時間單位為 1 個 tick，因次打開收集資訊後的 ``gdb.txt`` 檔案後發現，有許多 task
+    在執行的時候因為都是屬於同一個 tick，所以沒辦法被精確測量。
+  * 在進行 context switch 的時間，被列入 task 執行的時間內
+
+目前視覺化的問題
+------------------------
+目前計算 task 時間重疊的方式，是在 ``gdbtovcd.py`` 中加入時間位移參數，使得順序可以被呈現，
+但是時間細微的時間差就有了精度上面的不準確。
+
+具體改善方法
+------------------
+* 提高時間單位的精度
+   * 讀取 SysTick 中 current & reload 的數值，用來計算更精確的時間單位 (小於tick)
+   * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html
+* 增加追蹤執行狀態的 break point，藉以了解程式目前運作的位置
+  * 增加程式 context switch 的 Hook
+  * 將程式在 idle 時的 function 也列入追蹤
+* 為了方便分析數據，另行撰寫了一個 ``gdbtovcd.py``
+* 增改 ``gdbscript``
+  * 最早的修改方式是將 ``FreeRTOSConfig.h`` 中的時脈調高，但是當時脈高達 1000 時，會因為過度頻繁的
+    context switch 而導致 GDB 追蹤時出現問題，所以放棄這個方法
+  * 而為了取得想要的數值，有對每個 break point 時資料的輸出方式做更改，目前是將需要的資料在 break point
+    時輸出，在於之後的 ``gdbtovcd.py`` 內進行進一步的計算
