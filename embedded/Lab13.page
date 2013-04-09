@@ -13,3 +13,23 @@ toc: no
 * `Embedded Programming with the GNU Toolchain<http://www.bravegnu.org/gnu-eprog/>`_, Vijay Kumar B.
 * `ARM System Overview</embedded/arm-overview.pdf>`_
 * `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
+
+作業要求
+-------------
+* 與 `Lab 11</embedded/Lab11>`_  相同，繼續完成指定功能
+
+繳交作業
+------------
+* 截止日期：
+  * 成大/中正: Apr 19, 2013 (含) 之前
+
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: 
+    * 成大: "[NCKU/Lab13]" 開頭，後面加學號與姓名
+    * 中正: "[CCU/Lab13]" 開頭，後面加學號與姓名
+    * 格式不合者，不計分！
+
+- 信件內應該描述開發的想法、面臨的技術問題以及如何克服。需要簡略提及以下：
+   * 如何實作 priority-based scheduling？又，如何驗證與測試？
+   * 如何實作 message queue？又，如何驗證與測試？
+   * 上課至今的感謝與建議
