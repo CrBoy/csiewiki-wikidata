@@ -14,7 +14,7 @@ toc: no
    * Probability
    * sequence of memory references, cache invalidates on a write hit
 
-- #1: `Mar 26, 2013</embedded/exam-2013-1-full.doc>`_
+- #1: `Mar 26, 2013</embedded/exam-1-full.doc>`_
    * critical section
    * Rate Monotonic scheduling; Earlies Deadline First scheduling
    * synchronization
