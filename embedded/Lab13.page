@@ -9,6 +9,7 @@ toc: no
 * 培養足夠的技術基礎，得以進行 `Lab 11</embedded/Lab11>`_ 
 
 藉由 GNU Toolchain 學習系統程式開發
+----------------------------------------------------------
 * `Embedded Programming with the GNU Toolchain<http://www.bravegnu.org/gnu-eprog/>`_, Vijay Kumar B.
 * `ARM System Overview</embedded/arm-overview.pdf>`_
 * `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
