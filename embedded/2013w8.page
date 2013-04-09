@@ -13,3 +13,15 @@ toc: no
   * 克萊斯勒談 GPU 運算改善汽車產業設計生產流程: http://www.cool3c.com/article/66148
 * Techbang
   * ARM Cortex-A50 - AArch64: http://www.techbang.com/posts/12224-arm-of-the-64-bit-revolution-resolution
+
+Assignment Review
+------------------------------
+* `Lab 8</embedded/Lab8>`_: GNU Toolchain + RTOS
+   * Due: March 12, 2013
+   * `Lab 8 Solution</embedded/Sol8>`_; provider: Lucas Wei
+
+* `Lab 9</embedded/Lab9>`_: Multitasking programming
+  * Due: March 15, 2013
+  * `Lab 9 Solution</embedded/Sol9>`_; provider: Ji-Heng Wu
+
+* `Lab 10</embedded/Lab10>`_: Priority Inversion
