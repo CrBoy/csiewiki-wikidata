@@ -28,6 +28,7 @@ context switch 的精確度
 * 增加追蹤執行狀態的 break point，藉以了解程式目前運作的位置
   * 增加程式 context switch 的 Hook
   * 將程式在 idle 時的 function 也列入追蹤
+
 * 為了方便分析數據，另行撰寫了一個 ``gdbtovcd.py``
 * 增改 ``gdbscript``
   * 最早的修改方式是將 ``FreeRTOSConfig.h`` 中的時脈調高，但是當時脈高達 1000 時，會因為過度頻繁的
