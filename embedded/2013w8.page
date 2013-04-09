@@ -20,7 +20,7 @@ toc: no
   * ARM Cortex-A50 - AArch64: http://www.techbang.com/posts/12224-arm-of-the-64-bit-revolution-resolution
   * 完全看懂 ARM 處理器: http://www.techbang.com/posts/10678
 
-* `ARM System Overview<http://0xlab.org/~jserv/tmp/arm-overview.pdf>`_
+* `ARM System Overview</embedded/arm-overview.pdf>`_
 * `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
 
 Assignment Review
