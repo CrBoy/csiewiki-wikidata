@@ -13,13 +13,16 @@ Information
   
 FreeRTOS 模擬 Mars Pathfinder 的情況 (Taylor Huang)
 ------------------------------------------------------------
-如附圖所示，bounded 是沒有開啟中優先權的情形，雖然高優先權被低優先權卡住，
+.. image:: /embedded/Sol10/bounded.png
+如上所示，bounded 是沒有開啟中優先權的情形，雖然高優先權被低優先權卡住，
 但是高優先在得到資源後，仍然是在 deadline 內，可以在時間內執行高優先權的任務。但是在
 unbounded 的圖內可以看到中優先權的 Task 出現後，導致低優先權被 preemptive，拖延了
 資源釋放的時間，雖然最後高優先權最後拿到資源，但是設定的 watch dog 偵測到 deadline
 後印出了要 restart 的字串。
 
 在程式碼 17 行可設定是否要加入中優先權Task(unbounded)，註解掉 17 行代表不加入
+
+.. image:: /embedded/Sol10/unbounded.png
 
 程式碼 320 行處註解掉的 vTaskDelay 是因為會導致模擬失敗的關鍵，經過測試了一個下午 + 晚上，
 在 Delay 時間到了後會強行 content switch 讓低優先執行且權釋放 semaphore，並讓高優先權立即使用，
