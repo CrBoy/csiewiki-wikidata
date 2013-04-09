@@ -19,8 +19,8 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Feb 19   `課程介紹 + 期初考`_                       
 #2    Feb 26   `Embedded Operating System Concepts`_   `Lab 8`_ : GNU Toolchain + RTOS (`Sol 8`_)
-#3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming
-#4    Mar 12   `從火星探測號談 scheduling`_                   `Lab 10`_ : Priority Inversion
+#3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming (`Sol 9`_)
+#4    Mar 12   `從火星探測號談 scheduling`_                   `Lab 10`_ : Priority Inversion (`Sol 10`_)
 #5    Mar 19   `ARM Architecture Intro`_                     `Lab 11`_: Build RTOS for ARM
 #6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization
 #7    Apr  2   春假                                        
@@ -45,7 +45,9 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 8`: Lab8
 .. _`Sol 8`: Sol8
 .. _`Lab 9`: Lab9
+.. _`Sol 9`: Sol9
 .. _`Lab 10`: Lab10
+.. _`Sol 10`: Sol10
 .. _`Lab 11`: Lab11
 .. _`Lab 12`: Lab12
 .. _`Lab 13`: Lab13
