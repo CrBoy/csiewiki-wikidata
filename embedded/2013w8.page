@@ -45,3 +45,9 @@ Assignment Review
     cd Labs
     git pull
     git checkout BRANCH_NAME
+
+- BRANCH_NAME 可以是以下
+   * SOL-8
+   * SOL-9
+   * SOL-10
+   * SOL-10-1
