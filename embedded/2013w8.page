@@ -35,3 +35,13 @@ Assignment Review
 
 * `Lab 10</embedded/Lab10>`_: Priority Inversion
   * `Lab 10 Solution</embedded/Sol10>`_; 
+
+取得參考實作
+-------------------
+
+.. code-block:: prettyprint
+
+    git clone https://gitcafe.com/embedded2013/Labs.git
+    cd Labs
+    git pull
+    git checkout BRANCH_NAME
