@@ -10,3 +10,5 @@ title: Week #8 (Apr 16) :: I/O, Interrupt, Exception (ARM)
   - https://www.facebook.com/roboard.lab
 
 * `ARM System Overview</embedded/arm-overview.pdf>`_
+* 小型多工作業系統核心分析: https://gitcafe.com/embedded2013/simple-arm/
+  - 搭配 ``git log -p`` 指令以得知每一步的修改
