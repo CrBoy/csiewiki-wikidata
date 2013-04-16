@@ -8,6 +8,17 @@ toc: no
 - 移植作業系統核心
 - 學習 ARM 系統程式開發
 
+ARM Information
+-------------
+* ARM GCC Inline Assembler Cookbook
+   - http://www.ethernut.de/en/documents/arm-inline-asm.html
+
+* ARM “Cortex-M3 Technical Reference Manual”
+  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0337i
+
+* ARMv7-M Architecture Reference Manual
+  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0403c
+
 作業要求
 -------------
 * 修改 Lab-14/rtenv 目錄底下的檔案，使 kernel.c 為主體的簡易作業系統，得以在 STM32F10x 環境運作
