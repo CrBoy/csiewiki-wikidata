@@ -21,7 +21,6 @@ toc: no
 - 目前分組報告順序為:
   * 3_ADC > 4_RTC > 5_PWM > 8_FLASH > 7_SPI > 1_GPIO > 2_USART > 6_USB
   * 每周 3 組報告 請同學準備
-  * 另外尚未分組的兩位同學: 宋哲光 李曉暉 (請找助教分組)
 
 - 為 FreeRTOS 建立類似 Arduino 的 API driver model
   * 可參考 RT-Thread / ART 的 `libarduino<https://github.com/RT-Thread/ART/tree/master/software/platform>`_
