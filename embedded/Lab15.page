@@ -12,3 +12,16 @@ toc: no
 -------------
 * `Measuring Real-Time Performance Of An RTOS<http://rtos.com/PDFs/MeasuringRTOSPerformance.pdf >`_
 * `Performance benchmarking of FreeRTOS and its Hardware Abstraction<http://alexandria.tue.nl/extra2/afstversl/wsk-i/xu2008.pdf>`_
+
+繳交作業
+------------
+* 截止日期：
+  * 成大/中正: May 6, 2013 (含) 之前
+
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: 
+    * 成大: "[NCKU/Lab15]" 開頭，後面加學號與姓名
+    * 中正: "[CCU/Lab15]" 開頭，後面加學號與姓名
+    * 格式不合者，不計分！
+
+- 信件內應該指出 Git repository 並簡述修改的想法與過程
