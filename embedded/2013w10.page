@@ -12,12 +12,12 @@ toc: no
 
 教材
 ---------
-- REVOLUTION OS
+- video: REVOLUTION OS
   * tells the inside story of the hackers who rebelled against the proprietary software model and Microsoft to create GNU/Linux and the Open Source movement.
   * http://www.revolution-os.com
 
-- `An Introduction to Real-Time Operating Systems and
-Schedulability Analysis</embedded/2013w10/RTOS-sched.pdf>`_
+* RTOS 觀念彙整
+  * `An Introduction to Real-Time Operating Systems and Schedulability Analysis</embedded/2013w10/RTOS-sched.pdf>`_
   * Background on Operating Systems Theory
   * An Introduction to RT Systems
   * Model-based development of Embedded RT systems
