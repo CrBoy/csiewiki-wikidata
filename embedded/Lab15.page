@@ -7,3 +7,8 @@ toc: no
 -------
 * 學習建構 RTOS benchmark
 * 體驗系統驗證的途徑
+
+背景知識
+-------------
+* `Measuring Real-Time Performance Of An RTOS<http://rtos.com/PDFs/MeasuringRTOSPerformance.pdf >`_
+* `Performance benchmarking of FreeRTOS and its Hardware Abstraction<http://alexandria.tue.nl/extra2/afstversl/wsk-i/xu2008.pdf>`_
