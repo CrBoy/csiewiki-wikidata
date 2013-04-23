@@ -15,3 +15,11 @@ toc: no
 - REVOLUTION OS
   * tells the inside story of the hackers who rebelled against the proprietary software model and Microsoft to create GNU/Linux and the Open Source movement.
   * http://www.revolution-os.com
+
+- `An Introduction to Real-Time Operating Systems and
+Schedulability Analysis</embedded/2013w10/RTOS-sched.pdf>`_
+  * Background on Operating Systems Theory
+  * An Introduction to RT Systems
+  * Model-based development of Embedded RT systems
+  * Scheduling and Resource Management
+  * Schedulability Analysis and Priority Inversion
