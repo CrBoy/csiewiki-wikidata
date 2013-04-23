@@ -13,6 +13,11 @@ toc: no
 * `Measuring Real-Time Performance Of An RTOS<http://rtos.com/PDFs/MeasuringRTOSPerformance.pdf >`_
 * `Performance benchmarking of FreeRTOS and its Hardware Abstraction<http://alexandria.tue.nl/extra2/afstversl/wsk-i/xu2008.pdf>`_
 
+BeRTOS Benchmark
+----------------------------------
+* `Context-switch overhead<http://www.bertos.org/scopri/benchmark/context-switch/>`_
+* `Memory Footprint<http://www.bertos.org/scopri/benchmark/memory-footprint/>`_
+
 繳交作業
 ------------
 * 截止日期：
