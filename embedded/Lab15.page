@@ -18,6 +18,7 @@ BeRTOS Benchmark
 * `Context-switch overhead<http://www.bertos.org/scopri/benchmark/context-switch/>`_
 * `Memory Footprint<http://www.bertos.org/scopri/benchmark/memory-footprint/>`_
 * 比照之前 Git 指示，可取得部份整合的程式碼，位於 ``Lab-15/benchmark`` 目錄
+* 參考資訊: `BeRTOS Real Time Operating System Developers' site<http://dev.bertos.org/>`_
 
 作業要求
 ------------
