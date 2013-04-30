@@ -17,6 +17,19 @@ BeRTOS Benchmark
 ----------------------------------
 * `Context-switch overhead<http://www.bertos.org/scopri/benchmark/context-switch/>`_
 * `Memory Footprint<http://www.bertos.org/scopri/benchmark/memory-footprint/>`_
+* 比照之前 Git 指示，可取得部份整合的程式碼，位於 ``Lab-15/benchmark`` 目錄
+
+作業要求
+------------
+* 確保 `Lab-11</embedded/Lab11>`_ 與 `Lab-14</embedded/Lab14>`_ 已充分完成 (可採用公佈的參考解答為基礎)
+* 修改 Lab-15/benchmark，使其符合以下：
+   - 將 sig_ 系列的 API 換成我們自訂的 FIFO
+   - 將 process 系列的呼叫改為我們自訂的 Task
+   - 將 msg_ 系列的 API 換成我們自訂的 message queue
+
+* 當在 ``Lab-15`` 目錄執行 ``make qemuauto`` 時，應自動編譯並執行兩個平台的 benchmark，稍候輸出於終端機
+   - stm32
+   - arm926
 
 繳交作業
 ------------
