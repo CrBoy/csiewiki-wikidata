@@ -28,7 +28,7 @@ Week  Date     Subject                                 Assignment
 #9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting (`Sol 14`_)
 #10   Apr 23   `RTOS Evaluation`_                               `Lab 15`_: Benchmarking concepts
 #11   Apr 30   `Case Study: Train control`_ + 月考                    `Lab 15`_: Validation and benchmarking
-#12   May  7   `Tickless scheduling`_                                        - 
+#12   May  7   `Tickless scheduling`_                                        `Lab 16`_: Hardware Enablement
 #13   May 14                                           - 
 #14   May 21                                           -
 #15   May 28   `Automotive Linux Summit (Spring)`_     -
@@ -60,6 +60,7 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 14`: Lab14
 .. _`Sol 14`: Sol14
 .. _`Lab 15`: Lab15
+.. _`Lab 16`: Lab16
 .. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
 .. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
 
