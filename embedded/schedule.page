@@ -22,7 +22,7 @@ Week  Date     Subject                                 Assignment
 #3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming (`Sol 9`_)
 #4    Mar 12   `從火星探測號談 scheduling`_                   `Lab 10`_ : Priority Inversion (`Sol 10`_)
 #5    Mar 19   `ARM Architecture Intro`_                     `Lab 11`_: Build RTOS for ARM (`Sol 11`_)
-#6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization
+#6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization (`Sol 12`_)
 #7    Apr  2   春假                                        
 #8    Apr  9   `ARM and Assignment Review`_                    `Lab 13`_: ARM Programming with GNU Toolchain (`Sol 11`_)
 #9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting
@@ -55,6 +55,7 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 11`: Lab11
 .. _`Sol 11`: Sol11
 .. _`Lab 12`: Lab12
+.. _`Sol 12`: Sol12
 .. _`Lab 13`: Lab13
 .. _`Lab 14`: Lab14
 .. _`Lab 15`: Lab15
