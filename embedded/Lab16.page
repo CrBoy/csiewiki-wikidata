@@ -1,0 +1,10 @@
+---
+title: Lab16: Hardware Enablement
+toc: no
+...
+
+預期目標
+-------
+* 學習使用 STM32F4-Discovery 硬體
+* 接觸 ARM Cortex-M 環境
+* 學習 GNU Toolchain 與相關 open source 工具
