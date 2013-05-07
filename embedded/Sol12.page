@@ -1,0 +1,18 @@
+---
+title: Lab12: RTOS Visualization
+toc: no
+...
+
+Information
+-------------------
+- Provided by: Zhean Lin
+  * GIT repository/branch: https://gitcafe.com/embedded2013/Labs/tree/SOL-12
+
+心得
+-------
+* 這個實作與 `Lab 8</embedded/Lab8>`_ 的差異除了圖形輸出，在於資料的蒐集是在程式裡，以及使用 semihost 來做輸出，僅僅因為想練習
+* 不過開發與編譯的成本上升，而且到頭來還是得透過 server 輸出。唯一的好處大概是在有儲存裝置的環境中可以單獨運行。
+* 這次實驗多半是單純的苦工，問題很少
+* 其中一個是如何讓 semihost 的回傳值用 C 函數回傳
+  - 因為無法在 C 中直接 return r0，但不寫return的話，gcc 會在程式結尾補上mov r0, r3，造成結果錯誤
+  - 解決的方式是呼叫 bkpt 後直接 bx 跳回，並用 naked 屬性避免直接跳離而未還原新增的 stack frame
