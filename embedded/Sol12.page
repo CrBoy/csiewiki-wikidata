@@ -16,3 +16,15 @@ Information
 * 其中一個是如何讓 semihost 的回傳值用 C 函數回傳
   - 因為無法在 C 中直接 return r0，但不寫return的話，gcc 會在程式結尾補上mov r0, r3，造成結果錯誤
   - 解決的方式是呼叫 bkpt 後直接 bx 跳回，並用 naked 屬性避免直接跳離而未還原新增的 stack frame
+
+視覺化呈現
+----------------
+* Git 裡的程式並未包含 Mutex Task、Semaphore 以及中斷追蹤
+  - 如有需要請打上 Lab-12 目錄下的 patch 以重現圖中的效果
+
+.. image:: /embedded/Sol12/visual.png
+
+* 灰色是正在執行的任務，而斜紋代表佔據 mutex
+* switch in 與 switch out 之間會有小間隔，代表 context switch，但是太細而幾乎看不見
+* 最底下的小方框代表 semaphore，橘色是等待，綠色是釋出
+* 右邊的視窗是系統中的佇列，裡頭的數字代表存入該資料的任務，對照任務名稱冒號前的數字
