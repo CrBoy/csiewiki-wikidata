@@ -7,3 +7,32 @@ Information
 -------------------
 - Provided by: Lucas Wei
   * GIT repository/branch: https://gitcafe.com/embedded2013/Labs/tree/SOL-11
+
+priority scheduling
+-------------------------------
+* 原本使用 round robin 來輪流執行每個 task，並使用每個 task[-1] 的位置來紀錄狀態
+  - 先修改架構，並且引入 TCB 來增加程式的可讀性
+  - 其中又有紀錄 status, priority, stack pointer, delaytime (by tick)，因此可以針對每個task有更好的架構
+
+*  針對 system call 方面就因此有 delay & setpriority 的產生，可以用來更進一步的操作 TASK
+*  有了delay後，新增兩個 task: task1 task2 用來模仿 `Lab-8</embedded/Lab8>`_ 的呈現方式
+  - 可用四倍 delay time的方式，來輪流輸出hello1 hello2。
+- 驗證 priority scheduling 的方式，是使用 GDB 來追蹤狀態，如下圖：
+
+.. image:: /embedded/Sol11/prio.png
+
+message queue
+-------------------------
+* 主要針對message queue實作兩個界面
+  - mq_send
+  - mq_receive，
+
+* 將寫入寫出的部份更改為 system call，避免在過程中被 interupt，導致輸出入不完全，
+* 而在驗證的過程中，發現同時ECHO會有延遲，之後大量輸出的問題，如圖
+
+.. image:: /embedded/Sol11/mq.png
+
+* 後來經過長時間的追蹤後發現，是因為 ring buffer 內部的 macro 寫錯了，所導致的 buffer overflow
+  * 會將要輸出的字元寫到下一個ring buffer
+  * 主要原因是BR_PUSH, BR_POP內，對於長度的偵測沒有正確，
+* 因此只要修正後，程式的互動可以更即時的反應結果，也不會有輸出的單一字元錯誤的問題。
