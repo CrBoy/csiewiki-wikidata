@@ -12,12 +12,12 @@ priority scheduling
 -------------------------------
 * 原本使用 round robin 來輪流執行每個 task，並使用每個 task[-1] 的位置來紀錄狀態
   - 先修改架構，並且引入 TCB 來增加程式的可讀性
-  - 其中又有紀錄 status, priority, stack pointer, delaytime (by tick)，因此可以針對每個task有更好的架構
+  - 其中又有紀錄 status, priority, stack pointer, delaytime (by tick)，因此可以針對每個 task 有更好的架構
 
-*  針對 system call 方面就因此有 delay & setpriority 的產生，可以用來更進一步的操作 TASK
-*  有了delay後，新增兩個 task: task1 task2 用來模仿 `Lab-8</embedded/Lab8>`_ 的呈現方式
+* 針對 system call 方面就因此有 delay 和 setpriority 的產生，可以用來更進一步的操作 TASK
+* 有了 delay 後，新增兩個 task: task1 task2，用來模仿 `Lab-8</embedded/Lab8>`_ 的呈現方式
   - 可用四倍 delay time的方式，來輪流輸出hello1 hello2。
-- 驗證 priority scheduling 的方式，是使用 GDB 來追蹤狀態，如下圖：
+* 驗證 priority scheduling 的方式，是使用 GDB 來追蹤狀態，如下圖：
 
 .. image:: /embedded/Sol11/prio.png
 
