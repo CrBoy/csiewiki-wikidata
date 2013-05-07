@@ -25,7 +25,7 @@ Week  Date     Subject                                 Assignment
 #6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization (`Sol 12`_)
 #7    Apr  2   春假                                        
 #8    Apr  9   `ARM and Assignment Review`_                    `Lab 13`_: ARM Programming with GNU Toolchain (`Sol 11`_)
-#9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting
+#9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting (`Sol 14`_)
 #10   Apr 23   `RTOS Evaluation`_                               `Lab 15`_: Benchmarking concepts
 #11   Apr 30   `Case Study: Train control`_ + 月考                    `Lab 15`_: Validation and benchmarking
 #12   May  7   `Tickless scheduling`_                                        - 
@@ -58,6 +58,7 @@ Week  Date     Subject                                 Assignment
 .. _`Sol 12`: Sol12
 .. _`Lab 13`: Lab13
 .. _`Lab 14`: Lab14
+.. _`Sol 14`: Sol14
 .. _`Lab 15`: Lab15
 .. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
 .. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
