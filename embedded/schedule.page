@@ -28,7 +28,7 @@ Week  Date     Subject                                 Assignment
 #9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting
 #10   Apr 23   `RTOS Evaluation`_                               `Lab 15`_: Benchmarking concepts
 #11   Apr 30   `Case Study: Train control`_ + 月考                    `Lab 15`_: Validation and benchmarking
-#12   May  7   Tickless scheduling                                        - 
+#12   May  7   `Tickless scheduling`_                                        - 
 #13   May 14                                           - 
 #14   May 21                                           -
 #15   May 28   `Automotive Linux Summit (Spring)`_     -
@@ -45,6 +45,7 @@ Week  Date     Subject                                 Assignment
 .. _`I/O, Interrupt, Exception (ARM)`: 2013w9
 .. _`RTOS Evaluation`: 2013w10
 .. _`Case Study: Train control`: 2013w11
+.. _`Tickless scheduling`: 2013w12
 .. _`Lab 8`: Lab8
 .. _`Sol 8`: Sol8
 .. _`Lab 9`: Lab9
