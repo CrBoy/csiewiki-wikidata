@@ -8,3 +8,14 @@ toc: no
 * 學習使用 STM32F4-Discovery 硬體
 * 接觸 ARM Cortex-M 環境
 * 移植 FreeRTOS 到 ARM 環境
+
+開發工具使用
+---------------------
+* 參考上學期課程:
+  - `Lab 6</embedded/Lab6>`_ 與 `Lab 7</embedded/Lab7>`_
+  - https://gitcafe.com/embedded2012/P-jserv/tree/Lab-7
+
+FreeRTOS for STM32F4-Discovery
+---------------------------------------------------------
+* https://gitcafe.com/embedded2013/freertos-stm32f4-discovery
+* Low Power Support - Tickless Idle Mode: http://www.freertos.org/low-power-tickless-rtos.html
