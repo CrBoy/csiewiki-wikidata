@@ -18,6 +18,8 @@ toc: no
 FreeRTOS for STM32F4-Discovery
 ---------------------------------------------------------
 * https://gitcafe.com/embedded2013/freertos-stm32f4-discovery
+  - neocon -b 38400 /dev/ttyUSB0
+
 * Low Power Support - Tickless Idle Mode: http://www.freertos.org/low-power-tickless-rtos.html
 
 Reference
