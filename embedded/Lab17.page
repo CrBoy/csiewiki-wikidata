@@ -1,0 +1,10 @@
+---
+title: Lab17: Tickless scheduling for ARM
+toc: no
+...
+
+預期目標
+-------
+* 學習使用 STM32F4-Discovery 硬體
+* 接觸 ARM Cortex-M 環境
+* 移植 FreeRTOS 到 ARM 環境
