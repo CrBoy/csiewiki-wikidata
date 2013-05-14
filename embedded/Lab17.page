@@ -20,6 +20,10 @@ FreeRTOS for STM32F4-Discovery
 * https://gitcafe.com/embedded2013/freertos-stm32f4-discovery
 * Low Power Support - Tickless Idle Mode: http://www.freertos.org/low-power-tickless-rtos.html
 
+Reference
+---------------
+* F4OS: git://github.com/prattmic/F4OS.git
+
 作業要求
 ------------
 * 建立一個 *public* git repository
