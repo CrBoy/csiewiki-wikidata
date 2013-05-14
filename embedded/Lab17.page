@@ -19,3 +19,25 @@ FreeRTOS for STM32F4-Discovery
 ---------------------------------------------------------
 * https://gitcafe.com/embedded2013/freertos-stm32f4-discovery
 * Low Power Support - Tickless Idle Mode: http://www.freertos.org/low-power-tickless-rtos.html
+
+作業要求
+------------
+* 建立一個 *public* git repository
+  - 衍生自 `freertos-stm32f4-discovery<https://gitcafe.com/embedded2013/freertos-stm32f4-discovery>`_
+* 確保 FreeRTOS 已正確啟用 Low Power support，並以實例證明
+* 移植之前作業中的工具 (context-switch visualizer, benchmark) 到 FreeRTOS
+
+繳交作業
+------------
+* 截止日期：
+  * 成大/中正: May 24, 2013 (含) 之前
+
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: 
+    * 成大: "[NCKU/Lab17]" 開頭，後面加學號與姓名
+    * 中正: "[CCU/Lab17]" 開頭，後面加學號與姓名
+    * 格式不合者，不計分！
+
+  - 內文：
+    * git repository 位址
+    * 以實例證明 FreeRTOS 已正確啟用 Low Power support
