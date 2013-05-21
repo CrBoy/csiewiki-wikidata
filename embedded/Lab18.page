@@ -11,7 +11,7 @@ toc: no
 既有的專案
 ----------------
 * ChibiOS/RT: http://chibios.org/dokuwiki/doku.php
-  * http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:stm32f4_discover
+  * http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:stm32f4_discovery
   * https://github.com/mabl/ChibiOS
 
 * F4OS: https://github.com/prattmic/F4OS
