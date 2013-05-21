@@ -30,7 +30,7 @@ Week  Date     Subject                                 Assignment
 #11   Apr 30   `Case Study: Train control`_ + 月考                    `Lab 15`_: Validation and benchmarking
 #12   May  7   `Tickless scheduling`_                                        `Lab 16`_: Hardware Enablement
 #13   May 14   `Embedded Kernel Design Review`_                      `Lab 17`_: Tickless scheduling for ARM hardware 
-#14   May 21                                           -
+#14   May 21   `Embedded Kernel Design Review-2`_                                          `Lab 18`_: 
 #15   May 28   `Automotive Linux Summit (Spring)`_     -
 #16   Jun  4    Open Discussion
 #17   Jun 11   The End
@@ -47,6 +47,7 @@ Week  Date     Subject                                 Assignment
 .. _`Case Study: Train control`: 2013w11
 .. _`Tickless scheduling`: 2013w12
 .. _`Embedded Kernel Design Review`: 2013w13
+.. _`Embedded Kernel Design Review-2`: 2013w14
 .. _`Lab 8`: Lab8
 .. _`Sol 8`: Sol8
 .. _`Lab 9`: Lab9
@@ -63,6 +64,7 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 15`: Lab15
 .. _`Lab 16`: Lab16
 .. _`Lab 17`: Lab17
+.. _`Lab 18`: Lab18
 .. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
 .. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
 
