@@ -1,0 +1,12 @@
+---
+title: Week #14 (May 21) :: Embedded Kernel Review (2)
+toc: no
+...
+
+教材
+-------
+* `台大教授：最難的一課，我們卻沒教給學生<http://www.businessweekly.com.tw/KBlogArticle.aspx?id=3676>`_
+* RTOS Myth
+  * `Myth #1: Mutexes and Semaphores are Interchangeable<http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/>`_
+  * `Myth #2: RMA is for Academics<http://embeddedgurus.com/barr-code/2008/03/rtos-myth-2-rma-is-for-academics/>`_
+  * `Myth #3: Mutexes are Needed at the Task Level<http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/>`_
