@@ -14,4 +14,4 @@ toc: no
 
 * FreeRTOS
   * `FreeRTOS操作系统Tickless低功耗特性的实现原理<http://www.energymcu.com/home.php?mod=space&uid=2&do=blog&id=13>`_
-  * `NVIC & PendingSV<http://essayoflive.blogspot.tw/2011/11/freertos.html>`_
+  * `NVIC & PendSV<http://essayoflive.blogspot.tw/2011/11/freertos.html>`_
