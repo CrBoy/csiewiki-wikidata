@@ -1,0 +1,18 @@
+---
+title: Lab18: OS Evaluation for ARM
+toc: no
+...
+
+預期目標
+-------
+* 評估既有的 open source project
+* 學習工具的使用
+
+既有的專案
+----------------
+* ChibiOS/RT: http://chibios.org/dokuwiki/doku.php
+  * http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:stm32f4_discover
+  * https://github.com/mabl/ChibiOS
+
+* F4OS: https://github.com/prattmic/F4OS
+  * http://ben6.blogspot.tw/2012/07/f4osstm32f407.html
