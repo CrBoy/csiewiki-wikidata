@@ -16,3 +16,7 @@ toc: no
 
 * F4OS: https://github.com/prattmic/F4OS
   * http://ben6.blogspot.tw/2012/07/f4osstm32f407.html
+
+Dependency
+------------
+* sudo apt-get install bison flex
