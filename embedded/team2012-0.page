@@ -22,6 +22,9 @@ toc: no
  * JTAG/SWD Emulator (NTD$ 1500)
    + http://www.segger.com/jlink.html
 
+程式碼
+ * `F9 Microkernel<https://github.com/f9micro/f9-kernel>`_ at GitHub
+
 參考資訊
 -------
  * L4 Microkernel Design Overview, Jim Huang
