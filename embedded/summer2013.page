@@ -25,6 +25,12 @@ toc: no
 --------------------
 預計在國立成功大學資訊工程系系館，8 月 1 日開始，每週四下午。
 
+課程資料 (待補)
+--------------------
+GDB + Microcontroller
+
+.. image:: /embedded/gdb-with-gdb-server.png
+
 參考資料
 -----------
  * `嵌入式系統課程</embedded/schedule>`_
