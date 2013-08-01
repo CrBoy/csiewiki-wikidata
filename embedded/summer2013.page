@@ -39,6 +39,16 @@ toc: no
 
 課程資料 (待補)
 --------------------
+* 共筆
+  * `Week #1<http://piratepad.net/embedded2013-w1>`_
+  * `Week #2<http://piratepad.net/embedded2013-w2>`_
+  * `Week #3<http://piratepad.net/embedded2013-w3>`_
+  * `Week #4<http://piratepad.net/embedded2013-w4>`_
+  * `Week #5<http://piratepad.net/embedded2013-w5>`_
+  * `Week #6<http://piratepad.net/embedded2013-w6>`_
+  * `Week #7<http://piratepad.net/embedded2013-w7>`_
+
+
 GDB + Microcontroller
 
 .. image:: /embedded/gdb-with-gdb-server.png
