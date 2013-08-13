@@ -1,0 +1,57 @@
+---
+title: [POJ] 2752 - Seek the Name, Seek the Fame
+toc: no
+categories: 題解 POJ KMP next數組的應用
+...
+
+..
+
+  上方由 --- ... 所包起來的是 meta data 請依照題目填寫
+
+  title: [OJ Name] 題號 - 題目名稱
+
+  categories: 題解、題目類型、演算法名稱、資料結構名稱
+
+網址
+====
+
+http://poj.org/problem?id=2752
+
+題目概述
+====
+
+給你一個字串，求 prefix=suffix 的substring的長度，長度由短到長依序輸出
+
+Technique details
+=================
+
+每行一個字串，1 <= 字串長度<= 400000.讀到檔案結尾
+
+輸入格式
+-----
+
+::
+
+  ababcababababcabab
+  aaaaa
+
+
+輸出格式
+------
+
+::
+
+  2 4 9 18
+  1 2 3 4 5
+
+
+解題思路
+======
+
+根據KMP next 數組的特性，我們知道 next[len-1]所標示出的為prefix=suffix的最長位置
+也就是 s[0]~s[ next[len-1]]=s[ len-1-next[len-1] ] ~s[len-1] , 那麼
+
+ - 次長的字串S'必定被包含於較長的字串S
+因為次長字串S'為S的prefix同時也為S的suffix，這點畫圖可以證明，所以我們可以當作S字串中有兩個S'(prefix 以及 suffix)
+
+那麼根據next的性質，依序跑就對了，變成 cur=len-1, 第一長的：next[cur]+1 ;cur=next[cur],第二長的為next[cur]...依序下去，最後反向輸出！！
