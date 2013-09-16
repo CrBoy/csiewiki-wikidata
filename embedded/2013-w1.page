@@ -13,6 +13,14 @@ toc: no
 * 演講：FLOSS + Art 與 `Openlab.Taipei<http://www.openlabtaipei.org/>`_ 社群
   - 從研究所時代開始接觸科技藝術，從中發現對於數位工具依賴的問題，然後透過工作坊了解國外藝術家對於這樣相關現象的回應方式，透過 FLOSS (Free / Libre Open Source Software)去找回創作自由、動手實踐的更大可能性。從這領域的研究延伸到 `Openlab.taipei<http://www.openlabtaipei.org/>`_ 社群，然後於近年的 Hackerspace 空間經營的過程，讓我深刻體會到科技和創作一樣是人的想像產出，而科技的發展必須是保有人的關懷與溫度，以開放的方式與世界互動才更有意義。
 
+預習項目
+------------
+* ARM & SoC 訓練: (閱讀 Page 1 -> Page 44)
+  - http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview
+
+* QEMU 模擬器 (閱讀 Page 7 -> Page 56)
+  - http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation
+
 所見所聞
 -------------
 * `畢業生應該加入新創公司的三個理由，看完還會想去大企業嗎？<http://techorange.com/2013/09/16/why-join-startup-first/>`_
