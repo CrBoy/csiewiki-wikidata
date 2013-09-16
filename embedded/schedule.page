@@ -31,10 +31,20 @@ Week  Date     Subject                                 Assignment
 #18   Jan 14   -                                       -
 ====  ====     =======                                 ==========
 
+.. _`Overview: Embedded in our world`: 2013-w1
+.. _`ARM Architecture and SoC`: 2013-w2
+.. _`Operating Systems for Embedded`: 2013-w3
+.. _`ARM: from Exceptions to Peripherals`: 2013-w4
+.. _`Lab 19`: Lab19
+.. _`Lab 20`: Lab20
+.. _`Lab 21`: Lab21
+.. _`Lab 22`: Lab22
+.. _`Lab 23`: Lab23
+
+
 嵌入式作業系統設計與實作 (Spring 2013)
 ------------------------------------------------------
 .. image:: /embedded/logo-2012-small.png
-
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
