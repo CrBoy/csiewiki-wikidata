@@ -6,6 +6,10 @@ toc: no
 教材
 ----------
 * `進階嵌入式系統開發與實作 (2013 秋季班) 課程說明<http://www.slideshare.net/jserv/embedded-lecture2013>`_
+* `Embedded Systems Laboratory<http://users.ece.utexas.edu/~valvano/ASEE2013.pdf>`_, Jonathan Valvano
+  - Using ARM Cortex M4
+  - From the Basics to Applications
+
 * 演講：FLOSS + Art 與 `Openlab.Taipei<http://www.openlabtaipei.org/>`_ 社群
   - 從研究所時代開始接觸科技藝術，從中發現對於數位工具依賴的問題，然後透過工作坊了解國外藝術家對於這樣相關現象的回應方式，透過 FLOSS (Free / Libre Open Source Software)去找回創作自由、動手實踐的更大可能性。從這領域的研究延伸到 `Openlab.taipei<http://www.openlabtaipei.org/>`_ 社群，然後於近年的 Hackerspace 空間經營的過程，讓我深刻體會到科技和創作一樣是人的想像產出，而科技的發展必須是保有人的關懷與溫度，以開放的方式與世界互動才更有意義。
 
