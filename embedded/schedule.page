@@ -5,10 +5,33 @@ toc: no
 
 - Instructor: `Jim Huang</User/jserv>`_ (黃敬群) <jserv.tw@gmail.com>
 
+進階嵌入式系統開發與實作 (Fall 2013)
+------------------------------------------------------
+.. image:: /embedded/logo-2012-small.png
+====  ====     =======                                 ==========
+Week  Date     Subject                                 Assignment
+====  ====     =======                                 ==========
+#1    Sep 17   `Overview: Embedded - Why and How`_     `Lab 1`_: QEMU
+#2    Sep 23   -                                       -
+#3    Oct 1    -                                       -
+#4    Oct 8    -                                       -
+#5    Oct 15   -                                       -
+#6    Oct 22   -                                       -
+#7    Oct 29   -                                       -
+#8    Nov 5    -                                       -
+#9    Nov 12   -                                       -
+#10   Nov 19   -                                       -
+#11   Nov 26   -                                       -
+#12   Dec 3    -                                       -
+#13   Dec 10   -                                       -
+#14   Dec 17   -                                       -
+#15   Dec 24   -                                       -
+#16   Dec 31   -                                       -
+#17   Jan 7    -                                       -
+#18   Jan 14   -                                       -
 
 嵌入式作業系統設計與實作 (Spring 2013)
 ------------------------------------------------------
-
 .. image:: /embedded/logo-2012-small.png
 
 ====  ====     =======                                 ==========
