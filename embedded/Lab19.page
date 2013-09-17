@@ -83,6 +83,7 @@ rtenv: 成大資工系同學開發的小型 RTOS
 ------------------------------------------------------
 * cd ~/workspace
 * git clone git://github.com/embedded2013/rtenv.git
+* cd rtenv
 * make
 * make qemuauto
 * make qemu # 記得按下 Ctrl-Alt-2 切換到 UART 輸出
