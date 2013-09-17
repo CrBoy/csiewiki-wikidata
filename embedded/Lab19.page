@@ -7,6 +7,7 @@ toc: no
 -------
 - 體驗一個具體而微的 MCU 程式開發過程
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
+- 學習基本 Git 操作
 - 以實驗點出日後課程的提綱
 
 預先準備
@@ -69,6 +70,11 @@ STM32 on QEMU 環境建立與測試
     make uart_echo_QEMURUN
 
 --------------------------------
+
+Git / GitHub
+-------------------
+* `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
+* 嘗試去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
 
 小提醒
 -----
