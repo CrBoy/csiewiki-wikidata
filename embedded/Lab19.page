@@ -11,7 +11,7 @@ toc: no
 
 預先準備
 -------
-- 安裝 Ubuntu Linux，建議版本為 12.04
+- 安裝 Ubuntu Linux，建議版本為 13.04
 - 安裝必要的套件
 
 .. code-block:: prettyprint
