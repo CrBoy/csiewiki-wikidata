@@ -79,6 +79,19 @@ Git / GitHub
 * `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
 * 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
 
+rtenv: 成大資工系同學開發的小型 RTOS
+------------------------------------------------------
+* cd ~/workspace
+* git clone git://github.com/embedded2013/rtenv.git
+* make
+* make qemuauto
+
+參考作業要求
+-------------------
+* 在 rtenv 內，建立一個類似 Linux 的 shell 環境，使得可接受使用者指令
+* 至少支援 ps, echo, 以及 hello 等指令
+* (加分) 允許動態建立 process
+
 小提醒
 -----
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
