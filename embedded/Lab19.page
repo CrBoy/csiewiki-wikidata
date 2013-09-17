@@ -75,8 +75,9 @@ STM32 on QEMU 環境建立與測試
 
 Git / GitHub
 -------------------
+* 註冊 GitHub 帳號: https://github.com/
 * `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
-* 嘗試去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
+* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
 
 小提醒
 -----
