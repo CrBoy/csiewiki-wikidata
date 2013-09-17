@@ -82,6 +82,7 @@ Git / GitHub
 - 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
 - Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
   - ln -s ~/下載 ~/Downloads
+
 - 可在 ``~/.bashrc`` 加入 ``export PATH=/usr/local/csl/arm-2012.03/bin:$PATH``，即可設定 toolchain 路徑
 
 參考資料
