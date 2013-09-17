@@ -92,6 +92,10 @@ rtenv: 成大資工系同學開發的小型 RTOS
 * 至少支援 ps, echo, 以及 hello 等指令
 * (加分) 允許動態建立 process
 
+請更新作業提案到共筆網站
+------------------------------------
+`Lab 19 / 作業共筆<https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe>`_
+
 小提醒
 -----
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
