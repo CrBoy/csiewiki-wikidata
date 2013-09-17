@@ -88,6 +88,22 @@ Git / GitHub
 
 - 可在 ``~/.bashrc`` 加入 ``export PATH=/usr/local/csl/arm-2012.03/bin:$PATH``，即可設定 toolchain 路徑
 
+繳交作業
+-------
+- 截止日期：
+   * Sep 27, 2013 (含) 之前
+   * 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
+- 更新共筆，將作業提案加入，並標注自己的 ID
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: "[NCKU/embedded]" 開頭，後面加學號與姓名
+  - 內容：(回答以下問題)
+    * GitHub 帳號, wiki 帳號
+    * 作業提案
+    * 關於 fork 出來的 repository 修改描述
+
+  - 若不麻煩的話，附上一份自介
+
 參考資料
 ------------
 - `STM32 Programming (中文)<stm32-prog.pdf>`_
