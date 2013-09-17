@@ -30,7 +30,7 @@ toc: no
 .. code-block:: prettyprint
 
     cd  /
-    sudo tar /tmp/jxvf toolchain-2012_03.tar.bz2
+    sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
 
 - 檢查 Toolchain 是否正確安裝：查看 /usr/local/csl/arm-2012.03 目錄
 
