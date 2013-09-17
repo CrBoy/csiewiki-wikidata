@@ -47,6 +47,8 @@ STM32 on QEMU 環境建立與測試
 
 .. code-block:: prettyprint
 
+    mkdir -p workspace
+    cd workspace
     git clone git://github.com/beckus/stm32_p103_demos.git
     git clone git://github.com/beckus/qemu_stm32.git
 
