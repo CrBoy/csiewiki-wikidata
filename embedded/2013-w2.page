@@ -18,6 +18,27 @@ Low Power mode + Tickless scheduling
 
 教材
 ----------
+* (科普介紹) `安謀是要怎樣<http://www.cool3c.com/book/export/html/57613>`_
+  - ARM 到底是怎樣的一家公司？
+  - 應用處理器是？
+  - 為何 ARM 應用處理器能省電？
+  - 你的日常生活，早已被 ARM 佔據
+  - 點將錄～高通
+  - 點將錄～密不可分的三星與蘋果 
+  - 點將錄～後發先至的 NVIDIA
+  - 點將錄、德州儀器 TI
+  - 點將錄、 Intel 與 Marvell
+  - 基頻技術將成為手機、平板晶片商新戰場
+  - 雙核打四核？架構改善差很大
+  - 寫在 Windows 8 前、 WOA 是否仍有成本優勢？
+  - 行動設備高品質影像革命造就行動 GPU 進化
+  - 高效能的 32-bit 架構，滿足近年車輛電子化與節能需求
+  - 家庭自動化與微控制器息息相關
+  - 從多媒體電視到連網電視興起， ARM 突圍成功
+  - 新一代掌上遊戲機清一色投入 ARM 架構懷抱
+  - 從三星投影片看， ARM 架構這一兩年仍會帶來驚喜
+  - 以 A5X 為例，GPU 架構肥大化風氣也吹到 ARM 架構上 ...
+
 * ARM & SoC 訓練:
   - `Part I<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_ (閱讀 Page 1-44)
   - `Part II<http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system>`_ (閱讀 Page 23-37)
