@@ -118,8 +118,7 @@ QEMU + GDB操作
 GDB Automation
 ----------------------------
 - 撰寫特別的 GDB script，使得 QEMU 能自動在 UART 畫面印出 "Hello!" 字樣。main.c 檔案的行數應該越少越好，處理動作最好全權交給 GDB
-- 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
-  * 也就是預期執行 ``make gdbauto`` 之後，能呼叫 QEMU
+- 執行 ``make gdbauto`` 之後，能自動呼叫 QEMU 並藉由 UART 顯示 'Hello!' 字串
 
 參考作業 (A) 要求
 ------------------
