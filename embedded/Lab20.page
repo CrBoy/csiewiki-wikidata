@@ -145,7 +145,7 @@ ARM Semihost
 qemu-semihost 操作
 ---------------------------------
 * cd ~/workspace
-* git clone git@github.com:embedded2013/qemu-semihost.git
+* git clone git://github.com/embedded2013/qemu-semihost.git
 * cd qemu-semihost
 * ./test.sh
 
