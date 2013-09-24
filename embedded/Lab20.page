@@ -6,7 +6,8 @@ toc: no
 預期目標
 -------
 * 搭配`第二周<http://wiki.csie.ncku.edu.tw/embedded/2013-w2>`_課程進度
-- 學習 GNU Toolchain 的使用
+- 學習 Linux 工具和 GNU Toolchain 的使用
+- 學期 Automation 技巧
 - 學習 ARM semihosting 的使用
 
 QEMU + GDB操作
