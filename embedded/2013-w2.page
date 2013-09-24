@@ -21,6 +21,7 @@ Low Power mode + Tickless scheduling
 * ARM & SoC 訓練:
   - `Part I<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_ (閱讀 Page 1-44)
   - `Part II<http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system>`_ (閱讀 Page 23-37)
+
 * `ARMv8-A Architecture Reference Manual<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a/>`_
 * `QEMU 模擬器<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_ (閱讀 Page 7-56)
 
