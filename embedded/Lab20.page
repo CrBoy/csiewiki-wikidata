@@ -129,6 +129,7 @@ GDB Automation
 作業繳交方式
 ------------------
 * 請更新作業提案到共筆網站: `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_
+  - 需要標注自己的 ID，可參考 `Lab 19 / 作業共筆<https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe>`_ 格式
 * 請在 Oct 5, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
 
 參考資訊
