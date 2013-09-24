@@ -3,5 +3,18 @@ title: Week #2 (Sep 23) :: ARM Architecture and SoC
 toc: no
 ...
 
+為何課程如此設計？
+---------------
+「你會先學會使用辭海，才去寫作文，還是先寫文章，再去使用辭海？」
+
+GDB + Microcontroller
+
+.. image:: /embedded/gdb-with-gdb-server.png
+
+Low Power mode + Tickless scheduling
+
+.. image:: /embedded/task-with-tick-interrupts.png
+
+
 教材
 ----------
