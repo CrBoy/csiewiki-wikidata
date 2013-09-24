@@ -7,6 +7,7 @@ toc: no
 -------
 * 搭配`第二周<http://wiki.csie.ncku.edu.tw/embedded/2013-w2>`_課程進度
 - 學習 GNU Toolchain 的使用
+- 學習 ARM semihosting 的使用
 
 QEMU_STM32 + QEMU 操作
 ----------------------
@@ -118,13 +119,28 @@ GDB Automation
 - 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
   * 也就是預期執行 ``make gdbauto`` 之後，能呼叫 QEMU
 
-參考作業要求
+參考作業 (A) 要求
 ------------------
 * 原本的 GDB Automation 程式僅能將 "Hello!" 字樣輸出到 UART 裝置，是否能夠在 GDB session 中取得輸出的文字並比對？(自動測試需求)
   - 提示：可在 GDB 使用 ``set logging on``
   - 提示：可修改 QEMU 執行參數
 
 * 進一步縮短 ``gdb.in`` 的檔案長度
+
+ARM Semihost
+------------
+* 使用 ARM 所開發的目標系統 (target system)，不一定會提供所有的輸入/輸出設備。因此 ARM 設計了 semihost 這種機制，讓運行 ARM debugger 的主機可以與目標系統進行 I/O 溝通，以利產品開發
+  - http://albert-oma.blogspot.tw/2012/04/semihosting.html
+
+* Semihost 的實作是透過使用定義好的軟體中斷 (SVCs)，使程式在執行過程中產生中斷。一旦目標系統上的程式呼叫到對應的指令 (semihosting call)，便產生軟體中斷，接著 Debug Agent 就會負責處理此中斷，進行與主機的溝通
+  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html
+
+* FreeRTOS extensions: https://github.com/hugovincent/mbed-freertos
+  - lib/semifs.c
+  - mbed (mbed.org) target supports semihosted local filesystem, accessible via the mbed USB interface. Should also work with semihosting-compatible debuggers.
+
+* QEMU ARM semihosting
+  - http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/
 
 作業繳交方式
 ------------------
