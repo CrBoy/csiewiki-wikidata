@@ -151,6 +151,8 @@ qemu-semihost 操作
 
 參考作業 (B) 要求
 ------------------
+- 從 `rtenv<https://github.com/embedded2013/rtenv>`_ 移植或參考其 pathserver, read, write 實作，使得 qemu-semihost 的 hello.c 得以從 Linux host 端讀取和寫入檔案
+- 至少得讀取 host 端檔案，加入特定字串後，再寫回到 host 端
 
 作業繳交方式
 ------------------
