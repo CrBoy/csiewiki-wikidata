@@ -118,6 +118,19 @@ GDB Automation
 - 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
   * 也就是預期執行 ``make gdbauto`` 之後，能呼叫 QEMU
 
+參考作業要求
+------------------
+* 原本的 GDB Automation 程式僅能將 "Hello!" 字樣輸出到 UART 裝置，是否能夠在 GDB session 中取得輸出的文字並比對？(自動測試需求)
+  - 提示：可在 GDB 使用 ``set logging on``
+  - 提示：可修改 QEMU 執行參數
+
+* 進一步縮短 ``gdb.in`` 的檔案長度
+
+作業繳交方式
+------------------
+* 請更新作業提案到共筆網站: Lab 20 / 作業共筆
+* 請在 Oct 5, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
+
 參考資訊
 -------
 - debugger 和 software emulator
