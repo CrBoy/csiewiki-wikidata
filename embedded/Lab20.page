@@ -24,6 +24,7 @@ QEMU + GDB操作
 .. code-block:: prettyprint
 
   git clone git://github.com/embedded2013/gdb-automation.git
+  git clone git@github.com:embedded2013/gdb-automation.git # 如果上一行失敗
   cd gdb-automation
 
 - 開啟一個終端機，作以下輸入
@@ -147,6 +148,7 @@ qemu-semihost 操作
 ---------------------------------
 * cd ~/workspace
 * git clone git://github.com/embedded2013/qemu-semihost.git
+* git clone git@github.com:embedded2013/qemu-semihost.git # 如果上一行失敗
 * cd qemu-semihost
 * ./test.sh
 
