@@ -2,3 +2,113 @@
 title: Lab20: GNU Toolchain
 toc: no
 ...
+
+QEMU_STM32 + QEMU 操作
+----------------------
+- 假設 `Lab-19</embedded/Lab19>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+
+.. code-block:: prettyprint
+
+  cd workspace
+  file qemu_stm32
+
+- 取得 GDB Automation
+
+.. code-block:: prettyprint
+
+  git clone git://github.com/embedded2013/gdb-automation.git
+  cd gdb-automation
+
+- 開啟一個終端機，作以下輸入
+
+.. code-block:: prettyprint
+
+    make qemudbg
+
+- 開啟另一個終端機，準備透過 gdb 來追蹤程式。下列 (gdb) 開頭的指令表示在 GDB 內部操作
+- 使用 Ubuntu 64-bit 版本時，需要另外安裝 lib32ncurses5
+  - sudo apt-get install lib32ncurses5
+
+.. code-block:: prettyprint
+
+    cd gdb-automation
+    arm-none-eabi-gdb
+    (gdb) file main.elf 
+    Reading symbols from gdb-automation/main.elf...done.
+    (gdb) b main
+    Breakpoint 1 at 0x2206: file main.c, line 8.
+    (gdb) target remote :3333
+    Remote debugging using :3333
+    Reset_Handler ()
+        at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s:67
+    67	  movs	r1, #0
+    (gdb) c
+    Continuing.
+    
+    Breakpoint 1, main () at main.c:8
+    8		RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    (gdb) list
+    3	
+    4	int main(void)
+    5	{
+    6		int last_button_state, new_button_state;
+    7	
+    8		RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+    9		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOA, ENABLE);
+    10						
+    11		/* Configure PC.12 as output push-pull (LED) */
+    12		GPIO_WriteBit(GPIOC,GPIO_Pin_12,Bit_SET);
+    (gdb) b 23
+    Breakpoint 2 at 0x2264: file main.c, line 23.
+    (gdb) c
+    Continuing.
+    
+    Breakpoint 2, main () at main.c:23
+    23			new_button_state = GPIOA->IDR & 0x00000001;
+    (gdb) n
+    24			if(new_button_state ^ last_button_state) {
+    (gdb) p new_button_state
+    $1 = 0
+    (gdb) info breakpoints 
+    Num     Type           Disp Enb Address    What
+    1       breakpoint     keep y   0x00002206 in main at main.c:8
+    breakpoint already hit 1 time
+    2       breakpoint     keep y   0x00002264 in main at main.c:23
+    breakpoint already hit 1 time
+    (gdb) del 2
+    (gdb) watch GPIOC->ODR
+    Hardware watchpoint 3: GPIOC->ODR
+    (gdb) c
+    Continuing.
+
+- 在 QEMU monitor 內作以下輸入，試圖模擬按鈕的動作
+
+.. code-block:: prettyprint
+
+    sendkey b
+
+- 隨後可發現 GDB 畫面出現變化：
+ 
+.. code-block:: prettyprint
+
+    Hardware watchpoint 3: GPIOC->ODR
+
+    Old value = 4096
+    New value = 0
+    main () at main.c:29
+    29			last_button_state = new_button_state;
+
+- 事實上 GPIOC 是個 macro，可透過 GDB 驗證
+
+.. code-block:: prettyprint
+
+    (gdb) info macro GPIOC
+    Defined at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h:1410
+      included at Lab-2/demo/main.c:2
+    #define GPIOC ((GPIO_TypeDef *) GPIOC_BASE)
+
+GDB Automation
+----------------------------
+- 撰寫特別的 GDB script，使得 QEMU 能自動在 UART 畫面印出 "Hello!" 字樣。main.c 檔案的行數應該越少越好，處理動作最好全權交給 GDB
+- 在 Makefile 新增 'gdbauto' 的 target，自動進行 QEMU + GDB + UART 輸出
+  * 也就是預期執行 ``make gdbauto`` 之後，能呼叫 QEMU
