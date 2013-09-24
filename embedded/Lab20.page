@@ -9,8 +9,8 @@ toc: no
 - 學習 GNU Toolchain 的使用
 - 學習 ARM semihosting 的使用
 
-QEMU_STM32 + QEMU 操作
-----------------------
+QEMU + GDB操作
+----------------------------
 - 假設 `Lab-19</embedded/Lab19>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
 
 .. code-block:: prettyprint
@@ -141,6 +141,13 @@ ARM Semihost
 
 * QEMU ARM semihosting
   - http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/
+
+qemu-semihost 操作
+---------------------------------
+* cd ~/workspace
+* git clone git@github.com:embedded2013/qemu-semihost.git
+* cd qemu-semihost
+* ./test.sh
 
 作業繳交方式
 ------------------
