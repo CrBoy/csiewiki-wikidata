@@ -151,6 +151,10 @@ qemu-semihost 操作
 * cd qemu-semihost
 * ./test.sh
 
+參考執行畫面:
+
+ .. image:: /embedded/Lab20/semihost.png
+
 參考作業 (B) 要求
 ------------------
 - 從 `rtenv<https://github.com/embedded2013/rtenv>`_ 移植或參考其 pathserver, read, write 實作，使得 qemu-semihost 的 hello.c 得以從 Linux host 端讀取和寫入檔案
