@@ -3,3 +3,12 @@ title: Week #2 (Oct 1) :: Operating Systems for Embedded
 toc: no
 ...
 
+教材
+---------
+- `快快樂樂設計即時多工作業系統</embedded/2012w3/HappyRTOS.pdf>`_
+- `The ARM Architecture (with focus on Cortex-M3)</embedded/2012w3/arm-cortex-m3.pptx>`_
+- `Real Time Systems and RTOS<http://www.slideshare.net/cherviralavm/real-time-systems-amp-rtos>`_
+
+延伸閱讀
+-------------
+- `Design & Analysis for Embedded & Time-Critical Systems<http://zh.scribd.com/doc/44959852/RTOSlec>`_, Dr. Tom Clarke
