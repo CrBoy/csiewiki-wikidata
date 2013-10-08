@@ -37,7 +37,12 @@ FreeRTOS + romfs
 
 參考作業提案
 --------------------
-* 
+* 將 Lab19 實作的 shell 整合進 FreeRTOS，至少提供 ``ps`` (顯示系統中 Task 資訊), ``exec`` (建立新的 Task) 等指令
+* 將 Lab20 實作的 semihosting 整合進 FreeRTOS + 你的 shell，至少得提供 ``host`` 指令
+  - 參考格式：``host`` ``將在 Host 端執行的指令``
+  - Host 端執行後，應該將其輸出顯示於 shell
+
+- 在 shell 中提供檔案系統相關的指令，如 ``ls``，得以顯示 romfs 的資訊
 
 作業繳交方式
 -------------------
