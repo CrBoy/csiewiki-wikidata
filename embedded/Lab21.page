@@ -6,11 +6,34 @@ toc: no
 預期目標
 -------
 * 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
-- 熟悉 FreeRTOS 的內部運作機制
-- 實地練習 Multi-tasking 程式設計
+  - 熟悉 FreeRTOS 的內部運作機制
+  - 實地練習 Multi-tasking 程式設計
 
 * 整合 Lab19 和  Lab20 的開發成果
-- 複習 GNU Toolchain, ARM semihost, GDB 操作
+  - 複習 GNU Toolchain, ARM semihost, GDB 操作
+
+FreeRTOS
+---------------
+* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
+FreeRTOS + romfs
+-------------------------------
+* 已整合檔案系統到 FreeRTOS 中，並在 UART 顯示檔案系統 (romfs) 中 test.txt 的內容
+* 預期 make qemuauto 執行後，會自動啟動 QEMU + GDB + FreeRTOS，並在 5 秒後 kill QEMU/GDB，最終的終端機畫面為 test.txt 的檔案內容
+* 測試方式
+  - git clone git@github.com:embedded2013/freertos.git
+  - cd freertos
+  - make
+  - make qemuauto
+  - 留意 Host 端應該會有 ``Romfs Test!`` 字樣
+
+* 實作程式碼
+  - romfs.c
+  - hash-djb2.c
+  - filesystem.c
+  - fio.c
+
 
 參考作業
 ------------
