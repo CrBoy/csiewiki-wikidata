@@ -22,7 +22,7 @@ FreeRTOS + romfs
 * 已整合檔案系統到 FreeRTOS 中，並在 UART 顯示檔案系統 (romfs) 中 test.txt 的內容
 * 預期 make qemuauto 執行後，會自動啟動 QEMU + GDB + FreeRTOS，並在 5 秒後 kill QEMU/GDB，最終的終端機畫面為 test.txt 的檔案內容
 * 測試方式
-  - git clone git@github.com:embedded2013/freertos.git
+  - git clone git@github.com:embedded2013/freertos.git # 或者: git clone git://github.com/embedded2013/freertos.git
   - cd freertos
   - make
   - make qemuauto
