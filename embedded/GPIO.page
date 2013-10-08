@@ -162,7 +162,7 @@ sample code download :
 
 .. code-block:: c
 
-    git clone git://gitcafe.com/akasha00/stm32_GPIO_demo.git
+    git clone https://github.com/shengwen1997/stm32_GPIO_demo.git
     cd stm32_GPIO_demo/
 
 test for code :
