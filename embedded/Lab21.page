@@ -1,12 +1,16 @@
 ---
-title: Lab21: Multitasking
+title: Lab21: RTOS
 toc: no
 ...
 
 預期目標
 -------
-* 整合 Lab19 和 Lab20 的開發成果
-* 複習 GNU Toolchain, ARM semihost, GDB 操作
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+- 熟悉 FreeRTOS 的內部運作機制
+- 實地練習 Multi-tasking 程式設計
+
+* 整合 Lab19 和  Lab20 的開發成果
+- 複習 GNU Toolchain, ARM semihost, GDB 操作
 
 參考作業
 ------------
