@@ -25,6 +25,29 @@ FreeRTOS: Memory management
     + they are not thread safe, and
     + they are not deterministic (the amount of time taken to execute the function will differ from call to call)
 
+hack-malloc
+-------------------
+* 
+* ``git clone git@github.com:embedded2013/hack-malloc.git`` # 或 ``git clone git://github.com:embedded2013/hack-malloc.git`
+* ``cd hack-malloc && make``
+* ``./tryit`` # Ctrl-C 停止輸出
+* 參考畫面輸出：
+
+.. code-block:: prettyprint
+
+    tryit.c 68: try to allocate 1648 bytes
+    tryit.c 70: malloc returned 0x61595c
+    allocate a block, size 1648
+    tryit.c 68: try to allocate 1582 bytes
+    tryit.c 70: malloc returned 0x615fe8
+    allocate a block, size 1582
+    tryit.c 68: try to allocate 1037 bytes
+    tryit.c 70: malloc returned (nil)
+    free a block, size 1648
+    tryit.c 68: try to allocate 1815 bytes
+    tryit.c 70: malloc returned (nil)
+    free a block, size 1582
+
 參考作業提案
 --------------------
 * 
