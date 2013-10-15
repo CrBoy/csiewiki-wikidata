@@ -1,0 +1,40 @@
+---
+title: Lab22: RTOS
+toc: no
+...
+
+預期目標
+-------
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+  - 熟悉 FreeRTOS 的內部運作機制
+
+* 學習實作 memory mangement
+  - 實作 malloc 和驗證其功能
+
+FreeRTOS
+---------------
+* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
+FreeRTOS: Memory management
+-------------------------------
+- `Memory Management<http://www.freertos.org/a00111.html>`_
+-  The RTOS kernel allocates RAM each time a task, queue, mutex, software timer or semaphore is created. The standard C library malloc() and free() functions can sometimes be used for this purpose, but ...
+    + they are not always available on embedded systems,
+    + they take up valuable code space,
+    + they are not thread safe, and
+    + they are not deterministic (the amount of time taken to execute the function will differ from call to call)
+
+參考作業提案
+--------------------
+* 
+
+作業繳交方式
+-------------------
+* 更新作業提案到共筆網站: `Lab 22 / 作業共筆<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
+* 在 Oct 25, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
+   - https://github.com/embedded2013/freertos
+
+參考資訊
+-------------
+* `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
