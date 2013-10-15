@@ -9,7 +9,7 @@ toc: no
   - 熟悉 FreeRTOS 的內部運作機制
 
 * 學習 memory mangement
-  - 實作 malloc 和驗證其功能
+  - 實作 ``malloc`` / ``free`` 和驗證其功能
   - 搭配 `Week #5</embedded/2013-w5>`_ 進度，學習 heap, stack 的規劃
   - defragmentation
 
@@ -58,6 +58,8 @@ hack-malloc
   - 加分: 將 ``tryit`` 移植回去 ``rtenv``
 
 * 修改 ``tryit.c`` 的 prng (pseudorandom number generator)，用 inline assembly 重寫該函式
+* 提出檢驗 FreeRTOS/rtenv 中 ``malloc`` / ``free`` 功能的方法 (需要提案描述)
+  - 加分: defragmentation 的途徑
 
 
 作業繳交方式
