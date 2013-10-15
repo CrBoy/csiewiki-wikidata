@@ -10,6 +10,8 @@ toc: no
 
 * 學習 memory mangement
   - 實作 malloc 和驗證其功能
+  - 搭配 `Week #5</embedded/2013-w5>`_ 進度，學習 heap, stack 的規劃
+  - defragmentation
 
 FreeRTOS
 ---------------
