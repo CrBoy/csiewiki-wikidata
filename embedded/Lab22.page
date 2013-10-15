@@ -32,7 +32,7 @@ FreeRTOS: Memory management
 hack-malloc
 -------------------
 * 簡易 malloc/free 測試程式，以亂數指定若干不同大小的 memory region，持續進行 malloc 和 free 操作
-* ``git clone git@github.com:embedded2013/hack-malloc.git`` # 或 ``git clone git://github.com:embedded2013/hack-malloc.git`
+* ``git clone git@github.com:embedded2013/hack-malloc.git`` # 或 ``git clone git://github.com:embedded2013/hack-malloc.git``
 * ``cd hack-malloc && make``
 * ``./tryit`` # Ctrl-C 停止輸出
 * 參考畫面輸出：
