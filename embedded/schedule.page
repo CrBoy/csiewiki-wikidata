@@ -15,8 +15,8 @@ Week  Date     Subject                                 Assignment
 #1    Sep 17   `Overview: Embedded in our world`_      `Lab 19`_: QEMU
 #2    Sep 23   `ARM Architecture and SoC`_             `Lab 20`_: GNU Toolchain
 #3    Oct 1    `Operating Systems for Embedded`_       `Lab 20`_: GNU Toolchain
-#4    Oct 8    `ARM: Instructions`_                    `Lab 21`_: RTOS
-#5    Oct 15   `ARM: Toolchain and Peripherals`_            `Lab 22`_: Hardware
+#4    Oct 8    `ARM: Instructions`_                    `Lab 21`_: RTOS (1)
+#5    Oct 15   `ARM: Toolchain and Peripherals`_            `Lab 22`_: RTOS (2)
 #6    Oct 22   -                                       -
 #7    Oct 29   -                                       -
 #8    Nov 5    -                                       -
