@@ -31,7 +31,7 @@ FreeRTOS: Memory management
 
 hack-malloc
 -------------------
-* 
+* 簡易 malloc/free 測試程式，以亂數指定若干不同大小的 memory region，持續進行 malloc 和 free 操作
 * ``git clone git@github.com:embedded2013/hack-malloc.git`` # 或 ``git clone git://github.com:embedded2013/hack-malloc.git`
 * ``cd hack-malloc && make``
 * ``./tryit`` # Ctrl-C 停止輸出
@@ -64,7 +64,7 @@ hack-malloc
 
 作業繳交方式
 -------------------
-* 更新作業提案到共筆網站: `Lab 22 / 作業共筆<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
+* 更新作業提案到共筆網站: `Lab 22 / 作業共筆<https://embedded2013.hackpad.com/Lab22-RTOS-wnRrVcPhtUU>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
 * 在 Oct 25, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
    - https://github.com/embedded2013/freertos
 
