@@ -27,6 +27,8 @@ FreeRTOS: Memory management
     + they are not thread safe, and
     + they are not deterministic (the amount of time taken to execute the function will differ from call to call)
 
+- 檢查 freertos 目錄的 Makefile，目前使用 ``$(FREERTOS_SRC)/portable/MemMang/heap_1.c``，可更換為 ``heap_2.c``
+
 hack-malloc
 -------------------
 * 
@@ -52,7 +54,11 @@ hack-malloc
 
 參考作業提案
 --------------------
-* 
+* 將 ``tryit`` 移植回去 FreeRTOS，並且配合 Lab 21，在 shell 中建立一個命令: ``mmtest``
+  - 加分: 將 ``tryit`` 移植回去 ``rtenv``
+
+* 修改 ``tryit.c`` 的 prng (pseudorandom number generator)，用 inline assembly 重寫該函式
+
 
 作業繳交方式
 -------------------
@@ -63,3 +69,4 @@ hack-malloc
 參考資訊
 -------------
 * `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
+* `ARM GCC Inline Assembler Cookbook<http://www.ethernut.de/en/documents/arm-inline-asm.html>`_
