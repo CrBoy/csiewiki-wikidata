@@ -61,7 +61,7 @@ hack-malloc
 
 參考作業提案
 --------------------
-* 將 `hack-malloc<https://github.com/embedded2013/hack-malloc>`_ 移植回去 FreeRTOS，並且配合 `Lab 21</embedded/Lab21>，在 shell 中建立一個命令: ``mmtest``
+* 將 `hack-malloc<https://github.com/embedded2013/hack-malloc>`_ 移植回去 FreeRTOS，並且配合 `Lab 21</embedded/Lab21>`_，在 shell 中建立一個命令: ``mmtest``
   - 加分: 將 ``tryit`` 移植回去 ``rtenv``
 
 * 修改 ``hack-malloc/tryit.c`` 的 prng (pseudorandom number generator)，用 inline assembly 重寫該函式
