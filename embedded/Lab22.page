@@ -13,6 +13,11 @@ toc: no
   - 搭配 `Week #5</embedded/2013-w5>`_ 進度，學習 heap, stack 的規劃
   - defragmentation
 
+Memory Management
+----------------------------------
+* `System-wide Memory Management for Linux Embedded Systems<http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf>`_
+* `Tips of malloc & free<http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf>`_
+
 FreeRTOS
 ---------------
 * `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
