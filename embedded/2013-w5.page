@@ -17,6 +17,23 @@ toc: no
   - 身高185公分，可以在脊椎傷患輔助行走器具的幫助下行走、坐下和站立。它有一顆利用電子幫浦運作的心臟，會跳動並流通人工血液，而人工血液就像真正的血液一樣含有氧氣；一具可植入的人工腎臟則能取代當今洗腎設備的功能
   - source: `「仿生人」紐約亮相　185cm擁近7成人體功能<http://www.ettoday.net/news/20131012/281281.htm>`_
 
+Code Review
+---------------------
+* justin1534
+  - 嘗試修改qemu模擬器，實作出以下功能：
+    + 增加額外的 GPIO 腳位
+    + 顯示出每 200 次變化間的變化狀態: ``^`` 表示高電位; ``-`` 表示 0 電位; ``v`` 表示負電位
+    + 顯示出 PWM 的 ratio，即 duty cycle
+
+  - 修改 rtenv 之 shell 並設計一個 PWM 自走車之控制界面
+  - 自走車硬體已在之前課堂展示過，而作業提案則是在 QEMU 模擬，這樣軟體和硬體可同時改進，甚至預先評估更多的硬體週邊和軟體控制技巧。
+  - GitHub: https://github.com/justin1534/rtenv/commits/car_test
+
+* fongwh1
+  - 實作 malloc, 並用 GDB 去追蹤執行效果。利用 malloc，搭配 GDB Script 自動執行 ps,hello
+  - 稍早我們在 rtenv 實作了 shell，同學們可透過預先定義的指令去查詢系統狀態，但無從驗證軟體的品質，這是嵌入式系統的大忌，而 Will 提出一個簡單有效的方法：用 GDB script 自動執行特定的指令 (不過還沒寫完)。此外，他還做了一個初步的 malloc 實作，其原理是先提供 sbrk 系統呼叫，然後藉由安排 heap 空間，做出單純的 first-fit 演算法。
+  - GitHub: https://github.com/fongwh1/rtenv/commits/master
+
 教材
 ------
 * `ARM Architecture, Instructions, Toolchain/ABI</embedded/arm-lecture-1.pdf>`_
