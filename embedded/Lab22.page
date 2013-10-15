@@ -8,7 +8,7 @@ toc: no
 * 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
   - 熟悉 FreeRTOS 的內部運作機制
 
-* 學習實作 memory mangement
+* 學習 memory mangement
   - 實作 malloc 和驗證其功能
 
 FreeRTOS
