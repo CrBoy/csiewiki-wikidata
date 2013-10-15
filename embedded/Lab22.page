@@ -74,3 +74,4 @@ hack-malloc
 -------------
 * `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
 * `ARM GCC Inline Assembler Cookbook<http://www.ethernut.de/en/documents/arm-inline-asm.html>`_
+* `Malloc implementation in FreeRTOS <http://pramode.net/fosstronics/memory-management.txt>`_
