@@ -12,8 +12,6 @@ Interrupt Service Routine
 -------------------------------------------
 .. code-block:: prettyprint
 
-    mkdir -p workspace
-    cd workspace
     git clone git://github.com/beckus/stm32_p103_demos.git
     cd stm32_p103_demos
     make
@@ -21,6 +19,7 @@ Interrupt Service Routine
 
 * 注意 LED 和 USART 的變化
 * 程式碼: demos/uart_repeat_write_int/main.c
+* `FreeRTOS Tick<http://www.freertos.org/implementation/a00011.html>`_
 
 SysTick
 -------------
