@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 rtenv 並且學習相關的操作
   - 熟悉 Interrupt 處理機制
 
 Interrupt Service Routine
@@ -32,7 +32,7 @@ SysTick
 
 參考作業要求
 ------------------
-* 將 Lab22 的 FreeRTOS 程式碼中，替換所有 polling I/O 成 interrupt-based handling
+* 將 rtenv 程式碼中，替換所有 polling I/O 成 interrupt-based handling
 * 透過 SysTick，計算 USART Interrupt 處理之時間成本，並輸出於 Host 端 
   - 利用 semihost + GDB script
 
@@ -40,4 +40,4 @@ SysTick
 -------------------
 * 更新作業提案到共筆網站: `Lab 23 / 作業共筆<https://embedded2013.hackpad.com/Lab23-RTOS-mxRAhTfjcJh>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
 * 在 Nov 1, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
-            https://github.com/embedded2013/freertos
+  - https://github.com/embedded2013/rtenv
