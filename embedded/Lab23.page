@@ -33,7 +33,8 @@ SysTick
 參考作業要求
 ------------------
 * 將 Lab22 的 FreeRTOS 程式碼中，替換所有 polling I/O 成 interrupt-based handling
-* 透過 SysTick，計算 USART Interrupt 處理之時間成本
+* 透過 SysTick，計算 USART Interrupt 處理之時間成本，並輸出於 Host 端 
+  - 利用 semihost + GDB script
 
 作業繳交方式
 -------------------
