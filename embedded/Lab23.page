@@ -17,7 +17,7 @@ Interrupt Service Routine
     make
     make uart_repeat_write_int_QEMURUN
 
-* 注意 LED 和 USART 的變化
+* 注意 LED 和 USART 的變化 (對照 Host 端和 QEMU serial0 輸出)
 * 程式碼: demos/uart_repeat_write_int/main.c
 * `FreeRTOS Tick<http://www.freertos.org/implementation/a00011.html>`_
 
