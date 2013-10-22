@@ -1,0 +1,9 @@
+---
+title: Lab23: RTOS
+toc: no
+...
+
+預期目標
+-------
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+  - 熟悉 Interrupt 處理機制
