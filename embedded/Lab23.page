@@ -7,3 +7,31 @@ toc: no
 -------
 * 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
   - 熟悉 Interrupt 處理機制
+
+Interrupt Service Routine
+-------------------------------------------
+.. code-block:: prettyprint
+
+    mkdir -p workspace
+    cd workspace
+    git clone git://github.com/beckus/stm32_p103_demos.git
+    cd stm32_p103_demos
+    make
+    make uart_repeat_write_int_QEMURUN
+
+* 注意 LED 和 USART 的變化
+* 程式碼: demos/uart_repeat_write_int/main.c
+
+SysTick
+-------------
+* context switch 的時間單位為 1 個 tick
+* 讀取 SysTick 中 current & reload 的數值，用來計算更精確的時間單位 (小於tick)
+   - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html
+
+* 參考資訊: `Lab-8</embedded/Lab8>`_
+  - https://gitcafe.com/embedded2013/Labs/blob/SOL-8/Lab-8/freertos/gdbscript
+
+參考作業要求
+------------------
+* 將 Lab22 的程式碼中，所有 polling I/O 換成 interrupt-based handling
+* 透過 SysTick，計算 USART Interrupt 處理之時間成本
