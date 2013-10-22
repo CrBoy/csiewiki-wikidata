@@ -34,6 +34,7 @@ SysTick
 ------------------
 * 將 rtenv 程式碼中，替換所有 polling I/O 成 nested interrupt-based handling
   - 提示：檢查 shell 下字元輸入 / 輸出的正確性
+  - 提示：是否沒有修改的必要？
 
 * 透過 SysTick，計算 USART Interrupt 處理之時間成本，並輸出於 Host 端 
   - 利用 semihost + GDB script
