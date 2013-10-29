@@ -18,7 +18,7 @@ Week  Date     Subject                                 Assignment
 #4    Oct 8    `ARM: Instructions`_                    `Lab 21`_: RTOS (1)
 #5    Oct 15   `ARM: Toolchain and Peripherals`_       `Lab 22`_: RTOS (2)
 #6    Oct 22   `ARM: Interrupts and Exceptions`_       `Lab 23`_: RTOS (3)
-#7    Oct 29   Code Review                                       -
+#7    Oct 29   `Code Review`_                                       -
 #8    Nov 5    -                                       -
 #9    Nov 12   -                                       -
 #10   Nov 19   -                                       -
@@ -38,6 +38,7 @@ Week  Date     Subject                                 Assignment
 .. _`ARM: Instructions`: 2013-w4
 .. _`ARM: Toolchain and Peripherals`: 2013-w5
 .. _`ARM: Interrupts and Exceptions`: 2013-w6
+.. _`Code Review`: 2013-w7
 .. _`Lab 19`: Lab19
 .. _`Lab 20`: Lab20
 .. _`Lab 21`: Lab21
