@@ -5,12 +5,12 @@ toc: no
 
 分組 (順序 + 修課編號)
 ----------------------------------
-* GPIO: 17, 18, 25
-* ADC: 4, 6, 13, 20
-* RTC: 11, 12
-* SPI: 14, 22, 23
-* PWM: 3, 7, 8
-* USART: 28
-* USB: 1, 21, 24
-* Flash: 2, 15, 16
-* SDIO: 9, 26
+* `GPIO</embedded/GPIO>`_: 17, 18, 25
+* `ADC</embedded/ADC>`_: 4, 6, 13, 20
+* `RTC</embedded/RTC>`_: 11, 12
+* `SPI</embedded/SPI>`_: 14, 22, 23
+* `PWM</embedded/PWM>`_: 3, 7, 8
+* `USART</embedded/USART>`_: 28
+* `USB</embedded/USB>`_: 1, 21, 24
+* `Flash</embedded/Flash>`_: 2, 15, 16
+* `SDIO</embedded/SDIO>`_: 9, 26
