@@ -2,6 +2,41 @@ Introduction
 =============
 Real-Time Clock(RTC)是負責記錄時間的元件，出現在需要長期使用時鐘的電子設備中。
 
+
+RTC的Clock來源:
+=============
+STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：
+
+SYSCLK為系統的clock有三種來源：
+
+     1. HSI  (High-Speed Internal) ：16MHz,RC電路
+
+     2. HSE (Low-Speed External)：4-26MHz (一般選用8MHz),石英震盪
+
+     3. Main PLL clock
+
+RTCCLK為設備的clock有兩種來源：
+
+     1. LSI  (Low-Speed Internal)  ：40kHz,RC電路震盪
+
+     2. LSE (High-Speed External)：32.768kHz,石英震盪
+
+----> RTC 主要是使用 HSE , LSI  , LSE 三種來源
+
+參閱reference manual p.150
+
+比較 "HSE" , "LSI " , "LSE"三種輸入來源：
+
+HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和和另一個clock穩定同步。
+
+LSI  -  是一個低功耗的clock，可以再停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
+
+       (補充：看門狗代表當主程式發生錯誤事件時，這時看門狗會發出重新啟動或關閉信號，使狀態回復正常。)
+
+LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確計算。
+
+
+
 RTC block diagram
 --------------------
 
