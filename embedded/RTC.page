@@ -176,6 +176,24 @@ Modifications of ``RTC_DR``, ``RTC_TR``, and ``RTC_PRER`` must be done in Initia
 
 Counter does not run in Initialization mode.
 
+初始化 Calendar
+=============
+step1.關閉RTC的防寫功能        --->寫入"0xCA"和"0x53"到RTC_WPR register.
+
+step2. 進入初始模式            --->設RTC_ISR register的INIT bit為1
+
+step3. 等待初始化的確認         --->等待2個clock cycle,讓RTC_ISR register的INITF bit(bit 6)為1
+
+step4. 如果需要調整計數速率      --->寫入RTC_PRER register同步時間的值
+
+step5. 選擇想要的時間與日期      --->設定RTC_TR的秒分時;設定RTC_DR的日週月年
+
+step6. 選用12h或24h            --->設RTC_CR register的FTM bit,等於0表示24制;1表示12制
+
+step7.結束初始模式設定          --->清除RTC_ISR register的INIT bit.
+
+step8. 使RTC寫入保護(防寫)      --->寫入"0xFF"到RTC_WPR register
+
 Example
 =============
 
