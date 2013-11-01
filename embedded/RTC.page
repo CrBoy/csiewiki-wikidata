@@ -34,6 +34,26 @@
 
 
 
+RTC Calendar 
+=============
+
+
+.. image:: /RTC_calendar.png
+
+
+讀取Calendar
+----------
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是在讀shadow register，如果想要直接讀取calendar必須要設BYPSHAD 控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
+
+Shadow Register:
+
+Bit 5 BYPSHAD: Bypass the shadow registers
+
+0:間接在Shadow Register( RTC_SSR, RTC_TR, and RTC_DR)讀取Calendar，資料會延遲兩個RTC Clock更新一次
+
+1:不透過Shadow Register直接讀取Calendar，拿到的資料不會延遲會直接更新
+
+
 RTC的Clock來源:
 =============
 STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：
@@ -68,7 +88,7 @@ LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確�
 
 
 
-RTC block diagram
+RTC 方塊圖
 --------------------
 
 .. image:: /rtc_block.png
