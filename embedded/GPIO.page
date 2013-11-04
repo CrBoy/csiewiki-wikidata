@@ -103,7 +103,7 @@ When the I/O port is programmed as alternate function:
 
 Remark：
 
-GPIOx_AFRL[31:0] and GPIOx_ARHL[31:0] provide ways to select alternation functions. However, different alternate functions maps to different bits of ports. Table below is part of alternate function mapping, which is mainly about USART2/3.
+GPIOx_AFRL[31:0] and GPIOx_AFRH[31:0] provide ways to select alternation functions. However, different alternate functions maps to different bits of ports. Table below is part of alternate function mapping, which is mainly about USART2/3.
 
 For more information, please refer to **Table 9. Alternate function mapping** from P.60-68 in STM32F407xx Datasheet.
 
