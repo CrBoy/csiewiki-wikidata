@@ -127,12 +127,12 @@ Refer from: STM32F407xx Datasheet P124
 
 .. image:: /embedded/ADC/22.JPG
 
-`STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 參照P264 ADC block diagram 
+`STM32F407xx Reference Manual<https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ 參照P264 ADC block diagram 
 
 - 5. 測試的接法?
      請參考Demo.
 - 6. ADC的公式在哪裡找到?
-    `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中溫度轉換公式為
+    `STM32F407xx Reference Manual<https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ 在 11.10 Temperature sensor 中溫度轉換公式為
 
 ::
 
@@ -140,7 +140,7 @@ Refer from: STM32F407xx Datasheet P124
     Where: V25 = VSENSE value for 25° C、 Avg_Slope = average slope of the temperature vs. VSENSE curve (given in mV/°C or μV/°C)
 
 - 7. 溫度的範圍?
-    `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中提到 Supported temperature range: –40 to 125 °C, Precision: ±1.5 °C。
+    `STM32F407xx Reference Manual<https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ 在 11.10 Temperature sensor 中提到 Supported temperature range: –40 to 125 °C, Precision: ±1.5 °C。
 
 - 8. 當在測量輸出電壓時,三用電表在pin腳上量到的電壓大小與gdb上所取得到的值得誤差有多少?
 
@@ -148,7 +148,7 @@ Refer from: STM32F407xx Datasheet P124
     利用內建溫度感測計在做實驗時,由於無法獨立出一個sensor出來測,所以實驗的環境下是在室溫的環境下,並利用溫度計來量測室溫為多少,來比對板子上所抓到的溫度與溫度計上的溫度.
 
     補:
-     `STM32F407xx Reference Manual<http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ 在 11.10 Temperature sensor 中一張中的Note提到,此開發版的內部溫度感測器適合來偵測溫度的變化,依據溫度感測公式來看,是基於25°C下與offset得到的溫度值,也就是適合觀察溫度變化,並不適合來取得室溫上的絕對溫度. 所以若要測量精確的絕對溫度的話,Manual上建議外接溫度感測器較為合適.
+     `STM32F407xx Reference Manual<https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ 在 11.10 Temperature sensor 中一張中的Note提到,此開發版的內部溫度感測器適合來偵測溫度的變化,依據溫度感測公式來看,是基於25°C下與offset得到的溫度值,也就是適合觀察溫度變化,並不適合來取得室溫上的絕對溫度. 所以若要測量精確的絕對溫度的話,Manual上建議外接溫度感測器較為合適.
 
 
 - 10. 整個程式上的架構為如何?
