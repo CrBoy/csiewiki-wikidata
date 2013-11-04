@@ -54,10 +54,7 @@ basic of structure (P.137, **Figure 13. Basic structure of a five-volt tolerant 
 -------------------------------------------------------------------------------------------------------------------
 
 .. image:: /embedded/GPIO_basic_src.PNG
-
-Vdd : 一個供電來源，電壓介在1.7 V - 3.6V之間
-
-Vdd_ft : 5-volt tolerant用的供電來源。
+VDD : device 內部的工作電壓
 
 Configuration
 =============
