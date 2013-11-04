@@ -63,6 +63,7 @@ Configuration
 =============
 Input configuration (P.143, **6.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
+.. image:: /GPIO_ Input_configurations.png
 When the I/O port is programmed as Input:
 
 - the output buffer is disabled
@@ -80,6 +81,7 @@ When the I/O port is programmed as Input:
 
 Output configuration (P.144, **6.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
+.. image:: /GPIO_ Output_configurations.png
 When the I/O port is programmed as output:
 
 - The output buffer is enabled:
@@ -93,6 +95,7 @@ When the I/O port is programmed as output:
 
 Alternate function configuration (P.144, **6.3.11 Alternate function configuration** in Reference manual)
 ---------------------------------------------------------------------------------------------------------
+.. image:: /GPIO_Alternate_function_configuration.PNG
 When the I/O port is programmed as alternate function:
 
 - The output buffer can be configured as open-drain or push-pull
@@ -112,6 +115,7 @@ For more information, please refer to **Table 9. Alternate function mapping** fr
 
 Analog configuration (P.145, **6.3.12 Analog configuration** in Reference manual)
 ---------------------------------------------------------------------------------
+.. image:: /GPIO_Analog_configurations.PNG
 When the I/O port is programmed as analog configuration:
 
 - The output buffer is disabled
