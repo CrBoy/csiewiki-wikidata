@@ -36,7 +36,8 @@ input
 
 output
 -------------------
-- push-pull vs. open-drain with pull-up/pull-down
+- push-pull with pull-up/pull-down
+- open-drain with pull-up/pull-down
 
 
 analog
