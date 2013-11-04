@@ -49,7 +49,7 @@ analog
 .. image:: /embedded/Schmitt_trigger.jpg
 (施密特觸發器具有整流效果)
 
-basic of structure (P.186, **Figure 17. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
+basic of structure (P.137, **Figure 13. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
 -------------------------------------------------------------------------------------------------------------------
 
 .. image:: /embedded/GPIO_basic_src.PNG
@@ -60,7 +60,7 @@ Vdd_ft : 5-volt tolerant用的供電來源。
 
 Configuration
 =============
-Input configuration (P.193, **7.3.9 Input configuration** in Reference manual)
+Input configuration (P.143, **6.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
 When the I/O port is programmed as Input:
 
@@ -77,7 +77,7 @@ When the I/O port is programmed as Input:
 - A read access to the input data register provides the I/O State
   - 對data register的理解，我覺得用'狀態'比'數值'的敘述來的更好(大部分都是開關，就是外部訊號源是否有狀態改變，如 : button的按下與放開)，而此處寫I/O state的意思是，即使我們現在是設成output(如 : LED控制)，但我們仍然可用input data register來檢查LED現在的狀態。
 
-Output configuration (P.194, **7.3.10 Output configuration** in Reference manual)
+Output configuration (P.144, **6.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
 When the I/O port is programmed as output:
 
@@ -90,7 +90,7 @@ When the I/O port is programmed as output:
 - A read access to the input data register gets the I/O state
 - A read access to the output data register gets the last written value
 
-Alternate function configuration (P.195, **7.3.11 Alternate function configuration** in Reference manual)
+Alternate function configuration (P.144, **6.3.11 Alternate function configuration** in Reference manual)
 ---------------------------------------------------------------------------------------------------------
 When the I/O port is programmed as alternate function:
 
@@ -105,11 +105,11 @@ Remark：
 
 GPIOx_AFRL[31:0] and GPIOx_ARHL[31:0] provide ways to select alternation functions. However, different alternate functions maps to different bits of ports. Table below is part of alternate function mapping, which is mainly about USART2/3.
 
-For more information, please refer to **Table 8. Alternate function mapping** from P.58-62 in STM32F407xx Datasheet.
+For more information, please refer to **Table 9. Alternate function mapping** from P.60-68 in STM32F407xx Datasheet.
 
 .. image:: /embedded/af_mapping.png
 
-Analog configuration (P.196, **7.3.12 Analog configuration** in Reference manual)
+Analog configuration (P.145, **6.3.12 Analog configuration** in Reference manual)
 ---------------------------------------------------------------------------------
 When the I/O port is programmed as analog configuration:
 
