@@ -54,7 +54,8 @@ basic of structure (P.137, **Figure 13. Basic structure of a five-volt tolerant 
 -------------------------------------------------------------------------------------------------------------------
 
 .. image:: /embedded/GPIO_basic_src.PNG
-VDD : device 內部的工作電壓
+- VDD：芯片內部的工作電壓
+- VSS：接地點
 
 Configuration
 =============
