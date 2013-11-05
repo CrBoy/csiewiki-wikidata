@@ -13,7 +13,7 @@ Main Feature
 ============
 GPIO雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
 
-一個pin通常可被設定成input、output或analog，input會有兩種狀態表現(floating, pull-up/down)，output也有兩種狀態表現(push-pull with pull-up/pull-down or open drain with pull-up/down)。
+一個pin通常可被設定成input、output、alternate function或analog，input會有兩種狀態表現(floating, pull-up/down)，output也有兩種狀態表現(push-pull with pull-up/pull-down or open drain with pull-up/down)。
 
 - input/output方向解說 : input是指記憶體方接收來自設備的訊號源，output是指記憶體傳送訊號給設備。
 
