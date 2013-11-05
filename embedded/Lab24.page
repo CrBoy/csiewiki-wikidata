@@ -107,6 +107,7 @@ Programming STM32 F2, F4 ARMs under Linux
 
 USB 相關程式
 ------------------
+* https://hackpad.com/2013-Week-4-EtkoJumoBlU
 * 自動繪製方框的 USB mouse: https://gitcafe.com/KuoE0/DiscoveryF4-USB
 * 自動繪製圓形的 USB mouse: https://github.com/netspehre/Circle
 * AutoSign 自動簽名: https://github.com/shengwen1997/AutoSign
