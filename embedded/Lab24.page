@@ -9,14 +9,105 @@ toc: no
 * 接觸 ARM Cortex-M 環境
 * 學習 GNU Toolchain 與相關 open source 工具
 
-開發工具使用
----------------------
-* 參考上學期課程:
-  - `Lab 6</embedded/Lab6>`_ 與 `Lab 7</embedded/Lab7>`_
-  - https://gitcafe.com/embedded2012/P-jserv
+開發工具介紹與準備
+----------------
+- GNU Toolchain: 同之前 Lab
+- ICE = In-Circuit Emulator
+- `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
 
-* descent 的「作業系統之前的程式 for stm32f4discovery」系列文章
-  - `打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
+.. code-block:: prettyprint
+
+    sudo apt-get install automake* libtool libusb-1.0-0-dev
+    git clone http://github.com/texane/stlink.git
+    cd stlink
+    ./autogen.sh
+    ./configure --prefix=/usr
+    make
+    sudo make install
+    sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
+
+- 取得 OpenOCD 原始程式碼
+
+.. code-block:: prettyprint
+
+    git clone git://openocd.git.sourceforge.net/gitroot/openocd/openocd
+
+或者 http://sourceforge.net/projects/openocd/files/openocd/0.7.0/
+
+- 編譯 OpenOCD
+
+.. code-block:: prettyprint
+
+    cd openocd
+    ./bootstrap
+    ./configure --prefix=/opt/openocd \
+        --enable-jlink \
+        --enable-amtjtagaccel \
+        --enable-buspirate \
+        --enable-stlink \
+        --disable-libftdi
+    echo -e "all:\ninstall:" > doc/Makefile
+    make
+    sudo make install
+
+
+Programming STM32 F2, F4 ARMs under Linux
+------------------------------------------
+- `A Tutorial from Scratch<http://www.triplespark.net/elec/pdev/arm/stm32.html>`_
+  * Introduction STM32, STM32F2, STM32F4
+  * Obtaining and Setting Up OpenOCD
+  * Setting up the Hardware: STM32F4Discovery with integrated ST-Link/V2
+  * The Minimalistic Hello-World Program
+  * Running the Minimalistic Hello-World Program
+  * Debugging
+  * Automating the Steps
+
+工作環境
+-------
+- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+
+.. code-block:: prettyprint
+
+    git clone git://gitcafe.com/embedded2012/Labs.git
+    cd Labs/Lab-6
+
+或是
+
+.. code-block:: prettyprint
+
+    cd Labs/Lab-6
+    git fetch labs
+    git merge labs/master HEAD
+
+
+具備互動操作的 USB serial 實做
+----------------------------
+- http://www.sparetimelabs.com/usbcdcacm/ (文末提到與之前指定作業相關的技術議題)
+- USB list: /var/lib/usbutils/usb.ids
+  * ArchLinux: /usr/share/hwdata/usb.ids
+
+- neocon 離開方法: ``~.``
+  * neocon /dev/ttyACM0
+
+- http://wiki.openmoko.org/wiki/NeoCon
+- http://wiki.openmoko.org/wiki/CDC_ACM
+
+
+示範程式碼
+--------
+
+.. code-block:: prettyprint
+
+    cd Labs/Lab-6/discoveryF4
+    make
+    cd discovery_demo
+    make flash
+    cd ../serialUSB/
+    make flash
+
+「作業系統之前的程式 for stm32f4discovery」系列文章
+--------------------------------------------------------------------------
+* `打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
   - `1+2+3...+10 (ARM 組合語言版本)<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html>`_
-  - `點亮 LED<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html>`_
-  - `USART<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html>`_
+* `點亮 LED<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html>`_
+* `USART<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html>`_
