@@ -176,7 +176,6 @@ step8. 使RTC寫入保護(防寫)  --->寫入"0xFF"到RTC_WPR register
 
 --------------------------------------------------------------------
 
---------------------------------------------------------------------
 
 
 
@@ -234,10 +233,17 @@ RTC裡面有兩個校正功能，一個是RTC coarse calibration另一個是RTC 
 
 ---------------------------------------------------
 
----------------------------------------------------
 
 Low power modes
----------------------------------
+--------------------
+
+- RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。
+
+- 當clock 的來源是LSE 或 LSI，在停止模式與待機模式下，RTC仍然活躍的動作。
+
+- 在低功率( low power mode)模式下，Alarm, tamper event, time stamp event, and wakeup 依然會被中斷所啟動。
+
+.. image:: /RTC in low power mode.png
 
 ---------------------------------------------------
 
@@ -250,6 +256,11 @@ Interrupt application
 Alarm:
 ---------------------------
 
+calendar register與alarm作比較，如果相同則將對應的flag拉起來。
+
+.. image:: /embedded/RTC/alarm_pass.png
+
+---------------------------
 RTC periodic wakeup unit
 ----------------------------
 
@@ -384,15 +395,6 @@ LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
 
 LSI: 32kHz / (127+1) /(249+1) =1Hz
 
-Alarm
---------------------
-鬧鐘。
-
-calendar register與alarm作比較，如果相同則將對應的flag拉起來。
-
-.. image:: /embedded/RTC/alarm_pass.png
-
-
 
 
 Previous Functionality
@@ -482,21 +484,7 @@ There are two calibration methods : coarse and smooth. They should not be used t
 coarse calibration is provided for capability reasons. It can only be configured in initialization mode and start when INIT bit is cleared. Also it is recommaned using it for static correction only.
 
 
-Low power modes
---------------------
-The RTC is designed to minimize the power consumption. 
 
-The RTC runs as usual in Sleep mode. 
-
-In Stop mode and Standby mode, the RTC remains active when clock source is LSE or LSI.
-
-Alarm, tamper event, time stamp event, and wakeup cause the device to exit low power mode.
-
-.. image:: /RTC in low power mode.png
-
-wakeup, effectiveness and voltage in three lowpower modes
-
-.. image:: /embedded/RTC/stm32 low power mode summary.png
 
 
 
