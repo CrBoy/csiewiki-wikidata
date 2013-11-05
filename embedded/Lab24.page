@@ -118,3 +118,7 @@ USB 相關程式
   - `1+2+3...+10 (ARM 組合語言版本)<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html>`_
 * `點亮 LED<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html>`_
 * `USART<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html>`_
+
+Reference
+---------------
+* `Lab6</embedded/Lab6>`_
