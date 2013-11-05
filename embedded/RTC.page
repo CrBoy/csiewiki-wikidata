@@ -1,37 +1,136 @@
-簡介:
-=============
+Introduction
+==============
+Summary
+----------------- 
+
 基本上RTC（Real-time clock）本身就是一個真正的時鐘，利用原本STM本身所內建的振盪器再利用Prescaler降成1Hz讓RTC使用。
 
 利用硬體達成的binary-coded decimal (BCD) format，可以把下列與時間有關的資訊儲存，而且不需要任何軟體轉換，因為硬體就已經把資料轉成一般的日期格式。
  
- 1. sub-seconds (not programmable) 
+- sub-seconds (not programmable) 
  
- 2. seconds
+- seconds
  
- 3. minutes
+- minutes
 
- 4. hours in 12-hour or 24-hour format
+- hours in 12-hour or 24-hour format
 
- 5. day of the week (day)
+- day of the week (day)
 
- 6. day of the month (date)
+- day of the month (date)
 
- 7. month
+- month
 
- 8. year
+- year
 
 一些可以用的功能  Maskable interrupts/events:
 
- 1. Alarm A
+- Alarm A
 
- 2. Alarm B
+- Alarm B
 
- 3. Wakeup interrupt
+- Wakeup interrupt
 
- 4. Timestamp
+- Timestamp
 
- 5. Tamper detection
+- Tamper detection
 
+
+Block diagram  
+--------------------
+
+.. image:: /rtc_block.png
+
+
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+
+
+Functional description
+============================
+Clock source 
+--------------------
+
+**STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：**
+
+SYSCLK為系統的clock有三種來源：
+
+1. **HSI**  (High-Speed Internal) ：16MHz,RC電路
+
+2. **HSE** (Low-Speed External)：4-26MHz (一般選用8MHz),石英震盪
+
+3. Main **PLL** clock
+
+RTCCLK為設備的clock有兩種來源：
+
+1. **LSI**  (Low-Speed Internal)  ：40kHz,RC電路震盪
+
+2. **LSE** (High-Speed External)：32.768kHz,石英震盪
+
+----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源
+
+*參閱reference manual p.150*
+
+-----------------------------------------------
+
+**比較 "HSE" , "LSI " , "LSE"三種輸入來源：** 
+
+
+- HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和和另一個clock穩定同步。
+
+- LSI  -  是一個低功耗的clock，可以再停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
+
+- LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確計算。
+
+
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+
+
+
+
+Prescaler 
+--------------------
+
+輸入的ck_spre必須要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。
+
+A 7-bit asynchronous prescaler PREDIV_A bits of the RTC_PRER register.
+
+A 15-bit synchronous prescaler PREDIV_S bits of the RTC_PRER register.
+
+*ps. ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
+
+.. image:: /ck_spre2.png
+
+
+例如:
+
+LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
+
+LSI: 32kHz / (127+1) /(249+1) =1Hz
+
+-----------------------------------------------------
+
+**設定輸出訊號為 1 Hz 的步驟:**
+
+step1. 選擇 LSE “32768 Hz” 當作 RTC clock 來源。
+
+step2. 設定非同步的 prescaler 去確認值等於“128“。
+
+step3. 設定同步的 prescaler 去確認值等於“256“。
+
+step4. 設定“COE” 為 ‘1’, 能夠輸出 calibration。
+
+step5. CALSEL 被設定為 ‘1’, 可選擇 1 Hz 當作 calibration 的輸出 。
+
+.. image:: /ck_prescaler.PNG
+
+
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
 
 
 RTC Calendar 
@@ -41,12 +140,12 @@ RTC Calendar
 .. image:: /RTC_calendar.png
 
 
-讀取Calendar
+**讀取Calendar**
 
 
-當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是在讀shadow register，如果想要直接讀取calendar必須要設BYPSHAD 控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀shadow register，如果想要直接讀取calendar必須要設BYPSHAD 控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
 
-Shadow Register:
+**補充:Shadow Register**
 
 Bit 5 BYPSHAD: Bypass the shadow registers
 
@@ -54,50 +153,215 @@ Bit 5 BYPSHAD: Bypass the shadow registers
 
 1:不透過Shadow Register直接讀取Calendar，拿到的資料不會延遲會直接更新
 
+--------------------------------------------------------------------
 
-RTC的Clock來源
+**Calendar 的設定步驟:**
+
+step1.關閉RTC的防寫功能    --->寫入"0xCA"和"0x53"到RTC_WPR register.
+
+step2. 進入初始模式        --->設RTC_ISR register的INIT bit為1
+
+step3. 等待初始化的確認     --->等待2個clock cycle,讓RTC_ISR register的INITF bit(bit 6)為1
+
+step4. 如果需要調整計數速率  --->寫入RTC_PRER register同步時間的值
+
+step5. 選擇想要的時間與日期  --->設定RTC_TR的秒分時;設定RTC_DR的日週月年
+
+step6. 選用12h或24h       --->設RTC_CR register的FTM bit,等於0表示24制;1表示12制
+
+step7.結束初始模式設定      --->清除RTC_ISR register的INIT bit.
+
+step8. 使RTC寫入保護(防寫)  --->寫入"0xFF"到RTC_WPR register
+
+
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+
+
+
+Calibration
+-----------------------------
+
+RTC裡面有兩個校正功能，一個是RTC coarse calibration另一個是RTC smooth calibration。
+
+**1、RTC coarse calibration ：**
+
+- coarse calibration 被使用在補償石英震盪器的校正。
+
+- 在非同步分頻器(ck_apre)的輸出，藉由增加或減少時間的週期達到校正，最大範圍的校正為63ppm~126ppm。
+
+- 可以使用AFO_CALIB來計算時間偏差，並更新calibration方塊圖的1Hz(ck_apre)輸出。
+
+- 在512Hz時,並不能去檢查校正結果，只能檢查經過calibration方塊圖的1Hz(ck_apre)輸出。
+
+- 完整的校正週期要持續64分鐘。
+
+- 只能在初始化Calendar時候修改，不能在RTC開啟的時候修改。導致不可校正動態的誤差，只能校正固定的誤差，是一個非回授控制系統(opened loop control)。　
+
+- reference clock calibration 和 coarse calibration 不能同時使用。
+
+
+.. image:: /coarse cal.png
+
+**2、RTC  smooth calibration：**
+
+- smooth calibration 利用每個RTCCLK pulse為單位做出小幅調整，來修正RTC的clock頻率。
+
+- 最大範圍的校正為-487.1ppm~+488.5ppm。 
+
+- smooth calibration 可以補償石英震盪器的偏差，此偏差可能是晶體老化或者溫度所造成。
+
+- 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。
+
+- 可使用RTC_CALR register裡面的CALP和CALM去增加或減少pulses。 
+
+- smooth calibration可配置8秒、16秒、32秒的校正視窗，沒設定的情況下為32秒的視窗。
+
+- 與coarse calibration不同，可藉由AFO_CALIB得到時鐘的偏差值(clock deviation)。這種方法可以確認修正的結果，是一個閉迴路的控制系統(closed loop control)。
+
+- smooth calibration可以使用在：
+
+      1.AFO_CALIB (512 Hz or 1 Hz)。 　2.sub-second alarms。　 3.Wakeup timer。
+
+.. image:: /smooth cal.png
+
+**3、RTC reference clock detection：**
+
+- 利用外部時鐘校正，其時鐘源要比LSE的時鐘還精準。
+
+*原文:The reference clock (at 50 Hz or 60 Hz) should have a higher precision than the 32.768 kHz LSE clock.*
+
+---------------------------------------------------
+
+---------------------------------------------------
+
+Low power modes
+---------------------------------
+
+---------------------------------------------------
+
+---------------------------------------------------
+
+
+Interrupt application
+==========================
+
+Alarm:
+---------------------------
+
+RTC periodic wakeup unit
+----------------------------
+
+Time-stamp function
+--------------------------
+
+RTC tamper detection function
+---------------------------------
+
+
+Example of code
+========================
+
+initialize RTC
 --------------------
-STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：
 
-SYSCLK為系統的clock有三種來源：
+.. code-block:: prettyprint
+	
+    RTC_InitTypeDef RTC_InitStructure;
+	
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);   /* Enable the PWR clock */
+    PWR_BackupAccessCmd(ENABLE);                          /* Allow access to RTC */
 
-     1. HSI  (High-Speed Internal) ：16MHz,RC電路
+    RCC_LSICmd(ENABLE);                                   /* Enable the LSI OSC */
+    while(RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);   /* Wait till LSI is ready */  
+    RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);               /* Select the RTC Clock Source */
+	
+    RCC_RTCCLKCmd(ENABLE);                                /* Enable the RTC Clock */
+    RTC_WaitForSynchro();                                 /* Wait for RTC APB registers synchronisation */
 
-     2. HSE (Low-Speed External)：4-26MHz (一般選用8MHz),石英震盪
+    /* Configure the RTC data register and RTC prescaler */
+    RTC_InitStructure.RTC_AsynchPrediv = 0x7F;
+    RTC_InitStructure.RTC_SynchPrediv = 0xF9;
+    RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
+    RTC_Init(&RTC_InitStructure);
 
-     3. Main PLL clock
-
-RTCCLK為設備的clock有兩種來源：
-
-     1. LSI  (Low-Speed Internal)  ：40kHz,RC電路震盪
-
-     2. LSE (High-Speed External)：32.768kHz,石英震盪
-
-----> RTC 主要是使用 HSE , LSI  , LSE 三種來源
-
-參閱reference manual p.150
-
-比較 "HSE" , "LSI " , "LSE"三種輸入來源：
-
-HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和和另一個clock穩定同步。
-
-LSI  -  是一個低功耗的clock，可以再停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
-
-       (補充：看門狗代表當主程式發生錯誤事件時，這時看門狗會發出重新啟動或關閉信號，使狀態回復正常。)
-
-LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確計算。
-
-
-
-RTC 方塊圖
+setting time
 --------------------
 
-.. image:: /rtc_block.png
+.. code-block:: prettyprint
+
+	/* set 8:29:55 */
+	RTC_TimeTypeDef RTC_TimeStruct;
+	RTC_TimeStruct.RTC_Hours = 8;
+	RTC_TimeStruct.RTC_Minutes = 29;
+	RTC_TimeStruct.RTC_Seconds = 55;
+	
+	RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
+
+
+initialize RTC alarm
+--------------------
+
+.. code-block:: prettyprint
+
+	EXTI_InitTypeDef EXTI_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	/* EXTI configuration */
+	EXTI_ClearITPendingBit(EXTI_Line17);
+	EXTI_InitStructure.EXTI_Line = EXTI_Line17;
+	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStructure);
+
+	/* Enable the RTC Alarm Interrupt */
+	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
+
+
+setting alarm time
+--------------------
+
+.. code-block:: prettyprint
+
+	RTC_AlarmTypeDef RTC_AlarmStructure;
+
+	RTC_AlarmCmd(RTC_Alarm_A, DISABLE);   /* disable before setting or cann't write */
+
+	/* set alarm time 8:30:0 everyday */
+	RTC_AlarmStructure.RTC_AlarmTime.RTC_H12     = 0x00;
+	RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours   = 8;
+	RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes = 30;
+	RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds = 0;
+	RTC_AlarmStructure.RTC_AlarmDateWeekDay = 0x31; // Nonspecific
+	RTC_AlarmStructure.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
+	RTC_AlarmStructure.RTC_AlarmMask = RTC_AlarmMask_DateWeekDay; // Everyday 
+	RTC_SetAlarm(RTC_Format_BIN, RTC_Alarm_A, &RTC_AlarmStructure);
+	
+	/* Enable Alarm */
+	RTC_ITConfig(RTC_IT_ALRA, ENABLE);
+	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
+	RTC_ClearFlag(RTC_FLAG_ALRAF);
 
 
 
+complete code
+--------------------
 
-How it works
+.. code-block:: c
+
+    git clone git@gitcafe.com:ctc8631/RTC-example.git
+    cd RTC-example/
+    make flash
+
+
+
+Previous
 =============
 
 Generate 1Hz
@@ -131,8 +395,8 @@ calendar register與alarm作比較，如果相同則將對應的flag拉起來。
 
 
 
-Functionality
-===============
+Previous Functionality
+-------------------------
 
 
 
@@ -234,11 +498,10 @@ wakeup, effectiveness and voltage in three lowpower modes
 
 .. image:: /embedded/RTC/stm32 low power mode summary.png
 
-Configuration
-================
 
-Register write protection
-------------------------------
+
+Previous Configuration  Register write protection
+-------------------------------------------------------
 After system **reset**, the RTC registers are protected registers are automatically locked to against **possible parasitic write accesses**.
 
 RTC registers need to **disable** backup domain protection to update the current calendar time and date.
@@ -262,123 +525,6 @@ Modifications of ``RTC_DR``, ``RTC_TR``, and ``RTC_PRER`` must be done in Initia
     reset ``INIT`` bit of ``RTC_ISR`` to exit Initialization mode
 
 Counter does not run in Initialization mode.
-
-初始化 Calendar
-=============
-step1.關閉RTC的防寫功能        --->寫入"0xCA"和"0x53"到RTC_WPR register.
-
-step2. 進入初始模式            --->設RTC_ISR register的INIT bit為1
-
-step3. 等待初始化的確認         --->等待2個clock cycle,讓RTC_ISR register的INITF bit(bit 6)為1
-
-step4. 如果需要調整計數速率      --->寫入RTC_PRER register同步時間的值
-
-step5. 選擇想要的時間與日期      --->設定RTC_TR的秒分時;設定RTC_DR的日週月年
-
-step6. 選用12h或24h            --->設RTC_CR register的FTM bit,等於0表示24制;1表示12制
-
-step7.結束初始模式設定          --->清除RTC_ISR register的INIT bit.
-
-step8. 使RTC寫入保護(防寫)      --->寫入"0xFF"到RTC_WPR register
-
-Example
-=============
-
-initialize RTC
---------------------
-
-.. code-block:: prettyprint
-	
-    RTC_InitTypeDef RTC_InitStructure;
-	
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);   /* Enable the PWR clock */
-    PWR_BackupAccessCmd(ENABLE);                          /* Allow access to RTC */
-
-    RCC_LSICmd(ENABLE);                                   /* Enable the LSI OSC */
-    while(RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET);   /* Wait till LSI is ready */  
-    RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);               /* Select the RTC Clock Source */
-	
-    RCC_RTCCLKCmd(ENABLE);                                /* Enable the RTC Clock */
-    RTC_WaitForSynchro();                                 /* Wait for RTC APB registers synchronisation */
-
-    /* Configure the RTC data register and RTC prescaler */
-    RTC_InitStructure.RTC_AsynchPrediv = 0x7F;
-    RTC_InitStructure.RTC_SynchPrediv = 0xF9;
-    RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
-    RTC_Init(&RTC_InitStructure);
-
-setting time
---------------------
-
-.. code-block:: prettyprint
-
-	/* set 8:29:55 */
-	RTC_TimeTypeDef RTC_TimeStruct;
-	RTC_TimeStruct.RTC_Hours = 8;
-	RTC_TimeStruct.RTC_Minutes = 29;
-	RTC_TimeStruct.RTC_Seconds = 55;
-	
-	RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
-
-
-initialize RTC alarm
---------------------
-
-.. code-block:: prettyprint
-
-	EXTI_InitTypeDef EXTI_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
-
-	/* EXTI configuration */
-	EXTI_ClearITPendingBit(EXTI_Line17);
-	EXTI_InitStructure.EXTI_Line = EXTI_Line17;
-	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
-	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-	EXTI_Init(&EXTI_InitStructure);
-
-	/* Enable the RTC Alarm Interrupt */
-	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
-
-
-setting alarm time
---------------------
-
-.. code-block:: prettyprint
-
-	RTC_AlarmTypeDef RTC_AlarmStructure;
-
-	RTC_AlarmCmd(RTC_Alarm_A, DISABLE);   /* disable before setting or cann't write */
-
-	/* set alarm time 8:30:0 everyday */
-	RTC_AlarmStructure.RTC_AlarmTime.RTC_H12     = 0x00;
-	RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours   = 8;
-	RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes = 30;
-	RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds = 0;
-	RTC_AlarmStructure.RTC_AlarmDateWeekDay = 0x31; // Nonspecific
-	RTC_AlarmStructure.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
-	RTC_AlarmStructure.RTC_AlarmMask = RTC_AlarmMask_DateWeekDay; // Everyday 
-	RTC_SetAlarm(RTC_Format_BIN, RTC_Alarm_A, &RTC_AlarmStructure);
-	
-	/* Enable Alarm */
-	RTC_ITConfig(RTC_IT_ALRA, ENABLE);
-	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
-	RTC_ClearFlag(RTC_FLAG_ALRAF);
-
-
-
-complete code
---------------------
-
-.. code-block:: c
-
-    git clone git@gitcafe.com:ctc8631/RTC-example.git
-    cd RTC-example/
-    make flash
 
 
 
