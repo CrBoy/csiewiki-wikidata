@@ -19,17 +19,17 @@ Week  Date     Subject                                 Assignment
 #5    Oct 15   `ARM: Toolchain and Peripherals`_       `Lab 22`_: RTOS (2)
 #6    Oct 22   `ARM: Interrupts and Exceptions`_       `Lab 23`_: RTOS (3)
 #7    Oct 29   `Code Review`_                                       -
-#8    Nov 5    -                                       -
-#9    Nov 12   -                                       -
-#10   Nov 19   -                                       -
-#11   Nov 26   -                                       -
-#12   Dec 3    -                                       -
-#13   Dec 10   -                                       -
-#14   Dec 17   -                                       -
-#15   Dec 24   -                                       -
-#16   Dec 31   -                                       -
-#17   Jan 7    -                                       -
-#18   Jan 14   -                                       -
+#8    Nov 5    `Code Review + Group Presentation(1)`_  `Lab 24`_: Hardware
+#9    Nov 12   `3D Printer + Group Presentation(2)`_   `Lab 25`_: Hardware
+#10   Nov 19   `Group Presentation(3)`_                `Lab 26`_: Hardware
+#11   Nov 26   `Speech + Group Presentation(4)`_       -
+#12   Dec 3    `Group Presentation(5)`_                -
+#13   Dec 10   `Group Presentation(6)`_                -
+#14   Dec 17   `Group Presentation(7)`_                -
+#15   Dec 24   `Group Presentation(8)`_                -
+#16   Dec 31   `Group Presentation(9)`_                -
+#17   Jan 7    Product Review                          -
+#18   Jan 14   期末展示                                  -
 ====  ====     =======                                 ==========
 
 .. _`Overview: Embedded in our world`: 2013-w1
@@ -39,12 +39,23 @@ Week  Date     Subject                                 Assignment
 .. _`ARM: Toolchain and Peripherals`: 2013-w5
 .. _`ARM: Interrupts and Exceptions`: 2013-w6
 .. _`Code Review`: 2013-w7
+.. _`Code Review + Group Presentation(1)`: 2013-w8
+.. _`3D Printer + Group Presentation(2)`: 2013-w9
+.. _`Group Presentation(3)`: 2013-w10
+.. _`Speech + Group Presentation(4)`: 2013-w11
+.. _`Group Presentation(5)`: 2013-w12
+.. _`Group Presentation(6)`: 2013-w13
+.. _`Group Presentation(7)`: 2013-w14
+.. _`Group Presentation(8)`: 2013-w15
+.. _`Group Presentation(9)`: 2013-w16
 .. _`Lab 19`: Lab19
 .. _`Lab 20`: Lab20
 .. _`Lab 21`: Lab21
 .. _`Lab 22`: Lab22
 .. _`Lab 23`: Lab23
-
+.. _`Lab 24`: Lab24
+.. _`Lab 25`: Lab25
+.. _`Lab 26`: Lab26
 
 嵌入式作業系統設計與實作 (Spring 2013)
 ------------------------------------------------------
