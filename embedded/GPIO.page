@@ -50,7 +50,7 @@ analog
 .. image:: /embedded/Schmitt_trigger.jpg
 (施密特觸發器具有整流效果)
 
-basic of structure (P.137, **Figure 13. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
+basic structure (P.137, **Figure 13. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
 -------------------------------------------------------------------------------------------------------------------
 
 .. image:: /embedded/GPIO_basic_src.PNG
