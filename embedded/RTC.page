@@ -66,13 +66,12 @@ Prescaler
 --------------------
 .. image:: /ck_prescaler.PNG
 
-輸入的ck_spre必須要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。
+ck_spre一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(PREDIV_A)和15 bit同步的prescaler(PREDIV_S)。這兩個prescaler要在RTC_PRER的暫存器設定。
 
-A 7-bit asynchronous prescaler PREDIV_A bits of the RTC_PRER register.
-
-A 15-bit synchronous prescaler PREDIV_S bits of the RTC_PRER register.
 
 *ps. ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
+
+所以ck_spre與兩個prescaler的關係為:
 
 .. image:: /ck_spre2.png
 
@@ -82,16 +81,6 @@ A 15-bit synchronous prescaler PREDIV_S bits of the RTC_PRER register.
 LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
 
 LSI: 32kHz / (127+1) /(249+1) =1Hz
-
------------------------------------------------------
-
-
-
-
---------------------------------------------------------------------
-
---------------------------------------------------------------------
-
 
 RTC Calendar 
 --------------------
