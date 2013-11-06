@@ -113,18 +113,6 @@ LSI: 32kHz / (127+1) /(249+1) =1Hz
 
 -----------------------------------------------------
 
-**設定輸出訊號為 1 Hz 的步驟:**
-
-step1. 選擇 LSE “32768 Hz” 當作 RTC clock 來源。
-
-step2. 設定非同步的 prescaler 去確認值等於“128“。
-
-step3. 設定同步的 prescaler 去確認值等於“256“。
-
-step4. 設定“COE” 為 ‘1’, 能夠輸出 calibration。
-
-step5. CALSEL 被設定為 ‘1’, 可選擇 1 Hz 當作 calibration 的輸出 。
-
 .. image:: /ck_prescaler.PNG
 
 
@@ -513,8 +501,6 @@ Modifications of ``RTC_DR``, ``RTC_TR``, and ``RTC_PRER`` must be done in Initia
     reset ``INIT`` bit of ``RTC_ISR`` to exit Initialization mode
 
 Counter does not run in Initialization mode.
-
-
 
 Reference
 ================
