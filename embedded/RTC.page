@@ -66,12 +66,12 @@ Prescaler
 --------------------
 .. image:: /ck_prescaler.PNG
 
-ck_spre一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(PREDIV_A)和15 bit同步的prescaler(PREDIV_S)。這兩個prescaler要在RTC_PRER的暫存器設定。
+``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。
 
 
 *ps. ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
 
-所以ck_spre與兩個prescaler的關係為:
+所以``ck_spre``與兩個prescaler的關係為:
 
 .. image:: /ck_spre2.png
 
@@ -92,7 +92,7 @@ RTC Calendar
 **讀取Calendar**
 
 
-當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀shadow register，如果想要直接讀取calendar必須要設BYPSHAD 控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀shadow register，如果想要直接讀取calendar必須要設``BYPSHAD`` 控制位元為1(在``RTC_CR`` register)才能繞過shadow register而直接讀取calender register。
 
 **補充:Shadow Register**
 
