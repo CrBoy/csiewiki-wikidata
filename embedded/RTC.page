@@ -64,12 +64,9 @@ RTCCLK為設備的clock有兩種來源：
 
 Prescaler 
 --------------------
-.. image:: /ck_prescaler.PNG
+.. image:: /RTC_Prescalers.png
 
-``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。
-
-
-*ps. ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
+``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。*ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
 
 所以``ck_spre``與兩個prescaler的關係為:
 
