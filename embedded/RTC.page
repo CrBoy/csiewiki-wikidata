@@ -16,9 +16,8 @@ Summary
 
 可用的功能
 
-- Alarm A
-- Alarm B
-- Wakeup interrupt
+- Alarm A ＆ Alarm B
+- Auto wakeup
 - Timestamp
 - Tamper detection
 
