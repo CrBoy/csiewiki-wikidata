@@ -3,36 +3,23 @@ Introduction
 Summary
 ----------------- 
 
-基本上RTC（Real-time clock）本身就是一個真正的時鐘，利用原本STM本身所內建的振盪器再利用Prescaler降成1Hz讓RTC使用。
+基本上RTC（Real-time clock）本身就是一個真正的時鐘，利用原本STM本身所內建的振盪器再利用Prescaler降成1Hz讓RTC使用。利用硬體達成的binary-coded decimal (BCD) format，可以把下列與時間有關的資訊儲存，而且不需要任何軟體轉換，因為硬體就已經把資料轉成一般的日期格式。
 
-利用硬體達成的binary-coded decimal (BCD) format，可以把下列與時間有關的資訊儲存，而且不需要任何軟體轉換，因為硬體就已經把資料轉成一般的日期格式。
- 
 - sub-seconds (not programmable) 
- 
 - seconds
- 
 - minutes
-
 - hours in 12-hour or 24-hour format
-
 - day of the week (day)
-
 - day of the month (date)
-
 - month
-
 - year
 
-一些可以用的功能  Maskable interrupts/events:
+可用的功能
 
 - Alarm A
-
 - Alarm B
-
 - Wakeup interrupt
-
 - Timestamp
-
 - Tamper detection
 
 
