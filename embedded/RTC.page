@@ -188,9 +188,25 @@ Interrupt Application
 Alarm
 ---------------------------
 
-calendar register與alarm作比較，如果相同則將對應的flag拉起來。
+- 有兩個時鐘Alarm A及Alarm B，可以當作鬧鐘使用。而且相關的register也都會有兩組。
+
+- 可利用Mask達成不同時間的鬧鈴效果。
 
 .. image:: /embedded/RTC/alarm_pass.png
+
+-----------------------------------------------
+
+.. image:: /embedded/RTC/Alarm.JPG
+
+**利用MSKx bits設定遮罩改變Alarm的行為:**
+
+As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是0000)
+
+
+.. image:: /embedded/RTC/MSK.png
+
+
+Application note p.10
 
 ---------------------------
 
