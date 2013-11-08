@@ -1,6 +1,6 @@
 Introduction
 ==============
-Summary
+System Overview
 ----------------- 
 
 基本上RTC（Real-time clock）本身就是一個真正的時鐘，利用原本STM本身所內建的振盪器再利用Prescaler降成1Hz讓RTC使用。利用硬體達成的binary-coded decimal (BCD) format，可以把下列與時間有關的資訊儲存，而且不需要任何軟體轉換，因為硬體就已經把資料轉成一般的日期格式。
@@ -22,7 +22,7 @@ Summary
 - Tamper detection
 
 
-Block diagram  
+Block Diagram  
 --------------------
 
 .. image:: /rtc_block.png
@@ -31,10 +31,12 @@ Block diagram
 
 
 
-Functional description
+Functional Description
 ============================
-Clock source 
+Clock Source 
 --------------------
+
+.. image:: /clocksource2.png
 
 **STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：**
 
@@ -152,7 +154,7 @@ RTC裡面有兩個校正功能，一個是RTC coarse calibration另一個是RTC 
 ---------------------------------------------------
 
 
-Low power modes
+Low Power Modes
 --------------------
 
 - RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。
@@ -168,10 +170,10 @@ Low power modes
 ---------------------------------------------------
 
 
-Interrupt application
+Interrupt Application
 ==========================
 
-Alarm:
+Alarm
 ---------------------------
 
 calendar register與alarm作比較，如果相同則將對應的flag拉起來。
@@ -179,20 +181,21 @@ calendar register與alarm作比較，如果相同則將對應的flag拉起來。
 .. image:: /embedded/RTC/alarm_pass.png
 
 ---------------------------
-RTC periodic wakeup unit
+
+Periodic Wakeup Unit
 ----------------------------
 
-Time-stamp function
+Time-stamp Function
 --------------------------
 
-RTC tamper detection function
+Tamper Detection Function
 ---------------------------------
 
 
 Example of code
 ========================
 
-initialize RTC
+Initialize RTC
 --------------------
 
 .. code-block:: prettyprint
