@@ -83,22 +83,19 @@ RTC Calendar
 --------------------
 
 
-.. image:: /RTC_calendar.png
+.. image:: /calendar_shadow.png
 
 
 **讀取Calendar**
 
 
-當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀shadow register，如果想要直接讀取calendar必須要設``BYPSHAD`` 控制位元為1(在``RTC_CR`` register)才能繞過shadow register而直接讀取calender register。
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀**shadow register**，
 
-**補充:Shadow Register**
+如果想要直接讀取calendar必須要設``BYPSHAD`` 控制位元為1(在``RTC_CR`` register)才能繞過shadow register
 
-Bit 5 BYPSHAD: Bypass the shadow registers
+而直接讀取calender register，通常初始化和讀取的動作採用Shadow Register。
 
-0:間接在Shadow Register( RTC_SSR, RTC_TR, and RTC_DR)讀取Calendar，資料會延遲兩個RTC Clock更新一次
-
-1:不透過Shadow Register直接讀取Calendar，拿到的資料不會延遲會直接更新
-
+-----------------------------
 
 Calibration
 -----------------------------
@@ -443,4 +440,3 @@ Reference
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 `共筆<https://hackpad.com/STM32F74-RTCReal-Time-Clock-eclVxLGTj50>`_
-
