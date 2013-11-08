@@ -299,6 +299,18 @@ Time-stamp function 提供自動幫你儲存日曆的功能
 Tamper Detection Function
 ---------------------------------
 
+tamper detection是一個可以檢測系統是否被破壞的功能，有20個backup register在tamper發生時，
+
+全部自動reset，達到保護系統的作用。　
+
+**Backup registers**
+
+當tamper detection發生時，RTC_BKPxR(backup registers)會自己重設，在電源 VDD(1.8~3.6V) 關掉以後，
+
+這個backup registers會動作在 VBAT (1.65~3.6V)的低功率電源( low power mode)，所以它不會被系統重設，
+
+它只會被tamper detection重設。
+
 
 Example of code
 ========================
