@@ -139,68 +139,43 @@ RTC Calendar
 Calibration
 -----------------------------
 
-RTC裡面有兩個校正功能，一個是RTC coarse calibration另一個是RTC smooth calibration。
+RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth calibration。
+
+這兩個校正不能同時被使用，而前者只能固定修正，後者則可以動態的校正。後者也可以較大範圍及更精準的校正。
 
 **1、RTC coarse calibration ：**
 
-- coarse calibration 被使用在補償石英震盪器的校正。
+- 被使用在補償石英震盪器的校正。
 
 - 在非同步分頻器(ck_apre)的輸出，藉由增加或減少時間的週期達到校正，最大範圍的校正為63ppm~126ppm。
 
-- 可以使用AFO_CALIB來計算時間偏差，並更新calibration方塊圖的1Hz(ck_apre)輸出。
+- 只能在初始化Calendar時候修改，是一個非回授控制系統(opened loop control)。
 
-- 在512Hz時,並不能去檢查校正結果，只能檢查經過calibration方塊圖的1Hz(ck_apre)輸出。
-
-- 完整的校正週期要持續64分鐘。
-
-- 只能在初始化Calendar時候修改，不能在RTC開啟的時候修改。導致不可校正動態的誤差，只能校正固定的誤差，是一個非回授控制系統(opened loop control)。　
+- 可以利用AFO_CALIB去計算clock deviation。不能以圖中512Hz的訊號去確認coarse calibration的輸出結果，只能使用ck_spre確認校正的結果。
 
 - reference clock calibration 和 coarse calibration 不能同時使用。
-
 
 .. image:: /coarse cal.png
 
 **2、RTC  smooth calibration：**
 
-- smooth calibration 利用每個RTCCLK pulse為單位做出小幅調整，來修正RTC的clock頻率。
+- 可以補償石英震盪器的偏差，此偏差可能是晶體老化或者溫度所造成。
+
+- 利用每個RTCCLK pulse為單位做出小幅調整，來修正RTC的clock頻率。
 
 - 最大範圍的校正為-487.1ppm~+488.5ppm。 
 
-- smooth calibration 可以補償石英震盪器的偏差，此偏差可能是晶體老化或者溫度所造成。
+- 與coarse calibration不同，是一個閉迴路的控制系統(closed loop control)。
 
-- 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。
+- 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。 
 
-- 可使用RTC_CALR register裡面的CALP和CALM去增加或減少pulses。 
-
-- smooth calibration可配置8秒、16秒、32秒的校正視窗，沒設定的情況下為32秒的視窗。
-
-- 與coarse calibration不同，可藉由AFO_CALIB得到時鐘的偏差值(clock deviation)。這種方法可以確認修正的結果，是一個閉迴路的控制系統(closed loop control)。
-
-- smooth calibration可以使用在：
-
-      1.AFO_CALIB (512 Hz or 1 Hz)。 　2.sub-second alarms。　 3.Wakeup timer。
 
 .. image:: /smooth cal.png
 
 **3、RTC reference clock detection：**
 
-- 利用外部時鐘校正，其時鐘源要比LSE的時鐘還精準。
+- 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。
 
-*原文:The reference clock (at 50 Hz or 60 Hz) should have a higher precision than the 32.768 kHz LSE clock.*
-
----------------------------------------------------
-
-
-Low Power Modes
---------------------
-
-- RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。
-
-- 當clock 的來源是LSE 或 LSI，在停止模式與待機模式下，RTC仍然活躍的動作。
-
-- 在低功率( low power mode)模式下，Alarm, tamper event, time stamp event, and wakeup 依然會被中斷所啟動。
-
-.. image:: /RTC in low power mode.png
 
 ---------------------------------------------------
 
