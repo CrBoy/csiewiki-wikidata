@@ -69,7 +69,8 @@ RTCCLK為設備的clock有兩種來源：
 
 Prescaler 
 --------------------
-.. image:: /RTC_Prescalers.png
+
+.. image:: /stm32 RTC prescaler.png
 
 ``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。*ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
 
@@ -80,9 +81,9 @@ Prescaler
 
 例如:
 
-LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
+LSE: 32.768kHz / (**127**+1) / (**255**+1) = 1Hz
 
-LSI: 32kHz / (127+1) /(249+1) =1Hz
+LSI: 32kHz / (**127**+1) /(**249**+1) =1Hz
 
 Alternate Function RTC Outputs
 --------------------------------------
@@ -225,11 +226,11 @@ Periodic Wakeup Unit
 
 有三種組態：
 
-Configuration 1:short wakeup periods
+Configuration 1:**short wakeup** periods
 
-Configuration 2:medium wakeup periods
+Configuration 2:**medium wakeup** periods
 
-Configuration 3: long wakeup periods
+Configuration 3: **long wakeup** periods
 
 **Configuration 1：**
 
@@ -243,9 +244,9 @@ auto-reload的down counting timer，這表示當使用者在初始化時設了�
 
 **EX：**當RTCCLK= 32768 Hz，代表著最小的timebase resolution為61.035μs(數一次的時間)，最大則是488.28 μs。
 
-- 所以這代表著最小可觸發wakeup flag時間為(0x0001 + 1) x 61.035 μs = 122.07 μs
+- 所以這代表著最小可觸發wakeup flag時間為**(0x0001 + 1) x 61.035 μs = 122.07 μs**
 
-- 最大可觸發wakeup flag時間為 (0xFFFF+ 1) x 488.28 μs = 2 s
+- 最大可觸發wakeup flag時間為 **(0xFFFF+ 1) x 488.28 μs = 2 s**
 
 *註:STM32禁止timer初始值設為0*
 
@@ -259,17 +260,17 @@ Prescalers connected to the wakeup unit for configurations 2 and 3
 
 **Configuration 2：**
 
-- The minimum timebase/wakeup period is (0x0000 + 1) x 61.035 µs = 122.07 µs.
+- The minimum timebase/wakeup period is **(0x0000 + 1) x 61.035 µs = 122.07 µs.**
 
-- The maximum timebase/wakeup period is (0xFFFF+ 1) x 32 s = 131072 s (more than 36 hours).
+- The maximum timebase/wakeup period is**(0xFFFF+ 1) x 32 s = 131072 s (more than 36 hours).**
 
 **Configuration 3：**
 
 其Clock Source與 Configuration 2 一樣，差在2最大可以從0xFFFF倒數至0x0000，3則是0x1FFFF至0x00000
 
-- The minimum timebase/wakeup period is: (0x10000 + 1) x 61.035 µs = 250.06 ms
+- The minimum timebase/wakeup period is: **(0x10000 + 1) x 61.035 µs = 250.06 ms**
 
-- The maximum timebase/wakeup period is: (0x1FFFF+ 1) x 32 s = 4194304 s (more than 48 days).
+- The maximum timebase/wakeup period is: **(0x1FFFF+ 1) x 32 s = 4194304 s (more than 48 days).**
 
 
 
