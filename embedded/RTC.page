@@ -1,11 +1,14 @@
 Introduction
 ==============
+
+Real-Time Clock(RTC)是負責記錄時間的元件，出現在需要長期使用時鐘的電子設備中。例如學校定時關閉冷氣的裝置，以及手機上的鬧鈴功能。
+
 System Overview
 ----------------- 
 
 基本上RTC（Real-time clock）本身就是一個真正的時鐘，利用原本STM本身所內建的振盪器再利用Prescaler降成1Hz讓RTC使用。利用硬體達成的binary-coded decimal (BCD) format，可以把下列與時間有關的資訊儲存，而且不需要任何軟體轉換，因為硬體就已經把資料轉成一般的日期格式。
 
-- sub-seconds (not programmable) 
+- sub-seconds 
 - seconds
 - minutes
 - hours in 12-hour or 24-hour format
@@ -80,6 +83,37 @@ Prescaler
 LSE: 32.768kHz / (127+1) / (255+1) = 1Hz
 
 LSI: 32kHz / (127+1) /(249+1) =1Hz
+
+Alternate Function RTC Outputs
+--------------------------------------
+
+Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，這些輸出可以被選擇成**tamp event** 或 **time stamp event**，
+
+甚至RTC Calibration 的訊號都可以藉由這個功能輸出。
+
+可以選擇兩個輸出:
+
+輸出接腳 **RTC_AF1(PC13)** : 
+
+- RTC_ALARM output:    1. RTC Alarm A       2. RTC Alarm B       3. RTC Wakeup
+
+- RTC_CALIB output
+
+- RTC_TAMP1
+
+- RTC_TS
+
+輸出接腳 **RTC_AF2 (PI8)** :
+
+- RTC_TAMP1
+
+- RTC_TAMP2
+
+- RTC_TS
+
+*Reference Manual p.277*
+
+*PI8接腳參考: datasheet p.10*
 
 RTC Calendar 
 --------------------
