@@ -281,6 +281,20 @@ Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
 Time-stamp Function
 --------------------------
 
+實體世界裡有「郵戳為憑」來證明信件的時間，在網路世界裡如何來證明電子文件或交易的時間? 
+
+利用Time-stamp function 可以為任何電子文件或電子交易提供準確的時間證明，並且驗證其內容自蓋上時戳後是否曾被人修改過。
+
+Time-stamp function 提供自動幫你儲存日曆的功能
+
+**RTC_TSDR register** : 會去讀取RTC_DR 裡面的年、月、日、周的資料並儲存
+
+**RTC_TSTR register** : 會去讀取RTC_TR 裡面的秒、時、分的資料並儲存
+
+**RTC_TSSR register** : 會去讀取RTC_SSR 裡面的Sub-second 的資料並儲存
+
+.. image:: /timestamp.png
+
 Tamper Detection Function
 ---------------------------------
 
