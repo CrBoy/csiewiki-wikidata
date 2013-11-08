@@ -13,7 +13,6 @@ title: usb
 USB訊號使用分別標記為D+ 和D- 的雙絞線傳輸，它們各自使用半雙工的差動訊號並協同工作，以抵消長導線的電磁干擾。
 
 ps. 差動訊號：一條為 high 則另一條為 low
-.. image::http://en.wikipedia.org/wiki/File:DiffSignaling.png
 
 USB 封包簡介
 ^^^^^^^^^^^
