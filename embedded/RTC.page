@@ -192,26 +192,91 @@ Alarm
 
 - 可利用Mask達成不同時間的鬧鈴效果。
 
+
 .. image:: /embedded/RTC/alarm_pass.png
+
 
 -----------------------------------------------
 
-.. image:: /embedded/RTC/Alarm.JPG
+.. image:: /Alarm3.png
+
 
 **利用MSKx bits設定遮罩改變Alarm的行為:**
 
 As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是0000)
 
 
-.. image:: /embedded/RTC/MSK.png
+.. image:: /MSK2.png
 
 
 Application note p.10
 
 ---------------------------
 
+
 Periodic Wakeup Unit
 ----------------------------
+
+- 利用周期性的喚醒(wakeup)可以讓系統更省電。這個unit是一個downcounting且會auto-reload 的timer，當它的counter數到0的時候，一個flag和中斷會產生(如果在打開中斷的情況下)。
+
+- 會有兩個因素影響wakeup unit的中斷觸發週期，一個是timer的value，一個是clock source
+
+**設定wakeup period**
+
+有三種組態：
+
+Configuration 1:short wakeup periods
+
+Configuration 2:medium wakeup periods
+
+Configuration 3: long wakeup periods
+
+**Configuration 1：**
+
+Prescalers connected to the timebase/wakeup unit
+
+.. image:: /wuck1.png
+
+在這個設定中，wakeup unit，會接受由RTCCLK再經過Prescaler的clock。RTC_WUTR(RTC Wakeup Timer Register)為一個
+
+auto-reload的down counting timer，這表示當使用者在初始化時設了一個值x，會在x數到0的時候觸發wakeup flag。
+
+**EX：**當RTCCLK= 32768 Hz，代表著最小的timebase resolution為61.035μs(數一次的時間)，最大則是488.28 μs。
+
+- 所以這代表著最小可觸發wakeup flag時間為(0x0001 + 1) x 61.035 μs = 122.07 μs
+
+- 最大可觸發wakeup flag時間為 (0xFFFF+ 1) x 488.28 μs = 2 s
+
+*註:STM32禁止timer初始值設為0*
+
+----------------------------------------------------------------------------
+
+Prescalers connected to the wakeup unit for configurations 2 and 3
+
+.. image:: /wuck2.png
+
+2和3的clock source相同，都是用來計算calendar的ck_spre。
+
+**Configuration 2：**
+
+- The minimum timebase/wakeup period is (0x0000 + 1) x 61.035 µs = 122.07 µs.
+
+- The maximum timebase/wakeup period is (0xFFFF+ 1) x 32 s = 131072 s (more than 36 hours).
+
+**Configuration 3：**
+
+其Clock Source與 Configuration 2 一樣，差在2最大可以從0xFFFF倒數至0x0000，3則是0x1FFFF至0x00000
+
+- The minimum timebase/wakeup period is: (0x10000 + 1) x 61.035 µs = 250.06 ms
+
+- The maximum timebase/wakeup period is: (0x1FFFF+ 1) x 32 s = 4194304 s (more than 48 days).
+
+
+
+Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
+
+
+.. image:: /MaxMin.png
 
 Time-stamp Function
 --------------------------
