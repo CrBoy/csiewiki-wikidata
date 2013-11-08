@@ -122,14 +122,17 @@ RTC Calendar
 .. image:: /RTC_calendar.png
 
 
-**讀取Calendar**
+**讀取Calendar:**
 
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是在讀shadow register，如果想要直接讀取calendar必須
 
-當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是讀**shadow register**，
+要設BYPSHAD控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
 
-如果想要直接讀取calendar必須要設``BYPSHAD`` 控制位元為1(在``RTC_CR`` register)才能繞過shadow register
+**Shadow Register:**
 
-而直接讀取calender register，通常初始化和讀取的動作採用Shadow Register。
+- 通常初始化和讀取的動作採用Shadow Register。
+
+- 每兩個RTCCLK時間週期，RTC的calendar register (RTC_SSR, RTC_TR, and RTC_DR)的值會被自動更新到Shadow Register。
 
 -----------------------------
 
