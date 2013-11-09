@@ -25,13 +25,14 @@ System Overview
 - Tamper detection
 
 
+
 Block Diagram  
 --------------------
 
 .. image:: /rtc_block.png
 
 
-
+*reference manual p.780*
 
 
 Functional Description
@@ -56,7 +57,9 @@ RTCCLK為設備的clock有兩種來源：
 
 ----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源
 
-*參閱reference manual p.150*
+*reference manual p.150*
+
+*reference application note p.8*
 
 -----------------------------------------------
 
@@ -85,8 +88,10 @@ LSE: 32.768kHz / (**127**+1) / (**255**+1) = 1Hz
 
 LSI: 32kHz / (**127**+1) /(**249**+1) =1Hz
 
-Alternate Function RTC Outputs
---------------------------------------
+*reference manual p.781*
+
+Alternate Function Outputs & Inputs
+------------------------------------------
 
 Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，這些輸出可以被選擇成**tamp event** 或 **time stamp event**，
 
@@ -135,6 +140,10 @@ RTC Calendar
 
 - 每兩個RTCCLK時間週期，RTC的calendar register (RTC_SSR, RTC_TR, and RTC_DR)的值會被自動更新到Shadow Register。
 
+*reference manual p.780*
+
+*reference application note p.6*
+
 -----------------------------
 
 Calibration
@@ -156,6 +165,8 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - reference clock calibration 和 coarse calibration 不能同時使用。
 
+*reference manual p.787*
+
 .. image:: /coarse cal.png
 
 **2、RTC  smooth calibration：**
@@ -170,6 +181,8 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。 
 
+*reference manual p.788*
+
 
 .. image:: /smooth cal.png
 
@@ -177,6 +190,20 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。
 
+*reference manual p.786*
+
+Low Power Modes
+-------------------
+
+- RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。
+
+- 當clock 的來源是LSE 或 LSI，在停止模式與待機模式下，RTC仍然活躍的動作。
+
+- 在低功率( low power mode)模式下，Alarm, tamper event, time stamp event, and wakeup 依然會被中斷所啟動。
+
+.. image:: /Power.png
+
+*reference manual p.126*
 
 ---------------------------------------------------
 
@@ -201,6 +228,10 @@ Alarm
 
 .. image:: /Alarm3.png
 
+*reference manual p.781*
+
+*reference application note p.10*
+
 
 **利用MSKx bits設定遮罩改變Alarm的行為:**
 
@@ -209,8 +240,8 @@ As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是00
 
 .. image:: /MSK2.png
 
+*Application note p.11*
 
-Application note p.10
 
 ---------------------------
 
@@ -218,9 +249,12 @@ Application note p.10
 Periodic Wakeup Unit
 ----------------------------
 
-- 利用周期性的喚醒(wakeup)可以讓系統更省電。這個unit是一個downcounting且會auto-reload 的timer，當它的counter數到0的時候，一個flag和中斷會產生(如果在打開中斷的情況下)。
+- 周期性的喚醒(wakeup)可以達成類似一個定時倒數的timer，一個downcounting且會auto-reload 的timer。當它的counter數到0的時候，在打開中斷的情況下會定時觸發中斷。
 
-- 會有兩個因素影響wakeup unit的中斷觸發週期，一個是timer的value，一個是clock source
+- 與Alarm不同，Wakeup是定時觸發中斷，Alarm則是在特定時間才會觸發。
+
+- 會有兩個因素影響wakeup unit的中斷觸發週期，一個是timer儲存數字的大小，一個是clock source。
+
 
 **設定wakeup period**
 
@@ -279,6 +313,10 @@ Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
 
 .. image:: /MaxMin.png
 
+*reference manual p.782*
+
+--------------------------
+
 Time-stamp Function
 --------------------------
 
@@ -296,20 +334,60 @@ Time-stamp function 提供自動幫你儲存日曆的功能
 
 .. image:: /timestamp.png
 
+*reference manual p.790*
+
+----------------------------
+
 Tamper Detection Function
 ---------------------------------
 
-tamper detection是一個可以檢測系統是否被破壞的功能，有20個backup register在tamper發生時，
+Tamper Detection是一個可以檢測系統是否有被竄改的功能。在Tamper發生時，RTC Backup Register會全部自動reset，
 
-全部自動reset，達到保護系統的作用。　
+達到保護系統的作用。而也可以在Tamper發生時，讓Timestamp發生。
 
 **Backup registers**
 
-當tamper detection發生時，RTC_BKPxR(backup registers)會自己重設，在電源 VDD(1.8~3.6V) 關掉以後，
+在主電源 VDD(1.8~3.6V) 關掉以後，這個backup registers會動作在 VBAT (1.65~3.6V)的低功率電源( low power mode)，
 
-這個backup registers會動作在 VBAT (1.65~3.6V)的低功率電源( low power mode)，所以它不會被系統重設，
+所以它不會被system reset重設，它只會被tamper detection重設。或者因為backup domain reset。
 
-它只會被tamper detection重設。
+------------------------------------------------------------------------------------------
+
+如先前提到的，RTC_AF1和RTC_AF2可以被對映成不同接腳的輸入(alternate function )以偵測Tamper Event。
+
+- TAMPER1 可以被對映到: RTC_AF1(PC13) 或RTC_AF2 (PI8).
+
+- TAMPER 2可以被對映到: RTC_TAMP2 pin(PI8).
+
+- TAMPER可以設定偵測已開啟Alternate Function的腳位的電位:
+
+    Edge detection : a rising edge is observed or an falling edge is observed
+
+    Level detection on tamper input : triggers when a selected level (high or low) is observed
+
+*Reference Manual p.792*
+
+------------------------------------------
+
+**補充 : 何謂 Backup Domain ?**
+
+Backup Domain 有下列幾個主要裝置:
+
+- The RTC
+
+- The LSE oscillator
+
+- The backup SRAM when the low power backup regulator is enabled
+
+ PC13 to PC15 I/Os, plus PI8 I/O (when available) 
+
+當VDD停止供應電源時，Backup Domain會切到standby mode的電壓，換電池供電。在reset後，RTC registers, RTC backup register and backup SRAM會被保護以避免寫入。
+
+SRAM:靜態隨機存取存儲器（Static Random-Access Memory, SRAM）是隨機存取儲存器的一種。所謂的「靜態」，是指這種存儲器只要保持通電，裡面儲存的數據就可以恆常保。
+
+.. image:: /backupdomain.PNG
+
+*Reference Manual p.115*
 
 
 Example of code
@@ -420,4 +498,3 @@ Reference
 
 `STM32F405xx/07xx, STM32F415xx/17xx, STM32F42xxx and STM32F43xxx Reference Manual
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
