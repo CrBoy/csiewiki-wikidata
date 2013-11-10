@@ -416,6 +416,28 @@ Initialize RTC
     RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
     RTC_Init(&RTC_InitStructure);
 
+-----------------------------------------------------------------
+
+**Calendar 的設定步驟:**
+
+step1.關閉RTC的防寫功能     --->寫入"0xCA"和"0x53"到RTC_WPR register.
+
+step2. 進入初始模式               --->設RTC_ISR register的INIT bit為1
+
+step3. 等待初始化的確認        --->等待2個clock cycle,讓RTC_ISR 的INITF bit(bit 6)為1
+
+step4. 如果需要調整計數速率 --->寫入RTC_PRER register同步時間的值
+
+step5. 選擇想要的時間與日期 --->設定RTC_TR的秒分時;設定RTC_DR的日週月年
+
+step6. 選用12h或24h              --->設RTC_CR register的FTM bit,等於0表示24制;1表示12制
+
+step7.結束初始模式設定         --->清除RTC_ISR register的INIT bit.
+
+step8. 使RTC寫入保護(防寫)  --->寫入"0xFF"到RTC_WPR register
+
+-----------------------------------------------------------------
+
 setting time
 --------------------
 
@@ -452,6 +474,25 @@ initialize RTC alarm
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
+
+--------------------------------------------------------------------
+
+**設定Alarm的步驟 ：**
+
+step1. 關閉RTC的防寫功能               --->在RTC_WPR register寫入0xCA和0x53。
+
+step2. 關閉alarm A                             --->清除RTC_CR register裡的WUTE bit。
+
+step3. 等待RTC_ALRMAR 可被存取 --->等待2個clock cycle,讓RTC_ISR 的ALRAWF bit被設為1。
+
+step4. 配置alarm                                 --->配置RTC_ALRMAR register (ps.小時制12h/24h必須與RTC Calendar一樣)。
+
+step5. 重新啟動alarm A                      --->在RTC_CR register設定ALRAE bit=1(啟動)。
+
+step6. 啟動RTC的防寫功能                --->在RTC_WPR register寫入0xFF。
+
+-----------------------------------------------------------------------
+
 
 
 setting alarm time
