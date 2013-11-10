@@ -526,8 +526,8 @@ complete code
 
 .. code-block:: c
 
-    git clone git@gitcafe.com:ctc8631/RTC-example.git
-    cd RTC-example/
+    git clone https://github.com/fboris/stm32_RTC_demo.git
+    cd stm32_RTC_demo
     make flash
 
 
