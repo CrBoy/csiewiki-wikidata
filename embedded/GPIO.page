@@ -395,6 +395,9 @@ Supplement
   - B1(USER)：連接到STM32F407VGT6的PA0
   - B2(RESET)：連接到NRST，用於重置STM32F407VGT6
 
+Q & A
+=========
+
 Reference
 =========
 - `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
