@@ -5,21 +5,49 @@ categories: 數位類比轉換器, ADC, Peripherals, STM32F4
 
 Introduction
 ============
-**數位類比轉換器(Analog-to-digital coverter)**，用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
+**數位類比轉換器(Analog-to-digital coverter)**
+
+- 用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
+
 
 .. image:: /embedded/ADC/圖片2.png
-取樣率(Sampling rate)
-----------------------
-- 類比訊號在時域上是連續的，因此可以將它轉換為時間上連續的一系列數位訊號。這樣就要求定義一個參數來表示新的數位訊號取樣自類比訊號速率。
-- 這個速率稱為轉換器的取樣率(sampling rate)或取樣頻率(sampling frequency)。
 
-解析度(Resolution)
-------------------
-- 對於允許範圍內的類比訊號，它能輸出離散數位訊號值的個數。
-- 這些訊號值通常用二進制數來存儲，因此解析度經常用位元作為單位，且這些離散值的個數是2的冪指數。
-- 例如，一個具有8位解析度的類比數位轉換器可以將類比訊號編碼成256個不同的離散值（因為2^8 = 256）。
+- 當嵌入式電子產品必須根據週遭環境的物理條件如溫度、壓力等產生適當反應，就必須由 ADC 將感測器採得的類比訊號轉為數位訊號。
+- 自然界的訊號主要為類比訊號，時間與大小是連續的；adc 負責將類比訊號轉為數位訊號，時間與大小變成離散的。
 
+.. image:: http://www.planetoftunes.com/digiaudio/dig_media/sampling_in_4_bit_convertor.gif
 .. image:: /embedded/ADC/adc_convert.png
+
+ADC的規格
+========
+
+根據**取樣率**與**解晰度**決定產生的數位訊號在時間、大小的離散程度。
+
+**取樣率(Sampling rate)**
+
+- 多久對輸入的類比訊號進行一次轉換。取樣率越高，所得到的數位訊號越連續，但要求較大空間存放資料及較快的資料處理速率。
+
+**解析度(Resolution)**
+
+- 能將當下的類比值轉為多準確的數位值。解析度越高，所得的訊號越精准，但要求每筆資料佔更多的位元數。
+- 說明
+
+ - 類比訊號圖：橫軸表示時間，縱軸表示大小。取樣率是對橫軸做切割，解析度則對縱軸做切割。
+ - 因為訊號以二進位方式儲存，所以通常解析度會以位元作為單位。
+ - 例如 8 位元解析度（假設電壓上限為 0~5V）
+ - 則我們的訊號在接收時每個單位為（5V-0V）/(2^8-1)=0.0196V
+ - 若所得到的值為100則其實際上的電壓為 100 × 0.0196 = 1.96V
+
+ADC 轉換公式
+===========
+
+- 以一個解析度為12bits的ADC來說，電壓範圍為0-5V，其轉換公式如下
+
+
+::
+
+  ConvertedVoltage = ConvertedValue * VDD/(2^12-1);
+  
 
 ADC on STM32F4
 ===============
@@ -29,6 +57,54 @@ ADC on STM32F4
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
 
 .. image:: /embedded/ADC/ADC on STM32F4
+
+
+ADC Block Diagram
+=================
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383311801212_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-11-01%20%E4%B8%8B%E5%8D%889.14.26.png
+
+**1.  Analog MUX 類比多工器：**
+
+將多個訊號源連接至 ADC, 可在上圖中的左下角看到有 16 組輸入 (ADCx_IN0~15), 經過類比多工器來做訊號源的選擇。
+
+**2.  Injected/Regular data register：**
+
+每個 channel 都能配置成 injected or regular, regular 在啟動後 scan 時會依序進行轉換，而 injected 表示會等待外部訊號觸發轉換，觸發後以 injected 的轉換為優先處理。
+
+**3.  External/Internal Reference Voltage：**
+
+ADC 所接受的電壓值在 GND 與參考電壓之間，注意其必須接上穩定的電壓源，否則計算上會不穩定。
+
+**4.  GPIO Port：**
+
+當我們將GPIO Port設定成類比輸入的模式時，進來GPIO pin的原始訊號源在還沒經過施密特觸發器(Schmitt trigger)會有另一個線路將訊號做導向(導到ADC)
+
+.. code-block:: 
+
+   /* 將GPIO轉為類比用途 */
+   GPIO_initStructre.GPIO_Mode = GPIO_Mode_AN;
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384160168223_GPIO_basic_src.PNG
+
+
+Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
+
+**5.  Analog Watchdog：**
+
+用來監控採樣結果，如果超出預設範圍就打斷轉換並發出中斷。
+
+啟動 STM32 之 ADC
+================
+
+- ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
+- ADC 可設 ADON 打開電源，重設來關掉電源
+- 版子上共有 3 組ADC, 可測量 16 個外部訊號源和 2 個內部訊號源。每個外部訊號源對應一個通道。
+- 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
+- 總轉換時間即採樣時間加上 ADC core 等其他元件所需時間。
+- ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
+- ADC 間有 independent, dual 二種運作模式可選擇。
+
+
 
 Independent Mode
 -----------------
