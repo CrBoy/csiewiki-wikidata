@@ -189,8 +189,9 @@ Independent mode
 
       - 3rd 觸發，轉換 {1, 2, 3}, 以此類推。
 
+
 Multi Mode (Dual mode)
-======================
+-----------------------
 
 - 有一組ADC是無法開啟dual mode,只能使用independent mode
 
@@ -233,6 +234,20 @@ Multi Mode (Dual mode)
 - 只能用在雙方的 injected groups, 用同樣外部訊號輪流接受觸發。
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
+
+ADC之 Time Diagram
+==================
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg
+
+
+ADC之轉換時間
+============
+**Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)**
+
+- Sampling time
+
+ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
 
 
 
