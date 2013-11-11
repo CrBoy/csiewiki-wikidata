@@ -243,7 +243,10 @@ ADC之 Time Diagram
 
 ADC之轉換時間
 ============
-**Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)**
+.. CODE::
+
+Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)
+
 
 - Sampling time
 
@@ -253,7 +256,8 @@ ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and 
 
 ADC Voltage Measurement
 ------------------------
-::
+
+.. code-block:: 
 
   ConvertedVoltage = ConvertedValue*VDD/4095;
 
