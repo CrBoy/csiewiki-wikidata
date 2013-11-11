@@ -56,9 +56,6 @@ ADC on STM32F4
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
 
-.. image:: /embedded/ADC/ADC on STM32F4
-
-
 ADC Block Diagram
 =================
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383311801212_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-11-01%20%E4%B8%8B%E5%8D%889.14.26.png
@@ -97,50 +94,77 @@ Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 ================
 
 - ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
+
+.. code-block:: 
+
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
+
+
 - ADC 可設 ADON 打開電源，重設來關掉電源
-- 版子上共有 3 組ADC, 可測量 16 個外部訊號源和 2 個內部訊號源。每個外部訊號源對應一個通道。
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg
+
+- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
+
+
+.. image:: /embedded/ADC/ADC on STM32F4
+
+
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
-- 總轉換時間即採樣時間加上 ADC core 等其他元件所需時間。
+- 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
-- ADC 間有 independent, dual 二種運作模式可選擇。
+
+.. code-block:: 
+
+   ADC_ResetCalibration(ADC1);
+
+- 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
+
+ADC mode
+========
+
+**Independent-mode** 和 **Dual-mode（multi-mode）**
+
+**Independent mode** 表示此 ADC 獨立運作。
+
+**multi-mode** 表示ADC同時合作執行。
+
+Independent mode 
+----------------
+
+**ADC 通道配置**
+通道可分成 **regular**, **injected** 二組，每個通道能任意屬於哪一組。
 
 
 
-Independent Mode
------------------
-Single-channel, single conversion mode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 此模式只會針對單一通道執行單次轉換，且完成轉換後則停止。
-- 可用來檢查電壓來決定系統是否可以啟動。
+**Regular group**
+- 會依序被轉換，但順序可自由配置，最多 16 個。
+- 可以選擇 ADC 開始運作時就進行轉換或等待外來觸發轉換。
+- 有二種控制條件，組合出四種模式：
+  - ADC_InitStruct->ADC_ScanConvMode = ENABLE or DISABLE ;
+  - ADC_InitStruct->ADC_ContinuousConvMode = ENABLE or DISABLE;
 
-.. image:: /embedded/ADC/SSM.png
+Single conversion mode: 單一通道進行一次轉換。
+Continuous conversion mode: 單一通道持續進行轉換。
+Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 DMA circular mode 避免資料遺失。
+DMA: 每個通道轉換完成都發出一個 DMA request, 將 DR 內容存入指定目的地，所有通道轉完才對 CPU 做 EOC 中斷。
+Injected group
+最多 4 個通道，且只能設為等待觸發而轉換。（插隊）
+觸發時若正在轉換規則通道則會暫停而先處理注入通道，完畢後恢復原運作。
+如果轉換注入通道過程中規則通道轉換被觸發，不會中止注入通道轉換，而是轉換完畢才進行規則通道轉換。
+Auto-injected mode 可設注入通道轉換於規則通道 scan 完成後，可實現一個 iteration 執行 20 次轉換。
 
-Multichannel (scan), single conversion mode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 此模式可使用多個通道依序執行單次轉換，最多可以達到16個通道且可使用不同的取樣時間及不同的通道順序。
-- 可用來檢查多種訊號(如電壓、壓力、溫度等)來確保系統可以啟動。
+Discontinuous mode
+允許 scan 時不是全部掃完，可以「分批」進行。
+兩種 group 皆可設為此模式，但同時只有最多一個 group 採用它。
+此模式必須配合「外部觸發轉換」方式使用。
+先設置每批有幾個通道，至多八個，但 injected group 強迫每批一個通道。
+之後各次訊號觸發時轉換一批。
+以每批三個 (n=3), 通道為 {1, 2, 3, 4, 5} 舉例：
+1st 觸發，轉換 {1, 2, 3}.
+2nd 觸發，轉換 {4, 5}, 並因為 scan 結束而發 EOC 中斷。
+3rd 觸發，轉換 {1, 2, 3}, 以此類推。
 
-.. image:: /embedded/ADC/MSM.png
-
-- 下圖是個例子:
-
-.. image:: /embedded/ADC/MSMex.png
-
-Single-channel continuous conversion mode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 此模式以單一通道連續執行轉換。
-- 可讓ADC在背景連續執行，且CPU不會干預。
-- 另外可利用DMA的circular mode降低CPU的負擔。
-- 可用來監控電池電壓或是量測溫度。
-
-.. image:: /embedded/ADC/SCM.png
-
-Multichannel (scan) continuous conversion mode
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- 此模式與Multichannel (scan), single conversion mode類似，但執行至最後一個通道後不會停止，而是會回到第一個通道執行轉換。
-- 可用來量測多組電壓及溫度，像是電池充電器，可監控每個電池的電壓及溫度，當電壓或溫度到達最達最大值時必須能將電池斷路。
-
-.. image:: /embedded/ADC/MCM.png
 
 ADC Voltage Measurement
 ------------------------
