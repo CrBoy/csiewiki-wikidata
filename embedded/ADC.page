@@ -135,35 +135,105 @@ Independent mode
 **ADC 通道配置**
 通道可分成 **regular**, **injected** 二組，每個通道能任意屬於哪一組。
 
-
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383586655329_test.jpeg
 
 **Regular group**
+
 - 會依序被轉換，但順序可自由配置，最多 16 個。
+
 - 可以選擇 ADC 開始運作時就進行轉換或等待外來觸發轉換。
+
 - 有二種控制條件，組合出四種模式：
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383626797723_jus2.jpeg
+
   - ADC_InitStruct->ADC_ScanConvMode = ENABLE or DISABLE ;
+
   - ADC_InitStruct->ADC_ContinuousConvMode = ENABLE or DISABLE;
 
-Single conversion mode: 單一通道進行一次轉換。
-Continuous conversion mode: 單一通道持續進行轉換。
-Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 DMA circular mode 避免資料遺失。
-DMA: 每個通道轉換完成都發出一個 DMA request, 將 DR 內容存入指定目的地，所有通道轉完才對 CPU 做 EOC 中斷。
-Injected group
-最多 4 個通道，且只能設為等待觸發而轉換。（插隊）
-觸發時若正在轉換規則通道則會暫停而先處理注入通道，完畢後恢復原運作。
-如果轉換注入通道過程中規則通道轉換被觸發，不會中止注入通道轉換，而是轉換完畢才進行規則通道轉換。
-Auto-injected mode 可設注入通道轉換於規則通道 scan 完成後，可實現一個 iteration 執行 20 次轉換。
+1.Single Channel Single conversion mode: 單一通道進行一次轉換。
+2.Single Channel Continuous conversion mode: 單一通道持續進行轉換。
+3&4.Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 **DMA circular mode** 避免資料遺失。
 
-Discontinuous mode
-允許 scan 時不是全部掃完，可以「分批」進行。
-兩種 group 皆可設為此模式，但同時只有最多一個 group 採用它。
-此模式必須配合「外部觸發轉換」方式使用。
-先設置每批有幾個通道，至多八個，但 injected group 強迫每批一個通道。
-之後各次訊號觸發時轉換一批。
-以每批三個 (n=3), 通道為 {1, 2, 3, 4, 5} 舉例：
-1st 觸發，轉換 {1, 2, 3}.
-2nd 觸發，轉換 {4, 5}, 並因為 scan 結束而發 EOC 中斷。
-3rd 觸發，轉換 {1, 2, 3}, 以此類推。
+- DMA: 每個通道轉換完成都發出一個 DMA request, 將 DR 內容存入指定目的地，所有通道轉完才對 CPU 做 EOC 中斷。
+
+
+**Injected group**
+
+
+- 最多 4 個通道，且只能設為等待觸發而轉換。（插隊）
+
+- 觸發時若正在轉換規則通道則會暫停而先處理注入通道，完畢後恢復原運作。
+
+- 如果轉換注入通道過程中規則通道轉換被觸發，不會中止注入通道轉換，而是轉換完畢才進行規則通道轉換。
+
+- Auto-injected mode 可設注入通道轉換於規則通道 scan 完成後，可實現一個 iteration 執行 20 次轉換。
+
+- < Discontinuous mode >
+
+  - 允許 scan 時不是全部掃完，可以「分批」進行。
+
+  - 兩種 group 皆可設為此模式，但同時只有最多一個 group 採用它。
+
+  - 此模式必須配合「外部觸發轉換」方式使用。
+
+  - 先設置每批有幾個通道，至多八個，但 injected group 強迫每批一個通道。
+  
+  - 之後各次訊號觸發時轉換一批。
+
+  - 以每批三個 (n=3), 通道為 {1, 2, 3, 4, 5} 舉例：
+    
+      - 1st 觸發，轉換 {1, 2, 3}.
+
+      - 2nd 觸發，轉換 {4, 5}, 並因為 scan 結束而發 EOC 中斷。
+
+      - 3rd 觸發，轉換 {1, 2, 3}, 以此類推。
+
+Multi Mode (Dual mode)
+======================
+
+- 有一組ADC是無法開啟dual mode,只能使用independent mode
+
+  - 在我們的參考資料中ADC3只能開啟independent mode
+
+  - 此資訊來自stm32 ADC mode and their application P9
+
+- ADC1, ADC2 分別擔任 master & slave.
+
+
+**1.Injected simultaneous mode**
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg
+
+兩個 ADCs 同時觸發而轉換 injected groups.
+
+
+**2.Regular simultaneous mode**
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg
+
+- 2 ADCs 外部訊號同時觸發，一起對所負責通道依序轉換，結果存在 ADC1 DR.
+
+- 禁止二個 ADCs 同時對同一通道轉換以免誤差。
+
+
+**3.Interleaved mode**
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg
+
+- 透過兩個以上的ADC交互轉換同一個通道可以達到更高的取樣頻率
+
+- 由於同使只能有一個ADC對同一個通道做採樣，因此必須要增加兩個cycle的Delay time以免 phase overlap.
+
+
+**4.Alternate trigger mode**
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg
+
+- 只能用在雙方的 injected groups, 用同樣外部訊號輪流接受觸發。
+
+- 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
+
 
 
 ADC Voltage Measurement
