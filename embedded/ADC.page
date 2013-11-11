@@ -243,48 +243,33 @@ ADC之 Time Diagram
 
 ADC之轉換時間
 ============
-.. CODE::
 
-Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)
-
+**Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)**
 
 - Sampling time
 
-ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
-
-
-
-ADC Voltage Measurement
-------------------------
-
-.. code-block:: 
-
-  ConvertedVoltage = ConvertedValue*VDD/4095;
+  - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
 
 ADC Temperature Measurement
-----------------------------
-.. image:: /embedded/ADC/formula.png
+============================
+
 ::
   
+  ConvertedVoltage = ConvertedValue*VDD/4095;
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
+
+
+.. image:: /embedded/ADC/formula.png
+
 
 Demo
 =========
-- Video
-    1. 溫度 : http://youtu.be/93aU9fYuZaQ
 
-- ADC Voltage Convertion(with Power Supply)
+ADC + GPIO
+-----------
 
-.. image:: /embedded/ADC/ADC_PowerSupply.jpg
-
-.. image:: /embedded/ADC/ADC_Convert.jpg
-
-- ADC Voltage Convertion(with Battery)
-
-.. image:: /embedded/ADC/ADC_battery.jpg
-
-.. image:: /embedded/ADC/ADC_pin.jpg
-
+ADC + GPIO + Temperature Sensor
+--------------------------------
 
 Questions
 =========
