@@ -250,6 +250,17 @@ ADC之轉換時間
 
   - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
 
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
+
+  - Each channel can be sampled with a different sampling time.
+
+- Example:
+
+  - With ADCCLK = 30 MHz and sampling time = 3 cycles:
+
+  - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
+
+
 ADC Temperature Measurement
 ============================
 
