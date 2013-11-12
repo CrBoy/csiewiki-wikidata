@@ -14,6 +14,22 @@ toc: no
   - 驗證硬體所用的 firmware
   - 應用範疇
 
+* 考慮到期中考，本週沒有 Lab，但請在 11 月 18 日前繳交一份修課心得 + 期末專題想法
+  - 直接編輯到 wiki.csie.ncku.edu.tw 之上 (建立 ``/User/你的ID`` 新頁面)
+  - 範例: http://wiki.csie.ncku.edu.tw/User/jserv
+  - 發信到 <jserv.tw@gmail.com>，標題為 "[NCKU/embedded] 姓名 + 學號"，內文至少要包含上述連結，並且預約 1 對 1 面談時間
+
+* 一對一面談時段
+  - 11/19 上午、中午、傍晚
+  - 11/20 上午、下午、晚上
+  - 11/21 上午、下午、晚上
+  - 11/25 上午、下午、晚上
+  - 11/26 上午
+
 3D Printer
 -----------
 * Ben
+
+分組報告
+---------
+* `GPIO</embedded/GPIO>`_
