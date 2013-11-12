@@ -28,11 +28,11 @@ System Overview
 
 Block Diagram  
 --------------------
+[#]_
 
+.. [#] `Block Diagram <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
 .. image:: /rtc_block.png
 
-
-*reference manual p.780*
 
 
 Functional Description
@@ -55,13 +55,11 @@ RTCCLK為設備的clock有兩種來源：
 1. **LSI**  (Low-Speed Internal)  ：40kHz,RC電路震盪
 2. **LSE** (High-Speed External)：32.768kHz,石英震盪
 
-----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源
+----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源 [#]_
 
-*reference manual p.150*
+.. [#] `Clock Source <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.150
 
-*reference application note p.8*
-
------------------------------------------------
+-------------------------------------------------------------------------------------------------
 
 **比較 「HSE」, 「LSI」 , 「LSE」三種輸入來源：** 
 
@@ -88,14 +86,19 @@ LSE: 32.768kHz / (**127**+1) / (**255**+1) = 1Hz
 
 LSI: 32kHz / (**127**+1) /(**249**+1) =1Hz
 
-*reference manual p.781*
+[#]_
+
+.. [#] `prescaler <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.781
+
+-------------------------------------------
+
 
 Alternate Function Outputs & Inputs
 ------------------------------------------
 
 Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，這些輸出可以被選擇成**tamp event** 或 **time stamp event**，
 
-甚至RTC Calibration 的訊號都可以藉由這個功能輸出。
+甚至RTC Calibration 的訊號都可以藉由這個功能輸出。 [#]_
 
 可以選擇兩個輸出:
 
@@ -117,7 +120,10 @@ Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，
 
 - RTC_TS
 
-*Reference Manual p.277*
+
+
+.. [#] `Alternate Function Outputs & Inputs <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.227
+
 
 *PI8接腳參考: datasheet p.10*
 
@@ -140,16 +146,18 @@ RTC Calendar
 
 - 每兩個RTCCLK時間週期，RTC的calendar register (RTC_SSR, RTC_TR, and RTC_DR)的值會被自動更新到Shadow Register。
 
-*reference manual p.780*
+[#]_
 
-*reference application note p.6*
+.. [#] `Calendar <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
 
 -----------------------------
 
 Calibration
 -----------------------------
 
-RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth calibration。
+RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth calibration。[#]_
+
+.. [#] `Calibration <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.787
 
 這兩個校正不能同時被使用，而前者只能固定修正，後者則可以動態的校正。後者也可以較大範圍及更精準的校正。
 
@@ -165,7 +173,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - reference clock calibration 和 coarse calibration 不能同時使用。
 
-*reference manual p.787*
+-----------------------------------------------------------------
 
 .. image:: /coarse cal.png
 
@@ -181,21 +189,22 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。 
 
-*reference manual p.788*
+----------------------------------------------------------------------------
 
 
 .. image:: /smooth cal.png
 
 **3、RTC reference clock detection：**
 
-- 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。
+- 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。[#]_
 
-*reference manual p.786*
+.. [#] `RTC reference clock <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.786
+
 
 Low Power Modes
 -------------------
 
-- RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。
+- RTC 設計為最小的耗能，在休眠模式下，RTC將繼續動作。 [#]_
 
 - 當clock 的來源是LSE 或 LSI，在停止模式與待機模式下，RTC仍然活躍的動作。
 
@@ -203,7 +212,9 @@ Low Power Modes
 
 .. image:: /Power.png
 
-*reference manual p.126*
+
+
+.. [#] `Low Power Modes <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.126
 
 ---------------------------------------------------
 
@@ -216,7 +227,7 @@ Interrupt Application
 Alarm
 ---------------------------
 
-- 有兩個時鐘Alarm A及Alarm B，可以當作鬧鐘使用。而且相關的register也都會有兩組。
+- 有兩個時鐘Alarm A及Alarm B，可以當作鬧鐘使用。而且相關的register也都會有兩組。[#]_
 
 - 可利用Mask達成不同時間的鬧鈴效果。
 
@@ -228,22 +239,23 @@ Alarm
 
 .. image:: /Alarm3.png
 
-*reference manual p.781*
 
-*reference application note p.10*
+.. [#] `Alarm <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.781
 
 
-**利用MSKx bits設定遮罩改變Alarm的行為:**
+**利用MSKx bits設定遮罩改變Alarm的行為:** [#]_
 
 As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是0000)
 
 
 .. image:: /MSK2.png
 
-*Application note p.11*
 
 
----------------------------
+.. [#] `Alarm application note <http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/application_note/DM00025071.pdf>`_ p.11
+
+
+------------------------------------------------------------------------------------------
 
 
 Periodic Wakeup Unit
@@ -256,7 +268,7 @@ Periodic Wakeup Unit
 - 會有兩個因素影響wakeup unit的中斷觸發週期，一個是timer儲存數字的大小，一個是clock source。
 
 
-**設定wakeup period**
+**設定wakeup period** [#]_
 
 有三種組態：
 
@@ -313,7 +325,9 @@ Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
 
 .. image:: /MaxMin.png
 
-*reference manual p.782*
+
+
+.. [#] `Periodic Wakeup Unit <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.782
 
 --------------------------
 
@@ -322,7 +336,7 @@ Time-stamp Function
 
 實體世界裡有「郵戳為憑」來證明信件的時間，在網路世界裡如何來證明電子文件或交易的時間? 
 
-利用Time-stamp function 可以為任何電子文件或電子交易提供準確的時間證明，並且驗證其內容自蓋上時戳後是否曾被人修改過。
+利用Time-stamp function 可以為任何電子文件或電子交易提供準確的時間證明，並且驗證其內容自蓋上時戳後是否曾被人修改過。[#]_
 
 Time-stamp function 提供自動幫你儲存日曆的功能
 
@@ -334,16 +348,18 @@ Time-stamp function 提供自動幫你儲存日曆的功能
 
 .. image:: /timestamp.png
 
-*reference manual p.790*
 
-----------------------------
+
+.. [#] `Time-stamp Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.790
+
+-----------------------------------------------------------------------------------------------
 
 Tamper Detection Function
 ---------------------------------
 
 Tamper Detection是一個可以檢測系統是否有被竄改的功能。在Tamper發生時，RTC Backup Register會全部自動reset，
 
-達到保護系統的作用。而也可以在Tamper發生時，讓Timestamp發生。
+達到保護系統的作用。而也可以在Tamper發生時，讓Timestamp發生。 [#]_
 
 **Backup registers**
 
@@ -365,11 +381,13 @@ Tamper Detection是一個可以檢測系統是否有被竄改的功能。在Tamp
 
     Level detection on tamper input : triggers when a selected level (high or low) is observed
 
-*Reference Manual p.792*
+
+
+.. [#] `Tamper Detection Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.792
 
 ------------------------------------------
 
-**補充 : 何謂 Backup Domain ?**
+**補充 : 何謂 Backup Domain ?** [#]_
 
 Backup Domain 有下列幾個主要裝置:
 
@@ -387,7 +405,7 @@ SRAM:靜態隨機存取存儲器（Static Random-Access Memory, SRAM）是隨機
 
 .. image:: /backupdomain.PNG
 
-*Reference Manual p.115*
+.. [#] `Tamper Detection Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.115
 
 
 Example of code
@@ -510,3 +528,5 @@ Reference
 
 `STM32F405xx/07xx, STM32F415xx/17xx, STM32F42xxx and STM32F43xxx Reference Manual
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+
