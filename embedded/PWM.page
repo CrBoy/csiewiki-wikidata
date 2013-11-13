@@ -12,16 +12,16 @@ Introduction
 
 .. image:: /embedded/PWM-explean_what_is_PWM.png
 
-如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般轉換後脈波的週期固定，脈波的占空比(duty cycle)會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。
+如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般轉換後脈波的週期固定，脈波的工作週期(duty cycle)會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。
 
 
 Implementation
 ==============
 PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 
-- 基本定時器(TIM6 和 TIM7)
-- 高級控制定時器(TIM1 和 TIM8)
-- 通用定時器(TIMx):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
+- Basic timers 基本定時器(TIM6 和 TIM7)
+- Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
+- General-purpose timers 通用定時器(TIM2 to TIM5 & TIM9 to TIM14):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
   - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
   - CK_INT -> AHB Prescaler(/1、2、...、512) -> APB1 Prescaler(/1、2、4、8、16) or APB2 Prescaler(/1、2、4、8、16)。
   - Time Base Configuration :
