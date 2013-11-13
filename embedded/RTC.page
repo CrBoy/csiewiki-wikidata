@@ -102,23 +102,23 @@ Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，
 
 可以選擇兩個輸出:
 
-輸出接腳 **RTC_AF1(PC13)** : 
+- 輸出接腳 **RTC_AF1(PC13)** : 
 
-- RTC_ALARM output:    1. RTC Alarm A       2. RTC Alarm B       3. RTC Wakeup
+  - RTC_ALARM output:    1. RTC Alarm A       2. RTC Alarm B       3. RTC Wakeup
 
-- RTC_CALIB output
+  - RTC_CALIB output
 
-- RTC_TAMP1
+  - RTC_TAMP1
 
-- RTC_TS
+  - RTC_TS
 
-輸出接腳 **RTC_AF2 (PI8)** :
+- 輸出接腳 **RTC_AF2 (PI8)** :
 
-- RTC_TAMP1
+  - RTC_TAMP1
 
-- RTC_TAMP2
+  - RTC_TAMP2
 
-- RTC_TS
+  - RTC_TS
 
 
 
