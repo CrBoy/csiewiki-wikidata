@@ -212,7 +212,17 @@ Low Power Modes
 
 .. image:: /Power.png
 
+**電流消耗**
 
+- 一般運行模式 ： 8.5mA
+
+- 低功耗模式 
+
+  - 睡眠模式 ： 0.5mA
+
+  - 停機模式 ：24uA
+
+  - 待機模式：2uA
 
 .. [#] `Low Power Modes <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.126
 
@@ -528,5 +538,4 @@ Reference
 
 `STM32F405xx/07xx, STM32F415xx/17xx, STM32F42xxx and STM32F43xxx Reference Manual
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
 
