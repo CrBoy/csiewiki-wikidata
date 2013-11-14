@@ -20,8 +20,22 @@ Implementation
 PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
 
 - Basic timers 基本定時器(TIM6 和 TIM7)
+  - 具有 16-bit auto-reload upcounter driven by a programmable prescaler
+  - 用途: Synchronization circuit to trigger the DAC(內部連接至DAC)
+
 - Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
-- General-purpose timers 通用定時器(TIM2 to TIM5 & TIM9 to TIM14):具有測量輸入信號的脈衝長度、產生輸出波形和PWM的功能。
+  - 具有 16-bit up, down, up/down auto-reload counter driven by a programmable prescaler which allowing dividing the counter clock frequency either by any factor between 1 and 65536(2^16).
+  - 用途: Up to 4 independent channels for input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.
+
+- General-purpose timers 通用定時器(TIM9 to TIM14)
+  - 具有16-bit auto-reload up counter.
+  - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
+  - 用途: Up to 2 independent channels for input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
+
+- General-purpose timers 通用定時器(TIM2 to TIM5)
+  - 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
+  - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
+  - 用途: Up to 4 independent channels for input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
   - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
   - CK_INT -> AHB Prescaler(/1、2、...、512) -> APB1 Prescaler(/1、2、4、8、16) or APB2 Prescaler(/1、2、4、8、16)。
   - Time Base Configuration :
