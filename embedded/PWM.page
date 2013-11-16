@@ -1,20 +1,13 @@
 ---
-title: Pulse-width modulation(PWM)
+title: Pulse-Width Modulation(PWM)
 ...
 
 Introduction
 ============
+Pulse-Width Modulation, 又稱pulse-duration modulation(PDM)
+, 其利用在頻率不變的狀態下, 改變工作週期大小, 使整體平均電壓值上升或下降, 藉此間歇性電壓及功率切換以節省能源及控制等效果.
 
-
-又稱pulse-duration modulation(PDM)，是將類比信號轉為脈波的一種技術。
-
-為何需要PWM？雖然類比電壓可直接用來控制，但類比電路控制信號容易隨時間漂移，功耗大。
-
-.. image:: /embedded/PWM-explean_what_is_PWM.png
-
-如圖所示，PWM 電路主要功能是將輸入電壓的振幅轉換成脈衝寬度。一般轉換後脈波的週期固定，脈波的工作週期(duty cycle)會依類比信號的大小而改變，可用來控制燈泡亮度、馬達轉速等等，脈波寬度越大燈泡亮度越亮、馬達轉速越快。
-
-
+.. image:: /PWM_intr.PNG
 Implementation
 ==============
 PWM需要透過Timer來實現，STM32的Timer可分為以下幾種
