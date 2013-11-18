@@ -518,7 +518,43 @@ setting alarm time
 	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
 	RTC_ClearFlag(RTC_FLAG_ALRAF);
 
+-----------------------------------------------------------------
 
+
+-----------------------------------------------------------------
+
+RTC Alarm IRQHandler
+-----------------------
+
+.. code-block:: prettyprint 
+
+void RTC_Alarm_IRQHandler()
+{
+
+if(RTC_GetITStatus(RTC_IT_ALRA) != RESET)
+{
+
+    	    vTaskSuspend( pvLEDTask );
+
+    	    RTC_ClearITPendingBit(RTC_IT_ALRA);
+
+    	    EXTI_ClearITPendingBit(EXTI_Line17);
+
+    	    STM_EVAL_LEDOff(LED4);
+
+    	    STM_EVAL_LEDOff(LED3);
+
+    	    STM_EVAL_LEDOff(LED5);
+
+    	    STM_EVAL_LEDOff(LED6);
+
+    	    vTaskResume( pvLEDTask );
+}
+}
+
+
+
+-----------------------------------------------------------------
 
 complete code
 --------------------
