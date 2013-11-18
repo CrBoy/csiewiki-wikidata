@@ -413,6 +413,14 @@ Q & A
 TTL：內部零件多以雙極性電晶體組成。
 CMOS：內部零件多以金屬氧化物半導體組成。
 
+4.STM32 RCC clock
+
+http://www.oliverbehr.de/?option=com_content&view=article&id=52:stm32-clock-configuration&catid=39:technik&Itemid=83
+
+5.波形抖動問題
+
+Sampling jitter    [from Wikipedia]
+In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
 
 Reference
