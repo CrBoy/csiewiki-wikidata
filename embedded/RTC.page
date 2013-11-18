@@ -428,7 +428,9 @@ Initialize RTC
 	
     RTC_InitTypeDef RTC_InitStructure;
 	
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);   /* Enable the PWR clock */
+
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);    /* Enable the PWR clock */
     PWR_BackupAccessCmd(ENABLE);                          /* Allow access to RTC */
 
     RCC_LSICmd(ENABLE);                                   /* Enable the LSI OSC */
@@ -444,8 +446,13 @@ Initialize RTC
     RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
     RTC_Init(&RTC_InitStructure);
 
+
+
 -----------------------------------------------------------------
 
+[#]_
+
+.. [#] `Device overview <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.18
 
 -----------------------------------------------------------------
 
@@ -518,39 +525,6 @@ setting alarm time
 	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
 	RTC_ClearFlag(RTC_FLAG_ALRAF);
 
------------------------------------------------------------------
-
-
------------------------------------------------------------------
-
-RTC Alarm IRQHandler
------------------------
-
-.. code-block:: prettyprint 
-
-void RTC_Alarm_IRQHandler()
-{
-
-if(RTC_GetITStatus(RTC_IT_ALRA) != RESET)
-{
-
-    	    vTaskSuspend( pvLEDTask );
-
-    	    RTC_ClearITPendingBit(RTC_IT_ALRA);
-
-    	    EXTI_ClearITPendingBit(EXTI_Line17);
-
-    	    STM_EVAL_LEDOff(LED4);
-
-    	    STM_EVAL_LEDOff(LED3);
-
-    	    STM_EVAL_LEDOff(LED5);
-
-    	    STM_EVAL_LEDOff(LED6);
-
-    	    vTaskResume( pvLEDTask );
-}
-}
 
 
 
