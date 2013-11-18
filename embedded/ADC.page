@@ -269,6 +269,50 @@ ADC之轉換時間
   - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
 
 
+STM32F4 Discovery Temperature Sensor
+====================================
+
+- 我們所使用的STM32F4 Discovery其溫度感測器連接到ADC1_IN16 channel
+
+- 除了設定通道以外，也必須要設定TSVREFE bit，參考下圖
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg
+
+- ADC1_IN18 為 STM23F42x and STM32F43x 所使用之通道
+
+- TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
+
+設定的方法只要
+
+::
+
+    ADC_TempSensorVrefintCmd(ENABLE);
+
+- 其實做如下：
+
+:: 
+
+  void ADC_TempSensorVrefintCmd(FunctionalState NewState)
+  {
+    /* Check the parameters */
+    assert_param(IS_FUNCTIONAL_STATE(NewState));
+    if (NewState != DISABLE)
+    {
+      /* Enable the temperature sensor and Vrefint channel*/
+      ADC->CCR |= (uint32_t)ADC_CCR_TSVREFE;
+    }
+    else
+    {
+      /* Disable the temperature sensor and Vrefint channel*/
+      ADC->CCR &= (uint32_t)(~ADC_CCR_TSVREFE);
+    }
+  }
+
+
+- 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
+
+- 內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
+
 ADC Temperature Measurement
 ============================
 
