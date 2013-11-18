@@ -252,6 +252,14 @@ ADC之轉換時間
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
 
+  - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
+
+  ::
+
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
+
+
+
   - Each channel can be sampled with a different sampling time.
 
 - Example:
@@ -279,8 +287,12 @@ Demo
 ADC + GPIO
 -----------
 
+https://www.youtube.com/watch?v=gRxbnODggjc
+
 ADC + GPIO + Temperature Sensor
 --------------------------------
+
+https://www.youtube.com/watch?v=0gAe-xRgk-k
 
 Questions
 =========
