@@ -397,7 +397,7 @@ Supplement
 
 Q & A
 =========
-1.Pull-up與Pull-down的電阻是多少？
+**1. Pull-up與Pull-down的電阻是多少？**
 
 (請參考Datasheet p.110，Table 47. I/O static characteristics)
 
@@ -409,11 +409,11 @@ Q & A
 - 將三用電表的正極接在要測的I/O pin上(此處使用PA14，並設成pull-down)，負極接地
 - 觀察電表的數字即可得當前電阻
 
-2.GPIO中取樣頻率的意義？
+**2. GPIO中取樣頻率的意義？**
 
 假設input data是0、1、0、1、……的方波，並以V0的速度變化，此時若GPIO本身的取樣頻率是1/2 V0，則取到的data會全是1或全是0，所以了解GPIO的取樣頻率可以讓使用者設計input data時不以過快的速度做資料的輸入。
 
-3.何謂TTL？
+**3. 何謂TTL？**
 
 全名Transistor-Transistor Logic，數位IC的種類之一，依製程不同可分為TTL與CMOS(complement metal oxide semiconductor)兩種：
 
@@ -427,7 +427,7 @@ TTL電路的速度快，傳輸延遲時間短(5-10ns)，但是功耗大。
 
 CMOS電路的速度慢，傳輸延遲時間長(25-50ns)，但功耗低。
 
-4.STM32 RCC clock
+**4. STM32 RCC clock**
 
 http://www.oliverbehr.de/?option=com_content&view=article&id=52:stm32-clock-configuration&catid=39:technik&Itemid=83
 
@@ -450,7 +450,7 @@ Bus clock setup
 - High speed Advanced Peripherial Bus (APB2)
 
 
-5.波形抖動問題
+**5. 波形抖動問題**
 
 Sampling jitter    [from Wikipedia]
 
