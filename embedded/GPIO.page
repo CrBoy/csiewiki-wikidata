@@ -431,9 +431,23 @@ CMOS電路的速度慢，傳輸延遲時間長(25-50ns)，但功耗低。
 
 http://www.oliverbehr.de/?option=com_content&view=article&id=52:stm32-clock-configuration&catid=39:technik&Itemid=83
 
+System clock setup
+1.Internal High Speed Clock (HSI)
+2.External High Speed Clock (HSE)
+3.Phase locked Loop (PLL)
+
+Bus clock setup
+•Advanced High Performance Bus (AHB)
+•Low speed Advanced Peripherial Bus (APB1)
+•High speed Advanced Peripherial Bus (APB2)
+
+
 5.波形抖動問題
 
 Sampling jitter    [from Wikipedia]
+
+http://en.wikipedia.org/wiki/Jitter
+
 In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
 取樣頻率的設定：
