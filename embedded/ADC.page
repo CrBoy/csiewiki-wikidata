@@ -125,9 +125,9 @@ ADC mode
 
 **Independent-mode** 和 **Dual-mode（multi-mode）**
 
-**Independent mode** 表示此 ADC 獨立運作。
+  **Independent mode** 表示此 ADC 獨立運作。
 
-**multi-mode** 表示ADC同時合作執行。
+  **multi-mode** 表示ADC同時合作執行。
 
 Independent mode 
 ----------------
@@ -216,6 +216,8 @@ Multi Mode (Dual mode)
 - 2 ADCs 外部訊號同時觸發，一起對所負責通道依序轉換，結果存在 ADC1 DR.
 
 - 禁止二個 ADCs 同時對同一通道轉換以免誤差。
+
+- 以上兩者的差別在於不同的group
 
 
 **3.Interleaved mode**
