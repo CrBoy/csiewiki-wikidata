@@ -95,6 +95,10 @@ Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 
 - ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
 
+  - AHB for 記憶體
+
+  - APB for 硬體周邊
+
 .. code-block:: 
 
    RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
