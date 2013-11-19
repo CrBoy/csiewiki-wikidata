@@ -461,13 +461,13 @@ setting time
 
 .. code-block:: prettyprint
 
-	/* set 8:29:55 */
-	RTC_TimeTypeDef RTC_TimeStruct;
-	RTC_TimeStruct.RTC_Hours = 8;
-	RTC_TimeStruct.RTC_Minutes = 29;
-	RTC_TimeStruct.RTC_Seconds = 55;
-	
-	RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
+       /* set 8:29:55 */
+       RTC_TimeTypeDef RTC_TimeStruct;
+       RTC_TimeStruct.RTC_Hours = 0x08;
+       RTC_TimeStruct.RTC_Minutes = 0x29;
+       RTC_TimeStruct.RTC_Seconds = 0x55;
+
+       RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
 
 
 initialize RTC alarm
