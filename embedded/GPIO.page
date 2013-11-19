@@ -410,8 +410,16 @@ Q & A
 3.何謂TTL？
 
 全名Transistor-Transistor Logic，數位IC的種類之一，依製程不同可分為TTL與CMOS(complement metal oxide semiconductor)兩種：
+
 TTL：內部零件多以雙極性電晶體組成。
+
 CMOS：內部零件多以金屬氧化物半導體組成。
+
+(補充)差異性比較：
+
+TTL電路的速度快，傳輸延遲時間短(5-10ns)，但是功耗大。
+
+CMOS電路的速度慢，傳輸延遲時間長(25-50ns)，但功耗低。
 
 4.STM32 RCC clock
 
