@@ -530,6 +530,20 @@ setting alarm time
 
 -----------------------------------------------------------------
 
+RTC_Alarm_IRQHandler
+--------------------
+
+.. code-block:: prettyprint
+    
+    vTaskSuspend( pvLEDTask );
+    RTC_ClearITPendingBit(RTC_IT_ALRA);
+    EXTI_ClearITPendingBit(EXTI_Line17);
+    STM_EVAL_LEDOff(LED4);
+    STM_EVAL_LEDOff(LED3);
+    STM_EVAL_LEDOff(LED5);
+    STM_EVAL_LEDOff(LED6);
+
+
 complete code
 --------------------
 
