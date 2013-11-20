@@ -429,9 +429,7 @@ Initialize RTC
 .. code-block:: prettyprint
 	
     RTC_InitTypeDef RTC_InitStructure;
-	
-
-
+    
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);    /* Enable the PWR clock */
     PWR_BackupAccessCmd(ENABLE);                          /* Allow access to RTC */
 
@@ -440,15 +438,13 @@ Initialize RTC
     RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);               /* Select the RTC Clock Source */
 	
     RCC_RTCCLKCmd(ENABLE);                                /* Enable the RTC Clock */
-    RTC_WaitForSynchro();                                 /* Wait for RTC APB registers synchronisation */
+    RTC_WaitForSynchro();                  /* Wait for RTC APB registers synchronisation */
 
     /* Configure the RTC data register and RTC prescaler */
     RTC_InitStructure.RTC_AsynchPrediv = 127;
     RTC_InitStructure.RTC_SynchPrediv = 249;
     RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
     RTC_Init(&RTC_InitStructure);
-
-
 
 -----------------------------------------------------------------
 
@@ -497,10 +493,7 @@ initialize RTC alarm
 
 --------------------------------------------------------------------
 
-
-
 -----------------------------------------------------------------------
-
 
 
 setting alarm time
@@ -509,7 +502,6 @@ setting alarm time
 .. code-block:: prettyprint
 
 	RTC_AlarmTypeDef RTC_AlarmStructure;
-
 	RTC_AlarmCmd(RTC_Alarm_A, DISABLE);   /* disable before setting or cann't write */
 
 	/* set alarm time 8:30:0 everyday */
@@ -527,10 +519,8 @@ setting alarm time
 	RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
 	RTC_ClearFlag(RTC_FLAG_ALRAF);
 
-
-
-
 -----------------------------------------------------------------
+
 
 RTC_Alarm_IRQHandler
 --------------------
@@ -554,8 +544,6 @@ complete code
     git clone https://github.com/fboris/stm32_RTC_demo.git
     cd stm32_RTC_demo
     make flash
-
-
 
 
 Reference
