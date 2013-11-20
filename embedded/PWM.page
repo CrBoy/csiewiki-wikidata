@@ -1,5 +1,5 @@
 ---
-title: Pulse-Width Modulation(PWM)
+title: Pulse-Width Modulation (PWM)
 ...
 
 Introduction
@@ -80,8 +80,9 @@ Code_section
 .. code-block:: prettyprint
 
     //====set pin enable=====================================
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD  | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOA, ENABLE ); //開啟Pin腳 D B E提供使用
-    RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4 | RCC_APB1Periph_TIM3, ENABLE ); //開啟Timer
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD  | RCC_AHB1Periph_GPIOB |
+                           RCC_AHB1Periph_GPIOA, ENABLE ); //開啟Pin腳 D B E提供使用
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4 | RCC_APB1Periph_TIM3, ENABLE ); //開啟Timer
     
     GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
     GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);
@@ -113,7 +114,6 @@ Code_section
     GPIO_Init( GPIOD, &GPIO_InitStructure );
 
     //======================================================
-
 
     //====Interrupt set section==============================
 
@@ -186,22 +186,16 @@ Code_section
     //====中斷subroutine===============================================
 
     void EXTI2_IRQHandler(void) //加長脈波頻寬的中斷subroutine
-
     {
- 
-        if(EXTI_GetITStatus(EXTI_Line2) != 0)
-        {
+        if(EXTI_GetITStatus(EXTI_Line2) != 0) {
             EXTI_ClearITPendingBit(EXTI_Line2);   
     
         if (brightness <= 1999 - 100)
             brightness +=100;
 
         TIM4->CCR1 = brightness;
-
         TIM4->CCR2 = brightness;
-
         TIM4->CCR3 = brightness;
-
         TIM4->CCR4 = brightness;
     
         EXTI_ClearITPendingBit(EXTI_Line2);
@@ -212,9 +206,7 @@ Code_section
 
     void EXTI3_IRQHandler(void)  //減少脈波頻寬的中斷subroutine
     {
- 
-        if(EXTI_GetITStatus(EXTI_Line3) != 0)
-        {
+        if(EXTI_GetITStatus(EXTI_Line3) != 0) {
             EXTI_ClearITPendingBit(EXTI_Line3);
             if (brightness >= 199)
                 brightness -=100;
@@ -225,20 +217,17 @@ Code_section
             TIM4->CCR4 = brightness;
     
             EXTI_ClearITPendingBit(EXTI_Line2);
-
             EXTI_ClearITPendingBit(EXTI_Line3);
         }
     }
 
     //============================================================
 
-Demo
+Demo video
 =============
-http://youtu.be/RHzLguvuOKY
-
-http://youtu.be/guG6MdLIwfI (LED 3 4 5 6依序 亮-暗 轉換)
-
-http://youtu.be/jJfebbbMDPw (透過外接BUTTON 調整led亮度)
+* http://youtu.be/RHzLguvuOKY
+* http://youtu.be/guG6MdLIwfI (LED 3 4 5 6依序 亮-暗 轉換)
+* http://youtu.be/jJfebbbMDPw (透過外接 BUTTON 調整 LED亮度)
 
 補充
 =============
