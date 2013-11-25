@@ -346,8 +346,14 @@ ADC + GPIO + Temperature Sensor
 
 https://www.youtube.com/watch?v=0gAe-xRgk-k
 
-Questions
-=========
+Questions 2013
+==============
+
+https://embeddedsystemstudy.hackpad.com/QA-FoYwIS8lBIN
+
+
+Questions 2012
+==============
 - 1. ADC的轉換時間有多快?
     不一定隨著條件而變，Sample Time跟温度以及内部電路的rc有關
  
