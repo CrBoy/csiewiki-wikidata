@@ -386,11 +386,6 @@ Tamper Detection是一個可以檢測系統是否有被竄改的功能。在Tamp
 
 - TAMPER 2可以被對映到: RTC_TAMP2 pin(PI8).
 
-- TAMPER可以設定偵測已開啟Alternate Function的腳位的電位:
-
-    Edge detection : a rising edge is observed or an falling edge is observed
-
-    Level detection on tamper input : triggers when a selected level (high or low) is observed
 
 
 
