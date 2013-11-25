@@ -156,10 +156,12 @@ Independent mode
   - ADC_InitStruct->ADC_ContinuousConvMode = ENABLE or DISABLE;
 
 1.Single Channel Single conversion mode: 單一通道進行一次轉換。
-2.Single Channel Continuous conversion mode: 單一通道持續進行轉換。
-3&4.Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 **DMA circular mode** 避免資料遺失。
 
-- DMA: 每個通道轉換完成都發出一個 DMA request, 將 DR 內容存入指定目的地，所有通道轉完才對 CPU 做 EOC 中斷。
+2.Single Channel Continuous conversion mode: 單一通道持續進行轉換。
+
+3&4.Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 **DMA ** 避免資料遺失。
+
+- DMA: 每個通道轉換完成都發出一個 DMA request, 可設定為每當 DMA 發生就觸發一次中斷，即可讀出每個通道所轉換的值，也可以全部轉換後一次讀取全部通道的值。
 
 
 **Injected group**
