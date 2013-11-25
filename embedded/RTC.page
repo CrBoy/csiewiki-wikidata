@@ -542,11 +542,22 @@ RTC_Alarm_IRQHandler
 complete code
 --------------------
 
+LCD的程式碼, 有介紹LCD的腳位, 可顯示字串（第一行為日期, 第二行為時間)
+
+.. code-block:: c
+
+    git clone https://github.com/zxc2694/stm32f4_LCD.git
+    cd stm32f4_LCD
+    make flash
+
+利用LCD來做RTC的應用, 可以實現時間和日期的顯示
+
 .. code-block:: c
 
     git clone https://github.com/fboris/stm32_RTC_demo.git
     cd stm32_RTC_demo
     make flash
+
 
 
 Reference
