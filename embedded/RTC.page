@@ -531,8 +531,18 @@ RTC_Alarm_IRQHandler
     STM_EVAL_LEDOff(LED4);
     STM_EVAL_LEDOff(LED3);
     STM_EVAL_LEDOff(LED5);
-    STM_EVAL_LEDOff(LED6);
 
+RTC_WKUP_IRQHandler
+--------------------
+
+.. code-block:: prettyprint
+
+  if(RTC_GetITStatus(RTC_IT_WUT) != RESET)
+  {
+    RTC_ClearITPendingBit(RTC_IT_WUT);
+    EXTI_ClearITPendingBit(EXTI_Line22);
+    STM_EVAL_LEDToggle(LED6);
+  }
 
 complete code
 --------------------
