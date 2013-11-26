@@ -1,0 +1,118 @@
+目標
+------
+1. 學會使用git
+
+2. 學會安裝glfw
+
+3. 學會看manual和tutorial
+
+4. 使用opengl 1.x函數
+
+預先準備
+------
+
+1. 安裝git
+
+for Ubuntu 13.10:
+
+.. code-block:: prettyprint
+   
+    sudo apt-get install git
+
+for Windows: 請搜尋git for windows
+
+設定好PATH環境變數，使得你能在cmd直接執行git而不用指定目錄，順便設定一下mingwgcc吧。 HOW TO DO IT? => google
+
+
+2. 安裝glfw: 假設上面的git安裝成功
+
+for linux:
+
+.. code-block:: prettyprint
+   
+    git clone https://github.com/glfw/glfw.git
+or(學校有時wifi正常使用https)
+    git clone git@github.com:glfw/glfw.git
+
+for windows:
+
+請到官網下載pre-build版本的glfw3，64位元或32位元請依你的mingw編譯器做選擇
+
+http://www.glfw.org/download.html
+
+將include裡面的GLFW資料夾放到mingw安裝資料夾內的include
+
+lib放mingw的lib，dll檔案請保留(也可以丟掉...通常glfw project都是用static link)
+
+3. 下載GLTrain教材
+
+.. code-block:: prettyprint
+
+    git clone https://github.com/tim37021/GLTrain.git
+or
+
+.. code-block:: prettyprint
+
+    git clone git@github.com:tim37021/GLTrain.git
+
+編譯glfw3
+--------
+
+安裝必要套件cmake, xorg-dev, libglu1-mesa-dev，如果想產生官方說明文件的話請安裝Doxygen(檔案頗大)
+
+.. code-block:: prettyprint
+
+    apt-get install cmake xorg-dev libglu1-mesa-dev
+
+.. code-block:: prettyprint
+
+    cd glfw
+    mkdir build
+    cd build
+    cmake ..
+    make
+    sudo make install
+
+完成GLTrain1 ~ GLTrain3
+------
+windows使用者必須修改Makefile
+
+.. code-block:: prettyprint
+
+    LFLAGS=-lglfw3 -lopengl32 -lglu32 -lgdi32
+
+1. 編譯GLTrain
+
+linux:
+.. code-block:: prettyprint
+
+    make
+
+windows: (如果你的gcc不是環境變數會失敗)
+.. code-block:: prettyprint
+
+    mingw32-make
+
+2. 切換到answer可以看答案
+
+.. code-block:: prettyprint
+
+    git checkout answer
+
+
+閱讀文章
+------
+http://www.glfw.org/docs/latest/quick.html
+http://www.songho.ca/opengl/gl_transform.html
+
+
+延伸閱讀
+------
+SongHo網站
+http://www.songho.ca/opengl/
+
+Shader Toy(搜尋water或ray)
+https://www.shadertoy.com/
+
+一位大學教授Jeffrey Chastine所錄製的tutorial。英聽有困難可以直接用youtube自動產生的字幕(滿準的 他口齒很清晰)
+https://www.youtube.com/watch?v=0CQP8huwLCg
