@@ -90,6 +90,7 @@ linux:
     make
 
 windows: (如果你的gcc不是環境變數會失敗)
+
 .. code-block:: prettyprint
 
     mingw32-make
