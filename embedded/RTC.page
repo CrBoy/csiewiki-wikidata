@@ -216,6 +216,15 @@ Low Power Modes
 
 .. image:: /Power.png
 
+
+**比較三種低功耗**
+
+- **睡眠模式（sleep mode）**：CPU內核停止工作，週邊設備繼續工作。
+
+- **停機模式（stop mode）**：CPU內核停止工作，HSI、HSE進入關閉模式，STM32工作狀態仍然保留。（RTC正常運行）
+
+- **待機模式（standby mode）**：STM32所有SRAM與暫存器內容，全部丟失,（RTC正常運行）從待機模式喚醒相當於重新復位。
+
 **電流消耗**
 
 - 一般運行模式 ： 8.5mA
