@@ -24,8 +24,16 @@ What is SDIO?
 .. image:: /sdio1.png
 .. image:: /sdio2.png
 
+Difference of SD/MMC/SDIO
+--------------------------
+
+
+
+Speed class rating
+-------------------
 Reference
 ==========
 - `Secure Digital wiki<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
 - `SDIO接口介绍<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
-- 
+-  `Linux（open source）的 SD/MMC/SDIO 支援現況概要<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
+-  `SD/MMC/SDIO概念區分<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
