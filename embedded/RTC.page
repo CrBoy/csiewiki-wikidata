@@ -550,7 +550,7 @@ RTC_WKUP_IRQHandler
 complete code
 --------------------
 
-LCD的程式碼, 有介紹LCD的腳位, 可顯示字串（第一行為日期, 第二行為時間)
+LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
 
 .. code-block:: c
 
