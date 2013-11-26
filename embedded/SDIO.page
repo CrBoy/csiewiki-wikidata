@@ -1,7 +1,31 @@
 ---
-title: SDIO
+title: Secure digital input/output interface (SDIO)
 categories: SDIO, STM32F4
 ...
 
-Your content here
-===========
+Introduction
+============
+
+What is SDIO?
+-----------------
+- A SDIO (Secure Digital Input Output) card is an extension of the SD specification to cover I/O functions. 
+- Host devices that support SDIO can use the SD slot to support: 
+   1.  GPS receivers.
+   2.  digital cameras. 
+   3.  RFID readers. 
+   4.  FM radio tuners.
+   5.  TV tuners. 
+   6.  Wi-Fi.
+   7.  Bluetooth. 
+
+ Many other SDIO devices have been proposed, but it is now more common for I/O devices to connect using the USB interface.
+- SDIO cards support most of the memory commands of SD cards. SDIO cards can be structured as 8 logical cards, although currently, the typical way that an SDIO card uses this capability is to structure itself as one I/O card and one memory card.
+
+.. image:: /sdio1.png
+.. image:: /sdio2.png
+
+Reference
+==========
+- `Secure Digital wiki<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
+- `SDIO接口介绍<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
+- 
