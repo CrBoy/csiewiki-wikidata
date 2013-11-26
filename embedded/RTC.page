@@ -69,6 +69,7 @@ RTCCLK為設備的clock有兩種來源：
 - LSI  -  是一個低功耗的clock，可以再停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
 - LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確計算。
 
+
 Prescaler 
 --------------------
 
@@ -92,66 +93,6 @@ LSI: 32kHz / (**127**+1) /(**249**+1) =1Hz
 .. [#] `prescaler <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.781
 
 -------------------------------------------
-
-
-Alternate Function Outputs & Inputs
-------------------------------------------
-
-Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，這些輸出可以被選擇成**tamp event** 或 **time stamp event**，
-
-甚至RTC Calibration 的訊號都可以藉由這個功能輸出。 [#]_
-
-可以選擇兩個輸出:
-
-- 輸出接腳 **RTC_AF1(PC13)** : 
-
-  - RTC_ALARM output:    1. RTC Alarm A       2. RTC Alarm B       3. RTC Wakeup
-
-  - RTC_CALIB output
-
-  - RTC_TAMP1
-
-  - RTC_TS
-
-- 輸出接腳 **RTC_AF2 (PI8)** :
-
-  - RTC_TAMP1
-
-  - RTC_TAMP2
-
-  - RTC_TS
-
-
-
-.. [#] `Alternate Function Outputs & Inputs <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.227
-
-
-*PI8接腳參考: datasheet p.10*
-
-RTC Calendar 
---------------------
-
-
-.. image:: /RTC_calendar.png
-
-
-**讀取Calendar:**
-
-當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是在讀shadow register，如果想要直接讀取calendar必須
-
-要設BYPSHAD控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
-
-**Shadow Register:**
-
-- 通常初始化和讀取的動作採用Shadow Register。
-
-- 每兩個RTCCLK時間週期，RTC的calendar register (RTC_SSR, RTC_TR, and RTC_DR)的值會被自動更新到Shadow Register。
-
-[#]_
-
-.. [#] `Calendar <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
-
------------------------------
 
 Calibration
 -----------------------------
@@ -200,6 +141,68 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 - 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。[#]_
 
 .. [#] `RTC reference clock <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.786
+
+RTC Calendar 
+--------------------
+
+
+.. image:: /RTC_calendar.png
+
+
+**讀取Calendar:**
+
+當在讀取Calendar時其實並不是真正直接讀取calendar register，其實是在讀shadow register，如果想要直接讀取calendar必須
+
+要設BYPSHAD控制位元為1(在RTC_C Rregister)才能繞過shadow register而直接讀取calender register。
+
+**Shadow Register:**
+
+- 通常初始化和讀取的動作採用Shadow Register。
+
+- 每兩個RTCCLK時間週期，RTC的calendar register (RTC_SSR, RTC_TR, and RTC_DR)的值會被自動更新到Shadow Register。
+
+[#]_
+
+.. [#] `Calendar <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
+
+-----------------------------
+
+
+
+
+Alternate Function Outputs & Inputs
+------------------------------------------
+
+Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，這些輸出可以被選擇成**tamp event** 或 **time stamp event**，
+
+甚至RTC Calibration 的訊號都可以藉由這個功能輸出。 [#]_
+
+可以選擇兩個輸出:
+
+- 輸出接腳 **RTC_AF1(PC13)** : 
+
+  - RTC_ALARM output:    1. RTC Alarm A       2. RTC Alarm B       3. RTC Wakeup
+
+  - RTC_CALIB output
+
+  - RTC_TAMP1
+
+  - RTC_TS
+
+- 輸出接腳 **RTC_AF2 (PI8)** :
+
+  - RTC_TAMP1
+
+  - RTC_TAMP2
+
+  - RTC_TS
+
+
+
+.. [#] `Alternate Function Outputs & Inputs <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.227
+
+
+*PI8接腳參考: datasheet p.10*
 
 
 Low Power Modes
