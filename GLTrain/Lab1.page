@@ -84,6 +84,7 @@ windows使用者必須修改Makefile
 1. 編譯GLTrain
 
 linux:
+
 .. code-block:: prettyprint
 
     make
