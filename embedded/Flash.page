@@ -168,6 +168,7 @@ categories: STM32F4
 - APB : Advanced Peripheral Bus.
 
 關於AHB與APB差異可參考(http://www.differencebetween.net/technology/difference-between-ahb-and-apb/)
+
 關於AMBA的介紹可參考:http://en.wikipedia.org/wiki/AMBA_High-performance_Bus
 
 - DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
