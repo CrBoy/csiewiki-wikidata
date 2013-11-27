@@ -427,7 +427,7 @@ SRAM:靜態隨機存取存儲器（Static Random-Access Memory, SRAM）是隨機
 
 
 
-Example of code
+Example of Code
 ========================
 下面的範例為先初始化RTC的Calendar再去設定Alarm A。一開始開機時時間為8:29:55，LED3,4,5會在開機五秒前輪流閃爍。但是在第五秒後也就是8:30:00，Alarm A觸發中斷將所有LED燈都關掉。LED6 為auto-wakeup 每秒閃爍直到alarm觸發中止。
 
@@ -626,6 +626,87 @@ control method
 ------------------
 
 .. image:: /lcdcontrol.PNG
+
+RS  	R/W	功     能                                               
+0  	0   	寫命令到LCD                                            
+0  	1  	讀取忙碌旗號和位址計數器AC(記錄目前游標位址)內容      
+1  	0  	寫資料到DDRAM(要顯示的文字)或CGRAM(要造字的字形)
+1  	1  	從DDRAM或CGRAM讀取資料
+
+Initial LCD code
+-------------------------
+
+.. code-block:: prettyprint
+
+  /* Initialization can decide whether to open a cursor, blink and display or not. */
+  void Init_LCD()                       
+  {
+          vTaskDelay(100);                 
+          LCD_CMD(0x003f);       
+          vTaskDelay(10);
+          LCD_CMD(0x000c); 
+          vTaskDelay(10);         
+          LCD_CMD(0x0001);          
+          vTaskDelay(10);
+  }
+
+Command Register Code
+-------------------------
+
+.. code-block:: prettyprint
+
+  /* Write command register function */
+  void LCD_CMD(uint16_t cmd)                
+  {
+          int i;
+          GPIO_SetBits(LCD_DBPORT, cmd);
+          RS_0;
+          RW_0;
+          E_1;          
+          vTaskDelay(1);      
+          E_0;
+          GPIO_ResetBits(LCD_DBPORT, cmd);          
+  }
+
+Data register Code
+-------------------------
+
+.. code-block:: prettyprint
+
+  /* Write data register function */
+  void LCD_DATA(uint16_t data1)        
+  {
+          int i;
+          GPIO_SetBits(LCD_DBPORT, data1);
+          RS_1;
+          RW_0;
+          E_1;          
+          vTaskDelay(1);      
+          E_0;     
+          GPIO_ResetBits(LCD_DBPORT, data1);    
+  }
+
+Display String
+-------------------------
+
+.. code-block:: prettyprint
+
+  /* Testing LCD can display 0~9 */
+  void LCD_display(char row,char column, char display[])
+  {
+          char *str;
+          uint16_t address;        
+          str=display;
+          address=0x0080+0x0040*(row-1)+(column-1);        
+          LCD_CMD(address);
+          vTaskDelay(10);             
+          while(*str!=0){
+          LCD_DATA(*str++);
+          vTaskDelay(5);             
+          }                             
+          str=display;
+  }
+
 
 Reference
 ================
