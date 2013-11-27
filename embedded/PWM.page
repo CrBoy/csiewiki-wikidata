@@ -1,5 +1,6 @@
 ---
 title: Pulse-Width Modulation (PWM)
+toc: yes
 ...
 
 Introduction
@@ -106,7 +107,7 @@ TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
 Code_section
 =============
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
     //====set pin enable=====================================
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD  | RCC_AHB1Periph_GPIOB |
@@ -251,6 +252,8 @@ Code_section
     }
 
     //============================================================
+
+-----------------------------------------------------------
 
 Demo video
 =============
