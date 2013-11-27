@@ -5,7 +5,7 @@ toc: yes
 
 Introduction
 ============
-- Pulse-Width Modulation, 又稱pulse-duration modulation(PDM), 其利用在頻率不變的狀態下, 改變工作週期大小, 使整體平均電壓值上升或下降, 藉此間歇性電壓及功率切換以節省能源及控制等效果.
+- Pulse-Width Modulation, 又稱pulse-duration modulation(PDM), <font color="#FF0000">其利用在頻率不變的狀態下, 改變工作週期大小</font>, 使整體平均電壓值上升或下降, 藉此間歇性電壓及功率切換以節省能源及控制等效果.
 
 .. image:: /PWM_intr.PNG
 - 因PWM需要透過Timer來實現, 後面會稍作簡介
