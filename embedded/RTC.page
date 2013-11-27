@@ -577,8 +577,12 @@ LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
     make
     make flash
 
-LCD Pin connection
-====================
+
+LCD introduction
+===================
+
+Pin connection
+--------------------
 
 
 Specification ：http://www.sdec.com.tw/products.php?no=50
@@ -618,7 +622,10 @@ It has **14 pin** to be used.
 
   - DB7 = PD.07
 
+control method
+------------------
 
+.. image:: /lcdcontrol.PNG
 
 Reference
 ================
