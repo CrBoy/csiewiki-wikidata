@@ -37,3 +37,5 @@ Reference
 - `SDIO接口介绍<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
 -  `Linux（open source）的 SD/MMC/SDIO 支援現況概要<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
 -  `SD/MMC/SDIO概念區分<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
+- `STM32 控制 SD 卡<http://www.360doc.com/content/12/0411/15/9707346_202767012.shtml>`_
+- `STM32 + SDIO + FATFS 文件系统 直讀 SD 卡<http://ntn314.blog.163.com/blog/static/16174358420112263456948/>`_ 
