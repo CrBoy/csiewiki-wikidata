@@ -581,6 +581,10 @@ LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
 LCD introduction
 ===================
 
+LCD(Liquid Crystal Display)為液晶顯示器，功耗極低，常在控制周邊時，用來顯示數據的變化。裡面已經有內建文字圖形（只有英文字母大小寫、阿拉伯數字、標點符號），只要輸入ASCII碼，便會將該字的圖形顯示於LCD，如果要顯示中文字可以利用CGRAM，自己做出想要的字。
+
+這邊的LCD則是用來顯示RTC的時間與日期。
+
 Pin connection
 --------------------
 
@@ -627,11 +631,9 @@ control method
 
 .. image:: /lcdcontrol.PNG
 
-RS  	R/W	功     能                                               
-0  	0   	寫命令到LCD                                            
-0  	1  	讀取忙碌旗號和位址計數器AC(記錄目前游標位址)內容      
-1  	0  	寫資料到DDRAM(要顯示的文字)或CGRAM(要造字的字形)
-1  	1  	從DDRAM或CGRAM讀取資料
+                                             
+.. image:: /LCDset2.png
+
 
 Initial LCD code
 -------------------------
