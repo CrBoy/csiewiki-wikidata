@@ -1,0 +1,45 @@
+---
+title:期末專題: Team #3
+toc: no
+...
+
+題目
+---
+  * 指向性電風扇 (Directional Fan)
+     -- feel cool everywhere
+
+預期目標
+---
+  * 設計一個智慧電風扇（搭載Camera）主動找尋目標（人）送風
+  * 若無明顯目標時左右擺動送風
+  * 若找到最近目標後 則隨目標移動而轉向
+
+進階目標（未來發展性）
+---
+  * 透過 thermal sensor 可以找出最熱的地方主動降溫 (Active Cooling)
+  * 透過 stereo sensor  得到深度 若人比較遠時可以加強風速
+
+技術需求
+---
+  * Object(Human) detect and track algorithm
+  * Scheduling - 2 tasks 有送風目標/沒目標
+  * DCMI/DMA   - 存取影像資料
+  * PWM        - 控制伺服馬達讓風扇轉向, 以及控制風速
+  * FSMC       - 連接TFT LCD, 顯示系統目前狀態
+組員
+----
+  * `趙愷文</User/kevin>`_
+  * `楊曜賓<>`_
+  * `簡源鋒<>`_
+
+預算
+----
+  * 電腦用風扇 (< NTD$ 500)
+  * 伺服馬達 現成
+  * 相機 OV7660 with fifo (~NTD$ 700)
+
+參考資料
+----
+
+
+
