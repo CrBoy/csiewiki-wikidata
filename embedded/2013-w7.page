@@ -13,4 +13,4 @@ toc: no
 * `USART</embedded/USART>`_: 5, 10, 28
 * `USB</embedded/USB>`_: 1, 21, 24
 * `Flash</embedded/Flash>`_: 2, 15, 16
-* `SDIO</embedded/SDIO>`_: 9, 26
+* `SDIO</embedded/SDIO>`_: 9, 26, 27
