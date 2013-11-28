@@ -25,8 +25,8 @@ categories: STM32F4
 
 **關於NAND Flash 與 NOR Flash的比較可參考** http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF
 
-1.2 Flash 操作
--------------
+2 Flash 操作
+============
 **讀取：**
 
 - 要正確的從Flash中讀取資料，必須在FLASH_ACR中依據CPU clock(HCLK)頻率與供應的電壓來設定正確的WS(Wait State)。
@@ -149,7 +149,7 @@ categories: STM32F4
 
 4. 等待FLASH_SR中的BSY清空。
 
-1.3 關於寫入保護(Write Protections) :
+2.3 關於寫入保護(Write Protections) :
 ----------------------------------
 
 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
@@ -157,7 +157,7 @@ categories: STM32F4
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
 
-2.Flash 記憶體架構介紹
+3.Flash 記憶體架構介紹
 ====================
 
 .. image:: /Flash_system_architecture.JPG
@@ -191,7 +191,7 @@ Flash模組的組成如下：
 .. image:: /flash module organization.JPG
 
 
-3.Flash interface registers
+4.Flash interface registers
 ===========================
 
 3.1 Flash access control register (FLASH_ACR)
@@ -288,7 +288,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   Bit 0 OPTLOCK: Option lock.
 
 
-4.Example
+5.Example
 =================
 
 4.1 LED LEGEND
@@ -357,7 +357,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     Address = Address + 4;
   } 
 
-5.STM32F407VG 硬體介紹
+6.STM32F407VG 硬體介紹
 =====================
 
 - STM32F407VG版子外觀與模組如下圖所示：
@@ -378,12 +378,12 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 
 .. image:: /block_diag_2.JPG
 
-6.Software STM32F4 Lib
+7.Software STM32F4 Lib
 ======================
 
 .. image:: /lib_1.JPG
 
-7. gdb指令介紹 : 
+8. gdb指令介紹 : 
 ===============
 
 檔案處理
@@ -533,7 +533,7 @@ condition   進一步設中斷點的條件 如果條件為true則中斷
 
 - 可參考(http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
-8.reference
+9.reference
 ===========
 
 - http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-1.pdf
