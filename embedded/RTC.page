@@ -464,7 +464,7 @@ Initialize RTC
 
 -----------------------------------------------------------------
 
-setting time
+Setting Time
 --------------------
 
 .. code-block:: prettyprint
@@ -478,7 +478,7 @@ setting time
        RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
 
 
-initialize RTC alarm
+Initialize RTC Alarm
 --------------------
 
 .. code-block:: prettyprint
@@ -506,7 +506,7 @@ initialize RTC alarm
 -----------------------------------------------------------------------
 
 
-setting alarm time
+Setting Alarm Time
 --------------------
 
 .. code-block:: prettyprint
@@ -556,7 +556,7 @@ RTC_WKUP_IRQHandler
     STM_EVAL_LEDToggle(LED6);
   }
 
-complete code
+Complete Code
 --------------------
 
 LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
@@ -578,27 +578,27 @@ LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
     make flash
 
 
-LCD introduction
+LCD Introduction
 ===================
 
 LCD(Liquid Crystal Display)為液晶顯示器，功耗極低，常在控制周邊時，用來顯示數據的變化。裡面已經有內建文字圖形（只有英文字母大小寫、阿拉伯數字、標點符號），只要輸入ASCII碼，便會將該字的圖形顯示於LCD，如果要顯示中文字可以利用CGRAM，自己做出想要的字。
 
 這邊的LCD則是用來顯示RTC的時間與日期。
 
-Pin connection
+Pin Connection
 --------------------
 
 
-Specification ：http://www.sdec.com.tw/products.php?no=50
+規格參考 ：http://www.sdec.com.tw/products.php?no=50
 
 
-It has **14 pin** to be used.
+LCD使用了 **14 pin** .
 
 
 
 - LCD pin 1 = ground
 
-- LCD pin 2 = v+
+- LCD pin 2 = V+
 
 - LCD pin 3 = ground (or use variable resistor)
 
@@ -626,7 +626,7 @@ It has **14 pin** to be used.
 
   - DB7 = PD.07
 
-control method
+Control Method
 ------------------
 
 .. image:: /lcdcontrol.PNG
@@ -635,7 +635,7 @@ control method
 .. image:: /LCDset2.png
 
 
-Initial LCD code
+Initial LCD Code
 -------------------------
 
 .. code-block:: prettyprint
