@@ -581,9 +581,9 @@ LCD的程式碼, 有介紹LCD的腳位, 可顯示字串在畫面上
 LCD Introduction
 ===================
 
-LCD(Liquid Crystal Display)為液晶顯示器，功耗極低，常在控制周邊時，用來顯示數據的變化。裡面已經有內建文字圖形（只有英文字母大小寫、阿拉伯數字、標點符號），只要輸入ASCII碼，便會將該字的圖形顯示於LCD，如果要顯示中文字可以利用CGRAM，自己做出想要的字。
+LCD(Liquid Crystal Display)為液晶顯示器，功耗極低，常在控制周邊時，用來顯示數據的變化。裡面已經有內建文字圖形（只有英文字母大小寫、阿拉伯數字、標點符號），只要輸入**ASCII碼**，便會將該字的圖形顯示於LCD，如果要顯示中文字可以利用CGRAM，自己做出想要的字。
 
-這邊的LCD則是用來顯示RTC的時間與日期。
+我們的LCD則是用來顯示RTC的時間與日期，而下面有個簡單介紹，顯示0到9字的程式碼。
 
 Pin Connection
 --------------------
@@ -670,7 +670,7 @@ Command Register Code
           GPIO_ResetBits(LCD_DBPORT, cmd);          
   }
 
-Data register Code
+Data Register Code
 -------------------------
 
 .. code-block:: prettyprint
