@@ -37,9 +37,9 @@ categories: STM32F4
 - AHB : Advanced High-performance Bus.
 - APB : Advanced Peripheral Bus.
 
-關於AHB與APB差異可參考(http://www.differencebetween.net/technology/difference-between-ahb-and-apb/)
+關於AHB與APB差異可參考 `Difference Between AHB and APB<http://www.differencebetween.net/technology/difference-between-ahb-and-apb/>`_
 
-關於AMBA的介紹可參考:http://en.wikipedia.org/wiki/AMBA_High-performance_Bus
+關於AMBA的介紹可參考 `Advanced Microcontroller Bus Architecture (AMBA)<http://en.wikipedia.org/wiki/AMBA_High-performance_Bus>`_
 
 - DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
 - CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
