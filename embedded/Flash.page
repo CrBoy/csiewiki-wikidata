@@ -25,7 +25,41 @@ categories: STM32F4
 
 **關於NAND Flash 與 NOR Flash的比較可參考** http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF
 
-2 Flash 操作
+2.Flash 記憶體架構介紹
+====================
+
+.. image:: /Flash_system_architecture.JPG
+
+圖中一些縮寫的解釋如下：
+
+- I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
+- D-Code bus : Data bus.這條bus由Cortex-M4F 與 64-Kbyte CCM data RAM 連至BusMatrix，核心透過這個bus讀取字母(literal)與除錯。
+- AHB : Advanced High-performance Bus.
+- APB : Advanced Peripheral Bus.
+
+關於AHB與APB差異可參考(http://www.differencebetween.net/technology/difference-between-ahb-and-apb/)
+
+關於AMBA的介紹可參考:http://en.wikipedia.org/wiki/AMBA_High-performance_Bus
+
+- DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
+- CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
+- FLITF : Flash memory interface.
+
+Bus Matrix:
+
+.. image:: /bus_matrix.JPG
+
+Flash模組的組成如下：
+
+- Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes.
+- System memory : bootloader code 放置的地方，30Kbytes.
+- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes，可參考(http://forum.eepw.com.cn/thread/120354/1)
+- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
+
+.. image:: /flash module organization.JPG
+
+
+3 Flash 操作
 ============
 **讀取：**
 
@@ -149,46 +183,13 @@ categories: STM32F4
 
 4. 等待FLASH_SR中的BSY清空。
 
-2.3 關於寫入保護(Write Protections) :
+3.1 關於寫入保護(Write Protections) :
 ----------------------------------
 
 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
 
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
-
-3.Flash 記憶體架構介紹
-====================
-
-.. image:: /Flash_system_architecture.JPG
-
-圖中一些縮寫的解釋如下：
-
-- I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
-- D-Code bus : Data bus.這條bus由Cortex-M4F 與 64-Kbyte CCM data RAM 連至BusMatrix，核心透過這個bus讀取字母(literal)與除錯。
-- AHB : Advanced High-performance Bus.
-- APB : Advanced Peripheral Bus.
-
-關於AHB與APB差異可參考(http://www.differencebetween.net/technology/difference-between-ahb-and-apb/)
-
-關於AMBA的介紹可參考:http://en.wikipedia.org/wiki/AMBA_High-performance_Bus
-
-- DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
-- CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
-- FLITF : Flash memory interface.
-
-Bus Matrix:
-
-.. image:: /bus_matrix.JPG
-
-Flash模組的組成如下：
-
-- Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes.
-- System memory : bootloader code 放置的地方，30Kbytes.
-- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes，可參考(http://forum.eepw.com.cn/thread/120354/1)
-- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
-
-.. image:: /flash module organization.JPG
 
 
 4.Flash interface registers
