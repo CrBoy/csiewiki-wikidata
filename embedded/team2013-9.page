@@ -1,0 +1,59 @@
+---
+title: 期末專題: Team #9
+toc: no
+...
+
+題目
+---
+
+  * 3D Printer
+
+預期目標
+-------
+  * 雙噴頭[兩組加熱頭輸出不同線材]
+  * 降溫風扇
+
+組員
+---------
+
+  * `吳季恆(wujiheng)</User/wujiheng>`_ <wujiheng.tw@gmail.com>
+
+ 
+預算
+----
+
+  * 螺桿、光軸 [含螺帽、華司]
+    - NT$ 
+    - 
+
+
+  * Arduino Mega 2560 主板
+    - NT$ 
+    - 
+
+
+  * 42步進馬達 * 4
+    - NT$ 
+    - 
+
+
+  * RepRap Arduino Mega Pololu Shield(Ramps 1.4版) [含A4988步進馬達驅動器*4]
+    - NT$ 
+    - 
+  
+
+  * 線性軸承(LMK8UU、SCS8UU)
+    - NT$ 
+    - 
+
+
+參考資訊
+-------
+`RepRap<http://reprap.org/wiki/Main_Page>`_
+
+`RAMPS 1.4<http://reprap.org/wiki/RAMPS_1.4>`_
+
+
+
+
+--------------------
