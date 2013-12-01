@@ -58,8 +58,8 @@ general
 - SCK: 由master提供clock輸出給slave當成通訊clock
 - NSS: Slave select. 該腳可以被master當做要和那個slave做構通
 
-:software mode(SSM=1)
-::透過SPI_CR1中的SSI選擇slave
+*software mode(SSM=1)
+**透過SPI_CR1中的SSI選擇slave
 :hardware mode
 ::Output enable(SSOE=1):only in master mode
 ::Output disable(SSOE=0):
