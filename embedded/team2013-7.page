@@ -35,7 +35,7 @@ http://goods.ruten.com.tw/item/show?21311204264602
 ZTW 40A 電子變速器: 270X4
 http://goods.ruten.com.tw/item/show?21111110743710
 
-9047三葉正反槳: 25X2 
+9047二葉正反槳: 25X2 
 http://goods.ruten.com.tw/item/show?21206132193224
 
 電源分配板: $35
@@ -54,7 +54,9 @@ github: https://github.com/fboris/QuadrotorFlightControl
 
 hackpad: https://embeddedcool.hackpad.com
 
-
+參考資訊
+-------
+王宏文同學飛控板相關資訊：https://github.com/Hom19910422/QCopterFlightControl/wiki
 
 
 --------------------
