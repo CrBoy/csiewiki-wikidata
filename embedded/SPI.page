@@ -53,10 +53,10 @@ general
 -------
 .. 介紹 pin
 
-- MISO: Master In / Slave Out data
-- MOSI: Master Out / Slave In data
-- SCK: Serial Clock ( Master -> Slave )
-- NSS: *(optional)* select slave, low-driven
+- MISO: SPI設為master，此腳接收從slave傳來的資料。SPI設為slave，此腳傳送資料到master。
+- MOSI: SPI設為master，此腳傳送資料到slave。SPI設為slave，此腳接收從master傳來的資料。
+- SCK: 由master提供clock輸出給slave當成通訊clock
+- NSS: Slave select. 該腳可以被master當做要和那個slave做構通
 
 .. image:: /embedded/SPI/single master _ single slave application.png
 SPI single master/single slave application [#]_
