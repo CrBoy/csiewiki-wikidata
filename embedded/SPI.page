@@ -54,7 +54,7 @@ general
 .. 介紹 pin
 
 - MISO: Master In / Slave Out data
-- MISO: Master Out / Slave In data
+- MOSI: Master Out / Slave In data
 - SCK: Serial Clock ( Master -> Slave )
 - NSS: *(optional)* select slave, low-driven
 
