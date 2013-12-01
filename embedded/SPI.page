@@ -62,7 +62,7 @@ general
 
     * 透過SPI_CR1中的SSI選擇slave
 
-  * hardware mode
+  * hardware mode(SSM=0)
 
     * Output enable(SSOE=1):only in master mode
 
