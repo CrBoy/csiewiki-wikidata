@@ -57,6 +57,13 @@ general
 - MOSI: SPI設為master，此腳傳送資料到slave。SPI設為slave，此腳接收從master傳來的資料。
 - SCK: 由master提供clock輸出給slave當成通訊clock
 - NSS: Slave select. 該腳可以被master當做要和那個slave做構通
+:software mode(SSM=1)
+::透過SPI_CR1中的SSI選擇slave
+:hardware mode
+::Output enable(SSOE=1):only in master mode
+::Output disable(SSOE=0):
+:::master mode:allows multimaster
+:::slave mode: 低電位時代表被選為slave,其他時候保持高電位。
 
 .. image:: /embedded/SPI/single master _ single slave application.png
 SPI single master/single slave application [#]_
