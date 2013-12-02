@@ -406,7 +406,13 @@ Questions 2013
     while(ADC_GetCalibrationStatus(ADC1));
     /* 完成 calibration 才能開始使用 */
 
-- 5.說明 ADC 之scanode 與 DMA 之關係。並畫流程圖。
+- 5.說明 ADC 之 Scan Mode 與 DMA 之關係。並畫流程圖。
+
+  - 由於 Scan Mode 同時會對一組通道做轉換，並且在該組最後一個通道做完轉換後才產生中斷，因此使用 DMA 讓每次轉換後就直接產生 DMA 將資料寫到記憶體中，才不會造成資料遺失。官方的手冊對此做了以下解釋：
+
+::
+
+  Since converted regular channel values are stored into a unique data register, it is useful to use DMA for conversion of more than one regular channel. This avoids the loss of the data already stored in the ADC_DR register.
 
 - 6.說明如何利用電阻量測溫度？
 
