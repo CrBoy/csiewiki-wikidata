@@ -338,19 +338,63 @@ Demo
 
 ADC + GPIO
 -----------
+https://www.youtube.com/watch?v=0gAe-xRgk-k
 
-https://www.youtube.com/watch?v=gRxbnODggjc
+- 本實驗使用電源供應器產生1.9V的電壓當作輸入訊號
+
+- 將所量測到的電壓通過轉換，驗證ADC之轉換公式之正確性
 
 ADC + GPIO + Temperature Sensor
 --------------------------------
+https://www.youtube.com/watch?v=gRxbnODggjc
 
-https://www.youtube.com/watch?v=0gAe-xRgk-k
+- 本實驗用來測試stm32f4 discovery內建之溫度感測器是否隨著溫度上昇而改變轉換值
+
+- 可以在影片中看到最左邊的led代表最小的bit，因此當溫度不斷升高，最後點亮了影片中最後亮起的右邊那個led燈
 
 Questions 2013
 ==============
 
-https://embeddedsystemstudy.hackpad.com/QA-FoYwIS8lBIN
+- 1.說明如何決定取樣頻率，解釋 Nyquist–Shannon sampling theorem。
 
+   
+
+- 2.說明當所要量測之輸入訊號電壓範圍不在adc之接受範圍時該如何處理？
+
+- 假設使用的ADC量測範圍是0~3V
+
+- 如果超出範圍(EX:0~5V)：使用分壓方式來降低電壓
+
+   -對於直流訊號來說分壓電路是最簡單的降壓方式，但必須注意輸入阻抗與輸出阻抗之匹配問題。
+
+      -由於 STM32 之手冊上說明 ADC 之輸入阻抗約為10k 因此我們外接分壓之電阻必須選用較小之電阻。
+
+   -有兩個電感的變壓電路是"交流變壓器"。
+
+      -變壓器之使用條件為交流電，變壓器通常使用在高功耗之輸配電系統。
+
+   -如果需要將輸入訊號放大，則可以使用 OPA 之電路來做放大。
+
+
+- 3.說明 ADC Block Diagram 之 Vrefint 與 TIM_TRGO 是什麼？
+
+- 4.說明 ADC 之 calibration。
+
+- 5.說明 ADC 之scanmode 與 DMA 之關係。並畫流程圖。
+
+- 6.說明如何利用電阻量測溫度？
+
+- 7.說明 EOC 等之術語。
+
+  - EOC 即 End of Conversion （為 Regular Group 結束轉換時產生之中斷）
+
+     - 當 ScanConvMode Disable 時（也就是 Regular Group 只有一個channel），每次轉換結束都會產生 EOC 中斷。
+
+     - 當 ScanConvMode Enable 時，只有當所設定之 Regular Group 之最後一個 channel 完成轉換時才會產生 EOC。
+
+  - JEOC 為 Injected Group 結束轉換時產生之中斷。
+
+  - AWD 為 analog watch dog 所產生之中斷。
 
 Questions 2012
 ==============
