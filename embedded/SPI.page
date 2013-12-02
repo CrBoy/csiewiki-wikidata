@@ -3,20 +3,27 @@ title: SPI
 categories: STM32, Communcation_Protocol, SPI
 ...
 
-Overview
-========
+Introduction
+============
+SPI是一種4線同步序列資料協定，適用於可攜式裝置平臺系,串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
 
-SPI 為資料傳輸協定，有著以下幾點特色：
 
-- 同步式 
-- 全雙工
-  * 可以半雙工或單工
+System Overview
+===============
+- 可以與外部週邊單工/全雙工,同步串列通訊,且為主從式
+- 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置”
+  從屬裝置會用此頻率訊號來對收到的位串流進行同步
+	 
+- 如果有多個周邊晶片被連到同一個SPI介面 , 主控裝置能透過從屬裝置的晶片來選擇接收資料的周邊裝置
 
-- 主從式
-  * dynamic change of master/ slave
-  * 多個 master
-.. example
 
+SPI features(STM32)
+===================
+
+- Full-duplex synchronous transfers on three lines 
+- Simplex synchronous transfers on two lines with or without a bidirectional data line
+- 8- or 16-bit transfer frame format selection 
+- Multimaster mode capability
 - 8 master baud rate prescalers
 - slave mode frequency
 - SPI TI / motorola mode 
