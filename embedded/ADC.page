@@ -356,11 +356,16 @@ https://www.youtube.com/watch?v=gRxbnODggjc
 Questions 2013
 ==============
 
-- 1.說明如何決定取樣頻率，解釋 Nyquist–Shannon sampling theorem。
+1. 說明如何決定取樣頻率，解釋 Nyquist–Shannon sampling theorem。
 
-   
+::
 
-- 2.說明當所要量測之輸入訊號電壓範圍不在adc之接受範圍時該如何處理？
+  Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高頻率之兩倍時，才可以正確的重建原始訊號
+
+
+- 證明：
+
+2. 說明當所要量測之輸入訊號電壓範圍不在adc之接受範圍時該如何處理？
 
 - 假設使用的ADC量測範圍是0~3V
 
@@ -375,7 +380,6 @@ Questions 2013
       - 變壓器之使用條件為交流電，變壓器通常使用在高功耗之輸配電系統。
 
    - 3.如果需要將輸入訊號放大，則可以使用 OPA 之電路來做放大。
-
       - 1.反相放大電路
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
@@ -385,13 +389,14 @@ Questions 2013
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
 
 
-- 3.說明 ADC Block Diagram 之 Vrefint 與 TIM1_TRGO 是什麼？
+3. 說明 ADC Block Diagram 之 Vrefint 與 TIM1_TRGO 是什麼？
   - VREFINT:
     - ADC之內部參考電壓
 
   - TIM1_TRGO:
-    - 
-- 4.說明 ADC 之 calibration。
+    -
+ 
+4. 說明 ADC 之 calibration。
   - 由於ADC上面的電容可能並不是理論上的理想值，因此每次使用時必須量測現在ADC之電容之實際值，可以把這個實際值視為誤差，因此未來所量測的結果都必須使用這個誤差值作為基準點去比較，因此可以量到更加精確的轉換結果。
 
 ::
@@ -406,7 +411,7 @@ Questions 2013
     while(ADC_GetCalibrationStatus(ADC1));
     /* 完成 calibration 才能開始使用 */
 
-- 5.說明 ADC 之 Scan Mode 與 DMA 之關係。並畫流程圖。
+5. 說明 ADC 之 Scan Mode 與 DMA 之關係。並畫流程圖。
 
   - 由於 Scan Mode 同時會對一組通道做轉換，並且在該組最後一個通道做完轉換後才產生中斷，因此使用 DMA 讓每次轉換後就直接產生 DMA 將資料寫到記憶體中，才不會造成資料遺失。官方的手冊對此做了以下解釋：
 
@@ -414,9 +419,9 @@ Questions 2013
 
   Since converted regular channel values are stored into a unique data register, it is useful to use DMA for conversion of more than one regular channel. This avoids the loss of the data already stored in the ADC_DR register.
 
-- 6.說明如何利用電阻量測溫度？
+6. 說明如何利用電阻量測溫度？
 
-- 7.說明 EOC 等之術語。
+7. 說明 EOC 等之術語。
 
   - EOC 即 End of Conversion （為 Regular Group 結束轉換時產生之中斷）
 
