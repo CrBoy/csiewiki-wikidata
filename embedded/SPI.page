@@ -114,10 +114,19 @@ Data clock timing diagram[#]_
 
 .. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.796
 
-SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，
+SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4種組合。
 
-- CPOL(clock polarity) 決定閒置時 clock 的電位，CPOL = 0 表閒置時為低電位。
-- CPHA(clock phase) 決定在 clock 的哪個 edge 取值， CPHA = 0 表示在第一個 edge (到不同電位時)取值。
+- CPOL(clock polarity) 決定閒置時 clock 的電位。
+
+  * CPOL = 0 表閒置時為低電位。
+
+  * CPOL = 1 表閒置時為高電位。
+
+- CPHA(clock phase) 決定在 clock 的哪個 edge 取值。
+
+  * CPHA = 0 表示在第一個 edge (Rising,when CPOL=0.Falling,when CPOL=1.)取值。
+
+  * CPHA = 1 表示在第二個 edge (Rising,when CPOL=1.Falling,when CPOL=0.)取值。
 
 Data format
 '''''''''''
