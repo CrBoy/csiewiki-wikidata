@@ -442,7 +442,7 @@ Questions 2013
 
   - AWD 為 analog watch dog 所產生之中斷。
 
-8. 說明為何 sample code 中的 DMA 使用 stream4 channel_1?
+8. 說明為何 sample code 中的 DMA 使用 stream4 channel_0?
 
   - 參考手冊表格如下：
 
