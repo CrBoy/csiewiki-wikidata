@@ -66,8 +66,8 @@ Secondary Clock:
 
 
 - HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和和另一個clock穩定同步。
-- LSI  -  是一個低功耗的clock，可以再停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
-- LSE  -  它是一個低功耗且"精準"的clock，適合用在時間的精確計算。
+- LSI  -  是一個低功耗的clock，可以在停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
+- LSE  -  它是一個低功耗且精準的clock，適合用在時間的精確計算。
 
 
 Prescaler 
@@ -219,11 +219,11 @@ Low Power Modes
 
 **比較三種低功耗**
 
-- **睡眠模式（sleep mode）**：CPU內核停止工作，週邊設備繼續工作。
+- **睡眠模式（sleep mode）**：CPU停止工作，週邊設備繼續工作。
 
-- **停機模式（stop mode）**：CPU內核停止工作，HSI、HSE進入關閉模式，STM32工作狀態仍然保留。（RTC正常運行）
+- **停機模式（stop mode）**：CPU停止工作，HSI、HSE進入關閉模式，STM32工作狀態仍然保留。（RTC正常運行）
 
-- **待機模式（standby mode）**：STM32所有SRAM與暫存器內容，全部丟失,（RTC正常運行）從待機模式喚醒相當於重新復位。
+- **待機模式（standby mode）**：STM32所有SRAM與暫存器內容，全部遺失（RTC正常運行）從待機模式喚醒相當於重新復歸。
 
 **電流消耗**
 
@@ -257,6 +257,9 @@ Alarm
 
 .. image:: /embedded/RTC/alarm_pass.png
 
+- 以設定來說，生效的時候會透過EXTI_Line17的外部中斷RTC Alarm，讓ALRAF(ALRBF)的bit設成1 [#]_
+
+.. [#] `explain EXTI_Line17 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.380
 
 -----------------------------------------------
 
