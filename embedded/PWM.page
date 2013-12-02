@@ -99,15 +99,16 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
    
 - Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
+.. image:: /upcounting.png 
+.. image:: /countdown.png
+.. image:: /center_aligned.png
+
 .. code-block:: prettyprint
 
   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
-.. image:: /upcounting.png     
-.. image:: /countdown.png
-.. image:: /center_aligned.png
 
 - **PWM mode**
 
