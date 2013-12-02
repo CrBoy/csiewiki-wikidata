@@ -43,7 +43,7 @@ Clock Source
 
 .. image:: /clocksource2.png
 
-**STM32的 Clock 有分成「SYSCLK」和「RTCCLK」：**
+**STM32的 Clock 有分成「SYSCLK」和「Secondary Clock」：**
 
 SYSCLK為系統的clock有三種來源：
 
@@ -51,7 +51,7 @@ SYSCLK為系統的clock有三種來源：
 2. **HSE** (Low-Speed External)：4-26MHz (一般選用8MHz),石英震盪
 3. Main **PLL** clock
 
-RTCCLK為設備的clock有兩種來源：
+Secondary Clock:
 
 1. **LSI**  (Low-Speed Internal)  ：40kHz,RC電路震盪
 2. **LSE** (High-Speed External)：32.768kHz,石英震盪
