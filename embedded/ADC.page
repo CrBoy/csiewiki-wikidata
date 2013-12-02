@@ -442,6 +442,12 @@ Questions 2013
 
   - AWD 為 analog watch dog 所產生之中斷。
 
+8. 說明為何 sample code 中的 DMA 使用 stream4 channel_1?
+
+  - 參考手冊表格如下：
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385977408698_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-02%20%E4%B8%8B%E5%8D%885.42.48.png
+
 Questions 2012
 ==============
 - 1. ADC的轉換時間有多快?
