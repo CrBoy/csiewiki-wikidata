@@ -29,19 +29,29 @@ Clock control
 
   - 參閱system_stm32f4xx.c
 
-    - line 341, enable HSE(High Speed External clock)
+    - line 341 RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+
+       - enable HSE(High Speed External clock)
+
     - line 374 ~ 379 配置與啟動PLL
+
     - line 146 ~ 151, 可知 
+
        - PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
        - SYSCLK = PLL_VCO / PLL_P
        - 並定義 PLL_M = 8, PLL_N = 336, PLL_P = 2 而外部晶體頻率為8MHz
        - -> PLL_VCO = (8MHz / 8) * 336 = 336MHz
        - -> SYSCLK = 336MHz / 2 = 168MHz 
-    - line 365
+
+    - line 365  RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
+
        - 此行設定HCLK = SYSCLK / 1 = 168MHz
-    - line 369
+
+    - line 369  RCC->CFGR |= RCC_CFGR_PPRE2_DIV2;
+
        - 此行設定PCLK2(Peripheral clock) 為 HCLK / 2 = 84MHz
        - 該頻率亦為APBx timer clock(TIM4位於APB2)
+
     - 而CLK_INT = PCLK2 = 84MHz
 
 
@@ -101,35 +111,41 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
 
 - **PWM mode**
 
-    - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
-    - TIM_Prescaler  -  將TIMxCLK除以(TIM_Prescaler+1)
-    - TIM_CounterMode  -  選擇計數模式
-    - TIM_Period  -  TIMx_ARR，counter 週期
-
-  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
   - PWM configuration
-    - TIM_OCMode  - PWM模式
-      - PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
-      - PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
 
-    - TIM_Pulse  -  TIMx_CCRx，脈衝寬度
-    - TIM_OCPolarity  -  設置輸出極性，例如:TIM_OCPolarity_High PWM輸出關閉時默認為低電位。 
+     - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
+
+     - TIM_Prescaler  -  將TIMxCLK除以(TIM_Prescaler+1)
+
+     - TIM_CounterMode  -  選擇計數模式
+
+     - TIM_Period  -  TIMx_ARR，counter 週期
+
+     - TIM_OCMode  - PWM模式
+
+       - PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
+
+       - PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
+
+     - TIM_Pulse  -  TIMx_CCRx，脈衝寬度
+
+     - TIM_OCPolarity  -  設置輸出極性，例如:TIM_OCPolarity_High PWM輸出關閉時默認為低電位。 
     
+     - **輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK **
 
-
-以LED為例：
+  - 以LED為例：
 
 .. image:: /timer.png
 
-TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
+  - TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
 
-輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
+  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
            
-           = (1999+1) * (499+1) * (0+1)/84000000 ≒ 0.012 s
+    -         = (1999+1) * (499+1) * (0+1)/84000000 ≒ 0.012 s
 
-0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
+  - 0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
------------
+
 
 Code_section
 =============
@@ -284,6 +300,7 @@ Code_section
 
 Demo video
 =============
+
 * http://youtu.be/RHzLguvuOKY
 * http://youtu.be/guG6MdLIwfI  (LED 3 4 5 6依序 亮-暗 轉換)
 
@@ -338,6 +355,10 @@ Reference
 
 範例程式
 =============
+
+- https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output
+
+  依序點亮LED
 
 - https://gitcafe.com/embedded2012/P-coolod/blob/master/Lab-6/discoveryF4/TIM_PWM_Output/main.c
   
