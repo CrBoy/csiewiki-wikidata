@@ -562,7 +562,7 @@ Sample Code
 
 https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c
 
-::
+.. code-block:: prettyprint
 
     void ADC_Config(void)
     {
@@ -607,7 +607,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
     }
 
 
-::
+.. code-block:: prettyprint
 
    void DMA_Config(){
         DMA_InitTypeDef DMA_InitStructure;
@@ -638,7 +638,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
    }
 
 
-::
+.. code-block:: prettyprint
 
   void NVIC_Config()
   {
@@ -653,7 +653,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   }
 
 
-::
+.. code-block:: prettyprint
 
   void GPIO_Output_Config(void){
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -668,7 +668,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   GPIO_Init( GPIOE, &GPIO_InitStructure ); 
   }
 
-::
+.. code-block:: prettyprint
 
   void GPIO_Input_Config(void)
   {
