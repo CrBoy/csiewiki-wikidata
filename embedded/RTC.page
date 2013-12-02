@@ -257,9 +257,7 @@ Alarm
 
 .. image:: /embedded/RTC/alarm_pass.png
 
-- 以設定來說，生效的時候會透過EXTI_Line17的外部中斷RTC Alarm，讓ALRAF(ALRBF)的bit設成1 [#]_
-
-.. [#] `explain EXTI_Line17 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.380
+- 以設定來說，生效的時候會透過EXTI_Line17的外部中斷RTC Alarm，讓ALRAF(ALRBF)的bit設成1 (Reference Manual p.380)
 
 -----------------------------------------------
 
