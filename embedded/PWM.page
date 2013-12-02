@@ -13,6 +13,38 @@ Introduction
 .. image:: /PWM_intr.PNG
 - 因PWM需要透過Timer來實現, 後面會稍作簡介
 
+Clock control
+==============
+- 在學習Timer前, 先瞭解系統clock是如何產生的, 以及給Timer的clock值.
+
+- A part of clock tree (STM32F407xx Reference mamual  - p. 576)
+
+.. image:: /Timer_clock.png
+
+- HSE clock (High speed external clock signal)
+
+我們使用Crystal resonator作為外部震盪, 其頻率為8Hz（由STM32f4 discovery user manual 可知）
+
+- APBx timer clocks 計算
+
+  - 參閱system_stm32f4xx.c
+
+    - line 341, enable HSE(High Speed External clock)
+    - line 374 ~ 379 配置與啟動PLL
+    - line 146 ~ 151, 可知 
+       - PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
+       - SYSCLK = PLL_VCO / PLL_P
+       - 並定義 PLL_M = 8, PLL_N = 336, PLL_P = 2 而外部晶體頻率為8MHz
+       - -> PLL_VCO = (8MHz / 8) * 336 = 336MHz
+       - -> SYSCLK = 336MHz / 2 = 168MHz 
+    - line 365
+       - 此行設定HCLK = SYSCLK / 1 = 168MHz
+    - line 369
+       - 此行設定PCLK2(Peripheral clock) 為 HCLK / 2 = 84MHz
+       - 該頻率亦為APBx timer clock(TIM4位於APB2)
+    - 而CLK_INT = PCLK2 = 84MHz
+
+
 Timers
 =======
 
