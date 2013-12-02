@@ -383,6 +383,12 @@ Questions 2013
       - 變壓器之使用條件為交流電，變壓器通常使用在高功耗之輸配電系統。
 
    - 3.如果需要將輸入訊號放大，則可以使用 OPA 之電路來做放大。
+
+::
+
+  其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
+
+
       - 1.反相放大電路
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
