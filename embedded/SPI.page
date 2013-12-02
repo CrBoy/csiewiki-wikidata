@@ -8,17 +8,22 @@ Introduction
 - SPI是一種4線同步序列資料協定，適用於可攜式裝置平臺系
 - 串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
 
+.. image:: /single_slave.png
 
 System Overview
 ===============
-- 可以與外部週邊單工/全雙工,同步串列通訊,且為主從式
+- 可以與外部週邊單工/半雙工/全雙工,同步串列通訊,且為主從式
 
    * 單工:線路上的訊號只能做單向傳送
+   * 半雙工:線路上的訊號可以雙向傳送 , 但是不能同時傳送
    * 全雙工:線路上的訊號可以同時雙向傳送
    * 同步:傳送端和接收端共用同一個CLOCK
 
 - 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置”, 從屬裝置會用此頻率訊號來對收到的位串流進行同步
 - 如果有多個周邊晶片被連到同一個SPI介面 , 主控裝置能透過從屬裝置的晶片來選擇接收資料的周邊裝置
+
+.. image:: /three_slaves.png
+
 
 
 
@@ -42,7 +47,7 @@ SPI features(STM32)
 Device overview
 ===============
 
-.. image:: /embedded/SPI/STM32F40x block diagram.png
+.. image:: /stm32f40x_block_diagram.png
 STM32F40x block diagram [#]_
 
 .. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.18
