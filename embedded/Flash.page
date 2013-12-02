@@ -27,6 +27,12 @@ categories: STM32F4
 
 2.Flash 記憶體架構介紹
 ====================
+STM32F407中的Flash有以下特性：
+
+- 容量為1Mbyte
+- 單次讀取data為128bits
+- 單次寫入可以byte, half-word, word以及double word為單位
+- 抹除可以sector為單位或是mass(全部)操作
 
 .. image:: /Flash_system_architecture.JPG
 
@@ -51,9 +57,9 @@ Bus Matrix:
 
 Flash模組的組成如下：
 
-- Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes.
+- Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes(1Mbytes).
 - System memory : bootloader code 放置的地方，30Kbytes.
-- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes，可參考(http://forum.eepw.com.cn/thread/120354/1)
+- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes(512+16)，如放軟體version，硬體version，key…等，基於安全的理由，可參考(http://forum.eepw.com.cn/thread/120354/1)
 - Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
 
 .. image:: /flash module organization.JPG
@@ -61,16 +67,20 @@ Flash模組的組成如下：
 
 3 Flash 操作
 ============
+**基本觀念：**
+
+- Flash的每個cell在寫的時候只能1->0，不能從0->1；而erase後，該sector中所有的cell值皆為1。
+- 當bit寫入由1寫成0時，不需要先erase；但若將0寫為1時，則需要先erase才能寫。
 
 3.1 Read interface(讀取)
 ----------------------------------
 
-- 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock freqency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
-- 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU freqency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
+- 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock frequency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
+- 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU frequency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
 
 .. image:: /ws_hclk.JPG
 
-- 在Reset之後，CPU clock freqency為16MHz，並且FLASH_ACR中的wait states值被設為0。
+- 在Reset之後，CPU clock frequency為16MHz，並且FLASH_ACR中的wait states值被設為0。
 - 官方文件建議若要調整wait states值(當加快/減慢CPU frequency時)，依據CPU frequency調試存取Flash所需的ws數。
 
 **當加快CPU frequency時**
@@ -100,9 +110,7 @@ Flash模組的組成如下：
   10 : PLL (Phase Lock Loop)
   11 : not allowed
 
-- 當離開Stop或Standby模式時，或者當HSE Failure時，將由硬體強制轉為HSI。
-
-可參考(http://blog.csdn.net/joji_h/article/details/5581340)
+- 當離開Stop或Standby模式時，或者當HSE Failure時，將由硬體強制轉為HSI。可參考(http://blog.csdn.net/joji_h/article/details/5581340)
 
 4. 如果需要，可透過寫入RCC_CFGR register中的HPRE(AHB Prescaler) bits來修改CPU clock prescaler以調整clock freqency.
 
@@ -129,25 +137,46 @@ Flash模組的組成如下：
 
 p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu freqency的step 3~5等於減慢cpu freqency的step1~3。
 
-3.2 Program/erase parallelism (寫入/抹除並行)
-----------------------------------------------------
+---------------------------------------
+
+- CPU clock frequency必須至少要在1MHZ以上，Flash才能做erase及program的操作，若在操作的途中發生reset，則不保證Flash中內容正確。
+- Flash在program/erase操作時，任何欲read Flash的操作會被暫停，需直到program操作完成後，read操作才會被正確的執行。這也代表當program/erase操作正在執行中，code or data fetch(即read)無法執行。
 
 在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
 
 1. 在Flash key register(FLASH_KEYR)中寫入0x45670123。
 2. 在Flash key register(FLASH_KEYR)中寫入0xCDEF89AB。
 
- **必須連續執行1與2才會解鎖**
+**必須連續執行1與2才會解鎖**
+
+- 若步驟錯誤一樣會鎖住FLASH_CR，直到reset後才能用以上方式解鎖。
+- 若解鎖後要再次鎖住，只要在FLASH_CR中設定LOCK bit即可。
 
 此外，FLASH_CR在FLASH_SR的BSY值為1時是同樣不可寫入的。
+
+
+3.2 Program/erase parallelism (寫入/抹除並行)
+----------------------------------------------------
+- Parallelism為在操作program或erase時，最大能夠寫幾bit的0。
+- PSIZE是在FLASH_CR register中，此值必須在programming/erasing前正確的被寫入。對應表如下表：
+
+.. image:: /parallelism.JPG
+
+- 以下是各種型態單次寫入時所需的大小
+- **Byte : x8**
+- **Half-word : x16**
+- **Word : x32**
+- **Double-word : x64**
 
 3.3 Erase (抹除)
 -----------------
 
+Flash memory erase的操作可以以sector為單位，或是整個Flash memory全部erase，也就是Mass Erase。而Mass Erase並不會影響OTP sector或是設定區的sector。
+
 - **區塊抹除(Sector Erase)**:
 
 1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
-2. 設定FLASH_CR中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
+2. 設定FLASH_CR register中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
 
 ::
 
@@ -157,51 +186,58 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
   1011 sector 11
   不得超過此範圍。
 
-3. 設定FLASH_CR中的STRT(Start) bit。
-4. 等待FLASH_SR中的BSY清空。
+3. 設定FLASH_CR register中的STRT(Start) bit。
+4. 等待FLASH_SR register中的BSY bit清空。
 
 - **大量抹除(Mass Erase)**:
 
-1. 檢查FLASH_SR中BSY bit是否為0。
-2. 設定FLASH_CR中的MER(Mass Erase) bit。
-3. 設定FLASH_CR中的STRT bit。
-4. 等待FLASH_SR中的BSY清空。
+1. 檢查FLASH_SR register中BSY bit是否為0。
+2. 設定FLASH_CR register中的MER(Mass Erase) bit。
+3. 設定FLASH_CR register中的STRT bit。
+4. 等待FLASH_SR register中的BSY bit清空。
 
 3.4 Program (寫入)
 -----------------------------------
 
-1. 檢查FLASH_SR中BSY bit是否為0。
-2. 設定FLASH_CR中的PG(Programming)。
-3. 在指定的位置(主要記憶體區塊或OTP區塊)執行資料寫入的動作。(關於記憶體區塊將於下一節介紹)
+1. 檢查FLASH_SR register中BSY bit是否為0。
+2. 設定FLASH_CR中的PG(Programming) bit。
+3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
 
-- 以下是各種型態單次寫入時所需的大小
-- **Byte : x8**
-- **Half-word : x16**
-- **Word : x32**
-- **Double-word : x64**
+- Byte access in case of x8 parallelism
+- Half-word access in case of x16 parallelism
+- Word access in case of x32 parallelism
+- Double word access in case of x64 parallelism
 
-- 而寫入之前必須於FLASH_CR中指定對應的PSIZE，如下表所示：
+4. 等待FLASH_SR中的BSY bit清空。
 
-.. image:: /parallelism.JPG
+3.5 Interrupt
+----------------------------------------------------------------
+若要在erase或program結束時發出中斷，可以設定FLASH_CR register中的end of operation interrupt enable(EOPIE) bit，當然，FLASH_SR register中的BSY bit這時應是要0，而end of operation(EOP) bit此時為1。
 
+如果在program或erase操作過程中有錯誤發生，FLASH_SR register中的某一flag會被設1： 
 
-**當bit寫入由1寫成0時，不需要先Erase；但若將0寫為1時，則需要先Erase才能寫。**
+- PGAERR, PGPERR, PGSERR (Program error flags)
+- WRPERR (Protection error flag)
 
-4. 等待FLASH_SR中的BSY清空。
+此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)被打開(設為1)，則FLASH_SR register中的operation error bit(OPERR)會被設為1。
 
-3.5 關於寫入保護(Write Protections)
+3.6 Option bytes
 ----------------------------------
+
+**關於寫入保護(Write Protections)**
 
 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
 
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
+3.7 One-time programmable bytes(OTP)
+-------------------------------------------------------------
 
 
 4.Flash interface registers
 ===========================
 
-3.1 Flash access control register (FLASH_ACR)
+4.1 Flash access control register (FLASH_ACR)
 -----------------------------------------------
 
 Address offset : 0x00, Reset value: 0x0000 0000.
@@ -219,7 +255,7 @@ Address offset : 0x00, Reset value: 0x0000 0000.
   Bits 7:3 保留位置，必須保持淨空。
   Bits 2:0 LATENCY : Latency.
 
-3.2 Flash key register (FLASH_KEYR)
+4.2 Flash key register (FLASH_KEYR)
 -------------------------------------
 
 Address offset : 0x04, Reset value: 0x0000 0000.
@@ -230,7 +266,7 @@ Address offset : 0x04, Reset value: 0x0000 0000.
 
   Bits 31:0 FKEYR : FPEC key. 解鎖用，前方已經描述過如何解鎖FLASH_CR，在此不贅述。
 
-3.3 Flash status register (FLASH_SR)
+4.3 Flash status register (FLASH_SR)
 -------------------------------------
 
 Address offset : 0x0C, Reset value: 0x0000 0000.
@@ -250,7 +286,7 @@ Address offset : 0x0C, Reset value: 0x0000 0000.
   Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這個bit只會在ERRIE(Error Interrupts)啟用時生效。
   Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
 
-3.4 Flash control register (FLASH_CR)
+4.4 Flash control register (FLASH_CR)
 -------------------------------------
 
 Address offset : 0x10, Reset value: **0x8000** 0000.
@@ -272,7 +308,7 @@ Address offset : 0x10, Reset value: **0x8000** 0000.
   Bit 1 SER: Sector Erase.
   Bit 0 PG: Programming.
 
-3.5 Flash option control register (FLASH_OPTCR)
+4.5 Flash option control register (FLASH_OPTCR)
 -----------------------------------------------
 
 Address offset : 0x14, Reset value: **0x0FFF AAED**.
@@ -298,7 +334,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 5.Example
 =================
 
-4.1 LED LEGEND
+5.1 LED LEGEND
 --------------
 
 **GREEN : FLASH is unlocked.**
@@ -306,12 +342,12 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 **RED   : FLASH is erasing.**
 **YELLOW: FLASH is reading.**
 
-4.2 git repository
+5.2 git repository
 ------------------
  
 -git repo: https://gitcafe.com/xturtle/NCKU-Embedded-2012-Flash-Demo
 
-4.3 operation flow
+5.3 operation flow
 ------------------
 
 - 1 FLASH_UNLOCK
