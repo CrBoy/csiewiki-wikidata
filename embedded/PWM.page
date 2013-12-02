@@ -14,44 +14,48 @@ Introduction
 - 因PWM需要透過Timer來實現, 後面會稍作簡介
 
 Timers
-==============
-- Basic timers 基本定時器(TIM6 和 TIM7)
+=======
 
-  - 具有 16-bit auto-reload upcounter driven by a programmable prescaler
+Basic timers 基本定時器(TIM6 和 TIM7)
+----------------------------------------
 
-  - 用途: Synchronization circuit to trigger the DAC(內部連接至DAC)
+- 具有 16-bit auto-reload upcounter driven by a programmable prescaler
 
-- Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
+- 用途: Synchronization circuit to trigger the DAC(內部連接至DAC)
 
-  - 具有 16-bit up, down, up/down auto-reload counter driven by a programmable prescaler which allowing dividing the counter clock frequency either by any factor between 1 and 65536(2^16).
+Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
+-----------------------------------------------------
 
-  - 用途: 最多有四個獨立通道可用於input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.
+- 具有 16-bit up, down, up/down auto-reload counter driven by a programmable prescaler which allowing dividing the counter clock frequency either by any factor between 1 and 65536(2^16).
 
-  - 與TIM2&TIM5之差異: 可以 Break input to put the timer's output signals in reset state or in a known state
+- 用途: 最多有四個獨立通道可用於input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.
 
-- General-purpose timers 通用定時器(TIM9 to TIM14)
+- 與TIM2&TIM5之差異: 可以 Break input to put the timer's output signals in reset state or in a known state
 
-  - 具有16-bit auto-reload up counter.
+General-purpose timers 通用定時器(TIM9 to TIM14)
+------------------------------------------------------
+- 具有16-bit auto-reload up counter.
 
-  - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
+- 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
 
-  - 用途: 最多有兩個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
+- 用途: 最多有兩個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
-- General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamual  - p. 576)
+General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamual  - p. 576)
+--------------------------------------------------------------------------------------
 
-  - 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
+- 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
 
-  - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
+- 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
 
-  - 用途: 最多有四個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
+- 用途: 最多有四個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
-  - Block diagram
+- Block diagram
 
 .. image:: /BD of GP timer.png
 
-  - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
+- clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
    
-  - Counter modes (STM32F407xx Reference mamual  - p. 579)    
+- Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
 .. code-block:: prettyprint
 
@@ -59,10 +63,11 @@ Timers
   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
-.. image:: /Timer_upcounting.PNG     
+.. image:: /upcounting.png     
 .. image:: /countdown.png
 .. image:: /center_aligned.png
 
+- **PWM mode**
 
     - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
     - TIM_Prescaler  -  將TIMxCLK除以(TIM_Prescaler+1)
