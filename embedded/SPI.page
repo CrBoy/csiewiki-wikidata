@@ -34,6 +34,7 @@ SPI features(STM32)
 - Simplex synchronous transfers on two lines with or without a bidirectional data line
 - 8- or 16-bit transfer frame format selection 
 - Multimaster mode capability
+- dynamic change of master/slave operations
 - 8 master baud rate prescalers
 - slave mode frequency
 - SPI TI / motorola mode 
