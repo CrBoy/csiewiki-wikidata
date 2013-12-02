@@ -475,7 +475,7 @@ Alternate function mapping[#]_
 有沒有 SPI 串接的可能？
 ---------------------
 
-可參考<http://www.mct.net/faq/spi.html>
+可參考`SPI - Serial Peripheral Interface<http://www.mct.net/faq/spi.html>`_
 這種做法是用在Master的Chip Select腳位很少的情況所使用的。這樣也可以節省硬體的線路，不用在Layout 多餘的線路。
 但這必須要Master 與 Slave軟體上的搭配才可行。
 
