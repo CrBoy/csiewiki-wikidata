@@ -31,9 +31,18 @@ toc: no
   * 四軸套件(Frame、ESC * 4、Brushless Motors * 4、Propellers * 4)
     - http://goods.ruten.com.tw/item/show?21205263215975
     - $2700NT
+
   * 電池
     - http://goods.ruten.com.tw/item/show?21204206939457
     - $590NT
+
+  * 陀螺儀
+    - http://goods.ruten.com.tw/item/show?21306014989889
+    - $310NT
+
+  * WIFI模組
+    - http://goods.ruten.com.tw/item/show?21308273439833
+    - $695NT
 
 研究紀錄
 -------
@@ -42,6 +51,9 @@ toc: no
   - 2013 11 29 - 2013 11 29  使用PWM測試馬達 ... 完成
   - 2013 12 01 - 2013 12 01  購買電池 http://goods.ruten.com.tw/item/show?21204206939457 ... 完成
   - 2013 12 01 - 2013 12 01  於STM32F407移植FreeRTOS，並加入之前的PWM測試 ... 完成
+  - 2013 12 02 - 2013 12 02  購買陀螺儀 http://goods.ruten.com.tw/item/show?21306014989889 ... 完成 
+  - 2013 12 02 - 2013 12 02  購買WIFI模組 http://goods.ruten.com.tw/item/show?21308273439833 ... 完成
+  - 2013 12 02 - 2013 12 02  撰寫加速度計測試程式(完成初始化設定，加速度變化與led連結尚未完成)  
 
 參考資訊
 -------
