@@ -5,7 +5,8 @@ categories: STM32, Communcation_Protocol, SPI
 
 Introduction
 ============
-SPI是一種4線同步序列資料協定，適用於可攜式裝置平臺系,串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
+SPI是一種4線同步序列資料協定，適用於可攜式裝置平臺系,
+串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
 
 
 System Overview
@@ -42,9 +43,13 @@ STM32F40x block diagram [#]_
 
 .. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.18
 
-- 3 SPI
-  * SPI1: 37.5 Mbits/s
+- 3 SPI的傳輸速度
+  * SPI1: 42Mbits/s 
   * SPI2 & SPI3: 21 Mbits/s
+
+- AHB (Advanced High-performance Bu) 系統總線 主要用於高性能模組間的連接 
+- APB1 APB2 (Advanced Peripheral Bus) 周邊總線 主要用於低帶寬的周邊模組間的連接   
+- AHB/ APB1 , AHB/ APB2 : bridge 用來做AHB協議到APB1/APB2協議的轉換
 
 .. Datasheet: p.32
 
