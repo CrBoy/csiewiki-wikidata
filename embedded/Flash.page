@@ -61,19 +61,20 @@ Flash模組的組成如下：
 
 3 Flash 操作
 ============
-**讀取：**
+3.1 Read interface(讀取)
+-------------
 
-- 要正確的從Flash中讀取資料，必須在FLASH_ACR中依據CPU clock(HCLK)頻率與供應的電壓來設定正確的WS(Wait State)。
-- WS與HCLK關係如下表所示 :
+- 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock freqency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
+- 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU freqency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
 
 .. image:: /ws_hclk.JPG
 
-- 在Reset之後，HCLK為16MHz，而FLASH_ACR中的ws為0。
-- 官方文件建議用以下方法(增加/減少CPU frequency)，依據CPU frequency調試存取Flash所需的ws數。
+- 在Reset之後，CPU clock freqency為16MHz，並且FLASH_ACR中的wait states值被設為0。
+- 官方文件建議若要調整wait states值(當加快/減慢CPU frequency時)，依據CPU frequency調試存取Flash所需的ws數。
 
-**增加CPU frequency**
+**當加快CPU frequency時**
 
-1. 在FLASH_ACR中的LATENCY bits設定新的ws值。
+1. 在FLASH_ACR register中的LATENCY bits設定新的wait states值。
 
 ::
 
@@ -87,8 +88,8 @@ Flash模組的組成如下：
   111: 7ws(8 CPU cycle)
 
 
-2. 透過讀取FLASH_ACR確認新的ws值有被設定成功。
-3. 透過寫入RCC_CFGR(Reset and Clock Control Configuration Register)中的SW(System clock switch) bits來修正 CPU clock source.
+2. 透過讀取FLASH_ACR register，確認新的wait states值有被無設定成功。
+3. 再透過寫入RCC_CFGR(Reset and Clock Control Configuration Register)中的SW(System clock switch) bits來修改 CPU clock source.
 
 ::
 
@@ -102,7 +103,7 @@ Flash模組的組成如下：
 
 可參考(http://blog.csdn.net/joji_h/article/details/5581340)
 
-4. 如果需要的話，可透過寫入RCC_CFGR中的HPRE(AHB Prescaler) bits來修改CPU clock prescaler.
+4. 如果需要，可透過寫入RCC_CFGR register中的HPRE(AHB Prescaler) bits來修改CPU clock prescaler以調整clock freqency.
 
 ::
 
@@ -115,18 +116,20 @@ Flash模組的組成如下：
   1111 : System clock divided by 512
 
 
-5. 透過讀取讀取RCC_CFGR中的SWS(System clock switch status) bits 來確認新的sw有被設定成功；透過讀取RCC_CFGR中的HPRE bits來確定新的HPRE值有被設定成功。
+5. 透過讀取讀取RCC_CFGR register中的SWS(System clock switch status) bits 來確認新的SW(System clock switch) bits有無被設定成功；透過讀取RCC_CFGR register中的來確定新的HPRE(AHB Prescaler) bits有無被設定成功。
 
-**減少CPU frequency**
+**當減慢CPU frequency時**
 
-1. 修正RCC_CFGR中SW bits.
-2. 如果需要的話，可透過寫入RCC_CFGR中的HPRE bits來修改CPU clock prescaler.
-3. 透過讀取讀取RCC_CFGR中的SWS bits 來確認新的sw有被設定成功；透過讀取RCC_CFGR中的HPRE bits來確定新的HPRE值有被設定成功。
-4. 在FLASH_ACR中的LATENCY bits設定新的ws值。
-5. 透過讀取FLASH_ACR確認新的ws值有被設定成功。
+1. 透過寫入RCC_CFGR(Reset and Clock Control Configuration Register)中的SW(System clock switch) bits來修改 CPU clock source.
+2. 如果需要，可透過寫入RCC_CFGR register中的HPRE(AHB Prescaler) bits來修改CPU clock prescaler以調整clock freqency.
+3. 透過讀取讀取RCC_CFGR register中的SWS(System clock switch status) bits 來確認新的SW(System clock switch) bits有無被設定成功；透過讀取RCC_CFGR register中的來確定新的HPRE(AHB Prescaler) bits有無被設定成功。
+4. 在FLASH_ACR register中的LATENCY bits設定新的wait states值。
+5. 透過讀取FLASH_ACR register，確認新的wait states值有被無設定成功。
 
-**抹除與寫入：**
+p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu freqency的step 3~5等於減慢cpu freqency的step1~3。
 
+3.2 Program/erase parallelism (寫入/抹除並行)
+-------------
 
 在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
 
@@ -137,7 +140,8 @@ Flash模組的組成如下：
 
 此外，FLASH_CR在FLASH_SR的BSY值為1時是同樣不可寫入的。
 
-**抹除步驟：**
+3.3 Erase (抹除)
+-------------
 
 - **區塊抹除(Sector Erase)**:
 
@@ -162,7 +166,8 @@ Flash模組的組成如下：
 3. 設定FLASH_CR中的STRT bit。
 4. 等待FLASH_SR中的BSY清空。
 
-**寫入步驟：**
+3.4 Program (寫入)
+-------------
 
 1. 檢查FLASH_SR中BSY bit是否為0。
 2. 設定FLASH_CR中的PG(Programming)。
@@ -183,7 +188,7 @@ Flash模組的組成如下：
 
 4. 等待FLASH_SR中的BSY清空。
 
-3.1 關於寫入保護(Write Protections) :
+3.5 關於寫入保護(Write Protections) :
 ----------------------------------
 
 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
