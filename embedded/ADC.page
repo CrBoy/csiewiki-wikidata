@@ -377,14 +377,13 @@ Questions 2013
    - 3.如果需要將輸入訊號放大，則可以使用 OPA 之電路來做放大。
 
       - 1.反相放大電路
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
+
       - 2.正相放大電路
 
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
 
-.. img::
-https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
-
-.. img::
-https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
 
 - 3.說明 ADC Block Diagram 之 Vrefint 與 TIM_TRGO 是什麼？
 
