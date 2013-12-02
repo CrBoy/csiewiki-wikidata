@@ -37,7 +37,7 @@ Timers
 
   - 用途: 最多有兩個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
-- General-purpose timers 通用定時器(TIM2 to TIM5)
+- General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamual  - p. 576)
 
   - 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
 
@@ -50,31 +50,18 @@ Timers
 .. image:: /BD of GP timer.png
 
   - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
-
-  - CK_INT -> AHB Prescaler(/1、2、...、512) -> APB1 Prescaler(/1、2、4、8、16) or APB2 Prescaler(/1、2、4、8、16)。
-
-  - Shadow Register
-    - HW 存取層稱為shadow register
-
-    - CPU 在寫register時, 會先寫在上層的shadow register, 之後硬體update後才會將資料更新至下層的register讓硬體存取
-
-  .. image:: /shadow_reg.PNG
    
-  - Counter modes:    
+  - Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
-    - Upcounting mode 
-      
-      The auto-reload shadow register is updated with the preload value (TIMx_ARR), TIMx_ARR = 0x36 
+.. code-block:: prettyprint
 
-  .. image:: /Timer_upcounting.PNG
+  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
+  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
+  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
------------
-
-  .. image:: /embedded/PWM-Timer_down_mode.bmp
-
------------
-
-  .. image:: /embedded/PWM-Timer_center_aligned.jpg
+.. image:: /Timer_upcounting.PNG     
+.. image:: /countdown.png
+.. image:: /center_aligned.png
 
 
     - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
