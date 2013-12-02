@@ -62,8 +62,8 @@ Flash模組的組成如下：
 3 Flash 操作
 ============
 
-3.1 Read interface(讀取) :
-------------
+3.1 Read interface(讀取)
+----------------------------------
 
 - 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock freqency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
 - 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU freqency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
@@ -130,7 +130,7 @@ Flash模組的組成如下：
 p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu freqency的step 3~5等於減慢cpu freqency的step1~3。
 
 3.2 Program/erase parallelism (寫入/抹除並行)
------------------
+----------------------------------------------------
 
 在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
 
@@ -168,7 +168,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 4. 等待FLASH_SR中的BSY清空。
 
 3.4 Program (寫入)
-----------
+-----------------------------------
 
 1. 檢查FLASH_SR中BSY bit是否為0。
 2. 設定FLASH_CR中的PG(Programming)。
