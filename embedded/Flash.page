@@ -137,7 +137,9 @@ Flash模組的組成如下：
 
 p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu freqency的step 3~5等於減慢cpu freqency的step1~3。
 
+3.2 Erase and program operations
 ---------------------------------------
+**操作前需知**
 
 - CPU clock frequency必須至少要在1MHZ以上，Flash才能做erase及program的操作，若在操作的途中發生reset，則不保證Flash中內容正確。
 - Flash在program/erase操作時，任何欲read Flash的操作會被暫停，需直到program操作完成後，read操作才會被正確的執行。這也代表當program/erase操作正在執行中，code or data fetch(即read)無法執行。
@@ -155,7 +157,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 此外，FLASH_CR在FLASH_SR的BSY值為1時是同樣不可寫入的。
 
 
-3.2 Program/erase parallelism (寫入/抹除並行)
+3.3 Program/erase parallelism (寫入/抹除並行)
 ----------------------------------------------------
 - Parallelism為在操作program或erase時，最大能夠寫幾bit的0。
 - PSIZE是在FLASH_CR register中，此值必須在programming/erasing前正確的被寫入。對應表如下表：
@@ -168,7 +170,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 - **Word : x32**
 - **Double-word : x64**
 
-3.3 Erase (抹除)
+3.4 Erase (抹除)
 -----------------
 
 Flash memory erase的操作可以以sector為單位，或是整個Flash memory全部erase，也就是Mass Erase。而Mass Erase並不會影響OTP sector或是設定區的sector。
@@ -196,7 +198,7 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 3. 設定FLASH_CR register中的STRT bit。
 4. 等待FLASH_SR register中的BSY bit清空。
 
-3.4 Program (寫入)
+3.5 Program (寫入)
 -----------------------------------
 
 1. 檢查FLASH_SR register中BSY bit是否為0。
@@ -210,7 +212,7 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 4. 等待FLASH_SR中的BSY bit清空。
 
-3.5 Interrupt
+3.6 Interrupt
 ----------------------------------------------------------------
 若要在erase或program結束時發出中斷，可以設定FLASH_CR register中的end of operation interrupt enable(EOPIE) bit，當然，FLASH_SR register中的BSY bit這時應是要0，而end of operation(EOP) bit此時為1。
 
@@ -221,7 +223,7 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)被打開(設為1)，則FLASH_SR register中的operation error bit(OPERR)會被設為1。
 
-3.6 Option bytes
+3.7 Option bytes
 ----------------------------------
 
 **關於寫入保護(Write Protections)**
@@ -230,7 +232,7 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
-3.7 One-time programmable bytes(OTP)
+3.8 One-time programmable bytes (OTP)
 -------------------------------------------------------------
 
 
