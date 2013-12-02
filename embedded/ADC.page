@@ -385,11 +385,28 @@ Questions 2013
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
 
 
-- 3.說明 ADC Block Diagram 之 Vrefint 與 TIM_TRGO 是什麼？
+- 3.說明 ADC Block Diagram 之 Vrefint 與 TIM1_TRGO 是什麼？
+  - VREFINT:
+    - ADC之內部參考電壓
 
+  - TIM1_TRGO:
+    - 
 - 4.說明 ADC 之 calibration。
+  - 由於ADC上面的電容可能並不是理論上的理想值，因此每次使用時必須量測現在ADC之電容之實際值，可以把這個實際值視為誤差，因此未來所量測的結果都必須使用這個誤差值作為基準點去比較，因此可以量到更加精確的轉換結果。
 
-- 5.說明 ADC 之scanmode 與 DMA 之關係。並畫流程圖。
+::
+  
+    /* Enable ADC1 reset calibaration register */ 
+    ADC_ResetCalibration(ADC1);
+    /* Check the end of ADC1 reset calibration register */ 
+    while(ADC_GetResetCalibrationStatus(ADC1)); 
+    /* Start ADC1 calibaration */ 
+    ADC_StartCalibration(ADC1); 
+    /* Check the end of ADC1 calibration */ 
+    while(ADC_GetCalibrationStatus(ADC1));
+    /* 完成 calibration 才能開始使用 */
+
+- 5.說明 ADC 之scanode 與 DMA 之關係。並畫流程圖。
 
 - 6.說明如何利用電阻量測溫度？
 
