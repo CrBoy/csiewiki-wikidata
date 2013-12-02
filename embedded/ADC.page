@@ -365,6 +365,7 @@ Questions 2013
 
 - 證明：
 
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg
 
 
 
@@ -389,11 +390,12 @@ Questions 2013
   其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
 
 
-      - 1.反相放大電路
+
+1.反相放大電路
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
 
-      - 2.正相放大電路
+2.正相放大電路
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
 
