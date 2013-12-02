@@ -430,7 +430,17 @@ Questions 2013
 
   Since converted regular channel values are stored into a unique data register, it is useful to use DMA for conversion of more than one regular channel. This avoids the loss of the data already stored in the ADC_DR register.
 
-6. 說明如何利用電阻量測溫度？
+6. 說明測量溫度的方法
+
+- 使用STM32內建的溫度感測器。
+
+- 可以利用單一電阻的電阻會隨溫度上昇而增加電阻值來反推溫度。
+
+  - 電阻隨溫度呈現性上昇
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386002201111_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-03%20%E4%B8%8A%E5%8D%8812.35.27.png
+
+  - 可利用上面之特性搭配 ADC 來做溫度量測
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386003301130_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%2011_1%20(3).jpg
 
 7. 說明 EOC 等之術語。
 
