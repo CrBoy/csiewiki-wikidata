@@ -184,7 +184,7 @@ BUSY flag：用以指示SPI 正忙於傳輸的 flag
 
 Code section
 ============
-.. image:: /SPI_pic1.jpg
+.. image:: ./DSC_0448.jpg
 
 完整程式碼：
 
