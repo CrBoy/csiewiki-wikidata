@@ -193,13 +193,13 @@ Code section
     git clone git://gitcafe.com/EricCheng/stm32_spi_demo.git
     cd stm32_spi_demo/
 
-自定義變數：
+.. 自定義變數：
 
 .. code-block:: c
 
-    unsigned char readData[32];
-    unsigned char writeData[32];
-    int rxCounter, txCounter;
+..    unsigned char readData[32];
+..    unsigned char writeData[32];
+..    int rxCounter, txCounter;
 
 初始化 SPI：
 
