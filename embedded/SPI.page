@@ -299,7 +299,7 @@ Code section
         * CPHA = 0 --> data is sampled at the first edge
         \*/
         SPI_I2S_DeInit(SPI1);
-        SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex; // set to full duplex mode, seperate MOSI and MISO lines
+        SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex; // set to full duplex mode, seperate MOSI and MISO            lines
         SPI_InitStruct.SPI_Mode = SPI_Mode_Slave; // transmit in master mode, NSS pin has to be always high
         SPI_InitStruct.SPI_DataSize = SPI_DataSize_8b; // one packet of data is 8 bits wide
         SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low; // clock is low when idle
