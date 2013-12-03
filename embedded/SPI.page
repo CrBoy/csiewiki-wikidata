@@ -292,7 +292,7 @@ Code section
         GPIO_Init(GPIOE, &GPIO_InitStruct);	
         
 
-       GPIO_SetBits(GPIOE,GPIO_Pin_3);		//Let the LIS302DL disable
+        GPIO_SetBits(GPIOE,GPIO_Pin_3);		//Let the LIS302DL disable
 
         /* configure SPI1 in Mode 0
         * CPOL = 0 --> clock is low when idle
