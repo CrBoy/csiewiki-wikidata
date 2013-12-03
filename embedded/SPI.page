@@ -178,15 +178,13 @@ BUSY flag：用以指示SPI 正忙於傳輸的 flag
 
 .. TODO busy flag
 
-Disabling SPI
--------------
-
 ..
     DMA support
     -----------
 
 Code section
 ============
+.. image:: /SPI_pic1.jpg
 
 完整程式碼：
 
