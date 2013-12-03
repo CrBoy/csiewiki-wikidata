@@ -388,12 +388,14 @@ Master 設定
                         RemoteLED_OnOff(0);
                         bLedOnOff = 0;
                         STM_EVAL_LEDOff(LED3);
+                        STM_EVAL_LEDOff(LED4);
                     }
                     else
                     {
                         RemoteLED_OnOff(1);
                         bLedOnOff = 1;
                         STM_EVAL_LEDOn(LED3);
+                        STM_EVAL_LEDOn(LED4);
                     }
                     bOldLedOnOff = bNewLedOnOff;
                 }			
