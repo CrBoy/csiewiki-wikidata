@@ -109,7 +109,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 在非同步分頻器(ck_apre)的輸出，藉由增加或減少時間的週期達到校正，最大範圍的校正為63ppm~126ppm。
 
-- 只能在初始化Calendar時候修改，是一個非回授控制系統(opened loop control)。
+- 只能在初始化Calendar時候修改，是一個**開迴路控制**(opened loop control)(又稱非回授控制系統)。
 
 - 可以利用AFO_CALIB去計算clock deviation。不能以圖中512Hz的訊號去確認coarse calibration的輸出結果，只能使用ck_spre確認校正的結果。
 
@@ -127,7 +127,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 最大範圍的校正為-487.1ppm~+488.5ppm。 
 
-- 與coarse calibration不同，是一個閉迴路的控制系統(closed loop control)。
+- 與coarse calibration不同，是屬於**閉迴路控制**(closed loop control)(又稱回授控制系統)。
 
 - 可以使用AFO_CALIB來計算時間偏差，而且可直接檢查512Hz和1Hz的校正輸出。 
 
