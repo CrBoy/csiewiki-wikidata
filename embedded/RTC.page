@@ -432,6 +432,10 @@ Example of Code
 ========================
 下面的範例為先初始化RTC的Calendar再去設定Alarm A。一開始開機時時間為8:29:55，LED3,4,5會在開機五秒前輪流閃爍。但是在第五秒後也就是8:30:00，Alarm A觸發中斷將所有LED燈都關掉。LED6 為auto-wakeup 每秒閃爍直到alarm觸發中止。
 
+
+`[ YouTube連結--實現RTC ] 
+<https://www.youtube.com/watch?v=SbWUkchJd-8>`_
+
 .. image:: /RTCdemo.png
 
 Initialize RTC
