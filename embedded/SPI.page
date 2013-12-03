@@ -237,7 +237,6 @@ Code section
         GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_Init(GPIOE, &GPIO_InitStruct);	
         
-..  GPIO_SetBits(GPIOE,GPIO_Pin_3);	//Let the LIS302DL disable
         GPIO_SetBits(GPIOE,GPIO_Pin_7); //Pull High
 
         /* configure SPI1 in Mode 0
