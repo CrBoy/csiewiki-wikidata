@@ -387,8 +387,25 @@ Parity generation in transmission
 ======================================
 If the PCE bit is set in USART_CR1, then the MSB bit of the data written in the data register is transmitted but is changed by the parity bit (even number of “1s” if even parity is selected (PS=0) or an odd number of “1s” if odd parity is selected (PS=1)).
 
+
+
 CODE SECTION
-...................
+===============
+
+sample code download : 
+
+.. code-block:: c
+
+    git clone https://github.com/wujiheng/stm32f407.git
+    cd stm32f407/USART
+
+
+.. code-block:: c
+
+   make 
+   make flash    <-- 記得把USB連上去
+
+
 
 REFERENCE
 ..................
