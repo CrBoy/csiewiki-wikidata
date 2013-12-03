@@ -392,7 +392,7 @@ If the PCE bit is set in USART_CR1, then the MSB bit of the data written in the 
 CODE SECTION
 ===============
 
-sample code download : 
+Download sample code : 
 
 .. code-block:: c
 
@@ -400,12 +400,21 @@ sample code download :
     cd stm32f407/USART
 
 
+To compile code
+
 .. code-block:: c
 
    make 
    make flash    <-- 記得把USB連上去
 
 
+這裡採用minicom 超級終端機來接收USART字串
+
+.. code-block:: c
+
+   sudo apt-get install minicom
+   sudo minicom -s                   <-- 不一定要用root，不過使用者必須要device node 讀寫的權限，-s表進入setup
+      
 
 REFERENCE
 ..................
