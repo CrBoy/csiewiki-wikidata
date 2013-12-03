@@ -12,14 +12,15 @@ Introduction
 
 System Overview
 ===============
-- 可以與外部週邊單工/半雙工/全雙工,同步串列通訊,且為主從式
+- SPI(Serial Peripheral Interface)為主從式同步串列通訊,可分為單工/半雙工/全雙工,
 
    * 單工:線路上的訊號只能做單向傳送
    * 半雙工:線路上的訊號可以雙向傳送 , 但是不能同時傳送
    * 全雙工:線路上的訊號可以同時雙向傳送
+
    * 同步:傳送端和接收端共用同一個CLOCK
 
-- 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置”, 從屬裝置會用此頻率訊號來對收到的位串流進行同步
+- 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置(Master端)”, 從屬裝置(Slave端)會用此頻率訊號來對收到的位串流進行同步
 - 如果有多個周邊晶片被連到同一個SPI介面 , 主控裝置能透過從屬裝置的晶片來選擇接收資料的周邊裝置
 
 .. image:: /three_slaves.png
@@ -57,8 +58,8 @@ STM32F40x block diagram [#]_
   * SPI1: 42Mbits/s 
   * SPI2 & SPI3: 21 Mbits/s
 
-- AHB (Advanced High-performance Bu) 系統總線 主要用於高性能模組間的連接 
-- APB1 APB2 (Advanced Peripheral Bus) 周邊總線 主要用於低帶寬的周邊模組間的連接   
+- AHB (Advanced High-performance Bus) 主要用於高性能模組間的連接 
+- APB1 APB2 (Advanced Peripheral Bus) 主要用於低帶寬的周邊模組間的連接   
 - AHB/ APB1 , AHB/ APB2 : bridge 用來做AHB協議到APB1/APB2協議的轉換
 
 .. Datasheet: p.32
