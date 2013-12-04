@@ -17,6 +17,8 @@ categories: STM32F4
 1.2 NOR/NAND介紹
 ------------------
 
+- `EEPROM(wiki):<http://zh.wikipedia.org/wiki/EEPROM>`_ 全稱電子抹除式可複寫唯讀記憶體(英語:Electrically-Erasable Programmable Read-Only Memory)，是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
+
 - NOR Flash : 
   - NOR的特點是芯片內執行(XIP, eXecute In Place)，這樣應用程序可以直接在flash閃存內運行，不必再把代碼讀到系統RAM中
   - 小容量時具有很高的成本效益，但是很低的寫入和擦除速度大大影響了它的性能
@@ -251,6 +253,15 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 3.7 Option bytes
 ----------------------------------
+**關於讀取保護(Read Protections)**
+
+有三種Read Protections levels:
+
+Level 0:將0xAA寫入FLASH_OPTCR中的RDP(Read Protection) bit，表示Read protection not active 
+
+Level 1:將除了0xAA以及0xCC以外的值寫入FLASH_OPTCR中的RDP bit，表示Memory read protection active
+
+Level 2:將0xCC寫入FLASH_OPTCR中的RDP bit，表示Disable debug/chip read protection
 
 **關於寫入保護(Write Protections)**
 
