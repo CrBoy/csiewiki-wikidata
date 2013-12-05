@@ -72,6 +72,8 @@ STM32F407中的Flash有以下特性：
 - APB : Advanced Peripheral Bus.
 - ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道instrction(16-bit)，如此一來可增加程式執行的速度。
 
+.. image:: /ST_ARTAccelerator_big.jpg
+
 關於AHB與APB差異可參考 `Difference Between AHB and APB<http://www.differencebetween.net/technology/difference-between-ahb-and-apb/>`_
 
 關於AMBA的介紹可參考 `Advanced Microcontroller Bus Architecture (AMBA)<http://en.wikipedia.org/wiki/AMBA_High-performance_Bus>`_
