@@ -55,12 +55,19 @@ categories: STM32F4
 
 2.Flash 記憶體架構介紹
 ======================
-STM32F407中的Flash有以下特性：
 
-- 容量為1Mbyte
-- 單次讀取data為128bits
-- 單次寫入可以byte, half-word, word以及double word為單位
-- 抹除可以sector為單位或是mass(全部)操作
+2.1 In memory architecture
+-----------------------------------------
+
+Bus Matrix:(利用round-robin演算法來仲裁)
+
+.. image:: /bus_matrix.JPG
+
+- CCM(core coupled memory)：屬於Embedded SRAM中一部份，mapped at address 0x1000 0000 and accessible only by the CPU through the D-bus.
+- Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可逶過ACCEL加速code execution。
+
+2.2 Flash interface in system architecture
+---------------------------------------------
 
 .. image:: /Flash_system_architecture.JPG
 
@@ -82,18 +89,26 @@ STM32F407中的Flash有以下特性：
 - CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
 - FLITF : Flash memory interface.
 
-Bus Matrix:
 
-.. image:: /bus_matrix.JPG
+2.3 Flash模組的組成
+-------------------------------------------------
 
-Flash模組的組成如下：
-
+- A main memory block divided into sectors.
 - Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes(1Mbytes).
 - System memory : bootloader code 放置的地方，30Kbytes.
-- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes(512+16)，如放軟體version，硬體version，key…等，基於安全的理由，可參考(http://forum.eepw.com.cn/thread/120354/1)
+- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
 - Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
 
 .. image:: /flash module organization.JPG
+
+STM32F407中的Flash有以下特性：
+
+- 容量為1Mbyte
+- 單次讀取data為128bits
+- 單次寫入可以byte, half-word, word以及double word為單位
+- 抹除可以sector為單位或是mass(全部)操作
+
+
 
 
 3 Flash 操作
