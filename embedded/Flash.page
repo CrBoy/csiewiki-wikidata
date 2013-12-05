@@ -30,14 +30,6 @@ categories: STM32F4
   - NAND flash只是用在8～128MB的產品當中，適合於數據存儲，例如:eMMC、固態硬碟(SSD)USB 3.0隨身碟
   - NAND閃存中每個塊的最大擦寫次數是一百萬次
 
-- NOR Flash Structure :
-
-.. image:: /NOR flash.JPG
-
-- NAND Flash Structure :
-
-.. image:: /NAND flash.JPG
-
 
 1.3 NOR/NAND比較 
 ------------------
