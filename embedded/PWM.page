@@ -147,6 +147,13 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
   - 0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
 
+RCC_Configuration
+--------------------
+
+.. code-block:: prettyprint
+
+    RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOD , ENABLE );
+    RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4, ENABLE );
 
 Code_section
 =============
