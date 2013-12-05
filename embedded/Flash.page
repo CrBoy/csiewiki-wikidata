@@ -69,7 +69,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - D-Code bus : Data bus.這條bus由Cortex-M4F 與 64-Kbyte CCM data RAM 連至BusMatrix，核心透過這個bus讀取字母(literal)與除錯。
 - AHB : Advanced High-performance Bus.
 - APB : Advanced Peripheral Bus.
-- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道instrction(16-bit)，如此一來可增加程式執行的速度。
+- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度。
 
 .. image:: /ST_ARTAccelerator_big.jpg
 
