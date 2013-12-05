@@ -1,0 +1,63 @@
+---
+title: 期末專題: Team #10
+categories: embedded2013
+toc: yes
+...
+
+題目
+===============
+
+  * Cat vs. Mouse
+
+預期目標
+===============
+   平常在家總是懶惰的貓咪 , 生活充滿著無趣 , 故預期將設計出一個能夠吸引貓咪的小機器人(外型暫定Mouse) , 此小機器人能夠盡他的所能 ,
+無論用各種有趣的方式 , 都要能夠吸引貓咪的注意力 ,  並且讓貓咪運動到 , 因此其中很重要的一個是不能被貓追到 (小機器人移動速度必須要夠快) ,
+來做到一個跑給貓追的動作 , 並且有著基本避障能力。 
+
+組員
+===============
+
+  * `紀冠瑋(kickyourass)</User/kickyourass>`_   , fb : https://www.facebook.com/lpismanpower
+  * `王尹辰(JackABK)</User/JackABK>`_   , fb : https://www.facebook.com/profile.php?id=100000367989359
+ 
+
+
+預算
+===============
+
+
+  * 四驅小車車 (小時候在玩的)
+    - 主要用來拆的 , 借用的他底板與四驅車專用馬達 , 並重新打造外型用。 
+    - Refer to: 
+
+
+  * 高速馬達 (四驅車用)
+    - 怕到時候速度不夠快 , 故需要買超高速RPM的馬達。 
+    - Refer to: 
+
+  * PIR Motion Sensor (熱體紅外線感測器)
+   
+    - Refer to: 
+       https://www.youtube.com/watch?v=bEooGzn1trE
+
+  * Ultrasonic Sensor (超音波測距)
+    - 型號: HC-SR04
+    - Refer to: 
+       http://users.ece.utexas.edu/~valvano/Datasheets/HCSR04b.pdf
+
+
+  * Servo motor(伺服馬達)
+    - 型號: SG90 Tower Pro
+    - 控制轉彎方向用
+    - Refer to: 
+       http://yehnan.blogspot.tw/2013/09/arduinotower-pro-sg90.html 
+
+
+參考資訊
+===============
+- `【マンチカン３兄妹】子猫VS格闘ロボ ~ a funny robot　VS　a cat<http://www.reprap.org/wiki/Prusa_Mendel>`_
+
+- `Raspberry Pi Robotic Mobile Wi-Fi IP Cam built on Roomba, JASON<https://www.youtube.com/watch?v=wrEMpdBFFuA>`_
+
+--------------------
