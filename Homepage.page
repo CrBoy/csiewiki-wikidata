@@ -16,6 +16,7 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 - `線上資源<embedded/resources>`_
 - `課程注意事項<embedded/note2013>`_
 - `期末專題列表<embedded/team2013>`_
+- 分組報告: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_
 
 嵌入式系統短期訓練 (2013 Summer)
 ================================
@@ -36,7 +37,6 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 - `線上資源<embedded/resources>`_
 - `課程注意事項<embedded/note>`_
 - `拾人牙慧<embedded/collections>`_
-- 期中分組報告: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_
 - `期末專題分組列表<embedded/team2012>`_
 
 --------
