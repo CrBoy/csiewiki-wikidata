@@ -285,9 +285,13 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
-3.8 One-time programmable bytes (OTP)
+3.8 One-time programmable (OTP)
 -------------------------------------------------------------
-
+- 一次性可編程唯讀記憶體（One Time Programmable Read Only Memory，OTPROM）之寫入原理同EPROM，但是為了節省成本，編程寫入之後就不再抹除，因此不設置透明窗。
+- 
+ 
+.. image:: http://3.bp.blogspot.com/-TXtkqZdctlo/UqGZTeOFsBI/AAAAAAAAADg/yWT_NyWRv-g/s1600/OTP.png
+   Reference Manual P.97
 
 4.Flash interface registers
 ===========================
