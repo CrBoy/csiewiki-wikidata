@@ -5,14 +5,14 @@ title: usb
 .. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/USB_Icon.svg/200px-USB_Icon.svg.png
 
 
-標準USB介面
+標準 USB 2.0 介面
 ^^^^^^^^^^
 
 .. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/6/67/USB.svg/200px-USB.svg.png
 
-USB訊號使用分別標記為D+ 和D- 的雙絞線傳輸，它們各自使用半雙工的差動訊號並協同工作，以抵消長導線的電磁干擾。
+USB 訊號使用分別標記為D+ 和D- 的雙絞線(twisted pair)傳輸，以抵消長導線的電磁干擾。它們各自使用半雙工的差動訊號(Differential signal)並協同工作。
 
-ps. 差動訊號：一條為 high 則另一條為 low
+* 差動訊號：訊號傳輸在兩根不同的線上，這兩個信號的振幅相等，相位相反。
 
 USB 封包簡介
 ^^^^^^^^^^^
