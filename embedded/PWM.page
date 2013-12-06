@@ -196,9 +196,9 @@ TIM_Configuration
     TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;
     
-    // Initial duty cycle equals 0%. Value can range from zero to 65535.
-    // TIM_Pulse = TIM4_CCR1 register (16 bits)
-    // Compare Capture register = 1680 ( duty_cycle = 100%)
+
+    // TIM4_CCR register (16 bits). Value can range from zero to 65535.
+    // TIM_Pulse = Compare Capture register(CCR) = 1680 ( duty_cycle = 100%)
     TIM_OCInitStruct.TIM_Pulse = 1680; //(0=Always Off, >1680 =Always On)
  
     TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel1
