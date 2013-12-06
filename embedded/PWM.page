@@ -135,13 +135,13 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
 
 .. image:: /timer.png
 
-  - TIM_Prescaler = 499,TIM_ClockDivision=0,TIMxCLK=84MHz
+  - TIM_Prescaler = 500-1, TIM_Period = 1680-1 , TIMxCLK=84MHz
 
-  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK
+  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1)  / TIMxCLK
            
-    -         = (1999+1) * (499+1) * (0+1)/84000000 ≒ 0.012 s
+    -         = (1680-1+1) * (500-1+1) /84000000 = 0.01 s(100Hz)
 
-  - 0.012 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
+  - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
 Code_section
 =============
@@ -184,10 +184,9 @@ TIM_Configuration
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;//Create TIM Time Base Init structure 
     TIM_OCInitTypeDef TIM_OCInitStruct;//Create TIM Output Compare Init structure
 
-    // Let PWM frequency equal 100Hz. ( 84MHz / 1 / 1680 /500 = 100Hz )
+    // Let PWM frequency equal 100Hz. ( 84MHz / 1680 /500 = 100Hz )
     // Let period equal 1600. Therefore, timer runs from zero to 1600. 
     TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );//reset TIM_TimeBaseStructInit
-    TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   
     TIM_TimeBaseInitStruct.TIM_Prescaler = 500 - 1; 
     TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;    
