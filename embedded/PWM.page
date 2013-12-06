@@ -197,15 +197,16 @@ TIM_Configuration
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;
     
     // Initial duty cycle equals 0%. Value can range from zero to 65535.
-    //TIM_Pulse = TIM4_CCR1 register (16 bits)
-    TIM_OCInitStruct.TIM_Pulse = 65535; //(0=Always Off, 65535=Always On)
+    // TIM_Pulse = TIM4_CCR1 register (16 bits)
+    // Compare Capture register = 1680 ( duty_cycle = 100%)
+    TIM_OCInitStruct.TIM_Pulse = 1680; //(0=Always Off, >1680 =Always On)
  
-    TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // Channel 1  LED
-    TIM_OC2Init( TIM4, &TIM_OCInitStruct ); // Channel 2  LED
-    TIM_OC3Init( TIM4, &TIM_OCInitStruct ); // Channel 3  LED
-    TIM_OC4Init( TIM4, &TIM_OCInitStruct ); // Channel 4  LED
+    TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel1
+    TIM_OC2Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel2
+    TIM_OC3Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel3
+    TIM_OC4Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel4
  
-    TIM_Cmd( TIM4, ENABLE );
+    TIM_Cmd( TIM4, ENABLE ); //Enables  TIM4 peripheral
 
 -----------------------------------------------------------
 
@@ -216,18 +217,12 @@ PWM control
 
   while(1)  // Do not exit
   {
-  
     if(brightness + n <= 0)
         who_run = (who_run + 1) % 4; 
 
     if (((brightness + n) >= 3000) || ((brightness + n) <= 0))
-      n = -n; // if  brightness maximum/maximum change direction
-    
+      n = -n; // if  brightness maximum/maximum change direction   
     brightness += n;
-    //TIM4->CCR1 = brightness - 1;
-    //TIM4->CCR2 = brightness - 1;
-    //TIM4->CCR3 = brightness - 1;
-    //TIM4->CCR4 = brightness - 1;
     
     //Light LEDs in turn
      switch(who_run){
