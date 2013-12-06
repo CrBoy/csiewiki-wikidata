@@ -154,21 +154,21 @@ RCC_Configuration
 
 .. code-block:: prettyprint linenums
 
-    RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOD , ENABLE );
-    RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4, ENABLE );
+    RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOD , ENABLE );//Enalbe AHB for GPIOD
+    RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4, ENABLE );//Enable APB for TIM4
 
 GPIO_Configuration
 --------------------
 
 .. code-block:: prettyprint linenums
 
-    GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_StructInit(&GPIO_InitStructure); // Reset init structure
+    GPIO_InitTypeDef GPIO_InitStructure;//Create GPIO_InitStructure 
+    GPIO_StructInit(&GPIO_InitStructure); // Reset GPIO_structure
  
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4);
+    GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); // set GPIOD_Pin12 to AF_TIM4
+    GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4); // set GPIOD_Pin13 to AF_TIM4
+    GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4); // set GPIOD_Pin14 to AF_TIM4
+    GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4); // set GPIOD_Pin15 to AF_TIM4
       
 
     // Setup Blue & Green LED on STM32-Discovery Board to use PWM.
@@ -184,20 +184,19 @@ TIM_Configuration
 
 .. code-block:: prettyprint linenums
 
-    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
-    TIM_OCInitTypeDef TIM_OCInitStruct;
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;//Create TIM Time Base Init structure 
+    TIM_OCInitTypeDef TIM_OCInitStruct;//Create TIM Output Compare Init structure
 
-    // Let PWM frequency equal 100Hz.
-    // Let period equal 1000. Therefore, timer runs from zero to 1000. Gives 0.1Hz resolution.
-    // Solving for prescaler gives 240.
-    TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );
-    TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV4;
+    // Let PWM frequency equal 100Hz. ( 84MHz / 1 / 1680 /500 = 100Hz )
+    // Let period equal 1600. Therefore, timer runs from zero to 1600. 
+    TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );//reset TIM_TimeBaseStructInit
+    TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV1;
     TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   
     TIM_TimeBaseInitStruct.TIM_Prescaler = 500 - 1; 
     TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;    
     TIM_TimeBaseInit( TIM4, &TIM_TimeBaseInitStruct );
     
-    TIM_OCStructInit( &TIM_OCInitStruct );
+    TIM_OCStructInit( &TIM_OCInitStruct );reset TIM_OCStructInit
     TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;
     
