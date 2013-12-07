@@ -44,12 +44,15 @@ Clock control
 
        - 此行設定HCLK = SYSCLK / 1 = 168MHz
 
-    - line 369  RCC->CFGR |= RCC_CFGR_PPRE2_DIV2;
+    - line 372  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4;
 
-       - 此行設定PCLK2(Peripheral clock) 為 HCLK / 2 = 84MHz
-       - 該頻率亦為APBx timer clock(TIM4位於APB2)
+       - 此行設定APB1 peripheral clocks為 HCLK / 4 = 42MHz
 
-    - 而CLK_INT = PCLK2 = 84MHz
+    - 而由上圖可知
+
+       - APB1 timer clocks = APB1 peripheral clocks * 2 = **84MHz**
+       
+       - 該clock亦為後面Timer章節提及的 **CK_INT** 之值
 
 
 Timers
