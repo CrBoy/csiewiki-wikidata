@@ -19,6 +19,16 @@
 - 以上運費：人民幣$60
 - `L3G4200D 三軸數字陀螺儀 <http://goods.ruten.com.tw/item/show?21306014989889>`_ 一個：新台幣$350(含運)
 
+進度規劃
+---------------
+- 12/02 - 12/06：已完成uart除錯設定
+- 12/09 - 12/15：分配任務，組裝機構，研究SPI、ADC可讀取g-sensor及gryo之數據、購買缺少零件
+- 12/16 - 12/22：研究Kalman filter及proportional-integral-derivative controller(PID controller)
+- 12/23 - 12/29：研究PWM控制geared DC motor
+- 12/30 - 01/05：整合以上
+- 01/06 - 01/11：待留未完成進度
+- **01/12 期末專題報告**
+
 參考資訊
 -------
 - 參考影片：`self balancing robot <https://www.youtube.com/watch?v=dQWATsLa30g>`_
