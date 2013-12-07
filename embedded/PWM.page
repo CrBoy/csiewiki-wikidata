@@ -99,6 +99,9 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
    
 - Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
+Counting Mode
+=============
+
 up counting mode
 ----------------
 .. code-block:: prettyprint linenums
@@ -122,6 +125,22 @@ center aligned mode
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
 .. image:: /center_aligned.png
+
+Timer Mode
+==========
+
+Input capture mode
+------------------
+
+
+PWM input mode
+--------------
+
+Forced output mode
+-------------------
+
+Output compare mode
+-------------------
 
 **PWM mode**
 ------------
@@ -159,6 +178,7 @@ center aligned mode
     -         = (1680-1+1) * (500-1+1) /84000000 = 0.01 s(100Hz)
 
   - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
+
 
 Code_section
 =============
