@@ -187,7 +187,7 @@ Output compare mode
     
      - **輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK **
 
-  - 以LED為例：
+- 以LED為例：
 
 .. image:: /timer.png
 
@@ -199,7 +199,12 @@ Output compare mode
 
   - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
+- PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
+   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
 
+- 改成中央對齊計數方式會怎麼樣?
+
+.. image:: /中央對齊.png
 
 Code_section
 =============
@@ -317,33 +322,15 @@ Demo video
 
 補充
 =============
-1. PWM較省電?
-
-   因為一般類比電壓要降低電壓輸出需靠增加電阻，源頭輸出電壓"持續"都為同一電壓，不過利用電阻改變最後輸出電壓，而PWM他靠的是一段時間內輸出的頻率來模擬類比電壓，"不需要持續的輸出"，故不會降電浪費在電阻上，即可達到省電效果。
-   
-   例如:使用9V電池來給一燈泡供電，連接電池跟燈泡時間為50ms，斷開電池和燈泡時間為50ms。1秒鐘(1000ms)過後，會重複此過程10次，燈泡將會連接到一個4.5V電池(9V電池的50%)上一樣。
-
-2. overflow 和 UEV UIF的關係
+1. overflow 和 UEV UIF的關係
 
     UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain   triggered. 
 
-3. 向上計數和向下計數的差別
-
-   以四位元向上計數器為例，由四個JK正反器串接而成，輸出DCBA由0000依據二進位的變化至1111。下一個脈波來時，又回到0000。依此類推故此計數器可由0計數到15。而向下計數器與向上計數器不同點是下一級的CLK接於前一級的Q，輸出DCBA由1111向下計數到0000，待下一個時脈輸入時又變為1111，再依序變化。
-
-4. timer 和 RTC的差別
+2. timer 和 RTC的差別
 
     The system timer is what makes everything in the computer run at the same speed. 
 
     For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.The Real Time Clock tells the system what day/time it is.
-
-6. PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
-
-   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
-
-7. 改成中央對齊計數方式會怎麼樣?
-
-.. image:: /中央對齊.png
 
 範例程式
 =============
