@@ -31,6 +31,27 @@ Difference of SD/MMC/SDIO
 
 Speed class rating
 -------------------
+
+
+
+
+
+SDIO bus topology
+=================
+
+.. image:: /Selection_015.png
+.. image:: /Selection_016.png
+Note: The SDIO will not send any data as long as the Busy signal is asserted (SDIO_D0 pulled 
+low).
+
+.. image:: /Selection_017.png
+.. image:: /Selection_018.png
+.. image:: /Selection_019.png
+
+
+
+
+
 Reference
 ==========
 - `Secure Digital wiki<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
