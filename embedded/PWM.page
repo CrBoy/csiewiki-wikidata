@@ -99,20 +99,34 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
    
 - Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
+up counting mode
+----------------
+.. code-block:: prettyprint linenums
+
+   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
+
 .. image:: /Timer_upcounting.png
+
+down counting mode
+------------------
+.. code-block:: prettyprint linenums
+
+   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
+
 .. image:: /countdown.png
+
+center aligned mode
+-------------------
+.. code-block:: prettyprint linenums
+
+   TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
+
 .. image:: /center_aligned.png
 
-.. code-block:: prettyprint
+**PWM mode**
+------------
 
-  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
-  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
-  TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
-
-
-- **PWM mode**
-
-  - PWM configuration
+- PWM configuration
 
      - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
 
