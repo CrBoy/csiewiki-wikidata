@@ -131,20 +131,25 @@ Timer Mode
 
 Input capture mode
 ------------------
-
+- 目的 : 用來計算某外部信號特定狀態發生的時間點
+- 用途 : 脈波寬測量, 頻率量測
+- 可以設定外部觸發信號的型式，並使用外部觸發來觸動一個Timer的栓鎖動作
+- Timer計時值則會存入TIMx_CCRx
 
 PWM input mode
 --------------
+- 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM信號長度(TIMx_CCR1暫存器)和工作週期(TIMx_CCR2暫存器)，所以會使用到兩個通道。
 
 Forced output mode
 -------------------
+- 在輸出模式下，輸出比較信號能夠直接由軟體強制設為有效或是無效的狀態，而不依賴於輸出比較暫存器和計數器之間的比較結果。
 
 Output compare mode
 -------------------
+- 此項功能是用來控制一個輸出波形或是用來指示一段給定的時間已到。
 
 **PWM mode**
 ------------
-
 - PWM configuration
 
      - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
@@ -178,6 +183,7 @@ Output compare mode
     -         = (1680-1+1) * (500-1+1) /84000000 = 0.01 s(100Hz)
 
   - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
+
 
 
 Code_section
