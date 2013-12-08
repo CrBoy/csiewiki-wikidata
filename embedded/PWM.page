@@ -272,31 +272,35 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 - 目的 : 產生一個由TIMx_ARR暫存器決定頻率、由TIMx_CCRx暫存器決定工作週期的PWM信號。
 - PWM configuration
 
-     - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
+     - TIM_Prescaler  :  將TIMxCLK除以(TIM_Prescaler + 1)
 
-     - TIM_Prescaler  -  將TIMxCLK除以(TIM_Prescaler+1)
+     - TIM_CounterMode  :  選擇計數模式
 
-     - TIM_CounterMode  -  選擇計數模式
+     - TIM_Period  :  TIMx_ARR，counter 週期
 
-     - TIM_Period  -  TIMx_ARR，counter 週期
+     - TIM_OCPolarity: 設置輸出極性，例如:TIM_OCPolarity_High PWM輸出關閉時默認為低電位。 
 
-     - TIM_OCPolarity, 設置輸出極性，例如:TIM_OCPolarity_High PWM輸出關閉時默認為低電位。 
+     - TIM_OCMode: PWM模式
 
-     - TIM_OCMode  - PWM模式
+       - PWM 1 Mode : 
 
-       - PWM 1 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為1，否則輸出為0；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為0，否則輸出為1。
+         - 在向**上**計數，**TIMx_CNT<TIMx_CCRx**時，輸出為1，否則輸出為0；
+         - 在向**下**計數，**TIMx_CNT>TIMx_CCRx**時，輸出為0，否則輸出為1。
 
-       - PWM 2 Mode : 在向上計數，TIMx_CNT<TIMx_CCRx時，輸出為0，否則輸出為1；在向下計數，TIMx_CNT>TIMx_CCRx時，輸出為1，否則輸出為0。
+       - PWM 2 Mode : 
 
-     - TIM_Pulse  -  TIMx_CCRx，脈衝寬度
+         - 在向**上**計數，**TIMx_CNT<TIMx_CCRx**時，輸出為0，否則輸出為1；
+         - 在向**下**計數，**TIMx_CNT>TIMx_CCRx**時，輸出為1，否則輸出為0。
+
+     - TIM_Pulse:  即TIMx_CCRx暫存器，設定脈衝寬度
     
      - **輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK **
 
-- 以LED為例：
+- Example: PWM mode 1, 向上計數並以LED為例：
 
 .. image:: /timer.png
 
-  - TIM_Prescaler = 500-1, TIM_Period = 1680-1 , TIMxCLK=84MHz
+  - TIM_Prescaler = 500-1, TIM_Period = 1680-1 , TIMxCLK = 84MHz
 
   - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1)  / TIMxCLK
            
@@ -304,12 +308,12 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
   - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
-- PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
-   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
-
-- 改成中央對齊計數方式會怎麼樣?
+- Example: PWM mode 1, 中央對齊計數方式:
 
 .. image:: /中央對齊.png
+
+- PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
+   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
 
 Code_section
 =============
