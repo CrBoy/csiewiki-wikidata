@@ -238,6 +238,11 @@ Forced output mode
 
 .. [#] `Forced output mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
 
+.. code-block:: prettyprint linenums
+
+    TIM_OCInitStruct.TIM_OCPolarity = TIM_ForcedAction_InActive
+    TIM_OCInitStruct.TIM_OCPolarity = TIM_ForcedAction_Active
+
 - 在輸出模式下，輸出比較信號能夠直接由軟體強制設為有效(active)或是無效(inactive)的狀態，而無視輸出比較暫存器和計數器之間的比較結果。
 
 .. image:: /timer output stage.PNG
@@ -262,6 +267,10 @@ Output compare mode
 [#]_
 
 .. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
+
+.. code-block:: prettyprint linenums
+
+    TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_Toggle
 
 - 此項功能是用來控制一個輸出波形或是用來指示一段給定的時間已到。
 
@@ -288,7 +297,7 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
      - TIM_Period  :  TIMx_ARR，counter 週期
 
-     - TIM_OCPolarity: 設置輸出極性，例如:TIM_OCPolarity_High PWM輸出關閉時默認為低電位。 
+     - TIM_OCPolarity: 設置輸出極性 
 
      - TIM_OCMode: PWM模式
 
@@ -312,9 +321,9 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
   - TIM_Prescaler = 500-1, TIM_Period = 1680-1 , TIMxCLK = 84MHz
 
-  - 輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1)  / TIMxCLK
+  - 輸出脈波週期 = (TIM_Period + 1) * (TIM_Prescaler + 1)  / TIMxCLK
            
-    -         = (1680-1+1) * (500-1+1) /84000000 = 0.01 s(100Hz)
+    -         = ( 1680 - 1 +1 ) * ( 500 - 1 + 1 ) / 84000000 = 0.01s(100Hz)
 
   - 0.01 s 遠小於人眼視覺暫留的時間(0.1~0.4s)，因此上圖的PWM 1 duty cycle(75%)>PWM 2 duty cycle(25%)，PWM 1 Mode看起來會比PWM 2 Mode亮。
 
@@ -462,6 +471,7 @@ Website
 - `Wikipedia-PWM<http://en.wikipedia.org/wiki/Pulse-width_modulation>`_
 - `TIM_ClockDivision功用說明<http://blog.sina.com.cn/s/blog_76c545390100ovfj.html>`_
 - `PWM實現ADC與DAC<http://www.xjtudll.cn/Exp/143/>`_
+- `UNIVERSITA' DI BOLOGNA 的Timer 教材<http://www-micrel.deis.unibo.it/LABARCH/slidecorso2013/Lab4_2013.pdf>`_
   
 Books
 ------
