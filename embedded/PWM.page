@@ -231,8 +231,14 @@ Forced output mode
 
 - 而OCx又會受到CCxP bit (TIM_OCPolarity)影響
 
-    -  CCxP = 0 (TIM_OCPolarity = TIM_OCPolarity_Low)  -> OCx = !ocxref
-    -  CCxP = 1 (TIM_OCPolarity = TIM_OCPolarity_High) -> OCx =  ocxref
+    -  CCxP = 0 (TIM_OCPolarity = TIM_OCPolarity_Low)  -> OCx =  ocxref (default)
+    -  CCxP = 1 (TIM_OCPolarity = TIM_OCPolarity_High) -> OCx = !ocxref
+    - 對應
+
+.. code-block:: prettyprint linenums
+
+    TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_Low;
+    TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_High;
 
 Output compare mode
 -------------------
