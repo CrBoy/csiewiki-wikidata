@@ -505,6 +505,18 @@ shift register 除了shift 資料以外，還有什麼作用？
 * 1:控制‵`SCK``閒置的時候處於高電位 所以再大量傳送時的狀態 省電
 * 0:控制‵`SCK``閒置的時候處於低電位 所以在少量傳送資料時省電
 
+master和slave在設定上有什麼不同?
+-----------------------------
+
+- master
+  * 要用BR[2:0]來選baud rate
+  * hardware 模式下 NSS pin 要保持高電位,software  模式下 ssi=1
+
+
+- slave
+
+  * 不能選baud rate
+  * hardware 模式下 NSS pin 要保持低電位,software  模式下 ssi=0
 
 怎麼知道要使用哪些腳位？
 ---------------------
