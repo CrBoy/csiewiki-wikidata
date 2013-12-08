@@ -518,6 +518,23 @@ master和slave在設定上有什麼不同?
   * 不能選baud rate
   * hardware 模式下 NSS pin 要保持低電位,software  模式下 ssi=0
 
+Error flags
+-----------
+
+- Master mode fault (MODF)
+  * when the master device has its NSS pin pulled low (in NSShardware mode) or SSI bit low (in NSS software mode), this automatically sets the MODF bit.
+
+
+- Overrun condition
+  * An overrun condition occurs when the master device has sent data bytes and the slave device has not cleared the RXNE bit resulting from the previous data byte transmitted.
+
+
+- CRC error
+  * The CRCERR flag in the SPI_SR register is set if the value received in the shift register does not match the receiver SPI_RXCRCR value.
+
+
+
+
 怎麼知道要使用哪些腳位？
 ---------------------
 
