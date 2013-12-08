@@ -592,8 +592,9 @@ LIS302DL 資料傳送速度是100Hz 或 400Hz。<http://www.st.com/internet/com/
 Reference
 =========
 - `Serial Peripheral Interface Bus - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus>`_
-- Reference manual: `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_
-- Datasheet: `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_
+- `Shift register- Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/Shift_register>`_
+- `STM32F407xx Datasheet<http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf>`_
+- `STM32F407xx Reference Manual<https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_
 
 .. need improve
 .. _`Reference manual`: http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf
