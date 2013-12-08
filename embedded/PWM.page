@@ -123,6 +123,17 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
       
 Counter Modes
 =============
+
+Registers
+---------
+- TIMx_CNT: Counter Register, 計數器目前數道的值
+- TIMx_PSC: Prescaler Register   (software R/W), 除頻數
+- TIMx_ARR: Auto-Reload Register (software R/W), 存放計數起始(下數)或最大(上數)值
+- UEV: 當計數器overflow or underflow, 將會產生update event(UEV), 此時會把 Auto-Reload preload Register (software write)內容放入 Auto-Reload shadow register (hardware write)
+  - auto-reload preload enable bit(ARPE) in the TIMx_CR1 register之值設定是否直接放入, 
+    - ARPE = 0 直接把值轉入shadow register, 
+    - ARPE = 1 UEV產生時才將值轉入shadow register
+
 [#]_
 
 .. [#] ` Counter Modes<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 579
