@@ -129,8 +129,11 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
 - clock來源 : 
   
   - Internal clock(CK_INT)
+
   - External clock mode1: external input pin(TIx)
+
   - External clock mode2: external trigger input(ETR) available on TIM2, TIM3 and TIM4 only
+
   - Internal trigger inputs(ITRx): 使用另一個timer作為prescaler來產生除頻後之clock
       
 Counter Modes
@@ -142,11 +145,17 @@ Counter Modes
 Registers
 ---------
 - TIMx_CNT: Counter Register, 計數器目前數道的值
+
 - TIMx_PSC: Prescaler Register   (software R/W), 除頻數
+
 - TIMx_ARR: Auto-Reload Register (software R/W), 存放計數起始(下數)或最大(上數)值
+
 - UEV: 當計數器overflow or underflow, 將會產生update event(UEV), 此時會把 Auto-Reload preload Register (software write)內容放入 Auto-Reload shadow register (hardware write)
+
   - auto-reload preload enable bit(ARPE) in the TIMx_CR1 register之值設定是否直接放入, 
+
     - ARPE = 0 直接把值轉入shadow register, 
+
     - ARPE = 1 UEV產生時才將值轉入shadow register
 
 Prescaler Description
@@ -156,6 +165,7 @@ Prescaler Description
    TIM_TimeBaseInitStruct.TIM_Prescaler = PRES_VALUE - 1; 
 
 - 可除頻範圍1 ~ 65536(Set it in TIMx_PSC register)
+
 - example: prescaler control register設為1,但須等 update event產生才會載入至prescaler buffer, 因此下一個計數週期才會依據該值來除頻.
 
 .. image:: /Timer_prescaler_description.PNG
