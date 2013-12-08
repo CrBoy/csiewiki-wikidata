@@ -123,6 +123,9 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
       
 Counter Modes
 =============
+[#]_
+
+.. [#] ` Counter Modes<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 579
 
 Registers
 ---------
@@ -133,10 +136,6 @@ Registers
   - auto-reload preload enable bit(ARPE) in the TIMx_CR1 register之值設定是否直接放入, 
     - ARPE = 0 直接把值轉入shadow register, 
     - ARPE = 1 UEV產生時才將值轉入shadow register
-
-[#]_
-
-.. [#] ` Counter Modes<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 579
 
 Upcounting mode
 ----------------
@@ -164,6 +163,17 @@ Center-aligned mode
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
 .. image:: /center_aligned.png
+
+Prescaler Description
+-----------------------
+.. code-block:: prettyprint linenums
+   
+   TIM_TimeBaseInitStruct.TIM_Prescaler = PRES_VALUE - 1; 
+
+- 可除頻範圍1 ~ 65536(Set it in TIMx_PSC register)
+- example: prescaler control register設為1,但須等 update event產生才會載入至prescaler buffer, 因此下一個計數週期才會依據該值來除頻.
+
+.. image:: /Timer_prescaler_description.PNG
 
 Functional Modes
 =================
