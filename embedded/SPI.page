@@ -49,9 +49,7 @@ Device overview
 ===============
 
 .. image:: /stm32f40x_block_diagram.png
-STM32F40x block diagram [#]_
-
-.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.661
+STM32F40x block diagram 
 
 - 3 SPI的傳輸速度
   * SPI1: 42Mbits/s 
@@ -69,7 +67,7 @@ SPI functional description
 .. image:: /embedded/SPI/SPI block diagram.png
 SPI block diagram [#]_
 
-.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.793
+.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.661
 
 general
 -------
@@ -97,7 +95,7 @@ general
 .. image:: /embedded/SPI/single master _ single slave application.png
 SPI single master/single slave application [#]_
 
-.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.794
+.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.662
 
 .. baud rate ref menual p.834
 
@@ -112,7 +110,7 @@ Clock phase and clock polarity
 .. image:: /embedded/SPI/SPI Dota clock timing diagram.png
 Data clock timing diagram[#]_
 
-.. [#] `STM32F405xx, STM32F407xx , STM32F415xx and ... <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/DM00031020.pdf>`_ p.796
+.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.664
 
 SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4種組合。
 
@@ -541,7 +539,7 @@ Error flags
 .. image:: /alternate function mapping.png
 Alternate function mapping[#]_
 
-.. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.58
+.. [#] `Datasheet <http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.61
 
 
 為何要定義為low-active？
