@@ -18,17 +18,24 @@ Clock control
 ==============
 - 在學習Timer前, 先瞭解系統clock是如何產生的, 以及給Timer的clock值.
 
-- A part of clock tree (STM32F407xx Reference mamual  - p. 576)
+- A part of clock tree
+
+[#]_
+
+.. [#] ` Clock tree<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 212
 
 .. image:: /Timer_clock.png
 
-- HSE clock (High speed external clock signal)
+- 我們使用Crystal resonator作為外部震盪, 其頻率為8Hz（由STM32f4 discovery user manual 可知）
 
-我們使用Crystal resonator作為外部震盪, 其頻率為8Hz（由STM32f4 discovery user manual 可知）
+
+[#]_
+
+.. [#] ` system_stm32f4xx.c<https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/system_stm32f4xx.c>`_
 
 - APBx timer clocks 計算
 
-  - 參閱system_stm32f4xx.c
+  - 參閱system_stm32f4xx.c 
 
     - line 341 RCC->CR |= ((uint32_t)RCC_CR_HSEON);
 
@@ -46,7 +53,7 @@ Clock control
 
     - line 365  RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
 
-       - 此行設定HCLK = SYSCLK / 1 = 168MHz
+       - 此行設定HCLK(High speed external clock signal) = SYSCLK / 1 = 168MHz
 
     - line 372  RCC->CFGR |= RCC_CFGR_PPRE1_DIV4;
 
@@ -62,8 +69,11 @@ Clock control
 Timers
 =======
 
-Basic timers 基本定時器(TIM6 和 TIM7)
+Basic timers 基本定時器(TIM6 和 TIM7) 
 ----------------------------------------
+[#]_
+
+.. [#] ` TIM6 和 TIM7<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 678
 
 - 具有 16-bit auto-reload upcounter driven by a programmable prescaler
 
@@ -71,40 +81,51 @@ Basic timers 基本定時器(TIM6 和 TIM7)
 
 Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
 -----------------------------------------------------
+[#]_
+
+.. [#] ` TIM1 和 TIM8<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 507
 
 - 具有 16-bit up, down, up/down auto-reload counter driven by a programmable prescaler which allowing dividing the counter clock frequency either by any factor between 1 and 65536(2^16).
 
-- 用途: 最多有四個獨立通道可用於input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.
+- 用途: 最多有**四個**獨立通道可用於input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.
 
 - 與TIM2&TIM5之差異: 可以 Break input to put the timer's output signals in reset state or in a known state
 
 General-purpose timers 通用定時器(TIM9 to TIM14)
 ------------------------------------------------------
+[#]_
+
+.. [#] ` TIM9 to TIM14<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 637
+
 - 具有16-bit auto-reload up counter.
 
 - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
 
-- 用途: 最多有兩個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
+- 用途: 最多有**兩個**獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
-General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamual  - p. 576)
+General-purpose timers 通用定時器(TIM2 to TIM5) 
 --------------------------------------------------------------------------------------
+[#]_
+
+.. [#] ` TIM2 to TIM5<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 576
 
 - 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
 
 - 以及16-bit programmable prescaler used to divide the counter clock frequency by any factor between 1 and 65536.
 
-- 用途: 最多有四個獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
+- 用途: 最多有**四個**獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
 - Block diagram
 
 .. image:: /BD of GP timer.png
 
 - clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
-   
-- Counter modes (STM32F407xx Reference mamual  - p. 579)    
-
+      
 Counter Modes
 =============
+[#]_
+
+.. [#] ` Counter Modes<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 579
 
 Upcounting mode
 ----------------
@@ -133,20 +154,33 @@ Center-aligned mode
 
 .. image:: /center_aligned.png
 
-Timer Mode
-==========
+Functional Modes
+=================
+
 Input capture mode
 ------------------
+[#]_
+
+.. [#] `Input capture mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 592
+
 - 目的 : 用來計算某外部信號特定狀態發生的時間點
 - 用途 : 脈波寬測量, 頻率量測
 - 可以設定外部觸發信號的型式，並使用外部觸發來觸動一個Timer的栓鎖動作，這時候Timer計時值則會存入TIMx_CCRx暫存器。
 
 PWM input mode
 --------------
+[#]_
+
+.. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 593
+
 - 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM信號長度(TIMx_CCR1暫存器)和工作週期(TIMx_CCR2暫存器)，所以會使用到兩個通道。
 
 Forced output mode
 -------------------
+[#]_
+
+.. [#] `Forced output mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
+
 - 在輸出模式下，輸出比較信號能夠直接由軟體強制設為有效(active)或是無效(inactive)的狀態，而無視輸出比較暫存器和計數器之間的比較結果。
 
 .. image:: /timer output stage.PNG
@@ -162,12 +196,26 @@ Forced output mode
 
 Output compare mode
 -------------------
+[#]_
+
+.. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
+
 - 此項功能是用來控制一個輸出波形或是用來指示一段給定的時間已到。
+
+Detail of OC1M[2:0] in the TIMx_CCMR1 Register
+------------------------------------------------
+[#]_
+
+.. [#] `TIMx_CCMR1<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 621
 
 .. image:: /OC1M(output compare mode).png
 
 **PWM mode**
 ------------
+[#]_
+
+.. [#] `PWM mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 595
+
 - 目的 : 產生一個由TIMx_ARR暫存器決定頻率、由TIMx_CCRx暫存器決定工作週期的PWM信號。
 - PWM configuration
 
@@ -212,6 +260,9 @@ Output compare mode
 
 Code_section
 =============
+[#]_
+
+.. [#] `Demo Codes main.c<https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/main.c>`_
 
 RCC_Configuration
 --------------------
