@@ -103,10 +103,10 @@ General-purpose timers 通用定時器(TIM2 to TIM5) (STM32F407xx Reference mamu
    
 - Counter modes (STM32F407xx Reference mamual  - p. 579)    
 
-Counting Mode
+Counter Modes
 =============
 
-up counting mode
+Upcounting mode
 ----------------
 .. code-block:: prettyprint linenums
 
@@ -117,7 +117,7 @@ up counting mode
 
 UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain   triggered. 
 
-down counting mode
+Downcounting mode
 ------------------
 .. code-block:: prettyprint linenums
 
@@ -125,7 +125,7 @@ down counting mode
 
 .. image:: /countdown.png
 
-center aligned mode
+Center-aligned mode
 -------------------
 .. code-block:: prettyprint linenums
 
@@ -341,14 +341,15 @@ Demo video
 Reference
 =============
 
-- http://blog.csdn.net/scarlettsp/article/details/6656588 
-- http://zh.wikipedia.org/zh-tw/%E8%84%88%E8%A1%9D%E5%AF%AC%E5%BA%A6%E8%AA%BF%E8%AE%8A
-- http://ppt.cc/nIAF
-- http://www.google.com.tw/url?sa=t&rct=j&q=pwm&source=web&cd=10&cad=rja&ved=0CFMQFjAJ&url=http%3A%2F%2Fwww.vr.ncue.edu.tw%2Fesa%2Fa1001%2FPWM.pdf&ei=S3OoUO6pOafcmAWWiIGQDw&usg=AFQjCNE_7pw6paGQzH7kSwkwD2witqcC-A
-- http://hi.baidu.com/snic_k/item/0f045e3288e6683d2e20c42b
-- 陳志旺（2012），STM32 嵌入式微控制器快速上手，中國：電子工業出版社。
-- http://blog.sina.com.cn/s/blog_76c545390100ovfj.html
+Website
+--------
+
+- `Shadow register <http://blog.csdn.net/scarlettsp/article/details/6656588>`_
+- `Wikipedia-PWM<http://en.wikipedia.org/wiki/Pulse-width_modulation>`_
+- `TIM_ClockDivision功用說明<http://blog.sina.com.cn/s/blog_76c545390100ovfj.html>`_
   
-  P.155  8.3.3 計數器模式
+Books
+------
 
 - Keil MDK ARM 原理與實作，MDK研究團隊編著，台科大圖書。
+- 陳志旺（2012），STM32 嵌入式微控制器快速上手，中國：電子工業出版社。   P.155  8.3.3 計數器模式
