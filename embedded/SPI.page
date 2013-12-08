@@ -482,7 +482,10 @@ Question question
 
 .. image:: /synchronization.png
 
+Bus和prescaler的關係
+-------------------
 
+- The maximum allowed frequency of the high-speed ``APB2`` domain is 84 MHz. Themaximum allowed frequency of the low-speed ``APB1`` domain is 42 MHz，在SPI—CR1的BR[2:0]中設定除頻。
 
 怎麼知道要使用哪些腳位？
 ---------------------
