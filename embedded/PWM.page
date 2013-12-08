@@ -69,6 +69,13 @@ Clock control
 Timers
 =======
 
+- Timer 和 RTC的差別
+  
+  - Timer可被用於多種用途, 其中包含量測輸入訊號之pulse寬度, 或產生輸出波形。
+  - Real-Time Clock(RTC)是負責記錄時間的專用積體電路，出現在需要長期使用時鐘的電子設備中。[#]_
+
+.. [#] `RTC introducion<http://wiki.csie.ncku.edu.tw/embedded/RTC#introduction>`_
+
 Basic timers 基本定時器(TIM6 和 TIM7) 
 ----------------------------------------
 [#]_
@@ -419,10 +426,6 @@ Demo video
 補充
 =============
 
-1. timer 和 RTC的差別
-
-    The system timer is what makes everything in the computer run at the same speed. 
-    For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.The Real Time Clock tells the system what day/time it is.
 
 範例程式
 =============
