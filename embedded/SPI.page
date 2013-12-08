@@ -490,7 +490,7 @@ shift register 除了shift 資料以外，還有什麼作用？
 
 - 移位暫存器的輸入、輸出都可以是並行(parallel)或串列(serial)的。它們經常被配置成串入並出（serial-in, parallel-out, SIPO）的形式或併入串出（parallel-in, serial-out, PISO），這樣就可以實現並行數據和串列數據的轉換。如果把移位暫存器的串列輸入端，和並行輸出端的最後一位連接起來，還可以構成循環移位暫存器（circular shift register），用來實現循環計數功能。
 
-為什麼 slave的VDD要接地,master的不用？
+為什麼 slave的NSS要接地,master的不用？
 -----------------------------------
 
 - 因為如果在hardware mode下,master nss被pull low的話, master mode 會發生錯誤而slave mode 的 nss 要保持低電位 slave mode 才會動作 所以要接地
@@ -500,8 +500,8 @@ shift register 除了shift 資料以外，還有什麼作用？
 
 ``cpol``: 
 
-* 1:控制‵`SCK``閒置的時候處於高電位 所以再大量傳送時的狀態 省電
-* 0:控制‵`SCK``閒置的時候處於低電位 所以在少量傳送資料時省電
+* 1:控制``SCK``閒置的時候處於高電位 所以再大量傳送時的狀態 省電
+* 0:控制``SCK``閒置的時候處於低電位 所以在少量傳送資料時省電
 
 master和slave在設定上有什麼不同?
 -----------------------------
@@ -537,8 +537,8 @@ SPI通訊過程
 
 
 - 當data寫到master的SPI_DR(TX Buffer)時(TXE=0), 傳輸開始
-- master傳送第一個bit的時候,剩下的7個bit會被並行load到shift register中(TXE=1)
-- 然後這些bits會經由MOSI依序傳輸到slave的shift register裡 , 同時 , master的shift register也從MISO一個個收到slave傳來的8個bit 
+- master傳送第一個bit的時候,剩下的7個bit會被並行load到shift register中(TXE=1)[同時,slave端的SPI_DR裡的data並行被load到 shift register中]
+- 然後這些bits會經由MOSI依序傳輸到slave的shift register裡  [同時,master的shift register也從MISO一個個收到slave傳來的8個bit] 
 - master的shift register收到8個bits後 , 會將這8bits並行寫入SPI_DR(RX buffer) (RXNE=1)
  
 
