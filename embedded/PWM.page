@@ -294,7 +294,7 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
      - TIM_Pulse:  即TIMx_CCRx暫存器，設定脈衝寬度
     
-     - **輸出脈波週期 = (TIM_Period+1) * (TIM_Prescaler+1) * (TIM_ClockDivision+1) / TIMxCLK **
+     - **輸出脈波週期 = (TIM_Period + 1) * (TIM_Prescaler + 1) / TIMxCLK **
 
 - Example: PWM mode 1, 向上計數並以LED為例：
 
