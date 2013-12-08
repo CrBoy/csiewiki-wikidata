@@ -497,6 +497,14 @@ shift register 除了shift 資料以外，還有什麼作用？
 
 - 因為如果在hardware mode下,master nss被pull low的話, master mode 會發生錯誤而slave mode 的 nss 要保持低電位 slave mode 才會動作 所以要接地
 
+為什麼要有CPOL,CPHA分高地電位？
+----------------------------
+
+``cpol``: 
+
+* 1:控制‵`SCK``閒置的時候處於高電位 所以再大量傳送時的狀態 省電
+* 0:控制‵`SCK``閒置的時候處於低電位 所以在少量傳送資料時省電
+
 
 怎麼知道要使用哪些腳位？
 ---------------------
