@@ -51,7 +51,7 @@ Device overview
 .. image:: /stm32f40x_block_diagram.png
 STM32F40x block diagram [#]_
 
-.. [#] `DS8626: ARM Cortex-M4 32b MCU+FPU, 210DMIPS, up to 1MB Flash/192+4KB RAM, USB OTG HS/FS, Ethernet, 17 TIMs, 3 ADCs, 15 comm. interfaces & camera <http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/DM00037051.pdf>`_ p.18
+.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.661
 
 - 3 SPI的傳輸速度
   * SPI1: 42Mbits/s 
