@@ -492,6 +492,10 @@ shift register 除了shift 資料以外，還有什麼作用？
 
 - 移位暫存器的輸入、輸出都可以是並行(parallel)或串列(serial)的。它們經常被配置成串入並出（serial-in, parallel-out, SIPO）的形式或併入串出（parallel-in, serial-out, PISO），這樣就可以實現並行數據和串列數據的轉換。如果把移位暫存器的串列輸入端，和並行輸出端的最後一位連接起來，還可以構成循環移位暫存器（circular shift register），用來實現循環計數功能。
 
+為什麼 slave的VDD要接地,master的不用？
+-----------------------------------
+
+- 因為如果在hardware mode下,master nss被pull low的話, master mode 會發生錯誤而slave mode 的 nss 要保持低電位 slave mode 才會動作 所以要接地
 
 
 怎麼知道要使用哪些腳位？
