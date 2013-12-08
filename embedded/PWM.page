@@ -114,6 +114,9 @@ up counting mode
 
 .. image:: /Timer_upcounting.png
 
+
+UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain   triggered. 
+
 down counting mode
 ------------------
 .. code-block:: prettyprint linenums
@@ -312,38 +315,23 @@ PWM control
 
 Demo video
 ==========
-
-* http://youtu.be/RHzLguvuOKY
-* http://youtu.be/guG6MdLIwfI  (LED 3 4 5 6依序 亮-暗 轉換)
-
-* http://youtu.be/ygELIXJFHM8
-* http://youtu.be/jJfebbbMDPw  (透過外接 BUTTON 調整 LED亮度)
-* http://youtu.be/bFRWfXI_k5Q  (透過PWM使MOTOR達到快慢快慢變化)
+1. `輪流點亮LED <http://youtu.be/ygELIXJFHM8>`_
+2. `透過PWM使MOTOR達到快慢快慢變化 <http://youtu.be/bFRWfXI_k5Q>`_
 
 補充
 =============
-1. overflow 和 UEV UIF的關係
 
-    UEV occurs everytime an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain   triggered. 
-
-2. timer 和 RTC的差別
+1. timer 和 RTC的差別
 
     The system timer is what makes everything in the computer run at the same speed. 
-
     For example, your CPU won't look for a fresh batch of data while the Memory is still trying to feed it the last batch.The Real Time Clock tells the system what day/time it is.
 
 範例程式
 =============
 
-- https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output
+1. `輪流點亮LED <https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output>`_
 
-  依序點亮LED
-
-- https://gitcafe.com/embedded2012/P-coolod/blob/master/Lab-6/discoveryF4/TIM_PWM_Output/main.c
-  
-  此程式為依序更改 LED 3 4 5 6(利用PD12 13 14 15 作PWM應用)亮度 由暗漸漸轉亮 再由亮漸漸轉暗
-
-- https://gitcafe.com/embedded2012/P-coolod/blob/master/Lab-6/discoveryF4/GPIO_test/main.c
+2. `藉由button改變duty cycle <https://gitcafe.com/embedded2012/P-coolod/blob/master/Lab-6/discoveryF4/GPIO_test/main.c>`_
 
   此程式碼利用PB4 5作Output pin持續輸出高態電壓,PA2 3作Input Pin接收來在output pin的電壓輸入,並設定負緣觸發中斷,中斷觸發以改變duty cycle佔空比,電壓高低態變化則利用外接button,當按下button則電壓 高->低 ,PA2 3接收到變化便會觸發中斷,透過改變Timer來做duty cycle佔空比的改變,以達到LED亮暗改變.(以下圖說明)
 
