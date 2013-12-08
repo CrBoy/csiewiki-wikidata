@@ -168,6 +168,7 @@ Output compare mode
 
 **PWM mode**
 ------------
+- 目的 : 產生一個由TIMx_ARR暫存器決定頻率、由TIMx_CCRx暫存器決定工作週期的PWM信號。
 - PWM configuration
 
      - TIM_ClockDivision  - 採樣頻率基準，當連續採樣到N個有效電平時，才當作一次有效電平。
