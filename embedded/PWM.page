@@ -339,33 +339,32 @@ PWM realize ADC and DAC
 =======================
 
 - PWM realize ADC :
-----------------
+-------------------
 
 .. image:: /PWM實現ADC.png
 
 - principle brief:
-----------
 
      - 利用PWM可控制duty_cycle之特性，配合電阻和電容的濾波電路即可產生小於VDD之任意電壓值( U1= 5* ( D1 / (D1+D2) ) )。
 
      - 再利用OPA比較類比輸入和PWM所產生的輸入壓即可得知現在所輸入類比訊號值。
 
 - RC value design:
--------------
+------------------
 
 .. image:: /RC值設計.png
 
 .. image:: /RE值設計2.png
 
 - ADC transform :
--------------
+-----------------
 
      - 首先讓PWM的duty_cycle從小開始增大(即是控制RCC暫存器從小到大)，當PWM所產生的電壓小於類比輸入則OPA輸出依然都是正值，而一當PWM所產生的電壓大於類比的輸入OPA即會變輸出負值，而由負轉正的瞬間RCC所存的值即是我們所要求的數位電壓值。
 
      - ADC之解析度則是由控制PWM的duty_cycle的暫存器大小而決定，EX:STM32 TIM4 的RCC為16bit 而AD解析度就為16bit。
 
 - featrue of PWM realize ADC:
------------------
+-----------------------------
 
      - 利用RC濾波會產生漣波誤差，因此ADC的經度較不準。
      - PWM產生和RC濾波都需要時間因此其ADC轉換較慢，較適合ADC轉換速率不高的產品。
@@ -373,12 +372,11 @@ PWM realize ADC and DAC
      - AD轉換頻率可藉由加快加單晶片速度而提升。
 
 - PWM realize DAC:
-----------------
+------------------
 
 .. image:: /PWM實現DAC.png
 
 - principle brief:
-----------
 
      - 觀念和利用PWM實現AD相同，利用RC濾波電路將不同duty cycle的PWM訊號轉類比訊號，只是其OPA當作一電壓隨偶器。
 
