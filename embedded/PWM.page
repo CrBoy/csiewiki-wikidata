@@ -119,7 +119,12 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
 
 .. image:: /BD of GP timer.png
 
-- clock來源 : 內部clock(CK_INT)、外部clock模式1(TIx)、外部clock模式2(ETR)、內部觸發輸入(ITRx)。
+- clock來源 : 
+  
+  - Internal clock(CK_INT)
+  - External clock mode1: external input pin(TIx)
+  - External clock mode2: external trigger input(ETR) available on TIM2, TIM3 and TIM4 only
+  - Internal trigger inputs(ITRx): 使用另一個timer作為prescaler來產生除頻後之clock
       
 Counter Modes
 =============
@@ -154,10 +159,10 @@ Upcounting mode
 
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
 
-- 由0數至TIMx_ARR register之值, 然後再回到0並產生overflow event(update event).
 
-- 此時auto-reload shadow register將會更新為TIMx_ARR之值.
-   - 可藉由設定UDIS bit = 1來關閉UEV, 可用於避免正在更改preload register內容時, 剛好發生UEV而將舊的值轉移至shadow register中
+- 由0數至TIMx_ARR register之值, 然後再回到0並產生overflow event(update event), 此時auto-reload shadow register將會更新為TIMx_ARR之值.
+   
+  - 可藉由設定UDIS bit = 1來關閉UEV, 可用於避免正在更改preload register內容時, 剛好發生UEV而將舊的值轉移至shadow register中
 
 - Example: TIMx_ARR = 0x36, prescaler buffer  = 1
 
