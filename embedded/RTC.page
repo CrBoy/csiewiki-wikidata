@@ -714,6 +714,44 @@ Display String
           str=display;
   }
 
+------------------------------------
+
+Q & A 
+================
+
+**1.潤年是否可調整？**
+
+Ans:
+
+  可以, RTC提供了自動調整潤年的功能。
+
+  參考手冊 p.536.( Compensations for 28-, 29- (leap year), 30-, and 31-day months are performed automatically.)
+
+-----------------------------------------------------------------------------------------------------------------
+
+**2.為什麼要存在shadow register?**
+
+Ans:
+
+- 有些暫存器是兩層的,第一層是給CPU存取,第二層是給硬體存取,像是我們使用的calendar register 與shadow register 其實它們兩個就是上下層的關係,不過是屬於同一個暫存器。CPU在寫入暫存器時,會先寫入在上層的calendar register,隨後硬體更新之後才會在下層提供shadow register,而shadow register 可以直接對硬體存取 。
+
+- 當我們讀取calendar register時, APB1的clock頻率必須等於或大於RTC的clock頻率才行, **存在shadow register是為了可以確保同步機制的安全**, 如果APB1 clock頻率小於RTC clock頻率的話,CPU可能會讀到兩次的時間與日期。所以在初始化時,必須採用shadow register,才不會造成同步上的問題。
+
+  參考手冊 p.542.
+
+--------------------------------------
+
+**3.下數(down counter)如何實現？**
+
+Ans:
+
+----------------------------------------------
+  
+**4.Backup domain 為什麼從1.65V轉成1.2V？**
+
+Ans:
+
+---------------------------------------------
 
 Reference
 ================
