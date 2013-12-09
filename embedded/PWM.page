@@ -337,8 +337,11 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
 PWM realize ADC and DAC
 =======================
+[#]_
 
-- PWM realize ADC :
+.. [#] `PWM實現ADC與DAC<http://www.xjtudll.cn/Exp/143/>`_額外補充
+
+PWM realize ADC :
 -------------------
 
 .. image:: /PWM實現ADC.png
@@ -349,21 +352,21 @@ PWM realize ADC and DAC
 
      - 再利用OPA比較類比輸入和PWM所產生的輸入壓即可得知現在所輸入類比訊號值。
 
-- RC value design:
+RC value design:
 ------------------
 
 .. image:: /RC值設計.png
 
 .. image:: /RE值設計2.png
 
-- ADC transform :
+ADC transform :
 -----------------
 
      - 首先讓PWM的duty_cycle從小開始增大(即是控制RCC暫存器從小到大)，當PWM所產生的電壓小於類比輸入則OPA輸出依然都是正值，而一當PWM所產生的電壓大於類比的輸入OPA即會變輸出負值，而由負轉正的瞬間RCC所存的值即是我們所要求的數位電壓值。
 
      - ADC之解析度則是由控制PWM的duty_cycle的暫存器大小而決定，EX:STM32 TIM4 的RCC為16bit 而AD解析度就為16bit。
 
-- featrue of PWM realize ADC:
+featrue of PWM realize ADC:
 -----------------------------
 
      - 利用RC濾波會產生漣波誤差，因此ADC的經度較不準。
@@ -371,7 +374,7 @@ PWM realize ADC and DAC
      - 由於U1電壓是由小加到大，因此電壓較小的類比訊號會較快轉換(即取樣頻率不固定)。
      - AD轉換頻率可藉由加快加單晶片速度而提升。
 
-- PWM realize DAC:
+PWM realize DAC:
 ------------------
 
 .. image:: /PWM實現DAC.png
