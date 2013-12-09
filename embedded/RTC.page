@@ -733,11 +733,11 @@ Ans:
 
 Ans:
 
-- 有些暫存器是兩層的,第一層是給CPU存取,第二層是給硬體存取,像是我們使用的calendar register 與shadow register 其實它們兩個就是上下層的關係,不過是屬於同一個暫存器。CPU在寫入暫存器時,會先寫入在上層的calendar register,隨後硬體更新之後才會在下層提供shadow register,而shadow register 可以直接對硬體存取 。
+- 有些暫存器是兩層的,第一層是給CPU存取,第二層是給硬體存取,像是我們使用的**shadow register **與**硬體**其實它們兩個就是上下層的關係,不過是屬於同一個暫存器（**calendar register**）。CPU在寫入暫存器時,會先寫入在上層的shadow register,隨後硬體更新之後才會在下層動作, 所以shadow register 可以直接對硬體存取 。
 
-- 當我們讀取calendar register時, APB1的clock頻率必須等於或大於RTC的clock頻率才行, **存在shadow register是為了可以確保同步機制的安全**, 如果APB1 clock頻率小於RTC clock頻率的話,CPU可能會讀到兩次的時間與日期。所以在初始化時,必須採用shadow register,才不會造成同步上的問題。
+- 而當我們讀取calendar register時, APB1的clock頻率必須等於或大於RTC的clock頻率才行, **存在shadow register是為了可以確保同步機制的安全**, 如果APB1 clock頻率小於RTC clock頻率的話,CPU可能會讀到兩次的時間與日期。所以在初始化時,必須採用shadow register,才不會造成同步上的問題。
 
-  參考手冊 p.542.
+  參考手冊 p.539
 
 --------------------------------------
 
@@ -767,7 +767,11 @@ Ans:
 
 Ans:
 
----------------------------------------------
+因一般電池的電壓為1.5~1.2V, 而Backup domain只需在1.2V以上即可工作。
+
+ps. 一般電池的電壓為1.5v(鹼性電池)至1.2(一般及充電電池)
+
+--------------------------------------------------------------------------------------
 
 Reference
 ================
@@ -782,3 +786,4 @@ Reference
 
 `LCD introduction (選左邊清單的"LCD控制")<http://faculty.stust.edu.tw/~wjshieh/>`_
 
+`電池規格<http://zh.wikipedia.org/wiki/%E4%B9%BE%E9%9B%BB%E6%B1%A0/>`_
