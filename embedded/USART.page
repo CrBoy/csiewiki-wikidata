@@ -1,104 +1,80 @@
 INTRODUCTION
 ...................
-The universal synchronous asynchronous receiver transmitter (USART) offers a flexible means of full-duplex data exchange with external equipment requiring an industry standard NRZ asynchronous serial data format. The USART offers a very wide range of baud rates using a fractional baud rate generator.
+USART(universal synchronous asynchronous receiver transmitter) 通用同步/非同步收發傳輸器，提供了一種靈活的方法及使用NRZ非同步串行資料格式與外部設備之間進行全雙工資料交換。
+同時，USART也提供同步的方式半雙工的通信，另外支持LIN (local interconnection network)，Smartcard協定及IrDA (infrared data association紅外通訊技術) SIR ENDEC，Modem(CTS/RTS)的操作。
+藉由DMA多重緩衝器的方式，可達到高速資料的通訊。
 
-It supports synchronous one-way communication and half-duplex single wire
-communication. It also supports the LIN (local interconnection network), Smartcard Protocol and IrDA (infrared data association) SIR ENDEC specifications, and modem operations (CTS/RTS). It allows multiprocessor communication.
 
-High speed data communication is possible by using the DMA for multibuffer configuration.
+
 
 MAIN FEATURES
 ...................
 
-- Full duplex, asynchronous communications
+- 全雙工的非同步通訊
 
-- NRZ standard format (Mark/Space)
+- NRZ標準資料格式
 
-- Configurable oversampling method by 16 or by 8 to give flexibility between speed  and clock tolerance
+- 可程式化的資料長度 (8 or 9 bits)
 
-- Fractional baud rate generator systems
+- 可程式化的停止位元 (1 or 2 bits)
 
- - Common programmable transmit and receive baud rate (refer to the datasheets for the value of the baud rate at the maximum APB frequency).
+- 提供同步傳輸的CLK信號
 
-- Programmable data word length (8 or 9 bits)
+- 藉由DMA的多緩衝器資料傳輸，每個USART都能用DMA發送和接收資料
 
-- Configurable stop bits - support for 1 or 2 stop bits
+- 獨立的發送器和接收器的enable bit
 
-- LIN Master Synchronous Break send capability and LIN slave break detection capability
+- 傳輸檢測標誌
 
- –  13-bit break generation and 10/11 bit break detection when USART is hardware configured for LIN
+ – 接收緩衝區滿
 
-- Transmitter clock output for synchronous transmission
+ – 傳送緩衝區空
 
-- IrDA SIR encoder decoder
+ – 傳輸結束
 
- – Support for 3/16 bit duration for normal mode
+- 校驗控制
 
-- Smartcard emulation capability
+ – 發送校驗位
 
- – The Smartcard interface supports the asynchronous protocol Smartcards as defined in the ISO 7816-3 standards
+ – 對接收的資料進行校驗
 
- – 0.5, 1.5 stop bits for Smartcard operation
+- 4個錯誤檢測標誌
 
-- Single-wire half-duplex communication
+ – 溢出錯誤(Overrun error)
 
-- Configurable multibuffer communication using DMA (direct memory access)
+ – 噪音檢測(Noise detection)
 
- – Buffering of received/transmitted bytes in reserved SRAM using centralized DMA
+ – Frame錯誤
 
-- Separate enable bits for transmitter and receiver
+ – 校驗錯誤
 
-- Transfer detection flags:
+- 10個中斷源
 
- – Receive buffer full
+ – CTS改變
 
- – Transmit buffer empty
+ – LIN中斷檢測
 
- – End of transmission flags
+ – 傳送緩衝區空
 
-- Parity control:
+ – 傳送完成
 
- – Transmits parity bit
+ – 接收緩衝區滿
 
- – Checks parity of received data byte
+ – 空閒線路檢測
 
-- Four error detection flags:
+ – 溢出錯誤
 
- – Overrun error
+ – Frame錯誤
 
- – Noise detection
+ – 噪音錯誤
 
- – Frame error
+ – 校驗錯誤
 
- – Parity error
+- 2種喚醒接收器的方式
 
-- Ten interrupt sources with flags:
+ - Address bit (MSB, 9th bit)
 
- – CTS changes
-
- – LIN break detection
-
- – Transmit data register empty
-
- – Transmission complete
-
- – Receive data register full
-
- – Idle line received
-
- – Overrun error
-
- – Framing error
-
- – Noise error
-
- – Parity error
-
-- Multiprocessor communication - enter into mute mode if address match does not occur
-
-- Wake up from mute mode (by idle line detection or address mark detection)
-
-- Two receiver wakeup modes: Address bit (MSB, 9th bit), Idle line
+ - Idle line
 
 
 USART functional description
