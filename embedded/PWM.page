@@ -437,7 +437,7 @@ TIM_Configuration
     TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;    
     TIM_TimeBaseInit( TIM4, &TIM_TimeBaseInitStruct );
     
-    TIM_OCStructInit( &TIM_OCInitStruct );reset TIM_OCStructInit
+    TIM_OCStructInit( &TIM_OCInitStruct );//reset TIM_OCStructInit
     TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;
     
