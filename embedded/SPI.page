@@ -36,7 +36,7 @@ SPI features(STM32)
 - Multimaster mode capability
 - dynamic change of master/slave operations
 - 8 master baud rate prescalers
-- slave mode frequency
+.. - slave mode frequency
 - SPI TI / motorola mode 
 - MSB-first or LSB-first
 - Hardware CRC
@@ -182,6 +182,7 @@ BUSY flag：用以指示SPI 正忙於傳輸的 flag
 Code section
 ============
 .. image:: /DSC_0448.jpg
+Demo影片:  http://youtu.be/ciwYDsaJIYE
 
 完整程式碼：
 
