@@ -160,6 +160,11 @@ Registers
 
 Prescaler Description
 -----------------------
+
+[#]_
+
+.. [#] ` Clock tree<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 578
+
 .. code-block:: prettyprint linenums
    
    TIM_TimeBaseInitStruct.TIM_Prescaler = PRES_VALUE - 1; 
