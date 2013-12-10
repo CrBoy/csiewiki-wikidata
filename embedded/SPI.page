@@ -36,7 +36,6 @@ SPI features(STM32)
 - Multimaster mode capability
 - dynamic change of master/slave operations
 - 8 master baud rate prescalers
-.. - slave mode frequency
 - SPI TI / motorola mode 
 - MSB-first or LSB-first
 - Hardware CRC
