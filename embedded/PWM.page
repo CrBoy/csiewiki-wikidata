@@ -222,7 +222,7 @@ Input capture mode
 
 - 目的 : 用來計算某外部信號特定狀態發生的時間點
 - 用途 : 脈波寬測量, 頻率量測
-- 可以設定外部觸發信號的型式，並使用外部觸發來觸動一個Timer的栓鎖動作，這時候Timer計時值則會存入TIMx_CCRx暫存器。
+- 可以設定外部觸發信號的型式，並使用外部觸發(ICx signal)來觸動一個Timer的栓鎖動作，這時候counter計數值則會存入TIMx_CCRx暫存器。
 
 PWM input mode
 --------------
@@ -230,7 +230,7 @@ PWM input mode
 
 .. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 593
 
-- 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM信號長度(TIMx_CCR1暫存器)和工作週期(TIMx_CCR2暫存器)，所以會使用到兩個通道。
+- 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM訊號週期(存於TIMx_CCR1暫存器)和工作週期(存於TIMx_CCR2暫存器)，所以會使用到兩個通道。
 
 Forced output mode
 -------------------
