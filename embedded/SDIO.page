@@ -164,6 +164,25 @@ Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是�
 
 
 
+
+
+
+/*********************/
+
+SDIO APB2 interface
+-------------------
+ARM 的 APB2 介面由 data path，register decoder 與 interrupt/DMA logic 組成，除了會產生 interrupt 與 DMA 的 request，也會存取 SDIO adapter registers 與 data FIFO。
+
+SDIO interrupt:
+
+- 當任何一個透過 mask register 預先選擇的特定 flags 之 status flag 為 high 時，interrupt logic 將會產生一個 interrupt request。又若某個 mask       
+  flag 被 set 的話，其對應的 status flag 也會產生 interrupt request。
+
+
+
+
+/*********************/
+
 Reference
 ==========
 - `Secure Digital wiki<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
