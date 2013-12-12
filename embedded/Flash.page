@@ -54,6 +54,8 @@ categories: STM32F4
 Bus Matrix:(利用round-robin演算法來仲裁)
 
 .. image:: /bus_matrix.JPG
+   DM00031020-referenceManual P.60
+
 
 - CCM(core coupled memory)：屬於Embedded SRAM中一部份，mapped at address 0x1000 0000 and accessible only by the CPU through the D-bus.
 - Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可逶過ACCEL加速code execution。
@@ -62,7 +64,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 ---------------------------------------------
 
 .. image:: /Flash_system_architecture.JPG
-
+   DM00031020-referenceManual P.73
 圖中一些縮寫的解釋如下：
 
 - I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
@@ -92,6 +94,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
 
 .. image:: /flash module organization.JPG
+   DM00031020-referenceManual P.75
 
 STM32F407中的Flash有以下特性：
 
@@ -117,6 +120,7 @@ STM32F407中的Flash有以下特性：
 - 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU frequency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
 
 .. image:: /ws_hclk.JPG
+   DM00031020-referenceManual P.80
 
 - 在Reset之後，CPU clock frequency為16MHz，並且FLASH_ACR中的wait states值被設為0。
 - 官方文件建議若要調整wait states值(當加快/減慢CPU frequency時)，依據CPU frequency調試存取Flash所需的ws數。
@@ -201,6 +205,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 - PSIZE是在FLASH_CR register中，此值必須在programming/erasing前正確的被寫入。對應表如下表：
 
 .. image:: /parallelism.JPG
+   DM00031020-referenceManual P.85
 
 - 以下是各種型態單次寫入時所需的大小
 - **Byte : x8**
@@ -296,7 +301,7 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 - 在OTP lock byte 不為 0x00 的時候，OTP 可以被寫入資料；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
  
 .. image:: http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png
-   Reference Manual P.97
+   DM00031020-referenceManual P.97
 
 4.Flash interface registers
 ===========================
@@ -307,6 +312,7 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 Address offset : 0x00, Reset value: 0x0000 0000.
 
 .. image:: /Flash_acr.JPG
+   DM00031020-referenceManual P.97
 
 ::
 
@@ -325,6 +331,7 @@ Address offset : 0x00, Reset value: 0x0000 0000.
 Address offset : 0x04, Reset value: 0x0000 0000.
 
 .. image:: /flash_keyr.JPG
+   DM00031020-referenceManual P.99
 
 ::
 
@@ -336,6 +343,7 @@ Address offset : 0x04, Reset value: 0x0000 0000.
 Address offset : 0x0C, Reset value: 0x0000 0000.
 
 .. image:: /flash_sr.JPG
+   DM00031020-referenceManual P.101
 
 ::
 
@@ -356,6 +364,7 @@ Address offset : 0x0C, Reset value: 0x0000 0000.
 Address offset : 0x10, Reset value: **0x8000** 0000.
 
 .. image:: /flash_cr.JPG
+   DM00031020-referenceManual P.105
 
 ::
 
@@ -378,6 +387,7 @@ Address offset : 0x10, Reset value: **0x8000** 0000.
 Address offset : 0x14, Reset value: **0x0FFF AAED**.
 
 .. image:: /flash_optcr.JPG
+   DM00031020-referenceManual P.106
 
 ::
 
@@ -484,6 +494,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 .. image:: /block_diag_1.JPG
 
 .. image:: /block_diag_2.JPG
+   DM00037051-datasheet P.18
 
 7.Software STM32F4 Lib
 ======================
