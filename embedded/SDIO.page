@@ -116,6 +116,51 @@ Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是�
 主要分為三個子單元 , Control Unit , Command Path and Data Path , Control Unit主要用來控制電源以及時鐘的控制 , 而這些控制是根據Adapter registers當中的暫存器來做配置 , 而Command Path連結SDIO_CMD , 他用來控制命令的傳輸 , 最後Data Path則是連結SDIO_D[7:0],控制資料的傳輸。
 
 
+底下分單元描述
+   - Adapter register block：
+
+      The adapter register block contains all system registers. This block also generates the 
+      signals that clear the static flags in the multimedia card. The clear signals are generated  
+      when 1 is written into the corresponding bit location in the SDIO Clear register.
+
+
+- Control Unit:
+
+      這部份又在其內部分為兩個子單元 , 一個是Power management , 另一個是Clock management , 其兩個子單元都受控制於Adapter registers.
+
+      詳見下圖（Figure 328）
+
+.. image:: /control_unit.png
+
+      Power management:
+
+         There are three power phases:
+
+         * power-off
+
+         * power-up
+
+         * power-on
+
+           NOTE!! The power management subunit disables the card bus output signals during the 
+           power-off and power-up phases.
+
+
+      Clock management:
+         用來產生和控制SDIO_CK , 而其SDIO_CK又可選擇兩種模式： 
+
+         * clock Divide (SDIO_CK = SDIO_CLK/div .)  
+
+         * clock Bypass (SDIO_CK = SDIO_CLK).
+
+         而在底下的情況下 , Clock是不輸出訊號的
+
+         * after reset
+
+         * during the power-off or power-up phases
+
+         * if the power saving mode is enabled and the card bus is in the Idle state (eight clock 
+           periods after both the command and data path subunits enter the Idle phase).
 
 
 
