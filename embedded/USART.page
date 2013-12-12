@@ -331,15 +331,16 @@ Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端
 
 .. image:: /frame_formats.png
 
-parity依算方式的不同分成兩種方式，even parity和odd parity。
-=====================
+Even/Odd parity
+=================================
+
+parity依算方式的不同分成兩種方式，even parity和odd parity
 
 Even parity
 --------------------
 如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
 
 E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
-
 
 Odd parity
 -------------------
