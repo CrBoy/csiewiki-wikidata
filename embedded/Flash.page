@@ -287,10 +287,15 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 
 3.8 One-time programmable (OTP)
 -------------------------------------------------------------
-- 一次性可編程唯讀記憶體（One Time Programmable Read Only Memory，OTPROM）之寫入原理同EPROM，但是為了節省成本，編程寫入之後就不再抹除，因此不設置透明窗。
-- 
+- 一次性可編程唯讀記憶體（One Time Programmable Read Only Memory，OTPROM）之寫入原理同EPROM，但是為了節省成本，編程寫入之後就不再抹除，因此不設置透明窗(不能被抹除)。
+- 總共528 bytes
+  - OTP bytes(512 bytes)
+  - OTP lock bytes(16 bytes)
+- OTP bytes:16個block，每個block有32bytes(總共512 bytes)--for user data
+- OTP lock bytes:有16 bytes LOCKBi (0 ≤ i ≤ 15)分別控制相對應的16個block--for locking the correspaonding OTP
+- 在OTP lock byte 不為 0x00 的時候，OTP 可以被寫入資料；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
  
-.. image:: http://3.bp.blogspot.com/-TXtkqZdctlo/UqGZTeOFsBI/AAAAAAAAADg/yWT_NyWRv-g/s1600/OTP.png
+.. image:: http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png
    Reference Manual P.97
 
 4.Flash interface registers
@@ -498,3 +503,4 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 - http://zh.wikipedia.org/wiki/%E9%97%AA%E5%AD%98
 - `快閃記憶體(wiki)<http://zh.wikipedia.org/wiki/%E5%BF%AB%E9%96%83%E8%A8%98%E6%86%B6%E9%AB%94>`_
 - http://www.eetasia.com/ART_8800627935_480200_NT_1866240e.HTM
+- http://www.xuan.idv.tw/wordpress/?p=821
