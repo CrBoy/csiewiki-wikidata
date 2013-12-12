@@ -50,6 +50,42 @@ low).
 
 
 
+SDIO functional description
+============================
+.. image:: /sdio_functional_description.png
+
+圖說明：
+
+  - SDIO_D0預設是用來當作資料傳輸 , 而在初始化時 , host端可以設定其資料寬度。
+  - 當MMC連至bus時 , MMC可以支援只有1bit模式。
+  - 當SD/SD I/O連至bus時,data transfer可以由host端來設定是SDIO_D0(1bit mode) 或者是 SDIO_D[3:0](4bit mode)
+    而所有的data lines都是操作於push-pull mode.
+
+SDIO_CMD has two operational modes:
+
+  - Open-drain for initialization (only for MMCV3.31 or previous)
+
+  - Push-pull for command transfer (SD/SD I/O card MMC4.2 use push-pull drivers also for 
+    initialization)
+
+SDIO_CK is the clock to the card:
+
+  - 在clock cycle 中 , 1 bit是用來切換command 或是 data lines.
+  - clock的頻率依照規格不同有所不同：
+       * between 0 and 20 MHz (for a MultiMediaCard V3.31).
+       * between 0 and 48 MHz for a MultiMediaCard V4.0/4.2).
+       * between 0 and 25 MHz (for an SD/SD I/O card).
+
+  - The SDIO uses two clock signals:
+       * SDIO adapter clock(SDIOCLK = 48MHz) ??????????????????
+       * APB2 bus clock(PCLK2).
+      NOTE: PCLK2 與 SDIO_CLK 之clock頻率必須遵循以下條件：
+            Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK  ?????????????????
+
+
+The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
+
+.. image:: /SDIO_IO_definitions.png
 
 
 Reference
