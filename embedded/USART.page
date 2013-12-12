@@ -327,7 +327,7 @@ When CTSE=1, the CTSIF status bit is automatically set by hardware as soon as th
 
 PARITY CONTROL
 ..............
-Parity control (generation of parity bit in transmission and parity checking in reception) can be enabled by setting the PCE bit in the USART_CR1 register. Depending on the frame length defined by the M bit, the possible USART frame formats are as listed in Table 118.
+Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。在STM32，它可以透過設定USART_CR1暫存器的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
 
 .. image:: /frame_formats.png
 
