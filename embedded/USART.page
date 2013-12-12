@@ -365,7 +365,7 @@ MSB: Most Significant Bit，代表位數最大的那個bit
 LSB: Least Significant Bit，代表位數最小的那個bit
 
 USART Register 總表
-*************************
+................................
 Status register(USART_SR)
 
 Data register(USART_DR)
@@ -383,7 +383,7 @@ Guard time and prescaler register(USART_GTPR)
 .. image:: /USART_register.png
 
 CODE SECTION
-*****************
+.........................
 
 Download sample code : 
 
@@ -418,19 +418,75 @@ REFERENCE
 Q&A
 ...................
 
-1.Uart 原理
+***1.UART 原理***
 
 DTE（Data Terminal Equipment）簡稱數據終端設備；DCE（Data Communications Equipment）簡稱數據通信設備。
-事實上，RS-232C標準的正規名稱是"數據終端設備和數據通信設備之間串行二進制數據交換的接口"。通常，將通信線路終端一側的計算機或終端稱為DTE，而把連接通信線路一側的調製解調器稱為DCE。
-RS-232C標準中所提到的"發送"和"接收"，都是站在DTE立場上，而不是站在DCE的立場來定義的。由於在計算機系統中往往是CPU和I/O設備之間傳送信息，兩者都是DTE，因此雙方都能發送接收。
-所謂"串行通信"是指DTE和DCE之間使用一根數據信號線（另外需要地線，可能還需要控制線），數據在一根數據信號線上一位一位地進行傳輸，每一位數據都佔據一個固定的時間長度。這種通信方式使用的數據線少，在遠距離通信中可以節約通信成本，當然，其傳輸速度比並行傳輸慢。
 
-2.高速UART及低速UART之應用?
+事實上，RS-232C標準的正規名稱是"數據終端設備和數據通信設備之間串行二進制數據交換的接口"。
 
-嵌入在ElanSC520微控制器中的高速UART通信的速度可以高達1.1152Mbps，另外
-利用計算機軟件技術(EDA技術)和FPGA／CPLD的靈活性可以方便快速地設計高速和低
-速的UART。高速的UART可以用在光纖通信上，低速的UART可以用在FPGA／CPLD和單片機的通信上。
+通常，將通信線路終端一側的計算機或終端稱為DTE，而把連接通信線路一側的調製解調器稱為DCE。
 
-3.紅外線高速之應用?
+RS-232C標準中所提到的"發送"和"接收"，都是站在DTE立場上，而不是站在DCE的立場來定義的。
 
-低速紅外線是指其傳輸速率在每秒115.2Kbits者而言，它適用於傳送簡短的訊息、文字或是檔案。有低速紅外線也有高速紅外線（Fast IR），它是指傳輸速率在每秒1或是4Mbits者而言，其他更高傳輸速率則仍在發展中。對於網路解決方案而言，高速紅外線可以說是其基礎，包括檔案傳輸、區域網路連結甚至是多媒體傳輸。
+由於在計算機系統中往往是CPU和I/O設備之間傳送信息，兩者都是DTE，因此雙方都能發送接收。
+
+所謂"串行通信"是指DTE和DCE之間使用一根數據信號線（另外需要地線，可能還需要控制線）
+
+數據在一根數據信號線上一位一位地進行傳輸，每一位數據都佔據一個固定的時間長度。
+
+這種通信方式使用的數據線少，在遠距離通信中可以節約通信成本，當然，其傳輸速度比並行傳輸慢。
+
+小知識：
+
+DTE英文全稱Data Terminal Equipment，數字終端設備，指一般的終端或是計算機。可能是大、中、小型計算機，也可能是一臺只接收數據的打印機。
+
+DCE英文全稱Data Circuit-terminating Equipment，數字通信設備，通常指調制解調器，多路復用器或數字設備。
+
+DTE，DCE的區別
+
+DCE一方提供時鐘，DTE不提供時鐘，但它依靠DCE提供的時鐘工作。
+
+舉PC機和MODEM之間的連接為例：PC機就是一個DTE，MODEM是一個DCE。
+
+DTE可以從硬件上區別它的接口為針式，DCE的接口為孔式。
+
+參考資料：http://wfeng520.blog.hexun.com.tw/62795095_d.html
+
+
+***2.USART和UART的不同***
+
+USART（Universal Synchronous Asynchronous Receiver / Transmitter）： 又名通用同步異步接收發送器，支援同步與非同步傳輸工作模式
+
+UART（Universal  Asynchronous Receiver / Transmitter）：又名通用異步接收發送器，僅有非同步工作模式
+
+非同步工作模式：一般所謂的 UART，為全雙工(可同時傳送/接收)。傳送 Data 包括 1 start bit 與 1 stop bit
+
+同步工作模式：半雙工，傳送與接收無法同時進行。在一條線傳送 Data，另一條線傳送 clock。傳送 data 沒有 start bit 與 stop bit
+
+UART是利用Tx傳資料 Rx收資料(全雙工)
+
+USART(若採用非同步模式)是利用一個雙向I/O pin以及一個CLK pin來傳送以及接收資料(半雙工)
+
+備註：同步 = 半雙工 、 非同步 = 全雙工
+
+.. image:: /同步或非同步傳輸.png
+
+參考資料：http://delphi.ktop.com.tw/board.php?cid=173&fid=1167&tid=91498
+
+
+***3.高速UART及低速UART之應用?***
+
+嵌入在ElanSC520微控制器中的高速UART通信的速度可以高達1.1152Mbps
+
+另外利用計算機軟件技術(EDA技術)和FPGA／CPLD的靈活性可以方便快速地設計高速和低速的UART。
+
+高速的UART可以用在光纖通信上，低速的UART可以用在FPGA／CPLD和單片機的通信上。
+
+
+***4.紅外線高速之應用?***
+
+低速紅外線是指其傳輸速率在每秒115.2Kbits者而言，它適用於傳送簡短的訊息、文字或是檔案。
+
+有低速紅外線也有高速紅外線（Fast IR），它是指傳輸速率在每秒1或是4Mbits者而言，其他更高傳輸速率則仍在發展中。
+
+對於網路解決方案而言，高速紅外線可以說是其基礎，包括檔案傳輸、區域網路連結甚至是多媒體傳輸。
