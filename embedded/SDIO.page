@@ -77,7 +77,7 @@ SDIO_CK is the clock to the card:
        * between 0 and 25 MHz (for an SD/SD I/O card).
 
   - The SDIO uses two clock signals:
-       * SDIO adapter clock(SDIOCLK = 48MHz) ??????????????????
+       * SDIO adapter clock(SDIOCLK = 48MHz is coming from a specific output of PLL (PLL48CLK) ).
        * APB2 bus clock(PCLK2).
       NOTE: PCLK2 與 SDIO_CLK 之clock頻率必須遵循以下條件：
             Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK  ?????????????????
@@ -87,6 +87,28 @@ The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
 
 .. image:: /SDIO_IO_definitions.png
 
+
+SDIO adapter
+==============
+block diagram of an SDIO adapter.
+
+.. image:: /sdio_adapter.png
+
+上圖中包含了五個子單元：
+
+- Adapter register block
+- Control unit
+- Command path
+- Data path
+- Data FIFO
+
+由圖中可以看出 , adapter registers 和 FIFO都是採用APB2 bus clock domain (PCLK2),
+而control unit , command path , data path 則是採用SDIO adapter clock domain(SDIOCLK).
+
+Q&A :  WHY??????????????????????????????????????????????????????
+
+Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是用來配置一些參數,以用來實現SD協定中的時序,最終目的是用來實現SD卡的命令傳輸。
+而FIFO則是為了實現與data path的傳輸。
 
 Reference
 ==========
