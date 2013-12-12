@@ -359,11 +359,31 @@ E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的�
 如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
 
 小知識：
+
 MSB: Most Significant Bit，代表位數最大的那個bit
+
 LSB: Least Significant Bit，代表位數最小的那個bit
 
+USART Register 總表
+*************************
+Status register(USART_SR)
+
+Data register(USART_DR)
+
+Baud rate register(USART_BRR)
+
+Control Register 1(USART_CR1)
+
+Control Register 2(USART_CR2)
+
+Control Register 3(USART_CR3)
+
+Guard time and prescaler register(USART_GTPR)
+
+.. image:: /USART_register.png
+
 CODE SECTION
-===============
+*****************
 
 Download sample code : 
 
