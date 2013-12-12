@@ -107,8 +107,17 @@ block diagram of an SDIO adapter.
 
 Q&A :  WHY??????????????????????????????????????????????????????
 
+上圖中之左側部份（Adapter registers and FIFO）：
 Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是用來配置一些參數,以用來實現SD協定中的時序,最終目的是用來實現SD卡的命令傳輸。
-而FIFO則是為了實現與data path的傳輸。
+而FIFO則是為了實現與data path的傳輸 , 而這兩個分別代表著對SD卡的兩種操作模式 , 一個是命令的傳輸 , 一個是資料的傳輸。
+
+
+上圖中之右側
+主要分為三個子單元 , Control Unit , Command Path and Data Path , Control Unit主要用來控制電源以及時鐘的控制 , 而這些控制是根據Adapter registers當中的暫存器來做配置 , 而Command Path連結SDIO_CMD , 他用來控制命令的傳輸 , 最後Data Path則是連結SDIO_D[7:0],控制資料的傳輸。
+
+
+
+
 
 Reference
 ==========
