@@ -44,17 +44,17 @@ toc: no
     - http://goods.ruten.com.tw/item/show?21308273439833
     - $695NT
 
+  * PCB板, 排母, 電線和開關
+    - $211NT
+
+  * 更換壞損的ESC
+    - http://goods.ruten.com.tw/item/show?21206104724009
+    - $270NT
+
 研究紀錄
 -------
-  - 2013 11 13 - 2013 11 13  購買四軸飛行器結構 & 馬達 http://goods.ruten.com.tw/item/show?21205263215975#auc ... 完成 
-  - 2013 11 19 - 2013 11 19  四軸飛行器組裝 ... 完成
-  - 2013 11 29 - 2013 11 29  使用PWM測試馬達 ... 完成
-  - 2013 12 01 - 2013 12 01  購買電池 http://goods.ruten.com.tw/item/show?21204206939457 ... 完成
-  - 2013 12 01 - 2013 12 01  於STM32F407移植FreeRTOS，並加入之前的PWM測試 ... 完成
-  - 2013 12 02 - 2013 12 02  購買陀螺儀 http://goods.ruten.com.tw/item/show?21306014989889 ... 完成 
-  - 2013 12 02 - 2013 12 02  購買WIFI模組 http://goods.ruten.com.tw/item/show?21308273439833 ... 完成
-  - 2013 12 02 - 2013 12 02  撰寫加速度計測試程式(完成初始化設定，加速度變化與led連結尚未完成)  
-  - 2013 12 03 - 2013 12 04  撰寫加速度計測試程式led連結(衍伸閱讀 http://wenku.baidu.com/view/e6cbd36f561252d380eb6e22.html ) ... 完成
-  - 2013 12 05 - 2013 12 05  使用USART將加速度XY暫存器值讀出，整理程式碼使之後方便修改(未完成)
+
+- `研究紀錄hackpad<https://nckuqh.hackpad.com/iMjOUxytpae>`_
+
 參考資訊
 -------
