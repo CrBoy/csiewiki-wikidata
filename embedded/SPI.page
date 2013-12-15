@@ -480,7 +480,7 @@ SPI通訊過程
 
 為什麼TXE和RXNE 要 set by hardware , reset by software？
 ------------------------------------------------------
-- 和SPI資料傳輸流程有關係，當寫資料到SPI_DR時(clear the TXE flag)，等到TXE=1時再將下一筆要傳的資料寫入SPI_DR。RXNE=1時,讀取SPI_DR中的資料,並且清除RXNE flag。
+- 和SPI資料傳輸流程有關係，當寫資料到SPI_DR時(clear the TXE flag)，等到上一筆資料傳輸完成時TXE=1時再將下一筆要傳的資料寫入SPI_DR。RXNE=1時,讀取SPI_DR中的資料,並且清除RXNE flag。
 
 為什麼要有CPOL,CPHA分高地電位？
 ----------------------------
