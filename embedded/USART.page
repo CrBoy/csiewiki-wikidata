@@ -313,41 +313,55 @@ IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線
 
 USART SYNCHRONOUS MODE
 ......................
-The synchronous mode is selected by writing the CLKEN bit in the USART_CR2 register to
+register 設定:
+USART_CR2 : CLKEN = 1;LINEN = 0;
+USART_CR3 : SCEN, HDSEL, IREN = 0;
 
-1. In synchronous mode, the following bits must be kept cleared:
+特性:
 
-● LINEN bit in the USART_CR2 register,
-
-● SCEN, HDSEL and IREN bits in the USART_CR3 register.
-
-The SCLK pin works in conjunction with the TX pin. Thus, the clock is provided only if the transmitter is enabled (TE=1) and a data is being transmitted (the data register USART_DR has been written). This means that it is not possible to receive a synchronous data without transmitting data.
-
-The LBCL, CPOL and CPHA bits have to be selected when both the transmitter and the
-receiver are disabled (TE=RE=0) to ensure that the clock pulses function correctly. These bits should not be changed while the transmitter or the receiver is enabled.
+Synchronous 指的是TX 跟 RX 用同一個 Clock, 這個clock(SCLK)由 TX 端送出, 同時需要TE = 1,clock 才會產生;
+(UART 4,5 不指援 Synchronous mode)
 
 .. image:: /synchronous_transmission.png
+
+1. start bit, stop bit都沒有 clock pulse 從SCLK 送出,clock 處於 logic 0;
+
+Last bit clock pulse(LBCL),確定第8(9,如果 M=1)bit的clock pulse會不會輸出;(FOR WHAT???????)
+
+CPOL = 0: high 為 logic 1 ; CPOL =1 :high 為 logic 0;
+CPHA = 0: clock pulse 發生在bit period 的後半段中;CPHA = 1: clock pulse 發生在bit period 的前半段;差別在於bit period中間的edge是正/負緣觸發;
+
+master mode: can't recieve or send data using the input clock;
+half-duplex:can't recieve and send at the same time;
+
+因為同步, 所以不需要oversampling(Ws >> 2Wm)
+
+setup time, hold time
+
 
 
 HARDWARE FLOW CONTROL
 ......................
-It is possible to control the serial data flow between 2 devices by using the nCTS input and the nRTS output.
+利用 nCTS 跟 nRTS 控制 TX , RX 要不要再傳送或接收 data
 
 .. image:: /hardware_control_2usarts.png
 
 
 RTS Flow Control
 ========================
-If the RTS flow control is enabled (RTSE=1), then nRTS is asserted (tied low) as long as the USART receiver is ready to receive a new data. When the receive register is full, nRTS is deasserted, indicating that the transmission is expected to stop at the end of the current frame.
+RTSE(RTS flow control enable) , CTSE 為1才開啟hw flow control;
+
+Figure 318
+在recieve端register 滿了以後, nRTS轉為 1,表示接收完這個data以後就暫時不接收Data;
 
 .. image:: /rst_flow_control.png
 
 
 CTS Flow Control
 ========================
-If the CTS flow control is enabled (CTSE=1), then the transmitter checks the nCTS input before transmitting the next frame. If nCTS is asserted (tied low), then the next data is transmitted (assuming that a data is to be transmitted, in other words, if TXE=0), else the transmission does not occur. When nCTS is deasserted during a transmission, the current transmission is completed before the transmitter stops.
+跟上面是對應的, 當nRTS為1, transimitter 端的nCTS就會是1, 表示他知道reciever 目前無法接收data, TX就會在傳送完當前的data以後 idle.
 
-When CTSE=1, the CTSIF status bit is automatically set by hardware as soon as the nCTS input toggles. It indicates when the receiver becomes ready or not ready for communication. An interrupt is generated if the CTSIE bit in the USART_CR3 register is set. The figure below shows an example of communication with CTS flow control enabled.
+nCTS為1 的時候,  會由硬體去設定CTSIE bit (USART_CR3).
 
 .. image:: /cst_flow_control.png
 
