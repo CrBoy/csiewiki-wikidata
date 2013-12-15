@@ -531,9 +531,10 @@ SPI通訊過程
 
 .. image:: /alternate function mapping.png
 Alternate function mapping[#]_
-
 .. [#] `Datasheet <http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.61
 
+.. image:: /Alternate function mapping continued.png
+STM32F407xx Datasheet p.64
 
 為何要定義為low-active？
 ----------------------
