@@ -100,9 +100,9 @@ USART character description
 
 Transmitter
 ============================
-The transmitter can send data words of either 8 or 9 bits depending on the M bit status.
-When the transmit enable bit (TE) is set, the data in the transmit shift register is output on
-the TX pin and the corresponding clock pulses are output on the SCLK pin.
+傳送器依據M位的狀態來決定發送8或9位元的資料。
+當transmit enable bit(TE)被設定時，資料transmit shift register經由TX腳位送出，
+同時，相對應的時鐘脈衝會由SCLK腳位輸出。
 
 
 Character transmission
