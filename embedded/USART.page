@@ -259,26 +259,26 @@ to USART_BRR. Hence the baud rate register value should not be changed during
 communication.
 
 
-IrDA low-power mode 
+IrDA SIR ENDEC
 ............................
 
-Transmitter:
-========================
-In low-power mode the pulse width is not maintained at 3/16 of the bit period. Instead, the 
-width of the pulse is 3 times the low-power baud rate which can be a minimum of 1.42 MHz. 
-Generally this value is 1.8432 MHz (1.42 MHz < PSC< 2.12 MHz). A low-power mode 
-programmable divisor divides the system clock to achieve this value.
+register 設定:
+===============
+USART_CR3 : IREN = 1; SCEN, HDSEL = 0.
 
+USART_CR2 : LINEN , STOP, CLKEN = 0.
 
-Receiver:
-============================
-Receiving in low-power mode is similar to receiving in normal mode. For glitch detection the 
-USART should discard pulses of duration shorter than 1/PSC. A valid low is accepted only if 
-its duration is greater than 2 periods of the IrDA low-power Baud clock (PSC value in 
-USART_GTPR).
+IrDA SIR 實體層:
+=================
 
 
 .. image:: /irda.PNG
+
+SIR Transmit encoder 會把 USART 的Non Return to Zero 轉換成 IrDA 輸出訊號.
+
+IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線 pulse 表示一個 logic 0.
+
+(下圖 IrDA_OUT).
 
 .. image:: /normal_mode.PNG
 
