@@ -465,6 +465,30 @@ Question question
 
 .. image:: /synchronization.png
 
+
+SPI通訊過程
+-----------
+.. image:: /TXE_RXNE_BSY behavior in Master _full-duplex mode(P.672).png
+(STM32F407xx Reference ManualP.672)
+
+- 當data寫到master的SPI_DR(TX Buffer)時(TXE=0), 傳輸開始
+- master傳送第一個bit的時候,剩下的7個bit會被並行load到shift register中(TXE=1)[同時,slave端的SPI_DR裡的data並行被load到 shift register中]
+- 然後這些bits會經由MOSI依序傳輸到slave的shift register裡  [同時,master的shift register也從MISO一個個收到slave傳來的8個bit] 
+- master的shift register收到8個bits後 , 會將這8bits並行寫入SPI_DR(RX buffer) (RXNE=1)
+ 
+
+
+為什麼TXE和RXNE 要 set by hardware , reset by software？
+------------------------------------------------------
+
+
+為什麼要有CPOL,CPHA分高地電位？
+----------------------------
+
+- 資料傳輸時，Master與slave需要設定相同的``CPOL``和``CPHA``定義取資料的時間點，確保資料正確的傳輸。
+
+
+
 Bus和prescaler的關係
 -------------------
 
@@ -479,11 +503,6 @@ shift register 除了shift 資料以外，還有什麼作用？
 -----------------------------------
 
 - 因為如果在hardware mode下,master nss被pull low的話, master mode 會發生錯誤而slave mode 的 nss 要保持低電位 slave mode 才會動作 所以要接地
-
-為什麼要有CPOL,CPHA分高地電位？
-----------------------------
-
-- 資料傳輸時，Master與slave需要設定相同的``CPOL``和``CPHA``定義取資料的時間點，確保資料正確的傳輸。
 
 
 
@@ -515,16 +534,6 @@ Error flags
   * The CRCERR flag in the SPI_SR register is set if the value received in the shift register does not match the receiver SPI_RXCRCR value.
 
 
-SPI通訊過程
------------
-.. image:: /TXE_RXNE_BSY behavior in Master _full-duplex mode(P.672).png
-(STM32F407xx Reference ManualP.672)
-
-- 當data寫到master的SPI_DR(TX Buffer)時(TXE=0), 傳輸開始
-- master傳送第一個bit的時候,剩下的7個bit會被並行load到shift register中(TXE=1)[同時,slave端的SPI_DR裡的data並行被load到 shift register中]
-- 然後這些bits會經由MOSI依序傳輸到slave的shift register裡  [同時,master的shift register也從MISO一個個收到slave傳來的8個bit] 
-- master的shift register收到8個bits後 , 會將這8bits並行寫入SPI_DR(RX buffer) (RXNE=1)
- 
 
 怎麼知道要使用哪些腳位？
 ---------------------
