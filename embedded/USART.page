@@ -107,14 +107,7 @@ Transmitter
 
 Character transmission
 ------------------------------------
-During an USART transmission, data shifts out least significant bit first on the TX pin. In this
-mode, the USART_DR register consists of a buffer (TDR) between the internal bus and the
-transmit shift register (see Figure 245).
-
-Every character is preceded by a start bit which is a logic level low for one bit period. The
-character is terminated by a configurable number of stop bits.
-
-The following stop bits are supported by USART: 0.5, 1, 1.5 and 2 stop bits.
+在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)，因此在此模式中，USART_DR和transmit shift register之間包含一個緩衝器(TDR)。每個資料再傳送前都會有一個低電位的起始位；之後跟著的停止位元數目，則可由使用者決定0.5, 1, 1.5或2
 
 
 Receiver
