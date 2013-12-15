@@ -278,6 +278,8 @@ SIR Transmit encoder 會把 USART 的Non Return to Zero 轉換成 IrDA 輸出訊
 
 IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線 pulse 表示一個 logic 0.
 
+每一個紅外線 pulse 相當於 3/16 的 bit period, 而 IrDA mode 下的 USART 的 bit rate 最高為 115.2 Kbps. 
+
 (下圖 IrDA_OUT).
 
 .. image:: /normal_mode.PNG
