@@ -1,4 +1,4 @@
-INTRODUCTION
+USART簡介
 ...................
 USART(universal synchronous asynchronous receiver transmitter) 通用同步/非同步收發傳輸器，提供了一種靈活的方法及使用NRZ非同步串行資料格式與外部設備之間進行全雙工資料交換。
 同時，USART也提供同步的方式半雙工的通信，另外支持LIN (local interconnection network)，Smartcard協定及IrDA (infrared data association紅外通訊技術) SIR ENDEC，Modem(CTS/RTS)的操作。
@@ -7,7 +7,7 @@ USART(universal synchronous asynchronous receiver transmitter) 通用同步/非�
 
 
 
-MAIN FEATURES
+USART主要特性
 ...................
 
 - 全雙工的非同步通訊
@@ -77,19 +77,34 @@ MAIN FEATURES
  - Idle line
 
 
-USART functional description
+USART功能介紹
 .................................
 
 
-USART BLOCK DIAGRAM
+USART block diagram
 ======================================
 .. image:: /usart_block_diagram.png
+
+   - 任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
+   - RX: 接收資料輸入，並藉由採樣的技術判斷資料及噪音
+   - TX: 發送資料，當發送器被啟動時，如果沒有傳送數據，則TX處於高電位。在single-wire或Smartcard mode時，此I/O同時被用於資料的傳送和接收
+   - 資料長度根據USART_CR1暫存器中的M位選擇8或9位元(見圖)
+   - 使用fractional baud rate generator —— 12位整數和4位小數的表示方法，放在baud rate暫存器(USART_BRR)中
+   - 一個狀態暫存器(USART_SR)
+   - 資料暫存器(USART_DR)
+   
+   另外在同步模式中，還需要其他腳位
+   - SCLK: 發送器的時鐘輸出，用於同步傳輸的時鐘
+   
+   在Hardware flow control中:
+   - nCTS: 清除發送，若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
+   - nRTS: 發送請求，若在低電位，則表是USART已經準備好接收資料
+
 
 
 
 USART character description
 ======================================
-資料長度根據USART_CR1暫存器中的M位選擇8或9位元(見 Figure 246).
 
 在起始位期間，TX處於低電位，在停止位期間，TX處於高電位。
 另外空閒符號則全由'1'組成，後面接著下一個資料的開始位('1'的位數也包含資料的停止位元位數)；
@@ -108,6 +123,10 @@ Transmitter
 Character transmission
 ------------------------------------
 在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)，因此在此模式中，USART_DR和transmit shift register之間包含一個緩衝器(TDR)。每個資料再傳送前都會有一個低電位的起始位；之後跟著的停止位元數目，則可由使用者決定0.5, 1, 1.5或2
+   - 1 bit的停止位: 預設的默認停止位位元數
+   - 2 bits的停止位: normal USART, single-wire 和 modem modes
+   - 0.5 bits的停止位: Smartcard mode接收數據用
+   - 1.5 bits的停止位: Smartcard mode發送數據用
 
 
 Receiver
@@ -118,18 +137,18 @@ USART_CR1 register.
 
 
 Break character
-====================================
+------------------------------------
 When a break character is received, the USART handles it as a framing error.
 
 
 Idle character
-====================================
+------------------------------------
 When an idle frame is detected, there is the same procedure as a data received character
 plus an interrupt if the IDLEIE bit is set.
 
 
 Overrun error
-====================================
+------------------------------------
 An overrun error occurs when a character is received when RXNE has not been reset. Data
 can not be transferred from the shift register to the RDR register until the RXNE bit is
 cleared.
@@ -166,7 +185,7 @@ register read access and the USART_DR read access).
 
 
 Selecting the proper oversampling method
-============================================
+------------------------------------
 The receiver implements different user-configurable oversampling techniques (except in
 synchronous mode) for data recovery by discriminating between valid incoming data and
 noise.
