@@ -262,6 +262,12 @@ communication.
 IrDA SIR ENDEC
 ............................
 
+IrDA:
+=======
+
+IrDA 是一種標準化紅外線數據傳送方式;STM32f4支援利用USART輸出訊號配合轉換電路,轉換成符合IrDA 標準的訊號,實現紅外線傳輸.
+ 
+
 register 設定:
 ===============
 USART_CR3 : IREN = 1; SCEN, HDSEL = 0.
