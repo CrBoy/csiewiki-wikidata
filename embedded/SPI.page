@@ -48,7 +48,7 @@ Device overview
 ===============
 
 .. image:: /stm32f40x_block_diagram.png
-STM32F40x block diagram 
+STM32F40x block diagram (STM32F407xx datasheet p.18) 
 
 - 3 SPI的傳輸速度
   * SPI1: 42Mbits/s 
@@ -518,7 +518,7 @@ Error flags
 SPI通訊過程
 -----------
 .. image:: /TXE_RXNE_BSY behavior in Master _full-duplex mode(P.672).png
-
+(STM32F407xx Reference ManualP.672)
 
 - 當data寫到master的SPI_DR(TX Buffer)時(TXE=0), 傳輸開始
 - master傳送第一個bit的時候,剩下的7個bit會被並行load到shift register中(TXE=1)[同時,slave端的SPI_DR裡的data並行被load到 shift register中]
