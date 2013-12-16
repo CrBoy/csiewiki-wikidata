@@ -328,6 +328,10 @@ Fractional baud rate generation的設定
 USART Using DMA
 ............................
 
+利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
+但當連續傳送大量的data時, 若果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
+
+
 .. image:: /tx_uart_dma.png
 
 1. 剛開始DMA先把第一個DATA寫入USART_DR.
