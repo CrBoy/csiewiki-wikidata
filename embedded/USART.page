@@ -414,7 +414,7 @@ CPOL = 0: high 為 logic 1 ; CPOL =1 :high 為 logic 0.
 
 CPHA = 0: clock pulse 發生在bit period 的後半段中;CPHA = 1: clock pulse 發生在bit period 的前半段;差別在於bit period中間的edge是正/負緣觸發.
 
-master mode: slave(不是產生SCLK的一方)不能夠用輸入進來的input clock 做接收或送去data.
+master mode: slave(不是產生SCLK的一方,非usart周邊)不能夠用輸入進來的input clock 做接收或送去data.
 
 因為同步, 所以不需要oversampling(Ws >> 2Wm)
 
