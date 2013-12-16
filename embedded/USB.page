@@ -150,10 +150,10 @@ USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上
 
 USB 定義了四種傳輸型態：
 
- - Control Transfers ：用於控制傳輸命令及狀態操作。
- - Bulk Transfers ：用於大量資料傳輸（如傳給印表機），沒有速度限制，若傳輸失敗就會重傳以確保資料無誤。
- - Interrupt Transfers ：與一般常見的 interrupt 不同，需要 host 端先詢問才會執行 interrupt 。
- - Isochronous Transfers ：用於與時間密切相關的資料，例如音訊或影片等，就算沒通過CRC的錯誤檢查也不會重傳。
+ - 控制傳輸（Control Transfers） ：用於控制傳輸命令及狀態操作。
+- 中斷傳輸（Interrupt Transfers） ：與一般常見的中斷不同（名詞有點誤導），需要 host 端先詢問才會執行。用一個固定速率傳輸少量資料，像是USB鍵盤和滑鼠就是屬於這種方式。
+ - 批次傳輸（Bulk Transfers）：用於大量資料傳輸且需要確保資料無誤（如傳給印表機或隨身碟），沒有速度限制，若傳輸失敗就會重傳以確保正確。
+ - 同時傳輸（Isochronous Transfers） ：同樣用於大量資料傳輸，但不確保資料是否到達。例如例如USB視訊裝置，使用者會期望傳輸聲音或影像的速率是穩定的，若有幾張frame遺失,沒有通過CRC資料也不會重傳。
 
 每種型態有不同的工作流程（stage），每個 stage 會需要不同的封包類型（packet）來實現，如同下表：
 
