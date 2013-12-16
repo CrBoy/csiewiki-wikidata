@@ -74,7 +74,9 @@ CRC: Cyclic Redundancy Checks
 Data 封包
 =========
 
-Data 封包包含處理此動作的資料。一個 Transaction 中，Data 封包最大的資料量為 1023 個 Bytes，高速模式時可達 1024 個 Bytes 以上，其中 Data0 及 Data1 是兩個基本的資料封包，這些資料封包都是接續在 Address 之後，且 Data0 及 Data1 採取交互出現方式以達到同步與除錯的效果。另外在 USB2.0 當中更增加了 Data2 及 MData 資料封包，用於執行高速的即時傳輸(Isochronous Transfers)。
+Data封包包含處理此動作的資料。在low-speed裝置中，Data封包最大的資料量為8 bytes；在full-speed裝置中，Data封包最大的資料量為1023 bytes；在high-speed裝置中，Data封包最大的資料量為1024 bytes。其中 Data0 及 Data1 是兩個基本的資料封包，使用這些資料封包以提供一個機制來確定將傳送端和接收端之間的多重資料順序同步化(data toggle synchronization)。另外在 USB2.0 當中更增加了 Data2 及 MData 資料封包，用於執行高速的即時傳輸(Isochronous Transfers)。
+
+.. image:: /embedded/USB/Data Packets.jpg
 
 Handshake 封包
 ==============
