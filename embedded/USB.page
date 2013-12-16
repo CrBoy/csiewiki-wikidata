@@ -13,11 +13,12 @@ title: usb
 
 
 USB 訊號使用標記為D+ 和D- 的雙絞線(twisted pair)傳輸，以抵消長導線的電磁干擾。
+
+.. image:: /400px-USB_Twisted_Pair.svg.png
+
 它們各自使用半雙工的差動訊號(Differential signal), 並利用NRZI(non-return-to-zero Inverted)的編碼方式來傳送。
 
 * 差動訊號：訊號傳輸在兩根不同的線上，這兩個信號的振幅相等，相位相反。
-
-.. image:: /embedded/USB/6.png
 
 .. image:: /DiffSig.png
 
