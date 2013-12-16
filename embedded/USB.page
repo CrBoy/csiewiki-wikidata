@@ -36,12 +36,13 @@ USB 封包簡介
 
 封包是組成USB傳輸的最小單位。一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
 
+.. image:: /embedded/USB/5.png
+
 Token 封包
 ==========
 
 每個 Transaction 以 Token 封包做起始。Token 封包定義裝置、Endpoint數量，傳輸的方向。其中 SOF (Start Of Frame) Token 包含目前的 frame 數，而且會廣播 (broadcast) 給所有的 full-speed 裝置知道。SOF 也是唯一一個不指定目標的 Token。 Token Packet 長度固定為 4 個 Byte。
 
-.. image:: /embedded/USB/5.png
 
 Data 封包
 =========
