@@ -94,6 +94,7 @@ USART功能介紹
 USART block diagram
 ======================================
 .. image:: /usart_block_diagram.png
+Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
    - 任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
    - RX: 接收資料輸入，並藉由採樣的技術判斷資料及噪音
@@ -104,10 +105,13 @@ USART block diagram
    - 資料暫存器(USART_DR)
    
    另外在同步模式中，還需要其他腳位
+  
    - SCLK: 發送器的時鐘輸出，用於同步傳輸的時鐘
    
    在Hardware flow control中:
+   
    - nCTS: 清除發送，若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
+   
    - nRTS: 發送請求，若在低電位，則表是USART已經準備好接收資料
 
 
@@ -118,7 +122,9 @@ USART 特性描述
 資料長度根據USART_CR1暫存器中的M位選擇8或9位元
 
 在起始位期間，TX處於低電位，在停止位期間，TX處於高電位。
+
 另外空閒符號則全由'1'組成，後面接著下一個資料的開始位('1'的位數也包含資料的停止位元位數)；
+
 中斷符號則全由'0'所組成(包含資料的停止位也是'0')，在中斷時，發送器會再插入1或2個停止位('0')
 
 .. image:: /idleandbreak.png
@@ -126,8 +132,8 @@ USART 特性描述
 
 傳送器
 ============================
-傳送器依據USART_CR1 M位的狀態來決定發送8或9位元的資料。
-當transmit enable bit(TE)被設定時，資料transmit shift register經由TX腳位送出，
+傳送器依據USART_CR1的M位狀態來決定發送8或9位元的資料。
+當transmit enable bit(TE)被設定時，資料放入transmit shift register後，經由TX腳位送出，
 同時，相對應的時鐘脈衝會由SCLK腳位輸出。
 
 
@@ -139,12 +145,17 @@ USART 特性描述
    - 0.5 bits的停止位: Smartcard mode接收數據用
    - 1.5 bits的停止位: Smartcard mode發送數據用
 
+.. image:: /usart_fig298.jpg
+
+Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+
 傳送器的設定
 ------------------------------------
    1. 設定USART_CR1暫存器的UE位來啟動傳輸
    2. 設定USART_CR1暫存器的M位決定資料長度
-   3. 設定USART_CR2暫存器中的STOP位來決定停止位的長度
-   4. 採用多緩衝器的話，則須設定USART)CR3的DMAT啟動DMA，並設置DMA的暫存器
+   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度
+   4. 採用多緩衝器的話，則須設定USART_CR3的DMAT啟動DMA，並設置DMA的暫存器
    5. 設置USART_CR1的TE位，在第一筆資料傳送前，傳送一個空閒的frame
    6. 利用USART_BRR暫存器設定baud rate
    7. 將欲發送的資料放入USART_DR中，重複步驟7
@@ -155,19 +166,29 @@ USART 特性描述
    3. 下一筆資料可放入USART_DR中
 
 若TXEIE位的設置，則會產生一個中斷:
-   如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後把該筆資料移進transmit shift register中
-   如果USART沒有在發送資料，則對USART_DR的寫入會把資料直接放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位
+   - 如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後把該筆資料移進transmit shift register中
+   
+   - 如果USART沒有在發送資料，則對USART_DR的寫入會把資料直接放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位
 
 一個frame的資料發送完畢後，TC位會被設定，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，先讀取USART_SR暫存器，再寫入USART_DR暫存器，則可清除TC位
 
+
+
 傳送斷開符號
 ------------------------------------
-(代補)
+透過設定USART_CR1的SBK位，可以發送一個斷開符號，斷開符號的長度取決於M位。
+
+如果SBK=1，則在目前的資料發送後，會再TX線上發送一個斷開符號，當傳送完成後，會由硬體恢復SBK位。
+
+USART會在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
+
 
 
 傳送空閒符號
 ------------------------------------
-(代補)
+設置USART_CR1的TE位會使得USART在發送第一筆資料前，發送一個空閒符號
+
+
 
 
 
@@ -178,60 +199,73 @@ USART 特性描述
 
 
 
+起始位偵測
+------------------------------------
+
+.. image:: /usart_fig300.jpg
+
+Ref: `RM0090 Reference Manual P.954<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+在USART中，如果辨認出一個特殊的採樣序列( 1 1 1 0 X 0 X 0 X 0 0 0 0 )，則認定偵測到一個起始位。
+
+**如果該序列不完整，則接收端退回起始位偵測並回到空閒狀態，等待下一次的電壓下降。**
+
+如果三個採樣點上有僅有兩個是0(第3、5、7採樣點或8、9、10採樣點)，則依然判定為偵測到一個起始位，但NE(噪音標誌)會被設定
+
+
+資料的接收
+------------------------------------
+在USART接收期間，RX從資料最低有效位元(least significant bit)開始接收，因此在此模式中，USART_DR和received shift register之間包含一個緩衝器(RDR)。
+
+
+接收器的設定
+------------------------------------
+   1. 設定USART_CR1暫存器的UE位來啟動USART接收
+   2. 設定USART_CR1暫存器的M位決定資料長度
+   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度
+   4. 採用多緩衝器接收資料，則須設定USART_CR3的DMAR啟動DMA，並設置DMA的暫存器
+   5. 利用USART_BRR暫存器設定baud rate
+   6. 設定USART_CR1暫存器中的RE位，啟動接收器，並開始偵測起始位
+
+當資料被接收到後:
+   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出
+   2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷
+   3. 資料接收期間如檢測到frame錯誤或是噪音、易出錯舞等問題，相關的標誌將被設定(FE、NF、ORE)
+   4. 在多緩衝器接收時，RXNE在每個字元接收後被設置，並藉由DMA讀取RDR而被清除
+   5. 單緩衝器模式下，藉由讀取USART_DR可清除RXNE位，RXNE位必須要在下一資料接收前被清除，以免產生易出錯誤
+
 接收斷開符號
 ------------------------------------
-設置SBK可發送一個斷開符號。
-
-When a break character is received, the USART handles it as a framing error.
-
+USART在接收斷開符號後，可像處理frame錯誤一樣處理
 
 
 接收空閒符號
 ------------------------------------
-When an idle frame is detected, there is the same procedure as a data received character
-plus an interrupt if the IDLEIE bit is set.
-
+當空閒符號被偵測到時，USART處理步驟如同一般資料一樣處理，但如果USART_CR1的IDLEIE被設置時，將會產生一個中斷
 
 
 溢出錯誤
 ------------------------------------
-An overrun error occurs when a character is received when RXNE has not been reset. Data
-can not be transferred from the shift register to the RDR register until the RXNE bit is
-cleared.
+若RXNE沒有被覆位，此時又接收到一個新資料，則會發生溢出錯誤。
 
-The RXNE flag is set after every byte received. An overrun error occurs if RXNE flag is set
-when the next data is received or the previous DMA request has not been serviced. When
-an overrun error occurs:
+當溢出錯誤產生時:
+   1. USART_SR中的ORE位將被設置
+   2. RDR中的內容將不會被清除，因此讀取USART_DR仍可以得到先前的資料
+   3. Received shift register中的資料將被覆蓋
+   4. 如果RXNEIE被設置，或是EIE(Error interrupt enable)和DMAR位被設定，則會產生一個中斷
+   5. 依序讀取USART_SR和USART_DT暫存器，可清除ORE位
 
-● The ORE bit is set.
-
-● The RDR content will not be lost. The previous data is available when a read to
-USART_DR is performed.
-
-● The shift register will be overwritten. After that point, any data received during overrun
-is lost.
-
-● An interrupt is generated if either the RXNEIE bit is set or both the EIE and DMAR bits
-are set.
-
-● The ORE bit is reset by a read to the USART_SR register followed by a USART_DR
-register read operation.
-
-Note: The ORE bit, when set, indicates that at least 1 data has been lost. There are two
-possibilities:
-
-● if RXNE=1, then the last valid data is stored in the receive register RDR and can be
-read,
-
-● if RXNE=0, then it means that the last valid data has already been read and thus there
-is nothing to be read in the RDR. This case can occur when the last valid data is read in
-the RDR at the same time as the new (and lost) data is received. It may also occur
-when the new data is received during the reading sequence (between the USART_SR
-register read access and the USART_DR read access).
+**當ORE位被設置時，表示至少有一個資料已遺失，有以下兩種可能性: **
+   1. 如果RXNE=1，表示上一筆資料還在RDR中，且可被讀出
+   2. 如果RXNE=0，表示上一筆資料已被讀走，RDR已無資料可被讀取。此種情況發生在讀取RDR中上一筆資料時，又接收到新的資料時，
+      也有可能在依序讀取USART_SR到USART_DR之間時發生。
 
 
-Selecting the proper oversampling method
+
+噪音錯誤
 ------------------------------------
+透過採樣技術，可以區分有效的輸入資料和噪音，並進行資料恢復。
+
 The receiver implements different user-configurable oversampling techniques (except in
 synchronous mode) for data recovery by discriminating between valid incoming data and
 noise.
