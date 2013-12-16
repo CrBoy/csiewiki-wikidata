@@ -17,6 +17,8 @@ USB 訊號使用標記為D+ 和D- 的雙絞線(twisted pair)傳輸，以抵消�
 
 * 差動訊號：訊號傳輸在兩根不同的線上，這兩個信號的振幅相等，相位相反。
 
+.. image:: /embedded/USB/6.png
+
 .. image:: /DiffSig.png
 
 * NRZI Code: NRZI(Non Return to Zero Invert，不歸零就反向)的編碼方式，無需同步的時脈信號也能產生同步的資料存取。NRZI的編碼規則是，當資料位元為 “1” 時不轉換，為 “0” 時再作轉換。
