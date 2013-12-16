@@ -49,12 +49,27 @@ USB 封包簡介
 
 .. image:: /embedded/USB/7.png
 
+.. image:: /embedded/USB/PID types.jpg
+
 Token 封包
 ==========
 
-每個 Transaction 以 Token 封包做起始。Token 封包定義裝置、Endpoint數量，傳輸的方向。其中 SOF (Start Of Frame) Token 包含目前的 frame 數，而且會廣播 (broadcast) 給所有的 full-speed 裝置知道。SOF 也是唯一一個不指定目標的 Token。 Token Packet 長度固定為 4 個 Byte。
+每個Transaction以Token封包做起始。Token封包定義裝置、Endpoint數量，傳輸的方向。用PID來識別OUT、IN、SOF與SETUP處理。對於OUT和SETUP處理，位址與端點欄位用來選擇接收資料的端點；對於IN處理，位址與端點欄位用來選擇傳送資料的端點。
 
 .. image:: /Token Format.jpg
+SOF(Start-of-Frame)為一個特別的Token封包類型，包含目前的frame數量，主機每隔一段很小的間隔就會發出一次SOF封包，所有裝置以及hub都會收到SOF封包。對只需要時間資訊的裝置而言，只需要知道PID為SOF即可，剩餘的frame number以及CRC的資訊皆可忽略。
+
+.. image:: /SOF Packet.jpg
+
+PID: Packet Identifier
+
+ADDR: Address 
+
+ENDP: Endpoint 
+
+CRC: Cyclic Redundancy Checks 
+
+
 
 Data 封包
 =========
