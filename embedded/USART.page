@@ -330,7 +330,11 @@ USART Using DMA
 
 .. image:: /tx_uart_dma.png
 
-
+1. 剛開始DMA先把第一個DATA寫入USART_DR
+2. 當TXE(transmission enable), 第一個data(FRAME1)就從TX Line上傳出去;TXE的同時,DMA request觸發, 所以DMA把第二個data也寫進USART_DR;
+3. 當FRAME1傳完以後, 再一次TXE, FRAME2 開始從TX line傳出去,同時DMA request再次觸發, FRAME3也開始寫入;
+4. 因為DMA一開始要設定這次會傳幾個byte,當回寫入完最後一個byte到USART_DR以後,DMA transfer complete會觸發,之後USART就會等待TC觸發,以確保最後一個byte傳發完畢;
+5. TC 會由硬體在最後一個frame傳送完會設為1;
 
 .. image:: /rx_usart_dma.png
 
