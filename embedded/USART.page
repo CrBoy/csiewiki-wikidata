@@ -458,10 +458,86 @@ To compile code
 這裡採用minicom 超級終端機來接收USART字串
 
 .. code-block:: c
+   
+   ls /dev       <-- 找device，見圖，這裡找到/dev/ttyUSB0
+
+.. image:: /usart-ls-dev.png
+
+.. code-block:: c
 
    sudo apt-get install minicom
    sudo minicom -s                   <-- 不一定要用root，不過使用者必須要device node 讀寫的權限，-s表進入setup
-      
+
+.. image:: /usart-minicom-setup.png
+.. image:: /usart-minicom-device.png
+.. code-block:: c
+
+   選擇第三個"Serial port setup"，設定接收的模式及port   
+   先按'A'選擇device，並輸入/dev/ttyUSB0(由剛剛的ls /dev)決定
+
+.. image:: /usart-minicom-parameter.png
+
+
+   再來按'E'設定接收的參數，選擇
+.. code-block:: c
+
+   'C' --> Baud rate 9600
+   
+   'L' --> None parity check
+
+   'V' --> 資料長度 8 bits
+
+   'W' --> 停止位元數 1 bit
+
+   輸入完後按Enter離開
+
+.. image:: /usart-minicom-save.png
+  
+.. code-block:: c
+
+   回到原本的畫面，選擇 'Save setup as default' ，然後選擇 'Exit from Minicom' 離開
+
+.. image:: /usart-minicom.png
+
+.. code-block:: c
+   回到Terminal，重新輸入sudo minicom進入Minicom的畫面
+
+.. image:: /usart-minicom.png
+
+
+.. image:: /usart-pin.jpg
+
+
+.. code-block:: c
+   
+   按照圖上的接法，白色線接PA2、綠色線接PA3
+   ** 白色線為USB的RX所以要接上板子的TX(PA2) ** 
+   ** 綠色線為USB的TX所以要接上板子的RX(PA3) ** 
+
+此時畫面中的Minicom會顯示出結果，不斷的印出"Init complete! Hello World!"
+
+.. image:: /usart_minicom_results.png
+
+按Ctrl+a，再按x可離開Minicom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 REFERENCE
 ..................
