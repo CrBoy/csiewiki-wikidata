@@ -14,6 +14,16 @@ USART主要特性
 
 - NRZ標準資料格式
 
+   NRZ(Nonreturn to Zero):不歸零編碼
+
+   這是一種傳送資訊的編碼方式，它以正脈波代表1，負脈波代表0
+
+   它的特色是編碼解碼較為簡單，可是同步信號必須另外傳播，否則無法提供訊號校正能力
+
+.. image:: /NRZcode.png
+
+圖片來源：`wikipedia<http://zh.wikipedia.org/wiki/%E4%B8%8D%E6%AD%B8%E9%9B%B6>`_
+
 - 可程式化的資料長度 (8 or 9 bits)
 
 - 可程式化的停止位元 (1 or 2 bits)
@@ -75,6 +85,9 @@ USART主要特性
  - Address bit (MSB, 9th bit)
 
  - Idle line
+
+補充：
+
 
 
 USART功能介紹
