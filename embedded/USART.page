@@ -338,6 +338,11 @@ USART Using DMA
 
 .. image:: /rx_usart_dma.png
 
+與transmission類似
+1.USART_CR3 的 DMAR 要enable;
+2. 當收到一個frame以後, 除了RXNE 以外,DMA request也會觸發, 表示DMA可以從USART_DR把DATA傳送到設定好的memory地址;
+3. 當預先設定好的接收data數量達到以後, DMA TCIF會觸發interrupt, DMAR會在這個interrupt routine裡清掉,不就會產生DMA request
+
 
 IrDA SIR ENDEC
 ............................
