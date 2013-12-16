@@ -397,6 +397,7 @@ USART_CR2 : CLKEN = 1;LINEN :keep cleared;
 USART_CR3 : SCEN, HDSEL, IREN :keep cleared;
 
 特性:
+
 .. image:: /synchronous_transmission.png
 
 Synchronous 指的是master 跟 slave 用同一個 Clock, 這個clock(SCLK)由 master 端送出, 同時需要TE = 1,clock 才會產生;這個時候只有master方會接收或傳送data.
@@ -405,10 +406,14 @@ Synchronous 指的是master 跟 slave 用同一個 Clock, 這個clock(SCLK)由 m
 
 .. image:: /usart_syn.png
 
-在傳送 start bit, stop bit 時不會有 clock pulse 從 SCLK 送出,clock 處於 logic 0;
+在傳送 start bit, stop bit 時不會有 clock pulse 從 SCLK 送出,clock 處於 logic 0.
+
 Last bit clock pulse(LBCL),確定第8(9,如果 M=1)bit的clock pulse會不會輸出.
+
 CPOL = 0: high 為 logic 1 ; CPOL =1 :high 為 logic 0.
+
 CPHA = 0: clock pulse 發生在bit period 的後半段中;CPHA = 1: clock pulse 發生在bit period 的前半段;差別在於bit period中間的edge是正/負緣觸發.
+
 master mode: slave(不是產生SCLK的一方)不能夠用輸入進來的input clock 做接收或送去data.
 
 因為同步, 所以不需要oversampling(Ws >> 2Wm)
