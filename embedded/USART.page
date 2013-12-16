@@ -310,24 +310,19 @@ Frame錯誤
 
 Fractional baud rate generation的設定
 ====================================
-The baud rate for the receiver and transmitter (Rx and Tx) are both set to the same value as
-programmed in the Mantissa and Fraction values of USARTDIV.
+接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
+
 
 .. image:: /baud.png
 
-USARTDIV is an unsigned fixed point number that is coded on the USART_BRR register.
+其中USARTDIV為一個無號的定點數(unsigned fixed point number)，fCK為給周邊設備的時鐘。
 
-● When OVER8=0, the fractional part is coded on 4 bits and programmed by the
-DIV_fraction[3:0] bits in the USART_BRR register
+   - 當OVER8 = 0 時，小數部分佔USART_BRR的DIV_Fraction[3:0]，共 4 bits
+   
+   - 當OVER8 = 1 時，小數部分佔USART_BRR的DIV_Fraction[2:0]，共 3 bits，其中DIV_Fraction[3]應該保持'0'
 
-● When OVER8=1, the fractional part is coded on 3 bits and programmed by the
-DIV_fraction[2:0] bits in the USART_BRR register, and bit DIV_fraction[3] must be kept
-cleared.
-
-Note: The baud counters are updated to the new value in the baud registers after a write operation
-to USART_BRR. Hence the baud rate register value should not be changed during
-communication.
-
+**USART_BRR被更新後，baud rate的計數器中的值也會同時被更新，因此在傳輸途中不應該更新USART_BRR中的值。
+  另外，如果TE或RE被分別禁止，則baud rate的計數器也會停止計數**
 
 
 USART Using DMA
