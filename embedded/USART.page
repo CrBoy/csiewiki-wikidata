@@ -330,7 +330,14 @@ communication.
 
 
 
+USART Using DMA
+............................
 
+.. image:: /tx_uart_dma.png
+
+
+
+.. image:: /rx_usart_dma.png
 
 
 IrDA SIR ENDEC
