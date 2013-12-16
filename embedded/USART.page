@@ -126,7 +126,7 @@ USART 特性描述
 
 傳送器
 ============================
-傳送器依據M位的狀態來決定發送8或9位元的資料。
+傳送器依據USART_CR1 M位的狀態來決定發送8或9位元的資料。
 當transmit enable bit(TE)被設定時，資料transmit shift register經由TX腳位送出，
 同時，相對應的時鐘脈衝會由SCLK腳位輸出。
 
@@ -139,21 +139,54 @@ USART 特性描述
    - 0.5 bits的停止位: Smartcard mode接收數據用
    - 1.5 bits的停止位: Smartcard mode發送數據用
 
+傳送器的設定
+------------------------------------
+   1. 設定USART_CR1暫存器的UE位來啟動傳輸
+   2. 設定USART_CR1暫存器的M位決定資料長度
+   3. 設定USART_CR2暫存器中的STOP位來決定停止位的長度
+   4. 採用多緩衝器的話，則須設定USART)CR3的DMAT啟動DMA，並設置DMA的暫存器
+   5. 設置USART_CR1的TE位，在第一筆資料傳送前，傳送一個空閒的frame
+   6. 利用USART_BRR暫存器設定baud rate
+   7. 將欲發送的資料放入USART_DR中，重複步驟7
+
+當資料放入USART_DR會由硬體清除TXE位，則表示:
+   1. 資料已從TDR中進入transmit shift register，資料的發送已開始
+   2. TDR暫存器已被清空
+   3. 下一筆資料可放入USART_DR中
+
+若TXEIE位的設置，則會產生一個中斷:
+   如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後把該筆資料移進transmit shift register中
+   如果USART沒有在發送資料，則對USART_DR的寫入會把資料直接放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位
+
+一個frame的資料發送完畢後，TC位會被設定，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，先讀取USART_SR暫存器，再寫入USART_DR暫存器，則可清除TC位
+
+傳送斷開符號
+------------------------------------
+(代補)
+
+
+傳送空閒符號
+------------------------------------
+(代補)
+
+
+
 
 接收器
 ====================================
-The USART can receive data words of either 8 or 9 bits depending on the M bit in the
-USART_CR1 register.
+接收器依據USART_CR1 M位的狀態來決定接收8或9位元的資料。
 
 
 
-斷開符號
+接收斷開符號
 ------------------------------------
+設置SBK可發送一個斷開符號。
+
 When a break character is received, the USART handles it as a framing error.
 
 
 
-空閒符號
+接收空閒符號
 ------------------------------------
 When an idle frame is detected, there is the same procedure as a data received character
 plus an interrupt if the IDLEIE bit is set.
