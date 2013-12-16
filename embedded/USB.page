@@ -214,19 +214,30 @@ USB 定義了四種傳輸型態：
 |               |                    | Data      |
 +---------------+--------------------+-----------+
 
-demo 程式
+Demo 程式
 ^^^^^^^^^
 
 ::
 
-  git clone git://gitcafe.com/KuoE0/DiscoveryF4-USB.git
+  git clone https://github.com/kvzhao/USB-Demo
 
+目的
+========
+把STM32F4作為Host，當插入隨身碟後在裡面寫入一份文件。
 
-::
+步驟與現象
+========
+.. image:: /usb.png
+* 紅燈亮起：偵測到隨身碟
+* 綠燈亮起：file system mount完成
+* 橘燈亮起：已打開隨身碟中的目錄
+* 藍燈亮起：完成寫入簽名，並且關閉file
+* 當隨身碟拔出後，所有LED燈會熄滅，結束實驗，並且在隨身碟中留下文件。
 
-  tail -f /var/log/syslog
-  sudo cat /sys/kernel/debug/usb/usbmon/0u
+.. image:: /usb_hacking.png
 
+程式說明
+========
 
 Q & A
 ^^^^^ 
