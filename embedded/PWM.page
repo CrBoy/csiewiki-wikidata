@@ -336,9 +336,6 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
 .. image:: /中央對齊.png
 
-- PWM先高後低和先低後高 在步進馬達上表現有什麼差別?
-   在馬達剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在馬達的表現上 先高後低的啟動速度會比先低後高還要快一點
-
 
 PWM realize ADC and DAC
 =======================
@@ -505,6 +502,73 @@ Demo video
 補充
 =============
 
+PWM先高後低和先低後高 在Motor上表現有什麼差別?
+--------------------------------------------------
+
+  - 在Motor剛要啟動時，因為先高後低是在duty cycle的前半段先供電，而先低後高則是到duty cycle的後半段才供電，在Motor的表現上 先高後低的啟動速度會比先低後高還要快一點
+
+可變電阻分為兩類(variable resistor):
+--------------------------------------
+
+- (1)可變電阻器:電阻可調整。
+
+- (2)半可變電阻器:為調整電阻後可以固定。
+
+- 用處:
+
+  - (1)可變電阻:用於阻值需要常常改變的電路用, 像音量控制, 搖桿, 類比指針式三用電表的最大值調整等.
+
+  - (2)半可變電阻:多用於微調用或一次設定好後除非又偏差才需要調整的電路, 像類比指針式三用電表的歸零值調整等.
+
+- `Reference <http://www.wretch.cc/blog/ltivsled/22468459>`_
+
+Clock Tree
+-----------
+
+- Clock Tree 是把 Clock Source 分配到每個Device讓它的Skew minimize
+
+.. image:: /ClockTree_SYSCLK.PNG
+
+- 為保證所有周邊裝置能夠得到期望的頻率, 所以先將頻率倍頻至最高需求頻率(Ethernet PTP clock), 其餘周邊裝置再除頻至所需之clock.
+
+- 先倍頻在除頻係因倍頻與除頻的電路設計上的差異, 因PLL設計較為複雜, 而prescaler則以counter即可實現, 所以設計上不會直接將Oscillator產生之頻率倍頻至各裝置所需之頻率.
+
+.. image:: /before PLL.PNG
+
+
+[#]_
+
+.. [#] `N倍頻電路</N倍頻電路.ppt>`_
+
+- PLL之前要先除頻原因為
+
+  - 在頻率合成器中，只用除頻器並不足以產生適當的頻率，必須配合 N 倍頻電路才能產生更多樣的輸出頻率。
+      
+  - 例如以10 MHz 之參考頻率，若只用除頻器是無法獲得 3 MHz, 4 MHz, 6 MHz, 7 MHz, 8 MHz, 9 MHz 等頻率，然而若搭配 N 倍頻電路，則要產生上述頻率並不困難
+
+TIx XOR
+--------
+
+[#]_
+
+.. [#] `ITx XOR<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 602
+
+.. image:: /Tim_input_xor.PNG
+
+- The TI1S bit in the TIMx_CR2 register, allows the input filter of channel 1 to be connected to the output of a XOR gate, combining the three input pins TIMx_CH1, TIMx_CH2 and TIMx_CH3.
+
+- The XOR output can be used with all the timer input functions such as trigger or input capture. 
+
+- An example of this feature used to interface Hall sensors is given in Section 13.3.18 below.
+
+Setup Time
+-----------
+
+.. image:: /part of counter wave.PNG
+
+`Ref. 數位IC設計, 陳培殷教授, slide 40, 41 <http://dic.csie.ncku.edu.tw/vlsi_2013/CHAPTER-5.pdf>`_
+
+.. image:: /DFF_setup_time.PNG
 
 範例程式
 =============
