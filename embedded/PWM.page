@@ -525,7 +525,8 @@ PWM先高後低和先低後高 在Motor上表現有什麼差別?
 Clock Tree
 -----------
 
-- Clock Tree 是把 Clock Source 分配到每個Device讓它的Skew minimize
+- Clock Tree 是把 Clock Source 分配到每個Device讓它的Skew minimize。
+- 一般的邏輯閘fan out都有上限﹐一推20就可能會推不上去拉，所以需要長tree 1推10，每個再推10個.就像樹狀圖一樣，這就是clock tree。
 
 .. image:: /ClockTree_SYSCLK.PNG
 
