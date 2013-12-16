@@ -325,12 +325,17 @@ Fractional baud rate generation的設定
   另外，如果TE或RE被分別禁止，則baud rate的計數器也會停止計數**
 
 
-USART Using DMA
+Modes
 ............................
+
+USART using DMA
+==================
 
 利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
 但當連續傳送大量的data時, 若果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
 
+USART 用 DMA 讀取 DATA 再傳送
+------------------------------------
 
 .. image:: /tx_uart_dma.png
 
@@ -344,6 +349,9 @@ USART Using DMA
 
 5. TC 會由硬體在最後一個frame傳送完會設為1.
 
+USART 接收端經過 DMA 存放DATA
+-----------------------------------
+
 .. image:: /rx_usart_dma.png
 
 與transmission類似.
@@ -356,22 +364,22 @@ USART Using DMA
 
 
 IrDA SIR ENDEC
-............................
+====================
 
-IrDA:
-=======
+IrDA
+-----------
 
 IrDA 是一種標準化紅外線數據傳送方式;STM32f4支援利用USART輸出訊號配合轉換電路,轉換成符合IrDA 標準的訊號,實現紅外線傳輸.
  
 
-register 設定:
-===============
+register 設定
+---------------
 USART_CR3 : IREN = 1; SCEN, HDSEL = 0.
 
 USART_CR2 : LINEN , STOP, CLKEN = 0.
 
-IrDA SIR 實體層:
-=================
+IrDA SIR 實體層
+------------------
 
 
 .. image:: /irda.PNG
@@ -389,14 +397,16 @@ IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線
 
 
 USART SYNCHRONOUS MODE
-......................
-register 設定:
+=========================
+register 設定
+------------------
 
 USART_CR2 : CLKEN = 1;LINEN :keep cleared;
 
 USART_CR3 : SCEN, HDSEL, IREN :keep cleared;
 
-特性:
+特性
+-----------
 
 .. image:: /synchronous_transmission.png
 
@@ -418,17 +428,41 @@ master mode: slave(不是產生SCLK的一方,非usart周邊)不能夠用輸入�
 
 因為同步, 所以不需要oversampling(Ws >> 2Wm)
 
+USART 與 SPI
+---------------
+
+SPI：它是主從式的架構，通常一個主設備和多個從設備
+
+由四條信號線組成：SCLK、MISO、MOSI、CS
+
+MOSI：master output, slave input，主設備輸出
+
+MISO：master input, slave output，主設備輸入
+
+SCLK：serial clock，clock信號，由主設備產生
+
+CS：chip select (optional)
+
+USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
+
+TX：傳送訊號給周邊
+
+RX：週邊設備傳送給主設備的訊號
+
+SCLK：由主設備產生的clock訊號
+
+以上是兩者有類似的地方
 
 
 HARDWARE FLOW CONTROL
-......................
+=======================
 利用 nCTS 跟 nRTS 控制 TX , RX 要不要再傳送或接收 data
 
 .. image:: /hardware_control_2usarts.png
 
 
 RTS Flow Control
-========================
+-------------------------
 RTSE(RTS flow control enable) , CTSE 為1才開啟hw flow control;
 
 Figure 318
@@ -438,7 +472,7 @@ Figure 318
 
 
 CTS Flow Control
-========================
+-----------------------
 跟上面是對應的, 當nRTS為1, transimitter 端的nCTS就會是1, 表示他知道reciever 目前無法接收data, TX就會在傳送完當前的data以後 idle.
 
 nCTS為1 的時候,  會由硬體去設定CTSIE bit (USART_CR3).
@@ -654,32 +688,6 @@ DTE可以從硬件上區別它的接口為針式，DCE的接口為孔式。
 
 參考資料：http://wfeng520.blog.hexun.com.tw/62795095_d.html
 
-
-***2.USART和SPI的不同***
-
-簡單複習SPI：
-
-SPI：它是主從式的架構，通常一個主設備和多個從設備
-
-由四條信號線組成：SCLK、MISO、MOSI、CS
-
-MOSI：master output, slave input，主設備輸出
-
-MISO：master input, slave output，主設備輸入
-
-SCLK：serial clock，clock信號，由主設備產生
-
-CS：chip select (optional)
-
-USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
-
-TX：傳送訊號給周邊
-
-RX：週邊設備傳送給主設備的訊號
-
-SCLK：由主設備產生的clock訊號
-
-以上是兩者有類似的地方
 
 
 ***3.高速UART及低速UART之應用?***
