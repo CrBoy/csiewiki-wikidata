@@ -555,11 +555,8 @@ TIx XOR
 
 .. image:: /Tim_input_xor.PNG
 
-- The TI1S bit in the TIMx_CR2 register, allows the input filter of channel 1 to be connected to the output of a XOR gate, combining the three input pins TIMx_CH1, TIMx_CH2 and TIMx_CH3.
-
-- The XOR output can be used with all the timer input functions such as trigger or input capture. 
-
-- An example of this feature used to interface Hall sensors is given in Section 13.3.18 below.
+- XOR設置目的為:有三個輸入的信號(例如霍爾感測器)。
+  - 霍爾感測器物理意義為電壓與磁力成正比，所以可以藉由霍爾感測器得出的電壓算出Motor的轉速。
 
 Setup Time
 -----------
