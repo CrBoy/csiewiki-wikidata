@@ -253,6 +253,7 @@ STM32提供大量的函式庫來操作USB，包跨底層的driver到提供使用
 
 .. image:: /USB_Lib.png
 
+本實驗主要將裝置STM32F4設定為Host，而隨身碟為Device。
 
 Q & A
 ^^^^^ 
