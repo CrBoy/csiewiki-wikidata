@@ -1,10 +1,6 @@
 USART簡介
 ...................
-USART(universal synchronous asynchronous receiver transmitter) 通用同步/非同步收發傳輸器，提供了一種靈活的方法及使用NRZ非同步串行資料格式與外部設備之間進行全雙工資料交換。
-同時，USART也提供同步的方式半雙工的通信，另外支持LIN (local interconnection network)，Smartcard協定及IrDA (infrared data association紅外通訊技術) SIR ENDEC，Modem(CTS/RTS)的操作。
-藉由DMA多重緩衝器的方式，可達到高速資料的通訊。
-
-
+串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter) 通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。
 
 
 USART主要特性
@@ -16,9 +12,9 @@ USART主要特性
 
    NRZ(Nonreturn to Zero):不歸零編碼
 
-   這是一種傳送資訊的編碼方式，它以正脈波代表1，負脈波代表0
+   這是一種傳送資訊的編碼方式，它以正脈波代表1，負脈波代表0，當訊號連續為'1'時，則保持正脈波，直到出現'0'為止
 
-   它的特色是編碼解碼較為簡單，可是同步信號必須另外傳播，否則無法提供訊號校正能力
+   它的特色是編碼解碼較為簡單，但缺乏同步傳輸的能力，且無法提供較佳的訊號校正能力。
 
 .. image:: /NRZcode.png
 
