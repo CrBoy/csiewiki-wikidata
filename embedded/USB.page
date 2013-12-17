@@ -271,7 +271,13 @@ Demo 程式
 
 本實驗主要將裝置STM32F4設定為Host，而隨身碟為Device。
 
+* Host state machine 
 
+.. image:: /host_statemachine.png
+
+* Enumeration 
+
+.. image:: /enumeration.png
 Q & A
 ^^^^^ 
  Q: 如何推導出 USB 3種速度（low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s）的理論值？
