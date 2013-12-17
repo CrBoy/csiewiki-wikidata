@@ -207,6 +207,7 @@ SPI通訊過程
 Code section
 ============
 .. image:: /DSC_0447.jpg
+左板為master 右板為slave(PA5接PA5,PA6、PA7同樣辦理)
 Demo影片:  http://youtu.be/ciwYDsaJIYE
 
 完整程式碼：
