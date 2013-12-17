@@ -541,6 +541,9 @@ Guard time and prescaler register(USART_GTPR)
 CODE SECTION
 .........................
 
+發送器測試
+======================================
+
 Download sample code : 
 
 .. code-block:: c
@@ -623,6 +626,51 @@ To compile code
 按Ctrl+a，再按x可離開Minicom
 
 
+
+接收器測試
+======================================
+
+To compile code
+
+.. code-block:: c
+   
+   // 切換到branch USART_Receive
+   git checkout USART_Receive
+   
+   // 編譯並上傳程式
+   make; make flash
+
+.. image:: /usart_minicom_receive.png
+
+.. code-block:: c
+
+   打開Minicom只會看到一行字串
+
+.. image:: /usart_sendfile.png
+
+.. code-block:: c
+
+   接著按下 Ctrl+a 然後按 s 出現Upload選項，選擇最後一項 'ascii'
+
+.. image:: /usart_selectfile.png
+
+.. code-block:: c
+ 
+   找到要發送過去的檔案，按空白鍵選取，按Enter開始傳送
+
+.. image:: /usart_sendsuccess.png
+
+.. code-block:: c
+
+   傳送成功後如圖所示，程式會在接收到資料後，回傳相同的資料
+
+.. image:: /usart_receive_result.png
+
+.. code-block:: c
+
+   印出來的資料應如同檔案中的字串
+
+   
 
 
 
@@ -715,6 +763,5 @@ COM是PC（個人計算機）上，非同步串列通信口的簡寫。由於歷
 所以，現在PC機的COM均為RS232。若配有多個非同步串列通信口，則分別稱為COM1、COM2...。
 
 參考資料：http://ithelp.ithome.com.tw/question/10028134
-
 
 
