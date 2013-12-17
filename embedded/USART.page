@@ -128,7 +128,7 @@ USART 特性描述
 中斷符號則全由'0'所組成(包含資料的停止位也是'0')，在中斷時，發送器會再插入1或2個停止位('0')
 
 .. image:: /idleandbreak.png
-
+Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 傳送器
 ============================
@@ -291,7 +291,7 @@ USART在接收斷開符號後，可像處理frame錯誤一樣處理
 
 .. image:: /noisedetectionsampledata.png
 
-
+Ref: `RM0090 Reference Manual P.957~958<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 Frame錯誤
 ------------------------------------
@@ -314,6 +314,7 @@ Fractional baud rate generation的設定
 
 
 .. image:: /baud.png
+Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 其中USARTDIV為一個無號的定點數(unsigned fixed point number)，fCK為給周邊設備的時鐘。
 
@@ -671,29 +672,11 @@ To compile code
    印出來的資料應如同檔案中的字串
 
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 REFERENCE
 ..................
 - `Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
 
-- `STM32F407xx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+- `STM32F407xx Reference Manual P.946 ~ P.997<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 
 - `IrDA and RS-232<http://china.maximintegrated.com/app-notes/index.mvp/id/3024>`_
@@ -763,5 +746,4 @@ COM是PC（個人計算機）上，非同步串列通信口的簡寫。由於歷
 所以，現在PC機的COM均為RS232。若配有多個非同步串列通信口，則分別稱為COM1、COM2...。
 
 參考資料：http://ithelp.ithome.com.tw/question/10028134
-
 
