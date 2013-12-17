@@ -213,7 +213,7 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
 
 .. code-block:: c
 
-    git clone git://gitcafe.com/EricCheng/stm32_spi_demo.git
+    git clone git@github.com:Windbysea/stm32_spi_demo.git
     cd stm32_spi_demo/
 
 .. 自定義變數：
