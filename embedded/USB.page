@@ -7,7 +7,10 @@ title: usb
 
 標準 USB 2.0 介面
 ^^^^^^^^^^^^^^^^
+USB是一種普遍使用的資料傳輸界面，亦包含實體層，資料鏈結層，網路層，傳送層...應用層等等。
 
+實體層
+=======
 .. image:: /271px-Types-usb_new.svg.png
 .. image:: /embedded/USB/2.png
 
@@ -103,15 +106,8 @@ USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上
 
 .. image:: /N110128002020110128120354.jpg
 
-USB host and device
-^^^^^^^^^^^^^^^^^^^^^^
-.. image:: /embedded/usb host:device .png
-  
- 1. SIE(SERIAL INTERFACE ENGINE)
-
-
 Block Diagram
-^^^^^^^^^^^^^^^
+==============
 
 .. image:: /USB_block_diagram.png
 
@@ -120,6 +116,12 @@ Block Diagram
  3. DP/DM description -- in reference manual 30.3.2
  4. AHB -- Advanced High-performance Bus  
  5. UTMI -- USB 2.0 transceiver macrocell interface
+
+USB host and device
+======================
+.. image:: /embedded/usb host:device .png
+  
+ 1. SIE(SERIAL INTERFACE ENGINE)
 
 USB Descriptors
 ^^^^^^^^^^^^^^^
