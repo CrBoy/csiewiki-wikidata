@@ -332,8 +332,13 @@ Modes
 USART using DMA
 ==================
 
+Ref: `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+
 利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
 但當連續傳送大量的data時, 如果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
+
+Ref: `RM0090 Reference Manual P.981<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
 
 USART 用 DMA 讀取 DATA 再傳送
 ------------------------------------
@@ -366,6 +371,7 @@ USART 接收端經過 DMA 存放DATA
 
 IrDA SIR ENDEC
 ====================
+Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 IrDA
 -----------
@@ -400,6 +406,9 @@ IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線
 
 USART SYNCHRONOUS MODE
 =========================
+
+Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
 register 設定
 ------------------
 
@@ -458,6 +467,9 @@ SCLK：由主設備產生的clock訊號
 
 HARDWARE FLOW CONTROL
 =======================
+
+Ref: `RM0090 Reference Manual P.983<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
 利用 nCTS 跟 nRTS 控制 TX , RX 要不要再傳送或接收 data
 
 .. image:: /hardware_control_2usarts.png
@@ -746,4 +758,3 @@ COM是PC（個人計算機）上，非同步串列通信口的簡寫。由於歷
 所以，現在PC機的COM均為RS232。若配有多個非同步串列通信口，則分別稱為COM1、COM2...。
 
 參考資料：http://ithelp.ithome.com.tw/question/10028134
-
