@@ -481,7 +481,9 @@ Question question
 
 - 資料傳輸時，Master與slave需要設定相同的``CPOL``和``CPHA``定義取資料的時間點，確保資料正確的傳輸。
 
-
+I2S
+---
+.. image:: /2013-12-17_151324.png
 
 Bus和prescaler的關係
 -------------------
