@@ -248,11 +248,17 @@ Demo 程式
 程式說明
 ========
 
+* 
+STM32提供大量的函式庫來操作USB，包跨底層的driver到提供使用者應用的API。
+
+.. image:: /USB_Lib.png
+
+
 Q & A
 ^^^^^ 
  Q: 如何推導出 USB 3種速度（low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s）的理論值？
 
- A: 這是原本定義的各種傳輸速度主頻率。
+ A: 這是原本定義的各種傳輸速度主頻率。可以利用pull-up resistor來控制。
 
 ======
 
