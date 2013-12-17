@@ -43,6 +43,10 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 .. image:: /embedded/USB/4.png
 
+* 資料傳輸整理
+
+.. image:: /581px-USB_signal_example.svg.png
+.. image:: /USB_SCHEMA.gif
 USB 封包簡介
 ^^^^^^^^^^^
 
@@ -92,6 +96,31 @@ Handshake封包由一個PID所組成，用來表示資料傳輸的狀態，部�
 
 .. image:: /embedded/USB/Handshake Packet.jpg
 
+USB OTG (on-the-go)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+原先USB裝置的角色都是固定的(主機或週邊)。
+USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上鍵盤。
+
+.. image:: /N110128002020110128120354.jpg
+
+USB host and device
+^^^^^^^^^^^^^^^^^^^^^^
+.. image:: /embedded/usb host:device .png
+  
+ 1. SIE(SERIAL INTERFACE ENGINE)
+
+
+Block Diagram
+^^^^^^^^^^^^^^^
+
+.. image:: /USB_block_diagram.png
+
+ 1. ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
+ 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A插主機，marco-B插週邊） 
+ 3. DP/DM description -- in reference manual 30.3.2
+ 4. AHB -- Advanced High-performance Bus  
+ 5. UTMI -- USB 2.0 transceiver macrocell interface
+
 USB Descriptors
 ^^^^^^^^^^^^^^^
 
@@ -130,31 +159,6 @@ MSC Class
 Mass Storage device Class，大容量存儲裝置類別。一種電腦和行動裝置之間的傳輸協議，它允許一個通用串行總線（USB）裝置來訪問主機的計算裝置，使兩者之間進行文件傳輸。
 
 MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統經過版本升級或者係統補丁也能實現對 MSC 的支持。MSC 的通用性和操作簡單使他成為行動裝置上最常見的文件系統，USB MSC 並不需要任何特定的文件系統, 它提供了一個簡單的界面來讀寫接口用於訪問任何硬碟驅動。
-
-USB host and device
-^^^^^^^^^^^^^^^^^^^^^^
-.. image:: /embedded/usb host:device .png
-  
- 1. SIE(SERIAL INTERFACE ENGINE)
-
-
-Block Diagram
-^^^^^^^^^^^^^^^
-
-.. image:: /USB_block_diagram.png
-
- 1. ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
- 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A插主機，marco-B插週邊） 
- 3. DP/DM description -- in reference manual 30.3.2
- 4. AHB -- Advanced High-performance Bus  
- 5. UTMI -- USB 2.0 transceiver macrocell interface
-
-USB OTG(on-the-go)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-原先USB裝置的角色都是固定的(主機或週邊)。
-USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓手機接上鍵盤。
-
-.. image:: /N110128002020110128120354.jpg
 
 傳輸型態
 ^^^^^^^^
