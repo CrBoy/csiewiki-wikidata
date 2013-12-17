@@ -313,7 +313,6 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
 
    void init_PB()
    {
-
         GPIO_InitTypeDef GPIO_InitStruct;
 
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -336,7 +335,7 @@ Master 設定
 .. code-block:: c
 
    uint8_t RemoteLED_OnOff(uint8_t action)
-  {
+   {
     if(action == 1)	//Led On
             SPI_I2S_SendData(SPI1,LED_ON);
     else //Led Off
@@ -345,7 +344,7 @@ Master 設定
 
     while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_TXE) == RESET);
     return 1;
-}
+   }
 
 - task:
 
@@ -391,7 +390,7 @@ Slave  設定：
 .. code-block:: c
 
     void spi_recv_msg_task(void *pvParameters)
-   {
+    {
       uint8_t rcv_tmp = 0;
       while(1)
       {
@@ -412,7 +411,7 @@ Slave  設定：
               STM_EVAL_LEDOn(LED6);
          }
       }
-   }
+    }
 main
 
 .. code-block:: c
