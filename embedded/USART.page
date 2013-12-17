@@ -112,7 +112,7 @@ Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/
    
    - nCTS: 清除發送，若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
    
-   - nRTS: 發送請求，若在低電位，則表是USART已經準備好接收資料
+   - nRTS: 發送請求，若在低電位，則表示USART已經準備好接收資料
 
 
 
@@ -332,7 +332,7 @@ USART using DMA
 ==================
 
 利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
-但當連續傳送大量的data時, 若果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
+但當連續傳送大量的data時, 如果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
 
 USART 用 DMA 讀取 DATA 再傳送
 ------------------------------------
