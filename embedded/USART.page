@@ -230,7 +230,7 @@ Ref: `RM0090 Reference Manual P.954<http://www.st.com/web/en/resource/technical/
 當資料被接收到後:
    1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出
    2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷
-   3. 資料接收期間如檢測到frame錯誤或是噪音、易出錯舞等問題，相關的標誌將被設定(FE、NF、ORE)
+   3. 資料接收期間如檢測到frame錯誤或是噪音、溢出錯誤等問題，相關的標誌將被設定(FE、NF、ORE)
    4. 在多緩衝器接收時，RXNE在每個字元接收後被設置，並藉由DMA讀取RDR而被清除
    5. 單緩衝器模式下，藉由讀取USART_DR可清除RXNE位，RXNE位必須要在下一資料接收前被清除，以免產生易出錯誤
 
@@ -267,8 +267,8 @@ USART在接收斷開符號後，可像處理frame錯誤一樣處理
 透過不同的採樣技術，可以區分有效的輸入資料和噪音，並進行資料恢復。
 
 透過設定USART_CR1中的OVER8位可選16或8次的採樣，見Fig. 250和Fig. 251:
-   - OVER8 = 1: 採用8次採樣，採樣的速度較快(最高速度為fPCLK/8)
-   - OVER8 = 0: 採用16次採樣，採樣的速度最高為fPCLK/16
+   - OVER8 = 1: 採用8次採樣，採樣的頻率較快(最高速度為fPCLK/8)
+   - OVER8 = 0: 採用16次採樣，採樣的頻率最高為fPCLK/16
 
 設定USART_CR3中的ONEBIT位可選則不同的採樣技術:
    - ONEBIT = 0: 採樣資料中心的 3 bits，若此3 bits不相等，則NF位會被設定
