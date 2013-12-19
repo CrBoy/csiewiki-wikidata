@@ -15,6 +15,8 @@ categories: STM32F4
 
 - `EEPROM(wiki):<http://zh.wikipedia.org/wiki/EEPROM>`_ 全稱電子抹除式可複寫唯讀記憶體(英語:Electrically-Erasable Programmable Read-Only Memory)，是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
 
+- `EPROM(wiki):<http://zh.wikipedia.org/wiki/%E5%94%AF%E8%AE%80%E8%A8%98%E6%86%B6%E9%AB%94>`_ 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）可利用高電壓將資料編程寫入，但抹除時需將線路曝光於紫外線下一段時間，資料始可被清空，再供重複使用。因此，在封裝外殼上會預留一個石英玻璃所製的透明窗以便進行紫外線曝光。寫入程式後通常會用貼紙遮蓋透明窗，以防日久不慎曝光過量影響資料。
+
 
 1.2 NOR/NAND介紹
 ------------------
@@ -272,11 +274,11 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 有三種Read Protections levels:
 
-Level 0:將0xAA寫入FLASH_OPTCR中的RDP(Read Protection) bit，表示Read protection not active。
+- Level 0:將0xAA寫入FLASH_OPTCR中的RDP(Read Protection) bit，表示Read protection not active。
 
-Level 1:將除了0xAA以及0xCC以外的值寫入FLASH_OPTCR中的RDP bit，表示Memory read protection active。
+- Level 1:將除了0xAA以及0xCC以外的值寫入FLASH_OPTCR中的RDP bit，表示Memory read protection active。
 
-Level 2:將0xCC寫入FLASH_OPTCR中的RDP bit，表示Disable debug/chip read protection。
+- Level 2:將0xCC寫入FLASH_OPTCR中的RDP bit，表示Disable debug/chip read protection。
 
 Memory read protection:通過debug調整修改後的processes以及由RAM啟動且執行的processes無法對Flash memory做存取。
 
@@ -289,6 +291,9 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
 
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
+
+**關於Brown Out Reset Level(BOR_LEV)**
+ - 當工作電壓降低到指定的電壓門檻時，該元件會自動進入reset狀態直到電壓高於電壓門檻。目的為防止一些不穩定或不可預期的電壓變化。(請看暫存器介紹)
 
 3.8 One-time programmable (OTP)
 -------------------------------------------------------------
