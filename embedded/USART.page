@@ -56,25 +56,35 @@ USART主要特性
 
 - 支援10種中斷
 
- – CTS改變(CTS changes)
+ – CTS改變(CTS changes, CTSIE)
 
- – LIN中斷檢測(LIN break detection)
+ – LIN中斷檢測(LIN break detection,  LBDIE)
 
- – 傳送緩衝區空(Transmit data register empty)
+ – 傳送緩衝區空(Transmit data register empty, TXEIE)
 
- – 傳送完成(Transmission complete)
+ – 傳送完成(Transmission complete, TCIE)
 
- – 接收緩衝區滿(Receive data register full)
+ – 接收緩衝區滿(Receive data register full, RXNEIE)
 
- – 空閒線路檢測(Idle line received)
+ – 空閒線路檢測(Idle line received, IDLEIE)
 
  – 溢出錯誤(Overrun error)
 
+   在一般情況下，本身不產生中斷，在DMA情況下，則由EIE產生中斷，經檢驗USART_CR1的FE位可得知溢出錯誤
+
  – Frame錯誤(Framing error)
+
+   在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_CR1的FE位可得知Frame錯誤
+
+   在DMA情況下下，而由EIE產生中斷，經檢驗USART_CR1的FE位得知錯誤
 
  – 噪音錯誤(Noise error)
 
- – 校驗錯誤(Parity error)
+   在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_CR1的NF位得知錯誤
+
+   在DMA情況下下，而由EIE產生中斷，經檢驗USART_CR1的NF位得知錯誤
+
+ – 校驗錯誤(Parity error, PEIE)
 
 - 2種喚醒接收器的方式
 
