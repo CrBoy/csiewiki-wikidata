@@ -106,6 +106,8 @@ USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓鍵盤接上
 
 .. image:: /N110128002020110128120354.jpg
 
+圖中type A connector作為host裝置，用來提供電源；type B則是目標裝置，接收電源。如此，可以避免兩個供應電源的裝置相接，引發傷害裝置的情形(嚴重甚至起火)。
+
 * Dual role device (OTG-DRD)
 
 .. image:: /DRD.png
@@ -136,7 +138,7 @@ Block Diagram
 .. image:: /USB_block_diagram.png
 
  1. ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
- 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A插主機，marco-B插週邊） 
+ 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
  3. DP/DM description -- in reference manual 30.3.2
  4. AHB -- Advanced High-performance Bus  
  5. UTMI -- USB 2.0 transceiver macrocell interface
