@@ -99,7 +99,7 @@ Handshake封包由一個PID所組成，用來表示資料傳輸的狀態，部�
 
 .. image:: /embedded/USB/Handshake Packet.jpg
 
-USB OTG (on-the-go)
+USB OTG (On-The-Go)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 原先USB裝置的角色都是固定的(主機或週邊)。
 USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓鍵盤接上手機使用。
@@ -108,7 +108,7 @@ USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓鍵盤接上
 
 圖中type A connector作為host裝置，用來提供電源；type B則是目標裝置，接收電源。如此，可以避免兩個供應電源的裝置相接，引發傷害裝置的情形(嚴重甚至起火)。
 
-* Dual role device (OTG-DRD)
+* Dual Role Device (OTG-DRD)
 
 .. image:: /DRD.png
 
@@ -117,13 +117,14 @@ USB OTG讓原本只能為週邊的裝置也能成為主機,例如讓鍵盤接上
 ===============================
 OTG設備使用插頭中的ID引腳來區分A/B Device。
 
-* ID接地被稱作為A-Device,為連接時候的USB Host，A-Device始終為總線提供電力
-* ID懸空被稱作為B-Device,為連接時候的USB Device
+* ID接地被稱作為A-Device，為連接時候的USB Host，A-Device始終為總線提供電力
+* ID懸空被稱作為B-Device，為連接時候的USB Device
 
 設備的USB Host/USB Device角色可以通過HNP切換。
 
 Session Request Protocol (SRP, 對話請求協議)
 --------------------------------------------
+
 
 Host Negotiation Protocol (HNP, 主機通令協議)
 --------------------------------------------
