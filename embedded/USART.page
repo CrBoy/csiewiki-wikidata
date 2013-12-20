@@ -76,13 +76,13 @@ USART主要特性
 
    在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_CR1的FE位可得知Frame錯誤
 
-   在DMA情況下下，而由EIE產生中斷，經檢驗USART_CR1的FE位得知錯誤
+   在DMA情況下下，則由EIE產生中斷，經檢驗USART_CR1的FE位得知錯誤
 
  – 噪音錯誤(Noise error)
 
    在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_CR1的NF位得知錯誤
 
-   在DMA情況下下，而由EIE產生中斷，經檢驗USART_CR1的NF位得知錯誤
+   在DMA情況下下，則由EIE產生中斷，經檢驗USART_CR1的NF位得知錯誤
 
  – 校驗錯誤(Parity error, PEIE)
 
