@@ -55,14 +55,21 @@ USB 封包簡介
 
 封包是組成USB傳輸的最小單位。一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
 
-.. image:: /embedded/USB/7.png
+.. image:: /packet.jpg
 
 .. image:: /embedded/USB/PID types.jpg
 
-Token 封包
-==========
+Transaction 
+=============
 
-每個Transaction以Token封包做起始。Token封包定義裝置、Endpoint數量，傳輸的方向。用PID來識別OUT、IN、SOF與SETUP處理。對於OUT和SETUP處理，位址與端點欄位用來選擇接收資料的端點；對於IN處理，位址與端點欄位用來選擇傳送資料的端點。
+Token 封包
+---------------
+
+* 每個Transaction以Token封包做起始。
+* Token封包定義裝置、Endpoint數量，傳輸的方向。
+* 用PID來識別OUT、IN、SOF與SETUP處理。
+* 對於OUT和SETUP處理，位址與端點欄位用來選擇接收資料的端點。
+* 對於IN處理，位址與端點欄位用來選擇傳送資料的端點。
 
 .. image:: /Token Format.jpg
 SOF(Start-of-Frame)為一個特別的Token封包類型，包含目前的frame數量，主機每隔一段很小的間隔就會發出一次SOF封包，所有裝置以及hub都會收到SOF封包。對只需要時間資訊的裝置而言，只需要知道PID為SOF即可，剩餘的frame number以及CRC的資訊皆可忽略。
@@ -80,14 +87,14 @@ CRC: Cyclic Redundancy Checks
 
 
 Data 封包
-=========
+---------------
 
 Data封包包含處理此動作的資料。在low-speed裝置中，Data封包最大的資料量為8 bytes；在full-speed裝置中，Data封包最大的資料量為1023 bytes；在high-speed裝置中，Data封包最大的資料量為1024 bytes。其中 Data0 及 Data1 是兩個基本的資料封包，使用這些資料封包以提供一個機制來確定將傳送端和接收端之間的資料切換同步(data toggle synchronization)。另外在 USB2.0 當中更增加了 Data2 及 MData 資料封包，用於執行高速的即時傳輸(Isochronous Transfers)。
 
 .. image:: /embedded/USB/Data Packets.jpg
 
 Handshake 封包
-==============
+---------------
 
 Handshake封包由一個PID所組成，用來表示資料傳輸的狀態，部分Handshake封包說明如下。
 
