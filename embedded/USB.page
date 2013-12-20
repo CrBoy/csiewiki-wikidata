@@ -120,14 +120,14 @@ OTG設備使用插頭中的ID引腳來區分A/B Device。
 
 設備的USB Host/USB Device角色可以通過HNP切換。
 
-SRP（Session Request Protocol）
---------------------------------
+Session Request Protocol (SRP, 對話請求協議)
+--------------------------------------------
 
-ADP（Attach Detection Protocol)
---------------------------------
+Host Negotiation Protocol (HNP, 主機通令協議)
+--------------------------------------------
 
-HNP（Host Negotiation Protocol）
---------------------------------
+Attach Detection Protocol (ADP)
+--------------------------------------------
 
 
 Block Diagram
