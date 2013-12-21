@@ -51,7 +51,28 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 .. image:: /581px-USB_signal_example.svg.png
 
 * 資料傳輸流程
+
 .. image:: /USB_SCHEMA.gif
+
+網路層
+========
+USB網路是由星型拓撲(tiered star network)所實作的，有一個 master(host) 和多個 slaves(devices) 。
+
+USB host 提供一個接口，如果要連接更多週邊，需要使用hub。
+
+* 一層：提供給 host (bus master)
+* 六層：提供給 hubs 或 devices
+* 考慮訊號傳遞衰減和延遲，網路架構最多七層，所以USB網路最多可支援127個裝置節點。
+
+.. image:: /embedded/usb/tiernetwork.png
+
+USB device 又可以分為：
+
+* Hub : 用來連接更多裝置
+* Function : 提供特殊功能給系統，例如人機裝置, 影像裝置, 儲存裝置等等。
+* Compound Device： 本身擁有功能(function)，也帶有一個hub，有其他裝置連接時可以作為host。
+* Composite Device：提供超過一個功能的裝置。
+
 USB 封包簡介
 ^^^^^^^^^^^
 
