@@ -44,8 +44,7 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 * Bit-stuffing : 如下圖所示，若是原始的串列資料中含有連續6個 “1” 位元的話，就需執行位元填塞的工作。此工作如(b)所示，就在其後填塞一個 “0” 位元。但相對的在NRZI編碼的過程中，對這連續的6個 “1” 執行如圖(c)轉換過程。因此在發送端在作資料傳輸之前，需先執行位元填塞以及NRZI編碼的工作。相對的，接收端在作資料接收之前，就必需先執行NRZI解碼，然後再作位元反填塞(unBit-Stuffing)的工作。
 
-.. image:: /embedded/USB/4.png
-
+.. image:: /embedded/usb/dataNRZI.jpg
 * 資料傳輸整理
 
 .. image:: /581px-USB_signal_example.svg.png
