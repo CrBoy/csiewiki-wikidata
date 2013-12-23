@@ -71,9 +71,10 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 
 - I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
 - D-Code bus : Data bus.這條bus由Cortex-M4F 與 64-Kbyte CCM data RAM 連至BusMatrix，核心透過這個bus讀取字母(literal)與除錯。
+- S-bus：System bus. 用來存取週邊或SRAM的資料。
 - AHB : Advanced High-performance Bus.
 - APB : Advanced Peripheral Bus.
-- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度。
+- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
 
 .. image:: /ST_ARTAccelerator_big.jpg
 
@@ -84,6 +85,8 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
 - CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
 - FLITF : Flash memory interface.
+- FSMC：Flexible static memory controller
+- FMC：Flexible memory controller
 
 
 2.3 Flash模組的組成
@@ -259,7 +262,11 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 3.6 Interrupt
 ----------------------------------------------------------------
+- **結束時**
+
 若要在erase或program結束時發出中斷，可以設定FLASH_CR register中的end of operation interrupt enable(EOPIE) bit，當然，FLASH_SR register中的BSY bit這時應是要0，而end of operation(EOP) bit此時為1。
+
+- **錯誤時**
 
 如果在program或erase操作過程中有錯誤發生，FLASH_SR register中的某一flag會被設1： 
 
