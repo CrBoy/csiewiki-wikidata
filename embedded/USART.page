@@ -796,7 +796,7 @@ baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 
 所以一開始7 bit ASCII code也被擴展為8 bit
 
-***為何stop bit有0.5 bit、1.5 bit的設計?***
+***5.為何stop bit有0.5 bit、1.5 bit的設計?***
 
 stop bit其實不算是bit，他是傳輸結束後的一段時間(period)，區隔每個傳輸的資料
 
@@ -813,3 +813,15 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 若是在環境比較不好的情況下(例如，長距離傳輸)，較長的同步時間會可以有效減少錯誤的發生
 
 不過缺點是會導致throughput的降低
+
+***6.為何取樣是看8,9,10這幾個bit？***
+
+因為8,9,10是在整個start bit的正中間
+
+由於接收端和傳送端的取樣頻率可能會有些微誤差
+
+如果我們在中間取樣，可以容許一定程度的取樣頻率誤差
+
+.. image:: /unmatched clocks.png
+
+`圖片來源<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
