@@ -56,7 +56,7 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 網路層
 ========
-USB網路是由星型拓撲(tiered star network)所實作的，有一個 master(host) 和多個 slaves(devices) 。
+USB網路是由階梯型星型拓撲(Tiered Star Network)所實作的，有一個 Master(Host) 和多個 Slaves(Devices) 。
 
 USB Host 提供一個接口，如果要連接更多週邊，需要使用Hub。
 
