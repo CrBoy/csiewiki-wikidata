@@ -88,15 +88,33 @@ USB是一種Polled Bus，由Host啟動(Initiates)資料傳輸，Device做出回�
 
 USB由幾種Protocol Layers所組成，資料藉由Pipes傳輸。
 
-* Stream Pipes : Stream pipes可以被Host或者Device控制，資料的傳輸方向必須事先定義，定義為IN或或OUT。have no defined USB format）支援 Bulk Transfers, Isochronous Transfers, and Interrupt Transfers.
+* Stream Pipes  : Stream pipes可以被Host或者Device控制，資料的傳輸方向必須事先定義，定義為IN或或OUT。have no defined USB format）支援 Bulk Transfers, Isochronous Transfers, and Interrupt Transfers.
 
-* Message Pipes:為Host控制來進行資料傳輸設定，允許雙向通訊。只支援 Control Transfers。（have a defined USB format）
+* Message Pipes : 為Host控制來進行資料傳輸設定，允許雙向通訊。只支援 Control Transfers。（have a defined USB format）
+
+Endpoints
+-------------
+Endpoints可以被視為資料的來源或目標(Source or Sink)。一個裝置可以擁有至多16個OUT和16個IN的Endpoints
+
+* OUT : 從Host指向Device的方向
+
+* IN  : 指向Host的方向
+
+每個Endpoint只能有一個傳輸方向，只有Endpoint 0 是例外。Endpoint 0 可以有IN和OUT的雙向傳輸（透過Message Pipe），用來控制裝置（Device)。
+
 
 .. image:: /transfermodel.png
 
-* Endpoints
 
-* Transfers
+傳輸型態
+-------------
+
+USB 定義了四種傳輸型態：
+
+ - 控制傳輸（Control Transfers） ：用於控制傳輸命令及狀態操作。像是設定裝置、取得裝置資訊、發送指令到裝置等。每個USB裝置都有一個Endpoint 0，USB Core就是使用他在裝置插入後進行設定。
+ - 中斷傳輸（Interrupt Transfers） ：與一般常見的中斷不同，需要 host 端先詢問(Polling)才會執行。用一個固定速傳輸少量資料，像是USB鍵盤和滑鼠就是屬於這種方式。
+ - 批次傳輸（Bulk Transfers）：用於大量資料傳輸且需要確保資料無誤（如傳給印表機或隨身碟），沒有速度限制，若傳輸失敗就會重傳以確保正確。
+ - 同時傳輸（Isochronous Transfers）：同樣用於大量資料傳輸，但不確保資料是否到達。例如例如USB視訊裝置，使用者會期望傳輸聲音或影像的速率是穩定的，若有幾張frame遺失,沒有通過CRC資料也不會重傳。
 
 USB 封包簡介
 ^^^^^^^^^^^
