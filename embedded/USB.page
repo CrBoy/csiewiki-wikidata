@@ -146,9 +146,8 @@ Frame
 
 .. image:: /embedded/usb/ums_g_hs_frames.gif
 
-Note that frames and microframes do not coexist on one bus; low- and full-speed buses used frames, but in developing a high-speed bus, a shorter frame was necessary because the significantly higher signaling bit rate is more sensitive to smaller shifts in synchronization between the host and the function.
 
-A special packet is the Start-of-Frame packet (SOF) that splits the USB bus into time segments. Each pipe is allocated a slot in each frame. The Start-of-Frame packet is sent every 1ms on full speed links. At high speed, the 1ms frame is divided into 8 micro frames of 125 µs each. A Start-of-Frame packet is sent at the beginning of each micro frame with the same frame number. The frame number increments every 1 ms.
+SOF (Start-of-Frame packet) 是一種特殊的封包，他在每一個frame開始時發送。
 
 .. image:: /embedded/usb/startofframe.png
 
