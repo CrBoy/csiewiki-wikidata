@@ -77,10 +77,14 @@ USB Device 又可以分為：
 ========
 
 
-USB Protocol
+USB 通訊模型
 ^^^^^^^^^^^^^^
+從下面的圖可以看到，USB Host 和 Device 是資料傳輸的重點，分別在不同的兩層。
+USB是一種Polled Bus，由Host啟動(Initiates)資料傳輸，Device做出回應。
 
-USB是一種Polled Bus，由Host啟動(Initiates)資料傳輸。此處的Polling(尋訪)是Host Controller來執行，當Bus需要被注意時，會發出中斷讓OS處理。
+* 此處的Polling(尋訪)是Host Controller來執行，當Bus需要被注意時，會發出中斷讓OS處理。
+
+.. image:: /embedded/usb/comm_model.png
 
 USB由幾種Protocol Layers所組成，資料藉由Pipes傳輸。
 
@@ -88,7 +92,7 @@ USB由幾種Protocol Layers所組成，資料藉由Pipes傳輸。
 
 * Message Pipes:為Host控制來進行資料傳輸設定，允許雙向通訊。只支援 Control Transfers。（have a defined USB format）
 
-.. image:: /embedded/usb/comm_model.png
+.. image:: /transfermodel.png
 
 USB 封包簡介
 ^^^^^^^^^^^
