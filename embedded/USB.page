@@ -226,9 +226,15 @@ SRP允許B設備請求A設備打開VBUS電源並啟動一次對話。
 Host Negotiation Protocol (HNP, 主機通令協議)
 --------------------------------------------
 
+OTG設備通過HNP來切換Host/Device角色。
+當前的USB Host通過HNP Polling（類似Polling Hub）通過輪詢GetStatus（）命令返回的數據中的Host request flag查詢對端設備是否請求變為Host，Polling間隔為1-2秒。
+噹噹前的USB Host決定允許B-Device轉變為Host以後通過SetFeature()打開b_hnp_enable，本次Session結束後Host回到A-Device手裡。
+
 Attach Detection Protocol (ADP)
 --------------------------------------------
 
+提供設備檢測是否有對端設備插入。
+支持：任何OTG設備，Embedded Host，支持SRP的B-Device允許ADP Probing，B-Device和僅能作為外設的B-Device還必須支持ADP Senseing如果他們支持ADP Probing。
 
 Block Diagram
 ==============
