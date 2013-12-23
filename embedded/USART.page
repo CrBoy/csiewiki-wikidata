@@ -164,10 +164,15 @@ Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/
 資料的傳送
 ------------------------------------
 在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)，因此在此模式中，USART_DR和transmit shift register之間包含一個緩衝器(TDR)。每個資料再傳送前都會有一個低電位的起始位；之後跟著的停止位元數目，則可由使用者決定0.5, 1, 1.5或2
-   - 1 bit的停止位: 預設的默認停止位位元數
-   - 2 bits的停止位: normal USART, single-wire 和 modem modes
-   - 0.5 bits的停止位: Smartcard mode接收數據用
-   - 1.5 bits的停止位: Smartcard mode發送數據用
+   - 1 bit的stop bit: 預設的默認停止位位元數
+   - 2 bits的stop bit: normal USART, single-wire 和 modem modes
+   - 0.5 bits的stop bit: Smartcard mode接收數據用
+   - 1.5 bits的stop bit: Smartcard mode發送數據用
+
+**stop bits其實不算是個bit，他是傳輸結束後的一段時間(period)，用以區隔每個傳輸的資料，其功用是在非同步傳輸的時候可以告訴接收器，資料傳輸已經結束。透過增加stop bits的長度，可讓接收器能有足夠的時間可以處理該資料**
+
+**另外，由於transmit shift register搬移到TDR中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
+
 
 .. image:: /usart_fig298.jpg
 
