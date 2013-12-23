@@ -722,53 +722,7 @@ REFERENCE
 Q&A
 ...................
 
-***1.UART 原理***
-
-DTE（Data Terminal Equipment）簡稱數據終端設備；DCE（Data Communications Equipment）簡稱數據通信設備。
-
-事實上，RS-232C標準的正規名稱是"數據終端設備和數據通信設備之間串行二進制數據交換的接口"。
-
-通常，將通信線路終端一側的計算機或終端稱為DTE，而把連接通信線路一側的調製解調器稱為DCE。
-
-RS-232C標準中所提到的"發送"和"接收"，都是站在DTE立場上，而不是站在DCE的立場來定義的。
-
-由於在計算機系統中往往是CPU和I/O設備之間傳送信息，兩者都是DTE，因此雙方都能發送接收。
-
-所謂"串行通信"是指DTE和DCE之間使用一根數據信號線（另外需要地線，可能還需要控制線）
-
-數據在一根數據信號線上一位一位地進行傳輸，每一位數據都佔據一個固定的時間長度。
-
-這種通信方式使用的數據線少，在遠距離通信中可以節約通信成本，當然，其傳輸速度比並行傳輸慢。
-
-小知識：
-
-DTE英文全稱Data Terminal Equipment，數字終端設備，指一般的終端或是計算機。可能是大、中、小型計算機，也可能是一臺只接收數據的打印機。
-
-DCE英文全稱Data Circuit-terminating Equipment，數字通信設備，通常指調制解調器，多路復用器或數字設備。
-
-DTE，DCE的區別
-
-DCE一方提供時鐘，DTE不提供時鐘，但它依靠DCE提供的時鐘工作。
-
-舉PC機和MODEM之間的連接為例：PC機就是一個DTE，MODEM是一個DCE。
-
-DTE可以從硬件上區別它的接口為針式，DCE的接口為孔式。
-
-參考資料：http://wfeng520.blog.hexun.com.tw/62795095_d.html
-
-
-
-***2.高速UART及低速UART之應用?***
-
-嵌入在ElanSC520微控制器中的高速UART通信的速度可以高達1.1152Mbps
-
-另外利用計算機軟件技術(EDA技術)和FPGA／CPLD的靈活性可以方便快速地設計高速和低速的UART。
-
-高速的UART可以用在光纖通信上，低速的UART可以用在FPGA／CPLD和單片機的通信上。
-
-
-
-***3.baud rate為何不是2的倍數？幾個baud rate數字的關聯？為何設定會有小數點？***
+***1.baud rate為何不是2的倍數？幾個baud rate數字的關聯？為何設定會有小數點？***
 
 baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 
@@ -784,7 +738,7 @@ baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 
 這也是USARTDIV會是小數的原因
 
-***4.為什麼USART可以選擇8 bit/9 bit***
+***2.為什麼USART可以選擇8 bit/9 bit***
 
 由於歷史因素，所以usart可以選擇8,9bit的傳送
 
@@ -796,7 +750,7 @@ baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 
 所以一開始7 bit ASCII code也被擴展為8 bit
 
-***5.為何stop bit有0.5 bit、1.5 bit的設計?***
+***3.為何stop bit有0.5 bit、1.5 bit的設計?***
 
 stop bit其實不算是bit，他是傳輸結束後的一段時間(period)，區隔每個傳輸的資料
 
@@ -814,7 +768,7 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 
 不過缺點是會導致throughput的降低
 
-***6.為何取樣是看8,9,10這幾個bit？***
+***4.為何取樣是看8,9,10這幾個bit？***
 
 因為8,9,10是在整個start bit的正中間
 
