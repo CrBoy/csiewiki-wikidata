@@ -133,15 +133,13 @@ Frame
 Transaction 
 =============
 
-Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包。
+Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包 （Token packet, Data packet, Handshake 或稱  Status packet ）。
 
 .. image:: /embedded/usb/pipemodel.png
 
-Token packet is the header defining the transaction type and direction, the device address, and the endpoint.
-Data packet carries the information.
-Status packet is a handshake packet informing whether the transfer was successful.
-In a transaction, data are transferred either from the host to a device or from a device to the host. The transfer direction is specified in the token packet. Then, the source sends a data packet or indicates it has no data to transfer. In general, the destination responds with a status packet indicating whether the transfer was successful.
-
+* Transaction可能是從Host傳向Device，或是從Device傳向Host。
+* 傳送方向是由Token packet中指定。  
+* 一般來說，目標端利用Handshake (Status) packet來判斷本次傳輸是否成功。
 
 Packet
 =========
