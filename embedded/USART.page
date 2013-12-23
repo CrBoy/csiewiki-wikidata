@@ -795,3 +795,21 @@ baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 但是當以8為單位的電腦系統興起後，開始用8bit來做傳輸
 
 所以一開始7 bit ASCII code也被擴展為8 bit
+
+***為何stop bit有0.5 bit、1.5 bit的設計?***
+
+stop bit其實不算是bit，他是傳輸結束後的一段時間(period)，區隔每個傳輸的資料
+
+它的功用是在非同步傳輸的時候可以告訴receiver資料傳輸已經結束
+
+stop bit有0.5, 1, 1.5, 2bits，共四種
+
+一些比較老的teletype machine可能需要不只一個stop bit
+
+如果stop bit越長，可以增加多一點點的處理時間
+
+另一個原因是長一點的stop bit可以提供長一點的同步時間
+
+若是在環境比較不好的情況下(例如，長距離傳輸)，較長的同步時間會可以有效減少錯誤的發生
+
+不過缺點是會導致throughput的降低
