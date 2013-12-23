@@ -783,3 +783,15 @@ baud rate 是單位時間內傳輸資訊的個數，單位是bits/sec
 而我們為了要得到這個值，必須從系統的clock做分頻，因此要設定USARTDIV
 
 這也是USARTDIV會是小數的原因
+
+***4.為什麼USART可以選擇8 bit/9 bit***
+
+由於歷史因素，所以usart可以選擇8,9bit的傳送
+
+最一開始的ASCII code是使用7 bit來做編碼，而第8個位元常會被拿來做各種應用
+
+像是加上parity bit來驗證資料的正確性
+
+但是當以8為單位的電腦系統興起後，開始用8bit來做傳輸
+
+所以一開始7 bit ASCII code也被擴展為8 bit
