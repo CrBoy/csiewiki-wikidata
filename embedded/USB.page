@@ -94,6 +94,10 @@ USB由幾種Protocol Layers所組成，資料藉由Pipes傳輸。
 
 .. image:: /transfermodel.png
 
+* Endpoints
+
+* Transfers
+
 USB 封包簡介
 ^^^^^^^^^^^
 
