@@ -240,55 +240,29 @@ OTG設備使用插頭中的ID引腳來區分A/B Device。
 Session Request Protocol (SRP, 對話請求協議)
 --------------------------------------------
 
-B-Device使用。 通過數據線上的脈衝，請求A-Device打開VBUS並且開始一個Session。 
-Session為從VBUS打開到關閉這一段時間。
-
-支持：A-Device允許回應SRP，B-Device（包括僅能作為外設的B-Device），允許發起SRP。
-
-一個能夠支持HNP的B- Device應該能夠發起SRP。 
-
-當A插頭插入時關閉VBus的Host必須支持回應SRP，VBus總是打開的Host不必響應SRP。
-
-SRP允許B設備請求A設備打開VBUS電源並啟動一次對話。
-一次OTG對話可通過A設備提供VBUS電源的時間來確定
-
-（注：A設備總是為VBUS供電，即使作為外設）。
-
-也可通過A設備關閉VBUS電源來結束一閃會話以節省功耗，這在電池供電產品中是非常重要的。
-
 Host Negotiation Protocol (HNP, 主機通令協議)
 --------------------------------------------
-
-OTG設備通過HNP來切換Host/Device角色。
-當前的USB Host通過HNP Polling（類似Polling Hub）通過輪詢GetStatus（）命令返回的數據中的Host request flag查詢對端設備是否請求變為Host，Polling間隔為1-2秒。
-噹噹前的USB Host決定允許B-Device轉變為Host以後通過SetFeature()打開b_hnp_enable，本次Session結束後Host回到A-Device手裡。
 
 Attach Detection Protocol (ADP)
 --------------------------------------------
 
-提供設備檢測是否有對端設備插入。
-支持：任何OTG設備，Embedded Host，支持SRP的B-Device允許ADP Probing，B-Device和僅能作為外設的B-Device還必須支持ADP Senseing如果他們支持ADP Probing。
 
 Block Diagram
 ==============
 
 .. image:: /USB_block_diagram.png
 
- 1. ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
- 2. marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
- 3. DP/DM description -- in reference manual 30.3.2
- 4. AHB -- Advanced High-performance Bus  
- 5. UTMI -- USB 2.0 transceiver macrocell interface
+ * ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
+ * marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
+ * DP/DM description -- in reference manual 30.3.2
+ * AHB -- Advanced High-performance Bus  
+ * UTMI -- USB 2.0 transceiver macrocell interface
 
 USB host and device
 ======================
 .. image:: /embedded/usb host:device .png
 
  
-* 什麼是Host, 什麼是Device? 
-
--> "The host initiates all communication on the bus, the device only responds when asked by the host."
-
 USB Descriptors
 ^^^^^^^^^^^^^^^
 
@@ -296,7 +270,7 @@ USB Descriptors
 
 * Configuration Descriptors : 指出 USB 裝置的供電方式、interface 數量。每個 USB 裝置可以擁有不只一個 Configure Descriptor，可視為 interface descriptor 之 header。
 
-* Interface Descriptors : 提供介面資訊，可視為 endpint descriptor 之 header。在 configuration descriptor 中會指定該 configuration 所擁有的 interface 數量，因此 interface descriptor 可以擁有一個以上。
+* Interface Descriptors : 提供介面資訊，可視為 Endpint descriptor 之 header。在 configuration descriptor 中會指定該 configuration 所擁有的 interface 數量，因此 interface descriptor 可以擁有一個以上。
 
 * Endpoint Descriptors : 描述 endpoint 之行為與頻寬。
 
