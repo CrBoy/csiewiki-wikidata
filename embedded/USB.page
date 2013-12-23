@@ -12,8 +12,9 @@ USB是一種序列資料傳輸界面(serial interface)，設計目標為隨插�
 
 實體層
 =======
-.. image:: /271px-Types-usb_new.svg.png
-.. image:: /embedded/USB/2.png
+.. image:: /embedded/usb/pin.png
+
+.. image:: /embedded/usb/800px-USB_InSide.JPG
 
 
 USB 訊號使用標記為D+ 和D- 的雙絞線(twisted pair)傳輸，以抵消長導線的電磁干擾。
@@ -116,17 +117,34 @@ USB 定義了四種傳輸型態：
  - 批次傳輸（Bulk Transfers）：用於大量資料傳輸且需要確保資料無誤（如傳給印表機或隨身碟），沒有速度限制，若傳輸失敗就會重傳以確保正確。
  - 同時傳輸（Isochronous Transfers) ： 同樣用於大量資料傳輸，但不確保資料是否到達。例如例如USB視訊裝置，使用者會期望傳輸聲音或影像的速率是穩定的，若有幾張frame遺失，沒有通過CRC資料也不會重傳。
 
-USB 封包簡介
+USB 資料連結
 ^^^^^^^^^^^
+Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包，封包是組成USB傳輸的最小單位。
 
-封包是組成USB傳輸的最小單位。一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
+一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
 
 .. image:: /packet.jpg
 
 .. image:: /embedded/USB/PID types.jpg
 
+Frame 
+===========
+
 Transaction 
 =============
+
+Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包。
+
+.. image:: /embedded/usb/pipemodel.png
+
+Token packet is the header defining the transaction type and direction, the device address, and the endpoint.
+Data packet carries the information.
+Status packet is a handshake packet informing whether the transfer was successful.
+In a transaction, data are transferred either from the host to a device or from a device to the host. The transfer direction is specified in the token packet. Then, the source sends a data packet or indicates it has no data to transfer. In general, the destination responds with a status packet indicating whether the transfer was successful.
+
+
+Packet
+=========
 
 Token 封包
 ---------------
