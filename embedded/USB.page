@@ -199,6 +199,11 @@ OTG設備使用插頭中的ID引腳來區分A/B Device。
 Session Request Protocol (SRP, 對話請求協議)
 --------------------------------------------
 
+B-Device使用。 通過數據線上的脈衝，請求A-Device打開VBUS並且開始一個Session。 Session為從VBUS打開到關閉這一段時間。
+支持：A-Device允許回應SRP，B-Device（包括僅能作為外設的B-Device），允許發起SRP。一個能夠支持HNP的B- Device應該能夠發起SRP。 當A插頭插入時關閉VBus的Host必須支持回應SRP，VBus總是打開的Host不必響應SRP。
+
+SRP允許B設備請求A設備打開VBUS電源並啟動一次對話。
+一次OTG對話可通過A設備提供VBUS電源的時間來確定（注：A設備總是為VBUS供電，即使作為外設）。也可通過A設備關閉VBUS電源來結束一閃會話以節省功耗，這在電池供電產品中是非常重要的。
 
 Host Negotiation Protocol (HNP, 主機通令協議)
 --------------------------------------------
