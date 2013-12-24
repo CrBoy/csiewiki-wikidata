@@ -19,16 +19,27 @@ toc: yes
 
 預算
 ====
-  * 兩個二相四線式步進馬達
-    - NT $960 (NT$480/each)
+
+  * **二相四線式步進馬達** * 2
+    - NT $960   (NT$480/each)
     - 露天(賣家:成大機械學長) : http://goods.ruten.com.tw/item/show?21310205707873&51312193317129
     - Product Specifications : http://www.phidgets.com/documentation/Phidgets/3312_0_Datasheet.pdf
     - 用在X、Y軸控制
-  * 兩塊L298N電機驅動板模組
-    - NT $500 (NT$250/each)
+
+  * **L298N電機驅動板模組** *2
+    - NT $500   (NT$250/each)
     - 露天 : http://goods.ruten.com.tw/item/qa?21207249397523
-    - 一個驅動一個步進馬達
+    - 一個驅動版可以驅動一個步進馬達(或兩個直流馬達)
+
 參考資料
 ========
-- `L298 Reference<https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf>`_
+- 
+- `L298 Reference<https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf>`_ 
+- `四線步進馬達驅動方法<http://blog.csdn.net/feiyinzilgd/article/details/5743730>`_ 
+- `透過L297/L298控制二相步進馬達<http://wukcsoft.blogspot.tw/2011/05/L297-L298.html>`_ 
 
+研究紀錄
+========
+- 2012.12.18 了解萌典中筆畫順序的架構(XML、JSON)，還有Parser的作用
+- 2012.12.20 用實驗室中已有的伺服馬達組裝，但是發現不適合此專案
+- 2012.12.23 
