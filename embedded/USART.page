@@ -397,6 +397,19 @@ USART 接收端經過 DMA 存放DATA
 
 3. 當預先設定好的接收data數量達到以後, DMA TCIF會觸發interrupt, DMAR會在這個interrupt routine裡清掉,不就會產生DMA request.
 
+SmartCard Mode
+====================
+SmartCard
+---------------
+SmartCard Mode 是為了支援asynchronous protocol Smartcards(ISO 7816-3)[5].
+
+register 設定
+---------------
+USART_CN3 : SCEN = 1;HDSEL, IREN : keep clean
+USART_CN2 : LINEN
+
+CLKEN = 1 (有可能會用到 Clock)
+
 
 IrDA SIR ENDEC
 ====================
@@ -715,14 +728,16 @@ To compile code
    
 REFERENCE
 ..................
-- `Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
+- `[1]Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
 
-- `STM32F407xx Reference Manual P.946 ~ P.997<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+- `[2]STM32F407xx Reference Manual P.946 ~ P.997<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 
-- `IrDA and RS-232<http://china.maximintegrated.com/app-notes/index.mvp/id/3024>`_
+- `[3]IrDA and RS-232<http://china.maximintegrated.com/app-notes/index.mvp/id/3024>`_
 
-- `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+- `[4]Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+
+- `[5]ISO 7816-3<http://www.cardwerk.com/smartcards/smartcard_standard_ISO7816-3.aspx>`_
 
 Q&A
 ...................
