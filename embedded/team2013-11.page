@@ -19,6 +19,16 @@ toc: yes
 
 預算
 ====
-[評估中]
-
+  * 兩個二相四線式步進馬達
+    - NT $960 (NT$480/each)
+    - 露天(賣家:成大機械學長) : http://goods.ruten.com.tw/item/show?21310205707873&51312193317129
+    - Product Specifications : http://www.phidgets.com/documentation/Phidgets/3312_0_Datasheet.pdf
+    - 用在X、Y軸控制
+  * 兩塊L298N電機驅動板模組
+    - NT $500 (NT$250/each)
+    - 露天 : http://goods.ruten.com.tw/item/qa?21207249397523
+    - 一個驅動一個步進馬達
+參考資料
+========
+- `L298 Reference<https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf>`_
 
