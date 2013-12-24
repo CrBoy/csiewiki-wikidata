@@ -489,6 +489,18 @@ I2S
 - WS(Word Select) 與 SPI 的NSS 共用腳位 
 - CK(Serial Clock) 與 SPI 的 SCK 共用腳位
 
+GPIO clock的設定
+----------------
+以下為示波器截圖，黃色為MOSI，輸出資料為0x55(01010101)，藍色為SCK
+.. image:: /M50P2.jpg
+- 此為 GPIO_Speed_50MHz，BaudRatePrescaler除2
+.. image:: /M50P4.jpg
+- 此為 GPIO_Speed_50MHz，BaudRatePrescaler除4，與上圖比較，可以看出時脈頻率為上圖的1/2
+.. image:: /M2P2.jpg
+- 此為 GPIO_Speed_2MHz，BaudRatePrescaler除2，可以看到時脈輸出跟不上訊號變換
+.. image:: /M25P2.jpg
+- 此為 GPIO_Speed_25MHz，BaudRatePrescaler除2，與GPIO_Speed_50MHz，BaudRatePrescaler除2的圖比較，看不出差異
+
 Bus和prescaler的關係
 -------------------
 
