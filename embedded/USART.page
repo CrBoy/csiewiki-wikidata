@@ -391,7 +391,13 @@ Ref: `RM0090 Reference Manual P.981<http://www.st.com/web/en/resource/technical/
 USART 用 DMA 讀取 DATA 再傳送
 ------------------------------------
 
+.. image:: /tx_normal.png
+(一般 USART 傳送)
+
 .. image:: /tx_uart_dma.png
+(DMA USART 傳送)
+
+
 
 1. 剛開始DMA先把第一個DATA寫入USART_DR.
 
