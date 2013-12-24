@@ -420,7 +420,8 @@ SmartCard Mode
 ====================
 SmartCard
 ---------------
-SmartCard Mode 是為了支援asynchronous protocol Smartcards(ISO 7816-3)[5].
+SmartCard Mode 是為了支援asynchronous protocol Smartcards(ISO 7816-3)[5].Smartcard 是一種單線半雙工的通輸協定
+
 
 register 設定
 ---------------
@@ -428,6 +429,21 @@ USART_CN3 : SCEN = 1;HDSEL, IREN : keep clean
 USART_CN2 : LINEN
 
 CLKEN = 1 (有可能會用到 Clock)
+
+Smartcard mode Stop bit
+=========================
+預設為 transmitter / receiver 兩端都是 1.5 bit, 但是receiver 可以使用 0.5 bit的stop bit.
+
+因為 smartcard mode 是利用 TX 單線傳接, 所以如果設定0.5 bit stop bit的話, 在傳送,接收轉換是需要修改 control register.
+
+parity error in smartcard mode
+==================================
+
+
+.. image:: /parity_smartcard.png
+
+當發現parity error, receiver 會 把TX立刻設為0維持一個baud clock(這個動作稱為"NACK") . 這樣會做成framing error讓transmitter 端知道, 然後重新傳一次.
+
 
 
 IrDA SIR ENDEC
