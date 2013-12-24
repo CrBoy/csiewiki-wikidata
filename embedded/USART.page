@@ -247,6 +247,15 @@ Ref: `RM0090 Reference Manual P.954<http://www.st.com/web/en/resource/technical/
 
 如果三個採樣點上有僅有兩個是0(第3、5、7採樣點或8、9、10採樣點)，則依然判定為偵測到一個起始位，但NE(噪音標誌)會被設定
 
+**採樣的時間間隔**
+
+.. image:: /usart_sampling.png
+Ref: `UART receiver clock speed<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
+
+假設baud rate = 9600 bps，則一個bit的傳輸時間為104us，usart會在接收器啟動後的52us，開始採樣
+
+若偵測到開始位元，則開始接收資料，反之則等待104us，再採樣一次
+
 
 資料的接收
 ------------------------------------
@@ -255,6 +264,10 @@ Ref: `RM0090 Reference Manual P.954<http://www.st.com/web/en/resource/technical/
 
 接收器的設定
 ------------------------------------
+
+
+
+
    1. 設定USART_CR1暫存器的UE位來啟動USART接收
    2. 設定USART_CR1暫存器的M位決定資料長度
    3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度
