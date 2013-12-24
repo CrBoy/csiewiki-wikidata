@@ -26,21 +26,21 @@ toc: yes
     - Product Specifications : http://www.phidgets.com/documentation/Phidgets/3312_0_Datasheet.pdf
     - 用在X、Y軸控制
 
-  * **L298N電機驅動板模組** *2
+  * **L298N電機驅動板模組** * 2
     - NT $500   (NT$250/each)
     - 露天 : http://goods.ruten.com.tw/item/qa?21207249397523
     - 一個驅動版可以驅動一個步進馬達(或兩個直流馬達)
 
 參考資料
 ========
-- 
 - `L298 Reference<https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf>`_ 
 - `四線步進馬達驅動方法<http://blog.csdn.net/feiyinzilgd/article/details/5743730>`_ 
 - `透過L297/L298控制二相步進馬達<http://wukcsoft.blogspot.tw/2011/05/L297-L298.html>`_ 
 
 研究紀錄
 ========
+- `研究記錄共筆<https://autowrite.hackpad.com/Working-Record-pgtrerXo4mM>`_ 
 - 2012.12.18 了解萌典中筆畫順序的架構(XML、JSON)，還有Parser的作用
 - 2012.12.20 用實驗室中已有的伺服馬達組裝，但是發現不適合此專案
 - 2012.12.23 了解步進馬達的使用、還有驅動電路L298，準備用GPIO來控制輸入訊號
-- 2012.12.24 將GPIO的程式做修改，透過STM32F4的板子給步進馬達訊號，嘗試讓馬達做基本的運轉
+- 2012.12.24 將GPIO的程式做修改，透過STM32F4的板子給步進馬達訊號，嘗試讓馬達做基本的運轉(有時候順有時候不順)
