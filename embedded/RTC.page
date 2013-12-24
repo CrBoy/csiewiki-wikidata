@@ -773,7 +773,9 @@ ps. 一般電池的電壓為1.5v(鹼性電池)至1.2(一般及充電電池)
 
 而有關於1.65v的部份應該是跟debugger的界面有關係，st的st-link供應的電壓為1.65v至5v，相似的設計在ti的msp 430 usb debugger
 也可以看到類似的設計(1.8v~3.6v) 
+
 ST-LINK:http://www.st.com/web/catalog/tools/FM146/CL1984/SC724/SS1677/PF251168
+
 MSP430 USB Debugging Interface :http://www.ti.com/tool/cc-debugger
 
 --------------------------------------------------------------------------------------
