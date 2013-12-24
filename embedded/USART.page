@@ -265,22 +265,22 @@ Ref: `UART receiver clock speed<http://electronics.stackexchange.com/questions/4
 接收器的設定
 ------------------------------------
 
+.. image:: /usart_recevier.png
 
 
-
-   1. 設定USART_CR1暫存器的UE位來啟動USART接收
-   2. 設定USART_CR1暫存器的M位決定資料長度
-   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度
-   4. 採用多緩衝器接收資料，則須設定USART_CR3的DMAR啟動DMA，並設置DMA的暫存器
-   5. 利用USART_BRR暫存器設定baud rate
-   6. 設定USART_CR1暫存器中的RE位，啟動接收器，並開始偵測起始位
+   1. 設定USART_CR1暫存器的UE位來啟動USART接收，如圖中的(a)
+   2. 設定USART_CR1暫存器的M位決定資料長度，如圖中的(b)
+   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度，如圖中的(c)
+   4. 採用多緩衝器接收資料，則須設定USART_CR3的DMAR啟動DMA，並設置DMA的暫存器，如圖中的(d)
+   5. 利用USART_BRR暫存器設定baud rate，如圖中的(e)
+   6. 設定USART_CR1暫存器中的RE位，啟動接收器，並開始偵測起始位，如圖中的(f)
 
 當資料被接收到後:
-   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出
-   2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷
+   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出，如圖中的(g)
+   2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷，如圖中的(h)
    3. 資料接收期間如檢測到frame錯誤或是噪音、溢出錯誤等問題，相關的標誌將被設定(FE、NF、ORE)
-   4. 在多緩衝器接收時，RXNE在每個字元接收後被設置，並藉由DMA讀取RDR而被清除
-   5. 單緩衝器模式下，藉由讀取USART_DR可清除RXNE位，RXNE位必須要在下一資料接收前被清除，以免產生易出錯誤
+   4. 藉由讀取USART_DR可清除RXNE位，RXNE位必須要在下一資料接收前被清除，以免產生溢出錯誤
+   5. 在DMA接收時，RXNE在每個字元接收後被設置，並因DMA讀取RDR而被清除
 
 接收斷開符號
 ------------------------------------
@@ -294,19 +294,18 @@ USART在接收斷開符號後，可像處理frame錯誤一樣處理
 
 溢出錯誤
 ------------------------------------
-若RXNE沒有被覆位，此時又接收到一個新資料，則會發生溢出錯誤。
+若RXNE沒有被覆位，此時又接收到一個新資料，則會發生溢出錯誤，如圖中的(i)
 
 當溢出錯誤產生時:
-   1. USART_SR中的ORE位將被設置
-   2. RDR中的內容將不會被清除，因此讀取USART_DR仍可以得到先前的資料
-   3. Received shift register中的資料將被覆蓋
-   4. 如果RXNEIE被設置，或是EIE(Error interrupt enable)和DMAR位被設定，則會產生一個中斷
+   1. USART_SR中的ORE位將被設置，如圖中的(j)
+   2. RDR中的內容將不會被清除，因此讀取USART_DR仍可以得到之前的資料
+   3. 若USART持續在接收中，則Received shift register中的資料將被覆蓋
+   4. 如果RXNEIE被設置，或是EIE(Error interrupt enable)和DMAR位被設定，則會產生一個中斷，如圖中的(k)
    5. 依序讀取USART_SR和USART_DT暫存器，可清除ORE位
 
 **當ORE位被設置時，表示至少有一個資料已遺失，有以下兩種可能性: **
-   1. 如果RXNE=1，表示上一筆資料還在RDR中，且可被讀出
-   2. 如果RXNE=0，表示上一筆資料已被讀走，RDR已無資料可被讀取。此種情況發生在讀取RDR中上一筆資料時，又接收到新的資料時，
-      也有可能在依序讀取USART_SR到USART_DR之間時發生。
+   1. 如果RXNE=1，表示之前的資料還在RDR中，且可被讀出
+   2. 如果RXNE=0，表示之前的資料已被讀走，RDR已無資料可被讀取，此種情況發生在讀取RDR中上一筆資料時，又接收到新的資料時發生。
 
 
 
@@ -346,11 +345,11 @@ Frame錯誤
 由於沒有同步上或線路上大量的噪音，使得停止位沒有在預期的時間上接收和識別出來，則發生Frame錯誤
 
 當Frame錯誤被檢測出時:
-   1. FE位被設定
+   1. FE位被設定，如圖中的(l)
    2. 無效的資料從received shift register移入USART_DR暫存器中
-   3. 在單一資料的接收下，不會有中斷產生，但透過FE位和RXNE位的設置，由後者來產生中斷；
+   3. 在一般資料的接收下，不會有中斷產生，可藉由RXNEIE位的設置，在中斷中檢測FE位得知發生錯誤；
 
-      在多緩衝器的接收中，如果USART_CR3暫存器中的EIE位被設定，則會產生一個中斷
+      在DMA的接收中，如果USART_CR3暫存器中的EIE位被設定，則會產生一個中斷，如圖中的(k)
 
 依序讀取USART_SR和USART_DR暫存器可恢復FE位
 
@@ -372,6 +371,8 @@ Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/
 
 **USART_BRR被更新後，baud rate的計數器中的值也會同時被更新，因此在傳輸途中不應該更新USART_BRR中的值。
   另外，如果TE或RE被分別禁止，則baud rate的計數器也會停止計數**
+
+
 
 
 Modes
