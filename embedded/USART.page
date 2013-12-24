@@ -181,25 +181,31 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 
 傳送器的設定
 ------------------------------------
-   1. 設定USART_CR1暫存器的UE位來啟動傳輸
-   2. 設定USART_CR1暫存器的M位決定資料長度
-   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度
-   4. 採用多緩衝器的話，則須設定USART_CR3的DMAT啟動DMA，並設置DMA的暫存器
-   5. 設置USART_CR1的TE位，在第一筆資料傳送前，傳送一個空閒的frame
-   6. 利用USART_BRR暫存器設定baud rate
-   7. 將欲發送的資料放入USART_DR中，重複步驟7
+.. image:: /usart_transmiter.png
 
-當資料放入USART_DR會由硬體清除TXE位，則表示:
+ 
+ 
+
+   1. 設定USART_CR1暫存器的UE位來啟動傳輸，如圖中的(a)
+   2. 設定USART_CR1暫存器的M位決定資料長度，如圖中的(b)
+   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度，如圖中的(c)
+   4. 採用多緩衝器的話，則須設定USART_CR3的DMAT啟動DMA，並設置DMA的暫存器，如圖中的(d)
+   5. 利用USART_BRR暫存器設定baud rate，如圖中的(e)
+   6. 設置USART_CR1的TE位，在第一筆資料傳送前，傳送一個空閒的frame，如圖中的(f)
+   7. 將欲發送的資料放入USART_DR中，如圖中的(g)
+   8. 若有多筆資料要傳送，則重複步驟7.，如圖中的(l)
+
+當資料放入USART_DR會由硬體清除TXE位，如圖中的(h)，則表示:
    1. 資料已從TDR中進入transmit shift register，資料的發送已開始
    2. TDR暫存器已被清空
    3. 下一筆資料可放入USART_DR中
 
-若TXEIE位的設置，則會產生一個中斷:
+若TXEIE位的設置，則會產生一個中斷，如圖中的(i):
    - 如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後把該筆資料移進transmit shift register中
    
    - 如果USART沒有在發送資料，則對USART_DR的寫入會把資料直接放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位
 
-一個frame的資料發送完畢後，TC位會被設定，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，先讀取USART_SR暫存器，再寫入USART_DR暫存器，則可清除TC位
+一個frame的資料發送完畢後，TC位會被設定，如圖中的(j)，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，如圖中的(k)，先讀取USART_SR暫存器，再寫入USART_DR暫存器，則可清除TC位
 
 
 
@@ -209,13 +215,13 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 
 如果SBK=1，則在目前的資料發送後，會再TX線上發送一個斷開符號，當傳送完成後，會由硬體恢復SBK位。
 
-USART會在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
+USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
 
 
 
 傳送空閒符號
 ------------------------------------
-設置USART_CR1的TE位會使得USART在發送第一筆資料前，發送一個空閒符號
+設置USART_CR1的TE位會使得USART在發送第一筆資料前，發送一個空閒符號，喚醒接收端。
 
 
 
