@@ -26,7 +26,7 @@ Clock control
 
 .. image:: /Timer_clock.png
 
-- 我們使用Crystal resonator作為外部震盪, 其頻率為8Hz（由STM32f4 discovery user manual 可知）
+- 我們使用Crystal resonator作為外部震盪, 其頻率為8MHz（由STM32f4 discovery user manual 可知）
 
 
 [#]_
