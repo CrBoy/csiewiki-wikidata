@@ -723,6 +723,9 @@ To compile code
 按Ctrl+a，再按x可離開Minicom
 
 
+**實驗波形圖**
+
+.. image:: /usart_wave.jpg
 
 接收器測試
 ======================================
