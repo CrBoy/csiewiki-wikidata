@@ -207,7 +207,8 @@ SPI通訊過程
 Code section
 ============
 .. image:: /DSC_0447.jpg
-左板為master 右板為slave(PA5接PA5,PA6、PA7同樣辦理)
+左板為master 右板為slave
+   (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
 Demo影片:  http://youtu.be/ciwYDsaJIYE
 
 完整程式碼：
@@ -491,19 +492,20 @@ I2S
 
 GPIO clock的設定
 ----------------
+ 下列四圖中，黃色線為SPI之MOSI腳位輸出(0x55 -> 01010101)，藍色線為SCK。
+ 由更改GPIO_Speed 與 BaudRatePrescaler 以比較不同之處。
 
 .. image:: /M50P2.png
-此為 GPIO_Speed_50MHz，BaudRatePrescaler除2
-
+此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除2，通訊正常
 
 .. image:: /M50P4.png
-此為 GPIO_Speed_50MHz，BaudRatePrescaler除4，與上圖比較，可以看出時脈頻率為上圖的1/2
+此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除4，與上圖比較，可以看出時脈頻率為上圖的1/2，通訊正常
 
 .. image:: /M2P2.png
-此為 GPIO_Speed_2MHz，BaudRatePrescaler除2，可以看到時脈輸出跟不上訊號變換
+此圖為 GPIO_Speed_2MHz，BaudRatePrescaler除2，可以看到時脈輸出跟不上訊號變換，無法正常通訊
 
 .. image:: /M25P2.png
-此為 GPIO_Speed_25MHz，BaudRatePrescaler除2，與GPIO_Speed_50MHz，BaudRatePrescaler除2的圖比較，看不出差異
+此圖為 GPIO_Speed_25MHz，BaudRatePrescaler除2，與GPIO_Speed_50MHz，BaudRatePrescaler除2的圖比較，看不出差異，且通訊正常
 
 Bus和prescaler的關係
 -------------------
@@ -555,6 +557,7 @@ Alternate function mapping[#]_
 .. [#] `Datasheet <http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.61
 
 .. image:: /Alternate function mapping continued.png
+由於GPIOE的AF最少，功能最為乾淨(不易佔用其他功能所需之腳位)，適合作為IO port 腳。
 STM32F407xx Datasheet p.64
 
 為何要定義為low-active？
