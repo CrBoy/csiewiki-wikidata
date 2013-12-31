@@ -6,11 +6,19 @@ toc: no
 
 題目
 ---
-  * 影像伺服系統 (Visual Servo System)
+ * 影像伺服系統 (Visual Servo System)
+
+簡介
+-----
+ * 在控制領域中，伺服表示位置的控制
+ * 本專題模擬工廠中的自動化輸送帶，搭配影像偵測我們想夾取的物件，透過控制將物品夾起來
+
+.. image:: /team2013-3/System.png
    
 預期目標
 -------
-  * 用攝影機定位輸送帶上的物件，當偵測正確的物品時，利用機械手臂夾持。
+* 初期：用攝影機定位輸送帶上的物件，當偵測正確的物品時（利用Template Matching Algorithm），利用機械手臂追中。
+* 未來：如果可以得知景深，搭配逆向運動學（Inverse Kinematic）可以控制手臂，達成影像伺服的目的。
 
 組員
 ----
@@ -20,10 +28,16 @@ toc: no
 
 預算
 ----
-* 六自由度舵機支架含底盤 - 3738 NTD
-* 32路舵機控制板+ 五個伺服馬達（舵機）- 2426 NTD
+* `六自由度舵機支架含底盤 <http://goods.ruten.com.tw/item/show?21308188214402>`_ - 3738 NTD 
+* `32路舵機控制板<http://goods.ruten.com.tw/item/show?21309039146277>`_ + `五個伺服馬達<http://goods.ruten.com.tw/item/show?21211166626666>`_ （舵機）- 2426 NTD
 
-參考資料
-----
+程式碼
+-------
+* `Robot Arm Controller <https://github.com/kvzhao/robot-arm>`_ : 利用STM32F4實踐
+* `Machine Vision System <https://github.com/kvzhao/Pi-TempMatch>`_ : 利用Raspiberry Pi + Camera
 
+開發日誌
+--------
+
+* `Blogger <http://kvzhao.blogspot.tw/2013/12/visual-servo-project.html>`_
 
