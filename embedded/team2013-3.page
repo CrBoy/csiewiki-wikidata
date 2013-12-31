@@ -17,7 +17,7 @@ toc: no
    
 預期目標
 -------
-* 初期：用攝影機定位輸送帶上的物件，當偵測正確的物品時（利用Template Matching Algorithm），利用機械手臂追中。
+* 初期：用攝影機定位輸送帶上的物件，當偵測正確的物品時（利用Template Matching Algorithm），利用機械手臂追蹤。
 * 未來：如果可以得知景深，搭配逆向運動學（Inverse Kinematic）可以控制手臂，達成影像伺服的目的。
 
 組員
