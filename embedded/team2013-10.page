@@ -61,4 +61,18 @@ toc: yes
 
 - `Raspberry Pi Robotic Mobile Wi-Fi IP Cam built on Roomba, JASON<https://www.youtube.com/watch?v=wrEMpdBFFuA>`_
 
+
+
+研發紀錄＆＆每日實驗紀錄
+=====================
+hackpad: 
+
+https://hackpad.com/CWbNNm0YeCD
+
+Git: 
+
+https://github.com/JackABK/STM32F4-FreeRTOS  --> branch(cat_mouse).
+
+https://github.com/kickyourass/STM32F4-FreeRTOS/tree/cat_mouse --> branch(cat_mouse).
+
 --------------------
