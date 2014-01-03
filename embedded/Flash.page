@@ -58,9 +58,20 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 .. image:: /bus_matrix.JPG
    DM00031020-referenceManual P.60
 
+- Internal SRAM總容量 = 192KB = 64KB CCM data RAM + SRAM 112KB + SRAM 16KB。
+- SRAM 112KB: 連接至I-bus，加快程式的速度；連接至D-bus，加快存取data的速度。
+- SRAM 112KB及FSMC皆同時有3條bus連接至ARM Cortex-M4，大大提高bus存取的性能。
+- CCM(core coupled memory)：是給Cortex-M4專用的全速64KB RAM，他們不會經過上圖的Bus Matrix，Cortex-M4與其直接相連，mapped at address 0x1000 0000 - 0x1000FFFF and accessible only by the CPU through the D-bus。其address與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM。適用於stack, heap, global variables。
+- Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可透過ACCEL加速code execution。
 
-- CCM(core coupled memory)：屬於Embedded SRAM中一部份，mapped at address 0x1000 0000 and accessible only by the CPU through the D-bus.
-- Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可逶過ACCEL加速code execution。
+**多重bus的pararrel處理:**
+
+1. 壓縮的音樂資料流傳輸到16KB SRAM的buffer。
+2. Cortex-M4執行MP3解碼程式。
+3. Cortex-M4抓MP3的資料進行解碼。
+4. 解壓後的音樂資料流傳輸至112KB SRAM。
+5. 資料通過DMA傳輸到I2S輸出。
+
 
 2.2 Flash interface in system architecture
 ---------------------------------------------
