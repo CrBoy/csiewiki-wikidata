@@ -54,6 +54,7 @@ categories: STM32F4
 -----------------------------------------
 
 Bus Matrix:(利用round-robin演算法來仲裁)
+上方為master，右方為slave，bus matrix提供master可concurrent並有效率進行存取slave。
 
 .. image:: /bus_matrix.JPG
    DM00031020-referenceManual P.60
