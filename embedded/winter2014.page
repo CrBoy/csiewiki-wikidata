@@ -26,5 +26,11 @@ toc: no
 參考資料
 -----------
  * `嵌入式系統課程</embedded/schedule>`_
+ * Microkernel evolution: http://www.slideshare.net/jserv/microkernel-evolution
+ * F9 microkernel: http://www.slideshare.net/jserv/f9-microkernel
+ * olibc: http://www.slideshare.net/jserv/olibc
+ * mobile virtualization: http://www.slideshare.net/jserv/mobile-virtualization
+ * UNIXv6 internals: http://www.slideshare.net/jserv/unix-v6study
+ * C and UNIX: http://www.slideshare.net/jserv/unix-crevise
 
 - contact: `Jim Huang</User/jserv>`_ (黃敬群) <jserv.tw@gmail.com>
