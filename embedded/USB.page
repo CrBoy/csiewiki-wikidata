@@ -254,7 +254,24 @@ USB host and device
 ======================
 .. image:: /embedded/usb host:device .png
 
- 
+Bus Timing/Electrical Characteristics
+=======================================
+可以看參考資料USB 2.0 Specification的7.3.2章的內容
+
+.. image:: /embedded/USB/DCEC1.png
+.. image:: /embedded/USB/DCEC2.png
+.. image:: /embedded/USB/DCEC3.png
+
+* Table 7-8. High-speed Source Electrical Characteristics
+
+* Table 7-9. Full-speed Source Electrical Characteristics
+
+* Table 7-10. Low-speed Source Electrical Characteristics
+
+* Table 7-11. Hub/Repeater Electrical Characteristics
+
+以上Table可以參閱USB 2.0 Specification的7.3.2章
+
 USB Descriptors
 ^^^^^^^^^^^^^^^
 
