@@ -43,10 +43,10 @@ toc: yes
     - Ref: `露天拍賣_u9113336<http://goods.ruten.com.tw/item/show?21311202144214>`_
 
 
-  * 42步進馬達 * 4
-    - NT$400 * 4 
+  * 42步進馬達 * 5
+    - NT$400 * 5 
     - 步進角1.8度
-    - 用在X、Y、Z軸及擠壓機
+    - 用在X、Y、Z軸及擠壓機*2
     - Ref: `露天拍賣_yyyfly<http://goods.ruten.com.tw/item/show?21312041259561>`_
 
 
@@ -56,14 +56,67 @@ toc: yes
     - Ref: `露天拍賣_robotcube<http://goods.ruten.com.tw/item/show?21311160747092>`_
   
 
-  * 線性軸承(LMK8UU、SCS8UU)
-    - NT$ 
-    - Ref: 
+  * 線性軸承(LMK8UU、SCS8UU、608ZZ、624ZZ)
+    - LMK8UU、SCS8UU NT$108 * 7 
+    - 608ZZ NT$22 * 4
+    - 624ZZ NT$24 * 6
+    - Ref: `P3-P32.pdf<http://www.sunhoist.com.tw/dl/tran_pdf/P3-P32.pdf>`_
+
+
+  * 彈性聯軸器
+    - NT$120 * 2
+    - 小孔5mm，大孔8mm(M8規格)
+
+
+
+  * 同步齒輪20齒
+    - NT$300 * 2
+    - X、Y軸用，含止付螺絲
+    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21307125448490>`_
+
 
   * Prusa i2 塑膠零件
     - NT$2500
     - 可以找別人印(省錢)，不過要注意到精密度，尤其是連接螺紋桿、光軸的孔部分要特別注意，或是拿銼刀稍微磨一下
     - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21306258383258>`_
+
+
+  * 壓克力底板
+    - NT$670
+    - Y軸的平面
+    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21306179584253>`_
+
+
+  * 12V 240W 電源供應器
+    - NT$660
+    - 穩壓輸出12V，供應加熱頭、步進馬達的主要電源
+    - Ref: `露天拍賣_hi4c<http://goods.ruten.com.tw/item/show?21309213100350>`_
+
+ 
+  * 光學限位開關
+    - NT$150 * 3
+    - 光學開關，含3PIN線(有點短)，如果想省錢可以找微動開關比較便宜，但用久了會跑掉要重新調整
+    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21307257944622>`_
+
+
+  * J-HEAD擠出頭 
+    - NT$1450 * 2
+    - 兩組擠出頭，含100K熱敏電阻及加熱頭，3mm/0.4mm規格
+    - Ref: `露天拍賣_pinguo<http://goods.ruten.com.tw/item/show?21312042490345>`_
+
+
+  * 3mm PLA 環保膠條 兩組
+    - NT$1000 * 2
+    - 藍色及白色，直徑3mm
+    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21308025497113>`_
+
+
+  * 其他零件
+    - NT$??
+    - 3pin插座、杜邦接頭、多芯線(用於一般線路的延長)、鐵氟龍線(用於延長加熱頭電源線，比較粗)、熱縮套......族繁不及備載
+    - Ref: 一般電子商場皆可購買到... 
+
+
 
 參考資訊
 ===============
