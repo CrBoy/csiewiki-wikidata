@@ -88,7 +88,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - Internal SRAM總容量 = 192KB = 64KB CCM data RAM + SRAM 112KB + SRAM 16KB。
 - SRAM 112KB: 連接至I-bus，加快程式的速度；連接至D-bus，加快存取data的速度。
 - SRAM 112KB及FSMC皆同時有3條bus連接至ARM Cortex-M4，大大提高bus存取的性能。
-- CCM(core coupled memory)：是給Cortex-M4專用的全速64KB RAM，他們不會經過上圖的Bus Matrix，Cortex-M4與其直接相連，mapped at address 0x1000 0000 - 0x1000FFFF and accessible only by the CPU through the D-bus。其address與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM。適用於stack, heap, global variables。
+- CCM(core coupled memory)：是給Cortex-M4專用的全速64KB RAM，他們不會經過上圖的Bus Matrix，Cortex-M4與其直接相連，mapped at address 0x1000 0000 - 0x1000FFFF and accessible only by the CPU through the D-bus。其address與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM。適用於stack, heap, global variables或做高速運算緩衝，如FOC模型解耦, 網路SSL, JPEG编碼/解碼...等。
 - Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可透過ACCEL加速code execution。
 - ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
 
@@ -211,7 +211,7 @@ STM32F407中的Flash有以下特性：
   1111 : System clock divided by 512
 
 
-5. 透過讀取讀取RCC_CFGR register中的SWS(System clock switch status) bits 來確認新的SW(System clock switch) bits有無被設定成功；透過讀取RCC_CFGR register中的來確定新的HPRE(AHB Prescaler) bits有無被設定成功。
+5. 透過讀取RCC_CFGR register中的SWS(System clock switch status) bits 來確認新的SW(System clock switch) bits有無被設定成功；透過讀取RCC_CFGR register中的來確定新的HPRE(AHB Prescaler) bits有無被設定成功。
 
 **當減慢CPU frequency時**
 
