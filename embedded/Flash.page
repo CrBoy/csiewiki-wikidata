@@ -90,8 +90,12 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - SRAM 112KB及FSMC皆同時有3條bus連接至ARM Cortex-M4，大大提高bus存取的性能。
 - CCM(core coupled memory)：是給Cortex-M4專用的全速64KB RAM，他們不會經過上圖的Bus Matrix，Cortex-M4與其直接相連，mapped at address 0x1000 0000 - 0x1000FFFF and accessible only by the CPU through the D-bus。其address與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM。適用於stack, heap, global variables。
 - Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可透過ACCEL加速code execution。
+- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
 
-**多重bus的pararrel處理:**
+.. image:: /ST_ARTAccelerator_big.jpg
+
+
+**(例)多重bus的pararrel處理:**
 
 1. 壓縮的音樂資料流傳輸到16KB SRAM的buffer。
 2. Cortex-M4執行MP3解碼程式。
@@ -112,9 +116,6 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - S-bus：System bus. 用來存取週邊或SRAM的資料。
 - AHB : Advanced High-performance Bus.
 - APB : Advanced Peripheral Bus.
-- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
-
-.. image:: /ST_ARTAccelerator_big.jpg
 
 關於AHB與APB差異可參考 `Difference Between AHB and APB<http://www.differencebetween.net/technology/difference-between-ahb-and-apb/>`_
 
