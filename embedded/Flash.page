@@ -346,6 +346,7 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 - 總共528 bytes
   - OTP bytes(512 bytes)
   - OTP lock bytes(16 bytes)
+
 - OTP bytes:16個block，每個block有32bytes(總共512 bytes)--for user data
 - OTP lock bytes:有16 bytes LOCKBi (0 ≤ i ≤ 15)分別控制相對應的16個block--for locking the correspaonding OTP
 - 在OTP lock byte 不為 0x00 的時候，OTP 可以被寫入資料；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
