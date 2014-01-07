@@ -356,15 +356,14 @@ Demo 程式 - USB Host
 .. image:: /host_statemachine.png
 
 * HOST_IDLE : 初始化之後，USB Core會不斷輪詢（Polling）是否有USB裝置被偵測。此時VBus為了省電會關起來。
-* HOST_ISSUE_CORE_RESET :
-* HOST_DEV_ATTACHED :
-* HOST_ENUMERATION :
-* HOST_USR_INPUT :
-* HOST_CLASS_REQUEST :
-* HOST_CLASS :
-* HOST_CTRL_XFER :
-* HOST_ERROR_STATE :
-
+* HOST_ISSUE_CORE_RESET : 當有裝置連接時，USB為了建立BUS，會進入Reset狀態。
+* HOST_DEV_ATTACHED : 當裝置連接完成，Core也偵測到了以後，會進入裝置列舉（Enumeration）的狀態。
+* HOST_ENUMERATION : USB Core 會開始列舉所有 USB Device。當列舉完成後，會選擇裝置的初始狀態。（Default device configuration is selected.）
+* HOST_USR_INPUT : 一個中間狀態，等待使用者有進一部的指令，若收到後開始 USB Class 的操作。
+* HOST_CLASS_REQUEST : 當進入這個狀態，就由驅動程式（Class Driver）接管，處理一些初始的控制請求，像是Get_Report_Request（HID）等等，當這些 Request 正確完成後，就進入HOST_CLASS狀態。
+* HOST_CLASS : 此時狀態機會呼叫與應用相關的操作（Class-related Operation），完成指定的任務。
+* HOST_CTRL_XFER : 當需要傳送控制訊息（Control Request）都會進入這個狀態。
+* HOST_ERROR_STATE : 無法修復的錯誤發生時將進入這個狀態，之後 Host Library將會從新初始化。
 
 * Enumeration 
 
