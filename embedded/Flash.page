@@ -339,7 +339,7 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
 **關於Brown Out Reset Level(BOR_LEV)**
- - 當工作電壓降低到指定的電壓門檻時，該元件會自動進入reset狀態直到電壓高於電壓門檻。目的為防止一些不穩定或不可預期的電壓變化。(請看暫存器介紹)
+ - 當工作電壓低於或高於指定的電壓範圍時，該元件會自動進入reset狀態直到電壓回復到範圍內。目的為防止一些不穩定或不可預期的電壓變化。(請看暫存器介紹)
 
 3.8 One-time programmable (OTP)
 -------------------------------------------------------------
@@ -357,6 +357,12 @@ Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設�
 
 4.Flash interface registers
 ===========================
+- read/write (rw) :Software can read and write to these bits.
+- read-only (r) :Software can only read these bits.
+- write-only (w) :Software can only write to this bit. Reading the bit returns the reset value.
+- read/clear (rc_w1) :Software can read as well as clear this bit by writing 1. Writing ‘0’ has no effect on the bit value.
+- read/clear (rc_w0) :Software can read as well as clear this bit by writing 0. Writing ‘1’ has no effect on the bit value.
+- read/set (rs) :Software can read as well as set this bit. Writing ‘0’ has no effect on the bit value.
 
 4.1 Flash access control register (FLASH_ACR)
 -----------------------------------------------
@@ -368,7 +374,7 @@ Address offset : 0x00, Reset value: 0x0000 0000.
 
 ::
 
-  Bits 31:11 保留位置，必須保持淨空。
+  Bits 31:13 保留位置，必須保持淨空。
   Bit 12 DCRST : Data cache reset. 0: not reset; 1: reset. (當D cache未啟用時才可寫入)
   Bit 11 ICRST : Instruction cache reset. 0: not reset ; 1: reset. (當I cache未啟用時才可寫入)
   Bit 10 DCEN : Data cache enable. 0: disabled; 1: enabled.
@@ -400,7 +406,7 @@ Address offset : 0x0C, Reset value: 0x0000 0000.
 ::
 
   Bits 31:17 保留位置，必須保持淨空。
-  Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。
+  Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。(若無任何操作時會自動清除)
   Bits 15:8 保留位置，必須保持淨空。
   Bit 7 PGSERR : Programming sequence error. 當程式出現錯誤時會設值。若寫入1則清空。
   Bit 6 PGPERR : Programming parallelism error. 當程式寫入大小與型態不符(對照PSIZE)時會設值。若寫入1則清空。
