@@ -623,3 +623,5 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 - http://www.xuan.idv.tw/wordpress/?p=821
 - `Nand Flash 基本介紹 <http://cmchao.logdown.com/posts/60216>`_
 - `Nand Flash BBT Support in Linux  <http://cmchao.logdown.com/posts/61616-nand-flash-support-in-linux>`_
+- http://www.ptt.cc/bbs/NTU-EM93/M.1253794167.A.8F8.html
+- `[轉載]Nand flash結構以及讀寫經典分析<http://blog.xuite.net/ffc99a3b/ooxx/35948314-%5B%E8%BD%89%E8%BC%89%5DNand+flash%E7%B5%90%E6%A7%8B%E4%BB%A5%E5%8F%8A%E8%AE%80%E5%AF%AB%E7%B6%93%E5%85%B8%E5%88%86%E6%9E%90>`_
