@@ -309,7 +309,7 @@ Mass Storage device Class，大容量存儲裝置類別。一種電腦和行動�
 
 MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統經過版本升級或者係統補丁也能實現對 MSC 的支持。MSC 的通用性和操作簡單使他成為行動裝置上最常見的文件系統，USB MSC 並不需要任何特定的文件系統, 它提供了一個簡單的界面來讀寫接口用於訪問任何硬碟驅動。
 
-Demo 程式
+Demo 程式 - USB Host
 ^^^^^^^^^
 
 ::
@@ -350,9 +350,21 @@ Demo 程式
 
 本實驗主要將裝置STM32F4設定為Host，而隨身碟為Device。
 
+
 * Host state machine 
 
 .. image:: /host_statemachine.png
+
+* HOST_IDLE : 初始化之後，USB Core會不斷輪詢（Polling）是否有USB裝置被偵測。此時VBus為了省電會關起來。
+* HOST_ISSUE_CORE_RESET :
+* HOST_DEV_ATTACHED :
+* HOST_ENUMERATION :
+* HOST_USR_INPUT :
+* HOST_CLASS_REQUEST :
+* HOST_CLASS :
+* HOST_CTRL_XFER :
+* HOST_ERROR_STATE :
+
 
 * Enumeration 
 
