@@ -87,7 +87,7 @@ SDIO_CK is the clock to the card:
        * SDIO adapter clock(SDIOCLK = 48MHz is coming from a specific output of PLL (PLL48CLK) ).
        * APB2 bus clock(PCLK2).
       NOTE: PCLK2 與 SDIO_CLK 之clock頻率必須遵循以下條件：
-            Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK  ?????????????????
+            Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK
 
 
 The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
@@ -112,7 +112,6 @@ block diagram of an SDIO adapter.
 由圖中可以看出 , adapter registers 和 FIFO都是採用APB2 bus clock domain (PCLK2),
 而control unit , command path , data path 則是採用SDIO adapter clock domain(SDIOCLK).
 
-Q&A :  WHY??????????????????????????????????????????????????????
 
 上圖中之左側部份（Adapter registers and FIFO）：
 Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是用來配置一些參數,以用來實現SD協定中的時序,最終目的是用來實現SD卡的命令傳輸。
@@ -128,9 +127,9 @@ The adapter register block contains all system registers. This block also genera
 signals that clear the static flags in the multimedia card. The clear signals are generated  
 when 1 is written into the corresponding bit location in the SDIO Clear register.
 
+
 Control Unit
 ------------
-
 這部份又在其內部分為兩個子單元，一個是 Power management，另一個是 Clock management，這兩個子單元都受 Adapter registers 控制。詳見下圖：
 
 .. image:: /control_unit.png
@@ -217,11 +216,9 @@ Data FIFO
 
 The data FIFO (first-in-first-out) subunit is a data buffer with a transmit and receive unit.
 
-SDIO APB2 interface
-===================
-ARM 的 APB2 介面由 data path，register decoder 與 interrupt/DMA logic 組成，除了會產生 interrupt 與 DMA 的 request，也會存取 SDIO adapter registers 與 data FIFO。
 
-SDIO interrupt:
+SDIO interrupt
+---------------
 
 - 當任何一個透過 mask register 預先選擇的特定 flags 之 status flag 為 high 時，interrupt logic 將會產生一個 interrupt request。又若某個 mask       
   flag 被 set 的話，其對應的 status flag 也會產生 interrupt request。
@@ -231,6 +228,10 @@ SDIO interrupt:
 Sample Code
 ============
 - https://github.com/JackABK/STM32F4-FreeRTOS/tree/master  (Switch master branch)
+
+
+
+- Initialization
 
 .. code-block:: prettyprint
 
@@ -292,9 +293,110 @@ Sample Code
   }
 
 
+- media_read
+
+.. code-block:: prettyprint
+
+int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
+{
+    unsigned long i;
+	SD_Error error;
+    for (i=0;i<sector_count;i++)
+    {
+        // ...
+        // Add platform specific sector (512 bytes) read code here
+        //..
+        
+        while(SD_GetStatus()!=SD_TRANSFER_OK);
+	 error=SD_ReadBlock(buffer,sector*512,512);
+	while(SD_GetStatus()!=SD_TRANSFER_OK);
+        sector ++;
+        buffer += 512;
+    }
+
+    return 1;
+}
+
+
+- media_write
+
+.. code-block:: prettyprint
+
+int media_write(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
+{
+    unsigned long i;
+	SD_Error error;
+
+    for (i=0;i<sector_count;i++)
+    {
+        // ...
+        // Add platform specific sector (512 bytes) write code here
+        //..
+        while(SD_GetStatus()!=SD_TRANSFER_OK);
+	error=SD_WriteBlock(buffer,sector*512,512);
+	while(SD_GetStatus()!=SD_TRANSFER_OK);
+        sector ++;
+        buffer += 512;
+    }
+
+    return 1;
+}
+
+
+
+
+- FatFs
+
+.. code-block:: prettyprint
+
+void example_fat_fs()
+{
+    FL_FILE *file;
+
+    // Initialise media
+    media_init();
+
+    // Initialise File IO Library
+    fl_init();
+
+    // Attach media access functions to library
+    if (fl_attach_media(media_read, media_write) != FAT_INIT_OK)
+    {
+        printf("ERROR: Media attach failed\n");
+        return; 
+    }
+
+    // List root directory
+    fl_listdirectory("/");
+
+    // Create File
+    file = fl_fopen("/file.bin", "w");
+    if (file)
+    {
+        // Write some data
+        unsigned char data[] = { 1, 2, 3, 4 };
+        if (fl_fwrite(data, 1, sizeof(data), file) != sizeof(data))
+            printf("ERROR: Write file failed\n");
+    }
+    else
+        printf("ERROR: Create file failed\n");
+
+    // Close file
+    fl_fclose(file);
+
+   // Delete File
+   // if (fl_remove("/file.bin") < 0)
+   // printf("ERROR: Delete file failed\n");
+
+    // List root directory
+    fl_listdirectory("/");
+
+    fl_shutdown();
+}
+
 Demo
 ============
-
+- https://www.youtube.com/watch?v=go-L5ERTrso
 
 
 
