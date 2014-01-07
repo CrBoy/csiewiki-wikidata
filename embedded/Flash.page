@@ -320,17 +320,31 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 有三種Read Protections levels:
 
-- Level 0:將 0xAA 寫入FLASH_OPTCR中的RDP(Read Protection) bit，表示 Read protection not active。
+- Level 0: 將 0xAA 寫入FLASH_OPTCR中的RDP(Read Protection) bit
 
-- Level 1:將除了 0xAA 以及 0xCC 以外的值寫入FLASH_OPTCR中的RDP bit，表示由SRAM啟動且執行的processes無法對Flash memory做存取。
+  1. 表示Read protection not active。
 
-- Level 2:將 0xCC 寫入FLASH_OPTCR中的RDP bit，表示由system memory和SRAM啟動且執行的processes無法對Flash memory做存取。
+- Level 1: 將除了 0xAA 以及 0xCC 以外的值寫入FLASH_OPTCR中的RDP bit
 
-(Level 2包含了Level 1的特性，一旦設定成Level 2以後就不能再設定回Level 0 或Level 1。)
+  1. 表示由system memory和SRAM啟動且執行的processes無法對Flash memory做存取。
+
+  2. Debug功能可以使用。
+
+- Level 2: 將 0xCC 寫入FLASH_OPTCR中的RDP bit
+
+  1. 表示由system memory和SRAM啟動且執行的processes無法對Flash memory做存取。
+
+  2. Debug功能不可以使用。
+
+  3. 一旦設定成level 2以後就無法再更改。
 
 **關於寫入保護(Write Protections)**
 
-在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
+- 在12個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。
+
+- 當FLASH_OPTCR中的nWRPi(non-write protection) bit (0 <= i <= 11)為0時，i所對應的sector就不能夠被寫入或抹除。同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
+
+- 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
 **關於Brown Out Reset Level(BOR_LEV)**
  - 當工作電壓低於或高於指定的電壓範圍時，該元件會自動進入reset狀態直到電壓回復到範圍內。目的為防止一些不穩定或不可預期的電壓變化。(請看暫存器介紹)
