@@ -544,15 +544,14 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   } printf("\r\n Read complete \r\n");
 
 
-- 10 PRINT DATA_32
+- 10 Flash memory sector2 的內容:
 
-::
-
-   printf("\r\n FLASH_USER_END_ADDR  :%d\r\n", *x);
+.. image:: /1492801_611112942271128_116086978_n.jpg
 
 
-   
+- 11 Demo
 
+http://www.youtube.com/watch?v=yW_IF_wHWBc&feature=youtu.be
 
 6.STM32F407VG 硬體介紹
 =====================
