@@ -342,17 +342,13 @@ Sample Code
 
     if (errorstatus == SD_OK)
     {
-
       /* Select Card*/
       errorstatus = SD_SelectDeselect((uint32_t) (SDCardInfo.RCA << 16));
-
     }
 
     if (errorstatus == SD_OK)
     {
-
       errorstatus = SD_EnableWideBusOperation(SDIO_BusWide_4b);
-
     }
 
     return(errorstatus);
@@ -363,19 +359,19 @@ Sample Code
 
 .. code-block:: prettyprint
 
-int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
+    int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
     {
         unsigned long i;
-      SD_Error error;
+        SD_Error error;
         for (i=0;i<sector_count;i++)
         {
             // ...
             // Add platform specific sector (512 bytes) read code here
-            //..
+            // ...
             
             while(SD_GetStatus()!=SD_TRANSFER_OK);
-       error=SD_ReadBlock(buffer,sector*512,512);
-      while(SD_GetStatus()!=SD_TRANSFER_OK);
+            error=SD_ReadBlock(buffer,sector*512,512);
+            while(SD_GetStatus()!=SD_TRANSFER_OK);
             sector ++;
             buffer += 512;
         }
@@ -391,16 +387,16 @@ int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector
     int media_write(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
     {
         unsigned long i;
-      SD_Error error;
+        SD_Error error;
 
         for (i=0;i<sector_count;i++)
         {
             // ...
             // Add platform specific sector (512 bytes) write code here
-            //..
+            // ...
             while(SD_GetStatus()!=SD_TRANSFER_OK);
-      error=SD_WriteBlock(buffer,sector*512,512);
-      while(SD_GetStatus()!=SD_TRANSFER_OK);
+            error=SD_WriteBlock(buffer,sector*512,512);
+            while(SD_GetStatus()!=SD_TRANSFER_OK);
             sector ++;
             buffer += 512;
         }
