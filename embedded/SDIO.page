@@ -14,9 +14,9 @@ What is the SD/MMC?
 
 .. image:: /sdio2.png
 
-後來還出了SDHC(Secure Digital High Capacity),是由SD卡協會（SD Card Association）在2006年3月發表的Secure Digital高容量版本。SD卡協會有强制規定，所有符合SDHC規範的設備都必須標明“SDHC”的標誌.
+後來還出了 SDHC(Secure Digital High Capacity)，是由 SD 卡協會（SD Card Association）在 2006 年 3 月發表的 Secure Digital 高容量版本。SD 卡協會有强制規定，所有符合 SDHC 規範的設備都必須標明 “SDHC” 的標誌。
 
-SDHC與SD的主要差異在於，舊版本使用FAT16檔案系統，意思是管理檔案所在位置的表格用16位元表示，所以最多只能管理65536個範圍，再考慮每個範圍能儲存32KB的資料量，所以65536 × 32KB = 2GB，SD卡容量上限只能到達2GB。為解決FAT16格式可支援容量有限的問題，SDHC改用了FAT32格式；依規格定義，容量最大可達到32GB。
+SDHC 與 SD 的主要差異在於，舊版本使用 FAT16 檔案系統，意思是管理檔案所在位置的表格用 16 位元表示，所以最多只能管理 65,536 個範圍，再考慮每個範圍能儲存32KB的資料量，所以65536 × 32KB = 2GB，SD卡容量上限只能到達2GB。為解決FAT16格式可支援容量有限的問題，SDHC改用了FAT32格式；依規格定義，容量最大可達到32GB。
 
 發佈SDHC的時候，制定了三種不同的級數（Class），分別是Class 2、Class 4及Class 6，表示該記憶卡穩定的最小存取速度。
 後來，增加了Class 10及全新制定的UHS（Ultra High Speed）
@@ -235,25 +235,25 @@ DPSM 運作在 SDIO_CK 的頻率上，包含若干狀態。
 
 - Send：the DPSM starts sending data to a card. Depending on the transfer mode bit in the data control register, the data transfer mode can be either block or stream:
 
-    – In block mode, when the data block counter reaches zero, the DPSM sends an internally generated CRC code and end bit, and moves to the Busy state.
+    – In block mode, when the data block counter reaches zero, the DPSM sends an internally generated CRC code and end bit, and moves to the ``Busy`` state.
 
-    – In stream mode, the DPSM sends data to a card while the enable bit is high and the data counter is not zero. It then moves to the Idle state.
+    – In stream mode, the DPSM sends data to a card while the enable bit is high and the data counter is not zero. It then moves to the ``Idle`` state.
 
-If a FIFO underrun error occurs, the DPSM sets the FIFO error flag and moves to the Idle state.
+If a FIFO underrun error occurs, the DPSM sets the FIFO error flag and moves to the ``Idle`` state.
 
 - Busy：DPSM 正在等待 CRC 的 status flag。
 
-    – If it does not receive a positive CRC status, it moves to the Idle state and sets the CRC fail status flag.
+    – If it does not receive a positive CRC status, it moves to the ``Idle`` state and sets the CRC fail status flag.
 
-    – If it receives a positive CRC status, it moves to the Wait_S state if SDIO_D0 is not low (the card is not busy).
+    – If it receives a positive CRC status, it moves to the ``Wait_S`` state if SDIO_D0 is not low (the card is not busy).
 
-If a timeout occurs while the DPSM is in the Busy state, it sets the data timeout flag and moves to the Idle state. The data timer is enabled when the DPSM is in the Wait_R or Busy state, and generates the data timeout error:
+If a timeout occurs while the DPSM is in the ``Busy`` state, it sets the data timeout flag and moves to the ``Idle`` state. The data timer is enabled when the DPSM is in the ``Wait_R`` or ``Busy`` state, and generates the data timeout error:
 
-    - When transmitting data, the timeout occurs if the DPSM stays in the Busy state for longer than the programmed timeout period
+    - When transmitting data, the timeout occurs if the DPSM stays in the ``Busy`` state for longer than the programmed timeout period
 
-    - When receiving data, the timeout occurs if the end of the data is not true, and if the DPSM stays in the Wait_R state for longer than the programmed timeout period.
+    - When receiving data, the timeout occurs if the end of the data is not true, and if the DPSM stays in the ``Wait_R`` state for longer than the programmed timeout period.
 
-*注意：The DPSM remains in the Wait_S state for at least two clock periods to meet the N(WR) timing requirements, where N(WR) is the number of clock cycles between the reception of the card response and the start of the data transfer from the host.*
+*注意：The DPSM remains in the ``Wait_S`` state for at least two clock periods to meet the N(WR) timing requirements, where N(WR) is the number of clock cycles between the reception of the card response and the start of the data transfer from the host.*
 
 Data FIFO
 ---------
@@ -262,11 +262,11 @@ The data FIFO (first-in-first-out) subunit is a data buffer with a transmit and 
 
 The FIFO contains a 32-bit wide, 32-word deep data buffer, and transmit and receive logic. Because the data FIFO operates in the APB2 clock domain (PCLK2), all signals from the subunits in the SDIO clock domain (SDIOCLK) are resynchronized.
 
-Depending on the TXACT and RXACT flags, the FIFO can be disabled, transmit enabled, or receive enabled. TXACT and RXACT are driven by the data path subunit and are mutually exclusive:
+Depending on the ``TXACT`` and ``RXACT`` flags, the FIFO can be disabled, transmit enabled, or receive enabled. ``TXACT`` and ``RXACT`` are driven by the data path subunit and are mutually exclusive:
 
-- The transmit FIFO refers to the transmit logic and data buffer when TXACT is asserted
+- The transmit FIFO refers to the transmit logic and data buffer when ``TXACT`` is asserted
 
-- The receive FIFO refers to the receive logic and data buffer when RXACT is asserted 
+- The receive FIFO refers to the receive logic and data buffer when ``RXACT`` is asserted 
 
 **Transmit FIFO**
 
@@ -274,13 +274,13 @@ Data can be written to the transmit FIFO through the APB2 interface when the SDI
 
 The transmit FIFO is accessible via 32 sequential addresses. The transmit FIFO contains a data output register that holds the data word pointed to by the read pointer. When the data path subunit has loaded its shift register, it increments the read pointer and drives new data out.
 
-If the transmit FIFO is disabled, all status flags are deasserted. The data path subunit asserts TXACT when it transmits data.
+If the transmit FIFO is disabled, all status flags are deasserted. The data path subunit asserts ``TXACT`` when it transmits data.
 
 .. image:: /SDIO-transmit_FIFO_status_flag.png
 
 **Receive FIFO**
 
-When the data path subunit receives a word of data, it drives the data on the write databus. The write pointer is incremented after the write operation completes. On the read side, the contents of the FIFO word pointed to by the current value of the read pointer is driven onto the read databus. If the receive FIFO is disabled, all status flags are deasserted, and the read and write pointers are reset. The data path subunit asserts RXACT when it receives data.
+When the data path subunit receives a word of data, it drives the data on the write databus. The write pointer is incremented after the write operation completes. On the read side, the contents of the FIFO word pointed to by the current value of the read pointer is driven onto the read databus. If the receive FIFO is disabled, all status flags are deasserted, and the read and write pointers are reset. The data path subunit asserts ``RXACT`` when it receives data.
 
 .. image:: /SDIO-receive_FIFO_status_flag.png
 
@@ -296,8 +296,6 @@ SDIO interrupt
 Sample Code
 ============
 - https://github.com/JackABK/STM32F4-FreeRTOS/tree/master  (Switch master branch)
-
-
 
 - Initialization
 
@@ -366,24 +364,24 @@ Sample Code
 .. code-block:: prettyprint
 
 int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
-{
-    unsigned long i;
-	SD_Error error;
-    for (i=0;i<sector_count;i++)
     {
-        // ...
-        // Add platform specific sector (512 bytes) read code here
-        //..
-        
-        while(SD_GetStatus()!=SD_TRANSFER_OK);
-	 error=SD_ReadBlock(buffer,sector*512,512);
-	while(SD_GetStatus()!=SD_TRANSFER_OK);
-        sector ++;
-        buffer += 512;
-    }
+        unsigned long i;
+      SD_Error error;
+        for (i=0;i<sector_count;i++)
+        {
+            // ...
+            // Add platform specific sector (512 bytes) read code here
+            //..
+            
+            while(SD_GetStatus()!=SD_TRANSFER_OK);
+       error=SD_ReadBlock(buffer,sector*512,512);
+      while(SD_GetStatus()!=SD_TRANSFER_OK);
+            sector ++;
+            buffer += 512;
+        }
 
-    return 1;
-}
+        return 1;
+    }
 
 
 - media_write
