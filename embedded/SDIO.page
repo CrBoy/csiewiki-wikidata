@@ -120,9 +120,7 @@ Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是�
 
 Adapter register block
 ----------------------
-The adapter register block contains all system registers. This block also generates the 
-signals that clear the static flags in the multimedia card. The clear signals are generated  
-when 1 is written into the corresponding bit location in the SDIO Clear register.
+Adapter register block 包含了所有的 system registers。此外，adapter register block 亦會產生清除 multimedia card 中 static flag 的 signal。這種 clear signal 是根據在 SDIO Clear register 中對應的 bit location 是否為 1 而產生的。
 
 
 Control Unit
@@ -133,25 +131,26 @@ Control Unit
 
 **Power management**
 
-There are three power phases:
+對 power 而言，會有三個時期：
+
 - power-off
 - power-up
 - power-on
 
-*NOTE!! The power management subunit disables the card bus output signals during the power-off and power-up phases.*
+*注意：若 power 處於 power-off 即 power-up 時期，power management subunit 就會停止 card bus 的 output signals。*
 
 **Clock management**
 
-用來產生和控制SDIO_CK , 而其SDIO_CK又可選擇兩種模式： 
+用來產生和控制 ``SDIO_CK``，而其 ``SDIO_CK`` 又可選擇兩種模式： 
 
-- clock Divide (SDIO_CK = SDIO_CLK/div .)  
-- clock Bypass (SDIO_CK = SDIO_CLK).
+- Clock Divide (SDIO_CK = SDIO_CLK/div)  
+- Clock Bypass (SDIO_CK = SDIO_CLK)
 
-而在底下的情況下 , Clock是不輸出訊號的
+而在底下的情況下，Clock 是不輸出訊號的
 
 - after reset
-- during the power-off or power-up phases
-- if the power saving mode is enabled and the card bus is in the Idle state (eight clock periods after both the command and data path subunits enter the Idle phase).
+- 電源處於 power-off 或 power-up 時期
+- 若省電模式被啟動且 card bus 處於 the ``Idle`` 狀態 (eight clock periods after both the command and data path subunits enter the ``Idle`` phase).
 
 Command Path
 ------------
