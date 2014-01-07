@@ -6,8 +6,29 @@ categories: SDIO, STM32F4
 Introduction
 ============
 
-What is SDIO?
+What is the SD/MMC?
+--------------------------
+- Secure Digital縮寫SD，全名Secure Digital Memory Card，中文翻譯為安全數位卡，為一種記憶卡，被廣泛地於攜帶型裝置上使用，例如數位相機、個人數位助理和多媒體播放器等。SD卡的技術是建基於MMC(MultiMedia)卡格式上。SD卡有比較高的資料傳送速度，而且不斷更新標準。
+
+- SD 是一種 flash memory card 的標準，也就是一般常見的 SD 記憶卡，而 MMC 則是較早的一種記憶卡標準，目前已經被 SD 標準所取代.
+
+.. image:: /sdio2.png
+
+後來還出了SDHC(Secure Digital High Capacity),是由SD卡協會（SD Card Association）在2006年3月發表的Secure Digital高容量版本。SD卡協會有强制規定，所有符合SDHC規範的設備都必須標明“SDHC”的標誌.
+
+SDHC與SD的主要差異在於，舊版本使用FAT16檔案系統，意思是管理檔案所在位置的表格用16位元表示，所以最多只能管理65536個範圍，再考慮每個範圍能儲存32KB的資料量，所以65536 × 32KB = 2GB，SD卡容量上限只能到達2GB。為解決FAT16格式可支援容量有限的問題，SDHC改用了FAT32格式；依規格定義，容量最大可達到32GB。
+
+發佈SDHC的時候，制定了三種不同的級數（Class），分別是Class 2、Class 4及Class 6，表示該記憶卡穩定的最小存取速度。
+後來，增加了Class 10及全新制定的UHS（Ultra High Speed）
+
+.. image:: /class_speed.png
+
+What is the SDIO?
 -----------------
+
+- SDIO 是目前我們比較關心的技術，SDIO 故名思義，就是 SD 的 I/O 介面（interface）的意思，不過這樣解釋可能還有點抽像。更具體的說明，SD 本來是記憶卡的標準，但是現在也可以把 SD 拿來插上一些週邊介面使用，這樣的技術便是 SDIO。
+
+- 所以 SDIO 本身是一種相當單純的技術，透過 SD 的 I/O 接腳來連接外部週邊，並且透過 SD 上的 I/O 資料接位與這些週邊傳輸資料，而且 SD 協會會員也推出很完整的 SDIO stack 驅動程式，使得 SDIO 週邊（我們稱為 SDIO 卡）的開發與應用變得相當熱門。
 - A SDIO (Secure Digital Input Output) card is an extension of the SD specification to cover I/O functions. 
 - Host devices that support SDIO can use the SD slot to support: 
    1.  GPS receivers.
@@ -22,20 +43,6 @@ What is SDIO?
 - SDIO cards support most of the memory commands of SD cards. SDIO cards can be structured as 8 logical cards, although currently, the typical way that an SDIO card uses this capability is to structure itself as one I/O card and one memory card.
 
 .. image:: /sdio1.png
-.. image:: /sdio2.png
-
-Difference of SD/MMC/SDIO
---------------------------
-
-
-
-Speed class rating
--------------------
-
-
-
-
-
 SDIO bus topology
 =================
 
@@ -182,6 +189,21 @@ SDIO interrupt:
 
 
 /*********************/
+
+
+
+Sample Code
+============
+- https://github.com/JackABK/STM32F4-FreeRTOS/tree/master  (Switch master branch)
+
+
+
+Demo
+============
+
+
+
+
 
 Reference
 ==========
