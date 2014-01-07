@@ -723,7 +723,7 @@ To compile code
 按Ctrl+a，再按x可離開Minicom
 
 
-**實驗波形圖**
+**實驗波形圖，採用USBee AX作訊號分析**
 
 .. image:: /usart_wave.jpg
 
