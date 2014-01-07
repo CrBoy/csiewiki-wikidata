@@ -163,17 +163,43 @@ Command path 用來傳遞外來命令與接收卡片回應，是 SDIO 中負責�
 
 .. image:: /sdio-command_path.png
 
-**Command Path State Machine**
-
-我們可以用 state machine 表示 command path 的各狀態間的關係與運作方式：
+Command registers 中具有各 state flags 來表示 command path 目前的狀態，而狀態間的轉移可以用 state machine 表示：
 
 .. image:: /SDIO_CPSM.png
 
-當 command register 被寫入且 enable bit 被設為真值，command 的傳送即告開始。Command 被傳送後，CPSM 會進入 *Idle* 狀態且自動設定 status flags 的值。若該命令需要回應，則等待回應。當回應產生後，command path 會比較回傳的 CRC 與內部產生的 code，然後對應的 status flag 會自動被設定。
+當 command register 被寫入且 enable bit 被設為真值，command 的傳送即告開始。Command 被傳送後，CPSM 會進入 ``Idle`` 狀態且自動設定 status flags 的值。若該命令需要回應，則等待回應。當回應產生後，command path 會比較回傳的 CRC 與內部產生的 code，然後對應的 status flag 會自動被設定。
 
-*NOTE: The command timeout has a fixed value of 64 SDIO_CK clock periods.*
+*注意：Command timeout 的值固定在 64 個 SDIO_CK。也就是在 ``Wait`` 狀態下，若 64 個 SDIO_CK 的時間過去後仍未收到回應，則 CPSM 將再次進入 ``Idle`` 狀態。*
 
-If the interrupt bit is set in the command register, the timer is disabled and the CPSM waits for an interrupt request from one of the cards. If a pending bit is set in the command register, the CPSM enters the Pend state, and waits for a CmdPend signal from the data path subunit. When CmdPend is detected, the CPSM moves to the Send state. This enables the data counter to trigger the stop command transmission.
+若 Interrupt bit 被設為真，command register 中的 timer 會被停用且 CPSM 開始等待 SD cards 發出的 interrupt request；若 Pending bit 被設為真，CPSM 進入 ``Pend`` 狀態，並等待自 data path 發送之 ``CmdPend`` signal；若偵測到 ``CmdPend`` signal，CPSM 進入 ``Send`` 狀態，此舉將讓 data counter 開始運作，並賦予其停止 command 的傳輸的驅動權。
+
+*注意：當 CPSM 每次進入 ``Idle`` 狀態時，會至少停留在此狀態 8 個 SDIO_CK 的時間，以滿足 N(CC) 與 N(RC) 的時間差限制。N(CC) 是兩個 host command 的最小延遲，N(RC) 則是 command 與 response 間的最小延遲。*
+
+底下則是典型 SDIO command transfer 的示意圖：
+
+.. image:: /SDIO_command-transfer.png
+
+當 CPSM 不在 ``Send`` 狀態，SDIO_CMD 會處於 Hi-Z 狀態。
+
+接著說明 command 與 response 的格式：
+
+一般 Command（普通 MMC, SD card 與 SDIO 裝置）的長度固定在 48 個 bit，上面 CPSM 提到的 CE-ATA 則是 MMC v4.2 的延伸功能，其格式與普通 command 相同。Command path 是以**半雙工**模式運作，亦即同時間只能傳送 command 或接收 response。
+
+.. image:: /SDIO-command_format.png
+
+Response 則分為 **48 bit 的短回應**與 **136 bit 的長回應**兩種，兩種都使用 CRC 作為錯誤檢測的依據。
+
+*注意：若 response 中未帶有 CRC，則外部裝置的驅動程式**必須**忽略 CRC failure 狀態。*
+
+底下是這兩種回應的詳細格式：
+
+.. image:: /SDIO-response_format.png
+
+另外，在 command register 中存有 command index，這除了可以分辨 response 屬於哪種格式外（包含 6 個 bit 的資訊，Command Index in short format, [133:128] in long format），亦可分辨該 command 需不需要 response。Command path 並包含以下的 flag 指示目前的 command/response 傳輸狀態：
+
+.. image:: /SDIO-command_path_status_flags.png
+
+CRC chscksum 為 7 個 bit，在短格式中，以 CRC7 之前所有欄位的資料作計算；在長格式中，則以 CID/CSD 前 120 個 bit 為基準作計算（亦即不包含 start bit, transmission bit 與 6 個保留 bit）。
 
 Data Path
 ---------
