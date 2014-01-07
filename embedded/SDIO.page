@@ -203,18 +203,86 @@ CRC chscksum 為 7 個 bit，在短格式中，以 CRC7 之前所有欄位的資
 Data Path
 ---------
 
-Data path 負責資料的傳輸，底下是該單元的 block diagram：
+Data path 負責資料的傳輸，底下是該子單元的 block diagram：
 
 .. image:: /SDIO-data_path.png
+
+Data bus 的長度是可以透過 clock control register 控制的，若我們指定使用 4-bit 長的傳輸模式，則代表在每一個 clock cycle 中，會由 SDIO_D[3:0] 傳輸 4 bit 的資料；若為 8-bit 長，則為 SDIO_D[7:0]；若 ``wide bus`` 模式未啟動，則單一 clock cycle 只傳輸一個 bit。
 
 Data path 與 command path 相同，可以用 state machine 表示 data path 的各狀態間的關係與運作方式：
 
 .. image:: /SDIO-DPSM.png
 
+DPSM 運作在 SDIO_CK 的頻率上，包含若干狀態。
+
+當 DPSM 啟動，會依據資料傳輸的方向，進入 ``Wait_S`` 或是 ``Wait_R`` 模式（Send and Receive）。
+
+若在 ``Wait_S`` 狀態、且 transmit FIFO 中有 data，則DPSM 會移動至 ``Send`` 狀態，然後 data path 開始傳送資料至 card 中；若在 ``Wait_R`` 狀態、且收到 Start bit，則 DPSM 移動至 ``Receive`` 狀態，然後 data path 開始接受從 card 傳來的 data。
+
+以下對各狀態進行解說：
+
+- Idle：data path 未活動，SDIO_D[7:0] 輸出 Hi-Z。When the data control register is written and the enable bit is set, the DPSM loads the data counter with a new value and, depending on the data direction bit, moves to either the ``Wait_S`` or the ``Wait_R`` state.
+
+- Wait_R：if the data counter equals zero, the DPSM moves to the Idle state when the receive FIFO is empty. If the data counter is not zero, the DPSM waits for a start bit on ``SDIO_D``. The DPSM moves to the Receive state if it receives a start bit before a timeout, and loads the data block counter. If it reaches a timeout before it detects a start bit, or a start bit error occurs, it moves to the Idle state and sets the timeout status flag.
+
+- Receive：serial data received from a card is packed in bytes and written to the data FIFO. Depending on the transfer mode bit in the data control register, the data transfer mode can be either block or stream:
+
+    – In block mode, when the data block counter reaches zero, the DPSM waits until it receives the CRC code. If the received code matches the internally generated CRC code, the DPSM moves to the ``Wait_R`` state. If not, the CRC fail status flag is set and the DPSM moves to the ``Idle`` state.
+
+    – In stream mode, the DPSM receives data while the data counter is not zero. When the counter is zero, the remaining data in the shift register is written to the data FIFO, and the DPSM moves to the ``Wait_R`` state. If a FIFO overrun error occurs, the DPSM sets the FIFO error flag and moves to the ``Idle`` state.
+
+- Wait_S：the DPSM moves to the ``Idle`` state if the data counter is zero. If not, it waits until the data FIFO empty flag is deasserted, and moves to the ``Send`` state.
+
+- Send：the DPSM starts sending data to a card. Depending on the transfer mode bit in the data control register, the data transfer mode can be either block or stream:
+
+    – In block mode, when the data block counter reaches zero, the DPSM sends an internally generated CRC code and end bit, and moves to the Busy state.
+
+    – In stream mode, the DPSM sends data to a card while the enable bit is high and the data counter is not zero. It then moves to the Idle state.
+
+If a FIFO underrun error occurs, the DPSM sets the FIFO error flag and moves to the Idle state.
+
+- Busy：DPSM 正在等待 CRC 的 status flag。
+
+    – If it does not receive a positive CRC status, it moves to the Idle state and sets the CRC fail status flag.
+
+    – If it receives a positive CRC status, it moves to the Wait_S state if SDIO_D0 is not low (the card is not busy).
+
+If a timeout occurs while the DPSM is in the Busy state, it sets the data timeout flag and moves to the Idle state. The data timer is enabled when the DPSM is in the Wait_R or Busy state, and generates the data timeout error:
+
+    - When transmitting data, the timeout occurs if the DPSM stays in the Busy state for longer than the programmed timeout period
+
+    - When receiving data, the timeout occurs if the end of the data is not true, and if the DPSM stays in the Wait_R state for longer than the programmed timeout period.
+
+*注意：The DPSM remains in the Wait_S state for at least two clock periods to meet the N(WR) timing requirements, where N(WR) is the number of clock cycles between the reception of the card response and the start of the data transfer from the host.*
+
 Data FIFO
 ---------
 
 The data FIFO (first-in-first-out) subunit is a data buffer with a transmit and receive unit.
+
+The FIFO contains a 32-bit wide, 32-word deep data buffer, and transmit and receive logic. Because the data FIFO operates in the APB2 clock domain (PCLK2), all signals from the subunits in the SDIO clock domain (SDIOCLK) are resynchronized.
+
+Depending on the TXACT and RXACT flags, the FIFO can be disabled, transmit enabled, or receive enabled. TXACT and RXACT are driven by the data path subunit and are mutually exclusive:
+
+- The transmit FIFO refers to the transmit logic and data buffer when TXACT is asserted
+
+- The receive FIFO refers to the receive logic and data buffer when RXACT is asserted 
+
+**Transmit FIFO**
+
+Data can be written to the transmit FIFO through the APB2 interface when the SDIO is enabled for transmission.
+
+The transmit FIFO is accessible via 32 sequential addresses. The transmit FIFO contains a data output register that holds the data word pointed to by the read pointer. When the data path subunit has loaded its shift register, it increments the read pointer and drives new data out.
+
+If the transmit FIFO is disabled, all status flags are deasserted. The data path subunit asserts TXACT when it transmits data.
+
+.. image:: /SDIO-transmit_FIFO_status_flag.png
+
+**Receive FIFO**
+
+When the data path subunit receives a word of data, it drives the data on the write databus. The write pointer is incremented after the write operation completes. On the read side, the contents of the FIFO word pointed to by the current value of the read pointer is driven onto the read databus. If the receive FIFO is disabled, all status flags are deasserted, and the read and write pointers are reset. The data path subunit asserts RXACT when it receives data.
+
+.. image:: /SDIO-receive_FIFO_status_flag.png
 
 
 SDIO interrupt
@@ -322,25 +390,25 @@ int media_read(unsigned long sector, unsigned char *buffer, unsigned long sector
 
 .. code-block:: prettyprint
 
-int media_write(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
-{
-    unsigned long i;
-	SD_Error error;
-
-    for (i=0;i<sector_count;i++)
+    int media_write(unsigned long sector, unsigned char *buffer, unsigned long sector_count)
     {
-        // ...
-        // Add platform specific sector (512 bytes) write code here
-        //..
-        while(SD_GetStatus()!=SD_TRANSFER_OK);
-	error=SD_WriteBlock(buffer,sector*512,512);
-	while(SD_GetStatus()!=SD_TRANSFER_OK);
-        sector ++;
-        buffer += 512;
-    }
+        unsigned long i;
+      SD_Error error;
 
-    return 1;
-}
+        for (i=0;i<sector_count;i++)
+        {
+            // ...
+            // Add platform specific sector (512 bytes) write code here
+            //..
+            while(SD_GetStatus()!=SD_TRANSFER_OK);
+      error=SD_WriteBlock(buffer,sector*512,512);
+      while(SD_GetStatus()!=SD_TRANSFER_OK);
+            sector ++;
+            buffer += 512;
+        }
+
+        return 1;
+    }
 
 
 
@@ -349,57 +417,54 @@ int media_write(unsigned long sector, unsigned char *buffer, unsigned long secto
 
 .. code-block:: prettyprint
 
-void example_fat_fs()
-{
-    FL_FILE *file;
-
-    // Initialise media
-    media_init();
-
-    // Initialise File IO Library
-    fl_init();
-
-    // Attach media access functions to library
-    if (fl_attach_media(media_read, media_write) != FAT_INIT_OK)
+    void example_fat_fs()
     {
-        printf("ERROR: Media attach failed\n");
-        return; 
+        FL_FILE *file;
+
+        // Initialise media
+        media_init();
+
+        // Initialise File IO Library
+        fl_init();
+
+        // Attach media access functions to library
+        if (fl_attach_media(media_read, media_write) != FAT_INIT_OK)
+        {
+            printf("ERROR: Media attach failed\n");
+            return; 
+        }
+
+        // List root directory
+        fl_listdirectory("/");
+
+        // Create File
+        file = fl_fopen("/file.bin", "w");
+        if (file)
+        {
+            // Write some data
+            unsigned char data[] = { 1, 2, 3, 4 };
+            if (fl_fwrite(data, 1, sizeof(data), file) != sizeof(data))
+                printf("ERROR: Write file failed\n");
+        }
+        else
+            printf("ERROR: Create file failed\n");
+
+        // Close file
+        fl_fclose(file);
+
+       // Delete File
+       // if (fl_remove("/file.bin") < 0)
+       // printf("ERROR: Delete file failed\n");
+
+        // List root directory
+        fl_listdirectory("/");
+
+        fl_shutdown();
     }
-
-    // List root directory
-    fl_listdirectory("/");
-
-    // Create File
-    file = fl_fopen("/file.bin", "w");
-    if (file)
-    {
-        // Write some data
-        unsigned char data[] = { 1, 2, 3, 4 };
-        if (fl_fwrite(data, 1, sizeof(data), file) != sizeof(data))
-            printf("ERROR: Write file failed\n");
-    }
-    else
-        printf("ERROR: Create file failed\n");
-
-    // Close file
-    fl_fclose(file);
-
-   // Delete File
-   // if (fl_remove("/file.bin") < 0)
-   // printf("ERROR: Delete file failed\n");
-
-    // List root directory
-    fl_listdirectory("/");
-
-    fl_shutdown();
-}
 
 Demo
 ============
 - https://www.youtube.com/watch?v=go-L5ERTrso
-
-
-
 
 Reference
 ==========
