@@ -483,7 +483,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 5.3 operation flow
 ------------------
 
-- 1 FLASH_UNLOCK
+- 1 Flash unlock
 - 2 GREEN LED ON
 
 ::
@@ -494,10 +494,21 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   FLASH_ClearFlag(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
                   FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
 
-- 3 WRITE FROM SECTOR 2 TO SECTOR 11 AS "0x12345678"
-- 4 BLUE LED ON
-- 5 FINISHED WRITE PROCESS
-- 6 BLUE LED OFF
+
+- 3 Erase from sector2 to sector 11 
+
+::
+
+ for (i = StartSector; i <= EndSector; i += 8)
+     STM_EVAL_LEDOn(LED5);
+     printf("\r\n Erase sector:%d \r\n",a);
+     if (FLASH_EraseSector(i, VoltageRange_3) != FLASH_COMPLETE)
+
+
+- 4 Write from sector2 to sector 11 as "0x12345678"
+- 5 BLUE LED ON
+- 6 Finished write process
+- 7 BLUE LED OFF
 
 
 ::
@@ -506,18 +517,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   while (Address < FLASH_USER_END_ADDR){
     STM_EVAL_LEDOn(LED6);
     if (FLASH_ProgramWord(Address, DATA_32) == FLASH_COMPLETE) {
-    Address = Address + 4;
-    }
-    else{
-      /* Error occurred while writing data in Flash memory. 
-         User can add here some code to deal with this error */
-    }
-    STM_EVAL_LEDOff(LED6);
-  } printf("\r\n Write complete \r\n");
 
 
-- 7 FLASH_LOCK
-- 8 GREEN LED OFF
+- 8 FLASH_LOCK
+- 9 GREEN LED OFF
 
 ::
 
@@ -525,7 +528,7 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   STM_EVAL_LEDOff(LED4);
   printf("\r\n FLASH lock \r\n");
 
-- 9 VERIFICATION
+- 10 VERIFICATION
 
 ::
 
@@ -536,20 +539,20 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     
     if (data32 != DATA_32){
      
-    /* Error occurred while reading data in Flash memory. 
-       User can add here some code to deal with this error */
+    printf("\r\n Read error \r\n");
+
     }
     Address = FLASH_USER_END_ADDR;
     STM_EVAL_LEDOff(LED3);
   } printf("\r\n Read complete \r\n");
 
 
-- 10 Flash memory sector2 的內容:
+- 11 Flash memory sector2 的內容:
 
 .. image:: /1492801_611112942271128_116086978_n.jpg
 
 
-- 11 Demo
+- 12 Demo video
 
 http://www.youtube.com/watch?v=yW_IF_wHWBc&feature=youtu.be
 
