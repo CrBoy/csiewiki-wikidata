@@ -96,7 +96,7 @@ The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
 
 
 SDIO adapter
-==============
+============
 block diagram of an SDIO adapter.
 
 .. image:: /sdio_adapter.png
@@ -120,58 +120,79 @@ Adapter registers 主要包含了所有SDIO的暫存器 , 而這些暫存器是�
 
 
 上圖中之右側
-主要分為三個子單元 , Control Unit , Command Path and Data Path , Control Unit主要用來控制電源以及時鐘的控制 , 而這些控制是根據Adapter registers當中的暫存器來做配置 , 而Command Path連結SDIO_CMD , 他用來控制命令的傳輸 , 最後Data Path則是連結SDIO_D[7:0],控制資料的傳輸。
+主要分為三個子單元，Control Unit, Command Path and Data Path。Control Unit 主要用來控制電源以及時鐘的控制，而這些控制是根據 Adapter registers 當中的暫存器來做配置，而 Command Path 連結SDIO_CMD，他用來控制命令的傳輸，最後 Data Path 則是連結 SDIO_D[7:0]，控制資料的傳輸。底下將分單元描述各部零件。
 
+Adapter register block
+----------------------
+The adapter register block contains all system registers. This block also generates the 
+signals that clear the static flags in the multimedia card. The clear signals are generated  
+when 1 is written into the corresponding bit location in the SDIO Clear register.
 
-底下分單元描述
-   - Adapter register block：
+Control Unit
+------------
 
-      The adapter register block contains all system registers. This block also generates the 
-      signals that clear the static flags in the multimedia card. The clear signals are generated  
-      when 1 is written into the corresponding bit location in the SDIO Clear register.
-
-
-- Control Unit:
-
-      這部份又在其內部分為兩個子單元 , 一個是Power management , 另一個是Clock management , 其兩個子單元都受控制於Adapter registers.
-
-      詳見下圖（Figure 328）
+這部份又在其內部分為兩個子單元，一個是 Power management，另一個是 Clock management，這兩個子單元都受 Adapter registers 控制。詳見下圖：
 
 .. image:: /control_unit.png
 
-      Power management:
+**Power management**
 
-         There are three power phases:
+There are three power phases:
+- power-off
+- power-up
+- power-on
 
-         * power-off
+*NOTE!! The power management subunit disables the card bus output signals during the power-off and power-up phases.*
 
-         * power-up
+**Clock management**
 
-         * power-on
+用來產生和控制SDIO_CK , 而其SDIO_CK又可選擇兩種模式： 
 
-           NOTE!! The power management subunit disables the card bus output signals during the 
-           power-off and power-up phases.
+- clock Divide (SDIO_CK = SDIO_CLK/div .)  
+- clock Bypass (SDIO_CK = SDIO_CLK).
 
+而在底下的情況下 , Clock是不輸出訊號的
 
-      Clock management:
-         用來產生和控制SDIO_CK , 而其SDIO_CK又可選擇兩種模式： 
+- after reset
+- during the power-off or power-up phases
+- if the power saving mode is enabled and the card bus is in the Idle state (eight clock periods after both the command and data path subunits enter the Idle phase).
 
-         * clock Divide (SDIO_CK = SDIO_CLK/div .)  
+Command Path
+------------
+Command path 用來傳遞外來命令與接收卡片回應，是 SDIO 中負責處理外部裝置 command 的單位。
 
-         * clock Bypass (SDIO_CK = SDIO_CLK).
+.. image:: /sdio-command_path.png
 
-         而在底下的情況下 , Clock是不輸出訊號的
+**Command Path State Machine**
 
-         * after reset
+我們可以用 state machine 表示 command path 的各狀態間的關係與運作方式：
 
-         * during the power-off or power-up phases
+.. image:: /SDIO_CPSM.png
 
-         * if the power saving mode is enabled and the card bus is in the Idle state (eight clock 
-           periods after both the command and data path subunits enter the Idle phase).
+當 command register 被寫入且 enable bit 被設為真值，command 的傳送即告開始。Command 被傳送後，CPSM 會進入 *Idle* 狀態且自動設定 status flags 的值。若該命令需要回應，則等待回應。當回應產生後，command path 會比較回傳的 CRC 與內部產生的 code，然後對應的 status flag 會自動被設定。
 
+*NOTE: The command timeout has a fixed value of 64 SDIO_CK clock periods.*
+
+If the interrupt bit is set in the command register, the timer is disabled and the CPSM waits for an interrupt request from one of the cards. If a pending bit is set in the command register, the CPSM enters the Pend state, and waits for a CmdPend signal from the data path subunit. When CmdPend is detected, the CPSM moves to the Send state. This enables the data counter to trigger the stop command transmission.
+
+Data Path
+---------
+
+Data path 負責資料的傳輸，底下是該單元的 block diagram：
+
+.. image:: /SDIO-data_path.png
+
+Data path 與 command path 相同，可以用 state machine 表示 data path 的各狀態間的關係與運作方式：
+
+.. image:: /SDIO-DPSM.png
+
+Data FIFO
+---------
+
+The data FIFO (first-in-first-out) subunit is a data buffer with a transmit and receive unit.
 
 SDIO APB2 interface
--------------------
+===================
 ARM 的 APB2 介面由 data path，register decoder 與 interrupt/DMA logic 組成，除了會產生 interrupt 與 DMA 的 request，也會存取 SDIO adapter registers 與 data FIFO。
 
 SDIO interrupt:
@@ -194,12 +215,9 @@ Sample Code
     /* SDIO Peripheral Low Level Init */
     SD_LowLevel_Init();
 
-
     //SDIO_DeInit();
 
     errorstatus = SD_PowerON();
-
-
 
     if (errorstatus != SD_OK)
     {
@@ -259,8 +277,8 @@ Reference
 ==========
 - `Secure Digital wiki<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
 - `SDIO接口介绍<http://en.wikipedia.org/wiki/Secure_Digital#SDIO>`_
--  `Linux（open source）的 SD/MMC/SDIO 支援現況概要<http://www.jollen.org/blog/2007/01/open_source_sd_mmc_sdio.html>`_
--  `SD/MMC/SDIO概念區分<http://bbs.ednchina.com/BLOG_ARTICLE_198217.HTM>`_
+- `Linux（open source）的 SD/MMC/SDIO 支援現況概要<http://www.jollen.org/blog/2007/01/open_source_sd_mmc_sdio.html>`_
+- `SD/MMC/SDIO概念區分<http://bbs.ednchina.com/BLOG_ARTICLE_198217.HTM>`_
 - `STM32 控制 SD 卡<http://www.360doc.com/content/12/0411/15/9707346_202767012.shtml>`_
 - `STM32 + SDIO + FATFS 文件系统 直讀 SD 卡<http://ntn314.blog.163.com/blog/static/16174358420112263456948/>`_ 
 - `零死角玩轉 stm32 - 高級篇之 SDIO（4bit + DMA、支持SDHC、帶協議分析）<http://www.eeboard.com/tutorials/%E9%9B%B6%E6%AD%BB%E8%A7%92%E7%8E%A9%E8%BD%ACstm32-%E9%AB%98%E7%BA%A7%E7%AF%87%E4%B9%8Bsdio%EF%BC%884bit-dma%E3%80%81%E6%94%AF%E6%8C%81sdhc%E3%80%81%E5%B8%A6%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/>`_
