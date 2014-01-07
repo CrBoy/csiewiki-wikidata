@@ -16,17 +16,16 @@ What is the SD/MMC?
 
 後來還出了 SDHC(Secure Digital High Capacity)，是由 SD 卡協會（SD Card Association）在 2006 年 3 月發表的 Secure Digital 高容量版本。SD 卡協會有强制規定，所有符合 SDHC 規範的設備都必須標明 “SDHC” 的標誌。
 
-SDHC 與 SD 的主要差異在於，舊版本使用 FAT16 檔案系統，意思是管理檔案所在位置的表格用 16 位元表示，所以最多只能管理 65,536 個範圍，再考慮每個範圍能儲存32KB的資料量，所以65536 × 32KB = 2GB，SD卡容量上限只能到達2GB。為解決FAT16格式可支援容量有限的問題，SDHC改用了FAT32格式；依規格定義，容量最大可達到32GB。
+SDHC 與 SD 的主要差異在於，舊版本使用 FAT16 檔案系統，意思是管理檔案所在位置的表格用 16 位元表示，所以最多只能管理 65,536 個範圍，再考慮每個範圍能儲存 32KB 的資料量，所以 65536 × 32KB = 2GB，SD 卡容量上限只能到達 2GB。為解決 FAT16 格式可支援容量有限的問題，SDHC 改用了 FAT32 格式；依規格定義，容量最大可達到 32GB。
 
-發佈SDHC的時候，制定了三種不同的級數（Class），分別是Class 2、Class 4及Class 6，表示該記憶卡穩定的最小存取速度。
-後來，增加了Class 10及全新制定的UHS（Ultra High Speed）
+發佈 SDHC 的時候，制定了三種不同的級數 (Class)，分別是 Class 2、Class 4 及 Class 6，表示**該記憶卡穩定的最小存取速度**。後來，又增加了 Class 10 及全新制定的 UHS（Ultra High Speed）標準。
 
 .. image:: /class_speed.png
 
 What is the SDIO?
 -----------------
 
-- SDIO 是目前我們比較關心的技術，SDIO 故名思義，就是 SD 的 I/O 介面（interface）的意思，不過這樣解釋可能還有點抽像。更具體的說明，SD 本來是記憶卡的標準，但是現在也可以把 SD 拿來插上一些週邊介面使用，這樣的技術便是 SDIO。
+- SDIO 是目前我們比較關心的技術，SDIO 顧名思義，就是 SD 的 I/O 介面（interface），不過這樣解釋可能還有點抽象。更具體的說明，SD 本來是記憶卡的標準，但是現在也可以把 SD 拿來插上一些週邊介面使用，這樣的技術便是 SDIO。
 
 - 所以 SDIO 本身是一種相當單純的技術，透過 SD 的 I/O 接腳來連接外部週邊，並且透過 SD 上的 I/O 資料接位與這些週邊傳輸資料，而且 SD 協會會員也推出很完整的 SDIO stack 驅動程式，使得 SDIO 週邊（我們稱為 SDIO 卡）的開發與應用變得相當熱門。
 - A SDIO (Secure Digital Input Output) card is an extension of the SD specification to cover I/O functions. 
@@ -39,34 +38,34 @@ What is the SDIO?
    6.  Wi-Fi.
    7.  Bluetooth. 
 
- Many other SDIO devices have been proposed, but it is now more common for I/O devices to connect using the USB interface.
+- Many other SDIO devices have been proposed, but it is now more common for I/O devices to connect using the USB interface.
 - SDIO cards support most of the memory commands of SD cards. SDIO cards can be structured as 8 logical cards, although currently, the typical way that an SDIO card uses this capability is to structure itself as one I/O card and one memory card.
 
 .. image:: /sdio1.png
+
 SDIO bus topology
 =================
 
 .. image:: /Selection_015.png
 .. image:: /Selection_016.png
-Note: The SDIO will not send any data as long as the Busy signal is asserted (SDIO_D0 pulled 
-low).
+
+*注意：若 ``Busy`` 信號被斷言 (SDIO_D0 pulled low)，則 SDIO 並不會傳送任何資料*
 
 .. image:: /Selection_017.png
 .. image:: /Selection_018.png
 .. image:: /Selection_019.png
 
-
-
 SDIO functional description
 ============================
+
 .. image:: /sdio_functional_description.png
 
 圖說明：
 
-  - SDIO_D0預設是用來當作資料傳輸 , 而在初始化時 , host端可以設定其資料寬度。
-  - 當MMC連至bus時 , MMC可以支援只有1bit模式。
-  - 當SD/SD I/O連至bus時,data transfer可以由host端來設定是SDIO_D0(1bit mode) 或者是 SDIO_D[3:0](4bit mode)
-    而所有的data lines都是操作於push-pull mode.
+  - SDIO_D0 預設是用來當作資料傳輸，而在初始化時，host 端可以設定其 data width。
+  - 當 MMC 連至 bus 時，MMC 可以支援只有 1-bit 模式。
+  - 當 SD/SD I/O 連至 bus 時，data transfer 可以由 host 端來設定是 SDIO_D0(1-bit mode) 或者是 SDIO_D[3:0](4-bit mode)
+    而所有的 data lines 都是操作於 push-pull mode。
 
 SDIO_CMD has two operational modes:
 
@@ -79,21 +78,19 @@ SDIO_CK is the clock to the card:
 
   - 在clock cycle 中 , 1 bit是用來切換command 或是 data lines.
   - clock的頻率依照規格不同有所不同：
-       * between 0 and 20 MHz (for a MultiMediaCard V3.31).
-       * between 0 and 48 MHz for a MultiMediaCard V4.0/4.2).
-       * between 0 and 25 MHz (for an SD/SD I/O card).
+       - between 0 and 20 MHz (for a MultiMediaCard v3.31).
+       - between 0 and 48 MHz (for a MultiMediaCard v4.0/4.2).
+       - between 0 and 25 MHz (for an SD/SD I/O card).
 
   - The SDIO uses two clock signals:
        * SDIO adapter clock(SDIOCLK = 48MHz is coming from a specific output of PLL (PLL48CLK) ).
        * APB2 bus clock(PCLK2).
-      NOTE: PCLK2 與 SDIO_CLK 之clock頻率必須遵循以下條件：
-            Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK
 
+       *NOTE: PCLK2 與 SDIO_CLK 之 clock 頻率必須遵循此條件： ``Frequency PCLK2 ≥ (3/8) * Frequency SDIO_CK``*
 
 The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
 
 .. image:: /SDIO_IO_definitions.png
-
 
 SDIO adapter
 ============
@@ -221,48 +218,48 @@ DPSM 運作在 SDIO_CK 的頻率上，包含若干狀態。
 
 以下對各狀態進行解說：
 
-- Idle：data path 未活動，SDIO_D[7:0] 輸出 Hi-Z。When the data control register is written and the enable bit is set, the DPSM loads the data counter with a new value and, depending on the data direction bit, moves to either the ``Wait_S`` or the ``Wait_R`` state.
+- Idle：data path 未活動，SDIO_D[7:0] 輸出 Hi-Z。當 data control register 被寫入且 enable bit 被設為真，DPSM 會載入 data counter 並寫入新值，且根據 data direction bit 來判斷要移動至 ``Wait_S`` 狀態或 ``Wait_R`` 狀態。
 
-- Wait_R：if the data counter equals zero, the DPSM moves to the Idle state when the receive FIFO is empty. If the data counter is not zero, the DPSM waits for a start bit on ``SDIO_D``. The DPSM moves to the Receive state if it receives a start bit before a timeout, and loads the data block counter. If it reaches a timeout before it detects a start bit, or a start bit error occurs, it moves to the Idle state and sets the timeout status flag.
+- Wait_R：若 data counter 為零且 receive FIFO 為空時，DPSM 會移動至 ``Idle``；若 data counter 不為零，DPSM 會等待來自 ``SDIO_D`` 的 start bit；若在 timeout 前收到 start bit，DPSM會移動至 ``Receive`` 狀態，然後自 block counter 讀取資料。若形成 timeout before 或者接收到錯誤的 start bit，DPSM 移動至 ``Idle`` 狀態且將 timeout status flag 設為真。
 
-- Receive：serial data received from a card is packed in bytes and written to the data FIFO. Depending on the transfer mode bit in the data control register, the data transfer mode can be either block or stream:
+- Receive：自 card 接收的連續資料會寫至 data FIFO。根據 data control register 中的 transfer mode bit，我們可以知道 data transfer mode 是 block 或 stream：
 
-    – In block mode, when the data block counter reaches zero, the DPSM waits until it receives the CRC code. If the received code matches the internally generated CRC code, the DPSM moves to the ``Wait_R`` state. If not, the CRC fail status flag is set and the DPSM moves to the ``Idle`` state.
+    – 若是 block mode，當 data block counter 達零時，DPSM 會一直等待直到收到 CRC。如果此 CRC 符合內部產生的 CRC，DPSM 移動至 ``Wait_R`` 狀態；若無， CRC fail status flag 會被設為真且 DPSM 會移回 ``Idle`` 狀態。
 
-    – In stream mode, the DPSM receives data while the data counter is not zero. When the counter is zero, the remaining data in the shift register is written to the data FIFO, and the DPSM moves to the ``Wait_R`` state. If a FIFO overrun error occurs, the DPSM sets the FIFO error flag and moves to the ``Idle`` state.
+    – 若是 stream mode，當 data counter 非零時 DPSM 會接收資料；若 data counter 為零，在 shift register 的剩餘資料會被寫入 data FIFO，然後 DPSM  移動至 ``Wait_R`` 狀態。若發生 FIFO overrun error，DPSM 將 FIFO error flag 設為真然後移回 ``Idle`` 狀態。
 
-- Wait_S：the DPSM moves to the ``Idle`` state if the data counter is zero. If not, it waits until the data FIFO empty flag is deasserted, and moves to the ``Send`` state.
+- Wait_S：若 data block counter 為零時，DPSM 移動至 ``Idle`` 狀態；若非，DPSM 會等待 data FIFO empty flag 被解除設定，然後移至 ``Send`` 狀態。
 
-- Send：the DPSM starts sending data to a card. Depending on the transfer mode bit in the data control register, the data transfer mode can be either block or stream:
+- Send：表示 DPSM 開始傳送資料至 card，根據 data control register 中的 transfer mode bit，我們可以知道 data transfer mode 是 block 或 stream：
 
-    – In block mode, when the data block counter reaches zero, the DPSM sends an internally generated CRC code and end bit, and moves to the ``Busy`` state.
+    – 若是 block mode，當 data block counter 達零時，DPSM 傳送內部產生的 CRC 與 end bit，然後移至 ``Busy`` 狀態。
 
-    – In stream mode, the DPSM sends data to a card while the enable bit is high and the data counter is not zero. It then moves to the ``Idle`` state.
+    – 若是 stream mode，且 enable bit 為高位及 data counter 非零時，DPSM 會傳送資料給 card，然後移至 ``Idle`` 狀態。
 
-If a FIFO underrun error occurs, the DPSM sets the FIFO error flag and moves to the ``Idle`` state.
+若發生 FIFO underrun error，DPSM 將 FIFO error flag 設為高位且移動狀態至``Idle``。
 
 - Busy：DPSM 正在等待 CRC 的 status flag。
 
-    – If it does not receive a positive CRC status, it moves to the ``Idle`` state and sets the CRC fail status flag.
+    – 若 DPSM 沒收到 positive CRC status，它會移至 ``Idle`` 狀態且設定 CRC fail status flag 為高位。
 
-    – If it receives a positive CRC status, it moves to the ``Wait_S`` state if SDIO_D0 is not low (the card is not busy).
+    – 若 DPSM 收到 positive CRC status、而且 SDIO_D0 不在低位 (the card is not busy) 時，它會移至 ``Wait_S`` 狀態。
 
-If a timeout occurs while the DPSM is in the ``Busy`` state, it sets the data timeout flag and moves to the ``Idle`` state. The data timer is enabled when the DPSM is in the ``Wait_R`` or ``Busy`` state, and generates the data timeout error:
+若 DPSM 在 ``Busy`` 狀態下發生 timeout，DPSM 會設定 data timeout flag 會移動至 ``Idle`` 狀態。若 DPSM 的狀態是 ``Wait_R`` 或 ``Busy`` 時，data timer 會被啟用，並產生 data timeout error：
 
-    - When transmitting data, the timeout occurs if the DPSM stays in the ``Busy`` state for longer than the programmed timeout period
+    - 當傳送 data 時，timeout 可能會發生在當 DPSM 停留在 ``Busy`` 狀態的時間超過了事先定義的 timeout 閾值。
 
-    - When receiving data, the timeout occurs if the end of the data is not true, and if the DPSM stays in the ``Wait_R`` state for longer than the programmed timeout period.
+    - 當接收 data 時，timeout 可能會發生在當 DPSM 停留在 ``Wait_R`` 狀態的時間超過了事先定義的 timeout 閾值，且 data 結尾不為真時。
 
-*注意：The DPSM remains in the ``Wait_S`` state for at least two clock periods to meet the N(WR) timing requirements, where N(WR) is the number of clock cycles between the reception of the card response and the start of the data transfer from the host.*
+*注意：為了符合 N(WR) 的時間間隔限制，DPSM 至少會停留在 ``Wait_S`` 兩個 clock period。N(WR) 是接收到來自 card 的回應與開始自 host 傳送資料此二動作間的 clock cycle 數*
 
 Data FIFO
 ---------
 
-The data FIFO (first-in-first-out) subunit is a data buffer with a transmit and receive unit.
+Data FIFO (first-in-first-out) 是 SDIO 中傳送/接收子單元的 data buffer。
 
-The FIFO contains a 32-bit wide, 32-word deep data buffer, and transmit and receive logic. Because the data FIFO operates in the APB2 clock domain (PCLK2), all signals from the subunits in the SDIO clock domain (SDIOCLK) are resynchronized.
+FIFO 含有一 32-bit 寬與 32-word 深的 data buffer，以及一個傳送/接收邏輯電路。因為 data FIFO 運作在 APB2 的 clock domain (PCLK2)，從所有在 SDIO clock domain (SDIOCLK) 運作的子元件接收的所有 signals 都會被 resynchronized。
 
-Depending on the ``TXACT`` and ``RXACT`` flags, the FIFO can be disabled, transmit enabled, or receive enabled. ``TXACT`` and ``RXACT`` are driven by the data path subunit and are mutually exclusive:
+根據 ``TXACT`` 與 ``RXACT`` 兩 flag 的狀態，FIFO 可以是被 disabled, transmit enabled, 或是 receive enabled。 ``TXACT`` 與 ``RXACT`` 相互排斥且被 data path 所驅動：
 
 - The transmit FIFO refers to the transmit logic and data buffer when ``TXACT`` is asserted
 
