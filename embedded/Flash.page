@@ -483,8 +483,8 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
 5.3 operation flow
 ------------------
 
-- 1 Flash unlock
-- 2 GREEN LED ON
+- 1.Flash unlock
+- GREEN LED ON
 
 ::
 
@@ -495,7 +495,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
                   FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
 
 
-- 3 Erase from sector2 to sector 11 
+- 2.Erase from sector2 to sector 11 
+- RED LED ON
+- 3.Erase complete 
+- RED LED OFF
 
 ::
 
@@ -505,10 +508,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
      if (FLASH_EraseSector(i, VoltageRange_3) != FLASH_COMPLETE)
 
 
-- 4 Write from sector2 to sector 11 as "0x12345678"
-- 5 BLUE LED ON
-- 6 Finished write process
-- 7 BLUE LED OFF
+- 4.Write from sector2 to sector 11 as "0x12345678"
+- BLUE LED ON
+- 5.Finished write process
+- BLUE LED OFF
 
 
 ::
@@ -519,8 +522,8 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     if (FLASH_ProgramWord(Address, DATA_32) == FLASH_COMPLETE) {
 
 
-- 8 FLASH_LOCK
-- 9 GREEN LED OFF
+- 6.Flash lock
+- GREEN LED OFF
 
 ::
 
@@ -528,7 +531,10 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
   STM_EVAL_LEDOff(LED4);
   printf("\r\n FLASH lock \r\n");
 
-- 10 VERIFICATION
+- 7.Verification (Reading...)
+- YELLOW LED ON
+- 8.Read complete
+- YELLOW LED OFF
 
 ::
 
@@ -546,15 +552,22 @@ Address offset : 0x14, Reset value: **0x0FFF AAED**.
     STM_EVAL_LEDOff(LED3);
   } printf("\r\n Read complete \r\n");
 
+- 9.進入等待狀態
 
-- 11 Flash memory sector2 的內容:
+
+5.4 DEMO
+------------------
+ 
+
+- Flash memory sector2 的內容:
 
 .. image:: /1492801_611112942271128_116086978_n.jpg
 
 
-- 12 Demo video
+- Demo video
 
-http://www.youtube.com/watch?v=yW_IF_wHWBc&feature=youtu.be
+- http://www.youtube.com/watch?v=yW_IF_wHWBc&feature=youtu.be
+
 
 6.STM32F407VG 硬體介紹
 =====================
