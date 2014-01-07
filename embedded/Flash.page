@@ -12,7 +12,7 @@ categories: STM32F4
 - 記憶體RAM?ROM?
   - RAM:隨機存取記憶體(Random Access Memory)
     - 內部資料可以任意讀寫，用來存放由硬碟載入的程式或資料供CPU處理運算
-    - EX:DDR2、SDRAM
+    - EX:main memory
     - 分成DRAM、SRAM
 
   - ROM:唯讀記憶體(Read Only Memory)
