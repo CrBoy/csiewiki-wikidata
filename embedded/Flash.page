@@ -45,7 +45,7 @@ categories: STM32F4
 - **NOR Flash** : 
   - 支援隨機存取，讀資料的方式跟RAM接近，給address，data就能讀出
   - NOR的特點是原地執行(XIP, eXecute In Place)，這樣應用程序可以直接在flash memory內運行，不必再把代碼讀到系統RAM中
-  - 每次寫入/擦除都是以1 block為單位;1 block = 64~128 KBytes
+  - 每次寫入/擦除都是以1 block為單位;1 block = 16~128 KBytes
   - 小容量時具有很高的成本效益，但是很低的寫入和擦除速度大大影響了它的性能
   - NOR flash佔據了容量為1～16MB閃存市場的大部分，主要應用在手機中(16MB、32MB)
   - NOR的擦寫週期壽命是一萬~十萬次
@@ -361,7 +361,7 @@ Flash memory erase的操作可以以sector為單位，或是整個Flash memory�
 
 - OTP bytes:16個block，每個block有32bytes(總共512 bytes)--for user data
 - OTP lock bytes:有16 bytes LOCKBi (0 ≤ i ≤ 15)分別控制相對應的16個block--for locking the correspaonding OTP
-- 在OTP lock byte 不為 0x00 的時候，OTP 可以被寫入資料；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
+- 在OTP lock byte 為 0x00 的時候，OTP 才可以被寫入資料(原本為0xFF)；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
  
 .. image:: http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png
    DM00031020-referenceManual P.97
