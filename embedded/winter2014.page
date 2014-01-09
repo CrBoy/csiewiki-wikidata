@@ -8,7 +8,7 @@ toc: no
 冬季短期系統軟體課程全程免費 (歡迎樂捐)，預計三日 (Jan 24-26, 2014)，涵蓋以下項目：
 
  * 作業系統設計與實作
-   - UNIX v6 分析 + xv6-rpi (實習)
+   - UNIX v6 分析 + `xv6-rpi<https://code.google.com/p/xv6-rpi/>`_ (實習)
    - FreeRTOS
 
  * ARM 微處理器架構：以 Cortex-M 系列為例
