@@ -14,6 +14,9 @@ toc: no
  * ARM 微處理器架構：以 Cortex-M 系列為例
  * GNU Toolchain 原理和實務
  * 案例探討：四軸飛行器
+   - 飛行原理和物理模型
+   - open source hardware + software stack: FreeRTOS 開發示範
+   - `打造四軸飛行器全紀錄<https://embeddedcool.hackpad.com/Y38T9JXygI8>`_
 
 報名方式
 -----------
