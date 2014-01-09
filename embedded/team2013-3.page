@@ -33,7 +33,7 @@ toc: no
 
 程式碼
 -------
-* `Robot Arm Controller <https://github.com/kvzhao/robot-arm>`_ : 利用STM32F4實踐
+* `Robot Arm Controller <https://github.com/kvzhao/FreeRTOS-STM32F4/tree/RobotARM>`_ : 利用STM32F4實踐
 * `Machine Vision System <https://github.com/kvzhao/Pi-TempMatch>`_ : 利用Raspiberry Pi + Camera
 
 開發日誌
