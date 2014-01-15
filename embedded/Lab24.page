@@ -9,6 +9,26 @@ toc: no
 * 接觸 ARM Cortex-M 環境
 * 學習 GNU Toolchain 與相關 open source 工具
 
+硬體資訊
+--------
+* STM32F4 (168 MHz, up to 210 MIPS)
+  - 32-bit ARM Cortex-M4F core
+  - 1 MB Flash
+  - 192 KB RAM
+  - LQFP100 package
+* STM32F1 (on-chip debugger)
+  - Firmware: STM32F1 -> hardware debug -> JTAG ---> STM32F4
+* 內建 ST-LINK/V2, 可實現單線 USB 開發 (同時供電與除錯)，免去購買其他 JTAG 裝置
+* STM32 的 Discovery 系列電路板都附有 ST-LINK (V1/V2)，可透過接腳選擇，切換使用自身或外部 debugger
+
+JTAG (Joint Test Action Group)
+--------------------------------
+* 為了要驗證電路，因此提供有點像「後門」的機制以便檢查電路是否有問題
+* 也提供了一個嵌入式系統的偵錯機制，當使用一些偵錯工具，像電路內模擬器用 JTAG 當作訊號傳輸的機制，使得程式設計師可以經由 JTAG 讀取整合在 CPU 上的偵錯模組
+* 偵錯模組可以讓程式設計師偵錯嵌入式系統中的軟體
+
+http://en.wikipedia.org/wiki/Joint_Test_Action_Group
+
 開發工具介紹與準備
 ----------------
 - GNU Toolchain: 同之前 Lab
