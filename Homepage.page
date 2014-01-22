@@ -10,6 +10,7 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 
 嵌入式作業系統設計與實作 (2014 Spring)
 ================================
+.. image:: /embedded/logo-2012-small.png
 
 2014 年冬季短期系統軟體短期課程
 ------------------------------
@@ -17,7 +18,6 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 
 進階嵌入式系統開發與實作 (2013 Fall)
 ================================
-.. image:: /embedded/logo-2012-small.png
 - `課程進度表<embedded/schedule>`_
 - `參考書目<embedded/books>`_
 - `線上資源<embedded/resources>`_
