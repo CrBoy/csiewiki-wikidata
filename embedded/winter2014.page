@@ -8,15 +8,17 @@ toc: no
 冬季短期系統軟體課程全程免費 (歡迎樂捐)，預計三日 (Jan 24-26, 2014)，涵蓋以下項目：
 
  * 作業系統設計與實作
-   - UNIX v6 分析 + `xv6-rpi<https://code.google.com/p/xv6-rpi/>`_ (實習)
-   - FreeRTOS
-
- * ARM 微處理器架構：以 Cortex-M 系列為例
- * Compiler 原理和實務: LLVM + GNU Toolchain
+ * ARM 微處理器架構
+ * Compiler 原理和實務
  * 案例探討：四軸飛行器
    - 飛行原理和物理模型
    - open source hardware + software stack: FreeRTOS 開發示範
    - `打造四軸飛行器全紀錄<https://embeddedcool.hackpad.com/Y38T9JXygI8>`_
+
+討論區
+-------
+* Facebook: https://www.facebook.com/groups/embedded.winter2014/
+* Hackpad: https://system2014.hackpad.com/
 
 報名方式
 -----------
