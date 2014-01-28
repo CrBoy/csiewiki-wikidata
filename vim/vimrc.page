@@ -60,6 +60,8 @@ Key Mapping
     - ``:inoremap ' ''<Esc>i``
     - ``:inoremap [ []<Esc>i``
 
+|
+
 - ``:inoremap { {<CR>}<Esc>ko<Tab>``
   - 在coding的過程中{}的使用量也很大，所以這個key mapping對於coding相當有幫助!
   - 在insert-mode時，當輸入'{'，vim會輸入``{``→``<CR>``換行→輸入``}``→進入command-mode→``k``光標上移→``o``插入新的一行→``Tab``增加縮排
