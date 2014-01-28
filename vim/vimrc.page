@@ -45,6 +45,21 @@ categories: vim
 - ``:set mouse=""``
   - **停用游標選取：**游標無法選取文字，滾輪只會移動光標的位置。
 
+- ``:set ruler``
+  - 顯示右下角的設定值
+
+- ``:set backspace=2``
+  - 在insert模式啟用backspace鍵
+
+- ``:set formatoptions+=r``
+  - 自動註解(注意：若要貼上的文件某一行有註解，會因為此項設定而讓其以下每一行都變成註解)
+
+- ``:set history=100``
+  - 保留 100 個使用過的指令
+
+- ``:set incsearch``
+  - 在關鍵字尚未完全輸入完畢前就顯示結果
+
 |
 
 + 所有設定都可以在vim的command-mode中作即時變更，像是如果要關閉自動縮排對齊功能時，先按``Esc``離開insert-mode，輸入``:set noai``就可以了。
