@@ -48,3 +48,18 @@ categories: vim
 |
 
 + 所有設定都可以在vim的command-mode中作即時變更，像是如果要關閉自動縮排對齊功能時，先按``Esc``離開insert-mode，輸入``:set noai``就可以了。
+
+Key Mapping
+----------------
+如果有使用過其他IDE，就會發現有個好用的功能，括號自動對齊，例如：只輸入左括號，IDE自動幫你完成右括號。可以使用key mapping來完成。
+
+- ``:inoremap ( ()<Esc>i``
+  - 在insert-mode下，只要輸入'('，vim會先執行輸入``()``→``<Esc>``進入Command-mode→``i``進入Insert-mode→就會發現光標在"("")"之間了
+  - 其他類似應用還有：
+    - ``:inoremap " ""<Esc>i``
+    - ``:inoremap ' ''<Esc>i``
+    - ``:inoremap [ []<Esc>i``
+
+- ``:inoremap { {<CR>}<Esc>ko<Tab>``
+  - 在coding的過程中{}的使用量也很大，所以這個key mapping對於coding相當有幫助!
+  - 在insert-mode時，當輸入'{'，vim會輸入``{``→``<CR>``換行→輸入``}``→進入command-mode→``k``光標上移→``o``插入新的一行→``Tab``增加縮排
