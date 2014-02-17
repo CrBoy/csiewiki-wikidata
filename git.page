@@ -110,7 +110,7 @@ commit
 
 git提供一個檔案幫助管理哪些檔案不需被追蹤，為``.gitignore``。在git中通常不會有``.gitignore``，必須由使用者新增並編輯。
 
-只要在``.gitignore``中條列不想追蹤的檔案，並將``.gitignore``commit上去即可。
+只要在``.gitignore``中條列不想追蹤的檔案，並將``.gitignore``commit上去即可。若想要在``.gitignore``中輸入單行解，以``#``開頭。
 
 
 查看目前狀態
