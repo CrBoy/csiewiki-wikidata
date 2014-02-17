@@ -90,6 +90,10 @@ commit
 
 該下什麼指令來作到什麼事。
 
+像是status這類常用的指令，可以善用熱建設定。``git config --global alias.st status``，這個熱建設定指令，
+
+往後藉由輸入``git st``來達到與``git status``相同的效果。
+
 查看 log
 --------
 
