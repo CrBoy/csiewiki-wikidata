@@ -112,6 +112,8 @@ git提供一個檔案幫助管理哪些檔案不需被追蹤，為``.gitignore``
 
 只要在``.gitignore``中條列不想追蹤的檔案，並將``.gitignore``commit上去即可。若想要在``.gitignore``中輸入單行解，以``#``開頭。
 
+:first commit: 如果已經確定該repo實作的內容，可以先針對repo建立``.gitignore``檔，對於管理上比較方便。
+
 
 查看目前狀態
 ----------
