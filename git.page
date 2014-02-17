@@ -8,6 +8,17 @@ categories: 版本控制
 
 關於 git 的簡介可參考 Wikipedia: `Git<http://zh.wikipedia.org/wiki/Git>`_
 
+
+檔案在git的旅程
+--------------
+
+.. image:: /git_file_status.PNG
+
+- **untracked**：檔案一開始都在這個狀態。
+- **unmodified**：經由指令將``untracked``的檔案加入追蹤，或是，``staged``狀態的檔案經由commit，會到這個狀態。另外在這狀態的檔案可以藉由指令來取消追蹤。
+- **modified**：檔案只要有改變就會到這個狀態，無論是在``unmodified``或是``staged``狀態。藉由指令可以放棄這些變更，回到之前的狀態。
+- **staged**：在這個狀態的檔案，通常就是要準備要提交到新的版本中了。在此狀態的檔案一經過更改就會回到``modified``狀態。
+
 安裝
 ====
 
