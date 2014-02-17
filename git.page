@@ -115,6 +115,36 @@ git提供一個檔案幫助管理哪些檔案不需被追蹤，為``.gitignore``
 :first commit: 如果已經確定該repo實作的內容，可以先針對repo建立``.gitignore``檔，對於管理上比較方便。
 
 
+刪除檔案並取消追蹤
+----------------
+
+``git rm <filename>``直接取消追縱後，可以看到檔案已經被刪除了。
+
+.. code-block:: prettyprint
+
+	$ cat first.dat 
+	first caca
+	$ git rm first.dat
+	rm 'first.dat'
+	$ git st
+	# On branch master
+	# Changes to be committed:
+	#   (use "git reset HEAD <file>..." to unstage)
+	#
+	#	deleted:    first.dat
+	#
+	$ ls
+	$
+----------------------------------
+
+如果刪錯要救援也沒有問題!!!
+
+- ``git reset HEAD <filename>``：回復到unstaged(modified或unmodified)狀態。
+- ``git checkout -- <filename>``：回復到unmodified狀態。就可以看到檔案已經回來了。此外，這個指令還可以放棄**前次commit之後所有的變更**，如果功能被寫爛了，想要重寫的話，這個指令很受用。
+
+git厲害的地方，漸漸有感覺了吧!!
+
+
 查看目前狀態
 ----------
 
