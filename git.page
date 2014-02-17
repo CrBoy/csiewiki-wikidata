@@ -75,11 +75,17 @@ categories: 版本控制
 commit
 ------
 
-``git commit``
+	**commit的觀念**：在完成一個功能或是修改一個功能後就commit，並且這次commit的程式碼是要能夠正常運行的。
 
-接著撰寫 log
+	如果一次commit多個功能，對於版本追蹤會有不好的影響，使用者會無法明確的知道是從哪一部份開始出錯。
 
-或 ``git commit -m 'log log log.....'``
+輸入``git commit``之後
+
+會有一個編輯介面供使用者輸入commit message
+
+或直接輸入 ``git commit -m 'New function or something modified'``
+
+要注意的是使用**單引號**包住commit message而非雙引號
 
 查看目前狀態
 ----------
