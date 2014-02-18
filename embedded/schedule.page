@@ -14,24 +14,24 @@ toc: no
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 18   `Overview: Embedded in our world`_      `Lab 25`_:
-#2    Feb 25   `ARM Architecture and SoC`_             `Lab 26`_:
-#3    Mar  4                                           :
-#4    Mar 11                                           :
-#5    Mar 18                                           :
-#6    Mar 25                                           :
-#7    Apr  1                                           :
-#8    Apr  8                                           :
-#9    Apr 15                                           :
-#10   Apr 22                                           :
-#11   Apr 29                                           :
-#12   May  6                                           :
-#13   May 13                                           :
-#14   May 20                                           :
-#15   May 27                                           :
-#16   Jun  3                                           :
-#17   Jun 10                                           :
-#18   Jun 17                                           :
+#1    Feb 18   Overview: Embedded Systems and OS       `Lab 25`_:
+#2    Feb 25   ARM Architecture                        `Lab 26`_:
+#3    Mar  4   Case: Quadcopter                        :
+#4    Mar 11   Real-time Operating System Concepts     :
+#5    Mar 18   Case: Mars Pathfinder                   :
+#6    Mar 25   ARM I/O, Interrupt, Exception           :
+#7    Apr  1   RTOS Characteristics                    :
+#8    Apr  8   Group Presentation (1)                  :
+#9    Apr 15   Group Presentation (2)                  :
+#10   Apr 22   Group Presentation (3)                  :
+#11   Apr 29   Group Presentation (4)                  :
+#12   May  6   Group Presentation (5)                  :
+#13   May 13   Group Presentation (6)                  :
+#14   May 20   Advanced OS Design issues               :
+#15   May 27   Group Presentation (7)                  :
+#16   Jun  3   Case study                              :
+#17   Jun 10   Lecture and Assignment Review           :
+#18   Jun 14   Embedded Technology Conference          :
 ====  ====     =======                                 ==========
 
 
