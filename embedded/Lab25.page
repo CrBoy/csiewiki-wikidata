@@ -91,6 +91,8 @@ rtenv: 成大資工系同學開發的小型 RTOS
 * make qemuauto
 * make qemu # 記得按下 Ctrl-Alt-2 切換到 UART 輸出
 
+.. image:: /embedded/rtenv-2014.png
+
 參考作業要求
 -------------------
 * 允許動態建立 process
