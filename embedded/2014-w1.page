@@ -1,0 +1,17 @@
+---
+title: Week #1 (Feb 18) :: Overview: Embedded Systems and OS
+toc: no
+...
+
+教材
+----------
+* `嵌入式作業系統設計、實作與移植 (2014 年春季) 課程說明<http://www.slideshare.net/jserv/embedded-os2014>`_
+  - Facebook 討論區: https://www.facebook.com/groups/ncku.embedded2014
+  - 共筆: https://embedded2014.hackpad.com
+    * 共筆使用案例
+      - `2014 年冬季系統軟體短期課程<http://system2014.hackpad.com/>`_
+      - `2013 暑期嵌入式短期訓練課程<https://hackpad.com/ep/group/yTLLeVNF05O>`_
+
+* `Embedded Systems Laboratory<http://users.ece.utexas.edu/~valvano/ASEE2013.pdf>`_, Jonathan Valvano
+  - Using ARM Cortex M4
+  - From the Basics to Applications
