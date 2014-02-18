@@ -9,3 +9,115 @@ toc: no
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
 - 學習基本 Git 操作
 - 以實驗點出日後課程的提綱
+
+預先準備
+-------
+- 安裝 Ubuntu Linux，建議版本為 13.10
+- 安裝必要的套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install zlib1g-dev libsdl1.2-dev automake* autoconf* libtool libpixman-1-dev
+
+- 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install lib32gcc1 lib32ncurses5
+
+- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+
+.. code-block:: prettyprint
+
+    cd  /
+    sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
+
+- 檢查 Toolchain 是否正確安裝：查看 /usr/local/csl/arm-2012.03 目錄
+
+
+STM32 Overview
+--------------
+- Powerful but Cheap
+  - Wireless Connectivity
+  - Computing/Prototyping
+  - One for most use cases
+  - open source: http://code.google.com/hosting/search?q=label:STM32 
+
+.. image:: /STM32-P103-01.jpg
+
+STM32 on QEMU 環境建立與測試
+--------------------------
+
+.. code-block:: prettyprint
+
+    mkdir -p workspace
+    cd workspace
+    git clone git://github.com/beckus/stm32_p103_demos.git
+    git clone git://github.com/beckus/qemu_stm32.git
+
+    cd qemu_stm32
+    ./configure --disable-werror --enable-debug \
+        --target-list="arm-softmmu" \
+        --extra-cflags=-DDEBUG_CLKTREE \
+        --extra-cflags=-DDEBUG_STM32_RCC \
+        --extra-cflags=-DDEBUG_STM32_UART \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
+    make
+    cd ../stm32_p103_demos
+    export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
+    make all
+    make blink_flash_QEMURUN
+    make button_QEMURUN
+    make uart_echo_QEMURUN
+
+--------------------------------
+
+Git / GitHub
+-------------------
+* 註冊 GitHub 帳號: https://github.com/
+* `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
+* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
+
+rtenv: 成大資工系同學開發的小型 RTOS
+------------------------------------------------------
+* 完全是由成大校友開發，日後或許稱為 NCKU OS (靠各位了!)
+* 在 rtenv 內，已有類似 Linux 的 shell 環境，可接受使用者指令
+* cd ~/workspace
+* git clone git://github.com/embedded2014/rtenv.git
+* cd rtenv
+* make
+* make qemuauto
+* make qemu # 記得按下 Ctrl-Alt-2 切換到 UART 輸出
+
+參考作業要求
+-------------------
+* 允許動態建立 process
+
+
+小提醒
+-----
+- QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
+- 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
+- Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
+  - ln -s ~/下載 ~/Downloads
+
+繳交作業
+-------
+- 截止日期：
+   * Feb 28, 2013 (含) 之前
+   * 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
+- 更新共筆，將作業提案加入，並標注自己的 ID
+- 寄件到 <jserv.tw@gmail.com>
+  - 標題: "[NCKU/embedded]" 開頭，後面加學號與姓名
+  - 內容：(回答以下問題)
+    * GitHub 帳號, wiki 帳號
+    * 作業提案
+    * 關於 fork 出來的 repository 修改描述
+
+  - 若不麻煩的話，附上一份自介
+
+參考資料
+------------
+- `STM32 Programming (中文)</embedded/Lab19/stm32-prog.pdf>`_
