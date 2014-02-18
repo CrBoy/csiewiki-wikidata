@@ -14,7 +14,7 @@ toc: no
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 18   Overview: Embedded Systems and OS       `Lab 25`_:
+#1    Feb 18   `Overview: Embedded Systems and OS`_       `Lab 25`_:
 #2    Feb 25   ARM Architecture                        `Lab 26`_:
 #3    Mar  4   Case: Quadcopter                        :
 #4    Mar 11   Real-time Operating System Concepts     :
@@ -33,6 +33,9 @@ Week  Date     Subject                                 Assignment
 #17   Jun 10   Lecture and Assignment Review           :
 #18   Jun 14   Embedded Technology Conference          :
 ====  ====     =======                                 ==========
+
+.. _`Overview: Embedded Systems and OS`: 2014-w1
+.. _`Lab 25`: Lab25
 
 
 進階嵌入式系統開發與實作 (Fall 2013)
