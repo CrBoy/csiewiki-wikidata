@@ -93,9 +93,11 @@ rtenv: 成大資工系同學開發的小型 RTOS
 
 .. image:: /embedded/rtenv-2014.png
 
-參考作業要求
+參考作業要求 (歡迎替換)
 -------------------
-* 允許動態建立 process
+* 分析 rtenv 的執行過程，試圖說明 process, system call, scheduler, pipe 等行為
+* 試著建立簡單的 program loader，使得 shell 可動態建立 process
+  - 提示：善用 function pointer
 
 
 小提醒
@@ -111,13 +113,11 @@ rtenv: 成大資工系同學開發的小型 RTOS
    * Feb 28, 2014 (含) 之前
    * 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
-- 更新共筆，將作業提案加入，並標注自己的 ID
 - 寄件到 <jserv.tw@gmail.com>
   - 標題: "[NCKU/embedded]" 開頭，後面加學號與姓名
   - 內容：(回答以下問題)
     * GitHub 帳號, wiki 帳號
-    * 作業提案
-    * 關於 fork 出來的 repository 修改描述
+    * 作業提案 (可與參考提案不同，但要具體描述)
 
   - 若不麻煩的話，附上一份自介
 
