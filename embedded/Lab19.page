@@ -25,37 +25,14 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain
-  - 需要有對應的 GNU Toolchain，可直接使用 Ubuntu 的 gcc-arm-none-eabi :
+- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
 
 .. code-block:: prettyprint
 
-    sudo apt-get install gcc-arm-none-eabi
+    cd  /
+    sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
 
-若因為 Ubuntu 版本較舊，而找不到 apt 來源的話，請進行以下操作:
-
-.. code-block:: prettyprint
-
-    sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded
-    sudo apt-get update
-    sudo apt-get install gcc-arm-none-eabi
-
-或是直接下載 `prebuilt package<https://launchpad.net/gcc-arm-embedded>`_，然後解壓縮放到自己習慣的目錄下，如 $HOME/STM32/toolchain，一個名為 envsetup.sh 的 bash script 可協助您設定環境變數
-
-.. code-block:: prettyprint
-
-    #!/bin/bash
-    echo “setting build environment for STM32F4″
-    export STM32_PATH=$HOME/STM32
-    export PATH=$STM32_PATH/toolchain/gcc-arm-none-eabi-4_8-2013q4/bin/:$STM32_PATH/toolkit/bin:$PATH
-
-- 檢查 Toolchain 是否正確安裝：
-
-.. code-block:: prettyprint
-
-    which arm-none-eabi-gcc
-
-預期可見 `/usr/bin/arm-none-eabi-gcc` 輸出
+- 檢查 Toolchain 是否正確安裝：查看 /usr/local/csl/arm-2012.03 目錄
 
 
 STM32 Overview
