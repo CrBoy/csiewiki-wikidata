@@ -23,13 +23,11 @@ toc: no
 Video
 ------
 * `Make Your Own Smart Watch<http://hackaday.com/2014/02/17/make-your-own-smart-watch/>`_
+* `Massimo Banzi: Arduino 是如何打開想像力的<http://www.ted.com/talks/massimo_banzi_how_arduino_is_open_sourcing_imagination.html>`_
 
 預習項目
 ------------
-* ARM & SoC 訓練: (閱讀 Page 1 -> Page 44)
-  - http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview
-
-* QEMU 模擬器 (閱讀 Page 7 -> Page 56)
-  - http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation
-
+* `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
+* `ARM & SoC 訓練<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_: (閱讀 Page 1 -> Page 44)
+* `QEMU 模擬器<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_ (閱讀 Page 7 -> Page 56)
 * `開放原始碼軟體衝擊下的新思維<http://www.slideshare.net/jserv/opensource-everywhere>`_
