@@ -12,6 +12,24 @@ toc: no
       - `2014 年冬季系統軟體短期課程<http://system2014.hackpad.com/>`_
       - `2013 暑期嵌入式短期訓練課程<https://hackpad.com/ep/group/yTLLeVNF05O>`_
 
-* `Embedded Systems Laboratory<http://users.ece.utexas.edu/~valvano/ASEE2013.pdf>`_, Jonathan Valvano
-  - Using ARM Cortex M4
-  - From the Basics to Applications
+* Case study: `高速公路收費站的故事<http://alumni-voice.nctu.edu.tw/works/works_prose002.htm>`_
+  - 判斷車子的狀態圖的設計要根據車道的實測結果不斷的修正，加上一些計時器以過濾掉許多干擾信號。這些調校都是由硬體 TTL 線路上加上電容、電阻等零件去過濾，一片印刷電路板後來焊上了許多的違章建築，真是苦不堪言。若用微電腦的話，改改程式就可達到目，這工作會輕鬆很多。在當時微電腦剛冒出土，知道的人甚少。好在經過數個月的調校，準確度總算到達可以接受的程度了
+  - 高工局沿用泰山站的設計，規定迷你電腦要採用聞名的 DEC (Digital Equipment Computer) 的 PDP-11。在當時，DEC 可是全世界排名前三名的電腦公司，在迷你電腦的領域執世界牛耳。生意好得不得了，交貨期長達14個月，若等到交貨後，我們的程式才能開始測試，正式啟用就不知道又要拖到甚麼時候。汐止站的開通日不可能等，而且按照合約規定，延誤一天罰總價的千分之三。總價約台幣八百多萬的合約，若要等到這迷你電腦正式啟用，大概合約總價會被罰光光
+  - 買了一片名為 KIM-1 的 6502 微電腦板與兩片 8 Mega Byte 的記憶板(每片單價 NT15,000—同樣價錢，今天在 PCHome，4GB DRAM 的價格NT1,000 元，價格相差 7500 倍)，自己再設計一片有兩個序列埠 (UART) 與並聯輸出入 (Parallel IO) 的擴充版。... 於是，一台克難的電腦就此完成；以不到台幣五萬元的微電腦，想要取代一、兩百萬台幣的迷你電腦的功能，是不是痴人夢話？當時也沒絕對的把握，但是過河卒子，沒有退路，只能硬著頭皮幹了。
+  - 那時的微電腦也沒有高階語言，只能採用組合語言 (Assembly) 撰寫程式--真正的“撰寫”程式--先寫在紙上，用自己的腦袋編譯 (compile) 成機器碼(Machine code )，再寫在紙上，然後用人工以十六進位的鍵盤將其機器碼打入電腦中。經常是教授念出程式的機器碼，由我負責從鍵盤輸入 ，兩人合作，以提高程式的輸入效率
+  - 徐大老闆財大氣粗，深信「有錢就能擺平一切」的道理。但做這種系統工程，是一步一腳印沒有捷徑，若從系統規畫之初，就只盤算一年要賺多少，一切以成本、賺錢掛帥，抱著「反正出了狀況，花點小錢擺平的心態」，而不能完全尊重專業團隊的意見的話，產生今天的結果也就不足為奇。當然，投下去的幾十億，就算完全砸鍋的話，相對他的財力來說，也不過是九牛一毛而已，無關痛癢。更何況合約上明訂，若政府要接收，政府得付他45億元，當然是有恃無恐。
+  - 當年政府對我們的要求是萬分之三的準確度，現在對 ETC 系統的要求卻放寬到千分之一，實在有點奇怪。三十多年前，這些交大窮教授們，紛紛把房地產拿出來當履約保證，若系統不夠完善，不但工程款拿不到，還可能導致傾家蕩產，被銀行掃地出門的窘境。大家在沒有退路之下，只有盡全力地將系統做好。
+
+Video
+------
+* `Make Your Own Smart Watch<http://hackaday.com/2014/02/17/make-your-own-smart-watch/>`_
+
+預習項目
+------------
+* ARM & SoC 訓練: (閱讀 Page 1 -> Page 44)
+  - http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview
+
+* QEMU 模擬器 (閱讀 Page 7 -> Page 56)
+  - http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation
+
+* `開放原始碼軟體衝擊下的新思維<http://www.slideshare.net/jserv/opensource-everywhere>`_
