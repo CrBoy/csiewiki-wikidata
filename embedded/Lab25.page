@@ -78,7 +78,7 @@ Git / GitHub
 -------------------
 * 註冊 GitHub 帳號: https://github.com/
 * `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
-* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2013/rtenv>`_
+* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2014/rtenv>`_
 
 rtenv: 成大資工系同學開發的小型 RTOS
 ------------------------------------------------------
@@ -106,7 +106,7 @@ rtenv: 成大資工系同學開發的小型 RTOS
 繳交作業
 -------
 - 截止日期：
-   * Feb 28, 2013 (含) 之前
+   * Feb 28, 2014 (含) 之前
    * 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 - 更新共筆，將作業提案加入，並標注自己的 ID
