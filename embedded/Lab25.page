@@ -17,7 +17,7 @@ toc: no
 
 .. code-block:: prettyprint
 
-    sudo apt-get install zlib1g-dev libsdl1.2-dev automake* autoconf* libtool libpixman-1-dev
+    sudo apt-get install git zlib1g-dev libsdl1.2-dev automake* autoconf* libtool libpixman-1-dev
 
 - 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
 
@@ -32,8 +32,7 @@ toc: no
     cd  /
     sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
 
-- 檢查 Toolchain 是否正確安裝：`which arm-none-eabi-gcc`
-  * 預期可見 `/usr/local/csl/arm-2012.03/arm-none-eabi-gcc` 輸出
+- 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2012.03/``
 
 
 STM32 Overview
