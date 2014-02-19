@@ -123,4 +123,5 @@ rtenv: 成大資工系同學開發的小型 RTOS
 
 參考資料
 ------------
+- 位於 Hackpad 的 `Lab25 共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
 - `STM32 Programming (中文)</embedded/Lab19/stm32-prog.pdf>`_
