@@ -16,7 +16,7 @@ toc: no
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Feb 18   `Overview: Embedded Systems and OS`_       `Lab 25`_:
-#2    Feb 25   ARM Architecture                        `Lab 26`_:
+#2    Feb 25   `ARM Architecture Evolution`_                        `Lab 26`_:
 #3    Mar  4   Case: Quadcopter                        :
 #4    Mar 11   Real-time Operating System Concepts     :
 #5    Mar 18   Case: Mars Pathfinder                   :
@@ -36,6 +36,7 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 
 .. _`Overview: Embedded Systems and OS`: 2014-w1
+.. _`ARM Architecture Evolution`: 2014-w2
 .. _`Lab 25`: Lab25
 
 
