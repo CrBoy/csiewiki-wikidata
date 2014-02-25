@@ -11,7 +11,7 @@ toc: no
 修改 rtenv
 -----------
 * 同 `Lab25</embedded/Lab25>`_ 取得 rtenv 並編譯執行
-* 修改 syscall.s 將 ``push {r7}`` 和 ``mov r7,`` 及 ``pop {r7}`` 等 "r7" 改為 r8
+* 修改 syscall.s 將 ``push {r7}`` 和 ``mov r7,`` 及 ``pop {r7}`` 等等指令中的 r7 改為 r8
 * 修改 kernel.c 的 main() 函式，將 r7 改為 r8
 * 重新編譯: ``make clean all``
 * ``make qemu`` 發現無法執行，why?
