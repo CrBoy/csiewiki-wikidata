@@ -17,17 +17,9 @@ toc: no
 * 「你會先學會使用辭海，才去寫作文，還是先寫文章，再去使用辭海？」
 * @jaceju: 大神如雷貫耳的一句話：「不應該說技術不是重點，而應該說技術是你必須非常熟練，而用來實現你想法的輔助工具。就像你不會跟會計說：『九九乘法不重要』。」
 * 鳥哥：「技術真的沒有什麼了不起，因為大學過後你不見得用的到。但是，學習技術的態度才是重要的！因為以後你永遠都在用！」
-* `Lab19</embedded/Lab19>`_ 的開發狀況
-  - https://github.com/embedded2013/rtenv/network
-  - `Lab19 共筆<https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe>`_
-
-GDB + Microcontroller
-
-.. image:: /embedded/gdb-with-gdb-server.png
-
-Low Power mode + Tickless scheduling
-
-.. image:: /embedded/task-with-tick-interrupts.png
+* `Lab25</embedded/Lab25>`_ 的開發狀況
+  - https://github.com/embedded2014/rtenv/network
+  - `Lab25 共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
 
 
 教材
