@@ -8,4 +8,82 @@ toc: no
 - 學習使用 Debugger，並且理解從硬體到軟體相關的處理機制
 - 學習 Linux 工具和 GNU Toolchain 的使用
 - 學習 Automation 技巧
-- 學習 ARM semihosting 的使用
+
+QEMU + GDB 操作
+----------------
+- 假設 `Lab-25</embedded/Lab25>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+
+.. code-block:: prettyprint
+
+  cd workspace
+  file qemu_stm32
+
+- 取得 GDB Automation
+
+.. code-block:: prettyprint
+
+  git clone git://github.com/embedded2013/gdb-automation.git
+  git clone git@github.com:embedded2013/gdb-automation.git # 如果上一行失敗
+  cd gdb-automation
+
+- 開啟一個終端機，作以下輸入
+
+.. code-block:: prettyprint
+
+    make qemudbg
+
+- 開啟另一個終端機，準備透過 gdb 來追蹤程式。下列 (gdb) 開頭的指令表示在 GDB 內部操作
+- 使用 Ubuntu 64-bit 版本時，需要另外安裝 lib32ncurses5
+  - sudo apt-get install lib32ncurses5
+
+.. code-block:: prettyprint
+
+    cd gdb-automation
+    arm-none-eabi-gdb
+    (gdb) file main.elf 
+    Reading symbols from gdb-automation/main.elf...done.
+    (gdb) b main
+    Breakpoint 1 at 0x2206: file main.c, line 8.
+    (gdb) target remote :3333
+    Remote debugging using :3333
+    Reset_Handler ()
+        at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s:67
+    67	  movs	r1, #0
+    (gdb) c
+    Continuing.
+    
+    Breakpoint 1, main () at main.c:8
+
+GDB Automation
+---------------
+* 目標：使用 GDB 來驗證 rtenv 功能，特別是新加入的 shell command
+* 取得 rtenv-gdbautomation 並編譯、執行驗證
+
+.. code-block:: prettyprint
+
+    git clone git@github.com:embedded2014/rtenv-gdbautomation.git
+    git clone http://github.com/embedded2014/rtenv-gdbautomation.git # 如果上一行失敗
+    cd rtenv-gdbautomation
+    make check
+
+* 可以看到如下方輸出
+
+.. code-block:: prettyprint
+
+    arm-none-eabi-gdb -batch -x test-export_envvar.in
+    first () at kernel.c:791
+    791		while(1);
+    Breakpoint 1 at 0x5b84: file unit_test.c, line 4.
+    Current environment variables:
+    Name: EDITOR; Value: gedit
+    Name: PATH; Value: ~
+    Name: LC_ALL; Value: UTF8
+    Processed argv list:
+    #0 export
+    #1 EDITOR=vi
+    Pass: exported value is correct
+    Pass: correct value of env_count
+
+* 研究 test-export_envvar.in 檔案的設計，發現是 GDB script
+  - source qemudbg_init.in # 可發現 GDB macro
+  - set logging on
