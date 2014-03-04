@@ -9,6 +9,11 @@ toc: no
 - 學習 Linux 工具和 GNU Toolchain 的使用
 - 學習 Automation 技巧
 
+GDB
+----
+* http://www.slideshare.net/chenkaie/gdb-rocks-16951548
+* http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html
+
 QEMU + GDB 操作
 ----------------
 - 假設 `Lab-25</embedded/Lab25>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
