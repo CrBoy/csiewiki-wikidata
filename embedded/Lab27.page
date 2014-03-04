@@ -27,8 +27,8 @@ QEMU + GDB 操作
 
 .. code-block:: prettyprint
 
-  git clone git://github.com/embedded2014/rtenv-automation.git
-  git clone git@github.com:embedded2014/rtenv-automation.git # 如果上一行失敗
+  git clone git://github.com/embedded2014/rtenv-gdbautomation.git
+  git clone git@github.com:embedded2014/rtenv-gdbautomation.git # 如果上一行失敗
   cd gdb-automation
 
 - 開啟一個終端機，作以下輸入
@@ -43,10 +43,10 @@ QEMU + GDB 操作
 
 .. code-block:: prettyprint
 
-    cd rtenv-automation
+    cd rtenv-gdbautomation
     arm-none-eabi-gdb
     (gdb) file main.elf 
-    Reading symbols from rtenv-automation/main.elf...done.
+    Reading symbols from rtenv-gdbautomation/main.elf...done.
     (gdb) b main
     Breakpoint 1 at 0x2206: file main.c, line 8.
     (gdb) target remote :3333
