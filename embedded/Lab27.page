@@ -29,7 +29,7 @@ QEMU + GDB 操作
 
   git clone git://github.com/embedded2014/rtenv-gdbautomation.git
   git clone git@github.com:embedded2014/rtenv-gdbautomation.git # 如果上一行失敗
-  cd gdb-automation
+  cd rtenv-gdbautomation
 
 - 開啟一個終端機，作以下輸入
 
