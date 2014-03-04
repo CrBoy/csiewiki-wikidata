@@ -15,9 +15,9 @@ toc: no
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 18   `Overview: Embedded Systems and OS`_       `Lab 25`_:
-#2    Feb 25   `ARM Architecture Evolution`_                        `Lab 26`_:
-#3    Mar  4   Case: Quadcopter                        :
+#1    Feb 18   `Overview: Embedded Systems and OS`_       `Lab 25`_
+#2    Feb 25   `ARM Architecture Evolution`_                        `Lab 26`_
+#3    Mar  4   `Case: Quadcopter`_                        `Lab 27`_
 #4    Mar 11   Real-time Operating System Concepts     :
 #5    Mar 18   Case: Mars Pathfinder                   :
 #6    Mar 25   ARM I/O, Interrupt, Exception           :
@@ -37,7 +37,10 @@ Week  Date     Subject                                 Assignment
 
 .. _`Overview: Embedded Systems and OS`: 2014-w1
 .. _`ARM Architecture Evolution`: 2014-w2
+.. _`Case: Quadcopter`: 2014-w3
 .. _`Lab 25`: Lab25
+.. _`Lab 26`: Lab26
+.. _`Lab 27`: Lab27
 
 
 進階嵌入式系統開發與實作 (Fall 2013)
