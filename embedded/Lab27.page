@@ -6,7 +6,7 @@ toc: no
 預期目標
 -------
 - 學習使用 Debugger，並且理解從硬體到軟體相關的處理機制
-- 學習 Linux 工具和 GNU Toolchain 的使用
+- 配合`第三周進度</embedded/2014-w3>`_，學習 Linux 工具和 GNU Toolchain 的使用
 - 學習 Automation 技巧
 
 GDB
