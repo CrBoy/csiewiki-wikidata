@@ -1,0 +1,11 @@
+---
+title: Lab27: Debugger
+toc: no
+...
+
+預期目標
+-------
+- 學習使用 Debugger，並且理解從硬體到軟體相關的處理機制
+- 學習 Linux 工具和 GNU Toolchain 的使用
+- 學期 Automation 技巧
+- 學習 ARM semihosting 的使用
