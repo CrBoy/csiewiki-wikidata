@@ -1,0 +1,15 @@
+---
+title: Week #3 (Mar 4) :: Case Study: Quadcopter
+toc: no
+...
+
+應用案例：四軸飛行器
+---------------------
+* 成大民航所的黃大峯同學
+* http://www.slideshare.net/fantasyboris/ss-30440689
+* 涵蓋範圍
+  - 解釋四軸基本飛行原理
+  - 濾波器以及控制器設計
+  - 在 RTOS 上運行飛行控制
+
+* 這些成果主要由成大學生開發，並且從軟體到硬體都 open source，詳情可見: http://moon-bear.github.io/ (裡頭有熱血展示影片)
