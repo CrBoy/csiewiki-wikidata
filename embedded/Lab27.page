@@ -87,3 +87,31 @@ GDB Automation
 * 研究 test-export_envvar.in 檔案的設計，發現是 GDB script
   - source qemudbg_init.in # 可發現 GDB macro
   - set logging on
+
+參考作業要求
+------------------
+* 將 rtenv-gdbautomation 機制移植回去 `Lab-25</embedded/Lab25>`_ 的 rtenv，使得 ``make check`` 時，可以透過 GDB script 自動測試之前加入的功能、函式，並且比對預期輸出，作為 unit test
+* [加分] 用 GDB script 顯示執行時期資訊
+
+作業繳交方式
+------------------
+* 請更新作業提案到共筆網站: `Lab 27 / 作業共筆<https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw>`_
+  - 需要標注自己的 ID，可參考 `Lab 25 / 作業共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_ 的格式
+* 請在 Mar 14, 2014 前，將符合作業提案的程式碼，提交到 `Lab-25</embedded/Lab25>`_ 時 fork 出來的 rtenv
+  - https://github.com/embedded2014/rtenv
+
+參考資訊
+-------
+- debugger 和 software emulator
+  * opencsl.openfoundry.org/Lab05_debugger.rst.html
+  * http://www.cis.nctu.edu.tw/~is92004/article/gdb.htm
+
+- GDB 筆記
+  * http://loda.hala01.com/2012/04/gdb%E7%AD%86%E8%A8%98/
+
+- 以 GDB 重新學習 C 語言程式設計
+  * http://www.slideshare.net/jserv/clang-usinggdb
+
+- GDB Manual
+  * http://sourceware.org/gdb/current/onlinedocs/gdb/
+  * Commands, Remote Debugging, Extending GDB
