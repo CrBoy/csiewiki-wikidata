@@ -59,7 +59,7 @@ QEMU + GDB 操作
     
     Breakpoint 1, main () at main.c:8
 
-* ``make qemu`` 可作測試，按下 Ctrl-A 之後按 x 可離開 QEMU
+* ``make qemu`` 可作測試
 
 Unit Test
 ---------
