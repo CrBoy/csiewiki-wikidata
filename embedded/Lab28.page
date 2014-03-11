@@ -12,10 +12,25 @@ toc: no
 rtenv-plus: 強化的 rtenv
 -------------------------
 * 成大資訊系 102 級林哲安同學的最新力作
-* ROM file system offers a read-only file system during compilation
-* Various build system improvements
-* Fix memcpy error
-* Support of block devices
-* Fix of memory configuration
-* Introduce event monitor technique to handle interrupts
-* Efficient I/O encapsulation
+* 修改項目
+  - ROM file system offers a read-only file system during compilation
+  - Various build system improvements
+  - Fix memcpy error
+  - Support of block devices
+  - Fix of memory configuration
+  - Introduce event monitor technique to handle interrupts
+  - Efficient I/O encapsulation
+
+* 測試方式
+  - ``git clone git@github.com:embedded2014/rtenv-plus.git``
+    * 或者 ``git clone https://github.com:embedded2014/rtenv-plus.git``
+
+  - ``cd rtenv-plus``
+  - ``echo X > data/rom0/X`` # 我們試著在 romfs 放入一個檔名為 "X"，內容也是 "X" 的檔案
+  - ``make``
+  - ``make qemu``
+  - 當出現 QEMU 畫面後，在 UART 中輸出 help，預期可見以下：
+    * xxd: Make a hexdump
+
+  - 在 UART 輸入 ``xxd /X``，可見到以下輸出：
+    * 00000000: 580a                  X.
