@@ -12,6 +12,8 @@ toc: no
 rtenv-plus: 強化的 rtenv
 -------------------------
 * 成大資訊系 102 級林哲安同學的最新力作
+  - 基於 https://github.com/embedded2014/rtenv
+
 * 修改項目
   - ROM file system offers a read-only file system during compilation
   - Various build system improvements
