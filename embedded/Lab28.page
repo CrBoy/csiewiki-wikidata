@@ -7,6 +7,7 @@ toc: no
 -------
 * 擴展 ``rtenv`` 的功能：引入 `rtenv-plus<https://github.com/embedded2014/rtenv-plus>`_，一個強化的 ``rtenv`` 版本，未來將逐步使其具備商用 RTOS 能力
 * 分析 romfs，並實作基本檔案處理
+* 複習前幾周的實作技巧
 * 整合之前的 unit test
 
 rtenv-plus: 強化的 rtenv
@@ -63,6 +64,8 @@ romfs 實作
 * 參考資訊
   - `Lab21</embedded/Lab21>`_
   - `Lab21 實作程式碼<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_
+
+* `Block Devices: Drivers and Files<http://hssl.cs.jhu.edu/~randal/419/lectures/L5.5.BDD.pdf>`_
 
 參考作業提案
 -------------
