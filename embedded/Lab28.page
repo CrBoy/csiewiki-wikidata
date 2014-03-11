@@ -75,7 +75,7 @@ romfs 實作
 
 作業繳交方式
 -------------
-* 更新作業提案到共筆網站: Lab 28 / 作業共筆，需要標注自己的 ID
+* 更新作業提案到共筆網站: `Lab 28 / 作業共筆<https://embedded2014.hackpad.com/Lab28-Extend-RTOS-5evpv6zmkx1>`_，需要標注自己的 ID
 * 在 Mar 21 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
   - https://github.com/embedded2014/rtenv-plus
   - 注意: 要記得 fork ``rtenv-plus``
