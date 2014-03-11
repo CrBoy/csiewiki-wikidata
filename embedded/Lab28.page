@@ -72,6 +72,7 @@ romfs 實作
   - cat: 印出指定檔案的內容
 
 * 延伸之前的 unit test，當 ``make check`` 後，我們得以驗證 romfs 的功能並且自動測試 ``ls`` 和 ``cat``
+* 試著理解 rtenv-plus 相對 rtenv 具體的改進項目，並以及從中學習
 
 作業繳交方式
 -------------
