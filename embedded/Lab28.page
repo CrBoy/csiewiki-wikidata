@@ -43,3 +43,39 @@ rtenv-plus: 強化的 rtenv
     * ``make``
     * 用 vim 打開 ``build/main.bin`` 檔案，或者用以下指令確認：
       - ``strings build/main.bin | grep NCKU``
+
+romfs 實作
+-----------
+* 程式碼
+  - src/kernel.c: 註冊 ``romdev_driver`` 和 ``romfs_server``
+
+.. code-block:: prettyprint
+
+    void first()
+    {
+        if (!fork()) setpriority(0, 0), pathserver();
+        if (!fork()) setpriority(0, 0), romdev_driver();
+        if (!fork()) setpriority(0, 0), romfs_server();
+
+  - src/romdev.c: Driver - 銜接底層的 block device
+  - src/romfs.c: 檔案系統和相關界面
+
+* 參考資訊
+  - `Lab21</embedded/Lab21>`_
+  - `Lab21 實作程式碼<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_
+
+參考作業提案
+-------------
+* 將 Lab25, Lab26, Lab27 開發的程式碼整合到 ``rtenv-plus``，含 unit test 系統
+* 利用檔案系統實現 ``ls`` 和 ``cat`` 功能
+  - ls: 印出檔案系統的目錄和其結構
+  - cat: 印出指定檔案的內容
+
+* 延伸之前的 unit test，當 ``make check`` 後，我們得以驗證 romfs 的功能並且自動測試 ``ls`` 和 ``cat``
+
+作業繳交方式
+-------------
+* 更新作業提案到共筆網站: Lab 28 / 作業共筆，需要標注自己的 ID
+* 在 Mar 21 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
+  - https://github.com/embedded2014/rtenv-plus
+  - 注意: 要記得 fork ``rtenv-plus``
