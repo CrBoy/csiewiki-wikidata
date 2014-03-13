@@ -19,7 +19,7 @@ Week  Date     Subject                                 Assignment
 #2    Feb 25   `ARM Architecture Evolution`_                        `Lab 26`_
 #3    Mar  4   `Case: Quadcopter`_                        `Lab 27`_
 #4    Mar 11   `Assignment Review`_                    `Lab 28`_
-#5    Mar 18   Case: Mars Pathfinder                   :
+#5    Mar 18   `ARM Cortex-M + RTOS Concepts`_            `Lab 29`_
 #6    Mar 25   ARM I/O, Interrupt, Exception           :
 #7    Apr  1   春假
 #8    Apr  8   Group Presentation (1)                  :
@@ -39,10 +39,12 @@ Week  Date     Subject                                 Assignment
 .. _`ARM Architecture Evolution`: 2014-w2
 .. _`Case: Quadcopter`: 2014-w3
 .. _`Assignment Review`: 2014-w4
+.. _`ARM Cortex-M + RTOS Concepts`: 2014-w5
 .. _`Lab 25`: Lab25
 .. _`Lab 26`: Lab26
 .. _`Lab 27`: Lab27
 .. _`Lab 28`: Lab28
+.. _`Lab 29`: Lab29
 
 
 進階嵌入式系統開發與實作 (Fall 2013)
