@@ -25,8 +25,8 @@ rtenv-plus: 強化的 rtenv
   - Efficient I/O encapsulation
 
 * 測試方式
-  - ``git clone git@github.com:embedded2014/rtenv-plus.git``
-    * 或者 ``git clone https://github.com:embedded2014/rtenv-plus.git``
+  - ``git clone git@github.com/embedded2014/rtenv-plus.git``
+    * 或者 ``git clone https://github.com/embedded2014/rtenv-plus.git``
 
   - ``cd rtenv-plus``
   - ``mkdir -p data/rom0``
