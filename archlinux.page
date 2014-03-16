@@ -1,0 +1,341 @@
+---
+title: Arch Linux 介紹 與 安裝
+...
+
+介紹
+=============
+Arch Linux是一個open source的作業系統
+
+
+以下待補
+
+安裝
+==
+開始之前
+-------
+我用 # 來表示要下的指令
+
+使用pacman
+~~~~~~~~~~~~~~~~~~~~~
+
+用於下載官方套件
+
+::
+
+    pacman -S 套件名
+
+準備硬碟
+-------
+  
+1.   在硬碟上建立分割表產生分割區
+2.   作業系統裝在分割區當中
+
+所以我們要為作業系統準備環境，也就是建立分割表（分割區）
+
+liveCD裡面有內建幾套硬碟分割的工具：fdisk,cfdisk
+
+cfdisk
+~~~~~~~~~~
+cfdisk有圖形化的界面，對無論哪個等級的使用者都相當友善
+
+-  GPT分割表要用cgdisk
+
+當我要new一個分割區的時候，他會詢問我要使用``Primary`` ，還是``Logical``
+
+這會根據使用哪一種分割表而有差異
+
+-  在主要開機記錄 (MBR) 磁碟上，最多可建立四個主要磁碟分割 (或三個主要磁碟分割)、一個延伸磁碟分割，以及無限制的邏輯磁碟機
+
+-  在 GUID 分割表 (GPT) 磁碟上，最多可建立 128 個主要磁碟分割，但無法建立延伸磁碟分割或邏輯磁碟機。
+
+舉例來說，我分割了60000M(55.9G)作為系統使用（kerne..設定檔.往後要安裝的套件等等），這對一套Linux而言已經相當充裕了。
+
+以及200000M(186.3G)作為user使用（自己的檔案）
+
+最後將55.9G這個分割區標上bootable
+
+完成之後，檢視他們所在的分割區
+::
+
+    lsblk
+將可以看到
+
+
+sda(硬碟)
+		
+- sda1	作業系統(55.9G)	
+
+- sda2
+
+如果只切兩個分割區，則不會有sda3
+
+接下來，我們要對這個分割區進行格式化，也就是將檔案系統寫進這個分割區
+
+::
+
+    mkfs.ext4 /dev/sda1
+    mkfs.ext4 /dev/sda2
+
+掛載硬碟
+-------
+鳥哥解釋掛載
+~~~~~~~~~~~~~~~~~~~~~
+每個 filesystem 都有獨立的 inode / block / superblock 等資訊，這個檔案系統要能夠連結到目錄樹才能被我們使用。 將檔案系統與目錄樹結合的動作我們稱為『掛載』。 關於掛載的一些特性我們在第三章稍微提過， 重點是：掛載點一定是目錄，該目錄為進入該檔案系統的入口。
+
+如何掛載
+~~~~~~~~~~~~~~~~~~~~~
+兩個分割區，兩個掛載點，聽起來很容易。但是這樣作其實有道理的，如果有一天，作業系統掛掉了呢
+
+那就把作業系統砍掉重練，再掛載回去就好，跟user data完全無關。
+
+就像C槽重灌，D槽的資料不受影響。
+
+否則把作業系統玩壞一次，想就要備份一次user data，豈不累死。
+::
+
+    mount /dev/sda1 /mnt
+    mkdir /mnt/home
+    mount /dev/sda2 /mnt/home
+
+連上網路
+---------------------
+有線網路
+~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    dhcpcd
+
+撥接網路
+~~~~~~~~~~~~~~~~~~~~~~
+::
+
+    ppppoe-setup
+無線網路
+~~~~~~~~~~~~~~~~~~~~~~~
+高人待補
+
+安裝作業系統
+====================
+mirrorlist
+-------------
+在開始安裝系統之前，我們需要去編輯mirrorlist,mirror是指要從哪裡下載，通常選擇比較近的mirror,會有比較快的下載速度。
+
+在Arch的liveCD當中有好幾套編輯工具，選擇順手的用就好：vi , nano , …
+::
+
+    nano /etc/pacman.d/mirrorlist
+
+把淡江大學(tku)及交通大學(nctu)的 Server搬到第一個mirror之前
+安裝基礎系統
+由於這系統是要從網路上下載下來，所以要先確認是否能連線（內建工具：``dhcpcd``)
+::
+
+    pacstrap /mnt base
+
+設定系統組態(configuration)
+============================
+
+建立fstab
+--------------------
+
+安裝好基礎的系統之後，我們必須告訴他現在硬碟有哪些分割區，以及開機之後要把這些分割區mount在哪些目錄底下。
+
+注意到我們現在是在liveCD,而我們要安裝的系統目錄現在在 ``/mnt``底下，家目錄則在``/mnt/home``
+
+等到我們安裝完之後，從硬碟開機（而非liveCD），系統目錄則為 ``/`` ， 家目錄則是 ``/home``
+
+::
+
+    genfstab -p /mnt >> /mnt/etc/fstab
+
+再做這件事情之前與之後，分別把這個檔案cat出來看看，便能知道" >> "做了什麼
+
+它把分割表的資訊，接在 ``/mnt/etc/fstab`` 的後面繼續寫
+
+chroot
+---------------
+現在我們要change root到新安裝的系統目錄下，繼續完成系統的設定
+::
+
+   arch-chroot /mnt
+
+- 設定hostname
+
+
+::
+
+   nano /etc/hostname
+
+- 設定時區
+
+
+::
+
+    ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+
+- 設定語系
+
+
+`見locale的功能/意義<http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/locale.html>`_
+
+把 ``/etc/locale.gen`` 當中要產生的語系取消註解，並使用
+::
+
+    locale-gen
+
+產生它
+
+- 調整整個系統用的語言
+
+在做這步之前，可以先用
+::
+
+    locale
+
+檢視一下哪一些項目用了哪種語言
+
+而現在我們寫入 ``/etc/locale.conf`` 可以全域的把這些項目都變成同樣的語系/編碼
+
+# nano /etc/locale.conf
+LANG="en_US.UTF-8"
+
+產生kernel image
+===========================
+詳見`kernel image的功能<http://blog.linux.org.tw/~jserv/archives/001954.html>`_
+
+::
+
+  mkinitcio -p linux
+
+Bootloader
+============================
+- BIOS
+
+-- 安裝 grub
+
+修改開機的預設系統 或 grub的顏色/ 主題等等：/etc/default/grub
+
+如果要自定奇奇怪怪的menuentry的話，可以寫進/etc/grub.d/40 or 41
+
+-- 安裝os-prober
+
+grub預設不會尋找其他的作業系統：見/boot/grub/grub.cfg當中的menuentry
+
+
+產生設定檔
+------------------
+::
+
+        grub-mkconfig -o /boot/grub/grub.cfg
+        grub-install /dev/sda
+
+YAOURT
+=====================
+
+why yaourt
+-------------------
+
+- 用於下載安裝第三方套件（form sourceforge.git…）
+- 最大的優點在於這個套件會有人幫你管理
+- 會用arch有一半都是更新狂
+- 相容性問題，發布的人幫你解決
+- 社群
+
+如何安裝
+----------------------
+- 增加repo
+
+::
+
+    [archlinuxfr]
+    SigLevel = Never
+    Server = http://repo.archlinux.fr/$arch
+
+
+將這些加至``/etc/pacman.conf``
+
+- 安裝
+::
+
+    pacman -Sy yaourt
+
+- 使用
+
+就像pacman的使用方式！
+::
+
+    yaourt -S 套件名
+
+如果懶得按no no yes yes...
+::
+
+  yaourt -S --noconfirm 套件名
+
+GNOME
+============================
+
+**KDE太土了**
+
+- xorg
+
+  * Driver
+
+  * 如果不先裝滑鼠鍵盤，就進桌面
+
+- gnome-shell
+
+  * window manager
+
+  * x,放大,移動
+
+  * 相關套件
+
+    + eog:影像瀏覽
+
+- gdm
+
+  * desktop
+
+套件
+======================
+- xdg
+
+自動產生預設資料夾，並設定
+
+- file-roller
+
+關閉檔案管理員
+::
+
+    nautilus -q 
+
+再重開檔案管理員
+
+- vim
+
+- pkgfile
+
+  * 套件 & 軟體名字不match
+
+- bash-completion
+
+輸入法 與 中文
+=========================
+- ibus-chewing
+
+- wqy-zenhei
+
+網路相關套件
+=========================
+
+- ifconfig
+
+- flashplugin
+
+界面美化
+==========================
+powerline
+-------------------
+
+user theme
+-------------------
