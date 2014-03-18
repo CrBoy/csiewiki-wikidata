@@ -1,0 +1,13 @@
+---
+title: Lab29: FreeRTOS
+toc: no
+...
+
+預期目標
+-------
+* 配合 `Week #5</embedded/2014-w5>`_ 進度
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+  - 熟悉 FreeRTOS 的內部運作機制
+  - 實地練習 Multi-tasking 程式設計
+
+* 學習 ARM semihosting
