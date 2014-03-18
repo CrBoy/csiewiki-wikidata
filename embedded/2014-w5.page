@@ -7,3 +7,9 @@ toc: no
 -----
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
 * `Study of an operating system: FreeRTOS</embedded/FreeRTOS_Melot.pdf>`_
+
+作業觀摩
+---------
+* Wen Liao
+  - rtenv `GitHub<https://github.com/zzz0072/rtenv-1>`_
+  - rtenv `Documentation<https://github.com/zzz0072/rtenv-1/tree/master/documentation>`_
