@@ -16,7 +16,12 @@ toc: no
 
 * 期末專題
   - 在嵌入式硬體 (部份修改) 上，針對設定的目標 (如透過機器手臂，快速解魔術方塊)，開發出作業系統
+    * 可用現成的 open source kernel (建議為期中報告探討者)
+    * 需要提及實際解決的問題，特別是與作業系統相關議題，如 semaphore, mutex, deadlock
+    * 允許的硬體架構: ARM Cortex-M4F, ARM Cortex-A8/A9, ARM11
+
   - 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
+    * 硬體架構同上，但可加上 Android 智慧型手機 (root!)
 
 教材
 -----
