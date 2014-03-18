@@ -33,6 +33,7 @@ toc: no
 -----
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
 * `Study of an operating system: FreeRTOS</embedded/FreeRTOS_Melot.pdf>`_
+* `FreeRTOS 即時核心實用指南</embedded/FreeRTOS-manual-zh.pdf>`_
 
 作業觀摩
 ---------
