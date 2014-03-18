@@ -61,7 +61,12 @@ qemu-semihost 操作
 
 參考設計要求
 ------------
-* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端的 ``sysinfo`` 檔案
+* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端檔案系統的 ``sysinfo`` 檔案
+* 在 shell 中建立新指令 ``dumpsys`` (後方接 task ID)，可將指定的 task control block 輸出到 host 端檔案系統的 ``sysinfo`` 檔案，並且撰寫 host 端分析工具
+  - 提示: 回想之前 program loader 如何實作
+  - 提示: 透過 GDB 的 `dump/restore 命令<https://sourceware.org/gdb/onlinedocs/gdb/Dump_002fRestore-Files.html>`_ 可自動化此操作
+
+* 學習既有的 ``mmtest``，試著作壓力測試
 
 作業繳交方式
 -------------
