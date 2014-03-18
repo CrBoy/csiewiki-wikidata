@@ -29,9 +29,13 @@ toc: no
     * 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 `ARM Cortex-A15 fast model<http://www.arm.com/products/tools/models/fast-models/>`_
 
   - Hackpad: `想法和提案<https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ>`_
+
 教材
 -----
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
+* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
 * `Study of an operating system: FreeRTOS</embedded/FreeRTOS_Melot.pdf>`_
 * `FreeRTOS 即時核心實用指南</embedded/FreeRTOS-manual-zh.pdf>`_
 
