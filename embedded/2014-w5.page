@@ -3,6 +3,18 @@ title: Week #5 (Mar 18) :: ARM Cortex-M + RTOS Concepts
 toc: no
 ...
 
+重大事項宣達
+-------------
+* 期中分組報告辦法
+  - 3 到 4 人一組
+  - 3 月 25 日上課結束前，向講師或助教登記
+  - 參考硬體為 `STM32F429 Discovery<http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090>`_
+  - 題目順序:
+
+* 期末專題
+  - 在嵌入式硬體 (部份修改) 上，針對設定的目標 (如透過機器手臂，快速解魔術方塊)，開發出作業系統
+  - 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
+
 教材
 -----
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
