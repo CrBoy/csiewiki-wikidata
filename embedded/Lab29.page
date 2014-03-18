@@ -12,6 +12,25 @@ toc: no
 
 * 學習 ARM semihosting
 
+FreeRTOS
+---------------
+* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
+* 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容
+* 測試方式
+  - ``git clone git@github.com:embedded2014/freertos.git``
+  - # 或者: ``git clone git://github.com/embedded2014/freertos.git``
+  - ``cd freertos``
+  - ``make``
+  - ``make qemu``
+  - 按下 Ctrl-Alt-2 切到 serial
+  - 輸入 "help" 可見已實作的 shell command
+    * ps
+    * mmtest
+    * host
+      - 輸入 ``host ls`` 並觀察 host 端終端機的畫面
+
 ARM Semihost
 ------------
 * 使用 ARM 所開發的目標系統 (target system)，不一定會提供所有的輸入/輸出設備。因此 ARM 設計了 semihost 這種機制，讓運行 ARM debugger 的主機可以與目標系統進行 I/O 溝通，以利產品開發
@@ -38,3 +57,7 @@ qemu-semihost 操作
 參考執行畫面:
 
  .. image:: /embedded/Lab20/semihost.png
+
+參考設計要求
+------------
+* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端的 ``sysinfo`` 檔案
