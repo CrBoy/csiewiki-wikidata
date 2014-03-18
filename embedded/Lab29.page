@@ -62,3 +62,10 @@ qemu-semihost 操作
 參考設計要求
 ------------
 * 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端的 ``sysinfo`` 檔案
+
+作業繳交方式
+-------------
+* 更新作業提案到共筆網站: `Lab 29 / 作業共筆<https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx>`_，需要標注自己的 ID
+* 在 Mar 28 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
+  - https://github.com/embedded2014/freertos
+  - 注意: 要記得 fork ``freertos``
