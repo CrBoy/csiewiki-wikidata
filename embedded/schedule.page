@@ -20,7 +20,7 @@ Week  Date     Subject                                 Assignment
 #3    Mar  4   `Case: Quadcopter`_                        `Lab 27`_
 #4    Mar 11   `Assignment Review`_                    `Lab 28`_
 #5    Mar 18   `ARM Cortex-M + RTOS Concepts`_            `Lab 29`_
-#6    Mar 25   ARM I/O, Interrupt, Exception           :
+#6    Mar 25   ARM I/O, Interrupt, Exception           `Lab 30`_
 #7    Apr  1   春假
 #8    Apr  8   Group Presentation (1)                  :
 #9    Apr 15   Group Presentation (2)                  :
@@ -45,6 +45,7 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 27`: Lab27
 .. _`Lab 28`: Lab28
 .. _`Lab 29`: Lab29
+.. _`Lab 30`: Lab30
 
 
 進階嵌入式系統開發與實作 (Fall 2013)
