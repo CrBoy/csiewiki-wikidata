@@ -59,6 +59,47 @@ qemu-semihost 操作
 
  .. image:: /embedded/Lab20/semihost.png
 
+Memory Management
+----------------------------------
+* `System-wide Memory Management for Linux Embedded Systems<http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf>`_
+* `Tips of malloc & free<http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf>`_
+
+FreeRTOS: Memory management
+-------------------------------
+- `Memory Management<http://www.freertos.org/a00111.html>`_
+-  The RTOS kernel allocates RAM each time a task, queue, mutex, software timer or semaphore is created. The standard C library malloc() and free() functions can sometimes be used for this purpose, but ...
+    + they are not always available on embedded systems,
+    + they take up valuable code space,
+    + they are not thread safe, and
+    + they are not deterministic (the amount of time taken to execute the function will differ from call to call)
+
+- 檢查 freertos 目錄的 Makefile，目前使用 ``$(FREERTOS_SRC)/portable/MemMang/heap_1.c``，可更換為 ``heap_ww.c``
+
+hack-malloc
+-------------------
+* 簡易 malloc/free 測試程式，以亂數指定若干不同大小的 memory region，持續進行 malloc 和 free 操作
+* ``git clone git@github.com:embedded2013/hack-malloc.git``
+  - 或 ``git clone git://github.com:embedded2013/hack-malloc.git``
+
+* ``cd hack-malloc && make``
+* ``./tryit`` # Ctrl-C 停止輸出
+* 參考畫面輸出：
+
+.. code-block:: prettyprint
+
+    tryit.c 68: try to allocate 1648 bytes
+    tryit.c 70: malloc returned 0x61595c
+    allocate a block, size 1648
+    tryit.c 68: try to allocate 1582 bytes
+    tryit.c 70: malloc returned 0x615fe8
+    allocate a block, size 1582
+    tryit.c 68: try to allocate 1037 bytes
+    tryit.c 70: malloc returned (nil)
+    free a block, size 1648
+    tryit.c 68: try to allocate 1815 bytes
+    tryit.c 70: malloc returned (nil)
+    free a block, size 1582
+
 參考設計要求
 ------------
 * 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端檔案系統的 ``sysinfo`` 檔案
