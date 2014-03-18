@@ -9,7 +9,7 @@ toc: no
   - 4 人一組
   - 3 月 25 日上課結束前，向講師或助教登記
   - 參考硬體為 `STM32F429 Discovery<http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090>`_
-  - 題目順序: `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `rtenv-plus</embdded/rtenv>`_, `eCos</embedded/ecos>`_, `F9 microkernel</embedded/f9-kernel>`_
+  - 題目順序: `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embdded/rtenv>`_, `eCos</embedded/ecos>`_, `F9 microkernel</embedded/f9-kernel>`_
   - 預先將報告題材更新於 wiki，報告時不透過任何簡報軟體進行，可參考去年的 `期中報告</embedded/2013-w7>`_
   - 期中報告探討的對象皆為 open source operating system (含成大學生土製核心!)，希望藉由期中報告建立一系列優質的中文文件 (繁體)
   - 每組需要涵蓋: 作業系統架構、硬體驅動原理 (特別在 `STM32F429 Discovery<http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090>`_)、效能表現 (context switch, interrupt latency, IPC throughput)
@@ -20,14 +20,15 @@ toc: no
     * 所有過程都公開
     * 暫定 2014 年 6 月 14 日
 
-  - 在嵌入式硬體 (部份修改) 上，針對設定的目標 (如透過機器手臂，快速解魔術方塊)，開發出作業系統
+  - 形式 (1): 在嵌入式硬體 (部份修改) 上，針對設定的目標 (如透過機器手臂，快速解魔術方塊)，開發出作業系統
     * 可用現成的 open source kernel (建議為期中報告探討者)
     * 需要提及實際解決的問題，特別是與作業系統相關議題，如 semaphore, mutex, deadlock
     * 允許的硬體架構: ARM Cortex-M4F, ARM Cortex-A8/A9, ARM11
 
-  - 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
+  - 形式 (2): 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
     * 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 `ARM Cortex-A15 fast model<http://www.arm.com/products/tools/models/fast-models/>`_
 
+  - Hackpad: `想法和提案<https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ>`_
 教材
 -----
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
