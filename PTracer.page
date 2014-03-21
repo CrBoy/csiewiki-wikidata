@@ -23,6 +23,9 @@ What is Ray Tracing?
 
 開發日誌
 ========
+2014/3/22 完成儲存BMP圖檔和Ray-Sphere Intersection演算法，做出來的顏色是球本身的顏色，並且只做一層追蹤(確認Ray-Sphere intersect正確性)!
+
+.. image:: /output.jpg
 
 參考資料
 ========
