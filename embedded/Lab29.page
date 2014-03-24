@@ -20,7 +20,7 @@ FreeRTOS
 * 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容
 * 測試方式
   - ``cd ~/workspace``
-  - ``git clone git@github.com:embedded2014/freertos.git``
+  - ``git clone git@github.com/embedded2014/freertos.git``
   - # 或者: ``git clone git://github.com/embedded2014/freertos.git``
   - ``cd freertos``
   - ``make``
@@ -51,7 +51,7 @@ qemu-semihost 操作
 ---------------------------------
 * ``cd ~/workspace``
 * ``git clone git://github.com/embedded2013/qemu-semihost.git``
-* 或者 ``git clone git@github.com:embedded2013/qemu-semihost.git`` # 如果上一行失敗
+* 或者 ``git clone git@github.com/embedded2013/qemu-semihost.git`` # 如果上一行失敗
 * ``cd qemu-semihost``
 * ``./test.sh``
 
@@ -78,8 +78,8 @@ FreeRTOS: Memory management
 hack-malloc
 -------------------
 * 簡易 malloc/free 測試程式，以亂數指定若干不同大小的 memory region，持續進行 malloc 和 free 操作
-* ``git clone git@github.com:embedded2013/hack-malloc.git``
-  - 或 ``git clone git://github.com:embedded2013/hack-malloc.git``
+* ``git clone git@github.com/embedded2013/hack-malloc.git``
+  - 或 ``git clone git://github.com/embedded2013/hack-malloc.git``
 
 * ``cd hack-malloc && make``
 * ``./tryit`` # Ctrl-C 停止輸出
