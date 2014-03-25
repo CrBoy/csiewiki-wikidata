@@ -20,3 +20,9 @@ STM32F429 Discovery
 * uClinux
 * ChibiOS/RT
 * RT-Thread
+
+作業要求
+--------
+* 準備必要的開發環境
+* 測試前述各種作業系統
+* 確認分組報告事宜
