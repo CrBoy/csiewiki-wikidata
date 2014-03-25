@@ -12,6 +12,14 @@ toc: no
 -------
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
 
-Sign-Up
--------
+Sign-Up & 期中分組
+------------------
 * `Hackpad<https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3>`_
+* 順序:
+  - `FreeRTOS</embedded/freertos>`_
+  - `ChibiOS/RT</embedded/chibios>`_
+  - `nuttx</embedded/nuttx>`_
+  - `uClinux</embedded/uclinux>`_
+  - `Xenomai</embedded/xenomai>`_
+  - `rtenv-plus</embdded/rtenv>`_
+  - `F9 microkernel</embedded/f9-kernel>`_
