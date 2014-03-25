@@ -20,7 +20,7 @@ Week  Date     Subject                                 Assignment
 #3    Mar  4   `Case: Quadcopter`_                        `Lab 27`_
 #4    Mar 11   `Assignment Review`_                    `Lab 28`_
 #5    Mar 18   `ARM Cortex-M + RTOS Concepts`_            `Lab 29`_
-#6    Mar 25   ARM I/O, Interrupt, Exception           `Lab 30`_
+#6    Mar 25   `ARM I/O, Interrupt, Exception`_           `Lab 30`_
 #7    Apr  1   春假
 #8    Apr  8   Advanced OS Design issues               :
 #9    Apr 15   Group Presentation (1)                  :
@@ -40,6 +40,7 @@ Week  Date     Subject                                 Assignment
 .. _`Case: Quadcopter`: 2014-w3
 .. _`Assignment Review`: 2014-w4
 .. _`ARM Cortex-M + RTOS Concepts`: 2014-w5
+.. _`ARM I/O, Interrupt, Exception`: 2014-w6
 .. _`Lab 25`: Lab25
 .. _`Lab 26`: Lab26
 .. _`Lab 27`: Lab27
