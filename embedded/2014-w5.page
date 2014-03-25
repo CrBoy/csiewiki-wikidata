@@ -6,7 +6,7 @@ toc: no
 重大事項宣達
 -------------
 * 期中分組報告辦法
-  - 4 人一組
+  - 4 到 5 人一組
   - 3 月 25 日上課結束前，向講師或助教登記
   - 參考硬體為 `STM32F429 Discovery<http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/PF259090>`_ 或 `Raspberry Pi<http://www.raspberrypi.org/>`_
   - 題目順序: `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embdded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
