@@ -1,0 +1,21 @@
+---
+title: Lab30: STM32F429 Discovery
+toc: no
+...
+
+預期目標
+-------
+* 接觸 STM32F429 Discovery 硬體並學習相關操作
+* 為了日後分組報告準備
+
+STM32F429 Discovery
+-------------------
+* `環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ (Hackpad)
+* `SEGA 遊戲模擬器<http://winfred-lu.blogspot.tw/2014/03/stm32f429i-discovery-sms-emulator-with.html>`_
+
+可在 STM32F429 Discovery 運作的作業系統 (示範)
+---------------------------------------------
+* `安裝說明<https://stm32f429.hackpad.com/OS-Support-lYHA4crLwSO>`_ (Hackpad)
+* uClinux
+* ChibiOS/RT
+* RT-Thread
