@@ -21,6 +21,12 @@ STM32F429 Discovery
 * ChibiOS/RT
 * RT-Thread
 
+STM32F4 開發板介紹
+-------------------
+* `一起來認識 STM32F4 開發套件 (1)<http://www.rs-online.com/designspark/electronics/chn/blog/chi-blog-stm32f4%281%29>`_
+* `一起來認識 STM32F4 開發套件 (2)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%282%29>`_
+* `一起來認識 STM32F4 開發套件 (3)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%283%29>`_
+
 作業要求
 --------
 * 準備必要的開發環境
