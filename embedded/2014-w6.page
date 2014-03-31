@@ -12,6 +12,13 @@ toc: no
 -------
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
 
+STM32F429 的展示影片
+--------------------
+* ST firmware: http://www.youtube.com/watch?v=l6KmvP-Kwro
+* MicroEJ: http://www.youtube.com/watch?v=EqW2eh1S-1Y
+* e-ink GUI using µGFX: http://www.youtube.com/watch?v=jtGE7zh8YzE
+* uClinux: http://www.youtube.com/watch?v=avbnkhvZrVo
+
 Sign-Up & 期中分組
 ------------------
 * `Hackpad<https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3>`_
