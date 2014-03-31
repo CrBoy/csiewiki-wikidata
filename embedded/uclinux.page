@@ -8,5 +8,6 @@ toc: no
 
 參考資料
 --------
+* `Introduction to uClinux<http://free-electrons.com/docs/uclinux/>`_
 * `Practical Advice on Running uClinux on Cortex-M3/M4<http://electronicdesign.com/embedded/practical-advice-running-uclinux-cortex-m3m4>`_
 * `µClinux for ARM Cortex-M3<http://www.eetimes.com/document.asp?doc_id=1316982>`_
