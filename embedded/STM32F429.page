@@ -52,3 +52,7 @@ STM32F429 Discovery 開發板
   - High quality HAL using CodeSonar® static analysis tool
   - STM32F4-specific middleware including USB Host and Device and TCP/IP stack
   - Free user-friendly license terms
+
+延伸閱讀
+--------
+* `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
