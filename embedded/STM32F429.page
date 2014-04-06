@@ -7,6 +7,7 @@ STM32F429 Discovery 開發板
 --------------------------
 .. image:: /embedded/STM32F429I-DISCO.jpg
 
+* 官方訓練教材: `STM32F429 CombinedModules</embedded/STM32F429-CombinedModules.pdf>`_ (必讀!)
 * STM32F429ZIT6 microcontroller featuring 2 MB of Flash memory, 256 KB of RAM in an LQFP144 package
 * On-board ST-LINK/V2 with selection mode switch to use the kit as a standalone
 * ST-LINK/V2 (with SWD connector for programming and debugging)
@@ -19,6 +20,7 @@ STM32F429 Discovery 開發板
   - LD2 (red) for 3.3 V power-on
   - Two user LEDs:LD3 (green), LD4 (red)
   - Two USB OTG LEDs:LD5 (green) VBUS and LD6 (red) OC (over-current)
+
 * Two pushbuttons (user and reset)
 * USB OTG with micro-AB connector
 * Extension header for LQFP144 I/Os for a quick connection to the prototyping board and an easy probing
