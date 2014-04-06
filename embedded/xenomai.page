@@ -6,5 +6,37 @@ toc: no
 組員
 ----
 
+作業系統架構
+------------
+* 與 RT-PREEMPT 途徑的差異？
+
+硬體驅動原理
+------------
+* 硬體使用 Raspberry Pi
+
+效能表現
+--------
+* `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
+* Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
+  - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
+
+* 使用 RT-PREEMPT
+
+.. code-block:: prettyprint
+
+    Linux raspberrypi 3.6.11+ #474 PREEMPT Thu Jun 13 17:14:42 BST 2013 armv6l GNU/Linux
+    Min:     22 Act:   31 Avg:   32 Max:     169
+
+* 使用 Xenomai
+
+.. code-block:: prettyprint
+
+    Linux raspberrypi 3.8.13-core+ #1 Thu Feb 27 03:02:16 CST 2014 armv6l GNU/Linux
+    Min:      1 Act:    5 Avg:    6 Max:      41
+
 參考資料
 --------
+* https://github.com/BBBSnowball/raspberry-xenomai
+* https://code.google.com/p/picnc/wiki/RPiXenomaiKernel
+* https://code.google.com/p/picnc/wiki/CreateRaspbianLinuxCNC
+* http://www.camelsoftware.com/firetail/blog/raspberry-pi/real-time-operating-systems/
