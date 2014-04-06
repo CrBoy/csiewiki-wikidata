@@ -6,6 +6,19 @@ toc: no
 組員
 ----
 
+作業系統架構
+------------
+
+硬體驅動原理
+------------
+* GPIO
+  - `Linux GPIO interface<https://www.kernel.org/doc/Documentation/gpio/gpio.txt>`_
+* EXTI
+  - interrupt handling
+
+效能表現
+--------
+
 參考資料
 --------
 * `Introduction to uClinux<http://free-electrons.com/docs/uclinux/>`_
