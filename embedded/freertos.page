@@ -14,6 +14,9 @@ toc: no
 
 硬體驅動原理
 -----------
+* 以 `GPIO</embedded/GPIO>`_ 為例
+  - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
+
 
 效能表現
 --------
