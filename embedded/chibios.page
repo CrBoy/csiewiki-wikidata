@@ -6,5 +6,13 @@ toc: no
 組員
 ----
 
+作業系統架構
+------------
+
+硬體驅動原理
+------------
+* 以 DMA2D 為例
+
 參考資料
 --------
+* `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
