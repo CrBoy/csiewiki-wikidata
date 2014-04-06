@@ -23,6 +23,13 @@ STM32F429 Discovery 開發板
 * USB OTG with micro-AB connector
 * Extension header for LQFP144 I/Os for a quick connection to the prototyping board and an easy probing
 
+前視圖:
+
+.. image:: /embedded/STM32F429I-DISCO-top.jpg
+
+後視圖:
+
+.. image:: /embedded/STM32F429I-DISCO-bottom.jpg
 
 高度整合開發工具: STM32Cube
 ---------------------------
