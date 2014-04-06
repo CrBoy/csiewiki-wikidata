@@ -53,6 +53,18 @@ STM32F429 Discovery 開發板
   - STM32F4-specific middleware including USB Host and Device and TCP/IP stack
   - Free user-friendly license terms
 
+軟體支援
+--------
+* `Hackpad<https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3>`_
+* 作業系統移植
+  - `FreeRTOS</embedded/freertos>`_
+  - `ChibiOS/RT</embedded/chibios>`_
+  - `nuttx</embedded/nuttx>`_
+  - `uClinux</embedded/uclinux>`_
+  - `Xenomai</embedded/xenomai>`_
+  - `rtenv-plus</embdded/rtenv>`_
+  - `F9 microkernel</embedded/f9-kernel>`_
+
 延伸閱讀
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
