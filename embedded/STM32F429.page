@@ -25,11 +25,16 @@ STM32F429 Discovery 開發板
 * USB OTG with micro-AB connector
 * Extension header for LQFP144 I/Os for a quick connection to the prototyping board and an easy probing
 
-前視圖:
+硬體腳位配置
+-------------
+* 請先閱讀 `General-purpose Input/Output (GPIO)</embedded/GPIO>`_
+  - `GPIO 腳位定義<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
+
+* 前視圖:
 
 .. image:: /embedded/STM32F429I-DISCO-top.jpg
 
-後視圖:
+* 後視圖:
 
 .. image:: /embedded/STM32F429I-DISCO-bottom.jpg
 
