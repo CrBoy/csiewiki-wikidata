@@ -12,7 +12,7 @@ toc: no
 硬體驅動原理
 ------------
 * Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
-* MPU
+* MPU (Memory Protection Unit)
 
 效能表現
 --------
