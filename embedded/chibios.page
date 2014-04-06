@@ -13,6 +13,10 @@ toc: no
 ------------
 * 以 DMA2D 為例
 
+效能表現
+--------
+* 參考 ChibiOS/RT 的 test/testbmk.c
+
 參考資料
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
