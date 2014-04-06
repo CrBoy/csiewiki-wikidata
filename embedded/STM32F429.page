@@ -11,7 +11,7 @@ STM32F429 Discovery 開發板
 * STM32F429ZIT6 microcontroller featuring 2 MB of Flash memory, 256 KB of RAM in an LQFP144 package
 * On-board ST-LINK/V2 with selection mode switch to use the kit as a standalone
 * ST-LINK/V2 (with SWD connector for programming and debugging)
-* Board power supply: through the USB bus or from an external 3 V or 5 V supply voltage
+* Board power supply: through the `USB</embedded/USB>`_ bus or from an external 3 V or 5 V supply voltage
 * 2.4" QVGA TFT LCD
 * SDRAM 64 Mbits
 * L3GD20, ST MEMS motion sensor, 3-axis digital output gyroscope
