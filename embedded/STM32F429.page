@@ -6,6 +6,7 @@ toc: no
 高度整合開發工具: STM32Cube
 ---------------------------
 * `意法半導體推STM32Cube新軟體平台<http://www.digitimes.com.tw/tw/dt/n/shwnws.asp?cnlid=13&id=0000370826_EVE7G4MW327YAT5FYLFBA>`_
+* `Product overview - STM32Cube making STM32 development easier<https://www.youtube.com/watch?v=bt1YFG9wErg>`_ (介紹影片)
 * `STM32CubeF4 Key<http://www.st.com/web/en/catalog/tools/PF259243>`_ Features
   - Consistent and complete embedded software offer that frees the user from dependency issues
   - Maximized portability between all STM32 series supported by STM32Cube
