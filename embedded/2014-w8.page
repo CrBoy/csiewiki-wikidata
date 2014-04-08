@@ -35,6 +35,17 @@ toc: no
   - 社會運動規模效率和資訊技術的正相關
 
 
+課程資料
+-------
+* `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+
+
+STM32F429 Discovery
+--------------------
+* `STM32F429 Seminar</embedded/STM32F429-Seminar.pdf>`_
+* `展示影片<https://stm32f429.hackpad.com/Demo-Video-FULfnsoVXk2>`_ (Hackpad)
+
+
 即時多工核心程式設計
 -------------------
 * `第一章 簡介即時多工系統<https://docs.google.com/document/d/1Ui7MEmFvO0mferxRmo9hjfI204foFa6Eg8naFSnFKag/edit>`_
