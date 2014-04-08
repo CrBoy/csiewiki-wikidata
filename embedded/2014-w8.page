@@ -13,3 +13,17 @@ toc: no
 
 * `得罪一整個世代<http://ninjiatext.blogspot.tw/2014/04/blog-post.html>`_
   - "你不妨想像，二十年後的政府財政崩潰，領導者決定廢除高額月退俸，軍公教一律只撥給22k，理由是「過去我們領這個錢也能活」。這勢必會引發大規模的抗議活動，在凱道上集結數十萬退休老人，甚至打下了行政院與立法院。但政府只是拖、拖、拖。拖到老人撐不住了，只好默默離開所佔領的一切。"
+
+即時多工核心程式設計
+-------------------
+* `第一章 簡介即時多工系統<https://docs.google.com/document/d/1Ui7MEmFvO0mferxRmo9hjfI204foFa6Eg8naFSnFKag/edit>`_
+* `第二章 即時多工核心結構<https://docs.google.com/document/d/1DRt5bPRqdLnnzSC7Ao8-mVlDltfWKCw556x09W_65Jg/edit>`_
+* `第三章 串列與佇列<https://docs.google.com/document/d/1RmYL9ExBU6ef3muzdVT4TTOCQf0GcwM2NgvegHdrp28/edit>`_
+* `第四章 內文切換與插斷處理<https://docs.google.com/document/d/1hm4Q_m81UUZ2o4Wjj713SiLrlFUpK1R-aFb0z9-A7h8/edit>`_
+* `第五章 執行段與工作管理<https://docs.google.com/document/d/1sAfcAaGa9D6MTDjwhO5q1Br7ZVmuPHOHeb2hDslBJnc/edit>`_
+* `第六章 旗號與事件<https://docs.google.com/document/d/12AVgyhdoSlbk0SlDOOiQBN3d_YpcaVTaYeLh54w_-pE/edit>`_
+* `第七章 程序間通訊<https://docs.google.com/document/d/10Te8eMiWKVQReu5glJmxT2dQ-_WpJLpch29vxfZ5ibY/edit>`_
+* `附錄 B τ-OS 之程式進入點<https://drive.google.com/?pli=1&authuser=0#folders/0BxHdJoydPYFYVHQ1RFJjaDdGRkk>`_
+* `附錄 C τ-OS 核心服務<https://docs.google.com/document/d/1y8F3c28_cz21JrkyJgseCgHLRsmsnwQTS1UnqmjAFdM/edit>`_
+* `附錄 D τ-OS 程式設計手冊<https://docs.google.com/document/d/18IpzrQBWlBayAWkaWURXLTB-rtTDPJ0UQrFAFJ-MQL8/edit>`_
+* `附錄 E 附錄程式說明<https://docs.google.com/document/d/1fn3mePA4-0meK21gHSpZfIAY2oOBtNBlLF0ns4S_X7A/edit>`_
