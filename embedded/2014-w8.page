@@ -64,6 +64,8 @@ toc: no
 * `Memory Management from UNIX v6, BSD, MINIX, to L4<http://people.debian.org.tw/~jserv/tmp/mm-unix-bsd.pdf>`_
 * `Microkernel Evolution<http://www.slideshare.net/jserv/microkernel-evolution>`_
 * `Faults inside System Software<http://www.slideshare.net/jserv/system-faults>`_
+  - `小小軟體碼錯誤也可能殺人！<http://m.eettaiwan.com/ART_8800691385_480202_NT_bd47ba6a.HTM>`_
+    * buffer overflow, race condition
 
 
 STM32F429 Discovery
