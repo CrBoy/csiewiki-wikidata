@@ -38,6 +38,12 @@ toc: no
 課程資料
 -------
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+* `以工程觀點重新檢視 UNIX 與 C 語言<http://www.slideshare.net/jserv/unix-crevise>`_
+* `反璞歸真系列之探究 UNIX v6 作業系統設計<http://www.slideshare.net/jserv/unix-v6study>`_
+* `Memory Management from UNIX v6, BSD, MINIX, to L4<http://people.debian.org.tw/~jserv/tmp/mm-unix-bsd.pdf>`_
+* `Microkernel Evolution<http://www.slideshare.net/jserv/microkernel-evolution>`_
+* `Faults inside System Software<http://www.slideshare.net/jserv/system-faults>`_
+
 
 
 STM32F429 Discovery
