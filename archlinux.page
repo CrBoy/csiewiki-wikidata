@@ -279,6 +279,13 @@ GNOME
 - xorg
 
   * Driver
+      + 滑鼠： xf86-input-mouse
+      + 鍵盤： xf86-input-keyboard
+      + 觸控板： xf86-input-synaptics
+      + 顯示卡： xf86-video-*
+          - Intel: xf86-video-intel
+          - Nvidia： xf86-video-nouveau
+          - AMD: xf86-video-ati
 
   * 如果不先裝滑鼠鍵盤，就進桌面
 
