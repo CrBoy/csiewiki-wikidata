@@ -295,10 +295,6 @@ GNOME
 
   * x,放大,移動
 
-  * 相關套件
-
-    + eog:影像瀏覽
-
 - gdm
 
   * desktop
@@ -311,20 +307,52 @@ GNOME
 
   * 隱藏設定（佈景主題、插件、字體、登入自動執行）
 
+應用軟體
+----------------------
+- gnome-terminal
+  * 終端機
+
+- nautilus
+  * 檔案管理員
+  * 如果安裝了相關套件，可能需要關閉隱藏的nautilus，輸入
+    ::
+
+        nautilus -q 
+
+- file-roller
+  * 壓縮檔管理
+  * 可直接從壓縮檔的右鍵選單中解壓縮
+
+- evince
+  * 開啟PDF
+
+- gedit
+  * 文字編輯器
+  * 需要額外插件請裝 gedit-plugins
+
+- abiword
+  * 文書處理
+  * 開啟速度很快
+
+- gnumeric
+  * 試算表
+  * 開啟速度很快
+
+- eog
+  * 看圖軟體
+
+- totem
+  * 播放影片、聲音
+
+- gnome-packagekit
+  * GUI的套件管理器
+
 套件
 ======================
 - xdg
 
 自動產生預設資料夾，並設定
 
-- file-roller
-
-關閉檔案管理員
-::
-
-    nautilus -q 
-
-再重開檔案管理員
 
 - vim
 
