@@ -66,11 +66,11 @@ toc: no
 * `Faults inside System Software<http://www.slideshare.net/jserv/system-faults>`_
 
 
-
 STM32F429 Discovery
 --------------------
 * `STM32F429 Seminar</embedded/STM32F429-Seminar.pdf>`_
 * `展示影片<https://stm32f429.hackpad.com/Demo-Video-FULfnsoVXk2>`_ (Hackpad)
+* 系統分析示範: `uClinux + 示波器<https://stm32f429.hackpad.com/uClinux-dUFyVe2r6hF>`_
 
 
 即時多工核心程式設計
