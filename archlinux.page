@@ -361,6 +361,7 @@ GNOME
   * 套件 & 軟體名字不match
 
 - bash-completion
+  * 自動補齊 for pacman…等
 
 輸入法 與 中文
 =========================
