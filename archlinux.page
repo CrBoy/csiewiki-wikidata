@@ -283,6 +283,11 @@ why yaourt
 - bash-completion
   * 自動補齊 for pacman…等
 
+- net-tools
+  * ifconfig
+
+- wireless_tools
+  * iwconfig, iwlist, ...
 
 GNOME
 ============================
@@ -372,8 +377,6 @@ GNOME
 
 網路相關套件
 =========================
-
-- ifconfig
 
 - flashplugin
 
