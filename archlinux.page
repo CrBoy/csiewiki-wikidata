@@ -328,6 +328,27 @@ why yaourt
 - wireless_tools
   * iwconfig, iwlist, ...
 
+Systemd
+============================
+中央管理系統，用來管理gdm, NetworkManager, ...
+
+用法
+---------------------------
+啟動Service
+::
+
+    systemctl start SERVICE_NAME
+
+重啟、關閉、自動啟用、停止自動啟用、狀態分別是``restart``, ``close``, ``enable``, ``disable``, ``status``
+
+列出所有服務
+-------------------------
+如果你忘記服務名稱
+::
+
+    systemctl list-unit-files
+
+
 GNOME
 ============================
 
