@@ -283,6 +283,8 @@ why yaourt
 - bash-completion
   * 自動補齊 for pacman…等
 
+- sudo
+
 - net-tools
   * ifconfig
 
