@@ -271,6 +271,22 @@ why yaourt
 
   yaourt -S --noconfirm 套件名
 
+
+常用套件
+======================
+- xdg-user-dirs
+  * 自動產生預設資料夾，如桌面、文件、下載…等
+
+- vim
+
+- pkgfile
+
+  * 套件 & 軟體名字不match
+
+- bash-completion
+  * 自動補齊 for pacman…等
+
+
 GNOME
 ============================
 
@@ -346,20 +362,6 @@ GNOME
 
 - gnome-packagekit
   * GUI的套件管理器
-
-套件
-======================
-- xdg-user-dirs
-  * 自動產生預設資料夾，如桌面、文件、下載…等
-
-- vim
-
-- pkgfile
-
-  * 套件 & 軟體名字不match
-
-- bash-completion
-  * 自動補齊 for pacman…等
 
 輸入法 與 中文
 =========================
