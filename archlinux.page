@@ -100,7 +100,54 @@ sda(硬碟)
     pppoe-setup
 無線網路
 ~~~~~~~~~~~~~~~~~~~~~~~
-高人待補
+比有線網路繁瑣
+
+尋找界面和網路
+***********************
+1. 先找網路卡
+   ::
+
+       iw dev
+   Interface 後面的名字就是
+
+2. 找網路
+   ::
+
+       iw dev dev_name scan | less
+   找SSID欄位
+
+連線
+***********************
+隨加密機制不同有不同的連線方式
+
+- 沒有密碼或是用WEP
+  ::
+
+    iw dev dev_name connect your_ssid [key 0:your_key]
+
+- WPA, WPA2
+
+  1. 設定``/etc/wpa_supplicant/wpa_supplicant.conf``
+
+     詳情請參閱man ``wpa_supplicant.conf``
+
+     或是用
+
+     ::
+
+         wpa_passphrase your_ssid your_key >> /etc/wpa_supplicant/wpa_supplicant.conf
+     來產生檔案
+
+  2. 連線
+
+     ::
+
+         wpa_supplicant -B -i dev_name -c /etc/wpa_supplicant/wpa_supplicant.conf
+     如果沒有意外，你已經"連上modem"
+
+  3. 連上外部網路
+
+     用DHCP或是PPPoE或是其他方法
 
 安裝作業系統
 ====================
