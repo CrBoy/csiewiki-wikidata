@@ -372,8 +372,8 @@ why yaourt
 - net-tools
   * ifconfig
 
-- wireless_tools
-  * iwconfig, iwlist, ...
+- iw, wireless_tools
+  * iw, iwconfig, iwlist, ...
 
 Systemd
 ============================
