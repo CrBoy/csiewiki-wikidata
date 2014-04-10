@@ -23,7 +23,7 @@ Week  Date     Subject                                 Assignment
 #6    Mar 25   `ARM I/O, Interrupt, Exception`_           `Lab 30`_
 #7    Apr  1   春假
 #8    Apr  8   `Advanced OS Design issues`_               :
-#9    Apr 15   Group Presentation (1)                  :
+#9    Apr 15   `Group Presentation (1)`_                  :
 #10   Apr 22   Group Presentation (2)                  :
 #11   Apr 29   Group Presentation (3)                  :
 #12   May  6   Group Presentation (4)                  :
@@ -42,6 +42,7 @@ Week  Date     Subject                                 Assignment
 .. _`ARM Cortex-M + RTOS Concepts`: 2014-w5
 .. _`ARM I/O, Interrupt, Exception`: 2014-w6
 .. _`Advanced OS Design issues`: 2014-w8
+.. _`Group Presentation (1)`: 2014-w9
 .. _`Lab 25`: Lab25
 .. _`Lab 26`: Lab26
 .. _`Lab 27`: Lab27
