@@ -116,6 +116,11 @@ sda(硬碟)
        iw dev dev_name scan | less
    找SSID欄位
 
+3. 啟用介面
+   ::
+
+       ip link set dev dev_name up
+ 
 連線
 ***********************
 隨加密機制不同有不同的連線方式
