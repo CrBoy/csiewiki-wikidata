@@ -140,11 +140,8 @@ mirrorlist
 
     pacstrap /mnt base
 
-設定系統組態(configuration)
-============================
-
 建立fstab
---------------------
+============================
 
 安裝好基礎的系統之後，我們必須告訴他現在硬碟有哪些分割區，以及開機之後要把這些分割區mount在哪些目錄底下。
 
@@ -160,52 +157,51 @@ mirrorlist
 
 它把分割表的資訊，接在 ``/mnt/etc/fstab`` 的後面繼續寫
 
-chroot
----------------
+設定系統組態(configuration)
+============================
+
 現在我們要change root到新安裝的系統目錄下，繼續完成系統的設定
 ::
 
    arch-chroot /mnt
 
-- 設定hostname
+域名
+---------------
 
+不知道域名是什麼，就寫localhost
 
 ::
 
-   nano /etc/hostname
+   echo 域名 > /etc/hostname
 
-- 設定時區
-
+時區
+---------------
 
 ::
 
     ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 
-- 設定語系
+語系
+---------------
+
+- 產生語系
+
+  `見locale的功能/意義<http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/locale.html>`_
+
+  把 ``/etc/locale.gen`` 當中要產生的語系取消註解，並使用
+  ::
+
+      locale-gen
+
+- 設定系統語系
 
 
-`見locale的功能/意義<http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/locale.html>`_
+  編輯 ``/etc/locale.conf`` 可以全域的把這些項目都變成同樣的語系/編碼
 
-把 ``/etc/locale.gen`` 當中要產生的語系取消註解，並使用
-::
+  ::
 
-    locale-gen
+      echo 'LANG="en_US.UTF-8"' > /etc/locale.conf 
 
-產生它
-
-- 調整整個系統用的語言
-
-在做這步之前，可以先用
-::
-
-    locale
-
-檢視一下哪一些項目用了哪種語言
-
-而現在我們寫入 ``/etc/locale.conf`` 可以全域的把這些項目都變成同樣的語系/編碼
-
-# nano /etc/locale.conf
-LANG="en_US.UTF-8"
 
 產生kernel image
 ===========================
@@ -217,18 +213,25 @@ LANG="en_US.UTF-8"
 
 Bootloader
 ============================
+
+安裝 grub
+---------------
 - BIOS
 
--- 安裝 grub
 
-修改開機的預設系統 或 grub的顏色/ 主題等等：/etc/default/grub
+::
 
-如果要自定奇奇怪怪的menuentry的話，可以寫進/etc/grub.d/40 or 41
+    pacman -S grub
 
--- 安裝os-prober
+- UEFI
 
+
+找尋已安裝的作業系統
+---------------
 grub預設不會尋找其他的作業系統：見/boot/grub/grub.cfg當中的menuentry
+::
 
+    pacman -S os-prober
 
 產生設定檔
 ------------------
@@ -237,6 +240,11 @@ grub預設不會尋找其他的作業系統：見/boot/grub/grub.cfg當中的men
         grub-mkconfig -o /boot/grub/grub.cfg
         grub-install /dev/sda
 
+額外設定
+------------------
+- 修改開機的預設系統 或 grub的顏色/ 主題等等：/etc/default/grub
+
+- 如果要自定奇奇怪怪的menuentry的話，可以寫進/etc/grub.d/40 or 41
 
 套件
 ==========================
@@ -279,7 +287,6 @@ YAOURT
 -------------------
 
 why yaourt
-~~~~~~~~~~~~~~~~~~
 
 - 用於下載安裝第三方套件（form sourceforge.git…）
 - 最大的優點在於這個套件會有人幫你管理
@@ -289,24 +296,30 @@ why yaourt
 
 安裝
 ~~~~~~~~~~~~~~~~~~~~~~~~
-先增加repo
+1. 增加repo
 
-::
+   ::
 
-    [archlinuxfr]
-    SigLevel = Never
-    Server = http://repo.archlinux.fr/$arch
-
-
-將這些加至``/etc/pacman.conf``
+       [archlinuxfr]
+       SigLevel = Never
+       Server = http://repo.archlinux.fr/$arch
 
 
-再安裝yaourt
+   將這些加至``/etc/pacman.conf``
 
-::
 
-    pacman -Sy yaourt
+2. 安裝yaourt
 
+   ::
+
+       pacman -Sy yaourt
+
+3. (其實他是2.5)要安裝第三方套件的時候常常會用到compile的工具
+
+   ::
+
+       pacman -S base-devel
+ 
 使用
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -342,8 +355,8 @@ why yaourt
 
 - sudo
 
-- net-tools
-  * ifconfig
+- net-tools,iproute2
+  * ifconfig,ip
 
 - iw, wireless_tools
   * iw, iwconfig, iwlist, ...
