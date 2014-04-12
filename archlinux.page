@@ -384,21 +384,25 @@ Systemd
 
 GNOME
 ============================
-
+ 
 **KDE太土了**
 
+安裝
+----------------
 - xorg
 
   * Driver
-      + 滑鼠： xf86-input-mouse
-      + 鍵盤： xf86-input-keyboard
-      + 觸控板： xf86-input-synaptics
-      + 顯示卡： xf86-video-*
-          - Intel: xf86-video-intel
-          - Nvidia： xf86-video-nouveau
-          - AMD: xf86-video-ati
 
-  * 如果不先裝滑鼠鍵盤，就進桌面
+    + 滑鼠： xf86-input-mouse
+    + 鍵盤： xf86-input-keyboard
+    + 觸控板： xf86-input-synaptics
+    + 顯示卡： xf86-video-
+
+      - Intel: xf86-video-intel
+      - Nvidia： xf86-video-nouveau
+      - AMD: xf86-video-ati
+
+  * 如果不先裝滑鼠鍵盤，就進桌面，就會自斷全身筋脈，完全不能動……
 
 - gnome-shell
 
@@ -431,39 +435,39 @@ GNOME
 
 應用軟體
 ----------------------
-- gnome-terminal
+- `gnome-terminal <https://wiki.gnome.org/Apps/Terminal>`_
   * 終端機
 
-- nautilus
+- `nautilus <https://wiki.gnome.org/Apps/Nautilus>`_
   * 檔案管理員
   * 如果安裝了相關套件，可能需要關閉隱藏的nautilus，輸入
     ::
 
         nautilus -q 
 
-- file-roller
+- `file-roller <http://fileroller.sourceforge.net>`_
   * 壓縮檔管理
   * 可直接從壓縮檔的右鍵選單中解壓縮
 
-- evince
+- `evince <https://wiki.gnome.org/Apps/Evince>`_
   * 開啟PDF
 
-- gedit
+- `gedit <https://wiki.gnome.org/Apps/Gedit>`_
   * 文字編輯器
   * 需要額外插件請裝 gedit-plugins
 
-- abiword
+- `abiword <http://www.abisource.com/>`_
   * 文書處理
   * 開啟速度很快
 
-- gnumeric
+- `gnumeric <http://www.gnumeric.org/>`_
   * 試算表
   * 開啟速度很快
 
-- eog
+- `eog <https://wiki.gnome.org/Apps/EyeOfGnome>`_
   * 看圖軟體
 
-- totem
+- `totem <https://wiki.gnome.org/action/show/Apps/Videos?action=show&redirect=Apps%2FTotem>`_
   * 播放影片、聲音
 
 - gnome-packagekit
@@ -473,7 +477,7 @@ GNOME
 =========================
 - ibus-chewing
 
-- wqy-zenhei
+- `wqy-zenhei <http://wenq.org/wqy2/index.cgi>`_
 
 網路相關套件
 =========================
