@@ -14,10 +14,22 @@ Arch Linux是一個open source的作業系統
 
 準備硬碟
 -------
+搜尋硬碟
+~~~~~~~~~~
+::
+
+    lsblk
+sda,sdb,……是硬碟
+
+sda1,sda2,……是分割區
 
 硬碟分割
 ~~~~~~~~~~
 cfdisk (圖形化介面)
+
+::
+
+    cfdisk /dev/硬碟名稱
 
 -  GPT分割表要用cgdisk
 
@@ -26,17 +38,15 @@ cfdisk (圖形化介面)
 
 ::
 
-    mkfs.ext4 /dev/sda1
-    mkfs.ext4 /dev/sda2
+    mkfs.ext4 /dev/分割區
 
 掛載硬碟
 ~~~~~~~~~~
 
 ::
 
-    mount /dev/sda1 /mnt
-    mkdir /mnt/home
-    mount /dev/sda2 /mnt/home
+    mount /dev/分割區 /mnt
+
 
 補充說明
 ~~~~~~~~~~
