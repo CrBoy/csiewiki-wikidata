@@ -15,7 +15,7 @@ toc: yes
 ------------
 
 系統狀態(System States)
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 * Init
 * Normal 
 * Suspended 
@@ -35,6 +35,12 @@ toc: yes
 .. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
 
 .. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
+
+上下文交換(Context Switch)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+中斷(Interrupt)
+^^^^^^^^^^^^^^^
 
 
 硬體驅動原理
