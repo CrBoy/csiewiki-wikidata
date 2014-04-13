@@ -14,6 +14,11 @@ toc: no
 作業系統架構
 ------------
 
+系統狀態圖
+^^^^^^^^^
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
+
+
 硬體驅動原理
 ------------
 * 以 DMA2D 為例
@@ -25,3 +30,4 @@ toc: no
 參考資料
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
+* `ChibiOS/RT - SourceForge<http://chibios.sourceforge.net/html/index.html>`_
