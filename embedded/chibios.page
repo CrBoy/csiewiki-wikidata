@@ -41,7 +41,8 @@ toc: yes
 
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
-
+| Maskable Interrupt(可遮罩式中斷) :  一種硬體中斷。可以透過軟體控制去設定中斷遮罩暫存器(Interrupt Mask Register, IMR)內的位元遮罩值（bit-mask）來讓CPU決定要不要回應這個中斷要求。
+| Non-Maskable Interrupt(不可遮罩式中斷) :  一種硬體中斷。與可遮罩式中斷不同，它無法用軟體去控制。**CPU一定要回應這個中斷要求，不可以忽略。**
 
 硬體驅動原理
 ------------
@@ -55,3 +56,4 @@ toc: yes
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
 * `ChibiOS/RT - SourceForge<http://chibios.sourceforge.net/html/index.html>`_
+* `Overview of the Cortex-M3, Chapter 2<http://www.arm.com/files/word/Yiu_Ch2.pdf>`_
