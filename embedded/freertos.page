@@ -191,7 +191,8 @@ xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個
 
 xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB對象，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的堆棧（假設有足夠使用的內存）和在TCB的pxStack成員中記錄堆內存的開始。
 
-而這段程式碼就是ARM Cortex-M4將剛建造好的好的task將暫存器裡的資訊存入stck裡
+爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
+
  
 .. code-block:: c
 
@@ -233,6 +234,9 @@ xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一�
 	return pxTopOfStack;
 >>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
     }
+
+在TCB完成初始化後，要把該TCB接上其他相關的list結構，這個過程中必須暫時停止interrupts功能，以免在list還沒設定好前，被其他的task使用停止interrupt的實作，是將CPU中控制interrupt權限(0~255)的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
+
 
 而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
 
@@ -346,12 +350,186 @@ xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一�
     }
 >>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
 
+<<Communication>>
+>>Queue
+使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
+Queue的結構如下
+
+    typedef struct QueueDefinition{
+
+      signed char *pcHead;                    /* Points to the beginning of the queue 
+
+                                                 storage area. */
+
+      signed char *pcTail;                    /* Points to the byte at the end of the 
+
+                                                 queue storage area. One more byte is 
+
+                                                 allocated than necessary to store the 
+
+                                               queue items; this is used as a marker. */
+
+      signed char *pcWriteTo;                 /* Points to the free next place in the 
+
+                                                 storage area. */
+
+      signed char *pcReadFrom;                /* Points to the last place that a queued 
+
+                                                 item was read from. */
+
+      xList xTasksWaitingToSend;              /* List of tasks that are blocked waiting 
+
+                                                 to post onto this queue.  Stored in 
+
+                                                 priority order. */
+
+      xList xTasksWaitingToReceive;           /* List of tasks that are blocked waiting 
+
+                                                 to read from this queue. Stored in 
+
+                                                 priority order. */
+
+      volatile unsigned portBASE_TYPE uxMessagesWaiting;/* The number of items currently
+
+                                                           in the queue. */
+
+      unsigned portBASE_TYPE uxLength;                  /* The length of the queue 
+
+                                                           defined as the number of 
+
+                                                           items it will hold, not the 
+
+                                                           number of bytes. */
+
+      unsigned portBASE_TYPE uxItemSize;                /* The size of each items that 
+
+                                                           the queue will hold. */
+
+    } xQUEUE;
+
+由於queue可以被許多個task進行write，一個queue可能有許多個task處於block的狀態以等待queue有空間放data，一旦queue有空位時，會在這些被block的task中挑出一個priority最高的task，將他解除block並且進行write，若這些task的priority都一樣高，那將會挑出等待最久的task
+FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
+
+    Semaphores按照對變數的定義
+
+    semaphore用來讓一個task喚醒喚醒(wake)另一個task做事，例如:producer和consumer
+
+    Mutexes
+
+    mutex用來對共享資源做互斥存取
+
+實作semaphore：
+    N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少queue entries被佔用，其中uxItemSize為0，item和data copying是不需要的
+
+        需要 ARM Cortex-M4F 特有的機制，才能實做 semaphore 嗎？若是，其機制為何？
+
+    需要，在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
+
+    void vPortEnterCritical( void ) 
+
+    { 
+
+        portDISABLE_INTERRUPTS(); 
+
+        uxCriticalNesting++; 
+
+        __asm volatile( "dsb" ); 
+
+        __asm volatile( "isb" ); 
+
+    } 
+
+    /*-----------------------------------------------------------*/ 
+
+     
+
+    void vPortExitCritical( void ) 
+
+    { 
+
+        configASSERT( uxCriticalNesting ); 
+
+        uxCriticalNesting--; 
+
+        if( uxCriticalNesting == 0 ) 
+
+        { 
+
+            portENABLE_INTERRUPTS(); 
+
+        } 
+
+    }
+
+實作mutex：
+    因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
+
+        /* Effectively make a union out of the xQUEUE structure. */
+
+        #define uxQueueType           pcHead
+
+        #define pxMutexHolder         pcTail
+
+    uxQueueType若為0，表示this queue is being used for a mutex
+    pxMutexHolder用來實作priority inheritance
+
+        mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
+
+    另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
+
+    
+<<Scheduling>>
+>>基本概念
+在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊
+除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
+
+    Delay( sleep ): 停止運行一段特定時間
+
+    wait( block ): 等待取得某資源
+
+    等待事件觸發(例如鍵盤輸入)
+
+>>RTOS tick
+
+    Idle Task正在運行
+
+    發生tick時間，控制權轉給TickISR()
+
+configTICK_RATE_HZ
+vControlTask
+>>Starvation
+FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較低的task則無法執行，便會發生Starvation(低優先權很長一段時間都無法獲得CPU執行)
+<Interrupt handler>
+ This is a reason why several functions exists in two versions: one for regular tasks and another is intended to interrupts handler.
+ 
+ or this reason, it is necessary to make interrupts handlers' execution as short as possible.
+On way to achieve this goal consists in the creation of tasks waiting for an interrupt to occur with a semaphore, and let
+this safer portion of code actually handle the interrupt.
+An ISR “gives” a semaphore andunblock a 'Handler” task that is able to handler the ISR, making the ISR execution much shorter
+>>External Interrupt(EXTI)
+各interrupt handler的排序和名稱定義(並非實作內容)放置在startup_stm32f429_439xx.s中，實作則需要在其他地方宣告
+使用者可以定義的外部中斷觸發條件爲EXTI_Line0至EXTI_Line15，不過EXTI_Line10~15和EXTI_Line5~9被設定爲觸發同一外部中斷，實際上能夠定義的中斷處理只有EXTI_Line0, 1, 2, 3, 4, 5~9, 10~15，總計七個
+EXTI使用前必須：
+
+    和GPIO連接(作爲觸發來源)
+
+    設定EXTI
+
+    模式( Interrupt, Event )
+
+    被觸發的條件( Rising, Falling, Rising&falling )
+
+    LineCmd( 尚未查明 )
+
+    設定NVIC通道，權限
+
+
+
 * 硬體驅動原理
 -----------
 * 以 `GPIO</embedded/GPIO>`_ 為例
   - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
-創造全新task
-TCB的資料結構：
+
 
 效能表現
 --------
