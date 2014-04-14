@@ -103,7 +103,7 @@ Task的狀態
             ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext;
         }
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
-   }
+    }
 
 * 創造全新task
 
