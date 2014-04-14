@@ -110,8 +110,7 @@ Task的狀態
 TCB的資料結構：
 
  .. code-block:: prettyprint 
-
-typedef struct tskTaskControlBlock
+    typedef struct tskTaskControlBlock
 {
   volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
                                                              the last item placed on 
@@ -150,7 +149,9 @@ typedef struct tskTaskControlBlock
 
 } tskTCB;
 
-.. code-block:: prettyprint
+
+pxTopOfStack , pxEndOfStack :紀錄Stack的大小
+uxPriority , uxBasePriority ：就路優先權
 
 * 硬體驅動原理
 -----------
