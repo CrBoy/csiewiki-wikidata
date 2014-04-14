@@ -164,11 +164,17 @@ TCB的資料結構：
 我們想得知FreeRTOS的context switch時間，並想出一個測試方法：
 
 .. image:: /embedded/test1contextSwitch.jpg
-首先創建task1和task2，其中task2的priority大於task1的priority。task2先執行時，馬上就進行vTaskDelay使task2移至block狀態1秒，這時就會發生context switch，換成task1執行，這1秒的時間，task1不斷的進行i++，直到1秒結束後，回到task2執行，再由task2印出i值。
-設定一個task3其priority高於task2，讓task3執行vTaskDelay 30秒，當30秒結束後
+1. 首先創建task1和task2，其中task2的priority大於task1的priority。task2先執行時，馬上就進行vTaskDelay使task2移至block狀態1秒，這時就會發生context switch，換成task1執行，這1秒的時間，task1不斷的進行i++，直到1秒結束後，回到task2執行，再由task2印出i值，並把i重新設0，此為一個週期。此動作可得到i在一秒時可跑至多少，設一秒可跑至k值。
+
+2. 設定一個task3其priority高於task2，讓task3執行vTaskDelay 300秒，當300秒結束後，會中斷task1所執行的i++。再由task3印出i值，設其為final_i，k值與final_i值的差額，即為context switch的總時間。
+
+下圖為隨機挑出45個i值做成圖表，其中平均i值為：4280015
 
 .. image:: /embedded/test2contextSwitch.jpg
+接著我們測出的final_i值，平均為：3913853，故可得到 (4280015 - 3913853)/ 4280015 = 0.0855 (秒)
+0.0855秒代表在300秒的測試內的所有context switch時間之總和
 
+而因為一個週期（第一個步驟）會經過2個context switch（上圖），我們測300內共有600個context switch，故每個context switch為：
 
 參考資料
 --------
