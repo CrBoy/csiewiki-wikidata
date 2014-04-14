@@ -14,6 +14,9 @@ toc: no
 ----
 * `Link<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
 
+  .. image:: /qu.png
+  .. image:: /suspending.gif
+  .. image:: /TickISR.gif
 FreeRTOS架構
 -----------
 
