@@ -16,20 +16,65 @@ toc: no
 
 FreeRTOS架構
 -----------
-Task的狀態
+
+FreeRTOS是一個相對較小的應用程序。最小化的FreeRTOS內核僅包括3個（.c）文件和少數頭文件，總共不到9000行代碼，還包括了註釋和空行。一個典型的編譯後（二進制）代碼映像小於10KB。
+
+FreeRTOS的代碼可以分解為三個主要區塊：任務，通訊，和硬件接口。
+
+●任務：大約有一半的FreeRTOS的核心代碼用來處理多數操作系統首要關注的問題：任務。任務是給定優先級的用戶定義的C函數。 task.c和task.h完成了所有有關創建，調度，和維護任務的繁重工作。
+
+●通訊：任務很重要，不過任務間可以互相通訊則更為重要！它給我們帶來FreeRTOS的第二項任務：通訊。大約40%的FreeRTOS核心代碼是用來處理通訊的。 queue.c和queue.h是負責處理FreeRTOS的通訊的。任務和中斷使用隊列互相發送數據，並且使用信號燈和互斥來發送臨界資源的使用情況。
+
+●硬件接口：接近9000行的代碼拼湊起基本的FreeRTOS，是硬件無關的；相同的代碼都能夠運行，不論FreeRTOS是運行在不起眼的8051，還是最新、最炫的ARM內核上。大約有6%的FreeRTOS的核心代碼，在硬件無關的FreeRTOS內核與硬件相關的代碼間扮演著墊片的角色。我們將在下個部分討論硬件相關的代碼。
+
+硬體方面:
+
+配置選項可以通過設置不同的#defines，在FreeRTOSConfig.h文件裡選擇。時鐘速度，堆大小，互斥，和API子集，連同其他許多選項，都可以在這個文件中配置。
+
+在FreeRTOS/Source/portable/IAR/ARM_CM3/目錄下。 portmacro.h文件聲明了所有硬件特定功能，port.c和portasm.s 包含了所有實際硬件相關的代碼。硬件無關的頭文件portable.h在編譯的時候用#include's引入正確的portmacro.h文件。 FreeRTOS使用#define'd調用在portmacro.h中聲明的硬件特定功能。
+
+
 .. image:: /Task狀態.png
 
-Ready: FreeRTOS將各種優先權的Task放在Readylist
-Running : 透過FreeRTOS的排程，依照優先權的高低依序給CPU執行
-Block: 
-Suspended
+* Ready : FreeRTOS將各種優先權的Task放在Readylist
+* Running : 透過FreeRTOS的排程，依照優先權的高低依序給CPU執行
+* Block : 
+* Suspended :
 
-Ready list的資料形態
-FreeRTOS使用ready list去管理待準備好要執行的tasks
-而ready list的資料儲存方式如下圖
+
+
+* Ready list的資料形態
+ - FreeRTOS使用ready list去管理待準備好要執行的tasks而ready list的資料儲存方式如下圖
+
 .. image:: /freertos-figures-full-ready-list-2.png
 
-硬體驅動原理
+* Context Switch 時選出下一個欲執行的task
+
+ 下面是在ready list中依照優先度選取執行目標的程式其中，FreeRTOS的優先度排序最小優先權爲0，數字越大則優先權越高
+
+ - /* In file: Source/tasks.c */
+ - while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
+ - {
+ -     configASSERT( uxTopReadyPriority );
+ -     --uxTopReadyPriority;
+ - }
+ - listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );
+ - 
+ - /*In file: Source/include.h */
+ - #define listGET_OWNER_OF_NEXT_ENTRY( pxTCB, pxList )
+ - {
+ - List_t * const pxConstList = ( pxList );
+ -     /* Increment the index to the next item and return the item, ensuring */
+ -     /* we don't return the marker used at the end of the list.  */
+ -     ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext; 
+ -     if( ( void * ) ( pxConstList )->pxIndex == ( void * ) &( ( pxConstList )->xListEnd ) )  \
+ -     {
+ -         ( pxConstList )->pxIndex = ( pxConstList )->pxIndex->pxNext;
+ -      }
+ -      ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
+ - } 
+
+* 硬體驅動原理
 -----------
 * 以 `GPIO</embedded/GPIO>`_ 為例
   - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
