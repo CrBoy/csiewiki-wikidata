@@ -81,7 +81,7 @@ Task的狀態
 
  下面是在ready list中依照優先度選取執行目標的程式其中，FreeRTOS的優先度排序最小優先權爲0，數字越大則優先權越高
 
-.. code-block:: prettyprint linenums
+.. code-block:: c
 
     /* In file: Source/tasks.c */
     while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
@@ -105,15 +105,13 @@ Task的狀態
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
     }
 
---------------------------------
-
 * 創造全新task
 
 TCB的資料結構：
 
-.. code-block:: prettyprint linenums
+.. code-block:: c
 
-typedef struct tskTaskControlBlock
+    typedef struct tskTaskControlBlock
     {
       volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
                                                              the last item placed on 
@@ -152,7 +150,6 @@ typedef struct tskTaskControlBlock
 
     } tskTCB;
 
---------------------------------
 
 pxTopOfStack , pxEndOfStack :紀錄Stack的大小
 uxPriority , uxBasePriority ：就路優先權
@@ -186,6 +183,8 @@ TCB的資料結構：
 
 ●interrupt latency
 我們的架構為是手動設定一個external interrupt，發生在BUTTON_USER按下時，下面程式是我們的實作：
+
+.. code-block:: c
 
     i = 0;
     while( STM_EVAL_PBGetState( BUTTON_USER ) ){
