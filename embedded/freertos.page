@@ -109,7 +109,7 @@ Task的狀態
 
 TCB的資料結構：
 
-.. code-block:: prettyprint 
+ .. code-block:: prettyprint 
 
 typedef struct tskTaskControlBlock
 {
