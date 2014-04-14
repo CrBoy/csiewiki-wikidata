@@ -109,6 +109,8 @@ Task的狀態
 
 TCB的資料結構：
 
+.. code-block:: prettyprint 
+
 typedef struct tskTaskControlBlock
 {
   volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
