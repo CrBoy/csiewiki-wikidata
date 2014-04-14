@@ -111,6 +111,8 @@ TCB的資料結構：
 
 .. code-block:: prettyprint 
 
+.. code-block:: prettyprint
+
 typedef struct tskTaskControlBlock
 {
   volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
@@ -149,6 +151,8 @@ typedef struct tskTaskControlBlock
   #endif
 
 } tskTCB;
+
+.. code-block:: prettyprint
 * 硬體驅動原理
 -----------
 * 以 `GPIO</embedded/GPIO>`_ 為例
