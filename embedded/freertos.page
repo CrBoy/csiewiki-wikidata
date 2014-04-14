@@ -187,10 +187,11 @@ TCB的資料結構：
     }
 
 
-當BUTTON_USER按下後，會先執行i++直到interruptHandler處理interrupt，讀i值即可得知interrupt latency。
-而實作結果發現i依舊為0，我們猜想是interruptHandler反應時間遠小於執行i++。
+當BUTTON_USER按下後，會先執行i++直到interruptHandler處理interrupt，讀i值即可得知interrupt latency，而實作結果發現i依舊為0。
 
+●IPC（Inter-Process Communication） throughput
 
+●realtime capability
 
 參考資料
 --------
