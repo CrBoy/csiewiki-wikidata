@@ -20,7 +20,7 @@ toc: no
 FreeRTOS架構
 -----------
 
-FreeRTOS是一個相對較小的應用程式。最小化的FreeRTOS內核僅包括3個（.c）文件和少數標頭檔，總共不到9000行程式碼，還包括了註解和空行。一個典型的編譯後（二進制）binary小於10KB。
+FreeRTOS是一個相對較小的應用程式。最小化的FreeRTOS核心僅包括3個（.c）文件和少數標頭檔，總共不到9000行程式碼，還包括了註解和空行。一個典型的編譯後（二進制）binary小於10KB。
 
 FreeRTOS的程式碼可以分解為三個主要區塊：任務，通訊，和硬體界面。
 
@@ -28,7 +28,7 @@ FreeRTOS的程式碼可以分解為三個主要區塊：任務，通訊，和硬
 
 ●通訊：任務很重要，不過任務間可以互相通訊則更為重要！它給我們帶來FreeRTOS的第二項任務：通訊。大約40%的FreeRTOS核心程式碼是用來處理通訊的。 queue.c和queue.h是負責處理FreeRTOS的通訊的。任務和中斷使用隊列互相發送數據，並且使用semaphore和mutex來發送critical section的使用情況。
 
-●硬體界面：接近9000行的程式碼拼湊起基本的FreeRTOS，是和硬體無關的；相同的程式碼都能夠運行，大約有6%的FreeRTOS的核心代碼，在硬體無關的FreeRTOS內核與硬體相關的程式碼間扮演著墊片的角色。我們將在下個部分討論硬體相關的程式碼。
+●硬體界面：接近9000行的程式碼拼湊起基本的FreeRTOS，是和硬體無關的；相同的程式碼都能夠運行，大約有6%的FreeRTOS的核心代碼，在硬體無關的FreeRTOS核心與硬體相關的程式碼間扮演著墊片的角色。我們將在下個部分討論硬體相關的程式碼。
 
 硬體方面:
 
@@ -192,7 +192,7 @@ uxPriority , uxBasePriority ：紀錄優先權 ,而後者是紀錄原本的優�
 
 xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個列表中 ，被插入pointer的地方
 
-xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB對象，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的堆棧（假設有足夠使用的內存）和在TCB的pxStack成員中記錄堆內存的開始。
+xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB target，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的HeapStack（假設有足夠使用的記憶體）和在TCB的pxStack成員中記錄Stack的記憶體起點。
 
 爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
 
