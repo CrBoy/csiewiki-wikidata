@@ -29,9 +29,18 @@ FreeRTOS的代碼可以分解為三個主要區塊：任務，通訊，和硬件
 
 硬體方面:
 
-配置選項可以通過設置不同的#defines，在FreeRTOSConfig.h文件裡選擇。時鐘速度，堆大小，互斥，和API子集，連同其他許多選項，都可以在這個文件中配置。
+portmacro.h:
 
-在FreeRTOS/Source/portable/IAR/ARM_CM3/目錄下。 portmacro.h文件聲明了所有硬件特定功能，port.c和portasm.s 包含了所有實際硬件相關的代碼。硬件無關的頭文件portable.h在編譯的時候用#include's引入正確的portmacro.h文件。 FreeRTOS使用#define'd調用在portmacro.h中聲明的硬件特定功能。
+    定義了硬體相關變數，如資料形態定義，以及硬體相關的函式呼叫的名稱定義(以portXXXXX爲名)等，統一各平臺呼叫函式的
+
+port.c:
+
+    定義了包含和硬體相關的程式碼
+
+FreeRTOSConfig.h:
+
+    包含Clock speed, heap size, mutexes等等都在此定義
+
 
 
 .. image:: /Task狀態.png
@@ -44,6 +53,25 @@ FreeRTOS的代碼可以分解為三個主要區塊：任務，通訊，和硬件
 
 
 * Ready list的資料形態
+
+<<命名規則>>
+>>變數
+    char類型：以 c 為字首
+    short類型：以 s 為字首
+    long類型：以 l 為字首
+    float類型：以 f 為字首
+    double類型：以 d 為字首
+    Enum變數：以 e 為字首
+    其他（如struct）：以 x 為字首
+    pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
+    unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
+    
+>>Functions
+    文件内：以 prv 為字首
+    API：以其return類型為字首，按照對變數的定義
+    名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
+
+
  - FreeRTOS使用ready list去管理待準備好要執行的tasks而ready list的資料儲存方式如下圖
 
 .. image:: /freertos-figures-full-ready-list-2.png
