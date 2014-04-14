@@ -16,6 +16,18 @@ toc: no
 
 FreeRTOS架構
 -----------
+Task的狀態
+.. image:: /Task狀態.png
+
+Ready: FreeRTOS將各種優先權的Task放在Readylist
+Running : 透過FreeRTOS的排程，依照優先權的高低依序給CPU執行
+Block: 
+Suspended
+
+Ready list的資料形態
+FreeRTOS使用ready list去管理待準備好要執行的tasks
+而ready list的資料儲存方式如下圖
+.. image:: /freertos-figures-full-ready-list-2.png
 
 硬體驅動原理
 -----------
