@@ -160,6 +160,15 @@ TCB的資料結構：
 
 效能表現
 --------
+●context switch
+我們想得知FreeRTOS的context switch時間，並想出一個測試方法：
+
+.. image:: /embedded/test1contextSwitch.jpg
+首先創建task1和task2，其中task2的priority大於task1的priority。task2先執行時，馬上就進行vTaskDelay使task2移至block狀態1秒，這時就會發生context switch，換成task1執行，這1秒的時間，task1不斷的進行i++，直到1秒結束後，回到task2執行，再由task2印出i值。
+設定一個task3其priority高於task2，讓task3執行vTaskDelay 30秒，當30秒結束後
+
+.. image:: /embedded/test2contextSwitch.jpg
+
 
 參考資料
 --------
