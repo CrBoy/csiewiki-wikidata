@@ -112,19 +112,15 @@ Task的狀態
 
 TCB的資料結構：
 
-<<<<<<< edited
  .. code-block:: prettyprint 
 
     typedef struct tskTaskControlBlock
- {
-  volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
-=======
-.. code-block:: c
+    {
+    volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
 
-    typedef struct tskTaskControlBlock
+     typedef struct tskTaskControlBlock
     {
       volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
->>>>>>> a4dd3196a5de54da401ad15380668cd2e567cea7
                                                              the last item placed on 
                                                              the tasks stack.  THIS 
                                                              MUST BE THE FIRST MEMBER 
@@ -170,12 +166,12 @@ xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個
 
 xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB對象，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的堆棧（假設有足夠使用的內存）和在TCB的pxStack成員中記錄堆內存的開始。
 
-而這段程式碼就是將Task的內容初始化存進入暫存器裡
+而這段程式碼就是ARM Cortex-M4將剛建造好的好的task將暫存器裡的資訊存入stck裡
  
 .. code-block:: c
 
     StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void  *pvParameters )
- {
+     {
 	/* Simulate the stack frame as it would be created by a context switch
 	interrupt. */
 
@@ -201,21 +197,20 @@ xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一�
 	pxTopOfStack -= 8;	/* R11, R10, R9, R8, R7, R6, R5 and R4. */
 
 	return pxTopOfStack;
-}
+    }
 
 而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
 
  .. code-block:: c
 
-    void xPortPendSVHandler( void )
- {	/* This is a naked function. */
-
-	__asm volatile
-	(
-	"	mrs r0, psp							\n"
-	"	isb									\n"
-	"										\n"
-	"	ldr	r3, pxCurrentTCBConst			\n" /* Get the location of the current TCB. */
+     void xPortPendSVHandler( void )
+     {	/* This is a naked function. */
+    	__asm volatile
+    	(
+    	"	mrs r0, psp							\n"
+    	"	isb									\n"
+    	"										\n"
+  	"	ldr	r3, pxCurrentTCBConst			\n" /* Get the location of the current TCB. */
 	"	ldr	r2, [r3]						\n"
 	"										\n"
 	"	tst r14, #0x10						\n" /* Is the task using the FPU context?  If so, push high vfp registers. */
@@ -259,7 +254,7 @@ xTaskCreate()函數被調用的時候，一個任務被創建。 FreeRTOS為一�
 	"pxCurrentTCBConst: .word pxCurrentTCB	\n"
 	::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
 	);
-}
+    }
 
 * 硬體驅動原理
 -----------
