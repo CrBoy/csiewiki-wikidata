@@ -81,6 +81,8 @@ Task的狀態
 
  下面是在ready list中依照優先度選取執行目標的程式其中，FreeRTOS的優先度排序最小優先權爲0，數字越大則優先權越高
 
+.. code-block:: prettyprint linenums
+
     /* In file: Source/tasks.c */
     while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
     {
@@ -103,50 +105,54 @@ Task的狀態
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
     }
 
+--------------------------------
+
 * 創造全新task
 
 TCB的資料結構：
 
+.. code-block:: prettyprint linenums
 
-    typedef struct tskTaskControlBlock
-{
-  volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
+typedef struct tskTaskControlBlock
+    {
+      volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
                                                              the last item placed on 
                                                              the tasks stack.  THIS 
                                                              MUST BE THE FIRST MEMBER 
                                                              OF THE STRUCT. */
 
-  xListItem    xGenericListItem;                          /* List item used to place 
+      xListItem    xGenericListItem;                          /* List item used to place 
                                                              the TCB in ready and 
                                                              blocked queues. */
-  xListItem    xEventListItem;                            /* List item used to place 
+      xListItem    xEventListItem;                            /* List item used to place 
                                                              the TCB in event lists.*/
-  unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
+      unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
                                                              where 0 is the lowest 
                                                              priority. */
-  portSTACK_TYPE *pxStack;                                /* Points to the start of 
+      portSTACK_TYPE *pxStack;                                /* Points to the start of 
                                                              the stack. */
-  signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* Descriptive name given 
+      signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* Descriptive name given 
                                                              to the task when created.
                                                              Facilitates debugging 
                                                              only. */
 
-  #if ( portSTACK_GROWTH > 0 )
-    portSTACK_TYPE *pxEndOfStack;                         /* Used for stack overflow 
+      #if ( portSTACK_GROWTH > 0 )
+        portSTACK_TYPE *pxEndOfStack;                         /* Used for stack overflow 
                                                              checking on architectures
                                                              where the stack grows up
                                                              from low memory. */
-  #endif
+      #endif
 
-  #if ( configUSE_MUTEXES == 1 )
-    unsigned portBASE_TYPE uxBasePriority;                /* The priority last 
+      #if ( configUSE_MUTEXES == 1 )
+        unsigned portBASE_TYPE uxBasePriority;                /* The priority last 
                                                              assigned to the task - 
                                                              used by the priority 
                                                              inheritance mechanism. */
-  #endif
+      #endif
 
-} tskTCB;
+    } tskTCB;
 
+--------------------------------
 
 pxTopOfStack , pxEndOfStack :紀錄Stack的大小
 uxPriority , uxBasePriority ：就路優先權
