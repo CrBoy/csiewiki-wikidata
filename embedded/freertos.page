@@ -574,16 +574,32 @@ FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較
 
 Interrupt handler
 ------------------------
+This is a reason why several functions exists in two versions: one for regular tasks and another is intended to interrupts handler.
  
- or this reason, it is necessary to make interrupts handlers' execution as short as possible.
+For this reason, it is necessary to make interrupts handlers' execution as short as possible.
 On way to achieve this goal consists in the creation of tasks waiting for an interrupt to occur with a semaphore, and let
 this safer portion of code actually handle the interrupt.
-An ISR “gives” a semaphore andunblock a 'Handler” task that is able to handler the ISR, making the ISR execution much shorter
+An ISR “gives” a semaphore and unblock a 'Handler” task that is able to handler the ISR, making the ISR execution much shorter
 >>External Interrupt(EXTI)
 
 所有interrupt handler的排序和名稱定義(並非實作內容)放置在startup_stm32f429_439xx.s中，實作則需要在其他地方宣告
 
 使用者可以定義的外部中斷觸發條件爲EXTI_Line0至EXTI_Line15，不過EXTI_Line10~15和EXTI_Line5~9被設定爲觸發同一外部中斷，實際上能夠定義的中斷處理只有EXTI_Line0, 1, 2, 3, 4, 5~9, 10~15，總計七個
+
+file:startup_stm32f429_439xx.s  line:158
+
+ ..code-block: c
+
+      .word     EXTI0_IRQHandler                  /* EXTI Line0                   */                        
+      .word     EXTI1_IRQHandler                  /* EXTI Line1                   */                          
+      .word     EXTI2_IRQHandler                  /* EXTI Line2                   */                          
+      .word     EXTI3_IRQHandler                  /* EXTI Line3                   */                          
+      .word     EXTI4_IRQHandler                  /* EXTI Line4                   */ 
+
+      .word     EXTI9_5_IRQHandler                /* External Line[9:5]s          */     
+
+      .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */                           
+
 
 EXTI使用前必須：
 
