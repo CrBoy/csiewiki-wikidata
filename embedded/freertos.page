@@ -251,6 +251,11 @@ interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內�
 
 }
 
+藉此Mask所有的Interrupt(所有優先權低於BASEPRI的TASK將無法被執行 
+
+參照：http://www.freertos.org/RTOS-Cortex-M3-M4.html
+
+
 
 而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
 
