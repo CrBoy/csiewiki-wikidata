@@ -284,6 +284,9 @@ Communication
 使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
 Queue的結構如下
 
+
+ .. code-block:: c
+
     typedef struct QueueDefinition{
 
       signed char *pcHead;                    /* Points to the beginning of the queue 
@@ -355,6 +358,8 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     需要，在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
 
+ .. code-block:: c
+
     void vPortEnterCritical( void ) 
 
     { 
@@ -394,6 +399,9 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 * 實作mutex
 
     因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
+
+
+ .. code-block:: c
 
         /* Effectively make a union out of the xQUEUE structure. */
 
