@@ -98,7 +98,7 @@ FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list�
 
 .. code-block:: c
 
-    /* In file: Source/tasks.c */
+    /* In file: tasks.c */
     while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
     {
         configASSERT( uxTopReadyPriority );
@@ -125,7 +125,7 @@ FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list�
 TCB的資料結構：
 
  .. code-block:: c
-
+    /* In file: tasks.c */
     typedef struct tskTaskControlBlock
     {
 
@@ -184,6 +184,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
  
 .. code-block:: c
 
+    /* In file: port.c */
     StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void  *pvParameters )
     {
     
@@ -221,6 +222,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
  .. code-block:: c
 
+    /* In file: port.c */
     void xPortPendSVHandler( void )
     {	/* This is a naked function. */
         __asm volatile
@@ -287,6 +289,7 @@ Queue的結構如下
 
  .. code-block:: c
 
+    /* In file: queue.c */
     typedef struct QueueDefinition{
 
       signed char *pcHead;                    /* Points to the beginning of the queue 
@@ -360,6 +363,7 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
  .. code-block:: c
 
+    /* In file: port.c */
     void vPortEnterCritical( void ) 
 
     { 
