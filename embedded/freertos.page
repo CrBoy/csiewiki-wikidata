@@ -66,7 +66,9 @@ FreeRTOSConfig.h:
     
 * Functions
     文件内：以 prv 為字首
+
     API：以其return類型為字首，按照對變數的定義
+
     名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
 
 
