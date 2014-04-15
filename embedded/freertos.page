@@ -375,6 +375,15 @@ Queue的結構如下
 
     } xQUEUE;
 
+FreeRTOS uses the xTasksWaitingToSend list to keep track of tasks that are blocking on inserting into a queue. 
+
+Each time an element is removed from a queue the xTasksWaitingToSend list is checked. If a task is waiting in that list the task is unblocked.
+
+Similarly, xTasksWaitingToReceive keeps track of tasks that are blocking on removing from a queue. 
+
+Each time a new element is inserted into a queue the xTasksWaitingToReceive list is checked. If a task is waiting in that list the task is unblocked.
+
+
 由於queue可以被許多個task進行write，一個queue可能有許多個task處於block的狀態以等待queue有空間放data，一旦queue有空位時，會在這些被block的task中挑出一個priority最高的task，將他解除block並且進行write，若這些task的priority都一樣高，那將會挑出等待最久的task
 
 Queue在FreeRTOS的實作如下：
@@ -406,11 +415,7 @@ Queue在FreeRTOS的實作如下：
             }
     }
 
-* 關於QUEUE的操作函式定義在./queue.h
-
-FreeRTOS uses the xTasksWaitingToSend list to keep track of tasks that are blocking on inserting into a queue. Each time an element is removed from a queue the xTasksWaitingToSend list is checked. If a task is waiting in that list the task is unblocked.
-Similarly, xTasksWaitingToReceive keeps track of tasks that are blocking on removing from a queue. Each time a new element is inserted into a queue the xTasksWaitingToReceive list is checked. If a task is waiting in that list the task is unblocked.
-
+ 關於QUEUE的操作函式定義在./queue.h
 
 
 
