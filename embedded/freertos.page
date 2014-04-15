@@ -31,7 +31,7 @@ FreeRTOS的程式碼可以分解為三個主要區塊：任務，通訊，和硬
 
 ●硬體界面：接近9000行的程式碼拼湊起基本的FreeRTOS，是和硬體無關的；相同的程式碼都能夠運行，大約有6%的FreeRTOS的核心代碼，在硬體無關的FreeRTOS核心與硬體相關的程式碼間扮演著墊片的角色。我們將在下個部分討論硬體相關的程式碼。
 
-硬體方面
+檔案內容
 ----
 
 portmacro.h:
@@ -46,6 +46,24 @@ FreeRTOSConfig.h:
 
     包含Clock speed, heap size, mutexes等等都在此定義
 
+命名規則
+----
+
+>>變數
+    char類型：以 c 為字首
+    short類型：以 s 為字首
+    long類型：以 l 為字首
+    float類型：以 f 為字首
+    double類型：以 d 為字首
+    Enum變數：以 e 為字首
+    其他（如struct）：以 x 為字首
+    pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
+    unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
+    
+>>Functions
+    文件内：以 prv 為字首
+    API：以其return類型為字首，按照對變數的定義
+    名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
 
 Task的狀態
 
@@ -63,23 +81,7 @@ Task的狀態
 
 * Ready list的資料形態
 
-命名規則
-----
->>變數
-    char類型：以 c 為字首
-    short類型：以 s 為字首
-    long類型：以 l 為字首
-    float類型：以 f 為字首
-    double類型：以 d 為字首
-    Enum變數：以 e 為字首
-    其他（如struct）：以 x 為字首
-    pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
-    unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
-    
->>Functions
-    文件内：以 prv 為字首
-    API：以其return類型為字首，按照對變數的定義
-    名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
+
 
 
  - FreeRTOS使用ready list去管理待準備好要執行的tasks而ready list的資料儲存方式如下圖
