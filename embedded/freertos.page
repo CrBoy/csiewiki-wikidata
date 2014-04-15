@@ -406,7 +406,14 @@ Queue在FreeRTOS的實作如下：
             }
     }
 
-* 關於QUEUE的操作函式定義在./queue.c
+* 關於QUEUE的操作函式定義在./queue.h
+
+FreeRTOS uses the xTasksWaitingToSend list to keep track of tasks that are blocking on inserting into a queue. Each time an element is removed from a queue the xTasksWaitingToSend list is checked. If a task is waiting in that list the task is unblocked.
+Similarly, xTasksWaitingToReceive keeps track of tasks that are blocking on removing from a queue. Each time a new element is inserted into a queue the xTasksWaitingToReceive list is checked. If a task is waiting in that list the task is unblocked.
+
+
+
+
 
 FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
