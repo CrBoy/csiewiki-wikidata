@@ -588,7 +588,7 @@ An ISR “gives” a semaphore and unblock a 'Handler” task that is able to ha
 
 file:startup_stm32f429_439xx.s  line:158
 
- ..code-block: c
+ .. code-block:: c
 
       .word     EXTI0_IRQHandler                  /* EXTI Line0                   */                        
       .word     EXTI1_IRQHandler                  /* EXTI Line1                   */                          
