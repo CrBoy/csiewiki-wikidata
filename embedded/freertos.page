@@ -474,11 +474,11 @@ EXTI使用前必須：
 
 * 設定EXTI
 
-    *模式( Interrupt, Event )
+ * 模式( Interrupt, Event )
 
-    *被觸發的條件( Rising, Falling, Rising&falling )
+ * 被觸發的條件( Rising, Falling, Rising&falling )
 
-    *LineCmd( 尚未查明 )
+ * LineCmd( 尚未查明 )
 
 * 設定NVIC通道，權限
 
