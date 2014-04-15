@@ -17,6 +17,7 @@ toc: no
   .. image:: /qu.png
   .. image:: /suspending.gif
   .. image:: /TickISR.gif
+
 FreeRTOS架構
 -----------
 
@@ -30,7 +31,8 @@ FreeRTOS的程式碼可以分解為三個主要區塊：任務，通訊，和硬
 
 ●硬體界面：接近9000行的程式碼拼湊起基本的FreeRTOS，是和硬體無關的；相同的程式碼都能夠運行，大約有6%的FreeRTOS的核心代碼，在硬體無關的FreeRTOS核心與硬體相關的程式碼間扮演著墊片的角色。我們將在下個部分討論硬體相關的程式碼。
 
-硬體方面:
+硬體方面
+----
 
 portmacro.h:
 
@@ -61,7 +63,8 @@ Task的狀態
 
 * Ready list的資料形態
 
-<<命名規則>>
+命名規則
+----
 >>變數
     char類型：以 c 為字首
     short類型：以 s 為字首
@@ -115,68 +118,45 @@ Task的狀態
 
 TCB的資料結構：
 
-<<<<<<< edited
-.. code-block:: c
-=======
- .. code-block:: prettyprint 
+
+ .. code-block:: c
 
     typedef struct tskTaskControlBlock
     {
-    volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
->>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
 
-     typedef struct tskTaskControlBlock
-    {
-<<<<<<< edited
         volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
                                                                                                    the last item placed on 
                                                                                                    the tasks stack.  THIS 
                                                                                                    MUST BE THE FIRST MEMBER 
                                                                                                    OF THE STRUCT. */
 
-     xListItem    xGenericListItem;                          /* List item used to place 
-                                                                                   the TCB in ready and 
-                                                                                   blocked queues. */
+        xListItem    xGenericListItem;                          /* List item used to place 
+                                                                                       the TCB in ready and 
+                                                                                       blocked queues. */
 
-     xListItem    xEventListItem;                            /* List item used to place 
-                                                                                  the TCB in event lists.*/
+        xListItem    xEventListItem;                            /* List item used to place 
+                                                                                     the TCB in event lists.*/
 
-     unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
-                                                                                            where 0 is the lowest 
-                                                                                            priority. */
+        unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
+                                                                                               where 0 is the lowest 
+                                                                                               priority. */
 
-=======
-      volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
-                                                             the last item placed on 
-                                                             the tasks stack.  THIS 
-                                                             MUST BE THE FIRST MEMBER 
-                                                             OF THE STRUCT. */
+        portSTACK_TYPE *pxStack;                                /* Points to the start of
+                                                                                          the stack. */
 
-      xListItem    xGenericListItem;                          /* List item used to place 
-                                                             the TCB in ready and 
-                                                             blocked queues. */
-      xListItem    xEventListItem;                            /* List item used to place 
-                                                             the TCB in event lists.*/
-      unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
-                                                             where 0 is the lowest 
-                                                             priority. */
->>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
-      portSTACK_TYPE *pxStack;                                /* Points to the start of 
-                                                                                       the stack. */
+        signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* Descriptive name given 
+                                                                                                                      to the task when created.
+                                                                                                                      Facilitates debugging 
+                                                                                                                      only. */
 
-      signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* Descriptive name given 
-                                                                                                                  to the task when created.
-                                                                                                                  Facilitates debugging 
-                                                                                                                  only. */
-
-      #if ( portSTACK_GROWTH > 0 )
+        #if ( portSTACK_GROWTH > 0 )
         portSTACK_TYPE *pxEndOfStack;                         /* Used for stack overflow 
                                                                                              checking on architectures
                                                                                              where the stack grows up
                                                                                              from low memory. */
-      #endif
+        #endif
 
-      #if ( configUSE_MUTEXES == 1 )
+        #if ( configUSE_MUTEXES == 1 )
         unsigned portBASE_TYPE uxBasePriority;                /* The priority last 
                                                                                                  assigned to the task - 
                                                                                                  used by the priority 
@@ -200,15 +180,10 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 .. code-block:: c
 
     StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void  *pvParameters )
-<<<<<<< edited
     {
-        /* Simulate the stack frame as it would be created by a context switch
+    
+    /* Simulate the stack frame as it would be created by a context switch
         interrupt. */
-=======
-     {
-	/* Simulate the stack frame as it would be created by a context switch
-	interrupt. */
->>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
 
         /* Offset added to account for the way the MCU uses the stack on entry/exit
         of interrupts, and to ensure alignment. */
@@ -231,11 +206,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
         pxTopOfStack -= 8;	/* R11, R10, R9, R8, R7, R6, R5 and R4. */
 
-<<<<<<< edited
-        pxTopOfStack;
-=======
-	return pxTopOfStack;
->>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
+        return pxTopOfStack;
     }
 
 在TCB完成初始化後，要把該TCB接上其他相關的list結構，這個過程中必須暫時停止interrupts功能，以免在list還沒設定好前，被其他的task使用停止interrupt的實作，是將CPU中控制interrupt權限(0~255)的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
@@ -245,7 +216,6 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
  .. code-block:: c
 
-<<<<<<< edited
     void xPortPendSVHandler( void )
     {	/* This is a naked function. */
         __asm volatile
@@ -298,62 +268,10 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
         ::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
         );
 }
-=======
-     void xPortPendSVHandler( void )
-     {	/* This is a naked function. */
-    	__asm volatile
-    	(
-    	"	mrs r0, psp							\n"
-    	"	isb									\n"
-    	"										\n"
-  	"	ldr	r3, pxCurrentTCBConst			\n" /* Get the location of the current TCB. */
-	"	ldr	r2, [r3]						\n"
-	"										\n"
-	"	tst r14, #0x10						\n" /* Is the task using the FPU context?  If so, push high vfp registers. */
-	"	it eq								\n"
-	"	vstmdbeq r0!, {s16-s31}				\n"
-	"										\n"
-	"	stmdb r0!, {r4-r11, r14}			\n" /* Save the core registers. */
-	"										\n"
-	"	str r0, [r2]						\n" /* Save the new top of stack into the first member of the TCB. */
-	"										\n"
-	"	stmdb sp!, {r3}						\n"
-	"	mov r0, %0 							\n"
-	"	msr basepri, r0						\n"
-	"	bl vTaskSwitchContext				\n"
-	"	mov r0, #0							\n"
-	"	msr basepri, r0						\n"
-	"	ldmia sp!, {r3}						\n"
-	"										\n"
-	"	ldr r1, [r3]						\n" /* The first item in pxCurrentTCB is the task top of stack. */
-	"	ldr r0, [r1]						\n"
-	"										\n"
-	"	ldmia r0!, {r4-r11, r14}			\n" /* Pop the core registers. */
-	"										\n"
-	"	tst r14, #0x10						\n" /* Is the task using the FPU context?  If so, pop the high vfp registers too. */
-	"	it eq								\n"
-	"	vldmiaeq r0!, {s16-s31}				\n"
-	"										\n"
-	"	msr psp, r0							\n"
-	"	isb									\n"
-	"										\n"
-	#ifdef WORKAROUND_PMU_CM001 /* XMC4000 specific errata workaround. */
-		#if WORKAROUND_PMU_CM001 == 1
-	"			push { r14 }				\n"
-	"			pop { pc }					\n"
-		#endif
-	#endif
-	"										\n"
-	"	bx r14								\n"
-	"										\n"
-	"	.align 2							\n"
-	"pxCurrentTCBConst: .word pxCurrentTCB	\n"
-	::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
-	);
-    }
->>>>>>> 9aeaf35d3ade38525c0750d6e00adb11b33939a9
 
-<<Communication>>
+Communication
+----
+
 >>Queue
 使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
 Queue的結構如下
@@ -481,7 +399,9 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
     另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
 
     
-<<Scheduling>>
+Scheduling
+----
+
 >>基本概念
 在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊
 除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
