@@ -517,14 +517,12 @@ EXTI使用前必須：
 
 硬體驅動原理
 ------------------
-* 以 `GPIO</embedded/GPIO>`_ 為例
-  - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
-
 * 簡介
+  - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
 
 能夠讓開發者藉由改變記憶體特定位置的資料內容，來控制各種周邊
 
-或者，藉由外部的輸入，來改變記憶體內容，讓硬體得知
+或者，藉由外部的輸入，來改變記憶體內容，讓硬體得知其變化，來做反應
 
 使用GPIO前，必須預先設定行爲和細節，以stm32f429i_discovery.c內的LED初始作業來看
 
@@ -546,6 +544,7 @@ EXTI使用前必須：
       GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
       GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
     }
+使用者開啟使用到的GPIO之bus的clock，然後使用GPIO_InitStructure(struct資料型態)來儲存相關設定，並交與GPIO_Init()去做記憶體的設定
 
 * 底層實作
 
@@ -588,9 +587,15 @@ EXTI使用前必須：
       }
     }   
 
+不難發現，GPIO周邊的設定在實作上相當單純，即在預先定義好的記憶體區段上，按照設計者定義之設定將參數寫在該處
+
+值得一提的是，GPIO的初始化和設定皆是在執行時期進行，即使在程式運作中依然能夠重新定義甚至關閉周邊，讓MCU的使用更為彈性
+
+GPIO_Init()的執行也脫離不了寫入資料至記憶體一事，但設定項目更多，設定過程也相對複雜
+
+GPIO_Init()
  .. code-block:: c
 
-    GPIO_Init()
     /* In file: stm32f4xx_gpio.c */
     void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)
     {
