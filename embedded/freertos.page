@@ -477,7 +477,7 @@ EXTI使用前必須：
 
 
 
-* 硬體驅動原理
+*硬體驅動原理
 -----------
 * 以 `GPIO</embedded/GPIO>`_ 為例
   - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
@@ -486,6 +486,8 @@ EXTI使用前必須：
 效能表現
 --------
 ●context switch
+(context switch係指程序A要交出CPU使用權給程序B時，將程序A當前的狀態和register內資料存放至記憶體內，將先前程序B的狀態從記憶體讀取至register內的過程)
+
 我們想得知FreeRTOS的context switch時間，並想出一個測試方法：
 
 .. image:: /embedded/test1contextSwitch.jpg
