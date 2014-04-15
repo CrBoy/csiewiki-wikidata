@@ -14,10 +14,6 @@ toc: no
 ----
 * `Link<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
 
-  .. image:: /qu.png
-  .. image:: /suspending.gif
-  .. image:: /TickISR.gif
-
 FreeRTOS架構
 -----------
 
@@ -283,6 +279,8 @@ Communication
 
 * Queue
 
+  .. image:: /qu.png
+
 使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
 Queue的結構如下
 
@@ -414,7 +412,9 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 Scheduling
 ----------------
 
-*基本概念
+* 基本概念
+
+  .. image:: /suspending.gif
 
 在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊
 除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
@@ -426,6 +426,9 @@ Scheduling
     等待事件觸發(例如鍵盤輸入)
 
 * RTOS tick
+
+
+  .. image:: /TickISR.gif
 
     Idle Task正在運行
 
