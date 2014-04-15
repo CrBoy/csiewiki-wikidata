@@ -49,23 +49,33 @@ FreeRTOSConfig.h:
 命名規則
 ----
 
->>變數
+* 變數
     char類型：以 c 為字首
+
     short類型：以 s 為字首
+
     long類型：以 l 為字首
+
     float類型：以 f 為字首
+
     double類型：以 d 為字首
+
     Enum變數：以 e 為字首
+
     其他（如struct）：以 x 為字首
+
     pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
+
     unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
     
->>Functions
+* Functions
     文件内：以 prv 為字首
     API：以其return類型為字首，按照對變數的定義
     名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
 
+
 Task的狀態
+----------
 
 .. image:: /Task狀態.png
 
@@ -79,12 +89,10 @@ Task的狀態
 
 
 
-* Ready list的資料形態
+Ready list的資料形態
+---------------------
 
-
-
-
- - FreeRTOS使用ready list去管理待準備好要執行的tasks而ready list的資料儲存方式如下圖
+FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list的資料儲存方式如下圖
 
 .. image:: /freertos-figures-full-ready-list-2.png
 
@@ -119,7 +127,6 @@ Task的狀態
 * 創造全新task
 
 TCB的資料結構：
-
 
  .. code-block:: c
 
@@ -176,8 +183,8 @@ xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個
 
 xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB target，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的HeapStack（假設有足夠使用的記憶體）和在TCB的pxStack成員中記錄Stack的記憶體起點。
 
-爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
 
+爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
  
 .. code-block:: c
 
@@ -272,9 +279,10 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 }
 
 Communication
-----
+----------------------
 
->>Queue
+* Queue
+
 使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
 Queue的結構如下
 
@@ -341,7 +349,8 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     mutex用來對共享資源做互斥存取
 
-實作semaphore：
+* 實作semaphore
+
     N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少queue entries被佔用，其中uxItemSize為0，item和data copying是不需要的
 
         需要 ARM Cortex-M4F 特有的機制，才能實做 semaphore 嗎？若是，其機制為何？
@@ -384,7 +393,8 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     }
 
-實作mutex：
+* 實作mutex
+
     因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
 
         /* Effectively make a union out of the xQUEUE structure. */
@@ -402,9 +412,10 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     
 Scheduling
-----
+----------------
 
->>基本概念
+*基本概念
+
 在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊
 除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
 
@@ -414,7 +425,7 @@ Scheduling
 
     等待事件觸發(例如鍵盤輸入)
 
->>RTOS tick
+* RTOS tick
 
     Idle Task正在運行
 
@@ -422,9 +433,14 @@ Scheduling
 
 configTICK_RATE_HZ
 vControlTask
->>Starvation
+
+* Starvation
+
 FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較低的task則無法執行，便會發生Starvation(低優先權很長一段時間都無法獲得CPU執行)
-<Interrupt handler>
+
+Interrupt handler
+------------------------
+
  This is a reason why several functions exists in two versions: one for regular tasks and another is intended to interrupts handler.
  
  or this reason, it is necessary to make interrupts handlers' execution as short as possible.
