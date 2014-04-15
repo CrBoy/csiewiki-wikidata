@@ -274,7 +274,6 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
         "pxCurrentTCBConst: .word pxCurrentTCB	\n"
         ::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
         );
-}
 
 Communication
 ----------------------
