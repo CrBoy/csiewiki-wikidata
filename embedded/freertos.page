@@ -278,6 +278,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
         ::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
         );
 
+    }
+
 
 Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
 
@@ -309,7 +311,7 @@ Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內�
 
             return 0;
 
-}
+
 
 藉此Mask所有的Interrupt(所有優先權低於BASEPRI的TASK將無法被執行 
 
