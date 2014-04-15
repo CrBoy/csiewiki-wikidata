@@ -215,7 +215,39 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
         return pxTopOfStack;
     }
 
-在TCB完成初始化後，要把該TCB接上其他相關的list結構，這個過程中必須暫時停止interrupts功能，以免在list還沒設定好前，被其他的task使用停止interrupt的實作，是將CPU中控制interrupt權限(0~255)的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
+在TCB完成初始化後，要把該TCB接上其他相關的list結構，這個過程中必須暫時停止interrupts功能，以免在list還沒設定好前，被其他的task使用停止
+
+interrupt的實作，是將CPU中控制interrupt權限(0~255)的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
+
+.. code-block:: c
+
+    __attribute__(( naked )) uint32_t ulPortSetInterruptMask( void )
+
+    {
+
+            __asm volatile                                                                                                                \
+
+            (                                                                                                                                        \
+
+                    "        mrs r0, basepri                                                                                        \n" \
+
+                    "        mov r1, %0                                                                                                \n"        \
+
+                    "        msr basepri, r1                                                                                        \n" \
+
+                    "        bx lr                                                                                                        \n" \
+
+                    :: "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "r0", "r1"        \
+
+            );
+
+            /* This return will not be reached but is necessary to prevent compiler
+
+            warnings. */
+
+            return 0;
+
+}
 
 
 而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
