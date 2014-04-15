@@ -485,8 +485,9 @@ EXTI使用前必須：
 
 
 效能表現
---------
-●context switch
+----------------
+* Context switch
+
 (context switch係指程序A要交出CPU使用權給程序B時，將程序A當前的狀態和register內資料存放至記憶體內，將先前程序B的狀態從記憶體讀取至register內的過程)
 
 我們想得知FreeRTOS的context switch時間，並想出一個測試方法：
@@ -507,7 +508,7 @@ EXTI使用前必須：
  
  
  
-●interrupt latency
+* interrupt latency
 
 我們的架構為是手動設定一個external interrupt，發生在BUTTON_USER按下時，下面程式是我們的實作：
 
@@ -521,9 +522,9 @@ EXTI使用前必須：
 
 當BUTTON_USER按下後，會先執行i++直到interruptHandler處理interrupt，讀i值即可得知interrupt latency，而實作結果發現i依舊為0。
 
-●IPC（Inter-Process Communication） throughput
+* IPC（Inter-Process Communication） throughput
 
-●realtime capability
+* realtime capability
 
 參考資料
 --------
