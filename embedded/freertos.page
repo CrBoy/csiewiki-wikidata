@@ -72,6 +72,9 @@ FreeRTOSConfig.h:
 
     名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
 
+Run FreeRTOS on STM32F4-Discovery
+--------------------------------------------------------
+
 
 Task的狀態
 ----------
