@@ -19,6 +19,15 @@ toc: yes
 
 系統狀態(System States)
 ^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
+
+|
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
+
 * Init
 * Normal 
 * Suspended 
@@ -30,14 +39,6 @@ toc: yes
 * Serving Fast Interrupt ( SFI ) 
 * Serving Non-Maskable Interrupt ( SNMI ) 
 * Halted
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
-
-(待補文字)
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
 
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
