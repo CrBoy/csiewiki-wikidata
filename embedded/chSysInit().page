@@ -7,8 +7,8 @@ toc: yes
 
 chSysInit()
 ============
-
-In ChibiOS-RT-Community / os / kernel / src / chsys.c
+| 呼叫 chSysInit 是為了要初始整個 ChibiOS/RT。
+| In ChibiOS-RT-Community / os / kernel / src / chsys.c
 
 .. code-block:: c
 
@@ -57,7 +57,9 @@ In ChibiOS-RT-Community / os / kernel / src / chsys.c
 
 Port
 ^^^^
-In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.c 
+| 將 ChibiOS/RT 移植到 STM32F429 Discovery 時所要進行的一些初始化。
+| 像是設定 Vector table 的位址 ， system handler 的 priority ...等
+| In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.c 
 
 .. code-block:: c
 
@@ -66,19 +68,21 @@ In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.c
 
         /* Initialization of the vector table and priority related settings.*/
 
-        /*SCB: system control block: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/CIHFDJCA.html*/
-
         SCB_VTOR = CORTEX_VTOR_INIT; //location of vector table(in GCC/ARMCMx/chcore_v7m.h)
-        SCB_AIRCR = AIRCR_VECTKEY | AIRCR_PRIGROUP(CORTEX_PRIGROUP_INIT);
+        SCB_AIRCR = AIRCR_VECTKEY | AIRCR_PRIGROUP(CORTEX_PRIGROUP_INIT); //?
 
         /* Initialization of the system vectors used by the port.*/
+
+        /* HANDLER_SVCALL = 7 (SVCALL 的 vector id, in ChibiOS-RT-Community / os / ports / common / ARMCMx / nvic.h )*/
+
+        /* CORTEX_PRIORITY_MASK : Priority level to priority mask conversion macro(in ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore.h)*/
+
+        /*nvicSetSystemHandlerPriority: Changes the priority of a system handler.(in ChibiOS-RT-Community / os / ports / common / ARMCMx / nvic.c)*/
+
+        /*CORTEX_PRIORITY_SVCALL: define in ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.h */
+        
         nvicSetSystemHandlerPriority(HANDLER_SVCALL,
                                      CORTEX_PRIORITY_MASK(CORTEX_PRIORITY_SVCALL));
-
-        // HANDLER_SVCALL = 7 (SVCALL vector id, in nvic.h)
-        /*CORTEX_PRIORITY_MASK : Priority level to priority mask conversion macro.
-        (in ChibiOS-RT-Community  os  ports  GCC  ARMCMx  chcore.h)*/
-
         nvicSetSystemHandlerPriority(HANDLER_PENDSV,
                                      CORTEX_PRIORITY_MASK(CORTEX_PRIORITY_PENDSV));
         nvicSetSystemHandlerPriority(HANDLER_SYSTICK,
@@ -88,7 +92,8 @@ In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.c
 
 Ready List
 ^^^^^^^^^^
-Scheduler的初始: In ChibiOS-RT-Community / os / kernel / src / chschd.c line:48
+| 將存放 Thread 用的 Ready List 進行初始化。
+| Scheduler 的初始: In ChibiOS-RT-Community / os / kernel / src / chschd.c line:48
 
 .. code-block:: c
 
@@ -101,7 +106,7 @@ Scheduler的初始: In ChibiOS-RT-Community / os / kernel / src / chschd.c line:
     #endif
     }
 
-ReadyList資料結構: In ChibiOS-RT-Community / os / kernel / include / chschd.h line: 87
+ReadyList 資料結構: In ChibiOS-RT-Community / os / kernel / include / chschd.h line: 87
 
 .. code-block:: c
 
@@ -121,7 +126,7 @@ ReadyList資料結構: In ChibiOS-RT-Community / os / kernel / include / chschd.
                                                     thread.                     */
     } ReadyList;
 
-ThreadQueuey資料結構: In ChibiOS-RT-Community / os / kernel / include / chlists.h  line:90
+ThreadQueuey 資料結構: In ChibiOS-RT-Community / os / kernel / include / chlists.h  line:90
 
 .. code-block:: c
 
@@ -139,7 +144,7 @@ ThreadQueuey資料結構: In ChibiOS-RT-Community / os / kernel / include / chli
 Virtual Timer
 ^^^^^^^^^^^^^
 
-Virtual Timer的初始: In ChibiOS-RT-Community / os / kernel / src / chvt.c
+Virtual Timer 的初始: In ChibiOS-RT-Community / os / kernel / src / chvt.c
   
 .. code-block:: c
 
@@ -150,7 +155,7 @@ Virtual Timer的初始: In ChibiOS-RT-Community / os / kernel / src / chvt.c
         vtlist.vt_systime = 0;
     }
 
-VTList的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+VTList 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
 
 .. code-block:: c
 
@@ -167,7 +172,7 @@ VTList的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
                                                 parameter.                  */
     };
 
-VirtualTimer的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+VirtualTimer 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
 
 .. code-block:: c
 
@@ -184,7 +189,7 @@ VirtualTimer的資料結構: In ChibiOS-RT-Community / os / kernel / include / c
 Heap
 ^^^^^
 
-Heap的初始化: In ChibiOS-RT-Community / os / kernel / src / chheap.c
+Heap 的初始化: In ChibiOS-RT-Community / os / kernel / src / chheap.c
 
 .. code-block:: c
 
@@ -193,14 +198,14 @@ Heap的初始化: In ChibiOS-RT-Community / os / kernel / src / chheap.c
         default_heap.h_provider = chCoreAlloc;
         default_heap.h_free.h.u.next = (union heap_header *)NULL;
         default_heap.h_free.h.size = 0;
-    #if CH_USE_MUTEXES || defined(__DOXYGEN__) //預設是這個
+    #if CH_USE_MUTEXES || defined(__DOXYGEN__) //預設是這個,定義在chconf.h中
         chMtxInit(&default_heap.h_mtx);
     #else
         chSemInit(&default_heap.h_sem, 1);
     #endif
     }
 
-Heap的資料結構: In ChibiOS-RT-Community / os / kernel / include / chheap.h 
+Heap 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chheap.h 
 
 .. code-block:: c
 
