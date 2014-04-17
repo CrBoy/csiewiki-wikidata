@@ -29,10 +29,10 @@ toc: yes
 .. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
 
 * Init
-    + ChibiOS/RT 進行OS初始化之前的狀態
-    + 呼叫chSysInit() 這個函式進行初始化
+    + ChibiOS/RT 進行OS初始化之前的狀態，進行所謂的物理重置(physical reset)時也會進到這個狀態
+    + 呼叫`chSysInit()<chSysInit()>`_ 這個函式進行初始化
     + 在這個狀態裡所有可以發出Maskable Interrupt的sources全部失效
-    + 初始化完後進到Normal state
+    + 初始化完後進到 Normal
 * Normal 
 * Suspended 
 * Disabled 
