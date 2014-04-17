@@ -1,0 +1,275 @@
+---
+title: ChibiOS/RT chSysInit()
+categories: embedded, arm, stm32, stm32f429
+toc: yes
+...
+
+
+chSysInit()
+============
+
+In ChibiOS-RT-Community / os / kernel / src / chsys.c
+
+.. code-block:: c
+
+    void chSysInit(void)
+    {
+        static Thread mainthread;
+    #if CH_DBG_ENABLE_STACK_CHECK
+        extern stkalign_t __main_thread_stack_base__;
+    #endif
+
+        port_init();
+        _scheduler_init();
+        _vt_init();
+    #if CH_USE_MEMCORE
+        _core_init();
+    #endif
+    #if CH_USE_HEAP
+        _heap_init();
+    #endif
+    #if CH_DBG_ENABLE_TRACE
+        _trace_init();
+    #endif
+
+        /* Now this instructions flow becomes the main thread.*/
+        setcurrp(_thread_init(&mainthread, NORMALPRIO));
+        currp->p_state = THD_STATE_CURRENT;
+    #if CH_DBG_ENABLE_STACK_CHECK
+        /* This is a special case because the main thread Thread structure is not
+         adjacent to its stack area.*/
+        currp->p_stklimit = &__main_thread_stack_base__;
+    #endif
+        chSysEnable();
+
+        /* Note, &ch_debug points to the string "main" if the registry is
+         active, else the parameter is ignored.*/
+        chRegSetThreadName((const char *)&ch_debug);
+
+    #if !CH_NO_IDLE_THREAD
+        /* This thread has the lowest priority in the system, its role is just to
+         serve interrupts in its context while keeping the lowest energy saving
+         mode compatible with the system status.*/
+        chThdCreateStatic(_idle_thread_wa, sizeof(_idle_thread_wa), IDLEPRIO,
+                          (tfunc_t)_idle_thread, NULL);
+    #endif
+    }   
+
+Port
+^^^^
+In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.c 
+
+.. code-block:: c
+
+    void _port_init(void)
+    {
+
+        /* Initialization of the vector table and priority related settings.*/
+
+        /*SCB: system control block: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/CIHFDJCA.html*/
+
+        SCB_VTOR = CORTEX_VTOR_INIT; //location of vector table(in GCC/ARMCMx/chcore_v7m.h)
+        SCB_AIRCR = AIRCR_VECTKEY | AIRCR_PRIGROUP(CORTEX_PRIGROUP_INIT);
+
+        /* Initialization of the system vectors used by the port.*/
+        nvicSetSystemHandlerPriority(HANDLER_SVCALL,
+                                     CORTEX_PRIORITY_MASK(CORTEX_PRIORITY_SVCALL));
+
+        // HANDLER_SVCALL = 7 (SVCALL vector id, in nvic.h)
+        /*CORTEX_PRIORITY_MASK : Priority level to priority mask conversion macro.
+        (in ChibiOS-RT-Community  os  ports  GCC  ARMCMx  chcore.h)*/
+
+        nvicSetSystemHandlerPriority(HANDLER_PENDSV,
+                                     CORTEX_PRIORITY_MASK(CORTEX_PRIORITY_PENDSV));
+        nvicSetSystemHandlerPriority(HANDLER_SYSTICK,
+                                     CORTEX_PRIORITY_MASK(CORTEX_PRIORITY_SYSTICK));
+    }
+
+
+Ready List
+^^^^^^^^^^
+Scheduler的初始: In ChibiOS-RT-Community / os / kernel / src / chschd.c line:48
+
+.. code-block:: c
+
+    void _scheduler_init(void)
+    {
+        queue_init(&rlist.r_queue);
+        rlist.r_prio = NOPRIO;
+    #if CH_USE_REGISTRY
+        rlist.r_newer = rlist.r_older = (Thread *)&rlist;
+    #endif
+    }
+
+ReadyList資料結構: In ChibiOS-RT-Community / os / kernel / include / chschd.h line: 87
+
+.. code-block:: c
+
+    typedef struct
+    {
+        ThreadsQueue          r_queue;    /**< @brief Threads queue.              */
+        tprio_t               r_prio;     /**< @brief This field must be
+                                                    initialized to zero.        */
+        struct context        r_ctx;      /**< @brief Not used, present because
+                                                    offsets.                    */
+    #if CH_USE_REGISTRY || defined(__DOXYGEN__)
+        Thread                *r_newer;   /**< @brief Newer registry element.     */
+        Thread                *r_older;   /**< @brief Older registry element.     */
+    #endif
+        /* End of the fields shared with the Thread structure.*/
+        Thread                *r_current; /**< @brief The currently running
+                                                    thread.                     */
+    } ReadyList;
+
+ThreadQueuey資料結構: In ChibiOS-RT-Community / os / kernel / include / chlists.h  line:90
+
+.. code-block:: c
+
+    typedef struct
+    {
+        Thread                *p_next;        /**< First @p Thread in the queue, or
+                                                 @p ThreadQueue when empty.     */
+        Thread                *p_prev;        /**< Last @p Thread in the queue, or
+                                                 @p ThreadQueue when empty.     */
+    } ThreadsQueue;
+
+
+
+
+Virtual Timer
+^^^^^^^^^^^^^
+
+Virtual Timer的初始: In ChibiOS-RT-Community / os / kernel / src / chvt.c
+  
+.. code-block:: c
+
+    void _vt_init(void)
+    {
+        vtlist.vt_next = vtlist.vt_prev = (void *)&vtlist;
+        vtlist.vt_time = (systime_t)-1;
+        vtlist.vt_systime = 0;
+    }
+
+VTList的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+
+.. code-block:: c
+
+    struct VirtualTimer
+    {
+        VirtualTimer          *vt_next;   /**< @brief Next timer in the delta
+                                              list.                       */
+        VirtualTimer          *vt_prev;   /**< @brief Previous timer in the delta
+                                                list.                       */
+        systime_t             vt_time;    /**< @brief Time delta before timeout.  */
+        vtfunc_t              vt_func;    /**< @brief Timer callback function
+                                                 pointer.                    */
+        void                  *vt_par;    /**< @brief Timer callback function
+                                                parameter.                  */
+    };
+
+VirtualTimer的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+
+.. code-block:: c
+
+    typedef struct 
+    {
+        VirtualTimer          *vt_next;   /**< @brief Next timer in the delta
+                                                list.                       */
+        VirtualTimer          *vt_prev;   /**< @brief Last timer in the delta
+                                                list.                       */
+        systime_t             vt_time;    /**< @brief Must be initialized to -1.  */
+        volatile systime_t    vt_systime; /**< @brief System Time counter.        */
+    } VTList;
+
+Heap
+^^^^^
+
+Heap的初始化: In ChibiOS-RT-Community / os / kernel / src / chheap.c
+
+.. code-block:: c
+
+    void _heap_init(void)
+    {
+        default_heap.h_provider = chCoreAlloc;
+        default_heap.h_free.h.u.next = (union heap_header *)NULL;
+        default_heap.h_free.h.size = 0;
+    #if CH_USE_MUTEXES || defined(__DOXYGEN__) //預設是這個
+        chMtxInit(&default_heap.h_mtx);
+    #else
+        chSemInit(&default_heap.h_sem, 1);
+    #endif
+    }
+
+Heap的資料結構: In ChibiOS-RT-Community / os / kernel / include / chheap.h 
+
+.. code-block:: c
+
+    /**
+     * @brief   Memory heap block header.
+     */
+    union heap_header
+    {
+        stkalign_t align;
+        struct
+        {
+            union
+            {
+                union heap_header *next;      /**< @brief Next block in free list.    */
+                MemoryHeap        *heap;      /**< @brief Block owner heap.           */
+            } u;                            /**< @brief Overlapped fields.          */
+            size_t              size;       /**< @brief Size of the memory block.   */
+        } h;
+    };
+
+    /**
+     * @brief   Structure describing a memory heap.
+     */
+    struct memory_heap
+    {
+        memgetfunc_t          h_provider; /**< @brief Memory blocks provider for
+                                                    this heap.                  */
+        union heap_header     h_free;     /**< @brief Free blocks list header.    */
+    #if CH_USE_MUTEXES
+        Mutex                 h_mtx;      /**< @brief Heap access mutex.          */
+    #else
+        Semaphore             h_sem;      /**< @brief Heap access semaphore.      */
+    #endif
+    };
+
+
+Debug Buffer
+^^^^^^^^^^^^^
+Debug Buffer的初始化: In ChibiOS-RT-Community / os / kernel / src / chdebug.c
+
+.. code-block:: c
+
+    void _trace_init(void) 
+    {
+        dbg_trace_buffer.tb_size = CH_TRACE_BUFFER_SIZE;
+        dbg_trace_buffer.tb_ptr = &dbg_trace_buffer.tb_buffer[0]; //ring buffer
+    }
+
+Debug Buffer的資料結構: In ChibiOS-RT-Community / os / kernel / include / chdebug.h
+
+.. code-block:: c
+
+    typedef struct
+    {
+        systime_t             se_time;    /**< @brief Time of the switch event.   */
+        Thread                *se_tp;     /**< @brief Switched in thread.         */
+        void                  *se_wtobjp; /**< @brief Object where going to sleep.*/
+        uint8_t               se_state;   /**< @brief Switched out thread state.  */
+    } ch_swc_event_t;
+
+    /**
+     * @brief   Trace buffer header.
+     */
+    typedef struct
+    {
+        unsigned              tb_size;    /**< @brief Trace buffer size (entries).*/
+        ch_swc_event_t        *tb_ptr;    /**< @brief Pointer to the buffer front.*/
+        /** @brief Ring buffer.*/
+        ch_swc_event_t        tb_buffer[CH_TRACE_BUFFER_SIZE];
+    } ch_trace_buffer_t;
+
+
