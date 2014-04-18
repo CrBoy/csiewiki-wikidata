@@ -155,7 +155,7 @@ Virtual Timer 的初始: In ChibiOS-RT-Community / os / kernel / src / chvt.c
         vtlist.vt_systime = 0;
     }
 
-VTList 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+VirtualTimer 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
 
 .. code-block:: c
 
@@ -172,7 +172,7 @@ VTList 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
                                                 parameter.                  */
     };
 
-VirtualTimer 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
+VList 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chvt.h
 
 .. code-block:: c
 
