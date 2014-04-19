@@ -35,6 +35,10 @@ toc: no
     Linux raspberrypi 3.8.13-core+ #1 Thu Feb 27 03:02:16 CST 2014 armv6l GNU/Linux
     Min:      1 Act:    5 Avg:    6 Max:      41
 
+討論用
+--------
+https://embedded2014.hackpad.com/Xenomai-raspberry-note-XwJtuQn9nkD
+
 參考資料
 --------
 * https://code.google.com/p/picnc/wiki/RPiXenomaiKernel
