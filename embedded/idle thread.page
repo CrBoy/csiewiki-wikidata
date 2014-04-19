@@ -39,7 +39,7 @@ idle thread
       }
     }
 
-| 在chSysInit()函式的最後， 建立了 idle thread
+| 在 `chSysInit()<chSysInit()>`_ 函式的最後， 建立了 idle thread
 |  
 
 .. code-block:: c
