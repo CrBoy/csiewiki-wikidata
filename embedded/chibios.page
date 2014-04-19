@@ -40,6 +40,8 @@ toc: yes
     + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
     + 除了可以呼叫`chSysDisable()<chSysDisable()>`_到達Disable狀態，以及`chSysEnable()<chSysEnable()>`_到達Normal狀態之外，其他所有system API都不能呼叫
 * Disabled 
+    + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷
+    + 除了可以呼叫`chSysEnable()<chSysEnable()>`_到達Normal狀態，以及`chSysSuspend()<chSysSuspend()>`_到達Suspended狀態之外，其他所有system API都不能呼叫
 * Sleep 
 * S-Locked
 * I-Locked 
