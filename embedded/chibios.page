@@ -30,7 +30,7 @@ toc: yes
 
 * Init
     + ChibiOS/RT 進行OS初始化之前的狀態，進行所謂的物理重置(physical reset)時也會進到這個狀態
-    + 呼叫`chSysInit()<chSysInit()>`_ 這個函式進行初始化
+    + 呼叫chSysInit()這個函式進行初始化
     + 在這個狀態裡所有可以發出Maskable Interrupt的sources全部失效
     + 初始化完後進到 Normal
 * Normal 
@@ -38,10 +38,10 @@ toc: yes
     + 在這裡可以執行Thread, 接收並處理任何中斷及呼叫任何system API
 * Suspended 
     + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
-    + 除了可以呼叫`chSysDisable()<chSysDisable()>`_到達Disable狀態，以及`chSysEnable()<chSysEnable()>`_到達Normal狀態之外，其他所有system API都不能呼叫
+    + 除了可以呼叫chSysDisable()到達Disable狀態，以及chSysEnable()到達Normal狀態之外，其他所有system API都不能呼叫
 * Disabled 
     + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷(NMI)
-    + 除了可以呼叫`chSysEnable()<chSysEnable()>`_到達Normal狀態，以及`chSysSuspend()<chSysSuspend()>`_到達Suspended狀態之外，其他所有system API都不能呼叫
+    + 除了可以呼叫chSysEnable()到達Normal狀態，以及chSysSuspend()到達Suspended狀態之外，其他所有system API都不能呼叫
 * Sleep 
     + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 `idle thread<idle thread>`_，到達這個狀態
     + 此時系統將處於 low power mode，並等待一個中斷跳出這個狀態
