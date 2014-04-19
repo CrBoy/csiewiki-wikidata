@@ -1,0 +1,38 @@
+---
+title: ChibiOS/RT chSysSuspend()
+categories: embedded, arm, stm32, stm32f429
+toc: yes
+...
+
+chSysSuspend()
+==============
+| 在 GCC ports / ARMCMx 中，chSysDisable()是藉由設定 PRIMASK 和 BASEPRI 這2個中斷遮罩暫存器(Interrupt Mask Register)
+| 來使正常中斷資源(IRQ)失效，期間還是可以處理不可遮罩式中斷(NMI)和快速中斷(FIQ)
+| 
+| In ChibiOS-RT-Community / os / kernel / include / chsys.h
+
+.. code-block:: c
+
+    #define chSysSuspend() {                                                        \
+      port_suspend();                                                               \
+      dbg_check_suspend();                                                          \
+    } 
+
+port_suspend(): In ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.h
+
+.. code-block:: c
+
+    /**
+    * @brief   Disables the interrupt sources below kernel-level priority.
+    * @note    Interrupt sources above kernel level remains enabled.
+    * @note    In this port it raises/lowers the base priority to kernel level.
+    */
+    #if !CORTEX_SIMPLIFIED_PRIORITY || defined(__DOXYGEN__)
+    #define port_suspend() {                                                    \
+      register uint32_t tmp asm ("r3") = CORTEX_BASEPRI_KERNEL;                 \
+      asm volatile ("msr     BASEPRI, %0                    \n\t"               \
+                    "cpsie   i" : : "r" (tmp) : "memory");                      \
+    }
+| 先利用 msr 指令將 BASEPRI 暫存器設定一個非0值 -- CORTEX_BASEPRI_KERNEL (此值為32，定義在ChibiOS-RT-Community / os / ports / GCC / ARMCMx / chcore_v7m.h)
+| 再利用 "cpsie i" ，將所有中斷資源啟用。
+| 之後，系統接收到一個中斷時，會先將此中斷的優先度跟 BASEPRI 裡的值進行比對，如果結果為大於，表示此中斷的優先度等級( priority level )是**比較低的**，屬於正常中斷(IRQ)，此時CPU將不會回應此中斷要求。 
