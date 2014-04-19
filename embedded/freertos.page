@@ -449,52 +449,33 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     /* In file: port.c */
     void vPortEnterCritical( void ) 
-
     { 
-
         portDISABLE_INTERRUPTS(); 
-
         uxCriticalNesting++; 
-
         __asm volatile( "dsb" ); 
-
         __asm volatile( "isb" ); 
-
     } 
 
     /*-----------------------------------------------------------*/ 
-
-     
-
+    
     void vPortExitCritical( void ) 
-
     { 
-
         configASSERT( uxCriticalNesting ); 
-
         uxCriticalNesting--; 
-
         if( uxCriticalNesting == 0 ) 
-
         { 
-
             portENABLE_INTERRUPTS(); 
-
         } 
-
     }
 
 * 實作mutex
 
     因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
 
-
  .. code-block:: c
 
         /* Effectively make a union out of the xQUEUE structure. */
-
         #define uxQueueType           pcHead
-
         #define pxMutexHolder         pcTail
 
     uxQueueType若為0，表示this queue is being used for a mutex
