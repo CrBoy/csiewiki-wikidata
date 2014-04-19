@@ -46,6 +46,9 @@ toc: yes
     + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
         - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
 
+執行緒(Thread)
+^^^^^^^^^^^^^
+
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
