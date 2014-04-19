@@ -32,49 +32,35 @@ FreeRTOS的程式碼可以分解為三個主要區塊：任務、通訊，和硬
 .. [#] 用 `cloc<http://cloc.sourceforge.net/>`_ 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
 
 
-檔案內容
-----
+與平台相關的檔案
+------------------
+* portmacro.h
+  - 定義了硬體相關變數，如資料形態定義，以及硬體相關的函式呼叫的名稱定義(以portXXXXX爲名)等，統一各平臺呼叫函式的
 
-portmacro.h:
+* port.c
+  - 定義了包含和硬體相關的程式碼的實作
 
-    定義了硬體相關變數，如資料形態定義，以及硬體相關的函式呼叫的名稱定義(以portXXXXX爲名)等，統一各平臺呼叫函式的
+* FreeRTOSConfig.h
+  - 包含Clock speed, heap size, mutexes等等都在此定義
 
-port.c:
-
-    定義了包含和硬體相關的程式碼的實作
-
-FreeRTOSConfig.h:
-
-    包含Clock speed, heap size, mutexes等等都在此定義
 
 命名規則
-----
-
+---------
 * 變數
-    char類型：以 c 為字首
-
-    short類型：以 s 為字首
-
-    long類型：以 l 為字首
-
-    float類型：以 f 為字首
-
-    double類型：以 d 為字首
-
-    Enum變數：以 e 為字首
-
-    其他（如struct）：以 x 為字首
-
-    pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
-
-    unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
+  - char類型：以 c 為字首
+  - short類型：以 s 為字首
+  - long類型：以 l 為字首
+  - float類型：以 f 為字首
+  - double類型：以 d 為字首
+  - Enum變數：以 e 為字首
+  - 其他（如struct）：以 x 為字首
+  - pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
+  - unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
     
 * Functions
-    文件内：以 prv 為字首
-
-    API：以其return類型為字首，按照對變數的定義
-
-    名字：以其所在的文件名開頭。如vTaskDelete即在Task.c文件中名稱
+  - 文件内：以 prv 為字首
+  - API：以其return類型為字首，按照對變數的定義
+  - 名字：以其所在的檔案名稱開頭。如vTaskDelete即在Task.c文件中名稱
 
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
