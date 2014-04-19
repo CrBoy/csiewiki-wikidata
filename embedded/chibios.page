@@ -59,8 +59,37 @@ toc: yes
 
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
-| Maskable Interrupt(可遮罩式中斷) :  一種硬體中斷。可以透過軟體控制去設定中斷遮罩暫存器(Interrupt Mask Register, IMR)內的位元遮罩值（bit-mask）來讓CPU決定要不要回應這個中斷要求。
-| Non-Maskable Interrupt(不可遮罩式中斷) :  一種硬體中斷。與可遮罩式中斷不同，它無法用軟體去控制。**CPU一定要回應這個中斷要求，不可以忽略。**
+* 先備知識
+    + 可遮罩式中斷 ( Maskable Interrupt ) :  
+        - 一種硬體中斷
+        - 可以透過軟體控制去設定中斷遮罩暫存器 ( Interrupt Mask Register ) 內的位元遮罩值 ( bit-mask ) 來讓CPU決定要不要回應這個中斷要求。
+    + 不可遮罩式中斷 ( Non-Maskable Interrupt, NMI ) :  
+        - 一種硬體中斷
+        - 與可遮罩式中斷不同，它無法用軟體去控制。**CPU一定要回應這個中斷要求，不可以忽略。**
+    + 中斷遮罩暫存器 ( Interrupt Mask Registers ) : 在 ARM Cortex-M3中，可以透過設定中斷遮罩暫存器，來控制系統的中斷。共有三種:
+        - PRIMASK :  一個只有一個 bit 的暫存器。設為1時，系統將只會處理 NMI 和 hard fault exception，其他可遮罩式中斷將被全部忽略。設為0時，則可以處理所有中斷。
+        - FAULTMASK:  一個只有一個 bit 的暫存器。設為1時，系統將只會處理 NMI，其他像是 hard fault exception 或是可遮罩式中斷都將被全部忽略。設為0時，則可以處理 hard fault exception。
+        - BASEPRI:  8個 bit 的暫存器，用來儲存優先度等級( priority level )。當這個暫存器被設為一個非0值時，系統將會忽略優先度比這個值還要大**(代表優先度等級較低) **的中斷。
+
+* Chibi OS/RT的中斷類別
+    + 正常中斷 ( Regular Interrupts ): 
+        - 可遮罩式的中斷
+        - **在 GCC Ports / ARM Cortex-Mx / ARMv7-M 的移植版本中，優先度等級較低的中斷將被視為正常中斷**
+        - 無法搶佔部分的 kernel code
+        - 在此類的 interrupt handler 裡面可以呼叫 operating system APIs。
+    + 快速中斷 ( Fast Interrupts ):
+        - 可遮罩式的中斷
+        - **在 GCC Ports / ARM Cortex-Mx / ARMv7-M 的移植版本中，優先度等級較高的中斷將被視為快速中斷**
+        - 可以搶佔 kernel code ，也因此有較短的延遲 ( lantency ) 。
+        - 在此類的 interrupt handler 裡面無法呼叫任何一個 operating system API 。
+
+    + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
+        - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
+
+
+
+
+
 
 硬體驅動原理
 ------------
