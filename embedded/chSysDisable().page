@@ -7,7 +7,7 @@ toc: yes
 chSysDisable()
 ==============
 | 在 GCC ports / ARMCMx 中，chSysDisable()是藉由設定 PRIMASK 這個中斷遮罩暫存器(Interrupt Mask Register)
-| 來使所有的可遮罩式中斷資源失效，期間只允許處理不可遮罩式中斷
+| 來使所有的可遮罩式中斷資源失效，期間只允許處理不可遮罩式中斷(NMI)
 | 
 | In ChibiOS-RT-Community / os / kernel / include / chsys.h
 
