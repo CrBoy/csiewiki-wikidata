@@ -34,6 +34,8 @@ toc: yes
     + 在這個狀態裡所有可以發出Maskable Interrupt的sources全部失效
     + 初始化完後進到 Normal
 * Normal 
+    + 初始化完後到達的狀態
+    + 在這裡可以執行Thread, 產生任何中斷及呼叫任何system API
 * Suspended 
 * Disabled 
 * Sleep 
