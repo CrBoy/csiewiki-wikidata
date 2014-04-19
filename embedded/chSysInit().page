@@ -126,7 +126,7 @@ ReadyList 資料結構: In ChibiOS-RT-Community / os / kernel / include / chschd
                                                     thread.                     */
     } ReadyList;
 
-ThreadQueuey 資料結構: In ChibiOS-RT-Community / os / kernel / include / chlists.h  line:90
+ThreadQueue 的資料結構: In ChibiOS-RT-Community / os / kernel / include / chlists.h  line:90
 
 .. code-block:: c
 
