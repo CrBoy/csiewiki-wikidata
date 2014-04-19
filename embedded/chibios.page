@@ -43,6 +43,10 @@ toc: yes
     + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷
     + 除了可以呼叫`chSysEnable()<chSysEnable()>`_到達Normal狀態，以及`chSysSuspend()<chSysSuspend()>`_到達Suspended狀態之外，其他所有system API都不能呼叫
 * Sleep 
+    + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 `idle thread<idle thread>`_，到達這個狀態
+    + 此時系統將處於 low power mode，並等待一個中斷跳出這個狀態
+    + 接收到一個IRQ時，將會跑到 SRI 狀態去處理中斷，處理完後會回到 Normal 
+
 * S-Locked
 * I-Locked 
 * Serving Regular Interrupt ( SRI ) 
