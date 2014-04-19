@@ -35,7 +35,7 @@ toc: yes
     + 初始化完後進到 Normal
 * Normal 
     + 初始化完後到達的狀態
-    + 在這裡可以執行Thread, 產生任何中斷及呼叫任何system API
+    + 在這裡可以執行Thread, 接收並處理任何中斷及呼叫任何system API
 * Suspended 
     + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
     + 除了可以呼叫`chSysDisable()<chSysDisable()>`_到達Disable狀態，以及`chSysEnable()<chSysEnable()>`_到達Normal狀態之外，其他所有system API都不能呼叫
