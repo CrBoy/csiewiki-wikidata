@@ -92,17 +92,21 @@ FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list�
 
  下面是在ready list中依照優先度選取執行目標的程式其中，FreeRTOS的優先度排序最小優先權爲0，數字越大則優先權越高
 
+`task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ (taskSELECT_HIGHEST_PRIORITY_TASK)
+
 .. code-block:: c
 
-    /* In file: tasks.c */
     while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
     {
         configASSERT( uxTopReadyPriority );
         --uxTopReadyPriority;
     }
     listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );
-    
-    /*In file: Source/include.h */
+
+`include/list.h<https://github.com/TheKK/myFreeRTOS/blob/master/include/list.h#L268>`_
+
+.. code-block:: c
+
     #define listGET_OWNER_OF_NEXT_ENTRY( pxTCB, pxList )
     {
         List_t * const pxConstList = ( pxList );
