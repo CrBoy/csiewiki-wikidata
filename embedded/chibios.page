@@ -92,9 +92,6 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
  priority 相同的話，採用 round-robin strategy
 
  * 執行序的priority level
-    + zero :
-        - value = 0
-        - 保留的最低 priority level，所有可能出現的priority level保證大於0
     + IDLEPRIO :
         - value = 1
         - 保留給Idle Thread的特殊priority level
@@ -107,9 +104,6 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     + HIGHPRIO :
         - value = 127
         - user thread 中 priority level 最高
-    + ABSPRO ：
-        - value = 255
-        - 保留的最高priority level，高於此priority level的話，就是被interrupt source 所使用的hw level
 
 
 上下文交換(Context Switch)
