@@ -26,7 +26,7 @@ toc: yes
 * platform layer : 包含許多device drivers的實作
 * various : 提供各種額外但不包含在特定組件的工具的函式庫
 
- *HAL 與 platform關係如下
+ * HAL 與 platform關係如下
      .. image:: /ch_HAL_plat.png
 
 中斷(Interrupt)
@@ -70,7 +70,7 @@ toc: yes
 * Sleeping :
 * Ready : 準備好的狀態
 
-* ChbiOS/RT 初始化後會建立兩個 thread 
+ChbiOS/RT 初始化後會建立兩個 thread 
          + Idle thread :
                       - priority level最低，只有在其他thread 處於sleep狀態時才會執行，通常在執行這個threaad時 系統會進入low power mode 且不會做任何事情
          + Main thread :
