@@ -115,6 +115,32 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+| 在chibios當中，是以port_switch()來完成context switch
+| 
+| /os/ports/GCC/ARMCMx/chcore_v7m.c(line:236)
+
+.. code-block:: c
+
+    void _port_switch(Thread *ntp, Thread *otp) {
+
+      asm volatile ("push    {r4, r5, r6, r7, r8, r9, r10, r11, lr}"   ←儲存舊的thread的狀態
+                    : : : "memory");
+    #if CORTEX_USE_FPU
+      asm volatile ("vpush   {s16-s31}" : : : "memory");
+    #endif
+
+      asm volatile ("str     sp, [%1, #12]                          \n\t"   ←切換stack pointer所指的位址
+                    "ldr     sp, [%0, #12]" : : "r" (ntp), "r" (otp));      ←
+
+    #if CORTEX_USE_FPU
+      asm volatile ("vpop    {s16-s31}" : : : "memory");
+    #endif
+      asm volatile ("pop     {r4, r5, r6, r7, r8, r9, r10, r11, pc}"   ←讀入新的thread的狀態
+                    : : : "memory");
+    }
+
+
+
 
 系統狀態(System States)
 ^^^^^^^^^^^^^^^^^^^^^^
