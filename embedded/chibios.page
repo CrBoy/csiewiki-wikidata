@@ -76,9 +76,10 @@ toc: yes
          + Main thread :
                      - priority=NORMALPRIO ，此thread在一開始執行main() function，且需要時可以變更自己的priority，通常其他的thread也都是由此建立的
 
-Thread List
-^^^^^^^^^^^^^
+Thread and List Structure
+^^^^^^^^^^^^^^^^^^^^^^^^^
  .. image:: http://chibios.sourceforge.net/html/struct_thread__coll__graph.png
+ .. image:: http://chibios.sourceforge.net/html/struct_threads_list__coll__graph.png
 
 Ready List
 ^^^^^^^^^^^^^
