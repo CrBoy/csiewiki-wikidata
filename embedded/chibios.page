@@ -145,6 +145,12 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 ------------
 * 以 DMA2D 為例
 
+* 在對硬體的driver作設計時會用到很多_IO的type
+ + 在ChibiOS-RT-Community/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h裡找到相關定義
+::
+
+   #define     __IO    volatile             /*!< Defines 'read / write' permissions*/
+
 效能表現
 --------
 * 參考 ChibiOS/RT 的 test/testbmk.c
