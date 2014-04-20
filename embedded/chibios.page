@@ -16,11 +16,11 @@ toc: yes
 
 作業系統架構
 ------------
-*kernel:
-*port layer:
-*HAL:
-*platform layer:
-*various:
+* kernel 
+* port layer 
+* HAL 
+* platform layer 
+* various 
 
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
