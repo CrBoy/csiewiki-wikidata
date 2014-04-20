@@ -56,12 +56,15 @@ toc: yes
 執行緒(Thread)
 ^^^^^^^^^^^^^
 
+.. image:: /chThread狀態圖.png
+
 * Start : 初始的狀態
 * Suspended :
 * Running : 正在執行中的狀態
 * Stop : 停止的狀態
 * Sleeping :
 * Ready : 準備好的狀態
+
 
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
