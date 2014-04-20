@@ -80,8 +80,8 @@ Thread and Structure Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  .. image:: http://chibios.sourceforge.net/html/struct_threads_list__coll__graph.png
 
-＊ 實線方向 ： 被使用在結構中
-＊ 虛線方向 ： 所使用的結構為
+* 實線方向 ： 資料結構繼承關係
+* 虛線方向 ： 指標指向的資料結構
 
 Ready List
 ^^^^^^^^^^^^^
