@@ -78,10 +78,7 @@ ChbiOS/RT 初始化後會建立兩個 thread
 
 Thread and Structure Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- .. image:: http://chibios.sourceforge.net/html/struct_thread__coll__graph.png
- .. image:: http://chibios.sourceforge.net/html/classchibios__rt_1_1_thread_reference__coll__graph.png
  .. image:: http://chibios.sourceforge.net/html/struct_threads_list__coll__graph.png
- .. image:: http://chibios.sourceforge.net/html/struct_threads_queue__coll__graph.png
 
 ＊ 實線方向 ： 被使用在結構中
 ＊ 虛線方向 ： 所使用的結構為
