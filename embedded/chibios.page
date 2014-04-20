@@ -16,13 +16,16 @@ toc: yes
 
 作業系統架構
 ------------
- ChibiOS/RT  是一個相當模組化的設計，部由許多主要的獨立組件構成。而每一個組件又可能細分成許多子系統
+  ChibiOS/RT  是一個相當模組化的設計，部由許多主要的獨立組件構成。而每一個組件又可能細分成許多子系統
+
+ .. image:: /ch結構.png
 
 * kernel : OS kernel中與平台無關的部份
 * port layer ：OS kernel中與結構/編譯器 相關的部份
 * HAL(hardware abstraction layer) : 包含許多抽象的device drivers，提供普遍的I/O API給不同平台的應用程式 
 * platform layer : 包含許多device drivers的實作
 * various : 提供各種額外但不包含在特定組件的工具的函式庫
+
 
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
