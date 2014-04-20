@@ -56,7 +56,7 @@ toc: yes
     + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
         - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
 
-執行緒(Thread)
+執行緒(Thread)狀態
 ^^^^^^^^^^^^^
 
 .. image:: /chThread狀態圖.png
@@ -67,6 +67,32 @@ toc: yes
 * Stop : 停止的狀態
 * Sleeping :
 * Ready : 準備好的狀態
+
+Ready List
+^^^^^^^^^^^^^
+ChibiOS/RT 的 ready list以doubly linked list 實作
+
+ .. image:: /chReadyList.png
+
+ * 執行序的priority level
+    + zero :
+        - value = 0
+        - 保留的最低 priority level，所有可能出現的priority level保證大於0
+    + IDLEPRIO :
+        - value = 1
+        - 保留給Idle Thread的特殊priority level
+    + LOWPRIO :
+        - value = 2
+        - user thread 中 priority level 最低
+    + NORMALPRIO :
+        - value = 64
+        - main() thread從這個level開始，通常user thread 的priority level是以此為中心
+    + HIGHPRIO :
+        - value = 127
+        - user thread 中 priority level 最高
+    + ABSPRO ：
+        - value = 255
+        - 保留的最高priority level，高於此priority level的話，就是被interrupt source 所使用的hw level
 
 
 上下文交換(Context Switch)
