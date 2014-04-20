@@ -18,7 +18,7 @@ toc: yes
 ------------
   ChibiOS/RT  是一個相當模組化的設計，部由許多主要的獨立組件構成。而每一個組件又可能細分成許多子系統
 
- .. image:: /ch結構.png
+ .. image:: /embedded/chibi_architecture.png
 
 * kernel : OS kernel中與平台無關的部份
 * port layer ：OS kernel中與結構/編譯器 相關的部份
@@ -27,7 +27,7 @@ toc: yes
 * various : 提供各種額外但不包含在特定組件的工具的函式庫
 
  * HAL 與 platform關係如下
-     .. image:: /ch_HAL_plat.png
+     .. image:: /embedded/chibi_HAL_plat.png
 
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
@@ -61,7 +61,7 @@ toc: yes
 執行緒(Thread)狀態
 ^^^^^^^^^^^^^
 
-.. image:: /chThread狀態圖.png
+.. image:: /embedded/chibiThdState.png
 
 * Start : 初始的狀態
 * Suspended :
@@ -87,7 +87,7 @@ Ready List
 ^^^^^^^^^^^^^
 ChibiOS/RT 的 ready list以doubly linked list 實作
 
- .. image:: /chReadyList.png
+ .. image:: /embedded/chibi_ready_list.png
 
  priority 相同的話，採用 round-robin strategy
 
