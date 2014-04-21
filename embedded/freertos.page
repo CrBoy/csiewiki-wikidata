@@ -940,6 +940,295 @@ GPIO_Init()
 
 最後，呼叫vTaskStartScheduler()正式開始排程
 
+問題討論
+----------
+
+**Q3:Priority範圍且定義在哪裡**
+
+在./CORTEX_M4F_STM32F407ZG-SK/FreeRTOSconfig.h裡
+
+.. code-block:: c
+
+   #define configMAX_PRIORITIES            ( 5 )
+
+**Q4:為什麼要用DOUBLE LIST LINK**
+
+因為DOUBLE LIST LINK在插入新ITEM時擁有常數的時間成本，而SINGLE LIST LINK 則是N (N = 插入位置項數）
+
+**Q5：為什麼FREERTOS在FORK之後是回傳一個STRUCK 而不是PID**
+
+追朔了xTaskCreate的程式碼，發現他是執行 xTaskGenericCreate這個function，而xTaskGenericCreate是在function裡malloc完成TCB之後，返回值有兩個：
+
+* pdPASS
+* errCOULD_NOT_ALLOCATE_REQUIRED_MEMORY
+
+資料型態為BaseType_t，宣告在portmacro.h裡：
+
+.. code-block:: c
+
+   typedef long BaseType_t;
+
+所以他的回傳值用途：回傳告知在malloc memory時是否成功。
+
+而linux使用回傳PID的原因在於parent使用wait()來等待child，當child執行結束後會呼叫exit()，parent即可以clean up child process。若parent沒有使用wait()的話，會造成parent可能已經先結束了，這樣造成child變成zombie。
+
+FreeRTOS的task create：
+
+.. code-block:: c
+
+    xTaskCreate( vTaskCode, "NAME", STACK_SIZE, &ucParameterToPass, tskIDLE_PRIORITY, &xHandle );
+
+其中Handle存的是新創的TCB這個structure的位址，將來要刪除此task的話可以用如下方法：
+
+.. code-block:: c
+
+    /* Use the handle to delete the task. */
+    if( xHandle != NULL 
+    {
+        vTaskDelete( xHandle );
+    }
+
+而Linux的parent和child為相同的位址空間，若回傳為child的位址，將來parent要把child刪除時，便也把自己給刪除了...所以linux使用的是PID而不是structure的位址。
+
+**Q6：STACK位置的排列，如何存放**
+
+存放順序：
+
+xPSR
+
+PC : Program counter 內容存放處理器要存取的下一道指令位址
+
+LR : link rigisiter ：保存副程式的返回位址
+
+R12 : Intra-Procedure-call scratch register
+
+R3 : parameters
+
+R2 : parameters
+
+R1 : parameters
+
+R0 : parameters
+
+portINITIAL_EXEC_RETURN :  每個task要自己維護自己的返回值
+
+R11
+
+R10
+
+R9
+
+R8
+
+R7
+
+R6
+
+R5
+
+R4
+
+註：xPSR：Composite of the 3 PSRs，
+
+    APSR-Application Program Status Register–condition flags
+
+    （存negative、zero、carry、overflow等）
+
+    IPSR-Interrupt Program Status Register–Interrupt/Exception No.
+
+    （存目前發生Exception的ISR Number ）
+
+    EPSR-Execution Program Status Register
+
+    （存Thumb state bit 和 execution state bits(If-Then (IT) instruction和Interruptible-Continuable Instruction (ICI) field)）
+
+**Q7：LR(Link Rigisiter) 的用處**
+
+當一個task A 執行被中斷時（可能system tick 或是高優先權的Task出現）用來紀錄Task A執行到哪裡的位置，當其他程式執行完時，能返回繼續成行Task A 
+
+**Q8：為什麼是R12 R3 R2 R1 要預留起來？**
+
+R0~R3用來暫存Argument 的 scratch rigister （4個register的原因是為了handle values larger than 32 bits）
+
+R0 R1 亦可暫存 subroutine 的result值
+
+R12 : 作為The Intra-Procedure-call scratch register.
+
+而為什麼是這幾個，因為叫方便使用
+
+R12（IP）用法：
+
+.. code-block:: c
+
+    mov     ip, lr
+    bl      lowlevel_init
+    mov     lr, ip
+
+    先將lr暫存存入ip
+
+    bl跳至其他branch的地方
+
+    branch結束後使用lr跳回第三行，將ip存回lr
+
+P.S. 關於veneer：
+ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit 指令集），其中切換的程式段叫 veneer 
+
+**Q9：誰把New Task 接到 Ready List**
+
+.. code-block:: c
+
+    GDB Trace result                                                                                                                                                                           
+    
+    Breakpoint 1, xTaskGenericCreate (pxTaskCode=0x80003b1 <GameTask>, pcName=0x800ea84 "GameTask", usStackDepth=128, pvParameters=0x0, uxPriority=1, pxCreatedTask=0x0, puxStackBuffer=0x0, 
+    xRegions=0x0) at /home/kk/myPrograms/embedded/myFreeRTOS/tasks.c:516
+    516        {
+    (gdb) next
+    520                configASSERT( pxTaskCode );
+    (gdb) 
+    516        {
+    (gdb) 
+    520                configASSERT( pxTaskCode );
+    (gdb) 
+    521                configASSERT( ( ( uxPriority & ( ~portPRIVILEGE_BIT ) ) < configMAX_PRIORITIES ) );
+    (gdb) 
+    525                pxNewTCB = prvAllocateTCBAndStack( usStackDepth, puxStackBuffer );
+    (gdb) 
+    572                        prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+    (gdb) 
+    551                                pxTopOfStack = pxNewTCB->pxStack + ( usStackDepth - ( uint16_t ) 1 );
+    (gdb) 
+    572                        prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+    (gdb) 
+    551                                pxTopOfStack = pxNewTCB->pxStack + ( usStackDepth - ( uint16_t ) 1 );
+    (gdb) 
+    572                        prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+    (gdb) 
+    551                                pxTopOfStack = pxNewTCB->pxStack + ( usStackDepth - ( uint16_t ) 1 );
+    (gdb) 
+    552                                pxTopOfStack = ( StackType_t * ) ( ( ( portPOINTER_SIZE_TYPE ) pxTopOfStack ) & ( ( portPOINTER_SIZE_TYPE ) ~portBYTE_ALIGNMENT_MASK  ) ); /*lint !e923 MISRA exception.  Avoiding casts between pointers and integers is not practical.  Size differences accounted for using portPOINTER_SIZE_TYPE type. */
+    (gdb) 
+    572                        prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+    (gdb) 
+    584                                pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
+    (gdb) 
+    588                        if( ( void * ) pxCreatedTask != NULL )
+    (gdb) 
+    602                        taskENTER_CRITICAL();
+    (gdb) 
+    604                                uxCurrentNumberOfTasks++;
+    (gdb) 
+    605                                if( pxCurrentTCB == NULL )
+    (gdb) 
+    604                                uxCurrentNumberOfTasks++;
+    (gdb) 
+    605                                if( pxCurrentTCB == NULL )
+    (gdb) 
+    604                                uxCurrentNumberOfTasks++;
+    (gdb) 
+    605                                if( pxCurrentTCB == NULL )
+    (gdb) 
+    609                                        pxCurrentTCB =  pxNewTCB;
+    (gdb) 
+    611                                        if( uxCurrentNumberOfTasks == ( UBaseType_t ) 1 )
+    (gdb) 
+    (gdb) 
+    616                                                prvInitialiseTaskLists();
+    (gdb) 
+    645                                uxTaskNumber++;
+    (gdb) 
+    655                                prvAddTaskToReadyList( pxNewTCB );
+    (gdb) 
+    645                                uxTaskNumber++;
+    (gdb) 
+    655                                prvAddTaskToReadyList( pxNewTCB );
+    (gdb) 
+    645                                uxTaskNumber++;
+    (gdb) 
+    655                                prvAddTaskToReadyList( pxNewTCB );
+    (gdb) 
+    645                                uxTaskNumber++;
+    (gdb) 
+    655                                prvAddTaskToReadyList( pxNewTCB );
+    (gdb) 
+    645                                uxTaskNumber++;
+    (gdb) 
+    650                                        pxNewTCB->uxTCBNumber = uxTaskNumber;
+    (gdb) 
+    655                                prvAddTaskToReadyList( pxNewTCB );
+    (gdb)                                                                                                                                                                                      
+    660                        taskEXIT_CRITICAL();
+    (gdb) 
+    670                        if( xSchedulerRunning != pdFALSE )
+    (gdb) 
+    657                                xReturn = pdPASS;
+    (gdb) 
+    690        
+
+* prvInitialiseTaskLists(void)
+
+只有在list未被初始化時，才會被執行。預設會建立pxReadyTasksLists，xDelayedTaskList1，xDelaye    traceMOVED_TASK_TO_READY_STATEdTaskList2，xPendingReadyList，依照使用者設定可以選擇是否建立xTasksWaitingTermination和xSuspendedTaskList
+
+* prvAddTaskToReadyList( pxNewTCB )
+
+將pxNewTCB接上pxReadyTasksLists，prvAddTaskToReadyList()程式碼如下
+
+.. code-block:: c
+
+    #define prvAddTaskToReadyList( pxTCB )                                                                                      \                 
+            traceMOVED_TASK_TO_READY_STATE( pxTCB )                                                                         \
+            taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );                                                          \
+            vListInsertEnd( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ), &( ( pxTCB )->xGenericListItem ) )
+
+
+* traceMOVED_TASK_TO_READY_STATE
+
+.. code-block:: c
+
+    #ifndef traceMOVED_TASK_TO_READY_STATE
+            #define traceMOVED_TASK_TO_READY_STATE( pxTCB )   
+    #endif
+
+自定義函式，無預設定義。Debug用
+
+* taskRECORD_READY_PRIORITY
+
+.. code-block:: c
+
+    taskRECORD_READY_PRIORITY
+
+            #define taskRECORD_READY_PRIORITY( uxPriority )                                                                                                         \
+            {                                                                                                                                                                                                       \
+                    if( ( uxPriority ) > uxTopReadyPriority )                                                                                                               \
+                    {                                                                                                                   
+                            uxTopReadyPriority = ( uxPriority );                                                                                                            \
+                    }                                                                                                                                                                                               \
+            } /* taskRECORD_READY_PRIORITY */
+
+檢查目前task的priority是否高於“當前最高優先權”。如果是，將更新當前最高優先權。
+
+* vListInsertEnd
+
+.. code-block:: c
+
+    void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem )
+    {
+    ListItem_t * const pxIndex = pxList->pxIndex;
+                                                                                                                   
+            /* Insert a new list item into pxList, but rather than sort the list,
+            makes the new list item the last item to be removed by a call to
+            listGET_OWNER_OF_NEXT_ENTRY(). */
+            pxNewListItem->pxNext = pxIndex;
+            pxNewListItem->pxPrevious = pxIndex->pxPrevious;
+            pxIndex->pxPrevious->pxNext = pxNewListItem;
+            pxIndex->pxPrevious = pxNewListItem;
+
+            /* Remember which list the item is in. */
+            pxNewListItem->pvContainer = ( void * ) pxList;
+            ( pxList->uxNumberOfItems )++;
+    }
+
+將pxNewListItem插入至pxList的最後面
+
 參考資料
 --------
 * `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
