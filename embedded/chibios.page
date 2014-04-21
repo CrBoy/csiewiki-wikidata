@@ -89,7 +89,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
  .. image:: /embedded/chibi_ready_list.png
 
- priority 相同的話，採用 round-robin strategy
+數字愈大，優先權愈大 ( priority 相同的話，採用 round-robin strategy)
 
  * 執行序的priority level
     + IDLEPRIO :
@@ -104,6 +104,21 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     + HIGHPRIO :
         - value = 127
         - user thread 中 priority level 最高
+
+選出下一個可執行的thread， 並進行Context Switch
+
+`chsch.c<https://github.com/louis7340/ChibiOS-RT-Community/blob/master/os/kernel/src/chschd.c#L227>`_
+
+.. code-block:: c
+
+   if (ntp->p_prio <= currp->p_prio)
+      chSchReadyI(ntp);
+   else {
+      Thread *otp = chSchReadyI(currp);
+      setcurrp(ntp);
+      ntp->p_state = THD_STATE_CURRENT;
+      chSysSwitch(ntp, otp);
+   }
 
 
 上下文交換(Context Switch)
