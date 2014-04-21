@@ -853,6 +853,7 @@ GPIO_Init()
 (context switch是指taskA要交出CPU使用權給taslB時，將taslA當前的state和register內資料存放至記憶體內，將先前taskB的state從記憶體讀取至register內的過程)
 
 我們想得知FreeRTOS的context switch時間，並想出一個測試方法：
+`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/shin21/myFreeRTO-1/blob/ContextSwitchTest/CORTEX_M4F_STM32F407ZG-SK/main.c#L178>`_
 
 .. image:: /embedded/test1contextSwitch.jpg
 1. 首先建立task1和task2，其中task2的priority大於task1的priority。task2先執行時，馬上就進行vTaskDelay使task2移至block狀態1秒，這時就會發生context switch，換成task1執行，這1秒的時間，task1不斷的進行i++，直到1秒結束後，回到task2執行，再由task2印出i值，並把i重新設0，此為一個週期。此動作可得到i在一秒時可跑至多少，設一秒可跑至k值。
