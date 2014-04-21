@@ -235,10 +235,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
     {	/* This is a naked function. */
         __asm volatile
         (
-<<<<<<< edited
-=======
-<<<<<<< edited
->>>>>>> 0094ad4adc775177f7c2fb34da507a6eb69388c9
+
         "	mrs r0, psp						\n"
         "	isb							\n"
         "								\n"
@@ -275,6 +272,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         "	vldmiaeq r0!, {s16-s31}					\n"
         "								\n"
         "	msr psp, r0						\n"
+<<<<<<< edited
+=======
 <<<<<<< edited
 =======
 =======
@@ -314,8 +313,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         "	vldmiaeq r0!, {s16-s31}		\n"
         "								\n"
         "	msr psp, r0					\n"
->>>>>>> bdc4a7f079360d04c742a049d9a7520a6b86d284
->>>>>>> 0094ad4adc775177f7c2fb34da507a6eb69388c9
+
         "	isb							\n"
         "								\n"
         #ifdef WORKAROUND_PMU_CM001 /* XMC4000 specific errata workaround. */
@@ -324,23 +322,14 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         "			pop { pc }				\n"
         	#endif
         #endif
-<<<<<<< edited
-=======
-<<<<<<< edited
->>>>>>> 0094ad4adc775177f7c2fb34da507a6eb69388c9
         "								\n"
         "	bx r14							\n"
         "									\n"
         "	.align 2						\n"
-<<<<<<< edited
-=======
-=======
         "									\n"
         "	bx r14							\n"
         "									\n"
         "	.align 2							\n"
->>>>>>> bdc4a7f079360d04c742a049d9a7520a6b86d284
->>>>>>> 0094ad4adc775177f7c2fb34da507a6eb69388c9
         "pxCurrentTCBConst: .word pxCurrentTCB\n"
         ::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
         );
