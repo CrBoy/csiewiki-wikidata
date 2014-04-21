@@ -124,7 +124,10 @@ FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list�
 
 TCB的資料結構：
 
+`tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_
+
  .. code-block:: c
+
     /* In file: tasks.c */
     typedef struct tskTaskControlBlock
     {
@@ -182,6 +185,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
 爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
  
+`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L216>`_
+
 .. code-block:: c
 
     /* In file: port.c */
@@ -220,6 +225,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
 
 而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
+
+`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L450>`_
 
  .. code-block:: c
 
@@ -281,6 +288,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一�
 
 Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
 
+`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L419>`_
+
 .. code-block:: c
 
     __attribute__(( naked )) uint32_t ulPortSetInterruptMask( void )
@@ -326,6 +335,8 @@ Communication
 使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
 Queue的結構如下
 
+
+`queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L125>`_
 
  .. code-block:: c
 
@@ -388,6 +399,9 @@ Queue的結構如下
 
 Queue在FreeRTOS的實作如下：
 
+`/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L213>`_
+
+
  .. code-block:: c
 
     /*file: ./CORTEX_M4F_STM32F407ZG-SK/main.c*/
@@ -438,7 +452,9 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     需要，在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
 
- .. code-block:: c
+ `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399>`_
+
+.. code-block:: c
 
     /* In file: port.c */
     void vPortEnterCritical( void ) 
@@ -465,7 +481,10 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
     因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
 
- .. code-block:: c
+ `queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105>`_
+
+
+.. code-block:: c
 
         /* Effectively make a union out of the xQUEUE structure. */
         #define uxQueueType           pcHead
@@ -490,6 +509,8 @@ Scheduling
 除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
 
 Delay( sleep ): 停止運行一段特定時間
+
+`/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L177>`_
 
  .. code-block:: c
 
@@ -540,6 +561,8 @@ wait( block ): 等待取得某資源
 
   .. image:: /TickISR.gif
 
+ `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L506>`_ 
+
  .. code-block:: c
 
     void xPortSysTickHandler( void )
@@ -581,6 +604,8 @@ An ISR “gives” a semaphore and unblock a 'Handler” task that is able to ha
 
 file:startup_stm32f429_439xx.s  line:158
 
+ `CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s＃L82>`_
+
  .. code-block:: c
 
       .word     EXTI0_IRQHandler                  /* EXTI Line0                   */                        
@@ -611,6 +636,8 @@ EXTI使用前必須：
 * 設定NVIC通道，權限
 
 EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:106
+
+`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106>`_
 
  .. code-block:: c
 
@@ -649,6 +676,8 @@ EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:1
 或者，藉由外部的輸入，來改變記憶體內容，讓硬體得知其變化，來做反應
 
 使用GPIO前，必須預先設定行爲和細節，以stm32f429i_discovery.c內的LED初始作業來看
+
+`Utilities/STM32F429I-Discovery/stm32f429i_discovery.c<https://github.com/TheKK/myFreeRTOS/blob/exti/Utilities/STM32F429I-Discovery/stm32f429i_discovery.c#122>`_
 
  .. code-block:: c
 
@@ -718,6 +747,9 @@ EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:1
 GPIO_Init()的執行也脫離不了寫入資料至記憶體一事，但設定項目更多，設定過程也相對複雜
 
 GPIO_Init()
+
+`CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c＃202>`_
+
  .. code-block:: c
 
     /* In file: stm32f4xx_gpio.c */
@@ -795,6 +827,9 @@ GPIO_Init()
 * interrupt latency
 
 我們的架構為是手動設定一個external interrupt，發生在BUTTON_USER按下時，下面程式是我們的實作：
+
+`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106>`_
+
 
 .. code-block:: c
 
