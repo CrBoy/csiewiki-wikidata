@@ -180,7 +180,7 @@ uxPriority , uxBasePriority ：紀錄優先權 ,而後者是紀錄原本的優�
 
 xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個列表中 ，被插入pointer的地方
 
-xTaskCreate()函數被呼叫的時候，一個任務被創建。 FreeRTOS為一個任務新分配一個TCB target，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的HeapStack（假設有足夠使用的記憶體）和在TCB的pxStack成員中記錄Stack的記憶體起點。
+xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一個任務新分配一個TCB target，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的HeapStack（假設有足夠使用的記憶體）和在TCB的pxStack成員中記錄Stack的記憶體起點。
 
 
 爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
