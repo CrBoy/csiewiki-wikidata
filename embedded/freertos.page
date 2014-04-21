@@ -526,8 +526,7 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
     uxQueueType若為0，表示this queue is being used for a mutex
     pxMutexHolder用來實作priority inheritance
 
-        mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
-
+    mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
     另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
 
     
@@ -855,8 +854,7 @@ GPIO_Init()
 0.0855秒代表在300秒的測試內的所有context switch時間之總和
 
 而因為一個週期（第一個步驟）會經過2個context switch（上圖），我們測300內共有600個context switch，故我們測出每個context switch約為：0.0855 / 600 = 142.5（us）
- 
- 
+　 
  
 * interrupt latency
 
@@ -874,10 +872,49 @@ GPIO_Init()
 
 
 當BUTTON_USER按下後，會先執行i++直到interruptHandler處理interrupt，讀i值即可得知interrupt latency，而實作結果發現i依舊為0。
+　
 
 * IPC（Inter-Process Communication） throughput
 
 `測試程式，在第167行可以改要執行的時間<https://github.com/TheKK/myFreeRTOS/blob/IPC-ThroughPut/CORTEX_M4F_STM32_DISCOVERY/main.c#L167>`_
+
+SysTick最小只能設到1 / 100000 （十萬分之一）秒
+
+若設到1 / 1000000 （百萬分之一）秒，則會連將data copy至queue裡都來不及執行
+
+**環境設置：**
+
+1. SysTick為1 / 100000 （十萬分之一）秒
+
+2. Queue的length為10000個
+
+3. Queue的ItemSize為uint32_t
+
+- 測試單向（send）
+
+若使用一個task只執行send data的話，在100 SysTicks時間內可以丟入約740個，在1000 SysTicks時間內可以丟入約7500個，
+
+則1 SysTick內平均send 7.5個，故throughput約為：7.5 * 100000 * 4 = 3 （Mbytes/s）
+
+- 測試雙向（send與receive）
+
+若加入一個task來receive data，且priority和send data的priority相同
+
+1000 SysTicks下可以接收到2962個，
+
+則1 SysTick平均接收2.962個，故throughput約為：2.962 * 100000 * 4 = 1.185（Mbytes/s）
+
+- 測試把每個ItemSize做變動
+
+若每個ItemSize為uint16_t，則throughput約為：2.893 * 100000 * 2 = 0.579（Mbytes/s）
+
+若每個ItemSize為uint64_t，則throughput約為：2.823 * 100000 * 8 = 2.258（Mbytes/s）
+
+.. image:: /embedded/IPC-test.png
+
+以上三者比較，在uint64_t時有最好的throughput，且snd和rcv相差最小。
+
+
 
 * realtime capability
 
