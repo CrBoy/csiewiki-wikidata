@@ -19,7 +19,9 @@ toc: no
 
 Basic Kernel Library
 ----------------------
-* KTable - 一套快速的物件管理機制，結構如下：
+KTable
+=========================================
+ktable是一套快速的物件管理機制，結構如下：
 
 .. code-block:: c
 
@@ -32,7 +34,180 @@ Basic Kernel Library
     };
 
     typedef struct ktable ktable_t;
+* tname ： table名稱
+* `bitmap<#bitmap>`_ ： 紀錄table的使用情況
+* data ： 實際存放資料的區域
+* num ： 總共有幾個區塊
+* size ： 每個區塊的大小
 
+接著是宣告ktable的方法，給予要存放在ktable中的型態、ktable的名字、以及需要的大小：
+
+.. code-block:: c
+
+   // 宣告一個ktable
+   // $ arm-none-eabi-readelf f9.elf -s | grep fpage_table
+   //    263: 10000000    32 OBJECT  LOCAL  DEFAULT    8 kt_fpage_table_bitmap
+   //    265: 2000c4e0  6144 OBJECT  LOCAL  DEFAULT    4 kt_fpage_table_data
+   #define DECLARE_KTABLE(type, name, num_)			\
+   	DECLARE_BITMAP(kt_ ## name ## _bitmap, num_);		\
+   	static __KTABLE type kt_ ## name ## _data[num_];	\
+   	ktable_t name = {					\
+   			.tname = #name,				\
+   			.bitmap = kt_ ## name ## _bitmap,	\
+   			.data = (ptr_t) kt_ ## name ## _data,	\
+   			.num = num_, .size = sizeof(type)	\
+   	}
+
+ktable有提供下列的API可供使用：
+
+.. code-block:: c
+
+   // 將kt中的bitmap全部設為0
+   void ktable_init(ktable_t *kt);
+   // 檢查第i個元素是否已經被配置
+   int ktable_is_allocated(ktable_t *kt, int i);
+   // 配置第i個元素，回傳元素的位置
+   void *ktable_alloc_id(ktable_t *kt, int i);
+   // 配置到第一個free的元素，回傳元素的位置
+   void *ktable_alloc(ktable_t *kt);
+   // 釋放元素
+   void  ktable_free(ktable_t *kt, void *element);
+   // 取得該元素位在ktable內的id
+   uint32_t ktable_getid(ktable_t *kt, void *element);
+
+.. image:: /embedded/f9-kernel/ktable.png
+
+Bitmap
+#######
+bit array(bitmap, bitset, bit string, bit vector)是一種緊湊儲存位元的陣列結構，可以用來實作簡單的set結構。在硬體上操作bit-level時，bitmap是一種很有效的方法，一個典型的bitmap會儲存kw個位元，w代表一個單位需要w個位元(byte、word)，k則是一個非負的整數，如果w無法被要儲存的位元整除，則有些空間會因為內部片段被浪費。
+
+**定義**
+
+bitmap會從某一個domain mapping到一個集合{0, 1}，這個值可以代表valid/invalid、dark/light等等，重點在只會有兩個可能的值，所以可以被存在一個位元中。
+
+**基本操作**
+
+雖然大部分的機器無法取得或操作記憶體中的單一位元，但是可以透過bitwise操作一個word進而改變單一位元的資料：
+
+* OR可以用來set一個位元為1：11101010 OR 00000100 = 11101110(set 3rd bit 1)
+* AND可以用來set一個位元為0：11101010 AND 11111101 = 11101000(set 2nd bit 0)
+* AND可以用來判斷某一個位元是否為1：11101010 AND 00000001 = 0(check 1st bit is 1)
+* XOR可以用來toggle一個位元：11101010 XOR 00000100 = 11101110(toggle 3rd bit)
+* NOT用來invert：NOT 11101010 = 00010101
+
+只要n/w個bitwise operation用來算出兩個相同大小bitmap的union、intersection、difference、complement
+
+.. code-block:: c
+
+   for i from 0 to n/w-1
+       complement[i] := not a[i]
+       union[i]        := a[i] or b[i]
+       intersection[i] := a[i] and b[i]
+       difference[i]   := a[i] and (not b[i])
+如果要iterate bitmap中的所有bit，只要用一個雙層的迴圈就能有效率的掃完，只需要n/w次的memory access
+
+.. code-block:: c
+
+   for i from 0 to n/w-1
+        index := 0    // if needed
+        word := a[i]
+        for b from 0 to w-1
+            value := word and 1 ≠ 0
+            word := word shift right 1
+            // do something with value
+            index := index + 1   // if needed
+
+**Bit-banding**
+
+bit-banding會將一塊較大記憶體中的word對應到一個較小的bit-band區域中的單一bit，例如寫到其中一個alias，可以set或是clear一個bit-band區域中對應的bit。
+這使得bit-band區域中每一個獨立的bit都可以透過LDR指令搭配一個word-aligned的地址進行存取，也能讓每一個獨立bit被直接toggle，而不須經過read-modify-write的指令操作。
+
+處理器的memory map包含了兩塊bit-band區域，分別是在SRAM以及Peripheral中最低位的1MB。
+
+System bus interface包含了一個bit-band的存取邏輯：
+
+* remap一個bit-band alias到bit-band區域
+* 讀取時，會將requested bit放在回傳資料的Least Significant Bit中
+* 寫入時，會將read-modify-write轉換成一個atomic的動作
+* 處理器在bit-band操作中不會stall，除非試圖在bit-band操作中存取system bus
+
+記憶體中有兩塊32MB的alias對應到兩塊1MB的bit-band區域：
+
+* 32MB可存取的SRAM alias區域對應到1MB的bit-band SRAM區域
+* 32MB可存取的peripheral alias區域對應到1MB的bit-band peripheral區域
+
+有一個mapping公式可以將alias轉換成對應的bit-band位置
+
+.. code-block:: c
+
+   bit_word_offset = (byte_offset x 32) + (bit_number × 4)
+   bit_word_addr = bit_band_base + bit_word_offset
+
+* bit_word_offset是target bit在bit-band區域中的位置
+* bit_word_addr是target bit在alias中對應的地址
+* bit_band_base是alias區域的起始位置
+* byte_offset是target bit在bit-band區域中的第幾個byte
+* bit_number是target bit的bit位置，從0到7
+
+範例如下：
+
+* The alias word at 0x23FFFFE0 maps to bit [0] of the bit-band byte at 0x200FFFFF: 0x23FFFFE0 = 0x22000000 + (0xFFFFF*32) + 0*4.
+* The alias word at 0x23FFFFFC maps to bit [7] of the bit-band byte at 0x200FFFFF: 0x23FFFFFC = 0x22000000 + (0xFFFFF*32) + 7*4.
+* The alias word at 0x22000000 maps to bit [0] of the bit-band byte at 0x20000000: 0x22000000 = 0x22000000 + (0*32) + 0*4.
+* The alias word at 0x2200001C maps to bit [7] of the bit-band byte at 0x20000000: 0x2200001C = 0x22000000 + (0*32) + 7*4.
+* bit-band[0x20000000] <-> alias[0x22000000~0x2200001C](8格)
+* bit-band 0x20000000[0]-0x20000000[1]-0x20000000[2]-0x20000000[3]-0x20000000[4]
+* alias    0x22000000   -0x20000004   -0x20000008   -0x2000000C   -0x20000010 
+
+.. image:: /embedded/f9-kernel/bitmap.png
+
+**直接存取alias**
+
+直接寫一個word到alias上與target bit的read-modify-write動作有同樣效果，Bit[0]代表要寫入target bit的值，Bit[31:1]沒有用處，所以寫入`0x01`跟`0xFF`是一樣的，都會寫入1到target bit；寫入`0x00`跟`0x0E`是一樣的，都會寫入0到target bit。
+
+從alias讀取一個word會得到`0x01`或是`0x00`，Bit[31:1]會為0
+
+**F9-kernel(Bitmap)**
+
+Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitmap cursor(type bitmap_cusor_t)iterate bitmap。
+
+.. code-block:: c
+
+   // include/lib/bitmap.h
+   // 宣告一塊bitmap
+   #define DECLARE_BITMAP(name, size) \
+       static __BITMAP uint32_t name [ALIGNED(size, BITMAP_ALIGN)];
+   
+   // ADDR_BITBAND指的是target bit所在byte對應到的align，還沒加上bit_number
+   // ((ptr_t) addr) & 0xFFFFF) 可以抓出addr在bit-band區域中的第幾個byte
+   #define BITBAND_ADDR_SHIFT         5
+   #define ADDR_BITBAND(addr) \
+           (bitmap_cursor_t) (0x22000000 + \
+                              ((((ptr_t) addr) & 0xFFFFF) << BITBAND_ADDR_SHIFT))
+   #define BIT_SHIFT                  2
+   
+   // bitmap_cursor是加上bit_number後的值，也就是target bit正確的align
+   #define bitmap_cursor(bitmap, bit) \
+           ((ADDR_BITBAND(bitmap) + (bit << BIT_SHIFT)))
+           
+   // bitmap_cursor_id可以取得bit_number
+   // ((1 << (BITBAND_ADDR_SHIFT + BIT_SHIFT)) - 1) 取得 0b1111111 也就是七位的mask，與cursor進行完AND操作並右移兩位後，會留下兩位的byte_offset以   及bit_number，也就是BBXXX(B:byte_offset、X:bit_number)
+   #define bitmap_cursor_id(cursor) \
+        (((ptr_t) cursor & ((1 << (BITBAND_ADDR_SHIFT + BIT_SHIFT)) - 1)) >> BIT_SHIFT)        
+   // bitmap_cursor_goto_next 可以把cursor往前推一格(+= 4)
+   #define bitmap_cursor_goto_next(cursor) \
+           cursor += 1 << BIT_SHIFT
+   
+   // for_each_in_bitmap 可以從某一個bitmap的start開始訪問完一塊bitmap        
+   #define for_each_in_bitmap(cursor, bitmap, size, start) \
+           for (cursor = bitmap_cursor(bitmap, start); \
+                bitmap_cursor_id(cursor) < size;        \
+                bitmap_cursor_goto_next(cursor))
+
+* bitmap_set_bit(bitmap_cursor_t cursor) - 將cursor設為1
+* bitmap_clear_bit(bitmap_cursor_t cursor) - 將cursor設為0
+* bitmap_get_bit(bitmap_cursor_t cursor) - 取得cursor值
+* bitmap_test_and_set_bit(bitmap_cursor_t cursor) - 測試cursor是否被使用並設為1
 
 硬體驅動原理
 ------------
@@ -45,3 +220,6 @@ Basic Kernel Library
 參考資料
 --------
 * http://www.slideshare.net/jserv/f9-microkernel
+* http://www.slideshare.net/vh21/2014-0109f9kernelktimer
+* http://en.wikipedia.org/wiki/Bit_array
+* `ARM Information Center(2.5. Bit-banding)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html>`_
