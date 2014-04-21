@@ -889,6 +889,8 @@ GPIO_Init()
 
 * IPC（Inter-Process Communication） throughput
 
+`測試程式，在第167行可以改要執行的時間<https://github.com/TheKK/myFreeRTOS/blob/IPC-ThroughPut/CORTEX_M4F_STM32_DISCOVERY/main.c#L167>`_
+
 * realtime capability
 
 測試環境架設
