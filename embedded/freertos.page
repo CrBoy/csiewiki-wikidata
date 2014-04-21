@@ -272,11 +272,6 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         "	vldmiaeq r0!, {s16-s31}					\n"
         "								\n"
         "	msr psp, r0						\n"
-<<<<<<< edited
-=======
-<<<<<<< edited
-=======
-=======
         "	mrs r0, psp					\n"
         "	isb							\n"
         "								\n"
