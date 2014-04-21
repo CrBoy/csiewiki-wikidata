@@ -182,35 +182,52 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     + 接收到一個IRQ時，將會跑到 SRI 狀態去處理中斷，處理完後會回到 Normal 
 
 * S-Locked
+    + 在 Normal 的狀態中呼叫 chSysLock() 之後會進入此狀態    
+    + 此時系統會進入 Kernel locked 的狀態
+    + 此時處理器會跑在 thread-privileged mode
+    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
+    + 在這個狀態裡可以使用 S class 和 I class 的 API 
+    + 呼叫 chSysUnlock() 會回到 Normal 狀態 
+
 * I-Locked 
-* Serving Regular Interrupt ( SRI ) 
-* Serving Fast Interrupt ( SFI ) 
-* Serving Non-Maskable Interrupt ( SNMI ) 
+    + 在 SRI 的狀態中呼叫 chSysLockFromIsr() 之後會進入這個狀態
+    + 此時系統會進入 Kernel locked 的狀態
+    + 此時處理器會跑在 exception-privileged mode
+    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
+    + 在這個狀態裡可以使用 I class 的 API 
+    + 呼叫 chSysUnlockFromIsr() 會回到 SRI 狀態 
+
+* Serving Regular Interrupt ( SRI )
+    + 處理一個正常中斷 ( IRQ ) 時，會進入這個狀態
+    + 此時只有更高等級的中斷能夠進行搶佔
+    + 此時處理器會跑在 exception-privileged mode
+    + 此時無法呼叫大部分的 system API，除非先呼叫 chSysLockFromIsr() 進入 I-Locked state，之後才能夠進行其他 API 的呼叫
+
+ 
+* Serving Fast Interrupt ( SFI )
+    + 處理一個快速中斷 ( FIQ ) 時會進入這個狀態
+    + 無法呼叫所有 system API
+    + 除了 Init , Halted , SNMI , Disabled 之外的任一狀態，只要接收到 FIQ 就會跳到這個狀態，處理完後會回到上一狀態
+ 
+* Serving Non-Maskable Interrupt ( SNMI )
+    + 處裡一個不可遮罩式的中斷時 (NMI) 會進入這個狀態
+    + 無法呼叫所有 system API
+    + 除了 Halted 的任一狀態裡只要接收到 NMI，或是在 Halted 中收到非同步的 NMI 時就會跳到這個狀態，處理完後會回到上一狀態
+ 
 * Halted
+    + 呼叫 chSysHalt() 時會進入這個狀態 
+    + 所有中斷都不能使用
 
 
 硬體驅動原理
 ------------
 * 以 DMA2D 為例
 
-* DMA2D架構圖
-
-.. image:: /DMA2D_structure.png
-
 * 在對硬體的driver作設計時會用到很多_IO的type
- + 記錄在`core_cm4.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207>`_
-.. code-block:: c
+ + 在ChibiOS-RT-Community/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h裡找到相關定義
+::
 
    #define     __IO    volatile             /*!< Defines 'read / write' permissions*/
-
-* Peripheral memory map for DMA2D
-  +記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
-.. code-block:: c
-
-   #define PERIPH_BASE      ((uint32_t)0x40000000) /*!< Peripheral base address in the alias region */
-   #define AHB1PERIPH_BASE  (PERIPH_BASE + 0x00020000)
-   #define DMA2D_BASE       (AHB1PERIPH_BASE + 0xB000)
-   #define DMA2D            ((DMA2D_TypeDef *)DMA2D_BASE)
 
 效能表現
 --------
