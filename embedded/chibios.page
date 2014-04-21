@@ -193,11 +193,24 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 ------------
 * 以 DMA2D 為例
 
+* DMA2D架構圖
+
+.. image:: /DMA2D_structure.png
+
 * 在對硬體的driver作設計時會用到很多_IO的type
- + 在ChibiOS-RT-Community/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h裡找到相關定義
-::
+ + 記錄在`core_cm4.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207>`_
+.. code-block:: c
 
    #define     __IO    volatile             /*!< Defines 'read / write' permissions*/
+
+* Peripheral memory map for DMA2D
+  +記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
+.. code-block:: c
+
+   #define PERIPH_BASE      ((uint32_t)0x40000000) /*!< Peripheral base address in the alias region */
+   #define AHB1PERIPH_BASE  (PERIPH_BASE + 0x00020000)
+   #define DMA2D_BASE       (AHB1PERIPH_BASE + 0xB000)
+   #define DMA2D            ((DMA2D_TypeDef *)DMA2D_BASE)
 
 效能表現
 --------
