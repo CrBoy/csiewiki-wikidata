@@ -382,16 +382,9 @@ Queue的結構如下
 
     } xQUEUE;
 
-FreeRTOS uses the xTasksWaitingToSend list to keep track of tasks that are blocking on inserting into a queue. 
+由於queue可以被許多個task進行寫入資料（即send data），當queue放滿了但卻還有task要進行寫入時，則使用xTasksWaitingToSend這個list來追蹤這些被block住的task（等待寫入資料到queue裡的task），每當有一個item從queue中被移除，xTasksWaitingToSend就會被檢查是否有task在此list，並且會在這些被block的task中挑出一個priority最高的task，將他解除block然後進行寫入資料的動作，若這些task的priority都一樣高，那將會挑出等待最久的task。
 
-Each time an element is removed from a queue the xTasksWaitingToSend list is checked. If a task is waiting in that list the task is unblocked.
-
-Similarly, xTasksWaitingToReceive keeps track of tasks that are blocking on removing from a queue. 
-
-Each time a new element is inserted into a queue the xTasksWaitingToReceive list is checked. If a task is waiting in that list the task is unblocked.
-
-
-由於queue可以被許多個task進行write，一個queue可能有許多個task處於block的狀態以等待queue有空間放data，一旦queue有空位時，會在這些被block的task中挑出一個priority最高的task，將他解除block並且進行write，若這些task的priority都一樣高，那將會挑出等待最久的task
+相同的，許多task進行讀取資料（即receive data）亦是如次，若queue沒有任何item在裡面，而同時還有好幾個task想要讀取資料，則這些task會被插在xTasksWaitingToReceive裡，xTasksWaitingToReceive這個list用來追蹤這些被block住的task（等待從queue中讀取資料的task）。
 
 Queue在FreeRTOS的實作如下：
 
