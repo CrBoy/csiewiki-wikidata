@@ -112,6 +112,15 @@ Building an RPi Xenomai Kernel
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
   - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
 
+* 使用 PREEMPT LINUX
+
+.. code-block:: prettyprint
+
+    root@raspberrypi:/home/pi# sudo ./cyclictest -t1 -p 80 -i 500 -l 100000
+    # /dev/cpu_dma_latency set to 0us
+    policy: fifo: loadavg: 0.00 0.01 0.05 1/61 2064          
+    T: 0 ( 2063) P:80 I:500 C: 100000 Min:     27 Act:   49 Avg:   42 Max:    1060
+
 * 使用 RT-PREEMPT
 
 .. code-block:: prettyprint
@@ -125,6 +134,12 @@ Building an RPi Xenomai Kernel
 
     Linux raspberrypi 3.8.13-core+ #1 Thu Feb 27 03:02:16 CST 2014 armv6l GNU/Linux
     Min:      1 Act:    5 Avg:    6 Max:      41
+
+.. code-block:: prettyprint
+
+    root@raspberrypi:/home/pi# /usr/xenomai/bin/cyclictest -t1 -p 80 -i 500 -l 10000 
+    0.08 0.06 0.05 1/61 2060          
+    T: 0 ( 2060) P:80 I:     500 C:  100000 Min:      -4 Act:      -2 Avg:       0 Max:      30
 
 討論用
 --------
