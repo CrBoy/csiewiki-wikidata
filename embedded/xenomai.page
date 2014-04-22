@@ -97,6 +97,26 @@ Building an RPi Xenomai Kernel
 
 * 編譯好的kernelImage,移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
 * 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/root/lib/modules``
+* Cyclictest
+  - Linux
+
+  .. code-block:: c
+    
+
+  - Xenomia
+
+  .. code-block:: c
+    
+    export PATH=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+    ./configure --host=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/
+    mkdir dist
+    make install DIST_DIR=dist
+
+  dist中會出現``usr/xenomai``
+  將這個資料夾移到sd卡中 ``/usr/``
+
+  - RT_preempt
+
 
 作業系統架構
 ------------
