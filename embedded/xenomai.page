@@ -59,6 +59,40 @@ Building an RPi Xenomai Kernel
     cd linux-rpi-3.8.y
     patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
 
+* Compile kernel
+
+  - Create build directory 
+
+  .. code-block:: c
+
+    mkdir linux-rpi-3.8.y/build
+
+  - Configure kernel
+
+  .. code-block:: c
+
+    cp rpi_xenomai_config linux-rpi-3.8.y/build/.config
+    cd linux-rpi-3.8.y
+    make mrproper
+    make ARCH=arm O=build oldconfig
+
+  - Compile 
+
+  .. code-block:: c
+    make ARCH=arm O=build CROSS_COMPILE=../../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
+   
+  - Install modules
+
+  .. code-block:: c
+
+    make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
+
+  - Install headers
+
+  .. code-block:: c
+
+    make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
+    find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
 
 
 作業系統架構
