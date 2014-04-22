@@ -23,9 +23,19 @@ Building an RPi Xenomai Kernel
 * Download source files and patches
   - Download kernel
 
-.. code-block:: c
+  .. code-block:: c
 
-    git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
+      git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
+  - Download Xenomai 
+
+  .. code-block:: c
+
+      git clone git://git.xenomai.org/xenomai-head.git xenomai-head
+  - Download minimal config 
+
+  .. code-block:: c
+
+      wget https://www.dropbox.com/s/dcju74md5sz45at/rpi_xenomai_config
 
 作業系統架構
 ------------
