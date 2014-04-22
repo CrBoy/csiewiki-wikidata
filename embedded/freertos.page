@@ -351,7 +351,7 @@ Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內�
             warnings. */
             return 0;
 
-藉此Mask所有的Interrupt(所有優先權低於BASEPRI的TASK將無法被執行 
+藉此Mask所有的Interrupt(所有優先權低於 configMAX_SYSCALL_INTERRUPT_PRIORITY 的TASK將無法被執行 
 
 參照：http://www.freertos.org/RTOS-Cortex-M3-M4.html
 
