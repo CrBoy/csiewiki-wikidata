@@ -79,6 +79,7 @@ Building an RPi Xenomai Kernel
   - Compile 
 
   .. code-block:: c
+
     make ARCH=arm O=build CROSS_COMPILE=../../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
    
   - Install modules
@@ -94,6 +95,8 @@ Building an RPi Xenomai Kernel
     make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
     find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
 
+* 編譯好的kernelImage,移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
+* 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/root/lib/modules``
 
 作業系統架構
 ------------
