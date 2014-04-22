@@ -69,7 +69,7 @@ Run FreeRTOS on STM32F4-Discovery
 Task的狀態
 ----------
 
-.. image:: /Emebbeded\Task_status.png
+.. image:: /Task狀態.png
 
 
 * Ready : 準備好要執行的狀態
