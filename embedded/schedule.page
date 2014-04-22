@@ -24,7 +24,7 @@ Week  Date     Subject                                 Assignment
 #7    Apr  1   春假
 #8    Apr  8   `Advanced OS Design issues`_               :
 #9    Apr 15   `Group Presentation (a)`_                  :
-#10   Apr 22   Group Presentation (b)                  :
+#10   Apr 22   `Group Presentation (b)`_                  :
 #11   Apr 29   Group Presentation (c)                  :
 #12   May  6   Group Presentation (d)                  :
 #13   May 13   Group Presentation (e)                  :
@@ -43,6 +43,7 @@ Week  Date     Subject                                 Assignment
 .. _`ARM I/O, Interrupt, Exception`: 2014-w6
 .. _`Advanced OS Design issues`: 2014-w8
 .. _`Group Presentation (a)`: 2014-w9
+.. _`Group Presentation (b)`: 2014-w10
 .. _`Lab 25`: Lab25
 .. _`Lab 26`: Lab26
 .. _`Lab 27`: Lab27
