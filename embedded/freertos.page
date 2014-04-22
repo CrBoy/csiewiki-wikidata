@@ -1011,14 +1011,14 @@ R0 : parameters
 
 portINITIAL_EXEC_RETURN :  每個task要自己維護自己的返回值
 
-R11
-R10
-R9
-R8
-R7
-R6
-R5
-R4
+* R11
+* R10
+* R9
+* R8
+* R7
+* R6
+* R5
+* R4
 
 註：xPSR：Composite of the 3 PSRs，
 
