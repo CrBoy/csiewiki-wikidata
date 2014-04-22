@@ -14,6 +14,19 @@ Building an RPi Xenomai Kernel
 ------------------------------
 * Install Cross complier
 
+.. code-block:: c
+
+    cd <working dir>
+    wget https://github.com/raspberrypi/tools/archive/master.tar.gz
+    tar xzf master.tar.gz
+
+* Download source files and patches
+  - Download kernel
+
+.. code-block:: c
+
+    git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
+
 作業系統架構
 ------------
 * 與 RT-PREEMPT 途徑的差異？
