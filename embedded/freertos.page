@@ -947,6 +947,56 @@ SysTick最小只能設到1 / 100000 （十萬分之一）秒
 
 問題討論
 ----------
+**Q1:進入Suspend 的條件
+
+如果一個task會被block很久或者是會有一段時間用不到那就會被丟到suspend狀態。
+情境：設有一個taskPrint這個task只做print資料，而有好幾個taskOperator負責做運算，若運算要很久，則可以把taskPrint先丟入suspend狀態中，直到所有運算皆完成後，再喚醒taskPrint進入ready狀態，最後將資料print出來。
+
+vTaskSuspend使用範例：
+
+.. code-block:: c
+
+     void vAFunction( void )
+
+     {
+
+         TaskHandle_t xHandle;
+
+         // Create a task, storing the handle.
+
+         xTaskCreate( vTaskCode, "NAME", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xHandle );
+
+         // ... 
+
+         // If xHandle will wait for a long time.
+
+         // Use the handle to suspend the created task.
+
+         vTaskSuspend( xHandle );
+
+         // ...
+
+         // The created task will not run during this period, unless
+
+         // another task calls vTaskResume( xHandle ).
+
+         //...
+
+         // Suspend ourselves.
+
+         vTaskSuspend( NULL );
+
+         // We cannot get here unless another task calls vTaskResume
+
+         // with our handle as the parameter.
+
+     }
+
+*Q2:Suspend相關程式碼
+
+FreeRTOS提供vTaskSuspend()和vTaskResume()這兩個API來提供我們可以讓task進入suspend狀態。FreeRTOS還有另一個API為vTaskSuspendAll()而主要用途為當某一個task在執行時，某期間內可以讓scheduler被suspend，防止context switch發生，實作方法為控制uxSchedulerSuspended的變數，vTaskSuspendAll()讓uxSchedulerSuspended＋1 進入suspendall的狀態 當程式碼那段執行完時再用vTaskresumeall讓uxSchedulerSuspended-1這用法再很多task裡會用到
+
+例如：vTaskDelay，vTaskDelayUntil為了讓Tasks能順利接上DelayedList而不被中斷，當scheduler被suspend時，context switch會被pending，而在scheduler被suspend的情況下，interrupt不可更改TCB的xStateListItem。而PendingReadyList的用法也是當scheduler被suspend時若這種時候interrupt要解除一個task的block狀態的話，則interrupt需將此task的event list  item放至xPendingReadyList中，好讓scheduler解除suspend時，可將xPendingReadyList內的task 放入ready list裡。   
 
 **Q3:Priority範圍且定義在哪裡**
 
