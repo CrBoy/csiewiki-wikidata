@@ -64,10 +64,10 @@ toc: yes
 .. image:: /embedded/chibiThdState.png
 
 * Start : 初始的狀態
-* Suspended :
+* Suspended : Thread被create出來後並未被正式指定stack，只是空有名字的狀態
 * Running : 正在執行中的狀態
 * Stop : 停止的狀態
-* Sleeping :
+* Sleeping : Thread暫時不進行工作
 * Ready : 準備好的狀態
 
 ChbiOS/RT 初始化後會建立兩個 thread 
@@ -223,11 +223,84 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 ------------
 * 以 DMA2D 為例
 
+* DMA2D的架構簡圖：
+
+.. image:: /DMA2D_structure.png
+
 * 在對硬體的driver作設計時會用到很多_IO的type
- + 在ChibiOS-RT-Community/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h裡找到相關定義
-::
+ + 在`core_cm4.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207>`_裡找到相關定義
+.. code-block:: c
 
    #define     __IO    volatile             /*!< Defines 'read / write' permissions*/
+
+* DMA2D memory address
+  + 記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
+
+.. code-block:: c
+
+   #define PERIPH_BASE      ((uint32_t)0x40000000) /*!< Peripheral base address in the alias region 
+   #define AHB1PERIPH_BASE  (PERIPH_BASE + 0x00020000)
+   #define DMA2D_BASE       (AHB1PERIPH_BASE + 0xB000)
+   #define DMA2D            ((DMA2D_TypeDef *)DMA2D_BASE)
+
+* 設定要取得的資料
+.. code-block:: c
+
+   static uint8_t frame_buffer[240 * 320 * 3] __attribute__((section(".sdram")));
+
+* DMA2D的API與資料結構設定，記錄在`stm32_dma2d<https://github.com/rbugoo131/ChibiOS-RT-Community/tree/master/os/hal/platforms/STM32/DMA2Dv1>`_
+
+  + dma2d_layercfg_t的struct
+
+==========   ====   ================   ====   ===============
+   Type                Name                    Description  
+-------------------------------------------------------------
+  void                  *bufferp               Frame buffer address
+  size_t                wrap_offset            Offset between lines, in pixels
+  dma2d_pixfmt_t        fmt                    Pixel format
+  dma2d_color_t         def_color              Default color, RGB-888
+  uint8_t               const_alpha            Constant alpha factor
+  dma2d_palcfg_t        *palettep              Palette specs, or @p NULL
+==========   ====   ================   ====   ===============
+
+  * 設定DMA2D取得memory data的位址(API)：
+   - dma2dBgSetConfig
+    + dma2dBgSetConfigS 
+      - dma2dBgSetAddressI
+      - dma2dBgSetWrapOffsetI
+      - dma2dBgSetPixelFormatI
+      - dma2dBgSetDefaultColorI
+      - dma2dBgSetConstantAlphaI
+
+* DMA2D TypeDef：
+
+==============  ===  ================================================  ==  =====================
+  Name                    Description                                        Address offset 
+------------------------------------------------------------------------------------------------
+CR                       Control Register                                     0x00
+ISR                      Interrupt Status Register                            0x04 
+IFCR                     Interrupt Flag Clear Register                        0x08 
+FGMAR                    Foreground Memory Address Register                   0x0C 
+FGOR                     Foreground Offset Register                           0x10 
+BGMAR                    Background Memory Address Register                   0x14 
+BGOR                     Background Offset Register                           0x18 
+FGPFCCR                  Foreground PFC Control Register                      0x1C 
+FGCOLR                   Foreground Color Register                            0x20 
+BGPFCCR                  Background PFC Control Register                      0x24 
+BGCOLR                   Background Color Register                            0x28 
+FGCMAR                   Foreground CLUT Memory Address Register              0x2C 
+BGCMAR                   Background CLUT Memory Address Register              0x30 
+OPFCCR                   Output PFC Control Register                          0x34 
+OCOLR                    Output Color Register                                0x38 
+OMAR                     Output Memory Address Register                       0x3C 
+OOR                      Output Offset Register                               0x40 
+NLR                      Number of Line Register                              0x44 
+LWR                      Line Watermark Register                              0x48 
+AMTCR                    AHB Master Timer Configuration Register              0x4C 
+RESERVED[236]            Reserved 0x50-0x3FF 
+FGCLUT[256]              Foreground CLUT                                     400-7FF 
+BGCLUT[256]              Background CLUT                                     800-BFF 
+==============  ===  ================================================  ==  =====================
 
 效能表現
 --------
