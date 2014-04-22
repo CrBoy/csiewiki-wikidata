@@ -236,101 +236,99 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         __asm volatile
         (
 
-        "	mrs r0, psp						\n"
-        "	isb							\n"
-        "								\n"
-        "	ldr	r3, pxCurrentTCBConst				\n"           /* Get the location of the current TCB. */
-        "	ldr	r2, [r3]					\n"
-        "								\n"
-        "	tst r14, #0x10						\n"           /* Is the task using the FPU context? 
+        "	mrs r0, psp				\n"
+        "	isb					\n"
+        "						\n"
+        "	ldr	r3, pxCurrentTCBConst		\n"           /* Get the location of the current TCB. */
+        "	ldr	r2, [r3]			\n"
+        "						\n"
+        "	tst r14, #0x10				\n"           /* Is the task using the FPU context? 
                                                                                            If so, push high vfp registers. */
-        "	it eq							\n"
-        "	vstmdbeq r0!, {s16-s31}					\n"
-        "								\n"
-        "	stmdb r0!, {r4-r11, r14}				\n"           /* Save the core registers. */
-        "								\n"
-        "	str r0, [r2]						\n"           /* Save the new top of stack into the
+        "	it eq					\n"
+        "	vstmdbeq r0!, {s16-s31}			\n"
+        "						\n"
+        "	stmdb r0!, {r4-r11, r14}		\n"           /* Save the core registers. */
+        "						\n"
+        "	str r0, [r2]				\n"           /* Save the new top of stack into the
                                                                                             first member of the TCB. */
-        "								\n"
-        "	stmdb sp!, {r3}						\n"
-        "	mov r0, %0 						\n"
-        "	msr basepri, r0						\n"
-        "	bl vTaskSwitchContext					\n"
-        "	mov r0, #0						\n"
-        "	msr basepri, r0						\n"
-        "	ldmia sp!, {r3}						\n"
-        "								\n"
-        "	ldr r1, [r3]						\n"           /* The first item in pxCurrentTCB is the       
+        "						\n"
+        "	stmdb sp!, {r3}				\n"
+        "	mov r0, %0 				\n"
+        "	msr basepri, r0				\n"
+        "	bl vTaskSwitchContext			\n"
+        "	mov r0, #0				\n"
+        "	msr basepri, r0				\n"
+        "	ldmia sp!, {r3}				\n"
+        "						\n"
+        "	ldr r1, [r3]				\n"           /* The first item in pxCurrentTCB is the       
                                                                                             task top of stack. */
-        "	ldr r0, [r1]						\n"
-        "								\n"
-        "	ldmia r0!, {r4-r11, r14}				\n"           /* Pop the core registers. */
-        "								\n"
-        "	tst r14, #0x10						\n"           /* Is the task using the FPU context?  
+        "	ldr r0, [r1]				\n"
+        "						\n"
+        "	ldmia r0!, {r4-r11, r14}		\n"           /* Pop the core registers. */
+        "						\n"
+        "	tst r14, #0x10				\n"           /* Is the task using the FPU context?  
                                                                                             If so, pop the high vfp registers too. */
-        "	it eq							\n"
-        "	vldmiaeq r0!, {s16-s31}					\n"
-        "								\n"
-        "	msr psp, r0						\n"
-        "	mrs r0, psp						\n"
-        "	isb							\n"
-        "								\n"
-        "	ldr	r3, pxCurrentTCBConst				\n"           /* Get the location of the current TCB. */
-        "	ldr	r2, [r3]					\n"
-        "								\n"
-        "	tst r14, #0x10						\n"           /* Is the task using the FPU context? 
+        "	it eq					\n"
+        "	vldmiaeq r0!, {s16-s31}			\n"
+        "						\n"
+        "	msr psp, r0				\n"
+        "	mrs r0, psp				\n"
+        "	isb					\n"
+        "						\n"
+        "	ldr	r3, pxCurrentTCBConst		\n"           /* Get the location of the current TCB. */
+        "	ldr	r2, [r3]			\n"
+        "						\n"
+        "	tst r14, #0x10				\n"           /* Is the task using the FPU context? 
                                                                                            If so, push high vfp registers. */
-        "	it eq							\n"
-        "	vstmdbeq r0!, {s16-s31}					\n"
-        "								\n"
-        "	stmdb r0!, {r4-r11, r14}				\n"           /* Save the core registers. */
-        "								\n"
-        "	str r0, [r2]						\n"           /* Save the new top of stack into the
+        "	it eq					\n"
+        "	vstmdbeq r0!, {s16-s31}			\n"
+        "						\n"
+        "	stmdb r0!, {r4-r11, r14}		\n"           /* Save the core registers. */
+        "						\n"
+        "	str r0, [r2]				\n"           /* Save the new top of stack into the
                                                                                             first member of the TCB. */
-        "								\n"
-        "	stmdb sp!, {r3}						\n"
-        "	mov r0, %0 						\n"
-        "	msr basepri, r0						\n"
-        "	bl vTaskSwitchContext					\n"
-        "	mov r0, #0						\n"
-        "	msr basepri, r0						\n"
-        "	ldmia sp!, {r3}						\n"
-        "								\n"
-        "	ldr r1, [r3]						\n"           /* The first item in pxCurrentTCB is the       
+        "						\n"
+        "	stmdb sp!, {r3}				\n"
+        "	mov r0, %0 				\n"
+        "	msr basepri, r0				\n"
+        "	bl vTaskSwitchContext			\n"
+        "	mov r0, #0				\n"
+        "	msr basepri, r0				\n"
+        "	ldmia sp!, {r3}				\n"
+        "						\n"
+        "	ldr r1, [r3]				\n"           /* The first item in pxCurrentTCB is the       
                                                                                             task top of stack. */
-        "	ldr r0, [r1]						\n"
-        "								\n"
-        "	ldmia r0!, {r4-r11, r14}				\n"           /* Pop the core registers. */
-        "								\n"
-        "	tst r14, #0x10						\n"           /* Is the task using the FPU context?  
+        "	ldr r0, [r1]				\n"
+        "						\n"
+        "	ldmia r0!, {r4-r11, r14}		\n"           /* Pop the core registers. */
+        "						\n"
+        "	tst r14, #0x10				\n"           /* Is the task using the FPU context?  
                                                                                             If so, pop the high vfp registers too. */
-        "	it eq							\n"
-        "	vldmiaeq r0!, {s16-s31}					\n"
-        "								\n"
-        "	msr psp, r0						\n"
+        "	it eq					\n"
+        "	vldmiaeq r0!, {s16-s31}			\n"
+        "						\n"
+        "	msr psp, r0				\n"
 
-        "	isb							\n"
-        "								\n"
+        "	isb					\n"
+        "						\n"
         #ifdef WORKAROUND_PMU_CM001 /* XMC4000 specific errata workaround. */
         	#if WORKAROUND_PMU_CM001 == 1
-        "			push { r14 }				\n"
-        "			pop { pc }				\n"
+        "			push { r14 }		\n"
+        "			pop { pc }		\n"
         	#endif
         #endif
-        "								\n"
-        "	bx r14							\n"
-        "								\n"
-        "	.align 2						\n"
-        "								\n"
-        "	bx r14							\n"
-        "								\n"
-        "	.align 2						\n"
+        "						\n"
+        "	bx r14					\n"
+        "						\n"
+        "	.align 2				\n"
+        "						\n"
+        "	bx r14					\n"
+        "						\n"
+        "	.align 2				\n"
         "pxCurrentTCBConst: .word pxCurrentTCB\n"
         ::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
         );
-
     }
-
 
 Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
 
@@ -340,13 +338,13 @@ Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內�
 
     __attribute__(( naked )) uint32_t ulPortSetInterruptMask( void )
     {
-            __asm volatile                                                                                                    \
-            (                                                                                                                 \
-                    "        mrs r0, basepri                                                                              \n" \
-                    "        mov r1, %0                                                                                   \n" \
-                    "        msr basepri, r1                                                                              \n" \
-                    "        bx lr                                                                                        \n" \
-                    :: "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "r0", "r1"                                              \
+            __asm volatile
+            (
+                    "        mrs r0, basepri        \n"
+                    "        mov r1, %0             \n"
+                    "        msr basepri, r1        \n"
+                    "        bx lr                  \n"
+                    :: "i" ( configMAX_SYSCALL_INTERRUPT_PRIORITY ) : "r0", "r1"
             );
 
             /* This return will not be reached but is necessary to prevent compiler
@@ -377,51 +375,36 @@ Queue的結構如下
     typedef struct QueueDefinition{
 
       signed char *pcHead;                    /* Points to the beginning of the queue 
-
                                                  storage area. */
 
       signed char *pcTail;                    /* Points to the byte at the end of the 
-
                                                  queue storage area. One more byte is 
-
                                                  allocated than necessary to store the 
-
                                                queue items; this is used as a marker. */
 
       signed char *pcWriteTo;                 /* Points to the free next place in the 
-
                                                  storage area. */
 
       signed char *pcReadFrom;                /* Points to the last place that a queued 
-
                                                  item was read from. */
 
       xList xTasksWaitingToSend;              /* List of tasks that are blocked waiting 
-
                                                  to post onto this queue.  Stored in 
-
                                                  priority order. */
 
       xList xTasksWaitingToReceive;           /* List of tasks that are blocked waiting 
-
                                                  to read from this queue. Stored in 
-
                                                  priority order. */
 
       volatile unsigned portBASE_TYPE uxMessagesWaiting;/* The number of items currently
-
                                                            in the queue. */
 
       unsigned portBASE_TYPE uxLength;                  /* The length of the queue 
-
                                                            defined as the number of 
-
                                                            items it will hold, not the 
-
                                                            number of bytes. */
 
       unsigned portBASE_TYPE uxItemSize;                /* The size of each items that 
-
                                                            the queue will hold. */
 
     } xQUEUE;
@@ -463,8 +446,6 @@ Queue在FreeRTOS的實作如下：
     }
 
  關於QUEUE的操作函式定義在./queue.h
-
-
 
 
 FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
@@ -695,7 +676,6 @@ EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:1
         NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0xFF;
         NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
         NVIC_Init(&NVIC_InitStructure);
-
 
 
 硬體驅動原理
@@ -1022,35 +1002,22 @@ FreeRTOS的task create：
 xPSR
 
 PC : Program counter 內容存放處理器要存取的下一道指令位址
-
 LR : link rigisiter ：保存副程式的返回位址
-
 R12 : Intra-Procedure-call scratch register
-
 R3 : parameters
-
 R2 : parameters
-
 R1 : parameters
-
 R0 : parameters
 
 portINITIAL_EXEC_RETURN :  每個task要自己維護自己的返回值
 
 R11
-
 R10
-
 R9
-
 R8
-
 R7
-
 R6
-
 R5
-
 R4
 
 註：xPSR：Composite of the 3 PSRs，
@@ -1199,9 +1166,9 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
 
 .. code-block:: c
 
-    #define prvAddTaskToReadyList( pxTCB )                                                                                      \                 
-            traceMOVED_TASK_TO_READY_STATE( pxTCB )                                                                         \
-            taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority );                                                          \
+    #define prvAddTaskToReadyList( pxTCB ) \
+            traceMOVED_TASK_TO_READY_STATE( pxTCB ) \
+            taskRECORD_READY_PRIORITY( ( pxTCB )->uxPriority ); \
             vListInsertEnd( &( pxReadyTasksLists[ ( pxTCB )->uxPriority ] ), &( ( pxTCB )->xGenericListItem ) )
 
 
@@ -1219,15 +1186,13 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
 
 .. code-block:: c
 
-    taskRECORD_READY_PRIORITY
-
-            #define taskRECORD_READY_PRIORITY( uxPriority )                                                                                                         \
-            {                                                                                                                                                                                                       \
-                    if( ( uxPriority ) > uxTopReadyPriority )                                                                                                               \
-                    {                                                                                                                   
-                            uxTopReadyPriority = ( uxPriority );                                                                                                            \
-                    }                                                                                                                                                                                               \
-            } /* taskRECORD_READY_PRIORITY */
+    #define taskRECORD_READY_PRIORITY( uxPriority  ) \
+    { \
+        if( ( uxPriority ) > uxTopReadyPriority ) \
+        { \
+            uxTopReadyPriority = ( uxPriority ); \
+        } \
+    } /* taskRECORD_READY_PRIORITY */
 
 檢查目前task的priority是否高於“當前最高優先權”。如果是，將更新當前最高優先權。
 
