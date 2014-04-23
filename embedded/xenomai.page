@@ -164,6 +164,42 @@ Building an RPi Xenomai Kernel
     0.08 0.06 0.05 1/61 2060          
     T: 0 ( 2060) P:80 I:     500 C:  100000 Min:      -4 Act:      -2 Avg:       0 Max:      30
 
+* cyclictest 做法
+
+概念:
+    取得現在時間接著讓process睡一個間隔
+    等process醒來後再取一次時間
+    比對兩次取得的時間差與設定的間隔差距
+
+pseudocode:
+
+.. code-block:: prettyprint
+
+    clock_gettime((&now))
+    next = now + par->interval
+    while (!shutdown) {
+        clock_nanosleep((&next))
+        clock_gettime((&now))
+        diff = calcdiff(now, next)
+        # update stat-> min, max, total latency, cycles
+        # update the histogram data
+        next += interval
+    }
+
+造成這時間差的可能原因:
+
+    timer精準度
+
+    interrupt latency
+
+    interrupt handler duration
+
+    scheduler latency
+
+    scheduler duration
+
+    context switch
+
 討論用
 --------
 https://embedded2014.hackpad.com/Xenomai-raspberry-note-XwJtuQn9nkD
