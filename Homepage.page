@@ -17,7 +17,7 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 .. image:: /embedded-os.png
 - `課程進度表<embedded/schedule>`_
 - `課程注意事項<embedded/note2014>`_
-- `參考書目<embedded/books>`_
+- 分組報告 (針對 STM32F429 和 Raspberry Pi): `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embdded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
 
 2014 年冬季系統軟體短期課程
 ------------------------------
