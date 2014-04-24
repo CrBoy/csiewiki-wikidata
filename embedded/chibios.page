@@ -14,6 +14,11 @@ toc: yes
 
 共筆:  `hackpad<https://stm32f429.hackpad.com/ChibiOSRT--tRTURqqJOhr>`_
 
+ChibiOS/RT 參考應用
+--------------------
+* `ChibiOS/RT users<http://www.chibios.org/dokuwiki/doku.php?id=chibios:users>`_
+
+
 作業系統架構
 ------------
   ChibiOS/RT  是一個相當模組化的設計，部由許多主要的獨立組件構成。而每一個組件又可能細分成許多子系統
