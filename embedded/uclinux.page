@@ -18,7 +18,7 @@ Hackpad
 ------------
 * GPIO
   - `Linux GPIO interface<https://www.kernel.org/doc/Documentation/gpio/gpio.txt>`_
-* EXTI
+* EXTI, NVIC
   - interrupt handling
 
 效能表現
