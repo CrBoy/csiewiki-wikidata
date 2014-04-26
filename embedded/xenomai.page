@@ -125,6 +125,16 @@ Building an RPi Xenomai Kernel
 ------------
 * 與 RT-PREEMPT 途徑的差異？
 
+nucleus 編出來的.o檔中關於sched的有
+    - xenomai/nucleus/sched-rt.o
+    - xenomai/nucleus/sched-idle.o
+    - xenomai/nucleus/sched.o
+
+因此在nucleus source code中
+    - sched-tp.c
+    - sched-sporadic.c
+這兩個應該是沒被用到
+
 硬體驅動原理
 ------------
 * 硬體使用 Raspberry Pi
