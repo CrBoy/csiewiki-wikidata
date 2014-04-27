@@ -1010,7 +1010,7 @@ FreeRTOS提供vTaskSuspend()和vTaskResume()這兩個API來提供我們可以讓
 
 因為DOUBLE LIST LINK在插入新ITEM時擁有常數的時間成本，而SINGLE LIST LINK 則是N (N = 插入位置項數）
 
-**Q5：為什麼FREERTOS在FORK之後是回傳一個STRUCK 而不是PID**
+**Q5：為什麼FREERTOS在FORK之後是回傳一個STRUCT 而不是PID**
 
 追朔了xTaskCreate的程式碼，發現他是執行 xTaskGenericCreate這個function，而xTaskGenericCreate是在function裡malloc完成TCB之後，返回值有兩個：
 
