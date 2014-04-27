@@ -112,10 +112,8 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
    {
            unsigned int max_called_level = last_level;
    
-           for (const init_struct *ptr = init_hook_start;
-                ptr != init_hook_end; ++ptr)
-                   if ((ptr->level > last_level) &&
-                       (ptr->level <= level)) {
+           for (const init_struct *ptr = init_hook_start; ptr != init_hook_end; ++ptr)
+                   if ((ptr->level > last_level) && (ptr->level <= level)) {
                            max_called_level = MAX(max_called_level, ptr->level);
                            ptr->hook();
                    }
