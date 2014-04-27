@@ -69,11 +69,11 @@ ChibiOS/RT 參考應用
 .. image:: /embedded/chibiThdState.png
 
 * Start : 初始的狀態
-* Suspended : Thread被create出來後並未被正式指定stack，只是空有名字的狀態
+* Suspended : Thread剛被create出來時的狀態,尚未決定要被放進ReadyList等待執行或是直接執行
 * Running : 正在執行中的狀態
-* Stop : 停止的狀態
-* Sleeping : Thread暫時不進行工作
-* Ready : 準備好的狀態
+* Stop : 終止的狀態,到達這個狀態表示Thread被執行完了
+* Sleeping : Thread暫時不進行工作。此時Thread會被暫時移出ReadyList。等待Mutex解鎖,等待其他Thread執行完,或是等待接收訊息時都會進入這個狀態。
+* Ready : 被放進ReadyList, 等待被執行的狀態
 
 ChbiOS/RT 初始化後會建立兩個 thread 
          + Idle thread :
