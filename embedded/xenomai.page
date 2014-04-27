@@ -110,13 +110,25 @@ Building an RPi Xenomai Kernel
 
   .. code-block:: c
     
+    cd xenomai-head
     export PATH=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
     ./configure --host=arm-bcm2708hardfp-linux-gnueabi
+    cd src
     mkdir dist
     make install DIST_DIR=dist
 
   dist中會出現``usr/xenomai``
   將這個資料夾移到sd卡中 ``/usr/``
+
+  在raspberry pi中
+
+  .. code-block:: c
+
+    export PATH=/usr/xenomai/bin:$PATH  
+    export LD_LIBRARY_PATH=/usr/xenomai/lib
+    sudo modprobe xeno_posix
+
+   接著就能跑使用xenomai機制的cyclictest
 
   - RT_preempt
 
