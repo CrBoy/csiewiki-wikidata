@@ -15,7 +15,36 @@ Nuttx 參考應用
 ---------------
 * `PX4 autopilot<http://pixhawk.org/dev/nuttx/start>`_
 
-作業系統架構
+NuttX 架構
+------------
+＊ 可混用task跟thread。
+＊ 支援FPU。
+＊ 可混用FIFO跟RR。
+
+與平台相關
+------------
+
+Run FreeRTOS on STM32F4-Discovery
+------------
+Task state
+------------
+
+Task list 
+------------
+
+TCB 
+------------
+
+Communication
+------------
+
+Scheduling
+------------
+
+Interrupt handler
+------------
+
+測試環境架設
 ------------
 
 硬體驅動原理
