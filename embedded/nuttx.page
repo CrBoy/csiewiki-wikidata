@@ -25,7 +25,11 @@ NuttX 架構
 ------------
 
 Run FreeRTOS on STM32F4-Discovery
+<<<<<<< edited
+ ------------
+=======
 ------------
+>>>>>>> 14e49a26d2f87a9d12d01e22d855a29798da7ba0
 
 Task state
 ------------
