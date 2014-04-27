@@ -17,6 +17,116 @@ toc: no
 作業系統架構
 ------------
 
+
+Init Hook
+----------
+F9-kernel用了一個global initialization hook的技巧，這個技巧可以在任意地方定義一段要在系統初始化時執行的code。一個``init hook``會在特定的run level被呼叫，hook可以保證依據level順序呼叫，但不能保證在同一個level中呼叫的順序，下面是一個``init hook``的結構：
+
+.. code-block:: c
+
+   // include/init_hook.h
+   typedef struct {
+           unsigned int level;
+           init_hook_t hook;
+           const char *hook_name;
+   } init_struct;
+其中包含要在哪個level呼叫、要執行的code位置、名稱，宣告這個結構的方法如下：
+
+.. code-block:: c
+
+   // include/init_hook.h
+   #define INIT_HOOK(_hook, _level)                                        \
+           const init_struct _init_struct_##_hook __attribute__((section(".init_hook"))) = {        \
+                   .level = _level,                                        \
+                   .hook = _hook,                                                \
+                   .hook_name = #_hook,                                        \
+           };
+
+使用``INIT_HOOK``這個macro可以宣告一個``init_struct``，並且將這個結構放到``.init_hook`` section中，接著觀察linker script：
+
+.. code-block:: c
+
+   // loader/loader.ld
+   SECTIONS {
+           .text 0x08000000:
+           {
+                   KEEP(*(.isr_vector))
+                   . = TEXT_BASE;
+                   text_start = .;
+                   *(.text*)
+                   *(.rodata*)
+                   .init_hook_start = .;
+                   KEEP(*(.init_hook))
+                   init_hook_end = .;
+                   text_end = .;
+           } > MFlash
+           ...
+   }
+
+在``KEEP(*(.init_hook))``前後各紀錄了一個位置，``init_hook_start``會是section ``.init_hook``的開始，``init_hook_end``會是section ``.init_hook``的結束。
+
+在F9-kernel中已經有一些地方使用到``INIT_HOOK``：
+
+.. code-block:: c
+
+   $ grep INIT_HOOK kernel/* platform/*
+   kernel/kdb.c:INIT_HOOK(kdb_init, INIT_LEVEL_KERNEL);
+   kernel/kprobes.c:INIT_HOOK(kprobe_init, INIT_LEVEL_KERNEL);
+   kernel/ksym.c:INIT_HOOK(ksym_init, INIT_LEVEL_KERNEL_EARLY);
+   kernel/ktimer.c:INIT_HOOK(ktimer_event_init, INIT_LEVEL_KERNEL);
+   kernel/memory.c:INIT_HOOK(memory_init, INIT_LEVEL_KERNEL_EARLY);
+   kernel/sched.c:INIT_HOOK(sched_init, INIT_LEVEL_KERNEL_EARLY);
+   kernel/syscall.c:INIT_HOOK(syscall_init, INIT_LEVEL_KERNEL);
+   kernel/thread.c:INIT_HOOK(thread_init_subsys, INIT_LEVEL_KERNEL);
+   platform/debug_device.c:INIT_HOOK(dbg_device_init_hook, INIT_LEVEL_PLATFORM);
+
+接著看一下``init_hook_start``跟``init_hook_end``的值，並觀察剛剛定義的``init_struct``是放在哪邊：
+
+.. code-block:: c
+
+   $ arm-none-eabi-readelf -s f9.elf | grep "init_hook_start|init_hook_end" -E
+      765: 08005924     0 NOTYPE  GLOBAL DEFAULT    1 init_hook_end
+      934: 080058b8     0 NOTYPE  GLOBAL DEFAULT    1 init_hook_start
+   
+   $ arm-none-eabi-objdump -d f9.elf | grep init_struct
+   080058b8 <_init_struct_dbg_device_init_hook>:
+   080058c4 <_init_struct_ktimer_event_init>:
+   080058d0 <_init_struct_memory_init>:
+   080058dc <_init_struct_sched_init>:
+   080058e8 <_init_struct_syscall_init>:
+   080058f4 <_init_struct_thread_init_subsys>:
+   08005900 <_init_struct_kdb_init>:
+   0800590c <_init_struct_kprobe_init>:
+   08005918 <_init_struct_ksym_init>:
+
+可以發現``0x080058b8~0x08005924``剛好就是剛剛定義的``init_struct``內容(一個init_struct的大小是12byte，所以最後一個是0x8005918+12=0x8005924)，而且這些結構會是連續的存放在一起。剩下的就是如何執行這些code：
+
+.. code-block:: c
+
+   // kernel/init.c
+   extern const init_struct init_hook_start[];
+   extern const init_struct init_hook_end[];
+   static unsigned int last_level = 0;
+   
+   int run_init_hook(unsigned int level)
+   {
+           unsigned int max_called_level = last_level;
+   
+           for (const init_struct *ptr = init_hook_start;
+                ptr != init_hook_end; ++ptr)
+                   if ((ptr->level > last_level) &&
+                       (ptr->level <= level)) {
+                           max_called_level = MAX(max_called_level, ptr->level);
+                           ptr->hook();
+                   }
+   
+           last_level = max_called_level;
+   
+           return last_level;
+   }
+
+這段程式會從``init_hook_start``開始掃過一遍，當發現一個hook的level是大於上次呼叫``run_init_hook``而且小於等於這次要run的level時，就執行對應的hook function，並且更新最大呼叫過的level。
+
 Basic Kernel Library
 ----------------------
 KTable
