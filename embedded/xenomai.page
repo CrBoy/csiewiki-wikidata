@@ -106,12 +106,12 @@ Building an RPi Xenomai Kernel
   .. code-block:: c
     
 
-  - Xenomia
+  - Xenomai
 
   .. code-block:: c
     
     export PATH=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
-    ./configure --host=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/
+    ./configure --host=arm-bcm2708hardfp-linux-gnueabi
     mkdir dist
     make install DIST_DIR=dist
 
