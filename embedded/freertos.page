@@ -702,18 +702,34 @@ wait( block ): 等待取得某資源
 FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較低的task則無法執行，便會發生Starvation(低優先權很長一段時間都無法獲得CPU執行)
 
 Interrupt handler
-------------------------
-This is a reason why several functions exists in two versions: one for regular tasks and another is intended to interrupts handler.
+---------------------------
  
-For this reason, it is necessary to make interrupts handlers' execution as short as possible.
 On way to achieve this goal consists in the creation of tasks waiting for an interrupt to occur with a semaphore, and let
 this safer portion of code actually handle the interrupt.
 An ISR “gives” a semaphore and unblock a 'Handler” task that is able to handler the ISR, making the ISR execution much shorter
->>External Interrupt(EXTI)
 
-所有interrupt handler的排序和名稱定義(並非實作內容)放置在startup_stm32f429_439xx.s中，實作則需要在其他地方宣告
+* Nested Vectored Interrupt Controller(NVIC)
 
-使用者可以定義的外部中斷觸發條件爲EXTI_Line0至EXTI_Line15，不過EXTI_Line10~15和EXTI_Line5~9被設定爲觸發同一外部中斷，實際上能夠定義的中斷處理只有EXTI_Line0, 1, 2, 3, 4, 5~9, 10~15，總計七個
+    * 能夠定義1~240種interrupt (FreeRTOS on ARM Cortex-M4原始定義了107個interrupt)
+
+        * Cortex-M4只提供240個Interrupt Priority Registers(IPR)去記錄
+
+    * 可自定義的interrput優先度，從0~255(0爲最大優先度，255爲最小)
+
+        * PreemptionPriority: 4bits
+
+        * SubPriority: 4bits
+
+    * 處理器(硬體實作)在interrupt發生時會“自動”將當前狀態stack起來，interrput結束後再unstack回來，藉此減少interrput latency
+
+    * 只需要將資料放入Software Trigger Interrupt Register(STIR)，就能夠觸發interrupt
+
+
+
+* External Interrupt(EXTI)
+
+各interrupt handler的排序和名稱定義(並非實作內容)放置在startup_stm32f429_439xx.s中，實作則需要在其他地方宣告
+FreeRTOS使用者可以定義的外部中斷通路爲EXTI_Line0至EXTI_Line15，不過EXTI_Line10~15和EXTI_Line5~9被設定爲同一外部中斷通路(表示Line10和Line15會導向同一個handler)，如果Line10和Line15需要有不同的任務，則要在EXTI_Line10_15的handler內做觸發來源的判斷
 
 file:startup_stm32f429_439xx.s  line:158
 
@@ -732,21 +748,27 @@ file:startup_stm32f429_439xx.s  line:158
       .word     EXTI15_10_IRQHandler              /* External Line[15:10]s        */                           
 
 
-EXTI使用前必須：
+* EXTI使用前必須：
 
-* 欲使用的GPIO之初始設定
+    * 和GPIO連接(作爲觸發來源)
 
-* 和GPIO連接(作爲觸發來源)
+    * 設定EXTI
 
-* 設定EXTI
+        * 設定哪條Line
 
- * 模式( Interrupt, Event )
+        * 模式( Interrupt, Event )
 
- * 被觸發的條件( Rising, Falling, Rising&falling )
+        * 被觸發的條件( Rising, Falling, Rising&falling )
 
- * LineCmd( 尚未查明 )
+        * LineCmd( ENABLE表示設定該通道，DISABLE表示關閉該通道)
 
-* 設定NVIC通道，權限
+    * 設定NVIC
+
+        * IRQ_Channel
+
+        * PreemptionPriority，SubPriority
+
+        * ChannelCmd( 同LineCmd的意義 )
 
 EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:106
 
