@@ -153,6 +153,12 @@ TCB
  #if CONFIG_TASK_NAME_SIZE > 0
    char name[CONFIG_TASK_NAME_SIZE];      /* Task name                           */
  #endif
+                                                   :
+                                                   : 
+                                                   : 
+                                                   :
+                                                   :
+                                                   :
  };
  
 Communication
