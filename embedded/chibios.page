@@ -63,8 +63,10 @@ ChibiOS/RT 參考應用
     + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
         - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
 
-* Chibi OS/RT 中對 STM32F4XX 系列所支援的中斷
-    +  `hal_lld.h<https://github.com/ChibiOS/ChibiOS-RT/blob/a55c97e163d6c04b6bb486c41057f784c2a46320/os/hal/platforms/STM32F4xx/hal_lld.h>`_ 中定義了可用的 ISR name 和 對應的 vector name
+* **Chibi OS/RT 中對 STM32F4XX 系列所支援的中斷**
+
+`hal_lld.h<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/hal/platforms/STM32F4xx/hal_lld.h>`_ 中定義了可用的 ISR name 和 對應的 vector name
+
 .. code-block:: c
 
     #define FLASH_IRQHandler        Vector50    /**< Flash.                     */
@@ -75,7 +77,7 @@ ChibiOS/RT 參考應用
     #define EXTI3_IRQHandler        Vector64    /**< EXTI Line 3.               */
     #define EXTI4_IRQHandler        Vector68    /**< EXTI Line 4.               */
 
-+ 而在 `/STM32F4xx/vectors.c<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c>`_ 中則定義了 Interrupt Vector Table 及宣告了處理 Interrupt 的函式
+而在 `/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c>`_ 中則定義了 Interrupt Vector Table 及宣告了處理 Interrupt 的函式
 
 .. code-block:: c
     
@@ -84,7 +86,17 @@ ChibiOS/RT 參考應用
     void Vector44(void) __attribute__((weak, alias("_unhandled_exception")));
     void Vector48(void) __attribute__((weak, alias("_unhandled_exception")));
     void Vector4C(void) __attribute__((weak, alias("_unhandled_exception")));
-+ 另外在
+
+另外在 `/os/hal/platforms/STM32F4xx/stm32f4xx.h <https://github.com/ChibiOS/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_ 中有一段 code 定義了 Interrupt number
+
+.. code-block:: c
+
+    EXTI0_IRQn                  = 6,      /*!< EXTI Line0 Interrupt                                              */
+    EXTI1_IRQn                  = 7,      /*!< EXTI Line1 Interrupt                                              */
+    EXTI2_IRQn                  = 8,      /*!< EXTI Line2 Interrupt                                              */
+    EXTI3_IRQn                  = 9,      /*!< EXTI Line3 Interrupt                                              */
+    EXTI4_IRQn                  = 10,     /*!< EXTI Line4 Interrupt                                              */
+
 * 如何設定中斷
     + 中斷的初始設定
     + 撰寫 Interrupt Handler
