@@ -99,7 +99,39 @@ ChibiOS/RT 參考應用
 
 * 如何設定中斷
     + 中斷的初始設定
+        - 根據所要設定的中斷，確定其 ISR name 有連結到對應的 vector name (就是確認 vector table 裡面有這個 ISR)
+        - 如果為自設的外部中斷 ( EXTI ) ，則還要先設定 GPIO
+        - 需注意正常中斷 ( IRQ ) 的 priority 不要設太高
+        - 最後呼叫 NVICEnableVector( Interrupt_Number, Interrupt_priority ) 這個函式，將這個 Interrupt 做 enabled 的動作
+      
     + 撰寫 Interrupt Handler
+        - 需依照規定的格式撰寫
+        - .. code-block:: c
+        
+            CH_IRQ_HANDLER(myIRQ) //傳入參數通常為一 ISR name
+            {
+                CH_IRQ_PROLOGUE();
+                
+                /* IRQ handling code, preemptable if the architecture supports it.*/
+ 
+                chSysLockFromIsr();
+                /* Invocation of some I-Class system APIs, never preemptable.*/
+                chSysUnlockFromIsr();
+                
+                /* More IRQ handling code, again preemptable.*/
+ 
+                CH_IRQ_EPILOGUE();
+            }
+        - 如果為快速中斷 ( FIQ ) 則不需要 prologue/epilogue，也不能夠呼叫 API 
+        - .. code-block:: c
+          
+             CH_FAST_IRQ_HANDLER(myIRQ) 
+             {
+              /* Fast IRQ handling code, preemptable if the architecture supports it.
+                The invocation of any API is forbidden here because fast interrupt
+                handlers can preempt the kernel even within its critical zones in
+                order to minimize latency.*/
+             } 
 
 執行緒(Thread)狀態
 ^^^^^^^^^^^^^
