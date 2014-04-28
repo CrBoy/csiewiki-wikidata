@@ -169,7 +169,18 @@ Thread and Structure Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Semaphore
     + Counting Semaphore
+        - .. code-block:: c
+
+              typedef struct Semaphore 
+              { 
+                  ThreadsQueue          s_queue;    /**< @brief Queue of the threads sleeping on this semaphore.          */
+                  cnt_t                 s_cnt;      /**< @brief The semaphore counter.      */
+              } Semaphore;
+        - 呼叫 chSemWaitS() 來等待 Semaphore, chSemSignalI() 來釋放 Semaphore
     + Binary Semaphore
+        - 直接採用 Counting Semaphore 的方式實作 Binary Semaphore
+        - Counter 被限制為不能超過 1 
+        - 一個 Semaphore 只能做一次 signal 運算
 
 * Mutex
 * Synchronous Messages
