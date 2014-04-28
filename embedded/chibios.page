@@ -198,8 +198,22 @@ Thread and Structure Reference
         #. 如果比 Thread A 大, 則 Thread A 會按照其 priority 被塞進這個 Mutex 的 m_queue 裡, 與其他 Thread 一起等待這個 Mutex 被解鎖
         #. 如果比 Thread A 小, 則會先將 Thread B 的 priority 提升至跟 Thread A 一樣的 level, 並做 Reschedule 的動作，讓 Thread B 快點執行完。至於 Thread A 則會按照其 priority 被塞進這個 Mutex 的 m_queue 裡, 與其他 Thread 一起等待這個 Mutex 被解鎖。
 
-* Synchronous Messages
+* **Synchronous Messages**
 
+在 ChibiOS / RT 之中，Thread 與 Thread 之間也有所謂的**同步訊息傳送/接收**機制
+
++ 傳送者 ( Sender )
+    - 呼叫 **chMsgSend()** 來傳送訊息
+    - 此時會被塞進接收者的 p_msgqueue 裡面(等待接收者提取訊息)
+    - 判斷接收者的狀態，並**喚醒**接收者，告知訊息已傳送，可以起來接收訊息了
+    - 傳送者自己本身會進入某種睡眠狀態 ( THD_STATE_SNDMSGQ )
+    - 接收者收到訊息後，**會呼叫 chMsgRelease() 喚醒傳送者，告知訊息傳遞已經結束，可以起來了**
+
++ 接收者 ( Reciever )
+   - 呼叫 **chMsgWait()** 來等待接收訊息
+   - 此時會先進入某種睡眠狀態 ( THD_STATE_WTMSG )
+   - 直到被傳送者喚醒後，會從自己的 p_msgqueue 裡面提取訊息接收
+   - 最後把傳送者的狀態設成 ( THD_STATE_SNDMSG )，**並呼叫 chMsgRelease()喚醒傳送者，告知訊息傳遞已經結束，可以起來了**
 
 Ready List
 ^^^^^^^^^^^^^
