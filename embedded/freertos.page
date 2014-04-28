@@ -413,7 +413,7 @@ Queue的結構如下
 
 相同的，許多task進行讀取資料（即receive data）亦是如次，若queue沒有任何item在裡面，而同時還有好幾個task想要讀取資料，則這些task會被插在xTasksWaitingToReceive裡，xTasksWaitingToReceive這個list用來追蹤這些被block住的task（等待從queue中讀取資料的task）。
 
-Queue在FreeRTOS的實作如下：
+Queue在FreeRTOS的應用方式如下：
 
 `/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L213>`_
 
