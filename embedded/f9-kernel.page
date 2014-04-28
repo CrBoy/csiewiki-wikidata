@@ -329,5 +329,10 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 --------
 * http://www.slideshare.net/jserv/f9-microkernel
 * http://www.slideshare.net/vh21/2014-0109f9kernelktimer
-* http://en.wikipedia.org/wiki/Bit_array
-* `ARM Information Center(2.5. Bit-banding)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html>`_
+* Bitmap
+  - http://en.wikipedia.org/wiki/Bit_array
+  - `ARM Information Center(2.5. Bit-banding)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html>`_
+
+* Init Hook
+  - http://kunyichen.wordpress.com/2014/04/18/f9-kernel-%E4%B9%8B-init_hook
+  - https://github.com/f9micro/f9-kernel/blob/master/Documentation/init-hooks.txt
