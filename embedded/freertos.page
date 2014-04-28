@@ -237,16 +237,16 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
     
     	__asm volatile
     	(
-    	"	mrs r0, psp						\n"
+    	"	mrs r0, psp						\n" // psp: Process Stack Pointer
     	"	isb							\n"
     	"								\n"
     	"	ldr	r3, pxCurrentTCBConst				\n" /* Get the location of the current TCB. */
     	"	ldr	r2, [r3]					\n"
-    	"								\n"
+    	"								\n" // tst used "and" to test.
     	"	tst r14, #0x10						\n" /* Is the task using the FPU context?  If so, push high vfp registers. */
     	"	it eq							\n"
     	"	vstmdbeq r0!, {s16-s31}					\n"
-    	"								\n"
+    	"								\n" // stmdb: db means "decrease before"
     	"	stmdb r0!, {r4-r11, r14}				\n" /* Save the core registers. */
     	"								\n"
     	"	str r0, [r2]						\n" /* Save the new top of stack into the first member of the TCB. */
@@ -257,10 +257,10 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
     	"	bl vTaskSwitchContext					\n"
     	"	mov r0, #0						\n"
     	"	msr basepri, r0						\n"
-    	"	ldmia sp!, {r3}						\n"
+    	"	ldmia sp!, {r3}						\n" // r3 now is switched to the higher priority task
     	"								\n"
     	"	ldr r1, [r3]						\n" /* The first item in pxCurrentTCB is the task top of stack. */
-    	"	ldr r0, [r1]						\n"
+    	"	ldr r0, [r1]						\n" // this r0 is "pxTopOfStack"
     	"								\n"
     	"	ldmia r0!, {r4-r11, r14}				\n" /* Pop the core registers. */
     	"								\n"
@@ -279,8 +279,8 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
     	#endif
     	"								\n"
     	"	bx r14							\n"
-    	"								\n"
-    	"	.align 2						\n"
+    	"								\n" //number X must be a power of 2. That is 2, 4, 8, 16, and so on...
+    	"	.align 2						\n" //on a memory address that is a multiple of the value X
     	"pxCurrentTCBConst: .word pxCurrentTCB	\n"
     	::"i"(configMAX_SYSCALL_INTERRUPT_PRIORITY)
     	);
