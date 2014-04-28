@@ -56,6 +56,34 @@ Task state
 Task list 
 ------------
 
+.. code-block:: c
+
+  typedef struct tasklist_s tasklist_t;
+   
+  extern volatile dq_queue_t g_readytorun;
+  extern volatile dq_queue_t g_pendingtasks;
+  extern volatile dq_queue_t g_waitingforsemaphore;
+  #ifndef CONFIG_DISABLE_SIGNALS
+  extern volatile dq_queue_t g_waitingforsignal;
+  #endif
+  #ifndef CONFIG_DISABLE_MQUEUE
+  extern volatile dq_queue_t g_waitingformqnotempty;
+  #endif
+  #ifndef CONFIG_DISABLE_MQUEUE
+  extern volatile dq_queue_t g_waitingformqnotfull;
+  #endif
+  #ifdef CONFIG_PAGING
+  extern volatile dq_queue_t g_waitingforfill;
+  #endif
+  extern volatile dq_queue_t g_inactivetasks;
+  extern volatile sq_queue_t g_delayed_kufree;
+  #if defined(CONFIG_NUTTX_KERNEL) && defined(CONFIG_MM_KERNEL_HEAP)
+  extern volatile sq_queue_t g_delayed_kfree;
+  #endif
+  extern volatile pid_t g_lastpid;
+  extern pidhash_t g_pidhash[CONFIG_MAX_TASKS];
+  extern const tasklist_t g_tasklisttable[NUM_TASK_STATES];
+ 
 TCB 
 ------------
 
