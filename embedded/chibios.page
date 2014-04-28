@@ -180,7 +180,7 @@ Thread and Structure Reference
     + Binary Semaphore
         - 直接採用 Counting Semaphore 的方式實作 Binary Semaphore
         - Counter 被限制為不能超過 1 
-        - 一個 Semaphore 只能做一次 signal 運算
+        - 一個 Binary Semaphore 不能重複做 signal 運算
 
 * Mutex
     + .. code-block:: c
