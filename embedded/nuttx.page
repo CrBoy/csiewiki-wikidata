@@ -69,7 +69,7 @@ sched/os_internal.h
 
   typedef struct tasklist_s tasklist_t;
    
-  extern volatile dq_queue_t g_readytorun;
+
   extern volatile dq_queue_t g_pendingtasks;
   extern volatile dq_queue_t g_waitingforsemaphore;
   #ifndef CONFIG_DISABLE_SIGNALS
@@ -95,7 +95,7 @@ sched/os_internal.h
  
 TCB 
 ------------
-include/sys/types.h
+include/nuttx/sched.h
 
 .. code-block:: c
 
