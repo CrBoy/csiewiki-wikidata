@@ -26,6 +26,13 @@ NuttX 架構
 
 Run Nuttx on STM32F429-Disco
 ----------------------------------------------
+| (1) 從 https://github.com/deadbeefcafe/nuttx-stm32f4disc-bb 複製Nuttx到workspace
+| (2) cd workspace/nuttx-stm32f4disc-bb/nuttx/tools
+| (3) ./configure.sh stm32f429i-disco/nsh
+| (4) cd ..
+| (5) make CROSSDEV=arm-none-eabi- 
+| (6) st-flash write nuttx.bin 0x8000000
+| (7) sudo screen /dev/ttyUSB0 115200 8n1
 
 Task state
 ------------
