@@ -153,10 +153,7 @@ ChbiOS/RT 初始化後會建立兩個 thread
 
 Thread and Structure Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- .. image:: /struct_threads_list__coll__graph.png
-
-* 實線方向 ： 資料結構繼承關係
-* 虛線方向 ： 指標指向的資料結構
+ .. image:: /thread_stuct.png
 
 Ready List
 ^^^^^^^^^^^^^
