@@ -36,6 +36,7 @@ Run Nuttx on STM32F429-Disco
 
 Task state
 ------------
+include/nuttx/sched.h
 
 .. code-block:: c
 
@@ -62,6 +63,7 @@ Task state
 
 Task list 
 ------------
+sched/os_internal.h
 
 .. code-block:: c
 
@@ -93,6 +95,7 @@ Task list
  
 TCB 
 ------------
+include/sys/types.h
 
 .. code-block:: c
 
