@@ -87,15 +87,83 @@ Task list
 TCB 
 ------------
 
+.. code-block:: c
+
+ struct tcb_s
+ {
+   /* Fields used to support list management *************************************/
+   FAR struct tcb_s *flink;               /* Doubly linked list */
+   FAR struct tcb_s *blink;
+  
+   /* Task Management Fields *****************************************************/
+ 
+   pid_t    pid;                          /* This is the ID of the thread        */
+ 
+   start_t  start;                        /* Thread start function               */
+   entry_t  entry;                        /* Entry Point into the thread         */
+   uint8_t  sched_priority;               /* Current priority of the thread      */
+ 
+   uint8_t  task_state;                   /* Current state of the thread         */
+   uint16_t flags;                        /* Misc. general status flags          */
+   int16_t  lockcount;                    /* 0=preemptable (not-locked)          */
+
+  #if CONFIG_RR_INTERVAL > 0
+    int      timeslice;                    /* RR timeslice interval remaining     */
+  #endif
+
+   /* Stack-Related Fields *******************************************************/
+
+  #ifndef CONFIG_CUSTOM_STACK
+    size_t    adj_stack_size;              /* Stack size after adjustment         */
+                                          /* for hardware, processor, etc.       */
+                                          /* (for debug purposes only)           */
+    FAR void *stack_alloc_ptr;             /* Pointer to allocated stack          */
+                                           /* Need to deallocate stack            */
+    FAR void *adj_stack_ptr;               /* Adjusted stack_alloc_ptr for HW     */
+                                          /* The initial stack pointer value     */
+  #endif
+ 
+  
+    /* POSIX Semaphore Control Fields *********************************************/
+ 
+   sem_t *waitsem;                        /* Semaphore ID waiting on             */
+ 
+   /* POSIX Signal Control Fields ************************************************/
+ 
+ #ifndef CONFIG_DISABLE_SIGNALS
+   sigset_t   sigprocmask;                /* Signals that are blocked            */
+   sigset_t   sigwaitmask;                /* Waiting for pending signals         */
+   sq_queue_t sigactionq;                 /* List of actions for signals         */
+   sq_queue_t sigpendactionq;             /* List of pending signal actions      */
+   sq_queue_t sigpostedq;                 /* List of posted signals              */
+   siginfo_t  sigunbinfo;                 /* Signal info when task unblocked     */
+ #endif
+ 
+   /* POSIX Named Message Queue Fields *******************************************/
+ 
+ #ifndef CONFIG_DISABLE_MQUEUE
+   FAR msgq_t *msgwaitq;                  /* Waiting for this message queue      */
+ #endif
+ 
+ 
+   /* The form and content of these fields are processor-specific.               */
+ 
+   struct xcptcontext xcp;                /* Interrupt register save area        */
+ 
+ #if CONFIG_TASK_NAME_SIZE > 0
+   char name[CONFIG_TASK_NAME_SIZE];      /* Task name                           */
+ #endif
+ };
+ 
 Communication
 ------------
-
+ 
 Scheduling
 ------------
-
+ 
 Interrupt handler
 ------------
-
+ 
 測試環境架設
 ------------
 
