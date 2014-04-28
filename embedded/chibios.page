@@ -183,6 +183,21 @@ Thread and Structure Reference
         - 一個 Semaphore 只能做一次 signal 運算
 
 * Mutex
+    + .. code-block:: c
+    
+          typedef struct Mutex 
+          {
+              ThreadsQueue          m_queue;    /**< @brief Queue of the threads sleeping on this Mutex.              */
+              Thread                *m_owner;   /**< @brief Owner @p Thread pointer or @p NULL.                    */
+              struct Mutex          *m_next;    /**< @brief Next @p Mutex into an owner-list or @p NULL.      */
+          } Mutex;
+    + 實作 Mutex (假設有 Thread A 欲鎖住一個 Mutex)
+        #. 先判斷這個 Mutex 有無其他 Thread 鎖著
+        #. 沒有的話就直接鎖住
+        #. 有的話會再判斷鎖住這個 Mutex 的 Thread ( 假設為Thread B ), 它的 priority 有沒有比 Thread A 大
+        #. 如果比 Thread A 大, 則 Thread A 會按照其 priority 被塞進這個 Mutex 的 m_queue 裡, 與其他 Thread 一起等待這個 Mutex 被解鎖
+        #. 如果比 Thread A 小, 則會先將 Thread B 的 priority 提升至跟 Thread A 一樣的 level, 並做 Reschedule 的動作，讓 Thread B 快點執行完。至於 Thread A 則會按照其 priority 被塞進這個 Mutex 的 m_queue 裡, 與其他 Thread 一起等待這個 Mutex 被解鎖。
+
 * Synchronous Messages
 
 
