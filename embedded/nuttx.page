@@ -182,6 +182,13 @@ include/nuttx/sched.h
                                                    :
  };
  
+Register
+---------
+
+.. image:: /ARM_register.jpg
+
+
+
 Communication
 ---------------------
  
