@@ -34,6 +34,17 @@ Run Nuttx on STM32F429-Disco
 | (6) st-flash write nuttx.bin 0x8000000
 | (7) sudo screen /dev/ttyUSB0 115200 8n1
 
+
+
+設定相關應用程式與功能
+------------------
+| at stm32f429i-disco/nsh/defconfig
+| 120 CONFIG_ARCH_FPU=n
+| 465 CONFIG_RTC=y
+| 466 CONFIG_RTC_DATETIME=y
+| 653 CONFIG_EXAMPLES_HELLO=y
+| 676 CONFIG_EXAMPLES_OSTEST=y
+
 Task state
 ------------
 include/nuttx/sched.h
