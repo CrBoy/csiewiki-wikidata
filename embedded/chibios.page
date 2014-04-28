@@ -63,6 +63,10 @@ ChibiOS/RT 參考應用
     + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
         - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
 
+* 如何設定中斷
+    + 中斷的初始設定
+    + 撰寫 Interrupt Handler
+
 執行緒(Thread)狀態
 ^^^^^^^^^^^^^
 
