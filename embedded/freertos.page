@@ -460,11 +460,9 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
 * 實作semaphore
 
-    N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少queue entries被佔用，其中uxItemSize為0，item和data copying是不需要的
+N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少queue entries被佔用，其中uxItemSize為0，item和data copying是不需要的。
 
-        需要 ARM Cortex-M4F 特有的機制，才能實做 semaphore 嗎？若是，其機制為何？
-
-    需要，在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
+需要 ARM Cortex-M4F 特有的機制，才能實做 semaphore，其機制為：在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
 
  `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399>`_
 
@@ -493,7 +491,7 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
 
 * 實作mutex
 
-    因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
+因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
 
  `queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105>`_
 
@@ -504,11 +502,70 @@ FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
         #define uxQueueType           pcHead
         #define pxMutexHolder         pcTail
 
-    uxQueueType若為0，表示this queue is being used for a mutex
-    pxMutexHolder用來實作priority inheritance
+uxQueueType若為0，表示this queue is being used for a mutex
 
-    mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
-    另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
+pxMutexHolder用來實作priority inheritance
+
+mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
+
+另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
+
+
+* 生產者與消費者
+
+使用FreeRTOS的semaphore和mutex來實作生產者與消費者問題：
+
+.. code-block:: c
+
+    SemaphoreHandle_t xMutex = NULL;
+    SemaphoreHandle_t empty = NULL;
+    SemaphoreHandle_t full = NULL;
+    xQueueHandle buffer = NULL;
+    long sendItem = 1;
+    long getItem = -1;
+    
+    void Producer1(void* pvParameters){
+            while(1){
+                    // initial is 10, so producer can push 10 item
+                    if( xSemaphoreTake(empty, portMAX_DELAY) == pdTRUE ){
+    
+                            if( xSemaphoreTake(xMutex, portMAX_DELAY) == pdTRUE ){
+                            /******************** enter critical section ********************/
+                                    xQueueSend( buffer, &sendItem, 0 );
+                                    USART1_puts("add item, buffer = ");
+                                    itoa( (long)uxQueueSpacesAvailable(buffer), 10);
+                                    sendItem++;
+                            /******************** exit critical section ********************/
+                                    xSemaphoreGive(xMutex);
+                            }
+                            // give "full" semaphore
+                            xSemaphoreGive(full);
+                    }
+                    vTaskDelay(90000);
+            }
+    }
+    
+    void Consumer1(void* pvParameters){
+            while(1){
+                    // initial is 0 so consumer can't get any item
+                    if( xSemaphoreTake(full, portMAX_DELAY) == pdTRUE ){
+    
+                            if( xSemaphoreTake(xMutex, portMAX_DELAY) == pdTRUE ){
+                            /******************** enter critical section ********************/
+                                    xQueueReceive( buffer, &getItem, 0 );
+                                    USART1_puts("get: ");
+                                    itoa(getItem, 10);
+                            /******************** exit critical section ********************/
+                                    xSemaphoreGive(xMutex);
+                            }
+                            // give "empty" semaphore
+                            xSemaphoreGive(empty);
+                    }
+                    vTaskDelay(80000);
+            }
+    }
+    
+
 
     
 Scheduling
