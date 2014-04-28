@@ -158,7 +158,7 @@ Thread and Structure Reference
 * 較重要的 member data
     + p_prio : Thread priority
     + p_ctx : Processor context, 紀錄 Thread 目前的執行狀態
-    + p_state : 紀錄 Thread 前所處於的狀態 (正在執行, 等待被執行, 等待某一個 Mutex 被解鎖....等)
+    + p_state : 紀錄 Thread 目前所處於的狀態 (正在執行, 等待被執行, 等待某一個 Mutex 被解鎖....等)
     + p_preempt : 記錄這個 Thread 還有多少個 tick 可以用來執行
     + p_waiting : 一個單向的 Thread linked list。 當有其他 Thread 欲等待此 Thread 執行完時, 這些 Thread 就會被塞進這個 waiting list 裡面
     + p_msgqueue : 一個雙向的 Thread linked list。 用來存放欲傳給此 Thread 訊息的 Thread (詳見後面 IPC 的部分)。
