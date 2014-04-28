@@ -167,6 +167,13 @@ Thread and Structure Reference
 
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* Semaphore
+    + Counting Semaphore
+    + Binary Semaphore
+
+* Mutex
+* Synchronous Messages
+
 
 Ready List
 ^^^^^^^^^^^^^
