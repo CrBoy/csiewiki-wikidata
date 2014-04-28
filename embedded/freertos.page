@@ -518,8 +518,7 @@ Scheduling
 
   .. image:: /suspending.gif
 
-在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊
-除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
+RTOS中除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
 
 Delay( sleep ): 停止運行一段特定時間
 
@@ -536,7 +535,6 @@ Delay( sleep ): 停止運行一段特定時間
     	}
     }
 
-.
 wait( block ): 等待取得某資源
 
  .. code-block:: c
@@ -552,50 +550,129 @@ wait( block ): 等待取得某資源
     	}
     }
 
-等待事件觸發(例如鍵盤輸入)
+使用vTaskDelay()，會將該list item從ready list移除並放入DelayList或是OverflowDelayList中(看現在的systick加上欲等待的systick有無overflow而定)，但不會在呼叫vTaskDelay()後馬上交出CPU使用權，而是在下一次的systick interrput做交換
 
- .. code-block:: c
-
-    void Task1( void* pvParameters )
-    {
-        	while( 1 ){    
-        		iii++;
-        		while( STM_EVAL_PBGetState( BUTTON_USER ) ){
-        			iii++;
-        	       		STM_EVAL_LEDOn(LED4);
-        		}
-        	}
-    }
-
-.
+使用xQueueReceive()，等待時間非portMAX_DELAY時，會被放入event list中等待資源。若等待時間爲portMAX_DELAY，則放入suspend list中等待資源
 
 * RTOS tick
-
 
   .. image:: /TickISR.gif
 
  `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L506>`_ 
 
+實作細節
  .. code-block:: c
 
-    void xPortSysTickHandler( void )
+    BaseType_t xTaskIncrementTick( void )                                                                                                                                                      
     {
-        /* The SysTick runs at the lowest interrupt priority, so when this interrupt
-        executes all interrupts must be unmasked.  There is therefore no need to
-        save and then restore the interrupt mask value as its value is already
-        known. */
-        ( void ) portSET_INTERRUPT_MASK_FROM_ISR();
+        TCB_t * pxTCB;
+        TickType_t xItemValue;
+        BaseType_t xSwitchRequired = pdFALSE;
+
+        traceTASK_INCREMENT_TICK( xTickCount );
+        if( uxSchedulerSuspended == ( UBaseType_t ) pdFALSE )
         {
-                /* Increment the RTOS tick. */
-                if( xTaskIncrementTick() != pdFALSE )
+            ++xTickCount;
+
+            {
+                const TickType_t xConstTickCount = xTickCount;
+
+                if( xConstTickCount == ( TickType_t ) 0U )
                 {
-                        /* A context switch is required.  Context switching is performed in
-                        the PendSV interrupt.  Pend the PendSV interrupt. */
-                        portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
+                    taskSWITCH_DELAYED_LISTS();
                 }
+                else
+                {
+                    mtCOVERAGE_TEST_MARKER();
+                }
+
+                if( xConstTickCount >= xNextTaskUnblockTime )
+                {
+                    for( ;; )
+                    {
+                        if( listLIST_IS_EMPTY( pxDelayedTaskList ) != pdFALSE )
+                        {
+                            xNextTaskUnblockTime = portMAX_DELAY;
+                            break;
+                        }
+                        else
+                        {
+                            pxTCB = ( TCB_t * ) listGET_OWNER_OF_HEAD_ENTRY( pxDelayedTaskList );
+                            xItemValue = listGET_LIST_ITEM_VALUE( &( pxTCB->xGenericListItem ) );
+
+                            if( xConstTickCount < xItemValue )
+                            {
+                                xNextTaskUnblockTime = xItemValue;
+                                break;
+                            }
+                            else
+                            {
+                                mtCOVERAGE_TEST_MARKER();
+                            }
+
+                            ( void ) uxListRemove( &( pxTCB->xGenericListItem ) );
+
+                            if( listLIST_ITEM_CONTAINER( &( pxTCB->xEventListItem ) ) != NULL )
+                            {
+                                ( void ) uxListRemove( &( pxTCB->xEventListItem ) );
+                            }
+                            else
+                            {                                                                                                                                                                  
+                                mtCOVERAGE_TEST_MARKER();
+                            }
+
+                            prvAddTaskToReadyList( pxTCB );
+
+                            #if (  configUSE_PREEMPTION == 1 )
+                            {
+                                {
+                                    xSwitchRequired = pdTRUE;
+                                }
+                                else
+                                {
+                                    mtCOVERAGE_TEST_MARKER();
+                                }
+                            }
+                            #endif /* configUSE_PREEMPTION */
+                        }
+                    }
+                }
+            }
+
+            #if ( ( configUSE_PREEMPTION == 1 ) && ( configUSE_TIME_SLICING == 1 ) )
+            {
+                if( listCURRENT_LIST_LENGTH( &( pxReadyTasksLists[ pxCurrentTCB->uxPriority ] ) ) > ( UBaseType_t ) 1 )
+                {
+                    xSwitchRequired = pdTRUE;
+                }
+                else
+                {
+                    mtCOVERAGE_TEST_MARKER();
+                }
+            }
+            #endif /* ( ( configUSE_PREEMPTION == 1 ) && ( configUSE_TIME_SLICING == 1 ) ) */
         }
-        portCLEAR_INTERRUPT_MASK_FROM_ISR( 0 );
+        else
+        {
+            ++uxPendedTicks;
+        }
+
+        #if ( configUSE_PREEMPTION == 1 )
+        {
+            if( xYieldPending != pdFALSE )
+            {
+                xSwitchRequired = pdTRUE;
+            }
+            else
+            {
+                mtCOVERAGE_TEST_MARKER();
+            }
+        }
+
+        return xSwitchRequired;
     }
+
+
 
 * Starvation
 
