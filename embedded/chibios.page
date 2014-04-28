@@ -48,7 +48,7 @@ ChibiOS/RT 參考應用
         - FAULTMASK:  一個只有一個 bit 的暫存器。設為1時，系統將只會處理 NMI，其他像是 hard fault exception 或是可遮罩式中斷都將被全部忽略。設為0時，則可以處理 hard fault exception。
         - BASEPRI:  8個 bit 的暫存器，用來儲存優先度等級( priority level )。當這個暫存器被設為一個非0值時，系統將會忽略優先度比這個值還要大**(代表優先度等級較低) **的中斷。
 
-* Chibi OS/RT的中斷類別
+* Chibi OS/RT 的中斷類別
     + 正常中斷 ( Regular Interrupts ): 
         - 可遮罩式的中斷
         - **在 GCC Ports / ARM Cortex-Mx / ARMv7-M 的移植版本中，優先度等級較低的中斷將被視為正常中斷**
@@ -63,6 +63,28 @@ ChibiOS/RT 參考應用
     + 不可遮罩式中斷 ( Non Maskable Interrupts, NMI):
         - 不受OS控制的中斷，擁有最短的延遲 ( lowest latency ) 
 
+* Chibi OS/RT 中對 STM32F4XX 系列所支援的中斷
+    +  `hal_lld.h<https://github.com/ChibiOS/ChibiOS-RT/blob/a55c97e163d6c04b6bb486c41057f784c2a46320/os/hal/platforms/STM32F4xx/hal_lld.h>`_ 中定義了可用的 ISR name 和 對應的 vector name
+.. code-block:: c
+
+    #define FLASH_IRQHandler        Vector50    /**< Flash.                     */
+    #define RCC_IRQHandler          Vector54    /**< RCC.                       */
+    #define EXTI0_IRQHandler        Vector58    /**< EXTI Line 0.               */
+    #define EXTI1_IRQHandler        Vector5C    /**< EXTI Line 1.               */
+    #define EXTI2_IRQHandler        Vector60    /**< EXTI Line 2.               */
+    #define EXTI3_IRQHandler        Vector64    /**< EXTI Line 3.               */
+    #define EXTI4_IRQHandler        Vector68    /**< EXTI Line 4.               */
+
++ 而在 `/STM32F4xx/vectors.c<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c>`_ 中則定義了 Interrupt Vector Table 及宣告了處理 Interrupt 的函式
+
+.. code-block:: c
+    
+    void SysTickVector(void) __attribute__((weak, alias("_unhandled_exception")));
+    void Vector40(void) __attribute__((weak, alias("_unhandled_exception")));
+    void Vector44(void) __attribute__((weak, alias("_unhandled_exception")));
+    void Vector48(void) __attribute__((weak, alias("_unhandled_exception")));
+    void Vector4C(void) __attribute__((weak, alias("_unhandled_exception")));
++ 另外在
 * 如何設定中斷
     + 中斷的初始設定
     + 撰寫 Interrupt Handler
