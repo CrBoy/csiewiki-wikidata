@@ -164,6 +164,10 @@ Thread and Structure Reference
     + p_msgqueue : 一個雙向的 Thread linked list。 用來存放欲傳給此 Thread 訊息的 Thread (詳見後面 IPC 的部分)。
     + p_mtxlist : Mutex 結構，用來存放此 Thread 目前佔有的 Mutex
 
+
+行程間通訊 ( Inter-Process Communication, IPC )
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Ready List
 ^^^^^^^^^^^^^
 ChibiOS/RT 的 ready list以doubly linked list 實作
