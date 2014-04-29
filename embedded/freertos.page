@@ -1407,6 +1407,176 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
 
 將pxNewListItem插入至pxList的最後面
 
+**Q10:arm conditional code?**
+
+conditional code用法為附加在某些條件指令之後，用來定義指令執行的代碼
+
+.. image:: /embedded/condition.png
+
+**Q11:Thumb state bit? execution state bit?**
+
+EPSR-Execution Program Status Register內有存Thumb state bit 和 execution state bits，
+其中execution state bits包含兩個重疊的區域：**
+
+* If-Then (IT) instruction
+
+* Interruptible-Continuable Instruction (ICI) field)
+
+* about IT
+
+IT（If - Then）指令由緊連IT的1～4條後續指令所組成（IT block）。
+http://web.eecs.umich.edu/~prabal/teaching/eecs373-f10/readings/ARMv7-M_ARM.pdf
+p.148~p.149
+IT instruction example：
+
+.. code-block:: c
+
+    if (R4 == R5)
+    {
+      R7 = R8 + R9;
+      R7 /= 2;
+    }
+    else
+    {
+      R7 = R10 + R11;
+      R7 *= 2;
+    }
+
+converts to
+http://wiki.csie.ncku.edu.tw/embedded/freertos
+.. code-block:: c
+
+    CMP R4, R5
+    ITTEE EQ
+    ADDEQ R7, R8, R9    ; if R4 = R5, R7 = R8 + R9
+    ASREQ R7, R7, #1    ; if R4 = R5, R7 /= 2
+    ADDNE R7, R10, R11  ; if R4 != R5, R7 = R10 + R11
+    LSLNE R7, R7, #1    ; if R4 != R5, R7 *=2
+
+* about ICI
+
+多暫存器(multy register)讀取（LDM）和寫入（STM）是可以中斷的，ICI用來保存該執行過程中，下一個暫存器的編號。
+
+**Q12:R0~R3 , R12 , LR 這些對應到function call是哪裡?**
+
+**Q13:R4~R11用在甚麼時候?**
+
+**Q14:接續Q5,問FreeRTOS設計概念,回去看OS的fork部分**
+
+摘自且翻譯恐龍書八版P110～112：
+* 父程序（parent process）產生子程序（child process），這些新的程序被產生（fork()）後，會形成程序樹（tree of processes）。
+
+.. image:: /embedded/ProcessTree.jpg
+
+* 一般而言，一個程序會需要一些資源（resource），子程序可以直接獲得資源或是子程序被限制在父程序的資源裡。「限制子程序在父程序資源裡」可以防止因為產生太多子程序而發生超載（overloading）。
+
+* 典型的方法是，在呼叫fork()之後，父程序和子程序其中一個可以使用exec()來呼叫一個新的程式，取代自己的記憶體空間，這個方法的好處是，父、子程序可以跑不同的程式並且還可以做溝通（communicate）。
+
+**Q15:VFP有幾個暫存器**
+ARM 浮點數架構 （VFP，全名Vector Floating-Point）為對浮點運算的操作提供的硬體支援。
+
+.. image:: /embedded/VFP.png
+
+http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/Chdhfiah.html
+
+上面表格式VFP會用到的REG
+
+另外FPU擁有獨立的暫存器有32個（32bit)（S0~S31)
+
+所以在PORT.C void xPortPendSVHandler( void ) 
+
+.. code-block:: c
+
+    "    tst r14, #0x10                        \n" /* Is the task using the FPU context?  If so, push high vfp registers. */ 
+    "    it eq                                \n" 
+    "    vstmdbeq r0!, {s16-s31}                \n" 
+    
+ 就會把HIGH的部份堆起來（藉由STMDB達成）
+
+**Q16:!是什麼(組語)**
+
+Note that the exclamation mark in ARM assembly
+code means that the index operation is performed before applying the
+real instruction.
+
+For example, str r2, [r3, #-4]!  means: store r2
+value to the ptr {r3-4} and r3 = r3 -4.
+
+指令集架構：
+
+.. code-block:: c
+
+    ADD R0, R0, #1                     ; R0←R0＋1
+    STR  R0, [R1]                      ; R0→[R1]  //將R0的值傳送到以R1的值為位址的記憶體中
+    ADD R0, R1, R2 LSL #3              ; R0←R1 + R2*8  //R2中的運算元左移3位元
+    LDMIA  R0, {R1, R2, R3}            ; [R0]→R1
+                                       ; [R0+4]→R2
+                                       ; [R0+8]→R3
+    比較三種：
+    LDR R0, [R1, #8]                   ; R0←[R1+8]
+    LDR R0, [R1], #8                   ; R0←[R1]
+                                       ; R1←R1+8
+    LDR R0, [R1, #8]!                  ; R0←[R1+8]
+                                       ; R1←R1+8
+
+* 關於STMxx和LDMxx指令
+
+.. image:: /embedded/stm.png
+
+**Q17:__attribute__(( naked ))  naked是幹嘛˙?**
+
+ function經過compiler compile後都會在function entry和exit加入一些code，如save used registers，add return code.
+
+但是如果不想要compiler加上這些code，就可以在function宣告時加上attribut : naked
+
+.. code-block:: c
+
+    void funA(void) __attribute__ ( (naked))
+    {
+    ...
+     asm("ret");
+    }
+
+**Q18: vPortEnterCritical 程式碼為何能確保一次只有一個task進入critical section uxCriticalNesting++  ?**
+
+.. code-block:: c
+
+    funcA(){
+        vPortEnterCritical();
+        ...
+        funcB();
+        ...
+        vPortExitCritical();
+    }
+    funcB(){
+        vPortEnterCritical();
+        ...
+        vPortExitCritical();
+    }
+
+**Q19 :schedule 那邊[ 在一般非即時作業系統上，通常每個task都會分到相同的CPU使用時間，RTOS則不盡然，後續將提到相關資訊 除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡]作更正**
+
+更新在上面內容
+
+**Q20:關於  xTaskIncrementTick() 程式碼**
+
+更新在上面內容
+
+**Q21: queue實作是不是cycle？**
+是，參考
+
+.. code-block:: c
+
+    pxQueue->pcWriteTo += pxQueue->uxItemSize;                                                                                                                                     
+                    if( pxQueue->pcWriteTo >= pxQueue->pcTail ) /*lint !e946 MISRA exception justified as comparison of pointers is the cleanest solution. */
+                    {
+                            pxQueue->pcWriteTo = pxQueue->pcHead;
+                    }
+                    else
+                    {
+                            mtCOVERAGE_TEST_MARKER();
+                    }
+
 參考資料
 --------
 * `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
