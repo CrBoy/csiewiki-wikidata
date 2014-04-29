@@ -252,6 +252,43 @@ include/sys/types.h
 
 | 4. Nuttx 只有兩個 scheduler policy，其 tcb->timeslice = 0 則表示FIFO, 非0則為RR。
 
+Timer interrupt
+----------------------
+
+| /nuttx/arch/arm/src/stm32/stm32_vectors.S 
+| 
+| processor exception
+
+
+.. code-block:: c 
+
+	.word	IDLE_STACK			/* Vector  0: Reset stack pointer */
+	.word	__start				/* Vector  1: Reset vector */
+	.word	stm32_nmi			/* Vector  2: Non-Maskable Interrupt (NMI) */
+	.word	stm32_hardfault		/* Vector  3: Hard fault */
+	.word	stm32_mpu			/* Vector  4: Memory management (MPU) */
+	.word	stm32_busfault		/* Vector  5: Bus fault */
+	.word	stm32_usagefault	/* Vector  6: Usage fault */
+	.word	stm32_reserved		/* Vector  7: Reserved */
+	.word	stm32_reserved		/* Vector  8: Reserved */
+	.word	stm32_reserved		/* Vector  9: Reserved */
+	.word	stm32_reserved		/* Vector 10: Reserved */
+	.word	stm32_svcall		/* Vector 11: SVC call */
+	.word	stm32_dbgmonitor	/* Vector 12: Debug monitor */
+	.word	stm32_reserved		/* Vector 13: Reserved */
+	.word	stm32_pendsv		/* Vector 14: Pendable system service request */
+	.word	stm32_systick		/* Vector 15: System tick */
+
+/nuttx/arch/arm/src/stm32/stm32_timerisr.c (in line 109 )
+
+.. code-block:: c 
+
+ int up_timerisr(int irq, uint32_t *regs)
+ {
+     /* Process timer interrupt */
+     sched_process_timer();
+     return 0;
+  }
 
 
 Interrupt handler
