@@ -195,6 +195,19 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
    #endif /* !(CH_TIME_QUANTUM > 0) */
    }
 
+* Round Robin scheduling
+
+   + 執行中的thread 自主性地呼叫chThdYield() API，讓其他相同priority的thread來執行
+
+   + 執行中的thread 自主性地進入sleep mode且當有thread被wake up時，執行中的thread 就會被中斷並插入其他任意一個相  
+       同priority thread的後面
+
+   + 執行中的thread被擁有更高priority的thread  preempted，那麼執行中的thread 就會被中斷並插入其他任意一個相同priority 
+       thread的後面
+
+   + 如果thread 的執行時間超過 CH_TIME_QUANTUM (大於0)且有相同priority的thread在ready list中的話，那麼執行中的thread 
+       就會被中斷並插入其他任意一個相同priority thread的後面
+
 
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
