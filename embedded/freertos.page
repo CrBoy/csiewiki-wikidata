@@ -1418,9 +1418,9 @@ conditional code用法為附加在某些條件指令之後，用來定義指令�
 EPSR-Execution Program Status Register內有存Thumb state bit 和 execution state bits，
 其中execution state bits包含兩個重疊的區域：**
 
-* If-Then (IT) instruction
+1. If-Then (IT) instruction
 
-* Interruptible-Continuable Instruction (ICI) field)
+2. Interruptible-Continuable Instruction (ICI) field)
 
 * about IT
 
@@ -1461,6 +1461,8 @@ http://wiki.csie.ncku.edu.tw/embedded/freertos
 
 **Q13:R4~R11用在甚麼時候?**
 
+.. image:: /embedded/coreReg.png
+
 **Q14:接續Q5,問FreeRTOS設計概念,回去看OS的fork部分**
 
 摘自且翻譯恐龍書八版P110～112：
@@ -1473,6 +1475,7 @@ http://wiki.csie.ncku.edu.tw/embedded/freertos
 * 典型的方法是，在呼叫fork()之後，父程序和子程序其中一個可以使用exec()來呼叫一個新的程式，取代自己的記憶體空間，這個方法的好處是，父、子程序可以跑不同的程式並且還可以做溝通（communicate）。
 
 **Q15:VFP有幾個暫存器**
+
 ARM 浮點數架構 （VFP，全名Vector Floating-Point）為對浮點運算的操作提供的硬體支援。
 
 .. image:: /embedded/VFP.png
@@ -1523,6 +1526,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 .. image:: /embedded/stm.png
 
+
 **Q17:__attribute__(( naked ))  naked是幹嘛˙?**
 
  function經過compiler compile後都會在function entry和exit加入一些code，如save used registers，add return code.
@@ -1563,6 +1567,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 更新在上面內容
 
 **Q21: queue實作是不是cycle？**
+
 是，參考
 
 .. code-block:: c
