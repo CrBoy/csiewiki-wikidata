@@ -169,31 +169,6 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 選出下一個可執行的thread， 並進行Context Switch
 
-`chsch.c<https://github.com/louis7340/ChibiOS-RT-Community/blob/master/os/kernel/src/chschd.c#L355>`_
-
-.. code-block:: c
-
-   void chSchDoReschedule(void) {
-
-   #if CH_TIME_QUANTUM > 0
-       /* If CH_TIME_QUANTUM is enabled then there are two different scenarios to
-           handle on preemption: time quantum elapsed or not.*/
-       if (currp->p_preempt == 0) {
-         /* The thread consumed its time quantum so it is enqueued behind threads
-            with same priority level, however, it acquires a new time quantum.*/
-         chSchDoRescheduleBehind();
-       }
-       else {
-          /* The thread didn't consume all its time quantum so it is put ahead of
-          threads with equal priority and does not acquire a new time quantum.*/
-          chSchDoRescheduleAhead();
-       }
-   #else /* !(CH_TIME_QUANTUM > 0) */
-       /* If the round-robin mechanism is disabled then the thread goes always
-         ahead of its peers.*/
-       chSchDoRescheduleAhead();
-   #endif /* !(CH_TIME_QUANTUM > 0) */
-   }
 
 * Round Robin scheduling
 
@@ -294,6 +269,33 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
         ;
     #endif /* CORTEX_SIMPLIFIED_PRIORITY */
     }
+
+
+| ` chSchDoReschedule ()<https://github.com/louis7340/ChibiOS-RT-Community/blob/master/os/kernel/src/chschd.c#L355>`_
+
+.. code-block:: c
+
+   void chSchDoReschedule(void) {
+
+   #if CH_TIME_QUANTUM > 0
+       /* If CH_TIME_QUANTUM is enabled then there are two different scenarios to
+           handle on preemption: time quantum elapsed or not.*/
+       if (currp->p_preempt == 0) {
+         /* The thread consumed its time quantum so it is enqueued behind threads
+            with same priority level, however, it acquires a new time quantum.*/
+         chSchDoRescheduleBehind();
+       }
+       else {
+          /* The thread didn't consume all its time quantum so it is put ahead of
+          threads with equal priority and does not acquire a new time quantum.*/
+          chSchDoRescheduleAhead();
+       }
+   #else /* !(CH_TIME_QUANTUM > 0) */
+       /* If the round-robin mechanism is disabled then the thread goes always
+         ahead of its peers.*/
+       chSchDoRescheduleAhead();
+   #endif /* !(CH_TIME_QUANTUM > 0) */
+   }
 
 
 | SVCallVector()
