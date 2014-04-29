@@ -215,10 +215,31 @@ include/sys/types.h
  #define SCHED_PRIORITY_MIN       1
  #define SCHED_PRIORITY_IDLE      0
  
+| 1. RR 時間間隔是 20 ticks 做一次 context switch。
+| 觀看每個設定time slice的相關檔案其運算是皆為 timeslice = CONFIG_RR_INTERVAL / MSEC_PER_TICK 
+| 在 nuttx/include/nuttx/config.h 中
+| CONFIG_RR_INTERVAL = 200
+| MSEC_PER_TICK = 10
+
+| 2. 若要禁止 context switch，可用sched_lock()
+| 此區禁止 context switch
+| sched_unlock()用在修改scheduler和priority。
+
+| 3. 若要先將 timer interrupt 暫停，可用saved_state = irqsave(); 
+| 此區暫停 timer interrupt
+| irqrestore(saved_state);
+| 用在修改 scheduler。
+| 注意：timer interrupt 跟 context switch 是不同系統。
+
+| 4. Nuttx 只有兩個 scheduler policy，其 tcb->timeslice = 0 則表示FIFO, 非0則為RR。
+
+
 
 Interrupt handler
 ------------------------
  
+
+
 測試環境架設
 ------------
 
