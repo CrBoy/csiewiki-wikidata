@@ -11,12 +11,15 @@ toc: no
 * 蘇偉嘉
 * 李英碩
 
+hackpad : https://stm32f429.hackpad.com/NuttX--hqco2YSgAcJ
+
 Nuttx 參考應用
 ---------------
 * `PX4 autopilot<http://pixhawk.org/dev/nuttx/start>`_
 
 NuttX 架構
 ------------
+
 ＊ 可混用task跟thread。
 ＊ 支援FPU。
 ＊ 可混用FIFO跟RR。
@@ -44,6 +47,21 @@ Run Nuttx on STM32F429-Disco
 | 466 CONFIG_RTC_DATETIME=y
 | 653 CONFIG_EXAMPLES_HELLO=y
 | 676 CONFIG_EXAMPLES_OSTEST=y
+
+Task Control Interfaces
+-----------------------
+
+
+- task_create : 產生一個activates的新task，並回傳系統指派的pid
+- task_init : 將task的TCB初始化，但並不activate task
+- task_activate : activate task，否則scheduler沒辦法執行它
+- task_delete : 將task關掉，並deallocate它的TCB與stack
+
+
+
+
+
+
 
 Task state
 ------------
