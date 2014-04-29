@@ -270,7 +270,30 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     }
 
 
-| 123
+| SVCallVector()
+
+.. code-block:: c
+
+    void SVCallVector(void) {
+      struct extctx *ctxp;
+    
+      /* Current PSP value.*/
+      asm volatile ("mrs     %0, PSP" : "=r" (ctxp) : : "memory");
+    
+      /* Discarding the current exception context and positioning the stack to
+         point to the real one.*/
+      ctxp++;
+    
+    #if CORTEX_USE_FPU
+      /* Restoring the special register SCB_FPCCR.*/
+      SCB_FPCCR = (uint32_t)ctxp->fpccr;
+      SCB_FPCAR = SCB_FPCAR + sizeof (struct extctx);
+    #endif
+      asm volatile ("msr     PSP, %0" : : "r" (ctxp) : "memory");
+      port_unlock_from_isr();
+    }
+
+| _port_switch()
 
 .. code-block:: c
 
