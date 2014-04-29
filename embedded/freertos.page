@@ -1146,7 +1146,7 @@ FreeRTOS提供vTaskSuspend()和vTaskResume()這兩個API來提供我們可以讓
 
 **Q4:為什麼要用DOUBLE LIST LINK**
 
-因為DOUBLE LIST LINK在插入新ITEM時擁有常數的時間成本，而SINGLE LIST LINK 則是N (N = 插入位置項數）
+因為DOUBLE LIST LINK在插入新ITEM時擁有常數的時間複雜度O(1)，而SINGLE LIST LINK 則是O(n)
 
 **Q5：為什麼FREERTOS在FORK之後是回傳一個STRUCT 而不是PID**
 
