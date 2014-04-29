@@ -56,6 +56,7 @@ Task Control Interfaces
 - task_init : 將task的TCB初始化，但並不activate task
 - task_activate : activate task，否則scheduler沒辦法執行它
 - task_delete : 將task關掉，並deallocate它的TCB與stack
+- task_restart : 將task的children砍掉，deallocate TCB，reset priority
 - task_exit : 關掉目前在運行的task，不能在user mode被呼叫
 
 
