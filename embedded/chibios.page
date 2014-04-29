@@ -186,9 +186,91 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 上下文交換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| 在chibios當中，是以port_switch()來完成context switch
+| context被分成兩部份：
+|     extctx {r0-r3, r12, lr_thd, pc, xpsr}
+|     intctx {r4-r11, lr}
 | 
-| /os/ports/GCC/ARMCMx/chcore_v7m.c(line:236)
+| 在處理interrupt的時候儲存extctx，一般的context switch儲存intctx。
+|
+| _port_irq_epilogue()
+
+.. code-block:: c
+
+    void _port_irq_epilogue(void) {
+    
+      port_lock_from_isr();
+      if ((SCB_ICSR & ICSR_RETTOBASE) != 0) {
+        struct extctx *ctxp;
+    
+        /* Current PSP value.*/
+        asm volatile ("mrs     %0, PSP" : "=r" (ctxp) : : "memory");
+    
+        /* Adding an artificial exception return context, there is no need to
+           populate it fully.*/
+        ctxp--;
+        asm volatile ("msr     PSP, %0" : : "r" (ctxp) : "memory");
+        ctxp->xpsr = (regarm_t)0x01000000;
+    
+        /* The exit sequence is different depending on if a preemption is
+           required or not.*/
+        if (chSchIsPreemptionRequired()) {
+          /* Preemption is required we need to enforce a context switch.*/
+          ctxp->pc = (void *)_port_switch_from_isr;
+    #if CORTEX_USE_FPU
+          /* Triggering a lazy FPU state save.*/
+          asm volatile ("vmrs    APSR_nzcv, FPSCR" : : : "memory");
+    #endif
+        }
+        else {
+          /* Preemption not required, we just need to exit the exception
+             atomically.*/
+          ctxp->pc = (void *)_port_exit_from_isr;
+        }
+    
+    #if CORTEX_USE_FPU
+        {
+          uint32_t fpccr;
+    
+          /* Saving the special register SCB_FPCCR into the reserved offset of
+             the Cortex-M4 exception frame.*/
+          (ctxp + 1)->fpccr = (regarm_t)(fpccr = SCB_FPCCR);
+    
+          /* Now the FPCCR is modified in order to not restore the FPU status
+             from the artificial return context.*/
+          SCB_FPCCR = fpccr | FPCCR_LSPACT;
+        }
+    #endif
+    
+        /* Note, returning without unlocking is intentional, this is done in
+           order to keep the rest of the context switch atomic.*/
+        return;
+      }
+      port_unlock_from_isr();
+    }
+    
+
+| _port_switch_from_isr()
+
+.. code-block:: c
+
+    void _port_switch_from_isr(void) {
+    
+      dbg_check_lock();
+      chSchDoReschedule();
+      dbg_check_unlock();
+      asm volatile ("_port_exit_from_isr:" : : : "memory");
+    #if !CORTEX_SIMPLIFIED_PRIORITY || defined(__DOXYGEN__)
+      asm volatile ("svc     #0");
+    #else /* CORTEX_SIMPLIFIED_PRIORITY */
+      SCB_ICSR = ICSR_PENDSVSET;
+      port_unlock();
+      while (TRUE)
+        ;
+    #endif /* CORTEX_SIMPLIFIED_PRIORITY */
+    }
+
+
+| 123
 
 .. code-block:: c
 
