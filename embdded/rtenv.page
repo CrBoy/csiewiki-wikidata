@@ -47,7 +47,7 @@ Context Switch
      53 
      54     bx lr
 
-- 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``：Rd 為 general-purpose registers，PSR 為 program status registers。
+- 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``：Rd 為 general-purpose registers，PSR 可以為 psr、cpsr、apsr、msp、psp 等。
   ``mrs Rd, PSR`` 可以將 PSR 的值寫到 Rd，而 ``msr PSR, Rd`` 則是將 Rd 值寫到 PSR 裡。
 
 - 運作：
