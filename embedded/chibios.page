@@ -244,7 +244,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     void _port_irq_epilogue(void) {
     
       port_lock_from_isr();
-      if ((SCB_ICSR & ICSR_RETTOBASE) != 0) {
+      if ((SCB_ICSR & ICSR_RETTOBASE) != 0) { //there are no active exceptions, or the currently-executing exception is the only active exception.
         struct extctx *ctxp;
     
         /* Current PSP value.*/
