@@ -157,7 +157,9 @@ Creating Thread
    + 兩者幾近相同:
        - 都是先從 Heap 或是 memory pool 裡面動態配置一塊記憶體
        - 之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
-       - Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
+       - 動態 Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
+           - 會先查看 Thread 有無執行完，且是否還有其他 Thread 指向這塊記憶體
+           - Thread 的狀態是執行完且沒有其他 Thread 指向這塊記憶體的話就進行釋放記憶體的動作
       
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
