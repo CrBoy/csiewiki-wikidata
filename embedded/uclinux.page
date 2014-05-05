@@ -190,8 +190,204 @@ ext2_inode示意圖
 Process State
 --------------
 
+uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : line 183
 
+.. code-block:: c
 
+    #define TASK_RUNNING                0
+    #define TASK_INTERRUPTIBLE          1
+    #define TASK_UNINTERRUPTIBLE        2
+    #define __TASK_STOPPED              4
+    #define __TASK_TRACED               8
+    /* in tsk->exit_state */
+    #define EXIT_ZOMBIE                16
+    #define EXIT_DEAD                  32
+    /* in tsk->state again */
+    #define TASK_DEAD                  64
+    #define TASK_WAKEKILL             128
+    #define TASK_WAKING               256
+    #define TASK_STATE_MAX            512   //如果把各種的state 用or operation 去定義，其值最大為511
+
+下圖為狀態示意圖
+
+.. image:: /status.jpg
+
+* process state 切換的條件
+
+     - 給予某process時間 結束，必須將resource交給其他的process。
+
+     - 等待某個裝置或是process回應，而自己進入睡眠。
+
+* 改變系統schedule方式
+
+   定義在kernel/sched.c:line6293
+
+    .. code-block:: c
+ 
+        static int __sched_setscheduler(struct task_struct *p, int policy,
+                                struct sched_param *param, bool user)
+        {
+        int retval, oldprio, oldpolicy = -1, on_rq, running;
+        unsigned long flags;
+        const struct sched_class *prev_class = p->sched_class;
+        struct rq *rq;
+        int reset_on_fork;
+
+        /* may grab non-irq protected spin_locks */
+        BUG_ON(in_interrupt());
+        recheck:  
+        /* double check policy once rq lock held */
+        if (policy < 0) {
+                reset_on_fork = p->sched_reset_on_fork;
+                policy = oldpolicy = p->policy;
+        } else {
+                reset_on_fork = !!(policy & SCHED_RESET_ON_FORK);
+                policy &= ~SCHED_RESET_ON_FORK;
+
+                if (policy != SCHED_FIFO && policy != SCHED_RR &&   //只有這五種為有效的排程方式
+                                policy != SCHED_NORMAL && policy != SCHED_BATCH &&
+                                policy != SCHED_IDLE)
+                        return -EINVAL;
+        }
+
+        /*
+         * Valid priorities for SCHED_FIFO and SCHED_RR are
+         * 1..MAX_USER_RT_PRIO-1, valid priority for SCHED_NORMAL,
+         * SCHED_BATCH and SCHED_IDLE is 0.
+         */
+        if (param->sched_priority < 0 ||
+            (p->mm && param->sched_priority > MAX_USER_RT_PRIO-1) ||
+            (!p->mm && param->sched_priority > MAX_RT_PRIO-1))
+                return -EINVAL;
+        if (rt_policy(policy) != (param->sched_priority != 0))
+                return -EINVAL;
+
+        /*
+         * Allow unprivileged RT tasks to decrease priority:
+         */
+        if (user && !capable(CAP_SYS_NICE)) {
+                if (rt_policy(policy)) {
+                        unsigned long rlim_rtprio;
+
+                        if (!lock_task_sighand(p, &flags))
+                                return -ESRCH;
+                        rlim_rtprio = p->signal->rlim[RLIMIT_RTPRIO].rlim_cur;
+                        unlock_task_sighand(p, &flags);
+
+                        /* can't set/change the rt policy */
+                        if (policy != p->policy && !rlim_rtprio)
+                                return -EPERM;
+
+                        /* can't increase priority */
+                        if (param->sched_priority > p->rt_priority &&
+                            param->sched_priority > rlim_rtprio)
+                                return -EPERM;
+                }
+                /*
+                 * Like positive nice levels, dont allow tasks to
+                 * move out of SCHED_IDLE either:
+                 */
+                if (p->policy == SCHED_IDLE && policy != SCHED_IDLE)
+                        return -EPERM;
+
+                /* can't change other user's priorities */
+                if (!check_same_owner(p))
+                        return -EPERM;
+
+                /* Normal users shall not reset the sched_reset_on_fork flag */
+                if (p->sched_reset_on_fork && !reset_on_fork)
+                        return -EPERM;
+        }
+
+        if (user) {
+        #ifdef CONFIG_RT_GROUP_SCHED
+                /*
+                 * Do not allow realtime tasks into groups that have no runtime
+                 * assigned.
+                 */
+                if (rt_bandwidth_enabled() && rt_policy(policy) &&
+                                task_group(p)->rt_bandwidth.rt_runtime == 0)
+                        return -EPERM;
+        #endif
+
+                retval = security_task_setscheduler(p, policy, param);
+                if (retval)
+                        return retval;
+        }
+
+        /*
+         * make sure no PI-waiters arrive (or leave) while we are
+         * changing the priority of the task:
+         */
+        raw_spin_lock_irqsave(&p->pi_lock, flags);
+        /*
+         * To be able to change p->policy safely, the apropriate
+         * runqueue lock must be held.
+         */
+        rq = __task_rq_lock(p);
+        /* recheck policy now with rq lock held */
+        if (unlikely(oldpolicy != -1 && oldpolicy != p->policy)) {
+                policy = oldpolicy = -1;
+                __task_rq_unlock(rq);
+                raw_spin_unlock_irqrestore(&p->pi_lock, flags);
+                goto recheck;
+        }
+        update_rq_clock(rq);
+        on_rq = p->se.on_rq;
+        running = task_current(rq, p);
+        if (on_rq)
+                deactivate_task(rq, p, 0);
+        if (running)
+                p->sched_class->put_prev_task(rq, p);
+
+        p->sched_reset_on_fork = reset_on_fork;
+
+        oldprio = p->prio;
+        __setscheduler(rq, p, policy, param->sched_priority);
+
+        if (running)
+                p->sched_class->set_curr_task(rq);
+        if (on_rq) {
+                activate_task(rq, p, 0);
+
+                check_class_changed(rq, p, prev_class, oldprio, running);
+        }
+        __task_rq_unlock(rq);
+        raw_spin_unlock_irqrestore(&p->pi_lock, flags);
+
+        rt_mutex_adjust_pi(p);
+
+        return 0;
+        }
+
+*關於BUG_ON(condition)和BUG()
+    
+定義在 include/asm-generic/bug.h 中
+
+    .. code-block:: c
+
+        #define BUG_ON(condition) do {if(unlikely(condition))BUG();}while(0);
+
+    用來判斷kernel 是否出現問題，如果傳入BUG_ON(condition)的參數為true ，則確認有bug出現。
+
+    系統會將BUG訊息印出，然後呼叫panic 。
+
+    - BUG()
+
+    .. code-block:: c
+    
+        #define BUG() do{\
+            printk("BUG:failure at %s:%d/%s()!\n",__FILE__,__LINE__,__func__));\
+            panic("BUG!");\
+        }while(0)
+    
+    - unlikely()
+   
+       用來提升pipeline的效益，此函式代表接下來的程式不太可能被執行。
+
+       所以在compile 時，compiler會調整指令順序，以提升執行效率。其內容定義在GCC的內建函式: __builtin_expect() 中。
+
+       likely()也是相同功能。
 
 Scheduler
 ------------
