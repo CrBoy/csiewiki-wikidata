@@ -172,7 +172,10 @@ Creating Thread
                   ThreadsQueue          s_queue;    /**< @brief Queue of the threads sleeping on this semaphore.          */
                   cnt_t                 s_cnt;      /**< @brief The semaphore counter.      */
               } Semaphore;
-        - 呼叫 chSemWaitS() 來等待,取用 Semaphore, chSemSignalI() 來釋放 Semaphore
+        - 呼叫 chSemWaitS() 來等待,取用 Semaphore
+            - 如果沒有 semaphore 可以取用則進入 s_queue 裡面等待
+        - 呼叫 chSemSignalI() 來釋放 Semaphore
+            - 釋放後會先看 s_queue 裡面有沒有 Thread 在等待,有的話就 pop 一條 Thread 出來給他用
     + Binary Semaphore
         - 直接採用 Counting Semaphore 的方式實作 Binary Semaphore
         - Counter 被限制為不能超過 1 
