@@ -149,6 +149,13 @@ Creating Thread
         - `chThdCreateI()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00157>`_ 會將這個 Thread 的資料結構做好初始化 (包括設定好 priority, 初始的 function pointer...等等)
         - `chSchWakeupS()<http://chibios.sourceforge.net/html/chschd_8c_source.html#l00225>`_ 則是會比對新建的 Thread, 與目前的 Thread 哪個 priority 比較高, 並決定新建的 Thread 是可以立刻開始跑或是要被放入 ready list。
 
+* 動態
+   + 可利用 `chThdCreateFromHeap()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00130>`_ 或是 `chThdCreateFromMemoryPool()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00179>`_ 來動態新增 Thread
+   + 兩者幾近相同:
+       - 都是先從 Heap 或是 memory pool 裡面動態配置一塊記憶體
+       - 之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
+       - Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
+
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Semaphore
