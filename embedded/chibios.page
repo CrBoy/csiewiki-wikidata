@@ -144,6 +144,9 @@ Creating Thread
 
 * 靜態
     + 首先利用 WORKING_AREA(Thread_Name, stack_size) 這個 macro 去配置一塊記憶體給 Thread
+        - 包括這條 Thread 所需要的 stack memory , Thread 自己本身存 stucture data 用的 memory
+        - 還有 external context, internal context (詳見後面 context switch 的部分)和 interrupt stack(用來 serve interrupt 用的)
+
     + 接著呼叫 `chThdCreateStatic()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00187>`_ 來創造一個靜態的 Thread
     + chThdCreateStatic () 裡面會呼叫到一行 chSchWakeupS(tp = chThdCreateI(wsp, size, prio, pf, arg), RDY_OK);
         - `chThdCreateI()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00157>`_ 會將這個 Thread 的資料結構做好初始化 (包括設定好 priority, 初始的 function pointer...等等)
@@ -155,7 +158,7 @@ Creating Thread
        - 都是先從 Heap 或是 memory pool 裡面動態配置一塊記憶體
        - 之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
        - Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
-
+      
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * Semaphore
