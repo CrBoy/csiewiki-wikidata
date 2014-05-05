@@ -138,6 +138,13 @@ Thread and Structure Reference
     + p_msgqueue : 一個雙向的 Thread linked list。 用來存放欲傳給此 Thread 訊息的 Thread (詳見後面 IPC 的部分)。
     + p_mtxlist : Mutex 結構，用來存放此 Thread 目前佔有的 Mutex
 
+Creating Thread 
+^^^^^^^^^^^^^^^^
+| ChibiOS 有 2 種創造 Thread 的方式: 靜態 ( static ) 和動態 ( dynamic)
+
+* 靜態
+    + 首先利用 WORKING_AREA() 這個 macro 去配置一塊記憶體給 Thread
+
 
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
