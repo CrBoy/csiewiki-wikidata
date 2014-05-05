@@ -397,8 +397,275 @@ Scheduler
 Interrupt Handler
 ------------------
 
-作業系統架構
-------------
+當外部中斷發生時，硬體會自動將被中斷程式的下一條指令位址保存到stack裏並且關閉中斷，接着把自中斷向量表找尋到的對應的中斷服務程式位址送到PC，完成程式跳轉。
+
+以 Cortex-M4 爲例：外部中斷發生後，NVIC 會更新 IPSR，並把 PC 設成 0xE000 0000 + offset (=中斷源編號*4) 的值。此時PC便指向中斷服務程式的首位位址。
+
+.. image:: /memory_access_behavior.jpg
+
+在一個中斷請求中，除了少數緊急事務要處理之外，常常包含不緊急的事務，如資料的處理或分析。
+
+因此 uClinux 保留了 Linux 處理中斷的手法，將ISR分成前半 (top half) 和後半 (bottom half)。
+
+要立即回應的事務寫在前半，可以稍後處理的事務寫在後半。爲了對這2種中斷進行管理，在kernel內構成了硬中斷系統和軟中斷系統。
+
+
+爲回應外部設備的 IRQ，kernel均爲每個 IRQ 提供一個函式。
+
+IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
+
+   .. code-block:: c
+
+        #define NR_IRQS     90  /* STM32F2 */  
+
+        Interrupt descriptor (include/linux/irq.h):
+        struct irq_desc {
+            unsigned int        irq;
+            struct timer_rand_state *timer_rand_state;
+            unsigned int            *kstat_irqs;
+        #ifdef CONFIG_INTR_REMAP
+            struct irq_2_iommu      *irq_2_iommu;
+        #endif
+            irq_flow_handler_t  handle_irq;
+            struct irq_chip     *chip;
+            struct msi_desc     *msi_desc;
+            void            *handler_data;
+            void            *chip_data;
+            struct irqaction    *action;    /* IRQ action list */
+            unsigned int        status;     /* IRQ status */
+
+            unsigned int        depth;      /* nested irq disables */
+            unsigned int        wake_depth; /* nested wake enables */
+            unsigned int        irq_count;  /* For detecting broken IRQs */
+            unsigned long       last_unhandled; /* Aging timer for unhandled count */
+            unsigned int        irqs_unhandled;
+            raw_spinlock_t      lock;
+        #ifdef CONFIG_SMP
+            cpumask_var_t       affinity;
+            unsigned int        node;
+        #ifdef CONFIG_GENERIC_PENDING_IRQ
+            cpumask_var_t       pending_mask;
+        #endif
+        #endif
+            atomic_t        threads_active;
+            wait_queue_head_t       wait_for_threads;
+        #ifdef CONFIG_PROC_FS
+            struct proc_dir_entry   *dir;
+        #endif
+            const char      *name;
+        } ____cacheline_internodealigned_in_smp;
+
+GPIO
+-----------
+
+爲了讓開發者能針對自己的使用需求來做開發，GPIO就顯得特別重要。
+
+它能讓開發者進行硬體擴充。每個GPIO 的 input signal 和 output signal 會對應到特定的腳位。
+
+在 STM32F429開發板上，每個GPIO有對應的編號（0～127）：
+
+.. code-block:: c
+
+     ～# cd /sys/class/gpio
+     /sys/class/gpio # ls
+     export     gpiochip0  unexport
+     /sys/class/gpio # cat gpiochip0/ngpio
+     128
+
+爲了避免不同的 driver 使用到相同的 pin 腳，因此要先執行 gpio_request檢查是否有可以用。
+
+相關程式碼在 /drivers/gpio/gpiolib.c 可找到。
+
+.. code-block:: c
+
+    int gpio_request(unsigned gpio, const char *label)
+    {
+        struct gpio_desc    *desc;
+        struct gpio_chip    *chip;
+        int         status = -EINVAL;
+        unsigned long       flags;
+
+        spin_lock_irqsave(&gpio_lock, flags);
+
+        if (!gpio_is_valid(gpio))
+            goto done;
+        desc = &gpio_desc[gpio];
+        chip = desc->chip;
+        if (chip == NULL)
+            goto done;
+
+        if (!try_module_get(chip->owner))
+            goto done;
+
+        /* NOTE:  gpio_request() can be called in early boot,
+         * before IRQs are enabled, for non-sleeping (SOC) GPIOs.
+         */
+
+        if (test_and_set_bit(FLAG_REQUESTED, &desc->flags) == 0) { 
+            desc_set_label(desc, label ? : "?");
+            status = 0; 
+        } else {
+            status = -EBUSY;
+            module_put(chip->owner);
+            goto done;
+        }    
+
+        if (chip->request) {
+            /* chip->request may sleep */                                                                                                                 
+            spin_unlock_irqrestore(&gpio_lock, flags);
+            status = chip->request(chip, gpio - chip->base);
+            spin_lock_irqsave(&gpio_lock, flags);
+        
+            if (status < 0) {
+                desc_set_label(desc, NULL);
+                module_put(chip->owner);
+                clear_bit(FLAG_REQUESTED, &desc->flags);
+            }
+        }
+
+    done:
+        if (status)
+            pr_debug("gpio_request: gpio-%d (%s) status %d\n",
+                gpio, label ? : "?", status);
+        spin_unlock_irqrestore(&gpio_lock, flags);
+        return status;
+    }
+    EXPORT_SYMBOL_GPL(gpio_request);
+
+在 STM32F429上，可以透過呼叫 stm32f2_gpio_config 來設定 gpio的 direction 和 value。
+
+程式碼可在 /arch/arm/mach-stm32/iomux.c 找到。
+
+.. code-block:: c
+
+     static int stm32f2_gpio_config(struct stm32f2_gpio_dsc *dsc,
+                   enum stm32f2_gpio_role role)
+     {
+         volatile struct stm32f2_gpio_regs   *gpio_regs;
+     
+         u32 otype, ospeed, pupd, mode, i;
+         int rv;
+     
+         /*
+          * Check params
+          */
+         if (!dsc || dsc->port > 8 || dsc->pin > 15) {
+             rv = -EINVAL;
+             goto out;
+         }
+
+         /*
+          * Depending on the role, select the appropriate io params
+          */
+         switch (role) {
+         case STM32F2_GPIO_ROLE_USART1:
+         case STM32F2_GPIO_ROLE_USART2:
+         case STM32F2_GPIO_ROLE_USART3:
+         case STM32F2_GPIO_ROLE_USART4:
+         case STM32F2_GPIO_ROLE_USART5:
+         case STM32F2_GPIO_ROLE_USART6:
+         case STM32F2_GPIO_ROLE_SPI1:
+         case STM32F2_GPIO_ROLE_SPI2:
+         case STM32F2_GPIO_ROLE_SPI3:
+         case STM32F2_GPIO_ROLE_SPI4:
+         case STM32F2_GPIO_ROLE_SPI5:
+         case STM32F2_GPIO_ROLE_SPI6:
+             otype  = STM32F2_GPIO_OTYPE_PP;
+             ospeed = STM32F2_GPIO_SPEED_50M;
+             pupd   = STM32F2_GPIO_PUPD_UP;
+             break;
+         case STM32F2_GPIO_ROLE_I2C1:
+         case STM32F2_GPIO_ROLE_I2C2:
+         case STM32F2_GPIO_ROLE_I2C3:
+             otype  = STM32F2_GPIO_OTYPE_OD;
+             ospeed = STM32F2_GPIO_SPEED_2M;
+             pupd   = STM32F2_GPIO_PUPD_UP;
+             break;
+         case STM32F2_GPIO_ROLE_ETHERNET:
+         case STM32F2_GPIO_ROLE_MCO:
+             otype  = STM32F2_GPIO_OTYPE_PP;
+             ospeed = STM32F2_GPIO_SPEED_100M;
+             pupd   = STM32F2_GPIO_PUPD_NO;
+             break;
+         case STM32F2_GPIO_ROLE_SDIO:
+             otype  = STM32F2_GPIO_OTYPE_PP;
+             ospeed = STM32F2_GPIO_SPEED_50M;
+             pupd   = STM32F2_GPIO_PUPD_NO;
+             break;
+         case STM32F2_GPIO_ROLE_OUT:
+             otype  = STM32F2_GPIO_OTYPE_PP;
+             ospeed = STM32F2_GPIO_SPEED_50M;
+             pupd   = STM32F2_GPIO_PUPD_NO;
+             break;
+         default:
+             rv = -EINVAL;
+             goto out;
+         }
+
+         /*
+          * Get reg base
+          */
+         gpio_regs = (struct stm32f2_gpio_regs *)stm32_gpio_base[dsc->port];
+     
+         /*
+          * Enable GPIO clocks  
+          */
+         STM32_RCC->ahb1enr |= 1 << dsc->port;
+
+         if (role != STM32F2_GPIO_ROLE_MCO &&
+             role != STM32F2_GPIO_ROLE_OUT &&
+             role != STM32F2_GPIO_ROLE_IN) {
+     
+             /*
+              * Connect PXy to the specified controller (role)
+              */
+             i = (dsc->pin & 0x07) * 4;
+             gpio_regs->afr[dsc->pin >> 3] &= ~(0xF << i);
+             gpio_regs->afr[dsc->pin >> 3] |= af_val[role] << i;
+         }     
+
+              i = dsc->pin;
+
+         /*
+          * Output mode configuration
+          */
+         gpio_regs->otyper &= ~(0x1 << i);
+         gpio_regs->otyper |= otype << i;
+
+         i = dsc->pin * 2;
+
+         /*
+          * Set mode
+          */
+         if (role == STM32F2_GPIO_ROLE_OUT) {
+             mode = STM32F2_GPIO_MODE_OUT;
+         }
+         else if (role == STM32F2_GPIO_ROLE_IN) {
+             mode = STM32F2_GPIO_MODE_IN;
+         }
+         else {
+             mode = STM32F2_GPIO_MODE_AF;
+         }
+         gpio_regs->moder &= ~(0x3 << i);
+         gpio_regs->moder |= mode << i;
+
+         /*
+          * Speed mode configuration
+          */
+         gpio_regs->ospeedr &= ~(0x3 << i);
+         gpio_regs->ospeedr |= ospeed << i;
+
+         /*
+          * Pull-up, pull-down resistor configuration
+          */
+         gpio_regs->pupdr &= ~(0x3 << i);
+         gpio_regs->pupdr |= pupd << i;
+
+         rv = 0;
+     out:
+         return rv;
+     }
+    
 
 硬體驅動原理
 ------------
