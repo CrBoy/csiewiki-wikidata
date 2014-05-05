@@ -218,6 +218,10 @@ uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : li
 
      - 等待某個裝置或是process回應，而自己進入睡眠。
 
+
+Scheduler
+------------
+
 * 改變系統schedule方式
 
    定義在kernel/sched.c:line6293
@@ -388,9 +392,6 @@ uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : li
        所以在compile 時，compiler會調整指令順序，以提升執行效率。其內容定義在GCC的內建函式: __builtin_expect() 中。
 
        likely()也是相同功能。
-
-Scheduler
-------------
 
 
 Interrupt Handler
