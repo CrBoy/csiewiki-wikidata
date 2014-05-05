@@ -12,11 +12,140 @@ toc: no
 
 `Hackpad<https://hackpad.com/UClinux-EEaoU4qOP12>`_
 
-沒有MMU
+uClinux架構
 ------------
+與linux架構相同，主要的差異在MMU。在uClinux中沒有MMU機制，所以沒辦法實現虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
 
-Task State
-------------
+所以必須在硬體啟動時，就把所有的行程(process)所需的記憶體分配好。
+
+一個行程在執行前，系統必須為行程分配足夠的連續地址空間，然後全部載入到memory的連續空間中。
+
+檔案系統名詞解釋
+--------------
+
+* Superblock
+
+
+    為每個檔案系統開始的位置， 其儲存資訊像是檔案系統的大小，空的和填滿的區塊，它們各自的總數和其他諸如此類的資料。
+
+    要從一個檔案系統中存取任何檔案皆須經過檔案系統中之superblock。
+
+    如果superblock損壞了， 可能無法從磁碟中去取得資料。
+
+* Inode
+
+    每個文件或目錄由inode來表示，inode儲存的資訊包含有關大小，許可權，所有權和硬碟上的文件或目錄的位置數據。
+
+
+uClinux的檔案系統:Romfs
+-------------------------
+
+由於沒辦法實現虛擬記憶體，所以必須採用romfs，因為它可以保證將檔案已連續的方式存放。
+
+*特性
+
+   - 唯讀的檔案系統
+
+   - 無法寫入時複製(copy-on-write)
+
+       有多個呼叫者(callers)同時要求相同資源，他們會共同取得相同的指標指向相同的資源，直到某個呼叫者(caller)嘗試修改資源時。
+
+       系統才會真正複製一個副本(private copy)給該呼叫者，以避免被修改的資源被直接察覺到。
+
+       但因為uClinux沒有fork，故無法使用。
+
+   - XIP(Execute in place)
+       
+       程式直接在flash上執行，而不必搬到RAM上。可以減少memory的使用，但執行速度較慢。
+       
+       下圖為XIP示意圖
+
+       .. image:: /XIP.jpg
+       
+    xip_file_read(定義在uclinux/mm/filemap_xip.c)
+
+    .. code-block:: c
+
+                ssize_t xip_file_read(struct file *filp, char __user *buf, size_t len, loff_t *ppos)
+                {
+                        if (!access_ok(VERIFY_WRITE, buf, len))   // if the file can't access,return fault.
+                                return -EFAULT;
+
+                        return do_xip_mapping_read(filp->f_mapping, &filp->f_ra, filp,  //mapping to the memory
+                            buf, len, ppos);
+                }
+
+* romfs結構
+
+    .. image:: /romfs_struct.jpg
+
+
+* romfs_super_block  結構 定義在 include/linux/romfs_fs.h
+
+.. code-block:: c
+
+      struct romfs_super_block {
+         __be32   word0;      
+         __be32   word1;
+         __be32   size;
+         __be32   checksum;
+         char name[0];//volume name : 使用者給予此系統一個名稱
+      };
+
+word0和word1的值是固定的，其值分別為 "-rom" 和 "1fs-"，使系統知道它是romfs檔案系統。
+size表示romfs系統合法存取的大小(整個檔案系統的大小)，也就是最後一個文件的結束位置。
+
+checksum用來檢查檔案的正確性
+romfs_checksum定義在 fs/romfs/super.c line:499
+
+* romfs_inode結構
+
+.. code-block:: c
+
+       struct romfs_inode { 
+          __be32 next; /* low 4 bits see ROMFH_ */ 
+          __be32 spec; 
+          __be32 size; 
+          __be32 checksum; 
+          char name[0]; 
+        };
+
+spec表示文件類型定義在include/linux/romfs_fs.h
+
+.. code-block:: c
+
+      #define ROMFH_HRD 0    //永久連結(hard link)
+      #define ROMFH_DIR 1    //目錄(directory)
+      #define ROMFH_REG 2    //一般(regular file)
+      #define ROMFH_LNK 3    //連結(symbolic link)
+      #define ROMFH_BLK 4    //block device
+      #define ROMFH_CHR 5    //character device 
+      #define ROMFH_SCK 6    //socket   
+      #define ROMFH_FIF 7    //fifo   
+
+   - hard link 與 symbolic link
+
+         hard link是系統中有效的連結，所儲存的內容會指向記憶體中
+
+         而 symbolic link，則是把指標指向hard link，所以如果所指向的hard link被刪除，就無法再存取此檔案了。
+
+   - block device和character device 
+          
+         兩個都是跟IO有關。
+
+         block device為固定大小長度來傳送資料且可以隨機存取，如硬碟或是光碟機。
+          
+         而character device 以不定長度的字元傳送資料且只能循序存取，如終端機、印表機。
+           
+
+
+             
+
+Process State
+--------------
+
+
+
 
 Scheduler
 ------------
