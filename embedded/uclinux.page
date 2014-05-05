@@ -12,13 +12,48 @@ toc: no
 
 `Hackpad<https://hackpad.com/UClinux-EEaoU4qOP12>`_
 
-uClinux架構
-------------
-與linux架構相同，主要的差異在MMU。在uClinux中沒有MMU機制，所以沒辦法實現虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
+uClinux架構&特性
+----------------
 
-所以必須在硬體啟動時，就把所有的行程(process)所需的記憶體分配好。
+與linux架構相同，主要的差異在MMU。
 
-一個行程在執行前，系統必須為行程分配足夠的連續地址空間，然後全部載入到memory的連續空間中。
+* 缺乏記憶體管理
+
+    在uClinux中沒有MMU機制，所以沒辦法實現虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
+
+    所以必須在硬體啟動時，就把所有的行程(process)所需的記憶體分配好。
+
+    一個行程在執行前，系統必須為行程分配足夠的連續地址空間，然後全部載入到memory的連續空間中。
+
+* 記憶體分配
+
+    在uClinux中 若使用 power of 2 memory allocation來分配記憶體的話，會造成大量記憶體被浪費。
+
+    (如果一個process 需要 33KB ，以 power of 2 memory allocation 的方式分配的話，系統會給此process 64KB的空間)
+
+    所以就必須使用page_alloc2 或 kmalloc2，以節省記憶體。
+
+    page_alloc2 是以4KB為單位，如果一個process 需要 33KB ，系統會給此process 36KB的空間。
+
+    kmalloc2 也是以4KB為單位，但是以8KB來判斷。大於 8k 的需求從 free memory 的底部拿，小於 8k 的從 free memory 的起始處拿。
+
+    這樣可以減少由短暫而多次的分配，而造成無法利用的碎片記憶體區段。
+
+* 沒有brk/sbrk()
+
+     因為沒有VM(virtual memory)，故無法被實作，所以只能從全域記憶體(Kernel free memory pool)直接分配。
+
+     這樣做可以節省記憶體使用量，因為當行程需要記憶體的時候，系統才會分配，
+
+     而且在行程用完後，會將記憶體還給全域記憶體。(相對於使用pre-allocated heap system)
+
+* vfork
+
+      因為沒有VM(virtual memory)，所以要實現fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
+
+      parent process 在初始化私有(private)的資料和建立新的task control block 後，進入suspend 狀態。
+
+      而child process 則取代現在的程式，到執行結束後把parent process 喚醒。
 
 檔案系統名詞解釋
 --------------
@@ -137,9 +172,20 @@ spec表示文件類型定義在include/linux/romfs_fs.h
           
          而character device 以不定長度的字元傳送資料且只能循序存取，如終端機、印表機。
            
+EXT2
+-------
 
+在uClinux底下仍然有ext2，是為了mount point可以讀寫。
 
-             
+在 EXT2 檔案系統中，目錄是被用來創造並且在檔案系統中保持存取路徑到檔案的特殊檔案。
+
+下圖是目錄的結構             
+
+.. image:: /ext2_menu.jpg
+
+ext2_inode示意圖
+
+.. image:: /ext2_inode.jpg
 
 Process State
 --------------
