@@ -143,8 +143,11 @@ Creating Thread
 | ChibiOS 有 2 種創造 Thread 的方式: 靜態 ( static ) 和動態 ( dynamic)
 
 * 靜態
-    + 首先利用 WORKING_AREA() 這個 macro 去配置一塊記憶體給 Thread
-
+    + 首先利用 WORKING_AREA(Thread_Name, stack_size) 這個 macro 去配置一塊記憶體給 Thread
+    + 接著呼叫 `chThdCreateStatic()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00187>`_ 來創造一個靜態的 Thread
+    + chThdCreateStatic () 裡面會呼叫到一行 chSchWakeupS(tp = chThdCreateI(wsp, size, prio, pf, arg), RDY_OK);
+        - `chThdCreateI()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00157>`_ 會將這個 Thread 的資料結構做好初始化 (包括設定好 priority, 初始的 function pointer...等等)
+        - `chSchWakeupS()<http://chibios.sourceforge.net/html/chschd_8c_source.html#l00225>`_ 則是會比對新建的 Thread, 與目前的 Thread 哪個 priority 比較高, 並決定新建的 Thread 是可以立刻開始跑或是要被放入 ready list。
 
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
