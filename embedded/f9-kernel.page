@@ -230,7 +230,7 @@ Memory pool
    #else
    	DECLARE_MEMPOOL("KBITMAP" , &bitmap_start, &bitmap_end,MP_KR | MP_KW | MP_NO_FPAGE, MPT_KERNEL_DATA),
    #endif
-   	DECLARE_MEMPOOL("MEM1"    , &kernel_ahb_end, 0x10010000,MP_UR | MP_UW | MP_AHB_RAM, MPT_AVAILABLE),
+   	DECLARE_MEMPOOL("MEM1"     , &kernel_ahb_end, 0x10010000,MP_UR | MP_UW | MP_AHB_RAM, MPT_AVAILABLE),
    	DECLARE_MEMPOOL("APB1DEV"  , 0x40000000, 0x40007800,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
    	DECLARE_MEMPOOL("APB2_1DEV", 0x40010000, 0x40013400,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
    	DECLARE_MEMPOOL("APB2_2DEV", 0x40014000, 0x40014c00,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
@@ -239,6 +239,14 @@ Memory pool
    	DECLARE_MEMPOOL("AHB2DEV"  , 0x50000000, 0x50061000,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
    	DECLARE_MEMPOOL("AHB3DEV"  , 0x60000000, 0xA0001000,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
    };
+   
+   // 如果addr落在size當中，則會將addr加上size對齊，不過不須對齊的情況應該直接return addr就好
+   static memptr_t addr_align(memptr_t addr, size_t size)
+   {
+   	if (addr & (size - 1))
+   		return (addr & ~(size - 1)) + size;
+   	return (addr & ~(size - 1));
+   }
    
    void memory_init()
    {
@@ -265,6 +273,7 @@ Memory pool
    		}
    	}
    
+        // memory_desc_ptr需要存的是從kip到mem_desc的offset
    	kip.memory_info.s.memory_desc_ptr = ((void *) mem_desc) - ((void *) &kip);
    	kip.memory_info.s.n = j;
    
