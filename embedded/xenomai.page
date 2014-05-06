@@ -135,6 +135,24 @@ Building an RPi Xenomai Kernel
 
 作業系統架構
 ------------
+
+Xenomai是一個linux kernel的patch
+藉由在底層增加一個架構
+負責硬體與接收interrupt 並將interrupt 傳給上層的OS(這邊稱為domain)
+ 
+這個底層的架構是Adeos 是另一個open source的project
+
+基本架構示意圖
+http://dchabal.developpez.com/tutoriels/linux/xenomai/images/image04.png
+
+負責傳送interrupt的程式稱為ipipe
+示意圖
+http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-img4.jpg
+
+在ipipe上每個domain都有自己的優先度
+高優先度的domain會先接收到interrupt
+高優先度的domain的thread 可以preempt 低優先度domain的thread
+
 * 與 RT-PREEMPT 途徑的差異？
 
 依據預設 Xenomai 組態，nucleus 程式碼的兩個檔案未被編譯進去：
