@@ -265,6 +265,8 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 | 每當一個準備離開一個interrupt時，會執行一段IRQ_EPILOGUE()，IRQ_EPILOGUE()當中會push一個artificial exception return context，讓離開interrupt
 | unstacking的時候，pc會指向port_switch_from_isr()或是port_exit_from_isr()。
 |
+| 每一個thread被切換回來的時候，會再呼叫svc call來將artificial exception return context丟掉並取回原本的extctx。
+|
 | _port_irq_epilogue()
 
 .. code-block:: c
