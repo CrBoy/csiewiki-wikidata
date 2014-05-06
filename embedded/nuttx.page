@@ -505,7 +505,7 @@ FPU
 | /nuttx/arch/arm/include/armv7-m/irq_lazyfpu.h
 | XCPTCONTEXT_REGS = HW_XCPT_REGS + SW_XCPT_REGS
 | XCPTCONTEXT_SIZE = 4 * XCPTCONTEXT_REGS
-| page 40 ARM (2)
+
 
  
 測試環境架設
