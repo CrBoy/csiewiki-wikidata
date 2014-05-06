@@ -25,7 +25,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 .. code-block:: c
 
-   // include/init_hook.h
+   /* include/init_hook.h */
    typedef struct {
            unsigned int level;
            init_hook_t hook;
@@ -35,7 +35,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 .. code-block:: c
 
-   // include/init_hook.h
+   /* include/init_hook.h */
    #define INIT_HOOK(_hook, _level)                                        \
            const init_struct _init_struct_##_hook __attribute__((section(".init_hook"))) = {        \
                    .level = _level,                                        \
@@ -47,7 +47,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 .. code-block:: c
 
-   // loader/loader.ld
+   /* loader/loader.ld */
    SECTIONS {
            .text 0x08000000:
            {
@@ -104,7 +104,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 .. code-block:: c
 
-   // kernel/init.c
+   /* kernel/init.c */
    extern const init_struct init_hook_start[];
    extern const init_struct init_hook_end[];
    static unsigned int last_level = 0;
@@ -282,7 +282,7 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 
 .. code-block:: c
 
-   // include/lib/bitmap.h
+   /* include/lib/bitmap.h */
    // 宣告一塊bitmap
    #define DECLARE_BITMAP(name, size) \
        static __BITMAP uint32_t name [ALIGNED(size, BITMAP_ALIGN)];
