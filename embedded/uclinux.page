@@ -19,11 +19,11 @@ uClinux架構&特性
 
 * 缺乏記憶體管理
 
-    在uClinux中沒有MMU機制，所以沒辦法實現虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
+    在uClinux中沒有MMU機制，所以沒辦法實作虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
 
     所以必須在硬體啟動時，就把所有的行程(process)所需的記憶體分配好。
 
-    一個行程在執行前，系統必須為行程分配足夠的連續地址空間，然後全部載入到memory的連續空間中。
+    一個行程在執行前，系統必須為行程分配足夠的連續位址空間，然後全部載入到memory的連續空間中。
 
 * 記憶體分配
 
@@ -49,7 +49,7 @@ uClinux架構&特性
 
 * vfork
 
-      因為沒有VM(virtual memory)，所以要實現fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
+      因為沒有VM(virtual memory)，所以要實作fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
 
       parent process 在初始化私有(private)的資料和建立新的task control block 後，進入suspend 狀態。
 
@@ -69,13 +69,13 @@ uClinux架構&特性
 
 * Inode
 
-    每個文件或目錄由inode來表示，inode儲存的資訊包含有關大小，許可權，所有權和硬碟上的文件或目錄的位置數據。
+    每個檔案或目錄由inode來表示，inode儲存的資訊包含有關大小、權限、所有權和硬碟上的檔案或目錄的位置資料。
 
 
 uClinux的檔案系統:Romfs
 -------------------------
 
-由於沒辦法實現虛擬記憶體，所以必須採用romfs，因為它可以保證將檔案已連續的方式存放。
+由於沒辦法實作虛擬記憶體，所以必須採用romfs，因為它可以保證將檔案已連續的方式存放。
 
 *特性
 
@@ -128,9 +128,11 @@ uClinux的檔案系統:Romfs
       };
 
 word0和word1的值是固定的，其值分別為 "-rom" 和 "1fs-"，使系統知道它是romfs檔案系統。
-size表示romfs系統合法存取的大小(整個檔案系統的大小)，也就是最後一個文件的結束位置。
+
+size表示romfs系統合法存取的大小(整個檔案系統的大小)，也就是最後一個檔案的結束位置。
 
 checksum用來檢查檔案的正確性
+
 romfs_checksum定義在 fs/romfs/super.c line:499
 
 * romfs_inode結構
@@ -145,7 +147,7 @@ romfs_checksum定義在 fs/romfs/super.c line:499
           char name[0]; 
         };
 
-spec表示文件類型定義在include/linux/romfs_fs.h
+spec表示檔案類型定義在include/linux/romfs_fs.h
 
 .. code-block:: c
 
