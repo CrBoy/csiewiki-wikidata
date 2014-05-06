@@ -592,7 +592,7 @@ Q & A：
     +方向
      -認為系統管理給予工作安全的運作環境 ,而環境又是建立在硬體之上所以從funcIion實際應用反推作者設計思維以及認識硬體環境。
     +系統過程 ：Init -> Normal
-     -狀況一：(Normal -----> S-state ----context_switch-----> I-state ----context_switch-----> S-state)    
+     -狀況一：(Normal -----> S-state ----context_switch-----> I-state ----context_switch-----> S-state -----> Normal)    
 
       .. code-block:: c
 
@@ -602,8 +602,8 @@ Q & A：
 
             ->chSchWakeupS(tp = chThdCreateI(wsp, size, prio, pf, arg), RDY_OK);
               if(Thread1 優先程度 不大於 當前thread) 
-              是做->chSchReadyI(ntp)                                          <-----系統S狀態下可做
-              否做->chSysSwitch(ntp, otp                   <-----系統狀態S至I ?倘若是怎麼回S
+              是做->chSchReadyI(ntp)                                                <-----系統S狀態下可做
+              否做->chSysSwitch(ntp, otp)                          <-----系統狀態S至I ?倘若是怎麼回S ?
 
             ->chSysUnlock()                                                           <-----系統回到Normal 狀態
 
