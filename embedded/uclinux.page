@@ -93,8 +93,8 @@ uClinux的檔案系統:Romfs
        
        程式直接在flash上執行，而不必搬到RAM上。可以減少memory的使用，但執行速度較慢。
        
-       下圖為XIP示意圖
-
+       下圖為XIP示意圖(` 來源<http://netlab.cse.yzu.edu.tw/~bpmania/%C5%F8%C0Y/%AD%D7%BD%D2/951%20%B4O%A4J%A6%A1%A7Y%AE%C9%A7@%B7~%A8t%B2%CE/%C1%BF%B8q/03%20uCLinux%20%C2%B2%A4%B6.pdf>`_)
+       
        .. image:: /embedded/XIP.jpg
        
     xip_file_read(定義在uclinux/mm/filemap_xip.c)
@@ -110,7 +110,7 @@ uClinux的檔案系統:Romfs
                             buf, len, ppos);
                 }
 
-* romfs結構
+* romfs結構(` 來源<http://www.360doc.com/content/10/1130/21/1378815_73855062.shtml>`_)
 
     .. image:: /embedded/romfs_struct.jpg
 
@@ -179,11 +179,11 @@ EXT2
 
 在 EXT2 檔案系統中，目錄是被用來創造並且在檔案系統中保持存取路徑到檔案的特殊檔案。
 
-下圖是目錄的結構             
+下圖是目錄的結構 (` 來源 <http://www.science.unitn.it/~fiorella/guidelinux/tlk/node99.html>`_)            
 
 .. image:: /embedded/ext2_menu.jpg
 
-ext2_inode示意圖
+ext2_inode示意圖  (` 來源<http://en.wikipedia.org/wiki/Ext2>`_)
 
 .. image:: /embedded/ext2_inode.jpg
 
