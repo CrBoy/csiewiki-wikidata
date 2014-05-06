@@ -271,6 +271,10 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 |
 | 每一個thread被切換回來的時候，會再呼叫svc call來將artificial exception return context丟掉並取回原本的extctx。
 |
+
+.. image:: /embedded/chibi_artificial_context.jpg
+
+|
 | _port_irq_epilogue()
 
 .. code-block:: c
