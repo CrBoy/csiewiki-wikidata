@@ -49,11 +49,22 @@ uClinux架構&特性
 
 * vfork
 
-      因為沒有VM(virtual memory)，所以要實作fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
+      因為uClinux沒有VM(virtual memory)，所以要實作fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
 
       parent process 在初始化私有(private)的資料和建立新的task control block 後，進入suspend 狀態。
 
       而child process 則取代現在的程式，到執行結束後把parent process 喚醒。
+
+      - 描述
+       
+         fork和vfork擁有相同的效果，但如果下列情況發生，vfork的行為無法被定義。
+ 
+         1.修改用來回傳型態為pid_t以外的資料
+
+         2.成功呼叫calling _exit(2)或是exec(3)系列的程式前，呼叫任何其他的程式
+
+         3.從有使用vfork的程式中傳回
+
 
 檔案系統名詞解釋
 --------------
