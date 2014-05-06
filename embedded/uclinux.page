@@ -95,7 +95,7 @@ uClinux的檔案系統:Romfs
        
        下圖為XIP示意圖
 
-       .. image:: /XIP.jpg
+       .. image:: /embedded/XIP.jpg
        
     xip_file_read(定義在uclinux/mm/filemap_xip.c)
 
@@ -112,7 +112,7 @@ uClinux的檔案系統:Romfs
 
 * romfs結構
 
-    .. image:: /romfs_struct.jpg
+    .. image:: /embedded/romfs_struct.jpg
 
 
 * romfs_super_block  結構 定義在 include/linux/romfs_fs.h
@@ -181,11 +181,11 @@ EXT2
 
 下圖是目錄的結構             
 
-.. image:: /ext2_menu.jpg
+.. image:: /embedded/ext2_menu.jpg
 
 ext2_inode示意圖
 
-.. image:: /ext2_inode.jpg
+.. image:: /embedded/ext2_inode.jpg
 
 Process State
 --------------
@@ -210,7 +210,7 @@ uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : li
 
 下圖為狀態示意圖
 
-.. image:: /status.jpg
+.. image:: /embedded/status.jpg
 
 * process state 切換的條件
 
@@ -401,7 +401,7 @@ Interrupt Handler
 
 以 Cortex-M4 爲例：外部中斷發生後，NVIC 會更新 IPSR，並把 PC 設成 0xE000 0000 + offset (=中斷源編號*4) 的值。此時PC便指向中斷服務程式的首位位址。
 
-.. image:: /memory_access_behavior.jpg
+.. image:: /embedded/memory_access_behavior.jpg
 
 在一個中斷請求中，除了少數緊急事務要處理之外，常常包含不緊急的事務，如資料的處理或分析。
 
