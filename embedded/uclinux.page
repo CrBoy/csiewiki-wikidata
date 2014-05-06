@@ -559,6 +559,22 @@ GPIO
 效能表現
 --------
 
+
+Q&A
+--------------------
+
+**Q1. Relationship between fork() and MMU.**
+
+**Q2. What is TLB?**
+
+**Q3. What is slab & slob allocator?**
+
+**Q4. What is buddy?**
+
+**Q5. How program loader load OS?**
+
+**Q6. Real example about task states change.**
+
 參考資料
 --------
 * `Introduction to uClinux<http://free-electrons.com/docs/uclinux/>`_
