@@ -468,6 +468,12 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
             const char      *name;
         } ____cacheline_internodealigned_in_smp;
 
+
+Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
+
+.. image:: /embedded/irqdesc.png
+
+
 GPIO
 -----------
 
