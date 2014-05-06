@@ -262,6 +262,9 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 | 
 | 分別是發生interrupt時會被自動存起來的extctx(external context)，和程式內部在執行context switch時會存起來的intctx(interanl context)。
 |
+| 每當一個準備離開一個interrupt時，會執行一段IRQ_EPILOGUE()，IRQ_EPILOGUE()當中會push一個artificial exception return context，讓離開interrupt
+| unstacking的時候，pc會指向port_switch_from_isr()或是port_exit_from_isr()。
+|
 | _port_irq_epilogue()
 
 .. code-block:: c
