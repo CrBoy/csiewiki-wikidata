@@ -586,9 +586,9 @@ BGCLUT[256]              Background CLUT                                     800
 
 Q & A：
 --------
-*Q1：S Lock & I Lock作法的優點和缺點？對OS有何幫助？
+* Q1：S Lock & I Lock作法的優點和缺點？對OS有何幫助？
 
- +A：
+ + A：
     +方向
      -認為系統管理給予工作安全的運作環境 ,而環境又是建立在硬體之上所以從funcIion實際應用反推作者設計思維以及認識硬體環境。
     +系統過程 ：Init -> Normal
@@ -611,13 +611,13 @@ Q & A：
 
              - `Analysis<https://embedded2014.hackpad.com/Analysis-41cL5mtRq1K>`_
 
-*Q2：找出Thread SLEEP條件。
+* Q2：找出Thread SLEEP條件。
 
- +A： 等待message , mutex解鎖, 等待另外一條thread執行完...等等, 都會進入sleep state (sleep state中又定義許多不同的state)
+ + A： 等待message , mutex解鎖, 等待另外一條thread執行完...等等, 都會進入sleep state (sleep state中又定義許多不同的state)
 
-*Q3：msg_queue ＆ thread_queue 關聯在哪？用法? List & Queue 用途?
+* Q3：msg_queue ＆ thread_queue 關聯在哪？用法? List & Queue 用途?
 
- +A： ThreadQueue因為是採用priority_insert的方式,所以用double linked list實作效率會比較高 (`code<https://embedded2014.hackpad.com/Answer-t13AUYmr714>`_)
+ + A： ThreadQueue因為是採用priority_insert的方式,所以用double linked list實作效率會比較高 (`code<https://embedded2014.hackpad.com/Answer-t13AUYmr714>`_)
 
 
 參考資料
