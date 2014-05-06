@@ -1,0 +1,40 @@
+---
+title: 嵌入式作業系統設計與實作 2014 Spring / 期末專題清單
+categories: embedded2014
+toc: no
+...
+
+最新資訊
+--------
+期末專題訂於 2014 年 6 月 21 日 (週六)
+
+期末專題目標
+------------
+* 「人在作，Google 在看」，我們會邀請同學未來可能的雇主、同事們來評分
+  - 去年的 `期末專題</embedded/team2013>`_ 水準
+  - 所有過程都公開
+
+* 形式 (1): 在嵌入式硬體 (部份修改) 上，針對設定的目標 (如透過機器手臂，快速解魔術方塊)，開發出作業系統
+  - 可用現成的 open source kernel (建議為期中報告探討者)
+  - 需要提及實際解決的問題，特別是與作業系統相關議題，如 semaphore, mutex, deadlock
+  - 允許的硬體架構: ARM Cortex-M4F, ARM Cortex-A8/A9, ARM11
+
+* 形式 (2): 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
+  - 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 `ARM Cortex-A15 fast model<http://www.arm.com/products/tools/models/fast-models/>`_
+
+* Hackpad: `想法和提案<https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ>`_
+
+
+分組表
+=====
+* `第0組</embedded/team2012-0>`_  (示範組)
+* `第1組</embedded/os-team2014-1>`_  (...)
+* `第2組</embedded/osteam2014-2>`_  (...)
+* `第3組</embedded/os-team2014-3>`_  (...)
+* `第5組</embedded/os-team2014-5>`_  (...)
+* `第6組</embedded/os-team2014-6>`_  (...)
+* `第7組</embedded/os-team2014-7>`_  (...)
+* `第8組</embedded/os-team2014-8>`_  (...)
+* `第9組</embedded/os-team2014-9>`_  (...)
+* `第10組</embedded/os-team2014-10>`_  (...)
+* `第11組</embedded/os-team2014-11>`_  (...)
