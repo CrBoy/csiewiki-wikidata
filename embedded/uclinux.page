@@ -221,7 +221,7 @@ uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : li
     #define TASK_WAKING               256
     #define TASK_STATE_MAX            512   //如果把各種的state 用or operation 去定義，其值最大為511
 
-下圖為狀態示意圖
+下圖為狀態示意圖  （來源：<<嵌入式軟體Linux入門>> 任哲 樊生文編著）
 
 .. image:: /embedded/status.jpg
 
