@@ -126,6 +126,160 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 這段程式會從``init_hook_start``開始掃過一遍，當發現一個hook的level是大於上次呼叫``run_init_hook``而且小於等於這次要run的level時，就執行對應的hook function，並且更新最大呼叫過的level。
 
+
+
+記憶體管理(Memory Management)
+-----------------------------
+與傳統L4用來建置``large system``的設計理念不同，F9將重點放在小型MCU的功耗上，因此：
+
+* 沒有虛擬記憶體(virtual memory)與分頁(pages)
+* RAM很小，但PAS(physical address space)比較大(32-bit)，包含：硬體裝置、flash、bit-band區域
+* 只有8個MPU(memory protection unit)區域
+
+記憶體管理分為三個部份：
+
+Memory pool
+  一塊含有特定屬性的PAS區域(hardcoded in memmap table)
+
+Flexible page
+  AS中的一塊區域，與L4不同，這邊是指MPU區域
+
+Address page
+  由flexible page所組成
+
+在Cortex-M中，MPU只支援2^n大小的區域，假設我們要建立一個96 bytes的page，我們應該要切成較小的區域，並且建立出一條包含32 byte與64 byte的fpage chain，這邊就是實作複雜的原因。
+
+Memory pool
+===========
+
+.. code-block:: c
+
+   /* include/memory.h */
+   typedef struct {
+           memptr_t start;
+           memptr_t end;
+   
+           uint32_t flags;
+           uint32_t tag;
+   } mempool_t;
+      
+   /* Kernel permissions flags */
+   #define MP_KR		0x0001
+   #define MP_KW		0x0002
+   #define MP_KX		0x0004
+   
+   /* Userspace permissions flags */
+   #define MP_UR		0x0010
+   #define MP_UW		0x0020
+   #define MP_UX		0x0040
+   
+   /* Fpage type */
+   #define MP_NO_FPAGE  0x0000		/*! Not mappable */
+   #define MP_SRAM      0x0100		/*! Fpage in SRAM: granularity 1 << */
+   #define MP_AHB_RAM   0x0200		/*! Fpage in AHB SRAM: granularity 64 words, bit bang mappings */
+   #define MP_DEVICES   0x0400		/*! Fpage in AHB/APB0/AHB0: granularity 16 kB */
+   #define MP_MEMPOOL   0x0800		/*! Entire mempool is mapped  */
+   
+   /* Map memory from mempool always (for example text is mapped always because
+    * without it thread couldn't run)
+    * other fpages mapped on request because we limited in MPU resources)
+    */
+   #define MP_MAP_ALWAYS 	0x1000
+   
+   typedef enum {
+   	MPT_KERNEL_TEXT,
+   	MPT_KERNEL_DATA,
+   	MPT_USER_TEXT,
+   	MPT_USER_DATA,
+   	MPT_AVAILABLE,
+   	MPT_DEVICES,
+   	MPT_UNKNOWN = -1
+   } mempool_tag_t;
+   
+   #define DECLARE_MEMPOOL(name_, start_, end_, flags_, tag_) \
+   {                                                \
+           .start = (memptr_t) (start_),                \
+           .end  = (memptr_t) (end_),                \
+           .flags = flags_,                        \
+           .tag = tag_                                \
+   }
+   
+   #define DECLARE_MEMPOOL_2(name, prefix, flags, tag) \
+           DECLARE_MEMPOOL(name, &(prefix ## _start), &(prefix ## _end), flags, tag)
+   
+``mempool_t``定義出memory pool的結構，也就是PAS中的一個區域，因此此結構中包含：起始與結束位置、kernel與user的使用權限，還有fpage的creation rule。``DECLARE_MEMPOOL``與``DECLARE_MEMPOOL_2``用來宣告memory pool，兩者的差異在於定義start與end的位置，一個是直接賦值，一個是透過變數取值
+
+.. code-block:: c
+
+   /* kernel/memory.c */
+   /**
+    * Memory map of MPU.
+    * Translated into memdesc array in KIP by memory_init
+    */
+   static mempool_t memmap[] = {
+   	DECLARE_MEMPOOL_2("KTEXT" , kernel_text, MP_KR | MP_KX | MP_NO_FPAGE, MPT_KERNEL_TEXT),
+   	DECLARE_MEMPOOL_2("UTEXT" , user_text,   MP_UR | MP_UX | MP_MEMPOOL | MP_MAP_ALWAYS, MPT_USER_TEXT),
+   	DECLARE_MEMPOOL_2("KIP"   , kip,         MP_KR | MP_KW | MP_UR | MP_SRAM, MPT_KERNEL_DATA),
+   	DECLARE_MEMPOOL("KDATA"   , &kip_end, &kernel_data_end,MP_KR | MP_KW | MP_NO_FPAGE, MPT_KERNEL_DATA),
+   	DECLARE_MEMPOOL_2("KBSS"  , kernel_bss,  MP_KR | MP_KW | MP_NO_FPAGE, MPT_KERNEL_DATA),
+   	DECLARE_MEMPOOL_2("UDATA" , user_data,   MP_UR | MP_UW | MP_MEMPOOL | MP_MAP_ALWAYS, MPT_USER_DATA),
+   	DECLARE_MEMPOOL_2("UBSS"  , user_bss,    MP_UR | MP_UW | MP_MEMPOOL  | MP_MAP_ALWAYS, MPT_USER_DATA),
+   	DECLARE_MEMPOOL("MEM0"    , &user_bss_end, 0x2001c000, MP_UR | MP_UW | MP_SRAM, MPT_AVAILABLE),
+   #ifdef CONFIG_BITMAP_BITBAND
+   	DECLARE_MEMPOOL("KBITMAP" , &bitmap_bitband_start, &bitmap_bitband_end,MP_KR | MP_KW | MP_NO_FPAGE, MPT_KERNEL_DATA),
+   #else
+   	DECLARE_MEMPOOL("KBITMAP" , &bitmap_start, &bitmap_end,MP_KR | MP_KW | MP_NO_FPAGE, MPT_KERNEL_DATA),
+   #endif
+   	DECLARE_MEMPOOL("MEM1"    , &kernel_ahb_end, 0x10010000,MP_UR | MP_UW | MP_AHB_RAM, MPT_AVAILABLE),
+   	DECLARE_MEMPOOL("APB1DEV"  , 0x40000000, 0x40007800,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("APB2_1DEV", 0x40010000, 0x40013400,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("APB2_2DEV", 0x40014000, 0x40014c00,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("AHB1_1DEV", 0x40020000, 0x40022400,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("AHB1_2DEV", 0x40023c00, 0x40040000,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("AHB2DEV"  , 0x50000000, 0x50061000,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   	DECLARE_MEMPOOL("AHB3DEV"  , 0x60000000, 0xA0001000,MP_UR | MP_UW | MP_DEVICES, MPT_DEVICES),
+   };
+   
+   void memory_init()
+   {
+   	int i = 0, j = 0;
+   	uint32_t *shcsr = (uint32_t *) 0xE000ED24;
+   
+   	fpages_init();
+   
+   	ktable_init(&as_table);
+   
+   	mem_desc = (kip_mem_desc_t *) kip_extra;
+   
+   	/* Initialize mempool table in KIP */
+   	for (i = 0; i < sizeof(memmap) / sizeof(mempool_t); ++i) {
+   		switch (memmap[i].tag) {
+   		case MPT_USER_DATA:
+   		case MPT_USER_TEXT:
+   		case MPT_DEVICES:
+   		case MPT_AVAILABLE:
+   			mem_desc[j].base = addr_align((memmap[i].start), CONFIG_SMALLEST_FPAGE_SIZE) | i;
+   			mem_desc[j].size = addr_align((memmap[i].end - memmap[i].start), CONFIG_SMALLEST_FPAGE_SIZE) | memmap[i].tag;
+   			j++;
+   			break;
+   		}
+   	}
+   
+   	kip.memory_info.s.memory_desc_ptr = ((void *) mem_desc) - ((void *) &kip);
+   	kip.memory_info.s.n = j;
+   
+   	*shcsr |= 1 << 16;	/* Enable memfault */
+   }   
+   
+   INIT_HOOK(memory_init, INIT_LEVEL_KERNEL_EARLY);
+
+``memory_init``先初始化``fpages``以及``as_table``，接著將``mempool table``的填入KIP中。``0xE000ED24``在ARM Cortex-M4中是System Handler Control and State Register(SHCSR)，最後enable memfault exception。
+
+硬體驅動原理
+------------
+* Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
+* MPU (Memory Protection Unit)
+
 Basic Kernel Library
 ----------------------
 KTable
@@ -317,11 +471,6 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 * bitmap_clear_bit(bitmap_cursor_t cursor) - 將cursor設為0
 * bitmap_get_bit(bitmap_cursor_t cursor) - 取得cursor值
 * bitmap_test_and_set_bit(bitmap_cursor_t cursor) - 測試cursor是否被使用並設為1
-
-硬體驅動原理
-------------
-* Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
-* MPU (Memory Protection Unit)
 
 效能表現
 --------
