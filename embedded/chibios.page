@@ -261,7 +261,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 |     intctx {r4-r11, lr}
 | 
 
-.. image:: /embedded/extctx_and_intctx.jpg
+.. image:: /embedded/chibi_extctx_and_intctx.jpg
 
 |
 | 分別是發生interrupt時會被自動存起來的extctx(external context)，和程式內部在執行context switch時會存起來的intctx(interanl context)。
