@@ -431,7 +431,10 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
 
         #define NR_IRQS     90  /* STM32F2 */  
 
-        Interrupt descriptor (include/linux/irq.h):
+Interrupt descriptor (include/linux/irq.h):
+
+   .. code-block:: c
+
         struct irq_desc {
             unsigned int        irq;
             struct timer_rand_state *timer_rand_state;
