@@ -1,37 +1,11 @@
 ---
 title: F9 microkernel
 categories: embedded, arm, stm32, stm32f429
-toc: no
+toc: yes
 ...
-
-目錄
-----
-
-
-
-1. `組員與共筆<#組員與共筆>`_
-
-2. `作業系統架構<#作業系統架構>`_
-
-3. `記憶體管理(Memory Management)<#記憶體管理(Memory Management)>`_
-
-    3.1 `Memory pool<#Memory pool>`_
-
-    3.2 `Flexible pages(fpage)<#Flexible pages(fpage)>`_
-
-    3.3 `Address space(AS)<#Address space(AS)>`_
-
-4. `硬體驅動原理<#硬體驅動原理>`_
-
-5. `Basic Kernel Library<#Basic Kernel Library>`_
-
-    5.1 `KTable<#KTable>`_
-
-        5.1.1 `Bitmap<#Bitmap>`_
 
 組員與共筆
 ----------
-
 * 廖健富 / Rampant1018
 * 鄒宗延 / slpbaby
 * 詹凱傑 / bpotatog
