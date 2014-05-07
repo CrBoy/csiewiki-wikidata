@@ -381,6 +381,86 @@ Flexible pages(fpage)
 
 ``create_fpage_chain``會根據base位置以及大小，建立一條鍊結，如果原來已經有鍊結存在，則會將新產生的fpage鍊接在元有的鍊結上；如果沒有就新建一條鍊結。
 
+.. code-block:: c
+
+   int assign_fpages_ext(int mpid, as_t *as, memptr_t base, size_t size, fpage_t **pfirst, fpage_t **plast)
+   {
+   	fpage_t **fp;
+   	memptr_t  end;
+   
+   	if (size <= 0)
+   		return -1;
+   
+   	/* if mpid is unknown, search using base addr */
+   	if (mpid == -1) {
+   		if ((mpid = mempool_search(base, size)) == -1) {
+   			/* Cannot find appropriate mempool, return error */
+   			return -1;
+   		}
+   	}
+   
+   	end = base + size;
+   
+   	if (as) {
+   		/* find unmapped space */
+   		fp = &as->first;
+   		while (base < end && *fp) {
+   			if (base < FPAGE_BASE(*fp)) {
+   				fpage_t *first = NULL, *last = NULL;
+   				size = (end < FPAGE_BASE(*fp) ? end : FPAGE_BASE(*fp)) - base;
+
+   				create_fpage_chain(mempool_align(mpid, base),
+   				                   mempool_align(mpid, size),
+   				                   mpid, &first, &last);
+   
+   				last->as_next = *fp;
+   				*fp = first;
+   				fp = &last->as_next;
+   
+   				if (!*pfirst)
+   					*pfirst = first;
+   				*plast = last;
+   
+   				base = FPAGE_END(*fp);
+   			} else if (base < FPAGE_END(*fp)) {
+   				if (!*pfirst)
+   					*pfirst = *fp;
+   				*plast = *fp;
+   
+   				base = FPAGE_END(*fp);
+   			}
+   
+   			fp = &(*fp)->as_next;
+   		}
+   
+   		if (base < end) {
+   			fpage_t *first = NULL, *last = NULL;
+   			size = end - base;
+   
+   			create_fpage_chain(mempool_align(mpid, base),
+   			                   mempool_align(mpid, size),
+   			                   mpid, &first, &last);
+   
+   			*fp = first;
+   
+   			if (!*pfirst)
+   				*pfirst = first;
+   			*plast = last;
+   		}
+   	} else {
+   		create_fpage_chain(mempool_align(mpid, base),
+   		                   mempool_align(mpid, size),
+   		                   mpid, pfirst, plast);
+   	}
+   
+   	return 0;
+   }
+
+   int assign_fpages(as_t *as, memptr_t base, size_t size)
+   {
+   	fpage_t *first = NULL, *last = NULL;
+   	return assign_fpages_ext(-1, as, base, size, &first, &last);
+   }
 
 Address space(AS)
 ==================
@@ -397,7 +477,24 @@ Address space(AS)
    	uint32_t shared;	/*! shared user number */
    } as_t;
 
+.. code-block:: c
 
+   /* kernel/memory.c */
+   void as_map_user(as_t *as)
+   {
+   	int i;
+   
+   	for (i = 0; i < sizeof(memmap) / sizeof(mempool_t); ++i) {
+   		switch (memmap[i].tag) {
+   		case MPT_USER_DATA:
+   		case MPT_USER_TEXT:
+   			/* Create fpages only for user text and user data */
+   			assign_fpages(as, memmap[i].start, (memmap[i].end - memmap[i].start));
+   		}
+   	}
+   }
+
+替``user text``以及``user data``建立fpage，並且映射到``as``。
 
 硬體驅動原理
 ------------
