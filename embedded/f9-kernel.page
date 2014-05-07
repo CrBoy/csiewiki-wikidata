@@ -284,6 +284,93 @@ Memory pool
 
 ``memory_init``先初始化``fpages``以及``as_table``，接著將``mempool table``的填入KIP中。``0xE000ED24``在ARM Cortex-M4中是System Handler Control and State Register(SHCSR)，最後enable memfault exception。
 
+Flexible pages(fpage)
+======================
+
+.. code-block:: c
+
+   /* include/fpage.h */
+   struct fpage {
+   	struct fpage *as_next;
+   	struct fpage *map_next;
+   	struct fpage *mpu_next;
+   
+   	union {
+   		struct {
+   			uint32_t base;
+   			uint32_t mpid : 6;
+   			uint32_t flags : 6;
+   			uint32_t shift : 16;
+   			uint32_t rwx : 4;
+   		} fpage;
+   		uint32_t raw[2];
+   	};
+   };
+
+   typedef struct fpage fpage_t;
+
+一個fpage包含：base address、memory pool id、flags、size、permission，
+
+.. code-block:: c
+
+   /* kernel/fpage.c */
+   static fpage_t *create_fpage(memptr_t base, size_t shift, int mpid)
+   {
+   	fpage_t *fpage = (fpage_t *) ktable_alloc(&fpage_table);
+   
+   	assert(fpage != NULL);
+   
+   	fpage->as_next = NULL;
+   	fpage->map_next = fpage; 	/* That is first fpage in mapping */
+   	fpage->mpu_next = NULL;
+   	fpage->fpage.mpid = mpid;
+   	fpage->fpage.flags = 0;
+   	fpage->fpage.rwx = MP_USER_PERM(mempool_getbyid(mpid)->flags);
+   
+   	fpage->fpage.base = base;
+   	fpage->fpage.shift = shift;
+   
+   	if (mempool_getbyid(mpid)->flags & MP_MAP_ALWAYS)
+   		fpage->fpage.flags |= FPAGE_ALWAYS;
+   
+   	return fpage;
+   }
+
+``create_fpage``用來建立並初始化一個新的fpage，首先先在``fpage_table``中要一塊新的空間，接著依據給予的參數(mpid、size、flags)進行設定。
+
+.. code-block:: c
+
+   static void create_fpage_chain(memptr_t base, size_t size, int mpid, fpage_t **pfirst, fpage_t **plast)
+   {
+   	int shift, sshift, bshift;
+   	fpage_t *fpage = NULL;
+   
+   	while (size) {
+   		/* Select least of log2(base), log2(size). Needed to make regions with correct align */
+   		bshift = fp_addr_log2(base);
+   		sshift = fp_addr_log2(size);
+   
+   		shift = ((1 << bshift) > size) ? sshift : bshift;
+   
+   		if (!*pfirst) {
+   			/* Create first page */
+   			fpage = create_fpage(base, shift, mpid);
+   			*pfirst = fpage;
+   			*plast = fpage;
+   		} else {
+   			/* Build chain */
+   			fpage->as_next = create_fpage(base, shift, mpid);
+   			fpage = fpage->as_next;
+   			*plast = fpage;
+   		}
+   
+   		size -= (1 << shift);
+   		base += (1 << shift);
+   	}
+   }
+
+
+
 硬體驅動原理
 ------------
 * Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
