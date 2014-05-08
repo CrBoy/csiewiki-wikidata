@@ -277,7 +277,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
        就會被中斷並插入其他任意一個相同priority thread的後面
 
 
-上下文交換(Context Switch)
+內文切換(Context Switch)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 | context被分成兩部份：
