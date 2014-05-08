@@ -21,7 +21,7 @@ ChibiOS/RT 參考應用
 測試環境架設
 --------------------
 
- 1. 安裝 necon
+ 1. 安裝 neocon
      wget http://svn.openmoko.org/developers/werner/neocon/Makefile
      wget http://svn.openmoko.org/developers/werner/neocon/Makefile
      make
