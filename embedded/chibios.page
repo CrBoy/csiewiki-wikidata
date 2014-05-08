@@ -18,6 +18,28 @@ ChibiOS/RT 參考應用
 --------------------
 * `ChibiOS/RT users<http://www.chibios.org/dokuwiki/doku.php?id=chibios:users>`_
 
+測試環境架設
+--------------------
+
+ 1. 安裝 necon
+     wget http://svn.openmoko.org/developers/werner/neocon/Makefile
+     wget http://svn.openmoko.org/developers/werner/neocon/Makefile
+     make
+     cp neocon /usr/bin
+
+ 2. 燒錄ChibiOS/RT，參考 `ChbiOSRT<https://stm32f429.hackpad.com/ChibiOSRT-TX2cgbgXnxB>`_
+
+ 3. run testsuite
+       輸入 neocon /dev/ttyUSB0 會看到以下畫面
+         .. image:: /embedded/test_neocon.png
+
+       接著按下 Enter 後，會見當畫面如下
+         .. image:: /embedded/test_neocon.png
+      
+
+       輸入 test 後會看到test suite的結果
+         .. image:: /embedded/ch_test_suite.png
+
 
 作業系統架構
 ------------
