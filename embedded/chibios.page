@@ -23,7 +23,9 @@ ChibiOS/RT 參考應用
 
  1. 安裝 neocon
      wget http://svn.openmoko.org/developers/werner/neocon/Makefile
-     wget http://svn.openmoko.org/developers/werner/neocon/Makefile
+
+     wget http://svn.openmoko.org/developers/werner/neocon/neocon.c
+
      make
      cp neocon /usr/bin
 
