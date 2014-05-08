@@ -21,6 +21,7 @@ toc: no
 
 * 形式 (2): 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
   - 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 `ARM Cortex-A15 fast model<http://www.arm.com/products/tools/models/fast-models/>`_
+  - 可延展期中報告使用的作業系統，並針對上述方向給予改進
 
 * Hackpad: `想法和提案<https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ>`_
 
