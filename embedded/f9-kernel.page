@@ -495,8 +495,127 @@ Address space(AS)
 
 硬體驅動原理
 ------------
-* Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
-* MPU (Memory Protection Unit)
+Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
+==================================================================
+
+MPU (Memory Protection Unit)
+=============================
+mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
+
+.. code-block:: c
+
+   /* include/platform/mpu.h */
+   #define MPU_BASE_ADDR                0xE000ED9C
+   #define MPU_ATTR_ADDR                0xE000EDA0
+   #define MPU_CTRL_ADDR                0xE000ED94
+   #define MPU_RNR_ADDR                 0xE000ED98
+
+   #define MPU_REGION_MASK              0xFFFFFFE0
+
+這邊先定義好mpu暫存器的位置，這些位置可以從arm的手冊中找到。至於``MPU_REGION_MASK``是用來取得區域用的遮罩值。
+
+* MPU_BASE(`MPU Region Base Address Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html>`_)
+   - .. image:: /embedded/f9-kernel/mpu_base.png
+   - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
+   - ADDR - 區域的base位置
+   - VALID
+        + 0 - MPU_RNR不會改變，處理器會更新由MPU_RNR指定的MPU區域的base位置
+        + 1 - 將MPU_RNR更新成REGION，更新由MPU_RNR指定的MPU區域的base位置
+        + 也就是說，設定0的話會更新原來的MPU_RNR區域的base，1的話就是先切換MPU_RNR區域在更新base
+   - REGION - 區域的index
+* MPU_ATTR(`MPU Region Attribute and Size Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html>`_) 
+   - .. image:: /embedded/f9-kernel/mpu_attr.png
+   - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
+   - XN
+      + 0 - enable instruction fetch
+      + 1 - disable instruction fetch
+   - AP - 存取權限
+   - TEX, C, B - 記憶體存取屬性
+   - S - shareable
+   - SRD
+      + 0 - 對應子區域enable
+      + 1 - 對應子區域disable
+      + 區域在大小在128byte以下不能使用子區域
+   - SIZE - MPU區域的大小
+   - ENABLE - 區域enable
+* MPU_CTRL(`MPU Control Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html>`_)
+   - .. image:: /embedded/f9-kernel/mpu_ctrl.png
+   - PRIVDEFENA
+      + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
+      + 1 - enable預設的memory map，background區域給priviledged軟體使用
+   - HFNMIENA - 在hard fault、NMI、FAULTMASK handler時要不要啟動MPU
+      + 0 - disable
+      + 1 - enable
+   - ENABLE
+      + 0 - disable mpu
+      + 1 - enable mpu
+
+.. code-block:: c
+   
+   /* platform/stm32f4/mpu.c */
+   void mpu_setup_region(int n, fpage_t *fp)
+   {
+           static uint32_t *mpu_base = (uint32_t *) MPU_BASE_ADDR;
+           static uint32_t *mpu_attr = (uint32_t *) MPU_ATTR_ADDR;
+   
+           if (fp) {
+                   *mpu_base = (FPAGE_BASE(fp) & MPU_REGION_MASK) | 0x10 | (n & 0xF);
+                   *mpu_attr = ((mempool_getbyid(fp->fpage.mpid)->flags & MP_UX) ?
+                                0 :
+                                (1 << 28)) |        /* XN bit */
+                               (0x3 << 24) /* Full access */ |
+                               ((fp->fpage.shift - 1) << 1) /* Region */ |
+                               1 /* Enable */;
+           } else {
+                   /* Clean MPU region */
+                   *mpu_base = 0x10 | (n & 0xF);
+                   *mpu_attr = 0;
+           }
+   }
+
+* ``*mpu_base = (FPAGE_BASE(fp) & MPU_REGION_MASK) | 0x10 | (n & 0xF)``，先取得fpage base再遮罩下去取得前27位，接著設定``VALID``跟``REGION``
+* MPU_ATTR設定：
+   - MP_UX(userspace execute)
+   - 權限(all)
+   - 區域大小
+   - enable
+
+.. code-block:: c
+
+   /* platform/stm32f4/mpu.c */
+   void mpu_enable(mpu_state_t i)
+   {
+           static uint32_t *mpu_ctrl = (uint32_t*) MPU_CTRL_ADDR;
+   
+           *mpu_ctrl = i | MPU_PRIVDEFENA;
+   }
+
+依據參數設定``MPU_CTRL``狀態，並且開啟``PRIVDEFENA``
+
+.. code-block:: c
+
+   /* platform/stm32f4/mpu.c */
+   int addr_in_mpu(uint32_t addr)
+   {
+           static uint32_t *mpu_rnr = (uint32_t *) MPU_RNR_ADDR;
+           static uint32_t *mpu_base = (uint32_t *) MPU_BASE_ADDR;
+           static uint32_t *mpu_attr = (uint32_t *) MPU_ATTR_ADDR;
+           int i;
+   
+           for (i = 0; i < 8; ++i) {
+                   *mpu_rnr = i;
+                   if (*mpu_attr & 0x1) {
+                           uint32_t base = *mpu_base & MPU_REGION_MASK;
+                           uint32_t size = 1 << (((*mpu_attr >> 1) & 0x1F) + 1);
+                           if (addr >= base && addr < base + size)
+                                   return 1;
+                   }
+           }
+           
+           return 0;
+   }
+
+掃過全部的mpu區域，並檢查給予的地址是不是在enable的區域內。
 
 Basic Kernel Library
 ----------------------
@@ -704,3 +823,6 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 * Init Hook
   - http://kunyichen.wordpress.com/2014/04/18/f9-kernel-%E4%B9%8B-init_hook
   - https://github.com/f9micro/f9-kernel/blob/master/Documentation/init-hooks.txt
+
+* MPU
+  - `ARM Information Center(4.5. Optional Memory Protection Unit)<hhttp://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0553a/Cihjddef.html>`_
