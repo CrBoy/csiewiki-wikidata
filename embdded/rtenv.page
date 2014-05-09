@@ -27,7 +27,7 @@ Context Switch
 
 **activate**
 
-- 功能: 將部分 general-purpose registers push 到 Main Stack 中保存，再將 Process Stack 中的所存的值 pop 到部分 general-purpose registers。
+- 功能: 將 kernel state push 到 Main stack 中，再將目前正在執行的 process state pop 到 register 中。
 
  .. code-block:: c
 
