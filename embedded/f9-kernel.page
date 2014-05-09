@@ -500,6 +500,27 @@ Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
 
 MPU (Memory Protection Unit)
 =============================
+Overview
+#########
+MPU會將memory map切成幾塊區域，並定義每一個區域的位置、大小、存取權限還有記憶體屬性(attributes)
+
+* 每一個區域可以有獨立的屬性設定
+* 區域可以overlapping
+* 可以export記憶體屬性給系統
+
+| 
+| 記憶體屬性會影響區域的記憶體存取，Cortex-M4定義了：
+
+* 八個獨立的記憶體區域，0-7
+* 一個背景區域
+
+* 當overlap發生時，存取權限會以編號較高的區域屬性為準。例如區域7與任何其他的區域發生重疊時，都會以區域7的屬性為主
+* 背景區域與預設的memory map有相同的屬性，但是只能被priviledged的軟體存取
+* 指令存取(instruction access)與資料存取(data access)是使用相同的區域設定
+* 當程式要存取受到MPU保護的區域時，會產生``MemManage fault(fault exception)``。在作業系統的環境中，kernel可以在程式執行時動態更新MPU區域。通常一個嵌入式OS會使用MPU作為memory protection
+
+Implementation
+###############
 mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 .. code-block:: c
