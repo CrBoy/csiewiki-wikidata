@@ -514,7 +514,7 @@ ARM的很多處理器都配有主動保護系統資源的硬體：memory protect
 
 ARM Cortex-M4 Optional Memory Protection Unit
 ##############################################
-MPU會將memory map切成幾塊區域，並定義每一個區域的位置、大小、存取權限還有記憶體屬性(attributes)
+MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位置、大小、存取權限還有記憶體屬性(attributes)
 
 * 每一個區域可以有獨立的屬性設定
 * 區域可以overlapping
@@ -524,15 +524,24 @@ MPU會將memory map切成幾塊區域，並定義每一個區域的位置、大�
 | 記憶體屬性會影響區域的記憶體存取，Cortex-M4定義了：
 
 * 八個獨立的記憶體區域，0-7
-* 一個背景區域
+* 一個背景區域(background region)
 
 * 當overlap發生時，存取權限會以編號較高的區域屬性為準。例如區域7與任何其他的區域發生重疊時，都會以區域7的屬性為主
-    重疊的區域在賦予存取權限時可以有比較大的彈性，例如有一個小型的嵌入式系統，總共有256KB的記憶體，而起始位置在0x00000000，其中有一塊是privileged的系統區域32KB，不能被使用者存取，並且從0x00000000開始放起，剩下的記憶體則是給使用者。這個系統使用兩個
+    重疊的區域在賦予存取權限時可以有比較大的彈性，例如有一個小型的嵌入式系統，總共有256KB的記憶體，而起始位置在0x00000000，其中有一塊是privileged的系統區域32KB，不能被使用者存取，並且從0x00000000開始放起，剩下的記憶體則是給使用者。這個系統使用兩個區域：256KB的user區域跟32KB的privileged區域，因為privileged區域的優先度比較大，所以privileged區域使用編號1，user區域使用編號0。
+
+    .. image:: /embedded/f9-kernel/overlapping.png
+
 * 背景區域與預設的memory map有相同的屬性，但是只能被privileged的軟體存取
+    重疊區域的另一個用處在背景區域－用來替一大塊記憶體空間分配相同屬性的低優先度區域，其他較高優先度的區域就能改變背景區域中的某一塊屬性。背景區域可以用來保護一些睡眠狀態的記憶體，使其不會被非法存取，而此時由另一個處於活躍狀態的記憶體就能被使用。
+
+    例如有一個嵌入式系統定義了一個較大的privileged區域，接著讓一些較小的unprivileged區域與這個privileged區域的部份重疊，這個較小區域可以在背景區域的不同位置，代表不同的用戶空間(user space)，當系統將這個較小的區域從一個位置移到另一個位置時，之前被覆蓋的空間就會在由背景區域進行保護。這個使用者區域(user region)就像一個window，允許存取背景區域的不同部份，但只有用戶等級(user-level)的屬性。
+
+    下圖是一個簡單的3-task保護架構，區域3定義了active task的保護屬性，而背景區域0則負責保護其他睡眠狀態的任務資源。
+
+    .. image:: /embedded/f9-kernel/background_region.png
+    
 * 指令存取(instruction access)與資料存取(data access)是使用相同的區域設定
 * 當程式要存取受到MPU保護的區域時，會產生``MemManage fault(fault exception)``。在作業系統的環境中，kernel可以在程式執行時動態更新MPU區域。通常一個嵌入式OS會使用MPU作為memory protection
-
-
 
 Implementation
 ###############
