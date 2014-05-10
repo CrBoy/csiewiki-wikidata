@@ -27,7 +27,7 @@ Context Switch
 
 **activate**
 
-- 功能：將 kernel state push 到 Main stack 中，再將目前正在執行的 process state pop 到 register 中。
+- 功能：從 kernel mode 轉換成 user mode
 
  .. code-block:: c
 
