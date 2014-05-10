@@ -32,6 +32,13 @@ System Call
 Context Switch
 ===============
 
+**Kernel Mode 與 User Mode 間的轉換**
+
+kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
+
+注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
+
+
 **activate**
 
 - 功能：從 kernel mode 轉換成 user mode
