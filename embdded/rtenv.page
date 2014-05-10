@@ -47,7 +47,7 @@ Context Switch
      53 
      54     bx lr
 
-- 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``[1]_：Rd 為 general-purpose registers，PSR 可以為 psr、cpsr、apsr、msp、psp 等。
+- 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``[#]_：Rd 為 general-purpose registers，PSR 可以為 psr、cpsr、apsr、msp、psp 等。
   ``mrs Rd, PSR`` 可以將 PSR 的值寫到 Rd，而 ``msr PSR, Rd`` 則是將 Rd 值寫到 PSR 裡。
 
 - 運作：
@@ -134,7 +134,8 @@ fork 原理
 
 
 
-- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時會 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[2]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
+- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時會 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
+- 其中，在register 交換，原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
 
 
   ::
@@ -154,6 +155,42 @@ fork 原理
 
 - 將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
 
+**母task**
+
+- 進到 ``activate()`` 後，再次將 kernel state 與 user state 作交換。此時，``LR`` 含有 EXC_RETURN[#]_的值 ``0xfffffffd``，則當 processor 執行 ``bx lr`` 時必須進行 exception return。
+- **Exception return**：當 EXC_RETURN 值為 0xfffffffd 時，
+  1. processor 會轉回 thread mode
+  2. 從 process stack 取回 exception 時所 push 進去的 registers
+  3. 使用 PSP 為當下的 SP
+- 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
+
+  ::
+
+    [ fork() ]
+    .global fork
+    fork:
+        push {r7}
+       115d0:   b480        push    {r7}
+        mov r7, #0x1
+       115d2:   f04f 0701   mov.w   r7, #1
+        svc 0
+       115d6:   df00        svc 0    // <- Exception 在這裡發生，所以 PC 被存的值為 0x115d8
+        nop
+       115d8:   bf00        nop      // <- 藉由 exception return 使的程式回到這裡繼續執行
+        pop {r7}
+       115da:   bc80        pop {r7}
+        bx lr
+       115dc:   4770        bx  lr   // <- 回到 first 繼續執行
+
+
+- 由於在 kernel mode 中，已經將 fork() 所應回傳的值放到 process stack 的 r0 中，藉由 exception return 將這個值 pop 到 ``R0``。則當程式離開 ``fork()`` 時，會回傳 task_count (R0)。
+- 因此，母 task 在 ``if(!fork())`` 為 false，則繼續執行下一個 fork()。
+
+
+**子task**
+
+- 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
+
 
 硬體驅動原理
 =============
@@ -165,6 +202,8 @@ fork 原理
 參考資料
 -----------
 
-.. [1] `mrs指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihjcedb.html>`_ 、 `msr指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihibbbh.html>`_
+.. [#] `mrs指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihjcedb.html>`_ 、 `msr指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihibbbh.html>`_
 
-.. [2] `Cortex-M3 Exception<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+.. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+
+.. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
