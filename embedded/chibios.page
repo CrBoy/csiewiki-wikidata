@@ -643,7 +643,13 @@ Q & A：
 
  + A： ThreadQueue因為是採用priority_insert的方式,所以用double linked list實作效率會比較高 (`code<https://embedded2014.hackpad.com/Answer-t13AUYmr714>`_)
 
+* Q4：Binary Semaphore 與mutex 本質上有什麼不同？
 
+ + A： 最主要還是在於ownership。mutex有ownership的概念,semaphore沒有所以如果一個thread要取用一個semaphore的話你就給我進threadQueue裡面等到有空的semaphore給你用你才能用。mutex則不同,因為有ownership的概念所以可以透過尋找占用此mutex的thread,來決定說需不需要做提升priority的動作,也因此mutex不會有priority inversion的情形發生(semaphore就會)。
+
+* Q5：context switch效能測試算法中為何在取得時間前要做乘2動作?
+
+ + A： `因為<https://stm32f429.hackpad.com/ChibiOSRT-test-uxwcLZpZQIS>`_
 參考資料
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
