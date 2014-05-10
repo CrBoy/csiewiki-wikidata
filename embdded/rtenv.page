@@ -23,11 +23,6 @@ toc: no
 作業系統架構
 ==============
 
-System Call
-============
-
-- 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
-
 
 Context Switch
 ===============
@@ -206,12 +201,20 @@ fork 原理
 - 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
 
 
+System Call
+============
+
+- 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
+
+
+
+
 硬體驅動原理
-=============
+----------------
 * `USB OTG</embedded/OTG>`_
 
 效能表現
-========
+----------------
 
 參考資料
 -----------
