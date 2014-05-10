@@ -37,7 +37,7 @@ Context Switch
      43     push {r4, r5, r6, r7, r8, r9, r10, r11, ip, lr}
      44     
      45     /* switch to process stack pointer */
-     46     msr psp, r0                                                                                                                            
+     46     msr psp, r0
      47     mov r0, #3
      48     msr control, r0
      49     
@@ -55,7 +55,7 @@ Context Switch
   - L46：將 ``r0`` 所帶的值寫入到 ``psp`` (process stack pointer)，注意呼叫 activate 所放的參數就是該 task 之 task_control_block 中 stack 的 address。
   - L47,48：將 ``control`` register 的值設為 3，藉此可以將 stack pointer 轉為指向 process stack (使 sp 值為 psp)。所以藉由 ``sp`` 可以存取其 stack 的內容。
   - L51：將 ``user_thread_stack`` 的 register 依序 pop 到 r4~r11 及lr，也是為何 ``user_thread_stack`` 的前9個 register 設計為 r4~r10、fp、_lr。
-  - L52：再將 ``user_thread_stack`` 的 ``_r7`` pop 到 ``r7``，達成傳遞 syscall 的功能。
+  - L52：再將 ``user_thread_stack`` 的 ``_r7`` pop 到 ``r7``。
   - 所以除了 r0~r3 及 ip、sp、pc、cpsr 之外，都被換成 user-mode 的 register 了。
 
 
