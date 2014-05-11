@@ -14,7 +14,7 @@ toc: no
 * 陳建霖
 
 Building an RPi Xenomai Kernel
-------------------------------
+==============================
 * Install Cross complier
 
 .. code-block:: c
