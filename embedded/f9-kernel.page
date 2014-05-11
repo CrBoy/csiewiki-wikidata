@@ -893,6 +893,102 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 * bitmap_get_bit(bitmap_cursor_t cursor) - 取得cursor值
 * bitmap_test_and_set_bit(bitmap_cursor_t cursor) - 測試cursor是否被使用並設為1
 
+IPC
+--------
+F9的IPC 性質為同步傳送，舉個同步和非同步的例子:
+
+* 同步 - 當A 要傳送資料給B 時候，會先檢查B 是否已經準備好，如果是的話就直接傳送，不是的話就等待對方。傳送過程中不會經過其他buffer，而是直接傳給B。
+* 非同步 - 當A要傳送資料給B 時候，會把資料丟進系統IPC準備好的queue/buffer中; 當B 要接收資料的時候，會從queue/buffer中尋找。過程中需要係統IPC的buffer/queue做為中轉。
+
+IPC register有兩種- message register & buffer register
+
+* MRs有16個
+* BR只有8個
+
+Message Register
+=================
+共有 16 個，其中 0 ～ 7 是 R4 ～ R11，其他的為虛擬Registers是 UTCB中的 MR[0～8]。
+
+.. code-block:: c
+
+   //user/include/l4/platform/vregs.h
+   register L4_Word32_t __L4_MR0 asm ("r4");
+   register L4_Word32_t __L4_MR1 asm ("r5");
+   register L4_Word32_t __L4_MR2 asm ("r6");
+   register L4_Word32_t __L4_MR3 asm ("r7");
+   register L4_Word32_t __L4_MR4 asm ("r8");
+   register L4_Word32_t __L4_MR5 asm ("r9");
+   register L4_Word32_t __L4_MR6 asm ("r10");
+   register L4_Word32_t __L4_MR7 asm ("r11");
+   
+   //include/ipc.h
+   static uint32_t ipc_read_mr(tcb_t *from, int i)
+   {
+      // 可以發現 8以下的mr屬於ctx裡的regs
+      if (i >= 8)
+         return from->utcb->mr[i - 8];
+      return from->ctx.regs[i];
+   }
+
+每個MR的值只能被使用一次，一次之後讀取的話會出現undefined結果。
+
+MR 內容可包含
+
+* **Untyped word**
+* Typed item
+   - MapItem
+   - GrantItem
+   - CtrlXferItem (目前未完成）
+   - StringItem （目前未完成）
+
+一次利用MR傳送的Message可以分為三塊區域：
+
+Message Tag
+   位置固定在MR[0]。
+
+Untyped Word
+   位置在MR[1～u]，u表示Untyped word的數量。
+
+Typed Word
+   位置在MR[u+1～u+t]，t表示Typed word的數量。
+
+Message Tag的作用是描述本次message的内容。
+
+    .. image:: /embedded/f9-kernel/MR0.jpg
+
+    * u : untyped words的數量
+    * t : words裡面有typed item的數量
+    * label : 使用者自定 opcode
+    * 0 : 保留
+    * p : 擴展性
+
+此外，Message Tag也是接收内容的描述。
+
+    .. image:: /embedded/f9-kernel/resultmr0.jpg
+
+    * u : 收到的Untyped words數量
+    * t : 收到的Typed items數量
+    * E : 是否有發生錯誤，從UTCB中查看ErrorCode
+    * X : 是不是從其他CPU送來的message
+    * r : message是否有被重新導向
+    * p : 發送者使用propagation,可以從UTCB中找出真正的發送者
+
+.. code-block:: c
+
+   //include/l4/ipc.h
+   typedef union {
+      struct {
+       /* Number of words */
+         uint32_t n_untyped : 6;
+         uint32_t n_typed : 6;
+         uint32_t prop       : 1;
+         uint32_t reserved   : 3;    /* Type of operation */
+         uint16_t label;
+      } s;
+      uint32_t raw;
+   } ipc_msg_tag_t;
+
+
 效能表現
 --------
 
@@ -916,3 +1012,6 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
    - http://www.ertos.nicta.com.au/research/l4/microkernels.pml
    - `Wikipedia(Microkernel)<http://en.wikipedia.org/wiki/Microkernel>`_
    - `Wikipedia(L4_microkernel)<http://en.wikipedia.org/wiki/L4_microkernel>`_
+
+*IPC
+   - http://www.l4ka.org/l4ka/l4-x2-r7.pdf
