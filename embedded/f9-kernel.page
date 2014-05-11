@@ -988,6 +988,20 @@ Message Tag的作用是描述本次message的内容。
       uint32_t raw;
    } ipc_msg_tag_t;
 
+MapItem
+========
+Map的動作是透過將要map的fpage組成部分message傳送給Mappee。
+Fpage細節由兩個words來組成：
+
+    .. image:: /embedded/f9-kernel/MapItemMR.jpg
+
+    * r w x : 權限
+    * snd base ： 在L4的文件中，snd base在snd fpage大於/小於接收者能接收的窗口中扮演不同的角色。而在F9的程式碼看起来，snd base是要map的目標位置，而snd fpage是size。
+
+GrantItem
+==========
+| 如同Map, Grant也是透過傳送message完成。
+| Fpage細節也是如同MapItem的兩個words，但其中100C部分由 101C 取代。
 
 效能表現
 --------
