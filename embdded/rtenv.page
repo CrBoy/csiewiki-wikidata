@@ -144,6 +144,17 @@ fork 原理
 
 
 - 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
+
+  ::
+
+    fork:
+        push {r7}
+        mov r7, #0x1
+        svc 0
+        nop
+        pop {r7}
+        bx lr
+
 - 其中，在register 交換，原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
 
 
