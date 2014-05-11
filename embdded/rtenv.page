@@ -200,6 +200,15 @@ fork 原理
 - 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
 
 
+List
+=====
+
+- 實作檔案：list.c
+- 類型：cyclic double linked list
+- 函式：
+  - ``list_init``：初始化 node
+![alt text](/list_init.png)
+
 
 Event Monitoring
 =================
