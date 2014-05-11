@@ -208,7 +208,7 @@ Event Monitoring
 - 功能：負責接受來自 event sources 所發出的 event occurrences，並將這些 pending 轉給 handlers 來處理 event。[#]_
 - 特性：
   - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
-  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。
+  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。而每個 event sensor 都有 pending 用以暫存發出 occurrence 的 task。
 - 函式：
   - ``event_monitor_init``：初始化 event_monitor
   - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
