@@ -19,9 +19,8 @@ toc: no
 鄭聖文 / <`Shengwen<https://github.com/shengwen1997/>`_>
 
 
-==============
 作業系統架構
-==============
+---------------
 
 
 Context Switch
@@ -143,18 +142,7 @@ fork 原理
 
 
 
-- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
-
-  ::
-
-    fork:
-        push {r7}
-        mov r7, #0x1
-        svc 0
-        nop
-        pop {r7}
-        bx lr
-
+- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時會 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
 - 其中，在register 交換，原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
 
 
@@ -212,6 +200,24 @@ fork 原理
 - 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
 
 
+
+Event Monitoring
+=================
+
+- 實作檔案：event_monitor.c
+- 功能：負責接受來自 event sources 所發出的 event occurrences，並將這些 pending 轉給 handlers 來處理 event。[#]_
+- 特性：
+  - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
+  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。
+- 函式：
+  - ``event_monitor_init``：初始化 event_monitor
+  - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
+  - ``event_monitor_register``：為 handler 裝上 sendor
+  - ``event_monitor_block``：將發出 event occurrence 的 task block 住，以等待 handler 的處理
+  - ``event_monitor_release``：將被 block 住的 task push 回 ready_list
+  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending
+
+
 System Call
 ============
 
@@ -235,3 +241,5 @@ System Call
 .. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
 .. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+
+.. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
