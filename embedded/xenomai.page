@@ -127,6 +127,8 @@ Building an RPi Xenomai Kernel
 作業系統架構
 ===========
 
+.. image:: /xenoarch.jpg
+
 Xenomai是一個linux kernel的patch
 藉由在底層增加一個架構
 負責硬體與接收interrupt 並將interrupt 傳給上層的OS(這邊稱為domain)
