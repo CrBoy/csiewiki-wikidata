@@ -16,7 +16,7 @@ Overview
 ---------
 About Microkernel
 ==================
-在計算科學領域中，microkernel(μ-kernel)指的就是集合一些精簡的軟體，而這些軟體可以提供實作作業系統的機制，例如：地址空間(Address Space, AS)管理、執行序(thread)管理、行程間通訊(Inter-Process Communication, IPC)。如果硬體或是CPU有提供不同的執行模式，則μ-kernel就是執行在權限最高的部份，例如ARM的handle mode。
+在計算科學領域中，microkernel(μ-kernel)指的就是集合一些精簡的軟體，而這些軟體可以提供實作作業系統的機制，例如：地址空間(Address Space, AS)管理、執行緒(thread)管理、行程間通訊(Inter-Process Communication, IPC)。如果硬體或是CPU有提供不同的執行模式，則μ-kernel就是執行在權限最高的部份，例如ARM的handle mode。
 
 Basic Idea
 +++++++++++
