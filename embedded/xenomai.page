@@ -166,6 +166,7 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 實作
 ==================
 
+
 Context switch
 
 .. code-block:: prettyprint
@@ -231,7 +232,6 @@ Scheduler
 
 xnpod
 +++++++++++
-xnpod會降sche-idle 與 sche-rt兩個sche_class加入pod中
 
 .. code-block:: prettyprint
 
