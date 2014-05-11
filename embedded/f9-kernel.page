@@ -41,7 +41,7 @@ Basic Idea
 歷史
 ++++
 μ-kernel的基礎概念是由Per Brinch Hansen提出的(Brinch Hansen, Communications of the ACM, 13, 1970)。1980年代在CMU有一個Mach Project，這就是第一代的μ-kernel，而且有很多類似的計畫都在1990左右誕生，但這些第一代的微內核因為效能表現不佳而無法存活下來，而效能不佳的原因有很大的部份就是IPC耗費太多資源。
-接著Jochen Liedtke證明了IPC是可以被大幅度改善的，他展示了原來Mach Project低落的效能是因為糟糕的設計與實作，造成大量的cache。L4與其他這種類型的系統被稱作第二代的μ-kernel。
+接著Jochen Liedtke證明了IPC是可以被大幅度改善的，他展示了原來Mach Project低落的效能是因為糟糕的設計與實作，造成大量的cache miss。L4與其他這種類型的系統被稱作第二代的μ-kernel。
 
 L4 microkernel
 ===============
