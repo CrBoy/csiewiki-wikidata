@@ -1047,6 +1047,68 @@ Buffer Register
 | BR是StringItem和control transfer Item指定Buffer的目的地。
 | F9中未發现實作。
 
+IPC 過程
+========
+| 每一次的IPC syscall都會有發送和接收兩個階段，這兩階段皆可以被忽略。
+| 若目標thread沒有在等待接收，則caller thread會進入T_SEND_ BLOCKED狀態。
+| 等待接收的目標可以設定成兩種:
+    
+- Closed receive:特定thread
+- Open wait:任何thread
+
+從pingpong開始trace整個IPC流程
+
+.. code-block:: c
+
+   //user/apps/pingpong/main.c
+   void __USER_TEXT pong_thread(void)
+   {
+      ...
+      while(1) {
+         msgtag = L4_Receive(threads[PING_THREAD]);
+         L4_MsgStore(msgtag, &msg);
+        }
+    }
+
+一開始pong會從ping中接收到message tag.
+
+.. code-block:: c
+
+   //user/include/l4/ipc.h
+   L4_INLINE L4_MsgTag_t L4_Receive(L4_ThreadId_t from)
+   {
+      /* call L4_Receive_Timeout with no timeout */
+      return L4_Receive_Timeout(from, L4_Never);
+   }
+
+   L4_INLINE L4_MsgTag_t L4_Receive_Timeout(L4_ThreadId_t from, L4_Time_t RcvTimeout)
+   {
+      L4_ThreadId_t dummy;
+      /* 
+         Call L4_Ipc, the reason that using another function call is 
+         ipc required syscall, and it's different with different hw, so
+         using another function call to separate the hw-dependent and 
+         not-hw-dependent codes.
+      */
+      return L4_Ipc(L4_nilthread, from, (L4_Word_t) RcvTimeout.raw, &dummy);
+   }
+
+   // user/lib/l4/platform/syscalls.c
+   L4_MsgTag_t L4_Ipc(L4_ThreadId_t to, L4_ThreadId_t FromSpecifier, L4_Word_t Timeouts, L4_ThreadId_t *from)
+   {
+      L4_MsgTag_t result;
+      L4_ThreadId_t from_ret;
+      __asm__ __volatile__(
+         "svc %[syscall_num]\n"
+         "str r0, %[from]\n"
+         : [from] "=m"(from_ret)
+         : [syscall_num] "i"(SYS_IPC));
+      result.raw = __L4_MR0;
+      if (from != NULL)
+         *from = from_ret;
+      return result;
+   }
+
 效能表現
 --------
 
