@@ -206,8 +206,12 @@ List
 - 實作檔案：list.c
 - 類型：cyclic double linked list
 - 函式：
-  - ``list_init``：初始化 node
-![alt text](/list_init.png)
+  - ``list_init``：初始化 node，prev 及 next 都指向自己。
+  - ``list_empty``：
+  - ``list_remove``：將指定的 node 從 linked list 中移除。
+  - ``list_unshift``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 next。
+  - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
+  - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
 
 
 Event Monitoring
