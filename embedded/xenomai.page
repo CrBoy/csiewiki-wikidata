@@ -161,11 +161,12 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 
 * 與 RT-PREEMPT 途徑的差異？
 
-依據預設 Xenomai 組態，nucleus 程式碼的兩個檔案未被編譯進去：
-    - sched-tp.c
-    - sched-sporadic.c
 
-context switch
+
+實作
+==================
+
+Context switch
 
 .. code-block:: prettyprint
 
@@ -218,6 +219,47 @@ context switch
      THUMB(        ldr        sp, [ip], #4                   )
      THUMB(        ldr        pc, [ip]                   )
     ENDPROC(rthal_thread_switch)
+
+Timer
++++++++++++
+
+Scheduler
++++++++++++
+依據預設 Xenomai 組態，nucleus 程式碼的兩個檔案未被編譯進去：
+    - sched-tp.c
+    - sched-sporadic.c
+
+xnpod
++++++++++++
+xnpod會降sche-idle 與 sche-rt兩個sche_class加入pod中
+
+.. code-block:: prettyprint
+
+    struct xnpod {
+
+    xnflags_t status;	/*!< Status bitmask. */
+
+      xnsched_t sched[XNARCH_NR_CPUS];	/*!< Per-cpu scheduler slots. */
+
+	xnqueue_t threadq;	/*!< All existing threads. */
+    #ifdef CONFIG_XENO_OPT_VFILE
+	struct xnvfile_rev_tag threadlist_tag;
+    #endif
+	     xnqueue_t tstartq,	/*!< Thread start hook queue. */
+	     tswitchq,		/*!< Thread switch hook queue. */
+	     tdeleteq;		/*!< Thread delete hook queue. */
+
+	    atomic_counter_t timerlck;	/*!< Timer lock depth.  */
+
+	    xntimer_t tslicer;	/*!< Time-slicing timer for aperiodic mode  */
+	     int tsliced;		/*!< Number of threads using the slicer */
+
+	     int refcnt;		/*!< Reference count.  */
+
+    #ifdef __XENO_SIM__
+	    void (*schedhook) (xnthread_t *thread, xnflags_t mask);	/*!< Internal scheduling hook. */
+    #endif	/* __XENO_SIM__ */
+    };
 
 硬體驅動原理
 ------------
