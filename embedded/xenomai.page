@@ -254,9 +254,6 @@ xnpod
     #endif	/* __XENO_SIM__ */
     };
 
-硬體驅動原理
-===========
-* 硬體使用 Raspberry Pi
 
 效能表現
 =======
