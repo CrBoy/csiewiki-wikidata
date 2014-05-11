@@ -1003,6 +1003,50 @@ GrantItem
 | 如同Map, Grant也是透過傳送message完成。
 | Fpage細節也是如同MapItem的兩個words，但其中100C部分由 101C 取代。
 
+CtrlXferItem
+=============
+| Control transfer Item,負責轉換message接收者的一些權限狀態如instruction pointer, stack pointer, 或者general purpose register。
+| 從L4 繼承而來，但是在F9未找到相關的程式碼，應該是未完成。
+
+StringItem
+===========
+| 指定user space中一段順序的bytes。最大值為4MB (L4)，在F9中不確定。在發送時候，這字串會被直接複製到接收者的buffer中。
+| 在接收端部分，string item用來指定接收到string的buffer register。
+| 目前在F9中是未完成的。
+
+StringItem又可以分為連續和不連續的string：
+
+* Simple String
+
+連續性的bytes。由两個words組成：
+
+    .. image:: /embedded/f9-kernel/SimpleStringMR.jpg
+
+    * string ptr :要發送的字串起始位置或者是接收到字串的buffer起始位置。字串和buffer需要完全符合使用者空間可用位置。
+    * string length :要發送的string長度或者是接收的buffer長度。
+    * hh :Cache設定。 00為處理器預設cache。
+
+* Compound String
+
+一個不連續/鄰近的字串，由落在使用者空間中多個連續性的子字串組成，子字串之間不可以重疊。
+
+    .. image:: /embedded/f9-kernel/CompoundSTRMR.jpg
+
+    * 0hhC在第一個string descriptor word才需要，後面會被忽略。
+    * j :接下來連續的str-ptr word的數量。
+    * c :如果是0，則這compound string descriptor word只有j 個word的string之後就結束。如果是1 ，j個word以後會有新的string descriptor word。
+
+* String Examples
+
+    .. image:: /embedded/f9-kernel/StringMRExample.jpg
+
+Buffer Register
+================
+
+| 不同於Message Register,全部都在utcb當中，而且BR的值是固定的，直到下次被更改。
+| BR是StringItem和control transfer Item指定Buffer的目的地。
+| F9中未發现實作。
+
 效能表現
 --------
 
