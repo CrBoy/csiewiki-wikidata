@@ -214,8 +214,8 @@ Event Monitoring
   - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
   - ``event_monitor_register``：為 handler 裝上 sendor
   - ``event_monitor_block``：將發出 event occurrence 的 task block 住，以等待 handler 的處理
-  - ``event_monitor_release``：將被 block 住的 task push 回 ready_list
-  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending
+  - ``event_monitor_release``：標記有 occurrence pending
+  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending，並將被 block 住的 task push 回 ready_list
 
 
 System Call
