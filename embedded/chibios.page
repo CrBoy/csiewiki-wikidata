@@ -266,6 +266,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 * Round Robin scheduling
 
    + 執行中的thread 自主性地呼叫chThdYield() API，讓其他相同priority的thread來執行
+            .. image:: /embedded/chThdYield.png
 
    + 執行中的thread 自主性地進入sleep mode且當有thread被wake up時，執行中的thread 就會被中斷並插入其他任意一個相  
        同priority thread的後面
