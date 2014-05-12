@@ -102,7 +102,7 @@ Building an RPi Xenomai Kernel
   .. code-block:: c
     
     cd xenomai-head
-    export PATH=<your path>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+    export PATH=../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
     ./configure --host=arm-bcm2708hardfp-linux-gnueabi
     cd src
     mkdir dist
