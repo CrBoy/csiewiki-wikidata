@@ -1397,6 +1397,315 @@ BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具�
 
 其中處理器會忽略imm，imm可以讓除錯者傳送一些訊息。 BKPT也可以放在條件指令中來檢查是否進入異常狀態。
 
+Debug
+======
+
+Arm提供兩個除錯模式：
+
+* Halt mode
+  - 處理器將程式完全停下，然後可以進行single step，所有interrupt都可被pended，將在single step中處理，也可masked interrupt。
+
+* Debug monitor mode
+  - 處理器用exception_handler來呼叫debug任務，同時依然讓更高權限的exception執行，同樣支援single step。
+
+在 single step 時候，每一個step之後都會進入 exception_handler，F9也用這方法來進行 prehandler 和 posthandler。
+
+此外，ARM也提供debug registers
+
+   .. image:: /embedded/f9-kernel/debugreg.jpg
+
+F9使用的是 Debug monitor mode。
+
+.. code-block:: c
+
+   //platform/breakpoint-hard.c
+   void hard_breakpoint_pool_init(void)
+   {
+      ...
+      /* Enable DWT watchpoint & DebugMon exception */
+      *DCB_DEMCR |= DCB_DEMCR_TRCENA | DCB_DEMCR_MON_EN;
+      ...
+   }
+
+KProbe
+=======
+
+Kprobe利用list儲存和管理所有被register的address，其中struct kprobe如下
+
+.. code-block:: c
+
+   struct kprobe {
+      void *addr; /*中斷地址*/
+      kprobe_pre_handler_t pre_handler; /*前處理*/
+      kprobe_post_handler_t post_handler; /*後處理*/
+      struct breakpoint *bkpt; /*硬體中斷資料結構*/
+      void *step_addr; /* 儲存下一個指令地址，arm cortex M 在debug mode支援single step */
+      struct kprobe *next; /*下一個*/
+   };
+
+硬體中斷資料結構儲存的內容為
+
+.. code-block:: c
+
+   struct breakpoint{
+      uint16_t type; /*種類分成三種NONE, SOFT, HARD */
+      union{
+         uint16_t hard_breakpoint_id; /* breakpoint id*/
+         uint16_t back_instr;
+         uint16_t raw_data;
+      };
+      uint32_t addr; /*目標地址 */
+      void (*enable)(struct breakpoint *b); /*根據種類指向對應的enable，disable，release功能*/
+      void (*disable)(struct breakpoint *b);
+      void (*release)(struct breakpoint *b);
+   };
+
+How-to-use
+===========
+
+| Kprobes 可以透過 kprobe_register & kprobe_unregister 登記和取消登記，成功時候會回傳0，反之負數。
+| Kprobes 將所有 register 的 kp 儲存在 kplist 當中，並且設定相關硬體 register
+
+.. code-block:: c
+
+   int kprobe_register(struct kprobe *kp)
+   {
+      int ret;
+      kp->addr = (void *)((uint32_t) kp->addr & ~(1UL)); /*把最後一bit設為0 */
+      if (is_thumb32(*(uint16_t *) kp->addr)) /* 支援thumb */
+         kp->step_addr = kp->addr + 4; /*這邊是下一個指令地址*/
+      else
+         kp->step_addr = kp->addr + 2;
+
+      ret = kprobe_arch_add(kp);
+
+      if (ret < 0)
+         return -1;
+
+      kplist_add(kp); /* 加入到 kplist中 */
+      return 0;
+   }
+
+register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
+
+.. code-block:: c
+
+   //platform/kprobe_arc.c
+   int kprobe_arch_add(struct kprobe *kp)
+   {
+      struct kprobe *found = kplist_search(kp->addr);
+      struct breakpoint *b;
+
+      /*
+       * If there is no kprobe at this addr, give it a new bkpt,
+       * otherwise share the existing bkpt.
+       */
+
+      if (found == NULL) {
+         b = breakpoint_install((uint32_t) kp->addr);
+         if (b != NULL) {
+            kp->bkpt = b;
+            enable_breakpoint(b);
+         } else
+            goto arch_add_error;
+      } else {
+         kp->bkpt = found->bkpt;
+      }
+      return 0;
+
+   arch_add_error:
+      return -1;
+   }
+
+| 這邊首先先找出是否有同樣地址的kprobe，如果有的話就共享該斷點，沒有的話就設定一個新的斷點。
+| 斷點設定方法為breakpoint_install，而breakpoint_install會呼叫 get_avail_breakpoint
+
+.. code-block:: c
+
+   //platform/breakpoint.c
+   static struct breakpoint *get_avail_breakpoint(uint32_t addr)
+   {
+      int i;
+      for (i = 0; i < BKPT_MAX_NUM; i++) {
+         if (breakpoints[i].type == BKPT_NONE) /* 檢查空的，然後設定 */
+            return breakpoint_config(i, addr);
+      }
+      return NULL;
+   }
+
+在 breakpoint_config中，會透過 addr判斷是否breakpoint属性
+
+.. code-block:: c
+
+   #define breakpoint_type_by_addr(addr) ((addr) < 0x20000000 ? BKPT_HARD : BKPT_SOFT)
+
+透過記憶體位置圖0x20000000 以下的地址屬於程式碼區塊，其他的是外接口等，所以得知只有程式碼屬於hard breakpoint,其他的都由軟體虛擬出來的斷點處理。
+這邊只觀察hard breakpoint,所以是hard_breakpoint_config
+
+.. code-block:: c
+
+   //platform/breakpoint-hard.c
+   struct breakpoint *hard_breakpoint_config(uint32_t addr, struct breakpoint *b)
+   {
+      if (breakpoint_type_by_addr(addr) == BKPT_HARD) {
+         int _hard_breakpoint_id = get_avail_hard_breakpoint();
+         int breakpoint_id = get_breakpoint_id(b);
+         if (breakpoint_id >= 0 && _hard_breakpoint_id >= 0) {
+            hard_breakpoints[_hard_breakpoint_id] = breakpoint_id;
+            b->type = BKPT_HARD;
+            b->addr = addr;
+            b->hard_breakpoint_id = _hard_breakpoint_id;
+            b->enable = hard_breakpoint_enable;
+            b->disable = hard_breakpoint_disable;
+            b->release = hard_breakpoint_release;
+            return b;
+         }
+      }
+      return NULL;
+   }
+
+將所有的值儲存好之後，透過這邊儲存的enable function去啟動該kprobe。
+
+.. code-block:: c
+
+   #define FPB_COMP_ENABLE     (uint32_t) (1 << 0)
+   #define FPB_COMP_REPLACE_LOWER  (uint32_t) (1 << 30)
+   #define FPB_COMP_REPLACE_UPPER  (uint32_t) (2 << 30)
+
+   /* FP_COMPx: 000:COMP_ADDR:00 */
+   #define FPB_COMP_ADDR_MASK 0x1FFFFFFC
+ 
+   static void hard_breakpoint_enable(struct breakpoint *b)
+   {
+      uint32_t addr = b->addr;
+      if (IS_UPPER_HALFWORLD(addr)) { /* ？？？ */
+         *(FPB_COMP + b->hard_breakpoint_id) = FPB_COMP_REPLACE_UPPER | (addr & FPB_COMP_ADDR_MASK) | FPB_COMP_ENABLE;
+      } else {
+         *(FPB_COMP + b->hard_breakpoint_id) = FPB_COMP_REPLACE_LOWER | (addr & FPB_COMP_ADDR_MASK) | FPB_COMP_ENABLE;
+      }
+   }
+
+這邊addr會被去掉前面 3 個bit 和後面 2 個bit，最後一個bit 為enable。
+
+Debug Handler
+==============
+
+當FPB比對addr相同時候，會傳送bkpt指令給處理器，然後處理器會進入debug_handler，F9的debug_handler為debugmon_handler
+
+.. code-block:: c
+
+   //platform/hw_debug.c
+   void debugmon_handler(void)
+   {
+      /* select interrupted stack */
+      /* 透過地址比對獲知kprobe addr的模式，然後选擇對應的stack */
+      __asm__ __volatile__("and r0, lr, #4");
+      __asm__ __volatile__("cmp r0, #0");
+      __asm__ __volatile__("ite eq");
+      __asm__ __volatile__("mrseq r0, msp");
+      __asm__ __volatile__("mrsne r0, psp");
+
+      /* save r4-r11 */
+      __asm__ __volatile__("push {r4-r11}");
+      __asm__ __volatile__("mov r1, sp");
+
+      /*
+       * arch_kprobe_handler(uint32_t *stack, uint32_t *kp_regs)
+       * r0 = r0-r3,r12,lr,pc,psr
+       * r1 = r4-r11
+       */
+      __asm__ __volatile__("push {lr}"); //储存lr，才能回到之前的指令
+      __asm__ __volatile__("bl arch_kprobe_handler");
+      __asm__ __volatile__("pop {lr}");
+
+      /* override r4-r11 */
+      __asm__ __volatile__("pop {r4-r11}");
+
+      /* NOTE: No support stack modification for the time being */
+      /* 處理结束，回到原本地址 */
+      __asm__ __volatile__("bx lr");
+   }
+
+   //platform/kprobes-arch.c
+   void arch_kprobe_handler(uint32_t *stack, uint32_t *kp_regs)
+   {
+      /*
+       * For convenience currently we assume all cpu single-step is
+       * enabled/disabled by arch_kprobe_handler.
+       *
+       * To execute instruction at the probed address, we have to disable
+       * breakpoint before return from handler, and re-enable it in the
+       * next instruction.
+       */
+
+      if ((*SCB_DFSR & SCB_DFSR_DWTTRAP)) {
+         panic("DWT Watchpoint hit\n");
+      } else if ((*SCB_DFSR & SCB_DFSR_BKPT)) {
+         /* 首先去執行 prehandler */
+         kprobe_prebreak(stack, kp_regs);
+         /* Clear BKPT status bit */
+         *SCB_DFSR = SCB_DFSR_BKPT;
+         /* 這邊enable single step的原因在於要進入下方else if做出post_handler */
+         cpu_enable_single_step();
+         /* 需要把breakpoint解除才能夠執行probed address */
+         kprobe_breakpoint_disable(stack);
+      } else if (*SCB_DFSR & SCB_DFSR_HALTED) {
+         /* 執行 posthandler */
+         kprobe_postbreak(stack, kp_regs);
+         /* Clear HALTED status bit */
+         *SCB_DFSR = SCB_DFSR_HALTED;
+         /* 解除single step */
+         cpu_disable_single_step();
+         /* 把breakpoint重新啟動 */
+         kprobe_breakpoint_enable(stack);
+      } else {
+         /*
+          * sometimes DWT generates faults
+          * without setting SCB_DFSR_DWTTRAP
+          */
+      }
+   }
+
+所以整個流程為
+
+1. 當FPB發現是probed address時候，在probed address前加入breakpoint。
+2. 處理器發現breakpoint,進入debugmon_handler, debugmon_handler進入arch_kprobe_handler。
+3. arch_kprobe_handler進入"else if ((*SCB_DFSR & SCB_DFSR_BKPT)) "，執行prehandler，清除狀態register，啟動single step，清除probed address breakpoint。
+4. handler結束，FPB發現probed address，可是這時候breakpoint已經解除，所以probed address可以執行。
+5. probed address指令執行結束，可是目前是single step狀態，所以再次進入debugmon_handler，進入arch_kprobe_handler。
+6. arch_kprobe_handler這次進入"else if (*SCB_DFSR & SCB_DFSR_HALTED)"，執行posthandler，清除狀態register，清除single step，重新啟動probed address breakpoint。
+
+Example -- sampling
+====================
+
+| kdb當中輸入指令'p'會呼叫kdb_show_sampling，這是一個在ktimer_handler中加入kprobe的kprobe使用範例。
+| 第一次給於指令'p'的時候，會在ktimer_handler中register kprobe，當每次ktimer_handler被呼叫時候，sampling會記錄kernel的一些相關訊息，在下次收到'p' 指令時將它們輸出。
+
+.. code-block:: c
+
+   //kernel/sampling-kdb.c
+   extern void ktimer_handler(void);
+   void kdb_show_sampling(void)
+   {
+      ...
+      static int init = 0;
+      static struct kprobe k;
+
+      if (init == 0) { //第一次會register kprobe
+         dbg_printf(DL_KDB, "Init sampling...\n");
+         sampling_init();
+         sampling_enable();
+         init++;
+        //下面是正確的register kprobe範例
+         k.addr = ktimer_handler;
+         k.pre_handler = sampling_handler;
+         k.post_handler = NULL;
+         kprobe_register(&k);
+         return;
+      }
+      ...
+   }
+
 效能表現
 --------
 
@@ -1428,3 +1737,4 @@ BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具�
    - http://www.arm.com/files/pdf/introToCortex-M3.pdf page 8
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0337h/BABGEDIG.html
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CACIEIBA.html
+   - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439d/CEGJGDCJ.html
