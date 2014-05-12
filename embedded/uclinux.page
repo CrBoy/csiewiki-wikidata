@@ -679,13 +679,39 @@ Q&A
 
 **Q1. Relationship between fork() and MMU.**
 
+果整個程式中如果有指標的話，儲存指標類的資料會跟parent process的相同。
+
+若父行程中有指標
+
+.. code-block:: c
+    int a=0;
+    int *b=&a;
+
+如果用只是單純的複製
+
+從child process 去更動 *b的值，在child process中的a 值不會改變，而是parent process的值會被改變。
+
+所以在fork時需要MMU，這樣就可以把這些指標加入某個固定的值(or shift)，來確保這些指標是正確的。
+
 **Q2. What is TLB?**
+
+Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
+
+如果TLB hit，CPU直接去對應的記憶體位置抓取指令；如果TLB miss，則去page_table中找對應的記憶體位置抓取指令；
+
+如果產生page fault，則只能去storage把程是載入到記憶體中。
 
 **Q3. What is slab & slob allocator?**
 
 **Q4. What is buddy?**
 
-**Q5. How program loader load OS?**
+**Q5. How program loader load OS?(以uClinux為例)**
+
+1.載入OS的資料區段
+
+2.OS kernel初始化，kernel以XIP的方式執行而資料區段儲存在RAM
+
+3.載入應用程式
 
 **Q6. Real example about task states change.**
 
