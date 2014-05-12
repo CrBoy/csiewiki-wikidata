@@ -165,8 +165,18 @@ uClinux的檔案系統:Romfs
    - XIP(Execute in place)
        
        程式直接在flash上執行，而不必搬到RAM上。可以減少memory的使用，但執行速度較慢。
+
+       未使用XIP的情況
+
+       .. image:: /embedded/nornal_with_VM.png
+
+       有VM的XIP
+
+       .. image:: /embedded/XIP_with_VM.png
+
+       來源:http://elinux.org/images/8/8c/Elc2013_Kumar.pdf
        
-       下圖為XIP示意圖(` 來源<http://netlab.cse.yzu.edu.tw/~bpmania/%C5%F8%C0Y/%AD%D7%BD%D2/951%20%B4O%A4J%A6%A1%A7Y%AE%C9%A7@%B7~%A8t%B2%CE/%C1%BF%B8q/03%20uCLinux%20%C2%B2%A4%B6.pdf>`_)
+       下圖為uclinux下XIP示意圖(` 來源<http://netlab.cse.yzu.edu.tw/~bpmania/%C5%F8%C0Y/%AD%D7%BD%D2/951%20%B4O%A4J%A6%A1%A7Y%AE%C9%A7@%B7~%A8t%B2%CE/%C1%BF%B8q/03%20uCLinux%20%C2%B2%A4%B6.pdf>`_)
        
        .. image:: /embedded/XIP.jpg
        
