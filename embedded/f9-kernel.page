@@ -7,7 +7,7 @@ toc: yes
 組員與共筆
 ----------
 * 廖健富 / Rampant1018
-* 鄒宗延 / slpbaby
+* 鄒宗延 / slpbaby / yan(wiki)
 * 詹凱傑 / bpotatog
                                                        
 * 共筆 / `Hackpad<https://hackpad.com/F9-Kernel-Note-UnUXDVd9Zv2>`_
@@ -1108,6 +1108,259 @@ IPC 過程
          *from = from_ret;
       return result;
    }
+
+| 在L4_Ipc中，呼叫svc時候，其中變數儲存位置to在R0，FromSpecifier在R1，Timeouts在R2。
+| 所以從pong的接收呼叫來看，則是R0 = L4_nilthread，R1 = ping threads，R2 = L4_NEVER。
+| 接下來在syscall_handler中，發現是SYS_IPC的呼叫，會將caller->sp當成參數呼叫sys_ipc。
+
+.. code-block:: c
+
+   //kernel/ipc.c
+   void sys_ipc(uint32_t *param1)
+   {
+      /* TODO: Checking of recv-mask */
+      tcb_t *to_thr = NULL;
+      l4_thread_t to_tid = param1[REG_R0], from_tid = param1[REG_R1];
+      uint32_t timeout = param1[REG_R2]; 
+      /* 所以從 R0 讀取 to_tid, R1 讀取 from_tid, R2 讀取 Timeout */
+
+      /* 當 to_tid == L4_NILTHREAD 時候，表示说不發送资料，只是等待接收 */
+      if (to_tid == L4_NILTHREAD && timeout) { /* Timeout/Sleep */
+         ipc_time_t t = { .raw = timeout };
+         caller->state = T_INACTIVE;
+         ktimer_event_create((t.period.m << t.period.e) /
+                         ((1000000)/(CORE_CLOCK/CONFIG_KTIMER_HEARTBEAT)), /* millisec to ticks */
+                         ipc_timeout, caller);
+         return;
+      }
+
+      /* 當 to_tid != L4_NILTHREAD, 就是要發送资料 */
+      if (to_tid != L4_NILTHREAD) {
+         to_thr = thread_by_globalid(to_tid);
+         if (to_tid == TID_TO_GLOBALID(THREAD_LOG)) {
+            user_log(caller);
+            caller->state = T_RUNNABLE;
+            return;
+         } else if ((to_thr && to_thr->state == T_RECV_BLOCKED) || to_tid == caller->t_globalid) {
+           /* 這邊要礭定 to_thr 的狀态是在等待接收才可以傳送 */
+
+           /* To thread who is waiting for us or sends to myself */
+            do_ipc(caller, to_thr);
+            return;
+
+         } else if (to_thr && to_thr->state == T_INACTIVE && GLOBALID_TO_TID(to_thr->utcb->t_pager) == GLOBALID_TO_TID(caller->t_globalid)) {
+            /* 如果thread狀态是 T_INACTIVE, 則啟動它 */
+
+            if (ipc_read_mr(caller, 0) == 0x00000003) {
+                 /* thread start protocol */
+                memptr_t sp = ipc_read_mr(caller, 2);
+                size_t stack_size = ipc_read_mr(caller, 3);
+                dbg_printf(DL_IPC, "IPC: %t thread start\n", to_tid);
+                to_thr->stack_base = sp - stack_size;
+                to_thr->stack_size = stack_size;
+                thread_init_ctx((void *) sp, (void *) ipc_read_mr(caller, 1), to_thr);
+                caller->state = T_RUNNABLE;
+               /* Start thread */
+                to_thr->state = T_RUNNABLE;
+                return;
+          } else  {
+            /* 如果没有任何 thread在等待接收，則讓自己進入等待發送階段 */
+
+            /* No waiting, block myself */
+             caller->state = T_SEND_BLOCKED;
+             caller->utcb->intended_receiver = to_tid;
+             dbg_printf(DL_IPC, "IPC: %t sending\n", caller->t_globalid);
+             return;
+          }
+      }
+
+      /* 如果 from_tid == L4_NILTHREAD， 就是不接收资料 */
+      if (from_tid != L4_NILTHREAD) {
+        /* Only receive phases, simply lock myself */
+         caller->state = T_RECV_BLOCKED;
+         /* 進入等待接收階段 */
+         caller->ipc_from = from_tid;
+         /* 設定等待的目標 */
+         dbg_printf(DL_IPC, "IPC: %t receiving\n", caller->t_globalid);
+         return;
+      }
+
+      caller->state = T_SEND_BLOCKED;
+   }
+
+| sys_ipc當中包含了發送和接收的階段，可以透過to_tid和from_tid的值知道是否要發送或接收。
+| 從 L4_Receive_Timeout 中可以發現本次 to_tid 的值被設為 L4_NILTHREAD，因此知道這次的呼叫只是接收。
+| 其中 sys_ipc 比較特別的一點是它包含了啟動 thread ,透過發送特定資料（thread start protocol）給目標thread就可以啟動它。
+
+| 當send 的目標已經處在T_RECV_BLOCKED 的狀態時候，則用do_ipc 把from 的message傳送給目標。
+| 在do_ipc() 當中，一開始會先讀取tag，然後寫到目的thread的mr[0]當中。之後透過tag的內容先讀取untyped word 然後才是typed item，typed item 目前只有MapItem和GrantItem。
+
+.. code-block:: c
+
+   //kernel/ipc.c
+   static void do_ipc(tcb_t *from, tcb_t *to)
+   {
+     ipc_msg_tag_t tag;
+        ...
+     /* 先讀取 tag */
+     tag.raw = ipc_read_mr(from, 0);
+        ...
+     ipc_write_mr(to, 0，tag.raw);
+
+     /* Copy untyped words，透過 tag 可以知道 untyped word 的數量 */
+     for (untyped_idx = 1; untyped_idx < untyped_last; ++untyped_idx) {
+        ipc_write_mr(to, untyped_idx, ipc_read_mr(from, untyped_idx));
+     }
+
+     typed_item_idx = -1;
+     /* Copy typed words，同樣透過 tag 可以知道 typed words 數量
+      * FSM: j - number of byte */
+     for (typed_idx = untyped_idx; typed_idx < typed_last; ++typed_idx) {
+        uint32_t mr_data = ipc_read_mr(from, typed_idx);
+
+      /* Write typed mr data to 'to' thread */
+        ipc_write_mr(to, typed_idx, mr_data);
+        if (typed_item_idx == -1) {
+        /* If typed_item_idx == -1 - read typed item's tag */
+           typed_item.raw = mr_data;
+           ++typed_item_idx;
+        } else if (typed_item.s.header & IPC_TI_MAP_GRANT) {
+           /* MapItem / GrantItem have 1xxx in header */
+
+            typed_data = mr_data;
+           /* Map/Grant action */
+            map_area(from->as, to->as, typed_item.raw & 0xFFFFFFC0, typed_data & 0xFFFFFFC0,
+                     (typed_item.s.header & IPC_TI_GRANT) ? GRANT : MAP, thread_ispriviliged(from));
+
+           /* Read tag for next word */
+           typed_item_idx = -1;
+        }
+          /* TODO: StringItem support */
+
+     }
+    /* It checked if to and from stack pointer is not available */
+     if (!to->ctx.sp || !from->ctx.sp) {
+        caller->state = T_RUNNABLE;
+        return;
+     }
+
+     to->utcb->sender = from->t_globalid;
+    /* to->state 從 T_RECV_BLOCKED 更改為 T_RUNNABLE */
+     to->state = T_RUNNABLE;
+    /* Reset ipc_from */
+     to->ipc_from = L4_NILTHREAD;
+     ((uint32_t*)to->ctx.sp)[REG_R0] = from->t_globalid;
+
+    /* If from has receive phases, lock myself */
+     from_recv_tid = ((uint32_t*)from->ctx.sp)[REG_R1];
+     if (from_recv_tid == L4_NILTHREAD) {
+        from->state = T_RUNNABLE;
+     } else {
+    /* 如果準備接收，更改狀態，並且透過 ipc_from 指明等待對象 */
+        from->state = T_RECV_BLOCKED;
+        from->ipc_from = from_recv_tid;
+        dbg_printf(DL_IPC, "IPC: %t receiving\n", from->t_globalid);
+     }
+       ...
+   }
+
+T_SEND_BLOCKED & T_RECV_BLOCKED
+================================
+
+當from在發送時發現to還沒有進入T_RECV_BLOCKED狀態時，from會把自己的狀態更改為T_SEND_BLOCKED。同理，當要等待message時會把自己狀態改為T_RECV_BLOCKED，因此，就會有專門的schedule來處理它們。
+
+在kernel開始跑起來的時候，有這麼一段：
+
+.. code-block:: c
+
+   // kernel/start.c : main()
+   ktimer_event_create(64, ipc_deliver, NULL);
+
+這邊是宣告一個event，每64 ticks就執行ipc_deliver。
+
+ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_RECV_BLOCKED的thread，然後檢查ipc目標是否同樣處在對應的T_RECV_BLOCKED/T_SEND_BLOCKED狀態，如果是的話，讓它們進行do_ipc()。
+
+使用 L4 IPC
+===========
+
+| 從程式碼中看到几個關鍵字，比如說 L4_MsgClear, L4_MsgAppendWord, L4_Send等等，都是從 L4繼承而来的。
+| 所以首先看看 L4_Msg_t類别是什么
+
+.. code-block:: c
+
+   //user/include/l4/message.h
+   typedef union {
+      L4_Word_t raw[__L4_NUM_MRS];
+      L4_Word_t msg[__L4_NUM_MRS];
+      L4_MsgTag_t tag;
+   } L4_Msg_t;
+
+這邊看到一個很特別的程式碼，為了增加可讀性，所以重複宣告raw & msg 這兩個同樣的變數，這樣以後使用它們的話才不會混淆使用目的。
+
+從start_thread 中看到一些L4 IPC 的函式使用
+
+.. code-block:: c
+
+   static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
+   {
+      L4_Msg_t msg;
+      L4_MsgClear(&msg);
+      L4_MsgAppendWord(&msg, ip);
+      L4_MsgAppendWord(&msg, sp);
+      L4_MsgAppendWord(&msg, stack_size);
+      L4_MsgLoad(&msg);
+      L4_Send(t);
+   }
+
+一開始宣告要傳送的message，然後進行初始化(L4_MsgClear)，之後把要傳送的ITEM利用函式呼叫放進msg當中，不同的ITEM用不同的方式放入，其中包括了：
+
+* L4_MsgAppendWord
+* L4_MsgAppendMapItem
+* L4_MsgAppendGrantItem
+* L4_MsgAppendSimpleStringItem
+* L4_MsgAppendStringItem
+* L4_MsgAppendCtrlXferItem
+* L4_AppendFaultConfCtrlXferItems
+
+利用這些函式呼叫讓處理Message格式時候可以更加輕鬆。
+
+當所有要傳送的資訊都被append進msg之後，會呼叫L4_MsgLoad(&msg)
+
+.. code-block:: c
+
+   //user/include/l4/message.h
+   L4_INLINE void L4_MsgLoad (L4_Msg_t *msg)
+   {
+    /* 同樣為了分隔硬體相關和非硬體相關的程式碼 */
+      L4_LoadMRs(0, msg->tag.X.u + msg->tag.X.t + 1, &msg->msg[0]);
+   }
+
+   //user/include/l4/platform/vregs.h
+   L4_INLINE void L4_LoadMRs(int i, int k, L4_Word_t *w)
+   {
+      if (i < 0 || k <= 0 || i + k > __L4_NUM_MRS)
+         return;
+      switch (i) {
+         case 0: __L4_MR0 = *w++; if (--k <= 0) break;
+         case 1: __L4_MR1 = *w++; if (--k <= 0) break;
+         case 2: __L4_MR2 = *w++; if (--k <= 0) break;
+         case 3: __L4_MR3 = *w++; if (--k <= 0) break;
+         case 4: __L4_MR4 = *w++; if (--k <= 0) break;
+         case 5: __L4_MR5 = *w++; if (--k <= 0) break;
+         case 6: __L4_MR6 = *w++; if (--k <= 0) break;
+         case 7: __L4_MR7 = *w++; if (--k <= 0) break;
+         default:
+         {
+            uint32_t *mr = __L4_Utcb()->mr;
+            while (k-- > 0)
+               *mr++ = *w++;
+         }
+      }
+   }
+
+這邊利用 switch 的原因是無法用 subscript operator存取。
+
+最後透過L4_Send會呼叫硬體相關的L4_Ipc把message傳送給目標thread。
 
 效能表現
 --------
