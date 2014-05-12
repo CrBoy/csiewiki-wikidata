@@ -213,6 +213,42 @@ List
   - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
   - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
 
+- Macro：
+  - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
+
+  .. code-block:: c
+
+    #define list_entry(list, type, member) \
+        (container_of((list), type, member))
+    #define container_of(ptr, type, member) \
+        ((type *)(((void *)ptr) - offsetof(type, member)))
+
+  Macro ``offsetof( type, member )`` 會以 bytes 的形式回傳指定 member 在 type 指定的 structure 或 union 的位置。如：
+
+  .. code-block:: c
+
+    struct foo {
+        int a;
+        int b;
+    };
+
+  則 offsetof( foo, a ) 會回傳 0，offsetof( foo, b ) 會回傳 4。看到 TCB 的設計:
+
+  .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack;
+        int pid;
+        int status;
+        int priority;
+    
+        struct list list;
+    };
+
+  使用 ``task = list_entry(curr, struct task_control_block, list);`` 傳入 list node 的位址減去 list node 在 structure 中的 byte 位置，就會得到該 structure 第一個元素的起始位址，同時也是該 structure 變數的位址。
+
+  - ``list_for_each``：以 list 為起點，搜尋所有 node。
+  - ``list_for_each_safe``：以 list 為起點，但考慮到有些因為呼叫如 ``list_shift`` 之類的 method 被 pop 出去的 list node 也可以被搜尋到。
 
 Event Monitoring
 =================
