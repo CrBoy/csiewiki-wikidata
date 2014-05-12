@@ -27,6 +27,7 @@ ChibiOS/RT 參考應用
      wget http://svn.openmoko.org/developers/werner/neocon/neocon.c
 
      make
+
      cp neocon /usr/bin
 
  2. 燒錄ChibiOS/RT，參考 `ChbiOSRT<https://stm32f429.hackpad.com/ChibiOSRT-TX2cgbgXnxB>`_
