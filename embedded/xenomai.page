@@ -123,6 +123,9 @@ Building an RPi Xenomai Kernel
 
   - RT_preempt
 
+Add Real-Time Parts
+===========
+
 
 作業系統架構
 ===========
