@@ -1,0 +1,27 @@
+---
+title: 期末專題: Team #1
+toc: no
+...
+
+題目
+---
+  * 在 STM32F429I-Discovery 上做出一隻簡易的 2G 手機
+
+預期目標
+-------
+  * 在 STM32F429I-Discovery 平台上建構 F9-kernel 系統
+  * 連接 GPRS Module 與 STM32F429I-Discovery
+  * 透過 AT Command 與 GPRS Module 通訊，實現撥打電話、收發簡訊等功能
+  * 基本的休眠功能
+
+組員
+----
+  * `廖健富</User/rampant1018>`_
+
+預算
+----
+  * STM32F429I-Discovery
+  * ZTK-SIM900A
+  * SIM卡 * 1
+  * 杜邦線 * 3
+  * 12VDC/1A 變壓器
