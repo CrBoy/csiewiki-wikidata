@@ -124,9 +124,13 @@ Building an RPi Xenomai Kernel
   - RT_preempt
 
 
-Real Time 定義
+Real Time 的定義
 ==============================
 
+* Hard Real Time
+
+
+* Soft Real Time
 
 作業系統架構
 ===========
