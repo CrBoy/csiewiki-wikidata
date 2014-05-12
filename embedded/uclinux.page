@@ -175,6 +175,120 @@ uClinux的檔案系統:Romfs
                             buf, len, ppos);
                 }
 
+    do_xip_mapping_read
+
+    .. code-block:: c
+    
+        do_xip_mapping_read(struct address_space *mapping,
+                    struct file_ra_state *_ra,
+                    struct file *filp,
+                    char __user *buf,
+                    size_t len,
+                    loff_t *ppos)
+        {
+                struct inode *inode = mapping->host;
+                pgoff_t index, end_index;
+                unsigned long offset;
+                loff_t isize, pos;
+                size_t copied = 0, error = 0;
+
+                BUG_ON(!mapping->a_ops->get_xip_mem);//a_op 為 address_space 中定義可用的method
+
+                pos = *ppos;
+                index = pos >> PAGE_CACHE_SHIFT;//PAGE_CACHE_SHIFT 在不同的硬體上值會不同
+                offset = pos & ~PAGE_CACHE_MASK;
+
+                isize = i_size_read(inode);
+                if (!isize)
+                        goto out;
+
+                end_index = (isize - 1) >> PAGE_CACHE_SHIFT;// ex.如果需要讀取的大小為12KB，則只需讀取一次。
+                //(PAGE_CACHE_SHIFT 為 12)
+                do {
+                        unsigned long nr, left;
+                        void *xip_mem;
+                        unsigned long xip_pfn;
+                        int zero = 0;
+
+                        /* nr is the maximum number of bytes to copy from this page */
+                        nr = PAGE_CACHE_SIZE;
+                        if (index >= end_index) {
+                                if (index > end_index)
+                                        goto out;
+                                nr = ((isize - 1) & ~PAGE_CACHE_MASK) + 1;
+                                if (nr <= offset) {
+                                        goto out;
+                                }
+                        }
+                        nr = nr - offset;
+                        if (nr > len - copied)
+                                nr = len - copied;
+
+                        error = mapping->a_ops->get_xip_mem(mapping, index, 0,
+                                                        &xip_mem, &xip_pfn);
+                        if (unlikely(error)) {
+                                if (error == -ENODATA) {
+                                        /* sparse */
+                                        zero = 1;
+                                } else
+                                        goto out;
+                        }
+                        if (mapping_writably_mapped(mapping))//if it is writable,return false.
+                                /* address based flush */ ;
+                        if (!zero)
+                                left = __copy_to_user(buf+copied, xip_mem+offset, nr);
+                        else
+                                left = __clear_user(buf + copied, nr);
+
+                        if (left) {
+                                error = -EFAULT;
+                                goto out;
+                        }
+                        //如果可以被寫入，left值為0，即整個page為vaild location
+                        copied += (nr - left);
+                        offset += (nr - left);
+                        index += offset >> PAGE_CACHE_SHIFT;
+                        offset &= ~PAGE_CACHE_MASK;
+                } while (copied < len);  //如果還沒讀取完，則繼續
+
+        out:
+                *ppos = pos + copied;
+                if (filp)
+                        file_accessed(filp);
+
+                return (copied ? copied : error);
+        }
+
+    i_size_read
+
+    .. code-block:: c
+
+         static inline loff_t i_size_read(const struct inode *inode)
+         {
+         #if BITS_PER_LONG==32 && defined(CONFIG_SMP)//如果在多核心架構下，即使排程器是允許搶奪機制，也不會影響到其讀取
+                 loff_t i_size;
+                 unsigned int seq;
+
+                 do {
+                         seq = read_seqcount_begin(&inode->i_size_seqcount);
+                         i_size = inode->i_size;
+                 } while (read_seqcount_retry(&inode->i_size_seqcount, seq));
+                 return i_size;
+         #elif BITS_PER_LONG==32 && defined(CONFIG_PREEMPT)//如果在讀取時被搶奪，有可能造成deadlock
+         //如果有一個高權限(須為real time process)的行程去搶低權限的行程，但低權限的擁有某資源的lock，而高權限的也要存取此資源
+         //則會形成deadlock(存取low word & high word 中間時被搶奪時發生)
+                 loff_t i_size;
+
+                 preempt_disable();
+                 i_size = inode->i_size;//因為i_size 為64 bit，如果再64bit CPU架構下，無須分2次存取。
+                 preempt_enable();
+                 return i_size;
+         #else
+                 return inode->i_size;
+         #endif
+         }
+
+
 * romfs結構(` 來源<http://www.360doc.com/content/10/1130/21/1378815_73855062.shtml>`_)
 
     .. image:: /embedded/romfs_struct.jpg
