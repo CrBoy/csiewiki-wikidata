@@ -76,7 +76,7 @@ categories: embedded, arm, raspberrypi
 
   .. code-block:: c
 
-    make ARCH=arm O=build CROSS_COMPILE=../../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
+    make ARCH=arm O=build CROSS_COMPILE=/home/$USER/workspace/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
    
   - Install modules
 
