@@ -138,21 +138,13 @@ fork 原理
 
 
 
-- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，同時會 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
-- 其中，在register 交換，原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
+- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，
 
+  .. image:: /embedded/SVC_Handler.PNG
 
-  ::
-    
-    [ 因為 Exception 所發生的 push register 到 stack ]
-    user_thread_stack     -> ...|_r7|r0|r1|r2|r3|ip |lr|pc|xpsr|stack...
-                               低位址                          高位址
-    依 push 順序到 stack   -> .......|R0|R1|R2|R3|R12|LR|PC|xPSR|
-    ( _r7 存的是在 syscall 中被暫存的 R7 值 )
-
-
-
-- ``SVC_Handler()`` 中會將目前的 user state ( push 到 process stack ) 與 kernel state ( 從 main stack pop 出來 ) 作交換，此時 ``LR`` 擁有的位址為離開 activate() 後要執行的指令位址。所以離開 ``SVC_Handler()`` 後，程式會轉往執行 while loop，而在 ``SVC_Handler()`` 中，也將在 ``fork()`` 中存入 R7 的值 push 到 process stack 中了。所以接著會判定要進行 fork 動作。
+  - 左圖：同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
+  - 中圖：將目前的 state 存到 process stack。原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
+  - 右圖：將 kernel state 從 main stack 中 pop 出來，此時 ``LR`` 擁有的位址為離開 activate() 後要執行的指令位址(之前在進入 ``activate()`` 時所存的 )。所以離開 ``SVC_Handler()`` 後，程式會轉往執行 main() 的 while loop，也就是 kernel mode。
 
 
 **進行fork**
