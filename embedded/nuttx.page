@@ -405,7 +405,7 @@ Using a RAM-based vector table
  	{
  		irqstate_t flags;
  		flags = irqsave();
-		if (vector == NULL)
+ 		if (vector == NULL)
  		{
  			up_disable_irq(irq);
  			vector = exception_common;
