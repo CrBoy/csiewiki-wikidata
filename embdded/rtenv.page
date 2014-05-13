@@ -151,7 +151,7 @@ fork 原理
 
   .. image:: /embedded/user_thread_stack.PNG
 
-  - 在離開 ``activate()`` 函式會回傳新的 process stack pointer 給 TCB 的 ``stack`` pointer，也就是將 R0 值更新到那，所以 TCB 的 stack pointer 會得到正確的 process stack 的正確位址。
+  - 在離開 ``activate()`` 函式會回傳新的 process stack pointer 給 TCB 的 ``stack`` pointer，也就是取得 R0 的值，所以 TCB 的 stack pointer 會得到正確的 process stack 的正確位址。
 
 **進行fork**
 
