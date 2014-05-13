@@ -214,6 +214,15 @@ Register
 Communication
 ---------------------
  
+ | Semaphore
+
+ -  sem_open：連結task與named semaphore，如果semaphore不存在，呼叫sem_init
+ -  sem_init：初始化一個unnamed semaphore
+ -  sem_wait：當一個task想要semaphore的時候會呼叫這個函數，它會先將counter - 1，如果counter = 0，可以執行，呼叫sem_addholder，若counter < 0，代表已經有別的task在執行，那麼它必須等待到semaphore被放出來為止
+ -  sem_post：當一個task執行完的時候會呼叫，它會先將counter + 1，如果counter <= 0，代表有別的task還在等待，呼叫waiting list 的head
+ - sem_unlink：移除named semaphore，如果還有task connect to semaphore，不會作用
+ - sem_close：從記憶體當中將已經unlink的semaphore殺掉
+
 Scheduling
 ----------------
 include/sys/types.h
