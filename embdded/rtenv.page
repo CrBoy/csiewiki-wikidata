@@ -160,11 +160,18 @@ fork 原理
 **母task**
 
 - 進到 ``activate()`` 後，再次將 kernel state 與 user state 作交換。此時，``LR`` 含有 EXC_RETURN[#]_的值 ``0xfffffffd``，則當 processor 執行 ``bx lr`` 時必須進行 exception return。
-- **Exception return**：當 EXC_RETURN 值為 0xfffffffd 時，
+
+  .. image:: /embedded/activate_again.PNG
+
+
+- **Exception return**：當 LR 值為 EXC_RETURN 之一: 0xfffffffd 時，
   1. processor 會轉回 thread mode
   2. 從 process stack 取回 exception 時所 push 進去的 registers
   3. 使用 PSP 為當下的 SP
+
 - 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
+
+  .. image:: /embedded/activate_again_exc_return.PNG
 
   ::
 
@@ -186,7 +193,15 @@ fork 原理
 
 
 - 由於在 kernel mode 中，已經將 fork() 所應回傳的值放到 process stack 的 r0 中，藉由 exception return 將這個值 pop 到 ``R0``。則當程式離開 ``fork()`` 時，會回傳 task_count (R0)。
-- 因此，母 task 在 ``if(!fork())`` 為 false，則繼續執行下一個 fork()。
+  因此，母 task 在 ``if(!fork())`` 為 false，則繼續執行下一個 fork()。
+
+  .. code-block:: c
+
+    void first()
+    {
+         if (!fork()) setpriority(0, 0), pathserver();       // 子 task 的 if 判定為 true，於是執行 pathserver()
+         if (!fork()) setpriority(0, 0), romdev_driver();    // 母 task 的 if 判定為 false，於是繼續執行下一行
+         ...
 
 
 **子task**
