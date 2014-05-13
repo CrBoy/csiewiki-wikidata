@@ -882,6 +882,7 @@ Cyclictest
       0      0          0                  11266931           0          00000000      0.1      IRQ3: [timer]
 
 * trace後才了解，這是xenomai在-p的指令上是使用atoi，將輸入的數字轉為int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
+
 效能表現
 =======
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
