@@ -148,22 +148,20 @@ Xenomai是一個linux kernel的patch
  
 這個底層的架構是Adeos 是另一個open source的project
 
-基本架構示意圖
-http://dchabal.developpez.com/tutoriels/linux/xenomai/images/image04.png
 
-  在api呼叫上可以看到不同層級的抽象化
-  ipipe_XXX -> rthal_XXX -> xnXXX
-  上一層對下一層的操作方式基本上會固定 但下一層的實作一硬體或config有所差異
+在api呼叫上可以看到不同層級的抽象化
+
+ipipe_XXX -> rthal_XXX -> xnXXX
 
 負責傳送interrupt的程式稱為ipipe
 示意圖
 http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-img4.jpg
 
-  可以找到ipipe_raise_irq()將interrupt推到pipeline
+可以找到ipipe_raise_irq()將interrupt推到pipeline
 
 在ipipe上每個domain都有自己的優先度
 高優先度的domain會先接收到interrupt
-高優先度的domain的thread 可以preempt 低優先度domain的thread
+高優先度的domain的thread 可以preempt低優先度domain的thread
 
 
 iPipe
@@ -185,6 +183,8 @@ iPipe
 
      The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
 
+     功能為提供一個programable的介面讓使用者設定
+
   - ipipe-tsc.c:設定精準度（刻度）
 
   - ipipe/compat.c:interrupt
@@ -192,6 +192,12 @@ iPipe
   - sched/clock.c:取得cpu_clock 解析度為nanosecond,開機後從0開始上數
 
 .. image:: /GIC_overview.svg
+
+GIC大約是上圖的distributor的位置
+
+VIC則是CPU interface的位置
+
+但raspberry pi只有一顆CPU所以不會有SMP與 CPU affinity設定的問題
 
 
 HAL
