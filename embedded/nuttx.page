@@ -294,7 +294,7 @@ Timer interrupt
 
 Interrupt handler
 ------------------------
-IRQ numbers 
+IRQ numbers a
 
 .. code-block:: c
 
