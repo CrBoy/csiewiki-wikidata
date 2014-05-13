@@ -399,34 +399,22 @@ Using a RAM-based vector table
  up_vector_t g_ram_vectors[ARMV7M_VECTAB_SIZE]  __attribute__((section(".ram_vectors")));
  void up_ramvec_initialize(void) //Copy vectors to RAM an configure the NVIC to use the RAM vectors.
  int up_ramvec_attach(int irq, up_vector_t vector) //Configure the ram vector table so that IRQ number 'irq' will be dipatched by hardware to 'vector'
-{
-  int ret = ERROR;
-  if ((unsigned)irq < ARMV7M_PERIPHERAL_INTERRUPTS)
-    {
-      irqstate_t flags;
-
-      /* If the new vector is NULL, then the vector is being detached. In
-       * this case, disable the itnerrupt and direct any interrupts to the
-       * common exception handler.
-       */
-      flags = irqsave();
-      if (vector == NULL)
-        {
-          /* Disable the interrupt if we can before detaching it.  We might
-           * not be able to do this for all interrupts.
-           */
-          up_disable_irq(irq);
-          /* Detaching the vector really means re-attaching it to the
-           * common exception handler.
-           */
-           vector = exception_common;
-         }
-      /* Save the new vector in the vector table. */
-       g_ram_vectors[irq] = vector;
-       irqrestore(flags);
-       ret = OK;
-     }
-   return ret;
+ {
+ 	int ret = ERROR;
+ 	if ((unsigned)irq < ARMV7M_PERIPHERAL_INTERRUPTS)
+ 	{
+ 		irqstate_t flags;
+ 		flags = irqsave();
+		if (vector == NULL)
+ 		{
+ 			up_disable_irq(irq);
+ 			vector = exception_common;
+ 		}
+ 		g_ram_vectors[irq] = vector;
+ 		irqrestore(flags);
+ 		ret = OK;
+ 	}
+ 	return ret;
  }
 
 
