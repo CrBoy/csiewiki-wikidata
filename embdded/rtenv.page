@@ -119,8 +119,9 @@ fork 原理
 
   .. image:: /embedded/activate.PNG
 
-|
+
   利用 ``bx lr`` 使得程式轉往執行 ``first()``。
+
 - 進到 ``first()`` 後，程式執行第一行的 ``fork()``。
 
   ::
