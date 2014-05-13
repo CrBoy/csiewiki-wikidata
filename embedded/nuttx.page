@@ -296,6 +296,8 @@ Interrupt handler
 ------------------------
 在nuttx/arch/arm/include/stm32/irq.h和nuttx/arch/arm/include/stm32/stm32f40xxx_irq.h中分別定義了可用的ISR name和對應的vector name
 
+Processor Exceptions (vectors 0-15)
+
 .. code-block:: c
 
  #define STM32_IRQ_RESERVED       (0) /* Reserved vector (only used with CONFIG_DEBUG) */
@@ -312,6 +314,19 @@ Interrupt handler
  #define STM32_IRQ_PENDSV        (14) /* Vector 14: Pendable system service request */
  #define STM32_IRQ_SYSTICK       (15) /* Vector 15: System tick */
  
+External interrupts (vectors >= 16) 
+
+.. code-block:: c
+
+STM32_IRQ_WWDG        (STM32_IRQ_INTERRUPTS+0)  /* 0:  Window Watchdog interrupt */
+STM32_IRQ_PVD         (STM32_IRQ_INTERRUPTS+1)  /* 1:  PVD through EXTI Line detection interrupt */
+STM32_IRQ_TAMPER      (STM32_IRQ_INTERRUPTS+2)  /* 2:  Tamper and time stamp interrupts */
+STM32_IRQ_TIMESTAMP   (STM32_IRQ_INTERRUPTS+2)  /* 2:  Tamper and time stamp interrupts */
+STM32_IRQ_RTC_WKUP    (STM32_IRQ_INTERRUPTS+3)  /* 3:  RTC global interrupt */
+STM32_IRQ_FLASH       (STM32_IRQ_INTERRUPTS+4)  /* 4:  Flash global interrupt */
+……略……
+
+
 FPU
 -------
 | arch/arm/src/armv7-m/up_fpu.S
