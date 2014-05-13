@@ -565,45 +565,45 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
 
         #define NR_IRQS     90  /* STM32F2 */  
 
-Interrupt descriptor (include/linux/irq.h):
+中斷發生後需要有一個結構陣列來處理中斷程序。以下是Interrupt descriptor的定義 (include/linux/irq.h):
 
    .. code-block:: c
 
-        struct irq_desc {
-            unsigned int        irq;
-            struct timer_rand_state *timer_rand_state;
-            unsigned int            *kstat_irqs;
-        #ifdef CONFIG_INTR_REMAP
-            struct irq_2_iommu      *irq_2_iommu;
-        #endif
-            irq_flow_handler_t  handle_irq;
-            struct irq_chip     *chip;
-            struct msi_desc     *msi_desc;
-            void            *handler_data;
-            void            *chip_data;
-            struct irqaction    *action;    /* IRQ action list */
-            unsigned int        status;     /* IRQ status */
+    struct irq_desc {
+        unsigned int        irq;        // 中斷源編號
+        struct timer_rand_state *timer_rand_state;
+        unsigned int            *kstat_irqs;
+    #ifdef CONFIG_INTR_REMAP
+        struct irq_2_iommu      *irq_2_iommu;  //
+    #endif
+        irq_flow_handler_t  handle_irq; // 使用chip中提供的特定於控制器的方法，進行處理中斷所必須的底層操作。[if NULL, __do_IRQ()]
+        struct irq_chip     *chip;      // 定義了與硬體的操作方式，如電流處理
+        struct msi_desc     *msi_desc;
+        void            *handler_data;  // 指向與 handler_irq 相關的資料
+        void            *chip_data;     // 指向與 chip 相關的資料
+        struct irqaction    *action;    /* IRQ action list */
+        unsigned int        status;     /* IRQ status */
+        unsigned int        depth;      /* 決定 IRQ 是否被啓用。假設某段程式碼禁用此中斷，便讓depth + 1。這個中斷被再次啓用就 -1。當depth歸0時表示沒有程式碼禁用，硬體才能再次使用IRQ，depth是扮演計數器的角色。 */
+        unsigned int        wake_depth; // 與設定哪些IRQ 可以喚醒CPU有關
+        unsigned int        irq_count;  /* For detecting broken IRQs */
+        unsigned long       last_unhandled; /* Aging timer for unhandled count */
+        unsigned int        irqs_unhandled;
+        raw_spinlock_t      lock;
+    #ifdef CONFIG_SMP    /* (單晶片不需用到) */
+        cpumask_var_t       affinity;
+        unsigned int        node;
+    #ifdef CONFIG_GENERIC_PENDING_IRQ
+        cpumask_var_t       pending_mask;
+    #endif
+    #endif
+        atomic_t        threads_active;
+        wait_queue_head_t       wait_for_threads;
+    #ifdef CONFIG_PROC_FS
+        struct proc_dir_entry   *dir;  // 把某些資訊如irq_count, last_unhandled等記錄到 /proc/irq/NN
+    #endif
 
-            unsigned int        depth;      /* nested irq disables */
-            unsigned int        wake_depth; /* nested wake enables */
-            unsigned int        irq_count;  /* For detecting broken IRQs */
-            unsigned long       last_unhandled; /* Aging timer for unhandled count */
-            unsigned int        irqs_unhandled;
-            raw_spinlock_t      lock;
-        #ifdef CONFIG_SMP
-            cpumask_var_t       affinity;
-            unsigned int        node;
-        #ifdef CONFIG_GENERIC_PENDING_IRQ
-            cpumask_var_t       pending_mask;
-        #endif
-        #endif
-            atomic_t        threads_active;
-            wait_queue_head_t       wait_for_threads;
-        #ifdef CONFIG_PROC_FS
-            struct proc_dir_entry   *dir;
-        #endif
-            const char      *name;
-        } ____cacheline_internodealigned_in_smp;
+        const char      *name;         // 指定中斷類型。對邊緣觸發中斷，通常是"edge"，對條件觸發中斷，通常是"level", 將顯示在 /proc/interrupts。在uclinux裏面會是空的(?)
+    } ____cacheline_internodealigned_in_smp;
 
 
 Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
