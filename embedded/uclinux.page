@@ -710,7 +710,7 @@ Q&A
 
 從child process 去更動 *b的值，在child process中的a 值不會改變，而是parent process的值會被改變。
 
-所以在fork時需要MMU，這樣就可以把這些指標加入某個固定的值(or shift)，來確保這些指標是正確的。
+所以在fork時需要MMU，來確保這些指標指向的地址是正確的。
 
 **Q2. What is TLB?**
 
