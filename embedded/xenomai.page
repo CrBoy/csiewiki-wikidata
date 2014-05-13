@@ -206,6 +206,11 @@ Scheduler
 
 優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
 
+Skins ( posix )
+++++++++++++
+
+呼叫xenomai的界面, 有native rtdm posix等。
+
 問題
 ++++++++++++
 
