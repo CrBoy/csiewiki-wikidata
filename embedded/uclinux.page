@@ -697,13 +697,14 @@ Q&A
 
 **Q1. Relationship between fork() and MMU.**
 
-果整個程式中如果有指標的話，儲存指標類的資料會跟parent process的相同。
+如果整個程式中如果有指標的話，儲存指標類的資料會跟parent process的相同。
 
-若父行程中有指標
+若父行程中有指標，例如
 
-.. code-block:: c
-    int a=0;
-    int *b=&a;
+ .. code-block:: c
+
+     int a=0;
+     int *b=&a;
 
 如果用只是單純的複製
 
