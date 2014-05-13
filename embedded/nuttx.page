@@ -357,7 +357,7 @@ Interrupt Handling的分層架構
 
 1. low-level logic, arch/arm/src/armv7-m/up_exception.S, 接收Interrupt並決定IRQ number
 
-2. That low-level logic than calls some MCU-specific, intermediate level function up_doirq()
+2. That low-level logic than calls some MCU-specific, intermediate level function up_doirq(), mask and acknowledge the interrupt, dispatch, unmask
 
 3. That MCU-specific function then calls the NuttX common interrupt dispatching logic irq_dispatch()
 
@@ -366,10 +366,7 @@ STM32_IRQ_SYSTICK
 .. code-block:: c
 
  (void)irq_attach(STM32_IRQ_SYSTICK, (xcpt_t)up_timerisr);
- up_exception.S
- up_doirq()
- int up_timerisr(int irq, uint32_t *regs)->sched_process_timer();
- void sched_process_timer(void)
+ up_exception.S -> up_doirq()-> up_timerisr(int irq, uint32_t *regs) -> sched_process_timer(void)
  static void sched_process_timeslice(void)
  {
  	if((rtcb->flags & TCB_FLAG_ROUND_ROBIN) != 0)
@@ -378,14 +375,14 @@ STM32_IRQ_SYSTICK
  		{ 
  			if(!rtcb->lockcount)
  			{
- 				rtcb->timeslice = CONFIG_RR_INTERVALMSEC_PER_TICK; //重設timeslice
+ 				rtcb->timeslice = CONFIG_RR_INTERVALMSEC_PER_TICK;
  				if (rtcb->flink && rtcb->flink->sched_priority >= rtcb->sched_priority)
  				{
  					up_reprioritize_rtr(rtcb, rtcb->sched_priority);
  				}
  			}
  		}
- 		else //timeslice大於1
+ 		else
  		{
  			rtcb->timeslice--;
  		}
