@@ -196,7 +196,10 @@ HAL
 Hardware Abstract Layer:prcess  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
 
 
+Nucleus
+++++++++++++
 
+Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
 
 
 
