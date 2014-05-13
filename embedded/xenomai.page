@@ -164,7 +164,8 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 高優先度的domain的thread 可以preempt 低優先度domain的thread
 
 
-* iPipe
+iPipe
+++++++++++++++
 
 主要負責處理irq 與 timer(HRT), ipipe的工作很簡單 就是設定timer並將interrupt往上丟
 
@@ -179,6 +180,7 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
   - timer-sp.c：dual timer module(sp804)
 
   - vic.c：
+
      The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
 
   - ipipe-tsc.c:設定精準度（刻度）
