@@ -20,9 +20,7 @@ Nuttx 參考應用
 NuttX 架構
 ------------
 
-＊ 可混用task跟thread。
-＊ 支援FPU。
-＊ 可混用FIFO跟RR。
+
 
 與平台相關
 ------------
@@ -223,6 +221,11 @@ Communication
  - sem_unlink：移除named semaphore，如果還有task connect to semaphore，不會作用
  - sem_close：從記憶體當中將已經unlink的semaphore殺掉
 
+ | Mutex : 與semaphore用同一組資料結構，最主要的差別在於semaphore處理task，mutex處理pthread
+
+ - pthread_mutexinit：create mutex
+ - pthread_mutexlock： 當pthread要執行的時候會呼叫，
+ 
 Scheduling
 ----------------
 include/sys/types.h
