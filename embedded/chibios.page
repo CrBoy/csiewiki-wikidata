@@ -627,7 +627,7 @@ BGCLUT[256]              Background CLUT                                     800
                  n += 4;
              } while (!test_timer_done);
 
-         在時間內每次iteration作四次的Wakeup的動作，最後乘以二
+        在時間內每次iteration作四次的Wakeup的動作，最後乘以二
 
             .. image:: /embedded/ch_context_switch1.png
 
@@ -652,7 +652,7 @@ BGCLUT[256]              Background CLUT                                     800
 
              *  Sender
 
-              .. code-block:: c
+             .. code-block:: c
 
                    static unsigned int msg_loop_test(Thread *tp) {
 
@@ -668,11 +668,15 @@ BGCLUT[256]              Background CLUT                                     800
                        } while (!test_timer_done);
                        (void)chMsgSend(tp, 0);
                        return n;
-                  }
+                   }
 
              .. image:: /embedded/ch_context_switch2.png
            
+           - 情況1：  Send priority 比 Receive priority 高(Test Case 11.1)
+                        context switch的次數 341088 ctxswc/S =>341088 次/秒 = 2.93 us/次
               
+           - 情況2：  Send priority 比 Receive priority 低(Test Case 11.2)
+                        context switch的次數 274588 ctxswc/S =>274588 次/秒 = 3.64 us/次
  
 Q & A：
 --------
