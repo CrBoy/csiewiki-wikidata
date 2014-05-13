@@ -59,6 +59,74 @@ ChibiOS/RT 參考應用
  * HAL 與 platform關係如下
      .. image:: /embedded/chibi_HAL_plat.png
 
+系統狀態(System States)
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
+
+|
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
+
+.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
+
+* Init
+    + ChibiOS/RT 進行OS初始化之前的狀態，進行所謂的物理重置(physical reset)時也會進到這個狀態
+    + 呼叫chSysInit()這個函式進行初始化
+    + 在這個狀態裡所有可以發出Maskable Interrupt的sources全部失效
+    + 初始化完後進到 Normal
+* Normal 
+    + 初始化完後到達的狀態
+    + 在這裡可以執行Thread, 接收並處理任何中斷及呼叫任何system API
+* Suspended 
+    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
+    + 除了可以呼叫chSysDisable()到達Disable狀態，以及chSysEnable()到達Normal狀態之外，其他所有system API都不能呼叫
+* Disabled 
+    + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷(NMI)
+    + 除了可以呼叫chSysEnable()到達Normal狀態，以及chSysSuspend()到達Suspended狀態之外，其他所有system API都不能呼叫
+* Sleep 
+    + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 `idle thread<idle thread>`_，到達這個狀態
+    + 此時系統將處於 low power mode，並等待一個中斷跳出這個狀態
+    + 接收到一個IRQ時，將會跑到 SRI 狀態去處理中斷，處理完後會回到 Normal 
+
+* S-Locked
+    + 在 Normal 的狀態中呼叫 chSysLock() 之後會進入此狀態    
+    + 此時系統會進入 Kernel locked 的狀態
+    + 此時處理器會跑在 thread-privileged mode
+    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
+    + 在這個狀態裡可以使用 S class 和 I class 的 API 
+    + 呼叫 chSysUnlock() 會回到 Normal 狀態 
+
+* I-Locked 
+    + 在 SRI 的狀態中呼叫 chSysLockFromIsr() 之後會進入這個狀態
+    + 此時系統會進入 Kernel locked 的狀態
+    + 此時處理器會跑在 exception-privileged mode
+    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
+    + 在這個狀態裡可以使用 I class 的 API 
+    + 呼叫 chSysUnlockFromIsr() 會回到 SRI 狀態 
+
+* Serving Regular Interrupt ( SRI )
+    + 處理一個正常中斷 ( IRQ ) 時，會進入這個狀態
+    + 此時只有更高等級的中斷能夠進行搶佔
+    + 此時處理器會跑在 exception-privileged mode
+    + 此時無法呼叫大部分的 system API，除非先呼叫 chSysLockFromIsr() 進入 I-Locked state，之後才能夠進行其他 API 的呼叫
+
+ 
+* Serving Fast Interrupt ( SFI )
+    + 處理一個快速中斷 ( FIQ ) 時會進入這個狀態
+    + 無法呼叫所有 system API
+    + 除了 Init , Halted , SNMI , Disabled 之外的任一狀態，只要接收到 FIQ 就會跳到這個狀態，處理完後會回到上一狀態
+ 
+* Serving Non-Maskable Interrupt ( SNMI )
+    + 處裡一個不可遮罩式的中斷時 (NMI) 會進入這個狀態
+    + 無法呼叫所有 system API
+    + 除了 Halted 的任一狀態裡只要接收到 NMI，或是在 Halted 中收到非同步的 NMI 時就會跳到這個狀態，處理完後會回到上一狀態
+ 
+* Halted
+    + 呼叫 chSysHalt() 時會進入這個狀態 
+    + 所有中斷都不能使用
+
+
 中斷(Interrupt)
 ^^^^^^^^^^^^^^^
 * 先備知識
@@ -454,72 +522,6 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 
 
-系統狀態(System States)
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
-
-|
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
-
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
-
-* Init
-    + ChibiOS/RT 進行OS初始化之前的狀態，進行所謂的物理重置(physical reset)時也會進到這個狀態
-    + 呼叫chSysInit()這個函式進行初始化
-    + 在這個狀態裡所有可以發出Maskable Interrupt的sources全部失效
-    + 初始化完後進到 Normal
-* Normal 
-    + 初始化完後到達的狀態
-    + 在這裡可以執行Thread, 接收並處理任何中斷及呼叫任何system API
-* Suspended 
-    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
-    + 除了可以呼叫chSysDisable()到達Disable狀態，以及chSysEnable()到達Normal狀態之外，其他所有system API都不能呼叫
-* Disabled 
-    + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷(NMI)
-    + 除了可以呼叫chSysEnable()到達Normal狀態，以及chSysSuspend()到達Suspended狀態之外，其他所有system API都不能呼叫
-* Sleep 
-    + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 `idle thread<idle thread>`_，到達這個狀態
-    + 此時系統將處於 low power mode，並等待一個中斷跳出這個狀態
-    + 接收到一個IRQ時，將會跑到 SRI 狀態去處理中斷，處理完後會回到 Normal 
-
-* S-Locked
-    + 在 Normal 的狀態中呼叫 chSysLock() 之後會進入此狀態    
-    + 此時系統會進入 Kernel locked 的狀態
-    + 此時處理器會跑在 thread-privileged mode
-    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
-    + 在這個狀態裡可以使用 S class 和 I class 的 API 
-    + 呼叫 chSysUnlock() 會回到 Normal 狀態 
-
-* I-Locked 
-    + 在 SRI 的狀態中呼叫 chSysLockFromIsr() 之後會進入這個狀態
-    + 此時系統會進入 Kernel locked 的狀態
-    + 此時處理器會跑在 exception-privileged mode
-    + 在這個狀態裡，無法接收正常中斷(IRQ)，但是可以接收快速中斷(FIQ)
-    + 在這個狀態裡可以使用 I class 的 API 
-    + 呼叫 chSysUnlockFromIsr() 會回到 SRI 狀態 
-
-* Serving Regular Interrupt ( SRI )
-    + 處理一個正常中斷 ( IRQ ) 時，會進入這個狀態
-    + 此時只有更高等級的中斷能夠進行搶佔
-    + 此時處理器會跑在 exception-privileged mode
-    + 此時無法呼叫大部分的 system API，除非先呼叫 chSysLockFromIsr() 進入 I-Locked state，之後才能夠進行其他 API 的呼叫
-
- 
-* Serving Fast Interrupt ( SFI )
-    + 處理一個快速中斷 ( FIQ ) 時會進入這個狀態
-    + 無法呼叫所有 system API
-    + 除了 Init , Halted , SNMI , Disabled 之外的任一狀態，只要接收到 FIQ 就會跳到這個狀態，處理完後會回到上一狀態
- 
-* Serving Non-Maskable Interrupt ( SNMI )
-    + 處裡一個不可遮罩式的中斷時 (NMI) 會進入這個狀態
-    + 無法呼叫所有 system API
-    + 除了 Halted 的任一狀態裡只要接收到 NMI，或是在 Halted 中收到非同步的 NMI 時就會跳到這個狀態，處理完後會回到上一狀態
- 
-* Halted
-    + 呼叫 chSysHalt() 時會進入這個狀態 
-    + 所有中斷都不能使用
 
 
 硬體驅動原理
@@ -608,7 +610,26 @@ BGCLUT[256]              Background CLUT                                     800
 
 效能表現
 --------
-* 參考 ChibiOS/RT 的 test/testbmk.c
+  * context switch
+    + context switch的次數 610928 ctxswc/S =>610928次/秒 = 1.63 us/次
+           .. code-block:: c
+
+             test_wait_tick();
+             test_start_timer(1000);
+             do {
+                 chSysLock();
+                 chSchWakeupS(tp, RDY_OK);
+                 chSchWakeupS(tp, RDY_OK);
+                 chSchWakeupS(tp, RDY_OK);
+                 chSchWakeupS(tp, RDY_OK);
+                 chSysUnlock();
+                 n += 4;
+             } while (!test_timer_done);
+
+         在時間內每次iteration作四次的Wakeup的動作，最後乘以二
+
+            .. image:: /embedded/ch_context_switch1.png
+
 
 Q & A：
 --------
