@@ -163,6 +163,25 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 高優先度的domain會先接收到interrupt
 高優先度的domain的thread 可以preempt 低優先度domain的thread
 
+* iPipe
+主要負責處理irq 與 timer(HRT)
+ipipe的工作很簡單 就是設定timer並將interrupt往上丟
+
+gic.c：Generic Interrupt Controller
+    Interrupt prioritization and distribution to each CPU interface. This is known as the Distributor.
+    Priority masking and preemption handling for each CPU. This is known as the CPU Interface.
+
+it8152.c：IRQ相關
+
+timer-sp.c：dual timer module(sp804)
+
+vic.c：
+     The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
+
+ipipe-tsc.c:設定精準度（刻度）
+ipipe/compat.c:interrupt
+sched/clock.c:取得cpu_clock 解析度為nanasecond,開機後從0開始上數
+
 * 與 RT-PREEMPT 途徑的差異？
 
 
