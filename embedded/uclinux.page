@@ -723,6 +723,14 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 **Q4. What is buddy?**
 
+一種記憶體分配的方式，將一個連續記憶體對半切，直到行程所需的記憶體大小介於(現在切割的大小)與(現在切割的大小/2)之間。
+
+其好處在於演算法容易實作，且只需要以binary tree的方式來維護即可。
+
+下圖為示意圖(` 來源<http://www.cs.sunysb.edu/~prade/Teaching/Spring13/prez/L06/L06.pdf>`_)
+
+.. image:: /embedded/buddy.PNG
+
 **Q5. How program loader load OS?(以uClinux為例)**
 
 1.載入OS的資料區段
