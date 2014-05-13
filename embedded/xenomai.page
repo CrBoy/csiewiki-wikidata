@@ -227,6 +227,57 @@ Context switch
 
 .. code-block:: prettyprint
 
+    include/arch/arm-asm/bits/pod.h
+    static inline void xnarch_switch_to(xnarchtcb_t *out_tcb, xnarchtcb_t *in_tcb)
+
+    {
+
+            struct task_struct *prev = out_tcb->active_task;
+
+            struct mm_struct *prev_mm = out_tcb->active_mm;
+
+            struct task_struct *next = in_tcb->user_task;
+
+            if (likely(next != NULL)) {
+
+                    in_tcb->active_task = next;
+
+                    in_tcb->active_mm = in_tcb->mm;
+
+                    rthal_clear_foreign_stack(&rthal_domain);
+
+            } else {
+
+                    in_tcb->active_task = prev;
+
+                    in_tcb->active_mm = prev_mm;
+
+                    rthal_set_foreign_stack(&rthal_domain);
+
+            }
+
+            if (prev_mm != in_tcb->active_mm) {
+
+                    /* Switch to new user-space thread? */
+
+                    if (in_tcb->active_mm)
+
+                            wrap_switch_mm(prev_mm, in_tcb->active_mm, next);
+
+                    if (!next->mm)
+
+                            enter_lazy_tlb(prev_mm, next);
+
+            }
+
+            /* Kernel-to-kernel context switch. */
+
+            rthal_thread_switch(prev, out_tcb->tip, in_tcb->tip);
+
+    }
+
+.. code-block:: prettyprint
+
     ksrc/arch/arm/switch.S
     /*
     /*
