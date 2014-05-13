@@ -664,6 +664,34 @@ Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>
 .. image:: /embedded/irqdesc.png
 
 
+
+
+**電流處理 (Flow Handler)**
+
+
+邊緣觸發中斷：
+
+.. image:: /embedded/handle_edge_irq.jpg
+
+
+條件觸發中斷：
+
+.. image:: /embedded/handle_level_irq.jpg
+
+
+其他類型的中斷（較不常用）：
+
+1. handle_fasteoi_irq
+    如果中斷處理程序正在執行，則呼叫desc->chip->eoi 並返回。
+
+2. handle_simple_irq
+    與handle_fasteoi_irq相似。差別在於若未定義action或 IRQ被禁用時，它會直接離開；而handle_fasteoi_irq會把IRQ狀態設成PENDING後mask掉該interrupt。
+
+3. handle_percpu_irq
+    有些IRQ只發生在特定一個CPU上，沒有lock的需求。
+
+`Reference<http://blog.163.com/vic_kk/blog/static/494705242010719483774>`_
+
 GPIO
 -----------
 
