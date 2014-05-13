@@ -542,6 +542,9 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 .. image:: /embeded/DMA2D_flow.bmp
 
+ + `Init<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L208>`_
+
+ + `Start<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L290>`_
 
 * DMA2D memory address
   + 記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
