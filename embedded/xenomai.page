@@ -6,6 +6,8 @@ categories: embedded, arm, raspberrypi
 
 建立環境
 ==============================
+* 下載 Raspbian http://www.raspberrypi.org/downloads/
+
 * Install Cross complier
 
 .. code-block:: c
