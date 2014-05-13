@@ -189,6 +189,8 @@ iPipe
 
   - sched/clock.c:取得cpu_clock 解析度為nanosecond,開機後從0開始上數
 
+.. image:: /GIC_overview.svg
+
 
 HAL
 ++++++++++++
