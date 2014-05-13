@@ -840,8 +840,8 @@ Cyclictest
         return timer->base->ops->get_timer_timeout (timer);
       }
 
-實驗數據
-=======
+觀察與分析
+=========
 
 .. code-block:: prettyprint
 
