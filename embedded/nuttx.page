@@ -294,7 +294,7 @@ Timer interrupt
 
 Interrupt handler
 ------------------------
-IRQ numbers a
+在nuttx/arch/arm/include/stm32/irq.h和nuttx/arch/arm/include/stm32/stm32f40xxx_irq.h中分別定義了可用的ISR name和對應的vector name
 
 .. code-block:: c
 
