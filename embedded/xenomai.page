@@ -317,6 +317,10 @@ xnpod
     #endif	/* __XENO_SIM__ */
     };
 
+Cyclictest
++++++++++++
+
+.. code-block:: prettyprint
 
 效能表現
 =======
