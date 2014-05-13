@@ -611,7 +611,8 @@ BGCLUT[256]              Background CLUT                                     800
 效能表現
 --------
   * context switch
-    + context switch的次數 610928 ctxswc/S =>610928次/秒 = 1.63 us/次
+    + Sleep and Wakeup
+          context switch的次數 610928 ctxswc/S =>610928次/秒 = 1.63 us/次
            .. code-block:: c
 
              test_wait_tick();
@@ -630,7 +631,49 @@ BGCLUT[256]              Background CLUT                                     800
 
             .. image:: /embedded/ch_context_switch1.png
 
+    + Message send and receive
 
+              *  Receiver
+
+              .. code-block:: c
+
+                static msg_t thread1(void *p) {
+                    Thread *tp;
+                    msg_t msg;
+
+                    (void)p;
+                    do {
+                         tp = chMsgWait();
+                         msg = chMsgGet(tp);
+                         chMsgRelease(tp, msg);
+                    } while (msg);
+                    return 0;
+                }
+
+             *  Sender
+
+              .. code-block:: c
+
+                   static unsigned int msg_loop_test(Thread *tp) {
+
+                       uint32_t n = 0;
+                       test_wait_tick();
+                       test_start_timer(1000);
+                       do {
+                             (void)chMsgSend(tp, 1);
+                             n++;
+                            #if defined(SIMULATOR)
+                              ChkIntSources();
+                            #endif
+                       } while (!test_timer_done);
+                       (void)chMsgSend(tp, 0);
+                       return n;
+                  }
+
+             .. image:: /embedded/ch_context_switch2.png
+           
+              
+ 
 Q & A：
 --------
 * Q1：S Lock & I Lock作法的優點和缺點？對OS有何幫助？
