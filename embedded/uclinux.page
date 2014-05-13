@@ -692,6 +692,13 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 **Q6. Real example about task states change.**
 
+**Q7. What is IOMMU?**
+
+    I/O Memory Management Unit(`IOMMU<http://www.mulix.org/lectures/using-iommus-for-virtualization/OLS-jdmason.pdf>`_)最初由AMD提出，是管理設備對記憶體的存取。它位于設備和主機之間，將來自設備請求的位址轉換成記憶體位址，並檢查訪問權限。
+    
+    好處：存取的記憶體空間可以不連續。
+
+
 參考資料
 --------
 * `Introduction to uClinux<http://free-electrons.com/docs/uclinux/>`_
