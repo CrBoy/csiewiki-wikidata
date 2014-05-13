@@ -187,7 +187,7 @@ iPipe
 
   - ipipe/compat.c:interrupt
 
-  - sched/clock.c:取得cpu_clock 解析度為nanasecond,開機後從0開始上數
+  - sched/clock.c:取得cpu_clock 解析度為nanosecond,開機後從0開始上數
 
 
 HAL
