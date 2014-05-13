@@ -440,7 +440,7 @@ Scheduler
         BUG_ON(in_interrupt());
         recheck:  
         /* double check policy once rq lock held */
-        if (policy < 0) {
+        if (policy < 0) {//輸入為無效的排程方式，將變數設定成跟原排程方式相同
                 reset_on_fork = p->sched_reset_on_fork;
                 policy = oldpolicy = p->policy;
         } else {
@@ -458,7 +458,7 @@ Scheduler
          * 1..MAX_USER_RT_PRIO-1, valid priority for SCHED_NORMAL,
          * SCHED_BATCH and SCHED_IDLE is 0.
          */
-        if (param->sched_priority < 0 ||
+        if (param->sched_priority < 0 ||  //檢查給予的權限值是否在有效的排程範圍內
             (p->mm && param->sched_priority > MAX_USER_RT_PRIO-1) ||
             (!p->mm && param->sched_priority > MAX_RT_PRIO-1))
                 return -EINVAL;
@@ -718,7 +718,7 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 如果TLB hit，CPU直接去對應的記憶體位置抓取指令；如果TLB miss，則去page_table中找對應的記憶體位置抓取指令；
 
-如果產生page fault，則只能去storage把程是載入到記憶體中。
+如果產生page fault，則只能去storage把程式載入到記憶體中。
 
 .. image:: /embedded/TLB.jpg
 
