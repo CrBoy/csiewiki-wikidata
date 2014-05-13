@@ -606,6 +606,24 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
     } ____cacheline_internodealigned_in_smp;
 
 
+核心會透過上述descriptor的 action 成員執行中斷程式。
+
+   .. code-block:: c
+
+    struct irqaction {
+        irq_handler_t handler;       // 中斷處理程式
+        unsigned long flags;
+        const char *name;            // 標識設備名稱
+        void *dev_id;                // 指向設備的資料結構instance,在共享中斷的時候於與辨識。
+        struct irqaction *next;      // 指向下一個 irqaction
+        int irq;
+        struct proc_dir_entry *dir;  // 指向 proc/irq/NN/name 檔案
+        irq_handler_t thread_fn;
+        struct task_struct *thread;
+        unsigned long thread_flags;
+    };
+
+
 Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
 
 .. image:: /embedded/irqdesc.png
