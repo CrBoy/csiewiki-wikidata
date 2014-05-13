@@ -329,8 +329,8 @@ Context switch
      THUMB(        ldr        pc, [ip]                   )
     ENDPROC(rthal_thread_switch)
 
-'Timer
-'+++++++++++
+''Timer
+''+++++++++++
 
 'Scheduler
 '+++++++++++
