@@ -332,6 +332,26 @@ External interrupts (vectors >= 16)
  .
  .
 
+如何設定Interrupt Handler?
+
+.. code-block:: c
+
+ irq_attach(STM32_IRQ_SVCALL, up_svcall); //System Call
+
+ nuttx/sched/irq_attach.c
+ int irq_attach(int irq, xcpt_t isr)
+ {
+  state = irqsave();	//disables all interrupts
+  if(isr == NULL)
+  {
+   up_disable_irq(irq);
+   isr = irq_unexpected_isr;
+  }
+   g_irqvector[irq] = isr; //Vector Table
+   irqrestore(state);
+   ret = ok;
+ }
+
 
 FPU
 -------
