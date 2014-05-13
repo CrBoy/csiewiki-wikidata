@@ -201,7 +201,10 @@ Nucleus
 
 Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
 
+Scheduler
+++++++++++++
 
+優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
 
 問題
 ++++++++++++
