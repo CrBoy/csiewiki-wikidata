@@ -147,6 +147,12 @@ fork 原理
   - 右圖：將 kernel state 從 main stack 中 pop 出來，此時 ``LR`` 擁有的位址為離開 activate() 後要執行的指令位址(之前在進入 ``activate()`` 時所存的 )。所以離開 ``SVC_Handler()`` 後，程式會轉往執行 main() 的 while loop，也就是 kernel mode。
 
 
+- 目前的 process stack 狀態，會發現與 ``user_thread_stack`` 的設計一致，以及不同時期被 push 進去的 R7：
+
+  .. image:: /embedded/user_thread_stack.PNG
+
+  - 在離開 ``activate()`` 函式會回傳新的 process stack pointer 給 TCB 的 ``stack`` pointer，也就是將 R0 值更新到那，所以 TCB 的 stack pointer 會得到正確的 process stack 的正確位址。
+
 **進行fork**
 
 - 將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
