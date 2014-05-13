@@ -842,6 +842,9 @@ Cyclictest
      0      2256       2                  48               0         00300184    0.0     cyclictest
      0      0          0                  2913946          0         00000000    0.0     IRQ3: [timer]
 
+在這邊可以看到cyclictest有兩個pid，因為/usr/xenomai/bin/cyclictest它會先創一個thread，並讓這個thread跑nanosleep，所以會有兩個process。接著看向CSW
+pid 2254的cyclictest, 他的CSW只有1。pid 2256的確有235，這是因為2256是一個xenomai realtime task，而 2254是一個 linux的process，所以2256會優先執行，直到realtime task都做完才會換low priority的linux domain process取得CPU，因此2254的CSW值才會是1而沒有增加。
+
 .. code-block:: prettyprint
 
      pi@raspberrypi:~$ watch -n 1 cat /proc/xenomai/stat
