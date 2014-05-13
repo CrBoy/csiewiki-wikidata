@@ -155,7 +155,7 @@ fork 原理
 
 **進行fork**
 
-- 將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
+- 開始執行 kernel mode 後，藉由 ``tasks[current_task].stack->r7``，可以取得在 fork() 傳入的值。因此 kernel 判定要執行 fork 動作，將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
 
 **母task**
 
