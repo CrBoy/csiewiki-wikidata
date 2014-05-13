@@ -297,6 +297,7 @@ Interrupt handler
 在nuttx/arch/arm/include/stm32/irq.h和nuttx/arch/arm/include/stm32/stm32f40xxx_irq.h中分別定義了可用的ISR name和對應的vector name
 
 Processor Exceptions (vectors 0-15)
+包括Internal和Software Interrupts，設定在nuttx/arch/arm/src/chip/stm32_irq.c:void up_irqinitialize(void)
 
 .. code-block:: c
 
@@ -315,6 +316,7 @@ Processor Exceptions (vectors 0-15)
  #define STM32_IRQ_SYSTICK       (15) /* Vector 15: System tick */
  
 External interrupts (vectors >= 16) 
+外部中斷，設定在nuttx/arch/arm/src/stm32/chip/stm32f40xxx_vectors.h
 
 .. code-block:: c
 
