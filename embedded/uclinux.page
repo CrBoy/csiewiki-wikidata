@@ -550,6 +550,8 @@ Interrupt Handler
 
 .. image:: /embedded/memory_access_behavior.jpg
 
+.. image:: /embedded/vectorTable.png
+
 在一個中斷請求中，除了少數緊急事務要處理之外，常常包含不緊急的事務，如資料的處理或分析。
 
 因此 uClinux 保留了 Linux 處理中斷的手法，將ISR分成前半 (top half) 和後半 (bottom half)。
