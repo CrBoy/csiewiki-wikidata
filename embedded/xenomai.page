@@ -189,7 +189,21 @@ iPipe
 
   - sched/clock.c:取得cpu_clock 解析度為nanasecond,開機後從0開始上數
 
-* 與 RT-PREEMPT 途徑的差異？
+
+HAL
+++++++++++++
+
+Hardware Abstract Layer:prcess  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
+
+
+
+
+
+
+問題
+++++++++++++
+
+與 RT-PREEMPT 途徑的差異？
 
 
 
