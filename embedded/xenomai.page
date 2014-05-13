@@ -322,6 +322,49 @@ Cyclictest
 
 .. code-block:: prettyprint
 
+
+實驗數據
+=======
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ cat /proc/xenomai/stat
+     CPU    PID        MSW                  CSW           PF         STAT            %CPU    NAME
+     0      0            0                  206           0          00500080        100.0   ROOT
+     0      0            0                  2688553       0          00000000        0.0     IRQ3: [timer]
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ sudo /usr/xenomai/bin/cyclictest >/dev/null 2>/dev/null &
+     [1] 2253
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ ps aux | grep -i "cy"
+     root      2253  0.5  0.3   4580   1464  ?        S    03:34   0:00   sudo /usr/xenomai/bin/cyclictest
+     root      2254  2.7  0.4   2340   2132  ?        SLl  03:34   0:00   /usr/xenomai/bin/cyclictest
+     pi        2259  0.0  0.1   3540   820   ttyAMA0  S+   03:34   0:00   grep --color=auto -i cy
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ cat /proc/xenomai/stat
+     CPU    PID        MSW                CSW              PF        STAT        %CPU    NAME
+     0      0          0                  255              0         00500080    100.0   ROOT
+     0      2254       1                  1                0         00b00380    0.0     cyclictest
+     0      2256       2                  48               0         00300184    0.0     cyclictest
+     0      0          0                  2913946          0         00000000    0.0     IRQ3: [timer]
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:~$ watch -n 1 cat /proc/xenomai/stat
+     Every 1.0s: cat /proc/xenomai/stat                      Wed Jan  8 03:38:43 2014
+
+     CPU    PID        MSW                CSW           PF        STAT         %CPU     NAME
+     0      0          0                  442           0         00500080     99.9     ROOT
+     0      2254       1                  1             0         00b00380     0.0      cyclictest
+     0      2256       2                  235           0         00300184     0.0      cyclictest
+     0      0          0                  2953543       0         00000000     0.1      IRQ3: [timer]
+  
 效能表現
 =======
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
