@@ -375,22 +375,22 @@ STM32_IRQ_SYSTICK
  	if((rtcb->flags & TCB_FLAG_ROUND_ROBIN) != 0)
  	{
  		if(rtcb->timeslice <= 1)
-		{
-			if(!rtcb->lockcount)
-			{
-				rtcb->timeslice = CONFIG_RR_INTERVALMSEC_PER_TICK; //重設timeslice
-				if (rtcb->flink && rtcb->flink->sched_priority >= rtcb->sched_priority)
-				{
-					up_reprioritize_rtr(rtcb, rtcb->sched_priority);
-				}
-			}
-		}
-		else //timeslice大於1
-		{
-			rtcb->timeslice--;
-		}
-	}
- }
+ 		{ 
+ 			if(!rtcb->lockcount)
+ 			{
+ 				rtcb->timeslice = CONFIG_RR_INTERVALMSEC_PER_TICK; //重設timeslice
+ 				if (rtcb->flink && rtcb->flink->sched_priority >= rtcb->sched_priority)
+ 				{
+ 					up_reprioritize_rtr(rtcb, rtcb->sched_priority);
+ 				}
+ 			}
+ 		}
+ 		else //timeslice大於1
+ 		{
+ 			rtcb->timeslice--;
+ 		}
+ 	}
+  }
 
 
 
