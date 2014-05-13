@@ -866,9 +866,9 @@ pid 2254的cyclictest, 他的CSW只有1。pid 2256的確有235，這是因為225
 
      pi@raspberrypi:~$ sudo /usr/xenomai/bin/cyclictest -p FIFO >/dev/null 2>/dev/null &
 
- * 在我們了解MSW時，嘗試了在-p後面加上了文字(如：FIFO、RR……)  
+* 在我們了解MSW時，嘗試了在-p後面加上了文字(如：FIFO、RR……)  
 
- * 發現MSV的值開始往上增加，也發現一開始對於MSW的定義理解錯誤
+* 發現MSV的值開始往上增加，也發現一開始對於MSW的定義理解錯誤
 
 .. code-block:: prettyprint
 
@@ -880,7 +880,7 @@ pid 2254的cyclictest, 他的CSW只有1。pid 2256的確有235，這是因為225
       0      7561       66                 130                0          00b00184      0.0      cyclictest
       0      0          0                  11266931           0          00000000      0.1      IRQ3: [timer]
 
- * trace後才了解，這是xenomai在-p的指令上使用atoi，將輸入的數字轉為int，int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
+* trace後才了解，這是xenomai在-p的指令上使用atoi，將輸入的數字轉為int，int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
 效能表現
 =======
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
