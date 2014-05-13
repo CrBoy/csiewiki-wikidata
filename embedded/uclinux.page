@@ -39,58 +39,6 @@ uClinux架構&特性
 
     這樣可以減少由短暫而多次的分配，而造成無法利用的碎片記憶體區段。
 
-    - kmalloc(include/linux/slob.h)
-
-    .. code-block:: c
-
-         static __always_inline void *kmalloc(size_t size, gfp_t flags)
-         {
-             return __kmalloc_node(size, flags, -1);
-         }
-
-    kmalloc_node(include/linux/slab_def.h line: 183)
-
-    .. code-block:: c
-
-           static __always_inline void *kmalloc_node(size_t size, gfp_t flags, int node)
-           {
-                   struct kmem_cache *cachep;
-                   void *ret;
-
-                   if (__builtin_constant_p(size)) {
-                           int i = 0;
-                           if (!size)
-                                   return ZERO_SIZE_PTR;
-
-           #define CACHE(x) \
-                 if (size <= x) \
-                    goto found; \
-                 else \
-                    i++;
-           #include <linux/kmalloc_sizes.h>
-           #undef CACHE
-                return NULL;
-           found:
-           #ifdef CONFIG_ZONE_DMA
-                if (flags & GFP_DMA)
-                    cachep = malloc_sizes[i].cs_dmacachep;
-                else
-           #endif
-                cachep = malloc_sizes[i].cs_cachep;
-
-                ret = kmem_cache_alloc_node_notrace(cachep, flags, node);
-
-                trace_kmalloc_node(_THIS_IP_, ret,
-                                   size, slab_buffer_size(cachep),
-                                   flags, node);
-                return ret;
-                   }
-                  return __kmalloc_node(size, flags, node);
-           }
-
-
-
-
 
 
 * 沒有brk/sbrk()
