@@ -720,6 +720,8 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 如果產生page fault，則只能去storage把程是載入到記憶體中。
 
+.. image:: /embedded/TLB.jpg
+
 **Q3. What is slab & slob allocator?**
 
 **Q4. What is buddy?**
