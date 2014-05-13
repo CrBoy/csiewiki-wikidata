@@ -115,18 +115,13 @@ fork 原理
     ...
 
 
-- 進到 ``activate()`` 後，藉由 pop user state 到 register，將預先存好的 ``first()`` 的位址存到 ``LR`` 中。而原本的 LR 被 push 到 main stack 中，存有離開 ``activate()`` 後繼續執行的指令位址。
+- 進到 ``activate()`` 後，藉由 pop user state 到 register，將預先存好的 ``first()`` 的位址存到 ``LR`` 中。而原本的 LR 被 push 到 main stack 中，存有離開 ``activate()`` 後繼續執行的指令位址。Core registers 及 stacks 的狀態變化如下圖：
 
+  .. image:: /embedded/activate.PNG
 
-  ::
-
-    [ 從 user_thread_stack pop 到 general-purpose registers ]
-    user_thread_stack     -> |r4 |r5 |r6 |r7 |r8 |r9 |r10|fp |_lr|...
-                                                               V
-    依 pop 順序到 register -> |R4 |R5 |R6 |R7 |R8 |R9 |R10|R11| LR|...
-
-
-- 利用 ``bx lr`` 使得程式轉往執行 ``first()``。進到 ``first()`` 後，程式執行第一行的 ``fork()``。
+|
+  利用 ``bx lr`` 使得程式轉往執行 ``first()``。
+- 進到 ``first()`` 後，程式執行第一行的 ``fork()``。
 
   ::
 
