@@ -67,6 +67,8 @@ Task Control Interfaces
 
 Task state
 ------------
+.. image:: /task_state.jpg
+
 include/nuttx/sched.h
 
 .. code-block:: c
