@@ -4,7 +4,7 @@ categories: embedded, arm, raspberrypi
 ...
 
 
-Building an RPi Xenomai Kernel
+建立環境
 ==============================
 * Install Cross complier
 
