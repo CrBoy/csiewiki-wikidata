@@ -396,8 +396,8 @@ Using a RAM-based vector table
 
 .. code-block:: c
 
- up_vector_t g_ram_vectors[ARMV7M_VECTAB_SIZE]  __attribute__((section(".ram_vectors")));
- void up_ramvec_initialize(void) //Copy vectors to RAM an configure the NVIC to use the RAM vectors.
+ //up_vector_t g_ram_vectors[ARMV7M_VECTAB_SIZE]  __attribute__((section(".ram_vectors")));
+ //void up_ramvec_initialize(void) //Copy vectors to RAM an configure the NVIC to use the RAM vectors.
  int up_ramvec_attach(int irq, up_vector_t vector) //Configure the ram vector table so that IRQ number 'irq' will be dipatched by hardware to 'vector'
  {
  	int ret = ERROR;
