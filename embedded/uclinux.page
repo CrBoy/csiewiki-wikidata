@@ -623,6 +623,39 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
         unsigned long thread_flags;
     };
 
+爲了控制 interrupt controller，我們需要定義一個結構來對它操作。
+注：爲了相容核心版本2.6前的程式碼，irq_chip定義了別名 hw_interrupt_type。
+
+   .. code-block:: c
+
+    struct irq_chip {
+        const char  *name;
+        unsigned int    (*startup)(unsigned int irq);
+        void        (*shutdown)(unsigned int irq);
+        void        (*enable)(unsigned int irq);
+        void        (*disable)(unsigned int irq);
+        void        (*ack)(unsigned int irq);
+        void        (*mask)(unsigned int irq);
+        void        (*mask_ack)(unsigned int irq);
+        void        (*unmask)(unsigned int irq);
+        void        (*eoi)(unsigned int irq);
+        void        (*end)(unsigned int irq);
+        int     (*set_affinity)(unsigned int irq,
+                        const struct cpumask *dest);
+        int     (*retrigger)(unsigned int irq);
+        int     (*set_type)(unsigned int irq, unsigned int flow_type);    /* IRQ_TYPE_RISING, IRQ_TYPE_FALLING, IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW, IRQ_TYPE_EDGE_BOTH, IRQ_TYPE_NONE */
+        int     (*set_wake)(unsigned int irq, unsigned int on);
+        void        (*bus_lock)(unsigned int irq);
+        void        (*bus_sync_unlock)(unsigned int irq);
+
+        /* Currently used only by UML, might disappear one day.*/
+
+    #ifdef CONFIG_IRQ_RELEASE_METHOD
+        void        (*release)(unsigned int irq, void *dev_id);
+    #endif
+
+        const char  *typename; /* =name, 相容於舊版的kernel而宣告*/
+    };
 
 Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
 
