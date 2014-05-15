@@ -43,13 +43,13 @@ uClinux架構&特性
 
 * 沒有brk/sbrk()
 
-     沒有VM(virtual memory)，故無法被有效實作，因為uClinux開機分配記憶體是以連續的方式，而且沒有VM的機制，
+     沒有VM(virtual memory)，故不存在有效實作方式。
 
-     故很少有機會直接將記憶體區段指標直接向外擴展，只能呼叫mmap system call來實作。
+     (因為uClinux分配記憶體是以連續的方式，而且沒有VM的機制，故很少有機會直接將記憶體區段指標直接向外擴展。無法擴展時，
 
-     這樣不如直接使用mmap，而非實作一個brk去呼叫mmap。
+     只能將整個行程移到另一塊足夠大小的連續記憶體上。)
 
-     所以只能從全域記憶體(Kernel free memory pool)直接分配。
+     只能從全域記憶體(Kernel free memory pool)直接分配。
 
      這樣做可以節省記憶體使用量，因為當行程需要記憶體的時候，系統才會分配，
 
