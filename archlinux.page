@@ -374,6 +374,13 @@ Systemd
 
 重啟、關閉、自動啟用、停止自動啟用、狀態分別是``restart``, ``close``, ``enable``, ``disable``, ``status``
 
+需開機自啟項目
+---------------------------
+::
+
+    systemctl enable gdm
+    systemctl enable NetworkManager
+
 列出所有服務
 -------------------------
 如果你忘記服務名稱
