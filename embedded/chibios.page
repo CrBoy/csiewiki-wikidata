@@ -691,7 +691,12 @@ Q & A：
 * Q1：S Lock & I Lock作法的優點和缺點？對OS有何幫助？
 
  + A：
-    +系統過程 ：Init -> Normal
+    + S lock 與 I lock同屬於kernel lock ,實作上會將Interrupt關閉 ,S-class與I-class API只能在kernel lock狀態下使用 ,而兩者不同在於S-class 不能被ISR使用而I-class可以。
+    + 因為S-class會在內部做reschedule或者會涉及到當前thread而且ISR不被允許使用reschedule。
+    + 由於ISR結束後會自動做reschedule ,如果ISR中涉及到當前thread這沒有意義因為ISR可能已preempt某個thread。
+     
+    舉例 ：Init -> Normal
+
      -狀況一：(Normal -----> S-state ----context_switch-----> I-state ----context_switch-----> S-state -----> Normal)    
 
       .. code-block:: c
@@ -702,11 +707,10 @@ Q & A：
 
             ->chSchWakeupS(tp = chThdCreateI(wsp, size, prio, pf, arg), RDY_OK);
               if(Thread1 優先程度 不大於 當前thread) 
-              是做->chSchReadyI(ntp)                                                <-系統S狀態下可做
+              是做->chSchReadyI(ntp)                                                <-做schdule
               否做->chSysSwitch(ntp, otp)                          <- 資源主動switch給ntp ,系統狀態S至I
 
-            ->chSysUnlock()                                         <- ntp被switch離開 系統狀態 I 至 S
-                                                         ,資源給chSysUnlock執行結束後系統回到Normal 狀態
+            ->chSysUnlock()                                         <- ntp被switch離開 系統狀態 I 至 S ,資源給chSysUnlock執行結束後系統回到Normal 狀態
 
       - `Analysis<https://embedded2014.hackpad.com/Analysis-41cL5mtRq1K>`_
 
