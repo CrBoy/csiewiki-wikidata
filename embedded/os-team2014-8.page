@@ -22,3 +22,5 @@ toc: no
 
 參考資料
 --------
+- `Firefox OS Architecture<https://developer.mozilla.org/en-US/Firefox_OS/Platform/Architecture>`_
+- `Porting Boot to Gecko<https://developer.mozilla.org/en-US/Firefox_OS/Porting>`_
