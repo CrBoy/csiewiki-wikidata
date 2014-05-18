@@ -281,6 +281,23 @@ System Call
 
 - 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
 
+
+Pipe 的 Read 與 Write
+---------------------
+以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
+
+  .. image:: /embedded/rtenv-plus/Read_and_write.png
+
+以 write 的部分為例，在 ``FILE_ACCESS_ACCEPT`` 的 case 中會送出 read_event pending。執行完 write 的工作後，kernel 會繼續執行 ``event_monitor_serve()``，檢查有沒有 event pending，此時，剛剛送出的 read_event 就會被處理，檢查有沒有在 read 的時候被 push 到 read_event list 的 task。如果有，則執行 read_event 的 handler - ``pipe_read_release()``。``pipe_read_release()`` 會重新呼叫 ``file_read()``，讓 task 再次嘗試讀取 pipe，流程判斷如上圖，但是不同的 case 有不同的處理方式：
+
+- ``FILE_ACCESS_ACCEPT``：值為1，代表讀取成功。``event_monitor_serve()`` 會將該 task 從 read_event 的 list 中 pop 出來，並重新 push 回 ready_list 裡，task 的狀態也被改為 TASK_READY。
+- ``FILE_ACCESS_BLOCK``：值為0，代表仍舊未達指定讀取量，則會被繼續 BLOCK 住。
+- ``FILE_ACCESS_ERROR``：不會發生。因為在第一次嘗試讀取時，如果發生 FILE_ACCESS_ERROR，該 task 不會被 push 到 read_event 的 list 中。
+
+
+至於 read，則反之。
+
+
 移植過程
 -----------
 1. 將舊的函式庫移除
