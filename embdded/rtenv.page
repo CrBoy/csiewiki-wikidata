@@ -214,6 +214,9 @@ List
 
 - 實作檔案：list.c
 - 類型：cyclic double linked list
+
+  .. image:: /embedded/rtenv-plus/double_linked_list.PNG
+
 - 函式：
   - ``list_init``：初始化 node，prev 及 next 都指向自己。
   - ``list_empty``：
