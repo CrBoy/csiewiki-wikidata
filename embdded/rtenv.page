@@ -281,7 +281,13 @@ System Call
 
 - 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
 
-
+移植過程
+-----------
+1. 將舊的函式庫移除
+ a. 註解硬體相關的函式庫
+ b. 嘗試編譯
+ c. 找出相依的 function
+2. 加入新的函式庫
 
 
 硬體驅動原理
@@ -289,7 +295,7 @@ System Call
 * `USB OTG</embedded/OTG>`_
 
 效能表現
-----------------
+-----------
 
 參考資料
 -----------
