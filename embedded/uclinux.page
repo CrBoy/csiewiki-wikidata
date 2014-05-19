@@ -322,7 +322,7 @@ spec表示檔案類型定義在include/linux/romfs_fs.h
 EXT2
 -------
 
-在uClinux底下仍然有ext2，是為了mount point可以讀寫。
+在uClinux保留了ext2，使mount可以在此系統下運作。
 
 在 EXT2 檔案系統中，目錄是被用來創造並且在檔案系統中保持存取路徑到檔案的特殊檔案。
 
