@@ -331,6 +331,15 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 選出下一個可執行的thread， 並進行Context Switch
 
+   .. image:: /embedded/ch_schedule.png
+
+
+
+   priority較低的thread會被priority較高的thread preempt，並重置其p_preept值為CH_TIME_QUANTUM
+
+   priority相同的話，thread擁有CH_TIME_QUANTUM  時間的CPU控制權，如果用完了就會必須切換到下一個thread
+
+
 
 * Round Robin scheduling
 
@@ -345,6 +354,8 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
    + 如果thread 的執行時間超過 CH_TIME_QUANTUM (大於0)且有相同priority的thread在ready list中的話，那麼執行中的thread 
        就會被中斷並插入其他任意一個相同priority thread的後面
+
+ 與一般RR不同的地方是其為 preemptive RR
 
 
 內文切換(Context Switch)
