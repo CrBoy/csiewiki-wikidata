@@ -247,12 +247,23 @@ Creating Thread
 
 * 動態
    + 可利用 `chThdCreateFromHeap()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00130>`_ 或是 `chThdCreateFromMemoryPool()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00179>`_ 來動態新增 Thread
-   + 兩者幾近相同:
-       - 都是先從 Heap 或是 memory pool 裡面動態配置一塊記憶體
-       - 之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
-       - 動態 Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
-           - 會先查看 Thread 有無執行完，且是否還有其他 Thread 指向這塊記憶體
-           - Thread 的狀態是執行完且沒有其他 Thread 指向這塊記憶體的話就進行釋放記憶體的動作
+   + From heap:
+      - 從Heap中動態配置一塊記憶體
+      - Create 時間不固定，但宣告的working area 大小是彈性的 (相同大小的記憶體下 memory pool 較快，1/2倍左右)
+      - 相當於malloc & free
+      - Heap 易存在 memory fragmentation 的問題
+      - 需要針對每一個thread release，需要多次操作
+
+   + From memory heap
+      - 從Memory pool 中動態配置一塊記憶體
+      - Create時間固定，宣告的working area 大小是固定的 （相同大小->THREAD_STACK_SIZE 下，比heap快，2倍左右)
+      - 不易存在memory fragmentation 的問題
+      - 可直接release memory pool，一次操作就好
+
+  之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
+  + 動態 Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
+       - 會先查看 Thread 有無執行完，且是否還有其他 Thread 指向這塊記憶體
+       - Thread 的狀態是執行完且沒有其他 Thread 指向這塊記憶體的話就進行釋放記憶體的動作
       
 行程間通訊 ( Inter-Process Communication, IPC )
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
