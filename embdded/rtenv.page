@@ -66,6 +66,67 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
   - L52：再將 ``user_thread_stack`` 的 ``_r7`` pop 到 ``r7``。
   - 所以除了 r0~r3 及 ip、sp、pc、cpsr 之外，都被換成 user-mode 的 register 了。
 
+task
+==========
+rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
+
+ .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
+        int pid; //記錄目前 task 的 pid
+        int status; //記錄目前 task 的狀態
+        int priority; //記錄目前 task 的優先度
+
+        struct list list; 
+    };
+    
+    // 其中 status 共有 5 種狀態被定義
+    #define TASK_READY      0
+    #define TASK_WAIT_READ  1
+    #define TASK_WAIT_WRITE 2
+    #define TASK_WAIT_INTR  3
+    #define TASK_WAIT_TIME  4
+
+**GDB macro**
+利用 macro 可以快速查看目前的 task 是哪一個，並顯示出目前所有 task 的狀態以及優先度
+  
+  ::
+
+    define print_status
+        if($arg0 == 0)
+            printf "TASK_READY     "
+        end
+        if($arg0 == 1)
+            printf "TASK_WAIT_READ "
+        end
+        if($arg0 == 2)
+            printf "TASK_WAIT_WRITE"
+        end
+        if($arg0 == 3)
+            printf "TASK_WAIT_INTR "
+        end
+        if($arg0 == 4)
+            printf "TASK_WAIT_TIME "
+        end
+    end
+
+    define ps
+        printf "pid    status            priority\n"
+
+        set $t = tasks
+        set $i = 0
+        while $i != task_count
+            if ($i == current_task)
+                printf "*%2d    ", $t[$i].pid
+            else
+                printf "%3d    ", $t[$i].pid
+            end
+            print_status $t[$i].status
+            printf "%11d\n", $t[$i].priority
+            set $i = $i + 1
+        end
+    end
 
 init_task
 ==========
