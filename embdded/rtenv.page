@@ -219,7 +219,7 @@ List
 
 - 函式：
   - ``list_init``：初始化 node，prev 及 next 都指向自己。
-  - ``list_empty``：
+  - ``list_empty``：如果 list 的 next 還是指向自己，代表 list 為空。
   - ``list_remove``：將指定的 node 從 linked list 中移除。
   - ``list_unshift``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 next。
   - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
