@@ -307,9 +307,14 @@ Pipe 的 Read 與 Write
  a. 註解硬體相關的函式庫
  b. 嘗試編譯
  c. 找出相依的 function
+
+.. image:: /embedded/rtenv-plus/comment_header.png
+.. image:: /embedded/rtenv-plus/dependency.png
 2. 加入新的函式庫
  a. 在檔案中加入標頭檔
  b. 修改 Makefile 中的 include path
+  
+.. image:: /embedded/rtenv-plus/makefile_port.png
 3. 確認硬體是能動的
  a. 跑範例程式
  b. 將範例程式丟入作業系統看是否能正常運作
