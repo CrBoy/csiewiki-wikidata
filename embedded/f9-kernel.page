@@ -51,6 +51,8 @@ L4與他的前代L3一樣，都是由德國電腦科學家Jochen Liedtke做出�
 
 現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用。
 
+.. image:: /embedded/f9-kernel/l4_family.png
+
 作業系統架構
 ------------
 
