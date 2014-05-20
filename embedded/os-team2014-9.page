@@ -10,7 +10,6 @@ toc: no
 預期目標
 -------
   * 一台翻書機
-
 組員
 ----
   * `莊承翰</User/vchchuang>`_
@@ -20,6 +19,8 @@ toc: no
 ----
   * STM32F429I-Discovery
 
+開發紀錄
+--------------
 參考資料
 --------
 - `天價翻書掃描機<http://forums.jcms.com.tw/showthread.php?t=3994>`_
