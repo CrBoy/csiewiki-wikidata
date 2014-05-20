@@ -278,7 +278,7 @@ fork 原理
 - 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
 
 
-List
+list
 =====
 
 - 實作檔案：list.c
@@ -330,6 +330,38 @@ List
 
   - ``list_for_each``：以 list 為起點，搜尋所有 node。
   - ``list_for_each_safe``：以 list 為起點，但考慮到有些因為呼叫如 ``list_shift`` 之類的 method 被 pop 出去的 list node 也可以被搜尋到。
+
+ready_list
+==========
+
+rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``。
+
+  .. code-block:: c
+
+    struct list ready_list[PRIORITY_LIMIT + 1];
+
+也就是說 ready_list 的每一個元素都對應到一個 priority。每次 rtenv-plus 在選擇下一個要執行的 task 都會先去 ready_list 中尋找。
+
+  .. code-block:: c
+
+    for (i = 0; list_empty(&ready_list[i]); i++); // 尋找非空的 ready_list。
+    
+    list = ready_list[i].next; // 將 list 指到 ready_list[i].next 所指的 `struct list`，這個 list 會指到某一個 struct task 裡頭的 struct list。
+    task = list_entry(list, struct task_control_block, list); // 將 task 指到上面講的 struct task
+    current_task = task->pid; // 記錄這個 task 的 pid
+
+  .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack;
+        int pid;
+        int status;
+        int priority;
+
+        struct list list;
+    };
+
+從上面程式碼可以知道，rtenv-plus 會優先挑 priority 編號小的 task 先做。
 
 Event Monitoring
 =================
