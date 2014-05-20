@@ -860,7 +860,9 @@ Scheduler
 * CPU : 目前這個tread是使用哪個CPU在運行，而rpi是單核心CPU，故顯示皆為0
 * MSW : Mode SWitches, This value should only increase over time for threads that are expected to interact with Linux services.
   - 當process從primary mode轉成secondary mode或是secondary mode轉成primary mode時，將會紀錄一次的轉換。
+
   - cyclictest的RT task因為會執行到memset，所以會從xenomai schedule跳到linux schedule，MSW＋1，而執行完memset後將在跳回xenomai schedule，故再＋1
+
 * CSW : Number of Context SWitches (or IRQ hits for the particular CPU)
 * PF : Number of Page Faults (should stop increasing as soon as mlockall is in effect)
 * STAT : A bitfield describing the internal state of the thread. Bit values are defined in include/nucleus/thread.h (See status and mode bits). The STAT field from /proc/xenomai/sched gives a 1-letter-per-bit symbolic translation of a the most significant subset of those bits.
