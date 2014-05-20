@@ -30,6 +30,7 @@ Context Switch
 
 kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
 
+  .. image:: /embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG
 注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
 
 
@@ -44,15 +45,18 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
      42     mrs ip, psr
      43     push {r4, r5, r6, r7, r8, r9, r10, r11, ip, lr}
      44     
-     45     /* switch to process stack pointer */
-     46     msr psp, r0
-     47     mov r0, #3
-     48     msr control, r0
-     49     
-     50     /* load user state */
-     51     pop {r4, r5, r6, r7, r8, r9, r10, r11, lr}
-     52     pop {r7}
-     53 
+     45     ldmia r0!, {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+     46     ldmia r0!, {r7}
+     47
+     48     /* switch to process stack pointer */
+     49     msr psp, r0
+     50     mov r0, #3
+     51     msr control, r0
+     52     
+     53     /* program breaking code
+     54     pop {r4, r5, r6, r7, r8, r9, r10, r11, lr}
+     55     pop {r7}
+     53     */
      54     bx lr
 
 - 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``[#]_：Rd 為 general-purpose registers，PSR 可以為 psr、cpsr、apsr、msp、psp 等。
