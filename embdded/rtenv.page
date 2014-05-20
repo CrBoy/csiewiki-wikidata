@@ -92,7 +92,8 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
     #define TASK_WAIT_WRITE 2
     #define TASK_WAIT_INTR  3
     #define TASK_WAIT_TIME  4
-
+    
+    // 其中 priority 預設為 20，最低的 priority 為39
 **GDB macro**
 利用 macro 可以快速查看目前的 task 是哪一個，並顯示出目前所有 task 的狀態以及優先度
   
