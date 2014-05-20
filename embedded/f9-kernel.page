@@ -433,6 +433,66 @@ Address space(AS)
 Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
 ==================================================================
 
+FPB
+====
+
+* 六個程式中斷點和兩個資料存取中斷點
+* 把程式指令和資料以補丁方式從code space 放到system space
+
+FPB unit 包含了六個指令比較單位，兩個資料比較單位。指令比較單位可以把code重新映射到system space，也可以做為硬體中斷點，負責將中斷指令傳送給processor；而資料比較單位負責配對從code space讀取的資料，並將它們重新映射到system space。
+
+FPB register的起始位置在cortex-M 中為0xe0002000
+
+.. code-block:: c
+
+   /* FPB Flash Patch and Breakpoint unit Registers */
+   #define FPB_MAX_COMP        6
+   #define FPB_BASE        (uint32_t) (0xE0002000)
+   #define FPB_CTRL        (volatile uint32_t *) (FPB_BASE)
+   #define FPB_REMAP       (volatile uint32_t *) (FPB_BASE + 0x04)
+   #define FPB_COMP        (volatile uint32_t *) (FPB_BASE + 0x08)
+
+BKPT
+=====
+
+BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具在特定的address檢查系統狀態。其用法為
+
+.. code-block::c
+
+   BKPT #imm
+
+其中處理器會忽略imm，imm可以讓除錯者傳送一些訊息。 BKPT也可以放在條件指令中來檢查是否進入異常狀態。
+
+Debug
+======
+
+Arm提供兩個除錯模式：
+
+* Halt mode
+  - 處理器將程式完全停下，然後可以進行single step，所有interrupt都可被pended，將在single step中處理，也可masked interrupt。
+
+* Debug monitor mode
+  - 處理器用exception_handler來呼叫debug任務，同時依然讓更高權限的exception執行，同樣支援single step。
+
+在 single step 時候，每一個step之後都會進入 exception_handler，F9也用這方法來進行 prehandler 和 posthandler。
+
+此外，ARM也提供debug registers
+
+   .. image:: /embedded/f9-kernel/debugreg.jpg
+
+F9使用的是 Debug monitor mode。
+
+.. code-block:: c
+
+   //platform/breakpoint-hard.c
+   void hard_breakpoint_pool_init(void)
+   {
+      ...
+      /* Enable DWT watchpoint & DebugMon exception */
+      *DCB_DEMCR |= DCB_DEMCR_TRCENA | DCB_DEMCR_MON_EN;
+      ...
+   }
+
 MPU (Memory Protection Unit)
 =============================
 Overview
@@ -1070,66 +1130,6 @@ KProbe
 -------
 
 Kprobes是一個kernel內建的動態狀態顯示機製，可讓開發人員不用重新編譯或者啟動kernel就可以獲得kernel的狀態訊息。KProbes是藉由硬體中斷實作，目前是透過ARMv7-M Debug架構中的Flash Patch and Breakpoint unit (FPB)完成該功能。
-
-FPB
-====
-
-* 六個程式中斷點和兩個資料存取中斷點
-* 把程式指令和資料以補丁方式從code space 放到system space
-
-FPB unit 包含了六個指令比較單位，兩個資料比較單位。指令比較單位可以把code重新映射到system space，也可以做為硬體中斷點，負責將中斷指令傳送給processor；而資料比較單位負責配對從code space讀取的資料，並將它們重新映射到system space。
-
-FPB register的起始位置在cortex-M 中為0xe0002000
-
-.. code-block:: c
-
-   /* FPB Flash Patch and Breakpoint unit Registers */
-   #define FPB_MAX_COMP        6
-   #define FPB_BASE        (uint32_t) (0xE0002000)
-   #define FPB_CTRL        (volatile uint32_t *) (FPB_BASE)
-   #define FPB_REMAP       (volatile uint32_t *) (FPB_BASE + 0x04)
-   #define FPB_COMP        (volatile uint32_t *) (FPB_BASE + 0x08)
-
-BKPT
-=====
-
-BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具在特定的address檢查系統狀態。其用法為
-
-.. code-block::c
-
-   BKPT #imm
-
-其中處理器會忽略imm，imm可以讓除錯者傳送一些訊息。 BKPT也可以放在條件指令中來檢查是否進入異常狀態。
-
-Debug
-======
-
-Arm提供兩個除錯模式：
-
-* Halt mode
-  - 處理器將程式完全停下，然後可以進行single step，所有interrupt都可被pended，將在single step中處理，也可masked interrupt。
-
-* Debug monitor mode
-  - 處理器用exception_handler來呼叫debug任務，同時依然讓更高權限的exception執行，同樣支援single step。
-
-在 single step 時候，每一個step之後都會進入 exception_handler，F9也用這方法來進行 prehandler 和 posthandler。
-
-此外，ARM也提供debug registers
-
-   .. image:: /embedded/f9-kernel/debugreg.jpg
-
-F9使用的是 Debug monitor mode。
-
-.. code-block:: c
-
-   //platform/breakpoint-hard.c
-   void hard_breakpoint_pool_init(void)
-   {
-      ...
-      /* Enable DWT watchpoint & DebugMon exception */
-      *DCB_DEMCR |= DCB_DEMCR_TRCENA | DCB_DEMCR_MON_EN;
-      ...
-   }
 
 KProbe
 =======
