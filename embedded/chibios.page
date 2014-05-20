@@ -611,6 +611,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 * DMA2D memory address
   + 記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
+  + 記憶體區間在：0x4002 B000 - 0x4002 BBFF  `reference<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 .. code-block:: c
 
@@ -640,14 +641,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
   dma2d_palcfg_t        *palettep              Palette specs, or @p NULL
 ==========   ====   ================   ====   ===============
 
-  * 設定DMA2D取得memory data的位址(API)：
-   - dma2dBgSetConfig
-    + dma2dBgSetConfigS 
-      - dma2dBgSetAddressI
-      - dma2dBgSetWrapOffsetI
-      - dma2dBgSetPixelFormatI
-      - dma2dBgSetDefaultColorI
-      - dma2dBgSetConstantAlphaI
+
 
 * DMA2D TypeDef：
 
