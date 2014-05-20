@@ -7,6 +7,10 @@ toc: no
 ---
   * 用 STM32F4 打造音樂播放器
 
+HackPad
+--------
+ * `HackPad<https://hackpad.com/Embedded2014-Final-Project-TCnhP8kGhzH>`_
+
 預期目標
 -------
  * 從隨身碟讀取檔案
