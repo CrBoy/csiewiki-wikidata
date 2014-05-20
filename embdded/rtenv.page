@@ -164,8 +164,8 @@ init_task
     }
 
 
-fork 原理
-==========
+How  to fork
+============
 
 **第一次進到 while loop**
 
