@@ -320,6 +320,253 @@ Context switch
     ENDPROC(rthal_thread_switch)
 
 
+
+
+Scheduler
+++++++++++
+
+.. code-block:: prettyprint
+
+     void __xnpod_schedule(struct xnsched *sched)
+     {
+            int zombie, switched, need_resched, shadow;
+            struct xnthread *prev, *next, *curr;
+            spl_t s;
+            if (xnarch_escalate())    /*這function會看現在是不是在root (linux) domain 如果是的話代表沒有realtime task 就將interrupt丟上去*/
+                    return;
+            trace_mark(xn_nucleus, sched, MARK_NOARGS);
+            xnlock_get_irqsave(&nklock, s);    /*在schudule時如果有interrupt會導致排程亂掉 因此要取得lock
+                                                *這邊這個是spinlock 會利用test and set的指令方式確保取得lock的操作是atomic 
+                                                *後面的irqsave代表他會將interrupt disable*/
+            curr = sched->curr;
+            xnarch_trace_pid(xnthread_user_task(curr) ?
+                             xnarch_user_pid(xnthread_archtcb(curr)) : -1,
+                             xnthread_current_priority(curr));
+            reschedule:
+            switched = 0;
+            need_resched = __xnpod_test_resched(sched);
+            #if !XENO_DEBUG(NUCLEUS)
+            if (!need_resched)
+                    goto signal_unlock_and_exit;
+            #endif /* !XENO_DEBUG(NUCLEUS) */
+            zombie = xnthread_test_state(curr, XNZOMBIE);
+            next = xnsched_pick_next(sched);
+
+            /*先檢測thread是否為zombie thread 接著看current thread有沒有取得schedule lock如果有就無法preempt然後回傳current
+             *接著看current thread有沒有在ready 沒有的話就把他接到run queue 最後從sched_rt中的priority queue回傳queue的head 
+             *也就是priority最高的thread*/
+
+            if (next == curr && !xnthread_test_state(curr, XNRESTART)) {
+                    /* Note: the root thread never restarts. */
+                    if (unlikely(xnthread_test_state(next, XNROOT))) {
+                            if (testbits(sched->lflags, XNHTICK))
+                                    xnintr_host_tick(sched);
+                                    /*如果next不是root 則把interrupt在傳給root*/
+                            if (testbits(sched->lflags, XNHDEFER))
+                                    xntimer_next_local_shot(sched);
+                    }
+                    goto signal_unlock_and_exit;
+            }
+            XENO_BUGON(NUCLEUS, need_resched == 0);
+            prev = curr;
+            trace_mark(xn_nucleus, sched_switch,
+                       "prev %p prev_name %s "
+                       "next %p next_name %s",
+                       prev, xnthread_name(prev),
+                       next, xnthread_name(next));
+
+            #ifdef CONFIG_XENO_OPT_PERVASIVE
+            shadow = xnthread_test_state(prev, XNSHADOW);
+            #else
+            (void)shadow;
+            #endif /* CONFIG_XENO_OPT_PERVASIVE */
+           
+            if (xnthread_test_state(next, XNROOT)) {
+                    xnsched_reset_watchdog(sched);
+                    xnfreesync();
+            }
+            
+            if (zombie)    /*如果接下來的thread是root就要重設watchdog timer*/
+                    xnsched_zombie_hooks(prev);
+            sched->curr = next;
+            if (xnthread_test_state(prev, XNROOT))    /*判斷prev跟next是否為root 對進出root有特出的xnarch_enter(leave)_root*/
+                    xnarch_leave_root(xnthread_archtcb(prev));
+            else if (xnthread_test_state(next, XNROOT)) {
+                    if (testbits(sched->lflags, XNHTICK))
+                            xnintr_host_tick(sched);
+                    if (testbits(sched->lflags, XNHDEFER))
+                            xntimer_next_local_shot(sched);
+                    xnarch_enter_root(xnthread_archtcb(next));
+            }
+            
+            xnstat_exectime_switch(sched, &next->stat.account); /*將thread的csw加到xnstat 讓/porc/xenomai/stat可以看到xenomai thread的情況*/
+            xnstat_counter_inc(&next->stat.csw);
+            xnpod_switch_to(sched, prev, next);
+
+            /*context switch*/
+
+            #ifdef CONFIG_XENO_OPT_PERVASIVE
+            /*
+             * Test whether we transitioned from primary mode to secondary
+             * over a shadow thread. This may happen in two cases:
+             *
+             * 1) the shadow thread just relaxed.
+             * 2) the shadow TCB has just been deleted, in which case
+             * we have to reap the mated Linux side as well.
+             *
+             * In both cases, we are running over the epilogue of Linux's
+             * schedule, and should skip our epilogue code.
+             */
+
+            if (shadow && xnarch_root_domain_p())
+                    goto shadow_epilogue;
+            #endif /* CONFIG_XENO_OPT_PERVASIVE */
+            switched = 1;
+            sched = xnsched_finish_unlocked_switch(sched);
+            
+            /*
+             * Re-read the currently running thread, this is needed
+             * because of relaxed/hardened transitions.
+             */
+
+            curr = sched->curr;
+            xnarch_trace_pid(xnthread_user_task(curr) ?
+                             xnarch_user_pid(xnthread_archtcb(curr)) : -1,
+                             xnthread_current_priority(curr));
+
+            if (zombie)
+                    xnpod_fatal("zombie thread %s (%p) would not die...",
+                                prev->name, prev);
+            xnsched_finalize_zombie(sched);    /*處理掉zombie*/
+            __xnpod_switch_fpu(sched);
+            #ifdef __XENO_SIM__
+            if (nkpod->schedhook)
+                    nkpod->schedhook(curr, XNRUNNING);
+            #endif /* __XENO_SIM__ */
+            xnpod_run_hooks(&nkpod->tswitchq, curr, "SWITCH");
+            signal_unlock_and_exit:
+
+            if (xnthread_signaled_p(curr))
+                    xnpod_dispatch_signals();
+            if (switched &&
+                xnsched_maybe_resched_after_unlocked_switch(sched))
+                    goto reschedule;
+            if (xnthread_lock_count(curr))
+                    __setbits(sched->lflags, XNINLOCK);
+            xnlock_put_irqrestore(&nklock, s);   /*解鎖*/
+            return;
+            #ifdef CONFIG_XENO_OPT_PERVASIVE
+            
+            shadow_epilogue:
+            
+             /* Shadow on entry and root without shadow extension on exit?
+               Mmmm... This must be the user-space mate of a deleted real-time
+               shadow we've just rescheduled in the Linux domain to have it
+               exit properly.  Reap it now. */
+
+            if (xnshadow_thrptd(current) == NULL) {
+                    splnone();
+                    xnshadow_exit();
+            }
+
+            /* Interrupts must be disabled here (has to be done on entry of the
+               Linux [__]switch_to function), but it is what callers expect,
+               specifically the reschedule of an IRQ handler that hit before we
+               call xnpod_schedule in xnpod_suspend_thread when relaxing a
+               thread. */
+
+            XENO_BUGON(NUCLEUS, !irqs_disabled_hw());
+            return;
+            #endif /* CONFIG_XENO_OPT_PERVASIVE */
+            }
+
+            EXPORT_SYMBOL_GPL(__xnpod_schedule);
+
+觀察與分析
+=========
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ cat /proc/xenomai/stat
+     CPU    PID        MSW                  CSW           PF         STAT            %CPU    NAME
+     0      0            0                  206           0          00500080        100.0   ROOT
+     0      0            0                  2688553       0          00000000        0.0     IRQ3: [timer]
+
+* CPU : 目前這個tread是使用哪個CPU在運行，而rpi是單核心CPU，故顯示皆為0
+* MSW : Mode SWitches, This value should only increase over time for threads that are expected to interact with Linux services.
+  - 當process從primary mode轉成secondary mode或是secondary mode轉成primary mode時，將會紀錄一次的轉換。
+
+  - cyclictest的RT task因為會執行到memset，所以會從xenomai schedule跳到linux schedule，MSW＋1，而執行完memset後將在跳回xenomai schedule，故再＋1
+
+* CSW : Number of Context SWitches (or IRQ hits for the particular CPU)
+* PF : Number of Page Faults (should stop increasing as soon as mlockall is in effect)
+* STAT : A bitfield describing the internal state of the thread. Bit values are defined in include/nucleus/thread.h (See status and mode bits). The STAT field from /proc/xenomai/sched gives a 1-letter-per-bit symbolic translation of a the most significant subset of those bits.
+* %CPU : CPU share of the thread (or IRQ handler) since the last retrieval of the statistics.
+* NAME : Name of the thread (or IRQ number and registered driver). Can be set, e.g., with the (non portable) POSIX-API-function pthread_set_name_np. See API documentation of the RTOS skin in question.
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ sudo /usr/xenomai/bin/cyclictest >/dev/null 2>/dev/null &
+     [1] 2253
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ ps aux | grep -i "cy"
+     root      2253  0.5  0.3   4580   1464  ?        S    03:34   0:00   sudo /usr/xenomai/bin/cyclictest
+     root      2254  2.7  0.4   2340   2132  ?        SLl  03:34   0:00   /usr/xenomai/bin/cyclictest
+     pi        2259  0.0  0.1   3540   820   ttyAMA0  S+   03:34   0:00   grep --color=auto -i cy
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:～$ cat /proc/xenomai/stat
+     CPU    PID        MSW                CSW              PF        STAT        %CPU    NAME
+     0      0          0                  255              0         00500080    100.0   ROOT
+     0      2254       1                  1                0         00b00380    0.0     cyclictest
+     0      2256       2                  48               0         00300184    0.0     cyclictest
+     0      0          0                  2913946          0         00000000    0.0     IRQ3: [timer]
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:~$ watch -n 1 cat /proc/xenomai/stat
+     Every 1.0s: cat /proc/xenomai/stat                      Wed Jan  8 03:38:43 2014
+
+     CPU    PID        MSW                CSW           PF        STAT         %CPU     NAME
+     0      0          0                  442           0         00500080     99.9     ROOT
+     0      2254       1                  1             0         00b00380     0.0      cyclictest
+     0      2256       2                  235           0         00300184     0.0      cyclictest
+     0      0          0                  2953543       0         00000000     0.1      IRQ3: [timer]
+
+在這邊可以看到cyclictest有兩個pid，因為/usr/xenomai/bin/cyclictest它會先創一個thread，並讓這個thread跑nanosleep，所以會有兩個process。接著看向CSW，pid 2254的cyclictest, 他的CSW只有1。pid 2256的卻有235，這是因為2256是一個xenomai realtime task，而 2254是一個 linux的process，所以2256會優先執行，直到realtime task都做完才會換low priority的linux domain process取得CPU，因此2254的CSW值才會是1而沒有增加。
+
+.. code-block:: prettyprint
+
+     pi@raspberrypi:~$ sudo kill 2254
+
+     pi@raspberrypi:~$ ps aux | grep -i "cy"
+     pi        2324  0.0  0.1   3540   820 ttyAMA0  R+   03:46   0:00 grep --color=auto -i cy
+     [1]+  Done                    sudo /usr/xenomai/bin/cyclictest > /dev/null 2> /dev/null
+
+     pi@raspberrypi:~$ sudo /usr/xenomai/bin/cyclictest -p FIFO >/dev/null 2>/dev/null &
+
+* 在我們了解MSW時，嘗試了在-p後面加上了文字(如：FIFO、RR……)  
+
+* 發現MSV的值開始往上增加，也發現一開始對於MSW的定義理解錯誤
+
+.. code-block:: prettyprint
+
+      CPU    PID        MSW                CSW                PF         STAT          %CPU     NAME
+      0      0          0                  75266              0          00500080      99.9     ROOT
+      0      2978       1                  1                  0          00b00380      0.0      cyclictest
+      0      2980       2                  26846              0          00300184      0.0      cyclictest
+      0      7559       1                  1                  0          00b00380      0.0      cyclictest
+      0      7561       66                 130                0          00b00184      0.0      cyclictest
+      0      0          0                  11266931           0          00000000      0.1      IRQ3: [timer]
+
+* trace後才了解，這是xenomai在-p的指令上是使用atoi，將輸入的數字轉為int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
+
+效能表現
+=======
+
 Cyclictest
 +++++++++++
 
@@ -687,250 +934,6 @@ Cyclictest
         return timer->base->ops->get_timer_timeout (timer);
       }
 
-Scheduler
-++++++++++
-
-.. code-block:: prettyprint
-
-     void __xnpod_schedule(struct xnsched *sched)
-     {
-            int zombie, switched, need_resched, shadow;
-            struct xnthread *prev, *next, *curr;
-            spl_t s;
-            if (xnarch_escalate())    /*這function會看現在是不是在root (linux) domain 如果是的話代表沒有realtime task 就將interrupt丟上去*/
-                    return;
-            trace_mark(xn_nucleus, sched, MARK_NOARGS);
-            xnlock_get_irqsave(&nklock, s);    /*在schudule時如果有interrupt會導致排程亂掉 因此要取得lock
-                                                *這邊這個是spinlock 會利用test and set的指令方式確保取得lock的操作是atomic 
-                                                *後面的irqsave代表他會將interrupt disable*/
-            curr = sched->curr;
-            xnarch_trace_pid(xnthread_user_task(curr) ?
-                             xnarch_user_pid(xnthread_archtcb(curr)) : -1,
-                             xnthread_current_priority(curr));
-            reschedule:
-            switched = 0;
-            need_resched = __xnpod_test_resched(sched);
-            #if !XENO_DEBUG(NUCLEUS)
-            if (!need_resched)
-                    goto signal_unlock_and_exit;
-            #endif /* !XENO_DEBUG(NUCLEUS) */
-            zombie = xnthread_test_state(curr, XNZOMBIE);
-            next = xnsched_pick_next(sched);
-
-            /*先檢測thread是否為zombie thread 接著看current thread有沒有取得schedule lock如果有就無法preempt然後回傳current
-             *接著看current thread有沒有在ready 沒有的話就把他接到run queue 最後從sched_rt中的priority queue回傳queue的head 
-             *也就是priority最高的thread*/
-
-            if (next == curr && !xnthread_test_state(curr, XNRESTART)) {
-                    /* Note: the root thread never restarts. */
-                    if (unlikely(xnthread_test_state(next, XNROOT))) {
-                            if (testbits(sched->lflags, XNHTICK))
-                                    xnintr_host_tick(sched);
-                                    /*如果next不是root 則把interrupt在傳給root*/
-                            if (testbits(sched->lflags, XNHDEFER))
-                                    xntimer_next_local_shot(sched);
-                    }
-                    goto signal_unlock_and_exit;
-            }
-            XENO_BUGON(NUCLEUS, need_resched == 0);
-            prev = curr;
-            trace_mark(xn_nucleus, sched_switch,
-                       "prev %p prev_name %s "
-                       "next %p next_name %s",
-                       prev, xnthread_name(prev),
-                       next, xnthread_name(next));
-
-            #ifdef CONFIG_XENO_OPT_PERVASIVE
-            shadow = xnthread_test_state(prev, XNSHADOW);
-            #else
-            (void)shadow;
-            #endif /* CONFIG_XENO_OPT_PERVASIVE */
-           
-            if (xnthread_test_state(next, XNROOT)) {
-                    xnsched_reset_watchdog(sched);
-                    xnfreesync();
-            }
-            
-            if (zombie)    /*如果接下來的thread是root就要重設watchdog timer*/
-                    xnsched_zombie_hooks(prev);
-            sched->curr = next;
-            if (xnthread_test_state(prev, XNROOT))    /*判斷prev跟next是否為root 對進出root有特出的xnarch_enter(leave)_root*/
-                    xnarch_leave_root(xnthread_archtcb(prev));
-            else if (xnthread_test_state(next, XNROOT)) {
-                    if (testbits(sched->lflags, XNHTICK))
-                            xnintr_host_tick(sched);
-                    if (testbits(sched->lflags, XNHDEFER))
-                            xntimer_next_local_shot(sched);
-                    xnarch_enter_root(xnthread_archtcb(next));
-            }
-            
-            xnstat_exectime_switch(sched, &next->stat.account); /*將thread的csw加到xnstat 讓/porc/xenomai/stat可以看到xenomai thread的情況*/
-            xnstat_counter_inc(&next->stat.csw);
-            xnpod_switch_to(sched, prev, next);
-
-            /*context switch*/
-
-            #ifdef CONFIG_XENO_OPT_PERVASIVE
-            /*
-             * Test whether we transitioned from primary mode to secondary
-             * over a shadow thread. This may happen in two cases:
-             *
-             * 1) the shadow thread just relaxed.
-             * 2) the shadow TCB has just been deleted, in which case
-             * we have to reap the mated Linux side as well.
-             *
-             * In both cases, we are running over the epilogue of Linux's
-             * schedule, and should skip our epilogue code.
-             */
-
-            if (shadow && xnarch_root_domain_p())
-                    goto shadow_epilogue;
-            #endif /* CONFIG_XENO_OPT_PERVASIVE */
-            switched = 1;
-            sched = xnsched_finish_unlocked_switch(sched);
-            
-            /*
-             * Re-read the currently running thread, this is needed
-             * because of relaxed/hardened transitions.
-             */
-
-            curr = sched->curr;
-            xnarch_trace_pid(xnthread_user_task(curr) ?
-                             xnarch_user_pid(xnthread_archtcb(curr)) : -1,
-                             xnthread_current_priority(curr));
-
-            if (zombie)
-                    xnpod_fatal("zombie thread %s (%p) would not die...",
-                                prev->name, prev);
-            xnsched_finalize_zombie(sched);    /*處理掉zombie*/
-            __xnpod_switch_fpu(sched);
-            #ifdef __XENO_SIM__
-            if (nkpod->schedhook)
-                    nkpod->schedhook(curr, XNRUNNING);
-            #endif /* __XENO_SIM__ */
-            xnpod_run_hooks(&nkpod->tswitchq, curr, "SWITCH");
-            signal_unlock_and_exit:
-
-            if (xnthread_signaled_p(curr))
-                    xnpod_dispatch_signals();
-            if (switched &&
-                xnsched_maybe_resched_after_unlocked_switch(sched))
-                    goto reschedule;
-            if (xnthread_lock_count(curr))
-                    __setbits(sched->lflags, XNINLOCK);
-            xnlock_put_irqrestore(&nklock, s);   /*解鎖*/
-            return;
-            #ifdef CONFIG_XENO_OPT_PERVASIVE
-            
-            shadow_epilogue:
-            
-             /* Shadow on entry and root without shadow extension on exit?
-               Mmmm... This must be the user-space mate of a deleted real-time
-               shadow we've just rescheduled in the Linux domain to have it
-               exit properly.  Reap it now. */
-
-            if (xnshadow_thrptd(current) == NULL) {
-                    splnone();
-                    xnshadow_exit();
-            }
-
-            /* Interrupts must be disabled here (has to be done on entry of the
-               Linux [__]switch_to function), but it is what callers expect,
-               specifically the reschedule of an IRQ handler that hit before we
-               call xnpod_schedule in xnpod_suspend_thread when relaxing a
-               thread. */
-
-            XENO_BUGON(NUCLEUS, !irqs_disabled_hw());
-            return;
-            #endif /* CONFIG_XENO_OPT_PERVASIVE */
-            }
-
-            EXPORT_SYMBOL_GPL(__xnpod_schedule);
-
-觀察與分析
-=========
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:～$ cat /proc/xenomai/stat
-     CPU    PID        MSW                  CSW           PF         STAT            %CPU    NAME
-     0      0            0                  206           0          00500080        100.0   ROOT
-     0      0            0                  2688553       0          00000000        0.0     IRQ3: [timer]
-
-* CPU : 目前這個tread是使用哪個CPU在運行，而rpi是單核心CPU，故顯示皆為0
-* MSW : Mode SWitches, This value should only increase over time for threads that are expected to interact with Linux services.
-  - 當process從primary mode轉成secondary mode或是secondary mode轉成primary mode時，將會紀錄一次的轉換。
-
-  - cyclictest的RT task因為會執行到memset，所以會從xenomai schedule跳到linux schedule，MSW＋1，而執行完memset後將在跳回xenomai schedule，故再＋1
-
-* CSW : Number of Context SWitches (or IRQ hits for the particular CPU)
-* PF : Number of Page Faults (should stop increasing as soon as mlockall is in effect)
-* STAT : A bitfield describing the internal state of the thread. Bit values are defined in include/nucleus/thread.h (See status and mode bits). The STAT field from /proc/xenomai/sched gives a 1-letter-per-bit symbolic translation of a the most significant subset of those bits.
-* %CPU : CPU share of the thread (or IRQ handler) since the last retrieval of the statistics.
-* NAME : Name of the thread (or IRQ number and registered driver). Can be set, e.g., with the (non portable) POSIX-API-function pthread_set_name_np. See API documentation of the RTOS skin in question.
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:～$ sudo /usr/xenomai/bin/cyclictest >/dev/null 2>/dev/null &
-     [1] 2253
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:～$ ps aux | grep -i "cy"
-     root      2253  0.5  0.3   4580   1464  ?        S    03:34   0:00   sudo /usr/xenomai/bin/cyclictest
-     root      2254  2.7  0.4   2340   2132  ?        SLl  03:34   0:00   /usr/xenomai/bin/cyclictest
-     pi        2259  0.0  0.1   3540   820   ttyAMA0  S+   03:34   0:00   grep --color=auto -i cy
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:～$ cat /proc/xenomai/stat
-     CPU    PID        MSW                CSW              PF        STAT        %CPU    NAME
-     0      0          0                  255              0         00500080    100.0   ROOT
-     0      2254       1                  1                0         00b00380    0.0     cyclictest
-     0      2256       2                  48               0         00300184    0.0     cyclictest
-     0      0          0                  2913946          0         00000000    0.0     IRQ3: [timer]
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:~$ watch -n 1 cat /proc/xenomai/stat
-     Every 1.0s: cat /proc/xenomai/stat                      Wed Jan  8 03:38:43 2014
-
-     CPU    PID        MSW                CSW           PF        STAT         %CPU     NAME
-     0      0          0                  442           0         00500080     99.9     ROOT
-     0      2254       1                  1             0         00b00380     0.0      cyclictest
-     0      2256       2                  235           0         00300184     0.0      cyclictest
-     0      0          0                  2953543       0         00000000     0.1      IRQ3: [timer]
-
-在這邊可以看到cyclictest有兩個pid，因為/usr/xenomai/bin/cyclictest它會先創一個thread，並讓這個thread跑nanosleep，所以會有兩個process。接著看向CSW，pid 2254的cyclictest, 他的CSW只有1。pid 2256的卻有235，這是因為2256是一個xenomai realtime task，而 2254是一個 linux的process，所以2256會優先執行，直到realtime task都做完才會換low priority的linux domain process取得CPU，因此2254的CSW值才會是1而沒有增加。
-
-.. code-block:: prettyprint
-
-     pi@raspberrypi:~$ sudo kill 2254
-
-     pi@raspberrypi:~$ ps aux | grep -i "cy"
-     pi        2324  0.0  0.1   3540   820 ttyAMA0  R+   03:46   0:00 grep --color=auto -i cy
-     [1]+  Done                    sudo /usr/xenomai/bin/cyclictest > /dev/null 2> /dev/null
-
-     pi@raspberrypi:~$ sudo /usr/xenomai/bin/cyclictest -p FIFO >/dev/null 2>/dev/null &
-
-* 在我們了解MSW時，嘗試了在-p後面加上了文字(如：FIFO、RR……)  
-
-* 發現MSV的值開始往上增加，也發現一開始對於MSW的定義理解錯誤
-
-.. code-block:: prettyprint
-
-      CPU    PID        MSW                CSW                PF         STAT          %CPU     NAME
-      0      0          0                  75266              0          00500080      99.9     ROOT
-      0      2978       1                  1                  0          00b00380      0.0      cyclictest
-      0      2980       2                  26846              0          00300184      0.0      cyclictest
-      0      7559       1                  1                  0          00b00380      0.0      cyclictest
-      0      7561       66                 130                0          00b00184      0.0      cyclictest
-      0      0          0                  11266931           0          00000000      0.1      IRQ3: [timer]
-
-* trace後才了解，這是xenomai在-p的指令上是使用atoi，將輸入的數字轉為int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
-
-效能表現
-=======
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
   - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
