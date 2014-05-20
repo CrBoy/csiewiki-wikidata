@@ -603,7 +603,8 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 * DMA2D的流程簡圖：
 
-.. image:: /embeded/DMA2D_flow.bmp
+.. image:: /dma2dflow.png
+.. image:: /dma2d_flow.JPG
 
  + `Init<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L208>`_
 
@@ -626,6 +627,16 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
    static uint8_t frame_buffer[240 * 320 * 3] __attribute__((section(".sdram")));
 
+* DMA2D的JOB模式
+
+.. code-block:: c
+
+   #define DMA2D_JOB_COPY          (0 << 16)   /**< Copy, replace(FG only).*/
+   #define DMA2D_JOB_CONVERT       (1 << 16)   /**< Copy, convert (FG + PFC).*/
+   #define DMA2D_JOB_BLEND         (2 << 16)   /**< Copy, blend (FG + BG + PFC).*/
+   #define DMA2D_JOB_CONST         (3 << 16)   /**< Default color only (FG REG).*/
+
+*
 * DMA2D的API與資料結構設定，記錄在`stm32_dma2d<https://github.com/rbugoo131/ChibiOS-RT-Community/tree/master/os/hal/platforms/STM32/DMA2Dv1>`_
 
   + dma2d_layercfg_t的struct
@@ -641,7 +652,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
   dma2d_palcfg_t        *palettep              Palette specs, or @p NULL
 ==========   ====   ================   ====   ===============
 
-
+*
 
 * DMA2D TypeDef：
 
