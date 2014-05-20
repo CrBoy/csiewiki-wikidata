@@ -140,7 +140,7 @@ Real Time 的定義
 作業系統架構
 ===========
 
-.. image:: /xenoarch2.jpg
+.. image:: /embedded/xenomai/xenomai_arch.jpg
 
 Xenomai是一個linux kernel的patch
 藉由在底層增加一個架構
