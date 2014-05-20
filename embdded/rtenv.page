@@ -412,7 +412,7 @@ Pipe 的 Read 與 Write
 
 .. image:: /embedded/rtenv-plus/comment_header.png
 .. image:: /embedded/rtenv-plus/dependency.png
-2. 加入新的函式庫
+2. 加入新的函式庫 (他有的我不能少)
  a. 在檔案中加入標頭檔
  b. 修改 Makefile 中的 include path
   
@@ -420,7 +420,15 @@ Pipe 的 Read 與 Write
 3. 確認硬體是能動的
  a. 跑範例程式
  b. 將範例程式丟入作業系統看是否能正常運作
- c. 修改系統參數
+ c. 移除範例程式，使用原先硬體
+ d. 修改系統參數 ``UART2`` -> ``UART1``，
+ 
+4. 程式死了 
+ a. gdb 下去追
+ b. 修掉架構相關的 bug
+ c. 修改架構所需的常數
+
+.. image:: /embedded/rtenv-plus/CPUCLOCK.png
 
 
 硬體驅動原理
