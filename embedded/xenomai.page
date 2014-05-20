@@ -968,7 +968,19 @@ P:priority
 
 I:interval
 
+C:執行cycle數
 
+Min:最小延遲
+
+Act:此次延遲時間
+
+Avg:平均延遲
+
+Max:最大延遲
+
+最重要的是Max值 為了確保realtime 要能知道worst case 
+
+讓開發者可以評估最差的情況可以在多少時間內可以做出回應
 
 Hackpad
 =======
