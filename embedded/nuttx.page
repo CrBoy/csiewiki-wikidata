@@ -485,7 +485,11 @@ FPU
 | XCPTCONTEXT_REGS = HW_XCPT_REGS + SW_XCPT_REGS
 | XCPTCONTEXT_SIZE = 4 * XCPTCONTEXT_REGS
 
-
+| 共會存入51個暫存器
+| 其中8個為硬體一般暫存器包含R0 to R3, R12, R14 = LR, R15 = PC, XPSR
+| 其中軟體暫存器浮點數FP共33個 S0 to S31, FPSCR
+| 原本10個軟體一般暫存器 R13 = SP, PRIMASK, R4 to R11
+| 依序存入XCPT由software registers SP開始到R11，浮點數S0到FPSCR，再來是 hardware registers R0到XPSR
  
 測試環境架設
 ------------
