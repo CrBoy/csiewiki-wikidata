@@ -347,7 +347,14 @@ Cyclictest
   - scheduler duration
 
 * 實作流程
-  -  在main中會使用skin(posix)的systime call
+
+  1.cyclictest建立一個timerthread 這是一個realtime 的 thread
+
+  2.timerthread會重複的執行取第一次時間 nanosleep(interval) 取第二次時間 比對兩次時間差與interval的差異
+
+  3.將結果輸出在terminal
+
+  -  在cylictic test 的main函式使用posix skin的api 建立timerthread  
 
   .. code-block:: prettyprint
 
