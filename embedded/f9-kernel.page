@@ -784,6 +784,11 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
     	return 1;
     }
 
+``mpu_select_lru``會找尋目標位址有沒有存在當前的AS中，如果有的話就更新fpage至MPU，更新的方法是先略過前面留給stack的MPU，接著更新目前的fpage，最後接著將之前的fpage依據順序補上。範例如下：
+
+.. image:: /embedded/f9-kernel/MPU.png
+
+
 IPC
 --------
 F9的IPC 性質為同步傳送，舉個同步和非同步的例子:
