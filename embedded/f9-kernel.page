@@ -657,6 +657,133 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 掃過全部的mpu區域，並檢查給予的地址是不是在enable的區域內。
 
+當存取到違反MPU權限設定的區域時，會產生``MemManage fault``，MemManage Fault Status Register(MMFSR)位在``0xE000ED28``，結構如下：
+
+.. image:: /embedded/f9-kernel/MMFSR.png
+
+* MMARVALID
+   - 0 - MMAR中的位置是無效的
+   - 1 - MMAR中存了有效的fault address
+
+* MLSPERR
+   - 0 - 在浮點數的lazy state preservation沒有發生MemManage fault
+   - 1 - 在浮點數的lazy state preservation發生MemManage fault
+
+* MSTKERR
+   - 0 - 沒有堆疊錯誤
+   - 1 - 在堆疊exception entry時造成了非法存取
+
+* MUNSTKERR
+   - 0 - 沒有unstacking錯誤
+   - 1 - 在unstacking exception return時造成了非法存取
+
+* DACCVIOL
+   - 0 - 沒有data的存取錯誤
+   - 1 - processor試圖讀取或儲存一個禁止該操作的位置
+
+* IACCVIOL
+   - 0 - 沒有instruction的存取錯誤
+   - 1 - processor試圖在一個禁止instruction fetch的位置進行該操作
+
+.. code-block:: prettyprint linenums
+    
+    /* include/platform/mpu.h */
+    #define MPU_FAULT_STATUS_ADDR	0xE000ED28
+    #define MPU_FAULT_ADDRESS_ADDR	0xE000ED34
+    
+    #define MPU_MEM_FAULT		0x80
+    #define MPU_MSTKERR		0x10
+    #define MPU_MUSTKERR		0x08
+    #define MPU_DACCVIOL		0x02
+    #define MPU_IACCVIOL		0x01
+    
+    /* platform/stm32f4/mpu.c */
+    void __memmanage_handler(void)
+    {
+    	uint32_t mmsr = *((uint32_t *) MPU_FAULT_STATUS_ADDR);
+    	uint32_t mmar = *((uint32_t *) MPU_FAULT_ADDRESS_ADDR);
+    	tcb_t *current = thread_current();
+    
+    	/* stack errors */
+    	if (mmsr & MPU_MSTKERR) {
+    		panic("Corrupted Stack, current = %t, psp = %p\n", current->t_globalid, PSP());
+    	}
+    
+    	if (mmsr & MPU_MEM_FAULT) {
+    		if (mpu_select_lru(current->as, mmar) == 0)
+    			goto ok;
+    	}
+    
+    	/* unstacking errors */
+    	if (mmsr & MPU_MUSTKERR) {
+    		/* Processor is not writing mmar, so we do it manually */
+    		if (mpu_select_lru(current->as, (uint32_t)PSP() + 31) == 0) {
+    			goto ok;
+    		}
+    	}
+    
+    	if (mmsr & MPU_IACCVIOL) {
+    		uint32_t pc = PSP()[REG_PC];
+    
+    		if (mpu_select_lru(current->as, pc) == 0)
+    			goto ok;
+    
+    		if (mpu_select_lru(current->as, pc + 2) == 0)
+    			goto ok;
+    	}
+    
+    	mpu_dump();
+    	panic("Memory fault mmsr:%p, mmar:%p,\n" current:%t, psp:%p, pc:%p\n", mmsr, mmar, current->t_globalid, PSP(), PSP()[REG_PC]);
+    
+    ok:
+    	/* Clean status register */
+    	*((uint32_t *) MPU_FAULT_STATUS_ADDR) = mmsr;
+    	return;
+    }
+    
+    int mpu_select_lru(as_t *as, uint32_t addr)
+    {
+    	fpage_t *fp = NULL;
+    	int i;
+    
+    	/* Kernel fault? */
+    	if (as == NULL)
+    		return 1;
+    
+    	if (addr_in_mpu(addr))
+    		return 1;
+    
+    	fp = as->first;
+    	while (fp) {
+    		if (addr_in_fpage(addr, fp, 0)) {
+    			fpage_t *sfp = as->mpu_stack_first;
+    
+    			fp->mpu_next = as->mpu_first;
+    			as->mpu_first = fp;
+    
+    			/* Get first avalible MPU index */
+    			i = 0;
+    			while (sfp != NULL) {
+    				++i;
+    				sfp = sfp->mpu_next;
+    			}
+    
+    			/* Update MPU */
+    			mpu_setup_region(i++, fp);
+    
+    			while (i < 8 && fp->mpu_next != NULL) {
+    				mpu_setup_region(i++, fp->mpu_next);
+    				fp = fp->mpu_next;
+    			}
+    
+    			return 0;
+    		}
+    
+    		fp = fp->as_next;
+    	}
+    	return 1;
+    }
+
 IPC
 --------
 F9的IPC 性質為同步傳送，舉個同步和非同步的例子:
