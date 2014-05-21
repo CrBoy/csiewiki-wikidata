@@ -84,7 +84,7 @@ Address page
 Memory pool
 ===========
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/memory.h */
    typedef struct {
@@ -141,7 +141,7 @@ Memory pool
    
 ``mempool_t``定義出memory pool的結構，也就是PAS中的一個區域，因此此結構中包含：起始與結束位置、kernel與user的使用權限，還有fpage的creation rule。``DECLARE_MEMPOOL``與``DECLARE_MEMPOOL_2``用來宣告memory pool，兩者的差異在於定義start與end的位置，一個是直接賦值，一個是透過變數取值
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* kernel/memory.c */
    /**
@@ -219,7 +219,7 @@ Memory pool
 Flexible pages(fpage)
 ======================
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/fpage.h */
    struct fpage {
@@ -243,7 +243,7 @@ Flexible pages(fpage)
 
 一個fpage包含：base address、memory pool id、flags、size、permission，
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* kernel/fpage.c */
    static int fp_addr_log2(memptr_t addr)
@@ -280,7 +280,7 @@ Flexible pages(fpage)
 
 ``create_fpage``用來建立並初始化一個新的fpage，首先先在``fpage_table``中要一塊新的空間，接著依據給予的參數(mpid、size、flags)進行設定。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    static void create_fpage_chain(memptr_t base, size_t size, int mpid, fpage_t **pfirst, fpage_t **plast)
    {
@@ -313,7 +313,7 @@ Flexible pages(fpage)
 
 ``create_fpage_chain``會根據base位置以及大小，建立一條鍊結，如果原來已經有鍊結存在，則會將新產生的fpage鍊接在元有的鍊結上；如果沒有就新建一條鍊結。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    int assign_fpages_ext(int mpid, as_t *as, memptr_t base, size_t size, fpage_t **pfirst, fpage_t **plast)
    {
@@ -397,7 +397,7 @@ Flexible pages(fpage)
 Address space(AS)
 ==================
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/memory.h */
    typedef struct {
@@ -409,7 +409,7 @@ Address space(AS)
    	uint32_t shared;	/*! shared user number */
    } as_t;
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* kernel/memory.c */
    void as_map_user(as_t *as)
@@ -542,7 +542,7 @@ Implementation
 ###############
 mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/platform/mpu.h */
    #define MPU_BASE_ADDR                0xE000ED9C
@@ -590,7 +590,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
       + 0 - disable mpu
       + 1 - enable mpu
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
    
    /* platform/stm32f4/mpu.c */
    void mpu_setup_region(int n, fpage_t *fp)
@@ -620,7 +620,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
    - 區域大小
    - enable
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* platform/stm32f4/mpu.c */
    void mpu_enable(mpu_state_t i)
@@ -632,7 +632,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 依據參數設定``MPU_CTRL``狀態，並且開啟``PRIVDEFENA``
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* platform/stm32f4/mpu.c */
    int addr_in_mpu(uint32_t addr)
@@ -733,7 +733,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
     	}
     
     	mpu_dump();
-    	panic("Memory fault mmsr:%p, mmar:%p,\n" current:%t, psp:%p, pc:%p\n", mmsr, mmar, current->t_globalid, PSP(), PSP()[REG_PC]);
+    	panic("Memory fault mmsr:%p, mmar:%p,\n current:%t, psp:%p, pc:%p\n", mmsr, mmar, current->t_globalid, PSP(), PSP()[REG_PC]);
     
     ok:
     	/* Clean status register */
@@ -1546,7 +1546,7 @@ Init Hook
 ==========
 F9-kernel用了一個global initialization hook的技巧，這個技巧可以在任意地方定義一段要在系統初始化時執行的code。一個``init hook``會在特定的run level被呼叫，hook可以保證依據level順序呼叫，但不能保證在同一個level中呼叫的順序，下面是一個``init hook``的結構：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/init_hook.h */
    typedef struct {
@@ -1556,7 +1556,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
    } init_struct;
 其中包含要在哪個level呼叫、要執行的code位置、名稱，宣告這個結構的方法如下：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/init_hook.h */
    #define INIT_HOOK(_hook, _level)                                        \
@@ -1568,7 +1568,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 使用``INIT_HOOK``這個macro可以宣告一個``init_struct``，並且將這個結構放到``.init_hook`` section中，接著觀察linker script：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* loader/loader.ld */
    SECTIONS {
@@ -1591,7 +1591,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 在F9-kernel中已經有一些地方使用到``INIT_HOOK``：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    $ grep INIT_HOOK kernel/* platform/*
    kernel/kdb.c:INIT_HOOK(kdb_init, INIT_LEVEL_KERNEL);
@@ -1606,7 +1606,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 接著看一下``init_hook_start``跟``init_hook_end``的值，並觀察剛剛定義的``init_struct``是放在哪邊：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    $ arm-none-eabi-readelf -s f9.elf | grep "init_hook_start|init_hook_end" -E
       765: 08005924     0 NOTYPE  GLOBAL DEFAULT    1 init_hook_end
@@ -1625,7 +1625,7 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
 
 可以發現``0x080058b8~0x08005924``剛好就是剛剛定義的``init_struct``內容(一個init_struct的大小是12byte，所以最後一個是0x8005918+12=0x8005924)，而且這些結構會是連續的存放在一起。剩下的就是如何執行這些code：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* kernel/init.c */
    extern const init_struct init_hook_start[];
@@ -1653,7 +1653,7 @@ KTable
 =========================================
 ktable是一套快速的物件管理機制，結構如下：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
     struct ktable {
         char *tname;
@@ -1672,7 +1672,7 @@ ktable是一套快速的物件管理機制，結構如下：
 
 接著是宣告ktable的方法，給予要存放在ktable中的型態、ktable的名字、以及需要的大小：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    // 宣告一個ktable
    // $ arm-none-eabi-readelf f9.elf -s | grep fpage_table
@@ -1690,7 +1690,7 @@ ktable是一套快速的物件管理機制，結構如下：
 
 ktable有提供下列的API可供使用：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    // 將kt中的bitmap全部設為0
    void ktable_init(ktable_t *kt);
@@ -1727,7 +1727,7 @@ bitmap會從某一個domain mapping到一個集合{0, 1}，這個值可以代表
 
 只要n/w個bitwise operation用來算出兩個相同大小bitmap的union、intersection、difference、complement
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    for i from 0 to n/w-1
        complement[i] := not a[i]
@@ -1736,7 +1736,7 @@ bitmap會從某一個domain mapping到一個集合{0, 1}，這個值可以代表
        difference[i]   := a[i] and (not b[i])
 如果要iterate bitmap中的所有bit，只要用一個雙層的迴圈就能有效率的掃完，只需要n/w次的memory access
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    for i from 0 to n/w-1
         index := 0    // if needed
@@ -1768,7 +1768,7 @@ System bus interface包含了一個bit-band的存取邏輯：
 
 有一個mapping公式可以將alias轉換成對應的bit-band位置
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    bit_word_offset = (byte_offset x 32) + (bit_number × 4)
    bit_word_addr = bit_band_base + bit_word_offset
@@ -1801,7 +1801,7 @@ System bus interface包含了一個bit-band的存取邏輯：
 
 Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitmap cursor(type bitmap_cusor_t)iterate bitmap。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* include/lib/bitmap.h */
    // 宣告一塊bitmap
