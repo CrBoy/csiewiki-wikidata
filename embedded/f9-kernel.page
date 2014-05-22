@@ -49,7 +49,7 @@ L4屬於第二代的微內核，通常被用來實作Unix-like的作業系統。
 
 L4與他的前代L3一樣，都是由德國電腦科學家Jochen Liedtke做出來的，目的是為了反應前代不好的效能表現。Jochen Liedtke認為系統的設計應該以高效能為目的出發，如此才能做出實際上可以使用的東西。他最初以Intel i386的組合語言實作出系統後，馬上引起電腦工業圈的熱烈關注。自從L4問世以來，L4已經被發展成獨立於平台之上，並且改善安全性(security)、獨立性(isolation)、以及容錯性(robustness)。
 
-現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用。
+現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用(`L4 + AMSS<https://code.google.com/p/docl4amss/wiki/SoftwareOverview>`_)。
 
 .. image:: /embedded/f9-kernel/l4_family.png
 
