@@ -1322,6 +1322,170 @@ context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, 
 
     .. image:: /embedded/f9-kernel/controlreg.jpg
 
+User-level Thread Control Block
+================================
+
+.. code-block:: c
+
+   //include/l4/utcb.h
+   struct utcb {
+      /* +0w */
+      l4_thread_t t_globalid;
+      uint32_t    processor_no;
+      uint32_t    user_defined_handle;    /* NOT used by kernel */
+      l4_thread_t t_pager;
+
+      /* +4w */
+      uint32_t    exception_handler;
+      uint32_t    flags;      /* COP/PREEMPT flags (not used) */
+      uint32_t    xfer_timeouts;
+      uint32_t    error_code;
+
+      /* +8w */
+      l4_thread_t intended_receiver;
+      l4_thread_t sender;
+      uint32_t    thread_word_1;
+      uint32_t    thread_word_2;
+
+      /* +12w */
+      uint32_t    mr[8];      /* MRs 8-15 (0-8 are laying in
+                                r4..r11 [thread's context]) */
+      /* +20w */
+      uint32_t    br[8];
+      /* +28w */
+      uint32_t    reserved[4];
+      /* +32w */
+   };
+
+* error_code 是在thread發生錯誤時候的錯誤代碼
+* intended_receiver 是在進入SEND_BLOCKED 時候說明在等待發送訊息的對象
+* ipc_from 是在進入RECV_BLOCKED 時候說明在等待接收對象
+* mr[8]是message registers
+* br[8]是buffer registers
+
+其他的用途目前沒有在F9中看到。
+
+Thread Create
+==============
+
+thread_create 是kernel在syscall中接到要求create thread用來新增thread的。
+
+.. code-block:: c
+
+   tcb_t *thread_create(l4_thread_t globalid, utcb_t *utcb)
+   {
+       ...
+      /* 這邊會先init thread，而且把tcb 空間配置好後回傳*/
+      thr = thread_init(globalid, utcb);
+
+      /* 呼叫create thread的thread為 parent */
+      thr->t_parent = caller;
+
+      /* 以下只是把thread放到 caller的child */
+      /* Place under */
+      if (caller->t_child) {
+         tcb_t *t = caller->t_child;
+         while (t->t_sibling != 0)
+            t = t->t_sibling;
+         t->t_sibling = thr;
+
+         /* thread的local id由child的數序決定，因此可能不同的thread有同樣的local id*/
+         thr->t_localid = t->t_localid + (1 << 6);
+      } else {
+         /* That is first thread in child chain */
+         caller->t_child = thr;
+         thr->t_localid = (1 << 6);
+      }
+   return thr;
+   }
+
+最後會回傳tcb，要注意的是這邊的utcb是已經配好的空間，thread_create不會幫忙配置空間，global id也是要預先獲得。
+
+Global id獲得方式
+
+.. code-block:: c
+
+   //user/include/l4/types.h
+   L4_INLINE L4_ThreadId_t L4_GlobalId(L4_Word_t threadno, L4_Word_t version)
+   {
+      L4_ThreadId_t t;
+      t.global.X.thread_no = threadno;
+      t.global.X.version = version;
+      return t;
+   }
+
+所以是根據version和thread parent目前擁有的子thread數量決定的。
+
+接下來看Thread 如何 initial。
+
+Thread Initialization
+======================
+
+.. code-block:: c
+
+   tcb_t *thread_init(l4_thread_t globalid, utcb_t *utcb)
+   {
+      tcb_t *thr;
+     /* 首先從thread_table中獲得記憶體 */
+      thr = (tcb_t *) ktable_alloc(&thread_table);
+      if (!thr) {
+         set_caller_error(UE_OUT_OF_MEM);
+         return NULL;
+      }
+
+     /* 把thread放進thread map中 */
+      thread_map_insert(globalid, thr);
+
+     /* local id過後會根據所屬parent的child順序決定，因此這邊先給0x0 */
+      thr->t_localid = 0x0;
+
+        ...
+
+      thr->as = NULL;
+      thr->utcb = utcb;
+      thr->state = T_INACTIVE;
+      dbg_printf(DL_THREAD, "T: New thread: %t @[%p] \n", globalid, thr);
+      return thr;
+   }
+
+| 首先從thread table中獲得tcb所需的記憶體，不包含utcb，之後把thr放進thread map中，thread map是整理好的數序陣列。
+| 目前只看到thread map在ipc_deliver中會被逐個檢查是否有recv_block & send_block 的情況。
+| thread的address space會在thread_space 中配置，而在 syscall 處理 create thread 的時候會在 thread_create 以後呼叫 thread_space。
+
+.. code-block:: c
+
+   void thread_space(tcb_t *thr, l4_thread_t spaceid, utcb_t *utcb)
+   {
+     /* If spaceid == dest than create new address space
+      * else share address space between threads
+      */
+      if (GLOBALID_TO_TID(thr->t_globalid) == GLOBALID_TO_TID(spaceid)) {
+         thr->as = as_create(thr->t_globalid);
+
+        /* Grant kip_fpage & kip_ext_fpage only to new AS */
+         map_fpage(NULL, thr->as, kip_fpage, GRANT);
+         map_fpage(NULL, thr->as, kip_extra_fpage, GRANT);
+         dbg_printf(DL_THREAD,"\tNew space: as: %p, utcb: %p \n", thr->as, utcb);
+
+      } else {
+         tcb_t *space = thread_by_globalid(spaceid);
+         thr->as = space->as;
+         ++(space->as->shared);
+      }
+    /* If no caller, than it is mapping from kernel to root thread
+     * (some special case for root_utcb)
+     */
+      if (caller)
+        map_area(caller->as, thr->as, (memptr_t) utcb,
+                 sizeof(utcb_t), GRANT, thread_ispriviliged(caller));
+      else
+        map_area(thr->as, thr->as, (memptr_t) utcb, sizeof(utcb_t), GRANT, 1);
+   }
+
+| 首先會檢查是否共享address space，是的話則配置共享後記錄起來。
+| 不是的話則用as_create從as_table (ktable)中配置一記憶體空間給thread，並且先把基本fpage（kip & kip_extra）m​​ap 給新的as。
+| map_area會把caller的記憶體分割後映射到thr的as。
+
 KProbe
 -------
 
@@ -1998,6 +2162,9 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 
 * IPC
    - http://www.l4ka.org/l4ka/l4-x2-r7.pdf
+
+* Thread
+   - http://www.st.com/web/en/resource/technical/document/programming_manual/DM00046982.pdf page 24
 
 * KProbe
    - http://www.arm.com/files/pdf/introToCortex-M3.pdf page 8
