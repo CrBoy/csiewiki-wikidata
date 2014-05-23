@@ -1258,6 +1258,64 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 
 最後透過L4_Send會呼叫硬體相關的L4_Ipc把message傳送給目標thread。
 
+Thread
+-------
+
+Thread Control Block
+
+.. code-block:: c
+
+   //include/thread.h
+   struct tcb {
+      //global id 是唯一的
+      l4_thread_t t_globalid;
+      l4_thread_t t_localid;
+      // 目前thread的執行狀態
+      thread_state_t state;
+
+      memptr_t stack_base;
+      size_t stack_size;
+
+      context_t ctx;
+
+      as_t *as;
+
+      struct utcb *utcb;
+      // 當處在等待接收訊息狀態時候，ipc_from表示了等待的目標
+      l4_thread_t ipc_from;
+      // 建立thread map所需要的元素
+      struct tcb *t_sibling;
+      struct tcb *t_parent;
+      struct tcb *t_child;
+   };
+
+global id 的作用在於分辨thread所使用的AS。
+每個thread都有自己的AS(Address Space),而AS當中則儲存了thread所擁有的Fpage。
+
+Context
+========
+
+TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存起來，以方便之後switch回來。
+
+.. code-block:: c
+
+   //include/thread.h
+   typedef struct {
+      uint32_t sp; // stack pointer
+      uint32_t ret; // return address
+      uint32_t ctl; // control register
+      uint32_t regs[8]; // r4 - r11
+      #ifdef CONFIG_FPU
+      uint64_t fp_regs[8]; // floating point registers
+      uint32_t fp_flag;
+      #endif
+   } context_t;
+
+context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, xpsr 設在sp當中。
+其中ctl是arm 中的control register, 有三個控制項
+
+    .. image:: /embedded/f9-kernel/controlreg.jpg
+
 KProbe
 -------
 
