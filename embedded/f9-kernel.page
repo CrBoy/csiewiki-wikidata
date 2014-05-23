@@ -1486,6 +1486,55 @@ Thread Initialization
 | 不是的話則用as_create從as_table (ktable)中配置一記憶體空間給thread，並且先把基本fpage（kip & kip_extra）m​​ap 給新的as。
 | map_area會把caller的記憶體分割後映射到thr的as。
 
+Thread start過程
+================
+
+F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例子
+
+.. code-block:: c
+
+   static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
+   {
+      L4_Msg_t msg;
+      L4_MsgClear(&msg);
+      L4_MsgAppendWord(&msg, ip);
+      L4_MsgAppendWord(&msg, sp);
+      L4_MsgAppendWord(&msg, stack_size);
+      L4_MsgLoad(&msg);
+      L4_Send(t);
+   }
+
+只要把ip, sp, stack_size透過IPC傳送給想要啟動的thread, IPC在偵測到目標thread為T_INACTIVE時候，首先會init thread 的context， 接著就把該thread的狀態改為T_RUNNABLE。
+
+.. code-block:: c
+
+   // kernel/ipc
+   void sys_ipc()
+   {
+     ...
+      else if (to_thr && to_thr->state == T_INACTIVE &&
+               GLOBALID_TO_TID(to_thr->utcb->t_pager) == GLOBALID_TO_TID(caller->t_globalid)) {
+         if (ipc_read_mr(caller, 0) == 0x00000003) {
+              /* thread start protocol */
+                /* stack pointer */
+            memptr_t sp = ipc_read_mr(caller, 2);
+                /* stack size */
+            size_t stack_size = ipc_read_mr(caller, 3);
+            dbg_printf(DL_IPC, "IPC: %t thread start\n", to_tid);
+            to_thr->stack_base = sp - stack_size;
+            to_thr->stack_size = stack_size;
+               /* ipc_read_mr return ip here, 然後ip會被储存到pc當中 */
+            thread_init_ctx((void *) sp, (void *) ipc_read_mr(caller, 1), to_thr);
+            caller->state = T_RUNNABLE;
+               /* Start thread */
+            to_thr->state = T_RUNNABLE;
+            return;
+      }
+        ...
+   }
+
+當thread狀態更改為T_RUNNABLE之後，就會被scheduler考慮進排程裡頭了。
+
 KProbe
 -------
 
