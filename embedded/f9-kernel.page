@@ -573,7 +573,7 @@ FPB unit 包含了六個指令比較單位，兩個資料比較單位。指令�
 
 FPB register的起始位置在cortex-M 中為0xe0002000
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    /* FPB Flash Patch and Breakpoint unit Registers */
    #define FPB_MAX_COMP        6
@@ -612,7 +612,7 @@ Arm提供兩個除錯模式：
 
 F9使用的是 Debug monitor mode。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //platform/breakpoint-hard.c
    void hard_breakpoint_pool_init(void)
@@ -935,7 +935,7 @@ Message Register
 =================
 共有 16 個，其中 0 ～ 7 是 R4 ～ R11，其他的為虛擬Registers是 UTCB中的 MR[0～8]。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/include/l4/platform/vregs.h
    register L4_Word32_t __L4_MR0 asm ("r4");
@@ -999,7 +999,7 @@ Message Tag的作用是描述本次message的内容。
     * r : message是否有被重新導向
     * p : 發送者使用propagation,可以從UTCB中找出真正的發送者
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //include/l4/ipc.h
    typedef union {
@@ -1084,7 +1084,7 @@ IPC 過程
 
 從pingpong開始trace整個IPC流程
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/apps/pingpong/main.c
    void __USER_TEXT pong_thread(void)
@@ -1098,7 +1098,7 @@ IPC 過程
 
 一開始pong會從ping中接收到message tag.
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/include/l4/ipc.h
    L4_INLINE L4_MsgTag_t L4_Receive(L4_ThreadId_t from)
@@ -1139,7 +1139,7 @@ IPC 過程
 | 所以從pong的接收呼叫來看，則是R0 = L4_nilthread，R1 = ping threads，R2 = L4_NEVER。
 | 接下來在syscall_handler中，發現是SYS_IPC的呼叫，會將caller->sp當成參數呼叫sys_ipc。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //kernel/ipc.c
    void sys_ipc(uint32_t *param1)
@@ -1221,7 +1221,7 @@ IPC 過程
 | 當send 的目標已經處在T_RECV_BLOCKED 的狀態時候，則用do_ipc 把from 的message傳送給目標。
 | 在do_ipc() 當中，一開始會先讀取tag，然後寫到目的thread的mr[0]當中。之後透過tag的內容先讀取untyped word 然後才是typed item，typed item 目前只有MapItem和GrantItem。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //kernel/ipc.c
    static void do_ipc(tcb_t *from, tcb_t *to)
@@ -1297,7 +1297,7 @@ T_SEND_BLOCKED & T_RECV_BLOCKED
 
 在kernel開始跑起來的時候，有這麼一段：
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    // kernel/start.c : main()
    ktimer_event_create(64, ipc_deliver, NULL);
@@ -1312,7 +1312,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 | 從程式碼中看到几個關鍵字，比如說 L4_MsgClear, L4_MsgAppendWord, L4_Send等等，都是從 L4繼承而来的。
 | 所以首先看看 L4_Msg_t類别是什么
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/include/l4/message.h
    typedef union {
@@ -1325,7 +1325,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 
 從start_thread 中看到一些L4 IPC 的函式使用
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
    {
@@ -1352,7 +1352,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 
 當所有要傳送的資訊都被append進msg之後，會呼叫L4_MsgLoad(&msg)
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/include/l4/message.h
    L4_INLINE void L4_MsgLoad (L4_Msg_t *msg)
@@ -1393,7 +1393,7 @@ Thread
 
 Thread Control Block
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //include/thread.h
    struct tcb {
@@ -1427,7 +1427,7 @@ Context
 
 TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存起來，以方便之後switch回來。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //include/thread.h
    typedef struct {
@@ -1449,7 +1449,7 @@ context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, 
 User-level Thread Control Block
 ================================
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //include/l4/utcb.h
    struct utcb {
@@ -1494,7 +1494,7 @@ Thread Create
 
 thread_create 是kernel在syscall中接到要求create thread用來新增thread的。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    tcb_t *thread_create(l4_thread_t globalid, utcb_t *utcb)
    {
@@ -1527,7 +1527,7 @@ thread_create 是kernel在syscall中接到要求create thread用來新增thread�
 
 Global id獲得方式
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //user/include/l4/types.h
    L4_INLINE L4_ThreadId_t L4_GlobalId(L4_Word_t threadno, L4_Word_t version)
@@ -1545,7 +1545,7 @@ Global id獲得方式
 Thread Initialization
 ======================
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    tcb_t *thread_init(l4_thread_t globalid, utcb_t *utcb)
    {
@@ -1576,7 +1576,7 @@ Thread Initialization
 | 目前只看到thread map在ipc_deliver中會被逐個檢查是否有recv_block & send_block 的情況。
 | thread的address space會在thread_space 中配置，而在 syscall 處理 create thread 的時候會在 thread_create 以後呼叫 thread_space。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    void thread_space(tcb_t *thr, l4_thread_t spaceid, utcb_t *utcb)
    {
@@ -1615,7 +1615,7 @@ Thread start過程
 
 F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例子
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
    {
@@ -1630,7 +1630,7 @@ F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例
 
 只要把ip, sp, stack_size透過IPC傳送給想要啟動的thread, IPC在偵測到目標thread為T_INACTIVE時候，首先會init thread 的context， 接著就把該thread的狀態改為T_RUNNABLE。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    // kernel/ipc
    void sys_ipc()
@@ -1669,7 +1669,7 @@ KProbe
 
 Kprobe利用list儲存和管理所有被register的address，其中struct kprobe如下
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    struct kprobe {
       void *addr; /*中斷地址*/
@@ -1682,7 +1682,7 @@ Kprobe利用list儲存和管理所有被register的address，其中struct kprobe
 
 硬體中斷資料結構儲存的內容為
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    struct breakpoint{
       uint16_t type; /*種類分成三種NONE, SOFT, HARD */
@@ -1703,7 +1703,7 @@ How-to-use
 | Kprobes 可以透過 kprobe_register & kprobe_unregister 登記和取消登記，成功時候會回傳0，反之負數。
 | Kprobes 將所有 register 的 kp 儲存在 kplist 當中，並且設定相關硬體 register
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    int kprobe_register(struct kprobe *kp)
    {
@@ -1725,7 +1725,7 @@ How-to-use
 
 register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //platform/kprobe_arc.c
    int kprobe_arch_add(struct kprobe *kp)
@@ -1757,7 +1757,7 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
 | 這邊首先先找出是否有同樣地址的kprobe，如果有的話就共享該斷點，沒有的話就設定一個新的斷點。
 | 斷點設定方法為breakpoint_install，而breakpoint_install會呼叫 get_avail_breakpoint
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //platform/breakpoint.c
    static struct breakpoint *get_avail_breakpoint(uint32_t addr)
@@ -1772,14 +1772,14 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
 
 在 breakpoint_config中，會透過 addr判斷是否breakpoint属性
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    #define breakpoint_type_by_addr(addr) ((addr) < 0x20000000 ? BKPT_HARD : BKPT_SOFT)
 
 透過記憶體位置圖0x20000000 以下的地址屬於程式碼區塊，其他的是外接口等，所以得知只有程式碼屬於hard breakpoint,其他的都由軟體虛擬出來的斷點處理。
 這邊只觀察hard breakpoint,所以是hard_breakpoint_config
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //platform/breakpoint-hard.c
    struct breakpoint *hard_breakpoint_config(uint32_t addr, struct breakpoint *b)
@@ -1803,7 +1803,7 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
 
 將所有的值儲存好之後，透過這邊儲存的enable function去啟動該kprobe。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    #define FPB_COMP_ENABLE     (uint32_t) (1 << 0)
    #define FPB_COMP_REPLACE_LOWER  (uint32_t) (1 << 30)
@@ -1829,7 +1829,7 @@ Debug Handler
 
 當FPB比對addr相同時候，會傳送bkpt指令給處理器，然後處理器會進入debug_handler，F9的debug_handler為debugmon_handler
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //platform/hw_debug.c
    void debugmon_handler(void)
@@ -1918,7 +1918,7 @@ Example -- sampling
 | kdb當中輸入指令'p'會呼叫kdb_show_sampling，這是一個在ktimer_handler中加入kprobe的kprobe使用範例。
 | 第一次給於指令'p'的時候，會在ktimer_handler中register kprobe，當每次ktimer_handler被呼叫時候，sampling會記錄kernel的一些相關訊息，在下次收到'p' 指令時將它們輸出。
 
-.. code-block:: c
+.. code-block:: prettyprint linenums
 
    //kernel/sampling-kdb.c
    extern void ktimer_handler(void);
