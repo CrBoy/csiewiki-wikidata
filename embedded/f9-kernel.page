@@ -461,7 +461,7 @@ Address space(AS)
 
 替``user text``以及``user data``建立fpage，並且映射到``as``。
 
-.. code-block:: prettyprint linunums
+.. code-block:: prettyprint linenums
     
     int map_area(as_t *src, as_t *dst, memptr_t base, size_t size, map_action_t action, int is_priviliged)
     {
