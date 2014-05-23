@@ -434,6 +434,107 @@ Address space(AS)
 
 替``user text``以及``user data``建立fpage，並且映射到``as``。
 
+.. code-block:: prettyprint linunums
+    
+    int map_area(as_t *src, as_t *dst, memptr_t base, size_t size, map_action_t action, int is_priviliged)
+    {
+    	memptr_t end = base + size, probe = base;
+    	fpage_t *fp = src->first, *first = NULL, *last = NULL;
+    	int last_invalid = 0;
+    
+    	/* For priviliged thread (ROOT), we use shadowed mapping,
+    	 * so first we will check if that fpages exist and then
+    	 * create them.
+    	 */
+    
+    	if (is_priviliged) {
+    		assign_fpages_ext(-1, src, base, size, &first, &last);
+    		if (src == dst) {
+    			/* Maps to itself, ignore other actions */
+    			return 0;
+    		}
+    	} else {
+    		if (src == dst) {
+    			/* Maps to itself, ignore other actions */
+    			return 0;
+    		}
+
+    		while (fp) {
+    			if (!first && addr_in_fpage(base, fp, 0)) {
+    				first = fp;
+    			}
+    
+    			if (!last && addr_in_fpage(end, fp, 1)) {
+    				last = fp;
+    				break;
+    			}
+    
+    			if (first) {
+    				/* Check weather if addresses in fpage list
+    				 * are sequental
+    				 */
+    				if (!addr_in_fpage(probe, fp, 1))
+    					return -1;
+    
+    				probe += (1 << fp->fpage.shift);
+    			}
+    
+    			fp = fp->as_next;
+    		}
+    	}
+    
+    	if (!last || !first) {
+    		/* Not in address space or error */
+    		return -1;
+    	}
+    
+    	if (first == last)
+    		last_invalid = 1;
+    
+    	/* That is a problem because we should split
+    	 * fpages into two (and split all mappings too)
+    	 */
+    
+    	first = split_fpage(src, first, base, 1);
+    
+    	/* If first and last were same pages, after first split,
+    	 * last fpage will be invalidated, so we search it again
+    	 */
+    	if (last_invalid) {
+    		fp = first;
+    		while (fp) {
+    			if (addr_in_fpage(end, fp, 1)) {
+    				last = fp;
+    				break;
+    			}
+    			fp = fp->as_next;
+    		}
+    	}
+    
+    	last  = split_fpage(src, last, end, 0);
+    
+    	if (!last || !first) {
+    		/* Splitting not supported for mapped pages */
+    		/* UNIMPLIMENTED */
+    		return -1;
+    	}
+    
+    	/* Map chain of fpages */
+    
+    	fp = first;
+    	while (fp != last) {
+    		map_fpage(src, dst, fp, action);
+    		fp = fp->as_next;
+    	}
+    	map_fpage(src, dst, fp, action);
+    
+    	return 0;
+    }
+
+``map_area``將指定的base位置以及大小，從來源的AS中找出符合的fpage映射到目的AS
+
+.. image:: /embedded/f9-kernel/map_area.png
+
 硬體驅動原理
 ------------
 Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
