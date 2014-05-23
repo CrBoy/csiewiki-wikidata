@@ -81,8 +81,11 @@ Address page
 
 在Cortex-M中，MPU只支援2^n大小的區域，假設我們要建立一個96 bytes的page，我們應該要切成較小的區域，並且建立出一條包含32 byte與64 byte的fpage chain，這邊就是實作複雜的原因。
 
+.. image:: /embedded/f9-kernel/memory_arch.png
+
 Memory pool
 ===========
+Memory pool定義出每個記憶體區段的起始位置以及結束位置，並且設定每個區段的屬性（存取權限等等），之後在使用這些記憶體時就要依照每個區段所設定的屬性做出對應的動作。
 
 .. code-block:: prettyprint linenums
 
@@ -218,6 +221,7 @@ Memory pool
 
 Flexible pages(fpage)
 ======================
+在F9中，每一個fpage都是可以直接被mpu使用的分頁，而AS就是由fpage所組成。
 
 .. code-block:: prettyprint linenums
 
@@ -311,7 +315,7 @@ Flexible pages(fpage)
    	}
    }
 
-``create_fpage_chain``會根據base位置以及大小，建立一條鍊結，如果原來已經有鍊結存在，則會將新產生的fpage鍊接在元有的鍊結上；如果沒有就新建一條鍊結。
+``create_fpage_chain``會根據base位置以及大小，建立一條鍊結，如果原來已經有鍊結存在，則會將新產生的fpage鍊接在元有的鍊結上；如果沒有就新建一條鍊結。因為MPU的區域大小必須是2的次方，所以在建立fpage的大小時會先計算出適合的大小，一個一個的將fpage連接起來。
 
 .. code-block:: prettyprint linenums
 
@@ -393,6 +397,8 @@ Flexible pages(fpage)
    	fpage_t *first = NULL, *last = NULL;
    	return assign_fpages_ext(-1, as, base, size, &first, &last);
    }
+
+最後就是利用``assign_fpages``將fpage放到AS中
 
 Address space(AS)
 ==================
