@@ -1611,6 +1611,69 @@ Example -- sampling
 
 Miscellaneous 
 --------------
+Kernel Interface Page
+======================
+在L4中，KIP包含了API、kernel版本資訊、system descriptor including memory descriptor、system call link，剩下的部份還未定義。這個page是一個mircokernel object，在AS建立時會直接映射到每個AS。他不是被pager映射，而且不能被map或grant到其他的AS，也不能被unmap。新AS的創建者可以決定要讓KIP被映射到哪些位置，而這些位置在AS的生命週期中會一直存在，任意的thread都能透過KERNELINTERFACE這個system call取得這些位置。
+
+至於F9中實作KIP中的一部分，以下是KIP在F9中的結構：
+
+.. code-block:: prettyprint linenums
+    
+    /* include/l4/kip_types.h */
+    // 我將F9中沒有用到或沒有實作的部份先拿掉
+    typedef struct {
+            uint32_t         base;        /* Last 6 bits contains poolid */
+            uint32_t        size;        /* Last 6 bits contains tag */
+    } kip_mem_desc_t;
+    
+    typedef union {
+            struct {
+                    uint8_t  version;
+                    uint8_t  subversion;
+                    uint8_t  reserved;
+            } s;
+            uint32_t raw;
+    } kip_apiversion_t;
+    
+    typedef union {
+            struct {
+                    uint32_t  reserved : 28;
+                    uint32_t  ww : 2;
+                    uint32_t  ee : 2;
+            } s;
+            uint32_t raw;
+    } kip_apiflags_t;
+
+    typedef union {
+            struct {
+                    uint16_t memory_desc_ptr; // 從kip開頭到mem_desc的offset
+                    uint16_t n;
+            } s;
+            uint32_t raw;
+    } kip_memory_info_t;
+    
+    typedef union {
+            struct {
+                    uint32_t user_base;
+                    uint32_t system_base;
+            } s;
+            uint32_t raw;
+    } kip_threadinfo_t;
+
+    struct kip {
+            uint32_t kernel_id;
+            kip_apiversion_t api_version;
+            kip_apiflags_t api_flags;
+            uint32_t kern_desc_ptr;
+    
+            kip_memory_info_t memory_info;
+    
+            kip_threadinfo_t thread_info;
+    };
+
+* memory_info - 紀錄memory pool的位置以及數量
+* thread_info - 紀錄可以用在system thread以及user thread上最小的thread number
+
 Init Hook
 ==========
 F9-kernel用了一個global initialization hook的技巧，這個技巧可以在任意地方定義一段要在系統初始化時執行的code。一個``init hook``會在特定的run level被呼叫，hook可以保證依據level順序呼叫，但不能保證在同一個level中呼叫的順序，下面是一個``init hook``的結構：
@@ -1914,6 +1977,9 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 * http://www.slideshare.net/jserv/f9-microkernel
 * http://www.slideshare.net/vh21/2014-0109f9kernelktimer
 * `ARM System Developer's Guide : Designing and Optimizing System Software<http://eee.guc.edu.eg/Courses/Electronics/ELCT912%20Advanced%20Embedded%20Systems/Lectures/ARM%20System%20Developer's%20Guide.pdf>`_
+* Kernel Interface Page
+   - http://www.l4ka.org/l4ka/l4-x2-r7.pdf
+
 * Bitmap
    - http://en.wikipedia.org/wiki/Bit_array
    - `ARM Information Center(2.5. Bit-banding)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html>`_
