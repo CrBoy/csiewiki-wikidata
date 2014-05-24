@@ -587,7 +587,7 @@ BKPT
 
 BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具在特定的address檢查系統狀態。其用法為
 
-.. code-block::c
+.. code-block:: prettyprint linenums
 
    BKPT #imm
 
