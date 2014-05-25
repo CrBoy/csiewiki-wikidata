@@ -333,22 +333,24 @@ list
 
 ready_list
 ==========
-
-  .. image:: /embedded/rtenv-plus/ready_list_array.png
- 
- .. image:: /embedded/rtenv-plus/ready_list_element.png
-
-  .. image:: /embedded/rtenv-plus/ready_list_empty.png
-
-rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的資料結構，ready_list 的每一個元素都對應到不同 priority。
-task 結構中的 ``int priority`` 代表優先權，也代表對應到 ``ready_list`` 中的元素，並使用 ``list_push`` 推進 ``ready_list`` 的元素中。
+rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的資料結構，``ready_list`` 的每一個元素都對應到不同 priority。
 
   .. code-block:: c
 
     struct list ready_list[PRIORITY_LIMIT + 1];
 
-當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，元素中的指標 next 指向正在執行的 task 之 ``list`` 結構，
-則將該 task 放到 ``ready_list`` 元素指向的最後頭。
+  .. image:: /embedded/rtenv-plus/ready_list_array.png
+
+使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
+
+ .. image:: /embedded/rtenv-plus/ready_list_element.png
+
+判別 ``ready_list`` 中的 element 是否為 empty，則觀察有沒有 task 被 push 到該 element 中
+
+  .. image:: /embedded/rtenv-plus/ready_list_empty.png
+
+當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，最前端為正在執行的 task，
+則將該 task 放到 ``ready_list`` 元素的最末端。
 
   .. code-block:: c
 
@@ -356,7 +358,7 @@ task 結構中的 ``int priority`` 代表優先權，也代表對應到 ``ready_
     if (timeup && ready_list[task->priority].next == &task->list)
         list_push(&ready_list[task->priority], &tasks[current_task].list);
 
-每次 rtenv-plus 在選擇下一個要執行的 task，會先去 ready_list 中尋找。
+每次 rtenv-plus 在選擇下一個要執行的 task，會從 ``ready_list`` 中尋找優先權最大且最前端的 task。
 
   .. code-block:: c
 
@@ -376,8 +378,6 @@ task 結構中的 ``int priority`` 代表優先權，也代表對應到 ``ready_
 
         struct list list;
     };
-
-從上面程式碼可以知道，rtenv-plus 會優先挑 priority 編號小的 task 先做。
 
 Event Monitoring
 =================
