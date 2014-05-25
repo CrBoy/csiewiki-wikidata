@@ -20,7 +20,7 @@ About Microkernel
 
 Basic Idea
 +++++++++++
-傳統的作業系統核心(monolithic)會提供大部分的服務，像是UNIX-like系統或是Windows等等，這類的系統都有一些典型的階層架構，示意圖如下：
+傳統的作業系統核心(monolithic)會提供大部分的服務，像是UNIX-like的系統都有一些典型的階層架構，示意圖如下：
 
 .. image:: /embedded/f9-kernel/os_structure.png
 
