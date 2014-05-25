@@ -1659,6 +1659,113 @@ F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例
 
 當thread狀態更改為T_RUNNABLE之後，就會被scheduler考慮進排程裡頭了。
 
+Root Thread
+============
+
+ROOT THREAD是F9定義好的THREAD之一，目的在於執行user thread。
+
+.. code-block:: prettyprint linenums
+
+   //kernel/systhread.c
+   void create_root_thread(void)
+   {
+      root = thread_init(TID_TO_GLOBALID(THREAD_ROOT), &root_utcb);
+      thread_space(root, TID_TO_GLOBALID(THREAD_ROOT), &root_utcb);
+      as_map_user(root->as);
+      thread_init_ctx((void *) &root_stack_end, root_thread, root);
+      root->stack_base = (memptr_t)&root_stack_start;
+      root->stack_size = (uint32_t)&root_stack_end - (uint32_t)&root_stack_start;
+      sched_slot_dispatch(SSI_ROOT_THREAD, root);
+      root->state = T_RUNNABLE;
+   }
+
+ROOT THREAD的GLOBAL ID是固定的，root_utcb是一開始就被預設放在kip section當中。 thread_space建立thread所需要用的記憶體空間
+as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_bss的記憶體空間包成fpage,其中user_text有三個fpage,user_data三個, user_bss一個，到這步驟，屬於root thread的fpage如下
+
+* 區塊，fpage位置，fpage base, fpage size
+* KIP，0x2000c510，0x20000400，256
+* KIP，0x2000c528，0x20000500，256
+* UTEXT，0x2000c540，0x2000ee00，512
+* UTEXT，0x2000c558，0x2000f000，4096
+* UTEXT，0x2000c570，0x20010000，2048
+* UDATA，0x2000c588，0x20010800，256
+* UDATA，0x2000c5a0，0x20010900，256
+* UDATA，0x2000c5b8，0x20010a00，256
+* UBSS，0x2000c5d0，0x20010a00，256
+
+之所以要將這些記憶體包成fpage，原因在於root負責map USER 部分的記憶體，所以要先map給root。
+
+接下來是thread_init_ctx，這邊看到root_stack_end，從f9.map中找到它對應0x2001a000的位置，root_thread是root thread的entry。 thread_init_ctx一開始把sp減去256，是RESERVED給r0,r1,r2,r3,r12,lr,pc,xspr這些register。
+
+使用sp中fake context方法：sp[REG_R0]，其中REG_R0 等在armv7m.h中定義。
+
+.. code-block:: prettyprint linenums
+
+   //include/platform/armv7m.h
+   enum register_stack_t {
+     /* Saved by hardware */
+      REG_R0,
+      REG_R1,
+      REG_R2,
+      REG_R3,
+      REG_R12,
+      REG_LR,
+      REG_PC,
+      REG_xPSR
+   };
+
+| 最後把root的狀態設定成T_RUNNABLE後將它加入到schedule slot中。
+| Root thread的工作是把user的thread啟動，之後就進入休眠狀態。
+
+在`platform/stm32f4/f9_flash.ld`中有一塊`user_runtime`，並且有紀錄開頭跟結尾的變數`user_runtime_start`跟`user_runtime_end`，這邊的作法跟`Init Hook`很像。會掃過一遍user_runtime中的struct，然後開始執行user thread。
+
+   // user/root_thread.c
+   extern user_struct user_runtime_start[];
+   extern user_struct user_runtime_end[];
+
+   void __USER_TEXT __root_thread(kip_t *kip_ptr, utcb_t *utcb_ptr)
+   {
+      L4_ThreadId_t myself = {.raw = utcb_ptr->t_globalid};
+      char *free_mem = (char *) get_free_base(kip_ptr);
+      for (user_struct *ptr = user_runtime_start; ptr != user_runtime_end; ++ptr) {
+         L4_ThreadId_t tid;
+         L4_Word_t stack;
+         user_fpage_t *fpage = ptr->fpages;
+         tid = L4_GlobalId(ptr->tid + kip_ptr->thread_info.s.user_base, 2);
+
+       /* create thread */
+         L4_ThreadControl(tid, tid, L4_nilthread, myself, free_mem);
+       //在create thread時候，會從free_mem配置出utcb
+         free_mem += UTCB_SIZE;
+
+       /* map user_text, user_data and user_bss */
+         map_user_sections(kip_ptr, tid);
+
+       /* map thread stack */
+         L4_Map(tid, (L4_Word_t)free_mem, STACK_SIZE);
+         free_mem += STACK_SIZE;
+         stack = (L4_Word_t)free_mem;
+
+       /* map fpages */
+         while (fpage->base || fpage->size) {
+            if (fpage->base) {
+               L4_Map(tid, fpage->base, fpage->size);
+            } else {
+               L4_Map(tid, (L4_Word_t)free_mem, fpage->size);
+               fpage->base = (L4_Word_t)free_mem;
+            }
+            free_mem += fpage->size;
+            fpage++;
+         }
+       /* start thread */
+         start_thread(tid, (L4_Word_t)ptr->entry, stack, STACK_SIZE);
+      }
+      while (1)
+         L4_Sleep(L4_Never);
+   }
+
+這邊使用L4_Map將root自己的記憶體配置給user使用，而每個user在DECLARE的時候就會告知自己所需要的FPAGE位置和大小。
+
 KProbe
 -------
 
