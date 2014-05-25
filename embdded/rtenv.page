@@ -334,6 +334,8 @@ list
 ready_list
 ==========
 
+  .. image:: /embdded/rtenv-plus/ready_list_array.png
+
 rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的資料結構，ready_list 的每一個元素都對應到不同 priority。
 task 結構中的 ``int priority`` 代表優先權，也代表對應到 ``ready_list`` 中的元素，並使用 ``list_push`` 推進 ``ready_list`` 的元素中。
 
