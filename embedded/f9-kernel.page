@@ -2415,6 +2415,62 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 * bitmap_get_bit(bitmap_cursor_t cursor) - 取得cursor值
 * bitmap_test_and_set_bit(bitmap_cursor_t cursor) - 測試cursor是否被使用並設為1
 
+在 STM32F4-Discovery 平台上執行
+------------------------------
+需要的套件：
+
+* arm-none-eabi- toolchain，必須支援Cortex-M4F
+   - `Sourcey CodeBench(arm-2012.03, arm-2013.05, arm-2013.11)<http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/>`_
+   - `GNU Tools for ARM Embedded Processors(4.8-2013-q4-major)<https://launchpad.net/gcc-arm-embedded>`_
+
+* libncurses5-dev
+* `stlink<https://github.com/texane/stlink>`_
+
+步驟：
+
+1. git clone https://github.com/f9micro/f9-kernel.git f9-kernel
+2. cd f9-kernel
+3. make config(使用預設設定即可)
+4. make
+5. 將 STM32F4-Discovery 接上電腦
+6. make flash
+
+KDB(in-kernel debugger)
+========================
+F9中內建一套除錯工具，預設是會在開機時啟動，目前支援以下指令：
+
+* a：dump address spaces
+* m：dump memory pools
+* t：dump threads
+* s：show softriqs
+* n：show timer(now)
+* e：dump ktimer events
+* K：print kernel tables
+
+使用步驟：
+
+1. 預設會使用USART4：PA0(TX), PA1(RX)，所以先將pin腳接上，白線接PA0、綠線接PA1、黑線接GND
+2. 確認USB連上電腦
+3. screen /dev/ttyUSB0 115200 8n1
+
+.. image:: /embedded/f9-kernel/f9_kdb.jpg
+
+Troubleshooting
+================
+
+* 無法make flash - 電腦要先連接上STM32F4Discovery才能進行燒錄
+* 沒有`screen`  - 執行sudo apt-get install screen
+* screen連接失敗 - 執行sudo screen /dev/ttyUSB0 115200 8n1
+* screen傳輸的資料有問題 - 重新接線，重新啟動STM32F4
+   - 可以改用`neocon<http://wiki.openmoko.org/wiki/NeoCon>`_，支援自動連線，會比screen方便(by jserv)
+   - neocon 在 mac os x 10.9.2 也能跑(by Benux Wei)
+   - 打dmesg再次確認ttyUSB0的訊息是否正確(by Wen)
+
+* screen連接成功後，在 "Press '?' to print  KDB menu"之後按下任何鍵都没有反應，可是按reset有反應。
+   - 重新config後就沒問題了，應該是有修改到config
+
+* 要怎麼把輸出畫面往上拉？
+   - ``Ctrl-A`` + ``[``切換到copy模式就能用滾輪拉動或是``Ctrl-B``、``Ctrl-F``
 
 參考資料
 --------
