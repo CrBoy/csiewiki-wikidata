@@ -2,7 +2,13 @@
 title: Week #15 (May 27) :: Group Presentation
 toc: no
 ...
-	
+
+教學影片：來自 Intel 的第一手資訊，從多核心到平行處理
+----------------------------------------------------
+* `多核心處理器有前途嗎？<https://www.youtube.com/watch?v=yixQwNj7G0w>`_
+* `瞭解任務與資料的平行處理功能<https://www.youtube.com/watch?v=B0aK2YN7MzA>`_
+* `關於三項平行處理功能必須要知道的事<https://www.youtube.com/watch?v=M4E8pSQBF1U>`_
+
 分組報告
 --------
 * `ChibiOS/RT</embedded/chibios>`_
