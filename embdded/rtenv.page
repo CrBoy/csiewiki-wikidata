@@ -402,6 +402,24 @@ System Call
 - 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
 
 
+File System
+============
+在 rtenv-plus 中，與檔案系統有關的 task 有三個：
+
+- ``pathserver()``：檔案系統的最上層，負責管理已經註冊( register，或暫存 )的檔案路徑及 mount point。
+- ``romfs_server()``：向 pathserver() 註冊 ROMFS_TYPE，處理對於擁有 ROMFS_TYPE 的 mount point 的請求。
+- ``romdev_driver()``：檔案系統的底層，取得檔案的資訊與資料。
+
+
+**初始化**
+
+- ``romfs_server()``：向 pathserver() 註冊 fs type - ROMFS_TYPE，使得 pathserver() 處理向註冊為 ROMFS_TYPE 的 mount point 請求時，可以透過 romfs_server() 來處理。
+- ``romdev_driver()``：向 pathserver() 註冊所管理的檔案路徑 ROMDEV_PATH，並設置該 path 所屬的 file descriptor，以作為取得檔案資訊之用。
+- first() 中的 ``mount("/dev/rom0", "/", ROMFS_TYPE, 0)``：設置掛載點，對於尋找 ``/`` 目錄下的檔案，會往 ``/dev/rom0`` 來尋找，並透過 ``romfs_server()`` 以及 ``romdev_driver()``。
+
+
+
+
 Pipe 的 Read 與 Write
 ---------------------
 以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
