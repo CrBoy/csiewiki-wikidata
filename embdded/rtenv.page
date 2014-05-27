@@ -409,6 +409,25 @@ System Call
 - 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
 
 
+File Descriptor
+================
+在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 read、write、lseek 這三個動作都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個運作函式 ( e.g. fifo_write )[#]_ 。
+
+檔案類型一覽表：
+
++---------------+----------+------------------------+--------------+
+| 檔案類型       | type     | 資料結構                | 處理函式      |
++===============+==========+========================+==============+
+| fifo pipe     | S_IFIFO  | struct pipe_ringbuffer | 沒有 lseek    |
++---------------+----------+------------------------+--------------+
+| message queue | S_IMSGQ  | struct pipe_ringbuffer | 沒有 lseek   |
++---------------+----------+------------------------+--------------+
+| register file | S_IFREG  | struct regfile         | 皆有提供      |
++---------------+----------+------------------------+--------------+
+| block file    | S_IFBLK  | struct block           | 皆有提供      |
++---------------+----------+------------------------+--------------+
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
@@ -545,3 +564,5 @@ gdb
 .. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
 .. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
+
+.. [#] `File，RTENV-PLUS note，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File>`_
