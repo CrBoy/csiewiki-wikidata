@@ -231,29 +231,31 @@ Skins
 與 RT-PREEMPT 途徑的差異？
 
 * RT-PREEMPT 機制
-  -  Preemptible critical sections
-  -  Preemptible interrupt handlers
-  -  Preemptible "interrupt disable" code sequences
-  -  Priority inheritance for in-kernel spinlocks and semaphores
-  -  Deferred operations
-  -  Latency-reduction measures
-原本無法preempt的地方讓他可以preemt，讓spinlock 區塊在區分成可以preempt的地方跟不能preempt的地方，將IRQ handler移到thread中執行。
+  - Preemptible critical sections
+  - Preemptible interrupt handlers
+  - Preemptible "interrupt disable" code sequences
+  - Priority inheritance for in-kernel spinlocks and semaphores
+  - Deferred operations
+  - Latency-reduction measures
 
-Priority inheritance 是讓握有spinlock 或 semaphore的process可以暫時的提高優先權 讓他可以盡快做完critical section釋放spinlock或semaphore
+  原本無法preempt的地方讓他可以preemt，讓spinlock 區塊在區分成可以preempt的地方跟不能preempt的地方，將IRQ handler移到thread中執行。
 
-高Priority的 process才有辦法繼續執行
+  Priority inheritance 是讓握有spinlock 或 semaphore的process可以暫時的提高優先權 讓他可以盡快做完critical section釋放spinlock或semaphore
+
+  高Priority的 process才有辦法繼續執行
 
 * RT_PREEMPT 與 xenomai的差異
 
-RT_PREEMPT是基於linux架構去改進 讓更多地方能preempt 達到real-time的能力
+  RT_PREEMPT是基於linux架構去改進 讓更多地方能preempt 達到real-time的能力
 
-Xenomai則是改變整個系統架構 新增一個scheduler與IRQ管理的機制
+  Xenomai則是改變整個系統架構 新增一個scheduler與IRQ管理的機制
 
-讓處理real-time task流程簡化到只剩ipipe->scheduler 就能執行
+  讓處理real-time task流程簡化到只剩ipipe->scheduler 就能執行
 
-不會因linux龐大的架構影響到real-time task的處理時間
+  不會因linux龐大的架構影響到real-time task的處理時間
 
-實作
+  實作
+
 ==================
 
 
