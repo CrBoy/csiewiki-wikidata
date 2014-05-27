@@ -438,6 +438,36 @@ File Descriptor
 - 設置 event sensor
 
 
+**pipe ( fifo pipe, message queue )**
+
+- 資料結構
+
+  .. code-block:: c
+
+    struct pipe_ringbuffer {
+        struct file file;      // 所屬的 fd 以及 file operations
+        int start;             // ring buffer 目前的讀寫起點
+        int end;               // ring buffer 目前的讀寫終點
+        int read_event;        // 該 fd 所屬的 read event ID
+        int write_event;       // 該 fd 所屬的 write event ID
+        char data[PIPE_BUF];   // pipe 的 buffer，ring buffer
+    };
+
+- Event Handler
+  - ``int pipe_read_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``：
+    讓因為讀取而被 block 住的 task，重新送出讀取請求。
+  - ``int pipe_write_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``：
+    讓因為寫入而被 block 住的 task，重新送出寫入請求。
+
+- Macros
+  - ``PIPE_PUSH( pipe, src )``：從 src push 1 byte 的資料到 pipe 中。
+  - ``PIPE_POP( pipe, dst )``：從 pipe pop 1 byte 的資料到 dst 中。
+  - ``PIPE_PICK( pipe, dst, size_byte )``：從 pipe 中讀取指定 size 的資料到 dst，但不會將 pipe 的資料 pop 出來。
+  - ``PIPE_LEN( pipe )``：回傳 pipe 中的資料量 in bytes。
+
+- IPC 的實作方式之一。
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
