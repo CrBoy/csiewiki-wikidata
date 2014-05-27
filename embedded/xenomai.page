@@ -228,6 +228,15 @@ Skins
 
 與 RT-PREEMPT 途徑的差異？
 
+* Preempt_RT 機制
+  -  Preemptible critical sections
+  -  Preemptible interrupt handlers
+  -  Preemptible "interrupt disable" code sequences
+  -  Priority inheritance for in-kernel spinlocks and semaphores
+  -  Deferred operations
+  -  Latency-reduction measures
+原本無法preempt的地方讓他可以preemt，讓spinlock 區塊在區分成可以preempt的地方跟不能preempt的地方，將IRQ handler移到thread中執行。
+
 
 
 實作
