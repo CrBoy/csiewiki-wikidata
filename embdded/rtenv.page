@@ -441,6 +441,20 @@ File Descriptor
 - 設置 event sensor
 
 
+**Structures**
+
+- file_request：task 對於 fd 的請求，或是 fd 對 fd 的請求
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;
+        char *buf;        // 請求所需的資料，可以是 buffer 或是 其他 request 的資料結構
+        int size;         // *buf 的大小
+        int whence;       // 用於 lseek，標記 lseek 的請求類型
+    };
+
+
 **pipe ( fifo pipe, message queue )**
 
 - IPC 的實作方式之一。
