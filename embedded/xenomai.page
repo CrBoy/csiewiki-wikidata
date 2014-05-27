@@ -157,6 +157,8 @@ ipipe_XXX -> rthal_XXX -> xnXXX
 示意圖
 http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-img4.jpg
 
+.. image:: /embedded/xenomai/adeos.jpg
+
 可以找到ipipe_raise_irq()將interrupt推到pipeline
 
 在ipipe上每個domain都有自己的優先度
