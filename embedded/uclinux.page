@@ -786,7 +786,20 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
     I/O Memory Management Unit(`IOMMU<http://www.mulix.org/lectures/using-iommus-for-virtualization/OLS-jdmason.pdf>`_)最初由AMD提出，是管理設備對記憶體的存取。它位于設備和主機之間，將來自設備請求的位址轉換成記憶體位址，並檢查訪問權限。
     
     好處：存取的記憶體空間可以不連續。
+**Q8. Why does volume name declared as name[0]? **
 
+    .. code-block:: c
+
+        struct romfs_super_block {
+           ...
+           char name[0];//volume name : 使用者給予此系統一個名稱
+        };
+
+    1.減少記憶體的浪費，如果給一個固定的大小，在volume小的情況下，會造成浪費，且限制名字的長度。
+
+    2.可以直接以romfs_super_block ->name存取。
+
+    3.用sizeof(struct romfs_super_block)會發現char name[0]不占空間。
 
 參考資料
 --------
