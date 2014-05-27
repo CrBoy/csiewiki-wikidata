@@ -230,7 +230,7 @@ Skins
 
 與 RT-PREEMPT 途徑的差異？
 
-* Preempt_RT 機制
+* RT-PREEMPT 機制
   -  Preemptible critical sections
   -  Preemptible interrupt handlers
   -  Preemptible "interrupt disable" code sequences
@@ -243,6 +243,15 @@ Priority inheritance 是讓握有spinlock 或 semaphore的process可以暫時的
 
 高Priority的 process才有辦法繼續執行
 
+* RT_PREEMPT 與 xenomai的差異
+
+RT_PREEMPT是基於linux架構去改進 讓更多地方能preempt 達到real-time的能力
+
+Xenomai則是改變整個系統架構 新增一個scheduler與IRQ管理的機制
+
+讓處理real-time task流程簡化到只剩ipipe->scheduler 就能執行
+
+不會因linux龐大的架構影響到real-time task的處理時間
 
 實作
 ==================
