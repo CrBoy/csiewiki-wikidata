@@ -799,6 +799,65 @@ Q & A：
 * Q5：context switch效能測試算法中為何在取得時間前要做乘2動作?
 
  + A： `因為<https://stm32f429.hackpad.com/ChibiOSRT-test-uxwcLZpZQIS>`_
+
+* Q6：Create thread from heap v.s. mem pool的時間複雜度為何(bigO)?
+
+ + A: Heap is O(n) ，根據實驗所做之圖：
+      
+      .. image:: /embedded/heap_test.PNG
+
+* Q7：mutex與semephore(binary)為何在同時間內的lock與unlock次數不同？
+
+ + A：因為mutex會有priority inversion的可能，所以會較semaphore慢
+     ( 1.
+       `mutex v.s semaphore<http://swem.logdown.com/posts/177651-mutexes-and-semaphores-demystified>`_
+
+       2.
+       `chibios<http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:semaphores_mutexes>`_ 
+      )
+
+     in code priority inversion 的實作：
+
+     .. code-block:: c
+
+        while (tp->p_prio < ctp->p_prio) {
+             /* Make priority of thread tp match the running thread's priority.*/
+                 tp->p_prio = ctp->p_prio;
+             /* The following states need priority queues reordering.*/
+                 switch (tp->p_state) {
+                   case THD_STATE_WTMTX:
+                   /* Re-enqueues the mutex owner with its new priority.*/
+                   prio_insert(dequeue(tp), (ThreadsQueue *)tp->p_u.wtobjp);
+                   tp = ((Mutex *)tp->p_u.wtobjp)->m_owner;
+                   continue;
+                   #if CH_USE_CONDVARS |                                                       \
+                    (CH_USE_SEMAPHORES && CH_USE_SEMAPHORES_PRIORITY) |                     \
+                    (CH_USE_MESSAGES && CH_USE_MESSAGES_PRIORITY)
+                      #if CH_USE_CONDVARS
+                        case THD_STATE_WTCOND:
+                      #endif
+                      #if CH_USE_SEMAPHORES && CH_USE_SEMAPHORES_PRIORITY
+                        case THD_STATE_WTSEM:
+                      #endif
+                      #if CH_USE_MESSAGES && CH_USE_MESSAGES_PRIORITY
+                        case THD_STATE_SNDMSGQ:
+                      #endif
+                   /* Re-enqueues tp with its new priority on the queue.*/
+                      prio_insert(dequeue(tp), (ThreadsQueue *)tp->p_u.wtobjp);
+                      break;
+                   #endif
+                   case THD_STATE_READY:
+                      #if CH_DBG_ENABLE_ASSERTS
+                        /* Prevents an assertion in chSchReadyI().*/
+                        tp->p_state = THD_STATE_CURRENT;
+                      #endif
+                   /* Re-enqueues tp with its new priority on the ready list.*/
+                   chSchReadyI(dequeue(tp));
+                   break;
+                  }
+             break;
+        }
+
 參考資料
 --------
 * `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
