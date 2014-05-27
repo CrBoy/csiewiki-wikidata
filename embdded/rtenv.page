@@ -466,6 +466,36 @@ Pipe 的 Read 與 Write
 
 .. image:: /embedded/rtenv-plus/CPUCLOCK.png
 
+安裝與測試
+----------------
+1. 下載 rtenv-plus 程式碼
+
+https://github.com/StanleyDing/rtenv-plus
+
+或
+
+https://github.com/Omar002/rtenv-plus
+
+2. 安裝 st-link
+
+http://github.com/texane/stlink.git
+
+3. 安裝 screen
+
+``sudo apt-get install screen``
+
+4. 把線接好
+
+5. 燒錄 rtenv-plus
+
+ a. 進入 rtenv-plus 資料夾
+ b. ``make flash``
+
+6. 開啟 screen
+
+``screen /dev/ttyUSB0 115200 8n1``
+
+7. 按下板子上的 reset 按鈕
 
 硬體驅動原理
 ----------------
