@@ -443,6 +443,7 @@ File Descriptor
 
 **pipe ( fifo pipe, message queue )**
 
+- IPC 的實作方式之一。
 - 資料結構
 
   .. code-block:: c
@@ -468,7 +469,20 @@ File Descriptor
   - ``PIPE_PICK( pipe, dst, size_byte )``：從 pipe 中讀取指定 size 的資料到 dst，但不會將 pipe 的資料 pop 出來。
   - ``PIPE_LEN( pipe )``：回傳 pipe 中的資料量 in bytes。
 
-- IPC 的實作方式之一。
+- fifo pipe ( S_IFIFO )
+  - 傳遞資料格式：| 資料 |
+  - ``fifo_readable``
+    - FILE_ACCESS_ERROR：請求讀取的大小超過 pipe buffer 的大小。
+    - FILE_ACCESS_BLOCK：pipe 中的有效資料量未達要求讀取的大小，task 會被 push 到該資料結構的 read event list 中，進入 TASK_WAIT_READ 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 中的有效資料量大於或等於要求讀取的大小。
+
+  - ``fifo_read``：1 byte 1 byte 的從 pipe POP 資料出來存到使用者提供的 buffer 裡。讀取完成後，發出 write pending 讓等待寫入同一個 file descriptor 的 task 可以寫入資料。
+  - ``fifo_writable``
+    - FILE_ACCESS_ERROR：請求寫入的大小超過 pipe buffer 的大小。
+    - FILE_ACCESS_BLOCK：如果剩餘有效空間小於要求寫入大小的話，task 會被 push 到 write event list 中，進入 TASK_WAIT_WRITE 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 有足夠空間可以寫入。
+
+  - ``fifo_write``：1 byte 1 byte 將資料從使用者提供的 buffer 寫入 pipe 裡。寫入完成後，發出 read pending 讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
 
 
 File System
