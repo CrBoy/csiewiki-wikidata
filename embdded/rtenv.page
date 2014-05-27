@@ -331,9 +331,9 @@ list
   - ``list_for_each``：以 list 為起點，搜尋所有 node。
   - ``list_for_each_safe``：以 list 為起點，但考慮到有些因為呼叫如 ``list_shift`` 之類的 function 會把 list node pop 出來，導致搜尋的連結中斷，``list_for_each_safe`` 讓剩下的 node 可以繼續被搜尋。
 
-ready_list
+scheduler
 ==========
-rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的資料結構，``ready_list`` 的每一個元素都對應到不同 priority。
+rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler 的資料結構，``ready_list`` 的每一個元素都對應到不同優先權。
 
   .. code-block:: c
 
@@ -341,7 +341,8 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的�
 
   .. image:: /embedded/rtenv-plus/ready_list_array.png
 
-使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
+在第一個 task 的初始化，fork 建立新的 task，或是利用 setpriority 設定 task 的優先權，
+會使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
 
  .. image:: /embedded/rtenv-plus/ready_list_element.png
 
@@ -349,8 +350,23 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的�
 
   .. image:: /embedded/rtenv-plus/ready_list_empty.png
 
+觸發 scheduler 選擇下一個執行的 task 有三種狀況
+
+  - ``SysTick_Handler``：cortex-M4 系統時鐘為 180MHz
+
+  .. code-block:: c
+
+    SysTick_Config(configCPU_CLOCK_HZ / configTICK_RATE_HZ);
+
+configCPU_CLOCK_HZ 為 72MHz，
+configTICK_RATE_HZ 為 100，
+( 72M/100 ) * 180M = 4m，每經過 4ms 就會觸發一次 SysTick_Handler
+
+  - ``USART2_IRQHandler``
+  - ``SVC_Handler`` ：system call 執行 ``svc 0`` 觸發
+
 當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，最前端為正在執行的 task，
-則將該 task 放到 ``ready_list`` 元素的最末端。
+則將該 task 放到 ``ready_list`` 元素的最末端，讓其他有相同優先權的 task 能夠被執行。
 
   .. code-block:: c
 
@@ -358,7 +374,7 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的�
     if (timeup && ready_list[task->priority].next == &task->list)
         list_push(&ready_list[task->priority], &tasks[current_task].list);
 
-每次 rtenv-plus 在選擇下一個要執行的 task，會從 ``ready_list`` 中尋找優先權最大且最前端的 task。
+每次 scheduler 在選擇下一個要執行的 task，會從 ``ready_list`` 中尋找優先權最大且最前端的 task。
 
   .. code-block:: c
 
@@ -368,16 +384,7 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為排程的�
     task = list_entry(list, struct task_control_block, list); // 將 task 指到上面講的 struct task
     current_task = task->pid; // 記錄這個 task 的 pid
 
-  .. code-block:: c
-
-    struct task_control_block {
-        struct user_thread_stack *stack;
-        int pid;
-        int status;
-        int priority;
-
-        struct list list;
-    };
+由上述可知道 rtenv-plus 是一個使用 round-robin 排程的 preemptive 作業系統
 
 Event Monitoring
 =================
