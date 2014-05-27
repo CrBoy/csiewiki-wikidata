@@ -808,13 +808,7 @@ Q & A：
 
 * Q7：mutex與semephore(binary)為何在同時間內的lock與unlock次數不同？
 
- + A：因為mutex會有priority inversion的可能，所以會較semaphore慢
-     ( 1.
-       `mutex v.s semaphore<http://swem.logdown.com/posts/177651-mutexes-and-semaphores-demystified>`_
-
-       2.
-       `chibios<http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:semaphores_mutexes>`_ 
-      )
+ + A：因為mutex會有priority inversion的可能，所以會較semaphore慢(1.`mutex v.s semaphore<http://swem.logdown.com/posts/177651-mutexes-and-semaphores-demystified>`_ 2. `chibios<http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:semaphores_mutexes>`_)
 
      in code priority inversion 的實作：
 
