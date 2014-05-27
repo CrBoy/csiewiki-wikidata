@@ -486,16 +486,40 @@ http://github.com/texane/stlink.git
 
 4. 把線接好
 
+.. image:: /embedded/rtenv-plus/st-link.jpg
+.. image:: /embedded/rtenv-plus/pins.jpg
+
 5. 燒錄 rtenv-plus
 
  a. 進入 rtenv-plus 資料夾
- b. ``make flash``
+ b. ``make``
+ c. ``make flash``
 
 6. 開啟 screen
 
 ``screen /dev/ttyUSB0 115200 8n1``
 
 7. 按下板子上的 reset 按鈕
+
+gdb
+=====
+
+1. 如欲使用 gdb ，先安裝 arm toolchain
+
+``sudo apt-get install gcc-arm-none-eabi``
+
+2. 執行 st-util
+
+``sudo st-util``
+
+3. 執行 arm-none-eabi-gdb
+
+ a. 到 rtenv-plus/build/
+ b. ``$arm-none-eabi-gdb main.elf``
+
+4. 設定 gdb 目標
+
+ ``(gdb) target remote :4242``
 
 硬體驅動原理
 ----------------
