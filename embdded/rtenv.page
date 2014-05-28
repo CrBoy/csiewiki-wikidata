@@ -528,6 +528,21 @@ File Descriptor
 
   - ``fifo_write``：1 byte 1 byte 將資料從使用者提供的 buffer 寫入 pipe 裡。寫入完成後，發出 read pending 讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
 
+- message queue ( S_IMSGQ )
+  - 傳遞資料格式：| 資料長度(4 bytes) | 資料 |
+  - ``mq_readable``
+    - FILE_ACCESS_BLOCK：message queue的資料傳輸格式一定帶有 4 bytes 的資料來指示後面所帶的資料長度，所以當 pipe 的有效資料未達 4 byte 時，代表還未傳輸完成，task 會被 push 到 read event list，進入 TASK_WAIT_READ 狀態。
+    - FILE_ACCESS_ERROR：請求讀取長度大於這次傳輸的長度。透過"資料長度( 4 bytes )"來檢查。
+    - FILE_ACCESS_ACCEPT：請求長度等於或小於這次的傳輸長度。
+
+  - ``mq_read``：先從 pipe 中取出資料長度，再依照資料長度將 pipe 資料 pop 出來存到使用者提供的 buffer 裡。讀取完成後，發出 write event pending 讓等待寫入同一個 file descriptor 的 task 可以寫入資料。
+  - ``mq_writable``
+    - FILE_ACCESS_ERROR：寫入必須是 non-atomic，所以寫入長度( 包含 4 byte 的長度資訊 )不能大於 pipe 的大小。
+    - FILE_ACCESS_BLOCK：pipe 沒有足夠的有效空間寫入，將 task push 到 write event list，進入 TASK_WAIT_WRITE 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 有足夠的有效空間
+
+  - ``mq_write``：先將請求寫入的長度 push 到 pipe 裡，再將資料 push 到 pipe 裡。寫入完成後，發出 read event pending，讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
+
 
 File System
 ============
