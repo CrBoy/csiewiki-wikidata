@@ -478,6 +478,13 @@ File Descriptor
     };
 
 
+**file descriptor 關係**
+
+.. image:: /embedded/rtenv-plus/file_descriptor_relation.PNG
+
+- 在初始化函式中，會將資料結構中的 file 元素存到 kernel 的 file descriptor array，所以只要在 file descriptor array 中拿到指定的 file 元素，透過 marco ``container_of``，就可以拿到該 file descriptor 的資料結構。
+
+
 **pipe ( fifo pipe, message queue )**
 
 - IPC 的實作方式之一。
