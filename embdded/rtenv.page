@@ -455,6 +455,29 @@ File Descriptor
     };
 
 
+- file：file descriptor 的 fd number 以及所屬的處理函式
+
+  .. code-block:: c
+
+    struct file {
+        int fd;          // 獨特的 fd number
+        struct file_operations *ops;     // 指向所屬的處理函式結構
+    };
+
+- file_operations：利用 pointer to function 來設置處理函式
+
+  .. code-block:: c
+
+    struct file_operations {
+        int (*readable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*writable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*read)(struct file*, struct file_request*, struct event_monitor *);
+        int (*write)(struct file*, struct file_request*, struct event_monitor *);
+        int (*lseekable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*lseek)(struct file*, struct file_request*, struct event_monitor *);
+    };
+
+
 **pipe ( fifo pipe, message queue )**
 
 - IPC 的實作方式之一。
