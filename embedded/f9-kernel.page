@@ -2052,6 +2052,227 @@ Example -- sampling
       ...
    }
 
+KTimer
+-------
+
+L4將硬體中斷當成IPC message轉交給user-level thread處理，該thread需要跟kernel register成為特定硬體中斷的handler。每個硬體中斷只轉交給一個Handler，但是一個thread可以成為多個中斷的handler。
+
+在L4中，timer ticks interrupt是唯一一個被內部處理的中斷，但在F9中，此中斷依然是繼續使用L4 中其它中斷處理方法。而Ktimer 就是F9轉交timer ticks interrupt的handler。
+
+KTIMER相關設定
+
+* CONFIG_KTIMER_HEARTBEAT：每個ktimer tick的硬體cycles
+* CONFIG_KTIMER_MINTICKS：time event的最小ktimer ticks
+* CONFIG_KTIMER_TICKLESS：tickless啟用
+
+一開始的 systick handler 是 __ktimer_handler
+
+.. code-block:: prettyprint linenums
+
+   //kernel/ktimer.c
+   void __ktimer_handler(void)
+   {
+      ++ktimer_now; //目前的time
+      if (ktimer_enabled && ktimer_delta > 0) {
+         ++ktimer_time;
+         --ktimer_delta; //利用counting down方式的timer
+         if (ktimer_delta == 0) {
+            ktimer_enabled = 0;
+            ktimer_time = ktimer_delta = 0;
+
+          //ktimer_delta 等於0的時候，把相關event加入排程。
+            softirq_schedule(KTE_SOFTIRQ);
+         }
+      }
+   }
+
+| 除了每次增加ktimer_now 之外， __ktimer_handler 也會查看ktimer是否啟動以及ktimer_delta。
+| ktimer_delta是下一個event發生的倒數時間，倒數完畢後會排程softirq。
+| 在ktimer初始化時候，宣告了KTE_SOFTIRQ的handler。
+
+.. code-block:: prettyprint linenums
+
+   void ktimer_event_init()
+   {
+      ktable_init(&ktimer_event_table);
+      ktimer_init();
+     // softirq that belongs to KTE_SOFTIRQ will be handled by ktimer_event_handler
+      softirq_register(KTE_SOFTIRQ, ktimer_event_handler);
+   }
+   ...
+   // INIT HOOK
+   INIT_HOOK(ktimer_event_init, INIT_LEVEL_KERNEL);
+
+ktimer的event list是根據時間排序，從最近到最遠，所以在event_handler當中只需要從前面開始找出delta = 0的event。
+
+.. code-block:: prettyprint linenums
+
+   void ktimer_event_handler()
+   {
+      ktimer_event_t *event = event_queue;
+      ktimer_event_t *last_event = NULL;
+      ktimer_event_t *next_event = NULL;
+
+      uint32_t h_retvalue = 0;
+      if (!event_queue) {
+        /* That is bug if we are here */
+         ...
+      }
+      /* 尋找最後一個delta = 0的event
+      do {
+         event = event->next;
+      } while (event && event->delta == 0);
+
+      // last_event->delta != 0
+      last_event = event;
+      /* All rescheduled events will be scheduled after last event */
+
+      // 所以event 是要處理的event, event_queue把要處理的event 拿掉了
+      event = event_queue;
+      event_queue = last_event;
+
+      /* walk chain */
+      do {
+       //event->handler應該在register的時候就要儲存
+         h_retvalue = event->handler(event);
+         next_event = event->next;
+
+       // 下一次的event時間，所以重新排進event_queue中
+         if (h_retvalue != 0x0) {
+            dbg_printf(DL_KTIMER,
+                       "KTE: Handled and rescheduled event %p @%ld\n",
+                       event, ktimer_now);
+
+            ktimer_event_schedule(h_retvalue, event);
+         } else {
+           //不再需要發生了，所以把記憶體free掉
+             dbg_printf(DL_KTIMER,
+                        "KTE: Handled event %p @%ld\n",
+                        event, ktimer_now);
+
+             ktable_free(&ktimer_event_table, event);
+         }
+
+         event = next_event; /* Guaranteed to be next
+                               regardless of re-scheduling */
+
+      } while (next_event && next_event != last_event);
+
+      if (event_queue) {
+            /* Reset ktimer */
+            // 重新把ktimer設定好，並且把ktimer_delta設定成下一個event_queue的delta
+         ktimer_enable(event_queue->delta);
+      }
+   }
+
+| ktimer中的event queue是根據最近時間（delta)去排序的，所以在尋找的時候只需要找出最後一個delta = 0的event。
+| 特別的一點是透過next_event先儲存下一個event,避免在ktimer重新排程的時候選擇到新排程next的event。
+
+.. code-block:: prettyprint linenums
+
+   //kernel/ktimer.c
+   static void ktimer_enable(uint32_t delta)
+   {
+      if (!ktimer_enabled) {
+         ktimer_delta = delta;
+         ktimer_time = 0;
+         ktimer_enabled = 1;
+      }
+   }
+
+| enable就是設定ktimer_delta，ktimer_delta倒數到0的時候就啟動event。
+
+
+.. code-block:: prettyprint linenums
+
+   //kernel/ktimer.c
+   int ktimer_event_schedule(uint32_t ticks, ktimer_event_t *kte)
+   {
+      long etime = 0, delta = 0;
+      ktimer_event_t *event = NULL, *next_event = NULL;
+
+      if (!ticks)
+         return -1;
+
+      // 每次enable, ktimer_time 歸零，所以tick是距離最近的ktimer_handler的時間開始計算
+      // 要注意的是最近的ktimer_handler不包含本次
+      ticks -= ktimer_time;
+      kte->next = NULL;
+
+      //分成兩個情況，event_queue裡面是否有event
+      if (event_queue == NULL) {
+         /* All other events are already handled, so simply schedule
+          * and enable timer
+          */
+            ...
+          //設定kte->delta，然後放進event_queue
+          kte->delta = ticks;
+          event_queue = kte;
+          //重設ktimer
+          ktimer_enable(ticks);
+      } else {
+         next_event = event_queue;
+         //因為event_queue原本已經排序好，所以只需要找出擺放位置就可以了
+         if (ticks >= event_queue->delta) {
+            do {
+               event = next_event;
+
+               //etime是到目前event所需要的delta
+               etime += event->delta;
+
+               //delta是所要倒數的時間與前一個event的時間差
+               //例如queue原本有A，A的delta是20，而B需要倒數30，則B的delta是10
+               delta = ticks - etime;
+               next_event = event->next;
+            } while (next_event && ticks > (etime + next_event->delta));
+            /* Insert into chain and recalculate */
+            event->next = kte;
+         } else {
+            event_queue = kte;
+            delta = ticks;
+           /* Reset timer */
+            ktimer_enable(ticks);
+         }
+           /* Chaining events */
+         if (delta < CONFIG_KTIMER_MINTICKS)
+            delta = 0;
+            kte->next = next_event;
+            kte->delta = delta;
+            ktimer_event_recalc(next_event, delta);
+         }
+      return 0;
+   }
+
+這邊看到最後會呼叫ktimer_event_recalc(next_event, delta)，next_event是指向kte之後一個event，delta是kte的delta，所以看得出這功能是重新計算kte之後的event->delta。
+
+How-to Use KTimer
+=================
+
+使用方法很簡單，只是create ktimer event就可以了。
+
+.. code-block:: prettyprint linenums
+
+   //kernel/ktimer.c
+   int ktimer_event_create(uint32_t ticks, ktimer_event_handler_t handler, void *data)
+   {
+      ktimer_event_t *kte;
+      if (!handler)
+         return -1;
+
+      kte = (ktimer_event_t *) ktable_alloc(&ktimer_event_table);
+
+      /* No available slots */
+      if (kte == NULL)
+         return -1;
+
+      kte->next = NULL;
+      kte->handler = handler;
+      kte->data = data;
+      return ktimer_event_schedule(ticks, kte);
+   }
+
+ticks是指距離上次ktimer_handler多少個ticks後要發生，handler是發生時候處理的function，data是傳遞給handler的參數。 create event從ktimer_event_table中獲得記憶體之後把資料儲存起來然後開始排程。
+
 效能表現
 --------
 
