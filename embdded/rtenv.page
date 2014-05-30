@@ -544,6 +544,23 @@ File Descriptor
   - ``mq_write``：先將請求寫入的長度 push 到 pipe 裡，再將資料 push 到 pipe 裡。寫入完成後，發出 read event pending，讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
 
 
+**Pipe 的 Read 與 Write**
+
+以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
+
+.. image:: /embedded/rtenv-plus/Read_and_write.png
+
+以 write 的部分為例，在 ``FILE_ACCESS_ACCEPT`` 的 case 中會送出 read_event pending。執行完 write 的工作後，kernel 會繼續執行 ``event_monitor_serve()``，檢查有沒有 event pending，此時，剛剛送出的 read_event 就會被處理，檢查有沒有在 read 的時候被 push 到 read_event list 的 task。如果有，則執行 read_event 的 handler - ``pipe_read_release()``。``pipe_read_release()`` 會重新呼叫 ``file_read()``，讓 task 再次嘗試讀取 pipe，流程判斷如上圖，但是不同的 case 有不同的處理方式：
+
+- ``FILE_ACCESS_ACCEPT``：值為1，代表讀取成功。``event_monitor_serve()`` 會將該 task 從 read_event 的 list 中 pop 出來，並重新 push 回 ready_list 裡，task 的狀態也被改為 TASK_READY。
+- ``FILE_ACCESS_BLOCK``：值為0，代表仍舊未達指定讀取量，則會被繼續 BLOCK 住。
+- ``FILE_ACCESS_ERROR``：不會發生。因為在第一次嘗試讀取時，如果發生 FILE_ACCESS_ERROR，該 task 不會被 push 到 read_event 的 list 中。
+
+至於 read，則反之。下圖為從輸入到輸出所牽涉的 task 以及使用的 pipe，其中箭頭的起點方執行 write，終點方為 read：
+
+.. image:: /embedded/rtenv-plus/Tasks_with_pipe.PNG
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
@@ -558,25 +575,6 @@ File System
 - ``romfs_server()``：向 pathserver() 註冊 fs type - ROMFS_TYPE，使得 pathserver() 處理向註冊為 ROMFS_TYPE 的 mount point 請求時，可以透過 romfs_server() 來處理。
 - ``romdev_driver()``：向 pathserver() 註冊所管理的檔案路徑 ROMDEV_PATH，並設置該 path 所屬的 file descriptor，以作為取得檔案資訊之用。
 - first() 中的 ``mount("/dev/rom0", "/", ROMFS_TYPE, 0)``：設置掛載點，對於尋找 ``/`` 目錄下的檔案，會往 ``/dev/rom0`` 來尋找，並透過 ``romfs_server()`` 以及 ``romdev_driver()``。
-
-
-
-
-Pipe 的 Read 與 Write
----------------------
-以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
-
-.. image:: /embedded/rtenv-plus/Read_and_write.png
-
-以 write 的部分為例，在 ``FILE_ACCESS_ACCEPT`` 的 case 中會送出 read_event pending。執行完 write 的工作後，kernel 會繼續執行 ``event_monitor_serve()``，檢查有沒有 event pending，此時，剛剛送出的 read_event 就會被處理，檢查有沒有在 read 的時候被 push 到 read_event list 的 task。如果有，則執行 read_event 的 handler - ``pipe_read_release()``。``pipe_read_release()`` 會重新呼叫 ``file_read()``，讓 task 再次嘗試讀取 pipe，流程判斷如上圖，但是不同的 case 有不同的處理方式：
-
-- ``FILE_ACCESS_ACCEPT``：值為1，代表讀取成功。``event_monitor_serve()`` 會將該 task 從 read_event 的 list 中 pop 出來，並重新 push 回 ready_list 裡，task 的狀態也被改為 TASK_READY。
-- ``FILE_ACCESS_BLOCK``：值為0，代表仍舊未達指定讀取量，則會被繼續 BLOCK 住。
-- ``FILE_ACCESS_ERROR``：不會發生。因為在第一次嘗試讀取時，如果發生 FILE_ACCESS_ERROR，該 task 不會被 push 到 read_event 的 list 中。
-
-至於 read，則反之。下圖為從輸入到輸出所牽涉的 task 以及使用的 pipe，其中箭頭的起點方執行 write，終點方為 read：
-
-.. image:: /embedded/rtenv-plus/Tasks_with_pipe.PNG
 
 
 移植過程
