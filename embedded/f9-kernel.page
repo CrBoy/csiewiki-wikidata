@@ -1719,6 +1719,8 @@ as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_b
 
 在`platform/stm32f4/f9_flash.ld`中有一塊`user_runtime`，並且有紀錄開頭跟結尾的變數`user_runtime_start`跟`user_runtime_end`，這邊的作法跟`Init Hook`很像。會掃過一遍user_runtime中的struct，然後開始執行user thread。
 
+.. code-block:: prettyprint linenums
+
    // user/root_thread.c
    extern user_struct user_runtime_start[];
    extern user_struct user_runtime_end[];
