@@ -561,6 +561,35 @@ File Descriptor
 .. image:: /embedded/rtenv-plus/Tasks_with_pipe.PNG
 
 
+**Block File( S_IFBLK )**
+
+- 資料結構
+
+  .. code-block:: c
+
+    struct block {
+        struct file file;           // 所屬的 fd 以及 block file operations
+        int driver_pid;              // 所屬 driver ( 就是將此 fd 註冊為 S_IFBLK 的 task ) 的 pid
+        struct file *driver_file;   // 所屬 driver 的 fd
+        int event;                   // block event ID
+
+        /* request */
+        int request_pid;            // 請求 access 此 fd 的 task pid
+        int buzy;                   // 為 1 時代表有 task 正在請求 access，否則為 0
+        int pos;                    // 等等我補一下
+        char buf[BLOCK_BUF];        // buffer
+
+        /* response */
+        int transfer_len;           // 有著不同的意義XD
+    };
+
+- Event Handler: ``block_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
+
+  讓 task 重新發送一次請求，請求類別由 stack 中的 r7 值( 0x03: file_write, 0x04: file_read, 0x0a: file_lseek )判定，請求的 fd 透過 data 來存取。
+
+- block 的請求有 read、write、lseek，分成兩大類，一個是外部對 fd 的請求，另一個是 driver 對 fd 的請求。當外部想要對此 fd 請求時，會先被 block 住，等待 driver 對 fd 發出請求並處理完後，才會讓外部重新發出請求。
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
