@@ -602,6 +602,10 @@ File Descriptor
 
   .. image:: /embedded/rtenv-plus/block_request.PNG
 
+    將 block_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 romdev_driver()。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
+
+  - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
