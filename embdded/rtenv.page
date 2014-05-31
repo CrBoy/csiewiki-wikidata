@@ -585,10 +585,10 @@ File Descriptor
 
     struct block_request {
         int cmd;       // 請求 romdev_driver() 執行的指令
-        int task;
-        int fd;
-        int size;
-        int pos;
+        int task;      // 請求 task 的 pid
+        int fd;        // 請求 access 的 fd number
+        int size;      // lseek 為指定的讀寫起點；read 和 write 則為讀寫大小
+        int pos;       // 詳見 block_request_****able 條目
     };
 
 - Event Handler: ``block_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
