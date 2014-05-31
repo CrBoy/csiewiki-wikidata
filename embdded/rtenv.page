@@ -611,6 +611,11 @@ File Descriptor
   - FILE_ACCESS_ACCEPT：只有在有 task 想要 access block fd 時 ( buzy = 1 )
   - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 block fd
 
+- ``block_driver_lseek``：transfer_len 為 block_request 的大小，並將 buzy 設為 0 ( 代表處理完請求 )，發出 event pending，讓 task 可以重新發出請求。回傳 block_request 的大小。
+
+- ``block_driver_read``：將 block buffer 中的資料複製到外部提供的 buffer 裡。但不會將 buzy 設為 0。
+- ``block_driver_write``：將 block file 的資料寫入 fd buffer 中。transfer_len 為寫入的大小，將 buzy 設為 0，並發出 event pending。
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
