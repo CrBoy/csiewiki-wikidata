@@ -576,7 +576,7 @@ File Descriptor
         /* request */
         int request_pid;            // 請求 access 此 fd 的 task pid，如果為 0 代表尚未對 driver 發出請求
         int buzy;                   // 為 1 時代表有 task 正在請求 access，否則為 0
-        int pos;                    // 等等我補一下
+        int pos;                    // block file 的讀寫頭位置
         char buf[BLOCK_BUF];        // buffer
 
         /* response */
@@ -600,7 +600,7 @@ File Descriptor
 - ``block_request_****able``
   - 第一次請求( request_pid 為 0 )：先對 block 所屬的 driver 發出請求，如下表：
 
-
+  .. image:: /embedded/rtenv-plus/block_request.PNG
 
 File System
 ============
