@@ -563,6 +563,7 @@ File Descriptor
 
 **Block File( S_IFBLK )**
 
+- 特性：資料的讀寫以 block 為單位，大小不定，小至1，大至 fd 所提供的 buffer 大小。當需要從硬體讀取資料時，會將一整塊資料放入緩衝區裡，系統在從緩衝區裡取得資料；寫回時也會先將資料放在緩衝區，直到資料滿了在一次寫進硬體中。[#]_
 - 資料結構
 
   .. code-block:: c
@@ -580,7 +581,7 @@ File Descriptor
         char buf[BLOCK_BUF];        // buffer
 
         /* response */
-        int transfer_len;           // 有著不同的意義XD
+        int transfer_len;           // 在 driver 運作中被賦值，作為 request 系列的執行參考
     };
 
     struct block_request {
@@ -611,10 +612,10 @@ File Descriptor
   - FILE_ACCESS_ACCEPT：只有在有 task 想要 access block fd 時 ( buzy = 1 )
   - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 block fd
 
-- ``block_driver_lseek``：transfer_len 為 block_request 的大小，並將 buzy 設為 0 ( 代表處理完請求 )，發出 event pending，讓 task 可以重新發出請求。回傳 block_request 的大小。
+以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
 
-- ``block_driver_read``：將 block buffer 中的資料複製到外部提供的 buffer 裡。但不會將 buzy 設為 0。
-- ``block_driver_write``：將 block file 的資料寫入 fd buffer 中。transfer_len 為寫入的大小，將 buzy 設為 0，並發出 event pending。
+- lseek：設定 block file 讀寫頭。
+  1. ``void lseek(int fd, int offset, int whence);``： **fd** 為對象 file descriptor 的 ID；**offset** 為距離檔案起點的位置( in bytes )；**whence** 可以指定使用哪一種設置方式( SEEK_SET, SEEK_CUR, SEEK_END )。
 
 File System
 ============
@@ -734,4 +735,6 @@ gdb
 
 .. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
 
-.. [#] `File，RTENV-PLUS note，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File>`_
+.. [#] `File，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File>`_
+
+.. [#] `Block devices:drivers and files，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=Block-Devices:-Drivers-and-Fil>`_
