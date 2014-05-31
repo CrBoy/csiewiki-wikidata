@@ -605,7 +605,11 @@ File Descriptor
 
 　　將 block_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 romdev_driver()。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
 
-  - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+ - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+
+- ``block_driver_****able``
+  - FILE_ACCESS_ACCEPT：只有在有 task 想要 access block fd 時 ( buzy = 1 )
+  - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 block fd
 
 File System
 ============
