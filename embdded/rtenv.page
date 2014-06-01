@@ -625,7 +625,7 @@ File Descriptor
 
 以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
 
-- lseek：設定 block file 讀寫頭。回傳：新的讀寫頭位置。
+- **lseek**：設定 block file 讀寫頭。回傳：新的讀寫頭位置。
   1. ``void lseek(int fd, int offset, int whence);``： **fd** 為對象 file descriptor 的 ID；**offset** 為距離檔案起點的位置( in bytes )；**whence** 可以指定使用哪一種設置方式( SEEK_SET, SEEK_CUR, SEEK_END )。
   2. 透過 system call 將請求資訊放到 file_request，並傳送給對象 fd。
 
@@ -661,7 +661,7 @@ File Descriptor
   8. ``block_request_lseek`` 將 driver 所欲設定的值 ( 存在 transfer_len 欄位 ) 複製到此 fd 的 pos 欄位，完成設定讀寫頭的位置。
   9. 將此 fd 的 request_pid 設回 0，代表完成外部 task 的請求，請求 task 會被 push 回 ready list，回傳值為新的讀寫頭位置。
 
-- read：以 fd 的讀寫頭為起點，一次讀取指定大小的資料。回傳：實際讀取的資料量
+- **read**：以 fd 的讀寫頭為起點，一次讀取指定大小的資料。回傳：實際讀取的資料量
   1. 外部 task 對此 fd 作 read 的請求，執行 ``block_request_readable``。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request，並等待 driver 的處理。
   2. driver 收到 request 後，執行 BLOCK_CMD_READ 指令。driver 會計算讀取的區塊是否有超過 block file 的檔案結尾，如果有就只會讀取到檔案結尾。driver 會將計算結果透過 ``block_response`` 來讓 fd 讀取 block file 的資料。
 
