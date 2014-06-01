@@ -596,7 +596,7 @@ File Descriptor
 
   讓 task 重新發送一次請求，請求類別由 stack 中的 r7 值( 0x03: file_write, 0x04: file_read, 0x0a: file_lseek )判定，請求的 fd 透過 data 來存取。
 
-- block 的請求有 read、write、lseek，分成兩大類，一個是外部對 fd 的請求，另一個是 driver 對 fd 的請求。當外部想要對此 fd 請求時，會先被 block 住，等待 driver 對 fd 發出請求並處理完後，才會讓外部重新發出請求。
+- block 的請求有 read、write、lseek，分成兩大類，一個是外部對 fd 的請求 ( block_request_ 系列 )，另一個是 driver 對 fd 的請求 ( block_driver_ 系列 )。當外部想要對此 fd 請求時，會先被 block 住，等待 driver 對 fd 發出請求並處理完後，才會讓外部重新發出請求。
 
 - ``block_request_****able``
   - 第一次請求( request_pid 為 0 )：先對 block 所屬的 driver 發出請求，如下表：
@@ -611,6 +611,17 @@ File Descriptor
 - ``block_driver_****able``
   - FILE_ACCESS_ACCEPT：只有在有 task 想要 access block fd 時 ( buzy = 1 )
   - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 block fd
+
+
+- ``block_response``：將指定資料傳送到指定的 block file descriptor，透過這些資訊 file descriptor 可以從 block file 取得資料。
+
+  .. code-block:: c
+
+    struct block_response response = {
+        .transfer_len = len,  // 請求讀取的長度
+        .buf = buf            // 請求資料的起點
+    };
+
 
 以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
 
@@ -646,9 +657,20 @@ File Descriptor
 
   5. 現在是由 driver 發出 lseek 的請求，也確認此 fd 正有請求要處理後，執行 ``block_driver_lseek``。block_driver_lseek 會將欲設定讀寫頭的位置存在此 fd 的 transfer_len 欄位，並將 buzy 設回 0，確認處理外部 task 對此 block fd 的請求。送出 block event pending，讓等待處理的 task 繼續執行。
   6. ``event_monitor_serve`` 處理 block event pending 會執行 ``block_event_release``，透過 ``block_event_release`` 使得請求此 fd 的 task 再次 lseek 發出請求。
-  7. 外部 task 對於此 file descriptor 為第二次請求，而且 driver 也已經處理完請求，執行 ``block_request_lseek``。
+  7. 外部 task 對於此 fd 為第二次請求，而且 driver 也已經處理完請求，執行 ``block_request_lseek``。
   8. ``block_request_lseek`` 將 driver 所欲設定的值 ( 存在 transfer_len 欄位 ) 複製到此 fd 的 pos 欄位，完成設定讀寫頭的位置。
   9. 將此 fd 的 request_pid 設回 0，代表完成外部 task 的請求，請求 task 會被 push 回 ready list，回傳值為新的讀寫頭位置。
+
+- read：以 fd 的讀寫頭為起點，一次讀取指定大小的資料。回傳：實際讀取的資料量
+  1. 外部 task 對此 fd 作 read 的請求，執行 ``block_request_readable``。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request，並等待 driver 的處理。
+  2. driver 收到 request 後，執行 BLOCK_CMD_READ 指令。driver 會計算讀取的區塊是否有超過 block file 的檔案結尾，如果有就只會讀取到檔案結尾。driver 會將計算結果透過 ``block_response`` 來讓 fd 讀取 block file 的資料。
+
+    .. image:: /embedded/rtenv-plus/romdev_read_check.PNG
+
+  3. ``block_response`` 使用 system call write 來傳輸資料給指定 fd。來自於 driver 的請求，``block_driver_writable`` 檢查該 fd 是否有收到外部請求，因為在 '1.' 時有發出請求，所以執行 ``block_driver_write``。
+  4. ``block_driver_write``：將資料從 block file 複製到 fd 的 buffer 中，將寫入長度存到 fd 的 transfer_len 欄位中，將 buzy 設為 0，表示 driver 處理完請求，並發出 block event pending。
+  5. 透過 block event handler ``block_event_release``，被 block 住的 task 再次送出 read 請求。由於 driver 已經處理完請求，所以執行 ``block_request_read``。
+  6. ``block_request_read`` 將 fd buffer 中的資料複製到使用者提供的 buffer 中，並更新 fd 的讀寫頭位置。完成讀取 block file。
 
 File System
 ============
