@@ -672,6 +672,12 @@ File Descriptor
   5. 透過 block event handler ``block_event_release``，被 block 住的 task 再次送出 read 請求。由於 driver 已經處理完請求，所以執行 ``block_request_read``。
   6. ``block_request_read`` 將 fd buffer 中的資料複製到使用者提供的 buffer 中，並更新 fd 的讀寫頭位置。完成讀取 block file。
 
+- **write**：block file 是唯讀的，無法寫入。回傳：-1。
+  1. 如果外部對 block file 提出寫入請求，``block_request_write`` 會透過 IPC 傳送資料給 driver，而請求的 task 會被 push 到 block event list。
+  2. driver 執行 BLOCK_CMD_WRITE 指令，由於 block file 是唯讀的，所以執行``block_response(fd, NULL, -1);``。
+  3. 參考 **write** 指令中，``block_response``的執行過程，將不會讀取任何資料到 fd 的 buffer 中，而使用者的資料也不會被寫入到 block file 中。
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
