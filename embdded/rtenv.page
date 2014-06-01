@@ -576,12 +576,12 @@ File Descriptor
 
         /* request */
         int request_pid;            // 請求 access 此 fd 的 task pid，如果為 0 代表尚未對 driver 發出請求
-        int buzy;                   // 為 1 時代表有 task 正在請求 access，否則為 0
+        int buzy;                   // 為 1 時代表此 fd 正等待 driver 處理，否則為 0
         int pos;                    // block file 的讀寫頭位置
         char buf[BLOCK_BUF];        // buffer
 
         /* response */
-        int transfer_len;           // 在 driver 運作中被賦值，作為 request 系列的執行參考
+        int transfer_len;           // lseek：driver 計算完的新的讀寫頭位置
     };
 
     struct block_request {
@@ -614,8 +614,41 @@ File Descriptor
 
 以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
 
-- lseek：設定 block file 讀寫頭。
+- lseek：設定 block file 讀寫頭。回傳：新的讀寫頭位置。
   1. ``void lseek(int fd, int offset, int whence);``： **fd** 為對象 file descriptor 的 ID；**offset** 為距離檔案起點的位置( in bytes )；**whence** 可以指定使用哪一種設置方式( SEEK_SET, SEEK_CUR, SEEK_END )。
+  2. 透過 system call 將請求資訊放到 file_request，並傳送給對象 fd。
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;   // 為請求的 task
+        char *buf;     // NULL
+        int size;      // offset
+        int whence;    // whence：SEEK_SET、SEEK_CUR、SEEK_END
+    };
+
+  3. 由於請求的 task 非 driver，所以進行 block_request_lseekable。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request ( 包在 file_request 中 )，並等待 driver 的處理。
+
+  4. driver 收到 BLOCK_CMD_SEEK 指令後，計算好要設定的讀寫頭位置，使用 SEEK_SET ( 直接指定位置 ) 設定讀寫頭：
+
+    + SEEK_SET：直接將讀寫頭設定在 ``offset`` 指定的位置
+    + SEEK_END：將讀寫頭設定在 block file 結尾 (EOF) 後 ``offset`` bytes 的位置
+    + SEEK_CUR：將讀寫頭設定在 block file 的目前讀寫頭後 ``offset`` bytes 的位置
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;   // driver
+        char *buf;     // NULL
+        int size;      // 相對於 block file 起點的位置
+        int whence;    // SEEK_SET
+    };
+
+  5. 現在是由 driver 發出 lseek 的請求，也確認此 fd 正有請求要處理後，執行 ``block_driver_lseek``。block_driver_lseek 會將欲設定讀寫頭的位置存在此 fd 的 transfer_len 欄位，並將 buzy 設回 0，確認處理外部 task 對此 block fd 的請求。送出 block event pending，讓等待處理的 task 繼續執行。
+  6. ``event_monitor_serve`` 處理 block event pending 會執行 ``block_event_release``，透過 ``block_event_release`` 使得請求此 fd 的 task 再次 lseek 發出請求。
+  7. 外部 task 對於此 file descriptor 為第二次請求，而且 driver 也已經處理完請求，執行 ``block_request_lseek``。
+  8. ``block_request_lseek`` 將 driver 所欲設定的值 ( 存在 transfer_len 欄位 ) 複製到此 fd 的 pos 欄位，完成設定讀寫頭的位置。
+  9. 將此 fd 的 request_pid 設回 0，代表完成外部 task 的請求，請求 task 會被 push 回 ready list，回傳值為新的讀寫頭位置。
 
 File System
 ============
