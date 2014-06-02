@@ -134,6 +134,31 @@ Communication
  }
  
 
+------------------------------------------------------------
+
+ | sem_post
+ | 一般而言，sem_post會
+.. code-block:: c
+
+ if (sem)
+ {
+ 	sem_releaseholder(sem);
+ 	sem->semcount++;
+ 	if (sem->semcount <= 0)
+ 	{
+ 		for (stcb = (FAR struct tcb_s*)g_waitingforsemaphore.head; (stcb && stcb->waitsem != sem); stcb = stcb->flink);
+ 		if (stcb) 
+ 		{
+ 			stcb->waitsem = NULL;
+ 			up_unblock_task(stcb);
+ 		}
+ 	}
+  }
+ 
+
+
+
+
 Scheduling
 ----------------
 include/sys/types.h
