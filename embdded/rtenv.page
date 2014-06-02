@@ -741,6 +741,19 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 如果是目錄，則其資料長度 (len 欄位) 會包含此目錄下的檔案以及子目錄的資訊，如果是檔案，則只會包含自己的檔案內容。
 
 
+**開啟一個檔案**
+
+``int open(const char *pathname, int flags);``，回傳該檔案的 fd id
+1. 透過 IPC 將請求的檔名傳送到 ``pathserver()``。
+2. ``pathserver()`` 先尋找已經儲存的檔案路徑，如果沒有則往 mount point 尋找。如果沒有則回傳 -1，有則透過 IPC 向 ``romfs_server()`` 請求開啟此檔案。
+3. ``romfs_server()`` 開始找尋檔案資訊：
+
+  3-1. ``romfs_open()`` 將先將 block fd 的讀寫頭設置在 block file 的資料起點，先讀取 root directory entry。
+  3-2. ``romfs_open_recur()`` 會來取得指定的檔案檔頭。其尋找方式為，如果是目錄，則依次讀取子檔案的檔頭並比對，如果遇到子目錄，則在呼叫一次 ``romfs_open_recur()`` 繼續尋找想要的檔頭。
+  3-3. 如果找到指定的檔案的檔頭會回傳其檔頭起點在 block file 的 offset，如果沒有則回傳 -1。
+
+4. 如果有尋找到檔案，則將檔按路徑註冊到 ``pathserver()``，並且將其 file descriptor 設置為 S_IFREG，設置在 block file 的讀寫起點，以及可讀取的資料範圍 ( 檔頭中 len 欄位所指的資料長度 )，並回傳該 register fd 的 fd id 給最初呼叫的 task。
+
 
 移植過程
 -----------
