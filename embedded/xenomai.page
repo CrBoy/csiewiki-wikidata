@@ -110,7 +110,7 @@ categories: embedded, arm, raspberrypi
     ./configure --host=arm-bcm2708hardfp-linux-gnueabi
     cd src
     mkdir dist
-    make install DIST_DIR=dist
+    make install DESTDIR=dist
 
   dist中會出現``usr/xenomai``
   將這個資料夾移到sd卡中 ``/usr/``
