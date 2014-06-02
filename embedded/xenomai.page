@@ -94,6 +94,8 @@ categories: embedded, arm, raspberrypi
 * 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
 
 * Compile Xenomai
+
+.. code-block:: c
     
   cd xenomai-head
   export PATH=../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
