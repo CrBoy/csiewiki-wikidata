@@ -406,7 +406,23 @@ Event Monitoring
 System Call
 ============
 
-- 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``R7``並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``main()`` 中實作 system call 功能。
+
+system call 函數的變數以及原本 user mode push 進去的暫存器之值，皆可透過 tasks[current_task].stack 來傳遞，因為 tasks[current_task].stack 指向 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
+
+``main()`` 中判斷 system call 的代號
+
+- 0x1：
+- 0x2：
+- 0x3：
+- 0x4：
+- 0x5：
+- 0x6：
+- 0x7：
+- 0x8：
+- 0x9：
+- 0xa：
+- default：
 
 
 File Descriptor
