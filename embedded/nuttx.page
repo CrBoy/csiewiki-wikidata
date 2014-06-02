@@ -137,7 +137,8 @@ Communication
 ------------------------------------------------------------
 
  | sem_post
- | 一般而言，sem_post會
+ | 一般而言，sem_post會在一個task要離開critical section的時候被呼叫
+ | 它會先呼叫sem_releaseholder，然後檢查counter是否<= 0，若是，代表還有task在等semaphore，sem_post會找到waiting list的下一個task，unblock它
 .. code-block:: c
 
  if (sem)
