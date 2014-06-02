@@ -107,8 +107,7 @@ categories: embedded, arm, raspberrypi
 
 * 用 minicom 連進 raspberry pi 中執行以下動作
 
-  .. code-block:: c
-
+.. code-block:: c
   export PATH=/usr/xenomai/bin:$PATH  
   export LD_LIBRARY_PATH=/usr/xenomai/lib
   sudo modprobe xeno_posix
