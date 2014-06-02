@@ -34,28 +34,26 @@ categories: embedded, arm, raspberrypi
 
    wget https://www.dropbox.com/s/dcju74md5sz45at/rpi_xenomai_config
 
-* Apply patches
+* Apply ipipe core pre-patch
 
-  - Apply ipipe core pre-patch
+.. code-block:: c
 
-  .. code-block:: c
+   cd linux-rpi-3.8.y
+   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-pre-2.patch
 
-    cd linux-rpi-3.8.y
-    patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-pre-2.patch
+* Apply Xenomai ipipe core patch 
 
-  - Apply Xenomai ipipe core patch 
+.. code-block:: c
 
-  .. code-block:: c
+   cd <working dir>
+   ./xenomai-head/scripts/prepare-kernel.sh --arch=arm --linux=linux-rpi-3.8.y --adeos=xenomai-head/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-3.patch
 
-    cd <working dir>
-    xenomai-head/scripts/prepare-kernel.sh --arch=arm --linux=linux-rpi-3.8.y --adeos=xenomai-head/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-3.patch
+* Apply ipipe core post-patch 
 
-  - Apply ipipe core post-patch 
+.. code-block:: c
 
-  .. code-block:: c
-
-    cd linux-rpi-3.8.y
-    patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
+   cd linux-rpi-3.8.y
+   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
 
 * Compile kernel
 
