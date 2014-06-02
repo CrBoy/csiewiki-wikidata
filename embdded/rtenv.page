@@ -406,8 +406,65 @@ Event Monitoring
 System Call
 ============
 
-- 功能：將 syscall 代碼存入 ``R7``，觸發 SVC exception，將代碼存入 Processor stack，並轉換成 Kernel Mode 後，在 ``main()`` 中處理 system call。
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``main()`` 中實作 system call 功能。
 
+system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 tasks[current_task].stack 來傳遞，因為 tasks[current_task].stack 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
+
+``main()`` 中判斷 system call 的代號並執行對應功能
+
+- 0x1：fork
+
+分支出一個新的子task，子task複製所有父task push 進去的 stack 資料，繼承優先權，並為子task設定 pid 為當前task的數量-1(第一個初始task之 pid 為0)，也將子task.list push 進 ``ready_list``。父task回傳0，子task則回傳 pid 之值(不等於0)。
+
+若task數量已達到上限，則無法分支出新的 task，回傳-1。
+
+- 0x2：getpid
+
+回傳該 task 之 pid，也就是 current_task。
+
+- 0x3：write
+
+寫入資料到對應參數 files[fd] 所屬的 pipe_ringbuffer，實現行程之間的溝通。
+
+若可寫入則將資料寫入 pipe_ringbuffer 的 data 當中，如果先前有在對應的 pipe_ringbuffer 執行 read 而被擋住的 task，則釋放該 task 並在之後讀取資料。
+若 data 剩餘空間無法容納寫入的資料，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠空間再寫入，task 的狀態變成 TASK_WAIT_WRITE。
+
+- 0x4：
+
+讀取資料到對應參數 files[fd] 所屬的 pipe_ringbuffer，實現行程之間的溝通。
+
+若可讀取則將從 pipe_ringbuffer 的 data 當中拿出資料，如果先前有在對應的 pipe_ringbuffer 執行 write 而被擋住的 task，則釋放該 task 並在之後寫入資料。
+若 data 可拿取的資料與比剩餘資料量還要大，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠資料再讀取，task 的狀態變成 TASK_WAIT_READ。
+
+- 0x5：interrupt_wait
+
+啟動特定的 interrupt 在之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
+
+- 0x6：getpriority
+
+回傳 task 的優先權。
+
+- 0x7：setpriority
+
+設定 task 的優先權，優先權不小於 0 也不大於 PRIORITY_LIMIT，除了設定 current_task 的優先權之外，也可以更改其他 task 的優先權。
+
+- 0x8：mknod
+
+改變傳入對應參數 file[fd] 所指向的 file_operation 結構，結構包含write，writable，read，readable，lseek，lseekable 函式(不是 system call 的函式)。
+
+- 0x9：sleep
+
+將 current_task 擋住，狀態變成 TASK_WAIT_TIME，等待觸發 ``SysTick_Handler`` 之後才能繼續執行。
+
+- 0xa：lseek
+
+
+
+- default：
+
+此狀況為因應其他非 SVC_Handler 的 interrupt，如SysTick_Handler與USART2_IRQHandler。
+SysTick_Handler：timeup 設定為1，使之後進行選擇哪一個 task 來執行，並且釋放狀態為 TASK_WAIT_TIME 的 task。
+USART2_IRQHandler：關掉特定的 interrupt 使之不能夠被觸發，並且釋放狀態為 TASK_WAIT_INTR 的 task。
 
 File Descriptor
 ================
