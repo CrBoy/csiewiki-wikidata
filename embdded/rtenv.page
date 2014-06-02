@@ -678,6 +678,40 @@ File Descriptor
   3. 參考 **write** 指令中，``block_response``的執行過程，將不會讀取任何資料到 fd 的 buffer 中，而使用者的資料也不會被寫入到 block file 中。
 
 
+**S_IFREG ( Register file )**
+
+- 透過 ``romfs_server()`` 註冊的檔案，類型為 S_IFREG ，皆由 ``romfs_server()`` 來管理。
+- 資料結構：
+
+  .. code-block:: c
+
+    struct romfs_file {
+        int fd;         // fd number
+        int device;     // 該檔案資料所在的 fd number
+        int start;      // 在檔案資料中的資料起點
+        size_t len;     // 在檔案資料中的長度
+    };        
+
+
+  .. code-block:: c
+
+    struct regfile {
+        struct file file;           // 所屬的 fd number 以及 regfile operations
+        int driver_pid;              // 資料所在的 driver 的 pid
+        struct file *driver_file;   // 資料所在的 driver 的 fd number
+        int event;                   // regfile event ID
+
+        /* request */
+        int request_pid;            // 請求 access 此 fd 的 task pid，如果為 0 代表尚未對 driver 發出請求
+        int buzy;                   // 為 1 時代表此 fd 正等待 driver 處理，否則為 0
+        int pos;                    // regfile 的讀寫頭位置
+        char buf[REGFILE_BUF];        // buffer
+
+        /* response */
+        int transfer_len;           // 
+    };
+
+
 File System
 ============
 在 rtenv-plus 中，與檔案系統有關的 task 有三個：
