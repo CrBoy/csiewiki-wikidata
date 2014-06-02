@@ -362,7 +362,7 @@ configCPU_CLOCK_HZ 為 72MHz，
 configTICK_RATE_HZ 為 100，
 ( 72M/100 ) * 180M = 4m，每經過 4ms 就會觸發一次 SysTick_Handler
 
-  - ``USART2_IRQHandler``
+  - ``USART2_IRQHandler``：STM32F4 與週邊裝置或是連結的電腦傳輸資料時，usart2所觸發的中斷
   - ``SVC_Handler`` ：system call 執行 ``svc 0`` 觸發
 
 當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，最前端為正在執行的 task，
