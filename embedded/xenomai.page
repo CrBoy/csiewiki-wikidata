@@ -53,7 +53,6 @@ categories: embedded, arm, raspberrypi
 .. code-block:: c
 
    cd linux-rpi-3.8.y
-
    patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
 
 * Create build directory 
@@ -91,38 +90,28 @@ categories: embedded, arm, raspberrypi
     find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
 
 * 編譯好的kernelImage,移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
+
 * 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
-* Cyclictest
-  - Linux
 
-  .. code-block:: c
+* Compile Xenomai
     
-
-  - Xenomai
-
-  .. code-block:: c
-    
-    cd xenomai-head
-    export PATH=../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
-    ./configure --host=arm-bcm2708hardfp-linux-gnueabi
-    cd src
-    mkdir dist
-    make install DESTDIR=`pwd`/dist
+  cd xenomai-head
+  export PATH=../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+  ./configure --host=arm-bcm2708hardfp-linux-gnueabi
+  cd src
+  mkdir dist
+  make install DESTDIR=`pwd`/dist
 
   dist中會出現``usr/xenomai``
   將這個資料夾移到sd卡中 ``/usr/``
 
-  在raspberry pi中
+* 用 minicom 連進 raspberry pi 中執行以下動作
 
   .. code-block:: c
 
-    export PATH=/usr/xenomai/bin:$PATH  
-    export LD_LIBRARY_PATH=/usr/xenomai/lib
-    sudo modprobe xeno_posix
-
-   接著就能跑使用xenomai機制的cyclictest
-
-  - RT_preempt
+  export PATH=/usr/xenomai/bin:$PATH  
+  export LD_LIBRARY_PATH=/usr/xenomai/lib
+  sudo modprobe xeno_posix
 
 
 Real Time 的定義
