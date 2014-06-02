@@ -104,8 +104,7 @@ categories: embedded, arm, raspberrypi
   mkdir dist
   make install DESTDIR=`pwd`/dist
 
-  dist中會出現``usr/xenomai``
-  將這個資料夾移到sd卡中 ``/usr/``
+* dist中會出現``usr/xenomai``, 將這個資料夾移到sd卡中 ``/usr/``
 
 * 用 minicom 連進 raspberry pi 中執行以下動作
 
