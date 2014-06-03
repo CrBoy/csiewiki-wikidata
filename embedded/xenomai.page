@@ -332,7 +332,7 @@ Skins
 
 .. code-block:: prettyprint
 
-cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
+   cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
 .. image:: /embedded/xenomai/001.png
 
@@ -340,7 +340,7 @@ cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
 .. code-block:: prettyprint
 
-cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
+   cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
 .. image:: /embedded/xenomai/002.png
 
@@ -348,7 +348,7 @@ cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
 .. code-block:: prettyprint
 
-/usr/xenomai/bin/cyclictest -p 90 - m -c 0 -i 200 -n -v 100 -q -l 100" >log
+   /usr/xenomai/bin/cyclictest -p 90 - m -c 0 -i 200 -n -v 100 -q -l 100" >log
 
 .. image:: /embedded/xenomai/preemptRt.png
 
