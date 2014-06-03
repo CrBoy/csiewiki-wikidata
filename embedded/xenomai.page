@@ -409,7 +409,7 @@ Cyclictest 原理
 
   4.使用 ticks2ts 轉換時間單位
 
-  .. code-block:: prettyprint
+.. code-block:: prettyprint
 
      int clock_nanosleep (clockid_t clock_id, int flags, const struct timespec *rqtp, struct timespec *rmtp)
      {
@@ -457,7 +457,7 @@ Cyclictest 原理
         xnlock_put_irqrestore(&nklock, s);
 
         return err; 
- }
+    }
 
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
