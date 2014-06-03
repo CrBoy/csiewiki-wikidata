@@ -809,11 +809,16 @@ File Descriptor
     - SEEK_END：資料終點的位置加上 offset
 
   3. 由 driver 發出的請求，而且該 fd 正有 task 要求存取，執行``regfile_driver_lseek()``。將已經計算過後新的讀寫頭位置存到該 fd 的 request_len。driver 完成處理，發出 pending 讓外部 task 重新發出請求。
-  4. 外部 task 重新發出請求後，是第二次發出請求。``regfile_request_lseek()`` 將 driver 存放在 request_len 的值拿來更新 fd 的讀寫頭位置。
+  4. 透過 ``event_monitor_serve()`` ，外部 task 重新發出請求後，是第二次發出請求。``regfile_request_lseek()`` 將 driver 存放在 request_len 的值拿來更新 fd 的讀寫頭位置。
   5. task 再次回到 ready_list 中。
 
-- **read**：
-  1. 
+- **read**：讀取指定檔案的資料
+  1. 外部 task 對 regfile fd 先發出第一次 read 請求，``regfile_request_readable()`` 透過 IPC 將 fs_request 傳送給 ``romfs_server()``，而外部 task 被 push 到 event list，進入 TASK_WAIT_READ 的狀態，等待 driver 的處理。
+  2. ``romfs_server()`` 執行 FS_CMD_READ 指令。先計算在 block device 的讀取區間，然後設定 block fd 的讀寫頭，並透過 block fd 從 block device 讀取指定大小的資料。
+  3. 將從 block device 讀取到的資料，寫入到外部請求讀取的 fd 中。由於是 driver 發出的寫入請求，所以執行 ``regfile_driver_write()``，會將 driver 暫存的讀取資料寫到 regfile fd 的 buffer 中，並將寫入長度存到 transfer_len 的欄位中，並發出 event pending。
+  4. 透過 ``event_monitor_serve()`` ，外部 task 再度發出 read 請求，是第二次發出請求，所以執行 ``regfile_request_read()``，將存在 regfile fd buffer 的資料複製到使用者提供的 buffer，更新 regfile fd 的讀寫頭位置，並回傳讀取大小。
+
+- **write**：檔案是 read only，所以一定回傳 -1。
 
 
 File System
