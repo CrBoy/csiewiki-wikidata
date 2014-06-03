@@ -214,15 +214,62 @@ Communication
  			:
  			:
  		}
+   	return OK;
  	}
- 	return OK;
+ 
  }
 
+.. code-block:: c
 
+ int pthread_givesemaphore(sem_t *sem)
+ {
+ 	if (sem)
+ 	{
+ 		if (sem_post(sem) == OK)
+  		{
+ 			return OK;
+ 		}
+ 		else
+ 		{
+ 			set_errno(EINVAL);
+ 			return ERROR;
+ 		}
+ 	}
+ 	else
+ 	{
+ 		set_errno(EINVAL);
+ 		return ERROR;
+ 	}
+ }
 
+---------------------------------------------------------
 
+ | pthread_mutexunlock.c
 
+.. code-block:: c
 
+ int pthread_givesemaphore(sem_t *sem)
+ {
+ 	if (sem)
+ 	{
+ 		if (sem_post(sem) == OK)
+ 		{
+ 			return OK;
+ 		}
+ 		else
+ 		{
+ 			set_errno(EINVAL);
+ 			return ERROR;
+ 		}
+ 	}
+ 	else
+ 	{
+ 		set_errno(EINVAL);
+ 		return ERROR;
+ 	}
+ }
+ 
+ 
 Scheduling
 ----------------
 include/sys/types.h
