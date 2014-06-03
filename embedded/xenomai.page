@@ -387,21 +387,23 @@ Cyclictest 原理
   - scheduler latency
   - scheduler duration
 
-* 實作流程
+* Cyclictest 實作流程
 
   1.cyclictest建立一個timerthread, 它一個 realtime 的 thread
 
   2.timerthread會重複的執行取第一次時間 nanosleep(interval) 取第二次時間 比對兩次時間差與interval的差異
 
-  3.使用 spinlock (xnlock_get_irqsave) 令 CPU 不接受 Interrupt 
+  3.最後將結果輸出在terminal
 
-  4.使用 xnpod_suspend_thread 改變目前 thread 的狀態
+* clock_nanosleep 實作流程
 
-  5.使用 xntimer_get_timeout_stopped 取得 tick
+  1.使用 spinlock (xnlock_get_irqsave) 令 CPU 不接受 Interrupt 
 
-  6.使用 ticks2ts 轉換時間單位
+  2.使用 xnpod_suspend_thread 改變目前 thread 的狀態
 
-  7.最後將結果輸出在terminal
+  3.使用 xntimer_get_timeout_stopped 取得 tick
+
+  4.使用 ticks2ts 轉換時間單位
 
   .. code-block:: prettyprint
 
