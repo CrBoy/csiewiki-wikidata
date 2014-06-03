@@ -334,8 +334,8 @@ Skins
 
 * Xenomai-patched Linux
 
-Cyclictest
-+++++++++++
+Cyclictest 原理
+==========
 
 * 概念:設定一個時間間隔->取得現在時間->讓process 睡一個間隔->process醒來後再取一次時間->比對兩次取得的時間差與設定的間隔差距
 * pseudocode:
