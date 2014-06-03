@@ -168,7 +168,7 @@ uClinux的檔案系統:Romfs
                 if (!isize)
                         goto out;
 
-                end_index = (isize - 1) >> PAGE_CACHE_SHIFT;// ex.如果需要讀取的大小為12KB，則只需讀取一次。
+                end_index = (isize - 1) >> PAGE_CACHE_SHIFT;// ex.如果需要讀取的大小為4KB，則只需讀取一次。
                 //(PAGE_CACHE_SHIFT 為 12)
                 do {
                         unsigned long nr, left;
