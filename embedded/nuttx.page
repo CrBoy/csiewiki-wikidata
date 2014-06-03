@@ -248,26 +248,24 @@ Communication
 
 .. code-block:: c
 
- int pthread_givesemaphore(sem_t *sem)
+ int pthread_mutex_unlock(FAR pthread_mutex_t *mutex)
  {
- 	if (sem)
- 	{
- 		if (sem_post(sem) == OK)
+ 	:
+ 	:
+ 	:
+ 	{       
  		{
- 			return OK;
+ 			mutex->pid    = 0;
+ 			:
+ 			:
+ 			:
+ 			ret = pthread_givesemaphore((sem_t*)&mutex->sem);
  		}
- 		else
- 		{
- 			set_errno(EINVAL);
- 			return ERROR;
- 		}
+ 		sched_unlock();
  	}
- 	else
- 	{
- 		set_errno(EINVAL);
- 		return ERROR;
- 	}
+ 	return ret;
  }
+
  
  
 Scheduling
