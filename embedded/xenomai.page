@@ -389,344 +389,69 @@ Cyclictest 原理
 
 * 實作流程
 
-  1.cyclictest建立一個timerthread 這是一個realtime 的 thread
+  1.cyclictest建立一個timerthread, 它一個 realtime 的 thread
 
   2.timerthread會重複的執行取第一次時間 nanosleep(interval) 取第二次時間 比對兩次時間差與interval的差異
 
-  3.將結果輸出在terminal
+  3.使用 spinlock (xnlock_get_irqsave) 令 CPU 不接受 Interrupt 
 
-  -  在cylictic test 的main函式使用posix skin的api 建立timerthread  
-
-  .. code-block:: prettyprint
-
-      pthread_create(&stat[i].thread, &thattr, timerthread, &par[i]);    //pthread_create()定義在ksrc/skins/posix/thread.c
-
-  .. code-block:: prettyprint
-
-          int pthread_create(pthread_t *tid,
-                       const pthread_attr_t * attr,
-                       void *(*start) (void *), void *arg){
-
-            union xnsched_policy_param param;  /**使用schedule的參數 可能是sched_rt_param 或 sched_idle_param(這兩個的參數都只有一個int prio)/
-            struct xnthread_start_attr sattr;
-            struct xnthread_init_attr iattr;
-            pthread_t thread, cur; /* *pthread_t = pse51thread , pse51thread由xnthread_t與其他成員組成*/
-            xnflags_t flags = 0;
-            size_t stacksize;
-            const char *name;
-            int prio, ret;
-            spl_t s;
-
-            if (attr && attr->magic != PSE51_THREAD_ATTR_MAGIC)
-                    return EINVAL;
-            /*下面開始分配thread空間 初始化thread */
-
-            thread = (pthread_t)xnmalloc(sizeof(*thread));
-
-            if (!thread)
-                    return EAGAIN;
-
-            thread->attr = attr ? *attr : default_attr;
-            cur = pse51_current_thread();
-            if (thread->attr.inheritsched == PTHREAD_INHERIT_SCHED) {
-
-                    /* cur may be NULL if pthread_create is not called by a pse51
-                       thread, in which case trying to inherit scheduling
-                       parameters is treated as an error. */
-                    /*這邊應該是說 如果不是用xnthread做出來的pse51 thread而是linux本身的posix pthread 則當作error*/
-                    if (!cur) {
-                            xnfree(thread);
-                            return EINVAL;
-                    }
-                    pthread_getschedparam_ex(cur, &thread->attr.policy,
-                                             &thread->attr.schedparam_ex);
-            }
-
-            prio = thread->attr.schedparam_ex.sched_priority;
-            stacksize = thread->attr.stacksize;
-            name = thread->attr.name;
-            if (thread->attr.fp)
-                    flags |= XNFPU;
-            if (!start)
-                    flags |= XNSHADOW;        /* Note: no interrupt shield. */
-            iattr.tbase = pse51_tbase;
-            iattr.name = name;
-            iattr.flags = flags;
-            iattr.ops = &pse51_thread_ops;
-            iattr.stacksize = stacksize;
-            param.rt.prio = prio;
-            hread->arg = arg;
-            xnsynch_init(&thread->join_synch, XNSYNCH_PRIO, NULL);
-            thread->nrt_joiners = 0;
-            pse51_cancel_init_thread(thread);
-            pse51_signal_init_thread(thread, cur);
-            pse51_tsd_init_thread(thread);
-            pse51_timer_init_thread(thread);
-
-            if (thread->attr.policy == SCHED_RR)
-                    xnpod_set_thread_tslice(&thread->threadbase, pse51_time_slice);
-            xnlock_get_irqsave(&nklock, s);
-            thread->container = &pse51_kqueues(0)->threadq;
-            appendq(thread->container, &thread->link);
-            xnlock_put_irqrestore(&nklock, s);
-            #ifdef CONFIG_XENO_OPT_PERVASIVE
-            thread->hkey.u_tid = 0;
-            thread->hkey.mm = NULL;
-            #endif /* CONFIG_XENO_OPT_PERVASIVE */
-            /* We need an anonymous registry entry to obtain a handle for fast
-               mutex locking. */
-            ret = xnthread_register(&thread->threadbase, "");
-            if (ret) {
-                    thread_destroy(thread);
-                    return ret;
-            }
-            *tid = thread;                /* Must be done before the thread is started. */
-
-            /* Do not start shadow threads (i.e. start == NULL). */
-
-            if (start) {
-
-                    sattr.mode = 0;
-                    sattr.imask = 0;
-                    sattr.affinity = thread->attr.affinity;
-                    sattr.entry = thread_trampoline;
-                    sattr.cookie = thread;
-                    xnpod_start_thread(&thread->threadbase, &sattr);
-            }
-            return 0;
-             }
-
-  - 建立一個thread叫timerthread,timerthread主要做的事情是呼叫clock_nanosleep這個function
-
-  .. code-block:: prettyprint
-
-        int clock_nanosleep(clockid_t clock_id,
-                        int flags,
-                        const struct timespec *rqtp, struct timespec *rmtp){
-
-            xnthread_t *cur;
-            spl_t s;
-            int err = 0;
-            if (xnpod_unblockable_p())
-                    return EPERM;
-            if (clock_id != CLOCK_MONOTONIC && clock_id != CLOCK_REALTIME)
-                    return ENOTSUP;
-            if ((unsigned long)rqtp->tv_nsec >= ONE_BILLION)
-                    return EINVAL;
-            if (flags & ~TIMER_ABSTIME)
-                    return EINVAL;
-            cur = xnpod_current_thread();
-            xnlock_get_irqsave(&nklock, s);
-            thread_cancellation_point(cur);
-            xnpod_suspend_thread(cur, XNDELAY, ts2ticks_ceil(rqtp) + 1,
-                                 clock_flag(flags, clock_id), NULL);
-            thread_cancellation_point(cur);
-            if (xnthread_test_info(cur, XNBREAK)) {
-                    if (flags == 0 && rmtp) {
-                            xnsticks_t rem;
-                            rem = xntimer_get_timeout_stopped(&cur->rtimer);
-                            xnlock_put_irqrestore(&nklock, s);
-                            ticks2ts(rmtp, rem > 1 ? rem : 0);
-                    } else
-                            xnlock_put_irqrestore(&nklock, s);
-                    return EINTR;
-            }
-            xnlock_put_irqrestore(&nklock, s);
-            return err;
-        }
-
-  clock_nanosleep主要用的api有下面幾個
-
-  - xnpod_current_thread
-
-  .. code-block:: prettyprint
-
-      
-      #define xnpod_current_thread() \
-        (xnpod_current_sched()->curr)
-
-      #define xnpod_current_sched() \
-        xnpod_sched_slot(xnarch_current_cpu())
-
-      #define xnpod_sched_slot(cpu) \
-        (&nkpod->sched[cpu])      //可以發現最後取得的東西是&nkpod->sched[current_cpu]->curr
-      
-  - xnarch_current_cpu
+  4.使用 xntimer_get_timeout_stopped 取得 tick
   
-  .. code-block:: prettyprint
+  5.使用 xnpod_suspend_thread 改變目前 thread 的狀態
 
-      static inline unsigned xnarch_current_cpu(void)
-      {
-            return rthal_processor_id();    //xnarch東西跟平台有關 因此會接到rthal這個abstraction layout
-      }
+  6.使用 ticks2ts 轉換時間單位
 
-  - rthal_processor_id()
+  7.最後將結果輸出在terminal
 
   .. code-block:: prettyprint
 
-      #difine rthal_processor_id() ipipe_processor_id()
-      #define ipipe_processor_id()  (0) //因為rapsberry pi只有一顆cpu 沒有SMP 所以會是使用這個macro
+     int clock_nanosleep (clockid_t clock_id, int flags, const struct timespec *rqtp, struct timespec *rmtp)
+     {
+        xnthread_t *cur;
+        spl_t s;
+        int err = 0;
 
-  在這邊就能看到關於硬體的會從xnarch -> rthal -> ipipe
+        if (xnpod_unblockable_p())
+            return EPERM;
 
-  - xnlock_get_irqsave
+        if (clock_id != CLOCK_MONOTONIC && clock_id != CLOCK_REALTIME)
+            return ENOTSUP;
 
-  .. code-block:: prettyprint
+        if ((unsigned long)rqtp->tv_nsec >= ONE_BILLION)
+            return EINVAL;
 
-      #define xnlock_get_irqsave(lock,x) \
-            ((x) = __xnlock_get_irqsave(lock  XNLOCK_DBG_CONTEXT))
-      static inline spl_t
-      __xnlock_get_irqsave(xnlock_t *lock /*, */ XNLOCK_DBG_CONTEXT_ARGS)
+        if (flags & ~TIMER_ABSTIME)
+            return EINVAL;
 
-      {
-            unsigned long flags;
-            rthal_local_irq_save(flags);
-            if (__xnlock_get(lock /*, */ XNLOCK_DBG_PASS_CONTEXT))
-                    flags |= 2;        /* Recursive acquisition */
-            return flags;
-      }
+        cur = xnpod_current_thread();
 
-  - rthal_local_irq_save
+        xnlock_get_irqsave(&nklock, s); 
 
-  .. code-block:: prettyprint
+        thread_cancellation_point(cur);
 
-      #define rthal_local_irq_save(x) ((x) = ipipe_test_and_stall_pipeline_head() & 1)
+        xnpod_suspend_thread(cur, XNDELAY, ts2ticks_ceil(rqtp) + 1,clock_flag(flags, clock_id), NULL);
 
-      static inline unsigned long ipipe_test_and_stall_pipeline_head(void)
-      {
-            return ipipe_test_and_stall_head();
-      }
-      static inline unsigned long ipipe_test_and_stall_head(void)
-      {
-            hard_local_irq_disable();
-            return __test_and_set_bit(IPIPE_STALL_FLAG, &__ipipe_head_status);
-      }
+        thread_cancellation_point(cur);
 
-  - hard_local_irq_disable
+        if (xnthread_test_info(cur, XNBREAK)) {
 
-  .. code-block:: prettyprint
+            if (flags == 0 && rmtp) {
+                xnsticks_t rem;
 
-      static inline void hard_local_irq_disable_notrace(void)
-      {
+                rem = xntimer_get_timeout_stopped(&cur->rtimer);
+                xnlock_put_irqrestore(&nklock, s); 
 
-      #if __LINUX_ARM_ARCH__ >= 6
+                ticks2ts(rmtp, rem > 1 ? rem : 0); 
+            } else
+                xnlock_put_irqrestore(&nklock, s); 
 
-            __asm__("cpsid i        @ __cli" : : : "memory", "cc");
-
-      #else /* linux arch <= 5 */
-
-            unsigned long temp;
-            __asm__ __volatile__(
-                    "mrs        %0, cpsr                @ hard_local_irq_disable\n"
-                    "orr        %0, %0, #128\n"
-                    "msr        cpsr_c, %0"
-                    : "=r" (temp)
-                    :
-                    : "memory", "cc");
-      #endif /* linux arch <= 5 */
-      }
-
-  - __xnlock_get
-
-  .. code-block:: prettyprint
-
-      #define xnlock_get(lock) __xnlock_get(lock  XNLOCK_DBG_CONTEXT)
-      static inline int __xnlock_get(xnlock_t *lock /*, */ XNLOCK_DBG_CONTEXT_ARGS)
-      {
-            unsigned long long start;
-            int cpu = xnarch_current_cpu();
-            if (atomic_read(&lock->owner) == cpu)
-                    return 1;
-            xnlock_dbg_prepare_acquire(&start);
-            if (unlikely(atomic_cmpxchg(&lock->owner, ~0, cpu) != ~0))
-                    __xnlock_spin(lock /*, */ XNLOCK_DBG_PASS_CONTEXT);
-            xnlock_dbg_acquired(lock, cpu, &start /*, */ XNLOCK_DBG_PASS_CONTEXT);
-            return 0;
-      }
-
-  - thread_cancellation_point
-   
-  .. code-block:: prettyprint
-
-      static inline void thread_cancellation_point (xnthread_t *thread)
-      {
-        pthread_t cur = thread2pthread(thread);
-        if(cur && cur->cancel_request
-            && thread_getcancelstate(cur) == PTHREAD_CANCEL_ENABLE )
-            pse51_thread_abort(cur, PTHREAD_CANCELED);
-      }
-
-      void pse51_thread_abort(pthread_t thread, void *status)
-      {
-            thread_exit_status(thread) = status;
-            thread_setcancelstate(thread, PTHREAD_CANCEL_DISABLE);
-            thread_setcanceltype(thread, PTHREAD_CANCEL_DEFERRED);
-            xnpod_delete_thread(&thread->threadbase);
-      }
-
-  - xnpod_delete_thread
-  - xnpod_suspend_thread
-  - xnthread_test_info
-  - xnlock_put_irqstore
+            return EINTR;
+        } 
   
-  .. code-block:: prettyprint
+        xnlock_put_irqrestore(&nklock, s);
 
-      static inline void xnlock_put_irqrestore (xnlock_t *lock, spl_t flags) 
-      {
-        /* Only release the lock if we didn't take it recursively. */
-        if (!(flags & 2)) 
-            xnlock_put (lock);
-        rthal_local_irq_restore (flags & 1); 
-      }
-
-      static inline void xnlock_put (xnlock_t *lock) 
-      {
-        if (xnlock_dbg_release(lock))
-            return;
-        /*
-         * Make sure all data written inside the lock is visible to
-         * other CPUs before we release the lock.
-         */
-
-        xnarch_memory_barrier();
-        atomic_set(&lock->owner, ~0);
-
-      }   
-
-      static inline int xnlock_dbg_release(xnlock_t *lock)
-      {
-        extern xnlockinfo_t xnlock_stats[];
-        unsigned long long lock_time = rthal_rdtsc() - lock->lock_date;
-        int cpu = xnarch_current_cpu();
-        xnlockinfo_t *stats = &xnlock_stats[cpu];
-        if (unlikely(atomic_read(&lock->owner) != cpu)) {
-            rthal_emergency_console();
-            printk(KERN_ERR "Xenomai: unlocking unlocked nucleus lock %p"
-                    " on CPU #%d\n"
-                    "         owner  = %s:%u (%s(), CPU #%d)\n",
-                   lock, cpu, lock->file, lock->line, lock->function,
-                   lock->cpu);
-            show_stack(NULL,NULL);
-            return 1;
-        }
-        lock->cpu = -lock->cpu; /* File that we released it. */
-        if (lock_time > stats->lock_time) {
-            stats->lock_time = lock_time;
-            stats->spin_time = lock->spin_time;
-            stats->file = lock->file;
-            stats->function = lock->function;
-            stats->line = lock->line;
-        }
-        return 0;
-      }
-
-      #define xnarch_memory_barrier() __sync_synchronize() 
-      #define rthal_local_irq_restore(x)  ipipe_restore_pipeline_head(x)   
-
-      static inline xnticks_t xntimer_get_timeout_stopped (xntimer_t *timer)
-      {
-        return timer->base->ops->get_timer_timeout (timer);
-      }
+        return err; 
+ }
 
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
