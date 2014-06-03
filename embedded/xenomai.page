@@ -457,7 +457,7 @@ Cyclictest 原理
         xnlock_put_irqrestore(&nklock, s);
 
         return err; 
-    }
+     }
 
 * `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
