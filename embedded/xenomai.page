@@ -365,6 +365,7 @@ Cyclictest 原理
 ==============
 
 * 概念:設定一個時間間隔->取得現在時間->讓process 睡一個間隔->process醒來後再取一次時間->比對兩次取得的時間差與設定的間隔差距
+
 * pseudocode:
 
   .. code-block:: prettyprint
@@ -381,11 +382,13 @@ Cyclictest 原理
     }
 
 * 造成時間差的原因
+
   - timer精準度
   - IRQ latency
   - IRQ handler duration
   - scheduler latency
   - scheduler duration
+
 
 * Cyclictest 實作流程
 
@@ -395,7 +398,8 @@ Cyclictest 原理
 
   3.最後將結果輸出在terminal
 
-* clock_nanosleep 實作流程
+
+* Clock_nanosleep 實作流程
 
   1.使用 spinlock (xnlock_get_irqsave) 令 CPU 不接受 Interrupt 
 
