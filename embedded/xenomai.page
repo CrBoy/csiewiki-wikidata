@@ -119,13 +119,20 @@ Real Time 的定義
 ==============================
 
 * Soft Real Time
+  
+  根據 Scheduling 的結果執行任務。
 
 * 95% Hard Real Time
+  
+  系統至少有 95% 在指定時間內完成任務。 
 
 * 100% Hard Real Time
- 
-* Safe Real Time
+  
+  系統能 100% 在指定時間內完成任務。 
 
+* Safe Real Time
+  
+  系統能 100% 在指定時間內完成任務。
  
 
 作業系統架構
