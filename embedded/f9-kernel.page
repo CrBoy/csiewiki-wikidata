@@ -79,6 +79,12 @@ Flexible page
 Address page
   由flexible page所組成
 
+提供下列三種管理Address Space的方式：
+
+* MAP - 分享記憶體，memory page被傳送給另一位使用者，且可被兩者使用
+* GRANT - memory page會被授權給新的使用者，而且不能在被前一位使用者使用
+* UNMAP - 被map到其他使用者的memory page，會從他們的AS中被洗掉
+
 在Cortex-M中，MPU只支援2^n大小的區域，假設我們要建立一個96 bytes的page，我們應該要切成較小的區域，並且建立出一條包含32 byte與64 byte的fpage chain，這邊就是實作複雜的原因。
 
 .. image:: /embedded/f9-kernel/memory_arch.png
