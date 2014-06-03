@@ -118,13 +118,15 @@ categories: embedded, arm, raspberrypi
 Real Time 的定義
 ==============================
 
-* Hard Real Time
-
- 系統一定可以在 Response Time 內完成指定的task
-
 * Soft Real Time
 
- 在特定的機率下，系統可以在 Response Time 內完成指定的task
+* 95% Hard Real Time
+
+* 100% Hard Real Time
+ 
+* Safe Real Time
+
+ 
 
 作業系統架構
 ===========
