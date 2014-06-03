@@ -735,9 +735,9 @@ File Descriptor
   3. 參考 **write** 指令中，``block_response``的執行過程，將不會讀取任何資料到 fd 的 buffer 中，而使用者的資料也不會被寫入到 block file 中。
 
 
-**S_IFREG ( Register file )**
+**Register File( S_IFREG )**
 
-- 透過 ``romfs_server()`` 註冊的檔案，類型為 S_IFREG ，皆由 ``romfs_server()`` 來管理。
+- 透過 ``romfs_server()`` 註冊的檔案，類型為 S_IFREG ，皆由 ``romfs_server()`` 來管理。亦是一種 block file descriptor，從 block file 讀取資料。
 - 資料結構：
 
   .. code-block:: c
@@ -754,8 +754,8 @@ File Descriptor
 
     struct regfile {
         struct file file;           // 所屬的 fd number 以及 regfile operations
-        int driver_pid;              // 資料所在的 driver 的 pid
-        struct file *driver_file;   // 資料所在的 driver 的 fd number
+        int driver_pid;              // 所屬 driver ( 註冊此 fd 的 task ) 的 pid
+        struct file *driver_file;   // 所屬 driver 的 fd file
         int event;                   // regfile event ID
 
         /* request */
@@ -767,6 +767,53 @@ File Descriptor
         /* response */
         int transfer_len;           // 
     };
+
+- Event Handler: ``int regfile_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
+
+  讓 task 重新發送一次請求，請求類別由 stack 中的 r7 值( 0x03: file_write, 0x04: file_read, 0x0a: file_lseek )判定，請求的 file descriptor 資料結構的 reference 存在 data 中。
+
+- register file 對於 lseek、read、write 的請求一樣可以分成兩大類，一類是外部對於 register file descriptor 的請求 ( regfile_request_ 系列 )，一類是 block file device 對於 reigster file descriptor 的請求 ( regfile_driver_系列 )。但是請求過程與 block file 有些許不同，block file 是直接向 block device 發出請求，而 register file 則是間接透過 ``romfs_server()`` 來向 block device 發出請求。
+
+- ``regfile_request_****able``
+  - 第一次請求( request_pid 為 0 )：先對 ``romfs_server()`` 發出請求，如下表：
+
+  .. image:: /embedded/rtenv-plus/regfile_request.PNG
+
+
+　　將 fs_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 ``romdev_driver()``。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
+
+ - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+
+
+- ``regfile_driver_****able``
+  - FILE_ACCESS_ACCEPT：只有在有 task 想要 access regfile fd 時 ( buzy = 1 )
+  - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 regfile fd
+
+
+- ``regfile_response``：將指定資料傳送到指定的 register file descriptor，透過這些資訊 file descriptor 可以從 block device 取得資料。
+
+  .. code-block:: c
+
+    struct regfile_response response {
+        int transfer_len;  // 請求讀取的長度
+        char *buf;         // 請求資料的起點
+    };
+
+
+- **lseek**：``void lseek(int fd, int offset, int whence);``：設定檔案讀寫頭的位置，回傳：讀寫頭的新位置
+  1. 由外部 task 發出請求，第一次請求存取 regfile fd。``regfile_request_lseekable`` 透過 IPC 將 fs_request 傳送到 ``romfs_server()``，task 會被 push 到 event list 上，進入 TASK_WAIT_WRITE 狀態，等待 driver 的處理。
+  2. ``romfs_server()`` 執行 FS_CMD_SEEK 指令。先計算讀寫頭的位置，再使用 SEEK_SET 向請求的 fd 設置讀寫頭。
+
+    - SEEK_SET：為 offset 所指定的位置
+    - SEEK_CUR：目前讀寫頭的位置加上 offset
+    - SEEK_END：資料終點的位置加上 offset
+
+  3. 由 driver 發出的請求，而且該 fd 正有 task 要求存取，執行``regfile_driver_lseek()``。將已經計算過後新的讀寫頭位置存到該 fd 的 request_len。driver 完成處理，發出 pending 讓外部 task 重新發出請求。
+  4. 外部 task 重新發出請求後，是第二次發出請求。``regfile_request_lseek()`` 將 driver 存放在 request_len 的值拿來更新 fd 的讀寫頭位置。
+  5. task 再次回到 ready_list 中。
+
+- **read**：
+  1. 
 
 
 File System
