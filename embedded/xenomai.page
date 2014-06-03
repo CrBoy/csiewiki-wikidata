@@ -328,6 +328,12 @@ Skins
 效能表現
 =======
 
+* Stock Linux 
+
+* PREEMPT_RT-patched Linux
+
+* Xenomai-patched Linux
+
 Cyclictest
 +++++++++++
 
