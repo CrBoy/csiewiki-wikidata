@@ -458,7 +458,7 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 - 0xa：lseek
 
-
+執行 file_lseek() 函式。
 
 - default：
 
