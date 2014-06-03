@@ -156,7 +156,14 @@ Communication
  	}
   }
  
+----------------------------------------------------------
 
+ | Mutex
+ | nuttx的mutex實作是建立在semaphore上面
+ | 在使用mutex時，會先init一個binary semaphore，然後呼叫pthread_mutex_lock，pthread_mutex_lock會呼叫pthread_takesemaphore
+ | pthread_takesemaphore會跑一個判別式是sem_wait的while loop
+ | 當owner要交出使用權的時候，會呼叫pthread_mutex_unlock，pthread_mutex_unlock會將mutex->pid設成0，然後呼叫pthread_givesemaphore
+ | pthread_givesemaphore會呼叫sem_post
 
 
 
