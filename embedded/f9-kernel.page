@@ -815,7 +815,7 @@ F9-kernel 提供一個用來定義 IRQ Handler 的巨集
     		sub();                                                  \
     		do { *SCB_ICSR |= SCB_ICSR_PENDSVSET; } while (0)       \
     		__asm__ __volatile__ ("pop {lr}");                      \
-                __asm__ __volatile__ ("bx lr");                         \
+    		__asm__ __volatile__ ("bx lr");                         \
     	}
 
 使用這個巨集定義的 IRQ Handler，在處理完自己本身的服務後，會拉起 PendSV 進行上下文切換。目前 F9 當中有下列這些 IRQ Handler 都是使用這個巨集定義的：
