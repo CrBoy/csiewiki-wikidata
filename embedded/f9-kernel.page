@@ -686,6 +686,91 @@ Address space(AS)
 
 這個函式會在``thread_switch()``中用到，使用概念可以參考後面的MPU段落，有詳細介紹MPU在context switch上的應用。
 
+Interrupt Request(IRQ)
+-----------------------
+Context Switch
+===============
+在大部分搶佔式的 RTOS(ARM Cortex) 中，都會使用 PendSV 實作上下文切換。PendSV 是 ARM Cortex 中一個特別的 exception ，可以從軟體驅動產生中斷。要觸發 PendSV 的方法很簡單，透過設定 ICSR(Interrupt Control and State Register) 暫存器中的``PENDSVSET``為1，就可以將 PendSV 的狀態切換至pending。
+
+.. code-block:: prettyprint linenums
+    
+    /* include/platform/irq.h */
+    #define request_schedule()						\
+    	do { *SCB_ICSR |= SCB_ICSR_PENDSVSET; } while (0)
+
+在 F9-kernel 中，會使用這個巨集觸發 PendSV，接著透過 PendSV Handler 處理上下文切換。
+
+.. code-block:: prettyprint linenums
+    
+    /* include/platform/irq.h */
+    // 這邊為了簡化觀察，省略了 FPU 的部份
+    #define irq_save(ctx)                                                 \
+    	__asm__ __volatile__ ("cpsid i");                                 \
+    	__asm__ __volatile__ ("mov r0, %0" : : "r" ((ctx)->regs) : "r0"); \
+    	__asm__ __volatile__ ("stm r0, {r4-r11}");                        \
+    	__asm__ __volatile__ ("and r4, lr, 0xf":::"r4");                  \
+    	__asm__ __volatile__ ("teq r4, #0x9");                            \
+    	__asm__ __volatile__ ("ite eq");                                  \
+    	__asm__ __volatile__ ("mrseq r0, msp"::: "r0");                   \
+    	__asm__ __volatile__ ("mrsne r0, psp"::: "r0");                   \
+    	__asm__ __volatile__ ("mov %0, r0" : "=r" ((ctx)->sp));           \
+    	__asm__ __volatile__ ("mov %0, lr" : "=r" ((ctx)->ret));
+    
+    #define irq_restore(ctx) \
+    	__asm__ __volatile__ ("mov lr, %0" : : "r" ((ctx)->ret));        \
+    	__asm__ __volatile__ ("mov r0, %0" : : "r" ((ctx)->sp));         \
+    	__asm__ __volatile__ ("mov r2, %0" : : "r" ((ctx)->ctl));        \
+    	__asm__ __volatile__ ("and r4, lr, 0xf":::"r4");                 \
+    	__asm__ __volatile__ ("teq r4, #0x9");                           \
+    	__asm__ __volatile__ ("ite eq");                                 \
+    	__asm__ __volatile__ ("msreq msp, r0");                          \
+    	__asm__ __volatile__ ("msrne psp, r0");                          \
+    	__asm__ __volatile__ ("mov r0, %0" : : "r" ((ctx)->regs));       \
+    	__asm__ __volatile__ ("ldm r0, {r4-r11}");                       \
+    	__asm__ __volatile__ ("msr control, r2");                        \
+    	__asm__ __volatile__ ("cpsie i");
+
+``irq_save()``跟``irq_restore()``分別用來儲存與取出 context，在存取 context 的過程中是不能被中斷的，所以前後要分別加上``cpsid i``以及``cpsie i``。需要保存的資料包括：``r4-r11``、``link register``、``stack pointer``。
+
+.. code-block:: prettyprint linenums
+    
+    /* platform/irq.c */
+    // 這邊我直接將巨集展開，方便觀察
+    extern volatile tcb_t *current;
+    
+    void pendsv_handler(void) __NAKED;
+    void pendsv_handler(void)
+    {
+    	__asm__ __volatile__ ("push {lr}");
+    
+    	register tcb_t *sel;                                        
+    	sel = schedule_select();                                
+    	if (sel != current) {                                       
+    		__asm__ __volatile__ ("pop {lr}");                        
+    		irq_save(&(current)->ctx);                                        
+    		thread_switch((sel));                                        
+    		irq_restore(&(current)->ctx);                                
+    		__asm__ __volatile__ ("bx lr");  
+    	}
+    
+    	__asm__ __volatile__ ("pop {lr}");                                
+    	__asm__ __volatile__ ("bx lr");
+    }
+    
+    /* kernel/thread.c */
+    void thread_switch(tcb_t *thr)
+    {
+    	assert(thr != NULL);
+    	assert(thread_isrunnable(thr));
+    
+    	current = thr;
+    	current_utcb = thr->utcb;
+    	if (current->as)
+    		as_setup_mpu(current->as, current->ctx.sp, ((uint32_t*)current->ctx.sp)[REG_PC], current->stack_base, current->stack_size);
+    }
+
+實作 pendsv_handler 時是宣告成``__NAKED``的，所以必須自己處理函式呼叫的prologue、epilogue，因為沒有對 stack 進行處理，在使用 local 變數的時候加上``register``修飾，強制將變數存放在暫存器中(編譯器判斷有空閒的暫存器的話)，接著呼叫``schedule_select()``取得排程的下一個任務進行切換。切換的方法是先將目前任務的 ctx(包含lr) 儲存，接著將``current``切換成下一個任務，最後取出新任務的 ctx，這時 lr 會是新任務的返回地址，因此就可以使用``bx lr``恢復任務。但如果排程器選出的任務與當前任務是一樣的，代表不需要切換，也就不需要進行 ctx 的儲存，可以直接在將 lr 從堆疊中取出，並且返回。
+
 硬體驅動原理
 ------------
 Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
@@ -2854,3 +2939,6 @@ Troubleshooting
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0337h/BABGEDIG.html
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CACIEIBA.html
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439d/CEGJGDCJ.html
+
+* Interrupt Request
+   - `4.3.3. Interrupt Control and State Register<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Cihfaaha.html>`_
