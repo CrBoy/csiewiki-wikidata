@@ -771,6 +771,68 @@ Context Switch
 
 實作 pendsv_handler 時是宣告成``__NAKED``的，所以必須自己處理函式呼叫的prologue、epilogue，因為沒有對 stack 進行處理，在使用 local 變數的時候加上``register``修飾，強制將變數存放在暫存器中(編譯器判斷有空閒的暫存器的話)，接著呼叫``schedule_select()``取得排程的下一個任務進行切換。切換的方法是先將目前任務的 ctx(包含lr) 儲存，接著將``current``切換成下一個任務，最後取出新任務的 ctx，這時 lr 會是新任務的返回地址，因此就可以使用``bx lr``恢復任務。但如果排程器選出的任務與當前任務是一樣的，代表不需要切換，也就不需要進行 ctx 的儲存，可以直接在將 lr 從堆疊中取出，並且返回。
 
+下面列出``irq_save()``、``irq_restore()``以及``context_switch()``的流程：
+
+* irq_save：
+   
+   1. 關閉 irq
+   2. 取得context中regs的位置
+   3. 將 r4 - r11 存到 regs 中
+   4. 利用 lr & 0xF == 0x9 判斷是使用 main stack 還是 process stack
+   5. 將 stack pointer 存到 context 中的sp
+   6. 將 lr 存到 context 中的 ret
+
+* irq_restore：
+
+   1. 取回 sp、lr、ctl
+   2. 利用 lr & 0xF == 0x9 判斷是使用 main stack 還是 process stack
+   3. 將stack pointer寫入 psp或是msp
+   4. 取回 r4 - r11
+   5. 設定 control
+   6. 開啟irq
+
+* context switch過程：
+
+   1. 進入pendsv_handler時將lr堆到stack中，這時候的lr是進入pendsv前的下一步指令
+   2. 在schedule_in_irq中取得排程後要執行的下一個task，進行context switch
+   3. 先從stack中將剛剛push進去的lr取出，將目前task的context儲存起來
+   4. 切換thread，current被設定成新的task
+   5. 取回新task的context，bx到新task的lr(新task在第一步驟時存的lr)，完成context switch
+
+IRQ Handler
+============
+F9-kernel 提供一個用來定義 IRQ Handler 的巨集
+
+.. code-block:: prettyprint linenums
+    
+    /* include/platform/irq.h */
+    // 為了觀察方便，將內部的巨集展開
+    #define IRQ_HANDLER(name, sub)                                      \
+    	void name(void) __NAKED;                                        \
+    	void name(void)                                                 \
+    	{                                                               \
+    		__asm__ __volatile__ ("push {lr}");                     \
+    		sub();                                                  \
+    		do { *SCB_ICSR |= SCB_ICSR_PENDSVSET; } while (0)       \
+    		__asm__ __volatile__ ("pop {lr}");                      \
+                __asm__ __volatile__ ("bx lr");                         \
+    	}
+
+使用這個巨集定義的 IRQ Handler，在處理完自己本身的服務後，會拉起 PendSV 進行上下文切換。目前 F9 當中有下列這些 IRQ Handler 都是使用這個巨集定義的：
+
+.. code-block:: prettyprint linenums
+    
+    $ grep IRQ_HANDLER kernel/* platform/* platform/stm32f4/*
+    kernel/ktimer.c:IRQ_HANDLER(ktimer_handler, __ktimer_handler);
+    kernel/syscall.c:IRQ_HANDLER(svc_handler, __svc_handler);
+    platform/debug_uart.c:IRQ_HANDLER(BOARD_UART_HANDLER, __uart_irq_handler);
+    platform/stm32f4/mpu.c:IRQ_HANDLER(memmanage_handler, __memmanage_handler);
+
+下圖是 SysTick 中斷的處理過程：
+
+.. image:: /embedded/f9-kernel/f9_context_switch.png
+
+
 硬體驅動原理
 ------------
 Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
