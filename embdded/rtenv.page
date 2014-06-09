@@ -431,18 +431,14 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 ``int write(int fd, const void *buf, size_t count);`` fd 是對應的 file descriptor，buf 則是要被寫入的地方，count 則是要寫入多少資料
 
 實現行程之間的溝通以及檔案系統的實作。
-
-若可寫入則將資料寫入 buf 當中，如果先前有在對應的 file descriptor 執行 read 而被擋住的 task，則釋放該 task 並在之後讀取資料。
-若 buf 剩餘空間無法容納寫入的資料，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠空間再寫入，task 的狀態變成 TASK_WAIT_WRITE。
+根據不同檔案類型，用 ``writable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``write(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
 
 - ``0x4：read``
 
 ``int read(int fd, void *buf, size_t count);``  fd 是對應的 file descriptor，buf 則是要被讀取的地方，count 則是要讀取多少資料
 
 實現行程之間的溝通以及檔案系統的實作。
-
-若可讀取則將資料從 buf 當中讀取出來，如果先前有在對應的 file descriptor 執行 write 而被擋住的 task，則釋放該 task 並在之後寫入資料。
-若 buf 剩餘資料不夠被讀取，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠資料再讀取，task 的狀態變成 TASK_WAIT_READ。
+根據不同檔案類型，用 ``readable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``read(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
 
 - ``0x5：interrupt_wait``
 
@@ -464,7 +460,7 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 - ``0x8：mknod``
 
-``int mknod(int fd, int mode, int dev);`` fd 是對應的 file descriptor，mode 不影響，dev
+``int mknod(int fd, int mode, int dev);`` fd 是對應的 file descriptor，mode 不影響，dev 決定 file_operation 結構為哪種檔案類型
 
 改變傳入對應參數 files[fd] 所指向的 file_operation 結構，結構包含write，writable，read，readable，lseek，lseekable 函式(不是 system call 的函式)。
 
@@ -476,12 +472,10 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 - ``0xa：lseek``
 
-``void lseek(int fd, int offset, int whence);``  fd 是對應的 file descriptor，offset 是偏移量，whence 則是決定指針一開始會指到哪裡
+``void lseek(int fd, int offset, int whence);``  fd 是對應的 file descriptor，offset 是偏移量，whence 則是決定讀寫頭一開始會指到哪裡
 
 實現檔案系統的實作。
-
-若檔案可存取，則執行 ``lseek()`` (非 system call)。
-若無法存取，則將 task 藉由  ``event_monitor_block`` 擋住，task 的狀態變成 TASK_WAIT_WRITE。
+根據不同檔案類型，用 ``lseekable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``lseek(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
 
 - ``default：``
 
