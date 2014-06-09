@@ -412,78 +412,78 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 ``main()`` 中判斷 system call 的代號並執行對應功能
 
-- 0x1：fork
+- ``0x1：fork``
 
-int fork();
+``int fork();``
 
 分支出一個新的子task，子task複製所有父task push 進去的 stack 資料，繼承優先權，並為子task設定 pid 為當前task的數量-1(第一個初始task之 pid 為0)，也將子task.list push 進 ``ready_list``。父task回傳0，子task則回傳 pid 之值(不等於0)。
 
 若task數量已達到上限，則無法分支出新的 task，回傳-1。
 
-- 0x2：getpid
+- ``0x2：getpid``
 
-int getpid();
+``int getpid();``
 
 回傳該 task 之 pid，也就是 current_task。
 
-- 0x3：write
+- ``0x3：write``
 
-int write(int fd, const void *buf, size_t count); fd 是對應的 file descriptor，buf 則是要被寫入的地方，count 則是要寫入多少資料
+``int write(int fd, const void *buf, size_t count);`` fd 是對應的 file descriptor，buf 則是要被寫入的地方，count 則是要寫入多少資料
 
 實現行程之間的溝通以及檔案系統的實作。
 
 若可寫入則將資料寫入 buf 當中，如果先前有在對應的 file descriptor 執行 read 而被擋住的 task，則釋放該 task 並在之後讀取資料。
 若 buf 剩餘空間無法容納寫入的資料，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠空間再寫入，task 的狀態變成 TASK_WAIT_WRITE。
 
-- 0x4：read
+- ``0x4：read``
 
-int read(int fd, void *buf, size_t count);  fd 是對應的 file descriptor，buf 則是要被讀取的地方，count 則是要讀取多少資料
+``int read(int fd, void *buf, size_t count);``  fd 是對應的 file descriptor，buf 則是要被讀取的地方，count 則是要讀取多少資料
 
 實現行程之間的溝通以及檔案系統的實作。
 
 若可讀取則將資料從 buf 當中讀取出來，如果先前有在對應的 file descriptor 執行 write 而被擋住的 task，則釋放該 task 並在之後寫入資料。
 若 buf 剩餘資料不夠被讀取，則將 task 藉由  ``event_monitor_block`` 擋住，等待之後有足夠資料再讀取，task 的狀態變成 TASK_WAIT_READ。
 
-- 0x5：interrupt_wait
+- ``0x5：interrupt_wait``
 
-void interrupt_wait(int intr); intr 為特定的 interrupt 編號
+``void interrupt_wait(int intr);`` intr 為特定的 interrupt 編號
 
 透過 ``NVIC_EnableIRQ(tasks[current_task].stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
 
-- 0x6：getpriority
+- ``0x6：getpriority``
 
-int getpriority(int who); who 決定選擇哪個 task，0為 tasks[current_task]
+``int getpriority(int who);`` who 決定選擇哪個 task，0為 tasks[current_task]
 
 回傳 task 的優先權。
 
-- 0x7：setpriority
+- ``0x7：setpriority``
 
-int setpriority(int who, int value); who 決定選擇哪個 task，0為 tasks[current_task]，value 則是優先權大小
+``int setpriority(int who, int value);`` who 決定選擇哪個 task，0為 tasks[current_task]，value 則是優先權大小
 
 設定 task 的優先權，優先權不小於 0 也不大於 PRIORITY_LIMIT，除了設定 current_task 的優先權之外，也可以更改其他 task 的優先權。
 
-- 0x8：mknod
+- ``0x8：mknod``
 
-int mknod(int fd, int mode, int dev); fd 是對應的 file descriptor，mode 不影響，dev
+``int mknod(int fd, int mode, int dev);`` fd 是對應的 file descriptor，mode 不影響，dev
 
 改變傳入對應參數 files[fd] 所指向的 file_operation 結構，結構包含write，writable，read，readable，lseek，lseekable 函式(不是 system call 的函式)。
 
-- 0x9：sleep
+- ``0x9：sleep``
 
-void sleep(unsigned int); unsigned int 表示需等待幾次 SysTick 發生
+``void sleep(unsigned int);`` unsigned int 表示需等待幾次 SysTick 發生
 
 將 tasks[current_task] 擋住，狀態變成 TASK_WAIT_TIME，等待觸發 ``SysTick_Handler`` ，且觸發次數必須為 unsigned int 之值，才能繼續執行。
 
-- 0xa：lseek
+- ``0xa：lseek``
 
-void lseek(int fd, int offset, int whence);  fd 是對應的 file descriptor，offset 是偏移量，whence 則是決定指針一開始會指到哪裡
+``void lseek(int fd, int offset, int whence);``  fd 是對應的 file descriptor，offset 是偏移量，whence 則是決定指針一開始會指到哪裡
 
 實現檔案系統的實作。
 
-若檔案可存取，則執行 ``lseek()`` (非 system call)
+若檔案可存取，則執行 ``lseek()`` (非 system call)。
 若無法存取，則將 task 藉由  ``event_monitor_block`` 擋住，task 的狀態變成 TASK_WAIT_WRITE。
 
-- default：
+- ``default：``
 
 此狀況為因應其他非 SVC_Handler 的 interrupt，如SysTick_Handler與USART2_IRQHandler。
 SysTick_Handler：timeup 設定為1，使之後進行選擇哪一個 task 來執行，並且釋放狀態為 TASK_WAIT_TIME 的 task(但要符合條件)。
