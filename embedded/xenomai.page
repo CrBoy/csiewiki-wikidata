@@ -512,6 +512,13 @@ Max:最大延遲
 
 讓開發者可以評估最差的情況可以在多少時間內可以做出回應
 
+Q&A
+==============
+
+* Q1:handler duration 與 schedule latency 之間的延遲原因為何?
+  - A:
+
+
 Hackpad
 =======
 *  討論＆紀錄 https://embedded2014.hackpad.com/Xenomai-raspberry-note-XwJtuQn9nkD
