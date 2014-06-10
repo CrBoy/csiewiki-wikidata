@@ -272,6 +272,22 @@ How  to fork
          if (!fork()) setpriority(0, 0), romdev_driver();    // 母 task 的 if 判定為 false，於是繼續執行下一行
          ...
 
+與 POSIX fork 差別
+====================
+不同於 POSIX fork 的使用是架構在 virtual memory 上，rtenv-plus 只是單純地將母 task 在記憶體中所使用的 stack 完完整整地複製一份到子 task 所對應的 stack。
+
+rtenv-plus 的 fork 與在同樣沒有 virtual memory 支援下所使用的 vfork 也有非常大的不同處。
+
+1. vfork 在產生子 task 後，會先將母 task suspend 直到子 task 結束為止。而 rtenv-plus 則是兩個 task 能夠同時存在。
+2. 在記憶體使用方面，vfork 的兩個 task 會使用同一個實體記憶體位置，不同於 rtenv-plus 兩個 task 用的是不同的實體記憶體位置。
+
+在 file descriptor 方面，因為 rtenv-plus 並沒有所謂的 file descriptor table，所以如果母 task 有開檔的話，子 task 也只是單純繼承 file descriptor 的值而已。
+
+另外，在其它系統上，子 task 的 PPID 會是其母 task 的 PID，所以兩者之間可以有互動，例如母 task 等待子 task 結束。但在 rtenv-plus 上，因為沒有實作 PPID ，所以兩個 task 基本上是獨立運作而互不干擾的。
+
+
+
+
 
 **子task**
 
