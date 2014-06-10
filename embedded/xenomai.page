@@ -516,7 +516,9 @@ Q&A
 ==============
 
 * Q1:handler duration 與 schedule latency 之間的延遲原因為何?
-  - A:
+  - A: 
+
+  .. image:: /embedded/xenomai/tasklatency.jpg
 
 
 Hackpad
