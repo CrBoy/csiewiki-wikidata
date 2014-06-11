@@ -7,7 +7,7 @@ toc: no
 ---
   * 使用2台光碟機加上 STM32F429I-Discovery ，製作一台高精度的繪圖機預期目標
   * 使用Inscape繪圖，生成G-Code來控制他
-
+  
 組員
 ----
  * `郭耀琮</User/rbugoo>`_
@@ -17,6 +17,12 @@ toc: no
 -----
  * 3 L293D Quad Half H-Bridge, operating under 5V.
  * 2 DVD drive and a floppy drive
+ * 高精度微型線性滑軌MGN12H 400mm * 2 + 滑塊 * 2
+    http://goods.ruten.com.tw/item/show?21306043300978#auc
+ * 齒輪包一包
+    http://goods.ruten.com.tw/item/show?21405064396583
+ * 齒條一包
+    http://goods.ruten.com.tw/item/show?21306089216817
 
 Hackpad
 -------
