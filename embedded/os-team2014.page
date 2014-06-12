@@ -1,5 +1,5 @@
 ---
-title: 嵌入式作業系統設計與實作 2014 Spring / 期末專題清單
+title: 嵌入式作業系統設計與實作 (2014 Spring) :: 期末專題清單
 categories: embedded2014
 toc: no
 ...
@@ -51,3 +51,15 @@ toc: no
 * `第8組</embedded/os-team2014-8>`_  (Firefox OS)
 * `第9組</embedded/os-team2014-9>`_  (自動翻書機)
 * `第10組</embedded/os-team2014-10>`_  (uGFX )
+
+致謝
+----
+* 感謝 STMicroelectronics 捐贈 STM32F429i-Discovery 硬體開發板
+* 感謝 鴻海科技集團 捐贈 BananaPi 硬體開發板
+* 感謝 台達電子 提供資金協助
+* 感謝 社會各界熱心人士 捐贈 Raspberry Pi, Beaglebone, STM32F429i-Discovery, APC, Cubieboard
+
+聯絡人
+------
+* 講師: 黃敬群 <jserv.tw@gmail.com>
+* 助教: 陳秉文 <nicholas800208@gmail.com>
