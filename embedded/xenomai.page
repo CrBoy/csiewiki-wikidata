@@ -399,6 +399,13 @@ Cyclictest 原理
   3.最後將結果輸出在terminal
 
 
+* Clock_nanosleep 的 timer
+
+  clock_nanosleep 使用的timer 是 high resolution timer(HRT) ,讓睡眠時間可以更精確,達到nanosecond的精準度（但還是要看硬體能提供的精準度)
+
+  因為能在更準確得時間讓process醒來並取的nanoscecond單位的時間 所以可以計算到由systick無法計算到的duration + latency
+
+
 * Clock_nanosleep 實作流程
 
   1.使用 spinlock (xnlock_get_irqsave) 令 CPU 不接受 Interrupt 
@@ -408,6 +415,8 @@ Cyclictest 原理
   3.使用 xntimer_get_timeout_stopped 取得 tick
 
   4.使用 ticks2ts 轉換時間單位
+
+
 
 .. code-block:: prettyprint
 
