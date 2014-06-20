@@ -7,17 +7,17 @@ toc: no
 ---
   * 在 STM32F429I-Discovery 上做出一隻簡易的 2G 手機
 
+組員
+----
+  * `廖健富</User/rampant1018>`_
+  * `鄒宗延</User/yan>`_
+
 預期目標
 -------
   * 在 STM32F429I-Discovery 平台上建構 F9-kernel 系統
   * 連接 GPRS Module 與 STM32F429I-Discovery
   * 透過 AT Command 與 GPRS Module 通訊，實現撥打電話、收發簡訊等功能
   * 基本的休眠功能
-
-組員
-----
-  * `廖健富</User/rampant1018>`_
-  * `鄒宗延</User/yan>`_
 
 預算
 ----
@@ -26,6 +26,15 @@ toc: no
   * SIM卡 * 1
   * 杜邦線 * 3
   * 12VDC/1A 變壓器
+
+成果
+----
+  * 完成撥打電話、接聽電話、讀簡訊以及發簡訊等功能
+  * 完成休眠功能（靜止約 8 秒自動進入休眠以及透過按鈕直接進入休眠）
+  * 通訊模組改成 SIM5320E，因為 SIM900A 的支援國家不包括台灣
+  * 因為時間因素，來不及將函式庫移到 F9-kernel 使用，因此改成使用 FreeRTOS
+
+.. image:: /embedded/os-team2014-1/phone.jpg
 
 專題紀錄
 --------
