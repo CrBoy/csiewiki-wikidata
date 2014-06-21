@@ -3,6 +3,11 @@ title: 期末專題: Team #1
 toc: no
 ...
 
+Demo
+-----
+  * `成果影片(YouTube)<https://www.youtube.com/watch?v=nS6M2FvEMzk>`_
+  * `報告投影片(SlideShare)<http://www.slideshare.net/RampantJeff/disco-phone>`_
+
 題目
 ---
   * 在 STM32F429I-Discovery 上做出一隻簡易的 2G 手機
@@ -35,10 +40,6 @@ toc: no
   * 因為時間因素，來不及將函式庫移到 F9-kernel 使用，因此改成使用 FreeRTOS
 
 .. image:: /embedded/os-team2014-1/phone.jpg
-
-`成果影片(YouTube)<https://www.youtube.com/watch?v=nS6M2FvEMzk>`_
-
-`報告投影片(SlideShare)<http://www.slideshare.net/RampantJeff/disco-phone>`_
 
 專題紀錄
 --------
