@@ -360,6 +360,7 @@ Fractional baud rate generation的設定
 接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
 
 
+
 .. image:: /baud.png
 Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
@@ -372,7 +373,22 @@ Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/
 **USART_BRR被更新後，baud rate的計數器中的值也會同時被更新，因此在傳輸途中不應該更新USART_BRR中的值。
   另外，如果TE或RE被分別禁止，則baud rate的計數器也會停止計數**
 
+使用stm32f407vgt6官方lib時，會透過檔案中設定的時脈和baud rate去換算出USART_BRR的值，包含整數與小數部分。.
 
+   - BRR(USARTDIV) 的值 Mantissa = 0x088B ; Fraction = 0x08 =>計算方式 0x88B->0d2187 + 8/16 = 2187.5
+
+if over8=0 計算baud rate的方式: baud rate = usart時脈/(8*(2-over8)*DIV).
+ 
+   - usart時脈42Mhz, baud rate = 42000000/(8*2*2187.5) = 1200
+
+usart是接在APB BUS上方，stm32f407vgt6有兩組APB各對應不同usart。usart時脈要看APB供應的時脈，
+APB時脈要透過RCC和PLL設定去看clock tree。.
+
+   - 預設stm32f4-discovery這塊板子外部震盪器(HSE_VALUE)是8Mhz(官方lib好像設定成25Mhz)。.
+   - 8Mhz透過pll_M(8)除頻輸入PLL =>8Mhz/8=1Mhz.
+   - 1Mhz輸入PLL,透過pll_N(0x5400)倍頻再透過pll_P(2)除頻，作為sysclk => (1Mhz*0x5400>>6)/2 = 168Mhz.
+   - sysclk轉接HCLK都是168Mhz.
+   - HCLK>>2轉給PCLK1 => 168Mhz>>2 = 42Mhz.
 
 
 Modes
@@ -715,6 +731,8 @@ To compile code
    按照圖上的接法，白色線接PA2、綠色線接PA3
    ** 白色線為USB的RX所以要接上板子的TX(PA2) ** 
    ** 綠色線為USB的TX所以要接上板子的RX(PA3) ** 
+   ** 線材部分使用usb轉ttl轉接線(內部有轉接晶片，將PC usb訊號轉成GPIO腳位的電氣訊號) **
+   ** 另外有usb轉rs232 cable線，使用時從stm32板子接出的gpio輸出電訊號0~5V之間，不符合rs232接腳的電氣訊號(+-5V)，須再透過轉接晶片才能正確寫入，否則會出現亂碼 **
 
 此時畫面中的Minicom會顯示出結果，不斷的印出"Init complete! Hello World!"
 
