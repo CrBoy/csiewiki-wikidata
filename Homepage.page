@@ -8,6 +8,10 @@ categories: 系統頁面
 注意：**Wiki 不等同於 Wikipedia (維基百科)**。
 Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikipedia.org/>`_ 是藉由 wiki 系統建立的百科全書 (encyclopedia)。
 
+2014 年暑期嵌入式系統短期訓練
+------------------------------------------------
+- ` 課程資訊與進度表<embedded/summer2014>`_
+
 嵌入式作業系統設計與實作 (2014 Spring)
 ================================
 .. image:: /embedded-os.png
@@ -15,10 +19,6 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 - `課程注意事項<embedded/note2014>`_
 - `分組報告</embedded/2014-w6>`_ (針對 STM32F429 和 Raspberry Pi): `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embdded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
 - `期末專題列表</embedded/os-team2014>`_
-
-2014 年暑期嵌入式系統短期訓練
-------------------------------------------------
-- ` 課程資訊與進度表<embedded/summer2014>`_
 
 2014 年冬季系統軟體短期課程
 ------------------------------
