@@ -13,10 +13,8 @@ toc: no
  * 作業系統概念和設計
  * 硬體週邊控制，如 `GPIO</embedded/GPIO>`_, `ADC</embedded/ADC>`_, `USB</embedded/USB>`_
  * ARM 微處理器架構
- * 案例探討：四軸飛行器
-   - `從無到有打造四軸飛行器之軟硬體<http://www.slideshare.net/fantasyboris/ss-30440689>`_
-
- * 案例探討: 電吉他調音器
+ * 案例探討: `四軸飛行器<http://www.slideshare.net/fantasyboris/ss-30440689>`_
+ * 案例探討: `電吉他調音器<http://www.slideshare.net/shengwen1997/embedded2014-final-project>`_
 
 討論區
 -------
