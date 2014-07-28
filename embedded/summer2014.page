@@ -1,5 +1,5 @@
 ---
-title: 2014 年嵌入式系統短期課程 / 進度與資源
+title: 2014 年嵌入式系統暑期課程 / 進度與資源
 toc: no
 ...
 
@@ -29,6 +29,8 @@ toc: no
 預先準備
 -------------
 * 攜帶筆記型電腦並安裝 Linux 系統，建議 Ubuntu, Debian, Mint 一類，在課程進行前準備好
+  - 透過 VirtualBox 安裝 Lubuntu 的`共筆流程<https://hackpad.com/VirtualBox-with-LUbuntu14.04-yza4C1MPF5s>`_
+
 * 在 8 月 7 日前，準備一片 STM32F429I-Discovery 硬體，可洽詢 `MCUApps<http://www.mcuapps.com/products/stm32f429i-discovery/>`_
 * 詳閱`相關系統觀念<https://system2014.hackpad.com/2014--3mYhP6hx0le>`_
 
