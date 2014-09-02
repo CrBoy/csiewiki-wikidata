@@ -11,6 +11,7 @@ toc: yes
 說明文件
 ========
 What is Ray Tracing?
+
 在解說光跡跟蹤之前，先介紹Perspective Projection透視投影。如下圖，在空間中有個正立方體，攝影機的底片在底面(正方形)，c經過一些相似形幾何運算，可以得到一個較小的c'，將所有頂點都打在底片上，再將c'的頂點相連(運用直線投影還是直線的直觀概念)，這就是相機會拍到的東西!由於每個頂點可以在常數時間內被映射，這種方法被大量用在早期計算機圖學界
 
 .. image:: /l001vantagepoint.png
@@ -21,11 +22,39 @@ What is Ray Tracing?
 
 球體可以凸顯光跡追蹤的強大，因此我們首要目標是實做球體和光的交會演算法(Ray-Sphere Intersection)。這其實是一個不太難但是算式複雜的題目。向量底片上的各點(x,y)扣除眼睛位置(xe,ye)即為光的方向向量(dx, dy)=(x, y)-(xe, ye)，由參數式(xe+dx*t, ye+dy*t)可以描述這道光，帶入空間中球心(xc, yc, zc)半徑為r的球體方程式(x-xc)^2+(y-yc)^2+(z-zc)^2=r^2，得到一個二次方程式，可以解得t之值，兩組解表示兩個交點，此時要取近的才是光真正打到的地方!
 
+Lighting Model
+
+我們將物體的光照區分成Ambient Lighting+Diffuse Lighting+Specular Lighting，請看下圖
+
+.. image:: /Phong_components_version_4.png
+
+Ambient Lighting(環境光照):可以視為底色，這個現象是用來粗略模擬全局光照(Global Illumination)，基本上是一種作弊行為
+
+Diffuse Lighting(漫射光照):光被物體吸收後的漫射，跟物體表面方向和光源及物體顏色有關，不過為什麼叫漫射光照呢?其實巨觀來看所有物體皆為漫射，假設有個瓶子放在桌上，若他為純鏡面反射，則觀察者換個角度面對該瓶子就可能會完全看不到，因此這裡假設該物體對於所有角度漫射光機率相同。計算方式很簡單：光顏色*物體顏色*(該點到光的向量 dot 該點法向量)
+
+Specular Lighting: 光是Diffuse好像看起來就真實很多了，但是似乎卻少了什麼? 其實某些部分的光會完全不被物體吸收直接反射，因此Specular Lighting與物體顏色無關：另外一個看起來光滑的物體，其漫射方向都大致遵循"鏡面反射"，說到鏡面反射，這可跟觀察者方向有關，然而如何模擬大致遵循鏡面反射方向的漫射呢?請看計算方式：光顏色*(反射光方向 dot 該點到觀察者方向)^shininess，其中shininess並不難理解，請參考下圖
+
+..image:: /TLightMaterial_Shininess.png
+
+總結這部分充滿作弊行為來模擬真實的光照，不過if it looks good, then it is good. no matter how
+
+Flat/Gouraud/Phong Shading
+
+現今主要著色法有三種：Flat, Gouraud, Phong，請直接看以下比較
+
+.. image:: /comparison-flat-gouraud-phong-shading.jpg
+
+不難發現，品質：Phong>Gouraud>Flat，然而運算量也是隨著提升
+
+(待補...)
+
 開發日誌
 ========
 2014/3/22 完成儲存BMP圖檔和Ray-Sphere Intersection演算法，做出來的顏色是球本身的顏色，並且只做一層追蹤(確認Ray-Sphere intersect正確性)!
 
 .. image:: /output.jpg
+
+2014/9/2 花了一點時間補上說明，這個程式早已完工，只是後來改用java寫，平行也改用shared memory
 
 參考資料
 ========
