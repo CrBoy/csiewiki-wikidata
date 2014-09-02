@@ -34,7 +34,7 @@ Diffuse Lighting(漫射光照):光被物體吸收後的漫射，跟物體表面�
 
 Specular Lighting: 光是Diffuse好像看起來就真實很多了，但是似乎卻少了什麼? 其實某些部分的光會完全不被物體吸收直接反射，因此Specular Lighting與物體顏色無關：另外一個看起來光滑的物體，其漫射方向都大致遵循"鏡面反射"，說到鏡面反射，這可跟觀察者方向有關，然而如何模擬大致遵循鏡面反射方向的漫射呢?請看計算方式：光顏色*(反射光方向 dot 該點到觀察者方向)^shininess，其中shininess並不難理解，請參考下圖
 
-..image:: /TLightMaterial_Shininess.png
+.. image:: /TLightMaterial_Shininess.png
 
 總結這部分充滿作弊行為來模擬真實的光照，不過if it looks good, then it is good. no matter how
 
