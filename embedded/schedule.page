@@ -14,7 +14,7 @@ toc: no
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Sep 18   `Overview: Embedded in our world`_      `Lab 19`_: QEMU
+#1    Sep 18   `2014q3 Overview`_                       `Lab 19`_: QEMU
 #2    Sep 25   `ARM Architecture and SoC`_             `Lab 20`_: GNU Toolchain
 #3    Oct 2    `Operating Systems for Embedded`_       `Lab 20`_: GNU Toolchain
 #4    Oct 9    `ARM: Instructions`_                    `Lab 21`_: RTOS (1)
@@ -34,6 +34,9 @@ Week  Date     Subject                                 Assignment
 #18   Jan 15   `Group Presentation(10)`_               -
 #18  Jan 17 期末展示                                
 ====  ====     =======                                 ==========
+
+.. _`2014q3 Overview`: 2014q3w1
+
 
 嵌入式作業系統設計與實作 (Spring 2014)
 ------------------------------------------------------
