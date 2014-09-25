@@ -47,8 +47,12 @@ STM32 Overview
   - Wireless Connectivity
   - Computing/Prototyping
   - One for most use cases
-  - open source: http://code.google.com/hosting/search?q=label:STM32 
 
+- `STM32-P103<https://www.olimex.com/Products/ARM/ST/STM32-P103/>`_
+  * MCU: STM32F103RBT6 ARM Cortex-M3, up to 72MHz operation
+  * 128K Bytes Program Flash, 20K Bytes RAM
+  * USB, CAN, x2 I2C, x2 ADC 12 bit, x3 UART, x2 SPI, x3 TIMERS
+  
 .. image:: /STM32-P103-01.jpg
 
 STM32 on QEMU 環境建立與測試
