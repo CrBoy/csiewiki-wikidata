@@ -88,8 +88,8 @@ FreeRTOS
 * 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容 (但是目前版本不能正確運作)
 * 測試方式
   - ``cd ~/workspace``
-  - ``git clone git@github.com/embedded2014/freertos-plus.git``
-  - # 或者: ``git clone https://github.comembedded2014/freertos-plus.git``
+  - ``git clone git@github.com:embedded2014/freertos-plus.git``
+  - # 或者: ``git clone https://github.com/embedded2014/freertos-plus.git``
   - ``cd freertos-plus``
   - ``make``
   - ``make qemu``
