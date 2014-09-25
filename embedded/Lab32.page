@@ -93,7 +93,7 @@ FreeRTOS
   - ``cd freertos-plus``
   - ``make``
   - ``make qemu``
-  - 按下 Ctrl-Alt-2 切到 serial
+  - 按下 Ctrl-Alt-1 切到 serial
   - 輸入 "help" 可見已實作的 shell command
     * ps
     * mmtest
