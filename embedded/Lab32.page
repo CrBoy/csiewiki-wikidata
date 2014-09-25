@@ -1,0 +1,74 @@
+--
+title: Lab32: QEMU + FreeRTOS
+toc: no
+...
+
+預期目標
+-------
+- 體驗一個具體而微的 MCU 程式開發過程，使用 GNU Toolchain
+- 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
+- 接觸 FreeRTOS
+
+預先準備
+-------
+- 安裝 Ubuntu Linux，建議版本為 13.10
+- 安裝必要的套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install git zlib1g-dev libsdl1.2-dev automake* autoconf* libtool libpixman-1-dev
+
+- 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install lib32gcc1 lib32ncurses5
+
+- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+
+.. code-block:: prettyprint
+
+    cd  /
+    sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
+
+- 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2012.03/``
+
+
+STM32 Overview
+--------------
+- Powerful but Cheap
+  - Wireless Connectivity
+  - Computing/Prototyping
+  - One for most use cases
+  - open source: http://code.google.com/hosting/search?q=label:STM32 
+
+.. image:: /STM32-P103-01.jpg
+
+STM32 on QEMU 環境建立與測試
+--------------------------
+
+.. code-block:: prettyprint
+
+    mkdir -p workspace
+    cd workspace
+    git clone git://github.com/beckus/stm32_p103_demos.git
+    git clone git://github.com/beckus/qemu_stm32.git
+
+    cd qemu_stm32
+    ./configure --disable-werror --enable-debug \
+        --target-list="arm-softmmu" \
+        --extra-cflags=-DDEBUG_CLKTREE \
+        --extra-cflags=-DDEBUG_STM32_RCC \
+        --extra-cflags=-DDEBUG_STM32_UART \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
+    make
+    cd ../stm32_p103_demos
+    export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
+    make all
+    make blink_flash_QEMURUN
+    make button_QEMURUN
+    make uart_echo_QEMURUN
+
+--------------------------------
+
