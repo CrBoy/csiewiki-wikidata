@@ -1,17 +1,17 @@
---
+---
 title: Lab32: QEMU + FreeRTOS
 toc: no
 ...
 
 預期目標
--------
+------------
 - 體驗一個具體而微的 MCU 程式開發過程，使用 GNU Toolchain
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
 - 接觸 FreeRTOS
 
 預先準備
 -------
-- 安裝 Ubuntu Linux，建議版本為 13.10
+- 安裝 Ubuntu Linux，建議版本為 14.04
 - 安裝必要的套件
 
 .. code-block:: prettyprint
