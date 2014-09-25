@@ -33,6 +33,13 @@ toc: no
 
 - 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2012.03/``
 
+設定 Toolchain 執行檔路徑
+------------------------------------
+.. code-block:: prettyprint
+
+    export PATH=/usr/local/csl/arm-2014.05/bin:$PATH
+
+* 提示: 可更新到 ~/.bashrc
 
 STM32 Overview
 --------------
@@ -74,3 +81,41 @@ STM32 on QEMU 環境建立與測試
 
 --------------------------------
 
+FreeRTOS
+---------------
+* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+
+* 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容 (但是目前版本不能正確運作)
+* 測試方式
+  - ``cd ~/workspace``
+  - ``git clone git@github.com/embedded2014/freertos-plus.git``
+  - # 或者: ``git clone git://github.com/embedded2014/freertos-plus.git``
+  - ``cd freertos-plus``
+  - ``make``
+  - ``make qemu``
+  - 按下 Ctrl-Alt-2 切到 serial
+  - 輸入 "help" 可見已實作的 shell command
+    * ps
+    * mmtest
+    * host
+      - 輸入 ``host ls`` 並觀察 host 端終端機的畫面
+
+ARM Semihost
+------------
+* 使用 ARM 所開發的目標系統 (target system)，不一定會提供所有的輸入/輸出設備。因此 ARM 設計了 semihost 這種機制，讓運行 ARM debugger 的主機可以與目標系統進行 I/O 溝通，以利產品開發
+  - http://albert-oma.blogspot.tw/2012/04/semihosting.html
+
+* Semihost 的實作是透過使用定義好的軟體中斷 (SVCs)，使程式在執行過程中產生中斷。一旦目標系統上的程式呼叫到對應的指令 (semihosting call)，便產生軟體中斷，接著 Debug Agent 就會負責處理此中斷，進行與主機的溝通
+  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html
+
+* FreeRTOS extensions: https://github.com/hugovincent/mbed-freertos
+  - lib/semifs.c
+  - mbed (mbed.org) target supports semihosted local filesystem, accessible via the mbed USB interface. Should also work with semihosting-compatible debuggers.
+
+* QEMU ARM semihosting
+  - http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/
+
+參考執行畫面:
+
+ .. image:: /embedded/Lab20/semihost.png
