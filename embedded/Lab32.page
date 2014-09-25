@@ -126,6 +126,11 @@ ARM Semihost
 - Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
   - ln -s ~/下載 ~/Downloads
 
+參考設計要求
+------------------
+* 修正原本檔案系統無法運作的狀況，使 `ls` 和 `cat` 一類的指令得以使用
+* 修正和擴充 `test`，試著追加有用的功能，如計算質數或 Fibonacci 數，並且適度回報
+* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
 
 繳交作業
 ------------
