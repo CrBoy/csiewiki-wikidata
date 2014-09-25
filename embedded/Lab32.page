@@ -131,5 +131,15 @@ ARM Semihost
 ------------
 - 截止日期：
    * Oct 4, 2014 (含) 之前
+
+- 更新作業提案到共筆網站: Lab 32 / 作業共筆，需要標注自己的 ID
+    * 將符合作業提案的程式碼，提交到自行 fork 的 repository
+    * https://github.com/embedded2014/freertos-plus
+    * 注意: 要記得 fork `freertos<https://github.com/embedded2014/freertos-plus>`_
+
 - 越早在 GitHub 上有動態、越早接受 code review，評分越高
-- 更新 Hackpad 
+
+參考資訊
+------------
+* `Lab29: FreeRTOS</embedded/Lab29>`_ (檔案系統可運作)
+* `Lab29: FreeRTOS - Hackpad<https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx>`_
