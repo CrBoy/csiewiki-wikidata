@@ -73,7 +73,6 @@ STM32 on QEMU 環境建立與測試
         --disable-gtk
     make
     cd ../stm32_p103_demos
-    export PATH=/usr/local/csl/arm-2012.03/bin:$PATH
     make all
     make blink_flash_QEMURUN
     make button_QEMURUN
