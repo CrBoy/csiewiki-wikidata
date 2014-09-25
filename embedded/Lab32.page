@@ -24,7 +24,7 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2014_05.tar.bz2</embedded/toolchain-2014_05.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+- 取得 GNU Toolchain: `toolchain-2014_05.tar.bz2<http://hrv.acomotech.com/ecg/static/toolchain-2014_05.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
 
 .. code-block:: prettyprint
 
