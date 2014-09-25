@@ -137,7 +137,7 @@ ARM Semihost
 - 截止日期：
    * Oct 4, 2014 (含) 之前
 
-- 更新作業提案到共筆網站: Lab 32 / 作業共筆，需要標注自己的 ID
+- 更新作業提案到共筆網站: `Lab 32 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository
     * https://github.com/embedded2014/freertos-plus
     * 注意: 要記得 fork `freertos<https://github.com/embedded2014/freertos-plus>`_
