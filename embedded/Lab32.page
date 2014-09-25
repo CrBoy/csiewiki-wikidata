@@ -125,3 +125,11 @@ ARM Semihost
 - 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
 - Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
   - ln -s ~/下載 ~/Downloads
+
+
+繳交作業
+------------
+- 截止日期：
+   * Oct 4, 2014 (含) 之前
+- 越早在 GitHub 上有動態、越早接受 code review，評分越高
+- 更新 Hackpad 
