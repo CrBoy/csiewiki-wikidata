@@ -24,14 +24,14 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+- 取得 GNU Toolchain: `toolchain-2014_05.tar.bz2</embedded/toolchain-2014_05.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
 
 .. code-block:: prettyprint
 
     cd  /
-    sudo tar jxvf /tmp/toolchain-2012_03.tar.bz2
+    sudo tar jxvf /tmp/toolchain-2014_05.tar.bz2
 
-- 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2012.03/``
+- 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2014.05/``
 
 設定 Toolchain 執行檔路徑
 ------------------------------------
