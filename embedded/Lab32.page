@@ -89,7 +89,7 @@ FreeRTOS
 * 測試方式
   - ``cd ~/workspace``
   - ``git clone git@github.com/embedded2014/freertos-plus.git``
-  - # 或者: ``git clone git://github.com/embedded2014/freertos-plus.git``
+  - # 或者: ``git clone https://github.com/embedded2014/freertos-plus.git``
   - ``cd freertos-plus``
   - ``make``
   - ``make qemu``
