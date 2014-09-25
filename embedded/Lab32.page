@@ -142,8 +142,6 @@ ARM Semihost
     * https://github.com/embedded2014/freertos-plus
     * 注意: 要記得 fork `freertos<https://github.com/embedded2014/freertos-plus>`_
 
-- 越早在 GitHub 上有動態、越早接受 code review，評分越高
-
 參考資訊
 ------------
 * `Lab21: RTOS - Hackpad<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_ (檔案系統原理)
