@@ -3,6 +3,8 @@ title: STM32F429
 toc: no
 ...
 
+硬體週邊介紹和驅動方式: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_,  `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_
+
 STM32F429 Discovery 開發板
 --------------------------
 .. image:: /embedded/STM32F429I-DISCO.jpg
