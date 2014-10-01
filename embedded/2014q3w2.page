@@ -21,6 +21,7 @@ toc: no
 教材
 ----------
 * `Qemu JIT Code Generator and System Emulation<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_
+* `QEMU Binary Translation(TCG)<http://www.slideshare.net/RampantJeff/qemu-binary-translation>`_
 * `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
 * 舊的參考資料: ARM & SoC 訓練:
   - `Part I<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_
