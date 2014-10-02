@@ -19,6 +19,7 @@ toc: no
     addeqs r1, r2, r3, lsl #2
 
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
+* `quadruped robot 先期研究<https://robot_control.hackpad.com/quadruped-robot--jdowyBd9FAa>`_
 
 作業須知 (Lab-33)
 ----------------
