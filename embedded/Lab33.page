@@ -10,8 +10,8 @@ toc: no
 
 GDB
 ----
-* http://www.slideshare.net/chenkaie/gdb-rocks-16951548
-* http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html
+* `GDB Rocks!<http://www.slideshare.net/chenkaie/gdb-rocks-16951548>`_
+* `作業系統之前的程式 for stm32f4discovery：打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
 
 QEMU + GDB 操作
 ----------------
@@ -19,13 +19,8 @@ QEMU + GDB 操作
 
 .. code-block:: prettyprint
 
-  cd workspace
-  file qemu_stm32
-
-- 開啟一個終端機，作以下輸入
-
-.. code-block:: prettyprint
-
+    cd workspace
+    file qemu_stm32
     cd freertos-plus
     make qemudbg
 
