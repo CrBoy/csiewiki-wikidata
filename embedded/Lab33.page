@@ -1,0 +1,9 @@
+---
+title: Lab33: GDB + FreeRTOS
+toc: no
+...
+
+預期目標
+------------
+- 學習使用 GDB
+- 追蹤和分析  FreeRTOS 運作
