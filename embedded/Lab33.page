@@ -7,3 +7,11 @@ toc: no
 ------------
 - 學習使用 GDB
 - 追蹤和分析  FreeRTOS 運作
+
+繳交作業
+------------
+- 截止日期：
+   * Oct 11, 2014 (含) 之前
+
+- 更新作業提案到共筆網站: `Lab 33 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-3-rR0cpeJsDcp>`_，需要標注自己的 ID
+    * 將符合作業提案的程式碼，提交到自行 fork 的 repository `freertos-plus<https://github.com/embedded2014/freertos-plus>`_ (設定與 `Lab 32</embedded/Lab32>`_ 相同)
