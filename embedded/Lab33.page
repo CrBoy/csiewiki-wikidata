@@ -32,9 +32,11 @@ QEMU + GDB 操作
 - 研究 ``tool/gdbscript`` 檔案內容
 - 在 ``(gdb)`` 畫面中敲入以下指令，觀察相關輸出
   * ``info registers``
+  * ``list``
   * ``next``
   * ``info registers``
   * ``info breakpoints``
+  * ``print serial_rx_queue``
 
 - 注意: 使用 Ubuntu 64-bit 版本時，需要另外安裝 lib32ncurses5
   - sudo apt-get install lib32ncurses5
