@@ -70,3 +70,5 @@ QEMU + GDB 操作
 - GDB Manual
   * http://sourceware.org/gdb/current/onlinedocs/gdb/
   * Commands, Remote Debugging, Extending GDB
+
+- `Lab 27: GDB Automation<https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw>`_
