@@ -8,6 +8,32 @@ toc: no
 - 學習使用 GDB
 - 追蹤和分析  FreeRTOS 運作
 
+GDB
+----
+* http://www.slideshare.net/chenkaie/gdb-rocks-16951548
+* http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html
+
+QEMU + GDB 操作
+----------------
+- 假設 `Lab-32</embedded/Lab32>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+
+.. code-block:: prettyprint
+
+  cd workspace
+  file qemu_stm32
+
+- 開啟一個終端機，作以下輸入
+
+.. code-block:: prettyprint
+
+    cd freertos-plus
+    make qemudbg
+
+- 研究 ``tool/gdbscript`` 檔案內容
+- 注意: 使用 Ubuntu 64-bit 版本時，需要另外安裝 lib32ncurses5
+  - sudo apt-get install lib32ncurses5
+
+
 小提示
 ---------
 * 若遇到 Linux 輸入法系統 ibus 一直干擾終端機，可用 ``pkill -9 ibus`` 強制結束輸入法
