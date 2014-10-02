@@ -16,7 +16,7 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Sep 18   `2014q3 Overview`_                       `Lab 31<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_: ARM Environment
 #2    Sep 25   `ARM Architecture (cont)`_                               `Lab 32`_: QEMU + FreeRTOS
-#3    Oct 2    `Operating Systems for Embedded`_       `Lab 20`_: GNU Toolchain
+#3    Oct 2    `ARM Architecture (cont2)`_                              `Lab 33`_: GDB
 #4    Oct 9    `ARM: Instructions`_                    `Lab 21`_: RTOS (1)
 #5    Oct 16    Embedded Linux Conference                `Lab 22`_: RTOS (2)
 #6    Oct 23   `ARM: Interrupts and Exceptions`_       `Lab 23`_: RTOS (3)
@@ -37,7 +37,9 @@ Week  Date     Subject                                 Assignment
 
 .. _`2014q3 Overview`: 2014q3w1
 .. _`ARM Architecture (cont)`: 2014q3w2
+.. _`ARM Architecture (cont2)`: 2014q3w3
 .. _`Lab 32`: Lab32
+.. _`Lab 33`: Lab33
 
 嵌入式作業系統設計與實作 (Spring 2014)
 ------------------------------------------------------
