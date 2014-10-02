@@ -45,6 +45,11 @@ QEMU + GDB 操作
 ---------
 * 若遇到 Linux 輸入法系統 ibus 一直干擾終端機，可用 ``pkill -9 ibus`` 強制結束輸入法
 
+參考作業提案
+------------------
+* 修改 tool/gdbscript 檔案內容，使得 make qemudbg 時，shell 會自動執行 test 一類的指令
+* 承上，使 FreeRTOS + QEMU 透過 semihosting，將 test 結果保存在 host 端檔案
+
 繳交作業
 ------------
 - 截止日期：
