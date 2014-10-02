@@ -18,6 +18,8 @@ toc: no
 
     addeqs r1, r2, r3, lsl #2
 
+* `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
+
 作業須知 (Lab-33)
 ----------------
 * 截止日期：
