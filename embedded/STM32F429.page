@@ -58,7 +58,7 @@ STM32F429 Discovery 開發板
 
 軟體支援
 --------
-* `Hackpad<https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3>`_
+* `GNU/Linux 端開發環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_
 * 作業系統移植
   - `FreeRTOS</embedded/freertos>`_
   - `ChibiOS/RT</embedded/chibios>`_
