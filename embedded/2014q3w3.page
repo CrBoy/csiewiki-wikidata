@@ -33,7 +33,8 @@ Object-Oriented Programming in Kernel
   - Thumb2 Conditional Code
   - Benchmark using cycle count
   - Optimization Techniques
-  - Mutex & ARM Exclusive Monitor 
+  - Mutex & ARM Exclusive Monitor
+  - GiHub: `#1 Fibonacci<https://github.com/hirokiht/arm-lecture/tree/master/lab-1>`_, `#2 Mutex<https://github.com/hirokiht/arm-lecture/tree/master/lab-2>`_
 
 * `Lab 32<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_
 
