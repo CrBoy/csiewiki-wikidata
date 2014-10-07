@@ -26,9 +26,15 @@ Object-Oriented Programming in Kernel
 * `Object-oriented design patterns in the kernel (1)<http://lwn.net/Articles/444910/>`_
 * `Object-oriented design patterns in the kernel (2)<http://lwn.net/Articles/446317/>`_
 
-作業觀摩
--------------
+作業觀摩與解說
+----------------------
 * `Lab 31<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_
+  - `Embedded System - ARM Development and Optimization<http://www.slideshare.net/hirokiht/arm-developement>`_
+  - Thumb2 Conditional Code
+  - Benchmark using cycle count
+  - Optimization Techniques
+  - Mutex & ARM Exclusive Monitor 
+
 * `Lab 32<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_
 
 作業須知 (Lab-33)
@@ -36,6 +42,3 @@ Object-Oriented Programming in Kernel
 * 作業描述: `Lab 33: GDB + FreeRTOS</embedded/Lab33>`_
 * 截止日期：
    - Oct 11, 2014 (含) 之前
-作業開發經驗分享
---------------
-http://www.slideshare.net/hirokiht/arm-developement
