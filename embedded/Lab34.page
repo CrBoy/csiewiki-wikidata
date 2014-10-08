@@ -39,15 +39,18 @@ Part 2
 
 .. code-block:: prettyprint
 
-   $ git clone https://github.com/embedded2014/freertos-plus.git
-   $ cd freertos-plus
-   $ make
-   $ echo "<Your codes here>" > exploit.str
-   $ make exploit
-   $ make qemu
+   cd /tmp
+   git clone https://github.com/embedded2014/freertos-plus.git
+   cd freertos-plus && make
+   echo "<Your codes here>" > exploit.str
+   make exploit
+   make qemu
 
-   In the qemu shell
-   $ bufbomb
+In the qemu shell
+
+.. code-block:: prettyprint
+
+   bufbomb
 
 ..
 
