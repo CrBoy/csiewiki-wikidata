@@ -24,7 +24,11 @@ Part 1
 
 步驟：
    1. 下載作業`檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_
-   2. 解壓縮``$ tar -xzvf bomb.tar.gz``
+   2. 解壓縮
+.. code-block:: prettyprint
+
+    tar -xzvf bomb.tar.gz
+
    3. Hacking!!
 
 程式說明：
