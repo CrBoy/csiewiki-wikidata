@@ -28,7 +28,7 @@ Part 1
       - 階段 4 - 遞迴
 
 參考資料
-   * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_
+   * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
 
 Part 2
 -------------
@@ -65,5 +65,5 @@ Part 2
    * 在建立 exploit code 的時候可以先寫 C code，編譯後利用 objdump 將 machine code 取出
 
 參考資料：
-   * `hwswinterface lab3<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9>`_
+   * `hwswinterface lab3<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
    * `IA32 Linux Buffer Overflow<https://d396qusza40orc.cloudfront.net/hardware/lecture_slides/tutorials/buffoverflow.pdf>`_
