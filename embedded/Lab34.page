@@ -8,7 +8,7 @@ toc: no
 * 複習 ARM 處理器和指令集，並深入 stack 和執行時期的行為
 * 熟悉 objdump、gdb 等工具，並利用上述工具分析執行檔
 
-Lab1
+Part 1
 ------------
 目標：
    * 利用 gdb 與 objdump 分析執行檔，學習 hack 程式!!!!
@@ -30,7 +30,7 @@ Lab1
 參考資料
    * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_
 
-Lab2
+Part 2
 -------------
 目標：
    * 瞭解 buffer overflow 的原理，並且利用這項技巧攻擊程式
