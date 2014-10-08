@@ -37,7 +37,7 @@ Lab2
 
 步驟：
 
-.. code-block:: prettyprint linenums
+.. code-block:: prettyprint
 
    $ git clone https://github.com/embedded2014/freertos-plus.git
    $ cd freertos-plus
