@@ -14,7 +14,7 @@ Part 1
    * 利用 gdb 與 objdump 分析執行檔，學習 hack 程式!!!!
 
 步驟：
-   1. 下載作業`檔案<https://www.dropbox.com/s/d56xcnzipmc8mlv/bomb.tar.gz?dl=0>`_
+   1. 下載作業`檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_
    2. 解壓縮``$ tar -xzvf bomb.tar.gz``
    3. Hacking!!
 
