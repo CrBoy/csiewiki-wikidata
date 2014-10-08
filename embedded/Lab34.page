@@ -55,7 +55,7 @@ Part 2
 ..
 
 程式說明：
-   * bufbomb 會利用 semihosting 讀取由 ``make exploit`` 產生的 ``exploit.byte``
+   * bufbomb 會利用 `ARM semihosting<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html>`_ 讀取由 ``make exploit`` 產生的 ``exploit.byte``
    * 觀察 ``bufbomb.c``，找出問題所在，輸入正確的 byte code
    * ``str2byte`` 這支程式會讀入 hex 並且轉換成二進位檔案，需要注意的是每一行 code 結尾必須是 ``0x0A('\n')``
    * 溫馨小提示
