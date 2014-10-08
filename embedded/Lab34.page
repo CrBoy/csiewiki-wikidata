@@ -46,7 +46,7 @@ Part 2
    make exploit
    make qemu
 
-In the qemu shell
+在 FreeRTOS shell (QEMU 視窗)，輸入以下命令:
 
 .. code-block:: prettyprint
 
