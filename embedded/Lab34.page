@@ -24,14 +24,13 @@ Part 1
 
 步驟：
    1. 下載作業`檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_
-   2. 解壓縮
+   2. 解壓縮後閱讀 README 查看執行方式，並且開始 Hacking!!
 .. code-block:: prettyprint
 
     tar -xzvf bomb.tar.gz
+    cat README
 
 ..
-
-   3. 閱讀 README 查看執行方式，並且開始 Hacking!!
 
 程式說明：
    * bomb 這支程式會從標準輸入讀取字串，請利用上述的工具找出正確的字串輸入
