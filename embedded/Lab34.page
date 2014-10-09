@@ -29,7 +29,9 @@ Part 1
 
     tar -xzvf bomb.tar.gz
 
-   3. Hacking!!
+..
+
+   3. 閱讀 README 查看執行方式，並且開始 Hacking!!
 
 程式說明：
    * bomb 這支程式會從標準輸入讀取字串，請利用上述的工具找出正確的字串輸入
