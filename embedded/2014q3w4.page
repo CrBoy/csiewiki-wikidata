@@ -35,12 +35,12 @@ toc: no
 教材
 -------
 * `Shellshock 威脅案例<http://www.slideshare.net/d3vc0r3/shell-shock>`_
-* 軟體組裝心得分享
-  - 編輯器, 編譯器, 載入器, 組譯器, 除錯器, 連結器, 原始碼
-
 * `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
   - `Assembly language programming: ARM Cortex-M3<http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout>`_
+
+* `The Hardware/Software Interface<https://class.coursera.org/hwswinterface-002>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
+  - `中文討論區<https://www.facebook.com/groups/1437352483196710/>`_
 
 Code Review
 -----------------
