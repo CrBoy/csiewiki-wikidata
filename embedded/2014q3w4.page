@@ -43,6 +43,7 @@ toc: no
 
 Code Review
 -----------------
+* `Lab 32: QEMU + FreeRTOS</embedded/Lab32>`_
 * `可讀寫的 ramfs + VFS<https://github.com/sonicyang/freertos-plus/commits/master>`_
 * `移植 Linux romfs<https://github.com/hirokiht/freertos-plus/commits/master>`_
    - `Hackpad<https://embedded2014.hackpad.com/Embedded-System-LAB-32-tPapnk7ufb3>`_
