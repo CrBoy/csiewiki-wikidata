@@ -1,0 +1,26 @@
+---
+title: Lab35: STM32F429
+toc: no
+...
+
+預期目標
+------------
+* 接觸 STM32F429i Discovery 硬體並學習相關軟體開發
+* 學習 OpenOCD, gdb 等工具
+* 學習硬體週邊控制
+
+STM32F429 Discovery
+-------------------
+* `軟硬體資源彙整</embedded/STM32F429>`_
+* `環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ (Hackpad)
+* `Remote GDB 使用<https://stm32f429.hackpad.com/GDB-3KbCVTstWZj>`_ (Hackpad)
+
+STM32F4 開發板介紹
+-------------------
+* `一起來認識 STM32F4 開發套件 (1)<http://www.rs-online.com/designspark/electronics/chn/blog/chi-blog-stm32f4%281%29>`_
+* `一起來認識 STM32F4 開發套件 (2)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%282%29>`_
+* `一起來認識 STM32F4 開發套件 (3)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%283%29>`_
+
+作業要求 (僅供參考，可自行替換)
+---------------------------------------------
+* 將 `Lab 31: ARM Environment<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_, `Lab 32: QEMU + FreeRTOS</embedded/Lab32>`_, `Lab 33: GDB + FreeRTOS</embedded/Lab33>`_ 等開發成果整合到 FreeRTOS/stm32f429
