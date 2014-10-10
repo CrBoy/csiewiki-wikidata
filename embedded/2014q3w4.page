@@ -36,6 +36,7 @@ toc: no
 -------
 * `Shellshock 威脅案例<http://www.slideshare.net/d3vc0r3/shell-shock>`_
   - `bash代碼注入的安全漏洞<http://coolshell.cn/articles/11973.html>`_
+  - `Wikipedia - Shellshock<http://en.wikipedia.org/wiki/Shellshock_%28software_bug%29>`_
 
 * `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
