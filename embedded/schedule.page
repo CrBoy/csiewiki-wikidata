@@ -18,7 +18,7 @@ Week  Date     Subject                                 Assignment
 #2    Sep 25   `ARM Architecture (cont)`_                               `Lab 32`_: QEMU + FreeRTOS
 #3    Oct 2    `ARM Architecture (cont2)`_                              `Lab 33`_: GDB + FreeRTOS
 #4    Oct 9    `ARM Architecture and Interface`_                    `Lab 34`_: Buffer overflow
-#5    Oct 16    `Hardware Concepts Review`_               `Lab 22`_: RTOS (2)
+#5    Oct 16    `Hardware Concepts Review`_               `Lab 35`_: STM32F429
 #6    Oct 23   `ARM: Interrupts and Exceptions`_       `Lab 23`_: RTOS (3)
 #7    Oct 30   `Code Review`_                                       -
 #8    Nov 6    `Code Review + Group Presentation(1)`_  `Lab 24`_: Hardware
@@ -43,6 +43,7 @@ Week  Date     Subject                                 Assignment
 .. _`Lab 32`: Lab32
 .. _`Lab 33`: Lab33
 .. _`Lab 34`: Lab34
+.. _`Lab 35`: Lab35
 
 嵌入式作業系統設計與實作 (Spring 2014)
 ------------------------------------------------------
