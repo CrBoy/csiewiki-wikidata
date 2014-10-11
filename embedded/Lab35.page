@@ -15,6 +15,19 @@ STM32F429 Discovery
 * `環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ (Hackpad)
 * `Remote GDB 使用<https://stm32f429.hackpad.com/GDB-3KbCVTstWZj>`_ (Hackpad)
 
+USB Serial 接法
+---------------------
+* PL2303
+  - Black: Ground
+  - Green: Receive
+  - White: Transmit
+.. image:: http://elinux.org/images/d/d3/RPI_Serial.png
+
+* FTDI 
+  - Black: Ground
+  - Yellow: Receive
+  - Orange: Transmit
+
 STM32F4 開發板介紹
 -------------------
 * `一起來認識 STM32F4 開發套件 (1)<http://www.rs-online.com/designspark/electronics/chn/blog/chi-blog-stm32f4%281%29>`_
