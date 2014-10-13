@@ -35,6 +35,7 @@ toc: no
 教材
 -------
 * `Shellshock 威脅案例<http://www.slideshare.net/d3vc0r3/shell-shock>`_
+  - `BASH ShellShock 漏洞分析<http://timhsu.chroot.org/2014/10/bash-shellshock.html>`_
   - `bash代碼注入的安全漏洞<http://coolshell.cn/articles/11973.html>`_
   - `Wikipedia - Shellshock<http://en.wikipedia.org/wiki/Shellshock_%28software_bug%29>`_
 
