@@ -31,9 +31,9 @@ USB Serial 接法
 撰寫模擬交通號誌+汽車行車
 --------------------------------------
 * 參閱 `Hackpad<https://system2014.hackpad.com/Traffic-Simulation-Dlv7svxemEy>`_
-* `git clone https://github.com/embedded2014/freertos-stm32`
-* `cd freertos-stm32 && make`
-* `make flash || make openocd_flash`
+* ``git clone https://github.com/embedded2014/freertos-stm32``
+* ``cd freertos-stm32 && make``
+* ``make flash || make openocd_flash``
 
 STM32F4 開發板介紹
 -------------------
