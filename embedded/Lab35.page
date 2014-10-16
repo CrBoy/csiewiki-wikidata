@@ -17,11 +17,11 @@ STM32F429 Discovery
 
 USB Serial 接法
 ---------------------
+.. image:: http://elinux.org/images/d/d3/RPI_Serial.png
 * PL2303
   - Black: Ground
   - Green: Receive
   - White: Transmit
-.. image:: http://elinux.org/images/d/d3/RPI_Serial.png
 
 * FTDI 
   - Black: Ground
