@@ -45,3 +45,14 @@ STM32F4 開發板介紹
 ---------------------------------------------
 * 將 `Lab 31: ARM Environment<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_, `Lab 32: QEMU + FreeRTOS</embedded/Lab32>`_, `Lab 33: GDB + FreeRTOS</embedded/Lab33>`_ 等開發成果整合到 `FreeRTOS-stm32<https://github.com/embedded2014/freertos-stm32>`_
   - 跟之前作業一樣，記得先 fork `FreeRTOS-stm32<https://github.com/embedded2014/freertos-stm32>`_
+  - GIT commit 應該一次加上一個功能或者主要修改，不要將不相關的修改，混合到同一個 Git commit!
+
+* (加分) 修改為你期望的遊戲
+
+繳交作業
+------------
+* 截止日期：
+   - Oct 25, 2014 (含) 之前
+
+* 更新作業提案到共筆網站: Lab 35 / 作業共筆，需要標注自己的 ID
+   - 將符合作業提案的程式碼，提交到自行 fork 的 repository
