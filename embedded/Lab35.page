@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 ------------
-* 接觸 STM32F429i Discovery 硬體並學習相關軟體開發
+* 接觸 `STM32F429i Discovery</embedded/STM32F429>`_ 硬體並學習相關軟體開發
 * 學習 OpenOCD, gdb 等工具
 * 學習硬體週邊控制
 
@@ -49,6 +49,8 @@ STM32F4 開發板介紹
 * 將 `Lab 31: ARM Environment<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_, `Lab 32: QEMU + FreeRTOS</embedded/Lab32>`_, `Lab 33: GDB + FreeRTOS</embedded/Lab33>`_ 等開發成果整合到 `FreeRTOS-stm32<https://github.com/embedded2014/freertos-stm32>`_
   - 跟之前作業一樣，記得先 fork `FreeRTOS-stm32<https://github.com/embedded2014/freertos-stm32>`_
   - GIT commit 應該一次加上一個功能或者主要修改，不要將不相關的修改，混合到同一個 Git commit!
+  - 提示: 需要先設定 USART1，讓 shell 得以在 serial 環境中使用
+  - 提示: 可以自行實做簡易的 shell，或者從稍早的程式碼移植並整合
 
 * (加分) 修改為你期望的遊戲
 
