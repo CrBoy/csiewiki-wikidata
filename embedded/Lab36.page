@@ -57,12 +57,6 @@ $ make oocd
     Done
     semihosting: *** application exited ***
 
-
-預期目標
-------------
-* 在 `STM32F429i Discovery</embedded/STM32F429>`_ 開發簡易 ELF loader
-* 學習 OpenOCD 和 gdb
-
 參考資訊
 ------------
 * `BeagleBoard OpenOCD<http://elinux.org/BeagleBoardOpenOCD>`_
