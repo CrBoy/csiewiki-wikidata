@@ -70,7 +70,20 @@ toc: no
 
 * 看到 ``Hello world`` 字樣出現 10 次，表示 ``app/main.c`` 編譯與連結出來的 ``app-striped.elf`` 已正確載入並執行
 
-參考資訊
+參考作業要求
+-----------------
+* 擴充 `Lab 35 STM32F429</embedded/Lab35>`_ 作業的 `freertos-stm32<https://github.com/embedded2014/freertos-stm32>`_，允許在執行時期透過 OpenOCD，從 host 端載入 ELF 執行檔 (可視為遊戲程式的 plugin) 並執行 
+* 整合 `Lab 32</embedded/Lab32>`_ 開發的檔案系統與 shell，除了 ``ls`` 和``cat`` 命令外，額外提供 ``exec`` 命令
+
+繳交作業
+-------------
+* 截止日期
+  - Nov 8, 2014 (含) 之前
+
+* 更新作業提案到共筆網站: `Lab 36 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-7-lzIBL1fkunQ>`_，需要標注自己的 ID
+  - 將符合作業提案的程式碼，提交到自行 fork 的 `freertos-stm32<https://github.com/embedded2014/freertos-stm32>`_
+
+參考資料
 ------------
 * `BeagleBoard OpenOCD<http://elinux.org/BeagleBoardOpenOCD>`_
 * `GDB and OpenOCD<http://openocd.sourceforge.net/doc/html/GDB-and-OpenOCD.html>`_
