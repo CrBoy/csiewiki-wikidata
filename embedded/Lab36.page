@@ -10,7 +10,7 @@ toc: no
 
 預先準備
 ------------
-* 確認 $PATH 可找到 `Lab 35</embedded/Lab35>`_ 設定的 GNU Toolchain
+* 確認 ``$PATH`` 可找到 `Lab 35</embedded/Lab35>`_ 設定的 GNU Toolchain
   - ``arm-none-eabi-gcc -v`` 預期輸出 ``4.8.3-11ubuntu1`` 一類包含 ubuntu 的字串
   - 若否，請重新設定 PATH 環境變數
 
