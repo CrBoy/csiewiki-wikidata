@@ -19,3 +19,9 @@ UAV (Unmanned aerial vehicle)
 * `How it's made: C++ compilers (GCC)<http://www.slideshare.net/szborows/how-its-made-c-compilers-gcc>`_
 * `Dynamic Linker<http://www.slideshare.net/sanjivmalik/dynamic-linker-presentation>`_
 
+預習課程 (期中報告會參照到)
+---------------------------------------
+* ARM® Cortex M Boot & CMSIS
+  - `Part I<http://www.slideshare.net/RaahulRaghavan/cortex-m-bootupcmsispart13>`_
+  - `Part II<http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootupcmsispart23>`_
+  - `Part III<http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootup-cmsispart33debugarchitecture>`_
