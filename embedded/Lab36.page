@@ -4,6 +4,52 @@ toc: no
 ...
 
 預期目標
+-------------
+* 在 `STM32F429i Discovery</embedded/STM32F429>`_ 開發簡易 ELF loader
+* 學習 OpenOCD 和 gdb
+
+$ make oocd 
+參考執行結果:
+
+.. code-block:: prettyprint
+
+    make[1]: Entering directory 'elfloader/app'
+     CLEAN
+     CC main.c
+     CC start.c
+     LINK app.elf
+       text	   data	    bss	    dec	    hex	filename
+        164	      8	      4	    176	     b0	app.elf
+     Creating list...
+    make[1]: Leaving directory 'elfloader/app'
+     Launch OpenOCD for stm32f4discovery
+    Open On-Chip Debugger 0.9.0-dev-00105-ge1bc7f4 (2014-08-08-20:38)
+    ...
+    ELF: Scan ELF indexs...
+    ELF: Examining section 1 .text
+    ELF: Examining section 2 .rel.text
+    ELF: Examining section 3 .rodata
+    ...
+    ELF: Examining section 11 .symtab
+    ELF: Examining section 12 .strtab
+    ELF: Done
+    ELF: Relocating section .text
+    ELF:  Offset   Info     Type             Name
+    ELF:  00000034 00001202 R_ARM_ABS32      i
+    ...
+    ELF: Relocating section .rodata
+    ELF:  Offset   Info     Type             Name
+    ELF:  00000038 00001502 R_ARM_ABS32      banner
+    ...
+    ELF:   symAddr=20000F48 relAddr=20000F8C
+    ELF:   R_ARM_ABS32 relocated is 0x20000F54
+    Hello world on Oct 30 2014 at 17:28:11 (0)
+    ...
+    Done
+    semihosting: *** application exited ***
+
+
+預期目標
 ------------
 * 在 `STM32F429i Discovery</embedded/STM32F429>`_ 開發簡易 ELF loader
 * 學習 OpenOCD 和 gdb
