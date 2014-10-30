@@ -3,6 +3,13 @@ title: Week #7 (Oct 30) :: Code Review
 toc: no
 ...
 
+重大事項宣達
+------------------
+* 依據已登記的`分組名單<https://embedded2014.hackpad.com/2014-IsUOusILy9X>`_，自 Week #9 (Nov 13, 2014) 開始進行期中報告
+  - 更新 wiki 頁面: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `I2C</embedded/I2C>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_
+
+* Week #8 (Nov 6) 請各組準備 5 分鐘內的「期末專題」提案，並推舉一人到課堂報告
+
 Code Review
 -----------------
 * Lab35: `2D 射擊遊戲<https://embedded2014.hackpad.com/Week45-6wWE63zdqo4>`_
