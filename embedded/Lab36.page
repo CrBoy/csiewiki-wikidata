@@ -14,6 +14,7 @@ toc: no
 * 確認 ``$PATH`` 可找到 `Lab 35</embedded/Lab35>`_ 設定的 GNU Toolchain
   - ``arm-none-eabi-gcc -v`` 預期輸出 ``4.8.3-11ubuntu1`` 一類包含 ubuntu 的字串
   - 若否，請重新設定 PATH 環境變數
+  - ``export PATH=/usr/bin:$PATH``
 
 * 確認 `STM32F429i Discovery</embedded/STM32F429>`_ 板子已經由 USB 線接上裝有 GNU/Linux 的開發環境，並確保 `Lab 35</embedded/Lab35>`_ 所提及的工具均已正確安裝，如 openocd 與 gdb
 
