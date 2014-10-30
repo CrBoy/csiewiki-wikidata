@@ -16,7 +16,8 @@ toc: no
 
 Code Review
 -----------------
-* Lab35: `2D 射擊遊戲<https://embedded2014.hackpad.com/Week45-6wWE63zdqo4>`_
+* `Lab35</embedded/Lab35>`_: `2D 射擊遊戲<https://embedded2014.hackpad.com/Week45-6wWE63zdqo4>`_
+* `Lab 34<https://embedded2014.hackpad.com/2014q3-Week-4-8fGeiYGrWq5>`_
 
 UAV (Unmanned aerial vehicle)
 --------------------------------------------
@@ -38,6 +39,11 @@ UAV (Unmanned aerial vehicle)
   - `Part III<http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootup-cmsispart33debugarchitecture>`_
 
 * `作業系統基本觀念複習<http://www.slideshare.net/azole/20110824-40848849>`_
+
+`Lab36</embedded/Lab36>`_: ELF
+------------------------------------------------
+* `GNU Linker manual<https://sourceware.org/binutils/docs/ld/>`_
+* `GNU Make 中文手冊<http://www.cc.ntut.edu.tw/~yccheng/oop2005f/GNUMakeManual.pdf>`_
 
 C4Labs + Linux 讀書會
 ------------------------------
