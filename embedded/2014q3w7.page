@@ -8,6 +8,7 @@ toc: no
 * 依據已登記的`分組名單<https://embedded2014.hackpad.com/2014-IsUOusILy9X>`_，自 Week #9 (Nov 13, 2014) 開始進行期中報告
   - 更新 wiki 頁面: `GPIO</embedded/GPIO>`_ (Team #3), `USART</embedded/USART>`_ (Team #1), `ADC</embedded/ADC>`_ (Team #2), `I2C</embedded/I2C>`_ (Team #9), `PWM</embedded/PWM>`_ (Team #6), `USB</embedded/USB>`_ (Team #5), `SPI</embedded/SPI>`_ (Team #8), `Flash</embedded/Flash>`_ (Team #4), `SDIO</embedded/SDIO>`_ (Team #7), `CAN</embedded/CAN>`_ (Team #10)
   - 前述為報告順序
+  - 報告內容應該全數在 wiki 中，不得使用任何簡報軟體 (PowerPoint, OpenOffice 等等)
   - 依據 `STM32F429i Discovery</embedded/STM32F429>`_ 特性介紹對應的硬體週邊和原理 (物理、電子、邏輯電路)，並撰寫相關的韌體程式 (發布於 GitHub)
   - 需要列出 datasheet 和參考資料
 
