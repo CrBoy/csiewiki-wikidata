@@ -16,9 +16,29 @@ toc: no
 
 * 確認 `STM32F429i Discovery</embedded/STM32F429>`_ 板子已經由 USB 線接上裝有 GNU/Linux 的開發環境，並確保 `Lab 35</embedded/Lab35>`_ 所提及的工具均已正確安裝，如 openocd 與 gdb
 
+取得 ELF loader 並在 STM32 驗證
+--------------------------------------------
+* ``cd workspace`` # 假設工作目錄為 ``workspace``
+* ``git clone https://github.com/embedded2014/elf-loader.git && elf-loader``
+* 開啟兩個虛擬終端機，在其中一個終端機執行以下 ``make openocd``，預期輸出為
 
-$ make oocd 
-參考執行結果:
+.. code-block:: prettyprint
+
+     CC main.c
+     CC start.c
+     LINK app.elf
+       text	   data	    bss	    dec	    hex	filename
+        164	      8	      4	    176	     b0	app.elf
+     Creating list...
+    make[1]: Leaving directory '/home/jserv/NCKU/2014/elf-loader/app'
+     Launch OpenOCD for stm32f4discovery
+    Open On-Chip Debugger 0.9.0-dev-00105-ge1bc7f4 (2014-08-08-20:38)
+    ...
+
+* 在另外一個終端機執行 ``make run``
+  - ``cd workspace/elf-loader && make run``
+
+* 切換到原本執行 OpenOCD 的視窗，可見到以下輸出 (請保持耐心)
 
 .. code-block:: prettyprint
 
@@ -56,6 +76,8 @@ $ make oocd
     ...
     Done
     semihosting: *** application exited ***
+
+* 看到 ``Hello world`` 字樣出現 10 次，表示 ``app/main.c`` 編譯與連結出來的 ``app-striped.elf`` 已正確載入並執行
 
 參考資訊
 ------------
