@@ -21,7 +21,7 @@ toc: no
 取得 ELF loader 並在 STM32 驗證
 --------------------------------------------
 * ``cd workspace`` # 假設工作目錄為 ``workspace``
-* ``git clone https://github.com/embedded2014/elf-loader.git && elf-loader``
+* ``git clone https://github.com/embedded2014/elf-loader.git && cd elf-loader``
 * 開啟兩個虛擬終端機，在其中一個終端機執行以下 ``make openocd``，預期輸出為
 
 .. code-block:: prettyprint
