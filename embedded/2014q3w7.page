@@ -16,4 +16,6 @@ UAV (Unmanned aerial vehicle)
 * ARM ELF
   - `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p206>`_ (Page 149)
 
-* 
+* `How it's made: C++ compilers (GCC)<http://www.slideshare.net/szborows/how-its-made-c-compilers-gcc>`_
+* `Dynamic Linker<http://www.slideshare.net/sanjivmalik/dynamic-linker-presentation>`_
+
