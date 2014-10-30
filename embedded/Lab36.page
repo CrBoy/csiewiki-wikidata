@@ -1,0 +1,9 @@
+---
+title: Lab36: ELF
+toc: no
+...
+
+預期目標
+------------
+* 在 `STM32F429i Discovery</embedded/STM32F429>`_ 開發簡易 ELF loader
+* 學習 OpenOCD, gdb 等工具
