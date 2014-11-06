@@ -6,3 +6,7 @@ toc: no
 課程資料
 -------
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+* `Study of an operating system: FreeRTOS</embedded/FreeRTOS_Melot.pdf>`_
+* `Faults inside System Software<http://www.slideshare.net/jserv/system-faults>`_
+  - `小小軟體碼錯誤也可能殺人！<http://m.eettaiwan.com/ART_8800691385_480202_NT_bd47ba6a.HTM>`_
+    * buffer overflow, race condition
