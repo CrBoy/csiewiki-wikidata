@@ -9,7 +9,9 @@ toc: no
 * 在 STM32F429 Discovery 運作
 
 Malloc/Free
-----------------
-* `Coursera: The Hardware/Software Interface - Lab 5: Writing a
+-------------------
+- Coursera: The Hardware/Software Interface ::`Lab 5: Writing a
 Dynamic Storage Allocator<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=13>`_
-* https://github.com/lucastsa/slab_allocator
+
+- `Lab-22</embedded/Lab22>`_
+- https://github.com/lucastsa/slab_allocator
