@@ -20,7 +20,7 @@ Week  Date     Subject                                 Assignment
 #5    Oct 16    `Hardware Concepts Review`_               `Lab 35`_: STM32F429
 #6    Oct 23   `Code Review for Lab 32-33`_                `Lab 35`_: STM32F429
 #7    Oct 30   `Code Review + ELF`_                              `Lab 36`_: ELF
-#8    Nov 6    Interrupt/Exceptions + RTOS                    Lab 37: Memory allocation
+#8    Nov 6    `Interrupt/Exceptions + RTOS`_                    `Lab 37`_: Memory allocation
 #9    Nov 13   Group Presentation (1)                            -
 #10   Nov 20   Group Presentation (2)                           -
 #11   Nov 27   Group Presentation (3)                           -
@@ -41,11 +41,13 @@ Week  Date     Subject                                 Assignment
 .. _`Hardware Concepts Review`: 2014q3w5
 .. _`Code Review for Lab 32-33`: 2014q3w6
 .. _`Code Review + ELF`: 2014q3w7
+.. _`Interrupt/Exceptions + RTOS`: 2014q3w8
 .. _`Lab 32`: Lab32
 .. _`Lab 33`: Lab33
 .. _`Lab 34`: Lab34
 .. _`Lab 35`: Lab35
 .. _`Lab 36`: Lab36
+.. _`Lab 37`: Lab37
 
 嵌入式作業系統設計與實作 (Spring 2014)
 ------------------------------------------------------
