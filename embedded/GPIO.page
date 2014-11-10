@@ -53,17 +53,16 @@ analog
 (施密特觸發器具有整流效果)
 
 basic structure (P.266, **Figure 25. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
-.. TODO: modify page number
 -------------------------------------------------------------------------------------------------------------------
-.. TODO: protection diode how
 .. image:: /embedded/GPIO_basic_src.PNG
-- VDD：芯片內部的工作電壓
+- VDD：晶片內部的工作電壓
+- VDD_FT : I/O port專用電壓，與VDD不同
 - VSS：接地點
+- protection diode : 防止輸入電壓超過一定範圍。當電壓低於VSS時，電流通過protection diode流入pin；當電壓高於VDD_FT時，電流流出pin。
 
 Configuration
 =============
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
-.. TODO: modify page number
 ------------------------------------------------------------------------------
 .. image:: /GPIO_ Input_configurations.png
 When the I/O port is programmed as Input:
