@@ -36,9 +36,11 @@ input
 
 output
 -------------------
-- push-pull with pull-up/pull-down
-- open-drain with pull-up/pull-down
-.. TODO: add description
+- push-pull vs open-drain mode
+
+output處在push-pull模式下時，當output registers為"0"時輸出低電位，"1"時輸出高電位。而在open-drain模式下，"0"輸出低電位，"1"時為高阻抗(Hi-Z)狀態，電位無法確定。此兩種模式下，pin皆可pull-up/pull-down。
+
+當有多個輸出pin在互相連通時(例如一個bus)，若有兩個輸出呈不同狀態，電路上的電位便無法確定。因此，除了正在輸出的pin以外，其他pin應在高阻抗態以免干擾。以bus的例子來說，若令所有pin皆在open-drain mode pull-up，並使非輸出端pin為"1"(hi-Z)，當輸出pin為"1"時，bus為高電位(因為pull-up)；當輸出pin為"0"時，bus為低電位。
 
 analog
 -------------------
