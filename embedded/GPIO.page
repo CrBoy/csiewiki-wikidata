@@ -434,7 +434,6 @@ CMOS電路的速度慢，傳輸延遲時間長(25-50ns)，但功耗低。
 
 **4. STM32 RCC clock**
 
-http://www.oliverbehr.de/?option=com_content&view=article&id=52:stm32-clock-configuration&catid=39:technik&Itemid=83
 
 System clock setup
 
