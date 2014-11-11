@@ -48,7 +48,6 @@ analog
 前面所述的input/output跟現在要談的類比模式是不一樣的類型，前者的資料型態主要是高低電位的數位型態(0/1的分別)，而類比訊號是普遍自然界的訊號型態，故當我們設定成類比輸入的模式時，進來GPIO pin的原始訊號源在還沒經過施密特觸發器(Schmitt trigger)會有另一個線路將訊號做導向(通常是要導到ADC去)，另一方面，當我們用了類比輸出模式後，GPIO的內部將會有一條線路接收DAC處理完的類比訊號，在經過此pin傳遞到外部去。
 
 - 施密特觸發器(Schmitt trigger) : 將類比訊號的波形整成數位電路所能處理的方波波形(處理完只能分辨出高低電位的差別)。
-.. TODO add wiki image
 .. image:: /embedded/Schmitt_trigger.jpg
 (施密特觸發器具有整流效果)
 
@@ -96,10 +95,8 @@ When the I/O port is programmed as output:
 - The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
 - A read access to the input data register gets the I/O state
 - A read access to the output data register gets the last written value
-   - 不一定與當下pin的狀態相同
+  - 不一定與當下pin的狀態相同
 
-.. TODO datasheet p.51
-.. http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html
 Alternate function configuration (P.275, **8.3.11 Alternate function configuration** in Reference manual)
 ---------------------------------------------------------------------------------------------------------
 .. image:: /GPIO_Alternate_function_configuration.PNG
@@ -128,7 +125,7 @@ When the I/O port is programmed as analog configuration:
 - Read access to the input data register gets the value “0”
 
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
-- analog operating voltage (VDDA) max at 3.6V
+  - analog operating voltage (VDDA) max at 3.6V
 
 Demo
 ====
@@ -394,13 +391,11 @@ main.c :
 
 Supplement
 ==========
-- 一些有預設控制元件的腳位(詳見- STM32F4-Discovery 中文使用手冊P.16)
-  - LD3：橙色，連接到STM32F407VGT6的PD13
-  - LD4：綠色，連接到STM32F407VGT6的PD12
-  - LD5：红色，連接到STM32F407VGT6的PD14
-  - LD6：藍色，連接到STM32F407VGT6的PD15
-  - B1(USER)：連接到STM32F407VGT6的PA0
-  - B2(RESET)：連接到NRST，用於重置STM32F407VGT6
+- 一些有預設控制元件的腳位
+  - LD3：綠色，連接到PG13
+  - LD4：紅色，連接到PG14
+  - B1(USER)：連接到PA0
+  - B2(RESET)：連接到NRST，用於重置
 
 Q & A
 =========
@@ -408,12 +403,12 @@ Q & A
 
 (請參考Datasheet p.110，Table 47. I/O static characteristics)
 
-.. image:: /static.png
+.. image:: /STM32F429_IOstatic.png
 
 實際測量：
 
 - 將三用電表調到測量電阻的功能
-- 將三用電表的正極接在要測的I/O pin上(此處使用PA14，並設成pull-down)，負極接地
+- 將三用電表的正極接在要測的I/O pin上(設成pull-down)，負極接地
 - 觀察電表的數字即可得當前電阻
 
 **2. GPIO中取樣頻率的意義？**
@@ -465,15 +460,14 @@ http://en.wikipedia.org/wiki/Jitter
 
 In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
-取樣頻率的設定：
-
-.. image:: /output_speed.JPG
+取樣頻率可由GPIOx_OSPEEDRy[1:0]設定，各模式下的速度可參考datasheet p134 table 58. I/O AC Characteristics
 
 Reference
 =========
 - `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
 - `STM32F429xx Datasheet<http://www.st.com/web/en/resource/technical/document/datasheet/DM00071990.pdf>`_
 - `STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+- `STM32F429 pin mapping<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
 - `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
 - `稀里糊塗學 STM32 第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
 - `GPIO PPT</embedded/GPIO_v3.ppt>`_
