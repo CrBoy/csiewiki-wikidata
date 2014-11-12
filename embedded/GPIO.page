@@ -271,44 +271,34 @@ sample code download :
 
 .. code-block:: c
 
-    git clone https://github.com/shengwen1997/stm32_GPIO_demo.git
-    cd stm32_GPIO_demo/
+    git clone https://github.com/chunikuo/stm32F4_GPIO_Demo.git
+    cd stm32F4_GPIO_demo/
 
-test for code :
+Demo 範例選擇 :
+* 共有demo1.c, demo2.c, demo3.c, demo4.c
+* 請在 main.c 修改需要執行的 demo 範例 (同時間只能選擇其中一個範例)
 
 .. code-block:: c
 
     make
     make flash
 
-測試方法 : 
+配置說明 : 
 
-- input使用button作為範例，output是LED控制。
-
-stm32f4_discovery library的預先定義(in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.h) :
+* STM32F429I-Discovery Library 的預先定義(in STM32F429I-Discovery/stm32f429i_discovery.h) :
 
 .. code-block:: c
 
     #define LEDn                             4
 
-    #define LED4_PIN                         GPIO_Pin_12
-    #define LED4_GPIO_PORT                   GPIOD
-    #define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
+    #define LED4_PIN                         GPIO_Pin_13
+    #define LED4_GPIO_PORT                   GPIOG
+    #define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOG
   
-    #define LED3_PIN                         GPIO_Pin_13
-    #define LED3_GPIO_PORT                   GPIOD
-    #define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
+    #define LED3_PIN                         GPIO_Pin_14
+    #define LED3_GPIO_PORT                   GPIOG
+    #define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOG
   
-    #define LED5_PIN                         GPIO_Pin_14
-    #define LED5_GPIO_PORT                   GPIOD
-    #define LED5_GPIO_CLK                    RCC_AHB1Periph_GPIOD  
-  
-    #define LED6_PIN                         GPIO_Pin_15
-    #define LED6_GPIO_PORT                   GPIOD
-    #define LED6_GPIO_CLK                    RCC_AHB1Periph_GPIOD
-
-    #define BUTTONn                          1  
-
     #define USER_BUTTON_PIN                GPIO_Pin_0
     #define USER_BUTTON_GPIO_PORT          GPIOA
     #define USER_BUTTON_GPIO_CLK           RCC_AHB1Periph_GPIOA
@@ -317,9 +307,17 @@ stm32f4_discovery library的預先定義(in libstm/Utilities/STM32F4-Discovery/s
     #define USER_BUTTON_EXTI_PIN_SOURCE    EXTI_PinSource0
     #define USER_BUTTON_EXTI_IRQn          EXTI0_IRQn 
 
-- LED是屬於GPIO port D，第12-15個pin分別是控制，LED4、LED3、LED5、LED6。
-- Button是屬於GPIO port A，第0個pin是可以用來檢查button狀態的腳位。在文件中，有時會看到Wake-up button這一名稱，其實就是在說User button，兩者是指同一個東西。
+* LED 配置 
+  - Port: G
+  - Pin: 13、14。
+  - CLK: RCC_AHB1Periph_GPIOG
 
+* Button 配置
+  - Port: A
+  - Pin: 0
+  - CLK: RCC_AHB1Periph_GPIOA
+
+* 以上資訊也可以從架構圖, Pin Mapping 與開發版上的標示得知
 
 input 設定 :
 
@@ -569,7 +567,7 @@ Reference
 - `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
 - `STM32F429xx Datasheet<http://www.st.com/web/en/resource/technical/document/datasheet/DM00071990.pdf>`_
 - `STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-- `STM32F429 pin mapping<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
+- `  - CLK: RCC_AHB1Periph_GPIOG<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
 - `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
 - `稀里糊塗學 STM32 第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
 - `GPIO PPT</embedded/GPIO_v3.ppt>`_
