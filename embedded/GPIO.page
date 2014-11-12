@@ -3,13 +3,17 @@ title: General-purpose Input/Output (GPIO)
 categories: GPIO, STM32F4
 ...
 
-Introduction
+Introduction - 簡介
 ============
-**General Purpose Input/Output (GPIO)** is a generic pin on a chip whose behavior (including whether it is an input or output pin) can be controlled (programmed) by the user at run time.
+**General Purpose Input/Output (GPIO)** is a generic pin on an integrated circuit whose behavior, including whether it is an input or output pin, can be controlled by the user at run time.
 
-通常我們program使用的data都是放在memory比較多，而GPIO也提供類似的操作方法給programmer(讓我們去更改記憶體內容就可以去控制pin，並影響周遭設備的運行)，但真正的設備的位置並非真正落在記憶體上(如:LED、Button、...等)，故GPIO的核心是記憶體操作與設備之間的一些電路特性。
+- GPIO 是種具有彈性且可以藉由軟體控制 (software-controlled) 的數位訊號
+- 每個 GPIO 可以被當成 Input, Output 或 Alternate function
+- 所有 GPIO 具有容許較高的電流能力與四種速度選擇
+  - 可以根據不同的設定達到降低雜訊與電能控制
+- 最大 I/O 切換速度可以支援到 90 MHz
 
-Main Feature
+Main Feature - 特性
 ============
 GPIO雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
 
