@@ -203,7 +203,7 @@ GPIO port input data register (GPIOx_IDR)
 GPIO port output data register (GPIOx_ODR)
 ------------------------------------------
 .. image:: /GPIO_port_output_data.png
-輸出pin output的值
+輸出pin output的值。
 
 - Bits 31:16 Reserved, must be kept at reset value.
 - Bits 15:0 ODRy: Port output data
@@ -219,6 +219,31 @@ set或reset對應pin output data register的值。
 - 0: no action ,1:set/reset
 - write-only ,讀取會得到0
 - Reset: 0x0000 0000
+
+GPIO port configuration lock register (GPIOx_LCKR)
+--------------------------------------------------
+.. image:: /embedded/GPIO_port_configuration_lock.png
+若給bit 16(LCKK)一個正確的write sequence，可以鎖住bits [15:0]對應的configurations。
+當lock sequence正確執行之後，GPIOx_LCKR在下次reset之前無法修改。
+
+- Bit 16 LCKK[16]: Lock key
+   - 0: Port configuration lock key not active
+   - 1: Port configuration lock key active
+   - 只能在lock sequence時寫入
+- Bits 15:0 LCKy: lock bit y
+   - 0: Port configuration not locked
+   - 1: Port configuration locked
+- Lock sequences
+
+.. code-block:: c
+
+    WR LCKR[16] = ‘1’ + LCKR[15:0]
+    WR LCKR[16] = ‘0’ + LCKR[15:0]
+    WR LCKR[16] = ‘1’ + LCKR[15:0]
+    RD LCKR
+    RD LCKR[16] = ‘1’ (optional, confirm only)
+
+在執行中，LCK[15:0]的值不可改變，否則lock失敗。
 
 Demo
 =======
