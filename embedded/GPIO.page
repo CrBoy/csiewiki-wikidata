@@ -151,7 +151,7 @@ GPIO port mode register (GPIOx_MODER) (x = A..I/J/K)
 .. image:: /embedded/GPIO_port_mode.png
 MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
 
-- 00: Input (reset state)
+- 00: Input
 - 01: output mode
 - 10: Alternate function mode
 - 11: Analog mode
@@ -162,10 +162,33 @@ GPIO port output type register(GPIOx_OTYPER)
 .. image:: /embedded/GPIO_port_output_type.png
 決定在output時使用的模式(如前面Functional Description.output所述)。
 
-- 0: Output push-pull (reset state)
+- 0: Output push-pull
 - 1: Output open-drain
 - reset皆為0x0000 0000
 
+GPIO port output speed register (GPIOx_OSPEEDR)
+-----------------------------------------------
+.. image:: /embedded/GPIO_port_output_speed.png
+OSPEEDRy[1:0]決定output的取樣頻率。在不同的電容與電壓(VDD)下，取樣頻率可能不同，以下只列出代表值。
+
+- 00: Low speed (2MHz)
+- 01: Medium speed (10MHz)
+- 10: Fast speed (50MHz)
+- 11: High speed (100MHz)
+- reset GPIOB_OSPEEDR=0x0000 00C0，其他皆為皆為0x0000 0000
+- 速度越高，雜訊與耗電量越多。
+- 在其他狀態下的速度，可以參考 datasheet p134 table 58. I/O AC Characteristics
+
+GPIO port pull-up/pull-down register (GPIOx_PUPDR)
+--------------------------------------------------
+.. image:: /embedded/GPIO_port_pull.png
+PUPDRy[1:0]決定pin y是否pull-up/pull-down
+
+- 00: No pull-up, pull-down
+- 01: Pull-up
+- 10: Pull-down
+- 11: Reserved
+- reset GPIOA_PUPDR=0x6400 0000、GPIOB_PUPDR=0x0000 0100，其他0x0000 0000。
 
 
 Demo
