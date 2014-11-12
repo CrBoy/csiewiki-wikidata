@@ -133,38 +133,36 @@ Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
 
 Demo
 ====
-工具介紹
--------
-.. image:: /embedded/BNC line.JPG
 
-- BNC對鱷魚夾線
+.. image:: /embedded/starting_ state.jpg
+起始狀態，輸入/輸出說明
 
-.. image:: /embedded/oscilloscope.JPG
+.. image:: /embedded/schmitt_sin.jpg
+sin波
 
-- 示波器(oscilloscope) 畫面很差...
+.. image:: /embedded/schmitt_tri.jpg
+三角波
 
-示波器驗證
----------
-.. image:: /embedded/stable.JPG
+.. image:: /embedded/interrupt_func_delay.jpg
+visible interrupt delay ,about 2000ns
 
-- 示波器我們調整的scale是1 volt為單位。
-- 我們接線是使用BNC對鱷魚夾線，黑接Groud，紅接要觀察的Pin。此圖為我們還沒做任何操作呈現的狀態。
+.. image:: /embedded/interrupt_func_1M.jpg
+頻率再增加的結果
 
-.. image:: /embedded/button_pressed.JPG
+.. image:: /embedded/polling_func_delay.jpg
+使用polling的結果，delay大約750ns
 
-- 以button做為觀察GPIO input的部份
-- USER button對應的腳位為PA0
-- 按下button馬上放開後會產生一個小方波，由此可知，按下button是產生高電位訊號。(看'按下'多久高電位就維持多久)
+.. image:: /embedded/pulling_dir_delay.jpg
+不用function call，delay大約250ns
 
-.. image:: /embedded/LEDOn_2.8v.JPG
+.. image:: /embedded/interrupt_dir_delay.jpg
+interrupt不用function call，delay大約1500ns
 
-- 用LED4來觀察GPIO output的部份
-- LED4對應的腳位是PD12，當LED4亮的時候，我們可以看到波形產生變化(從0v左右的位置升到高電位2.8v左右)
+.. image:: /embedded/interrupt_func_frqup.jpg
+把interrupt頻率加快的結果
 
-.. image:: /embedded/PD12_PD14CNT.JPG
-
-- 我們在接Pin的過程的時候，發現有些燈會亮起來，圖中紅色鱷魚夾線把PD12跟PD14同時夾起來，LED5在LED4亮起來的時候也會亮，對照PD14的位置是LED5。
-- 我們觀察示波器用的Code只有對button跟LED4做設定，我們推測原因是LED4亮起來的時候，PD12處於高電位狀態，而鱷魚夾線連通PD14讓此腳位也處於高電位使LED5也亮起來了。
+.. image:: /embedded/interrupt_func_frqup2.jpg
+interrupt頻率再增加的結果
 
 Code Section
 -------------
