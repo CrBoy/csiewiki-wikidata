@@ -132,10 +132,14 @@ Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
   - analog operating voltage (VDDA) max at 3.6V
 
 Demo
-====
+=======
+實驗設備
+--------
+除了STM32本身外，我們使用一台訊號產生器與一台示波器。
+將訊號產生器輸出(+)接到示波器的channel 1(黃色)與PA0，STM32的輸出PG14接示波器的channel 2(藍色)，訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
 .. image:: /embedded/starting_ state.jpg
-起始狀態，輸入/輸出說明
+起始狀態，程式將PA0的輸入GPIOA_IDR shift後送到 GPIOG_ODR，由PG13輸出。
 
 .. image:: /embedded/schmitt_sin.jpg
 sin波
