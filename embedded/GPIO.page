@@ -209,6 +209,17 @@ GPIO port output data register (GPIOx_ODR)
 - Bits 15:0 ODRy: Port output data
 - Reset: 0x0000 0000
 
+GPIO port bit set/reset register (GPIOx_BSRR)
+---------------------------------------------
+.. image:: /embedded/GPIO_port_set_reset.png
+set或reset對應pin output data register的值。
+
+- Bits 31:16 BRy: reset bit y
+- Bits 15:0 BSy: set bit y
+- 0: no action ,1:set/reset
+- write-only ,讀取會得到0
+- Reset: 0x0000 0000
+
 Demo
 =======
 實驗設備
