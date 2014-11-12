@@ -164,6 +164,13 @@ interrupt不用function call，delay大約1500ns
 .. image:: /embedded/interrupt_func_frqup2.jpg
 interrupt頻率再增加的結果
 
+
+.. image:: /embedded/pull_down_res.jpg
+一般的下拉電阻
+
+.. image:: /embedded/pull_down_resl.jpg
+PA10 /PB12
+
 Code Section
 -------------
 
