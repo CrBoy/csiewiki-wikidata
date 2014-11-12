@@ -157,6 +157,16 @@ MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
 - 11: Analog mode
 - 當reset後，GPIOA_MODER=0xA800 0000、GPIOB_MODER=0x0000 0280，其他皆為0。
 
+GPIO port output type register(GPIOx_OTYPER)
+--------------------------------------------
+.. image:: /embedded/GPIO_port_output_type.png
+決定在output時使用的模式(如前面Functional Description.output所述)。
+
+- 0: Output push-pull (reset state)
+- 1: Output open-drain
+- reset皆為0x0000 0000
+
+
 
 Demo
 =======
