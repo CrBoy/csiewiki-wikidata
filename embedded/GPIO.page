@@ -10,7 +10,7 @@ Introduction - 簡介
 - GPIO 是種具有彈性且可以藉由軟體控制 (software-controlled) 的數位訊號
 - 每個 GPIO 可以被當成 Input, Output 或 Alternate function
 - 所有 GPIO 具有容許較高的電流能力與四種速度選擇
-  - 可以根據不同的設定達到降低雜訊與電能控制
+   - 可以根據不同的設定達到降低雜訊與電能控制
 - 最大 I/O 切換速度可以支援到 90 MHz
 
 Main Feature - 特性
