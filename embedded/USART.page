@@ -171,7 +171,7 @@ Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/
 
 **stop bits其實不算是個bit，他是傳輸結束後的一段時間(period)，用以區隔每個傳輸的資料，其功用是在非同步傳輸的時候可以告訴接收器，資料傳輸已經結束。透過增加stop bits的長度，可讓接收器能有足夠的時間可以處理該資料**
 
-**另外，由於transmit shift register搬移到TDR中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
+**另外，由於資料搬移到transmit shift register中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
 
 
 .. image:: /usart_fig298.jpg
