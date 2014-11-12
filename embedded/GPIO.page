@@ -4,7 +4,7 @@ categories: GPIO, STM32F4
 ...
 
 Introduction - 簡介
-============
+===================
 **General Purpose Input/Output (GPIO)** is a generic pin on an integrated circuit whose behavior, including whether it is an input or output pin, can be controlled by the user at run time.
 
 - GPIO 是種具有彈性且可以藉由軟體控制 (software-controlled) 的數位訊號
@@ -14,7 +14,7 @@ Introduction - 簡介
 - 最大 I/O 切換速度可以支援到 90 MHz
 
 Main Feature - 特性
-============
+===================
 GPIO雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
 
 一個pin通常可被設定成input、output、alternate function或analog，input會有兩種狀態表現(floating, pull-up/down)，output也有兩種狀態表現(push-pull with pull-up/pull-down or open drain with pull-up/down)。
