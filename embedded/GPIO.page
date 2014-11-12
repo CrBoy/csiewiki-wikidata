@@ -190,6 +190,24 @@ PUPDRy[1:0]決定pin y是否pull-up/pull-down
 - 11: Reserved
 - reset GPIOA_PUPDR=0x6400 0000、GPIOB_PUPDR=0x0000 0100，其他0x0000 0000。
 
+GPIO port input data register (GPIOx_IDR)
+-----------------------------------------
+.. image:: /embedded/GPIO_port_input_data.png
+讀取IDRy為input y的值。
+
+- Bits 31:16 Reserved, must be kept at reset value.
+- Bits 15:0 IDRy: Port y input data
+- register為read-only & word mode access only
+- Reset: 0x0000 XXXX (X=undefined)
+
+GPIO port output data register (GPIOx_ODR)
+------------------------------------------
+.. image:: /GPIO_port_output_data.png
+輸出pin output的值
+
+- Bits 31:16 Reserved, must be kept at reset value.
+- Bits 15:0 ODRy: Port output data
+- Reset: 0x0000 0000
 
 Demo
 =======
