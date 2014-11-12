@@ -245,6 +245,16 @@ GPIO port configuration lock register (GPIOx_LCKR)
 
 在執行中，LCK[15:0]的值不可改變，否則lock失敗。
 
+GPIO alternate function low/high register(GPIOx_AFRL/GPIOx_AFRH)
+----------------------------------------------------------------
+.. image:: /embedded/GPIO_alternate_function_low.pn
+.. image:: /embedded/GPIO_alternate_function_high.png
+選擇pin y的alternate function。
+
+- AFRLy/AFRHy : Alternate function selection for bit y
+- AFRLy/AFRHy = 0000~1111 分別對應AF0~AF15
+
+
 Demo
 =======
 實驗設備
