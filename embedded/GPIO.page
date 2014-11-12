@@ -144,6 +144,20 @@ When the I/O port is programmed as analog configuration:
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
   - analog operating voltage (VDDA) max at 3.6V
 
+Registers
+===========
+GPIO port mode register (GPIOx_MODER) (x = A..I/J/K)
+----------------------------------------------------
+.. image:: /embedded/GPIO_port_mode.png
+MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
+
+- 00: Input (reset state)
+- 01: output mode
+- 10: Alternate function mode
+- 11: Analog mode
+- 當reset後，GPIOA_MODER=0xA800 0000、GPIOB_MODER=0x0000 0280，其他皆為0。
+
+
 Demo
 =======
 實驗設備
