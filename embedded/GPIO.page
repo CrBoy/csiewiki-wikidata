@@ -11,6 +11,7 @@ Introduction - 簡介
 * 常見於開發版邊緣, 以針腳 (Pin) 的形式呈現
   - 這些針腳即是開發版與外界溝通的重要橋樑
   - 簡單例子, 想像成是開關, 使用者可以打開或關閉 (input), 或由開發版來打開或關閉 (output)
+
 * 每個 GPIO 可以被當成 input, output 或 alternate function
   - alternate function 是指其他的的方程式, 如 I2C, SPI, USART, CCP, PWM, Clock, ADC 等。如何控制則取決於外部設備 (peripheral)
 
