@@ -273,6 +273,7 @@ GPIO alternate function low/high register(GPIOx_AFRL/GPIOx_AFRH)
 - AFRLy/AFRHy : Alternate function selection for bit y
 - AFRLy/AFRHy = 0000~1111 分別對應AF0~AF15
 
+參考 Datasheet p.73~83 對照表，一個Pin可以對應一個alternate function
 
 Demo
 =======
