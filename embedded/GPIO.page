@@ -146,6 +146,13 @@ When the I/O port is programmed as analog configuration:
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
   - analog operating voltage (VDDA) max at 3.6V
 
+**Note2: Sampling jitter**
+
+http://en.wikipedia.org/wiki/Jitter
+
+In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
+
+
 Registers
 ===========
 GPIO port mode register (GPIOx_MODER) (x = A..I/J/K)
@@ -576,14 +583,6 @@ Bus clock setup
 
 - High speed Advanced Peripherial Bus (APB2)
 
-
-**5. 波形抖動問題**
-
-Sampling jitter    [from Wikipedia]
-
-http://en.wikipedia.org/wiki/Jitter
-
-In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
 
 Reference
