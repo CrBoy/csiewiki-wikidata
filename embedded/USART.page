@@ -32,11 +32,11 @@ USART主要特性
 
 - 傳輸檢測標誌
 
- – 接收緩衝區滿(Receive buffer full, RXNE, Data buffer not empty)
+ – 接收緩衝區滿(Receive buffer full, RXNE.  Data buffer not empty)
 
- – 傳送緩衝區空(Transmit buffer empty, TXE, Data buffer empty)
+ – 傳送緩衝區空(Transmit buffer empty, TXE.  Data buffer empty)
 
- – 傳輸結束(End of transmission flags, TC, Transmission complete)
+ – 傳輸結束(End of transmission flags, TC.  Transmission complete)
 
 - 檢測控制
 
@@ -58,15 +58,15 @@ USART主要特性
 
  – CTS改變(CTS changes, CTSIE)
 
- – LIN中斷檢測(LIN break detection,  LBDIE)
+ – LIN中斷檢測(LIN break detection,  LBDIE. LIN break detection interrupt enable)
 
- – 傳送緩衝區空(Transmit data register empty, TXEIE)
+ – 傳送緩衝區空(Transmit data register empty, TXEIE.  Data buffer empty interrupt enable)
 
- – 傳送完成(Transmission complete, TCIE)
+ – 傳送完成(Transmission complete, TCIE.  Transmission complete interrupt enable)
 
- – 接收緩衝區滿(Receive data register full, RXNEIE)
+ – 接收緩衝區滿(Receive data register full, RXNEIE.  Data buffer not empty interrupt enable)
 
- – 空閒線路檢測(Idle line received, IDLEIE)
+ – 空閒線路檢測(Idle line received, IDLEIE.  Idle interrupt enable)
 
  – 溢出錯誤(Overrun error)
 
