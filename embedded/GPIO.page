@@ -522,52 +522,48 @@ Demo 範例選擇 :
         }
     }
 
-
-
-- LED control task
+* Demo3
+  - LED3 利用 Polling 方式來探測外部訊號改變閃爍
+  - 閃爍部份則直接將 IDR 配置到 ODR
+    * 初始化 PG13 為 Output, PG9 為 Input
 
 .. code-block:: c
 
-    static void LED_task(void *pvParameters)
+    void demo3()
     {
-      RCC_ClocksTypeDef RCC_Clocks;
-      uint8_t togglecounter = 0x00;
+        RCC_Configuration_Demo3();
+        GPIO_Configuration_Demo3();
 
-      while(1)
-      {    
-          /* Toggle LED5 */
-          STM_EVAL_LEDToggle(LED5);
-          vTaskDelay(100);
-          /* Toggle LED6 */
-          STM_EVAL_LEDToggle(LED6);
-          vTaskDelay(100);
-      }
+        while(1)
+        {
+            // GPIO read IDR and assign to ODR
+            GPIOG->ODR = GPIOA->IDR << 13;     
     }
 
-- Button check task :
+* Demo4
+  - LED3 利用 external interrupt 方式來探測外部訊號改變閃爍
+  - 閃爍部份則直接將 IDR 配置到 ODR
+    * 初始化 PG13 為 Output, PG9 為 Input
 
 .. code-block:: c
 
-    static void button_task(void *pvParameters)
+    void EXTI0_IRQHandler(void)
     {
-       	    while (1)
-            {
-                /* Waiting User Button is pressed */
-    	        if (UserButtonPressed == 0x01)
-    	        {
-      	            /* Toggle LED4 */
-      	            STM_EVAL_LEDToggle(LED4);
-      	            vTaskDelay(100);
-      	            /* Toggle LED3 */
-      	            STM_EVAL_LEDToggle(LED3);
-      	            vTaskDelay(100);
-      	        }
-      	        /* Waiting User Button is Released */
-      	        while (STM_EVAL_PBGetState(BUTTON_USER) == Bit_SET);
-      	        UserButtonPressed = 0x00;
-      	   }
-      }
+        if(EXTI_GetFlagStatus(EXTI_Line1) != RESET)
+        {
+            GPIOG->ODR = GPIOA->IDR << 13;
+            EXTI_ClearITPendingBit(EXTI_Line1);
+        }
+    }
 
+    void demo4()
+    {
+        RCC_Configuration_Demo4();
+        GPIO_Configuration_Demo4();
+        Interrupts_Configuration_Demo4();
+
+        while(1);
+    }
 
 Supplement
 ==========
