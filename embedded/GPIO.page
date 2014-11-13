@@ -78,6 +78,12 @@ basic structure (P.266, **Figure 25. Basic structure of a five-volt tolerant I/O
 - VSS：接地點
 - protection diode : 防止輸入電壓超過一定範圍。當電壓低於VSS時，電流通過protection diode流入pin；當電壓高於VDD_FT時，電流流出pin。
 
+補充: TTL vs CMOS
+
+- TTL由電阻器和三極體而組成，CMOS內部零件多以金屬氧化物半導體組成。
+- 就早期而言，TTL的速度較CMOS快，但功耗較高。但近年來CMOS在速度方面已經超越TTL。
+- TTL懸空一般會呈高電位，CMOS則為不定態。
+
 Configuration
 =============
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
@@ -547,22 +553,7 @@ Supplement
 
 Q & A
 =========
-
-**3. 何謂TTL？**
-
-全名Transistor-Transistor Logic，數位IC的種類之一，依製程不同可分為TTL與CMOS(complement metal oxide semiconductor)兩種：
-
-TTL：內部零件多以雙極性電晶體組成。
-
-CMOS：內部零件多以金屬氧化物半導體組成。
-
-(補充)差異性比較：
-
-TTL電路的速度快，傳輸延遲時間短(5-10ns)，但是功耗大。
-
-CMOS電路的速度慢，傳輸延遲時間長(25-50ns)，但功耗低。
-
-**4. STM32 RCC clock**
+**1. STM32 RCC clock**
 
 
 System clock setup
