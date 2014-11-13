@@ -330,6 +330,7 @@ sample code download :
     cd stm32F4_GPIO_demo/
 
 Demo 範例選擇 :
+
 * 共有demo1.c, demo2.c, demo3.c, demo4.c
 * 請在 main.c 修改需要執行的 demo 範例 (同時間只能選擇其中一個範例)
 
@@ -343,8 +344,6 @@ Demo 範例選擇 :
 * STM32F429I-Discovery Library 的預先定義(in STM32F429I-Discovery/stm32f429i_discovery.h) :
 
 .. code-block:: c
-
-    #define LEDn                             4
 
     #define LED4_PIN                         GPIO_Pin_13
     #define LED4_GPIO_PORT                   GPIOG
@@ -374,130 +373,156 @@ Demo 範例選擇 :
 
 * 以上資訊也可以從架構圖, Pin Mapping 與開發版上的標示得知
 
-input 設定 :
+初始化設定 :
 
-- button initialization(in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.c) :
+* RCC 參數設置, 根據需要使用到的 GPIO Port 與 Bus 來初始化對應的 CLK
+  - 以下範例為初始化 GPIO Port: G; GPIO Bus: AHB1
+    * 此對應的 CLK 的相對名稱為 RCC_AHB1Periph_GPIOG
 
 .. code-block:: c
 
-    void STM_EVAL_PBInit(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
-    {
-       GPIO_InitTypeDef GPIO_InitStructure;
-       EXTI_InitTypeDef EXTI_InitStructure;
-       NVIC_InitTypeDef NVIC_InitStructure;
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
 
-       /* 要設定好Clock才能正確更新Button的State，BUTTON_CLK[Button]是指RCC_AHB1Periph_GPIOA */
-       RCC_AHB1PeriphClockCmd(BUTTON_CLK[Button], ENABLE);
-       RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+* GPIO 參數設置, 設定 Pin, Mode, Type, Pull-Up/Pull-Down, Speed
+  - 根據不同的 Mode, 設置不同對應的參數, 並非所有的資料都需要設置
+  - 以下範例為初始化 LED3 與 LED4, GPIO Port: G; Pins: 13, 14; Mode: Output; Type: Push-Pull; Pull-Up/Pull-Down: No Pull; Speed: 2MHz
+  - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h
 
-       /* 設定為input mode，我們不給pin任何預設狀態，所PuPd的部份設成NOPULL */
-       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-       GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-       GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
-       GPIO_Init(BUTTON_PORT[Button], &GPIO_InitStructure);
+.. code-block:: c
 
-       if (Button_Mode == BUTTON_MODE_EXTI)
-       {
-         /* 啟用interrupt並建立好與button腳位的連結 */
-         SYSCFG_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);
+    // GPIO Configuration
+    // LED3 (Green): GPIO_Pin_13, LED4 (Red): GPIO_Pin_14
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_Init(GPIOG, &GPIO_InitStructure);
 
-         /* Configure Button EXTI line */
-         EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
-         EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-         EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
-         EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-         EXTI_Init(&EXTI_InitStructure);
+* Interrupt 參數設置
+  - 所有的 Port 都可以有 external interrupt 
+  - 使用 external interrupt 必須設置為 input
+    * 以下範例設置 GPIO Port: A; Pin: 0
+      - 根據設置我們可以得知此 GPIO 對應的是 User Button
+  - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h
 
-         /* Enable and set Button EXTI Interrupt to the lowest priority */
-         NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
-         NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
-         NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
-         NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+.. code-block:: c
 
-         NVIC_Init(&NVIC_InitStructure); 
-       }
-     }
+    EXTI_InitTypeDef EXTI_InitStructure;
+    NVIC_InitTypeDef NVIC_InitStructure;
 
-- Button interrupt handler(in main.c)
+    /* Connect EXTI Line 0 to the button GPIO Pin */
+    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, GPIO_PinSource0);
+
+    /* Configure the EXTI line to generate an interrupt when the button is
+     * pressed. The button pin is high when pressed, so it needs to trigger
+     * when rising from low to high. */
+    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+ 
+    /* Enable and set Button EXTI Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+* Interrupt Handler 設置
+  - 根據上述設定, 對應的 Interrupt Handler 為 EXTI0_IRQHandler
+    * 可在對應的 Handler 實作
 
 .. code-block:: c
 
     void EXTI0_IRQHandler(void) 
     {
-      /* 當Button按下後觸發interrupt，用自定義變數紀錄Button state的改變。 */
-      UserButtonPressed = 0x01;
-  
-      /* Clear the EXTI line pending bit */
-      EXTI_ClearITPendingBit(USER_BUTTON_EXTI_LINE);
+        if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
+        {
+            // To do something in here
+
+            /* Clear the EXTI line pending bit */
+            EXTI_ClearITPendingBit(EXTI_Line0);
+        }
     }
 
-output 設定 :
-
-- LED initialization (in libstm/Utilities/STM32F4-Discovery/stm32f4_discovery.c) :
+* Demo1
+  - 兩個 LED 燈交互閃爍
+  - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
+    * 此部份需要注意 delay 時間, 若設置太短則不易辨識
 
 .. code-block:: c
 
-    void STM_EVAL_LEDInit(Led_TypeDef Led)
+    GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
+ 
+    while(1)
     {
-      GPIO_InitTypeDef  GPIO_InitStructure;
-  
-      /* LED是屬於Port D，要設定好Clk讓Port D可以正確被更新 */
-      RCC_AHB1PeriphClockCmd(GPIO_CLK[Led], ENABLE);
+        GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
+        GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
 
-      /* 設定各LED對應的腳位，output type設成push-pull，並使用pull-up電阻，LED初始化完成時，會呈現高電位狀態(亮燈)。 */
-      GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
-      GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-      GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-      GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-      GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-      GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+        // Delay
+        for(int i=0; i<1000000; i++);
     }
 
-main.c : 
-
-- main function :
+* Demo1
+  - 兩個 LED 燈交互閃爍
+    * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
+  - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
+    * 此部份需要注意 delay 時間, 若設置太短則不易辨識
 
 .. code-block:: c
 
-    int main(void)
+    void demo1()
     {
-      RCC_ClocksTypeDef RCC_Clocks;
-  
-      /* button初始化，並使用interrupt。 */
-      STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI); 
+        RCC_Configuration_Demo1();
+        GPIO_Configuration_Demo1();
 
-      /* 初始化需要用到的LED。 */
-      STM_EVAL_LEDInit(LED4);
-      STM_EVAL_LEDInit(LED3);
-      STM_EVAL_LEDInit(LED5);
-      STM_EVAL_LEDInit(LED6);
+        GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
+ 
+        while(1)
+        {
+            GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
+            GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
 
-      /* 初始化有使用到pull-up電阻，預設會亮燈，在這邊把燈關掉。 */
-      STM_EVAL_LEDOff(LED4);
-      STM_EVAL_LEDOff(LED3);
-      STM_EVAL_LEDOff(LED5);
-      STM_EVAL_LEDOff(LED6);
-    
-      /* 初始化自定義變數 */
-      UserButtonPressed = 0x00;
-
-      /* Create a task to flash the LED. */
-      xTaskCreate(LED_task,
-             (signed portCHAR *) "LED Flash",
-             512 /* stack size */, NULL,
-             tskIDLE_PRIORITY + 5, NULL);
-
-      /* Create a task to button check. */
-      xTaskCreate(button_task,
-             (signed portCHAR *) "User Button",
-             512 /* stack size */, NULL,
-             tskIDLE_PRIORITY + 5, NULL);
-
-      /* Start running the tasks. */
-      vTaskStartScheduler(); 
-
-      return 0;
+            // Delay
+            for(int i=0; i<1000000; i++);
+        }
     }
+
+* Demo2
+  - LED3 由 User Button 控制閃爍, LED4 持續閃爍
+    * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
+    * 初始化 external interrupt 為 PA0
+
+.. code-block:: c
+
+    void EXTI0_IRQHandler(void)
+    {
+        if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
+        {
+            GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
+            EXTI_ClearITPendingBit(EXTI_Line0);
+        }
+    }
+
+    void demo2()
+    {
+        RCC_Configuration_Demo2();
+        GPIO_Configuration_Demo2();
+        Interrupts_Configuration_Demo2();
+
+        while(1)
+        {
+            GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
+
+            // Delay
+            for(int i=0; i<1000000; i++);
+        }
+    }
+
+
 
 - LED control task
 
