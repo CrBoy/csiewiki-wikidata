@@ -39,8 +39,8 @@ GPIO 雖然建立起記憶體與設備之間的橋梁，但也並非我們就可
 
 如果pin被設成analog的話，無論input or output都會由adc/dac那邊做處理。
 
-Functional Description
-======================
+Functional Description - 功能敘述
+================================
 input
 -------------------
 
@@ -84,8 +84,8 @@ basic structure (P.266, **Figure 25. Basic structure of a five-volt tolerant I/O
 - 就早期而言，TTL的速度較CMOS快，但功耗較高。但近年來CMOS在速度方面已經超越TTL。
 - TTL懸空一般會呈高電位，CMOS則為不定態。
 
-Configuration
-=============
+Configuration - 配置圖
+=======================
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
 .. image:: /GPIO_ Input_configurations.png
@@ -159,8 +159,8 @@ http://en.wikipedia.org/wiki/Jitter
 In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
 
-Registers
-===========
+Registers - 暫存器
+==================
 GPIO port mode register (GPIOx_MODER) (x = A..I/J/K)
 ----------------------------------------------------
 .. image:: /embedded/GPIO_port_mode.png
@@ -171,6 +171,7 @@ MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
 - 10: Alternate function mode
 - 11: Analog mode
 - 當reset後，GPIOA_MODER=0xA800 0000、GPIOB_MODER=0x0000 0280，其他皆為0。
+  * PA3, PA4, PB13, PB14, PB15 為 Debug Pin in AF
 
 GPIO port output type register(GPIOx_OTYPER)
 --------------------------------------------
@@ -275,52 +276,63 @@ GPIO alternate function low/high register(GPIOx_AFRL/GPIOx_AFRH)
 
 參考 Datasheet p.73~83 對照表，一個Pin可以對應一個alternate function
 
-Demo
-=======
+Demo - 測試實驗
+==============
 實驗設備
 --------
-除了STM32本身外，我們使用一台訊號產生器與一台示波器。
-將訊號產生器輸出(+)接到示波器的channel 1(黃色)與PA0，STM32的輸出PG14接示波器的channel 2(藍色)，訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
+* 除了STM32本身外，我們使用一台訊號產生器與一台示波器。
+* 將訊號產生器輸出(+)接到示波器的channel 1(黃色)與 PG9，STM32的輸出PG13接示波器的channel 2(藍色)
+  - demo3, demo4
+* 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
 .. image:: /embedded/starting_ state.jpg
-起始狀態，程式將PA0的輸入GPIOA_IDR shift後送到 GPIOG_ODR，由PG13輸出。
+* 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
+  - demo3, demo4
 
 .. image:: /embedded/schmitt_sin.jpg
-sin波
+* sin波
 
 .. image:: /embedded/schmitt_tri.jpg
-三角波
+* 三角波
 
 .. image:: /embedded/interrupt_func_delay.jpg
-visible interrupt delay ,about 2000ns
+* visible interrupt delay ,about 2000ns
+  - demo4 使用 GPIO_ToggleBits 切換
 
 .. image:: /embedded/interrupt_func_1M.jpg
-頻率再增加的結果
+* 頻率再增加, 會造成無法正常的解析波形
 
 .. image:: /embedded/polling_func_delay.jpg
-使用polling的結果，delay大約750ns
-
-.. image:: /embedded/pulling_dir_delay.jpg
-不用function call，delay大約250ns
+* 使用polling的結果，delay大約750ns
+  - demo3 使用 GPIO_ToggleBits 切換
+  - 與 demo4 相比會波型會抖動
 
 .. image:: /embedded/interrupt_dir_delay.jpg
-interrupt不用function call，delay大約1500ns
+* interrupt不用function call，delay大約1500ns
+  - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
+
+.. image:: /embedded/pulling_dir_delay.jpg
+* 不用function call，delay大約250ns
+  - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 .. image:: /embedded/interrupt_func_frqup.jpg
-把interrupt頻率加快的結果
+* 頻率加快的結果
+  - demo4
+  - 波型呈現連續都是高電位
 
 .. image:: /embedded/interrupt_func_frqup2.jpg
-interrupt頻率再增加的結果
-
+* 頻率再增加的結果
+  - demo4
+  - 波型開始呈現交錯, 主要是因為偵測時會有交錯
 
 .. image:: /embedded/pull_down_res.jpg
-一般的下拉電阻
+* 一般的下拉電阻
 
 .. image:: /embedded/pull_down_resl.jpg
-PA10 /PB12
+* PA10 /PB12 的例外電阻
 
-Code Section
--------------
+Code Section - 程式碼
+---------------------
 
 sample code download : 
 
