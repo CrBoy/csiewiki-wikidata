@@ -13,9 +13,9 @@ Introduction - 簡介
   - 簡單例子, 想像成是開關, 使用者可以打開或關閉 (input), 或由開發版來打開或關閉 (output)
 
 * 每個 GPIO 可以被當成 input, output 或 alternate function
-  - alternate function 是指其他的的方程式, 如 I2C, SPI, USART, CCP, PWM, Clock, ADC 等。如何控制則取決於外部設備 (peripheral)
+  - alternate function 是指其他的的功能, 如 I2C, SPI, USART, CCP, PWM, Clock, ADC 等。如何控制則取決於外部設備 (peripheral)
 
-STM324xx Main Feature - STM324xx 特性
+STM32F4xx Main Feature - STM32F4xx 特性
 =====================================
 GPIO 雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
 
