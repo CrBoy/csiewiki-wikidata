@@ -134,23 +134,34 @@ USART Block Diagram
 .. image:: /usart_block_diagram.png
 Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-   - 任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
-      - RX: 接收資料輸入，並藉由採樣的技術判斷資料及噪音
-      - TX: 發送資料，當發送器被啟動時，如果沒有傳送數據，則TX保持高電位。在Single-wire half-duplex或Smartcard mode時，此I/O同時被用於資料的傳送和接收
-   - 根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度(見圖)
-   - 使用fractional baud rate generator —— 12位整數和4位小數的表示方法，放在baud rate暫存器(USART_BRR)中
-   - 一個狀態暫存器(USART_SR)
+此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
+   - RX: 接收資料輸入。藉由Oversampling技術判斷有效資料及噪音
+   - TX: 發送資料。若發送器沒有被啟用，則此腳位會回到I/O port設定狀態。當發送器被啟動時，如果沒有傳送數據，則TX保持高電位。在單線半雙工模式或Smartcard 模式時，此I/O同時被用於資料的傳送和接收(以USART角度來看此情況，TX負責傳輸資料，但接收資料由SW_RX負責)。
+
+以USART傳輸資料時，串列資料由下列frames組成:  
+   - 傳輸或接收資料之前，由Idle Line表示。
+   - 一個start bit
+   - 一個資料word，可為8/9 bits，用least significant bit做資料排序。
+   - 一組0.5, 1, 1.5, 2 stop bits，用以表示該次frame傳輸完畢。
+
+
+   - ???????根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度(見圖)
+
+另外包含以下數種register: 
+   - 狀態暫存器(USART_SR)
    - 資料暫存器(USART_DR)
-   
-   另外在同步模式中，還需要其他腳位
+   - baud rate暫存器(USART_BRR)。儲存由fractional baud rate generator產生的傳輸速率，以12位整數和4位小數表示
+   - Guardtime暫存器(USART_GTPR)，供Smartcard模式使用
+
+另外在同步模式中，需要此一腳位:
   
-   - SCLK: 發送器的時鐘輸出，用於同步傳輸的時鐘
+   - SCLK: 在同步模式下，送出傳送器目前的時脈數值。可對應至SPI master mode(在start bit和stop bit不送出clock訊號，另外可用軟體選擇是否在最後一個data bit送出clock訊號)。送出時脈數值的同時，資料可以在RX端被接收。這種特性可用於控制擁有shift暫存器的周邊設備(例: LCD驅動)。時脈的相位以及訊號極性可用軟體設定。在Smartcard模式下，SCLK可對Smartcard提供本身的時脈。
    
-   在Hardware flow control中:
+在Hardware flow control中，則另外需要下列兩個腳位:
    
-   - nCTS: 清除發送，若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
+   - nCTS: 阻擋發送資料。若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
    
-   - nRTS: 發送請求，若在低電位，則表示USART已經準備好接收資料
+   - nRTS: 請求發送資料。若在低電位，則表示USART已經準備好接收資料
 
 
 
