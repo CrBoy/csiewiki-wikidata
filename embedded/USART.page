@@ -482,29 +482,33 @@ SmartCard Mode
 ====================
 SmartCard
 ---------------
-SmartCard Mode 是為了支援asynchronous protocol Smartcards(ISO 7816-3)[5].Smartcard 是一種單線半雙工的通輸協定
 
+若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
+   - USART_CR2的LINEN
+   - USART_CR3的HDSEL以及IREN
 
-register 設定
----------------
-USART_CN3 : SCEN = 1;HDSEL, IREN : keep clean
-USART_CN2 : LINEN
+使用此模式時，也可考慮設定CLKEN以提供時脈給smartcard。
 
-CLKEN = 1 (有可能會用到 Clock)
+若要使用Smartcard模式，USART應設定為: 
+   - 8 bit以上檢測位元: 在USART_CR1中，M以及PCE應設定為1。
+   - 1.5 stop bits: 傳輸/接收時會需要。在USART_CR2中，STOP應設為11。
 
-Smartcard mode Stop bit
-=========================
-預設為 transmitter / receiver 兩端都是 1.5 bit, 但是receiver 可以使用 0.5 bit的stop bit.
-
-因為 smartcard mode 是利用 TX 單線傳接, 所以如果設定0.5 bit stop bit的話, 在傳送,接收轉換是需要修改 control register.
-
-parity error in smartcard mode
-==================================
-
+不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
 
 .. image:: /parity_smartcard.png
 
-當發現parity error, receiver 會 把TX立刻設為0維持一個baud clock(這個動作稱為"NACK") . 這樣會做成framing error讓transmitter 端知道, 然後重新傳一次.
+當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
+
+Smartcard是單線半雙工的通訊協定: 
+   - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
+   - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
+   - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位。
+   - 即使是使用Smartcard模式，TC旗標的取消動作依然不受影響，與一般模式相同。
+   - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
+   - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+
+breack符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
+在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
 
 
 
