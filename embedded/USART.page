@@ -507,7 +507,7 @@ Smartcard是單線半雙工的通訊協定:
    - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
    - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
 
-breack符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
+break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
 在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
 
 
