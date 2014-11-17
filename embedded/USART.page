@@ -433,6 +433,78 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
 Modes
 ............................
 
+SmartCard Mode
+====================
+SmartCard
+---------------
+
+若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
+   - USART_CR2的LINEN
+   - USART_CR3的HDSEL以及IREN
+
+使用此模式時，也可考慮設定CLKEN以提供時脈給smartcard。
+
+若要使用Smartcard模式，USART應設定為: 
+   - 8 bit以上檢測位元: 在USART_CR1中，M以及PCE應設定為1。
+   - 1.5 stop bits: 傳輸/接收時會需要。在USART_CR2中，STOP應設為11。
+
+不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
+
+.. image:: /parity_smartcard.png
+
+當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
+
+Smartcard是單線半雙工的通訊協定: 
+   - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
+   - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
+   - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位。
+   - 即使是使用Smartcard模式，TC旗標的取消動作依然不受影響，與一般模式相同。
+   - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
+   - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+
+break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
+在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
+
+
+IrDA SIR ENDEC mode
+====================
+Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
+   - USART_CR2的LINEN、STOP、CLKEN
+   - USART_CR3的SCEN、HDSEL
+
+IrDA SIR實體層使用Return to Zero, Inverted調變法(RZI modulation)，將邏輯0表示成紅外線脈衝訊號。
+
+SIR(slow Infrared)編碼器(傳輸端)會從USART將資料調變成non return to zero(NRZ)資料流，並將此資料流送至紅外線LED以及LED驅動器。雖然IrDA可以支援多種傳輸速率，但是USART-IrDA最快速率只有支援至115.2Kbps(因STM32f429使用SIR ENDEC，而SIR支援速率為9.6-115.2Kbps，亦可稱為9600-115200 baud rate)。在一般USART模式下，傳輸的脈衝訊號寬度為3/16 bit period。
+
+SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並將之解調變成non return to zero(NRZ)資料流，接著送到USART做處理。解碼器在Idle state時通常為高電位，而編碼器與解碼器的極性通常是相反的。在解碼器收到低電位訊號時，代表已經收到了start bit了。
+
+.. image:: /irda.PNG
+
+   - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
+   - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
+.. image:: /normal_mode.PNG
+   - SIR解碼器會將IrDA相容訊號轉換成USART資料流。編碼器則是相反行為。
+   - SIR接收器會將高電位轉換成邏輯1，低電位轉換成邏輯0。傳送器則是相反的。
+   - 解碼器的輸出值，會與接收器的輸入值擁有相反極性(理由同上)。SIR輸出端處於Idle state時，輸出低電位。
+   - IrDA規定可接收的脈衝週期必須要大於1.41us，不過這週期可以由使用者設定。在接收端會有一個判斷邏輯glitch detection，若該次脈衝週期小於2個PSC，則把該次脈衝過濾掉。(PSC: prescaler value，分頻器的值，定義於IrDA低功率baud暫存器，USART_GTPR)。不過，若脈衝週期小於1個PSC，一定過濾掉。至於脈衝週期介於1-2個PSC之間的，可以選擇是否要過濾。大於2個PSC的脈衝週期就會接收。若PSC設定為0(手冊有說不可以設定這個值)，則編碼器和解碼器都不會啟用。
+   - 接收器可與低功率傳送器溝通。
+   - 在IrDA模式下，USART_CR2的STOP一定要設定為1。
+
+
+IrDA 低功率模式
+------------------
+
+傳送器:
+   - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
+
+接收器:
+   - 低功率模式的接收與一般模式相去不遠。此模式的glitch detection會把小於1/PSC的脈衝過濾掉。有效脈衝的判別，是當脈衝週期大於2個PSC時才會被接收(2 * IrDA低功率baud clock，USART_GTPR的PSC)
+
+接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
+
+
 USART using DMA
 ==================
 
@@ -477,80 +549,6 @@ USART 接收端經過 DMA 存放DATA
 2. 當收到一個frame以後, 除了RXNE 以外,DMA request也會觸發, 表示DMA可以從USART_DR把DATA傳送到設定好的memory地址.
 
 3. 當預先設定好的接收data數量達到以後, DMA TCIF會觸發interrupt, DMAR會在這個interrupt routine裡清掉,不就會產生DMA request.
-
-SmartCard Mode
-====================
-SmartCard
----------------
-
-若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
-   - USART_CR2的LINEN
-   - USART_CR3的HDSEL以及IREN
-
-使用此模式時，也可考慮設定CLKEN以提供時脈給smartcard。
-
-若要使用Smartcard模式，USART應設定為: 
-   - 8 bit以上檢測位元: 在USART_CR1中，M以及PCE應設定為1。
-   - 1.5 stop bits: 傳輸/接收時會需要。在USART_CR2中，STOP應設為11。
-
-不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
-
-.. image:: /parity_smartcard.png
-
-當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
-
-Smartcard是單線半雙工的通訊協定: 
-   - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
-   - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
-   - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位。
-   - 即使是使用Smartcard模式，TC旗標的取消動作依然不受影響，與一般模式相同。
-   - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
-   - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
-
-break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
-在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
-
-
-
-IrDA SIR ENDEC
-====================
-Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
-若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
-   - USART_CR2的LINEN、STOP、CLKEN
-   - USART_CR3的SCEN、HDSEL
-
-IrDA SIR實體層使用Return to Zero, Inverted調變法(RZI modulation)，將邏輯0表示成紅外線脈衝訊號。
-
-SIR(slow Infrared)編碼器(傳輸端)會從USART將資料調變成non return to zero(NRZ)資料流，並將此資料流送至紅外線LED以及LED驅動器。雖然IrDA可以支援多種傳輸速率，但是USART-IrDA最快速率只有支援至115.2Kbps(因STM32f429使用SIR ENDEC，而SIR支援速率為9.6-115.2Kbps，亦可稱為9600-115200 baud rate)。在一般USART模式下，傳輸的脈衝訊號寬度為3/16 bit period。
-
-SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並將之解調變成non return to zero(NRZ)資料流，接著送到USART做處理。解碼器在Idle state時通常為高電位，而編碼器與解碼器的極性通常是相反的。在解碼器收到低電位訊號時，代表已經收到了start bit了。
-
-.. image:: /irda.PNG
-
-   - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
-   - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
-.. image:: /normal_mode.PNG
-   - SIR解碼器會將IrDA相容訊號轉換成USART資料流。編碼器則是相反行為。
-   - SIR接收器會將高電位轉換成邏輯1，低電位轉換成邏輯0。傳送器則是相反的。
-   - 解碼器的輸出值，會與接收器的輸入值擁有相反極性(理由同上)。SIR輸出端處於Idle state時，輸出低電位。
-   - IrDA規定可接收的脈衝週期必須要大於1.41us，不過這週期可以由使用者設定。在接收端會有一個判斷邏輯glitch detection，若該次脈衝週期小於2個PSC，則把該次脈衝過濾掉。(PSC: prescaler value，分頻器的值，定義於IrDA低功率baud暫存器，USART_GTPR)。不過，若脈衝週期小於1個PSC，一定過濾掉。至於脈衝週期介於1-2個PSC之間的，可以選擇是否要過濾。大於2個PSC的脈衝週期就會接收。若PSC設定為0(手冊有說不可以設定這個值)，則編碼器和解碼器都不會啟用。
-   - 接收器可與低功率傳送器溝通。
-   - 在IrDA模式下，USART_CR2的STOP一定要設定為1。
-
-
-
-IrDA 低功率模式
-------------------
-
-傳送器:
-   - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
-
-接收器:
-   - 低功率模式的接收與一般模式相去不遠。此模式的glitch detection會把小於1/PSC的脈衝過濾掉。有效脈衝的判別，是當脈衝週期大於2個PSC時才會被接收(2 * IrDA低功率baud clock，USART_GTPR的PSC)
-
-接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
-
 
 
 USART SYNCHRONOUS MODE
