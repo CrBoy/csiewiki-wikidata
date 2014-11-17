@@ -301,18 +301,22 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 
 .. image:: /usart_fig300.jpg
 
-Ref: `RM0090 Reference Manual P.954<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-在USART中，如果辨認出一個特殊的採樣序列( 1 1 1 0 X 0 X 0 X 0 0 0 0 )，則認定偵測到一個起始位。
+在USART中，如果辨認出一個特殊的採樣序列( 1 1 1 0 X 0 X 0 X 0 0 0 0 )，則認定偵測到一個起始位。不論是用哪種oversampling(16 or 8)方法，這個序列都一樣。
 
-**如果該序列不完整，則接收端退回起始位偵測並回到空閒狀態，等待下一次的電壓下降。**
+如果在第一次採樣(第3、5、7採樣點)都收集到0，而且第二次採樣(第8、9、10採樣點)也是都收集到0，則認定已經偵測到start bit(此時RXNE會設定為1，若RXNEIE=1會額外發出interrupt)。
 
-如果三個採樣點上有僅有兩個是0(第3、5、7採樣點或8、9、10採樣點)，則依然判定為偵測到一個起始位，但NE(噪音標誌)會被設定
+如果在第一次採樣(第3、5、7採樣點)收集到2個以上的0，而且第二次採樣(第8、9、10採樣點)也是收集到2個以上的0，也會認定已經偵測到start bit(此時RXNE會設定為1，若RXNEIE=1會額外發出interrupt)。但是會另外去把NE設定為1，因為可能在接收過程中有噪音訊號。
+
+**如果這兩次採樣結果不相符(例: 一次採到2個0，另一次採到2個1)，則接收端停止start bit偵測、回到idle state並等待下一次的電壓下降。**
+
+如果在這兩次採樣過程中，有任何一次只收集到2個0(但另一次收集到3個0)，還是會認定已經偵測到start bit，但也會把NE設定為1，理由同上。
+
+
 
 **採樣的時間間隔**
 
 .. image:: /usart_sampling.png
-Ref: `UART receiver clock speed<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
 
 假設baud rate = 9600 bps，則一個bit的傳輸時間為104us，usart會在接收器啟動後的52us，開始採樣
 
