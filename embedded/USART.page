@@ -506,7 +506,7 @@ IrDA 低功率模式
 
 
 Continuous communication using DMA
-==================
+=======================================
 
 Ref: `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
 
@@ -514,7 +514,9 @@ USART可以使用DMA達到連續通訊的效果，不過DMA會個別對於RX和T
 
 
 Transmission using DMA
-------------------
+------------------------
+
+.. image:: /tx_uart_dma.png
 
 若要啟用DMA模式，要在USART_CR3把DMAT啟用。在TXE bit被設立時，資料會先從SRAM(要先由DMA周邊設定，請參考DMA說明手冊)載入到USART_DR暫存器。如果要把DMA通道對應給USART傳送器，請使用下列流程:
 
@@ -532,7 +534,9 @@ Transmission using DMA
 
 
 Reception using DMA
-------------------
+----------------------
+
+.. image:: /rx_usart_dma.png
 
 DMA模式也可以用於接收資料，須設定USART_CR3的DMAR。只要收到任何一個byte時，該次資料會從USART_DR載入至SRAM(要先由DMA周邊設定，請參考DMA說明手冊)。如果要把DMA通道對應給USART接收器，請使用下列流程:
 
@@ -545,54 +549,15 @@ DMA模式也可以用於接收資料，須設定USART_CR3的DMAR。只要收到�
 
 如果接收的資料總量，已經達到DMA控制暫存器內設定的上限時，DMA控制器會在DMA通道interrupt vector上產生interrupt。在interrupt subroutine時，USART_CR3的DMAR應該要由軟體去清除。
 
-另外，如果要把DMA用於接收，不可以啟用RXNEIE。
+另外，如果要把DMA用於接收，就不可以啟用RXNEIE。
 
 
+Error flagging and interrupt generation in multibuffer communication
+----------------------------------------------------------------------
+
+若在多重緩衝區的情況下，在傳輸/接收過程中發生了任何錯誤，在該次byte傳完後會立即設立error旗標。另外，如果有任何interrupt enable旗標被設立，error設立完之後還會再產生interrupt。以framing error、overrun error和噪音旗標(另外與RXNE搭配使用，因為可能有單一byte接收的情況)來說，每個都有各自獨立的interrupt enable旗標(USART_CR3的EIE)。如果發生任何一種錯誤，在傳完該次byte之後會立即產生interrupt。在interrupt章節會提到這些interrupt enable之間的關係。
 
 
-
-
-
-
-利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
-但當連續傳送大量的data時, 如果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
-
-Ref: `RM0090 Reference Manual P.981<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
-
-USART 用 DMA 讀取 DATA 再傳送
-------------------------------------
-
-.. image:: /tx_normal.png
-(一般 USART 傳送)
-
-.. image:: /tx_uart_dma.png
-(DMA USART 傳送)
-
-
-
-1. 剛開始DMA先把第一個DATA寫入USART_DR.
-
-2. 當TXE(transmission enable), 第一個data(FRAME1)就從TX Line上傳出去;TXE的同時,DMA request觸發, 所以DMA把第二個data也寫進USART_DR.
-
-3. 當FRAME1傳完以後, 再一次TXE, FRAME2 開始從TX line傳出去,同時DMA request再次觸發, FRAME3也開始寫入.
-
-4. 因為DMA一開始要設定這次會傳幾個byte,當回寫入完最後一個byte到USART_DR以後,DMA transfer complete會觸發,之後USART就會等待TC觸發,以確保最後一個byte傳發完畢.
-
-5. TC 會由硬體在最後一個frame傳送完會設為1.
-
-USART 接收端經過 DMA 存放DATA
------------------------------------
-
-.. image:: /rx_usart_dma.png
-
-與transmission類似.
-
-1.USART_CR3 的 DMAR 要enable.
-
-2. 當收到一個frame以後, 除了RXNE 以外,DMA request也會觸發, 表示DMA可以從USART_DR把DATA傳送到設定好的memory地址.
-
-3. 當預先設定好的接收data數量達到以後, DMA TCIF會觸發interrupt, DMAR會在這個interrupt routine裡清掉,不就會產生DMA request.
 
 
 USART SYNCHRONOUS MODE
