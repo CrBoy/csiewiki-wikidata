@@ -433,6 +433,91 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
 Modes
 ............................
 
+
+PARITY CONTROL
+===============
+Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
+
+.. image:: /frame_formats.png
+
+
+
+parity依算方式的不同分成兩種方式，even parity和odd parity
+
+Even parity
+--------------------
+如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
+
+E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
+
+Odd parity
+-------------------
+如果一個frame內1的數量是奇數，則在 odd parity的情況下會把parity bit設為0。
+
+E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 odd parity(PS bit in USART_CR1 = 1)，所以 parity bit被設為1。
+
+
+接收後會做 parity checking
+----------------------------
+如果 parity check 失敗了，USART_SR register的PE flag會被設立，然後如果USART_CR1 register的PEIE bit也有被設立的話，還會產生中斷。PE flag最後在軟體執行(a read from the status register followed by a read or write access to the USART_DR data register)時被清除。
+
+
+傳送前會做 parity generation
+-----------------------------
+如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
+
+小知識：
+
+MSB: Most Significant Bit，代表位數最大的那個bit
+
+LSB: Least Significant Bit，代表位數最小的那個bit
+
+
+
+LIN(local interconnection network) mode
+=========================================
+
+
+
+USART SYNCHRONOUS MODE
+=========================
+
+Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
+   - USART_CR2的LINEN
+   - USART_CR3的SCEN、HDSEL、IREN
+
+USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
+
+在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
+
+在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
+
+此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
+
+SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
+
+當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
+
+建議同時設定TE和RE，以減少接收器的setup和hold time。
+
+另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
+
+
+.. image:: /synchronous_transmission.png
+
+.. image:: /usart_syn.png
+
+
+Single-wire half-duplex communication
+======================================
+
+
+
+
+
+
 SmartCard Mode
 ====================
 SmartCard
@@ -560,40 +645,10 @@ Error flagging and interrupt generation in multibuffer communication
 
 
 
-USART SYNCHRONOUS MODE
-=========================
-
-Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
-若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
-   - USART_CR2的LINEN
-   - USART_CR3的SCEN、HDSEL、IREN
-
-USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
-
-在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
-
-在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
-
-此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
-
-SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
-
-當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
-
-建議同時設定TE和RE，以減少接收器的setup和hold time。
-
-另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
-
-
-.. image:: /synchronous_transmission.png
-
-.. image:: /usart_syn.png
-
 
 
 USART 與 SPI
----------------
+==============
 
 SPI：它是主從式的架構，通常一個主設備和多個從設備
 
@@ -650,44 +705,6 @@ CTS Flow Control
 
 
 
-PARITY CONTROL
-..............
-Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
-
-.. image:: /frame_formats.png
-
-Even/Odd parity
-=================================
-
-parity依算方式的不同分成兩種方式，even parity和odd parity
-
-Even parity
---------------------
-如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
-
-E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
-
-Odd parity
--------------------
-如果一個frame內1的數量是奇數，則在 odd parity的情況下會把parity bit設為0。
-
-E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 odd parity(PS bit in USART_CR1 = 1)，所以 parity bit被設為1。
-
-
-接收後會做 parity checking
-=========================================
-如果 parity check 失敗了，USART_SR register的PE flag會被設立，然後如果USART_CR1 register的PEIE bit也有被設立的話，還會產生中斷。PE flag最後在軟體執行(a read from the status register followed by a read or write access to the USART_DR data register)時被清除。
-
-
-傳送前會做 parity generation
-======================================
-如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
-
-小知識：
-
-MSB: Most Significant Bit，代表位數最大的那個bit
-
-LSB: Least Significant Bit，代表位數最小的那個bit
 
 USART Register 總表
 ................................
