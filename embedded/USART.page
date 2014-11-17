@@ -513,13 +513,27 @@ SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)�
 Single-wire half-duplex communication
 ======================================
 
+若要啟用單線半雙工模式，可以設定USART_CR3的HDSEL為1。而下列設定必須要設定為0:
+   - USART_CR2的LINEN、CLKEN
+   - USART_CR3的SCEN、IREN
 
+USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來看是相連在一起的。USART_CR3的HDSEL可以選擇是要全雙工還是半雙工。
 
+當HDSEL被設定為1的那刻起:
+   - TX和RX在內部結構會變成相連的
+   - RX腳位不會被使用
+   - 只要沒有資料傳送，TX腳位都是處於釋放狀態，所以會變成一般的標準I/O腳位，處於Idle狀態或是等待接收。當TX腳位沒有被USART使用時，此腳位應該要設定為I/O使得TX成為floating input，或是成為高電位輸出的open-drain。
+
+除了以上的敘述之外，此模式的通訊過程都與一般的USART沒甚麼不同，只是這條線的使用權必須要由軟體決定(mutex之類的)。
+另外，傳輸的觸發絕對不會被硬體擋住，而且只要有資料被寫入data register(USART_DR)且TE=1時，就會立刻觸發傳輸，並將資料送出。
 
 
 
 SmartCard Mode
 ====================
+
+.. image:: /smart_card.jpg
+
 SmartCard
 ---------------
 
