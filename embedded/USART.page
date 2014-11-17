@@ -526,27 +526,30 @@ SIR(slow Infrared)編碼器(傳輸端)會從USART將資料調變成non return to
 
 SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並將之解調變成non return to zero(NRZ)資料流，接著送到USART做處理。解碼器在Idle state時通常為高電位，而編碼器與解碼器的極性通常是相反的。在解碼器收到低電位訊號時，代表已經收到了start bit了。
 
-   - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
-   - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
-
-
-
-
-IrDA SIR 實體層
-------------------
-
-
 .. image:: /irda.PNG
 
-SIR Transmit encoder 會把 USART 的Non Return to Zero 轉換成 IrDA 輸出訊號.
-
-IrDA 輸出是一種 Return-To-Zero,Inverted 形式的訊號, 用一個紅外線 pulse 表示一個 logic 0.
-
-每一個紅外線 pulse 相當於 3/16 的 bit period, 而 IrDA mode 下的 USART 的 bit rate 最高為 115.2 Kbps. 
-
-(下圖 IrDA_OUT).
-
+   - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
+   - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
 .. image:: /normal_mode.PNG
+   - SIR解碼器會將IrDA相容訊號轉換成USART資料流。編碼器則是相反行為。
+   - SIR接收器會將高電位轉換成邏輯1，低電位轉換成邏輯0。傳送器則是相反的。
+   - 解碼器的輸出值，會與接收器的輸入值擁有相反極性(理由同上)。SIR輸出端處於Idle state時，輸出低電位。
+   - IrDA規定可接收的脈衝週期必須要大於1.41us，不過這週期可以由使用者設定。在接收端會有一個判斷邏輯glitch detection，若該次脈衝週期小於2個PSC，則把該次脈衝過濾掉。(PSC: prescaler value，分頻器的值，定義於IrDA低功率baud暫存器，USART_GTPR)。不過，若脈衝週期小於1個PSC，一定過濾掉。至於脈衝週期介於1-2個PSC之間的，可以選擇是否要過濾。大於2個PSC的脈衝週期就會接收。若PSC設定為0(手冊有說不可以設定這個值)，則編碼器和解碼器都不會啟用。
+   - 接收器可與低功率傳送器溝通。
+   - 在IrDA模式下，USART_CR2的STOP一定要設定為1。
+
+
+
+IrDA 低功率模式
+------------------
+
+傳送器:
+   - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
+
+接收器:
+   - 低功率模式的接收與一般模式相去不遠。此模式的glitch detection會把小於1/PSC的脈衝過濾掉。有效脈衝的判別，是當脈衝週期大於2個PSC時才會被接收(2 * IrDA低功率baud clock，USART_GTPR的PSC)
+
+接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
 
 
 
