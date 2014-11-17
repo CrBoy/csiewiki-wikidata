@@ -173,19 +173,19 @@ USART 特性描述
 .. image:: /usart_M_byte.jpg
 
 
-在起始位(start bit)期間，TX處於低電位，如圖中的(a)，在停止位期間，TX處於高電位，如圖中的(b)。
+   - 在起始位(start bit)期間，TX處於低電位，如圖中的(a)，在停止位期間，TX處於高電位，如圖中的(b)。
 
 
 .. image:: /usart_M_idle.jpg
 
 
-另外空閒符號則全由'1'組成，包含資料的停止位元位數也是'1'，如圖中的(c)，後面接著下一個資料的開始位；
+   - 另外空閒符號則全由'1'組成，包含資料的停止位元位數也是'1'，如圖中的(c)，後面接著下一個資料的開始位；
 
 
 .. image:: /usart_M_break.jpg
 
 
-中斷符號則全由'0'所組成，包含資料的停止位也是'0'，如圖中的(d)，
+   - 中斷符號則全由'0'所組成，包含資料的停止位也是'0'，如圖中的(d)，
 
 
 在中斷時，發送器會再插入1或2個停止位('1')以區分下一筆資料的起始位，如圖中的(e)
@@ -195,56 +195,79 @@ Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/
 
 傳送器
 ============================
+
 傳送器依據USART_CR1的M位狀態來決定發送8或9位元的資料。
-當transmit enable bit(TE)被設定時，資料放入transmit shift register後，經由TX腳位送出，
+當transmit enable bit(TE)被設定時，在transmit shift register的資料會經由TX腳位送出，
 同時，相對應的時鐘脈衝會由SCLK腳位輸出。
 
 
 資料的傳送
 ------------------------------------
-在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)，因此在此模式中，USART_DR和transmit shift register之間包含一個緩衝器(TDR)。每個資料再傳送前都會有一個低電位的起始位；之後跟著的停止位元數目，則可由使用者決定0.5, 1, 1.5或2
-   - 1 bit的stop bit: 預設的默認停止位位元數
-   - 2 bits的stop bit: normal USART, single-wire 和 modem modes
+
+在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)。在此模式中，USART_DR與內部匯流排和transmit shift register會之間包含一個緩衝器(TDR)。
+
+每個資料在傳送前都會有一個低電位的起始位(start bit)；資料傳完之後會接著一組停止位元(stop bit)。
+
+在傳送資料的過程中，不可以去更改TE的設定，否則會導致baud rate counter停止，目前正在傳的資料也會毀損(因只傳了一部份)。
+TE被開啟時，會立即送出一個idle frame。
+
+停止位元的數目可由使用者決定為0.5, 1, 1.5或2 bits:
+   - 1 bit的stop bit: 預設的停止位位元數
+   - 2 bits的stop bit: 一般USART模式、單線傳輸模式和modem modes
    - 0.5 bits的stop bit: Smartcard mode接收數據用
-   - 1.5 bits的stop bit: Smartcard mode發送數據用
+   - 1.5 bits的stop bit: Smartcard mode接收或發送數據用
+
+傳送idle frame時，會連stop bits一起送出，因idle frame本身就包含stop bits。
+傳送break時，會連續傳輸10個低電位bits(包含1個stop bit，此時M=0)，或是11個低電位bits(包含2個stop bits，此時M=1)。但是不可能傳輸過長的break(大於10/11低電位bits)
 
 **stop bits其實不算是個bit，他是傳輸結束後的一段時間(period)，用以區隔每個傳輸的資料，其功用是在非同步傳輸的時候可以告訴接收器，資料傳輸已經結束。透過增加stop bits的長度，可讓接收器能有足夠的時間可以處理該資料**
 
 **另外，由於資料搬移到transmit shift register中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
 
 
-.. image:: /usart_fig298.jpg
 
 Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 
 傳送器的設定
 ------------------------------------
+
+.. image:: /usart_fig298.jpg
+
+
 .. image:: /usart_transmiter.png
 
- 
- 
-
-   1. 設定USART_CR1暫存器的UE位來啟動傳輸，如圖中的(a)
-   2. 設定USART_CR1暫存器的M位決定資料長度，如圖中的(b)
-   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度，如圖中的(c)
-   4. 採用多緩衝器的話，則須設定USART_CR3的DMAT啟動DMA，並設置DMA的暫存器，如圖中的(d)
+  
+設定流程如下:
+   1. 設定USART_CR1的UE為1來啟動傳輸，如圖中的(a)
+   2. 設定USART_CR1的M決定資料長度，如圖中的(b)
+   3. 設定USART_CR2中的STOP位來決定停止位元的長度，如圖中的(c)
+   4. 採用多重緩衝器的話，則須設定USART_CR3的DMAT啟動DMA，並按照多重緩衝器的章節內容去設定DMA，如圖中的(d)
    5. 利用USART_BRR暫存器設定baud rate，如圖中的(e)
-   6. 設置USART_CR1的TE位，在第一筆資料傳送前，傳送一個空閒的frame，如圖中的(f)
-   7. 將欲發送的資料放入USART_DR中，如圖中的(g)
-   8. 若有多筆資料要傳送，則重複步驟7.，如圖中的(l)
+   6. 設定USART_CR1的TE為1，在第一筆資料傳送前，傳送一個空閒的frame，如圖中的(f)
+   7. 將欲發送的資料寫入USART_DR中，此動作會一併清除TXE，如圖中的(g)。
+   8. 若有多筆資料要傳送，則重複步驟7.，如圖中的(l)。
+   9. 當最後一筆資料寫入USART_DR時，要等到TC=1才可以做其他動作。TC=1代表所有資料傳輸已經結束。此動作為的是避免最後一筆資料在傳輸時毀損(因USART此時可能已經被關閉，或是進入halt mode)。
+
 
 當資料放入USART_DR會由硬體清除TXE位，如圖中的(h)，則表示:
-   1. 資料已從TDR中進入transmit shift register，資料的發送已開始
-   2. TDR暫存器已被清空
-   3. 下一筆資料可放入USART_DR中
+   1. 資料已從TDR中放入transmit shift register，而且資料已開始傳送
+   2. TDR暫存器無資料
+   3. 下一筆資料可放入USART_DR中，並且不會覆蓋前一筆資料
 
-若TXEIE位的設置，則會產生一個中斷，如圖中的(i):
-   - 如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後把該筆資料移進transmit shift register中
+
+若設定TXEIE為1，則會產生一個中斷，如圖中的(i):
+   - 如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後，把TDR的資料移進transmit shift register中
    
-   - 如果USART沒有在發送資料，則對USART_DR的寫入會把資料直接放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位
+   - 如果USART沒有在發送資料，則對USART_DR寫入資料時，會直接把該筆資料放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位。
 
-一個frame的資料發送完畢後，TC位會被設定，如圖中的(j)，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，如圖中的(k)，先讀取USART_SR暫存器，再寫入USART_DR暫存器，則可清除TC位
+當一個frame的資料發送完畢(送出stop bits後)，TC位會被設定為高電位，如圖中的(j)，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，如圖中的(k)。
+
+當最後一筆資料寫入USART_DR後，一定要等到TC=1才可以把USART關掉，或是讓整個控制器進入低功耗模式。
+
+若要清除TC，則要先讀取USART_SR暫存器，再對USART_DR暫存器做寫入動作。如果是使用多重緩衝區模式，可以直接對TC寫入0。
+
+//這邊要放fig.299
 
 
 
@@ -252,7 +275,7 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 ------------------------------------
 透過設定USART_CR1的SBK位，可以發送一個斷開符號，斷開符號的長度取決於M位。
 
-如果SBK=1，則在目前的資料發送後，會再TX線上發送一個斷開符號，當傳送完成後，會由硬體恢復SBK位。
+如果SBK=1，則在目前的資料發送後，在TX線上再發送一個斷開符號。當斷開符號傳送完成後，會由硬體重設SBK至0。
 
 USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
 
@@ -260,7 +283,7 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 
 傳送空閒符號
 ------------------------------------
-設置USART_CR1的TE位會使得USART在發送第一筆資料前，發送一個空閒符號，喚醒接收端。
+設置USART_CR1的TE，會使得USART在發送第一筆資料前，發送一個空閒符號，喚醒接收端。
 
 
 
