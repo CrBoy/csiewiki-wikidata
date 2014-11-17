@@ -626,28 +626,31 @@ HARDWARE FLOW CONTROL
 
 Ref: `RM0090 Reference Manual P.983<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-利用 nCTS 跟 nRTS 控制 TX , RX 要不要再傳送或接收 data
+利用nCTS跟nRTS控制TX、RX是否再傳送或接收data。
+可個別設定USART_CR3的RTSE以及CTSE為1，藉此允許RTS或CTS flow control。
 
 .. image:: /hardware_control_2usarts.png
 
 
 RTS Flow Control
 -------------------------
-RTSE(RTS flow control enable) , CTSE 為1才開啟hw flow control;
 
-Figure 318
-在recieve端register 滿了以後, nRTS轉為 1,表示接收完這個data以後就暫時不接收Data;
+如果開啟RTS flow control(要把RTSE設為1)，nRTS會被拉至低電位，直到USART接收器準備好要接收下一筆資料才會拉高。如果接收器的暫存器滿了，會先把nRTS拉至高電位，告知另外一端的傳送器在傳完這個資料frame之後，應該要停止傳送資料。
 
 .. image:: /rst_flow_control.png
 
 
 CTS Flow Control
 -----------------------
-跟上面是對應的, 當nRTS為1, transimitter 端的nCTS就會是1, 表示他知道reciever 目前無法接收data, TX就會在傳送完當前的data以後 idle.
 
-nCTS為1 的時候,  會由硬體去設定CTSIE bit (USART_CR3).
+如果開啟CTS flow control(要把CTSE設為1)，在傳送器要傳送下一筆資料frame之前，會先去檢查nCTS是否有值輸入。如果nCTS被拉至低電位，那麼下一筆資料會立即被送出(假設資料已經先在Transmit Data Register準備好了，也可說成TXE=0)，否則不會進行傳送。如果在傳送資料的過程中，nCTS被拉至高電位，那麼會先把剩下該傳的資料先傳完，再停止傳送。
+
+如果CTSE被設定為1，那麼在nCTS有值輸入時，CTSIF狀態會自動地被硬體設立，表示該時間點接收器是否已準備好下一次的通訊。若有開啟USART_CR3的CTSIE(=1)，則會產生interrupt。
+
+另外，在開啟CTS flow的情況下，傳送器在送出break時不會去檢查nCTS的狀態。
 
 .. image:: /cst_flow_control.png
+
 
 
 PARITY CONTROL
