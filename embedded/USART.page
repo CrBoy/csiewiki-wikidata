@@ -469,40 +469,41 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
    - HCLK>>2轉給PCLK1 => 168Mhz>>2 = 42Mhz.
 
 
-Modes
-............................
+USART receiver tolerance to clock deviation
+............................................
+
+Multiprocessor communication
+.............................
 
 
 PARITY CONTROL
-===============
+...................
 Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
 
 .. image:: /frame_formats.png
 
-
-
 parity依算方式的不同分成兩種方式，even parity和odd parity
 
 Even parity
---------------------
+============
 如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
 
 E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
 
 Odd parity
--------------------
+============
 如果一個frame內1的數量是奇數，則在 odd parity的情況下會把parity bit設為0。
 
 E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 odd parity(PS bit in USART_CR1 = 1)，所以 parity bit被設為1。
 
 
 接收後會做 parity checking
-----------------------------
+==========================
 如果 parity check 失敗了，USART_SR register的PE flag會被設立，然後如果USART_CR1 register的PEIE bit也有被設立的話，還會產生中斷。PE flag最後在軟體執行(a read from the status register followed by a read or write access to the USART_DR data register)時被清除。
 
 
 傳送前會做 parity generation
------------------------------
+============================
 如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
 
 小知識：
@@ -511,6 +512,10 @@ MSB: Most Significant Bit，代表位數最大的那個bit
 
 LSB: Least Significant Bit，代表位數最小的那個bit
 
+
+
+Modes
+............................
 
 
 LIN(local interconnection network) mode
