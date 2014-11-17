@@ -505,10 +505,54 @@ IrDA 低功率模式
 接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
 
 
-USART using DMA
+Continuous communication using DMA
 ==================
 
 Ref: `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+
+USART可以使用DMA達到連續通訊的效果，不過DMA會個別對於RX和TX緩衝器送出請求。
+
+
+Transmission using DMA
+------------------
+
+若要啟用DMA模式，要在USART_CR3把DMAT啟用。在TXE bit被設立時，資料會先從SRAM(要先由DMA周邊設定，請參考DMA說明手冊)載入到USART_DR暫存器。如果要把DMA通道對應給USART傳送器，請使用下列流程:
+
+   1. 把USART_DR暫存器的位址寫到DMA控制暫存器中，以設定待傳資料的終端地點。在每次TXE被觸發的時候，資料都會從記憶體中搬到這個位址。
+   2. 把記憶體位址寫到DMA控制暫存器裡面，以設定待傳資料的來源。在每次TXE被觸發的時候，資料都會從這個記憶體區段搬到USART_DR。
+   3. 在DMA控制暫存器中，設定要傳的資料總量(bytes)。
+   4. 在DMA暫存器設定通道的優先順序。
+   5. 按照程式需求，設定在傳輸一半/全部資料後，是否產生DMA interrupt。
+   6. 清除SR暫存器中的TC(寫入0)。
+   7. 啟動DMA暫存器中的通道。
+
+如果傳輸的資料總量，已經達到DMA控制暫存器內設定的上限時，DMA控制器會在DMA通道interrupt vector上產生interrupt。
+
+在傳輸模式下，只要DMA把所有該傳的資料都傳完時(此時在DMA_ISR的TCIF旗標會設立)，TC旗標可以用於監控USART是否已經完成通訊。這步驟是為了避免在最後一次資料尚未傳完時，把USART關掉或是進入Stop模式。程式一定要等到TC=1才可以進行後續的動作。在傳輸資料時，TC旗標會一直維持清除狀態(=0)，只有在最後一次資料frame傳輸結束時，TC旗標才會被硬體設立。
+
+
+Reception using DMA
+------------------
+
+DMA模式也可以用於接收資料，須設定USART_CR3的DMAR。只要收到任何一個byte時，該次資料會從USART_DR載入至SRAM(要先由DMA周邊設定，請參考DMA說明手冊)。如果要把DMA通道對應給USART接收器，請使用下列流程:
+
+   1. 把USART_DR暫存器的位址寫到DMA控制暫存器中，以設定待傳資料的來源。在每次RXNE被觸發的時候，資料都會從這個位址搬到記憶體中。
+   2. 把記憶體位址寫到DMA控制暫存器裡面，以設定待傳資料的終端地點。在每次RXNE被觸發的時候，資料都會從USART_DR搬到這個記憶體區段。
+   3. 在DMA控制暫存器中，設定要傳的資料總量(bytes)。
+   4. 在DMA暫存器設定通道的優先順序。
+   5. 按照程式需求，設定在傳輸一半/全部資料後，是否產生DMA interrupt。
+   6. 啟動DMA暫存器中的通道。
+
+如果接收的資料總量，已經達到DMA控制暫存器內設定的上限時，DMA控制器會在DMA通道interrupt vector上產生interrupt。在interrupt subroutine時，USART_CR3的DMAR應該要由軟體去清除。
+
+另外，如果要把DMA用於接收，不可以啟用RXNEIE。
+
+
+
+
+
+
+
 
 利用UART傳送小量data的時候, 接收方可以利用interrupt 的方法, 令processor 把data 從recieve register 寫到 memory裡面;
 但當連續傳送大量的data時, 如果能不使用到processor 做將data 寫入memory的動作, 可以減輕資源有限的微處理器的負擔.
