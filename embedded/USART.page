@@ -516,18 +516,21 @@ IrDA SIR ENDEC
 ====================
 Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-IrDA
------------
+若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
+   - USART_CR2的LINEN、STOP、CLKEN
+   - USART_CR3的SCEN、HDSEL
 
-IrDA 是一種標準化紅外線數據傳送方式;STM32f4支援利用USART輸出訊號配合轉換電路,轉換成符合IrDA 標準的訊號,實現紅外線傳輸.
+IrDA SIR實體層使用Return to Zero, Inverted調變法(RZI modulation)，將邏輯0表示成紅外線脈衝訊號。
 
-低速紅外線其傳輸數率上限為115.2Kbps, 相較於低速紅外線,高速紅外線的傳輸速率達到4Mbps, 更適合傳送較大的檔案, 圖片等;而由於紅外線無法穿越墻壁, 所以也適合在一個安全保密的封閉環境裡作網路傳輸.
+SIR(slow Infrared)編碼器(傳輸端)會從USART將資料調變成non return to zero(NRZ)資料流，並將此資料流送至紅外線LED以及LED驅動器。雖然IrDA可以支援多種傳輸速率，但是USART-IrDA最快速率只有支援至115.2Kbps(因STM32f429使用SIR ENDEC，而SIR支援速率為9.6-115.2Kbps，亦可稱為9600-115200 baud rate)。在一般USART模式下，傳輸的脈衝訊號寬度為3/16 bit period。
 
-register 設定
----------------
-USART_CR3 : IREN = 1; SCEN, HDSEL :keep clean.
+SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並將之解調變成non return to zero(NRZ)資料流，接著送到USART做處理。解碼器在Idle state時通常為高電位，而編碼器與解碼器的極性通常是相反的。在解碼器收到低電位訊號時，代表已經收到了start bit了。
 
-USART_CR2 : LINEN , STOP, CLKEN :keep clean.
+   - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
+   - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
+
+
+
 
 IrDA SIR 實體層
 ------------------
