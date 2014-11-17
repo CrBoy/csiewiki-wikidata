@@ -565,35 +565,32 @@ USART SYNCHRONOUS MODE
 
 Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-register 設定
-------------------
+若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
+   - USART_CR2的LINEN
+   - USART_CR3的SCEN、HDSEL、IREN
 
-USART_CR2 : CLKEN = 1;LINEN :keep cleared;
+USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
 
-USART_CR3 : SCEN, HDSEL, IREN :keep cleared;
+在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
 
-特性
------------
+在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
+
+此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
+
+SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
+
+當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
+
+建議同時設定TE和RE，以減少接收器的setup和hold time。
+
+另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
+
 
 .. image:: /synchronous_transmission.png
 
-Synchronous 指的是master 跟 slave 用同一個 Clock, 這個clock(SCLK)由 master 端送出, 同時需要TE = 1,clock 才會產生;這個時候只有master方會接收或傳送data.
-(UART 4,5 不支援 Synchronous mode)
-
-
 .. image:: /usart_syn.png
 
-在傳送 start bit, stop bit 時不會有 clock pulse 從 SCLK 送出,clock 處於 logic 0.
 
-Last bit clock pulse(LBCL),確定第8(9,如果 M=1)bit的clock pulse會不會輸出.
-
-CPOL = 0: high 為 logic 1 ; CPOL =1 :high 為 logic 0.
-
-CPHA = 0: clock pulse 發生在bit period 的後半段中;CPHA = 1: clock pulse 發生在bit period 的前半段;差別在於bit period中間的edge是正/負緣觸發.
-
-master mode: 不能夠用slave(不是產生SCLK的一方,非usart周邊)輸入進來的input clock 做接收或送去data.
-
-因為同步, 所以不需要oversampling(Ws >> 2Wm)
 
 USART 與 SPI
 ---------------
