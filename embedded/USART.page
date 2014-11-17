@@ -394,7 +394,7 @@ USART在接收斷開符號後，該符號處理流程等同framing error。
 若在資料接收過程中檢測到噪音時:
    - NF會在RXNE升緣時被設定
    - 該次無效資料會從received shift register移入USART_DR
-   - 在單一byte接收模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
+   - 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
 
 .. image:: /oversampling16.png
 
@@ -408,16 +408,28 @@ USART在接收斷開符號後，該符號處理流程等同framing error。
 
 Frame錯誤
 ------------------------------------
-由於沒有同步上或線路上大量的噪音，使得停止位沒有在預期的時間上接收和識別出來，則發生Frame錯誤
+起因於傳輸端/接收端沒有同步、或者傳輸線路上有大量的噪音，使得stop bit沒有在預期的時間內被識別出來。
 
 當Frame錯誤被檢測出時:
-   1. FE位被設定，如圖中的(l)
-   2. 無效的資料從received shift register移入USART_DR暫存器中
-   3. 在一般資料的接收下，不會有中斷產生，可藉由RXNEIE位的設置，在中斷中檢測FE位得知發生錯誤；
+   1. FE位被硬體設定為1，如圖中的(l)
+   2. 無效的資料從received shift register移入USART_DR中
+   3. 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷，如圖中的(k)
 
-      在DMA的接收中，如果USART_CR3暫存器中的EIE位被設定，則會產生一個中斷，如圖中的(k)
+依序讀取USART_SR和USART_DR暫存器可恢復FE至0
 
-依序讀取USART_SR和USART_DR暫存器可恢復FE位
+
+
+Configurable stop bits during reception(oversampling)
+-----------------------------------------------------
+
+Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 or 2，在smartcard模式則可選擇0.5 or 1.5。
+   1. 0.5 stop bit(用於smartcard模式的接收器): 不進行採樣，所以沒辦法偵測到framing錯誤，或是偵測出break frame。
+   2. 1 stop bit: 在第8, 9, 10個採樣點進行採樣
+   3. 1.5 stop bit(用於smartcard模式，包含接收器和傳送器): 1.5 stop bit的採樣是在第16, 17, 18個採樣點進行(在stop bit開始後1個baud clock之後才開始採樣)。而1.5 stop bit可以分成前0.5和後1 stop bit。在前0.5 stop bit甚麼事都不做，在後1 stop bit的中間(16, 17, 18)才開始採樣。在smartcard模式傳輸資料時，必須要確保每筆資料都有正確地送出去。所以接收器一定要把USART_CR1的RE設定為1，然後stop bit會被拿來偵測是否有parity error產生。如果發生了parity error，smartcard會在採樣時強制把資料訊號拉至低電位(此為NACK訊號，這種訊號會被另一端標記成framing error)。在1.5 stop bit結束時，FE和RXNE會同時被設定為1。其餘請參考smartcard章節。
+   4. 2 stop bits: 在第一個stop bit會對第8, 9, 10個採樣點進行採樣，如果在第一個stop bit就偵測出framing error，會直接去設立framing error旗標，然後第二個stop bit就不會拿來偵測framing error了。RXNE會在第一個stop bit結束採樣時被設立。
+
+
+
 
 
 
