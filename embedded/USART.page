@@ -265,7 +265,7 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 
 當最後一筆資料寫入USART_DR後，一定要等到TC=1才可以把USART關掉，或是讓整個控制器進入低功耗模式。
 
-若要清除TC，則要先讀取USART_SR暫存器，再對USART_DR暫存器做寫入動作。如果是使用多重緩衝區模式，可以直接對TC寫入0。
+在一般模式下，若要清除TC，可以直接對TC寫入0。如果是使用多重緩衝區模式，則要先讀取USART_SR暫存器，再對USART_DR暫存器做寫入動作。
 
 //這邊要放fig.299
 
@@ -334,77 +334,77 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 .. image:: /usart_recevier.png
 
 
-   1. 設定USART_CR1暫存器的UE位來啟動USART接收，如圖中的(a)
-   2. 設定USART_CR1暫存器的M位決定資料長度，如圖中的(b)
-   3. 設定USART_CR2暫存器中的STOP位來決定停止位元的長度，如圖中的(c)
-   4. 採用多緩衝器接收資料，則須設定USART_CR3的DMAR啟動DMA，並設置DMA的暫存器，如圖中的(d)
-   5. 利用USART_BRR暫存器設定baud rate，如圖中的(e)
-   6. 設定USART_CR1暫存器中的RE位，啟動接收器，並開始偵測起始位，如圖中的(f)
+   1. 設定USART_CR1的UE為1來啟動USART接收，如圖中的(a)
+   2. 設定USART_CR1的M決定資料長度，如圖中的(b)
+   3. 設定USART_CR2的STOP來決定停止位元的長度，如圖中的(c)
+   4. 若需要採用多重緩衝器接收資料，則須設定USART_CR3的DMAR啟動DMA，並按照多重緩衝器的章節內容去設定DMA，如圖中的(d)
+   5. 利用USART_BRR設定baud rate，如圖中的(e)
+   6. 設定USART_CR1暫存器中的RE，此動作會啟動接收器並開始偵測起始位，如圖中的(f)
 
 當資料被接收到後:
-   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出，如圖中的(g)
+   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出(也包含了已經偵測到的錯誤)，如圖中的(g)
    2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷，如圖中的(h)
    3. 資料接收期間如檢測到frame錯誤或是噪音、溢出錯誤等問題，相關的標誌將被設定(FE、NF、ORE)
-   4. 藉由讀取USART_DR可清除RXNE位，RXNE位必須要在下一資料接收前被清除，以免產生溢出錯誤
-   5. 在DMA接收時，RXNE在每個字元接收後被設置，並因DMA讀取RDR而被清除
+   4. 若使用多重緩衝區模式，RXNE在每個字元接收後會被設置，並在DMA讀取RDR之後被清除
+   5. 在一般模式(單緩衝區)下，藉由軟體讀取USART_DR可清除RXNE，也可以直接對RXNE寫入0。RXNE一定要在"接收下一筆資料"這個動作結束前被清除，以免產生溢出錯誤
+
 
 接收斷開符號
 ------------------------------------
-USART在接收斷開符號後，可像處理frame錯誤一樣處理
+USART在接收斷開符號後，該符號處理流程等同framing error。
 
 
 接收空閒符號
 ------------------------------------
-當空閒符號被偵測到時，USART處理步驟如同一般資料一樣處理，但如果USART_CR1的IDLEIE被設置時，將會產生一個中斷
+當空閒符號被偵測到時，該符號處理流程等同一般資料，但如果USART_CR1的IDLEIE被設置時，還會產生一個中斷
 
 
 溢出錯誤
 ------------------------------------
-若RXNE沒有被覆位，此時又接收到一個新資料，則會發生溢出錯誤，如圖中的(i)
+在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，如圖中的(i)。在RXNE沒有被清除時，資料將無法從Received shift register轉入RDR。
+
 
 當溢出錯誤產生時:
-   1. USART_SR中的ORE位將被設置，如圖中的(j)
-   2. RDR中的內容將不會被清除，因此讀取USART_DR仍可以得到之前的資料
-   3. 若USART持續在接收中，則Received shift register中的資料將被覆蓋
-   4. 如果RXNEIE被設置，或是EIE(Error interrupt enable)和DMAR位被設定，則會產生一個中斷，如圖中的(k)
-   5. 依序讀取USART_SR和USART_DT暫存器，可清除ORE位
+   1. USART_SR中的ORE將被設定為1，如圖中的(j)
+   2. RDR中的內容不會被清除，因此讀取USART_DR仍可以得到之前的資料
+   3. Received shift register中的資料將被覆蓋。覆蓋完之後，在接下來overrun錯誤發生的過程中，所有接收到的資料都會遺失。
+   4. 如果RXNEIE被設為1，或是EIE(Error interrupt enable)和DMAR被為1，則會產生一個中斷，如圖中的(k)
+   5. 依序讀取USART_SR和USART_DT暫存器，可清除ORE
 
 **當ORE位被設置時，表示至少有一個資料已遺失，有以下兩種可能性: **
    1. 如果RXNE=1，表示之前的資料還在RDR中，且可被讀出
-   2. 如果RXNE=0，表示之前的資料已被讀走，RDR已無資料可被讀取，此種情況發生在讀取RDR中上一筆資料時，又接收到新的資料時發生。
+   2. 如果RXNE=0，表示之前的資料已被讀走，RDR已無資料可被讀取。若正在讀取RDR中的上一筆資料，而讀取時又接收到新的資料(這筆新的資料會遺失)，就會發生這種情況。另一種情況是正在讀取USART_SR以及USART_DR的過程中，有新的資料被讀進來(但這筆資料會遺失)，這也會導致相同結果。
 
 
 
-噪音錯誤
-------------------------------------
-透過不同的採樣技術，可以區分有效的輸入資料和噪音，並進行資料恢復。
+噪音錯誤(select the proper oversampling method)
+-------------------------------------------------
 
-透過設定USART_CR1中的OVER8位可選16或8次的採樣，見Fig. 250和Fig. 251:
-   - OVER8 = 1: 採用8次採樣，採樣的頻率較快(最高頻率為fPCLK/8)
-   - OVER8 = 0: 採用16次採樣，採樣的頻率最高為fPCLK/16
+接收器具備不同oversampling方法供使用者選擇(但在同步模式不可選擇)，此方法可以區分有效資料以及噪音，並修復已接收到的資料。
 
-設定USART_CR3中的ONEBIT位可選則不同的採樣技術:
-   - ONEBIT = 0: 採樣資料中心的 3 bits，若此3 bits不相等，則NF位會被設定
-   - ONEBIT = 1: 只採樣中心的單一bit，此時NF的檢測將會被取消
 
-當在資料接收中檢測到噪音時:
-   - NE會在RXNE位的升緣時被設定
-   - 無效的資料會從received shift register移入USART_DR暫存器中
-   - 在單一資料的接收下，不會有中斷產生，但透過NE和RXNE位的設置，由後者來產生中斷；
-     
-     在多緩衝器的接收中，如果USART_CR3暫存器中的EIE位被設定，則會產生一個中斷
+設定USART_CR1中的OVER8，即可選擇16個或8個baud clock的採樣，見Fig. 250和Fig. 251:
+   - OVER8 = 1: 使用8次採樣可以達到更高速的資料傳輸(最高速為fPCLK/8)，相對地接收器會沒辦法容許太多的時脈誤差。
+   - OVER8 = 0: 使用16次採樣，則接收器可容許較多的時脈誤差，但傳輸速率會被限制於fPCLK/16
+
+設定USART_CR3中的ONEBIT，可選擇不同的噪音評估法:
+   - ONEBIT = 0: 採樣資料中心的3個bits，若此3 bits不完全相等，則NF會被設定為1。適合用於容易產生噪音訊號的環境，如果偵測到有噪音(NF=1)，會把該次收到的資料拋棄，因為NF=1代表採樣過程中可能有產生突波、干擾訊號等。
+   - ONEBIT = 1: 只採樣資料中心的單一bit，此時NF就絕對不會被設定。適合用於沒有噪音訊號的環境，並且讓接收器容許更多的時脈誤差。
+
+若在資料接收過程中檢測到噪音時:
+   - NF會在RXNE升緣時被設定
+   - 該次無效資料會從received shift register移入USART_DR
+   - 在單一byte接收模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
 
 .. image:: /oversampling16.png
 
-
 .. image:: /oversampling8.png
-
 
 .. image:: /noisedetection.png
 
 .. image:: /noisedetectionsampledata.png
 
-Ref: `RM0090 Reference Manual P.957~958<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
 
 Frame錯誤
 ------------------------------------
