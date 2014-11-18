@@ -68,7 +68,7 @@ ADC Block Diagram
 
 **1.  Analog MUX 類比多工器：**
 
-將多個訊號源連接至 ADC, 可在上圖中的左下角看到有 16 組輸入 (ADCx_IN0~15), 經過類比多工器來做訊號源的選擇。
+將多個訊號源連接至 ADC, 可在上圖中的左下角看到有 16 組外部輸入 (ADCx_IN0~15)與兩組內部輸入, 經過類比多工器來做訊號源的選擇。
 
 **2.  Injected/Regular data register：**
 
@@ -259,7 +259,11 @@ ADC之 Time Diagram
 ADC之轉換時間
 ============
 
-**Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)**
+**Tconv（Total Conversion Time） =  Sampling time + N Cycles **
+  - N = 12 cycles (12 bits resolution)
+  - N = 10 cycles (10 bits resolution)
+  - N = 8 cycles (8 bits resolution)
+  - N = 6 cycles (6 bits resolution)
 
 - Sampling time
 
