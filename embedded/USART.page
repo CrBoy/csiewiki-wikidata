@@ -509,7 +509,7 @@ Multiprocessor communication
 
 
 Idle line detection(WAKE=0)
-====================
+============================
 
 若RWU被設定為1，則USART進入mute模式。
 
