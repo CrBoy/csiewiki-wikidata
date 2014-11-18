@@ -41,13 +41,14 @@ ADC的規格
 ADC 轉換公式
 ===========
 
-- 以一個解析度為12bits的ADC來說，電壓範圍為0-5V，其轉換公式如下
+- 以一個解析度為n bits的ADC來說，其轉換公式如下
 
 
 ::
 
-  ConvertedVoltage = ConvertedValue * VDD/(2^12-1);
+  ConvertedVoltage = ConvertedValue * VREF/(2^n-1);
   
+其中Vref為參考電壓，通常介於VDD與VSS之間。
 
 ADC on STM32F4
 ===============
@@ -55,6 +56,11 @@ ADC on STM32F4
 - 有12-bit, 10-bit, 8-bit or 6-bit共4種可選擇的解析度。
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
+- ADC使用獨立電源，VDDA、VSSA，並且需要提供參考電壓Vref(VDDA > Vref > 1.8V)
+- 在DISCO板子上面，VRef = VDDA = VDD = 2.95V (3V)
+- 這一塊晶片使用Successive approximation ADC，運作模式是使用DAC生成不同的電壓，來跟輸入比較，來測量輸入的值。
+
+.. image:: http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png
 
 ADC Block Diagram
 =================
