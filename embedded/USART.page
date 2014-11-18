@@ -472,8 +472,67 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
 USART receiver tolerance to clock deviation
 ............................................
 
+必須要使整個時脈系統的時鐘誤差處於USART接收器的容許範圍內，USART接收器才能夠正常運作。時脈系統的誤差來源有以下幾種: 
+   - DTRA: 傳送器的誤差(Deviation due to TRAnsmitter error)。這誤差也包含了傳送器本身的時脈誤差。
+   - DQUANT: 接收器的baud rate量化出錯(Devation due to baud rate QUANtization of the receiver)
+   - DREC: 接收器的時脈誤差(Deviation due to RECeiver's local oscillator)
+   - DTCL: 資料傳輸線的錯誤(Deviation due to Transmission Line)。通常起因於傳輸器，在傳輸資料時，從高電位轉至低電位、或從低電位轉至高電位，在電位轉換期間出現時間誤差。
+
+總體而言: DTRA + DQUANT + DREC + DTCL < USART接收器的容許上限
+
+USART接收器的對於時脈誤差的容許上限，取決於下列選項: 
+   - USART_CR1的M，可決定使用10/11資料位元。
+   - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
+   - 是否有使用fractional baud rate
+   - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
+
+//要放table 143, 144
+
+
+
 Multiprocessor communication
 .............................
+
+除了一對一通訊之外，也可以將許多USART串成一個小型網路。在這些USART中，可以選出一個USART作為master，其餘的就做為slave。而master的TX會連到所有slave的RX，所有slave的TX則會連接到邏輯AND後，再連接至master的RX。
+
+在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
+
+沒接收到資料的機器，可以用mute功能使該機器進入mute模式，在mute模式下的機器行為: 
+   - 無法變更接收器的任一個status bit
+   - 與接收器相關的interrupt會停用
+   - USART_CR1的RWU會被設定為1。RWU可被硬體自動控制，或是在某些限制條件下用軟體變更。
+
+若要使機器離開mute模式，可以用下列兩種方式的其中一種，端看使用者如何設定USART_CR1的WAKE
+   - 若WAKE被設定為0，機器進入idle line偵測
+   - 若WAKE被設定為1，機器進入address mark偵測
+
+
+
+Idle line detection(WAKE=0)
+====================
+
+若RWU被設定為1，則USART進入mute模式。
+
+如果在mute模式時偵測到Idle frame，則機器會醒過來並進入一般USART模式。此時RWU會被硬體清除(=0)，但是USART_SR的IDLE不會被設定為1。RWU也可以用軟體設定成0。
+
+//這裡要放圖.303
+
+
+
+Address mark detection(WAKE=1)
+===============================
+
+在此模式下，如果接收到的資料位元，其MSB是1，就會被當成位址，若MSB為0，則當成一般資料。在位址資料(1 byte)中，最後4個LSB是放接收者的位址，而接收到這筆資料的機器會拿自己的USART_CR2的ADD(放該機器的位址)與這4個LSB做比較。
+
+如果接收到的位址資料，比較之後與自己的位址不相符，該機器就會進入mute模式。此時RWU會被硬體設定為1，而RXNE不會被設定成1(即使有收到位址資料)、沒有interrupt產生、也沒有對DMA送出請求，因為機器已經進入mute模式。
+
+如果接收到的位址資料與自己的位址相符，該機器會回到一般USART模式。此時RWU會被清除，其餘的資料也會按順序被接收進來，而RXNE也會因為RWU被清除的關係，被設定為1(因為收到位址資料，而且是與自己的位址相符)。
+
+在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
+
+//這邊要放圖.304
+
+
 
 
 PARITY CONTROL
