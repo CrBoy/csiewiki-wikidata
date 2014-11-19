@@ -235,7 +235,7 @@ Refer from: STM32F4xx Datasheet P125
 
 ADC Max Sampling Rate & BandWidth
 ----------------------------------
-在12-bits的情況下，最小的Sampling Time可以達成0.5us一個Sample
+在ADC Clock = 30Mhz、12-bits Resolution的情況下，最小的Sampling Time可以達成0.5us一個Sample
 
 所以
 
