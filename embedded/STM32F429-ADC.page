@@ -340,57 +340,8 @@ Multi Mode (Dual mode)
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
 
-ADC之 Time Diagram
-==================
-
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg
-
-
-ADC之轉換時間
-============
-
-**Tconv（Total Conversion Time） =  Sampling time + N Cycles **
-  - N = 12 cycles (12 bits resolution)
-  - N = 10 cycles (10 bits resolution)
-  - N = 8 cycles (8 bits resolution)
-  - N = 6 cycles (6 bits resolution)
-
-- Sampling time
-
-  - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
-
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
-
-  - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
-
-  ::
-
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
-
-
-
-  - Each channel can be sampled with a different sampling time.
-
-- Example:
-
-  - With ADCCLK = 30 MHz and sampling time = 3 cycles:
-
-  - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
-
-
 STM32F4xx Internal Channel
 ====================================
-
-- 我們所使用的
-  - STM32F407 Discovery其溫度感測器連接到ADC1_IN16 channel
-  - STM32F429 Discovery其溫度感測器連接到ADC1_IN18 channel
-- TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
-- 在F42x上面VBAT與VREFINT共用同一個Channel，需選則要對誰做Sampling
-
-- 設定TSVREFE bit，參考下圖
-
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg
-
 設定的方法只要
 
 ::
