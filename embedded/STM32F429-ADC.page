@@ -157,26 +157,16 @@ ADC Unit & Channel Bus Connections
 
 (GITIT Sucks, doesn't even support Table)
 
-啟動 STM32 之 ADC
-================
+STM32F4xx ADC Control
+---------------------
 
-- ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
-
-  - AHB for 記憶體
-
-  - APB for 硬體周邊
-
-.. code-block:: 
-
-   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
-
-
-- ADC 可設 ADON 打開電源，重設來關掉電源
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg
 
-- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
 
+- 可設 ADON 打開ADC電源，重設來關掉電源
+- 可使用SWSTART/JSWSTART開始ADC的轉換
+- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **兩個(F407) / 三個（F429）內部訊號源**。每個外部訊號源對應一個通道。
 
 .. image:: /embedded/ADC/ADC on STM32F4
 
@@ -184,11 +174,6 @@ ADC Unit & Channel Bus Connections
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
 - 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
-
-.. code-block:: 
-
-   ADC_ResetCalibration(ADC1);
-
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
 ADC mode
@@ -403,6 +388,39 @@ ADC Temperature Measurement
 
 .. image:: /embedded/ADC/formula.png
 
+啟動 STM32 之 ADC
+================
+
+- ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
+
+  - AHB for 記憶體
+
+  - APB for 硬體周邊
+
+.. code-block:: 
+
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
+
+
+- ADC 可設 ADON 打開電源，重設來關掉電源
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg
+
+- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
+
+
+.. image:: /embedded/ADC/ADC on STM32F4
+
+
+- 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
+- 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
+- ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
+
+.. code-block:: 
+
+   ADC_ResetCalibration(ADC1);
+
+- 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
 Demo
 =========
