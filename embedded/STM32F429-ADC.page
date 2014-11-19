@@ -191,7 +191,7 @@ STM32F4xx ADC Control
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
 ADC之轉換時間
-------------
+============
 
 ### Timing Diagram
 
@@ -244,6 +244,7 @@ ADC Max Sampling Rate & BandWidth
    Sampling Rate = 1 / (0.5 * 10^(-6)) = 2Msp/s
 
 由取樣定理可以知道，這樣等效的BandWidth為Smapling Rate的一半，即1MHz
+
 
 ADC Clock 最大可容忍頻率
 ------------
