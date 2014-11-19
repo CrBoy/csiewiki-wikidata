@@ -206,6 +206,7 @@ ADC之轉換時間
 
   - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
   - Each channel can be sampled with a different sampling time.
+  - Sample Time = [3 - 480] cycles
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
 
@@ -214,6 +215,33 @@ ADC之轉換時間
   - With ADCCLK = 30 MHz and sampling time = 3 cycles:
 
   - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
+
+
+ADC的轉換速度範圍
+------------
+不一定，隨著條件而變，Sample Time跟温度以及内部電路的rc有關
+
+對於12-bits Resolution而言
+::
+
+  Tconv = Sample Time + 12 cycles ( 12-bits resolution )
+  Sample Time = [3 - 480] cycles
+  Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
+
+.. image:: /embedded/ADC/table7.jpg
+
+Refer from: STM32F4xx Datasheet P125
+
+ADC Clock 最大可容忍頻率
+------------
+在Datasheet中，因為DISCO的參考電壓VREF為VDD為2.97V，故**ADC Clock Frequency為[0.6-36]MHz**。
+
+.. image:: /embedded/ADC/table6.jpg
+
+Refer from: STM32F4xx Datasheet P124
+
+
+
 
   - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
 
@@ -340,8 +368,33 @@ Multi Mode (Dual mode)
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
 
-STM32F4xx Internal Channel
-====================================
+
+STM32F4xx Internal Temperature Sensor
+======================================
+
+- 須先設定TSVREFINT Bit才可使用
+- 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
+- Datasheet有提到，內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
+
+ADC Temperature Measurement
+----------------------------
+溫度測量公式如下
+
+::
+  
+  ConvertedVoltage = ConvertedValue*VDD/4095;
+  ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
+
+.. image:: /embedded/ADC/formula.png
+
+溫度的範圍
+---------
+STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到 
+::
+
+   Supported temperature range: –40 to 125 °C, Precision: ±1.5 °C。
+
+
 設定的方法只要
 
 ::
@@ -369,22 +422,8 @@ STM32F4xx Internal Channel
   }
 
 
-- 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
 
-- 內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
-
-ADC Temperature Measurement
-============================
-
-::
-  
-  ConvertedVoltage = ConvertedValue*VDD/4095;
-  ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
-
-
-.. image:: /embedded/ADC/formula.png
-
-啟動 STM32 之 ADC
+使用Stm32F4xx的ADC
 ================
 
 - ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
