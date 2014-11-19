@@ -3,8 +3,11 @@ title: ADC
 categories: 數位類比轉換器, ADC, Peripherals, STM32F4
 ...
 
-Introduction
-============
+Introduction To ADC
+===================
+
+基本概念
+-------
 **數位類比轉換器(Analog-to-digital coverter)**
 
 - 用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
@@ -19,7 +22,7 @@ Introduction
 .. image:: /embedded/ADC/adc_convert.png
 
 ADC的規格
-========
+--------
 
 根據**取樣率**與**解晰度**決定產生的數位訊號在時間、大小的離散程度。
 
@@ -39,7 +42,7 @@ ADC的規格
  - 若所得到的值為100則其實際上的電壓為 100 × 0.0196 = 1.96V
 
 ADC 轉換公式
-===========
+-----------
 
 - 以一個解析度為n bits的ADC來說，其轉換公式如下
 
@@ -50,12 +53,16 @@ ADC 轉換公式
   
 其中Vref為參考電壓，通常介於VDD與VSS之間。
 
-簡介STM32F4xx OnChip ADC
-=======================
+STM32F4xx OnChip ADC 介紹
+=========================
+
+簡介
+----
 - 共有3個12-bit ADC 在開發板上，且可量測16個外部訊號源及2個內部訊號源。
 - 有12-bit, 10-bit, 8-bit or 6-bit共4種可選擇的解析度。
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
+- ADC都在APB2上面
 - ADC使用獨立電源，VDDA、VSSA，並且需要提供參考電壓Vref(VDDA > Vref > 1.8V)
 - 在不同的VDDA下面，其取樣時間會有所差異
   - 2.4V <= VDDA <= VDD for Full Speed
@@ -66,7 +73,7 @@ ADC 轉換公式
 .. image:: http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png
 
 ADC Block Diagram
-=================
+------------------
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383311801212_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-11-01%20%E4%B8%8B%E5%8D%889.14.26.png
 
 **1.  Analog MUX 類比多工器：**
@@ -100,9 +107,16 @@ Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 
 用來監控採樣結果，如果超出預設範圍就打斷轉換並發出中斷。
 
+**6.  Analog PreScalar：**
+
+ADC都在APB2上面，Clock來自APB2，頻率為
+
+.. code-block:: 
+
+   ADC Clock = APB2 Clock / Analog PreScalar;
 
 ADC Unit & Channel Bus Connections
-==================================
+-----------------------------------
 
 ＣＨＡＮＮＥＬ　　　　　　　　ＡＤＣ1　ＡＤＣ2　ＡＤＣ3
 
