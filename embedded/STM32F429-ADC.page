@@ -67,6 +67,7 @@ STM32F4xx OnChip ADC 介紹
 - 在不同的VDDA下面，其取樣時間會有所差異
   - 2.4V <= VDDA <= VDD for Full Speed
   - 1.8 <= VDDA <= VDD for Reduced Speed
+
 - 在DISCO板子上面，VRef = VDDA = VDD = 2.95V (3V)
 - 這一塊晶片使用Successive approximation ADC，運作模式是使用DAC生成不同的電壓，來跟輸入比較，來測量輸入的值。
 
