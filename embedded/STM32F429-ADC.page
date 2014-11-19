@@ -346,12 +346,21 @@ Multi Mode
 
 **1.Injected simultaneous mode**
 
+Dual Mode:
+
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg
 
 兩個 ADCs 同時觸發而轉換 injected groups.
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/UkbQN4t.png
+
+三個 ADCs 同時觸發而轉換 injected groups.
 
 **2.Regular simultaneous mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg
 
@@ -359,10 +368,16 @@ Multi Mode
 
 - 禁止二個 ADCs 同時對同一通道轉換以免誤差。
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/UcUn2il.png
+
 - 以上兩者的差別在於不同的group
 
 
 **3.Interleaved mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg
 
@@ -370,14 +385,24 @@ Multi Mode
 
 - 由於同使只能有一個ADC對同一個通道做採樣，因此必須要增加兩個cycle的Delay time以免 phase overlap.
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/vDDkT9j.png
+
 
 **4.Alternate trigger mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg
 
 - 只能用在雙方的 injected groups, 用同樣外部訊號輪流接受觸發。
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
+
+Triple Mode:
+
+.. image:: http://i.imgur.com/lKt5MAG.png
 
 
 STM32F4xx Internal Temperature Sensor
