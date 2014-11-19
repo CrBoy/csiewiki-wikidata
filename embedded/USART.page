@@ -2,7 +2,7 @@ USART簡介
 ...................
 串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NZR工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
 
-此外，亦支援單線同步傳輸、半雙工單線傳輸、LIN(local connection network)、Smartcard protocol、IrDA(Infrared data association)及SIR ENDEC標準。
+此外，亦支援同步傳輸、單線半雙工傳輸、LIN(local connection network)、Smartcard protocol、IrDA(Infrared data association) SIR ENDEC標準。
 
 高速資料傳輸，則使用DMA去設定多重緩衝區來達到此目的。
 
@@ -102,7 +102,7 @@ USART主要特性
 
    在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的FE可得知Frame錯誤
 
-   在DMA情況下，則由EIE產生中斷，經檢驗USART_CR1的FE位得知錯誤
+   在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的FE得知錯誤
 
  – 噪音錯誤(Noise error)
 
@@ -579,6 +579,36 @@ Modes
 
 LIN(local interconnection network) mode
 =========================================
+
+若要啟用此模式，須設定USART_CR2的LINEN為1，而下列設定必須要設定為0: 
+   - USART_CR2的STOP[1:0](有兩個位元)以及CLKEN
+   - USART_CR3的SCEN、HDSEL、IREN
+
+
+
+LIN傳送器
+----------
+
+以master來說，與一般USART傳送器具有相同的流程(請參閱傳輸器章節)。只是要按照下列方法做設定:
+   - USART_CR1的M要設定為8 bit資料長度
+   - USART_CR3的LINEN要設為1。而USART_CR3的SBK要設定為13 bit。送出break之後要再送出一個1，才能讓接收器開始偵測start bit。
+
+
+
+LIN接收器
+----------
+
+在USART接收器介面有特別設計一個break偵測電路，與一般資料的接收電路區隔開來。不管USART處於甚麼狀態(Idle或是正在接收資料frame)，都能夠偵測到break。
+
+當USART_CR1的RE設定為1時(接收器開啟)，接收器電路就會從RX查看是否有start bit進來，偵測break或是資料也是用這個方法。如果偵測到start bit，也用相同的採樣方式(針對第8, 9, 10採樣點做偵測)去偵測訊號是否有雜訊。如果第10個(USART_CR2的LBDL=0)或第11個(USART_CR2的LBDL=1)收到的bit為0，且隨後跟著一個分隔符號，USART_SR的LBD會被設立，此時如果LBDIE的設定為1，就會發出interrupt。在驗證一個break之前，會先確保有收到分隔符號(代表RX已經回到高電位狀態)。
+
+偵測break時，若在收到足量的0之前卻收到1，則偵測電路就會取消break偵測，並去偵測start bit。
+
+如果LINEN設定為0，接收器會變成一般的USART接收器，也就是不去偵測break符號。
+
+若開啟了LIN模式，當framing錯誤發生時(收stop bit時卻收到0，有可能是收到break了)，接收器會停止，直到break偵測迴路收到1(確認不是收到break)，或是收到break後也收到分隔符號(確認收到break)。
+
+//這邊要放圖.305
 
 
 
