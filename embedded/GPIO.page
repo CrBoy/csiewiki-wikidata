@@ -287,20 +287,23 @@ Demo - 測試實驗
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
 .. image:: /embedded/starting_ state.jpg
+* 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
   - demo3, demo4
 
 .. image:: /embedded/schmitt_sin.jpg
-* sin波
+* 90.9Hz ,sin波
 
 .. image:: /embedded/schmitt_tri.jpg
-* 三角波
+* 90.9Hz ,三角波
 
 .. image:: /embedded/interrupt_func_delay.jpg
+* 87000HZ
 * visible interrupt delay ,about 2000ns
   - demo4 使用 GPIO_ToggleBits 切換
 
 .. image:: /embedded/interrupt_func_1M.jpg
+* 833000Hz
 * 頻率再增加, 會造成無法正常的解析波形
 
 .. image:: /embedded/polling_func_delay.jpg
@@ -309,19 +312,23 @@ Demo - 測試實驗
   - 與 demo4 相比會波型會抖動
 
 .. image:: /embedded/interrupt_dir_delay.jpg
+* 88500Hz
 * interrupt不用function call，delay大約1500ns
   - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 .. image:: /embedded/pulling_dir_delay.jpg
+
 * 不用function call，delay大約250ns
   - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 .. image:: /embedded/interrupt_func_frqup.jpg
+* 260000Hz
 * 頻率加快的結果
   - demo4
   - 波型呈現連續都是高電位
 
 .. image:: /embedded/interrupt_func_frqup2.jpg
+* 1111000Hz
 * 頻率再增加的結果
   - demo4
   - 波型開始呈現交錯, 主要是因為偵測時會有交錯
