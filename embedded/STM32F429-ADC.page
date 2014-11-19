@@ -189,6 +189,38 @@ STM32F4xx ADC Control
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
+ADC之轉換時間
+------------
+
+### Timing Diagram
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg
+
+**Tconv（Total Conversion Time） =  Sampling time + N Cycles **
+  - N = 12 cycles (12 bits resolution)
+  - N = 10 cycles (10 bits resolution)
+  - N = 8 cycles (8 bits resolution)
+  - N = 6 cycles (6 bits resolution)
+
+- Sampling time
+
+  - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
+  - Each channel can be sampled with a different sampling time.
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
+
+- Example:
+
+  - With ADCCLK = 30 MHz and sampling time = 3 cycles:
+
+  - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
+
+  - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
+
+  ::
+
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
+
 ADC mode
 ========
 
