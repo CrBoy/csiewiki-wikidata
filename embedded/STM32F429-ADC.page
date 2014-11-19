@@ -115,8 +115,8 @@ ADC都在APB2上面，Clock來自APB2，頻率為
 
    ADC Clock = APB2 Clock / Analog PreScalar;
 
-ADC Unit & Channel Bus Connections
------------------------------------
+ADC Unit & External Channel Bus Connections
+--------------------------------------------
 
 ＣＨＡＮＮＥＬ　　　　　　　　ＡＤＣ1　ＡＤＣ2　ＡＤＣ3
 
@@ -154,8 +154,21 @@ ADC Unit & Channel Bus Connections
 
 ＡＤＣ Ｃｈａｎｎｅｌ　15　　 ＰＣ5　　ＰＣ5　　ＰＦ5
 
-
 (GITIT Sucks, doesn't even support Table)
+
+STM32F4xx Internal Channel
+---------------------------
+- 我們所使用的
+  - STM32F407 Discovery其溫度感測器連接到ADC1_IN16 channel
+  - STM32F429 Discovery其溫度感測器連接到ADC1_IN18 channel
+
+- TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
+- 在F42x上面VBAT與VREFINT共用同一個Channel，需選則要對誰做Sampling
+
+- 設定TSVREFE bit，參考下圖
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg
+
 
 STM32F4xx ADC Control
 ---------------------
