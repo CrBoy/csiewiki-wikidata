@@ -266,7 +266,7 @@ Refer from: STM32F4xx Datasheet P124
 ADC mode
 ========
 
-**Independent-mode** 和 **Dual-mode（multi-mode）**
+**Independent-mode** 和 **Multi-mode (Dual-mode or Triple-mode)**
 
   **Independent mode** 表示此 ADC 獨立運作。
 
@@ -335,16 +335,13 @@ Independent mode
       - 3rd 觸發，轉換 {1, 2, 3}, 以此類推。
 
 
-Multi Mode (Dual mode)
+Multi Mode 
 -----------------------
 
-- 有一組ADC是無法開啟dual mode,只能使用independent mode
+有別於STM32F407，STM32F429可以將3個ADC都開成Multi Mode，也就是說原本Multi Mode只有Dual Mode，現在多了Triple Mode.
 
-  - 在我們的參考資料中ADC3只能開啟independent mode
 
-  - 此資訊來自stm32 ADC mode and their application P9
-
-- ADC1, ADC2 分別擔任 master & slave.
+- ADC1, ADC2 ADC3分別擔任 master & 兩個slave.
 
 
 **1.Injected simultaneous mode**
