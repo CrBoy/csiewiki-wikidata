@@ -865,15 +865,23 @@ USART Register 總表
 ................................
 Status register(USART_SR)
 
+.. image:: /embedded/USART_SR.jpg
+
 Data register(USART_DR)
 
 Baud rate register(USART_BRR)
 
 Control Register 1(USART_CR1)
 
+.. image:: /embedded/USART_CR1.jpg
+
 Control Register 2(USART_CR2)
 
+.. image:: /embedded/USART_CR2.jpg
+
 Control Register 3(USART_CR3)
+
+.. image:: /embedded/USART_CR3.jpg
 
 Guard time and prescaler register(USART_GTPR)
 
@@ -951,7 +959,7 @@ To compile code
 .. image:: /usart-minicom.png
 
 
-.. image:: /usart-pin.jpg
+.. image:: /embedded/USART_pin.jpg
 
 
 .. code-block:: c
@@ -972,6 +980,8 @@ To compile code
 **實驗波形圖，採用USBee AX作訊號分析**
 
 .. image:: /usart_wave.jpg
+
+.. image:: /embedded/USART_Oscilloscope.jpg
 
 接收器測試
 ======================================
