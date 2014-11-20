@@ -144,7 +144,7 @@ USART功能介紹
 
 USART Block Diagram
 ======================================
-.. image:: /usart_block_diagram.png
+.. image:: /embedded/USART_pic296.jpg
 Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
