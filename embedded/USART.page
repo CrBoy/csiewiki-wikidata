@@ -828,10 +828,13 @@ SCLK：由主設備產生的clock訊號
 以上是兩者有類似的地方
 
 
-HARDWARE FLOW CONTROL
-=======================
+HARDWARE FLOW CONTROL(modem modes)
+===================================
 
-Ref: `RM0090 Reference Manual P.983<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+USART亦可模擬RS-232通訊。RS-232原本的設計用意，是讓電腦能對數據機、印表機、資料儲存裝置等電腦周邊設備做資料交換。但是RS-232的缺點較多(接孔過大、設備能源消耗太快、資料傳輸速率低)，目前的電腦漸漸都淘汰掉這種接孔，並用USB-RS232轉換器做為替代。現今RS232介面則廣泛使用於工業設備、科學儀器及網路設備。
+
+USART使用modem modes時，會變成雙線半雙工通訊(UART)。通訊流控制則由RTS-CTS負責，也因此同時間點只能有一方傳送資料。
+
 
 利用nCTS跟nRTS控制TX、RX是否再傳送或接收data。
 可個別設定USART_CR3的RTSE以及CTSE為1，藉此允許RTS或CTS flow control。
