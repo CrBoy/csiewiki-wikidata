@@ -12,13 +12,16 @@ USART主要特性
 
 - 全雙工、非同步通訊
 
-   半雙工: 允許二台設備之間的雙向資料傳輸，但不能同時進行。因此同一時間只允許一設備傳送資料，若另一設備要傳送資料，需等原來傳送資料的設備傳送完成後再處理。(例:無線電)
+   - 半雙工: 允許二台設備之間的雙向資料傳輸，但不能同時進行。因此同一時間只允許一設備傳送資料，若另一設備要傳送資料，需等原來傳送資料的設備傳送完成後再處理。(例:無線電)
 
-   全雙工: 允許二台設備間同時進行雙向資料傳輸。(例:手機)
+   - 全雙工: 允許二台設備間同時進行雙向資料傳輸。(例:手機)
 
-   同步:
+   - 同步: 額外提供時脈訊號，使兩端機器在溝通時能夠藉此同步收發資料。好處是能夠一次傳很多資料，缺點是傳輸過程有點複雜、硬體成本高。
    
-   非同步: 
+   - 非同步: 在傳送資料時插入額外資訊，表示資料起始、結束。好處是設定時間短、硬體成本低、機器時脈不同也能傳資料，缺點是單次傳輸的資料量較少。
+
+.. image:: /embedded/ASYNC.gif
+來源: `webopedia<http://www.webopedia.com/FIG/ASYNC.gif>`_
 
 - NRZ標準資料格式(Mark/Space)
 
@@ -42,7 +45,9 @@ USART主要特性
 
 - LIN 主從同步資料傳輸，使用break傳輸/偵測達到此目的。
 
-   在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
+   - 在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
+
+   - LIN(local interconnect network)，車載網路的一種，用於連接車內電子設備(電動車窗、座椅控制等簡單的設備)。原先已有為了車載網路而開發的CAN協定(Controller area network)，但將其拿來控制低階設備，不符經濟效益(太貴)，所以在90年代五家車商(BMW、Benz、Volvo、VW & Audi)聯合開發了此協定。LIN可用單一master連接16個slave，傳輸速率最高為19200 baud。好處是能夠降低成本、不用授權費、易於使用、也易於開發衍伸設備。
 
 - 同步傳輸模式下，提供tx的CLK信號
 
@@ -149,11 +154,8 @@ Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/
 以USART傳輸資料時，串列資料由下列frames組成:  
    - 傳輸或接收資料之前，由Idle Line表示。
    - 一個start bit
-   - 一個資料word，可為8/9 bits，用least significant bit做資料排序。
+   - 一個資料word，可為8/9 bits，用least significant bit做資料排序。根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度。
    - 一組0.5, 1, 1.5, 2 stop bits，用以表示該次frame傳輸完畢。
-
-
-   - ???????根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度(見圖)
 
 另外包含以下數種register: 
    - 狀態暫存器(USART_SR)
@@ -275,7 +277,7 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 
 在一般模式下，若要清除TC，可以直接對TC寫入0。如果是使用多重緩衝區模式，則要先讀取USART_SR暫存器，再對USART_DR暫存器做寫入動作。
 
-//這邊要放fig.299
+.. image:: /embedded/USART_pic299.jpg
 
 
 
@@ -494,8 +496,6 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
    - 是否有使用fractional baud rate
    - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
 
-//要放table 143, 144
-
 
 
 Multiprocessor communication
@@ -523,7 +523,7 @@ Idle line detection(WAKE=0)
 
 如果在mute模式時偵測到Idle frame，則機器會醒過來並進入一般USART模式。此時RWU會被硬體清除(=0)，但是USART_SR的IDLE不會被設定為1。RWU也可以用軟體設定成0。
 
-//這裡要放圖.303
+.. image:: /embedded/USART_pic303.jpg
 
 
 
@@ -538,7 +538,7 @@ Address mark detection(WAKE=1)
 
 在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
 
-//這邊要放圖.304
+.. image:: /embedded/USART_pic304.jpg
 
 
 
@@ -616,7 +616,7 @@ LIN接收器
 
 若開啟了LIN模式，當framing錯誤發生時(收stop bit時卻收到0，有可能是收到break了)，接收器會停止，直到break偵測迴路收到1(確認不是收到break)，或是收到break後也收到分隔符號(確認收到break)。
 
-//這邊要放圖.305
+.. image:: /embedded/USART_pic305.png
 
 
 
