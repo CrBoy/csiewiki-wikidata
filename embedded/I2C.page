@@ -4,7 +4,7 @@ categories: I2C, Peripherals, STM32F4
 ...
 
 I²C 簡介
-...................
+=====================================
 I²C（Inter-Integrated Circuit）是內部整合電路的稱呼，是一種串列通訊匯流排，由PHILP公司在1980年代為了讓主機板、手機及嵌入式系統用以連接低速週邊裝置而發展，主要應用在board-to-board，它的設計並不能應用到長距離裝置的通訊，由於協定中從樸裝置位址只有7個位元，因此一組I²C的最多裝置位址定義至127個。
 I²C只使用兩條雙向開放汲極（Open Drain）(master and slave只能把電位拉到LOW或是讓他OPEN)（串列資料（SDA）及串列時脈（SCL））並利用電阻將電位上拉。I²C允許相當大的工作電壓範圍，但典型的電壓準位為+3.3V或+5v。
 
@@ -23,3 +23,21 @@ I²C bus
 * I²C 串列傳輸包括四個部分：起始信號、設備位址發送、數據傳送和停止信號。
 
 
+I²C on STM32F429-Discovery
+=====================================
+
+touch panel
+-------------------
+
+- `Data sheet <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
+
+demo code:
+
+SCL: PA8 
+
+SDA: PC9
+
+slave address: 0x82 (0x01000010)
+
+.. image:: /I2C_touchpanel_test.jpg
+.. image:: /i2c_scope_0.bmp
