@@ -22,21 +22,33 @@ I²C 特性
 
 - I²C 串列傳輸包括四個部分：起始信號、設備位址發送、數據傳送和停止信號。
 
+ - 只能Master<->Slave,無法Slave<->Slave,每個slave都要有一個特定且唯一的位址。
+
+
+
+ - START condition: SCL=High 且 SDA為負緣
+
+ - STOP condition: SCL=High 且 SDA=為正緣
+
+  .. image:: /i2c_condition.png
+
  - 由Master發送起始信號來開起通訊，所有的slave device接收到起始信號後會進入接收數據模式。接著Master需要發送通訊目標設備的address及R/W資訊。
 
   - STM32F429提供兩種 address mode - 7bit and 10bit
 
-   - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R/W後，該 address 的slave端會發送一個bit的 acknowledge bit。
-.. image:: /i2c_com.png
+   - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R(1)/W(0)後，該 address 的slave端會發送一個bit的 Ack(acknowledge) bit，ACK=0表設定成功(Slave把SDA拉到LOW)，開始數據傳送。 
 
-(7bit mode)
+    .. image:: /i2c_com.png
+
+    (7bit mode)
 
    - 10bit mode: 總共用兩個byte來傳送 address資訊。第一個byte的前五個位元需為 "11110" 來表示要使用 10-bit addressing。
+    
 
 
-.. image:: /i2c_10bit.gif
+    .. image:: /i2c_10bit.gif
 
-(10bit mode)
+    (10bit mode)
 
 I²C on STM32F429-Discovery
 =====================================
