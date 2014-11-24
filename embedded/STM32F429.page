@@ -64,7 +64,6 @@ STM32F429 Discovery 開發板
   - `ChibiOS/RT</embedded/chibios>`_
   - `nuttx</embedded/nuttx>`_
   - `uClinux</embedded/uclinux>`_
-  - `Xenomai</embedded/xenomai>`_
   - `rtenv-plus</embdded/rtenv>`_
   - `F9 microkernel</embedded/f9-kernel>`_
 
