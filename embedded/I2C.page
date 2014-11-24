@@ -53,12 +53,101 @@ I²C 特性
 I²C on STM32F429-Discovery
 =====================================
 
-touch panel
+實驗一: touch panel
 ...................
+
+觀察及使用stm32f429i_discovery_ioe.c，並量測對應的訊號
 
 - `Data sheet <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
 
 demo code:
+
+[stm32f429i_discovery_ioe.h]
+
+
+.. code-block:: c
+
+ #define IOE_I2C                    I2C3
+ #define IOE_I2C_CLK                RCC_APB1Periph_I2C3
+ #define IOE_I2C_SCL_PIN            GPIO_Pin_8
+ #define IOE_I2C_SCL_GPIO_PORT      GPIOA
+ #define IOE_I2C_SCL_GPIO_CLK       RCC_AHB1Periph_GPIOA
+ #define IOE_I2C_SCL_SOURCE         GPIO_PinSource8
+ #define IOE_I2C_SCL_AF             GPIO_AF_I2C3
+ #define IOE_I2C_SDA_PIN            GPIO_Pin_9
+ #define IOE_I2C_SDA_GPIO_PORT      GPIOC
+ #define IOE_I2C_SDA_GPIO_CLK       RCC_AHB1Periph_GPIOC
+ #define IOE_I2C_SDA_SOURCE         GPIO_PinSource9
+ #define IOE_I2C_SDA_AF             GPIO_AF_I2C3
+ #define IOE_I2C_DR                 ((uint32_t)0x40005C10)
+
+
+GPIO 設定
+
+.. code-block:: c
+
+  GPIO_InitTypeDef GPIO_InitStructure;
+  
+
+  /* 設定RCC clock*/
+  /* Enable IOE_I2C and IOE_I2C_GPIO_PORT & Alternate Function clocks */
+  RCC_APB1PeriphClockCmd(IOE_I2C_CLK, ENABLE);
+  RCC_AHB1PeriphClockCmd(IOE_I2C_SCL_GPIO_CLK | IOE_I2C_SDA_GPIO_CLK |
+                         IOE_IT_GPIO_CLK, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+  
+  /* Reset IOE_I2C IP */
+  RCC_APB1PeriphResetCmd(IOE_I2C_CLK, ENABLE);
+  /* Release reset signal of IOE_I2C IP */
+  RCC_APB1PeriphResetCmd(IOE_I2C_CLK, DISABLE);
+
+
+  /*設定PA8、PC9 的Alternate function設為 GPIO_AF_I2C3*/
+  /* Connect PXx to I2C_SCL*/
+  GPIO_PinAFConfig(IOE_I2C_SCL_GPIO_PORT, IOE_I2C_SCL_SOURCE, IOE_I2C_SCL_AF);
+  /* Connect PXx to I2C_SDA*/
+  GPIO_PinAFConfig(IOE_I2C_SDA_GPIO_PORT, IOE_I2C_SDA_SOURCE, IOE_I2C_SDA_AF); 
+    
+  /* 設定 SCL、SDA pin*/
+  /* IOE_I2C SCL and SDA pins configuration */
+  GPIO_InitStructure.GPIO_Pin = IOE_I2C_SCL_PIN;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+  GPIO_Init(IOE_I2C_SCL_GPIO_PORT, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = IOE_I2C_SDA_PIN;
+  GPIO_Init(IOE_I2C_SDA_GPIO_PORT, &GPIO_InitStructure);
+
+  
+I2C參數設定
+
+.. code-block:: c
+
+  I2C_InitTypeDef I2C_InitStructure;
+
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((IOE_I2C->CR1 & I2C_CR1_PE) == 0)
+  {   
+
+    /* 設定 I2C參數*/
+    /* IOE_I2C configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = 0x00;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
+  
+    /* Initialize the I2C peripheral */
+    I2C_Init(IOE_I2C, &I2C_InitStructure);
+  
+    /* Enable the I2C peripheral */
+    I2C_Cmd(IOE_I2C, ENABLE);
+  }   
+
+(待補)
 
 SCL: PA8 
 
@@ -68,3 +157,11 @@ slave address: 0x82 (0x01000010)
 
 .. image:: /embedded/I2C_touchpanel_test.jpg
 .. image:: /embedded/i2c_scope_0.bmp
+
+
+實驗二: 兩塊(以上)板子的數據傳輸
+...................
+
+一塊板子當作Master，其他的作為Slave，實驗I2C的資料傳輸
+(待補)
+(NVIC ＆ I2C interrupt)
