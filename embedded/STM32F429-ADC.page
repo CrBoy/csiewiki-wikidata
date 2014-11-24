@@ -53,6 +53,23 @@ ADC 轉換公式
   
 其中Vref為參考電壓，通常介於VDD與VSS之間。
 
+Sampling Theorem
+-----------------
+對於一個連續訊號取樣的時候，會參考Sampling Theorem定最低取樣頻率。
+
+::
+
+  Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高頻率之兩倍時，才可以正確的重建原始訊號
+
+
+- 證明：
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg
+
+
+但是通常會使用OverSampling，用遠高於 2f 的頻率來取樣，提升訊號的品質。
+
+
 STM32F4xx OnChip ADC 介紹
 =========================
 
