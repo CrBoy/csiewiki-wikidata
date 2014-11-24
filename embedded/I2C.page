@@ -12,7 +12,7 @@ I²C bus
 ...................
 
 
-.. image:: /hackpad.com_C2QDfQqCjxE_p.268476_1415256217724_300px-I2C.svg.png
+.. image:: /embedded/i2c_bus.png
 
 藉由Master發送訊號來控制與Slave之間的通訊
 
@@ -30,7 +30,7 @@ I²C 特性
 
  - STOP condition: SCL=High 且 SDA=為正緣
 
-  .. image:: /i2c_condition.png
+  .. image:: /embedded/i2c_condition.png
 
  - 由Master發送起始信號來開起通訊，所有的slave device接收到起始信號後會進入接收數據模式。接著Master需要發送通訊目標設備的address及R/W資訊。
 
@@ -38,7 +38,7 @@ I²C 特性
 
    - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R(1)/W(0)後，該 address 的slave端會發送一個bit的 Ack(acknowledge) bit，ACK=0表設定成功(Slave把SDA拉到LOW)，開始數據傳送。 
 
-    .. image:: /i2c_com.png
+    .. image:: /embedded/i2c_com.png
 
     (7bit mode)
 
@@ -46,7 +46,7 @@ I²C 特性
     
 
 
-    .. image:: /i2c_10bit.gif
+    .. image:: /embedded/i2c_10bit.gif
 
     (10bit mode)
 
@@ -66,5 +66,5 @@ SDA: PC9
 
 slave address: 0x82 (0x01000010)
 
-.. image:: /I2C_touchpanel_test.jpg
-.. image:: /i2c_scope_0.bmp
+.. image:: /embedded/I2C_touchpanel_test.jpg
+.. image:: /embedded/i2c_scope_0.bmp
