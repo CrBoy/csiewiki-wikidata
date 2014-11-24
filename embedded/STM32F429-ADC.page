@@ -531,7 +531,7 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
-Demo
+Demo、實驗
 =========
 
 ADC + GPIO
@@ -549,6 +549,28 @@ https://www.youtube.com/watch?v=gRxbnODggjc
 - 本實驗用來測試stm32f4 discovery內建之溫度感測器是否隨著溫度上昇而改變轉換值
 
 - 可以在影片中看到最左邊的led代表最小的bit，因此當溫度不斷升高，最後點亮了影片中最後亮起的右邊那個led燈
+
+Sampling Theorem、訊號 Aliasing
+-------------------------------
+基本設置，使用8bit模式已提升速度，使用DMA將ADC資料毒入後再用DMA將資料速給DAC做輸出。
+
+控制訊號產生器生成的訊號頻率，當平率高過1 / 2 Fs 的時候，輸出訊號除了失真，還發生了頻率改變，已與原本訊號不同。
+
+ - 1. 使用手控至訊號
+      http://youtu.be/QeFFO7ELrOk
+
+ - 2. 使用訊號產生器的Sweep功能
+      http://youtu.be/XtGuwkQhKzU
+
+ - 3. 使用訊號產生器的Sweep功能(X-Y Plot)
+      http://youtu.be/fE0UFiybtD4
+
+※X-Y Plot功能是將示波器的兩桿輸入分別作為X與Y軸的量，有別於一般V-t的作圖，對於訊號最常使用在產生Lissajous曲線。
+
+Lissajous曲線可以看出兩個訊號的頻率、相位、強度差異。
+
+.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Lissajous_phase.svg/600px-Lissajous_phase.svg.png
+
 
 Questions 2013
 ==============
