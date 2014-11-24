@@ -550,9 +550,31 @@ https://www.youtube.com/watch?v=gRxbnODggjc
 
 - 可以在影片中看到最左邊的led代表最小的bit，因此當溫度不斷升高，最後點亮了影片中最後亮起的右邊那個led燈
 
+ADC + DAC
+----------
+基本設置：使用8bit模式已提升速度，使用DMA將ADC資料讀入後再用DMA將資料速給DAC做輸出。
+
+.. image:: https://farm8.staticflickr.com/7518/15679849349_048c02e0a8_h.jpg
+
+
+12bits vs 8 bits
+-----------------
+使用不同的解析度對同一訊號做採樣，在reduplicate。
+
+ADC與DAC使用的resolution是相同的
+
+ - 1. 12bits
+
+.. image:: https://farm8.staticflickr.com/7566/15678517300_6c992cfc73_h.jpg
+
+ - 2. 8 bits
+
+.. image:: https://farm8.staticflickr.com/7482/15678343048_fdbfc38df0_b.jpg
+
+
 Sampling Theorem、訊號 Aliasing
 -------------------------------
-基本設置，使用8bit模式已提升速度，使用DMA將ADC資料毒入後再用DMA將資料速給DAC做輸出。
+同ADC + DAC的配置
 
 控制訊號產生器生成的訊號頻率，當平率高過1 / 2 Fs 的時候，輸出訊號除了失真，還發生了頻率改變，已與原本訊號不同。
 
