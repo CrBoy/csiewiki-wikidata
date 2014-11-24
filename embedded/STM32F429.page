@@ -4,6 +4,12 @@ toc: no
 categories: STM32, stm32f4, embedded
 ...
 
+說明
+------
+國立成功大學資訊工程系/所開設一系列嵌入式系統相關課程，選定 STM32 硬體作為教材，過程中師生共同撰寫技術文件、範例程式碼、工具程式、作業系統核心，以及具體而微的專案，這些都以開放內容、開放原始碼的形式釋出，一方面希望社會各界能夠給予批評指教，另一方面也希望讓學生們日後有更多的選擇機會。
+
+技術文件
+-------------
 硬體週邊介紹和驅動方式: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_,  `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `I2C</embedded/I2C>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_
 
 STM32F429 Discovery 開發板
