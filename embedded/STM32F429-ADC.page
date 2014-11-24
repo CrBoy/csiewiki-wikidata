@@ -53,6 +53,27 @@ ADC 轉換公式
   
 其中Vref為參考電壓，通常介於VDD與VSS之間。
 
+欲轉換的訊號電壓不可以高過Vref。
+
+如果不再0 ~ Vref 的範圍內
+ - 1. 可以考慮使用分壓器來處理，但必須注意輸入阻抗與輸出阻抗之匹配問題。
+ - 2. 使用交流變壓器，使用條件為交流訊號。
+
+
+如果要轉匯的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
+::
+
+  其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
+
+1.反相放大電路(Vo = - A * Vin)
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
+
+2.正相放大電路(Vo = A * Vin)
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
+
+
 Sampling Theorem
 -----------------
 對於一個連續訊號取樣的時候，會參考Sampling Theorem定最低取樣頻率。
