@@ -60,7 +60,93 @@ I²C 特性
 
  - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
 
- -
+ - interrupt and Event
+
+    .. image:: /embedded/i2c_interrupt.png
+
+  - status register
+
+    .. image:: /embedded/i2c_status_register(1).png
+
+    .. image:: /embedded/i2c_status_register(2).png
+
+  .. code-block:: c
+
+   /** 
+    * @brief  SR1 register flags  
+    */
+   #define I2C_FLAG_SMBALERT               ((uint32_t)0x10008000)
+   #define I2C_FLAG_TIMEOUT                ((uint32_t)0x10004000)
+   #define I2C_FLAG_PECERR                 ((uint32_t)0x10001000)
+   #define I2C_FLAG_OVR                    ((uint32_t)0x10000800)
+   #define I2C_FLAG_AF                     ((uint32_t)0x10000400)
+   #define I2C_FLAG_ARLO                   ((uint32_t)0x10000200)
+   #define I2C_FLAG_BERR                   ((uint32_t)0x10000100)
+   #define I2C_FLAG_TXE                    ((uint32_t)0x10000080)
+   #define I2C_FLAG_RXNE                   ((uint32_t)0x10000040)
+   #define I2C_FLAG_STOPF                  ((uint32_t)0x10000010)
+   #define I2C_FLAG_ADD10                  ((uint32_t)0x10000008)
+   #define I2C_FLAG_BTF                    ((uint32_t)0x10000004)
+   #define I2C_FLAG_ADDR                   ((uint32_t)0x10000002)
+   #define I2C_FLAG_SB                     ((uint32_t)0x10000001) 
+
+   /** 
+    * @brief  SR2 register flags  
+    */
+   #define I2C_FLAG_DUALF                  ((uint32_t)0x00800000)
+   #define I2C_FLAG_SMBHOST                ((uint32_t)0x00400000)
+   #define I2C_FLAG_SMBDEFAULT             ((uint32_t)0x00200000)
+   #define I2C_FLAG_GENCALL                ((uint32_t)0x00100000)
+   #define I2C_FLAG_TRA                    ((uint32_t)0x00040000)
+   #define I2C_FLAG_BUSY                   ((uint32_t)0x00020000)
+   #define I2C_FLAG_MSL                    ((uint32_t)0x00010000) 
+
+  (暫存器可參考 http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf)
+
+  - I2C bus “events” from flags
+
+  I2C Master Events
+
+  .. code-block:: c
+
+   /* --EV5 */
+   #define  I2C_EVENT_MASTER_MODE_SELECT                      ((uint32_t)0x00030001)  /* BUSY, MSL and SB flag */
+   /* --EV6 */
+   #define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED        ((uint32_t)0x00070082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
+   #define  I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED           ((uint32_t)0x00030002)  /* BUSY, MSL and ADDR flags */
+   /* --EV9 */
+   #define  I2C_EVENT_MASTER_MODE_ADDRESS10                   ((uint32_t)0x00030008)  /* BUSY, MSL and ADD10 flags */
+   /* Master RECEIVER mode -----------------------------*/ 
+   /* --EV7 */
+   #define  I2C_EVENT_MASTER_BYTE_RECEIVED                    ((uint32_t)0x00030040)  /* BUSY, MSL and RXNE flags */  
+
+   /* Master TRANSMITTER mode --------------------------*/
+   /* --EV8 */
+   #define I2C_EVENT_MASTER_BYTE_TRANSMITTING                 ((uint32_t)0x00070080) /* TRA, BUSY, MSL, TXE flags */
+   /* --EV8_2 */
+   #define  I2C_EVENT_MASTER_BYTE_TRANSMITTED                 ((uint32_t)0x00070084)  /* TRA, BUSY, MSL, TXE and BTF flags */
+
+
+
+  I2C Slave Events
+
+  .. code-block:: c
+
+   /* --EV1 */
+   #define  I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED          ((uint32_t)0x00020002) /* BUSY and ADDR flags */
+   #define  I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED       ((uint32_t)0x00060082) /* TRA, BUSY, TXE and ADDR flags */
+   /* Slave RECEIVER mode --------------------------*/ 
+   /* --EV2 */
+   #define  I2C_EVENT_SLAVE_BYTE_RECEIVED                     ((uint32_t)0x00020040)  /* BUSY and RXNE flags */
+   /* --EV4  */
+   #define  I2C_EVENT_SLAVE_STOP_DETECTED                     ((uint32_t)0x00000010)  /* STOPF flag */
+
+   /* Slave TRANSMITTER mode -----------------------*/
+   /* --EV3 */
+   #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTED                  ((uint32_t)0x00060084)  /* TRA, BUSY, TXE and BTF flags */
+   #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTING                 ((uint32_t)0x00060080)  /* TRA, BUSY and TXE flags */
+   /* --EV3_2 */
+   #define  I2C_EVENT_SLAVE_ACK_FAILURE                       ((uint32_t)0x00000400)  /* AF flag */
 
 I²C on STM32F429-Discovery
 =====================================
