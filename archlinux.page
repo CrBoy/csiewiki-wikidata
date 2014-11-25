@@ -495,6 +495,29 @@ GNOME
 ==========================
 powerline
 -------------------
+- zsh
+    如果只有要更改zsh的prompt，我今天找到一個簡單的方法：`powerline for zsh <http://klaig.blogspot.tw/2012/09/powerline-for-zsh.html>`_
+
+    下載這個`字型<https://gist.github.com/epegzz/1634235/download>`_ 並解壓縮至~/.fonts
+::
+
+  fc-cache -vf
+  git clone git://github.com/gbin/oh-my-zsh.git ~/.oh-my-zsh
+  cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+
+
+接著，編輯.zshrc，加入
+
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="powerline"
+
+
+最後
+
+::
+
+  source $ZSH/oh-my-zsh.sh
 
 user theme
 -------------------
