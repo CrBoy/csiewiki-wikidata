@@ -50,6 +50,18 @@ I²C 特性
 
     (10bit mode)
 
+ - 資料傳輸
+
+  - 在 SCL 為 HIGH 時，SDA 必須是 stable 的。
+
+  - SDA 只能在 SCL 為 LOW 時改變。
+
+  - 一次傳一個 byte，每個byte都跟著一個 ACK bit ，在 ACK bit 時 Master 會釋放bus，此時 Slave 端需把 SDA 拉 LOW，否則 Master 需要發出 STOP訊號 或是重新發送 START 訊號。
+
+ - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
+
+ -
+
 I²C on STM32F429-Discovery
 =====================================
 
