@@ -60,8 +60,10 @@ I²C 特性
 
  - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
 
- - interrupt and Event
+I²C interrupt and Event
+......................................
 
+(內容待補)
     .. image:: /embedded/i2c_interrupt.png
 
   - status register
@@ -147,6 +149,30 @@ I²C 特性
    #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTING                 ((uint32_t)0x00060080)  /* TRA, BUSY and TXE flags */
    /* --EV3_2 */
    #define  I2C_EVENT_SLAVE_ACK_FAILURE                       ((uint32_t)0x00000400)  /* AF flag */
+
+
+
+four I²C modes
+...................
+
+(內容待補) (要怎麼把圖縮小= =?)
+
+Slave transmitter
+
+.. image:: /embedded/i2c_slave_transmitter.png
+
+Slave receiver
+
+.. image:: /embedded/i2c_slave_receiver.png
+
+Master transmitter
+
+.. image:: /embedded/i2c_master_transmitter.png
+
+Master receiver
+
+.. image:: /embedded/i2c_master_receiver.png
+
 
 I²C on STM32F429-Discovery
 =====================================
@@ -263,3 +289,12 @@ slave address: 0x82 (0x01000010)
 一塊板子當作Master，其他的作為Slave，實驗I2C的資料傳輸
 (待補)
 (NVIC ＆ I2C interrupt)
+
+
+Reference
+=====================================
+- `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+- `wikipedia <http://zh.wikipedia.org/wiki/I%C2%B2C>`_
+- `http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf <_http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf>`_
+    
+    
