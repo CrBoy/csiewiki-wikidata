@@ -78,5 +78,6 @@ STM32F429 Discovery 開發板
 * 由歷屆修課學生貢獻的期末專題，完整程式碼以開放原始碼授權釋出
 * `從無到有打造的四軸飛行器<https://github.com/ursuspilot/>`_: 含硬體設計、韌體程式碼，以及對應的地面站軟體
 * `從訊號處理到作業系統核心都自行開發的電吉他調音器</embedded/os-team2014-2>`_: 採用自行開發的 `rtenv+</embedded/rtenv>`_ 作業系統核心，驅動 DSP, ADC, Touchscreen 等週邊
+* `土製 3G 手機</embedded/os-team2014-1>`_: 使用 `FreeRTOS</embedded/freertos>`_ 搭配自行開發的使用者觸碰螢幕界面，得以透過 3G 模組撥打接聽電話
 * `自動演奏吉他的機器人</embedded/team2013-8>`_
 * `可用毛筆寫春聯的機器</embedded/team2013-11>`_
