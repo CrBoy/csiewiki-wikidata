@@ -109,6 +109,18 @@ STM32F4xx OnChip ADC 介紹
 - 在DISCO板子上面，VRef = VDDA = VDD = 2.95V (3V)
 - 這一塊晶片使用Successive approximation ADC，運作模式是使用DAC生成不同的電壓，來跟輸入比較，來測量輸入的值。
 
+Successive approximation ADC
+----------------------------
+
+這一種ADC由一個DAC與電壓比較器組成
+轉換實會由邏輯電路迭代，依序由MSB往LSB更改DAC的輸出電壓。
+
+流程：
+ - 由MSB開始
+ - 啟動DAC的第n bit
+ - 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
+ - 由這一個狀態迭代至LSB為止
+
 .. image:: http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png
 
 ADC Block Diagram
