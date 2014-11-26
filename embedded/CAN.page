@@ -11,11 +11,9 @@ Features
 ============
 •CAN通訊的資料格式(frame)：
 1.資料通訊格式：用於傳送資料(Data Frame)
-.. image:: /dataframe1.bmp
+.. image:: /CAN_dataframe1.png
 .. image:: /dataframe2.bmp
-
-
-[link label](/dataframe2.bmp)
+![alt text](/CAN_dataframe1.png)
 2.遠端通訊格式：請求遠端節點傳送資料(Remote Transmit Request Frame)
 3.錯誤通訊格式：通知其他節點錯誤的格式(Error Frame)
 4.過載通訊格式：通知其他節點延遲傳送資料的格式(Overload Frame)
