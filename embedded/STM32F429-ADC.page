@@ -143,10 +143,12 @@ ADC 所接受的電壓值在 GND 與參考電壓之間，注意其必須接上�
 
 當我們將GPIO Port設定成類比輸入的模式時，進來GPIO pin的原始訊號源在還沒經過施密特觸發器(Schmitt trigger)會有另一個線路將訊號做導向(導到ADC)
 
-.. code-block:: 
+.. code-block:: prettyprint linenums
 
    /* 將GPIO轉為類比用途 */
    GPIO_initStructre.GPIO_Mode = GPIO_Mode_AN;
+
+------------------------------
 
 .. image:: http://wiki.csie.ncku.edu.tw/ADC%20GPIO%20Path
 
@@ -278,11 +280,14 @@ ADC的轉換速度範圍
 不一定，隨著條件而變，Sample Time跟温度以及内部電路的rc有關
 
 對於12-bits Resolution而言
-::
+
+.. code-block:: prettyprint linenums
 
   Tconv = Sample Time + 12 cycles ( 12-bits resolution <參考上節 12bits部分> )
   Sample Time = [3 - 480] cycles
   Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
+
+-----------------------------
 
 .. image:: /embedded/ADC/table7.jpg
 
@@ -498,7 +503,7 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 
 - 其實做如下：
 
-:: 
+.. code-block:: prettyprint linenums
 
   void ADC_TempSensorVrefintCmd(FunctionalState NewState)
   {
@@ -516,7 +521,7 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
     }
   }
 
-
+------------------------------
 
 使用Stm32F4xx的ADC
 ================
@@ -546,9 +551,11 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 - 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
 
-.. code-block:: 
+.. code-block:: prettyprint linenums
 
    ADC_ResetCalibration(ADC1);
+
+----------------------------------
 
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
@@ -678,7 +685,7 @@ Questions 2013
 4. 說明 ADC 之 calibration。
   - 由於ADC上面的電容可能並不是理論上的理想值，因此每次使用時必須量測現在ADC之電容之實際值，可以把這個實際值視為誤差，因此未來所量測的結果都必須使用這個誤差值作為基準點去比較，因此可以量到更加精確的轉換結果。
 
-::
+.. code-block:: prettyprint linenums
   
     /* Enable ADC1 reset calibaration register */ 
     ADC_ResetCalibration(ADC1);
@@ -689,6 +696,8 @@ Questions 2013
     /* Check the end of ADC1 calibration */ 
     while(ADC_GetCalibrationStatus(ADC1));
     /* 完成 calibration 才能開始使用 */
+
+------------------------------
 
 5. 說明 ADC 之 Scan Mode 與 DMA 之關係。並畫流程圖。
 
@@ -789,7 +798,7 @@ Refer from: STM32F407xx Datasheet P124
 
     - Structure
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
 
     int main()
@@ -857,7 +866,7 @@ Sample Code
 
 https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
     void ADC_Config(void)
     {
@@ -902,7 +911,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
     }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
    void DMA_Config(){
         DMA_InitTypeDef DMA_InitStructure;
@@ -933,7 +942,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
    }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void NVIC_Config()
   {
@@ -948,7 +957,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void GPIO_Output_Config(void){
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -963,7 +972,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   GPIO_Init( GPIOE, &GPIO_InitStructure ); 
   }
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void GPIO_Input_Config(void)
   {
