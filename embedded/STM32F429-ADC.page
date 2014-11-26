@@ -251,6 +251,8 @@ ADC之轉換時間
   - N = 8 cycles (8 bits resolution)
   - N = 6 cycles (6 bits resolution)
 
+由於是Successive Approximation ADC 所以有n bits就需要n的cycle來迭代，可參考上面的Successive Approximation ADC說明 
+
 - Sampling time
 
   - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
