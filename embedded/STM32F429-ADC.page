@@ -461,6 +461,10 @@ STM32F4xx Internal Temperature Sensor
 - 須先設定TSVREFINT Bit才可使用
 - 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
 - Datasheet有提到，內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
+- 文件皆未提到其實做材料與方法，尤其特性推測為一熱電偶，原理是當導體加熱時會產生熱電效應，產生一個電動勢，就由測量這個電動勢變化，就可以線性推測它的溫度。
+- 由於每顆晶元製成時的差異，其熱電偶堆的offset會不同，官方在memory有存放3.3V時25度C與110度C的實際測量校準值，可以拿來做offset校準使用。
+
+.. image ::http://wiki.csie.ncku.edu.tw/Temp%20sensor%20Cal%20value
 
 ADC Temperature Measurement
 ----------------------------
