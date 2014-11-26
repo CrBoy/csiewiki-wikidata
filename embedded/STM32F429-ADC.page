@@ -273,7 +273,7 @@ ADC的轉換速度範圍
 對於12-bits Resolution而言
 ::
 
-  Tconv = Sample Time + 12 cycles ( 12-bits resolution )
+  Tconv = Sample Time + 12 cycles ( 12-bits resolution <參考上節 12bits部分> )
   Sample Time = [3 - 480] cycles
   Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
 
