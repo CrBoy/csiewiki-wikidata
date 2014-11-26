@@ -607,8 +607,14 @@ Sampling Theorem、訊號 Aliasing
 
 Lissajous曲線可以看出兩個訊號的頻率、相位、強度差異。
 
+假設目前有 Asin(aw + d) 與 Bsin(bw)兩個訊號
+當a = b時，頻率相同，所以圖形將會是直線、橢圓或是正圓，端看d大小，參考下圖。
+
 .. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Lissajous_phase.svg/600px-Lissajous_phase.svg.png
 
+如果兩個訊號頻率不同，a != b，則圖形將會是圖形將不再是圓，而會是曲線，由此可以看出兩個訊號已經不相同
+
+如果a/b是有理數，則圖形會有一定的形式。若有示波器的圖，可以透過查表可以知道兩個訊號的的比例。
 
 Questions 2013
 ==============
