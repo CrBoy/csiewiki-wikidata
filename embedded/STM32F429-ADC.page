@@ -148,9 +148,7 @@ ADC 所接受的電壓值在 GND 與參考電壓之間，注意其必須接上�
    /* 將GPIO轉為類比用途 */
    GPIO_initStructre.GPIO_Mode = GPIO_Mode_AN;
 
-.. image::
-https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384160168223_GPIO_basic_src.PNG
-
+.. image:: http://wiki.csie.ncku.edu.tw/ADC%20GPIO%20Path
 
 Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 
