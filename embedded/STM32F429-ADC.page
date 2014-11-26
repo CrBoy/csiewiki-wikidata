@@ -60,7 +60,7 @@ ADC 轉換公式
  - 2. 使用交流變壓器，使用條件為交流訊號。
 
 
-如果要轉匯的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
+如果要轉換的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
 ::
 
   其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
@@ -113,7 +113,7 @@ Successive approximation ADC
 ----------------------------
 
 這一種ADC由一個DAC與電壓比較器組成
-轉換實會由邏輯電路迭代，依序由MSB往LSB更改DAC的輸出電壓。
+轉換時會由邏輯電路迭代，依序由MSB往LSB更改DAC的輸出電壓。
 
 流程：
  - 由MSB開始
@@ -217,7 +217,7 @@ STM32F4xx Internal Channel
   - STM32F429 Discovery其溫度感測器連接到ADC1_IN18 channel
 
 - TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
-- 在F42x上面VBAT與VREFINT共用同一個Channel，需選則要對誰做Sampling
+- 在F42x上面VBAT與VREFINT共用同一個Channel，需選擇要對誰做Sampling
 
 - 設定TSVREFE bit，參考下圖
 
@@ -298,7 +298,7 @@ ADC Max Sampling Rate & BandWidth
 
    Sampling Rate = 1 / (0.5 * 10^(-6)) = 2Msp/s
 
-由取樣定理可以知道，這樣等效的BandWidth為Smapling Rate的一半，即1MHz
+由取樣定理可以知道，這樣等效的BandWidth為Sampling Rate的一半，即1MHz
 
 
 ADC Clock 最大可容忍頻率
