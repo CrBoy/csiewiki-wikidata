@@ -157,22 +157,48 @@ four I²C modes
 
 (內容待補) (要怎麼把圖縮小= =?)
 
+以下都以7 bit adress mode 作範例
+
 Slave transmitter
+------------------------------------
 
 .. image:: /embedded/i2c_slave_transmitter.png
 
 Slave receiver
+------------------------------------
 
 .. image:: /embedded/i2c_slave_receiver.png
 
 Master transmitter
+------------------------------------
 
 .. image:: /embedded/i2c_master_transmitter.png
 
+
+WriteOneByte
+
+- 產生 start bit: I2C_GenerateSTART()
+- 等待EV5:  while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_MODE_SELECT));
+- 傳送7bit address與傳輸模式: I2C_Send7bitAddress(i2cx, i2c_ADDR, I2C_Direction_Transmitter);
+- 等待EV6: while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+- 傳送一個byte: I2C_SendData(I2Cx);
+- 確認BYTE傳送完成: while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTER) );
+- 產生 stop bit: I2C_GenerateSTOP();
+
 Master receiver
+------------------------------------
 
 .. image:: /embedded/i2c_master_receiver.png
 
+ReadOneByte
+
+- 產生 start bit: I2C_GenerateSTART()
+- 等待EV5:  while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_MODE_SELECT));
+- 傳送7bit address與傳輸模式: I2C_Send7bitAddress(i2cx, i2c_ADDR, I2C_Direction_Receiver);
+- 等待EV6: while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
+- 確認BYTE接收完成: while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_RECEIVED) );
+- 讀取暫存器: I2C_ReceiveData(I2Cx);
+- 產生 stop bit: I2C_GenerateSTOP();
 
 I²C on STM32F429-Discovery
 =====================================
