@@ -6,3 +6,23 @@ categories: STM32, Communcation_Protocol, CAN
 Introduction
 ============
 控制器區域網路 (Controller Area Network, 簡稱 CAN 或 CANbus)是一種通訊協定，其特點是允許網路上的多個微控制器或設備直接互相通訊，網路上不需要主機(Host)控制通訊，並且提供高安全等級及有效率的即時控制。更具備了偵錯和優先權判別的機制，網路訊息的傳輸變的更為可靠而有效率。訊息的傳遞並不是定義在節點，而是定義在訊息上，所以軟硬體不需要做修正就能夠輕易增加或移除節點，增加了在升級網路時的便利性。實作上又因為只需雙線溝通的特性，也降低線路複雜易造成錯誤的發生機會。總而之，CANbus具有高擴充性 、高可靠度且即時性強和低成本等特性。
+
+Features
+============
+•CAN通訊的資料格式(frame)：
+1.資料通訊格式：用於傳送資料(Data Frame)
+.. image:: /dataframe1.bmp
+.. image:: /dataframe2.bmp
+
+
+[link label](/dataframe2.bmp)
+2.遠端通訊格式：請求遠端節點傳送資料(Remote Transmit Request Frame)
+3.錯誤通訊格式：通知其他節點錯誤的格式(Error Frame)
+4.過載通訊格式：通知其他節點延遲傳送資料的格式(Overload Frame)
+5.通訊格式間隔：與前一個資料間隔的格式(Inter Frame Space)
+
+
+
+
+
+
