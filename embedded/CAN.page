@@ -7,17 +7,72 @@ Introduction
 ============
 控制器區域網路 (Controller Area Network, 簡稱 CAN 或 CANbus)是一種通訊協定，其特點是允許網路上的多個微控制器或設備直接互相通訊，網路上不需要主機(Host)控制通訊，並且提供高安全等級及有效率的即時控制。更具備了偵錯和優先權判別的機制，網路訊息的傳輸變的更為可靠而有效率。訊息的傳遞並不是定義在節點，而是定義在訊息上，所以軟硬體不需要做修正就能夠輕易增加或移除節點，增加了在升級網路時的便利性。實作上又因為只需雙線溝通的特性，也降低線路複雜易造成錯誤的發生機會。總而之，CANbus具有高擴充性 、高可靠度且即時性強和低成本等特性。
 
+.. image:: /CAN Bus_Diagram1.png
+
 Features
 ============
-•CAN通訊的資料格式(frame)：
+
+CAN通訊的資料格式
+-------------------
+
+CAN有兩種版本，差別在識別碼長度，CAN2.0A()的識別碼為11bits(Standard identifier)，CAN2.0B的識別碼為29bits(Extended Identifier)。
+
 1.資料通訊格式：用於傳送資料(Data Frame)
+''''''''''''''''''''''''''''''''''''''''
 .. image:: /CAN_dataframe1.png
-.. image:: /dataframe2.bmp
-![alt text](/CAN_dataframe1.png)
+
+.. image:: /CAN_dataframe2.png
+
+* Start of Frame(SOF):送出1位元dominant(0)，用來同步。
+
+* Arbitration Field:表示節點的優先權，用來判別優先權。若多個節點同時傳送，在仲裁欄位逐一比對優先權，位元為dominant(0)可優先傳送。
+
+.. image:: /CAN_priroity.png
+
+RTR 則為優先判斷與資料接收與否的識別，RTR=dominant(0)，表資料要傳出，RTR=recessive(1)，表要接收資料。
+
+* Control Field:資料的長度。
+
+.. image:: /CAN_dataframe_control_field.png
+
+IDE: 標準格式(Standard identifier)為dominant(0);延伸格式(Extended Identifier)為 recessive(1)。
+
+R0:保留
+
+* Data Field:0-8bytes的資料。
+
+.. image:: /CAN_dataframe_data.png
+
+資料長度0-8 bytes
+
+* CRC Field:錯誤檢查。
+
+.. image:: /CAN_dataframe_CRC.png
+
+* ACK Field:接收正確送出1位元dominant(0)。
+
+.. image:: /CAN_dataframe_ACK.png
+
+傳送端送出一個recessive bit(1)當接收端正確收到一個訊息，則回傳一個ACK Slot為dominant(0)的message，告知傳送端。
+
+* End of Frame(EOF):通訊格式結束的欄位。
+
+.. image:: /CAN_EOF.png
+
+每一個資料都是由7個連續的recessive(1)位元作為結束。
+
 2.遠端通訊格式：請求遠端節點傳送資料(Remote Transmit Request Frame)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+.. image:: /CAN_RTRF.png
+
+遠端通訊格式基本上就是資料長度為0的資料通訊格式，指示設定上略有不同。當A節點需要B節點送出資料時，可藉由送出一個遠端通訊格式來完成，將B節點的ID寫入仲裁欄位，在RTR填入recessive(1)。
+
 3.錯誤通訊格式：通知其他節點錯誤的格式(Error Frame)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''
 4.過載通訊格式：通知其他節點延遲傳送資料的格式(Overload Frame)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 5.通訊格式間隔：與前一個資料間隔的格式(Inter Frame Space)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
 
