@@ -18,7 +18,7 @@ Introduction To ADC
 - 當嵌入式電子產品必須根據週遭環境的物理條件如溫度、壓力等產生適當反應，就必須由 ADC 將感測器採得的類比訊號轉為數位訊號。
 - 自然界的訊號主要為類比訊號，時間與大小是連續的；adc 負責將類比訊號轉為數位訊號，時間與大小變成離散的。
 
-.. image:: http://www.planetoftunes.com/digiaudio/dig_media/sampling_in_4_bit_convertor.gif
+.. image:: http://www.msbtech.com/support/DAC-sampling_in_4_bit_convertor.gif
 .. image:: /embedded/ADC/adc_convert.png
 
 ADC的規格
