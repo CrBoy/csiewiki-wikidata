@@ -254,7 +254,7 @@ P.281, **GPIO port configuration lock register (GPIOx_LCKR)** in Reference manua
 - Bits 15:0 LCKy: lock bit y
    - 0: Port configuration not locked
    - 1: Port configuration locked
-- Lock sequences
+- Lock sequences pseudocode
 
 .. code-block:: c
 
@@ -263,6 +263,22 @@ P.281, **GPIO port configuration lock register (GPIOx_LCKR)** in Reference manua
     WR LCKR[16] = ‘1’ + LCKR[15:0]
     RD LCKR
     RD LCKR[16] = ‘1’ (optional, confirm only)
+
+- Lock sequences in c lib ( *STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c* : void GPIO_PinLockConfig() )
+
+.. code-block:: c
+
+    tmp |= GPIO_Pin;
+    /* Set LCKK bit */
+    GPIOx->LCKR = tmp;
+    /* Reset LCKK bit */
+    GPIOx->LCKR =  GPIO_Pin;
+    /* Set LCKK bit */
+    GPIOx->LCKR = tmp;
+    /* Read LCKK bit*/
+    tmp = GPIOx->LCKR;
+    /* Read LCKK bit*/
+    tmp = GPIOx->LCKR;
 
 在執行中，LCK[15:0]的值不可改變，否則lock失敗。
 
