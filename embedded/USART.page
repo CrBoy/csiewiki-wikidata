@@ -1107,3 +1107,24 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 .. image:: /unmatched clocks.png
 
 `圖片來源<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
+
+
+Q&A 2
+.......
+(a) 何謂 modem? null modem connection 又是什麼?
+
+modem: modulator-demodulator，將數位訊號編碼為類比訊號、或將類比訊號解碼為數位訊號。類比訊號可為無線電、紅外線、電流等，常見的應用有wifi、手機、藍芽、有線電話、光纖網路等。
+
+DTE: Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
+
+DCE: Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
+
+null modem: 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或DCE-DCE相連，就要對訊號線作處理。
+
+.. image:: /embedded/USART_NullModemBriefview.jpg
+
+也有市售的接頭
+
+.. image:: /embedded/USART_NullModem.jpg
+
+
