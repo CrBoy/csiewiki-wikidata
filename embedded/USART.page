@@ -683,6 +683,8 @@ SmartCard Mode
 SmartCard
 ---------------
 
+.. image:: /embedded/USART_SmartCardPin.jpg
+
 若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
    - USART_CR2的LINEN
    - USART_CR3的HDSEL以及IREN
@@ -1129,3 +1131,16 @@ null modem: 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或
 .. image:: /embedded/USART_NullModem.jpg
 
 
+(b) TTL/CMOS比較
+
+VDD：晶片工作電壓
+VCC：外部電路工作電壓
+
+.. image:: /embedded/USART_TTL_CMOS_WAVE.jpg
+
+C ＝ Q/V ； I ＝ dQ/dt
+
+由上圖可知，TTL的rise time及fall time都比較短。雖然都是要把一個元件充電到能夠輸出邏輯1，但是rise & fall time長一點的話，能夠降低訊號噪音。rise & fall time如果很短，代表說要在短時間把電路充電到既定電壓，而TTL的特性就是充電很快，這代表短時間內通過的電流其實很大。在絕對零度以上時，電路中的原子都會震盪，而很多個電子在短時間內通過這些正在震盪的原子，會造成阻塞、碰撞，在這過程中就會產生不必要的能量損耗以及額外的雜訊。
+
+CMOS：耗能較少、延遲時間較TTL多（2.5-5倍，因rise & fall time較長）、抗噪能力好（5V電壓下，抗噪能力比TTL多出1V）、工作電壓低
+TTL：耗能多、延遲時間短（因rise & fall time短）、抗噪能力差（5V電壓下，抗噪能力為0.4V）、工作電壓相對高
