@@ -374,7 +374,7 @@ Independent mode
 
 - Auto-injected mode 可設注入通道轉換於規則通道 scan 完成後，可實現一個 iteration 執行 20 次轉換。
 
-- < Discontinuous mode >
+**< Discontinuous mode >**
 
   - 允許 scan 時不是全部掃完，可以「分批」進行。
 
