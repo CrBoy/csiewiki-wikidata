@@ -297,6 +297,99 @@ I2C參數設定
     I2C_Cmd(IOE_I2C, ENABLE);
   }   
 
+ touch panel demo code 一開始會先檢查 device ID及通訊是否正確
+
+
+.. code-block:: c
+
+ uint16_t IOE_ReadID(void)
+ {
+  uint16_t tmp = 0;
+
+  /* Read device ID  */
+  tmp = I2C_ReadDeviceRegister(0);
+  tmp = (uint32_t)(tmp << 8);
+  tmp |= (uint32_t)I2C_ReadDeviceRegister(1);
+  
+  /* Return the ID */
+  return (uint16_t)tmp;
+ }
+
+
+
+.. code-block:: c
+
+ uint8_t I2C_ReadDeviceRegister(uint8_t RegisterAddr)
+ {
+  uint8_t tmp = 0;
+  
+  /* Enable the I2C peripheral */
+  I2C_GenerateSTART(IOE_I2C, ENABLE);
+  
+    /* Test on EV5 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_SB));
+
+  /* Disable Acknowledgement */
+  I2C_AcknowledgeConfig(IOE_I2C, DISABLE);
+  
+  /* Transmit the slave address and enable writing operation */
+  I2C_Send7bitAddress(IOE_I2C, IOE_ADDR, I2C_Direction_Transmitter);
+  
+  /* Test on EV6 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;  
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_ADDR));
+  
+  /* Read status register 2 to clear ADDR flag */
+  IOE_I2C->SR2;
+  
+  /* Test on EV8 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_TXE));
+  
+  /* Transmit the first address for r/w operations */
+  I2C_SendData(IOE_I2C, RegisterAddr);
+  
+  /* Test on EV8 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while ((!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_TXE)) || (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_BTF)));
+  
+  /* Regenerate a start condition */
+  I2C_GenerateSTART(IOE_I2C, ENABLE);
+  
+  /* Test on EV5 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_SB));
+  
+  /* Transmit the slave address and enable writing operation */
+  I2C_Send7bitAddress(IOE_I2C, IOE_ADDR, I2C_Direction_Receiver);
+  
+  /* Test on EV6 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_ADDR));
+  
+    /* Read status register 2 to clear ADDR flag */
+  IOE_I2C->SR2;
+  
+  /* Test on EV7 and clear it */
+  IOE_TimeOut = TIMEOUT_MAX;
+  while (!I2C_GetFlagStatus(IOE_I2C, I2C_FLAG_RXNE));
+  
+  /* End the configuration sequence */
+  I2C_GenerateSTOP(IOE_I2C, ENABLE);
+  
+  /* Load the register value */
+  tmp = I2C_ReceiveData(IOE_I2C);
+  
+  /* Enable Acknowledgement */
+  I2C_AcknowledgeConfig(IOE_I2C, ENABLE);
+  
+  /* Return the read value */
+  return tmp;
+  
+ }
+
+
 (待補)
 
 SCL: PA8 
@@ -305,8 +398,19 @@ SDA: PC9
 
 slave address: 0x82 (0x01000010)
 
-.. image:: /embedded/I2C_touchpanel_test.jpg
-.. image:: /embedded/i2c_scope_0.bmp
+.. image:: /embedded/i2c_picture.jpg
+
+.. image:: /embedded/scope_5.bmp
+start bit -> send address and transmitter bit -> ack -> senddata(register address 0x00)
+
+.. image:: /embedded/scope_6.bmp
+start bit -> send address and receiver bit -> ack -> data send by slave
+
+.. image:: /embedded/scope_8.bmp
+stop bit -> start bit -> send address and transmitter bit -> ack -> senddata(register address 0x01)
+
+.. image:: /embedded/scope_9.bmp
+start bit -> send address and receiver bit -> ack -> data send by slave
 
 
 實驗二: 兩塊(以上)板子的數據傳輸
