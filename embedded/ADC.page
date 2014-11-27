@@ -3,8 +3,11 @@ title: ADC
 categories: 數位類比轉換器, ADC, Peripherals, STM32F4
 ...
 
-Introduction
-============
+Introduction To ADC
+===================
+
+基本概念
+-------
 **數位類比轉換器(Analog-to-digital coverter)**
 
 - 用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
@@ -15,11 +18,11 @@ Introduction
 - 當嵌入式電子產品必須根據週遭環境的物理條件如溫度、壓力等產生適當反應，就必須由 ADC 將感測器採得的類比訊號轉為數位訊號。
 - 自然界的訊號主要為類比訊號，時間與大小是連續的；adc 負責將類比訊號轉為數位訊號，時間與大小變成離散的。
 
-.. image:: http://www.planetoftunes.com/digiaudio/dig_media/sampling_in_4_bit_convertor.gif
+.. image:: http://www.msbtech.com/support/DAC-sampling_in_4_bit_convertor.gif
 .. image:: /embedded/ADC/adc_convert.png
 
 ADC的規格
-========
+--------
 
 根據**取樣率**與**解晰度**決定產生的數位訊號在時間、大小的離散程度。
 
@@ -35,34 +38,98 @@ ADC的規格
  - 類比訊號圖：橫軸表示時間，縱軸表示大小。取樣率是對橫軸做切割，解析度則對縱軸做切割。
  - 因為訊號以二進位方式儲存，所以通常解析度會以位元作為單位。
  - 例如 8 位元解析度（假設電壓上限為 0~5V）
- - 則我們的訊號在接收時每個單位為（5V-0V）/(2^8-1)=0.0196V
+ - 則我們的訊號在接收時每個單位為（5V-0V）/ (2^8-1)=0.0196V
  - 若所得到的值為100則其實際上的電壓為 100 × 0.0196 = 1.96V
 
 ADC 轉換公式
-===========
+-----------
 
-- 以一個解析度為12bits的ADC來說，電壓範圍為0-5V，其轉換公式如下
+- 以一個解析度為n bits的ADC來說，其轉換公式如下
 
 
 ::
 
-  ConvertedVoltage = ConvertedValue * VDD/(2^12-1);
+  ConvertedVoltage = ConvertedValue * Vref / (2 ^ n - 1);
   
+其中Vref為參考電壓，通常介於VDD與VSS之間。
 
-ADC on STM32F4
-===============
+欲轉換的訊號電壓不可以高過Vref。
+
+如果不再0 ~ Vref 的範圍內
+ - 1. 可以考慮使用分壓器來處理，但必須注意輸入阻抗與輸出阻抗之匹配問題。
+ - 2. 使用交流變壓器，使用條件為交流訊號。
+
+
+如果要轉換的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
+::
+
+  其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
+
+1.反相放大電路(Vo = - A * Vin)
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg
+
+2.正相放大電路(Vo = A * Vin)
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg
+
+
+Sampling Theorem
+-----------------
+對於一個連續訊號取樣的時候，會參考Sampling Theorem定最低取樣頻率。
+
+::
+
+  Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高頻率之兩倍時，才可以正確的重建原始訊號
+
+
+- 證明：
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg
+
+
+但是通常會使用OverSampling，用遠高於 2f 的頻率來取樣，提升訊號的品質。
+
+
+STM32F4xx OnChip ADC 介紹
+=========================
+
+簡介
+----
 - 共有3個12-bit ADC 在開發板上，且可量測16個外部訊號源及2個內部訊號源。
 - 有12-bit, 10-bit, 8-bit or 6-bit共4種可選擇的解析度。
 - 每個通道的A/D轉換可以使用單次、連續、掃描或間斷模式執行。
 - ADC的結果可以左對齊或右對齊的方式儲存於16-bit暫存器中。
+- ADC都在APB2上面
+- ADC使用獨立電源，VDDA、VSSA，並且需要提供參考電壓Vref(VDDA > Vref > 1.8V)
+- 在不同的VDDA下面，其取樣時間會有所差異
+  - 2.4V <= VDDA <= VDD for Full Speed
+  - 1.8 <= VDDA <= VDD for Reduced Speed
+
+- 在DISCO板子上面，VRef = VDDA = VDD = 2.95V (3V)
+- 這一塊晶片使用Successive approximation ADC，運作模式是使用DAC生成不同的電壓，來跟輸入比較，來測量輸入的值。
+
+Successive approximation ADC
+----------------------------
+
+這一種ADC由一個DAC與電壓比較器組成
+轉換時會由邏輯電路迭代，依序由MSB往LSB更改DAC的輸出電壓。
+
+流程：
+ - 由MSB開始
+ - 啟動DAC的第n bit
+ - 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
+ - 由這一個狀態迭代至LSB為止
+
+.. image:: http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png
 
 ADC Block Diagram
-=================
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383311801212_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-11-01%20%E4%B8%8B%E5%8D%889.14.26.png
+------------------
+.. image:: http://wiki.csie.ncku.edu.tw/ADC%20Block%20Diagram%20HiRes
 
 **1.  Analog MUX 類比多工器：**
 
-將多個訊號源連接至 ADC, 可在上圖中的左下角看到有 16 組輸入 (ADCx_IN0~15), 經過類比多工器來做訊號源的選擇。
+將多個訊號源連接至 ADC, 可在上圖中的左側看到有 16 組外部輸入 (ADCx_IN0~15)與兩組內部輸入, 經過類比多工器來做訊號源的選擇。
 
 **2.  Injected/Regular data register：**
 
@@ -76,14 +143,14 @@ ADC 所接受的電壓值在 GND 與參考電壓之間，注意其必須接上�
 
 當我們將GPIO Port設定成類比輸入的模式時，進來GPIO pin的原始訊號源在還沒經過施密特觸發器(Schmitt trigger)會有另一個線路將訊號做導向(導到ADC)
 
-.. code-block:: 
+.. code-block:: prettyprint linenums
 
    /* 將GPIO轉為類比用途 */
    GPIO_initStructre.GPIO_Mode = GPIO_Mode_AN;
 
-.. image::
-https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384160168223_GPIO_basic_src.PNG
+------------------------------
 
+.. image:: http://wiki.csie.ncku.edu.tw/ADC%20GPIO%20Path
 
 Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 
@@ -91,26 +158,84 @@ Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 
 用來監控採樣結果，如果超出預設範圍就打斷轉換並發出中斷。
 
-啟動 STM32 之 ADC
-================
+**6.  Analog PreScalar：**
 
-- ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
-
-  - AHB for 記憶體
-
-  - APB for 硬體周邊
+ADC都在APB2上面，Clock來自APB2，頻率為
 
 .. code-block:: 
 
-   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
+   ADC Clock = APB2 Clock / Analog PreScalar;
+
+ADC Unit & External Channel Bus Connections
+--------------------------------------------
 
 
-- ADC 可設 ADON 打開電源，重設來關掉電源
+
++--------------+------+------+------+     
+|CHANNEL       |  ADC1|  ADC2|  ADC3|
++======+==+===+==+
+|APB           |     2|     2|     2|
++--------------+------+------+------+
+|ADC Channel 0 |   PA0|   PA0|   PA0|
++--------------+------+------+------+
+|ADC Channel 1 |   PA1|   PA1|   PA1|
++--------------+------+------+------+
+|ADC Channel 2 |   PA2|   PA2|   PA2|
++--------------+------+------+------+
+|ADC Channel 3 |   PA3|   PA3|   PA3|
++--------------+------+------+------+
+|ADC Channel 4 |   PA4|   PA4|   PF6|
++--------------+------+------+------+
+|ADC Channel 5 |   PA5|   PA5|   PF7|
++--------------+------+------+------+
+|ADC Channel 6 |   PA6|   PA6|   PF8|
++--------------+------+------+------+
+|ADC Channel 7 |   PA7|   PA7|   PF9|
++--------------+------+------+------+
+|ADC Channel 8 |   PB0|   PB0|   PF10|
++--------------+------+------+------+
+|ADC Channel 9 |   PB1|   PB1|   PF3|
++--------------+------+------+------+
+|ADC Channel 10|   PC0|   PC0|   PC0|
++--------------+------+------+------+
+|ADC Channel 11|   PC1|   PC1|   PC1|
++--------------+------+------+------+
+|ADC Channel 12|   PC2|   PC2|   PC2|
++--------------+------+------+------+
+|ADC Channel 13|   PC3|   PC3|   PC3|
++--------------+------+------+------+
+|ADC Channel 14|   PC4|   PC4|   PF4|
++--------------+------+------+------+
+|ADC Channel 15|   PC5|   PC5|   PF5|
++--------------+------+------+------+
+
+
+
+
+STM32F4xx Internal Channel
+---------------------------
+- 我們所使用的
+  - STM32F407 Discovery其溫度感測器連接到ADC1_IN16 channel
+  - STM32F429 Discovery其溫度感測器連接到ADC1_IN18 channel
+
+- TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
+- 在F42x上面VBAT與VREFINT共用同一個Channel，需選擇要對誰做Sampling
+
+- 設定TSVREFE bit，參考下圖
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg
+
+
+STM32F4xx ADC Control
+---------------------
+
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg
 
-- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
 
+- 可設 ADON 打開ADC電源，重設來關掉電源
+- 可使用SWSTART/JSWSTART開始ADC的轉換
+- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **兩個(F407) / 三個（F429）內部訊號源**。每個外部訊號源對應一個通道。
 
 .. image:: /embedded/ADC/ADC on STM32F4
 
@@ -118,17 +243,90 @@ Refer to `GPIO Presentation<http://wiki.csie.ncku.edu.tw/embedded/GPIO>`_
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
 - 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
-
-.. code-block:: 
-
-   ADC_ResetCalibration(ADC1);
-
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
+
+ADC之轉換時間
+============
+
+### Timing Diagram
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg
+
+**Tconv（Total Conversion Time） =  Sampling time + N Cycles **
+  - N = 12 cycles (12 bits resolution)
+  - N = 10 cycles (10 bits resolution)
+  - N = 8 cycles (8 bits resolution)
+  - N = 6 cycles (6 bits resolution)
+
+由於是Successive Approximation ADC 所以有n bits就需要n的cycle來迭代，可參考上面的Successive Approximation ADC說明 
+
+- Sampling time
+
+  - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
+  - Each channel can be sampled with a different sampling time.
+  - Sample Time = [3 - 480] cycles
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
+
+- Example:
+
+  - With ADCCLK = 30 MHz and sampling time = 3 cycles:
+
+  - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
+
+
+ADC的轉換速度範圍
+------------
+不一定，隨著條件而變，Sample Time跟温度以及内部電路的rc有關
+
+對於12-bits Resolution而言
+
+.. code-block:: prettyprint linenums
+
+  Tconv = Sample Time + 12 cycles ( 12-bits resolution <參考上節 12bits部分> )
+  Sample Time = [3 - 480] cycles
+  Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
+
+-----------------------------
+
+.. image:: /embedded/ADC/table7.jpg
+
+Refer from: STM32F4xx Datasheet P125
+
+ADC Max Sampling Rate & BandWidth
+----------------------------------
+在ADC Clock = 30Mhz、12-bits Resolution的情況下，最小的Sampling Time可以達成0.5us一個Sample
+
+所以
+
+::
+
+   Sampling Rate = 1 / (0.5 * 10^(-6)) = 2Msp/s
+
+由取樣定理可以知道，這樣等效的BandWidth為Sampling Rate的一半，即1MHz
+
+
+ADC Clock 最大可容忍頻率
+----------------------
+在Datasheet中，因為DISCO的參考電壓VREF為VDD為2.97V，故**ADC Clock Frequency為[0.6-36]MHz**。
+
+.. image:: /embedded/ADC/table6.jpg
+
+Refer from: STM32F4xx Datasheet P124
+
+
+
+
+  - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
+
+  ::
+
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
 
 ADC mode
 ========
 
-**Independent-mode** 和 **Dual-mode（multi-mode）**
+**Independent-mode** 和 **Multi-mode (Dual-mode or Triple-mode)**
 
   **Independent mode** 表示此 ADC 獨立運作。
 
@@ -176,7 +374,7 @@ Independent mode
 
 - Auto-injected mode 可設注入通道轉換於規則通道 scan 完成後，可實現一個 iteration 執行 20 次轉換。
 
-- < Discontinuous mode >
+**< Discontinuous mode >**
 
   - 允許 scan 時不是全部掃完，可以「分批」進行。
 
@@ -197,26 +395,32 @@ Independent mode
       - 3rd 觸發，轉換 {1, 2, 3}, 以此類推。
 
 
-Multi Mode (Dual mode)
+Multi Mode 
 -----------------------
 
-- 有一組ADC是無法開啟dual mode,只能使用independent mode
+有別於STM32F407，STM32F429可以將3個ADC都開成Multi Mode，也就是說原本Multi Mode只有Dual Mode，現在多了Triple Mode.
 
-  - 在我們的參考資料中ADC3只能開啟independent mode
 
-  - 此資訊來自stm32 ADC mode and their application P9
-
-- ADC1, ADC2 分別擔任 master & slave.
+- ADC1, ADC2 ADC3分別擔任 master & 兩個slave.
 
 
 **1.Injected simultaneous mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg
 
 兩個 ADCs 同時觸發而轉換 injected groups.
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/UkbQN4t.png
+
+三個 ADCs 同時觸發而轉換 injected groups.
 
 **2.Regular simultaneous mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg
 
@@ -224,10 +428,16 @@ Multi Mode (Dual mode)
 
 - 禁止二個 ADCs 同時對同一通道轉換以免誤差。
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/UcUn2il.png
+
 - 以上兩者的差別在於不同的group
 
 
 **3.Interleaved mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg
 
@@ -235,8 +445,14 @@ Multi Mode (Dual mode)
 
 - 由於同使只能有一個ADC對同一個通道做採樣，因此必須要增加兩個cycle的Delay time以免 phase overlap.
 
+Triple Mode:
+
+.. image:: http://i.imgur.com/vDDkT9j.png
+
 
 **4.Alternate trigger mode**
+
+Dual Mode:
 
 .. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg
 
@@ -244,52 +460,40 @@ Multi Mode (Dual mode)
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
 
-ADC之 Time Diagram
-==================
+Triple Mode:
 
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg
-
-
-ADC之轉換時間
-============
-
-**Tconv（Total Conversion Time） =  Sampling time + 12 cycles (12 bits resolution)**
-
-- Sampling time
-
-  - ADCCLK cycles that can be modified using the SMP[2:0] bits in the ADC_SMPR1 and ADC_SMPR2 registers
-
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg
-
-  - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
-
-  ::
-
-    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
+.. image:: http://i.imgur.com/lKt5MAG.png
 
 
+STM32F4xx Internal Temperature Sensor
+======================================
 
-  - Each channel can be sampled with a different sampling time.
+- 須先設定TSVREFINT Bit才可使用
+- 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
+- Datasheet有提到，內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
+- 文件皆未提到其實做材料與方法，尤其特性推測為一熱電偶，原理是當導體加熱時會產生熱電效應，產生一個電動勢，就由測量這個電動勢變化，就可以線性推測它的溫度。
+- 由於每顆晶元製成時的差異，其熱電偶堆的offset會不同，官方在memory有存放3.3V時25度C與110度C的實際測量校準值，可以拿來做offset校準使用。
 
-- Example:
+.. image ::http://wiki.csie.ncku.edu.tw/Temp%20sensor%20Cal%20value
 
-  - With ADCCLK = 30 MHz and sampling time = 3 cycles:
+ADC Temperature Measurement
+----------------------------
+溫度測量公式如下
 
-  - Tconv = 3 + 12 = 15 cycles = 0.5 µs with APB2 at 60 MHz
+::
+  
+  ConvertedVoltage = ConvertedValue*VDD/4095;
+  ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
 
+.. image:: /embedded/ADC/formula.png
 
-STM32F4 Discovery Temperature Sensor
-====================================
+溫度的範圍
+---------
+STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到 
+::
 
-- 我們所使用的STM32F4 Discovery其溫度感測器連接到ADC1_IN16 channel
+   Supported temperature range: –40 to 125 °C, Precision: ±1.5 °C。
 
-- 除了設定通道以外，也必須要設定TSVREFE bit，參考下圖
-
-.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg
-
-- ADC1_IN18 為 STM23F42x and STM32F43x 所使用之通道
-
-- TSVREFE bit 必需要設為enable，讓 ADC1_IN16 和 ADC1_IN17 (VREFINT)可以運作
 
 設定的方法只要
 
@@ -299,7 +503,7 @@ STM32F4 Discovery Temperature Sensor
 
 - 其實做如下：
 
-:: 
+.. code-block:: prettyprint linenums
 
   void ADC_TempSensorVrefintCmd(FunctionalState NewState)
   {
@@ -317,24 +521,45 @@ STM32F4 Discovery Temperature Sensor
     }
   }
 
+------------------------------
 
-- 由於啟動Temperature Sensor需要時間（waking from power down mode），啟動ADC也需要時間（startup time after power-on），因此在設定時同時對兩個做設定才能達到最快的取樣速度。
+使用Stm32F4xx的ADC
+================
 
-- 內建的溫度感測器適合用來測量溫度的變化，不適合用來得到精準的溫度值。
+- ADC clock 來自 **PCLK2 (APB2)**, 啟動 ADC 前須先設置好。
 
-ADC Temperature Measurement
-============================
+  - AHB for 記憶體
 
-::
-  
-  ConvertedVoltage = ConvertedValue*VDD/4095;
-  ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
+  - APB for 硬體周邊
 
+.. code-block:: 
 
-.. image:: /embedded/ADC/formula.png
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);
 
 
-Demo
+- ADC 可設 ADON 打開電源，重設來關掉電源
+
+.. image:: https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg
+
+- 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
+
+
+.. image:: /embedded/ADC/ADC on STM32F4
+
+
+- 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
+- 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
+- ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
+
+.. code-block:: prettyprint linenums
+
+   ADC_ResetCalibration(ADC1);
+
+----------------------------------
+
+- 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
+
+Demo、實驗
 =========
 
 ADC + GPIO
@@ -352,6 +577,56 @@ https://www.youtube.com/watch?v=gRxbnODggjc
 - 本實驗用來測試stm32f4 discovery內建之溫度感測器是否隨著溫度上昇而改變轉換值
 
 - 可以在影片中看到最左邊的led代表最小的bit，因此當溫度不斷升高，最後點亮了影片中最後亮起的右邊那個led燈
+
+ADC + DAC
+----------
+基本設置：使用8bit模式已提升速度，使用DMA將ADC資料讀入後再用DMA將資料速給DAC做輸出。
+
+.. image:: https://farm8.staticflickr.com/7518/15679849349_048c02e0a8_h.jpg
+
+
+12bits vs 8 bits
+-----------------
+使用不同的解析度對同一訊號做採樣，在reduplicate。
+
+ADC與DAC使用的resolution是相同的
+
+ - 1. 12bits
+
+.. image:: https://farm8.staticflickr.com/7566/15678517300_6c992cfc73_h.jpg
+
+ - 2. 8 bits
+
+.. image:: https://farm8.staticflickr.com/7482/15678343048_fdbfc38df0_b.jpg
+
+
+Sampling Theorem、訊號 Aliasing
+-------------------------------
+同ADC + DAC的配置
+
+控制訊號產生器生成的訊號頻率，當平率高過1 / 2 Fs 的時候，輸出訊號除了失真，還發生了頻率改變，已與原本訊號不同。
+
+ - 1. 使用手控至訊號
+      http://youtu.be/QeFFO7ELrOk
+
+ - 2. 使用訊號產生器的Sweep功能
+      http://youtu.be/XtGuwkQhKzU
+
+ - 3. 使用訊號產生器的Sweep功能(X-Y Plot)
+      http://youtu.be/fE0UFiybtD4
+
+※X-Y Plot功能是將示波器的兩桿輸入分別作為X與Y軸的量，有別於一般V-t的作圖，對於訊號最常使用在產生Lissajous曲線。
+
+Lissajous曲線可以看出兩個訊號的頻率、相位、強度差異。
+
+假設目前有 Asin(aw + d) 與 Bsin(bw)兩個訊號
+當a = b時，頻率相同，所以圖形將會是直線、橢圓或是正圓，端看d大小，參考下圖。
+
+.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Lissajous_phase.svg/600px-Lissajous_phase.svg.png
+
+如果兩個訊號頻率不同，a != b，則圖形將會是圖形將不再是圓，而會是曲線，由此可以看出兩個訊號已經不相同
+
+如果a/b是有理數，則圖形會有一定的形式。若有示波器的圖，可以透過查表可以知道兩個訊號的的比例。
 
 Questions 2013
 ==============
@@ -410,7 +685,7 @@ Questions 2013
 4. 說明 ADC 之 calibration。
   - 由於ADC上面的電容可能並不是理論上的理想值，因此每次使用時必須量測現在ADC之電容之實際值，可以把這個實際值視為誤差，因此未來所量測的結果都必須使用這個誤差值作為基準點去比較，因此可以量到更加精確的轉換結果。
 
-::
+.. code-block:: prettyprint linenums
   
     /* Enable ADC1 reset calibaration register */ 
     ADC_ResetCalibration(ADC1);
@@ -421,6 +696,8 @@ Questions 2013
     /* Check the end of ADC1 calibration */ 
     while(ADC_GetCalibrationStatus(ADC1));
     /* 完成 calibration 才能開始使用 */
+
+------------------------------
 
 5. 說明 ADC 之 Scan Mode 與 DMA 之關係。並畫流程圖。
 
@@ -521,7 +798,7 @@ Refer from: STM32F407xx Datasheet P124
 
     - Structure
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
 
     int main()
@@ -589,7 +866,7 @@ Sample Code
 
 https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
     void ADC_Config(void)
     {
@@ -634,7 +911,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
     }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
    void DMA_Config(){
         DMA_InitTypeDef DMA_InitStructure;
@@ -665,7 +942,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
    }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void NVIC_Config()
   {
@@ -680,7 +957,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   }
 
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void GPIO_Output_Config(void){
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -695,7 +972,7 @@ https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discover
   GPIO_Init( GPIOE, &GPIO_InitStructure ); 
   }
 
-.. code-block:: prettyprint
+.. code-block:: prettyprint linenums
 
   void GPIO_Input_Config(void)
   {
