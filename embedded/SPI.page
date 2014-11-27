@@ -7,6 +7,7 @@ Introduction
 ============
 - SPI是一種4線同步序列資料協定，適用於可攜式裝置平臺系
 - 串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
+- SPI提供兩種序列傳輸協定，分別是SPI protocol跟I2S audio protocol，預設是用SPI protocol，可藉由software來做轉換
 
 .. image:: /single_slave.png
 
