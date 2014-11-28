@@ -206,11 +206,18 @@ I²C on STM32F429-Discovery
 實驗一: touch panel
 ...................
 
-觀察及使用stm32f429i_discovery_ioe.c，並量測對應的訊號
+觀察及使用觸控螢幕，並量測對應的i2c訊號
 
 - `Data sheet <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
 
-demo code:
+demo code: 
+
+.. code-block:: c
+
+ git clone https://github.com/colin8930/stm32_touchpanel_i2c.git
+ cd stm32_touchpanel_i2c
+ make
+ make flash
 
 [stm32f429i_discovery_ioe.h]
 
@@ -231,6 +238,7 @@ demo code:
  #define IOE_I2C_SDA_AF             GPIO_AF_I2C3
  #define IOE_I2C_DR                 ((uint32_t)0x40005C10)
 
+stm32f429i_discovery_ioe.c:
 
 GPIO 設定
 
