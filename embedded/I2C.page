@@ -400,22 +400,20 @@ slave address: 0x82 (0x01000010)
 
 .. image:: /embedded/i2c_picture.jpg
 
-.. image:: /embedded/scope_5.bmp
+.. image:: /embedded/scope_5.jpg
 start bit -> send address and transmitter bit -> ack -> senddata(register address 0x00)
 
-.. image:: /embedded/scope_6.bmp
+.. image:: /embedded/scope_6.jpg
 start bit -> send address and receiver bit -> ack -> data send by slave
 
-.. image:: /embedded/scope_8.bmp
+.. image:: /embedded/scope_8.jpg
 stop bit -> start bit -> send address and transmitter bit -> ack -> senddata(register address 0x01)
 
-.. image:: /embedded/scope_9.bmp
+.. image:: /embedded/scope_9.jpg
 start bit -> send address and receiver bit -> ack -> data send by slave
 
-
+.. image:: /embedded/scope_14.jpg
 要注意探棒衰減...
-.. image:: /embedded/scope_14.bmp 
-
 
 實驗二: 兩塊(以上)板子的數據傳輸
 ...................
