@@ -420,6 +420,9 @@ stop bit -> start bit -> send address and transmitter bit -> ack -> senddata(reg
 .. image:: /embedded/scope_9.jpg
 start bit -> send address and receiver bit -> ack -> data send by slave
 
+.. image:: /embedded/scope_12.jpg
+改變I2C CLOCK SPEED -> 400kHz
+
 .. image:: /embedded/scope_14.jpg
 要注意探棒衰減...
 
