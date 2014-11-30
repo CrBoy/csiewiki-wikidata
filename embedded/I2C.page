@@ -200,6 +200,15 @@ ReadOneByte
 - 讀取暫存器: I2C_ReceiveData(I2Cx);
 - 產生 stop bit: I2C_GenerateSTOP();
 
+
+
+flow chart(two boards)
+......................................
+
+master transmitter/slave receiver
+
+.. image:: /embedded/flow_chart_master_t_slave_r.jpg
+
 I²C on STM32F429-Discovery
 =====================================
 
