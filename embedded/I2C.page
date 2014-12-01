@@ -23,7 +23,7 @@ I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料�
 - I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源, 主要是支援MPGE2,4等; 而44.1kKHz 取樣頻率則是支援MP3格式 : 
       24bits x 48000Hz x 2channel = 2304000bits/Sec = 2.304Mbps
 
-- STM32F429 Discovery I2S and SPI 的腳位定義 (FPQ 144)
+- STM32F429 Discovery I2S and SPI 的腳位定義 (LQFP 144 PIN)
 pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 
 - 傳輸匯流排I²C 為 SCK (Continuous serial clock)與 SD 兩條, 如果是採用Board to Cable 建議加上一條GND 。  
