@@ -457,6 +457,14 @@ start bit -> send address and receiver bit -> ack -> data send by slave
 (待補)
 (NVIC ＆ I2C interrupt)
 
+.. image:: /embedded/IMG_1571.JPG
+
+master: 
+- `http://youtu.be/Y0udSje3PDc  <http://youtu.be/Y0udSje3PDc>`_
+
+slave: 
+- `http://youtu.be/nAkrzcuHWQU  <http://youtu.be/nAkrzcuHWQU>`_
+
 
 Reference
 =====================================
