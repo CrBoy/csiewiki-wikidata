@@ -35,6 +35,14 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 - I²S 介面傳輸資料具有兩個左右音訊通道的資料, 它靠 WS = 0 設定為零時; 定義為 通道 1 (左聲道資料讀取) ; WS = 1 ; 通道 2 (右聲道資料讀取)。
 
 
+
+I²C block diagram(on STM32F42x)
+......................................
+
+
+.. image:: /embedded/i2c_block_diagram.jpg
+
+
 I²C 特性
 ...................
 
