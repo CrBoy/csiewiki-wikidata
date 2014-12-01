@@ -140,8 +140,8 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - A main memory block divided into sectors.
 - Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes(1Mbytes).
 - System memory : bootloader code 放置的地方，30Kbytes.
-- OTP (One-Time Programmable) : 一次性寫入的空間，共528Kbytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
-- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16Kbytes.
+- OTP (One-Time Programmable) : 一次性寫入的空間，共528bytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
+- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16bytes.
 
 .. image:: /flash module organization.JPG
    DM00031020-referenceManual P.75
