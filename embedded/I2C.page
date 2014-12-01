@@ -457,8 +457,25 @@ start bit -> send address and receiver bit -> ack -> data send by slave
 ...................
 
 一塊板子當作Master，其他的作為Slave，實驗I2C的資料傳輸
-(待補)
-(NVIC ＆ I2C interrupt)
+
+
+slave 
+
+.. code-block:: c
+
+ git clone https://github.com/colin8930/slave_i2c
+ cd slave_i2c
+ make
+ make flash
+
+master
+
+.. code-block:: c
+
+ git clone https://github.com/colin8930/slave_i2c
+ cd slave_i2c
+ make
+ make flash
 
 .. image:: /embedded/IMG_1571.JPG
 
