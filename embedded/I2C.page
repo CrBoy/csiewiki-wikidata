@@ -17,14 +17,19 @@ I²C bus
 藉由Master發送訊號來控制與Slave之間的通訊
 
 I²C與I²S的差異
-摘要 :  I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料的串列通訊協議,但就功能面的支援還是有差異, I²C提供多個主控端串接多個從屬裝置其同步與資料透過雙線式雙向同步傳遞,其傳輸速率分為有100khz,400khz and 3.5mhz 由於這些時脈都是處理較普遍的裝置, ,  I²S提供三線式主控端單向多從屬裝置, 其傳輸速率分為有？與周2.5MHz.
+...................
+I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料的串列通訊協議,但就功能面的支援還是有差異, I²C提供多個主控端串接多個從屬裝置其同步與資料透過雙線式雙向同步傳遞,其傳輸速率分為有100khz,400khz and 3.5mhz 由於這些時脈都是處理較普遍的裝置, ,  I²S提供三線式主控端單向多從屬裝置, 其傳輸速率分為有？與周2.5MHz.
 
-I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源, 
+- I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源 : 
       24bits x 48000Hz x 2channel = 2304000bits/Sec = 2.304Mbps
-STM32F429 Discovery I2S and SPI 的腳位定義
- pin 96 , I2S2_MCK
- pin 74 , I2S2_CK/SPI2_SC
- pin 76 , I2S2_SD/ SPI2_MOS
+- STM32F429 Discovery I2S and SPI 的腳位定義 (FPQ 144)
+pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
+
+- 傳輸匯流排I²C 為 SCK (Continuous serial clock) , SD 兩條, 如果是採用Board to Cable 建議加上一條GND 。  
+- 在I²S匯流排通道上只有一個傳輸控制器與一個主控端(Master)角色的監控裝置該,該匯流排共有三條傳輸線分別為,同步時脈 SCK (Continuous serial clock) , 字串選擇的WS (Select dates) 以及進行資料傳輸的 SD(serial data ) 三條傳輸線, 並含GND共地線。
+- I²S的角色可以是一個主控端(Master)監控裝置,也可以同時是一個傳輸控制器(Tx), 接收器(Rx)  或是兩個從端角色的裝置。
+- I²S 介面傳輸資料具有兩個左右音訊通道的資料, 它靠 WS = 0 設定為零時; 定義為 通道 1 (左聲道資料讀取) ; WS = 1 ; 通道 2 (右聲道資料讀取)。
+
 
 I²C 特性
 ...................
