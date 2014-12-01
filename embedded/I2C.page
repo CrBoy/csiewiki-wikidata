@@ -20,8 +20,9 @@ I²C與I²S的差異
 ...................
 I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料的串列通訊協議,但就功能面的支援還是有差異, I²C提供多個主控端串接多個從屬裝置其同步與資料透過雙線式雙向同步傳遞,其傳輸速率分為有100khz,400khz and 3.5mhz 由於這些時脈都是處理較普遍的裝置, ,  I²S提供三線式主控端單向多從屬裝置, 其傳輸速率分為有？與周2.5MHz.
 
-- I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源 : 
+- I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源, 主要是支援MPGE2,4等; 而44.1kKHz 取樣頻率則是支援MP3格式 : 
       24bits x 48000Hz x 2channel = 2304000bits/Sec = 2.304Mbps
+
 - STM32F429 Discovery I2S and SPI 的腳位定義 (FPQ 144)
 pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 
