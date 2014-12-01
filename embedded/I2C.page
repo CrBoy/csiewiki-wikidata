@@ -5,8 +5,11 @@ categories: I2C, Peripherals, STM32F4, STM32F429
 
 I²C 簡介
 =====================================
-I²C（Inter-Integrated Circuit）是內部整合電路的稱呼，是一種串列通訊匯流排，由Philips公司在1980年代為了讓主機板、手機及嵌入式系統用以連接低速週邊裝置而發展，主要應用在board-to-board，它的設計並不能應用到長距離裝置的通訊，由於協定中從樸裝置位址只有7個位元，因此一組I²C的最多裝置位址定義至127個。
-I²C只使用兩條雙向開放汲極（Open Drain）(master and slave只能把電位拉到LOW或是讓他OPEN)（串列資料（SDA）及串列時脈（SCL））並利用電阻將電位上拉。I²C允許相當大的工作電壓範圍，但典型的電壓準位為+3.3V或+5v。
+I²C（Inter-Integrated Circuit）是內部整合電路的稱呼，是一種串列通訊匯流排，由Philips公司在1980年代為了讓主機板、手機及嵌入式系統用以連接低速周邊裝置而發展，主要應用在board-to-board，它的設計並不能應用到長距離裝置的通訊。不過，I2C bus 可以被應用在各種控制架構上，如系統管理匯流排(System Management Bus, SMBus)、電源管理匯流排(Power Management Bus, PMBus)、智慧平台管理介面(Intelligent Platform Management Interface, IPMI)、顯示數據通道(Display Data Channel, DDC)、先進電信運算架構(Advanced Telecom Computing Architecture, ATCA)。
+ 
+I²C的參考設計使用一個7位元長度的位址空間但保留了16個位址，所以在一組匯流排最多可和112個節點通訊。常見的I²C匯流排依傳輸速率的不同而有不同的模式：標準模式（100 Kbit/s）、低速模式（10 Kbit/s），但時脈頻率可被允許下降至零，這代表可以暫停通訊。而新一代的I²C匯流排可以和更多的節點（支援10位元長度的位址空間）以更快的速率通訊：快速模式（400 Kbit/s）、高速模式（3.4 Mbit/s）。
+ 
+I²C只使用兩條雙向開放汲極（Open Drain）(master 跟 slave只能把電位拉低或是讓他OPEN)（串列資料（SDA）及串列時脈（SCL））並利用電阻將電位上拉。I²C允許相當大的工作電壓範圍， 但典型的電壓準位為+3.3V或+5v。
 
 I²C bus
 ...................
@@ -471,5 +474,5 @@ Reference
 - `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 - `wikipedia <http://zh.wikipedia.org/wiki/I%C2%B2C>`_
 - `http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf <_http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf>`_
-    
+- `I2C-bus specification and user manual <http://www.nxp.com/documents/user_manual/UM10204.pdf>`_
     
