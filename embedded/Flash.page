@@ -98,7 +98,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可透過ACCEL加速code execution。
 - ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
 
-.. image:: /ST_ARTAccelerator_big.jpg
+.. image:: /stm32-f4-art-accelerator-block-diagram.jpg
 
 
 **(例)多重bus的pararrel處理:**
@@ -143,8 +143,8 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - OTP (One-Time Programmable) : 一次性寫入的空間，共528bytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
 - Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16bytes.
 
-.. image:: /flash module organization.JPG
-   DM00031020-referenceManual P.75
+.. image:: /flash module organization.png
+   DM00031020-referenceManual P.77
 
 STM32F407中的Flash有以下特性：
 
