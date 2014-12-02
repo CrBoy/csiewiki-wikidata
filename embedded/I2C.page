@@ -498,7 +498,7 @@ Application
 SMBus
 ...................
 SMBus
-<<<<<<< edited
+
 
 .. image:: /embedded/SMBus1.jpg
 
@@ -508,13 +508,15 @@ Low Operating Frequency and Timeout:
 
 .. image:: /embedded/SMBus2.jpg
 
-=======
+
 .. image:: /embedded/SMBus1.jpg
+
 I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
 
 Low Operating Frequency and Timeout:
+
 .. image:: /embedded/SMBus2.jpg
->>>>>>> 7af8bc439ae4770a3a1de6f4ef22a99760774dbd
+
 .. image:: /embedded/SMBus3.jpg
 
 以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可至100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。
@@ -522,19 +524,13 @@ Low Operating Frequency and Timeout:
 Clock low extending
 SMBus提供clock同步機制,允許不同速度的設備共同在bus上,設備可以週期性地延長每個clock cycle,但必須維持
  fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以維護SMBus的頻寬
-<<<<<<< edited
 
-=======
->>>>>>> 7af8bc439ae4770a3a1de6f4ef22a99760774dbd
 .. image:: /embedded/SMBus4.jpg 
 
 
 
 Different Logic levels
-<<<<<<< edited
 
-=======
->>>>>>> 7af8bc439ae4770a3a1de6f4ef22a99760774dbd
 .. image:: /embedded/SMBus6.jpg
 
 SMbus在能耗上優於I2C
@@ -548,13 +544,13 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 低用電特性也反應在漏電流（Leakage Current）的要求上，I2C最大的漏電流為10uA，SMBus為5uA。
 
 Different address type:
-<<<<<<< edited
+
 
 .. image:: /embedded/SMBus7.jpg
 
-=======
+
 .. image:: /embedded/SMBus7.jpg
->>>>>>> 7af8bc439ae4770a3a1de6f4ef22a99760774dbd
+
 •Reserved addresses
 SMBus, Access bus and I2C reserve several addresses for specific bus functions as defined in Table 4. 
 Table 4.為保留的Slave address,在設備選擇Slave address要避免使用這些address
@@ -564,10 +560,7 @@ Table 4.為保留的Slave address,在設備選擇Slave address要避免使用這
 
 •Prototype Addresses
 Prototype Addresses保留用於設備和應用程式原型試驗，他們永遠不能分配給任何設備
-<<<<<<< edited
 
-=======
->>>>>>> 7af8bc439ae4770a3a1de6f4ef22a99760774dbd
 .. image:: /embedded/SMBus8.jpg
 
 •Miscellaneous device addresses
