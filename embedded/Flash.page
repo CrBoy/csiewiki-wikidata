@@ -113,7 +113,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 2.2 Flash interface in system architecture
 ---------------------------------------------
 
-.. image:: /Flash_system_architecture.PNG
+![alt text](/Flash_system_architecture.png)
    DM00031020-referenceManual P.62
 圖中一些縮寫的解釋如下：
 
