@@ -493,6 +493,80 @@ master:
 slave: 
 - `http://youtu.be/nAkrzcuHWQU  <http://youtu.be/nAkrzcuHWQU>`_
 
+Application
+=====================================
+SMBus
+...................
+SMBus
+.. image::/embedded/SMBus1.jpg
+I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
+
+Low Operating Frequency and Timeout:
+.. image::/embedded/SMBus2.jpg
+.. image::/embedded/SMBus3.jpg
+
+以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可至100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。
+
+Clock low extending
+SMBus提供clock同步機制,允許不同速度的設備共同在bus上,設備可以週期性地延長每個clock cycle,但必須維持
+ fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以維護SMBus的頻寬
+.. image::/embedded/SMBus4.jpg 
+
+
+
+Different Logic levels
+.. image::/embedded/SMBus6.jpg
+
+SMbus在能耗上優於I2C
+I2C的Hi/Lo邏輯準位有兩種認定法：
+相對認定:相對認定是依據Vdd的電壓來決定，Hi為0.7 Vdd，Lo為0.3 Vdd
+絕對認定:與TTL準位認定相同，直接指定Hi/Li電壓，Hi為3.0V，Lo為1.5V
+
+SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
+電流部分，由於SMBus一起頭就是運用在筆記型電腦內，所以低用電的表現優於I2C，只需100uA就能維持工作，I2C卻要到3mA
+
+低用電特性也反應在漏電流（Leakage Current）的要求上，I2C最大的漏電流為10uA，SMBus為5uA。
+
+Different address type:
+.. image::/embedded/SMBus7.jpg
+•Reserved addresses
+SMBus, Access bus and I2C reserve several addresses for specific bus functions as defined in Table 4. 
+Table 4.為保留的Slave address,在設備選擇Slave address要避免使用這些address
+
+•Purpose-assigned addresses
+這些地址被SMBus分配到特定類型的設備。每個類型設備，可以獲取一個指定的地址，這些地址都必須有一個與之相關SMBus規範(與設備製造商有關)。
+
+•Prototype Addresses
+Prototype Addresses保留用於設備和應用程式原型試驗，他們永遠不能分配給任何設備
+.. image::/embedded/SMBus8.jpg
+
+•Miscellaneous device addresses
+製造商可能生產製作和SMBus兼容的設備，他們並不需要完整的SMBus規範。
+ 
+•Dynamically assigned addresses 
+SMbus(2.0版本)可透過動態分配給每個Slave一個唯一的adress來解決地址衝突，細節如下
+
+ARP(Address Resolution Protocol)地址解析協議有以下特性:
+1.Address assignment uses the standard SMBus physical layer arbitration mechanism
+使用標準的SMbus物理層分配機制來分配地址
+
+2.Assigned addresses remain constant while device power is applied; address retention
+through device power loss is also allowed
+在設備通電時,分配的地址保持不變;透過設備允許的功耗保留地址
+
+3.No additional SMBus packet overhead is incurred after address assignment. (i.e.
+subsequent accesses to assigned slave addresses have the same overhead as
+accesses to fixed address devices.)
+地址分配後,不需額外的SMBus封包消耗,
+
+4.Any SMBus master can enumerate the bus
+任何˙SMbus Master可以列舉bus
+(有關更詳細動態分配部分可參考http://smbus.org/specs/smbus20.pdf  5.6章的部分)
+
+Different Bus protocols:
+在I2C中，主控端要與受控端通訊前，會在匯流排上廣播受控端的位址資訊，每個受控端都會接收到位址資訊，但只有與該位址資訊相切合的受控端會在位址資訊發佈完後發出「已妥」的回應（Acknowledge；ACK），讓主控端知道對應的受控端確實已經備妥，可以進行通訊。但是，I2C並沒有強制規定受控端非要作出回應不可，也可以默不作聲，即便默不作聲，主控端還是會接續工作，開始進行資料傳遞及下達讀／寫指令，如此的機制在一般運用中還是可行，但若是在一些即時（Real Time）性的應用上，任何的動作與機制都有一定的時限要求，這種可有可無式的回應法就會產生問題，可能會導致受控端無法接收資訊。　
+
+相同的情形，在SMBus上是不允許受控端在接收位址資訊後卻不發出回應，每次都要回應，為何要強制回應？其實與SMBus的應用息息相關，SMBus上所連接的受控裝置有時是動態加入、動態移除的，例如換裝一顆新電池，或筆記型電腦接上船塢埠等，如果接入的裝置已經改變卻不回應，則主控端的程式所掌握的並非是整體系統的最新組態，就會造成錯誤動作。
 
 Reference
 =====================================
