@@ -137,21 +137,20 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 2.3 Flash模組的組成
 -------------------------------------------------
 
-- A main memory block divided into sectors.
-- Main memory : 4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共1024Kbytes(1Mbytes).
+- Main memory : 由兩個bank組成,每個bank各有4個16Kbytes Sector、1個64Kbytes Sector及7個128Kbytes Sector，一共2048Kbytes(2Mbytes).
 - System memory : bootloader code 放置的地方，30Kbytes.
 - OTP (One-Time Programmable) : 一次性寫入的空間，共528bytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
-- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，共16bytes.
+- Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，每個bank各一個，共32(16+16)bytes.
 
 .. image:: /flash module organization.png
    DM00031020-referenceManual P.77
 
 STM32F407中的Flash有以下特性：
 
-- 容量為1Mbyte
+- 容量2Mbytes，雙bank架構，支援read-while-write(RWW)
 - 單次讀取data為128bits
 - 單次寫入可以byte, half-word, word以及double word為單位
-- 抹除可以sector為單位或是mass(全部)操作
+- 抹除可以sector為單位或是bank以及mass(全部)操作
 
 
 
