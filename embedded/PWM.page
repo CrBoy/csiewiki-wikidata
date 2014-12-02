@@ -148,7 +148,7 @@ Registers
 
 - TIMx_PSC: Prescaler Register   (software R/W), 除頻數
 
-- TIMx_ARR: Auto-Reload Register (software R/W), 存放計數起始(下數)或最大(上數)值
+- TIMx_ARR: 16-bit Auto-Reload Register (software R/W), 存放計數起始值(下數)或最大值(上數)。如果value = null，則counter會被block住。
 
 - UEV: 當計數器overflow or underflow, 將會產生update event(UEV), 此時會把 Auto-Reload Register (software write)內容放入 Auto-Reload shadow register (hardware write)
 
