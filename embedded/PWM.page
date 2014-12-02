@@ -154,9 +154,9 @@ Registers
 
   - auto-reload preload enable bit(ARPE) in the TIMx_CR1 register之值設定是否直接放入shadow register, 
 
-    - ARPE = 0 直接把值轉入shadow register, 
+    - ARPE = 0 ,TIMx_ARR is not buffered (直接把值轉入shadow register), 
 
-    - ARPE = 1 UEV產生時才將值轉入shadow register
+    - ARPE = 1 ,TIMx_ARR is buffered (UEV產生時才將值轉入shadow register)
 
 Prescaler Description
 -----------------------
