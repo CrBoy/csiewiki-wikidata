@@ -499,8 +499,9 @@ PWM control
 
 Demo video
 ==========
-1. `輪流點亮LED <http://youtu.be/ygELIXJFHM8>`_
-2. `透過PWM使MOTOR達到快慢快慢變化 <http://youtu.be/bFRWfXI_k5Q>`_
+1. `伺服馬達 0~90度 <https://www.youtube.com/watch?v=VqC9MU66_8A>`_
+2. `伺服馬達 0~180度 <https://www.youtube.com/watch?v=wWvxnqRv5_w>`_
+3. `PWM呼吸燈 <https://www.youtube.com/watch?v=cdTIS62fxU8>`_
 
 補充
 =============
