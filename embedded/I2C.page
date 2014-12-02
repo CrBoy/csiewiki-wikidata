@@ -461,6 +461,18 @@ start bit -> send address and receiver bit -> ack -> data send by slave
 .. image:: /embedded/scope_14.jpg
 要注意探棒衰減...
 
+
+以下是邏輯分析儀的結果
+
+.. image:: /embedded/touch1.jpg
+IOE_ReadID() 讀0x00、0x01暫存器的值
+
+.. image:: /embedded/touch2.jpg
+(待補)
+
+.. image:: /embedded/touch3.jpg
+(待補)
+
 實驗二: 兩塊(以上)板子的數據傳輸
 ...................
 
@@ -480,12 +492,30 @@ master
 
 .. code-block:: c
 
- git clone https://github.com/colin8930/slave_i2c
- cd slave_i2c
+ git clone https://github.com/colin8930/master_i2c
+ cd master_i2c
  make
  make flash
 
 .. image:: /embedded/IMG_1571.JPG
+
+.. image:: /embedded/i2c6.jpg
+start bit
+
+.. image:: /embedded/i2c1.jpg
+send address
+
+.. image:: /embedded/i2c2.jpg
+0x30
+
+.. image:: /embedded/i2c3.jpg
+start bit
+
+.. image:: /embedded/i2c4.jpg
+send address
+
+.. image:: /embedded/i2c5.jpg
+0x31
 
 master: 
 - `http://youtu.be/Y0udSje3PDc  <http://youtu.be/Y0udSje3PDc>`_
