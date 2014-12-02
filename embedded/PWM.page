@@ -185,14 +185,17 @@ Upcounting mode
 - 由0數至TIMx_ARR register之值, 然後再回到0並產生overflow event(update event), 此時auto-reload shadow register將會更新為TIMx_ARR之值.
    
   - 可藉由設定UDIS bit = 1來關閉UEV, 可用於避免正在更改preload register內容時, 剛好發生UEV而將舊的值轉移至shadow register中
+########
 
 - Example: TIMx_ARR = 0x36, prescaler buffer  = 1
 
 .. image:: /Timer_upcounting.png
+########
 
 - Example: TIMx_ARR = 0x36, ARPE = 0
 
 .. image:: /Timer_upcount_ARPE0.PNG
+########
 
 - Example: TIMx_ARR = 0x36, ARPE = 1
 
