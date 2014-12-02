@@ -88,8 +88,8 @@ categories: STM32F4
 Bus Matrix:(利用round-robin演算法來仲裁)
 上方為master，右方為slave，bus matrix提供master可concurrent並有效率進行存取slave。
 
-.. image:: /bus_matrix.JPG
-   DM00031020-referenceManual P.60
+.. image:: /bus_matrix.PNG
+   DM00031020-referenceManual P.62
 
 - Internal SRAM總容量 = 192KB = 64KB CCM data RAM + SRAM 112KB + SRAM 16KB。
 - SRAM 112KB: 連接至I-bus，加快程式的速度；連接至D-bus，加快存取data的速度。
