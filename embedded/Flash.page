@@ -113,8 +113,8 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 2.2 Flash interface in system architecture
 ---------------------------------------------
 
-.. image:: /Flash_system_architecture.JPG
-   DM00031020-referenceManual P.73
+.. image:: /Flash_system_architecture.PNG
+   DM00031020-referenceManual P.62
 圖中一些縮寫的解釋如下：
 
 - I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
