@@ -576,16 +576,6 @@ Setup Time
 
 .. image:: /DFF_setup_time.PNG
 
-範例程式
-=============
-
-1. `輪流點亮LED <https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output>`_
-
-2. `藉由button改變duty cycle <https://gitcafe.com/embedded2012/P-coolod/blob/master/Lab-6/discoveryF4/GPIO_test/main.c>`_
-
-  此程式碼利用PB4 5作Output pin持續輸出高態電壓,PA2 3作Input Pin接收來在output pin的電壓輸入,並設定負緣觸發中斷,中斷觸發以改變duty cycle佔空比,電壓高低態變化則利用外接button,當按下button則電壓 高->低 ,PA2 3接收到變化便會觸發中斷,透過改變Timer來做duty cycle佔空比的改變,以達到LED亮暗改變.(以下圖說明)
-
-.. image:: /embedded/PWM-GPIO_test_Explain_figure.png
 
 Reference
 =============
