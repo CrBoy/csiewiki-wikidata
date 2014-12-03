@@ -19,6 +19,24 @@ I²C bus
 
 藉由Master發送訊號來控制與Slave之間的通訊
 
+I²C Speed
+...................
+一開始的I2C bus 操作的速度被限制在100kbit/s，不過隨著時代的演進，新增了一些模式，所以現在的規範分成五種操作速度:
+    雙向:
+–   標準模式 (Standard-mode), 速率可高達 100 kbit/s
+–   快速模式 (Fast-mode), 速率可高達 400 kbit/s
+–   快速模式PLUS (Fast-mode Plus), 速率可高達 1 Mbit/s
+–   高速模式 (High-speed mode), 速率可高達 3.4 Mbit/s.
+    單向:
+–   超快速模式(Ultra Fast-mode), 速率可高達 5 Mbit/s
+
+快速模式的設備可以在400kbit/s 下做接收和傳送。並且向下相容，可以和標準模式的設備在0~100kbit/s 的I2C bus 通訊。快速模式與標準模式的比較如下:
+- 最大速率增加到400kbit/s
+- 調整 序列資料SDA 和 序列時脈SCL的時序
+- 快速模式設備的輸入有 spike suppression的功能，SDA和SCL的輸入有Schmitt trigger
+- 快速模式設備的輸出Buffer 對SDA和SCL信號的下降緣有斜率控制功能
+- 如果快速模式設備的電源電壓被關閉，SDA和SCL的I/O pin 必須浮接，才不會阻塞BUS
+
 I²C與I²S的差異
 ...................
 I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料的串列通訊協議,但就功能面的支援還是有差異, I²C提供多個主控端串接多個從屬裝置其同步與資料透過雙線式雙向同步傳遞,其傳輸速率分為有100khz,400khz and 3.5mhz 由於這些時脈都是處理較普遍的裝置,I²S提供三線式主控端單向多從屬裝置, 其傳輸速率分為有？與周2.5MHz.
