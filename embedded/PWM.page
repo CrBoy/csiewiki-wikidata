@@ -404,7 +404,7 @@ RCC_Configuration
 
 .. code-block:: prettyprint linenums
 
-    RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOD , ENABLE );//Enalbe AHB for GPIOD
+    RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOB , ENABLE );//Enalbe AHB for GPIOB
     RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4, ENABLE );//Enable APB for TIM4
 
 GPIO_Configuration
@@ -415,19 +415,14 @@ GPIO_Configuration
     GPIO_InitTypeDef GPIO_InitStructure;//Create GPIO_InitStructure 
     GPIO_StructInit(&GPIO_InitStructure); // Reset GPIO_structure
  
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4); // set GPIOD_Pin12 to AF_TIM4
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4); // set GPIOD_Pin13 to AF_TIM4
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4); // set GPIOD_Pin14 to AF_TIM4
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4); // set GPIOD_Pin15 to AF_TIM4
-      
-
-    // Setup Blue & Green LED on STM32-Discovery Board to use PWM.
-    GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15; //PD12->LED3 PD13->LED4 PD14->LED5 PD15->LED6
+    GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4); // set GPIOD_Pin12 to AF_TIM4
+    
+    GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_6
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;            // Alt Function - Push Pull
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_Init( GPIOD, &GPIO_InitStructure );  
+    GPIO_Init( GPIOB, &GPIO_InitStructure );  
 
 TIM_Configuration
 --------------------
@@ -441,7 +436,7 @@ TIM_Configuration
     // Let period equal 1600. Therefore, timer runs from zero to 1600. 
     TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );//reset TIM_TimeBaseStructInit
     TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   
-    TIM_TimeBaseInitStruct.TIM_Prescaler = 500 - 1; 
+    TIM_TimeBaseInitStruct.TIM_Prescaler = 1000 - 1; 
     TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;    
     TIM_TimeBaseInit( TIM4, &TIM_TimeBaseInitStruct );
     
@@ -455,48 +450,52 @@ TIM_Configuration
     TIM_OCInitStruct.TIM_Pulse = 1680; //(0=Always Off, >1680 =Always On)
  
     TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel1
-    TIM_OC2Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel2
-    TIM_OC3Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel3
-    TIM_OC4Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel4
+    
  
     TIM_Cmd( TIM4, ENABLE ); //Enables  TIM4 peripheral
 
 -----------------------------------------------------------
 
-PWM control
+demo1 
 --------------------
 
 .. code-block:: prettyprint linenums
 
-  while(1)  // Do not exit
-  {
-    if(brightness + n <= 0)
-        who_run = (who_run + 1) % 4; 
-
-    if (((brightness + n) >= 3000) || ((brightness + n) <= 0))
-      n = -n; // if  brightness maximum/maximum change direction   
+  RCC_Configuration();
+  TIM_Configuration();
+  GPIO_Configuration();
+	
+  int n=1;
+  int brightness=0;
+	
+  while(1)
+  {	
+    if (((brightness + n) >= 1680) || ((brightness + n) <= 0))
+    n = -n; // if  brightness maximum/maximum change direction
+  
     brightness += n;
+    TIM4->CCR1 = brightness; // set brightness
     
-    //Light LEDs in turn
-     switch(who_run){
-         case 0:
-             TIM4->CCR1 = brightness - 1; // set brightness
-             break;
-         case 1:
-             TIM4->CCR2 = brightness - 1; // set brightness
-             break;
-         case 2:
-             TIM4->CCR3 = brightness - 1; // set brightness
-             break;
-         case 3:
-             TIM4->CCR4 = brightness - 1; // set brightness
-             break;
-     }
-    for(i=0;i<10000;i++);  // delay
+    int i;
+    for(i=0;i<200000;i++);  // delay
   }
- 
-  return(0); // System will implode
-  }  
+
+-----------------------------------------------------------
+
+demo2 
+--------------------
+
+.. code-block:: prettyprint linenums
+
+  TIM4->CCR1=pulse; //ang0
+	
+for(i=0;i<30000000;i++);  // delay
+	
+//TIM4->CCR1=pulse+84; //ang90
+
+TIM4->CCR1=pulse+168; //ang180
+	
+for(i=0;i<30000000;i++);  // delay
 
 -----------------------------------------------------------
 
