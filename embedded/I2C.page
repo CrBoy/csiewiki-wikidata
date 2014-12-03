@@ -454,7 +454,7 @@ SCL: PA8
 
 SDA: PC9
 
-slave address: 0x82 (0x01000010)
+slave address: 0x82 (0x10000010)
 
 .. image:: /embedded/i2c_picture.jpg
 
