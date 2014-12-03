@@ -51,7 +51,7 @@ USART主要特性
 
    - 在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
 
-   - LIN(local interconnect network)，車載網路的一種，用於連接車內電子設備(電動車窗、座椅控制等簡單的設備)。原先已有為了車載網路而開發的CAN協定(Controller area network)，但將其拿來控制低階設備，不符經濟效益(太貴)，所以在90年代五家車商(BMW、Benz、Volvo、VW & Audi)聯合開發了此協定。LIN可用單一master連接16個slave，傳輸速率最高為19200 baud。好處是能夠降低成本、不用授權費、易於使用、也易於開發衍伸設備。
+   - LIN(local interconnect network)，車載網路的一種，用於連接車內電子設備(電動車窗、座椅控制等簡單的設備)。原先已有為了車載網路而開發的CAN協定(Controller area network)，但將其拿來控制低階設備，不符經濟效益(太貴)，所以在1990年代五家車商(BMW、Benz、Volvo、VW & Audi)聯合開發了此協定。LIN可用單一master連接16個slave，傳輸速率最高為19200 baud。好處是能夠降低成本、不用授權費、易於使用、也易於開發衍生設備。
 
 - 同步傳輸模式下，提供tx的CLK信號
 
