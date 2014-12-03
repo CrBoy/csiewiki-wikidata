@@ -37,14 +37,14 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 
 
 I²C block diagram(on STM32F42x)
-......................................
+=====================================
 
 
 .. image:: /embedded/i2c_block_diagram.jpg
 
 
 I²C 特性
-...................
+=====================================
 
 - I²C 串列傳輸包括四個部分：起始信號、設備位址發送、數據傳送和停止信號。
 
@@ -86,13 +86,21 @@ I²C 特性
 
  - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
 
+
+I²C functional description
+=====================================
+
 I²C interrupt and Event
 ......................................
 
 
+2 Interrupt vectors
+ - successful address/ data communication  (ITEVFEN ITBUFEN)
+ - error condition (ITERREN)
     .. image:: /embedded/i2c_interrupt.png
 
-  - status register
+status register
+------------------------------------
 
     .. image:: /embedded/i2c_status_register(1).png
 
@@ -131,7 +139,8 @@ I²C interrupt and Event
 
   (暫存器可參考 http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf)
 
-  - I2C bus “events” from flags
+I2C bus “events” from flags
+------------------------------------
 
   I2C Master Events
 
@@ -181,9 +190,7 @@ I²C interrupt and Event
 four I²C modes
 ...................
 
-(內容待補) (要怎麼把圖縮小= =?)
-
-以下都以7 bit adress mode 作範例
+以下以7 bit address mode 作範例
 
 
 Master transmitter
@@ -246,13 +253,13 @@ Slave receiver
 flow chart(two boards)
 ......................................
 
-master transmitter/slave receiver
+- master transmitter/slave receiver
 
-.. image:: /embedded/flow_chart_master_t_slave_r.jpg
+ .. image:: /embedded/flow_chart_master_t_slave_r.jpg
 
-master receiver/slave transmitter
+- master receiver/slave transmitter
 
-.. image:: /embedded/flow_chart_master_t_slave_r.jpg
+ .. image:: /embedded/flow_chart_master_t_slave_r.jpg
 
 I²C on STM32F429-Discovery
 =====================================
@@ -486,11 +493,30 @@ start bit -> send address and receiver bit -> ack -> data send by slave
 .. image:: /embedded/touch1.jpg
 IOE_ReadID() 讀0x00、0x01暫存器的值
 
+start bit -> 0x82 + W bit -> Send 0x00 -> start bit -> 0x82 + R bit ->Receive 0x08 ->
+
+start bit -> 0x82 + W bit -> Send 0x01 -> start bit -> 0x82 + R bit ->Receive 0x11
+
 .. image:: /embedded/touch2.jpg
-(待補)
+
+I2C_ReadDeviceRegister(IOE_REG_TP_CTRL);    //IOE_REG_TP_CTRL = 0x40. 如果panel有被觸碰，會回傳0x80
+
+start bit -> 0x82 + W bit -> Send 0x40 -> start bit -> 0x82 + R bit ->Receive 0x03 (not be touched)
+
+//in IOE_TP_Read_Z();
+
+I2C_ReadDeviceRegister(IOE_REG_TP_DATA_Z);  //IOE_REG_TP_DATA_Z = 0x51
+
+start bit -> 0x82 + W bit -> Send 0x51 -> start bit -> 0x82 + R bit ->Receive 0x00 0x00
+
 
 .. image:: /embedded/touch3.jpg
-(待補)
+
+I2C_WriteDeviceRegister(IOE_REG_FIFO_STA,0x01); //IOE_REG_FIFO_STA = 0x4B
+
+start bit -> 0x82 + W bit -> Send 0x4B 0x01 -> 
+
+start bit -> 0x82 + W bit -> Send 0x4B 0x00 -> ......
 
 實驗二: 兩塊(以上)板子的數據傳輸
 ...................
@@ -518,23 +544,29 @@ master
 
 .. image:: /embedded/IMG_1571.JPG
 
+- start bit
+
 .. image:: /embedded/i2c6.jpg
-start bit
+
+- send address
 
 .. image:: /embedded/i2c1.jpg
-send address
+
+- 0x30
 
 .. image:: /embedded/i2c2.jpg
-0x30
+
+- start bit
 
 .. image:: /embedded/i2c3.jpg
-start bit
+
+- send address
 
 .. image:: /embedded/i2c4.jpg
-send address
+
+- 0x31
 
 .. image:: /embedded/i2c5.jpg
-0x31
 
 master: 
 - `http://youtu.be/Y0udSje3PDc  <http://youtu.be/Y0udSje3PDc>`_
