@@ -19,7 +19,10 @@ I2C 使用兩條雙向 open-drain Line：
  - SDA : Serial Data Line, holds Data or address signal
  - SCL : Serial Clock Line, holds Clock signal
  - 導通時是低電位，不導通時float，所以利用電阻將電位拉高。常用電壓為 +5 V or +3.3 V。
- - IO必須是 open drain (or open collector in TTL)
+ - IO 必須是 open drain (or open collector in TTL)
+
+ - bus 為 wired-AND configuration
+ - SDA must be stable when SCL is high, excluding Start/Stop condition
 
 Definition of I2C-bus terminology
  - Transmitter : the device which sends data to the bus
@@ -28,8 +31,38 @@ Definition of I2C-bus terminology
  - Slave : the device addressed by a master
  - Multi-master : more than one master can attempt to control the bus at the same time without corrupting the message
  - Arbitration : procedure to ensure that, if more than one master simultaneously tries to control the bus, only one is allowed to do so and the    winning message is not corrupted
- - Synchronization : procedure to synchronize the clock signals of two or more devices
+ - Synchronization : procedure to synchronize the clock signals of two or more devices.
 
+Master & Slave mode :
+ - Master node — node that generates the clock and initiates communication with slaves
+ - Slave node — node that receives the clock and responds when addressed by the master
+ - Each device connected to the bus is software addressable by a unique address and simple master/slave relationships exist at all times; masters can operate as master-transmitters or as master-receivers.
+ - It is a true multi-master bus including collision detection and arbitration to prevent data corruption if two or more masters simultaneously initiate data transfer.
+ - Serial, 8-bit oriented, bidirectional data transfers can be made at up to 100 kbit/s in the Standard-mode, up to 400 kbit/s in the Fast-mode, up to 1 Mbit/s in Fast-mode Plus, or up to 3.4 Mbit/s in the High-speed mode.
+
+I²C data mode
+ - master transmit — master node is sending data to a slave
+ - master receive — master node is receiving data from a slave
+ - slave transmit — slave node is sending data to the master
+ - slave receive — slave node is receiving data from the master
+
+.. image:: /embbeded/i2c_data_transmit.png
+
+I²C data Transmit
+ - Data Transfer is initiated with a START bit (S) signaled by SDA being pulled low while SCL stays high.
+ - SDA sets the 1st data bit level while keeping SCL low (during blue bar time.)
+ - The data is sampled (received) when SCL rises (green) for the first bit (B1).
+ - This process repeats, SDA transitioning while SCL is low, and the data being read while SCL is high (B2, Bn).
+ - A STOP bit (P) is signaled when SDA is pulled high while SCL is high.
+
+I²C arbitration
+...................
+.. image:: /embedded/i2c_arbitration.png
+
+I²C 的仲裁
+ - 避免同時間有 2個以上的master (不同資料) 控制 i2c
+ - 利用 bus wired-AND 的機制，若 Master 1 欲將 SDA logic 拉高，最後卻 SDA logic 為低，代表仲裁輸了，該 master 立即停止動作。
+ - 輸掉的 master 寧可先放棄 (Back Off) 等候，到看見停止狀態的出現才開始傳送。 
 
 I²C Speed
 ...................
@@ -71,6 +104,7 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 
 
 
+
 I²C block diagram(on STM32F42x)
 =====================================
 
@@ -104,10 +138,11 @@ I²C 特性
     (7bit mode)
 
    - 10bit mode: 總共用兩個byte來傳送 address資訊。第一個byte的前五個位元需為 "11110" 來表示要使用 10-bit addressing。
-    
+   
 
 
     .. image:: /embedded/i2c_10bit.gif
+    
 
     (10bit mode)
 
@@ -120,6 +155,10 @@ I²C 特性
   - 一次傳一個 byte，每個byte都跟著一個 ACK bit ，在 ACK bit 時 Master 會釋放bus，此時 Slave 端需把 SDA 拉 LOW，否則 Master 需要發出 STOP訊號 或是重新發送 START 訊號。
 
  - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
+
+
+
+
 
 
 I²C functional description
