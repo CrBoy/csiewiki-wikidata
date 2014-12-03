@@ -456,7 +456,7 @@ TIM_Configuration
 
 -----------------------------------------------------------
 
-demo1 
+demo1 PWM_LED
 --------------------
 
 .. code-block:: prettyprint linenums
@@ -482,20 +482,20 @@ demo1
 
 -----------------------------------------------------------
 
-demo2 
+demo2 PWM_SERVO
 --------------------
 
 .. code-block:: prettyprint linenums
 
   TIM4->CCR1=pulse; //ang0
 	
-for(i=0;i<30000000;i++);  // delay
+  for(i=0;i<30000000;i++);  // delay
 	
-//TIM4->CCR1=pulse+84; //ang90
+  //TIM4->CCR1=pulse+84; //ang90
 
-TIM4->CCR1=pulse+168; //ang180
+  TIM4->CCR1=pulse+168; //ang180
 	
-for(i=0;i<30000000;i++);  // delay
+  for(i=0;i<30000000;i++);  // delay
 
 -----------------------------------------------------------
 
