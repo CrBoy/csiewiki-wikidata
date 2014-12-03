@@ -13,11 +13,23 @@ I²C只使用兩條雙向開放汲極（Open Drain）(master 跟 slave只能把�
 
 I²C bus
 ...................
+.. image:: /embedded/i2c_structure.gif
 
+I2C 使用兩條雙向 open-drain Line：
+ - SDA : Serial Data Line, holds Data or address signal
+ - SCL : Serial Clock Line, holds Clock signal
+ - 導通時是低電位，不導通時float，所以利用電阻將電位拉高。常用電壓為 +5 V or +3.3 V。
+ - IO必須是 open drain (or open collector in TTL)
 
-.. image:: /embedded/i2c_bus.png
+Definition of I2C-bus terminology
+ - Transmitter : the device which sends data to the bus
+ - Receiver : the device which receives data from the bus
+ - Master : the device which initiates a transfer, generates clock signals and terminates a transfer
+ - Slave : the device addressed by a master
+ - Multi-master : more than one master can attempt to control the bus at the same time without corrupting the message
+ - Arbitration : procedure to ensure that, if more than one master simultaneously tries to control the bus, only one is allowed to do so and the    winning message is not corrupted
+ - Synchronization : procedure to synchronize the clock signals of two or more devices
 
-藉由Master發送訊號來控制與Slave之間的通訊
 
 I²C Speed
 ...................
