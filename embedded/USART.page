@@ -1,4 +1,4 @@
-USART簡介
+USART簡介與特性
 ...................
 串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NZR工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
 
@@ -6,28 +6,8 @@ USART簡介
 
 高速資料傳輸，則使用DMA去設定多重緩衝區來達到此目的。
 
-
-USART主要特性
-...................
-
-- 全雙工、非同步通訊
-
-   - 半雙工: 允許二台設備之間的雙向資料傳輸，但不能同時進行。因此同一時間只允許一設備傳送資料，若另一設備要傳送資料，需等原來傳送資料的設備傳送完成後再處理。(例:無線電)
-
-.. image:: /embedded/USART_HalfDuplex.JPG
-
-   - 全雙工: 允許二台設備間同時進行雙向資料傳輸。(例:手機)
-
-.. image:: /embedded/USART_FullDuplex.JPG
-
-   - 同步: 額外提供時脈訊號，使兩端機器在溝通時能夠藉此同步收發資料。好處是能夠一次傳很多資料，缺點是傳輸過程有點複雜、硬體成本高。
-   
-   - 非同步: 在傳送資料時插入額外資訊，表示資料起始、結束。好處是設定時間短、硬體成本低、機器時脈不同也能傳資料，缺點是單次傳輸的資料量較少。
-
-.. image:: /embedded/ASYNC.gif
-來源: `webopedia<http://www.webopedia.com/FIG/ASYNC.gif>`_
-
-- NRZ標準資料格式(Mark/Space)
+NRZ標準資料格式(Mark/Space)
+==========================
 
    NRZ(Nonreturn to Zero):不歸零編碼
 
@@ -39,112 +19,208 @@ USART主要特性
 
 圖片來源：`wikipedia<http://zh.wikipedia.org/wiki/%E4%B8%8D%E6%AD%B8%E9%9B%B6>`_
 
-- 可調整oversampling長度(8 or 16)，藉此在速度以及時脈之間做取捨。
+半雙工/全雙工
+===================
 
-- Factional baud rate generator systems。常見的tx/rx baud rate設定法，
+.. image:: /embedded/USART_HalfDuplex.JPG
 
-- 可程式化的資料長度 (8 or 8+1 bits)
+ - 半雙工:允許二台設備之間的雙向資料傳輸，但不能同時進行。因此同一時間只允許一設備傳送資料，若另一設備要傳送資料，需等原來傳送資料的設備傳送完成後再處理。例:無線電
 
-- 可程式化的停止位元 (1 or 2 bits)，在Smartcard模式支援0.5及1.5(建議)bits。
+.. image:: /embedded/USART_FullDuplex.JPG
 
-- LIN 主從同步資料傳輸，使用break傳輸/偵測達到此目的。
+ - 全雙工:允許二台設備間同時進行雙向資料傳輸。例:手機
 
-   - 在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
+CLOCK SKEW
+==========
 
-   - LIN(local interconnect network)，車載網路的一種，用於連接車內電子設備(電動車窗、座椅控制等簡單的設備)。原先已有為了車載網路而開發的CAN協定(Controller area network)，但將其拿來控制低階設備，不符經濟效益(太貴)，所以在1990年代五家車商(BMW、Benz、Volvo、VW & Audi)聯合開發了此協定。LIN可用單一master連接16個slave，傳輸速率最高為19200 baud。好處是能夠降低成本、不用授權費、易於使用、也易於開發衍生設備。
+Synchronous 同步傳輸
+=========================
 
-- 同步傳輸模式下，提供tx的CLK信號
+   - 同步: 額外提供時脈訊號，使兩端機器在溝通時能夠藉此同步收發資料。好處是能夠一次傳很多資料，缺點是傳輸過程有點複雜、硬體成本高。
 
-- IrDA SIR 編解碼器
+若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
+   - USART_CR2的LINEN
+   - USART_CR3的SCEN、HDSEL、IREN
 
-   標準模式可支援3/16 bits區間。
+USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
 
-- 可做為Smartcard模擬器
+在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
 
-   在ISO7816-3標準中，Smartcard介面可支援非同步傳輸。
+在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
 
-   可為Smardcard傳輸模式設定0.5/1.5 stop bits。
+此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
 
-- 支援單線半雙工通訊
+SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
 
-- 可用DMA(Direct Memory Access)設定多重緩衝區並進行資料交換。
+當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
 
-   在系統保留的SRAM，TX/RX的資料緩衝使用集中型DMA。
+建議同時設定TE和RE，以減少接收器的setup和hold time。
 
-- TX/RX都有各自獨立的Enable Bit(TE、RE)
-
-- 傳輸檢測標誌
-
- – 接收緩衝區滿(RXNE,  Data buffer not empty)
-
- – 傳送緩衝區空(TXE,  Data buffer empty)
-
- – 傳輸結束(TC,  Transmission complete)
-
-- 檢測控制
-
- – 發送檢測位(Transmits parity bit)
-
- – 對接收的資料進行檢測(Checks parity of received data byte)
-
-- 4個錯誤檢測標誌
-
- – 溢出錯誤(Overrun error)
-
- – 噪音檢測(Noise detection)
-
- – Frame錯誤(Frame error)
-
- – 奇偶檢測錯誤(Parity error)
-
-- 支援10種中斷
-
- – CTS改變(CTSIE, CTS interrupt enable)
-
- – LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
-
- – 傳送緩衝區空(TXEIE,  Data buffer empty interrupt enable)
-
- – 傳送完成(TCIE,  Transmission complete interrupt enable)
-
- – 接收緩衝區滿(RXNEIE,  Data buffer not empty interrupt enable)
-
- – 空閒線路檢測(IDLEIE,  Idle interrupt enable)
-
- – 溢出錯誤(Overrun error)
-
-   在一般情況下，本身不產生中斷，在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的ORE可得知溢出錯誤
-
- – Frame錯誤(Framing error)
-
-   在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的FE可得知Frame錯誤
-
-   在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的FE得知錯誤
-
- – 噪音錯誤(Noise error)
-
-   在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的NF得知錯誤
-
-   在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的NF得知錯誤
-
- – 檢驗錯誤(Parity error, PEIE)
-
-- 多處理器通訊，如果資料中的地址沒有配對成功，則進入mute mode。
-
-- 2種喚醒接收器的方式
-
- - Idle line
-   在接收端處於靜默(mute mode)時，可透過發送空閒符號(即所有位均為'1'的資料)，喚醒接收端。
-
- - Address bit
-   MSB為'1'的資料被認為是地址，否則為一般資料。
-
-   在這資料中，接收端會將最後4bits與USART_CR2暫存器中的ADD位比較，若相同則清除RWU位，後面的資料將能正常接收。
+另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
 
 
-USART功能介紹
+.. image:: /synchronous_transmission.png
+
+.. image:: /usart_syn.png
+
+
+Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_   
+
+Asynchronous 非同步傳輸
+======================
+
+   - 非同步: 在傳送資料時插入額外資訊，表示資料起始、結束。好處是設定時間短、硬體成本低、機器時脈不同也能傳資料，缺點是單次傳輸的資料量較少。
+
+.. image:: /embedded/ASYNC.gif
+
+來源: `webopedia<http://www.webopedia.com/FIG/ASYNC.gif>`_
+
+RS232 介面標準
+=============
+在RS-232標準中，資料是以串列（serial）方式傳輸，其最常用的編碼格式是非同步起停（asynchronous start-stop）格式，它使用一個start bit後面緊跟7或8個資料位元（bit），然後是可選的奇偶校驗位元，最後是一或兩個停止位元。所以傳送一個字元至少需要10位元，主要功能為提供DTE以及DCE的實體連接。
+
+RS-232電器特性
+-------------
+ - 最大電壓範圍為±25V;
+ - -3V至-25V定義為邏輯“1”(負邏輯)，稱為marking，功能意義為OFF；
+ - +3V至+25V定義為邏輯“0” (負邏輯)，稱為spacing，功能意義為ON；
+ - 接近零的電位是無效的(±3V之間)；
+ - 接收信號端的輸入阻抗必須在3KΩ~7KΩ之間，輸入電容小於2500pF；
+ - 接收信號端開路時，端點電壓必須小於2V；
+ - 發送信號的一端輸出阻抗必須大於300Ω。
+RS-232的機械特性
+---------------
+ - 連接器有25pin及9pin，現多用9pin，因較節省空間及成本。
+ - 最大傳輸線長度為50呎（15公尺），且資料傳輸速率在20Kbps以下。
+.. image:: /RS232_DB9pin2.png
+
+.. image:: /RS232_DB9Name2.png
+
+RS-232訊號傳輸
+-------------
+
+.. image:: /RS232_Signal.png
+
+ - 傳送單一封包時，一個package有1個startbit、8個data bits，1個stop bit。傳送完成後再傳送一個idle。
+
+.. image:: /signal_noidle.jpg
+
+ - 而傳送多個連續封包時，在資料傳輸完以前並不會傳送idle，代表還沒有結束傳輸，原因是因為UART傳輸速度太慢，放入idle則會浪費頻寬。
+
+例:由示波器的高低電位可以得出邏輯0010 0100 由於是從LSB開始傳，所以必須翻轉變成0010 0100換成16進位為0x24，就是符號 "$"
+ 
+RS-232阻礙
+---------
+ - 過大的電壓擺幅，造成耗電量的增加
+ - 單端訊號對於雜訊抑制的能力並不佳
+ - DB25的接頭過大
+
+單端信號傳輸與差分信號傳輸
+=====================
+以前，個人電腦所連接電纜的信號傳輸的主流方式是單端信號方式，其代表性特點是列表機連接使用並行接口(parallel port)，調制解調器(modem)使用RS-232C。
+
+單端信號傳輸
+----------
+.. image:: /embedded/single-ended.png
+
+ - 採用的是多個信號線共同使用信號返回的地線的方式。進行電壓檢測時，通過地線信號的電位，判斷邏輯。
+
+在這種方式下，列舉如下兩個提高傳輸速率的方法:
+
+ - 提高各信號線的傳輸速度
+ - 增加信號線個數
+
+如果增加信號線個數，連接器會更加大型化，電纜也變得更粗。如果單純地提高信號的速度，那麼不僅需要昂貴的IC，而且輻射的電磁干擾噪音也會變強。
+如果降低電壓振幅，由於信號的上升/下降時間會縮短，高速傳輸也變得相對容易。但是如果電壓降低，那麼由於外部噪音的影響，很容易發生錯誤，為了解決這些問題，差分傳輸技術開始被廣泛使用。
+
+差分信號傳輸
+--------
+
+.. image:: /embedded/Differential Signal.png
+
+ - 使用兩根信號線，這兩個信號的振幅相同，相位相反，電流在彼此間逆向流動，信號接收端比較這兩個電壓的差值來判斷發送端發送的是邏輯0還是邏輯1。在電路板上，差分走線必須是等長、等寬、緊密靠近、且在同一層面的兩根線，USB3.0就是高速差分傳輸的一種。
+
+至於來自於外部的噪音，即使在正負兩端的信號線外施加同樣的噪音，因差分傳輸而容易發現信號線間的電位差，所以噪音會被消除，不易引發錯誤。
+
+.. image:: /embedded/differential_noise.png
+
+ - 通過相互間逆向流過電流，抵消磁通，由此降低信號高次諧波所引發的電磁干擾噪音。
+
+但若電路板的面積非常吃緊，單端信號可以只有一根信號線，地線走地平面，而差分信號一定要走兩根等長、等寬、緊密靠近、且在同一層面的線。這常常發生在晶片的pin腳間距很小，以至於只能穿過一根走線的情況下。
+
+DTE and DCE
+============
+DTE
+---
+ - Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
+
+DCE
+---
+ - Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
+
+null modem Q2_a
+===============
+ - modem: modulator-demodulator，將數位訊號編碼為類比訊號、或將類比訊號解碼為數位訊號。類比訊號可為無線電、紅外線、電流等，常見的應用有wifi、手機、藍芽、有線電話、光纖網路等。
+ - 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或DCE-DCE相連，就要對訊號線作處理。
+
+.. image:: /embedded/USART_NullModemBriefview.jpg
+
+也有市售的接頭
+
+.. image:: /embedded/USART_NullModem.jpg
+
+TTL and CMOS 特性 Q2_b
+======================
+
+.. image:: /embedded/USART_TTL_CMOS_WAVE.jpg
+
+ - VDD：晶片工作電壓
+ - VCC：外部電路工作電壓
+ - C ＝ Q/V 
+ - I ＝ dQ/dt
+
+由上圖可知，TTL的rise time及fall time都比較短。雖然都是要把一個元件充電到能夠輸出邏輯1，但是rise & fall time長一點的話，能夠降低訊號噪音。rise & fall time如果很短，代表說要在短時間把電路充電到既定電壓，而TTL的特性就是充電很快，這代表短時間內通過的電流其實很大。在絕對零度以上時，電路中的原子都會震盪，而很多個電子在短時間內通過這些正在震盪的原子，會造成阻塞、碰撞，在這過程中就會產生不必要的能量損耗以及額外的雜訊。
+
+ - CMOS：耗能較少、延遲時間較TTL多（2.5-5倍，因rise & fall time較長）、抗噪能力好（5V電壓下，抗噪能力比TTL多出1V）、工作電壓低
+
+ - TTL：耗能多、延遲時間短（因rise & fall time短）、抗噪能力差（5V電壓下，抗噪能力為0.4V）、工作電壓相對高
+
+STM32 USART介紹與特性
 .................................
 
+ - 可調整oversampling長度(8 or 16)，藉此在速度以及時脈之間做取捨。
+
+ - Factional baud rate generator systems。常見的tx/rx baud rate設定法，
+
+ - 可程式化的資料長度 (8 or 8+1 bits)
+
+ - 可程式化的停止位元 (1 or 2 bits)，在Smartcard模式支援0.5及1.5(建議)bits。
+
+ - LIN 主從同步資料傳輸，使用break傳輸/偵測達到此目的。
+
+ - 同步傳輸模式下，提供tx的CLK信號
+
+ - IrDA SIR 編解碼器
+
+ - 可做為Smartcard模擬器
+   
+ - 支援單線半雙工通訊
+
+ - 可用DMA(Direct Memory Access)設定多重緩衝區並進行資料交換。
+  
+ - TX/RX都有各自獨立的Enable Bit(TE、RE)
+
+ - 4個傳輸檢測標誌
+
+ - 檢測控制
+
+ - 4個錯誤檢測標誌
+
+ - 支援10種中斷
+
+ - 多處理器通訊，如果資料中的地址沒有配對成功，則進入mute mode。
+
+ - 2種喚醒接收器的方式
 
 USART Block Diagram
 ======================================
@@ -180,8 +256,11 @@ Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/
 
 
 
-USART 特性描述
-======================================
+
+
+M位
+===
+
 資料長度根據USART_CR1暫存器中的M位選擇8或9位元
 
 .. image:: /usart_M_byte.jpg
@@ -207,16 +286,14 @@ USART 特性描述
 
 Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
-傳送器
-============================
+Tx傳送器
+=======
 
-傳送器依據USART_CR1的M位狀態來決定發送8或9位元的資料。
-當transmit enable bit(TE)被設定時，在transmit shift register的資料會經由TX腳位送出，
-同時，相對應的時鐘脈衝會由SCLK腳位輸出。
-
+ - 傳送器依據USART_CR1的M位狀態來決定發送8或9位元的資料。
+ - 當transmit enable bit(TE)被設定時，在transmit shift register的資料會經由TX腳位送出，同時，相對應的時鐘脈衝會由SCLK腳位輸出。
 
 資料的傳送
-------------------------------------
+----------
 
 在USART發送期間，TX首先傳送資料的最低有效位元(least significant bit)。在此模式中，USART_DR與內部匯流排和transmit shift register會之間包含一個緩衝器(TDR)。
 
@@ -238,13 +315,11 @@ TE被開啟時，會立即送出一個idle frame。
 
 **另外，由於資料搬移到transmit shift register中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
 
-
-
 Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 
 傳送器的設定
-------------------------------------
+----------
 
 .. image:: /usart_fig298.jpg
 
@@ -252,7 +327,6 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 
 .. image:: /usart_transmiter.png
 
-  
 設定流程如下:
    1. 設定USART_CR1的UE為1來啟動傳輸，如圖中的(a)
    2. 設定USART_CR1的M決定資料長度，如圖中的(b)
@@ -285,33 +359,26 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 .. image:: /embedded/USART_pic299.jpg
 
 
-
 傳送斷開符號
 ------------------------------------
-透過設定USART_CR1的SBK位，可以發送一個斷開符號，斷開符號的長度取決於M位。
+ - 透過設定USART_CR1的SBK位，可以發送一個斷開符號，斷開符號的長度取決於M位。
 
-如果SBK=1，則在目前的資料發送後，在TX線上再發送一個斷開符號。當斷開符號傳送完成後，會由硬體重設SBK至0。
+ - 如果SBK=1，則在目前的資料發送後，在TX線上再發送一個斷開符號。當斷開符號傳送完成後，會由硬體重設SBK至0。
 
-USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
-
+ - USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保能辨識下一個資料的起始位。
 
 
 傳送空閒符號
 ------------------------------------
-設置USART_CR1的TE，會使得USART在發送第一筆資料前，發送一個空閒符號，喚醒接收端。
-
-
-
-
+ - 設置USART_CR1的TE，會使得USART在發送第一筆資料前，發送一個空閒符號，喚醒接收端。
 
 
 接收器
 ====================================
-接收器依據USART_CR1 M位的狀態來決定接收8或9位元的資料。
+ - 接收器依據USART_CR1 M位的狀態來決定接收8或9位元的資料。
 
 
-
-起始位偵測
+起始位元偵測(oversampling)
 ------------------------------------
 
 .. image:: /usart_fig300.jpg
@@ -328,7 +395,6 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 如果在這兩次採樣過程中，有任何一次只收集到2個0(但另一次收集到3個0)，還是會認定已經偵測到start bit，但也會把NE設定為1，理由同上。
 
 
-
 **採樣的時間間隔**
 
 .. image:: /usart_sampling.png
@@ -337,10 +403,19 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 
 若偵測到開始位元，則開始接收資料，反之則等待104us，再採樣一次
 
+停止位元偵測(oversampling)
+-----------------------------------------------------
+
+Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 or 2，在smartcard模式則可選擇0.5 or 1.5。
+   1. 0.5 stop bit(用於smartcard模式的接收器): 不進行採樣，所以沒辦法偵測到framing錯誤，或是偵測出break frame。
+   2. 1 stop bit: 在第8, 9, 10個採樣點進行採樣
+   3. 1.5 stop bit(用於smartcard模式，包含接收器和傳送器): 1.5 stop bit的採樣是在第16, 17, 18個採樣點進行(在stop bit開始後1個baud clock之後才開始採樣)。而1.5 stop bit可以分成前0.5和後1 stop bit。在前0.5 stop bit甚麼事都不做，在後1 stop bit的中間(16, 17, 18)才開始採樣。在smartcard模式傳輸資料時，必須要確保每筆資料都有正確地送出去。所以接收器一定要把USART_CR1的RE設定為1，然後stop bit會被拿來偵測是否有parity error產生。如果發生了parity error，smartcard會在採樣時強制把資料訊號拉至低電位(此為NACK訊號，這種訊號會被另一端標記成framing error)。在1.5 stop bit結束時，FE和RXNE會同時被設定為1。其餘請參考smartcard章節。
+   4. 2 stop bits: 在第一個stop bit會對第8, 9, 10個採樣點進行採樣，如果在第一個stop bit就偵測出framing error，會直接去設立framing error旗標，然後第二個stop bit就不會拿來偵測framing error了。RXNE會在第一個stop bit結束採樣時被設立。
+
 
 資料的接收
 ------------------------------------
-在USART接收期間，RX從資料最低有效位元(least significant bit)開始接收，因此在此模式中，USART_DR和received shift register之間包含一個緩衝器(RDR)。
+ - 在USART接收期間，RX從資料最低有效位元(least significant bit)開始接收，因此在此模式中，USART_DR和received shift register之間包含一個緩衝器(RDR)。
 
 
 接收器的設定
@@ -366,18 +441,69 @@ USART會由硬體在最後一個斷開符號的結束處插入一個'1'，確保
 
 接收斷開符號
 ------------------------------------
-USART在接收斷開符號後，該符號處理流程等同framing error。
+ - USART在接收斷開符號後，該符號處理流程等同framing error。
 
 
 接收空閒符號
 ------------------------------------
-當空閒符號被偵測到時，該符號處理流程等同一般資料，但如果USART_CR1的IDLEIE被設置時，還會產生一個中斷
+ - 當空閒符號被偵測到時，該符號處理流程等同一般資料，但如果USART_CR1的IDLEIE被設置時，還會產生一個中斷
+
+接收器對時鐘誤差容忍度
+-------------------
+
+必須要使整個時脈系統的時鐘誤差處於USART接收器的容許範圍內，USART接收器才能夠正常運作。時脈系統的誤差來源有以下幾種: 
+   - DTRA: 傳送器的誤差(Deviation due to TRAnsmitter error)。這誤差也包含了傳送器本身的時脈誤差。
+   - DQUANT: 接收器的baud rate量化出錯(Devation due to baud rate QUANtization of the receiver)
+   - DREC: 接收器的時脈誤差(Deviation due to RECeiver's local oscillator)
+   - DTCL: 資料傳輸線的錯誤(Deviation due to Transmission Line)。通常起因於傳輸器，在傳輸資料時，從高電位轉至低電位、或從低電位轉至高電位，在電位轉換期間出現時間誤差。
+
+總體而言: DTRA + DQUANT + DREC + DTCL < USART接收器的容許上限
+
+USART接收器的對於時脈誤差的容許上限，取決於下列選項: 
+   - USART_CR1的M，可決定使用10/11資料位元。
+   - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
+   - 是否有使用fractional baud rate
+   - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
+
+10種中斷
+==========
+ – CTS改變(CTSIE, CTS interrupt enable)
+
+ – LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
+
+ – 傳送緩衝區空(TXEIE, Data buffer empty interrupt enable)
+
+ – 傳送完成(TCIE, Transmission complete interrupt enable)
+
+ – 接收緩衝區滿(RXNEIE, Data buffer not empty interrupt enable)
+
+ – 空閒線路檢測(IDLEIE, Idle interrupt enable)
+
+ – 溢出錯誤(Overrun error)
+
+ – Frame錯誤(Framing error)
+
+ – 噪音錯誤(Noise error)
+
+ – 檢驗錯誤(Parity error, PEIE)
+
+3個傳輸檢測標誌
+=============
+
+ – 接收緩衝區滿(RXNE,Data buffer not empty)
+
+ – 傳送緩衝區空(TXE,  Data buffer empty)
+
+ – 傳輸結束(TC,  Transmission complete)
 
 
-溢出錯誤
+4種錯誤檢測
+==========
+
+溢出錯誤(Overrun error)
 ------------------------------------
-在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，如圖中的(i)。在RXNE沒有被清除時，資料將無法從Received shift register轉入RDR。
-
+ - 在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，如圖中的(i)。在RXNE沒有被清除時，資料將無法從Received shift register轉入RDR。
+ - 在一般情況下，本身不產生中斷，在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的ORE可得知溢出錯誤
 
 當溢出錯誤產生時:
    1. USART_SR中的ORE將被設定為1，如圖中的(j)
@@ -391,12 +517,12 @@ USART在接收斷開符號後，該符號處理流程等同framing error。
    2. 如果RXNE=0，表示之前的資料已被讀走，RDR已無資料可被讀取。若正在讀取RDR中的上一筆資料，而讀取時又接收到新的資料(這筆新的資料會遺失)，就會發生這種情況。另一種情況是正在讀取USART_SR以及USART_DR的過程中，有新的資料被讀進來(但這筆資料會遺失)，這也會導致相同結果。
 
 
+噪音錯誤(Noise error)(select the proper oversampling method)
+-----------------------------------------------------------
 
-噪音錯誤(select the proper oversampling method)
--------------------------------------------------
-
-接收器具備不同oversampling方法供使用者選擇(但在同步模式不可選擇)，此方法可以區分有效資料以及噪音，並修復已接收到的資料。
-
+ - 接收器具備不同oversampling方法供使用者選擇(但在同步模式不可選擇)，此方法可以區分有效資料以及噪音，並修復已接收到的資料。
+ - 在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的NF得知錯誤
+ - 在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的NF得知錯誤
 
 設定USART_CR1中的OVER8，即可選擇16個或8個baud clock的採樣，見Fig. 250和Fig. 251:
    - OVER8 = 1: 使用8次採樣可以達到更高速的資料傳輸(最高速為fPCLK/8)，相對地接收器會沒辦法容許太多的時脈誤差。
@@ -420,10 +546,13 @@ USART在接收斷開符號後，該符號處理流程等同framing error。
 .. image:: /noisedetectionsampledata.png
 
 
-
-Frame錯誤
+Frame錯誤(Frame error)
 ------------------------------------
-起因於傳輸端/接收端沒有同步、或者傳輸線路上有大量的噪音，使得stop bit沒有在預期的時間內被識別出來。
+
+ - 起因於傳輸端/接收端沒有同步、或者傳輸線路上有大量的噪音，使得stop bit沒有在預期的時間內被識別出來。
+ - 在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的FE可得知Frame錯誤
+ - 在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的FE得知錯誤
+
 
 當Frame錯誤被檢測出時:
    1. FE位被硬體設定為1，如圖中的(l)
@@ -432,27 +561,48 @@ Frame錯誤
 
 依序讀取USART_SR和USART_DR暫存器可恢復FE至0
 
+奇偶檢測CONTROL(Parity error)
+----------------------------
+ - Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。
+ - 在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
+
+.. image:: /frame_formats.png
+
+parity依算方式的不同分成兩種方式，even parity和odd parity
+
+ - Even parity
+    - 如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
+
+    - E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
+
+ - Odd parity
+
+    - 如果一個frame內1的數量是奇數，則在 odd parity的情況下會把parity bit設為0。
+
+    - E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 odd parity(PS bit in USART_CR1 = 1)，所以 parity bit被設為1。
+
+ - 接收後會做 parity checking
+    – 對接收的資料進行檢測(Checks parity of received data byte)
+
+    - 如果 parity check 失敗了，USART_SR register的PE flag會被設立，然後如果USART_CR1 register的PEIE bit也有被設立的話，還會產生中斷。
+
+    - PE flag最後在軟體執行(a read from the status register followed by a read or write access to the USART_DR data register)時被清除。
 
 
-Configurable stop bits during reception(oversampling)
------------------------------------------------------
+ - 傳送前會做 parity generation
 
-Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 or 2，在smartcard模式則可選擇0.5 or 1.5。
-   1. 0.5 stop bit(用於smartcard模式的接收器): 不進行採樣，所以沒辦法偵測到framing錯誤，或是偵測出break frame。
-   2. 1 stop bit: 在第8, 9, 10個採樣點進行採樣
-   3. 1.5 stop bit(用於smartcard模式，包含接收器和傳送器): 1.5 stop bit的採樣是在第16, 17, 18個採樣點進行(在stop bit開始後1個baud clock之後才開始採樣)。而1.5 stop bit可以分成前0.5和後1 stop bit。在前0.5 stop bit甚麼事都不做，在後1 stop bit的中間(16, 17, 18)才開始採樣。在smartcard模式傳輸資料時，必須要確保每筆資料都有正確地送出去。所以接收器一定要把USART_CR1的RE設定為1，然後stop bit會被拿來偵測是否有parity error產生。如果發生了parity error，smartcard會在採樣時強制把資料訊號拉至低電位(此為NACK訊號，這種訊號會被另一端標記成framing error)。在1.5 stop bit結束時，FE和RXNE會同時被設定為1。其餘請參考smartcard章節。
-   4. 2 stop bits: 在第一個stop bit會對第8, 9, 10個採樣點進行採樣，如果在第一個stop bit就偵測出framing error，會直接去設立framing error旗標，然後第二個stop bit就不會拿來偵測framing error了。RXNE會在第一個stop bit結束採樣時被設立。
+    – 發送檢測位(Transmits parity bit)
 
+    - 如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
 
+       - MSB: Most Significant Bit，代表位數最大的那個bit
 
+       - LSB: Least Significant Bit，代表位數最小的那個bit
 
+鮑率的設定
+========
 
-
-Fractional baud rate generation的設定
-====================================
-接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
-
-
+ - 接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
 
 .. image:: /baud.png
 Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
@@ -483,30 +633,11 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
    - sysclk轉接HCLK都是168Mhz.
    - HCLK>>2轉給PCLK1 => 168Mhz>>2 = 42Mhz.
 
+多處理機通訊
+==========
 
-USART receiver tolerance to clock deviation
-............................................
-
-必須要使整個時脈系統的時鐘誤差處於USART接收器的容許範圍內，USART接收器才能夠正常運作。時脈系統的誤差來源有以下幾種: 
-   - DTRA: 傳送器的誤差(Deviation due to TRAnsmitter error)。這誤差也包含了傳送器本身的時脈誤差。
-   - DQUANT: 接收器的baud rate量化出錯(Devation due to baud rate QUANtization of the receiver)
-   - DREC: 接收器的時脈誤差(Deviation due to RECeiver's local oscillator)
-   - DTCL: 資料傳輸線的錯誤(Deviation due to Transmission Line)。通常起因於傳輸器，在傳輸資料時，從高電位轉至低電位、或從低電位轉至高電位，在電位轉換期間出現時間誤差。
-
-總體而言: DTRA + DQUANT + DREC + DTCL < USART接收器的容許上限
-
-USART接收器的對於時脈誤差的容許上限，取決於下列選項: 
-   - USART_CR1的M，可決定使用10/11資料位元。
-   - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
-   - 是否有使用fractional baud rate
-   - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
-
-
-
-Multiprocessor communication
-.............................
-
-除了一對一通訊之外，也可以將許多USART串成一個小型網路。在這些USART中，可以選出一個USART作為master，其餘的就做為slave。而master的TX會連到所有slave的RX，所有slave的TX則會連接到邏輯AND後，再連接至master的RX。
+ - 除了一對一通訊之外，也可以將許多USART串成一個小型網路(multiprocessor communications)。
+ - 在這些USART中，可以選出一個USART作為master，其餘的就做為slave。而master的TX會連到所有slave的RX，所有slave的TX則會連接到邏輯AND後，再連接至master的RX。
 
 在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
 
@@ -519,85 +650,45 @@ Multiprocessor communication
    - 若WAKE被設定為0，機器進入idle line偵測
    - 若WAKE被設定為1，機器進入address mark偵測
 
-
-
 Idle line detection(WAKE=0)
-============================
+---------------------------
 
-若RWU被設定為1，則USART進入mute模式。
+ - 在接收端處於靜默(mute mode)時，可透過發送空閒符號(即所有位均為'1'的資料)，喚醒接收端。
 
-如果在mute模式時偵測到Idle frame，則機器會醒過來並進入一般USART模式。此時RWU會被硬體清除(=0)，但是USART_SR的IDLE不會被設定為1。RWU也可以用軟體設定成0。
+ - 若RWU被設定為1，則USART進入mute模式。
+
+ - 如果在mute模式時偵測到Idle frame，則機器會醒過來並進入一般USART模式。此時RWU會被硬體清除(=0)，但是USART_SR的IDLE不會被設定為1。
+
+ - RWU也可以用軟體設定成0。
 
 .. image:: /embedded/USART_pic303.jpg
 
-
-
 Address mark detection(WAKE=1)
-===============================
+------------------------------
+ 
+ - 在此模式下，如果接收到的資料位元，其MSB是1，就會被當成位址，若MSB為0，則當成一般資料。在位址資料(1 byte)中，最後4個LSB是放接收者的位址，而接收到這筆資料的機器會拿自己的USART_CR2的ADD(放該機器的位址)與這4個LSB做比較，若相同則清除RWU位，後面的資料將能正常接收。
 
-在此模式下，如果接收到的資料位元，其MSB是1，就會被當成位址，若MSB為0，則當成一般資料。在位址資料(1 byte)中，最後4個LSB是放接收者的位址，而接收到這筆資料的機器會拿自己的USART_CR2的ADD(放該機器的位址)與這4個LSB做比較。
+ - 如果接收到的位址資料，比較之後與自己的位址不相符，該機器就會進入mute模式。此時RWU會被硬體設定為1，而RXNE不會被設定成1(即使有收到位址資料)、沒有interrupt產生、也沒有對DMA送出請求，因為機器已經進入mute模式。
 
-如果接收到的位址資料，比較之後與自己的位址不相符，該機器就會進入mute模式。此時RWU會被硬體設定為1，而RXNE不會被設定成1(即使有收到位址資料)、沒有interrupt產生、也沒有對DMA送出請求，因為機器已經進入mute模式。
+ - 如果接收到的位址資料與自己的位址相符，該機器會回到一般USART模式。此時RWU會被清除，其餘的資料也會按順序被接收進來，而RXNE也會因為RWU被清除的關係，被設定為1(因為收到位址資料，而且是與自己的位址相符)。
 
-如果接收到的位址資料與自己的位址相符，該機器會回到一般USART模式。此時RWU會被清除，其餘的資料也會按順序被接收進來，而RXNE也會因為RWU被清除的關係，被設定為1(因為收到位址資料，而且是與自己的位址相符)。
-
-在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
+ - 在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
 
 .. image:: /embedded/USART_pic304.jpg
 
-
-
-
-PARITY CONTROL
-...................
-Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
-
-.. image:: /frame_formats.png
-
-parity依算方式的不同分成兩種方式，even parity和odd parity
-
-Even parity
-============
-如果一個frame內1的數量是偶數，則在 even parity的情況下會把parity bit設為0。
-
-E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 even parity(PS bit in USART_CR1 = 0)，所以 parity bit被設為0。
-
-Odd parity
-============
-如果一個frame內1的數量是奇數，則在 odd parity的情況下會把parity bit設為0。
-
-E.g.: 假設 data=00110101; 因為有 4 bits被設為1，而且我們選擇的是 odd parity(PS bit in USART_CR1 = 1)，所以 parity bit被設為1。
-
-
-接收後會做 parity checking
-==========================
-如果 parity check 失敗了，USART_SR register的PE flag會被設立，然後如果USART_CR1 register的PEIE bit也有被設立的話，還會產生中斷。PE flag最後在軟體執行(a read from the status register followed by a read or write access to the USART_DR data register)時被清除。
-
-
-傳送前會做 parity generation
-============================
-如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
-
-小知識：
-
-MSB: Most Significant Bit，代表位數最大的那個bit
-
-LSB: Least Significant Bit，代表位數最小的那個bit
-
-
-
-Modes
-............................
-
+STM32 USART的MODE
+.................
 
 LIN(local interconnection network) mode
 =========================================
 
+ - LIN(local interconnect network)，車載網路的一種，用於連接車內電子設備(電動車窗、座椅控制等簡單的設備)。原先已有為了車載網路而開發的CAN協定(Controller area network)，但將其拿來控制低階設備，不符經濟效益(太貴)，所以在1990年代五家車商(BMW、Benz、Volvo、VW & Audi)聯合開發了此協定。LIN可用單一master連接16個slave，傳輸速率最高為19200 baud。好處是能夠降低成本、不用授權費、易於使用、也易於開發衍生設備。
+
+ - 在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
+  
 若要啟用此模式，須設定USART_CR2的LINEN為1，而下列設定必須要設定為0: 
    - USART_CR2的STOP[1:0](有兩個位元)以及CLKEN
    - USART_CR3的SCEN、HDSEL、IREN
-
-
 
 LIN傳送器
 ----------
@@ -606,60 +697,26 @@ LIN傳送器
    - USART_CR1的M要設定為8 bit資料長度
    - USART_CR3的LINEN要設為1。而USART_CR3的SBK要設定為13 bit。送出break之後要再送出一個1，才能讓接收器開始偵測start bit。
 
-
-
 LIN接收器
 ----------
 
-在USART接收器介面有特別設計一個break偵測電路，與一般資料的接收電路區隔開來。不管USART處於甚麼狀態(Idle或是正在接收資料frame)，都能夠偵測到break。
+ - 在USART接收器介面有特別設計一個break偵測電路，與一般資料的接收電路區隔開來。不管USART處於甚麼狀態(Idle或是正在接收資料frame)，都能夠偵測到break。
 
-當USART_CR1的RE設定為1時(接收器開啟)，接收器電路就會從RX查看是否有start bit進來，偵測break或是資料也是用這個方法。如果偵測到start bit，也用相同的採樣方式(針對第8, 9, 10採樣點做偵測)去偵測訊號是否有雜訊。如果第10個(USART_CR2的LBDL=0)或第11個(USART_CR2的LBDL=1)收到的bit為0，且隨後跟著一個分隔符號，USART_SR的LBD會被設立，此時如果LBDIE的設定為1，就會發出interrupt。在驗證一個break之前，會先確保有收到分隔符號(代表RX已經回到高電位狀態)。
+ - 當USART_CR1的RE設定為1時(接收器開啟)，接收器電路就會從RX查看是否有start bit進來，偵測break或是資料也是用這個方法。如果偵測到start bit，也用相同的採樣方式(針對第8, 9, 10採樣點做偵測)去偵測訊號是否有雜訊。如果第10個(USART_CR2的LBDL=0)或第11個(USART_CR2的LBDL=1)收到的bit為0，且隨後跟著一個分隔符號，USART_SR的LBD會被設立，此時如果LBDIE的設定為1，就會發出interrupt。在驗證一個break之前，會先確保有收到分隔符號(代表RX已經回到高電位狀態)。
 
-偵測break時，若在收到足量的0之前卻收到1，則偵測電路就會取消break偵測，並去偵測start bit。
+ - 偵測break時，若在收到足量的0之前卻收到1，則偵測電路就會取消break偵測，並去偵測start bit。
 
-如果LINEN設定為0，接收器會變成一般的USART接收器，也就是不去偵測break符號。
+ - 如果LINEN設定為0，接收器會變成一般的USART接收器，也就是不去偵測break符號。
 
-若開啟了LIN模式，當framing錯誤發生時(收stop bit時卻收到0，有可能是收到break了)，接收器會停止，直到break偵測迴路收到1(確認不是收到break)，或是收到break後也收到分隔符號(確認收到break)。
+ - 若開啟了LIN模式，當framing錯誤發生時(收stop bit時卻收到0，有可能是收到break了)，接收器會停止，直到break偵測迴路收到1(確認不是收到break)，或是收到break後也收到分隔符號(確認收到break)。
 
 .. image:: /embedded/USART_pic305.png
 
 
+單線半雙工模式
+==============
 
-USART SYNCHRONOUS MODE
-=========================
-
-Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-
-若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
-   - USART_CR2的LINEN
-   - USART_CR3的SCEN、HDSEL、IREN
-
-USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
-
-在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
-
-在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
-
-此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
-
-SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
-
-當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
-
-建議同時設定TE和RE，以減少接收器的setup和hold time。
-
-另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
-
-
-.. image:: /synchronous_transmission.png
-
-.. image:: /usart_syn.png
-
-
-Single-wire half-duplex communication
-======================================
-
-若要啟用單線半雙工模式，可以設定USART_CR3的HDSEL為1。而下列設定必須要設定為0:
+若要啟用單線半雙工模式(Single-wire half-duplex communication)，可以設定USART_CR3的HDSEL為1。而下列設定必須要設定為0:
    - USART_CR2的LINEN、CLKEN
    - USART_CR3的SCEN、IREN
 
@@ -675,13 +732,12 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 
 
 
-SmartCard Mode
-====================
+智慧卡模式
+=========
+
+ - Smartcard mode在ISO7816-3標準中，Smartcard介面可支援非同步傳輸。
 
 .. image:: /smart_card.jpg
-
-SmartCard
----------------
 
 .. image:: /embedded/USART_SmartCardPin.jpg
 
@@ -701,20 +757,23 @@ SmartCard
 
 當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
 
-Smartcard是單線半雙工的通訊協定: 
-   - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
-   - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
-   - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位。
-   - 即使是使用Smartcard模式，TC旗標的取消動作依然不受影響，與一般模式相同。
-   - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
-   - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+ - Smartcard是單線半雙工的通訊協定: 
 
-break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。
-在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
+    - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
+
+    - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
+
+    - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位，而TC旗標的取消動作與一般模式相同。
+
+    - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
+    - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+
+    - break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
 
 
-IrDA SIR ENDEC mode
-====================
+紅外線編碼模式
+=============
+
 Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
@@ -731,7 +790,9 @@ SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並�
 
    - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
    - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
+
 .. image:: /normal_mode.PNG
+
    - SIR解碼器會將IrDA相容訊號轉換成USART資料流。編碼器則是相反行為。
    - SIR接收器會將高電位轉換成邏輯1，低電位轉換成邏輯0。傳送器則是相反的。
    - 解碼器的輸出值，會與接收器的輸入值擁有相反極性(理由同上)。SIR輸出端處於Idle state時，輸出低電位。
@@ -741,7 +802,7 @@ SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並�
 
 
 IrDA 低功率模式
-------------------
+----------------
 
 傳送器:
    - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
@@ -752,20 +813,21 @@ IrDA 低功率模式
 接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
 
 
-Continuous communication using DMA
-=======================================
+直接記憶體存取(DMA)模式
+===================================
 
 Ref: `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
 
 USART可以使用DMA達到連續通訊的效果，不過DMA會個別對於RX和TX緩衝器送出請求。
-
 
 Transmission using DMA
 ------------------------
 
 .. image:: /tx_uart_dma.png
 
-若要啟用DMA模式，要在USART_CR3把DMAT啟用。在TXE bit被設立時，資料會先從SRAM(要先由DMA周邊設定，請參考DMA說明手冊)載入到USART_DR暫存器。如果要把DMA通道對應給USART傳送器，請使用下列流程:
+若要啟用DMA模式，要在USART_CR3把DMAT啟用。在TXE bit被設立時，資料會先從SRAM(要先由DMA周邊設定，請參考DMA說明手冊)載入到USART_DR暫存器。在系統保留的SRAM，TX/RX的資料緩衝使用集中型DMA。
+
+如果要把DMA通道對應給USART傳送器，請使用下列流程:
 
    1. 把USART_DR暫存器的位址寫到DMA控制暫存器中，以設定待傳資料的終端地點。在每次TXE被觸發的時候，資料都會從記憶體中搬到這個位址。
    2. 把記憶體位址寫到DMA控制暫存器裡面，以設定待傳資料的來源。在每次TXE被觸發的時候，資料都會從這個記憶體區段搬到USART_DR。
@@ -799,41 +861,10 @@ DMA模式也可以用於接收資料，須設定USART_CR3的DMAR。只要收到�
 另外，如果要把DMA用於接收，就不可以啟用RXNEIE。
 
 
-Error flagging and interrupt generation in multibuffer communication
-----------------------------------------------------------------------
+多重緩衝區中的Error flagging and interrupt 
+---------------------------------------------
 
 若在多重緩衝區的情況下，在傳輸/接收過程中發生了任何錯誤，在該次byte傳完後會立即設立error旗標。另外，如果有任何interrupt enable旗標被設立，error設立完之後還會再產生interrupt。以framing error、overrun error和噪音旗標(另外與RXNE搭配使用，因為可能有單一byte接收的情況)來說，每個都有各自獨立的interrupt enable旗標(USART_CR3的EIE)。如果發生任何一種錯誤，在傳完該次byte之後會立即產生interrupt。在interrupt章節會提到這些interrupt enable之間的關係。
-
-
-
-
-
-
-USART 與 SPI
-==============
-
-SPI：它是主從式的架構，通常一個主設備和多個從設備
-
-由四條信號線組成：SCLK、MISO、MOSI、CS
-
-MOSI：master output, slave input，主設備輸出
-
-MISO：master input, slave output，主設備輸入
-
-SCLK：serial clock，clock信號，由主設備產生
-
-CS：chip select (optional)
-
-USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
-
-TX：傳送訊號給周邊
-
-RX：週邊設備傳送給主設備的訊號
-
-SCLK：由主設備產生的clock訊號
-
-以上是兩者有類似的地方
-
 
 HARDWARE FLOW CONTROL(modem modes)
 ===================================
@@ -842,20 +873,17 @@ USART亦可模擬RS-232通訊。RS-232原本的設計用意，是讓電腦能對
 
 USART使用modem modes時，會變成雙線半雙工通訊(UART)。通訊流控制則由RTS-CTS負責，也因此同時間點只能有一方傳送資料。
 
-
 利用nCTS跟nRTS控制TX、RX是否再傳送或接收data。
 可個別設定USART_CR3的RTSE以及CTSE為1，藉此允許RTS或CTS flow control。
 
 .. image:: /hardware_control_2usarts.png
 
-
 RTS Flow Control
 -------------------------
 
-如果開啟RTS flow control(要把RTSE設為1)，nRTS會被拉至低電位，直到USART接收器準備好要接收下一筆資料才會拉高。如果接收器的暫存器滿了，會先把nRTS拉至高電位，告知另外一端的傳送器在傳完這個資料frame之後，應該要停止傳送資料。
+ - 如果開啟RTS flow control(要把RTSE設為1)，nRTS會被拉至低電位，直到USART接收器準備好要接收下一筆資料才會拉高。如果接收器的暫存器滿了，會先把nRTS拉至高電位，告知另外一端的傳送器在傳完這個資料frame之後，應該要停止傳送資料。
 
 .. image:: /rst_flow_control.png
-
 
 CTS Flow Control
 -----------------------
@@ -870,9 +898,146 @@ CTS Flow Control
 
 
 
+USART 與 SPI之關係
+.................
 
-USART Register 總表
+ - SPI：它是主從式的架構，通常一個主設備和多個從設備，由四條信號線組成：SCLK、MISO、MOSI、CS
+
+    - MOSI：master output, slave input，主設備輸出
+
+    - MISO：master input, slave output，主設備輸入
+
+    - SCLK：serial clock，clock信號，由主設備產生
+
+    - CS：chip select (optional)
+
+ - USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
+
+    - TX：傳送訊號給周邊
+
+    - RX：週邊設備傳送給主設備的訊號
+
+    - SCLK：由主設備產生的clock訊號
+
+以上是兩者有類似的地方
+
+RS-232收發器-MAX232
+...................
+ - MAX232晶片是美信（MAXIM）公司專為RS-232標準串口設計的介面電路，屬於+3.0V to +5.5V RS-232 收發器，收發器採用專有的低壓差發送器輸出級，利用雙電荷泵在3.0至5.5V單電源供電時能夠實現真正的RS-232功能，MAX232是一個雙RS-232驅動器/接收器且可以從單一的+5V電源產生RS-232電位(voltage level)(充電泵可轉換+5V為 ±10V)，假設我們要用RS232來進行PC(serial port) 與微處理器間的溝通，就要用MAX232來處理訊號電位轉換的功能，方便微處理器處理轉換後的訊號。
+ - 其包含兩個驅動器和兩個接收器，功耗僅40mW 且傳輸速率可以達120Kbps。
+
+.. image:: /MAX232_pin.png
+
+MAX232 內部結構
+======================
+雙電荷泵轉換器電路 (DUAL CHARGE PUMP CONVERTERS)
+---------------------------------------------
+    - 由1、2、3、4、5、6腳和4個電容構成。功能是產生+10V和-10V兩個電源，提供給RS-232串口電位。
+
+    - 第一階段，電容 C1的電壓提昇兩倍到 +10V並儲存在電容器 C3和V+ output。
+
+    - 第二階段，電容 C2將 +10 V的反向變成 -10V並儲存在電容器 C4和V- output。
+
+    - MAX232運作與的電荷泵電容可低至 0.1μF，若使用更大的電容（最多10μF）可以用來降低電源紋波(voltage ripple)。
+
+電源紋波(voltage ripple)
+
+成因是因為一個直流電壓大多時是通過交流電壓整流、濾波而來，濾波若不乾淨則會使交流成分疊加在直流穩定分量上，另外電池的直供電也會因負載的波動而產生波紋。
+
+.. image:: /MAX232_ripple2.jpg
+
+數據轉換通道
+----------
+ - 由7、8、9、10、11、12、13、14腳構成兩個數據通道。
+
+ - 13腳（R1IN）、12腳（R1OUT）、11腳（T1IN）、14腳（T1OUT）為第一數據通道。
+
+ - 8腳（R2IN）、9腳（R2OUT）、10腳（T2IN）、7腳（T2OUT）為第二數據通道。
+
+ - TTL/CMOS訊號從11引腳（T1IN）、10引腳（T2IN）輸入轉換成RS-232數據從14腳（T1OUT）、7腳（T2OUT）送到電腦DB9插頭；
+
+ - DB9插頭的RS-232數據從13引腳（R1IN）、8引腳（R2IN）輸入轉換成TTL/CMOS訊號後從12引腳（R1OUT）、9引腳（R2OUT）輸出。
+
+ - 內有的兩組RS232驅動器/接收器和電荷泵可以產生RS232電位，內部各有一個400 KΩ的pull up電阻，可以將未使用的驅動器拉至高電位，因有雙極性的特點，所以輸出邏輯電位會是low，若是在shutdown/power-off模式下驅動器/接收器無法上拉電壓，但是會進入高阻抗狀態，如此可以降低漏電流(最大25μA)，避免過載(overload)情形發生。
+
+上拉電阻(Pull-up resistors):在驅動電路時，當輸入過低，可以用一個上拉電阻透過接到較高的電位將電壓訊號拉至高電位，對輸入端而言，看起來就是高阻抗，如果成功驅動，則取消上拉電阻的使用。通過這樣，上拉電阻可以使pin腳在未連接外部組件時也能保持正確的邏輯電位。
+
+舉例來說:當TTL電路驅動CMOS電路時，如果TTL電路輸出的高電平低於CMOS電路的最低高電平（一般為3.5V），這時就需要在TTL的輸出端接上拉電阻，以提高輸出高電位的值。
+
+下拉電阻(Pull-down resistors):原理相同於上拉電阻，但其是與GND連接，故可以使邏輯訊號保持在接近0V的狀態。
+
+.. image:: /MAX232_waveform2.png
+
+供電
+----
+ - 15腳GND、16腳VCC（+5V）。
+
+
+USB to UART 橋接器-CP2102 
+.........................
+
+CP2102是一個十分完整的USB轉UART橋接器，運用了最小化元件和最少的PCB空間，其中包含了USB2.0的全速電路、USB收發器、振盪器、EEPROM(電子抹除式可複寫唯讀記憶體)、非同步串列資料匯流排。
+
+.. image:: /CP2102.png
+
+ - EEPROM是用來儲存USB供應商ID、產品ID、產品說明、電源參數、裝置版本號、裝置序號，寫入次數壽命為10萬次。
+
+ - UART接口包括TXD、RXD、RTS、CTS、DSR、DTR、DCD和RI控制信號。
+
+ - UART支持RTS／CTS、DSR／DTR和X-On／X-Off作hand-shaking。
+
+.. image:: /CP2102_table.png
+
+handshaking:早期不同的終端設備或電腦以RS232作資訊通訊時，為了確認已建立通訊連結作先作hand shaking，確認後才會開始作資料傳輸。
+
+ - X-ON/X-OFF:是一種用於流量控制的非同步通信協議，舉例來說，電腦傳送資料到印表機的速率明顯大於印表機的列印速度，所以印表機內會有一個buffer用來儲存來不及印的資料，若是在列印結束之前，buffer滿了的話，列表機將會發送一個XOFF的控制字元符號來告訴電腦暫停傳輸，等到buffer空的時候再發出一個XON控制字符到電腦繼續傳輸資料，所以方向皆是接收端傳到傳送端
+
+供電結構
+=======
+CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排供電或是自行供電，以下介紹兩種供電配置。
+
+匯流排供電
+------------
+ - 裝置可以是由「匯流排供電」(Bus-powered)，也就是從USB連接的介面取電。
+
+.. image:: /CP2102_buspowered.png
+
+ - 匯流排供電情況:會將VBUS與REGIN接通，Vin由VBUS輸入。
+
+自行供電
+--------
+ - 裝置由USB電源線提供電源，也就是「自行供電」(Self-powered)、或是由電池或外接電源供電。
+
+.. image:: /CP2102_selfpowered.png
+
+ - 自行供電情況(功能由軟體的Boolean flag啟動，True代表使用self-powered):Vin由5V Power net輸入，REGIN和VBUS並不接通。
+
+.. image:: /CP2102_selfpowered_bypassed.png
+
+ - 另外一種self-powered(選擇功能)是若將3V的POWER NET電壓給VDD且將VDD和REGIN接在一起，則可以關掉電壓調節器，不通過其而產生輸出。
+
+
+最理想的USB 供電方式之一是由匯流排供電，如此一來就不需要再外接電源，但其缺點是在暫停狀態(suspend)下電流最多耗費500μA，若支援遠端喚醒功能則會耗費2.5mA的大電流，所以可攜式裝置大多採用Self-powered。
+
+USB功能控制器/發送器
+==================
+USB功能控制器負責管理所有UART及USB間的資料傳輸，和處理來自主機端控制器(host)和UART的控制命令，暫停(Suspend)和恢復(Resume)狀態是用外部電路的方式實現，若是在匯流排上檢測到Suspend訊號，CP2102會進入暫停狀態並送出SUSPEND和SUSPEND*訊號，若是Reset CP2102也會進入暫停狀態，直到USB設定完成。
+
+另外離開暫停狀態的方法有三種:離開完成後SUSPEND和SUSPEND'訊號會被清除
+
+ - 檢測到恢復訊號
+ - 收到USB Reset訊號
+ - 裝置Reset
+
+注意當Reset時，SUSPEND和SUSPEND'會有暫時的突波電壓，可放置一個10kΩ的下拉電阻在11腳位以保持重啟時低電位。
+
+.. image:: /CP2102_elec.png
+
+
+
+STM32 USART Register 總表
 ................................
+
 Status register(USART_SR)
 
 .. image:: /embedded/USART_SR.jpg
@@ -897,7 +1062,7 @@ Guard time and prescaler register(USART_GTPR)
 
 .. image:: /USART_register.png
 
-CODE SECTION
+CODE SECTION(程式碼實現)
 .........................
 
 發送器測試
@@ -1110,229 +1275,3 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 .. image:: /unmatched clocks.png
 
 `圖片來源<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
-
-
-Q&A 2
-.......
-(a) 何謂 modem? null modem connection 又是什麼?
-
-modem: modulator-demodulator，將數位訊號編碼為類比訊號、或將類比訊號解碼為數位訊號。類比訊號可為無線電、紅外線、電流等，常見的應用有wifi、手機、藍芽、有線電話、光纖網路等。
-
-DTE: Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
-
-DCE: Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
-
-null modem: 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或DCE-DCE相連，就要對訊號線作處理。
-
-.. image:: /embedded/USART_NullModemBriefview.jpg
-
-也有市售的接頭
-
-.. image:: /embedded/USART_NullModem.jpg
-
-
-(b) TTL/CMOS比較
-
-VDD：晶片工作電壓
-
-VCC：外部電路工作電壓
-
-.. image:: /embedded/USART_TTL_CMOS_WAVE.jpg
-
-C ＝ Q/V 
-
-I ＝ dQ/dt
-
-由上圖可知，TTL的rise time及fall time都比較短。雖然都是要把一個元件充電到能夠輸出邏輯1，但是rise & fall time長一點的話，能夠降低訊號噪音。rise & fall time如果很短，代表說要在短時間把電路充電到既定電壓，而TTL的特性就是充電很快，這代表短時間內通過的電流其實很大。在絕對零度以上時，電路中的原子都會震盪，而很多個電子在短時間內通過這些正在震盪的原子，會造成阻塞、碰撞，在這過程中就會產生不必要的能量損耗以及額外的雜訊。
-
-CMOS：耗能較少、延遲時間較TTL多（2.5-5倍，因rise & fall time較長）、抗噪能力好（5V電壓下，抗噪能力比TTL多出1V）、工作電壓低
-
-TTL：耗能多、延遲時間短（因rise & fall time短）、抗噪能力差（5V電壓下，抗噪能力為0.4V）、工作電壓相對高
-
-RS232 介面標準
-.............
-在RS-232標準中，資料是以串列（serial）方式傳輸，其最常用的編碼格式是非同步起停（asynchronous start-stop）格式，它使用一個start bit後面緊跟7或8個資料位元（bit），然後是可選的奇偶校驗位元，最後是一或兩個停止位元。所以傳送一個字元至少需要10位元，主要功能為提供DTE以及DCE的實體連接。
-
-RS-232電器特性
-===================
- - 最大電壓範圍為±25V;
- - -3V至-25V定義為邏輯“1”(負邏輯)，稱為marking，功能意義為OFF；
- - +3V至+25V定義為邏輯“0” (負邏輯)，稱為spacing，功能意義為ON；
- - 接近零的電位是無效的(±3V之間)；
- - 接收信號端的輸入阻抗必須在3KΩ~7KΩ之間，輸入電容小於2500pF；
- - 接收信號端開路時，端點電壓必須小於2V；
- - 發送信號的一端輸出阻抗必須大於300Ω。
-RS-232的機械特性
-====================
- - 連接器有25pin及9pin，現多用9pin，因較節省空間及成本。
- - 最大傳輸線長度為50呎（15公尺），且資料傳輸速率在20Kbps以下。
-.. image:: /RS232_DB9pin2.png
-
-.. image:: /RS232_DB9Name2.png
-
-RS-232訊號傳輸
-======================
-
-.. image:: /RS232_Signal.png
-
- - 傳送單一封包時，一個package有1個startbit、8個data bits，1個stop bit。傳送完成後再傳送一個idle。
-
-.. image:: /signal_noidle.jpg
-
- - 而傳送多個連續封包時，在資料傳輸完以前並不會傳送idle，代表還沒有結束傳輸，原因是因為UART傳輸速度太慢，放入idle則會浪費頻寬。
-
-例:由示波器的高低電位可以得出邏輯0010 0100 由於是從LSB開始傳，所以必須翻轉變成0010 0100換成16進位為0x24，就是符號 "$"
- 
-單端信號傳輸與差分信號傳輸
-================
-以前，個人電腦所連接電纜的信號傳輸的主流方式是單端信號方式，其代表性特點是列表機連接使用並行接口(parallel port)，調制解調器(modem)使用RS-232C。
-
-單端信號傳輸
-----------
-.. image:: /embedded/single-ended.png
-
- - 採用的是多個信號線共同使用信號返回的地線的方式。進行電壓檢測時，通過地線信號的電位，判斷邏輯。
-
-在這種方式下，列舉如下兩個提高傳輸速率的方法:
-
- - 提高各信號線的傳輸速度
- - 增加信號線個數
-
-如果增加信號線個數，連接器會更加大型化，電纜也變得更粗。如果單純地提高信號的速度，那麼不僅需要昂貴的IC，而且輻射的電磁干擾噪音也會變強。
-如果降低電壓振幅，由於信號的上升/下降時間會縮短，高速傳輸也變得相對容易。但是如果電壓降低，那麼由於外部噪音的影響，很容易發生錯誤，為了解決這些問題，差分傳輸技術開始被廣泛使用。
-
-差分傳輸
---------
-
-.. image:: /embedded/Differential Signal.png
-
- - 使用兩根信號線，這兩個信號的振幅相同，相位相反，電流在彼此間逆向流動，信號接收端比較這兩個電壓的差值來判斷發送端發送的是邏輯0還是邏輯1。在電路板上，差分走線必須是等長、等寬、緊密靠近、且在同一層面的兩根線，USB3.0就是高速差分傳輸的一種。
-
-至於來自於外部的噪音，即使在正負兩端的信號線外施加同樣的噪音，因差分傳輸而容易發現信號線間的電位差，所以噪音會被消除，不易引發錯誤。
-
-
-.. image:: /embedded/differential_noise.png
-
- - 通過相互間逆向流過電流，抵消磁通，由此降低信號高次諧波所引發的電磁干擾噪音。
-
-但若電路板的面積非常吃緊，單端信號可以只有一根信號線，地線走地平面，而差分信號一定要走兩根等長、等寬、緊密靠近、且在同一層面的線。這常常發生在晶片的pin腳間距很小，以至於只能穿過一根走線的情況下。
-
-阻礙
-==========
- - 過大的電壓擺幅，造成耗電量的增加
- - 單端訊號對於雜訊抑制的能力並不佳
- - DB25的接頭過大
-
-MAX232
-...................
-MAX232晶片是美信（MAXIM）公司專為RS-232標準串口設計的介面電路，收發器採用專有的低壓差發送器輸出級，利用雙電荷泵在3.0至5.5V單電源供電時能夠實現
-真正的RS-232功能，MAX232是一個雙RS-232驅動器/接收器且可以從單一的+5V電源產生RS-232電位(voltage level)(充電泵可轉換+5V為 ±10V)，
-假設我們要用RS232來進行PC(serial port) 與微處理器間的溝通，就要用MAX232來處理訊號電位轉換的功能，方便微處理器處理轉換後的訊號。
-其包含兩個驅動器和兩個接收器，功耗僅40mW 且傳輸速率可以達120Kbps。
-
-.. image:: /MAX232_pin.png
-
-MAX232 內部結構
-======================
-雙電荷泵轉換器電路 (DUAL CHARGE PUMP CONVERTERS)
----------------------------------------------
-    - 由1、2、3、4、5、6腳和4個電容構成。功能是產生+10V和-10V兩個電源，提供給RS-232串口電位。
-
-    - 第一階段，電容 C1的電壓提昇兩倍到 +10V並儲存在電容器 C3和V+ output。
-
-    - 第二階段，電容 C2將 +10 V的反向變成 -10V並儲存在電容器 C4和V- output。
-
-    - MAX232運作與的電荷泵電容可低至 0.1μF，若使用更大的電容（最多10μF）可以用來降低電源紋波(voltage ripple)。
-
-電源紋波(voltage ripple)
-
-成因是因為一個直流電壓大多時是通過交流電壓整流、濾波而來，濾波若不乾淨則會使交流成分疊加在直流穩定分量上，另外電池的直供電也會因負載的波動而產生波紋。
-
-.. image:: /MAX232_ripple2.jpg
-
-數據轉換通道
-----------
- - 由7、8、9、10、11、12、13、14腳構成兩個數據通道。
-
- - 13腳（R1IN）、12腳（R1OUT）、11腳（T1IN）、14腳（T1OUT）為第一數據通道。
-
- - 8腳（R2IN）、9腳（R2OUT）、10腳（T2IN）、7腳（T2OUT）為第二數據通道。
-
- - TTL/CMOS訊號從11引腳（T1IN）、10引腳（T2IN）輸入轉換成RS-232數據從14腳（T1OUT）、7腳（T2OUT）送到電腦DB9插頭；
-
- - DB9插頭的RS-232數據從13引腳（R1IN）、8引腳（R2IN）輸入轉換成TTL/CMOS訊號後從12引腳（R1OUT）、9引腳（R2OUT）輸出。
-
- - 內有的兩組RS232驅動器/接收器和電荷泵可以產生RS232電位，內部各有一個400 KΩ的pull up電阻，可以將未使用的驅動器拉至高電位，因有雙極性的特點，所以輸出邏輯電位會是low，若是在shutdown/power-off模式下驅動器/接收器無法上拉電壓，但是會進入高阻抗狀態，如此可以降低漏電流(最大25μA)，避免過載(overload)情形發生。
-
-上拉電阻(Pull-up resistors):在驅動電路時，當輸入過低，可以用一個上拉電阻透過接到較高的電位將電壓訊號拉至高電位，對輸入端而言，看起來就是高阻抗，如果成功驅動，則取消上拉電阻的使用。通過這樣，上拉電阻可以使pin腳在未連接外部組件時也能保持正確的邏輯電位。
-
-舉例來說:當TTL電路驅動CMOS電路時，如果TTL電路輸出的高電平低於CMOS電路的最低高電平（一般為3.5V），這時就需要在TTL的輸出端接上拉電阻，以提高輸出高電位的值。
-
-下拉電阻(Pull-down resistors):原理相同於上拉電阻，但其是與GND連接，故可以使邏輯訊號保持在接近0V的狀態。
-
-.. image:: /MAX232_waveform2.png
-
-供電
-----
- - 15腳GND、16腳VCC（+5V）。
-
-
-CP2102 USB to UART 橋接器
-.........................
-
-CP2102是一個十分完整的USB轉UART橋接器，運用了最小化元件和最少的PCB空間，其中包含了USB2.0的全速電路、USB收發器、振盪器、EEPROM(電子抹除式可複寫唯讀記憶體)、非同步串列資料匯流排。
-
-.. image:: /CP2102.png
-
- - EEPROM是用來儲存USB供應商ID、產品ID、產品說明、電源參數、裝置版本號、裝置序號，寫入次數壽命為10萬次。
-
- - UART接口包括TXD、RXD、RTS、CTS、DSR、DTR、DCD和RI控制信號。
-
- - UART支持RTS／CTS、DSR／DTR和X-On／X-Off作hand-shaking。
-
-.. image:: /CP2102_table.png
-
-handshaking:早期不同的終端設備或電腦以RS232作資訊通訊時，為了確認已建立通訊連結作先作hand shaking，確認後才會開始作資料傳輸。
-
- - X-ON/X-OFF:是一種用於流量控制的非同步通信協議，舉例來說，電腦傳送資料到印表機的速率明顯大於印表機的列印速度，所以印表機內會有一個buffer用來儲存來不及印的資料，若是在列印結束之前，buffer滿了的話，列表機將會發送一個XOFF的控制字元符號來告訴電腦暫停傳輸，等到buffer空的時候再發出一個XON控制字符到電腦繼續傳輸資料，所以方向皆是接收端傳到傳送端
-
-供電結構
-=======
-CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排供電或是自行供電，以下介紹兩種供電配置。
-
-匯流排供電
-------------
- - 裝置可以是由「匯流排供電」(Bus-powered)，也就是從USB連接的介面取電。
-
-.. image:: /CP2102_buspowered.png
-
- - 匯流排供電情況:會將VBUS與REGIN接通，Vin由VBUS輸入。
-
-自行供電
---------
- - 裝置由USB電源線提供電源，也就是「自行供電」(Self-powered)、或是由電池或外接電源供電。
-
-.. image:: /CP2102_selfpowered.png
-
- - 自行供電情況(功能由軟體的Boolean flag啟動，True代表使用self-powered):Vin由5V Power net輸入，REGIN和VBUS並不接通。
-
-.. image:: /CP2102_selfpowered_bypassed.png
-
- - 另外一種self-powered(選擇功能)是若將3V的POWER NET電壓給VDD且將VDD和REGIN接在一起，則可以關掉電壓調節器，不通過其而產生輸出。
-
-
-最理想的USB 供電方式之一是由匯流排供電，如此一來就不需要再外接電源，但其缺點是在暫停狀態(suspend)下電流最多耗費500μA，若支援遠端喚醒功能則會耗費2.5mA的大電流，所以可攜式裝置大多採用Self-powered。
-
-USB功能控制器/發送器
-==================
-USB功能控制器負責管理所有UART及USB間的資料傳輸，和處理來自主機端控制器(host)和UART的控制命令，暫停(Suspend)和恢復(Resume)狀態是用外部電路的方式實現，若是在匯流排上檢測到Suspend訊號，CP2102會進入暫停狀態並送出SUSPEND和SUSPEND*訊號，若是Reset CP2102也會進入暫停狀態，直到USB設定完成。
-
-另外離開暫停狀態的方法有三種:離開完成後SUSPEND和SUSPEND'訊號會被清除
-
- - 檢測到恢復訊號
- - 收到USB Reset訊號
- - 裝置Reset
-
-注意當Reset時，SUSPEND和SUSPEND'會有暫時的突波電壓，可放置一個10kΩ的下拉電阻在11腳位以保持重啟時低電位。
-
-.. image:: /CP2102_elec.png
