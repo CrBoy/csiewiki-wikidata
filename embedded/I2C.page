@@ -250,6 +250,10 @@ master transmitter/slave receiver
 
 .. image:: /embedded/flow_chart_master_t_slave_r.jpg
 
+master receiver/slave transmitter
+
+.. image:: /embedded/flow_chart_master_t_slave_r.jpg
+
 I²C on STM32F429-Discovery
 =====================================
 
