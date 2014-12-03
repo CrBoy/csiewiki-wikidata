@@ -348,7 +348,7 @@ I²C on STM32F429-Discovery
 
 觀察及使用觸控螢幕，並量測對應的i2c訊號
 
-- `Data sheet <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
+- `Data sheet: STMPE811 <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
 
 demo code: 
 
