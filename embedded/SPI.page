@@ -95,11 +95,13 @@ general
 - SCK: 由master提供clock輸出給slave當成通訊clock
 - NSS: Slave select. 該腳可以被master當做要和那個slave做構通
 
-  * software mode(SSM=1)
+  * Software NSS management(SSM=1)
+    * 由內部的SPI_CR1 register裡的SSI bit來代表NSS pin電位高低
+    * 原本外部的NSS pin則可做為其他用途用
+    * master的SSI bit需設成1，如設成0，則會進入master mode fault state，master就會被設成slave
+    * slave的SSI bit需設成0才可接收資料
 
-    * 透過SPI_CR1中的SSI選擇slave
-
-  * hardware mode(SSM=0)
+  * Hardware NSS management(SSM=0)
 
     * Output enable(SSOE=1):only in master mode
 
