@@ -1,0 +1,25 @@
+期末專題: Team #2
+================
+
+題目：電吉他效果器 （uROCK）
+
+預期目標
+-------
+ - 在Cortex-M4 MCU 上面進行Realtime Audio音訊處理
+ - 作出以下Audio Effect，有必要就使用arm_math啟用STM32上面的DSP
+    - Gain
+    - Distortion
+    - OverDrive
+    - Fuzz
+    - EQ
+    - Compressor
+    - Echo
+    - Delay
+    - Reverb
+    - Chorus
+    - Octave
+ - 需做到可程式化，可以隨意調配效果順序、數目、是否啟動
+ - 可以使用Smart phone調整設定
+
+
+
