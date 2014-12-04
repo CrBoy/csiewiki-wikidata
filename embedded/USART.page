@@ -81,8 +81,9 @@ RS232 介面標準
 =============
 在RS-232標準中，資料是以串列（serial）方式傳輸，其最常用的編碼格式是非同步起停（asynchronous start-stop）格式，它使用一個start bit後面緊跟7或8個資料位元（bit），然後是可選的奇偶校驗位元，最後是一或兩個停止位元。所以傳送一個字元至少需要10位元，主要功能為提供DTE以及DCE的實體連接。
 
-RS-232電器特性
+RS-232電器與機械特性
 -------------
+RS-232電器特性
  - 最大電壓範圍為±25V;
  - -3V至-25V定義為邏輯“1”(負邏輯)，稱為marking，功能意義為OFF；
  - +3V至+25V定義為邏輯“0” (負邏輯)，稱為spacing，功能意義為ON；
@@ -90,10 +91,13 @@ RS-232電器特性
  - 接收信號端的輸入阻抗必須在3KΩ~7KΩ之間，輸入電容小於2500pF；
  - 接收信號端開路時，端點電壓必須小於2V；
  - 發送信號的一端輸出阻抗必須大於300Ω。
+
 RS-232的機械特性
----------------
  - 連接器有25pin及9pin，現多用9pin，因較節省空間及成本。
  - 最大傳輸線長度為50呎（15公尺），且資料傳輸速率在20Kbps以下。
+ - Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
+ - Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
+
 .. image:: /RS232_DB9pin2.png
 
 .. image:: /embedded/RS232_DB9Name3.png
@@ -111,18 +115,30 @@ RS-232訊號傳輸
 
 例:由示波器的高低電位可以得出邏輯0010 0100 由於是從LSB開始傳，所以必須翻轉變成0010 0100換成16進位為0x24，就是符號 "$"
  
+null modem 
+ - modem: modulator-demodulator，將數位訊號編碼為類比訊號、或將類比訊號解碼為數位訊號。類比訊號可為無線電、紅外線、電流等，常見的應用有wifi、手機、藍芽、有線電話、光纖網路等。
+
+ - 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或DCE-DCE相連，則要透過NULL Modem的方式，其實就是為了欺騙電腦，讓電腦以為它所連接的是一部數據機，而能夠順利地進行數據傳輸，在這裡用了跳線的接法。
+
+ - 跳線就是一個傳送的訊號必須到達對方的接收腳位，如此才能形成一個完整的通路，所以通路的形成就是將一方的傳送與接收的腳位作對調；如此一來，甲方的傳送資料必定到達乙方的接收通道；而乙方的傳送資料則會到達甲方的接收通道，雙方的送收形成一個完整的迴路，最精簡的情形就是只使用2、3、5即可以完成資料傳輸。 
+
+.. image:: /embedded/USART_NullModemBriefview.jpg
+
+也有市售的接頭
+
+.. image:: /embedded/USART_NullModem.jpg
+
 RS-232阻礙
----------
- - 過大的電壓擺幅，造成耗電量的增加
- - 單端訊號對於雜訊抑制的能力並不佳
- - DB25的接頭過大
+  - 過大的電壓擺幅，造成耗電量的增加
+  - 單端訊號對於雜訊抑制的能力並不佳
+  - DB25的接頭過大
 
 單端信號傳輸與差分信號傳輸
-=====================
+
 以前，個人電腦所連接電纜的信號傳輸的主流方式是單端信號方式，其代表性特點是列表機連接使用並行接口(parallel port)，調制解調器(modem)使用RS-232C。
 
 單端信號傳輸
-----------
+
 .. image:: /embedded/single-ended.png
 
  - 採用的是多個信號線共同使用信號返回的地線的方式。進行電壓檢測時，通過地線信號的電位，判斷邏輯。
@@ -136,7 +152,6 @@ RS-232阻礙
 如果降低電壓振幅，由於信號的上升/下降時間會縮短，高速傳輸也變得相對容易。但是如果電壓降低，那麼由於外部噪音的影響，很容易發生錯誤，為了解決這些問題，差分傳輸技術開始被廣泛使用。
 
 差分信號傳輸
---------
 
 .. image:: /embedded/Differential Signal.png
 
@@ -149,74 +164,6 @@ RS-232阻礙
  - 通過相互間逆向流過電流，抵消磁通，由此降低信號高次諧波所引發的電磁干擾噪音。
 
 但若電路板的面積非常吃緊，單端信號可以只有一根信號線，地線走地平面，而差分信號一定要走兩根等長、等寬、緊密靠近、且在同一層面的線。這常常發生在晶片的pin腳間距很小，以至於只能穿過一根走線的情況下。
-
-DTE and DCE
-============
-DTE
----
- - Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
-
-DCE
----
- - Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
-
-null modem Q2_a
-===============
-
- - modem: modulator-demodulator，將數位訊號編碼為類比訊號、或將類比訊號解碼為數位訊號。類比訊號可為無線電、紅外線、電流等，常見的應用有wifi、手機、藍芽、有線電話、光纖網路等。
-
- - 一般的modem接法為DTE-DCE-circuit-DCE-DTE，若要使DTE-DTE或DCE-DCE相連，則要透過NULL Modem的方式，其實就是為了欺騙電腦，讓電腦以為它所連接的是一部數據機，而能夠順利地進行數據傳輸，在這裡用了跳線的接法。
-
- - 跳線就是一個傳送的訊號必須到達對方的接收腳位，如此才能形成一個完整的通路，所以通路的形成就是將一方的傳送與接收的腳位作對調；如此一來，甲方的傳送資料必定到達乙方的接收通道；而乙方的傳送資料則會到達甲方的接收通道，雙方的送收形成一個完整的迴路，最精簡的情形就是只使用2、3、5即可以完成資料傳輸。 
-
-.. image:: /embedded/USART_NullModemBriefview.jpg
-
-也有市售的接頭
-
-.. image:: /embedded/USART_NullModem.jpg
-
-TTL and CMOS 特性 Q2_b
-======================
-
-Transistor-Transistor Logic:是市面上較為常見且應用廣泛的一種邏輯閘數位積體電路，由電阻器和三極體而組成。
-
-Complementary Metal-Oxide-Semiconductor:是一種積體電路製程，可在矽晶圓上製作出PMOS（p-type MOSFET）和NMOS（n-type MOSFET）元件，由於PMOS與NMOS在特性上為互補性，因此稱為CMOS。
-
-.. image:: /embedded/TTL_CMOS_LOGIC.png
-
-輸入位準
-
-TTL:邏輯0是0.8V以下，邏輯1為2.0V以上
-
- - ex:某TTL輸入端測量電壓為3.2V，這是屬於邏輯「1」，因為3.2V>2.0V。
-
-CMOS:邏輯0為0.3Vdd以下，邏輯1為0.7Vdd以上。
-
- - ex:某CMOS使用5V電源，輸入端測量電壓為3.2V，3.2V/5V=0.64，未及70%，VDD以上也不在30%VDD以下，故非邏輯「1」也不是邏輯「0」，此電壓意味著送出3.2V的元件故障或電路設計錯誤。
-
-輸出位準
-
-TTL: 邏輯0為0.4V以下，邏輯1為2.4V以上。
-CMOS:邏輯0為接近Vss，邏輯1為接近Vdd。
-
-.. image:: /embedded/USART_TTL_CMOS_WAVE.jpg
-
- - VDD：晶片工作電壓
- - VCC：外部電路工作電壓
- - C ＝ Q/V 
- - I ＝ dQ/dt
-
-由上圖可知，TTL的rise time及fall time都比較短。雖然都是要把一個元件充電到能夠輸出邏輯1，但是rise & fall time長一點的話，能夠降低訊號噪音。rise & fall time如果很短，代表說要在短時間把電路充電到既定電壓，而TTL的特性就是充電很快，這代表短時間內通過的電流其實很大。在絕對零度以上時，電路中的原子都會震盪，而很多個電子在短時間內通過這些正在震盪的原子，會造成阻塞、碰撞，在這過程中就會產生不必要的能量損耗以及額外的雜訊。
-
- - CMOS：耗能較少、延遲時間較TTL多（2.5-5倍，因rise & fall time較長）、抗噪能力好（5V電壓下，抗噪能力比TTL多出1V）、工作電壓低
-
- - TTL：耗能多、延遲時間短（因rise & fall time短）、抗噪能力差（5V電壓下，抗噪能力為0.4V）、工作電壓相對高
-
-雜訊抑制能力比較:
-
- - TTL的VOL普通約為0.2V最差時為0.4V，而VIL只要在0.8V以下即可，所以當一個TTL輸出VOL到另一個TTL時可以忍受0.4V的雜訊干擾，因為VOL本身的0.4V加上雜訊的0.4V為0.8V還在VIL的判斷之內。同理，TTL輸出VOH 到另一個TTL時同樣可以忍受0.4V的雜訊干擾，因為VOH-VIH =2.4V-2.0V=0.4V。
-
- - CMOS電源VDD為5V時的VOH約為5V，VIH為0.7VDD=3.5V，此時VOH-VIH=5V-3.5V=1.5V，而VOL約為0V，VIL為0.3VDD=1.5V，VIL-VOL=1.5V-0V=1.5V，故CMOS在電源VDD=5V時的雜訊容忍電壓為1.5V，我們發現CMOS比TTL的雜訊容忍電壓大多了。
 
 STM32 USART介紹與特性
 .................................
@@ -286,13 +233,8 @@ Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/
    
    - nRTS: 請求發送資料。若在低電位，則表示USART已經準備好接收資料
 
-
-
-
-
-
 M位
-===
+---
 
 資料長度根據USART_CR1暫存器中的M位選擇8或9位元
 
@@ -318,6 +260,40 @@ M位
 
 
 Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
+10種中斷
+-------
+ – CTS改變(CTSIE, CTS interrupt enable)
+
+ – LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
+
+ – 傳送緩衝區空(TXEIE, Data buffer empty interrupt enable)
+
+ – 傳送完成(TCIE, Transmission complete interrupt enable)
+
+ – 接收緩衝區滿(RXNEIE, Data buffer not empty interrupt enable)
+
+ – 空閒線路檢測(IDLEIE, Idle interrupt enable)
+
+ – 溢出錯誤(Overrun error)
+
+ – Frame錯誤(Framing error)
+
+ – 噪音錯誤(Noise error)
+
+ – 檢驗錯誤(Parity error, PEIE)
+
+3個傳輸檢測標誌
+------------
+
+ – 接收緩衝區滿(RXNE,Data buffer not empty)
+
+ – 傳送緩衝區空(TXE,  Data buffer empty)
+
+ – 傳輸結束(TC,  Transmission complete)
+
+
+
 
 Tx傳送器
 =======
@@ -410,6 +386,14 @@ Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/
 ====================================
  - 接收器依據USART_CR1 M位的狀態來決定接收8或9位元的資料。
 
+Oversampling
+------------
+
+定義：在訊號處理中，oversampling 是以取樣頻率大於Nyquist rate的取樣訊號處理。因此取樣頻率高於Nyquist rate，即可讓有限的頻寬完美重現。
+
+目的： 可用於改善 影響解析度、減少雜訊和避免aliasing
+
+.. image:: /embedded/oversampling_tmmg.jpg
 
 起始位元偵測(oversampling)
 ------------------------------------
@@ -497,38 +481,6 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
    - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
    - 是否有使用fractional baud rate
    - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
-
-10種中斷
-==========
- – CTS改變(CTSIE, CTS interrupt enable)
-
- – LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
-
- – 傳送緩衝區空(TXEIE, Data buffer empty interrupt enable)
-
- – 傳送完成(TCIE, Transmission complete interrupt enable)
-
- – 接收緩衝區滿(RXNEIE, Data buffer not empty interrupt enable)
-
- – 空閒線路檢測(IDLEIE, Idle interrupt enable)
-
- – 溢出錯誤(Overrun error)
-
- – Frame錯誤(Framing error)
-
- – 噪音錯誤(Noise error)
-
- – 檢驗錯誤(Parity error, PEIE)
-
-3個傳輸檢測標誌
-=============
-
- – 接收緩衝區滿(RXNE,Data buffer not empty)
-
- – 傳送緩衝區空(TXE,  Data buffer empty)
-
- – 傳輸結束(TC,  Transmission complete)
-
 
 4種錯誤檢測
 ==========
@@ -708,6 +660,31 @@ Address mark detection(WAKE=1)
  - 在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
 
 .. image:: /embedded/USART_pic304.jpg
+
+USART 與 SPI之關係
+=================
+
+ - SPI：它是主從式的架構，通常一個主設備和多個從設備，由四條信號線組成：SCLK、MISO、MOSI、CS
+
+    - MOSI：master output, slave input，主設備輸出
+
+    - MISO：master input, slave output，主設備輸入
+
+    - SCLK：serial clock，clock信號，由主設備產生
+
+    - CS：chip select (optional)
+
+ - USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
+
+    - TX：傳送訊號給周邊
+
+    - RX：週邊設備傳送給主設備的訊號
+
+    - SCLK：由主設備產生的clock訊號
+
+以上是兩者有類似的地方
+
+
 
 STM32 USART的MODE
 .................
@@ -929,38 +906,6 @@ CTS Flow Control
 
 .. image:: /cst_flow_control.png
 
-Oversampling
-.................
-
-定義：在訊號處理中，oversampling 是以取樣頻率大於Nyquist rate的取樣訊號處理。因此取樣頻率高於Nyquist rate，即可讓有限的頻寬完美重現。
-
-目的： 可用於改善 影響解析度、減少雜訊和避免aliasing
-
-.. image:: /embedded/oversampling_tmmg.jpg
-
-
-USART 與 SPI之關係
-.................
-
- - SPI：它是主從式的架構，通常一個主設備和多個從設備，由四條信號線組成：SCLK、MISO、MOSI、CS
-
-    - MOSI：master output, slave input，主設備輸出
-
-    - MISO：master input, slave output，主設備輸入
-
-    - SCLK：serial clock，clock信號，由主設備產生
-
-    - CS：chip select (optional)
-
- - USART在全雙工的模式(特別是同步模式)下，也有類似的訊號
-
-    - TX：傳送訊號給周邊
-
-    - RX：週邊設備傳送給主設備的訊號
-
-    - SCLK：由主設備產生的clock訊號
-
-以上是兩者有類似的地方
 
 RS-232收發器-MAX232
 ...................
@@ -970,9 +915,9 @@ RS-232收發器-MAX232
 .. image:: /MAX232_pin.png
 
 MAX232 內部結構
-======================
+===============
 雙電荷泵轉換器電路 (DUAL CHARGE PUMP CONVERTERS)
----------------------------------------------
+
     - 由1、2、3、4、5、6腳和4個電容構成。功能是產生+10V和-10V兩個電源，提供給RS-232串口電位。
 
     - 第一階段，電容 C1的電壓提昇兩倍到 +10V並儲存在電容器 C3和V+ output。
@@ -987,8 +932,8 @@ MAX232 內部結構
 
 .. image:: /MAX232_ripple2.jpg
 
-數據轉換通道
-----------
+MAX232工作原理
+================
  - 由7、8、9、10、11、12、13、14腳構成兩個數據通道。
 
  - 13腳（R1IN）、12腳（R1OUT）、11腳（T1IN）、14腳（T1OUT）為第一數據通道。
@@ -1010,7 +955,6 @@ MAX232 內部結構
 .. image:: /MAX232_waveform2.png
 
 供電
-----
  - 15腳GND、16腳VCC（+5V）。
 
 
@@ -1038,7 +982,7 @@ handshaking:早期不同的終端設備或電腦以RS232作資訊通訊時，為
 CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排供電或是自行供電，以下介紹兩種供電配置。
 
 匯流排供電
-------------
+
  - 裝置可以是由「匯流排供電」(Bus-powered)，也就是從USB連接的介面取電。
 
 .. image:: /CP2102_buspowered.png
@@ -1046,7 +990,7 @@ CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排�
  - 匯流排供電情況:會將VBUS與REGIN接通，Vin由VBUS輸入。
 
 自行供電
---------
+
  - 裝置由USB電源線提供電源，也就是「自行供電」(Self-powered)、或是由電池或外接電源供電。
 
 .. image:: /CP2102_selfpowered.png
