@@ -745,6 +745,20 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
    (有關更詳細動態分配部分可參考- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.6章的部分)
 
+* ALERT mechanism:
+
+這必須於時脈線與資料線外再追加一條線（稱為：SMBSUS）才能實現，ALERT雖名為警訊但其實是中斷（Interrupt）的用意，Slave可以將SMBSUS線路的電位拉低
+
+（ALERT#，"#"表示低準為有效），這時就等於向Master發出一個中斷警訊，要求Master儘速為某一Slave提供傳輸服務。Master要回應這個服務要求，是透過I2C/SMBus的時脈線
+
+與資料線來通訊，但要如何知道此次的通訊只是Master對Slave的一般性通訊？還是特別針對Slave的中斷需求而有的服務回應？　
+
+這主要是透過Master發出的位址資訊來區別，若為回應中斷的服務，位址資訊必然是「0001100」，當Slave接收到「0001100」的位址資訊，就知道這是Master特為中斷而提供的
+
+服務通訊。因此，韌體工程師須留心，規劃時必須讓所有的Slave都不能佔用「0001100」這個位址，以供ALERT機制運用（當然！若現在與未來都不會用上ALERT機制則可儘管佔
+
+用）
+
 Reference
 =====================================
 - `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
