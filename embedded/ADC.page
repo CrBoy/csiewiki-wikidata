@@ -90,6 +90,12 @@ Sampling Theorem
 
 但是通常會使用OverSampling，用遠高於 2f 的頻率來取樣，提升訊號的品質。
 
+Youtube 解說：
+https://www.youtube.com/watch?v=vbjC-aCmMUM
+https://www.youtube.com/watch?v=saFTvnIVeEY
+https://www.youtube.com/watch?v=Gu8x_k54tq0
+
+jolly Good
 
 STM32F4xx OnChip ADC 介紹
 =========================
