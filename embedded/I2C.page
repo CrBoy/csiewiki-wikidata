@@ -682,7 +682,13 @@ I2C起源於電視設計，但之後朝通用路線發展，各種電子設計�
 
 .. image:: /embedded/SMBus3.jpg
 
-以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可至100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。
+以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可至100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed 
+
+Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。至於為何要維持在10kHz以上，主要的原因是為了管理監控，另一個用意是只要在保持一定傳速運作的情
+
+況下加入參數，就可輕鬆獲知匯流排目前是否處於閒置（Idle）中，省去逐一偵測傳輸過程中的停斷（STOP）信號，或持續保有停斷偵測並輔以額外參數偵測，如此對匯流排閒置後
+
+的再取用會更有效快速。　
 
 * Clock low extending:
 
@@ -721,43 +727,22 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
   - Purpose-assigned addresses
 
-這些地址被SMBus分配到特定類型的設備。每個類型設備，可以獲取一個指定的地址，這些地址都必須有一個與之相關SMBus規範(與設備製造商有關)。
+   這些地址被SMBus分配到特定類型的設備。每個類型設備，可以獲取一個指定的地址，這些地址都必須有一個與之相關SMBus規範(與設備製造商有關)。
 
   - Prototype Addresses
 
-Prototype Addresses保留用於設備和應用程式原型試驗，他們永遠不能分配給任何設備
+   Prototype Addresses保留用於設備和應用程式原型試驗，他們永遠不能分配給任何設備
 
 .. image:: /embedded/SMBus8.jpg
 
   - Miscellaneous device addresses
 
-製造商可能生產製作和SMBus兼容的設備，他們並不需要完整的SMBus規範。
+   製造商可能生產製作和SMBus兼容的設備，他們並不需要完整的SMBus規範。
  
   - Dynamically assigned addresses 
 
-   SMbus(2.0版本)可透過動態分配給每個Slave一個唯一的adress來解決地址衝突，細節如下
+   SMbus(2.0版本)可透過動態分配給每個Slave一個唯一的adress來解決地址衝突，需遵從ARP(Address Resolution Protocol)地址解析協議
 
-   ARP(Address Resolution Protocol)地址解析協議有以下特性:
-
-   1.Address assignment uses the standard SMBus physical layer arbitration mechanism
-   
-   使用標準的SMbus物理層分配機制來分配地址
-
-   2.Assigned addresses remain constant while device power is applied; address retention
-   through device power loss is also allowed
-
-   在設備通電時,分配的地址保持不變;透過設備允許的功耗保留地址
-
-   3.No additional SMBus packet overhead is incurred after address assignment. (i.e.
-   subsequent accesses to assigned slave addresses have the same overhead as
-   accesses to fixed address devices.)
-   
-   地址分配後,不需額外的SMBus封包消耗,
-
-   4.Any SMBus master can enumerate the bus
-   
-   任何˙SMbus Master可以列舉bus
-   
    (有關更詳細動態分配部分可參考- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.6章的部分)
 
 Reference
