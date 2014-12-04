@@ -1,0 +1,52 @@
+---
+title: 期末專題: Team #9
+categories: embedded2014
+toc: no
+...
+
+題目
+---
+
+  * 教育用程式流程控制方塊
+
+期中預期目標
+-------
+  * 完成積木硬體部份，包跨 if else while，及動作、指令的積木。 
+
+  * 將程式透過UART秀在terminal上
+
+  * (待補)
+
+組員
+---------
+
+  * `colin8930</User/colin8930>`_ , e-mail: colin8930@gmail.com
+
+
+預算
+----
+
+
+
+討論和程式
+-------
+
+
+github: 
+
+hackpad: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
+
+每日實驗紀錄: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
+
+
+參考資訊
+---------------------
+
+scratch: http://scratch.mit.edu
+
+KIBO: http://kinderlabrobotics.com
+
+blockly: https://blockly-demo.appspot.com/static/apps/maze/index.html
+
+
+--------------------
