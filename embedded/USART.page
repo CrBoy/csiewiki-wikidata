@@ -1195,6 +1195,10 @@ To compile code
 
 .. image:: /embedded/USART_Oscilloscope.jpg
 
+.. image:: /embedded/USART_Oscilloscope_char_b.jpg
+
+.. image:: /embedded/USART_Oscilloscope_char_c.jpg
+
 接收器測試
 ======================================
 
