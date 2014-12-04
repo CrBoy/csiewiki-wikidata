@@ -5,29 +5,29 @@ categories: I2C, Peripherals, STM32F4, STM32F429
 
 I²C 簡介
 =====================================
+
 I²C（Inter-Integrated Circuit）是內部整合電路的稱呼，是一種串列通訊匯流排，由Philips公司在1980年代為了讓主機板、手機及嵌入式系統用以連接低速周邊裝置而發展，主要應用在board-to-board，它的設計並不能應用到長距離裝置的通訊。不過，I2C bus 可以被應用在各種控制架構上，如系統管理匯流排(System Management Bus, SMBus)、電源管理匯流排(Power Management Bus, PMBus)、智慧平台管理介面(Intelligent Platform Management Interface, IPMI)、顯示數據通道(Display Data Channel, DDC)、先進電信運算架構(Advanced Telecom Computing Architecture, ATCA)。
  
 I²C的參考設計使用一個7位元長度的位址空間但保留了16個位址，所以在一組匯流排最多可和112個節點通訊。常見的I²C匯流排依傳輸速率的不同而有不同的模式：標準模式（100 Kbit/s）、低速模式（10 Kbit/s），但時脈頻率可被允許下降至零，這代表可以暫停通訊。而新一代的I²C匯流排可以和更多的節點（支援10位元長度的位址空間）以更快的速率通訊：快速模式（400 Kbit/s）、高速模式（3.4 Mbit/s）。
- 
-I²C只使用兩條雙向開放汲極（Open Drain）(master 跟 slave只能把電位拉低或是讓他OPEN)（串列資料（SDA）及串列時脈（SCL））並利用電阻將電位上拉。I²C允許相當大的工作電壓範圍， 但典型的電壓準位為+3.3V或+5v。
 
 I²C bus
 ...................
+
 .. image:: /embedded/i2c_structure.gif
 
 I2C 使用兩條雙向 open-drain Line：
  - SDA : Serial Data Line, holds Data or address signal
  - SCL : Serial Clock Line, holds Clock signal
- - 導通時是低電位，不導通時float，所以利用電阻將電位拉高。常用電壓為 +5 V or +3.3 V。
+ - 導通時是低電位，不導通時float，所以利用電阻(pullup resistor)將電位拉高。常用電壓為 +5 V or +3.3 V。
  - IO 必須是 open drain (or open collector in TTL)
 
  - bus 為 wired-AND configuration
  - SDA must be stable when SCL is high, excluding Start/Stop condition
 
-pullup resistor
+pullup resistor :
  - 要根據bus總電容及rising time來選用pullup resistor的大小[#]_
 
-Definition of I2C-bus terminology
+Definition of I2C-bus terminology :
  - Transmitter : the device which sends data to the bus
  - Receiver : the device which receives data from the bus
  - Master : the device which initiates a transfer, generates clock signals and terminates a transfer
@@ -45,7 +45,7 @@ Master & Slave mode :
  - It is a true multi-master bus including collision detection and arbitration to prevent data corruption if two or more masters simultaneously initiate data transfer.
  - Serial, 8-bit oriented, bidirectional data transfers can be made at up to 100 kbit/s in the Standard-mode, up to 400 kbit/s in the Fast-mode, up to 1 Mbit/s in Fast-mode Plus, or up to 3.4 Mbit/s in the High-speed mode.
 
-I²C data mode
+I²C data mode :
  - master transmit — master node is sending data to a slave
  - master receive — master node is receiving data from a slave
  - slave transmit — slave node is sending data to the master
@@ -53,7 +53,7 @@ I²C data mode
 
 .. image:: /embbeded/i2c_data_transmit.png
 
-I²C data Transmit
+I²C data Transmit :
  - Data Transfer is initiated with a START bit (S) signaled by SDA being pulled low while SCL stays high.
  - SDA sets the 1st data bit level while keeping SCL low (during blue bar time.)
  - The data is sampled (received) when SCL rises (green) for the first bit (B1).
@@ -71,6 +71,7 @@ I²C 的仲裁
 
 I²C Speed
 ...................
+
 一開始的I2C bus 操作的速度被限制在100kbit/s，不過隨著時代的演進，新增了一些模式，所以現在的規範分成五種操作速度:
 
 * 雙向
@@ -94,6 +95,7 @@ I²C Speed
 
 I²C與I²S的差異
 ...................
+
 I²C（Inter-Integrated Circuit ) 與 I²S當初同樣是為進行音頻資料的串列通訊協議,但就功能面的支援還是有差異, I²C提供多個主控端串接多個從屬裝置其同步與資料透過雙線式雙向同步傳遞,其傳輸速率分為有100khz,400khz and 3.5mhz 由於這些時脈都是處理較普遍的裝置,I²S提供三線式主控端單向多從屬裝置, 其傳輸速率分為有？與周2.5MHz.
 
 - I²S (inter-integrated sound)  : STM32F429 Discovery  提供兩組 I²S介面(由內部的多工器切換 SPI2 及 SPI3這兩組) ,[1] pp.37  ;   所以基本上一個時脈以400ns計算, 其傳輸頻率為2.5MHz,將足夠提供24bits之48khz取樣的雙聲道音源, 主要是支援MPGE2,4等; 而44.1kKHz 取樣頻率則是支援MP3格式 : 
@@ -163,9 +165,6 @@ I²C 特性
 
 
 
-
-
-
 I²C functional description
 =====================================
 
@@ -176,6 +175,7 @@ I²C interrupt and Event
 2 Interrupt vectors
  - successful address/ data communication  (ITEVFEN ITBUFEN)
  - error condition (ITERREN)
+
     .. image:: /embedded/i2c_interrupt.png
 
 status register
@@ -269,6 +269,8 @@ I2C bus “events” from flags
 four I²C modes
 ...................
 
+有兩種實作方法，一種是使用While(!I2C_CheckEvent())來等待 Event，或是使用中斷並透過IRQ_Handler來做相應的處理。
+
 以下以7 bit address mode 作範例
 
 
@@ -300,7 +302,7 @@ ReadOneByte
 - 傳送7bit address與傳輸模式: I2C_Send7bitAddress(i2cx, i2c_ADDR, I2C_Direction_Receiver);
 - 等待EV6: while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
 - 確認BYTE接收完成: while( !I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_BYTE_RECEIVED) );
-- 讀取暫存器: I2C_ReceiveData(I2Cx);
+- 讀取DR暫存器: I2C_ReceiveData(I2Cx);
 - 產生 stop bit: I2C_GenerateSTOP();
 
 
@@ -311,9 +313,9 @@ Slave transmitter
 .. image:: /embedded/i2c_slave_transmitter.png
 
 - 等待EV1
-- 中斷 -> I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED
+- 中斷 -> I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED
 - 等待EV2  
-- 中斷-> I2C_EVENT_SLAVE_BYTE_RECEIVED (RxNE=1) ->  I2C_ReceiveData() (READ DR register)
+- 中斷-> I2C_EVENT_SLAVE_BYTE_TRANSMITTED  (TxE=1) ->  I2C_SendData() (WRITE DR register)
 - 等待EV4
 - 中斷->I2C_EVENT_SLAVE_STOP_DETECTED(STOPF=1) -> 結束
 
@@ -323,11 +325,11 @@ Slave receiver
 .. image:: /embedded/i2c_slave_receiver.png
 
 - 等待EV1
-- 中斷 -> I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED
+- 中斷 -> I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED
 - 等待EV3  (EV3_1)
-- 中斷-> I2C_EVENT_SLAVE_BYTE_TRANSMITTED  (TxE=1) ->  I2C_SendData() (WRITE DR register)
+- 中斷-> I2C_EVENT_SLAVE_BYTE_RECEIVED (RxNE=1) ->  I2C_ReceiveData() (READ DR register)
 - 等待EV3_2
-- 中斷->NACK -> 結束
+- 中斷->NACK -> 結束 (Master接到NACK後產生stop condition)
 
 flow chart(two boards)
 ......................................
