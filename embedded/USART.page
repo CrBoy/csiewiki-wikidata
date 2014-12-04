@@ -174,6 +174,27 @@ null modem Q2_a
 TTL and CMOS 特性 Q2_b
 ======================
 
+Transistor-Transistor Logic:是市面上較為常見且應用廣泛的一種邏輯閘數位積體電路，由電阻器和三極體而組成。
+
+Complementary Metal-Oxide-Semiconductor:是一種積體電路製程，可在矽晶圓上製作出PMOS（p-type MOSFET）和NMOS（n-type MOSFET）元件，由於PMOS與NMOS在特性上為互補性，因此稱為CMOS。
+
+.. image:: /embedded/TTL_CMOS_LOGIC.png
+
+輸入位準
+
+TTL:邏輯0是0.8V以下，邏輯1為2.0V以上
+
+ - ex:某TTL輸入端測量電壓為3.2V，這是屬於邏輯「1」，因為3.2V>2.0V。
+
+CMOS:邏輯0為0.3Vdd以下，邏輯1為0.7Vdd以上。
+
+ - ex:某CMOS使用5V電源，輸入端測量電壓為3.2V，3.2V/5V=0.64，未及70%，VDD以上也不在30%VDD以下，故非邏輯「1」也不是邏輯「0」，此電壓意味著送出3.2V的元件故障或電路設計錯誤。
+
+輸出位準
+
+TTL: 邏輯0為0.4V以下，邏輯1為2.4V以上。
+CMOS:邏輯0為接近Vss，邏輯1為接近Vdd。
+
 .. image:: /embedded/USART_TTL_CMOS_WAVE.jpg
 
  - VDD：晶片工作電壓
