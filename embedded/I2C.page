@@ -109,7 +109,7 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 - I²S的角色可以是一個主控端(Master)監控裝置,也可以同時是一個傳輸控制器(Tx), 接收器(Rx)  或是兩個從端角色的裝置。
 - I²S 介面傳輸資料具有兩個左右音訊通道的資料, 它靠 WS = 0 設定為零時; 定義為 通道 1 (左聲道資料讀取) ; WS = 1 ; 通道 2 (右聲道資料讀取)。
 
-
+.. image:: /embedded/I2S_Fig1.jpg
 
 
 I²C block diagram(on STM32F42x)
