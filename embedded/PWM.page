@@ -365,8 +365,8 @@ RC value design:
 
 .. image:: /RC值設計.png
 
-.. image:: /RE值設計2.png
-
+.. image:: /embedded/RC2.png
+   :scale: 50
 ADC transform :
 -----------------
 
