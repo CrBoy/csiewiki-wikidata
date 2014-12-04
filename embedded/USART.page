@@ -927,10 +927,12 @@ CTS Flow Control
 
 Oversampling
 .................
+
 定義：在訊號處理中，oversampling 是以取樣頻率大於Nyquist rate的取樣訊號處理。因此取樣頻率高於Nyquist rate，即可讓有限的頻寬完美重現。
 
 目的： 可用於改善 影響解析度、減少雜訊和避免aliasing
 
+.. image:: /embedded/oversampling_tmmg.jpg
 
 
 USART 與 SPI之關係
