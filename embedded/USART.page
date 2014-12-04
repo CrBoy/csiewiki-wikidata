@@ -1199,6 +1199,10 @@ To compile code
 
 .. image:: /embedded/USART_Oscilloscope_char_c.jpg
 
+USART發送程式: http://codepad.org/zrl14QWG
+
+USART接收資料dump: http://codepad.org/0yvz8jk4
+
 接收器測試
 ======================================
 
