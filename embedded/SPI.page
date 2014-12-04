@@ -205,6 +205,15 @@ SPI通訊過程
     DMA support
     -----------
 
+CRC calculation (Cyclic redundancy check)
+-----------------------------------------
+
+- 用途：主要是用來驗證資料傳輸的可靠性，避免在傳輸時，因為外在因素導致接收端接收到錯誤的資料，所以有此機制來預防。
+- 運作：
+  * 有兩種計算的標準，是根據data frame format來決定，如果是8-bit的資料，則用CR8，如果是16-bit的資料，則用CRC16
+  * 當將SPI_CR1 register裡的CRCEN bit設為1，將會啟動CRC calculation，並且會將SPI_RXCRCR和SPI_TXCRCR清空，傳輸端會自動在最後一筆資料後面傳輸一個CRC值(SPI_TXCRCR)，然後接收端在接收到此CRC值後，會將之與SPI_RXCRCR比較，如果相同的話，表示資料傳輸正確，如果不同的話代表資料有問題，則CRCERR flag升起
+
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
