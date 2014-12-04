@@ -96,7 +96,7 @@ RS-232的機械特性
  - 最大傳輸線長度為50呎（15公尺），且資料傳輸速率在20Kbps以下。
 .. image:: /RS232_DB9pin2.png
 
-.. image:: /RS232_DB9Name2.png
+.. image:: /embedded/RS232_DB9Name3.png
 
 RS-232訊號傳輸
 -------------
