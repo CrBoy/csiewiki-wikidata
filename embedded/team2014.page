@@ -1,0 +1,38 @@
+---
+title: 進階嵌入式系統設計與實作 (2014 Fall) :: 期末專題清單
+categories: embedded2014
+toc: no
+...
+
+.. image:: /embedded-os.png
+
+期末專題目標
+------------
+* 「人在作，Google 在看」，我們會邀請同學未來可能的雇主、同事們來評分
+  - 去年的 `期末專題</embedded/team2013>`_ 水準
+
+* 所有開發過程都公開，最終成果用 open source 形式釋出
+* 從底層到上層應用，一手通包，體驗打造具體而微系統的過程
+
+分組表
+=====
+* `第1組</embedded/team2014-1>`_ 
+* `第2組</embedded/team2014-2>`_
+* `第3組</embedded/team2014-3>`_
+* `第4組</embedded/team2014-4>`_
+* `第5組</embedded/team2014-5>`_
+* `第6組</embedded/team2014-6>`_
+* `第8組</embedded/team2014-8>`_
+* `第9組</embedded/team2014-9>`_
+* `第10組</embedded/team2014-10>`_
+* `第12組</embedded/team2014-12>`_
+
+致謝
+----
+* 感謝 STMicroelectronics 捐贈 STM32F429i-Discovery 硬體開發板
+* 感謝 台達電子 提供資金協助
+* 感謝 社會各界熱心人士 捐贈 Raspberry Pi, Beaglebone, STM32F429i-Discovery, APC, Cubieboard
+
+聯絡人
+------
+* 講師: 黃敬群 <jserv.tw@gmail.com>
