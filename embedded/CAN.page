@@ -12,8 +12,8 @@ Introduction
 Features
 ============
 
-CANbus網路架構
--------------------
+Network Topology(CANbus網路架構)
+--------------------------------------
 
 .. image:: /embedded/CAN_topology.png
 
@@ -21,12 +21,12 @@ CANbus是一種匯流排網路，他的匯流排是由兩條線路所實現，�
 
 .. image:: /embedded/CAN_01.png
 
-CAN通訊的資料格式
--------------------
+MESSAGE TRANSFER(CAN通訊的資料格式)
+--------------------------------------
 
-CAN有兩種版本，CAN2.0A,CAN2.0B。
+CAN有兩種版本，CAN2.0A(Standard),CAN2.0B(Extended)。
 
-1.資料通訊格式(Data Frame)：
+1.DATA FRAME(資料通訊格式)：
 ''''''''''''''''''''''''''''''''''''''''
 資料通訊格式主要用於傳送資料，主要分成5個部分。
 
@@ -60,11 +60,11 @@ R0:保留
 
 .. image:: /embedded/CAN_dataframe_CRC.png
 
-* ACK Field:接收正確送出1位元dominant(0)。
+* ACK Field:接收正確，接收端送出1位元dominant(0)。
 
 .. image:: /embedded/CAN_dataframe_ACK.png
 
-傳送端送出一個recessive bit(1)當接收端正確收到一個訊息，則回傳一個ACK Slot為dominant(0)位元，告知傳送端。
+傳送端送出一個recessive bit(1)當接收端正確收到一個訊息，則在ACK Slot中回傳一個為dominant(0)位元，告知傳送端。
 
 * End of Frame(EOF):通訊格式結束的欄位。
 
@@ -72,7 +72,7 @@ R0:保留
 
 每一個資料都是由7個連續的recessive(1)位元作為結束。
 
-2.遠端通訊格式(Remote Transmit Request Frame)：
+2.REMOTE FRAME(遠端通訊格式)：
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 遠端通訊格式用來請求遠端節點傳送資料。
 
@@ -80,7 +80,7 @@ R0:保留
 
 遠端通訊格式基本上就是資料長度為0的資料通訊格式，指示設定上略有不同。當A節點需要B節點送出資料時，可藉由送出一個遠端通訊格式來完成，將B節點的ID寫入仲裁欄位，在RTR填入recessive(1)。
 
-3.錯誤通訊格式(Error Frame)：
+3.ERROR FRAME(錯誤通訊格式)：
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
 當接收到的訊息有錯誤時，節點會發送錯誤通訊格式通知其他節點。
 
@@ -92,7 +92,7 @@ R0:保留
 
 * 在節點的狀態方面共有3種(主動,被動,關閉)。通訊格式上，則有主動和被動之分，差別在於Error Flag的值不同。主動是6個dominant(0)，被動是6個recessive(1)。
 
-4.過載通訊格式(Overload Frame)：
+4.OVERLOAD FRAME(過載通訊格式)：
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 通知其他節點延遲傳送資料的格式
 
@@ -100,7 +100,7 @@ R0:保留
 
 節點處理資料中，對於下一筆資料需要延遲時使用，通常接在遠端通訊格式或資料通訊格式後面。
 
-5.通訊格式間隔(Inter Frame Space)：
+5.INTERFRAME SPACING(通訊格式間隔)：
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 與前一個資料間隔的格式
 
@@ -109,15 +109,42 @@ R0:保留
 * 有3bit的intermission和一直處於recessive(1)的Bus Idle
 * 除了過載通訊格式和錯誤通訊格式之外，訊息之間至少都要有intermission
 
-CAN的錯誤處理
--------------------
+(ERROR HANDLING)CAN的錯誤處理
+--------------------------------------
 
-節點錯誤模式
+Error Detection(資料偵錯機制)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+* BIT ERROR
+發送資料中的節點會比較發送的資料和bus中的電位高低變化是否一致，如果不一致則直在位傳完的訊息後方接著傳送Error Frame。這種偵錯機制僅限於SOF,control,data,CRC field。 
+
+.. image:: /embedded/CAN_bit_error.png
+
+* STUFF ERROR
+
+* CRC ERROR
+
+* FORM ERROR
+
+CRC,ACK Field 都有delimiter，甚至EOF本身就是Data Frame的delimiter，這些bit都預設為recessive(1)，如果在這些bit上讀到dominant(0)，那從下一個bit開始就傳送Error Frame。 
+
+.. image:: /embedded/CAN_form_error.png
+
+* ACKNOWLEDGMENT ERROR
+傳送端會傳出2個bit的recessive(1)為ACK Field，前者為ACK Slot後者為ACK delimiter。當傳送端在ACK Slot送出recessive(1)的時候，接收端要回傳dominant(0)，告知傳送端。如果沒有那就在ACK delimiter後面傳送error frame。 
+
+.. image:: /embedded/CAN_ACK_error.png
+
+FAULT CONFINEMENT(節點錯誤機制)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 CAN的每個節點都有計數器來記錄錯誤的歷史(Transmit Error Counter(TEC) & Receive Error Counter (REC) )
 
 .. image:: /embedded/CAN_note_state.png
+
+
+
+
 
 
 Reference
