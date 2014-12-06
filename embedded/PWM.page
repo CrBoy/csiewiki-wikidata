@@ -298,6 +298,9 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 [#]_
 
 .. [#] `PWM mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 595
+- PWM edge-aligned mode
+
+.. image:: /embedded/Timer_EdgeAligned_PWM_ARR8.png
 
 - 目的 : 產生一個由TIMx_ARR暫存器決定頻率、由TIMx_CCRx暫存器決定工作週期的PWM信號。
 - PWM configuration
