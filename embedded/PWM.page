@@ -302,7 +302,9 @@ Detail of OC1M[2:0] in the TIMx_CCMR1 Register
 
 .. image:: /embedded/Timer_EdgeAligned_PWM_ARR8.png
 
-- 目的 : 產生一個由TIMx_ARR暫存器決定頻率、由TIMx_CCRx暫存器決定工作週期的PWM信號。
+- 目的 : 
+    - 產生一個由TIMx_ARR暫存器決定頻率：PWM Frequency = counter clock / (auto reload value(TIMx_ARR)+1)
+    - 由TIMx_CCRx暫存器決定工作週期的PWM信號：PWM Duty Cycle = compare reg. value(TIMx_CCRx)*100 / (auto reload value(TIMx_ARR)+1)
 - PWM configuration
 
      - TIM_Prescaler  :  將TIMxCLK除以(TIM_Prescaler + 1)
