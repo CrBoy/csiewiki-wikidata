@@ -48,7 +48,7 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 .. image:: /bit stuffing.png
 
-* 相對的，接收端在作資料接收之前，就必需先執行NRZI解碼，然後再作位元反填塞(unBit-Stuffing)。
+* 相對的，接收端在作資料接收之前，就必需先執行NRZI解碼，然後再作位元反填塞(Bit-destuffing)。
 
 .. image:: /embedded/usb/dataNRZI.jpg
 
