@@ -128,12 +128,6 @@ SPI single master/single slave application [#]_
 
 Clock phase and clock polarity
 ''''''''''''''''''''''''''''''
-
-.. image:: /embedded/SPI/SPI Dota clock timing diagram.png
-Data clock timing diagram[#]_
-
-.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.664
-
 SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4種組合。
 
 - CPOL(clock polarity) 決定閒置時 clock 的電位。
@@ -147,6 +141,11 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
   * CPHA = 0 表示在第一個 edge (Rising,when CPOL=0.Falling,when CPOL=1.)取值。
 
   * CPHA = 1 表示在第二個 edge (Rising,when CPOL=1.Falling,when CPOL=0.)取值。
+
+.. image:: /embedded/SPI/SPI Dota clock timing diagram.png
+Data clock timing diagram[#]_
+
+.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.664
 
 Data format
 '''''''''''
