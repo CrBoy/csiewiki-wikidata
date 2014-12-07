@@ -120,13 +120,6 @@ USB Device 又可以分為：
 * Compound Device： 本身擁有功能(Function)，也帶有一個Hub，有其他裝置連接時可以作為Host。
 * Composite Device：提供超過一個功能的裝置。
 
-傳輸速率
-========
-
-* Low-Speed : 1.5 Mbps
-* Full-Speed : 12 Mbps
-* High-Speed : 480 Mbps
-
 USB 通訊模型
 ^^^^^^^^^^^^^^
 從下面的圖可以看到，USB Host 和 Device 是資料傳輸的重點，分別在不同的兩層。
