@@ -5,6 +5,51 @@ title: usb
 .. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/USB_Icon.svg/200px-USB_Icon.svg.png
 
 
+USB歷史簡介
+^^^^^^^^^^^^^^^^
+早在USB出來之前，資料的傳輸主要是使用並列埠(parallel port)傳輸，如圖
+
+.. image:: /embedded/parallel.png
+
+早期為了想加快傳遞資料，透過此種並列線進行平行傳輸，這比起在更早之前的串列傳輸(serial port)，大大的提升了傳輸的速度，如圖
+
+.. image:: /embedded/serial.png
+
+但是在使用並列埠傳輸會遇到一些問題，像是:
+
+ - 傳輸過程容易受到外面的其他訊號干擾而出錯，所以傳輸線的長度不長。
+ - 雖然傳輸速度加快了，但是並列埠上導線的資料傳輸的同步不好解決。
+ - 連接的針腳容易彎曲變形。
+以上等等問題，催生了USB的誕生。
+
+USB發展歷史
+=======
+* USB 1.0  (1996)
+   - Low speed : transfer rate 1.5 Mbit/s
+   - Full speed : transfer rate 12Mbit/s
+   - USB 1.1 才廣為使用 (1998)
+   - 12Mbit/s 是用在higher speed devices 像是disk drives
+   - lower 1.5Mbit/s 使用在Joystick
+
+* USB 2.0 (2000)
+   - 傳輸速度可以高達 480Mbit/s ，稱之為High Speed
+   - STM32上的USB-OTG提供兩種傳輸速度，12Mbits/s，480Mbits/s
+   - 2000年，有了mini-A ,mini-B 
+   - 2006年，提供了新的傳輸方式，USB On-The-Go
+   - 2007年，有了micro USB
+
+* USB 3.0 (2008)
+   - 傳輸速度提高到5Gbit/s，稱之為SuperSpeed
+   - 減少電能的消耗
+   - 增加電力輸出
+   - 可以跟USB 2.0相容
+   - 使用higher speed bus called SuperSpeed in parallel with USB 2.0
+   - full-duplex(傳輸和接收可以同時進行) in SuperSpeed ( USB 1.x , USB 2.0 為half-duplex)
+
+* USB 3.1 (2013)
+   - Update USB 3.0 to 10Gbit/s 
+   - 可以向下相容USB 2.0 , USB 3.0
+
 標準 USB 2.0 介面
 ^^^^^^^^^^^^^^^^
 USB是一種序列資料傳輸界面(serial interface)，設計目標為隨插即用（Plug and Play，簡稱PnP）。
