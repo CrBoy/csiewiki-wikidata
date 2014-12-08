@@ -216,14 +216,10 @@ Bootloader
 
 安裝 grub
 ---------------
-- BIOS
-
 
 ::
 
     pacman -S grub
-
-- UEFI
 
 
 找尋已安裝的作業系統
@@ -238,7 +234,18 @@ grub預設不會尋找其他的作業系統：見/boot/grub/grub.cfg當中的men
 ::
 
         grub-mkconfig -o /boot/grub/grub.cfg
+
+安裝
+------------------
+-BIOS
+::
+
         grub-install /dev/sda
+
+-UEFI
+::
+
+        grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
 
 額外設定
 ------------------
