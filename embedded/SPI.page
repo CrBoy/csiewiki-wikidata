@@ -229,12 +229,21 @@ CRC calculation (Cyclic redundancy check)
 Error flags
 -----------
 
-- Overrun condition
+Master mode fault (MODF)
+''''''''''''''''''''''''
+  * master mode fault 有以下兩種情形會發生
+    * 在NSS hardware mode且SSOE設為0，master的NSS pin電位被拉低
+    * 在NSS software mode下，master的SSI bit設為0
+
+  * Master mode fault發生時，會將MODF bit設為1，也會清除掉SPE bit，關掉SPI功能，另外當EERIE bit設為1時，將會產生中斷
+
+Overrun condition
+'''''''''''''''''
   * 在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，在RXNE沒有被清除時，接收的資料無法從shift register寫入Rx buffer，導致從Rx buffer讀出來的資料是不正確的。
   * OVR flag升起
 
-
-- CRC error
+CRC error
+'''''''''
   * 當CRCEN bit設為1時，CRCERR flag是用來檢驗資料的正確性，當此flag升起，代表接收過來的CRC值跟SPI_RXCRCR的值不符合，表示接收的資料不正確
 
 Code section
