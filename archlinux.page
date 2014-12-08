@@ -237,12 +237,14 @@ grub預設不會尋找其他的作業系統：見/boot/grub/grub.cfg當中的men
 
 安裝
 ------------------
--BIOS
+- BIOS
+
 ::
 
         grub-install /dev/sda
 
--UEFI
+- UEFI
+
 ::
 
         grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
@@ -503,7 +505,7 @@ GNOME
 powerline
 -------------------
 - zsh
-    如果只有要更改zsh的prompt，我今天找到一個簡單的方法：`powerline for zsh <http://klaig.blogspot.tw/2012/09/powerline-for-zsh.html>`_
+    如果只有要更改zsh的prompt，這裡有一個簡單的方法：`powerline for zsh <http://klaig.blogspot.tw/2012/09/powerline-for-zsh.html>`_
 
     下載這個`字型<https://gist.github.com/epegzz/1634235/download>`_ 並解壓縮至~/.fonts
 ::
@@ -528,3 +530,8 @@ ZSH_THEME="powerline"
 
 user theme
 -------------------
+- icon
+
+::
+
+    yaourt -S faba-icon-theme-git moka-icon-theme-git
