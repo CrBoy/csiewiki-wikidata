@@ -233,6 +233,10 @@ Error flags
   * 在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，在RXNE沒有被清除時，接收的資料無法從shift register寫入Rx buffer，導致從Rx buffer讀出來的資料是不正確的。
   * OVR flag升起
 
+
+- CRC error
+  * 當CRCEN bit設為1時，CRCERR flag是用來檢驗資料的正確性，當此flag升起，代表接收過來的CRC值跟SPI_RXCRCR的值不符合，表示接收的資料不正確
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
