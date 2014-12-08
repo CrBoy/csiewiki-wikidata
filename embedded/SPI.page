@@ -246,6 +246,10 @@ CRC error
 '''''''''
   * 當CRCEN bit設為1時，CRCERR flag是用來檢驗資料的正確性，當此flag升起，代表接收過來的CRC值跟SPI_RXCRCR的值不符合，表示接收的資料不正確
 
+SPI interrupts
+--------------
+.. image:: /SPI_interrupt.png
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
