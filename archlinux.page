@@ -398,13 +398,15 @@ Systemd
     systemctl list-unit-files
 
 
-GNOME
+Shell
 ============================
- 
-**KDE太土了**
+
+Gnome
+----------------
 
 安裝
-----------------
+~~~~~~~~~~~~~~~~
+
 - xorg
 
   * Driver
@@ -442,7 +444,7 @@ GNOME
   * 自動產生預設資料夾，如桌面、文件、下載…等
 
 啟動
-----------------------
+~~~~~~~~~~~~~~~~
 使用 Systemd，即
 ::
 
@@ -450,7 +452,7 @@ GNOME
 
 
 應用軟體
-----------------------
+~~~~~~~~~~~~~~~~
 - `gnome-terminal <https://wiki.gnome.org/Apps/Terminal>`_
   * 終端機
 
@@ -488,6 +490,27 @@ GNOME
 
 - gnome-packagekit
   * GUI的套件管理器
+
+KDE
+----------------
+
+安裝
+~~~~~~~~~~~~~~~
+
+- xorg-server
+
+- kdm
+
+  * 安裝kdm，pacman會去找dependencies，自動把需要用到的套件全部裝上 
+
+啟動
+~~~~~~~~~~~~~~~~
+使用 Systemd，即
+::
+
+    systemctl start kdm
+
+
 
 輸入法 與 中文
 =========================
