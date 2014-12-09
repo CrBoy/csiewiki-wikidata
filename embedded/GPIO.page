@@ -740,6 +740,21 @@ VCO = Fref * PLL_N
 
 .. image:: /embedded/Pll.png
 
+-----------
+
+**alternate function中的MCO1(PA8), MCO2(PC9)可以將clock輸出到腳位上，用示波器測量得到以下結果**
+
+---------------
+
+- 8.065MHz, HSE
+
+.. image:: /embedded/HSE.JPG
+
+----------------
+
+- 16.13MHz, HSI
+
+.. image:: /embedded/HSI.JPG
 
 Reference
 =========
