@@ -29,6 +29,7 @@ STM32F4xx GPIO特性
   - Alternate Function Selection Register: GPIOx_AFRH 與 GPIOx_AFRL
 
 一個pin通常可被設定成input、output、alternate function或analog，  (alternate function和analog只有在特定腳位)
+
 input會有兩種狀態(floating, pull-up/down)，output也有兩種狀態(push-pull, open drain with pull-up/down resistors)。
 
 **input/output方向 : input是指記憶體方接收來自設備的訊號源，output是指記憶體傳送訊號給設備。**
@@ -678,28 +679,46 @@ Supplement
 
 Q & A
 =========
-**1. STM32 RCC clock**
+**1. Busy loop延遲的時間計算**
 
+另一種迴圈寫法：
+int i=1000000;
+while(i--){
+}
+編譯結果：(略去只執行一次的mov)
+ 80002d4:       687b            ldr     r3, [r7, #4]
+ 80002d6:       1e5a            subs    r2, r3, #1
+ 80002d8:       607a            str     r2, [r7, #4]
+ 80002da:       2b00            cmp     r3, #0
+ 80002dc:       d1fa            bne.n   80002d4 <demo+0x34>
 
+ldr  : 2
+subs : 1
+str  : 2
+cmp  : 1
+ble.n: 1 or 1+P(pipeline refill)
+
+若沒有branch，總共是2+1+2+1+1 = 7 cycle，
+若有branch則是 2+1+2+1+2 = 8 cycle，(pipeline refill需要1~3 cycle，因alignment和instruction width而不同)
+執行1000000次，也就是約8M個cycle，
+經過實測時間為0.16秒，換算指令的執行頻率=HCLK速度: 48Mhz
+
+指令執行時間：Cortex-M4 instructions
+http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.html
+
+* 關於STR, LDR系列指令，有cache機制可以在鄰近存取時減少執行時間
+* Neighboring load and store single instructions can pipeline their address and data phases. This enables these instructions to complete in a single execution cycle.
 System clock setup
 
 - Internal High Speed Clock (HSI)
-
 - External High Speed Clock (HSE)
-
 - Phase locked Loop (PLL)
-
-
 
 Bus clock setup
 
 - Advanced High Performance Bus (AHB)
-
 - Low speed Advanced Peripherial Bus (APB1)
-
 - High speed Advanced Peripherial Bus (APB2)
-
-
 
 Reference
 =========
