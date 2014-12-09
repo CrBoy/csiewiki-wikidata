@@ -681,22 +681,26 @@ Q & A
 =========
 **1. Busy loop延遲的時間計算**
 
-另一種迴圈寫法：
-int i=1000000;
-while(i--){
-}
-編譯結果：(略去只執行一次的mov)
- 80002d4:       687b            ldr     r3, [r7, #4]
- 80002d6:       1e5a            subs    r2, r3, #1
- 80002d8:       607a            str     r2, [r7, #4]
- 80002da:       2b00            cmp     r3, #0
- 80002dc:       d1fa            bne.n   80002d4 <demo+0x34>
+.. code-block:: c
 
-ldr  : 2
-subs : 1
-str  : 2
-cmp  : 1
-ble.n: 1 or 1+P(pipeline refill)
+    int i=1000000;
+    while(i--);
+
+編譯結果：(略去只執行一次的mov)
+
+.. code-block:: c
+
+    80002d4:       687b            ldr     r3, [r7, #4]
+    80002d6:       1e5a            subs    r2, r3, #1
+    80002d8:       607a            str     r2, [r7, #4]
+    80002da:       2b00            cmp     r3, #0
+    80002dc:       d1fa            bne.n   80002d4 <demo+0x34>
+
+    ldr  : 2
+    subs : 1
+    str  : 2
+    cmp  : 1
+    ble.n: 1 or 1+P(pipeline refill)
 
 若沒有branch，總共是2+1+2+1+1 = 7 cycle，
 若有branch則是 2+1+2+1+2 = 8 cycle，(pipeline refill需要1~3 cycle，因alignment和instruction width而不同)
@@ -711,10 +715,10 @@ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.ht
 
 --------
 
-# System Clock與PLL
+* System Clock與PLL
 
 
-![Clock](/embedded/stm32f429clock.png)
+.. image:: /embedded/stm32f429clock.png
 
 Reference Manual p.222 PLL_CFGR (DM00031020.pdf)
 
@@ -731,7 +735,7 @@ PLL_Q [預設7]  <--  to USB
 Fref = HSE(8 Mhz) / PLL_M 
 VCO = Fref * PLL_N 
 
-![alt text](/embedded/Pll.png)
+.. image:: /embedded/Pll.png
 
 System clock setup
 
