@@ -759,6 +759,23 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
 用）
 
+* PEC:
+
+針對傳輸的Data,做CRC8(Cyclic redundancy check 8)的運算,計算範圍從Target Address,到所有資料傳輸結束,有PEC的Packet和沒有PEC的Packet的差別在於最後一個byte
+
+是否傳輸PEC byte.
+
+PEC的BUS協議:- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.5章的部分
+
+-補充-:CRC演算法
+
+用來檢查資料是否有問題的方法，把資料轉成一多項式，在用另一固定自選多項式除來得到餘數，最後檢查是否和預定值相同
+
+CRC演算法:- `WIKI-循環冗餘校驗 <http://zh.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97>`_
+
+PMBUS
+=====================================
+
 Reference
 =====================================
 - `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
