@@ -646,12 +646,17 @@ Demo 範例選擇 :
 
 * Demo5: 量測 Interrupt Latency 
   - 使用 __attribute__( (naked) ) 去除 function stacking
-  - function stacking: 560ns - 420ns = 140ns
+  - 有function stacking的延遲是560ns, 沒有的則是420ns，
+  - 因此function stacking: 560ns - 420ns = 140ns
+
+.. code-block:: c
     push {r7, lr}
     add r7, sp, #0
     pop {r7, pc} 
+
+  - 再扣掉Toggle的反應時間
   - Latency: 420ns - 80ns = 340ns
-  - interrupt 進入isr stacking需12個cycle => 250ns
+  - 根據ARM Cortex-M4的文件，ISR stacking需12個cycle => 250ns
   - pre-stacking delay = 340-250 = 90ns
 
 .. image:: /embedded/6.JPG
