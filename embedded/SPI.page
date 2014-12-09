@@ -216,7 +216,7 @@ SPI communication using DMA
 
 - 要開啟此DMA request必須將SPI_CR2 register裡的TXDMAEN跟RXDMAEN bit設置為1
 
-.. image:: /Transmission using DMA.png
+.. image:: /embedded/Transmission_using_DMA.png
 
 CRC calculation (Cyclic redundancy check)
 -----------------------------------------
@@ -248,7 +248,7 @@ CRC error
 
 SPI interrupts
 --------------
-.. image:: /SPI_interrupt.png
+.. image:: /embedded/SPI_interrupt.png
 
 Code section
 ============
