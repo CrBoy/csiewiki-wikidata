@@ -50,6 +50,8 @@ USB發展歷史
    - Update USB 3.0 to 10Gbit/s 
    - 可以向下相容USB 2.0 , USB 3.0
 
+* 上述簡介中的USB傳輸速度(low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s)的給定，主要是依據USB規格書上的定義，這些速度可以透過pull-up    resistor來調整
+
 標準 USB 2.0 介面
 ^^^^^^^^^^^^^^^^
 USB是一種序列資料傳輸界面(serial interface)，設計目標為隨插即用（Plug and Play，簡稱PnP）。
