@@ -642,6 +642,31 @@ Demo 範例選擇 :
         while(1);
     }
 
+* Demo5: 量測 Interrupt Latency 
+  - 使用 __attribute__( (naked) ) 去除 function stacking
+  - function stacking: 560ns - 420ns = 140ns
+    push {r7, lr}
+    add r7, sp, #0
+    pop {r7, pc} 
+  - Latency: 420ns - 80ns = 340ns
+  - interrupt 進入isr stacking需12個cycle => 250ns
+  - pre-stacking delay = 340-250 = 90ns
+
+.. image:: /6.jpg
+
+* interrupt latency = pre-stacking latency + 250ns + function stacking latency + toggle latency
+  - 560ns
+
+.. image:: /embedded/8.JPG
+
+* interrupt latency without function stacking = pre-stacking latency + 250ns + toggle latency
+  - 420ns
+
+.. image:: /embedded/9.JPG
+
+* Toggle latency = 80ns
+  - 0->1 的時間
+
 Supplement
 ==========
 - 一些有預設控制元件的腳位
