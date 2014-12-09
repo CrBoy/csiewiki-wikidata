@@ -6,7 +6,7 @@ toc: no
 課程資料
 -------
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
-  - `Interrupt-Driven Input/Output<https://engineering.purdue.edu/ece477/Archive/2014/Spring/S14-Grp1/docs/software/LM4F-LaunchPad-04%20-%20Interrupts%20&%20Timers.pdf>`_
+  - `Interrupt-Driven Input/Output<http://www.eng.auburn.edu/~nelson/courses/elec2220/Interrupt_IO%20part2.pdf>`_
     * Interrupt vectors and vector table
     * Interrupt masks and priorities
     * NVIC
