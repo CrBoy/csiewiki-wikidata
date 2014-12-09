@@ -701,13 +701,38 @@ ble.n: 1 or 1+P(pipeline refill)
 若沒有branch，總共是2+1+2+1+1 = 7 cycle，
 若有branch則是 2+1+2+1+2 = 8 cycle，(pipeline refill需要1~3 cycle，因alignment和instruction width而不同)
 執行1000000次，也就是約8M個cycle，
-經過實測時間為0.16秒，換算指令的執行頻率=HCLK速度: 48Mhz
+經過實測時間為0.16秒，換算指令的執行頻率 = HCLK速度: 48Mhz (clock的速率請看下一節)
 
 指令執行時間：Cortex-M4 instructions
 http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.html
 
 * 關於STR, LDR系列指令，有cache機制可以在鄰近存取時減少執行時間
 * Neighboring load and store single instructions can pipeline their address and data phases. This enables these instructions to complete in a single execution cycle.
+
+--------
+
+# System Clock與PLL
+
+
+![Clock](/embedded/stm32f429clock.png)
+
+Reference Manual p.222 PLL_CFGR (DM00031020.pdf)
+
+PLL會在Stop Standby Modes時被停用
+HSE(or PLL)失效時會將System Clock改成HSI，並產生NMI exception
+主PLL -> HCLK -> Core,AHB,DMA,Memory (p.150還有其他的PLL供其他裝置使用)
+預設：8Mhz / 25 * 300 / 2=48Mhz
+
+PLL_M [預設25]    [可調範圍2~63]
+PLL_N [預設300]  [可調範圍192~432]
+PLL_P [預設2]       [可調範圍2 4 6 8]
+PLL_Q [預設7]  <--  to USB
+ 
+Fref = HSE(8 Mhz) / PLL_M 
+VCO = Fref * PLL_N 
+
+![alt text](/embedded/Pll.png)
+
 System clock setup
 
 - Internal High Speed Clock (HSI)
