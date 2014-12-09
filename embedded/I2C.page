@@ -340,7 +340,7 @@ flow chart(two boards)
 
 - master receiver/slave transmitter
 
- .. image:: /embedded/flow_chart_master_t_slave_r.jpg
+ .. image:: /embedded/flow_chart_master_r_slave_t.jpg
 
 I²C on STM32F429-Discovery
 =====================================
