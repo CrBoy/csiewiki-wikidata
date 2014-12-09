@@ -717,37 +717,29 @@ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.ht
 
 * System Clock與PLL
 
-
 .. image:: /embedded/stm32f429clock.png
 
 Reference Manual p.222 PLL_CFGR (DM00031020.pdf)
 
-PLL會在Stop Standby Modes時被停用
-HSE(or PLL)失效時會將System Clock改成HSI，並產生NMI exception
-主PLL -> HCLK -> Core,AHB,DMA,Memory (p.150還有其他的PLL供其他裝置使用)
-預設：8Mhz / 25 * 300 / 2=48Mhz
+**CPU可以選擇HSE、HSI、PLL作為clock source，其中PLL是倍頻電路，可以HSE、HSI作為參考頻率做倍頻，配合除頻可以產生多種頻率組合。**
 
-PLL_M [預設25]    [可調範圍2~63]
-PLL_N [預設300]  [可調範圍192~432]
-PLL_P [預設2]       [可調範圍2 4 6 8]
-PLL_Q [預設7]  <--  to USB
- 
+PLL會在Stop Standby Modes時被停用，HSE(or PLL)失效時會將System Clock改成HSI，並產生NMI exception，
+
+主PLL -> HCLK -> Core,AHB,DMA,Memory (p.150還有其他的PLL供其他裝置使用)
+
+專案預設設定：8Mhz / 25 * 300 / 2=48Mhz (system_stm32f4xx.c)
+
++ PLL_M [預設25]    [可調範圍2~63]
++ PLL_N [預設300]  [可調範圍192~432]
++ PLL_P [預設2]       [可調範圍2 4 6 8]
++ PLL_Q [預設7]  <--  to USB
+
 Fref = HSE(8 Mhz) / PLL_M 
+
 VCO = Fref * PLL_N 
 
 .. image:: /embedded/Pll.png
 
-System clock setup
-
-- Internal High Speed Clock (HSI)
-- External High Speed Clock (HSE)
-- Phase locked Loop (PLL)
-
-Bus clock setup
-
-- Advanced High Performance Bus (AHB)
-- Low speed Advanced Peripherial Bus (APB1)
-- High speed Advanced Peripherial Bus (APB2)
 
 Reference
 =========
