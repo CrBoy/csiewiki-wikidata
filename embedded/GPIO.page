@@ -5,19 +5,19 @@ categories: GPIO, STM32, STM32F4, STM32F429
 
 Introduction - 簡介
 ===================
-**General Purpose Input/Output (GPIO)** is a generic pin on an integrated circuit whose behavior, including whether it is an input or output pin, can be controlled by the user at run time.
+**General Purpose Input/Output (GPIO)**  
+  a generic pin on an integrated circuit whose behavior, including whether it is an input or output pin, can be controlled by the user at run time.
 
 * GPIO 是種具有彈性且可以藉由軟體控制 (software-controlled) 的數位訊號
 * 常見於開發版邊緣, 以針腳 (Pin) 的形式呈現
   - 這些針腳即是開發版與外界溝通的重要橋樑
   - 簡單例子, 想像成是開關, 使用者可以打開或關閉 (input), 或由開發版來打開或關閉 (output)
 
-* 每個 GPIO 可以被當成 input, output 或 alternate function
-  - alternate function 是指其他的的功能, 如 I2C, SPI, USART, CCP, PWM, Clock, ADC 等。如何控制則取決於外部設備 (peripheral)
+* 每個 GPIO 可以被當成 input, output, analog 或 alternate function
+  - alternate function 是指其他的的功能, 如 I2C, SPI, USART, CCP, PWM, Clock 等。如何控制則取決於外部設備 (peripheral)
 
-STM32F4xx Main Feature - STM32F4xx 特性
+STM32F4xx GPIO特性
 =====================================
-GPIO 雖然建立起記憶體與設備之間的橋梁，但也並非我們就可以隨意使用，我們必須要經過設定之後才能讓我們想要的設備正常工作。
 
 * 所有 GPIO 具有容許較高的電流能力與四種速度選擇，根據不同設定管理雜訊、電耗與電磁波
 * 最大 I/O 切換速度可以支援到 90 MHz
@@ -28,16 +28,16 @@ GPIO 雖然建立起記憶體與設備之間的橋梁，但也並非我們就可
   - Locking Register: GPIOx_LCKR 【防止因錯誤而改變GPIO的用途(accidental repurposing)】
   - Alternate Function Selection Register: GPIOx_AFRH 與 GPIOx_AFRL
 
+一個pin通常可被設定成input、output、alternate function或analog，input會有兩種狀態表現(floating, pull-up/down)，output也有兩種狀態表現(push-pull, open drain with pull-up/down resistors)。
 
-一個pin通常可被設定成input、output、alternate function或analog，input會有兩種狀態表現(floating, pull-up/down)，output也有兩種狀態表現(push-pull with pull-up/pull-down or open drain with pull-up/down)。
+**input/output方向 : input是指記憶體方接收來自設備的訊號源，output是指記憶體傳送訊號給設備。**
 
-- input/output方向解說 : input是指記憶體方接收來自設備的訊號源，output是指記憶體傳送訊號給設備。
+各模式下的操作方式：
 
-當pin被設定成input時，非analog的設定下，我們可以利用GPIO的input data register(GPIOx_IDR) 或是memory中提供給目標設備的data register (當設成alternate function的時候)去接收data。
-
-當pin被設定成output時，非analog的設定下，GPIO本身有提供output data register (GPIOx_ODR)來對目標設備做控制，但要是pin不是使用原本預先定義好的功能時(非預先定義的功能都算是alternate function的類別)，此時要用memory中，另外規劃給目標設備用的register。
-
-如果pin被設成analog的話，無論input or output都會由adc/dac那邊做處理。
+- Input mode：我們可以利用GPIO的input data register(GPIOx_IDR) 或是memory中提供給目標設備的data register (當設成alternate function的時候)去接收data。
+- Output mode(非analog)：GPIO提供output data register (GPIOx_ODR)及Bit set/reset register (GPIOx_BSRR)來對目標設備做控制
+- Alternate function：此時要用memory中另外規劃給目標設備用的register對Pin腳進行控制。
+- Analog mode：input和output會轉由adc/dac那邊做處理。
 
 Functional Description - 功能敘述
 ================================
