@@ -68,6 +68,11 @@ Clock control
        
        - 該clock亦為後面Timer章節提及的 **CK_INT** 之值
 
+Timer 與 counter的差異
+=======
+
+  - timer與counter的差別：本質上timer和counter幾乎是一樣的東西，底層都是一個硬體counter，如果是按照規律的時間跳表，那就是timer；如果是按照不規律的事件訊號跳表，那就是counter
+  
 
 Timers
 =======
