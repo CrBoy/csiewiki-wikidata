@@ -112,11 +112,6 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 .. image:: /embedded/I2S_Fig1.jpg
 
 
-I²C block diagram(on STM32F42x)
-=====================================
-
-
-.. image:: /embedded/i2c_block_diagram.jpg
 
 
 I²C 特性
@@ -168,6 +163,13 @@ I²C 特性
 I²C functional description
 =====================================
 
+I²C block diagram(on STM32F42x)
+......................................
+
+
+.. image:: /embedded/i2c_block_diagram.jpg
+
+
 I²C interrupt and Event
 ......................................
 
@@ -177,6 +179,49 @@ I²C interrupt and Event
  - error condition (ITERREN)
 
     .. image:: /embedded/i2c_interrupt.png
+
+
+control register
+------------------------------------
+
+.. image:: /embedded/cr1.jpg
+
+- ACK: Acknowledge enable
+
+ - STOP: Stop generation
+ - START: Start generation
+ - NOSTRETCH: Clock stretching disable (Slave mode)
+ - 當STOP, START bit 被set後, 在他們被硬體clear前不能從軟體寫入I2C_CR1。
+
+.. image:: /embedded/cr2.jpg
+
+- ITBUFEN: Buffer interrupt enable
+
+ - 1: TxE = 1 or RxNE = 1 generates Event Interrupt
+
+- ITEVTEN: Event interrupt enable
+
+ - 1: Event interrupt enabled 當下列status register 被set 時會觸發中斷。
+   - SB = 1 (Master)
+   - ADDR = 1 (Master/Slave)
+   - ADD10= 1 (Master)
+   - STOPF = 1 (Slave)
+   - BTF = 1 with no TxE or RxNE event
+   - TxE event to 1 if ITBUFEN = 1
+   - RxNE event to 1 if ITBUFEN = 1
+
+
+- ITERREN: Error interrupt enable
+
+ - 1: Error interrupt enabled 當下列status register 被set 時會觸發中斷。
+   - BERR = 1
+   - ARLO = 1
+   - AF = 1
+   - OVR = 1
+   - PECERR = 1
+   - TIMEOUT = 1
+   - SMBALERT = 1
+
 
 status register
 ------------------------------------
