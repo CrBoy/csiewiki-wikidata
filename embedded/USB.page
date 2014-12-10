@@ -114,7 +114,8 @@ USB Host 提供一個接口，如果要連接更多週邊，需要使用Hub。
 
 * 一層：提供給 Host (Bus Master)
 * 六層：提供給 Hubs 或 Devices
-* 考慮訊號傳遞衰減和延遲，網路架構最多七層，所以USB網路最多可支援127個裝置節點。
+* 考慮訊號傳遞衰減和時間限制，網路架構最多七層。
+* USB網路最多可支援127個裝置節點(7 bits in Token packet = 2^7 - 1)。
 
 .. image:: /embedded/usb/tiernetwork.png
 
