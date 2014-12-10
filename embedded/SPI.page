@@ -261,6 +261,15 @@ SPI interrupts
 --------------
 .. image:: /embedded/SPI_interrupt.png
 
+I²S functional description
+==========================
+.. image:: /embedded/I2S_block_diagram.png
+
+general
+-------
+- I²S或I2S（Inter-IC Sound或Integrated Interchip Sound）是IC間傳輸數位音訊資料的一種介面標準，採用序列的方式傳輸2組（左右聲道）資料，I²S常被使用在傳送CD的PCM音訊資料到CD播放器的DAC中
+- 在SPI裡可藉由SPI_I2SCFGR register裡的I2SMOD bit轉換成I²S模式，I²S使用的pins、flags和interrupts幾乎都跟SPI模式相同
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
