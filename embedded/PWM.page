@@ -449,30 +449,34 @@ TIM_Configuration
 
 .. code-block:: prettyprint linenums
 
-    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;//Create TIM Time Base Init structure 
-    TIM_OCInitTypeDef TIM_OCInitStruct;//Create TIM Output Compare Init structure
+    void TIM_Configuration(void)
+    {
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
+    TIM_OCInitTypeDef TIM_OCInitStruct;
 
-    // Let PWM frequency equal 100Hz. ( 84MHz / 1680 /500 = 100Hz )
-    // Let period equal 1600. Therefore, timer runs from zero to 1600. 
-    TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );//reset TIM_TimeBaseStructInit
-    TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   
+    // Let PWM frequency equal 100Hz.
+    // Let period equal 1000. Therefore, timer runs from zero to 1000. Gives 0.1Hz resolution.
+    // Solving for prescaler gives 240.
+    TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );
+    TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV4;
+    TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   //84000000/1680*1000=50hz  20ms for cycle
     TIM_TimeBaseInitStruct.TIM_Prescaler = 1000 - 1; 
     TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;    
     TIM_TimeBaseInit( TIM4, &TIM_TimeBaseInitStruct );
     
-    TIM_OCStructInit( &TIM_OCInitStruct );//reset TIM_OCStructInit
+    TIM_OCStructInit( &TIM_OCInitStruct );
     TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable;
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;
     
-
-    // TIM4_CCR register (16 bits). Value can range from zero to 65535.
-    // TIM_Pulse = Compare Capture register(CCR) = 1680 ( duty_cycle = 100%)
-    TIM_OCInitStruct.TIM_Pulse = 1680; //(0=Always Off, >1680 =Always On)
+    // Initial duty cycle equals 0%. Value can range from zero to 65535.
+    //TIM_Pulse = TIM4_CCR1 register (16 bits)
+    TIM_OCInitStruct.TIM_Pulse = 0; //(0=Always Off, 65535=Always On)
  
-    TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // set TIM_OCInitStruce to TIM4_channel1
+    TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // Channel 1  LED
     
  
-    TIM_Cmd( TIM4, ENABLE ); //Enables  TIM4 peripheral
+    TIM_Cmd( TIM4, ENABLE );
+    }
 
 -----------------------------------------------------------
 
@@ -497,7 +501,7 @@ demo1 PWM_LED
     TIM4->CCR1 = brightness; // set brightness
     
     int i;
-    for(i=0;i<200000;i++);  // delay
+    for(i=0;i<200000;i++);  // about 1.6M instruction ->0.0086sec
   }
 
 -----------------------------------------------------------
@@ -509,15 +513,25 @@ demo2 PWM_SERVO
 
 .. code-block:: prettyprint linenums
 
-  TIM4->CCR1=pulse; //ang0
-	
-  for(i=0;i<30000000;i++);  // delay
-	
-  //TIM4->CCR1=pulse+84; //ang90
+  void demo2(void)
+  {	
+  volatile int i; 
+  RCC_Configuration();
+  TIM_Configuration();
+  GPIO_Configuration();
 
-  TIM4->CCR1=pulse+168; //ang180
+   while(1)  // Do not exit
+   {
+   TIM4->CCR1=pulse; //ang0 //pulse=42
 	
-  for(i=0;i<30000000;i++);  // delay
+   for(i=0;i<30000000;i++);  // delay about 24M instruction ->1.3sec
+	
+   //TIM4->CCR1=pulse+84; //ang90
+   TIM4->CCR1=pulse+168; //ang180
+	
+   for(i=0;i<30000000;i++);  // delay
+   }
+  }
 
 -----------------------------------------------------------
 
