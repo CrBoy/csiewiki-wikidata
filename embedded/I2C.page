@@ -705,7 +705,9 @@ SMBus
 
 .. image:: /embedded/SMBus1.jpg
 
-I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
+I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power 
+
+Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
 
 在I2C中，主控端要與受控端通訊前，會在匯流排上廣播受控端的位址資訊，每個受控端都會接收到位址資訊，但只有與該位址資訊相切合的受控端會在位址資訊發佈完後發出「已
 
@@ -821,6 +823,34 @@ CRC演算法:- `WIKI-循環冗餘校驗 <http://zh.wikipedia.org/wiki/%E5%BE%AA%
 PMBUS
 =====================================
 
+PMBus(Power Management Bus)，是一種數位電源管理協議標準，使電源轉換器與其他設備方便溝通的一個協議，PMBus是由SMBus(1.1版)延伸而來，保有SMBus 1.1版的功能及
+
+新增了一些功能(但不支援timeout)。
+
+一個典型的PMBus連接方式
+
+.. image:: /embedded/PMBus1.jpg
+
+PMBus協議規定所有slave device必須將其默認的配置數據保存在永久性存儲器內，這樣它們在上電時無須再與BUS通信
+
+跟SMBus比較起來，PMBus多了兩種與Power converter共用的兩種hardware signal，一個是Control Line，用於啟動或關閉單個slave device，另一個是write protect用於
+
+防止更改到永久性儲存器的內容。
+
+此外PMBus還新增了BLOCK_WRITE_BLOCK_READ_PROCESS_CALL和GROUP_COMMAND_PROTOCOL
+
+Block Write跟Group_command protocol(基於PIC16F886這個PMBus device)如下所示:
+
+Block Write
+
+.. image:: /embedded/PMBus2.jpg
+
+Group_Command_Protocol
+
+.. image:: /embedded/PMBus3.jpg
+
+圖中的command code因PMBus device而定，使用前須先閱讀該device之datasheet
+
 Reference
 =====================================
 - `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
@@ -828,4 +858,6 @@ Reference
 - `http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf <_http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf>`_
 - `I2C-bus specification and user manual <http://www.nxp.com/documents/user_manual/UM10204.pdf>`_
 - `http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf <http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf>`_
+- `Microchip PMBus Stack User's guide <http://ww1.microchip.com/downloads/en/DeviceDoc/41361A.pdf>`_
+
     
