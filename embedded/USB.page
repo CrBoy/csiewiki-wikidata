@@ -301,7 +301,7 @@ Block Diagram
 
  * ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
  * marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
- * DP/DM description -- in reference manual 30.3.2
+ * DP/DM description -- in reference manual 34.3.2 (p.1227)
  * AHB -- Advanced High-performance Bus  
  * UTMI -- USB 2.0 transceiver macrocell interface
 
@@ -475,7 +475,7 @@ Q & A
 
 `USB 3.1 Specification <http://www.usb.org/developers/docs>`_
 
-`STM32F407xx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+`STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
 
 `USB On The Go <http://www.mem.com.tw/article_content.asp?sn=1101280010>`_
 
