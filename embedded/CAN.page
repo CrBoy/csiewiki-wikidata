@@ -116,13 +116,41 @@ Error Detection(資料偵錯機制)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 * BIT ERROR
+
 發送資料中的節點會比較發送的資料和bus中的電位高低變化是否一致，如果不一致則直在位傳完的訊息後方接著傳送Error Frame。這種偵錯機制僅限於SOF,control,data,CRC field。 
 
 .. image:: /embedded/CAN_bit_error.png
 
 * STUFF ERROR
 
+bit stuffing，就是接收端和傳送端約定連續傳幾個相同的bits就要傳送一個相反的bit，用來和訊息中的某些delimiter 做區隔，避免錯亂。在CAN當中是規定某些資料格式中最多只能有5個連續相同的bit，下一個bit就會自動安插相反的bit，並且在接收端會做de-stuffed的動作來把這個bit清除來還原資料。
+
+.. image:: /embedded/CAN_bit_stuffing.png
+
+CAN只在Data Frame中的SOF, ARBITRATION FIELD, CONTROL FIELD,DATA FIELD 和 CRC SEQUENCE這些非固定格式的部分有bit stuffing 的機制。所以當訊息中的這些部分連續偵測到6個相同的bit的時候，就會從下一個bit開始傳送Error Frame。 
+
+.. image:: /embedded/CAN_bitstuffing_error.png
+
 * CRC ERROR
+
+CRC是一種checksum機制。主要用來檢測數據傳輸後可能出現的錯誤。生成的數字在傳輸之前計算出來並且附加到數據後面，然後接收方進行檢驗確定數據是否發生變化。
+
+CRC的計算方式是假設M(x)是原始的message polynomial，K(x)是n階的generator polynomial，那麼CRC就是
+M(x)*x^n對K(x)做模二除法(modulo 2 division:二進位多項式除法，並且用xor運算取代減法運算)的餘式R(x)。所以各個polynomial之間有以下關係:
+
+M(x)*x^n = Q(x)*K(x) + R(x)
+
+在接收端就是在確認K(x)能不能整除(M(x)*x^n - R(x))，如果可以就表示資料正確，反之代表資料錯誤。
+
+ex:假設資料位元(message polynomial)為10101010，generator polynomial為x^4+x^2+x^1+1 (10111)
+
+.. image:: /embedded/CAN_CRC_ex.png
+
+1100為此資料在以x^4+x^2+x^1+1為generator polynomial之下的CRC。
+
+在CAN當中M(x)是下圖中的Fields所產生的message polynomial，K(x)則是x^15 + x^14 + x^10 + x^8 + x^7 + x^4 + x^3 + 1。
+
+.. image:: /embedded/CAN_CRC_error.png
 
 * FORM ERROR
 
@@ -131,6 +159,7 @@ CRC,ACK Field 都有delimiter，甚至EOF本身就是Data Frame的delimiter，�
 .. image:: /embedded/CAN_form_error.png
 
 * ACKNOWLEDGMENT ERROR
+
 傳送端會傳出2個bit的recessive(1)為ACK Field，前者為ACK Slot後者為ACK delimiter。當傳送端在ACK Slot送出recessive(1)的時候，接收端要回傳dominant(0)，告知傳送端。如果沒有那就在ACK delimiter後面傳送error frame。 
 
 .. image:: /embedded/CAN_ACK_error.png
