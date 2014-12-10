@@ -267,26 +267,28 @@ USB OTG讓原本只能為週邊的裝置也能成為主機(dual-role device),例
 ===============================
 OTG設備使用插頭中的ID引腳來區分A/B Device。
 
-* ID接地被稱作為A-Device，為連接時候的USB Host，A-Device始終為總線提供電力
+* ID接地被稱作為A-Device，為連接時候的USB Host，A-Device始終為總線(USB bus)提供電力
 * ID懸空被稱作為B-Device，為連接時候的USB Device
 
 設備的USB Host/USB Device角色可以通過HNP切換。
 
-Session Request Protocol (SRP, 對話請求協議)
---------------------------------------------
-* 當兩邊連線供電機制已經啟動後，兩個溝通的device都可進行控制；在標準的USB機制中，只允許host端進行控制。
-* 此機制能夠有效控制供電的消耗，這對於吃電池的裝置是非常重要的(ex：相機，手機…)。當有週邊裝置B-device(which can be an OTG or standard USB device)對OTG, embedded hosts發送請求時，OTG and embedded hosts再對USB link供電，因為吃電池的裝置可能沒有足夠多的備用電力，沒有裝置要求連線就不供電的機制能延長電池的使用時間。
-
-Host Negotiation Protocol (HNP, 主機通令協議)
---------------------------------------------
-* 允許兩個裝置(OTG-device)交換host/peripheral的角色，交換角色時需要透過HNP。
-* OTG-device可以取得資料傳輸排程的控制權，因此每個OTG-device都啟動資料傳輸。
-* 最新版本的HNP有一個概念，HNP polling，內容是說OTG device做為host端時，當兩者是互連狀態會週期性地問peripheral端要不要變成host。
+USB OTG與USB2.0相比，多三種新的傳輸協定。
 
 Attach Detection Protocol (ADP)
 --------------------------------------------
 * 讓OTG device, embedded host, USB devices藉由USB bus上供電的損失來決定裝置有沒有接附，此機制會啟動兩種現象，裝置插入的基本原理表現及讓裝置能表達目前連接的狀態。
-* 如何達成上述的機制：藉由週期性的量測USB port上的電容(capacitance)變化，看有沒有裝置連上；當電容的變化大到足以表示有新裝置接上USB port，A-device會供電到USB bus，準備與裝置連線，B-device會產生SRP(session request protocol)，並等待USB bus供電。
+* 如何達成上述的機制：藉由週期性的量測USB port上的電容(capacitance)變化，看有沒有裝置連上；當電容的變化大到足以表示有新裝置接上USB port，A-device會供電到USB bus，準備與裝置連線，而B-device會產生SRP(session request protocol)，並等待USB bus供電。
+
+Session Request Protocol (SRP, 對話請求協議)
+--------------------------------------------
+* 當兩邊連線供電機制已經啟動後，兩個溝通的device都可取得主控權；在標準的USB機制中，只允許host端進行控制。
+* 此機制能夠有效控制供電的消耗，這對於靠電池供電的裝置非常重要(ex：相機，手機…)。當有週邊裝置B-device(which can be an OTG or standard USB device)對OTG, embedded hosts發送請求時，OTG and embedded hosts再對USB link供電，因為吃電池的裝置可能沒有足夠多的備用電力，沒有裝置要求連線就不供電的機制能延長電池的使用時間。
+
+Host Negotiation Protocol (HNP, 主機通令協議)
+--------------------------------------------
+* 允許兩個裝置(OTG-device)交換host/peripheral的角色，交換角色時需要透過HNP。
+* OTG-device可以取得資料傳輸排程的控制權，因此任何OTG-device都可透過OTG bus控制資料傳輸。
+* 最新補充版本的HNP有一個概念，HNP polling，內容是說OTG device做為host端時，在互連狀態下會週期性地問peripheral端要不要變成host。
 
 Block Diagram
 ==============
