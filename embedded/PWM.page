@@ -378,13 +378,12 @@ PWM realize ADC :
 
      - 再利用OPA比較類比輸入和PWM所產生的輸入壓即可得知現在所輸入類比訊號值。
 
-RC value design:
-------------------
+RC circuit's response to a PWM signal?:
+-----------------
+[#]_
 
-.. image:: /RC值設計.png
+.. [#] `What is the RC circuit's response to a PWM signal?<http://www3.nd.edu/~lemmon/courses/ee224/web-manual/web-manual/lab8a/node5.html>`_reference
 
-.. image:: /embedded/RC2.png
-   :scale: 50
 ADC transform :
 -----------------
 
