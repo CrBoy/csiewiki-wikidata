@@ -180,6 +180,7 @@ Registers
  2. edge-aligned 下數時，發生underflow
  3. center-aligned mode, overflow 或 underflow
 
+.. image:: /embedded/Timer_UEV_and_RCR_relation_example.png
 
 Prescaler Description
 -----------------------
