@@ -737,9 +737,7 @@ Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳�
 
 相同的情形，在SMBus上是不允許受控端在接收位址資訊後卻不發出回應，每次都要回應，為何要強制回應？其實與SMBus的應用息息相關，SMBus上所連接的受控裝置有時是動態加
 
-入、動態移除的，例如換裝一顆新電池，或筆記型電腦接上船塢埠等，如果接入的裝置已經改變卻不回應，則主控端的程式所掌握的並非是整體系統的最新組態，就會造成錯誤動
-
-作。
+入、動態移除的，例如換裝一顆新電池，或筆記型電腦接上船塢埠等，如果接入的裝置已經改變卻不回應，則主控端的程式所掌握的並非是整體系統的最新組態，就會造成錯誤動作。
 
 * Low Operating Frequency and Timeout:
 
@@ -757,7 +755,7 @@ Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100
 
 * Clock low extending:
 
-SMBus提供clock同步機制,允許不同速度的設備共同在bus上,設備可以週期性地延長每個clock cycle,但必須維持fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以
+SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設備可以週期性地延長每個clock cycle,但必須維持fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以
 維護SMBus的頻寬
 
 .. image:: /embedded/SMBus4.jpg 
@@ -796,13 +794,13 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
   - Prototype Addresses
 
-   Prototype Addresses保留用於設備和應用程式原型試驗，他們永遠不能分配給任何設備
+   Prototype Addresses保留用於設備與應用程式作為雛型驗證及工程開發，它們永遠不能分配給任何設備
 
 .. image:: /embedded/SMBus8.jpg
 
   - Miscellaneous device addresses
 
-   製造商可能生產製作和SMBus兼容的設備，他們並不需要完整的SMBus規範。
+   製造商可能生產製作與 SMBus 相容的設備，他們並不需要完整的SMBus規範。
  
   - Dynamically assigned addresses 
 
@@ -834,7 +832,7 @@ PEC的BUS協議:- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.5�
 
 -補充-:CRC演算法
 
-用來檢查資料是否有問題的方法，把資料轉成一多項式，在用另一固定自選多項式除來得到餘數，最後檢查是否和預定值相同
+用來檢查資料是否有問題的方法，把資料轉成一多項式，再用另一固定自選多項式進行除法後所得到餘數比對，最後檢查是否和預定值相同
 
 CRC演算法:- `WIKI-循環冗餘校驗 <http://zh.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97>`_
 
