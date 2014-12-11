@@ -248,6 +248,8 @@ Functional Modes
 
 Input capture mode
 ------------------
+當一個input capture事件發生，TIMx_CCR會儲存觸發訊號當下的counter值，並且CCxIF (interrupt flag)會被硬體自動設定為1，代表發生了input capture事件。這時，我們可以設定中斷處理或DMA request。
+
 [#]_
 
 .. [#] `Input capture mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 592
