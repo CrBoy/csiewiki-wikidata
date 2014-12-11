@@ -334,14 +334,27 @@ Output compare mode
 .. image:: /embedded/OC1M(output compare mode).png
 
 
-**PWM mode**
+**PWM mode：分為 edge-aligned & center-aligned mode**
+
 ------------
+
 [#]_
 
 .. [#] `PWM mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 595
 - PWM edge-aligned mode
 
+  - OCxREF即是我們要輸出的pwm訊號。
+  
+  - interrupt flag：CNT matches ARR
+ 
+  - CCR > ARR時，上數發生overflow時或在下數發生underflow時。
+
+  - 下圖是PWM1(由CCMR的OC1M決定), 上數(由CR1的DIR bit決定)：
+
 .. image:: /embedded/Timer_EdgeAligned_PWM_ARR8.png
+
+ - 在此PWM edge-aligned mode下，有一個要注意的地方：
+    - 當設定為PWM2且下數時，會無法產生出 0% PWM。
 
 - 目的 : 
     - 產生一個由TIMx_ARR暫存器決定頻率：PWM Frequency = counter clock / (auto reload value(TIMx_ARR)+1)
