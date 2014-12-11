@@ -50,7 +50,6 @@ USB發展歷史
    - Update USB 3.0 to 10Gbit/s 
    - 可以向下相容USB 2.0 , USB 3.0
 
-* 上述簡介中的USB傳輸速度(low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s)的給定，主要是依據USB規格書上的定義，這些速度可以透過pull-up    resistor來調整
 
 標準 USB 2.0 介面
 ^^^^^^^^^^^^^^^^
@@ -105,6 +104,20 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 * 資料傳輸流程
 
 .. image:: /USB_SCHEMA.gif
+
+傳輸速率
+========
+* 上述簡介中的USB傳輸速度(low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s)的給定，主要是依據USB規格書上的定義，這些速度可以透過pull-up    resistor來調整
+   -low speed
+
+.. image:: /embedded/low_speed.png
+
+   -full speed
+
+.. image:: /embedded/full_speed.png
+
+   -high speed
+       - 首先電路連接方式跟full speed一樣，就在 device 跟 host 端連接時，host端會先傳送一個USB RESET signal給device端，device端接收後，接下來就是device 端跟 host 端的速度協商，如果device支援high speed的話，就會傳一個訊號告知host端，如果host端也支援high speed的話，那麼之後的傳輸就可以用high speed的速率來傳輸。
 
 網路層
 ========
