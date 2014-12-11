@@ -341,6 +341,7 @@ Output compare mode
 [#]_
 
 .. [#] `PWM mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 595
+
 - PWM edge-aligned mode
 
   - OCxREF即是我們要輸出的pwm訊號。
@@ -359,6 +360,18 @@ Output compare mode
 - 目的 : 
     - 產生一個由TIMx_ARR暫存器決定頻率：PWM Frequency = counter clock / (auto reload value(TIMx_ARR)+1)
     - 由TIMx_CCRx暫存器決定工作週期的PWM信號：PWM Duty Cycle = compare reg. value(TIMx_CCRx)*100 / (auto reload value(TIMx_ARR)+1)
+
+- PWM center-aligned mode
+  - OCxREF即是我們要輸出的pwm訊號。
+  - TIMx_CR1 的 CMS 能決定interrupt flag(CCxIF)要在何時立起來(set to 1)
+    - interrupt flag：
+               1. CNT matches ARR
+               2. CCR > ARR時，上數發生overflow時或在下數發生underflow時。
+
+  - 下圖一樣是 PWM mode 1,但為 center-aligned mode(即上數完下數，下數完上數)
+
+.. image:: /embedded/Timer_CenterAligned_PWM_ARR8.png
+
 - PWM configuration
 
      - TIM_Prescaler  :  將TIMxCLK除以(TIM_Prescaler + 1)
