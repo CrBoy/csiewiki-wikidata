@@ -1,5 +1,5 @@
 ---
-title: Open Projects
+title: Embedded :: Open Projects
 toc: no
 ...
 
@@ -7,15 +7,22 @@ toc: no
 
 協作形式說明
 ------------------
-* 採用開放原始碼授權的專案，性質無論是軟體或硬體，皆相當歡迎
+* 為了鼓勵在校學生投入開放原始碼開發，成功大學資訊工程系展開幾項有特色的專案，希望一面培養學生的實做訓練，一面提昇在國際上的能見度
   - `2014 暑期計畫<https://source2014.hackpad.com/Projects-jie4uR1iUF0>`_ (Hackpad)
 
-* 「人在作，Google 在看」，專案開發的軌跡，藉由多元管道將會被保留，日後無論升學、就業，這些經驗應頗有助益
+* 「人在作，Google 在看」，專案開發的軌跡，藉由多元管道將會被保留，日後無論升學或就業，這些經驗應頗有助益
 
 進行中專案
 ---------------
 * `RTMux<https://github.com/rtmux>`_: Lightweight Temporal and Spatial Partitioning of Real-Time Linux (GPL)
+  - 2014 年發表於 Embedded Linux Conference Europe, Linux Foundation
+
+* `olibc<http://olibc.so>`_ : 針對嵌入式系統開發的高度最佳化、高客製化的 C runtime (libc; BSD License)
+  -  2013 年發表於 Embedded Linux Conference, Linux Foundation
+
+* `TuxOnIce<http://tuxonice.nigelcunningham.com.au/>`_: Snapshot boot for ARM，用 6 秒啟動 Android 裝置
+  - 2013 年發表於 Automotive Linux Summit, Linux Foundation
+
 * ` UrsusPilot<https://github.com/UrsusPilot/>`_: An open-source multi-copter autopilot (MIT/BSD License)
 * `F9 Microkernel<https://github.com/f9micro>`_ : 針對 ARM Cortex-M4 特性並基於 L4 微核心架構，重新打造的嵌入式作業系統 (BSD License)
 * `uClinux for ARM Cortex-M4<https://github.com/uclinux-cortexm>`_: 以 STM32F429 Discovery Kit 為開發平台，提供完整的 uClinux 移植和開發環境 (GPL)
-* `olibc<http://olibc.so>`_ : 針對嵌入式系統開發的高度最佳化、高客製化的 C runtime (libc; BSD License)
