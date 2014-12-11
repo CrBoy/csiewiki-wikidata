@@ -198,7 +198,7 @@ STM32 USART介紹與特性
 
  - 支援10種中斷
 
- - 多處理器通訊，如果資料中的地址沒有配對成功，則進入mute mode。
+ - 多處理器通訊，如果資料中的地址沒有配對成功，則進入mute mode。最多可將16個節點串成同一個網路(因USART_CR2_ADDR只有四位元)。
 
  - 2種喚醒接收器的方式
 
@@ -585,7 +585,7 @@ parity依算方式的不同分成兩種方式，even parity和odd parity
        - LSB: Least Significant Bit，代表位數最小的那個bit
 
 鮑率的設定
-========
+=========
 
  - 接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
 
@@ -619,10 +619,11 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
    - HCLK>>2轉給PCLK1 => 168Mhz>>2 = 42Mhz.
 
 多處理機通訊
-==========
+===========
 
  - 除了一對一通訊之外，也可以將許多USART串成一個小型網路(multiprocessor communications)。
  - 在這些USART中，可以選出一個USART作為master，其餘的就做為slave。而master的TX會連到所有slave的RX，所有slave的TX則會連接到邏輯AND後，再連接至master的RX。
+
 
 在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
 
