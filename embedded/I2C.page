@@ -865,8 +865,6 @@ Group_Command_Protocol
 
 .. image:: /embedded/PMBus3.jpg
 
-圖中的command code因PMBus device而定，使用前須先閱讀該device之datasheet
-
 Reference
 =====================================
 - `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
