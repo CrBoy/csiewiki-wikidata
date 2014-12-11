@@ -180,6 +180,24 @@ I²C interrupt and Event
 
     .. image:: /embedded/i2c_interrupt.png
 
+clock control register
+------------------------------------
+設定I2C CCR:
+
+- Sm mode 的 peripheral input clock 至少要為 2MHz。
+- Fm mode 的頻率 peripheral input clock 至少要為 4MHz。
+
+
+
+.. image:: /embedded/ccr2.jpg
+
+設定 Fm mode 的duty cycle
+
+.. image:: /embedded/ccr.jpg
+
+透過設定CCR來產生SCL頻率。
+
+例如: 當在Sm mode時，若 FREQR為08 (8MHz), TPCLK1為 125ns, 則CCR必須要是0x28(40d*125ns*2=10000ns), 才能產生100KHz的SCL
 
 control register
 ------------------------------------
