@@ -1,0 +1,21 @@
+---
+title: Open Projects
+toc: no
+...
+
+.. image:: /embedded/logo-2012-small.png
+
+協作形式說明
+------------------
+* 採用開放原始碼授權的專案，性質無論是軟體或硬體，皆相當歡迎
+  - `2014 暑期計畫<https://source2014.hackpad.com/Projects-jie4uR1iUF0>`_ (Hackpad)
+
+* 「人在作，Google 在看」，專案開發的軌跡，藉由多元管道將會被保留，日後無論升學、就業，這些經驗應頗有助益
+
+進行中專案
+---------------
+* `RTMux<https://github.com/rtmux>`_: Lightweight Temporal and Spatial Partitioning of Real-Time Linux (GPL)
+* ` UrsusPilot<https://github.com/UrsusPilot/>`_: An open-source multi-copter autopilot (MIT/BSD License)
+* `F9 Microkernel<https://github.com/f9micro>`_ : 針對 ARM Cortex-M4 特性並基於 L4 微核心架構，重新打造的嵌入式作業系統 (BSD License)
+* `uClinux for ARM Cortex-M4<https://github.com/uclinux-cortexm>`_: 以 STM32F429 Discovery Kit 為開發平台，提供完整的 uClinux 移植和開發環境 (GPL)
+* `olibc<http://olibc.so>`_ : 針對嵌入式系統開發的高度最佳化、高客製化的 C runtime (libc; BSD License)
