@@ -321,15 +321,18 @@ Output compare mode
 
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_Toggle
 
-- 此項功能是用來控制一個輸出波形或是用來指示一段給定的時間已到。
+- 用來控制你想要輸出的訊號或是用來指示一段給定的時間已到。
 
-Detail of OC1M[2:0] in the TIMx_CCMR1 Register
-------------------------------------------------
+- 在此模式下，UEV對OCxREF、OCx是沒有作用的。
+
+- pwm mode(綠色框框內)又可分為PWM mode 1 & PWM mode 2
+
 [#]_
 
 .. [#] `TIMx_CCMR1<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 621
 
-.. image:: /OC1M(output compare mode).png
+.. image:: /embedded/OC1M(output compare mode).png
+
 
 **PWM mode**
 ------------
