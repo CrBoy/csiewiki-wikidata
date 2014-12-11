@@ -233,33 +233,38 @@ Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/
    
    - nRTS: 請求發送資料。若在低電位，則表示USART已經準備好接收資料
 
-M位
----
+USART data frame & M bit
+-------------------------
 
-資料長度根據USART_CR1暫存器中的M位選擇8或9位元
-
-.. image:: /usart_M_byte.jpg
+每次傳輸資料時，USART會以一個frame作為一次傳輸的單元。
 
 
-   - 在起始位(start bit)期間，TX處於低電位，如圖中的(a)，在停止位期間，TX處於高電位，如圖中的(b)。
+
+.. image:: /embedded/USART_DataFrame.jpg
 
 
-.. image:: /usart_M_idle.jpg
+   - 在起始位(start bit)期間，資料發送端(TX)處於低電位；在停止位(stop bit)期間，資料發送端(TX)處於高電位。
 
 
-   - 另外空閒符號則全由'1'組成，包含資料的停止位元位數也是'1'，如圖中的(c)，後面接著下一個資料的開始位；
+.. image:: /embedded/USART_8bit_length.jpg
 
 
-.. image:: /usart_M_break.jpg
+   - 若將USART_CR1_M 設定為0，則發送的data frame會變成這樣。
+
+   - Idle & break frame的長度也會與data frame的長度一樣。Idle 會發送一個frame的高電位、break則是發送一個frame的低電位。
+
+   - 發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
 
 
-   - 中斷符號則全由'0'所組成，包含資料的停止位也是'0'，如圖中的(d)，
+.. image:: /embedded/USART_9bit_length.jpg
 
 
-在中斷時，發送器會再插入1或2個停止位('1')以區分下一筆資料的起始位，如圖中的(e)
+   - 若將USART_CR1_M 設定為1，則發送的data frame會比上一張圖多一個bit。
+
+   - Idle & break frame的長度也會變長1 bit。
 
 
-Ref: `RM0090 Reference Manual P.950<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+
 
 10種中斷
 -------
