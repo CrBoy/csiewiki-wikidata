@@ -174,13 +174,40 @@ Registers
 
     - ARPE = 1 ,TIMx_ARR is buffered (UEV產生時才將值轉入shadow register)
 
-
 - Repetition counter在下列三種情況下會遞減：遞減了(TIMx_RCR+1)次，就會觸發update event(UEV)
  1. edge-aligned 上數時，發生overflow
  2. edge-aligned 下數時，發生underflow
  3. center-aligned mode, overflow 或 underflow
 
 .. image:: /embedded/Timer_UEV_and_RCR_relation_example.png
+
+ - Update Event(UEV)發生時會做的事情有：
+    1. 會把所有的reg. update
+        - 把preload value(RCR) 載入到 repetition counter
+        - 把preload value(ARR) 載入到 auto-reload shadow reg.
+        - 把preload value(PSC) 載入到 the buffer of the prescaler
+
+    2. set update flag(UIF in SR  reg) 
+
+ - Update Event (UEV)發生的時機：
+    - 由UDIS(開關)及URS(發生時機)決定
+        1. UDIS：
+          - UDIS = 0, update enable 
+            - preload value 會被載入至 shadow registers
+
+          - UDIS = 1, update disable
+            - 不產生update event , shadow registers 保持原本的值(ARR,PSC,CCRx)。
+            - 但如果此時UG = 1, counter及prescaler還是會reiniitialized(重新計數的意思，重新開始)
+
+        2. URS：
+          - URS = 0, 
+            - 計數時，發生overflow或是underflow
+            - setting UG(update generation) : UG bit 可以透過sw來設定(auto cleared by hw)
+              - UG = 1, reinitialize the counter and generates an update of the reg.(重新計數的意思，重新開始)
+            - update generation through slave mode controller
+
+          - URS=1,
+            - 只有發生overflow或是underflow才會產生update interrupt
 
 Prescaler Description
 -----------------------
