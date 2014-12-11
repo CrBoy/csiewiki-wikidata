@@ -658,7 +658,7 @@ PWM先高後低和先低後高 在Motor上表現有什麼差別?
 
   - (2)半可變電阻:多用於微調用或一次設定好後除非又偏差才需要調整的電路, 像類比指針式三用電表的歸零值調整等.
 
-- `Reference <http://www.wretch.cc/blog/ltivsled/22468459>`_
+- `Reference <http://wiki.dzsc.com/info/7527.html>`_
 
 Clock Tree
 -----------
@@ -750,6 +750,7 @@ Reference
 Website
 --------
 
+- `張晏甄同學hackpad Timer筆記 <http://blog.csdn.net/scarlettsp/article/details/6656588>`_
 - `Shadow register <http://blog.csdn.net/scarlettsp/article/details/6656588>`_
 - `Wikipedia-PWM<http://en.wikipedia.org/wiki/Pulse-width_modulation>`_
 - `TIM_ClockDivision功用說明<http://blog.sina.com.cn/s/blog_76c545390100ovfj.html>`_
