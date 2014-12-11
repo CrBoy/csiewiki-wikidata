@@ -440,6 +440,7 @@ RC circuit's response to a PWM signal:
 
 .. [#] `What is the RC circuit's response to a PWM signal?<http://www3.nd.edu/~lemmon/courses/ee224/web-manual/web-manual/lab8a/node5.html>`_reference
 
+.. image:: /embedded/RC_equation.png
 .. image:: /embedded/PWM_wave.png
 .. image:: /embedded/response_of_PWM.png
 
