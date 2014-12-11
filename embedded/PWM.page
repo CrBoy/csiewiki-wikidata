@@ -145,13 +145,25 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
 - clock來源 : 
   
   - Internal clock(CK_INT)
+    - 使用HSI(16MHz)RC電路當做觸發來源
+    - SMS = 000 (in TIMx_SMCR)
+    - ex:CK_PSC=CK_INT
 
   - External clock mode1: external input pin(TIx)
+    - 在input每次的rising or falling edge時 counter 計數
+    - SMS = 111 (in TIMx_SMCR)
+    - 此時利用到SMCR的TS[2:0]來選擇輸入源
+    - ITR0.1.2.3, TI1 Edge Detector , TIFP1 , T2FP2 , ETRF
 
-  - External clock mode2: external trigger input(ETR) available on TIM2, TIM3 and TIM4 only
+  - External clock mode2:
+    - 在input每次的rising or falling edge時 counter 計數
+    - ECE=1(in TIMx_SMCR external clock enable)
+    - input來源為ETRF signal (external trigger filtered)
 
-  - Internal trigger inputs(ITRx): 使用另一個timer作為prescaler來產生除頻後之clock
-      
+  - Internal trigger inputs(ITRx): 
+    - 使用另一個timer作為prescaler來產生除頻後之clock
+    - 舉例 : 用Timer 1 的(update event)當做Timer 2 的prescaler
+
 Counter Modes
 =============
 [#]_
