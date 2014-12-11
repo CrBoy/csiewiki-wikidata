@@ -321,8 +321,6 @@ Forced output mode
 
 - 在輸出模式下，輸出比較信號能夠直接由軟體強制設為有效(active)或是無效(inactive)的狀態，而無視輸出比較暫存器和計數器之間的比較結果。
 
-.. image:: /timer output stage.PNG
-
 - TIMx_CCMRx = 100 -> force **inactive** level -> ocxref force **low**
 
 - TIMx_CCMRx = 101 -> force **active** level   -> ocxref force **high**
