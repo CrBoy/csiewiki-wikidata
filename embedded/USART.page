@@ -982,6 +982,25 @@ MAX232工作原理
 供電
  - 15腳GND、16腳VCC（+5V）。
 
+等校電路說明
+
+.. image:: /embedded/MAX232_circuit.jpg
+
+TXD為TTL輸入端，RXD為TTL輸出端，由於二極體與電容的作用使二極體D1與電容C7交接處的電壓保持在-3V~-15V。
+
+TTL轉RS232:
+
+ - 當TXD為"邏輯1"時(TTL)，Q3(PNP電晶體)為截止狀態，PCRXD上電壓與PCTXD電壓相等，也是-3~-15V,為"邏輯1"(RS232)
+
+ - 當TXD為"邏輯0"時(TTL)，Q3(PNP電晶體)為導通狀態，PCRXD上電壓約為+5V，此電壓位於+3~+15V之間，也就是"邏輯0"(RS232)
+
+RS232轉TTL:
+
+ - 當PCTXD為"邏輯1"時(RS232)，Q4(NPN電晶體)為截止狀態，RXD電壓約為+5V,為"邏輯1"(TTL)
+
+ - 當PCTXD為"邏輯0"時(TS232)，Q4(NPN電晶體)為導通狀態，RXD電壓為0V，為"邏輯0"(TTL)
+
+其中D2二極體的功能是為了防止Q4的逆向偏壓過高而導致的崩潰現象發生。 
 
 USB to UART 橋接器-CP2102 
 .........................
@@ -1043,7 +1062,11 @@ USB功能控制器負責管理所有UART及USB間的資料傳輸，和處理來�
 
 .. image:: /CP2102_elec.png
 
+工作流程
 
+.. image:: /embedded/CP2102_MAX232.jpg
+
+ - 大多時候CP2102會搭配MAX232作使用，在RS232與CP2102之間還會接一個Max232來達到穩壓的效果及轉換訊號的功能，資料從RS232的pin2傳出去，MAX232的R2IN收到，接著從R2OUT輸出一個TTL/CMOS訊號到CP2102裡面，因為CP2102裡面有兩條數據傳輸通道以及緩衝區，振盪器和USB function controller會去控制資料的緩衝和傳遞​，由USB傳送端從usb port傳出去。
 
 STM32 USART Register 總表
 ................................
