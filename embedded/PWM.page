@@ -265,6 +265,21 @@ PWM input mode
 .. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 593
 
 - 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM訊號週期(存於TIMx_CCR1暫存器)和工作週期(存於TIMx_CCR2暫存器)，所以會使用到兩個通道。
+- 我們可以透過此mode來得知input 進來的PWM period 及 duty cycle
+  - 設定有三件事情要注意：
+
+    1. Two ICx signals are mapped on the same TIx input.(下面的例子就是都map到 Tl1 )
+
+    2. These 2 ICx signals are active on edges with opposite polarity. (兩個負責儲存相反的極性(下面的例子CCR1 & 存active時的counter值，CCR2存inactive時的counter值)
+
+    3. One of the two TIxFP signals is selected as trigger input and the slave mode controller is configured in reset mode.
+
+- 由下圖可知，
+  - 當TI1 active(拉起)時，IC1 會capture，CCR1就會儲存CNT當下的值(也就是4)，
+  - 然後接著，當TI1 inactive(降下)時，IC2 會capture，CCR2就會儲存CNT當下的值(也就是2)。
+  - 這樣我們可以由CCR1得知pwm的period從CCR2得知pwm的duty cycle。
+
+.. image:: /embedded/Timer_pwm_input_mode.png
 
 Forced output mode
 -------------------
