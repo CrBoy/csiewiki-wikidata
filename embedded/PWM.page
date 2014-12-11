@@ -154,7 +154,7 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
     - SMS = 111 (in TIMx_SMCR)
     - 此時利用到SMCR的TS[2:0]來選擇輸入源
     - ITR0.1.2.3, TI1 Edge Detector , TIFP1 , T2FP2 , ETRF
-
+.. image:: /ITR.jpg
   - External clock mode2:
     - 在input每次的rising or falling edge時 counter 計數
     - ECE=1(in TIMx_SMCR external clock enable)
