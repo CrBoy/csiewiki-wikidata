@@ -1143,6 +1143,16 @@ Download sample code :
 .. image:: /embedded/USART_Oscilloscope.jpg
 
 
+.. image:: /embedded/USART_Oscilloscope_char_b.jpg
+
+
+.. code-block:: c
+
+    在沒接地時，量測STM32F429從PC接收字元b。    
+
+    整體波形變得不平整，但還是看得到USART輸出的波形。
+
+
 .. image:: /embedded/USART_Osc_IDLE_USART.jpg
 
 
