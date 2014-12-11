@@ -20,7 +20,7 @@ toc: no
 * `olibc<http://olibc.so>`_ : 針對嵌入式系統開發的高度最佳化、高客製化的 C runtime (libc; BSD License)
   -  2013 年發表於 Embedded Linux Conference, Linux Foundation
 
-* `TuxOnIce<http://tuxonice.nigelcunningham.com.au/>`_: Snapshot boot for ARM，用 6 秒啟動 Android 裝置
+* `TuxOnIce<http://tuxonice.nigelcunningham.com.au/>`_: Snapshot boot for ARM，用 6 秒啟動 Android 裝置 (GPL/LGPL)
   - 2013 年發表於 Automotive Linux Summit, Linux Foundation
 
 * ` UrsusPilot<https://github.com/UrsusPilot/>`_: An open-source multi-copter autopilot (MIT/BSD License)
