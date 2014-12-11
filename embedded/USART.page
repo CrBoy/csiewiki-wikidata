@@ -30,9 +30,6 @@ NRZ標準資料格式(Mark/Space)
 
  - 全雙工:允許二台設備間同時進行雙向資料傳輸。例:手機
 
-CLOCK SKEW
-==========
-時鐘偏移(clock skew)是指時脈訊號到達數位電路各個部分所用時間的差異，這是由於時脈訊號到各個電子元件的所經路徑長度不同而產生。
 
 Synchronous 同步傳輸
 =========================
@@ -40,33 +37,17 @@ Synchronous 同步傳輸
    - 同步: 額外提供時脈訊號，使兩端機器在溝通時能夠藉此同步收發資料。比起非同步傳輸，同步傳輸不需要start/stop bit，因此能夠一次傳較多的資料。同步傳輸需要解決時鐘偏移對資料傳輸造成的影響，除此之外，額外的時脈分佈網也需要大量的驅動電路，比起非同步傳輸增加了更多的耗能。一般同步系統會用阻斷時脈的方式(clock gating)，來令不需運作的模組進入睡眠狀態(sleeping mode)到省電的目的，這個機制需要額外的電路及再次同步的額外延遲，不僅造成多餘的能源損耗，也增加了電路設計上的困難度。
 
 
-若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
-   - USART_CR2的LINEN
-   - USART_CR3的SCEN、HDSEL、IREN
-
-USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
-
-在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
-
-在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
-
-此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
-
-SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
-
-當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
-
-建議同時設定TE和RE，以減少接收器的setup和hold time。
-
-另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
-
-
 .. image:: /synchronous_transmission.png
 
 .. image:: /usart_syn.png
 
 
-Ref: `RM0090 Reference Manual P.974<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_   
+CLOCK SKEW
+------------
+
+時鐘偏移(clock skew)是指時脈訊號到達數位電路各個部分所用時間的差異，這是由於時脈訊號到各個電子元件的所經路徑長度不同而產生。
+
+
 
 Asynchronous 非同步傳輸
 ======================
@@ -76,6 +57,14 @@ Asynchronous 非同步傳輸
 .. image:: /embedded/ASYNC.gif
 
 來源: `webopedia<http://www.webopedia.com/FIG/ASYNC.gif>`_
+
+
+半/全雙工、同步/非同步 & Serial bus 示意圖
+=========================================
+
+.. image:: /embedded/USART_connection_type.jpg
+
+
 
 RS232 介面標準
 =============
@@ -198,7 +187,7 @@ STM32 USART介紹與特性
 
  - 支援10種中斷
 
- - 多處理器通訊，如果資料中的地址沒有配對成功，則進入mute mode。最多可將16個節點串成同一個網路(因USART_CR2_ADDR只有四位元)。
+ - 多處理器通訊，最多可將16個節點串成同一個網路(因USART_CR2_ADD只有四位元)。
 
  - 2種喚醒接收器的方式
 
@@ -636,6 +625,7 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
 
  - 除了一對一通訊之外，也可以將許多USART串成一個小型網路(multiprocessor communications)。
  - 在這些USART中，可以選出一個USART作為master，其餘的就做為slave。而master的TX會連到所有slave的RX，所有slave的TX則會連接到邏輯AND後，再連接至master的RX。
+ - USART的地址放在USART_CR2_ADD，因為只有4位元，所以最多支援到16個節點。
 
 
 在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
@@ -700,8 +690,35 @@ USART 與 SPI之關係
 
 
 
+
 STM32 USART的MODE
 .................
+
+
+Synchronous mode
+===================
+
+若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
+   - USART_CR2的LINEN
+   - USART_CR3的SCEN、HDSEL、IREN
+
+USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
+
+在idle state、前同步碼(preamble)以及傳送break時，外部SCLK腳位不會被啟用。
+
+在同步模式下，USART傳送器的行為與非同步模式一樣。但是因SCLK與TX同步(因CPOL與CPHA的設定)，TX送出的資料會是同步的。
+
+此模式下的USART接收器會與非同步模式的行為不同。如果RE=1(CR1的設定)，則資料會在SCLK的rising或falling edge被採樣(看CPOL與CPHA的設定)，並且不使用任何oversampling。Setup以及hold time必須要明確地保留(依據baud rate變化而有所不同: 1/16 bit time)。
+
+SCLK與TX須一同使用，所以只有在傳送器啟用(TE=1，CR1的設定)而且正在傳送資料(USART_DR)的情況下，SCLK才會輸出時脈。意即不太可能只接收同步資料，卻不傳送資料。
+
+當傳送器和接收器皆關閉時(TE=RE=0)，LBCL、CPOL、CPHA必須要被設定，以確保SCLK正常運作。在傳送器或接收器打開時，這三個設定不可以去動。
+
+建議同時設定TE和RE，以減少接收器的setup和hold time。
+
+另外，USART只支援master mode，不論是接收或傳送資料，皆無法使用外部時脈(因SCLK是單向輸出)。
+
+
 
 LIN(local interconnection network) mode
 =========================================
@@ -1062,11 +1079,9 @@ Guard time and prescaler register(USART_GTPR)
 .. image:: /USART_register.png
 
 
-CODE SECTION(程式碼實現)
-.........................
+STM32F429-USART程式碼 & 示波器圖解
+..................................
 
-發送器測試
-======================================
 
 Download sample code : 
 
