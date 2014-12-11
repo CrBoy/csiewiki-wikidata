@@ -243,25 +243,33 @@ USART data frame & M bit
 .. image:: /embedded/USART_DataFrame.jpg
 
 
-   - 在起始位(start bit)期間，資料發送端(TX)處於低電位；在停止位(stop bit)期間，資料發送端(TX)處於高電位。
+.. code-block:: c
+
+
+    在起始位(start bit)期間，資料發送端(TX)處於低電位；在停止位(stop bit)期間，資料發送端(TX)處於高電位。
+
 
 
 .. image:: /embedded/USART_8bit_length.jpg
 
 
-   - 若將USART_CR1_M 設定為0，則發送的data frame會變成這樣。
+.. code-block:: c
 
-   - Idle & break frame的長度也會與data frame的長度一樣。Idle 會發送一個frame的高電位、break則是發送一個frame的低電位。
+    若將USART_CR1_M 設定為0，則發送的data frame會變成這樣。
 
-   - 發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
+    Idle & break frame的長度也會與data frame的長度一樣。Idle 會發送一個frame的高電位、break則是發送一個frame的低電位。
+
+    發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
 
 
 .. image:: /embedded/USART_9bit_length.jpg
 
 
-   - 若將USART_CR1_M 設定為1，則發送的data frame會比上一張圖多一個bit。
+.. code-block:: c
 
-   - Idle & break frame的長度也會變長1 bit。
+    若將USART_CR1_M 設定為1，則發送的data frame會比上一張圖多一個bit。
+
+    Idle & break frame的長度也會變長1 bit。
 
 
 
