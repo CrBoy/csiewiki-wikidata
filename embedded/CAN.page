@@ -167,17 +167,23 @@ CRC,ACK Field 都有delimiter，甚至EOF本身就是Data Frame的delimiter，�
 FAULT CONFINEMENT(節點錯誤機制)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-CAN的每個節點都有計數器來記錄錯誤的歷史(Transmit Error Counter(TEC) & Receive Error Counter (REC) )
+CAN的每個節點都有計數器來記錄錯誤的歷史(Transmit Error Counter(TEC) & Receive Error Counter (REC)。評估節點的方式則是根據不同的錯誤形式有不同的權重去計算出狀態數值，並且當節點反應正常的時候還會有下修機制避免因為長時間執行造成的錯誤。當這個評估的數值大於127這個門檻後，就會判定節點從Error active state轉為Error passive state。當節點變成Error passive state的時候，錯誤訊息格式內的flag則是從Active-error flag(6 recessives)改成Passive-error flag(6 dominants)，錯誤提醒的部分則是從Error active state的主動全部節點的提醒，改成只在該錯誤節點記錄錯誤。當數值大於255，就判定此節點失效並且關閉此節點的所有行為。當失效節點偵測到128次連續11個recessive(0)bit的時候，重新出始化節點所有的TEC和REC數值歸零，以Error active state的狀態重新回到bus當中。
 
 .. image:: /embedded/CAN_note_state.png
 
+CAN in STM32F429 Board
+====================================
 
+Demo
+====================================
 
+Tables
+==================
 
+.. image::  /embedded/CAN_falut_confinment_table.png
 
-
-Reference
-=========
+References
+==================
 - `CAN Specification 2.0 - Bosch Semiconductors and Sensors <http://www.bosch-semiconductors.de/media/pdf_1/canliteratur/can2spec.pdf>`_
 - `車載網路系統 <http://www.vr.ncue.edu.tw/esa/a1014/CAN.pdf>`_
 
