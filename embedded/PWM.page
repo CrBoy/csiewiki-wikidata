@@ -138,9 +138,19 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
 
 - 用途: 最多有**四個**獨立通道可用於 input capture, output compare, PWM generation(Edge and Center-aligned Mode) and one-pulse mode output.  
 
-- Block diagram
 
+Clock Selection
+------------------------------------------------------
+
+- Block diagram
+  - in Adavanced-control timers & General-purpose timers
 .. image:: /BD of GP timer.png
+
+- TIMx_CHx
+  - 每個TIMER會對應到4個channel，這些channel會mapping到STM32F429上面的pin腳
+  - 這裡以TIM4為範例 對應到STM32上的腳位分別是PD12、PD13、PD14、PD15   Reference 
+
+.. image:: /TIM_CHx.png
 
 - clock來源 : 
   
@@ -154,7 +164,9 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
     - SMS = 111 (in TIMx_SMCR)
     - 此時利用到SMCR的TS[2:0]來選擇輸入源
     - ITR0.1.2.3, TI1 Edge Detector , TIFP1 , T2FP2 , ETRF
+
 .. image:: /ITR.jpg
+
   - External clock mode2:
     - 在input每次的rising or falling edge時 counter 計數
     - ECE=1(in TIMx_SMCR external clock enable)
