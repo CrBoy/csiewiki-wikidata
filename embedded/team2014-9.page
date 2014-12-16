@@ -5,52 +5,35 @@ toc: no
 ...
 
 題目
----
-
-  * 教育用程式流程控制方塊
+-------
+* 教育用程式流程控制方塊
 
 期中預期目標
--------
-  * 完成積木硬體部份，包跨 if else while，及動作、指令的積木。 
-
-  * 將程式透過UART秀在terminal上
-
-  * (待補)
+------------------
+* 完成積木硬體部份，包跨 ``if else`` ``while``，及動作、指令的積木。 
+* 將程式透過UART秀在terminal上
+* (待補)
 
 組員
----------
-
-  * `colin8930</User/colin8930>`_ , e-mail: colin8930@gmail.com
-  * `hankGo</User/hankGo>`_ , e-mail: hank2579@gmail.com
-  * `aweiroot</User/aweiroot>`_ , e-mail: awei@ieee.org
-  * `spencer222</User/spencer222>`_ , e-mail: victor22771659@hotmail.com
-  * `htckenny</User/htckenny>`_ , e-mail: htckenny@hotmail.com
-
+-------------
+* `colin8930</User/colin8930>`_ , e-mail: colin8930@gmail.com
+* `hankGo</User/hankGo>`_ , e-mail: hank2579@gmail.com
+* `aweiroot</User/aweiroot>`_ , e-mail: awei@ieee.org
+* `spencer222</User/spencer222>`_ , e-mail: victor22771659@hotmail.com
+* `htckenny</User/htckenny>`_ , e-mail: htckenny@hotmail.com
 
 預算
-----
-
+------
 
 
 討論和程式
 -------
-
-
-github: https://github.com/colin8930/intelligentBlock
-
-hackpad: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
-
-每日實驗紀錄: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
-
+* 程式碼: https://github.com/colin8930/intelligentBlock
+* 共筆: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
+* 每日實驗紀錄: https://nckueembeddedg9.hackpad.com/uoBsdaBsghU
 
 參考資訊
 ---------------------
-
-scratch: http://scratch.mit.edu
-
-KIBO: http://kinderlabrobotics.com
-
-blockly: https://blockly-demo.appspot.com/static/apps/maze/index.html
-
-
---------------------
+* scratch: http://scratch.mit.edu
+* KIBO: http://kinderlabrobotics.com
+* blockly: https://blockly-demo.appspot.com/static/apps/maze/index.html
