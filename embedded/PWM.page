@@ -155,9 +155,8 @@ Clock Selection
 - clock來源 : 
   
   - Internal clock(CK_INT)
-    - 使用HSI(16MHz)RC電路當做觸發來源
+    - 使用上述所提到的APBx timer clocks (84MHz)
     - SMS = 000 (in TIMx_SMCR)
-    - ex:CK_PSC=CK_INT
 
   - External clock mode1: external input pin(TIx)
     - 在input每次的rising or falling edge時 counter 計數
