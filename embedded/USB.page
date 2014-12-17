@@ -249,7 +249,7 @@ Token 封包
 * PID 後面緊接著他的補數，是為了避免bit-stuffing
 
 .. image:: /Token Format.jpg
-SOF(Start-of-Frame)為一個特別的Token封包類型，包含目前的frame數量，主機每隔一段很小的間隔就會發出一次SOF封包，所有裝置以及hub都會收到SOF封包。對只需要時間資訊的裝置而言，只需要知道PID為SOF即可，剩餘的frame number以及CRC的資訊皆可忽略。
+SOF(Start-of-Frame)為一個特別的Token封包類型，包含目前的frame的號碼(訊框號碼)，主機每隔一段很小的間隔就會發出一次SOF封包，所有裝置以及hub都會收到SOF封包。對只需要時間資訊的裝置而言，只需要知道PID為SOF即可，剩餘的frame number以及CRC的資訊皆可忽略。
 
 .. image:: /SOF Packet.jpg
 
