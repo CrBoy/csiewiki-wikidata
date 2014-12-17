@@ -394,23 +394,24 @@ Mass Storage device Class，大容量存儲裝置類別。一種電腦和行動�
 
 MSC 支持目前大多數的主流操作系統，許多舊版本的操作系統經過版本升級或者係統補丁也能實現對 MSC 的支持。MSC 的通用性和操作簡單使他成為行動裝置上最常見的文件系統，USB MSC 並不需要任何特定的文件系統, 它提供了一個簡單的界面來讀寫接口用於訪問任何硬碟驅動。
 
-Demo 程式 - USB Host
-^^^^^^^^^
+Demo 程式 - USB MSC HOST
+^^^^^^^^^^^^^^^^^^^^^^^^
+程式碼
 
 ::
 
-  git clone https://github.com/kvzhao/USB-Demo
+   git clone git@github.com:iGaryGu/USB_MSC_HOST.git
 
-如果make有錯誤，請先建一個build資料夾
+make 編譯
 
 ::
 
-  mkdir build && make
+  make
 
 
 目的
 ========
-把STM32F4作為Host，當插入隨身碟後在裡面寫入一份文件。
+把STM32F429作為Host，當插入隨身碟後在裡面寫入一份文件。
 
 步驟與現象
 ========
