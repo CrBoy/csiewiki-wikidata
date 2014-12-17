@@ -1,5 +1,6 @@
 ---
-title: usb
+title: USB (Universal Serial Bus)
+categories: USB, STM32, STM32F4, STM32F429
 ...
 
 .. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/USB_Icon.svg/200px-USB_Icon.svg.png
