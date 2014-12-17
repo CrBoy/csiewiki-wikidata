@@ -1,0 +1,28 @@
+題目
+--------
+自動繪圖機
+
+預期目標
+--------
+* 透過camera照相取得圖畫畫面，經過stm32f429板子的處理後，最後再由我們設計的機構，自動幫我們畫在紙上。
+
+組員 & Email
+------------
+* 林嘉泰 (kadies1234@gmail.com)
+* 顧又榮 (gary640201a@gmail.com)
+* 詹凱傑 (basketscott81223@gmail.com)
+
+材料 預算
+--------
+* serial camera model
+* 步進馬達 * 2
+* 8mm光軸
+* 8mm光軸(18公分)
+* 8mm光軸固定座(SK8)
+* 軸徑8mm 直線軸承(短)
+* (軸徑8mm)箱式滑塊軸承(短) 30mm
+
+GitHub & Hackpad 開發討論區
+--------------------------
+* https://github.com/iGaryGu/Painter
+* https://hackpad.com/Project--s52yVs1015Z
