@@ -294,7 +294,7 @@ USB OTG讓原本只能為週邊的裝置也能成為主機(dual-role device),例
 
 * Dual Role Device (OTG-DRD)
 
-.. image:: /DRD.png
+.. image:: /embedded/OTG_full_speed.png
 
 
 協定(Protocol)
