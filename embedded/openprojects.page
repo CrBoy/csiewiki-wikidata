@@ -29,3 +29,7 @@ toc: no
 * ` UrsusPilot<https://github.com/UrsusPilot/>`_: An open-source multi-copter autopilot (MIT/BSD License)
 * `F9 Microkernel<https://github.com/f9micro>`_ : 針對 ARM Cortex-M4 特性並基於 L4 微核心架構，重新打造的嵌入式作業系統 (BSD License)
 * `uClinux for ARM Cortex-M4<https://github.com/uclinux-cortexm>`_: 以 STM32F429 Discovery Kit 為開發平台，提供完整的 uClinux 移植和開發環境 (GPL)
+
+參與方式
+------------
+* 有意合作開發者，請聯繫 `黃敬群 (jserv)</User/jserv>`_
