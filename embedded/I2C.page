@@ -719,25 +719,15 @@ slave:
 - `http://youtu.be/nAkrzcuHWQU  <http://youtu.be/nAkrzcuHWQU>`_
 
 SMBus
-=====================================
+======
 
 .. image:: /embedded/SMBus1.jpg
 
-I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power 
+I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power  Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
 
-Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
+在I2C中，主控端要與受控端通訊前，會在匯流排上廣播受控端的位址資訊，每個受控端都會接收到位址資訊，但只有與該位址資訊相切合的受控端會在位址資訊發佈完後發出「已妥」的回應（Acknowledge；ACK），讓主控端知道對應的受控端確實已經備妥，可以進行通訊。但是，I2C並沒有強制規定受控端非要作出回應不可，也可以默不作聲，即便默不作聲，主控端還是會接續工作，開始進行資料傳遞及下達讀／寫指令，如此的機制在一般運用中還是可行，但若是在一些即時（Real Time）性的應用上，任何的動作與機制都有一定的時限要求，這種可有可無式的回應法就會產生問題，可能會導致受控端無法接收資訊。　
 
-在I2C中，主控端要與受控端通訊前，會在匯流排上廣播受控端的位址資訊，每個受控端都會接收到位址資訊，但只有與該位址資訊相切合的受控端會在位址資訊發佈完後發出「已
-
-妥」的回應（Acknowledge；ACK），讓主控端知道對應的受控端確實已經備妥，可以進行通訊。但是，I2C並沒有強制規定受控端非要作出回應不可，也可以默不作聲，即便默不作
-
-聲，主控端還是會接續工作，開始進行資料傳遞及下達讀／寫指令，如此的機制在一般運用中還是可行，但若是在一些即時（Real Time）性的應用上，任何的動作與機制都有一定
-
-的時限要求，這種可有可無式的回應法就會產生問題，可能會導致受控端無法接收資訊。　
-
-相同的情形，在SMBus上是不允許受控端在接收位址資訊後卻不發出回應，每次都要回應，為何要強制回應？其實與SMBus的應用息息相關，SMBus上所連接的受控裝置有時是動態加
-
-入、動態移除的，例如換裝一顆新電池，或筆記型電腦接上船塢埠等，如果接入的裝置已經改變卻不回應，則主控端的程式所掌握的並非是整體系統的最新組態，就會造成錯誤動作。
+相同的情形，在SMBus上是不允許受控端在接收位址資訊後卻不發出回應，每次都要回應，為何要強制回應？其實與SMBus的應用息息相關，SMBus上所連接的受控裝置有時是動態加入、動態移除的，例如換裝一顆新電池，或筆記型電腦接上船塢埠等，如果接入的裝置已經改變卻不回應，則主控端的程式所掌握的並非是整體系統的最新組態，就會造成錯誤動作。
 
 * Low Operating Frequency and Timeout:
 
@@ -745,18 +735,12 @@ Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳�
 
 .. image:: /embedded/SMBus3.jpg
 
-以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可至100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed 
-
-Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。至於為何要維持在10kHz以上，主要的原因是為了管理監控，另一個用意是只要在保持一定傳速運作的情
-
-況下加入參數，就可輕鬆獲知匯流排目前是否處於閒置（Idle）中，省去逐一偵測傳輸過程中的停斷（STOP）信號，或持續保有停斷偵測並輔以額外參數偵測，如此對匯流排閒置後
-
+以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可 100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。至於為何要維持在10kHz以上，主要的原因是為了管理監控，另一個用意是只要在保持一定傳速運作的情況下加入參數，就可輕鬆獲知匯流排目前是否處於閒置（Idle）中，省去逐一偵測傳輸過程中的停斷（STOP）信號，或持續保有停斷偵測並輔以額外參數偵測，如此對匯流排閒置後
 的再取用會更有效快速。　
 
 * Clock low extending:
 
-SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設備可以週期性地延長每個clock cycle,但必須維持fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以
-維護SMBus的頻寬
+SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設備可以週期性地延長每個clock cycle,但必須維持fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以維護SMBus的頻寬
 
 .. image:: /embedded/SMBus4.jpg 
 
@@ -767,16 +751,12 @@ SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設�
 SMbus在能耗上優於I2C
 
 I2C的Hi/Lo邏輯準位有兩種認定法：
-
-相對認定:相對認定是依據Vdd的電壓來決定，Hi為0.7 Vdd，Lo為0.3 Vdd
-
-絕對認定:與TTL準位認定相同，直接指定Hi/Li電壓，Hi為3.0V，Lo為1.5V
+* 相對認定:相對認定是依據Vdd的電壓來決定，Hi為0.7 Vdd，Lo為0.3 Vdd
+* 絕對認定:與TTL準位認定相同，直接指定Hi/Li電壓，Hi為3.0V，Lo為1.5V
 
 SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
-電流部分，由於SMBus一起頭就是運用在筆記型電腦內，所以低用電的表現優於I2C，只需100uA就能維持工作，I2C卻要到3mA
-
-低用電特性也反應在漏電流（Leakage Current）的要求上，I2C最大的漏電流為10uA，SMBus為5uA。
+電流部分，由於SMBus一起頭就是運用在筆記型電腦內，所以低用電的表現優於I2C，只需100uA就能維持工作，I2C卻要到3mA。低用電特性也反應在漏電流（Leakage Current）的要求上，I2C最大的漏電流為10uA，SMBus為5uA。
 
 * Different address type:
 
@@ -810,17 +790,9 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
 * ALERT mechanism:
 
-這必須於時脈線與資料線外再追加一條線（稱為：SMBSUS）才能實現，ALERT雖名為警訊但其實是中斷（Interrupt）的用意，Slave可以將SMBSUS線路的電位拉低
+這必須於時脈線與資料線外再追加一條線（稱為：SMBSUS）才能實現，ALERT雖名為警訊但其實是中斷（Interrupt）的用意，Slave可以將SMBSUS線路的電位拉低（ALERT#，"#"表示低準為有效），這時就等於向Master發出一個中斷警訊，要求Master儘速為某一Slave提供傳輸服務。Master要回應這個服務要求，是透過I2C/SMBus的時脈線與資料線來通訊，但要如何知道此次的通訊只是Master對Slave的一般性通訊？還是特別針對Slave的中斷需求而有的服務回應？　
 
-（ALERT#，"#"表示低準為有效），這時就等於向Master發出一個中斷警訊，要求Master儘速為某一Slave提供傳輸服務。Master要回應這個服務要求，是透過I2C/SMBus的時脈線
-
-與資料線來通訊，但要如何知道此次的通訊只是Master對Slave的一般性通訊？還是特別針對Slave的中斷需求而有的服務回應？　
-
-這主要是透過Master發出的位址資訊來區別，若為回應中斷的服務，位址資訊必然是「0001100」，當Slave接收到「0001100」的位址資訊，就知道這是Master特為中斷而提供的
-
-服務通訊。因此，韌體工程師須留心，規劃時必須讓所有的Slave都不能佔用「0001100」這個位址，以供ALERT機制運用（當然！若現在與未來都不會用上ALERT機制則可儘管佔
-
-用）
+這主要是透過Master發出的位址資訊來區別，若為回應中斷的服務，位址資訊必然是「0001100」，當Slave接收到「0001100」的位址資訊，就知道這是Master特為中斷而提供的服務通訊。因此，韌體工程師須留心，規劃時必須讓所有的Slave都不能佔用「0001100」這個位址，以供ALERT機制運用（當然！若現在與未來都不會用上ALERT機制則可儘管佔用）
 
 * PEC:
 
@@ -837,21 +809,15 @@ PEC的BUS協議:- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.5�
 CRC演算法:- `WIKI-循環冗餘校驗 <http://zh.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97>`_
 
 PMBUS
-=====================================
+=======
 
-PMBus(Power Management Bus)，是一種數位電源管理協議標準，使電源轉換器與其他設備方便溝通的一個協議，PMBus是由SMBus(1.1版)延伸而來，保有SMBus 1.1版的功能及
-
-新增了一些功能(但不支援timeout)。
+PMBus(Power Management Bus)，是一種數位電源管理協議標準，使電源轉換器與其他設備方便溝通的一個協議，PMBus是由SMBus(1.1版)延伸而來，保有SMBus 1.1版的功能及新增了一些功能(但不支援timeout)。
 
 一個典型的PMBus連接方式
 
 .. image:: /embedded/PMBus1.jpg
 
-PMBus協議規定所有slave device必須將其默認的配置數據保存在永久性存儲器內，這樣它們在上電時無須再與BUS通信
-
-跟SMBus比較起來，PMBus多了兩種與Power converter共用的兩種hardware signal，一個是Control Line，用於啟動或關閉單個slave device，另一個是write protect用於
-
-防止更改到永久性儲存器的內容。
+PMBus協議規定所有slave device必須將其默認的配置數據保存在永久性存儲器內，這樣它們在上電時無須再與BUS通信跟SMBus比較起來，PMBus多了兩種與Power converter共用的兩種hardware signal，一個是Control Line，用於啟動或關閉單個slave device，另一個是write protect用於防止更改到永久性儲存器的內容。
 
 此外PMBus還新增了BLOCK_WRITE_BLOCK_READ_PROCESS_CALL和GROUP_COMMAND_PROTOCOL
 
