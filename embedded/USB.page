@@ -294,7 +294,7 @@ USB OTG讓原本只能為週邊的裝置也能成為主機(dual-role device),例
 
 * Dual Role Device (OTG-DRD)
 
-.. image:: /embedded/OTG_full_speed.png
+.. image:: /embedded/DRD.png
 
 
 協定(Protocol)
@@ -327,7 +327,7 @@ Host Negotiation Protocol (HNP, 主機通令協議)
 Block Diagram
 ==============
 
-.. image:: /USB_block_diagram.png
+.. image:: /embedded/OTG_full_speed.png
 
  * ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
  * marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
