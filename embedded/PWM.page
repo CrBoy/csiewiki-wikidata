@@ -155,7 +155,7 @@ Clock Selection
 - clock來源 : 
   
   - Internal clock(CK_INT)
-    - 使用上述所提到的APBx timer clocks (84MHz)
+    - HSI (High-Speed Internal)：16MHz,RC電路
     - SMS = 000 (in TIMx_SMCR)
 
   - External clock mode1: external input pin(TIx)
@@ -174,6 +174,8 @@ Clock Selection
   - Internal trigger inputs(ITRx): 
     - 使用另一個timer作為prescaler來產生除頻後之clock
     - 舉例 : 用Timer 1 的(update event)當做Timer 2 的prescaler
+
+.. image:: /ITRx.png
 
 Counter Modes
 =============
