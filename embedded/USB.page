@@ -362,11 +362,11 @@ Bus Timing/Electrical Characteristics
 USB Descriptors
 ^^^^^^^^^^^^^^^
 
-* Device Descriptors : 提供裝置基本資訊，例如：USB 版本、最大的 packet 大小、廠商與型號資訊。每個 USB 裝置只能 device descriptors 只能有一個。
+* Device Descriptors : 提供裝置基本資訊，例如：USB 版本、最大的 packet 大小、廠商與型號資訊。每個 USB 裝置只能有一個 device descriptors 。
 
 * Configuration Descriptors : 指出 USB 裝置的供電方式、interface 數量。每個 USB 裝置可以擁有不只一個 Configure Descriptor，可視為 interface descriptor 之 header。
 
-* Interface Descriptors : 提供介面資訊，可視為 Endpint descriptor 之 header。在 configuration descriptor 中會指定該 configuration 所擁有的 interface 數量，因此 interface descriptor 可以擁有一個以上。
+* Interface Descriptors : 提供介面資訊，可視為 Endpoint descriptor 之 header。在 configuration descriptor 中會指定該 configuration 所擁有的 interface 數量，因此 interface descriptor 可以擁有一個以上。
 
 * Endpoint Descriptors : 描述 endpoint 之行為與頻寬。
 
