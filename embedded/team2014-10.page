@@ -1,4 +1,3 @@
-
 期末專題:升級四軸飛控版
 ==========================
 
@@ -8,6 +7,7 @@
 =======================
 
 周明哲:ming6842@hotmail.com
+
 陳建宇:ja19891203mes@hotmail.com
 
 預期目標
@@ -26,5 +26,7 @@
 4.調整現有的Task(Freetos)
   使SD卡和CANbus達到合理的使用效率(達到可行的更新頻率)
 
+開發筆記
+=======================
 
 https://embedded2014.hackpad.com/UrsusPilot-Improvement-Project-MtXJgt4g2Jh
