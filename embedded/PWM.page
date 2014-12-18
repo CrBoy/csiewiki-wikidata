@@ -542,7 +542,7 @@ GPIO_Configuration
     GPIO_InitTypeDef GPIO_InitStructure;//Create GPIO_InitStructure 
     GPIO_StructInit(&GPIO_InitStructure); // Reset GPIO_structure
  
-    GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4); // set GPIOD_Pin12 to AF_TIM4
+    GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4); // set GPIOB_Pin6 to AF_TIM4
     
     GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_6
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;            // Alt Function - Push Pull
@@ -561,10 +561,8 @@ TIM_Configuration
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
     TIM_OCInitTypeDef TIM_OCInitStruct;
 
-    // Let PWM frequency equal 100Hz.
-    // Let period equal 1000. Therefore, timer runs from zero to 1000. Gives 0.1Hz resolution.
-    // Solving for prescaler gives 240.
-    TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );
+    // Let PWM frequency equal 50Hz.
+        TIM_TimeBaseStructInit( &TIM_TimeBaseInitStruct );
     TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV4;
     TIM_TimeBaseInitStruct.TIM_Period = 1680 - 1;   //84000000/1680*1000=50hz  20ms for cycle
     TIM_TimeBaseInitStruct.TIM_Prescaler = 1000 - 1; 
