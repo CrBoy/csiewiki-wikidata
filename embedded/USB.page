@@ -34,7 +34,6 @@ USB規格演變
 
 * USB 2.0 (2000)
    - 傳輸速度可以高達 480Mbit/s ，稱之為High Speed
-   - STM32上的USB-OTG提供兩種傳輸速度，12Mbits/s，480Mbits/s
    - 2000年，有了mini-A ,mini-B 
    - 2006年，提供了新的傳輸方式，USB On-The-Go
    - 2007年，有了micro USB
