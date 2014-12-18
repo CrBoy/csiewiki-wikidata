@@ -396,7 +396,7 @@ Output compare mode
 
   - OCxREF即是我們要輸出的pwm訊號。
   
-  - interrupt flag：CNT matches ARR
+  - interrupt flag：CNT matches CCR
  
   - CCR > ARR時，上數發生overflow時或在下數發生underflow時。
 
