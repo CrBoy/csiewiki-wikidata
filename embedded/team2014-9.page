@@ -27,12 +27,16 @@ toc: no
 * 預估 ：6000 NT
 * Circuit design : 0 NT
 * Layout design : 0 NT
-* 洗版 ：2 Layer; 板材 :FR4 (南亞) ; 8x8 mm , 併4 plan , 噴錫 ,電測 洗板廠估價(6500 NT), 實際狀態 : 併板 0 NT
+* 洗版 ：2 Layer; 板材 :FR4 1.6mm(南亞) ; 8x8 mm , 併4 plan , 噴錫 ,電測 洗板廠估價(6500 NT), 實際狀態 : 併板 0 NT
+* 南一電子材料用料 : 洞洞板,晶片電阻,晶片電容,...,JUMP等等 : 1000 NT
 * IC : 74HCT165D, NXP Counter Shift Registers 30PCS :  421.5 NT
 * IC : STM32F051R8T6, 10PCS :  1005 NT
 * IC : STM32F103C8T6, 10 PCS : 1823 NT
 * IC : LD3985M33R , LDO Voltage Regulators : 340 NT
 * IC : LM2576D2T-005G, Switching Regulators : 228 NT
+* Crystals : MC30632.7680KA0R : 440 NT
+* Crystals : ABM3B-8.0-10-1UT :  686 NT
+
 
 
 討論和程式
