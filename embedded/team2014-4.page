@@ -1,0 +1,24 @@
+題目
+--------
+音樂播放器
+
+預期目標
+--------
+* 利用PWM和外接USB DAC，讀取SD card裡的檔案，播放出音樂。並搭配方便的操作介面(ex.三軸加速器，觸控螢幕)。
+
+組員 & Email
+------------
+* 荊士懷 (s505063@gmail.com)
+* 韓增穎 (hpdh0731@hotmail.com)
+* 鄭翔元 (cdfq152313@gmail.com)
+
+材料 預算
+--------
+* USB DAC * 1
+* SPI SD card模組
+* 若干電子電路元件
+
+GitHub & Hackpad 開發討論區
+--------------------------
+* https://github.com/cdfq152313/freertos-stm32
+* https://hackpad.com/shell-1N5ncBWf8iU
