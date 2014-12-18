@@ -24,7 +24,13 @@ toc: no
 
 預算
 ------
-
+預估 ：6000 NT
+Circuit design : 0 NT
+Layout design : 0 NT
+洗版 ：2 Layer; 板材 :FR4 (南亞) ; 8x8 mm , 併4 plan , 噴錫 ,電測 洗板廠估價(6500 NT), 實際狀態 : 併板 0 NT
+IC : 74HCT165D, NXP Counter Shift Registers 30PCS :  NT
+IC : STM32F051X, 10PCS :  NT
+IC : STM32F13X, 10 PCS : NT
 
 討論和程式
 -------
