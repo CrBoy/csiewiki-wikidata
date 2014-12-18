@@ -415,7 +415,7 @@ Output compare mode
   - OCxREF即是我們要輸出的pwm訊號。
   - TIMx_CR1 的 CMS 能決定interrupt flag(CCxIF)要在何時立起來(set to 1)
     - interrupt flag：
-               1. CNT matches ARR
+               1. CNT matches CCR
                2. CCR > ARR時，上數發生overflow時或在下數發生underflow時。
 
   - 下圖一樣是 PWM mode 1,但為 center-aligned mode(即上數完下數，下數完上數)
