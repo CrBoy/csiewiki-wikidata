@@ -606,7 +606,7 @@ demo1 PWM_LED
     TIM4->CCR1 = brightness; // set brightness
     
     int i;
-    for(i=0;i<200000;i++);  // about 1.6M instruction ->0.0086sec
+    for(i=0;i<200000;i++);  // about 1.6M instruction ->0.1sec
   }
 
 -----------------------------------------------------------
@@ -629,7 +629,7 @@ demo2 PWM_SERVO
    {
    TIM4->CCR1=pulse; //ang0 //pulse=42
 	
-   for(i=0;i<30000000;i++);  // delay about 24M instruction ->1.3sec
+   for(i=0;i<30000000;i++);  
 	
    //TIM4->CCR1=pulse+84; //ang90
    TIM4->CCR1=pulse+168; //ang180
