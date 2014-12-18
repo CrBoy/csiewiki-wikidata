@@ -20,3 +20,5 @@ toc: no
 ------------
 * `PWM</embedded/PWM>`_
   - `Q&A: PWM<https://embedded2014.hackpad.com/QA-PWM-qdQ4XodX8IM>`_ (課堂問答皆在此追蹤)
+
+* StackOverflow 上`和 STM32F4 相關的討論<http://stackoverflow.com/questions/tagged/stm32f4discovery>`_
