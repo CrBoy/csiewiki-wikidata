@@ -25,3 +25,10 @@ Source Code
 
 參考資料
 ==========
+  - https://github.com/MaJerle/stm32f429
+  - http://stm32f4-discovery.com/2014/05/all-stm32f429-libraries-at-one-place/
+  - https://github.com/STM32F429I-DiscoPhone/STM32F429I-DiscoLCD/tree/master/FreeRTOS
+  - https://github.com/desaster/ov7670test/tree/master/src
+  - http://wenku.baidu.com/view/5ed690fc770bf78a652954ff.html
+  - http://embeddedprogrammer.blogspot.tw/2013/01/demo-stm32f4-ov7670-qserialterm.html
+  - http://supuntharanga.blogspot.tw/2014/04/stm32f4-discovery-board-ov7660-or.html
