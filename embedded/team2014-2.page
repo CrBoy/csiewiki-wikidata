@@ -37,7 +37,9 @@ Project Discussion : https://urock.hackpad.com/
 
 預算
 ----
- None For now
+  - STM32F429音訊子版 200 * 2 = 400
+  - 吉他效果器用DPDT開關 361
+  - DAC、ADC、PLL Clock TI Sample $0
 
 
 參考資料
