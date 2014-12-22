@@ -454,6 +454,27 @@ make 編譯
 * Enumeration 
 
 .. image:: /enumeration.png
+
+Demo 程式 - USB HID DEVICE
+^^^^^^^^^^^^^^^^^^^^^^^^
+程式碼
+
+::
+
+   git clone git@github.com:iGaryGu/USB_HID_DEVICE.git
+
+make 編譯
+
+::
+
+  make
+
+
+目的
+========
+將STM32F429當成device的角色，本實作是鍵盤的功能，只要我們連接到電腦後，按下USER BUTTON鍵，就可以送出我們定義的字母
+
+
 Q & A
 ^^^^^ 
  Q: 如何推導出 USB 3種速度（low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s）的理論值？
