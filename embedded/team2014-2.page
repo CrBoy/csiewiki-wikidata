@@ -20,6 +20,7 @@
     - Octave
  - 需做到可程式化，可以隨意調配效果順序、數目、是否啟動
  - 可以使用Smart phone調整設定
+ - 自製雷切外箱
 
 Source Code
 -----------
@@ -40,6 +41,7 @@ Project Discussion : https://urock.hackpad.com/
   - STM32F429音訊子版 200 * 2 = 400
   - 吉他效果器用DPDT開關 361
   - DAC、ADC、PLL Clock TI Sample $0
+  - SAI、I2S測試界面$ 95 + 200
 
 
 參考資料
