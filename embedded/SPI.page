@@ -279,6 +279,21 @@ general
 - 除了之前SPI用到的registers外，I²S也用到了兩個額外的registers，分別是SPI_I2SPR、SPI_I2SCFGR。
 - I²S mode下沒有使用到SPI_CR1、跟CRC有關的registers、SSOE bit in SPI_CR2、MODF和CRCERR bits in SPI_SR
 
+Supported audio protocols
+-------------------------
+- audio data通常都會在right channel和left channel上傳輸
+- 藉由查看CHSIDE bit(in SPI_SR)得知目前對應傳輸的頻道是right或left channel
+- 通常都是先傳輸left channel的資料後，再傳輸right channel的資料
+- 傳輸資料時，以MSB first為主
+- 有四種資料封包的格式
+  * 16-bit data packed in 16-bit frame
+  * 16-bit data packed in 32-bit frame
+  * 24-bit data packed in 32-bit frame
+  * 32-bit data packed in 32-bit frame
+
+- 因為I²S也是在SPI_DR register做讀取的動作，但SPI_DR只有16 bits，所以有時候必須分兩次讀取
+- 當使用的是16-bit data packed in 32-bit frame，剩下的16 bits LSB會被硬體強制設為0，而不用再做第二次讀取
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
