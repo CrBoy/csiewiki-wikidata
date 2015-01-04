@@ -281,7 +281,6 @@ general
 
 Supported audio protocols
 -------------------------
-- audio data通常都會在right channel和left channel上傳輸
 - 藉由查看CHSIDE bit(in SPI_SR)得知目前對應傳輸的頻道是right或left channel
 - 通常都是先傳輸left channel的資料後，再傳輸right channel的資料
 - 傳輸資料時，以MSB first為主
