@@ -341,7 +341,7 @@ LSB justified standard
 .. image:: /embedded/LSB justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 - 舉例如果要傳輸的資料是0x76A3(0x0000 76A3 extended to 32-bit)，那只需要對SPI_DR作一次讀寫即可
-- 在傳送端，當TXE flag升起，hardware會先將0x0000傳送過去，再來當TXE flag升起，由software對SPI_DR寫入0x76A3，
+- 在傳送端，當TXE flag升起，hardware會先將0x0000傳輸過去，再來當TXE flag又升起，由software對SPI_DR寫入0x76A3
 - 在接收端，RXNE flag只會在接收到0x76A3時升起
 
 Code section
