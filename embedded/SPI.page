@@ -293,6 +293,30 @@ Supported audio protocols
 - 因為I²S也是在SPI_DR register做讀取的動作，但SPI_DR只有16 bits，所以有時候必須分兩次讀取
 - 當使用的是16-bit data packed in 32-bit frame，剩下的16 bits LSB會被硬體強制設為0，而不用再做第二次讀取
 
+Audio standards
+---------------
+I²S支援4種音頻標準，可藉由I2SSTD[1:0]跟PCMSYNC bits(in SPI_I2SCFGR)來做設定
+
+I²S Philips standard
+''''''''''''''''''''
+WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS訊號會在傳輸第一個bits(MSB)前的一個CK clock cycle作切換
+
+.. image:: /embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG
+
+- 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
+- WS signal在falling edge時作切換
+
+.. image:: /embedded/I2S Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
+
+- 上面的情況需要對SPI_DR作兩次讀寫的動作，舉例如下圖
+
+.. image:: /embedded/I2S Philips standard waveforms Transmitting 0x8EAA33.PNG
+
+- 下圖只需對SPI_DR作一次讀寫即可，剩餘的16 bits會被hardware強制設為0x0000
+
+.. image:: /embedded/I2S Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+
+
 Code section
 ============
 .. image:: /DSC_0447.jpg
