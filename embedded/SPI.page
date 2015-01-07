@@ -528,7 +528,7 @@ Master 設定
 
 .. code-block:: c
 
-    void pb_task(void \*pvParameters)
+    void pb_task(void *pvParameters)
     {
         uint8_t LedOnOff = 0;
         uint8_t previous = 0;
