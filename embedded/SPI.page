@@ -601,6 +601,16 @@ main
             return 0;
     }
 
+示波器圖解
+============
+.. image:: /embedded/0xFF.png
+
+藍色線為Master的SCLK，紅色線為Master的output(MOSI)，此次訊號是一直傳送0xFF的結果。當SCLK在高電位時，此時的MOSI值即為Master的Output(高電位為1，低電位為0)
+
+.. image:: /embedded/for_0x55.png
+
+上圖為加入for迴圈製造delay並傳送0x55的結果。我們發現當SPI沒有傳送時，SCLK也一直在低電位!
+
 Question question 
 =================
 
