@@ -511,40 +511,8 @@ make 編譯
 
 .. image:: /embedded/USB_analyzer2.png
 
-
 Q & A
-^^^^^ 
- Q: 如何推導出 USB 3種速度（low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s）的理論值？
-
- A: 這是原本定義的各種傳輸速度主頻率。可以利用pull-up resistor來控制。
-
-======
-
- Q: packet ID 實際上只使用到前四個 bits，為什麼後四個 bits（check field）是採用前四個 bits 的補數？
-
- A: USB 採用的是 NRZI 編碼，此作法方便執行，更可避免出現 bit-stuffing。
-
-=============
- 
- Q: smart phone 接上 PC 後封包傳遞順序？
-
- A: 主機端的 USB 集線器監視著它的每個端口的信號線的電壓，當USB設備插入主機時，信號線的電壓會發生變化，此時主機知道有新設備插入了。
-
- 當主機檢測到設備的插入後會首先重啟這個設備，接著主機發出 Get_Port_Status 請求來驗證設備是否已經重啟，設備重啟後主機通過檢測根信號線的電壓狀態判斷設備的速度。主機發送第一次 Get_Descriptor（wValue 字段的 high byte 為 0x01，表示設備描述符）請求取得設備描述符，設備描述符提供了設備的多種信息，包括：設備通訊終端 0 的最大封包的大小、設備支持的配置號以及有關這個設備的其它信息、主機通過對這些信息的分析以確定接下來的通信動作。
-
- device descriptor 裡規定了設備一個或多個 configuration descriptor，主機再次或多次發出 Get_Descriptor（wValue 字段的 high byte 為 0x02，表示 configuration）指令來讀取這些 configuration descriptor，第一次只讀出 configuration descriptor 的前 9 bytes，其中包含了 configuration descriptor 和它的所有從屬描述符（interface descriptor、endpoint descriptor）的總長度，然後主機根據這個長度讀出設備的所有 configuration descriptor（當然包括其所有從屬描述符）。
-
- 讀取完 configuration descriptor 後，若之間讀取的 configuration descriptor 中指定了相關 string descriptor（用來描述廠商、產品和設備序列號信息的）的索引，主機將發出若干次 Get_Descriptor（wValue 字段的 high byte 為 0x03，表示string descriptor）命令來獲得這些string descriptor，此時主機將會彈出窗口，展示發現新設備的信息，產商、產品描述、型號等。在主機已經從它的 descriptor 中知道了能夠知道的所有信息後，便開始為這個設備安裝驅動程序。加載了 USB 設備驅動以後，主機發送 Set_Configuration 命令請求為該設備選擇一個合適的配置。
-
-==========
-
- Q: CRC的長度如何得知？
-
- A: token packet using 5bit CRC
-
-      data packet using 16bit CRC
-
-===========
+=======
 
 參考資料
 ^^^^^^^
