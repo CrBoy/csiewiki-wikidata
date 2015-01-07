@@ -201,9 +201,12 @@ Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包，封
 
 一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
 
+
 .. image:: /packet.jpg
 
 .. image:: /embedded/USB/PID types.jpg
+
+由上面的表可以看到，PID實際上只使用到前四個 bits，後面四個bits是前面四個bits的倒數，主要是因為USB傳輸編碼是透過NRZI，這樣的話，就可以避免出現bit-stuffing
 
 Transaction 
 =============
