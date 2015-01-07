@@ -356,10 +356,11 @@ PCM standard
 
 Code section
 ============
-.. image:: /DSC_0447.jpg
-左板為master 右板為slave
-   (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
-Demo影片:  http://youtu.be/GaduZ8z-KqE
+.. image:: /embedded/spi_demo_stm32.jpg
+
+- 左板為slave 右板為master
+- (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
+- Demo影片:  http://youtu.be/GaduZ8z-KqE
 
 完整程式碼：
 
@@ -371,10 +372,8 @@ Demo影片:  http://youtu.be/GaduZ8z-KqE
 
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-        // enable SPI2 peripheral clock
+        // enable SPI1 peripheral clock
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
-
         /* configure pins used by SPI1
          * PA5 = SCK
          * PA6 = MISO
@@ -392,8 +391,6 @@ Demo影片:  http://youtu.be/GaduZ8z-KqE
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
 
-
-
         /* configure SPI1 in Mode 0
         * CPOL = 0 --> clock is low when idle
         * CPHA = 0 --> data is sampled at the first edge
@@ -410,17 +407,15 @@ Demo影片:  http://youtu.be/GaduZ8z-KqE
         SPI_Init(SPI1, &SPI_InitStruct);
         SPI_Cmd(SPI1, ENABLE); // enable SPI1	
 
-- Slave mode
+- Slave:
 
 .. code-block:: c
 
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-        // enable SPI2 peripheral clock
+        // enable SPI1 peripheral clock
         RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
-
-        /* configure pins used by SPI2
+        /* configure pins used by SPI1
         * PA5 = SCK
         * PA6 = MISO
         * PA7 = MOSI
@@ -436,7 +431,6 @@ Demo影片:  http://youtu.be/GaduZ8z-KqE
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
         GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
-
 
         /* configure SPI1 in Mode 0
         * CPOL = 0 --> clock is low when idle
