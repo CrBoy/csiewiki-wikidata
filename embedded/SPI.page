@@ -368,14 +368,6 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
     git clone git@github.com:Windbysea/stm32_spi_demo.git
     cd stm32_spi_demo/
 
-.. 自定義變數：
-
-.. code-block:: c
-
-..    unsigned char readData[32];
-..    unsigned char writeData[32];
-..    int rxCounter, txCounter;
-
 初始化 SPI：
 
 - Master:
@@ -465,8 +457,17 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
         SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_4; // SPI frequency is APB2 frequency / 4
         SPI_InitStruct.SPI_FirstBit = SPI_FirstBit_MSB;// data is transmitted MSB first
         SPI_Init(SPI1, &SPI_InitStruct);
-        SPI_Cmd(SPI1, ENABLE); // enable SPI1	
 
+        SPI_I2S_ITConfig(SPI1, SPI_I2S_IT_RXNE, ENABLE); // make SPI1 receive interrupt enable	
+	
+        NVIC_InitTypeDef NVIC_InitStructure;
+        NVIC_InitStructure.NVIC_IRQChannel = SPI1_IRQn; // Configure SPI1 interrupt
+        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0; // Set the priority group of SPI1 interrupt
+        NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0; // Set the subpriority inside the group
+        NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; // Globally enable SPI1 interrupt
+        NVIC_Init(&NVIC_InitStructure);
+
+        SPI_Cmd(SPI1, ENABLE); // enable SPI1	
 
 初始化 LED:
 
@@ -476,13 +477,8 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
    {
     STM_EVAL_LEDInit(LED4);
     STM_EVAL_LEDInit(LED3);
-    STM_EVAL_LEDInit(LED5);
-    STM_EVAL_LEDInit(LED6);  
-
     STM_EVAL_LEDOff(LED4);
     STM_EVAL_LEDOff(LED3);
-    STM_EVAL_LEDOff(LED5);
-    STM_EVAL_LEDOff(LED6);
    }
 
 初始化按鍵:
@@ -507,7 +503,9 @@ Demo影片:  http://youtu.be/ciwYDsaJIYE
         GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN; // this enables the pulldown resistor --> we want to detect a high level
         GPIO_Init(GPIOA, &GPIO_InitStruct);	// this passes the configuration to the Init function which takes care of the low level stuff
    }
+
 Master 設定
+
 - 傳送訊號
 
 .. code-block:: c
@@ -524,72 +522,63 @@ Master 設定
     return 1;
    }
 
+Master 設定
+
 - task:
 
 .. code-block:: c
 
     void pb_task(void \*pvParameters)
     {
-        uint8_t bNewLedOnOff=0 ,bOldLedOnOff=0,bLedOnOff=0;
-
+        uint8_t LedOnOff = 0;
+        uint8_t previous = 0;
         while(1)
         {
-            if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)== Bit_SET)  //User Button Pressed
-            {
-                bNewLedOnOff = 1;
-                if(bNewLedOnOff ^ bOldLedOnOff)
+                if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_0)== Bit_SET) //User Button Pressed
                 {
-                    if(bLedOnOff)
-                    {
-                        RemoteLED_OnOff(0);
-                        bLedOnOff = 0;
-                        STM_EVAL_LEDOff(LED3);
-                        STM_EVAL_LEDOff(LED4);
-                    }
-                    else
-                    {
-                        RemoteLED_OnOff(1);
-                        bLedOnOff = 1;
-                        STM_EVAL_LEDOn(LED3);
-                        STM_EVAL_LEDOn(LED4);
-                    }
-                    bOldLedOnOff = bNewLedOnOff;
-                }			
-            }
-            else 
-                    bOldLedOnOff = 0;
+                        if(previous == 0)
+                        {
+                                if(LedOnOff)
+                                        RemoteLED_OnOff(0);
+                                else
+                                        RemoteLED_OnOff(1);
+                                LedOnOff ^= 1;
+                                STM_EVAL_LEDToggle(LED3);
+                        }
+                        previous = 1;
+                }
+                else
+                        previous = 0;
         }
 
     }
 
 Slave  設定：
-- 接收訊息
+
+- 接收訊息 (use SPI1 interrupt)
 
 .. code-block:: c
 
-    void spi_recv_msg_task(void *pvParameters)
+    void SPI1_IRQHandler(void)
     {
-      uint8_t rcv_tmp = 0;
-      while(1)
-      {
-          while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_RXNE)== RESET);
-          rcv_tmp = (uint8_t)SPI_I2S_ReceiveData(SPI1);
-          if(rcv_tmp == LED_ON)
-          {
-              STM_EVAL_LEDOff(LED4);
-              STM_EVAL_LEDOff(LED3);
-              STM_EVAL_LEDOff(LED5);
-              STM_EVAL_LEDOff(LED6);
-          }
-          else if(rcv_tmp == LED_OFF)
-          {
-              STM_EVAL_LEDOn(LED4);
-              STM_EVAL_LEDOn(LED3);
-              STM_EVAL_LEDOn(LED5);
-              STM_EVAL_LEDOn(LED6);
+        uint8_t rcv_tmp = 0;
+        while(1)
+        {
+                while(SPI_I2S_GetFlagStatus(SPI1,SPI_I2S_FLAG_RXNE)== RESET);
+                rcv_tmp = (uint8_t)SPI_I2S_ReceiveData(SPI1);
+                if(rcv_tmp == LED_ON)
+                {
+                        STM_EVAL_LEDOff(LED4);
+                        STM_EVAL_LEDOff(LED3);
+                }
+                else if(rcv_tmp == LED_OFF)
+                {
+                        STM_EVAL_LEDOn(LED4);
+                        STM_EVAL_LEDOn(LED3);
+                }
          }
-      }
-    }
+    }   
+
 main
 
 .. code-block:: c
@@ -602,21 +591,14 @@ main
             init_PB();
 
     #ifdef MASTER
-            STM_EVAL_LEDOff(LED4);
-            STM_EVAL_LEDOff(LED3);
-            STM_EVAL_LEDOn(LED5);
-            STM_EVAL_LEDOff(LED6);
             xTaskCreate(pb_task,
                         (signed portCHAR \*) "Push Button Task",
                         512 /* stack size \*/, NULL, tskIDLE_PRIORITY + 2, NULL);
     #else
-            xTaskCreate(spi_recv_msg_task,
-                        (signed portCHAR *) "SPI Recv Task",
-                        512 /* stack size \*/, NULL, tskIDLE_PRIORITY + 2, NULL);
+
     #endif
             /* Start running the tasks. \*/
             vTaskStartScheduler();
-            STM_EVAL_LEDOff(LED5);
             return 0;
     }
 
