@@ -585,7 +585,6 @@ main
 
     int main(void)
     {
-            uint8_t  pressed=0,new_button_state,last_button_state;
             init_SPI();
             init_LED();
             init_PB();
