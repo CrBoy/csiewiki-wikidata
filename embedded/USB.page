@@ -498,12 +498,16 @@ make 編譯
 * 這個時候，我們就可以按下USER_BUTTON鍵，電腦就會接受到"WIN+R"的鍵盤指令
 * 圖示
 
-
+.. image:: /embedded/HID_image.png
 
 利用電腦軟體分析封包資料
 ========================
 
 .. image:: /embedded/USB_analyzer.png
+
+
+.. image:: /embedded/USB_analyzer2.png
+
 
 Q & A
 ^^^^^ 
