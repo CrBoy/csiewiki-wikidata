@@ -134,7 +134,10 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 .. image:: /embedded/full_speed.png
 
    -high speed
-       - 首先電路連接方式跟full speed一樣，就在 device 跟 host 端連接時，host端會先傳送一個USB RESET signal給device端，device端接收後，接下來就是device 端跟 host 端的速度協商，如果device支援high speed的話，就會傳一個訊號告知host端，如果host端也支援high speed的話，那麼之後的傳輸就可以用high speed的速率來傳輸。
+       - 首先電路連接方式跟full speed一樣，就在 device 跟 host 端連接時，host端會先傳送一個USB RESET signal給device端，device端接收後，接下來就是device 端跟 host 端的速度協商，如果device有支援high speed的話，就會發出chirp K signal給host端，如果host端有支援high speed，也會回應一連串交替的chirp k 和 chirp J signal回給device端，達成handshake，就可以改用high speed傳輸。
+       - 另外，chirp訊號是只有支援high speed傳輸的device和host端才會有的傳輸，如果沒有支援就不會有這種訊號傳輸!
+ 
+.. image:: /embedded/high speed.png
 
 網路層
 ========
