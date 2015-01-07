@@ -359,14 +359,9 @@ Code section
 .. image:: /DSC_0447.jpg
 左板為master 右板為slave
    (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
-Demo影片:  http://youtu.be/ciwYDsaJIYE
+Demo影片:  http://youtu.be/GaduZ8z-KqE
 
 完整程式碼：
-
-.. code-block:: c
-
-    git clone git@github.com:Windbysea/stm32_spi_demo.git
-    cd stm32_spi_demo/
 
 初始化 SPI：
 
