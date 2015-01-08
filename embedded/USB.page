@@ -112,11 +112,9 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 * Bit-stuffing : 如下圖所示，若是原始的串列資料中含有連續6個 “1” 位元的話，就需執行位元填塞的工作。
 
-.. image:: /embedded/bit stuffing.png
-
 * 相對的，接收端在作資料接收之前，就必需先執行NRZI解碼，然後再作位元反填塞(Bit-destuffing)。
 
-.. image:: /embedded/usb/dataNRZI.jpg
+.. image:: /embedded/bit stuffing.png
 
 * 資料傳輸流程
 
@@ -243,6 +241,8 @@ Packet
 * 封包是以同步訊號（Synchronization Pattern）為開頭。
 * 接著是資料區段，順序為Big-endian。（least significant bit first）。
 * 最後已EOP訊號（End of Packet）結尾，完成一個封包的傳輸，Bus回到idle的狀態。
+
+.. image:: /embedded/usb/dataNRZI.jpg
 
 Token 封包
 ---------------
