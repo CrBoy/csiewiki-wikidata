@@ -274,7 +274,7 @@ general
   * WS (Word Select) : mapped on the NSS pin，字元選擇線，字元(Word)在此所指即是音源聲道(Channel)，用來選擇現在是要輸出左聲道音源或右聲道音源，由master輸出，slave輸入
   * CK (Serial Clock) : mapped on the SCK pin，串列傳輸的時脈線，由master輸出，slave輸入，CK的頻率=2(左右聲道)×採樣頻率×採樣位數
   * I2S2ext_SD、I2S3ext_SD : mapped on the MISO pin，也是序列傳輸的資料線，只用在全雙工模式
-  * MCK (Master Clock) : mapped separately，由master輸出，為了能達到更好的同步，用來校正CK，通常是採樣頻率的256倍
+  * MCK (Master Clock) : mapped separately，MCKOE bit(in SPI_I2SPR)必須設為1，由master輸出一個額外的clock時脈，通常是採樣頻率的256倍
 
 - 除了之前SPI用到的registers外，I²S也用到了兩個額外的registers，分別是SPI_I2SPR、SPI_I2SCFGR。
 - I²S mode下沒有使用到SPI_CR1、跟CRC有關的registers、SSOE bit in SPI_CR2、MODF和CRCERR bits in SPI_SR
