@@ -163,8 +163,8 @@ Data frame format
 half-duplex communication
 --------------------------
 
-- BIDMODE 判斷是否為全雙工
-- RXONLY 判斷半雙工時為傳送端或接收端。
+- BIDMODE 判斷傳輸是否為雙向傳輸。
+- RXONLY 判斷是否為 純接收端。
 
 SPI 可以只做半雙工，在半雙工時，沒用到的另一隻 pin 可作為一般的 GPIO 使用。
 
