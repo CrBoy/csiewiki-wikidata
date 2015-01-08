@@ -394,6 +394,8 @@ CDC Class
 
 Communications Device Class，CDC 類是 USB 通信設備類的簡稱。CDC 類是 USB 組織定義的一類專門給各種通信設備（電信通信設備和中速網絡通信設備）使用的 USB 類別。大部分的作業系統都帶有支持 CDC 類的設備驅動軟體，可以自動識識 CDC 類的裝置，這樣不僅免去了寫專用驅動裝置的負擔，同時簡化了驅動裝置的安裝。
 
+.. image:: /embedded/USB2CDC.jpg
+
 MSC Class
 =========
 
