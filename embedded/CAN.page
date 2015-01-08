@@ -174,8 +174,55 @@ CAN的每個節點都有計數器來記錄錯誤的歷史(Transmit Error Counter
 CAN in STM32F429 Board
 ====================================
 
+Main operating modes
+--------------------------------------
+
+主要的操作模式主要是在Sleep,Initialization,Normal mode 之間轉換,轉換的方式就是去改變CAN_MSR寄存器上面的INAK和SLAK bit。
+
+* Initialization mode
+
+Initialization mode，主要是用來初始化點的bxCAN設定。當INRQ bit被拉起來的時候，CAN就進入Initialization mode，在這過程當中主要是要設定CAN_MCR(mode設定)和CAN_BTR(baud rate設定)。在初始化的過程當中會停止節點對CANbus的任何傳送或接收的動作。(Filter 設定可以在Initialization mode之外完成)
+
+* Sleep mode (low power)
+
+Sleep mode主要是為了省電而設計的，藉由拉起CAN_MCR裡的SLEEP bit來開啟，但是除了由拉低SLEEP bit來關閉之外，只要bus上有傳送訊息Sleep mode也會自動關閉。
+
+* Normal mode
+
+最主要的工作模式。藉由拉低INAK和SLAK bit進入。
+
+.. image:: /embedded/CAN_oprerating_mode.png
+
+Test modes
+--------------------------------------
+
+Test modes主要是用來測試node狀態， 藉由設定CAN_BTR寄存器的SILM和LBKM bits來選擇。
+
+* Silent mode
+
+就是把node設定成只進不出的狀態。就連接收成功的ACK bit也傳不出去。
+
+.. image:: /embedded/CAN_slient_mode.png
+
+* Loop back mode
+
+就是把node設定成只出不進的狀態。並且把自己傳出的message存回Rx mailbox之中。
+
+.. image:: /embedded/CAN_loopback_mode.png
+
+* Combined mode
+
+自己的Tx直接進入自己的Rx，通常用來檢測node本身。
+
+.. image:: /embedded/CAN_sli_loop_mode.png
+
+Bit Timming
+--------------------------------------
+
 Demo
 ====================================
+
+
 
 Tables
 ==================
