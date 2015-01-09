@@ -243,6 +243,18 @@ mailbox處理主要分成3個階段,PENDING,SCHEDULED和TRANSMIT。當傳送的�
 Reception handling
 --------------------------------------
 
+在bxCAN的接收端，有三階段的FIFO來為接收緩衝。
+
+* Receive FIFO states
+
+當bxCAN接收到資料，就會直接被丟到第一階段的FIFO等待，等CPU來處理，此時是PENDING第一階段,FMP=0x01。如果還來不及處理就有新的資料進來，當下這筆資料就會被移到第二階段的FIFO去等待，新進的資料則停在第一階段的FIFO，此時是PENDING第二階段,FMP=0x10。當CPU有空的時候就先從高段的FIFO開始處理。依此類推...。總共有三個階段。
+
+* Overrun
+
+Overrun處理有兩種模式。第一種是有開啟FIFO lock。當三階段的FIFO都滿了，但CPU還沒處理。接下來的資料都會遺失。此時CAN_RFR寄存器的FOVR bit會被拉起。第二種是沒有開啟FIFO lock，接下來的資料則會直接覆蓋FIFO的最後一筆資料。
+
+.. image:: /embedded/CAN_reception_FIFO.png
+
 Identifier filtering
 --------------------------------------
 
