@@ -261,6 +261,14 @@ Identifier filtering
 Bit Timming
 --------------------------------------
 
+.. image:: /embedded/CAN_bit_timing.png
+
+ex:假設APB clock為45Mhz如何得到1Mhz的baud rate?
+選擇9為prescaler, tBS1 = 2 tq, tBS2 = 2 tq
+tq = 1/(45Mhz/9) = 0.2 us
+Baud rate = 1/Bittime = 1/((1+2+2)*tq) = 1Mhz
+
+
 Error management
 --------------------------------------
 
