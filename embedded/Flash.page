@@ -234,6 +234,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 
 - CPU clock frequency必須至少要在1MHZ以上，Flash才能做erase及program的操作，若在操作的途中發生reset，則不保證Flash中內容正確。
 - Flash在program/erase操作時，任何欲read Flash的操作會被暫停，需直到program操作完成後，read操作才會被正確的執行。這也代表當program/erase操作正在執行中，code or data fetch(即read)無法執行。
+- 在STM32F42xxx和 STM32F43xxx板子上，有兩個bank。故可以支援一bank讀，另一bank寫/抹除。
 
 在做抹除與寫入動作之前，必須先設定Flash control register(FLASH_CR)，然而在Reset之後，FLASH_CR是不可寫入的。因此必須透過以下方法解鎖：
 
@@ -265,30 +266,43 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 3.4 Erase (抹除)
 -----------------
 
-Flash memory erase的操作可以以sector為單位，或是整個Flash memory全部erase，也就是Mass Erase。而Mass Erase並不會影響OTP sector或是設定區的sector。
+Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位。
 
 - **區塊抹除(Sector Erase)**:
 
-1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
-2. 設定FLASH_CR register中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
+    1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
+    2. 設定FLASH_CR register中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
 
 ::
 
-  0000 sector 0
-  0001 sector 1
-  ...
-  1011 sector 11
-  不得超過此範圍。
+        SER   sector
+        00000 sector 0
+        00001 sector 1
+        ...
+        10111 sector 23
+        不得超過此範圍。
 
-3. 設定FLASH_CR register中的STRT(Start) bit。
-4. 等待FLASH_SR register中的BSY bit清空。
+   3. 設定FLASH_CR register中的STRT(Start) bit。
+   4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
+
+- **bank抹除(Bank Erase)**:
+
+    1. 檢查FLASH_SR register中BSY bit是否為0。
+    2. 設定FLASH_CR register中MER(Mass Erase of bank 1)或MER1(Mass Erase of bank 2)bit，告知啟用bank抹除。
+    3. 設定FLASH_CR register中的STRT bit。
+    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
 
 - **大量抹除(Mass Erase)**:
 
-1. 檢查FLASH_SR register中BSY bit是否為0。
-2. 設定FLASH_CR register中的MER(Mass Erase) bit。
-3. 設定FLASH_CR register中的STRT bit。
-4. 等待FLASH_SR register中的BSY bit清空。
+    1. 檢查FLASH_SR register中BSY bit是否為0。
+    2. 設定FLASH_CR register中的MER和MER1 bit。
+    3. 設定FLASH_CR register中的STRT bit。
+    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
+
+- **注意**
+    - 如果MERx和SER同時被設定，則會執行bank(或mass) erase。
+    - 如果MERx和SER皆沒被設定，但STRT被設定，此為未定義行為，無法預測後果。
+    - Mass Erase並不會影響OTP sector或是設定區的sector。
 
 3.5 Program (寫入)
 -----------------------------------
