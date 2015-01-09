@@ -157,10 +157,6 @@ STM32F407中的Flash有以下特性：
 
 3 Flash 操作
 ============
-**基本觀念：**
-
-- Flash的每個cell在寫的時候只能1->0，不能從0->1；而erase後，該sector中所有的cell值皆為1。
-- 當bit寫入由1寫成0時，不需要先erase；但若將0寫為1時，則需要先erase才能寫。
 
 3.1 Read interface(讀取)
 ----------------------------------
@@ -306,17 +302,25 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 
 3.5 Program (寫入)
 -----------------------------------
+- **基本觀念：**
+    - Flash的每個cell在寫的時候只能1->0，不能從0->1；而erase後，該sector中所有的cell值皆為1。
+    - 基於上述，當同時需要erase和write的動作時，會先執行erase(0->1)，再執行write(1 -> 0)
 
-1. 檢查FLASH_SR register中BSY bit是否為0。
-2. 設定FLASH_CR中的PG(Programming) bit。
-3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
+- **寫入步驟：**
+    1. 檢查FLASH_SR register中BSY bit是否為0。
+    2. 設定FLASH_CR中的PG(Programming) bit。
+    3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
+        - Byte access in case of x8 parallelism
+        - Half-word access in case of x16 parallelism
+        - Word access in case of x32 parallelism
+        - Double word access in case of x64 parallelism
+    4. 等待FLASH_SR中的BSY bit清空。
 
-- Byte access in case of x8 parallelism
-- Half-word access in case of x16 parallelism
-- Word access in case of x32 parallelism
-- Double word access in case of x64 parallelism
-
-4. 等待FLASH_SR中的BSY bit清空。
+- **寫入錯誤：**
+    - 在寫入的過程中，如果出現錯誤，則register FLASH_SR中的Programming errors Flags會被設定。
+    - PGAERR: 超過128bits的限制
+    - PGPERR: PSIZE設定錯誤(參考3.3)
+    - PGSERR: 沒按照標準寫入程序(例: 在寫入Flash memory之前忘記設定PG)
 
 3.6 Interrupt
 ----------------------------------------------------------------
