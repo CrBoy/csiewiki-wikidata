@@ -216,7 +216,40 @@ Test modes主要是用來測試node狀態， 藉由設定CAN_BTR寄存器的SILM
 
 .. image:: /embedded/CAN_sli_loop_mode.png
 
+
+Transmission handling
+--------------------------------------
+
+用bxCAN傳送一筆資料的時候首先要做的事有3個，選擇空的mailbox,輸入傳送資料的ID和設定資料長度。然後再去拉起CAN_TIxR寄存器的TXRQ bit，對mailbox下達傳送指令。
+
+* Nonautomatic retransmission mode
+
+在正常的設定之下，當傳送失敗的時候，bxCAN會不斷的嘗試重新傳送。但是如果設定成這個模式，bxCAN不管有沒有傳送成功都只會傳送一次。
+
+* Abort
+
+在bxCAN傳送的過程如果收到中止命令，還未傳送的資料就會直接中止，如果是在傳送中就會等資料傳完，如果失敗在進入中止狀態。
+
+* Transmit mailbox states
+
+mailbox處理主要分成3個階段,PENDING,SCHEDULED和TRANSMIT。當傳送的資料進入mailbox處理的時候，會先進入PENDING的階段找出priority最高的message，然後進入SCHEDULED階段等待CANbus回到idle的狀態。一旦CANbus回到idle的狀態，就會把message傳出去。這時候如果傳送失敗，資料就會被送回來SCHEDULED階段並且和PENDING的階段的message比較priority。如果message然有最高的priority，則留在SCHEDULED階段等待，否則就換最高priority的message到SCHEDULED階段等待。
+
+* Transmit priority
+
+傳送資料不止一筆的時候，bxCAN會排定傳送順序。排定的方法有兩種，一種是依照順序，一種是依照ID。號碼小的優先傳送，如果ID一樣的時候mailbox號碼小的優先。
+
+.. image:: /embedded/CAN_transmit_mailbox.png
+
+Reception handling
+--------------------------------------
+
+Identifier filtering
+--------------------------------------
+
 Bit Timming
+--------------------------------------
+
+Error management
 --------------------------------------
 
 Demo
