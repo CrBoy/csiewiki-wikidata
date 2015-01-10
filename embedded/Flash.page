@@ -279,21 +279,21 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
         不得超過此範圍。
 
    3. 設定FLASH_CR register中的STRT(Start) bit。
-   4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
+   4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **bank抹除(Bank Erase)**:
 
     1. 檢查FLASH_SR register中BSY bit是否為0。
     2. 設定FLASH_CR register中MER(Mass Erase of bank 1)或MER1(Mass Erase of bank 2)bit，告知啟用bank抹除。
     3. 設定FLASH_CR register中的STRT bit。
-    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
+    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **大量抹除(Mass Erase)**:
 
     1. 檢查FLASH_SR register中BSY bit是否為0。
     2. 設定FLASH_CR register中的MER和MER1 bit。
     3. 設定FLASH_CR register中的STRT bit。
-    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP 中斷)
+    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **注意**
     - 如果MERx和SER同時被設定，則會執行bank(或mass) erase。
@@ -322,7 +322,28 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     - PGPERR: PSIZE設定錯誤(參考3.3)
     - PGSERR: 沒按照標準寫入程序(例: 在寫入Flash memory之前忘記設定PG)
 
-3.6 Interrupt
+3.6 Read-while-write (RWW)
+-----------------------------------
+
+- **基本觀念: **
+    - 與一般寫入，抹除的方法相同(參考3.4, 3.5)
+    - Write-while-write 並不允許。因為當有任一bank正在寫入、抹除時，FLASH_SR的BSY bit為1。
+
+- **讀bank1 抹除bank2 **
+    當bank1 正在讀取的時候，可以抹除bank2的資料(反之亦然)。操作方法如下
+    1. 檢查FLASH_SR register中BSY bit是否為0。
+    2. 設定FLASH_CR register中MER或MER1 bit，告知啟用bank抹除。
+    3. 設定FLASH_CR register中的STRT bit。
+    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
+
+- **讀bank1 寫bank2 **
+    當bank1 正在讀取的時候，可以寫入bank2的資料(反之亦然)。操作方法如下
+    1. 檢查FLASH_SR register中BSY bit是否為0。
+    2. 設定FLASH_CR中的PG(Programming) bit。
+    3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
+    4. 等待FLASH_SR中的BSY bit清空。(或使用EOP中斷)
+
+3.7 Interrupt
 ----------------------------------------------------------------
 - **結束時**
 
@@ -337,7 +358,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 
 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)被打開(設為1)，則FLASH_SR register中的operation error bit(OPERR)會被設為1。
 
-3.7 Option bytes
+3.8 Option bytes
 ----------------------------------
 **關於讀取保護(Read Protections)**
 
@@ -372,7 +393,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 **關於Brown Out Reset Level(BOR_LEV)**
  - 當工作電壓低於或高於指定的電壓範圍時，該元件會自動進入reset狀態直到電壓回復到範圍內。目的為防止一些不穩定或不可預期的電壓變化。(請看暫存器介紹)
 
-3.8 One-time programmable (OTP)
+3.9 One-time programmable (OTP)
 -------------------------------------------------------------
 - 一次性可編程唯讀記憶體（One Time Programmable Read Only Memory，OTPROM）之寫入原理同EPROM，但是為了節省成本，編程寫入之後就不再抹除，因此不設置透明窗(不能被抹除)。
 - 總共528 bytes
