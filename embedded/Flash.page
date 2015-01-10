@@ -342,18 +342,20 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 
 3.7 Interrupt
 ----------------------------------------------------------------
-- **結束時**
+- **在erase或program結束時發出中斷 **
+    - 設定FLASH_CR register中的end of operation  interrupt enable(EOPIE) bit。
+    - 結束時，FLASH_SR register中的BSY bit為0，而end of operation(EOP) bit為1。
 
-若要在erase或program結束時發出中斷，可以設定FLASH_CR register中的end of operation interrupt enable(EOPIE) bit，當然，FLASH_SR register中的BSY bit這時應是要0，而end of operation(EOP) bit此時為1。
+- **在錯誤時發出中斷 **
 
-- **錯誤時**
-
-如果在program或erase操作過程中有錯誤發生，FLASH_SR register中的某一flag會被設1： 
-
-- PGAERR, PGPERR, PGSERR (Program error flags)
-- WRPERR (Protection error flag)
-
-此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)被打開(設為1)，則FLASH_SR register中的operation error bit(OPERR)會被設為1。
+    - 在program或erase操作過程中有錯誤發生時，FLASH_SR register中的某些flag會被設定
+        - PGAERR, PGPERR, PGSERR (Program error flags)
+        - WRPERR (Protection error flag)
+        - RDERR (Read protection error flag)
+    - 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)為1，則FLASH_SR register中的operation error bit(OPERR)會在錯誤發生時被設定。
+ 
+.. image:: /embedded/flash_interrupt_request.jpg
+   DM00031020-referenceManual P.88
 
 3.8 Option bytes
 ----------------------------------
