@@ -440,6 +440,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
    DM00031020-referenceManual P.97
 
 4 Flash interface registers
+-------------------------------------------------------------
 read/write (rw) :Software can read and write to these bits.
 read-only (r) :Software can only read these bits.
 write-only (w) :Software can only write to this bit. Reading the bit returns the reset value.
@@ -449,6 +450,7 @@ read/set (rs) :Software can read as well as set this bit. Writing ‘0’ has no
 
 
 4.1  Flash access control register (FLASH_ACR)
+-------------------------------------------------------------
 用來控制Flash memory的存取速度(根據CPU的頻率)、開啟關閉加速功能
 Address offset: 0x00
 Reset value: 0x0000 0000
@@ -470,7 +472,7 @@ CPU時脈/Flash memory存取時間
 1110: Fourteen wait states
 1111: Fifteen wait states
 4.2 Flash key register (FLASH_KEYR)
-
+-------------------------------------------------------------
 用來允許存取Flash control register、program和清除operations
 .. image:: /embedded/Flash key register (FLASH_KEYR).png
 Bits 31:0 FKEYR: FPEC key
@@ -480,7 +482,7 @@ a) KEY1 = 0x45670123
 b) KEY2 = 0xCDEF89AB
 
 4.3 Flash option key register (FLASH_OPTKEYR)
-
+-------------------------------------------------------------
 允許在user configuration sector裡執行程式和清除operations
 Address offset: 0x08
 Reset value: 0x0000 0000
@@ -492,7 +494,7 @@ a) OPTKEY1 = 0x08192A3B
 b) OPTKEY2 = 0x4C5D6E7F
 
 4.4 Flash status register (FLASH_SR)
-
+-------------------------------------------------------------
 執行中的程式和erase operation的資訊
 Address offset: 0x0C
 Reset value: 0x0000 0000
@@ -512,6 +514,7 @@ Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這�
 Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
 
 4.5 Flash control register(FLASH_CR)
+-------------------------------------------------------------
 used to configure and start Flash memory operations.
 Address offset: 0x10
 Reset value: 0x8000 0000
@@ -551,6 +554,7 @@ Bit 2 MER: Mass Erase.
 Bit 1 SER: Sector Erase.
 Bit 0 PG: Programming.
 4.6 Flash option control register (FLASH_OPTCR)
+-------------------------------------------------------------
 modify the user option bytes.
 Address offset: 0x14
 Reset value: 0x0FFF AAED.
@@ -576,6 +580,7 @@ Bit 1 OPTSTRT: Option start.
 Bit 0 OPTLOCK: Option lock.
 
 4.7 Flash option control register (FLASH_OPTCR1)
+-------------------------------------------------------------
 available only on STM32F42xxx and STM32F43xxx.
 used to modify the user option bytes for bank 2
 Address offset: 0x18
