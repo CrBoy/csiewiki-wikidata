@@ -258,14 +258,27 @@ Overrun處理有兩種模式。第一種是有開啟FIFO lock。當三階段的F
 Identifier filtering
 --------------------------------------
 
+由於CANbus在傳送資料的過程是類似廣播的方式，所以在node數量眾多的時候，單一node會收到所有node所傳出的各種資料。但是如果這個node的功能比較單一的話，它其實可以不需要接收每個node的資訊，只要接收跟它有相關的就好了，所以在接收端就需要filter來過濾資料，減輕node負擔。在stmf4的設計中總共有28組寄存器來當作filter使用。filter則有2種mode可以提供選擇。
+
+* Mask mode
+
+在Mask mode之下，只要ID中特定的幾個bit符合filter的狀態，此筆資料就會被接收。通常用在接收某個類別的訊息用。
+
+* Identifier list mode
+
+在Mask mode之下，只要ID中全部的bit都符合filter的狀態，此筆資料才會被接收。通常用在需要接收特定節點資料的時後使用。
+
 Bit Timming
 --------------------------------------
 
 .. image:: /embedded/CAN_bit_timing.png
 
 ex:假設APB clock為45Mhz如何得到1Mhz的baud rate?
+
 選擇9為prescaler, tBS1 = 2 tq, tBS2 = 2 tq
+
 tq = 1/(45Mhz/9) = 0.2 us
+
 Baud rate = 1/Bittime = 1/((1+2+2)*tq) = 1Mhz
 
 
