@@ -130,7 +130,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 .. image:: /ACCEL.png
   - **Instruction cache memory**: 為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory，只要開啟**FLASH_ACR register**的**ICEN bit**就可以開啟這個功能。每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
 
-  - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。(LDR r0, =0 的 =0就是一個literal，編譯器會在記憶體放一個0，放0的位址則會用一個literal來記錄，因此當取得這個literal時需要到literal pool找尋它代表的位址)
+  - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。(LDR r0, =0 的 =0就是一個literal，編譯器會在記憶體放一個0，放0的位址則會用一個literal來代表，因此當取得這個literal時需要到literal pool找尋它代表的位址)
 
 2.2 Flash interface in system architecture
 ---------------------------------------------
