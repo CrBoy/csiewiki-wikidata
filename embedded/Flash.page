@@ -348,6 +348,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     - PGAERR, PGPERR, PGSERR (Program error flags)
     - WRPERR (Protection error flag)
     - RDERR (Read protection error flag)
+
   - 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)為1，則FLASH_SR register中的operation error bit(OPERR)會在錯誤發生時被設定。
  
 .. image:: /embedded/flash_interrupt_request.jpg
@@ -361,6 +362,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
   - 但是此bit是受到保護的，要解鎖必須先依序
     1. 寫入 OPTKEY1 = 0x0819 2A3B 到 Flash option key register (FLASH_OPTKEYR)
     2. 寫入 OPTKEY2 = 0x4C5D 6E7F 到 Flash option key register (FLASH_OPTKEYR)
+
   - 開始更改時，必須同時更改bank1及bank2的user option bytes，無法單獨更改。步驟如下
     1. 檢查FLASH_SR register中BSY bit是否為0
     2. 將bank2 option bytes的值寫入FLASH_OPTCR1 register
@@ -408,6 +410,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
   - 可以在FLASH_CR暫存器中的SPRMOD bit 設定PCROP。
     - SPRMOD = 0: 關閉PCROP，nWRPi僅控制寫入保護。
     - SPRMOD = 1: 開啟PCROP，nWRPi 控制讀寫保護。
+
   - 當PCROP被設置時
     - 任何來自D-Bus的讀取會使RDERR(Proprietary readout protection error) flag被設立.
     - 任何寫入及抹除的動作會使WRPERR(Write protection error) flag被設立。
