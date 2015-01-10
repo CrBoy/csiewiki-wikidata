@@ -9,37 +9,45 @@ categories: STM32F4
 1.1 簡介
 -------------
 
- - 記憶體RAM?ROM?
-   - RAM:隨機存取記憶體(Random Access Memory)
-     - 屬於volatile memory(揮發性記憶體)，需要保持通電才能儲存資料
-     - 內部資料可以任意讀寫，用來存放由硬碟載入的程式或資料供CPU處理運算
-     - EX:main memory
-     - 分成DRAM、SRAM
-     - DRAM(Dynamic Random Access Memory)：所儲存的數據需要週期性地更新
-     - SRAM(Static Random Access Memory)：只要保持通電，裡面儲存的資料就可以恆常保持
-   - ROM:唯讀記憶體(Read Only Memory)
-     - 屬於非揮發性記憶體（non-volatile memory，縮寫NVRAM)，不須保持通電就能儲存資料
-     - 但資料一但寫入就無法修改，除非透過特殊的方式(例如EPROM用紫外光照射)才能達成
-     - 適合放重要且不能被刪除的資料
-     - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
-     - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
-    
-- `EPROM:<http://zh.wikipedia.org/wiki/%E5%94%AF%E8%AE%80%E8%A8%98%E6%86%B6%E9%AB%94>`_ 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
+- 記憶體RAM?ROM?
+  - RAM: 隨機存取記憶體(Random Access Memory)
+    - 屬於volatile memory(揮發性記憶體)，需要保持通電才能儲存資料
+    - 內部資料可以任意讀寫，用來存放由硬碟載入的程式或資料供CPU處理運算
+    - EX:main memory
+    - 分成DRAM、SRAM
+    - DRAM(Dynamic Random Access Memory)：所儲存的數據需要週期性地更新
+    - SRAM(Static Random Access Memory)：只要保持通電，裡面儲存的資料就可以恆常保持
+  - ROM: 唯讀記憶體(Read Only Memory)
+    - 屬於非揮發性記憶體（non-volatile memory，縮寫NVRAM)，不須保持通電就能儲存資料
+    - 但資料一但寫入就無法修改，除非透過特殊的方式(例如EPROM用紫外光照射)才能達成
+    - 適合放重要且不能被刪除的資料
+    - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
+    - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
+
+.. image:: /EPROM.jpg
+- EPROM: 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
   - 利用高電壓將資料編程寫入，但抹除時需將線路曝光於紫外線下一段時間，資料始可被清空。
   - 封裝外殼上會留一個石英玻璃所製的透明窗以便進行紫外線曝光。
   - 寫入程式後通常會用貼紙遮蓋透明窗，以防日久不慎曝光過量影響資料。
 
-- `EEPROM:<http://zh.wikipedia.org/wiki/EEPROM>`_ 電子抹除式可複寫唯讀記憶體(Electrically-Erasable Programmable Read-Only Memory)
+.. image:: /EEPROM.jpg
+- EEPROM: 電子抹除式可複寫唯讀記憶體(Electrically-Erasable Programmable Read-Only Memory)
   - 是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
+  - EEPROM有兩種種類：序列式(serial)、並列式(parallel)，其中並列式通常會以Flash來稱呼。
+  - 除電源線外，串列式通訊口只使用1~4隻接線來傳遞訊號，所需接腳較並列式少
+  - 1線：1-Wire(型號以93為開頭) 、UNI/O(型號以11為開頭) 
+  - 2線：I2C(型號以24為開頭) 
+  - 3線：Microwire(型號以93為開頭) 、SPI(型號以25為開頭) 
   - 資料更新方式:以位元組為單位
 
-- `Flash Memory:<http://zh.wikipedia.org/wiki/Flash_memory>`_
+.. image:: /FLASH.png
+- Flash Memory:
   - 於1984年發表，Intel之後於1988年發表第一款商業型的NOR Flash晶片
   - 以價格便宜、位元密度接手EEPROM的市場位置
   - 主要用於一般性資料儲存，以及在電腦及其他數位產品間交換傳輸資料
   - EX:記憶卡、隨身碟的儲存媒介
   - 快閃記憶體是一種特殊的、以大區塊(blocks)抹寫的EEPROM，寫入大小取決於記憶體控制器本身，介於256KB~20MB不等
-  - EEPROM只允許單執行緒重寫資料，快閃記憶體支援多執行緒同時在多個地方寫資料
+  - EEPROM只允許單執行緒重寫資料，但快閃記憶體卻可支援多執行緒同時在多個地方寫資料
   - 目前主機板的BIOS幾乎都是透過Flash memory儲存
 
 1.2 NOR/NAND介紹
