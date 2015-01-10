@@ -263,8 +263,8 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 
 - **區塊抹除(Sector Erase)**:
 
-    1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
-    2. 設定FLASH_CR register中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
+  1. 檢查Flash status register(FLASH_SR)中BSY(Busy) bit是否為0。(0代表目前沒有其他的Flash操作，1代表有其他Flash操作正在進行中)
+  2. 設定FLASH_CR register中SER(Sector Erase) bit告知啟用區塊抹除，並設定SNB(Sector number) bit告知欲抹除的區塊。
 
 ::
 
@@ -275,84 +275,80 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
         10111 sector 23
         不得超過此範圍。
 
-   3. 設定FLASH_CR register中的STRT(Start) bit。
-   4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
+  3. 設定FLASH_CR register中的STRT(Start) bit。
+  4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **bank抹除(Bank Erase)**:
 
-    1. 檢查FLASH_SR register中BSY bit是否為0。
-    2. 設定FLASH_CR register中MER(Mass Erase of bank 1)或MER1(Mass Erase of bank 2)bit，告知啟用bank抹除。
-    3. 設定FLASH_CR register中的STRT bit。
-    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
+  1. 檢查FLASH_SR register中BSY bit是否為0。
+  2. 設定FLASH_CR register中MER(Mass Erase of bank 1)或MER1(Mass Erase of bank 2)bit，告知啟用bank抹除。
+  3. 設定FLASH_CR register中的STRT bit。
+  4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **大量抹除(Mass Erase)**:
 
-    1. 檢查FLASH_SR register中BSY bit是否為0。
-    2. 設定FLASH_CR register中的MER和MER1 bit。
-    3. 設定FLASH_CR register中的STRT bit。
-    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
+  1. 檢查FLASH_SR register中BSY bit是否為0。
+  2. 設定FLASH_CR register中的MER和MER1 bit。
+  3. 設定FLASH_CR register中的STRT bit。
+  4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **注意**
-    - 如果MERx和SER同時被設定，則會執行bank(或mass) erase。
-    - 如果MERx和SER皆沒被設定，但STRT被設定，此為未定義行為，無法預測後果。
-    - Mass Erase並不會影響OTP sector或是設定區的sector。
+  - 如果MERx和SER同時被設定，則會執行bank(或mass) erase。
+  - 如果MERx和SER皆沒被設定，但STRT被設定，此為未定義行為，無法預測後果。
+  - Mass Erase並不會影響OTP sector或是設定區的sector。
 
 3.5 Program (寫入)
 -----------------------------------
 - **基本觀念：**
-    - Flash的每個cell在寫的時候只能1->0，不能從0->1；而erase後，該sector中所有的cell值皆為1。
-    - 基於上述，當同時需要erase和write的動作時，會先執行erase(0->1)，再執行write(1 -> 0)
+  - Flash的每個cell在寫的時候只能1->0，不能從0->1；而erase後，該sector中所有的cell值皆為1。
+  - 基於上述，當同時需要erase和write的動作時，會先執行erase(0->1)，再執行write(1 -> 0)
 
 - **寫入步驟：**
-    1. 檢查FLASH_SR register中BSY bit是否為0。
-    2. 設定FLASH_CR中的PG(Programming) bit。
-    3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
-        - Byte access in case of x8 parallelism
-        - Half-word access in case of x16 parallelism
-        - Word access in case of x32 parallelism
-        - Double word access in case of x64 parallelism
-    4. 等待FLASH_SR中的BSY bit清空。
+  1. 檢查FLASH_SR register中BSY bit是否為0。
+  2. 設定FLASH_CR中的PG(Programming) bit。
+  3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
+  4. 等待FLASH_SR中的BSY bit清空。
 
 - **寫入錯誤：**
-    - 在寫入的過程中，如果出現錯誤，則register FLASH_SR中的Programming errors Flags會被設定。
-    - PGAERR: 超過128bits的限制
-    - PGPERR: PSIZE設定錯誤(參考3.3)
-    - PGSERR: 沒按照標準寫入程序(例: 在寫入Flash memory之前忘記設定PG)
+  - 在寫入的過程中，如果出現錯誤，則register FLASH_SR中的Programming errors Flags會被設定。
+  - PGAERR: 超過128bits的限制
+  - PGPERR: PSIZE設定錯誤(參考3.3)
+  - PGSERR: 沒按照標準寫入程序(例: 在寫入Flash memory之前忘記設定PG)
 
 3.6 Read-while-write (RWW)
 -----------------------------------
 
 - **基本觀念: **
-    - 與一般寫入，抹除的方法相同(參考3.4, 3.5)
-    - Write-while-write 並不允許。因為當有任一bank正在寫入、抹除時，FLASH_SR的BSY bit為1。
+  - 與一般寫入，抹除的方法相同(參考3.4, 3.5)
+  - Write-while-write 並不允許。因為當有任一bank正在寫入、抹除時，FLASH_SR的BSY bit為1。
 
 - **讀bank1 抹除bank2 **
-    當bank1 正在讀取的時候，可以抹除bank2的資料(反之亦然)。操作方法如下
-    1. 檢查FLASH_SR register中BSY bit是否為0。
-    2. 設定FLASH_CR register中MER或MER1 bit，告知啟用bank抹除。
-    3. 設定FLASH_CR register中的STRT bit。
-    4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
+  當bank1 正在讀取的時候，可以抹除bank2的資料(反之亦然)。操作方法如下
+  1. 檢查FLASH_SR register中BSY bit是否為0。
+  2. 設定FLASH_CR register中MER或MER1 bit，告知啟用bank抹除。
+  3. 設定FLASH_CR register中的STRT bit。
+  4. 等待FLASH_SR register中的BSY bit清空。(或使用EOP中斷)
 
 - **讀bank1 寫bank2 **
-    當bank1 正在讀取的時候，可以寫入bank2的資料(反之亦然)。操作方法如下
-    1. 檢查FLASH_SR register中BSY bit是否為0。
-    2. 設定FLASH_CR中的PG(Programming) bit。
-    3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
-    4. 等待FLASH_SR中的BSY bit清空。(或使用EOP中斷)
+  當bank1 正在讀取的時候，可以寫入bank2的資料(反之亦然)。操作方法如下
+  1. 檢查FLASH_SR register中BSY bit是否為0。
+  2. 設定FLASH_CR中的PG(Programming) bit。
+  3. 在指定的位置(main memory block或OTP area)執行資料寫入的動作。
+  4. 等待FLASH_SR中的BSY bit清空。(或使用EOP中斷)
 
 3.7 Interrupt
 ----------------------------------------------------------------
 - **在erase或program結束時發出中斷 **
-    - 設定FLASH_CR register中的end of operation  interrupt enable(EOPIE) bit。
-    - 結束時，FLASH_SR register中的BSY bit為0，而end of operation(EOP) bit為1。
+  - 設定FLASH_CR register中的end of operation  interrupt enable(EOPIE) bit。
+  - 結束時，FLASH_SR register中的BSY bit為0，而end of operation(EOP) bit為1。
 
 - **在錯誤時發出中斷 **
 
-    - 在program或erase操作過程中有錯誤發生時，FLASH_SR register中的某些flag會被設定
-        - PGAERR, PGPERR, PGSERR (Program error flags)
-        - WRPERR (Protection error flag)
-        - RDERR (Read protection error flag)
-    - 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)為1，則FLASH_SR register中的operation error bit(OPERR)會在錯誤發生時被設定。
+  - 在program或erase操作過程中有錯誤發生時，FLASH_SR register中的某些flag會被設定
+    - PGAERR, PGPERR, PGSERR (Program error flags)
+    - WRPERR (Protection error flag)
+    - RDERR (Read protection error flag)
+  - 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)為1，則FLASH_SR register中的operation error bit(OPERR)會在錯誤發生時被設定。
  
 .. image:: /embedded/flash_interrupt_request.jpg
    DM00031020-referenceManual P.88
@@ -361,38 +357,39 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 ----------------------------------
 
 - **操作步驟 **
-    - 在更改option bytes之前，必須先清除FLASH_OPTCR register中的option lock bit(OPTLOCK)。
-    - 但是此bit是受到保護的，要解鎖必須先依序
-        1. 寫入 OPTKEY1 = 0x0819 2A3B 到 Flash option key register (FLASH_OPTKEYR)
-        2. 寫入 OPTKEY2 = 0x4C5D 6E7F 到 Flash option key register (FLASH_OPTKEYR)
-    - 開始更改時，必須同時更改bank1及bank2的user option bytes，無法單獨更改。步驟如下
-        1. 檢查FLASH_SR register中BSY bit是否為0。
-        2. 將bank2 option bytes的值寫入FLASH_OPTCR1 register
-        3. 將bank1 option bytes的值寫入FLASH_OPTCR register
-        4. 設定FLASH_OPTCR register中的OPTSTRT bit。
-        5. 等待FLASH_SR register中的BSY bit清空。
+  - 在更改option bytes之前，必須先清除FLASH_OPTCR register中的option lock bit(OPTLOCK)
+  - 但是此bit是受到保護的，要解鎖必須先依序
+    1. 寫入 OPTKEY1 = 0x0819 2A3B 到 Flash option key register (FLASH_OPTKEYR)
+    2. 寫入 OPTKEY2 = 0x4C5D 6E7F 到 Flash option key register (FLASH_OPTKEYR)
+  - 開始更改時，必須同時更改bank1及bank2的user option bytes，無法單獨更改。步驟如下
+    1. 檢查FLASH_SR register中BSY bit是否為0
+    2. 將bank2 option bytes的值寫入FLASH_OPTCR1 register
+    3. 將bank1 option bytes的值寫入FLASH_OPTCR register
+    4. 設定FLASH_OPTCR register中的OPTSTRT bit
+    5. 等待FLASH_SR register中的BSY bit清空
+
 
 - **Read Protections(讀取保護) **
     
-    有三種Read Protections levels:
-    - Level 0: 無讀取保護
-        - 將 0xAA 寫入FLASH_OPTCR中的RDP(Read Protection) bit
-        - 表示Read protection not active。
+  有三種Read Protections levels:
+  - Level 0: 無讀取保護
+    - 將 0xAA 寫入FLASH_OPTCR中的RDP(Read Protection) bit
+    - 表示Read protection not active。
 
-    - Level 1: 開啟讀取保護
-        - 預設模式，將除了 0xAA 以及 0xCC 以外的值寫入FLASH_OPTCR中的RDP bit
-        - 由system memory和SRAM啟動且執行的processes無法對Flash memory做存取。
-        - 由flash memory啟動的程式依然可以存取(讀、寫、抹除)flash memory。
-        - 若想要降級為level 0，會引發mass erase
+  - Level 1: 開啟讀取保護
+    - 預設模式，將除了 0xAA 以及 0xCC 以外的值寫入FLASH_OPTCR中的RDP bit
+    - 由system memory和SRAM啟動且執行的processes無法對Flash memory做存取。
+    - 由flash memory啟動的程式依然可以存取(讀、寫、抹除)flash memory。
+    - 若想要降級為level 0，會引發mass erase
 
-    - Level 2: 開啟讀取保護，禁用debug/chip
-        - 將 0xCC 寫入FLASH_OPTCR中的RDP bit
-        - 所有level 1 的限制皆開啟。
-        - 不得由 system memory和SRAM執行程式。
-        - JTAG, SWV (single-wire viewer), ETM, boundary scan皆無法使用。
-        - User option bytes不能再被更改。
-        - 由flash memory啟動的程式依然可以存取(讀、寫、抹除)flash memory。
-        - 一旦設定成level 2以後就無法再更改為level 1 和2。
+  - Level 2: 開啟讀取保護，禁用debug/chip
+    - 將 0xCC 寫入FLASH_OPTCR中的RDP bit
+    - 所有level 1 的限制皆開啟。
+    - 不得由 system memory和SRAM執行程式。
+    - JTAG, SWV (single-wire viewer), ETM, boundary scan皆無法使用。
+    - User option bytes不能再被更改。
+    - 由flash memory啟動的程式依然可以存取(讀、寫、抹除)flash memory。
+    - 一旦設定成level 2以後就無法再更改為level 1 和2。
 
 .. image:: /embedded/access_versus_read_protection_level.jpg
    DM00031020-referenceManual P.94
@@ -401,26 +398,19 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
    DM00031020-referenceManual P.94  
    
 - **Write Protections(寫入保護) **
-    - 在24個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。
-    - 當FLASH_OPTCR或FLASH_OPTCR1 中的nWRPi(non-write protection) bit (0 <= i <=  11)為0時，i所對應的sector就不能夠被寫入或抹除。
-    - 同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
-    - 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
-    - Write protection error flag
-        - 寫入/抹除保護區域時，在FLASH_SR中的WRPERR會被設定。
-        - erase (抹除)：
-        - Mass, bank, sector 抹除
-        - 試圖抹除不存在的SNB Number
-        - mass erase時，有任何一個user sector被保護。
-        - A mass erase is requested while at least one of the user sector is write protected by option bit (MER or MER/MER1 = 1 and nWRPi = 0 with 0 ≤ i ≤ 11 bits in the FLASH_OPTCRx register
+  - 在24個User Sector中(請見5.Flash記憶體架構介紹)，Flash memory可以設為保護狀態來避免非預期的寫入操作造成的數據遺失問題。
+  - 當FLASH_OPTCR或FLASH_OPTCR1 中的nWRPi(non-write protection) bit (0 <= i <=  11)為0時，i所對應的sector就不能夠被寫入或抹除。
+  - 同樣地，在大量抹除中，只要在抹除範圍內有任何一個Sector是寫入保護的狀態，就不能夠進行抹除。
+  - 若嘗試在寫入保護的區域中進行寫入/抹除的行為，將會在FLASH_SR中設置WRPERR(Write protection error flag)。
 
 - **Proprietary code readout protection (PCROP) **
-    - 使用 proprietary readout protection (PCROP)可以保護 Flash memory user sectors (0到23)不被 D-bus 存取。也就是說，只能夠由I-Bus 抓取指令。
-    - 可以在FLASH_CR暫存器中的SPRMOD bit 設定PCROP。
-        - SPRMOD = 0: 關閉PCROP，nWRPi僅控制寫入保護。
-        - SPRMOD = 1: 開啟PCROP，nWRPi 控制讀寫保護。
-    - 當PCROP被設置時
-        - 任何來自D-Bus的讀取會使RDERR(Proprietary readout protection error) flag被設立.
-        - 任何寫入及抹除的動作會使WRPERR(Write protection error) flag被設立。
+  - 使用 proprietary readout protection (PCROP)可以保護 Flash memory user sectors (0到23)不被 D-bus 存取。也就是說，只能夠由I-Bus 抓取指令。
+  - 可以在FLASH_CR暫存器中的SPRMOD bit 設定PCROP。
+    - SPRMOD = 0: 關閉PCROP，nWRPi僅控制寫入保護。
+    - SPRMOD = 1: 開啟PCROP，nWRPi 控制讀寫保護。
+  - 當PCROP被設置時
+    - 任何來自D-Bus的讀取會使RDERR(Proprietary readout protection error) flag被設立.
+    - 任何寫入及抹除的動作會使WRPERR(Write protection error) flag被設立。
 
 .. image:: /embedded/PCROP_levels.jpg
    DM00031020-referenceManual P.96
