@@ -111,48 +111,25 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 .. image:: /bus_matrix.png
    DM00031020-referenceManual P.62
 
-- Internal SRAM總容量 = 192KB = 64KB CCM data RAM + SRAM 112KB + SRAM 16KB。
-- SRAM 112KB: 連接至I-bus，加快程式的速度；連接至D-bus，加快存取data的速度。
-- SRAM 112KB及FSMC皆同時有3條bus連接至ARM Cortex-M4，大大提高bus存取的性能。
-- CCM(core coupled memory)：是給Cortex-M4專用的全速64KB RAM，他們不會經過上圖的Bus Matrix，Cortex-M4與其直接相連，mapped at address 0x1000 0000 - 0x1000FFFF and accessible only by the CPU through the D-bus。其address與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM。適用於stack, heap, global variables或做高速運算緩衝，如FOC模型解耦, 網路SSL, JPEG编碼/解碼...等。
-- Flash memory: CPU是透過AHB I-Code及D-Code來存取Flash，另可透過ACCEL加速code execution。
-- ACCEL : Adaptive real-time memory accelerator (ART Accelerator)，主要是實現instruction prefetch queue and branch cache的機制，來儲存branches中第一道instruction及常數、中斷及副程式的呼叫，penalty會發生在第一次pipeline相關機制事件產生時，之後若發現與之前一樣的instruction，cache就會發生作用。另外，在STM32中的Flash memory是128-bit row構成的，所以每次access可以讀取8道16-bit instrction或4道32-bit instrction，如此一來可增加程式執行的速度，cpu frequency為168MHz時，讀取flash的wait state可以設為0，徹底發揮處理器效能。
-
-.. image:: /stm32-f4-art-accelerator-block-diagram.jpg
-
-
-**(例)多重bus的pararrel處理:**
-
-1. 壓縮的音樂資料流傳輸到16KB SRAM的buffer。
-2. Cortex-M4執行MP3解碼程式。
-3. Cortex-M4抓MP3的資料進行解碼。
-4. 解壓後的音樂資料流傳輸至112KB SRAM。
-5. 資料通過DMA傳輸到I2S輸出。
-
+- **AHB(Advanced High-performance Bus)**: AMBA的一部分，負責連接高性能高頻寬的模組，例如processor, DMA controller,  memory
+- **APB(Advanced Peripheral Bus)**: AMBA的一部分，負責連接低頻寬的周邊，例如UART
+- **AMBA(Advanced Microcontroller Bus Architecture)**: ARM架構下系統晶片(SoC)設計中的一種匯流排架構
+- **DMA(Direct Memory Access)**: 允許介面裝置與記憶體之間直接轉移資料，而不需經由CPU的參與
+- **FMC(Flexible memory controller)**: 用來連接擴充記憶裝置的控制器，比起FSMC(Flexible Static memory controller)，增加了The Synchronous DRAM (SDRAM) controller ，允許存許DRAM，以及SRAM,  Flash, PSRAM, SDRAM等記憶體。
+- **Internal SRAM總容量** = 256KB = 64KB CCM data RAM + SRAM 112KB + SRAM 16KB + SRAM 64KB。
+- **I-Bus(Instruction Bus)**: 用來傳遞指令
+- **D-Bus(Data Bus)**: 用來傳遞資料
+- **S-Bus(System Bus)**: 用來傳遞周邊或是SRAM的系統資料
+- SRAM連接至I-bus，可用來加快程式的速度；並且連接至D-bus，加快存取data的速度。
+- **CCM(Core Coupled Memory)**：是給CPU專用的64KB RAM，不會經過上圖的Bus Matrix，而是透過D-Bus直接與CPU相連，當SRAM被其他硬體使用時，CPU可以使用CCM以達到零等待。記憶體位址在 0x1000 0000 - 0x1000FFFF，與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM，可用於stack, heap, global variables, critical OS data或做高速運算緩衝(例如JPEG编解碼等)；此外也可以直接拿來當做額外的記憶體使用。
+- **Flash memory**: CPU透過AHB I-Code及D-Code來存取Flash，另外可透過ACCEL加速程式執行。
+- **ACCEL** : Adaptive real-time memory accelerator (ART Accelerator)，因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate
 
 2.2 Flash interface in system architecture
 ---------------------------------------------
 
 .. image:: /Flash_system_architecture.png
    DM00031020-referenceManual P.74
-圖中一些縮寫的解釋如下：
-
-- I-Code bus : Instruction bus.這條bus由Cortex-M4F連至BusMatrix，核心透過這個bus取出指令。
-- D-Code bus : Data bus.這條bus由Cortex-M4F 與 64-Kbyte CCM data RAM 連至BusMatrix，核心透過這個bus讀取字母(literal)與除錯。
-- S-bus：System bus. 用來存取週邊或SRAM的資料。
-- AHB : Advanced High-performance Bus.
-- APB : Advanced Peripheral Bus.
-
-關於AHB與APB差異可參考 `Difference Between AHB and APB<http://www.differencebetween.net/technology/difference-between-ahb-and-apb/>`_
-
-關於AMBA的介紹可參考 `Advanced Microcontroller Bus Architecture (AMBA)<http://en.wikipedia.org/wiki/AMBA_High-performance_Bus>`_
-
-- DMA : Direct Memory Access. DMA提供周邊裝置與記憶體、記憶體與記憶體間高速的傳輸，而不須經由CPU的動作。
-- CCM : Core Coupled Memory.給core專用的全速64KB RAM，在沒有經過BusMatrix的情況下與core直接連結。
-- FLITF : Flash memory interface.
-- FSMC：Flexible static memory controller
-- FMC：Flexible memory controller
-
 
 2.3 Flash模組的組成
 -------------------------------------------------
@@ -165,7 +142,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 .. image:: /flash module organization.png
    DM00031020-referenceManual P.77
 
-STM32F407中的Flash有以下特性：
+STM32F429中的Flash有以下特性：
 
 - 容量2Mbytes，雙bank架構，支援read-while-write(RWW)
 - 單次讀取data為128bits
