@@ -126,16 +126,11 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - **Flash memory**: CPU透過AHB I-Code及D-Code來存取Flash，另外可透過ACCEL加速程式執行。
 - **ACCEL** : Adaptive real-time memory accelerator (ART Accelerator)，可以執行Instruction Prefetch, Instruction cache memory和Data management來加速執行指令的速度。
 
-  - Instruction Prefetch: 因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate，每個flash memory的讀取動作可以讀取128-bits的指令(4個32bits指令或8個16bits指令)，所以在循序讀取code的時候，至少需要四個CPU cycles來執行上一串指令。而Instruction Prefetch可以事先讀取下一串指令，不需要Wait State。設定FLASH_ACR register裡的PRFTEN bit可以開啟Prefetch功能。
-.. image:: /ACCEL_1.png
-.. image:: /ACCEL_2.png
-  - Instruction cache memory
-為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory
-只要開啟FLASH_ACR register的ICEN bit就可以開啟這個功能
-每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
+  - **Instruction Prefetch**: 因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate，每個flash memory的讀取動作可以讀取128-bits的指令(4個32bits指令或8個16bits指令)，所以在循序讀取code的時候，至少需要四個CPU cycles來執行上一串指令。而Instruction Prefetch可以事先讀取下一串指令，不需要Wait State。設定**FLASH_ACR register**裡的**PRFTEN bit**可以開啟Prefetch功能。
+.. image:: /ACCEL.png
+  - **Instruction cache memory**: 為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory，只要開啟**FLASH_ACR register**的**ICEN bit**就可以開啟這個功能。每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
 
-  - Data management
-在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定FLASH_ACR register的DCEN bit，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。
+  - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。
 
 2.2 Flash interface in system architecture
 ---------------------------------------------
