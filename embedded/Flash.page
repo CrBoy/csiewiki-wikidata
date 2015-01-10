@@ -439,113 +439,151 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 .. image:: http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png
    DM00031020-referenceManual P.97
 
-4.Flash interface registers
-===========================
-- read/write (rw) :Software can read and write to these bits.
-- read-only (r) :Software can only read these bits.
-- write-only (w) :Software can only write to this bit. Reading the bit returns the reset value.
-- read/clear (rc_w1) :Software can read as well as clear this bit by writing 1. Writing ‘0’ has no effect on the bit value.
-- read/clear (rc_w0) :Software can read as well as clear this bit by writing 0. Writing ‘1’ has no effect on the bit value.
-- read/set (rs) :Software can read as well as set this bit. Writing ‘0’ has no effect on the bit value.
+4 Flash interface registers
+read/write (rw) :Software can read and write to these bits.
+read-only (r) :Software can only read these bits.
+write-only (w) :Software can only write to this bit. Reading the bit returns the reset value.
+read/clear (rc_w1) :Software can read as well as clear this bit by writing 1. Writing ‘0’ has no effect on the bit value.
+read/clear (rc_w0) :Software can read as well as clear this bit by writing 0. Writing ‘1’ has no effect on the bit value.
+read/set (rs) :Software can read as well as set this bit. Writing ‘0’ has no effect on the bit value.
 
-4.1 Flash access control register (FLASH_ACR)
------------------------------------------------
 
-Address offset : 0x00, Reset value: 0x0000 0000.
-
-.. image:: /Flash_acr.JPG
-   DM00031020-referenceManual P.97
-
-::
-
-  Bits 31:13 保留位置，必須保持淨空。
-  Bit 12 DCRST : Data cache reset. 0: not reset; 1: reset. (當D cache未啟用時才可寫入)
-  Bit 11 ICRST : Instruction cache reset. 0: not reset ; 1: reset. (當I cache未啟用時才可寫入)
-  Bit 10 DCEN : Data cache enable. 0: disabled; 1: enabled.
-  Bit 9 ICEN : Instruction cache enable. 0: disabled; 1: enabled.
-  Bit 8 PRFTEN : Prefetch enable. 0: disabled; 1: enabled;
-  Bits 7:3 保留位置，必須保持淨空。
-  Bits 2:0 LATENCY : Latency.
-
+4.1  Flash access control register (FLASH_ACR)
+用來控制Flash memory的存取速度(根據CPU的頻率)、開啟關閉加速功能
+Address offset: 0x00
+Reset value: 0x0000 0000
+.. image:: /embadded/Flash access control register (FLASH_ACR).png
+stm32f429_reference P.99
+Bits 31:13 保留位置，必須保持淨空。
+Bit 12 DCRST : Data cache reset. 0: not reset; 1: reset. (當D cache未啟用時才可寫入)
+Bit 11 ICRST : Instruction cache reset. 0: not reset ; 1: reset. (當I cache未啟用時才可寫入)
+Bit 10 DCEN : Data cache enable. 0: disabled; 1: enabled.
+Bit 9 ICEN : Instruction cache enable. 0: disabled; 1: enabled.
+Bit 8 PRFTEN : Prefetch enable. 0: disabled; 1: enabled;
+Bits 7:4 保留位置，必須保持淨空。
+Bits 3:0 LATENCY: Latency
+CPU時脈/Flash memory存取時間
+0000: Zero wait state
+0001: One wait state
+0010: Two wait states
+...
+1110: Fourteen wait states
+1111: Fifteen wait states
 4.2 Flash key register (FLASH_KEYR)
--------------------------------------
 
-Address offset : 0x04, Reset value: 0x0000 0000.
+用來允許存取Flash control register、program和清除operations
+.. image:: /embedded/Flash key register (FLASH_KEYR).png
+Bits 31:0 FKEYR: FPEC key
+The following values must be programmed consecutively to unlock the FLASH_CR register
+and allow programming/erasing it:
+a) KEY1 = 0x45670123
+b) KEY2 = 0xCDEF89AB
 
-.. image:: /flash_keyr.JPG
-   DM00031020-referenceManual P.99
+4.3 Flash option key register (FLASH_OPTKEYR)
 
-::
+允許在user configuration sector裡執行程式和清除operations
+Address offset: 0x08
+Reset value: 0x0000 0000
+.. image:: /embedded/Flash option key register (FLASH_OPTKEYR).png
+Bits 31:0 OPTKEYR: Option byte key
+The following values must be programmed consecutively to unlock the FLASH_OPTCR
+register and allow programming it:
+a) OPTKEY1 = 0x08192A3B
+b) OPTKEY2 = 0x4C5D6E7F
 
-  Bits 31:0 FKEYR : FPEC key. 解鎖用，前方已經描述過如何解鎖FLASH_CR，在此不贅述。
+4.4 Flash status register (FLASH_SR)
 
-4.3 Flash status register (FLASH_SR)
--------------------------------------
+執行中的程式和erase operation的資訊
+Address offset: 0x0C
+Reset value: 0x0000 0000
+.. image:: /embedded/Flash status register (FLASH_SR).png
+Bits 31:17 Reserved, must be kept cleared.
+Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。(若無任何操作時會自動清除)
+Bits 15:9 Reserved, must be kept cleared.
+Bit 8 RDERR: Proprietary readout protection (PCROP) error
+當read access經由D-bus讀取位址(屬於proprietary readout protected Flash)時，由硬體設值
+寫入1時清空
+Bit 7 PGSERR : Programming sequence error. 當程式出現錯誤時會設值。若寫入1則清空。
+Bit 6 PGPERR : Programming parallelism error. 當程式寫入大小與型態不符(對照PSIZE)時會設值。若寫入1則清空。
+Bit 5 PGAERR : Programming alignment error. 當資料寫入時無法塞入128-bit的Flash memory row會設值。若寫入1則清空。
+Bit 4 WRPERR : Write protection error. 當嘗試寫入/抹除一個寫入保護的Flash memory區域時會設值。若寫入1則清空。
+Bits 3:2 Reserved, must be kept cleared.
+Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這個bit只會在ERRIE(Error Interrupts)啟用時生效。
+Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
 
-Address offset : 0x0C, Reset value: 0x0000 0000.
+4.5 Flash control register(FLASH_CR)
+used to configure and start Flash memory operations.
+Address offset: 0x10
+Reset value: 0x8000 0000
+.. image:: /Flash control register(FLASH_CR).png
+Bit 31 LOCK : Lock. 只能寫為1，當值為1時，FLASH_CR將鎖住不可更改，唯有偵測到解鎖序列才會清除。
+Bits 30:26 保留位置，必須保持淨空。
+Bit 25 ERRIE: Error interrupt enable. 0: Disabled; 1: Enabled.
+Bit 24 EOPIE: End of operation interrupt enable. 0: Disabled; 1: Enabled.
+Bits 23:17 保留位置，必須保持淨空。
+Bit 16 STRT: Start. 只能由軟體設置，且在BSY bit清空時會一併清空。
+Bits 15:10 保留位置，必須保持淨空。
+Bits 9:8 PSIZE: Program size.
+    These bits select the program parallelism.
+    00 program x8
+    01 program x16
+    10 program x32
+    11 program x64
+Bits 7:3 SNB: Sector number.
+    These bits select the sector to erase.
+    0000: sector 0
+    0001: sector 1
+    ...
+    01011: sector 11
+    01100: not allowed
+    01101: not allowed
+    01110: not allowed
+    01111: not allowed
+    10000: section 12
+    10001: section 13
+    ...
+    11011 sector 23
+    11100: not allowed
+    11101: not allowed
+    11110: not allowed
+    11111: not allowed
+Bit 2 MER: Mass Erase.
+Bit 1 SER: Sector Erase.
+Bit 0 PG: Programming.
+4.6 Flash option control register (FLASH_OPTCR)
+modify the user option bytes.
+Address offset: 0x14
+Reset value: 0x0FFF AAED.
+.. image:: /embedded/Flash option control register (FLASH_OPTCR).png
 
-.. image:: /flash_sr.JPG
-   DM00031020-referenceManual P.101
+Bits 31 SPRMOD: Selection of protection mode for nWPRi bits
+0: PCROP disabled. nWPRi bits used for Write protection on sector i.
+1: PCROP enabled. nWPRi bits used for PCROP protection on sector i
+Bits 30 DB1M: Dual-bank on 1 Mbyte Flash memory devices(我們使用的板子flash是2Mbytes)
+0: 1 Mbyte single bank Flash memory (contiguous addresses in bank1)
+1: 1 Mbyte dual bank Flash memory. 
+Bits 29:28 保留位置，必須保持淨空。
+Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.
+Bits 15:8 RDP: Read protect. 0xAA : Level 0, read protection not active; 0xCC : Level 2, chip read protection active; Others : Level 1, read protection of memories active.
+Bits 7:5 USER: User option bytes
+Bit 4 保留位置，必須保持淨空。
+Bits 3:2 BOR_Level: BOR reset level.
+  00 : BOR level 3, 電壓 2.70~3.60V
+  01 : BOR level 2, 電壓 2.40~2.70V
+  10 : BOR level 1, 電壓 2.10~2.40V
+  11 : BOR off, 電壓 1.80~2.10V
+Bit 1 OPTSTRT: Option start.
+Bit 0 OPTLOCK: Option lock.
 
-::
-
-  Bits 31:17 保留位置，必須保持淨空。
-  Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。(若無任何操作時會自動清除)
-  Bits 15:8 保留位置，必須保持淨空。
-  Bit 7 PGSERR : Programming sequence error. 當程式出現錯誤時會設值。若寫入1則清空。
-  Bit 6 PGPERR : Programming parallelism error. 當程式寫入大小與型態不符(對照PSIZE)時會設值。若寫入1則清空。
-  Bit 5 PGAERR : Programming alignment error. 當資料寫入時無法塞入128-bit的Flash memory row會設值。若寫入1則清空。
-  Bit 4 WRPERR : Write protection error. 當嘗試寫入/抹除一個寫入保護的Flash memory區域時會設值。若寫入1則清空。
-  Bit 3:2 保留位置，必須保持淨空。
-  Bit 1 OPERR : Operation error. 當任何的Flash操作失效時設值，但這個bit只會在ERRIE(Error Interrupts)啟用時生效。
-  Bit 0 EOP : End of Operation. 當一或多個Flash操作成功完成時設值，這個bit只會在EOPIE(End of Operation Interrupts)啟用時生效。若寫入1則清空。
-
-4.4 Flash control register (FLASH_CR)
--------------------------------------
-
-Address offset : 0x10, Reset value: **0x8000** 0000.
-
-.. image:: /flash_cr.JPG
-   DM00031020-referenceManual P.105
-
-::
-
-  Bit 31 LOCK : Lock. 只能寫為1，當值為1時，FLASH_CR將鎖住不可更改，唯有偵測到解鎖序列才會清除。
-  Bits 30:26 保留位置，必須保持淨空。
-  Bit 25 ERRIE: Error interrupt enable. 0: Disabled; 1: Enabled.
-  Bit 24 EOPIE: End of operation interrupt enable. 0: Disabled; 1: Enabled.
-  Bits 23:17 保留位置，必須保持淨空。
-  Bit 16 STRT: Start. 只能由軟體設置，且在BSY bit清空時會一併清空。
-  Bits 15:10 保留位置，必須保持淨空。
-  Bits 9:8 PSIZE: Program size. 前方有提過PSIZE的設置，在此不贅述。
-  Bits 6:3 SNB: Sector number. 前方有提過SNB的設置，在此不贅述。
-  Bit 2 MER: Mass Erase.
-  Bit 1 SER: Sector Erase.
-  Bit 0 PG: Programming.
-
-4.5 Flash option control register (FLASH_OPTCR)
------------------------------------------------
-
-Address offset : 0x14, Reset value: **0x0FFF AAED**.
-
-.. image:: /flash_optcr.JPG
-   DM00031020-referenceManual P.106
-
-::
-
-  Bits 31:28 保留位置，必須保持淨空。
-  Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.
-  Bits 15:8 RDP: Read protect. 0xAA : Level 0, read protection not active; 0xCC : Level 2, chip read protection active; Others : Level 1, read protection of memories active.
-  Bits 7:5 USER: User option bytes
-  Bit 4 保留位置，必須保持淨空。
-  Bits 3:2 BOR_Level: BOR reset level.
-    00 : BOR level 3, 電壓 2.70~3.60V
-    01 : BOR level 2, 電壓 2.40~2.70V
-    10 : BOR level 1, 電壓 2.10~2.40V
-    11 : BOR off, 電壓 1.80~2.10V
-  Bit 1 OPTSTRT: Option start.
-  Bit 0 OPTLOCK: Option lock.
-
+4.7 Flash option control register (FLASH_OPTCR1)
+available only on STM32F42xxx and STM32F43xxx.
+used to modify the user option bytes for bank 2
+Address offset: 0x18
+Reset value: 0x0FFF 0000. 
+.. image:: /embedded/Flash option control register (FLASH_OPTCR1).png
+Bits 31:28 Reserved, must be kept cleared.
+Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.
+Bits 15:0 Reserved, must be kept cleared.
 
 5.Example
 =================
