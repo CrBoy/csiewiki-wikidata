@@ -440,7 +440,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
    DM00031020-referenceManual P.97
 
 4 Flash interface registers
--------------------------------------------------------------
+================================================
 read/write (rw) :Software can read and write to these bits.
 read-only (r) :Software can only read these bits.
 write-only (w) :Software can only write to this bit. Reading the bit returns the reset value.
