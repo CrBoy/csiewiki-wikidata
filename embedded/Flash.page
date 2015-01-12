@@ -166,7 +166,7 @@ STM32F429中的Flash有以下特性：
 ----------------------------------
 
 - 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock frequency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
-- 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F407的Flash最快access速度為<=30MHZ，如果CPU frequency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
+- 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F429的Flash最快access速度為<=30MHZ，如果CPU frequency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
 
 .. image:: /embedded/number_of_wait_states.png
    DM00031020-referenceManual P.81
@@ -732,19 +732,19 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     Flash lock
 
 
-6.STM32F407VG 硬體介紹
+6.STM32F429 硬體介紹
 =====================
 
-.. image:: /block_diag_1.JPG
+.. image:: /embedded/stm32f429_block_diagram_1.JPG
 
-.. image:: /block_diag_2.JPG
-   DM00037051-datasheet P.18
+.. image:: /embedded/stm32f429_block_diagram_2.JPG
+   DM00071990-datasheet P.18
 
 
 7.reference
 ===========
 
-- https://gitcafe.com/xturtle/NCKU-Embedded-2012-Flash-Demo
+- https://github.com/cdfq152313/stm32F429-flash
 - http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-1.pdf
 - http://wiki.csie.ncku.edu.tw/embedded/learn-stm32-part-6.pdf
 - http://www.triplespark.net/elec/pdev/arm/stm32.html
