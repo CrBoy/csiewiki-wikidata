@@ -604,107 +604,132 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 5.Example
 =================
 
-5.1 LED LEGEND
+5.1 下載
 --------------
+- firmware: STM32F429I-Discovery_FW_V1.0.1  http://www.st.com/web/en/catalog/tools/PF259429
+- git clone https://github.com/cdfq152313/stm32F429-flash.git
+- 放在同一目錄下
 
-- GREEN : FLASH is unlocked.
-- BLUE  : FLASH is writing.
-- RED   : FLASH is erasing.
-- YELLOW: FLASH is reading.
+5.2 操作流程 (節錄)
+--------------
+- 設定正確的Latency。具體流程參閱3.1
 
-5.2 git repository
-------------------
+::
+
+        SetSysClockTo84();
+        ======= 在 SetSysClockTo84() 函式中 ======
+        FLASH_SetLatency(FLASH_Latency_2);
+        RCC_PLLConfig(RCC_PLLSource_HSE, 6, 252, 4, 7);
+        
  
-- git repo: https://github.com/choupc/stm32_flash_demo
+- 解鎖flash，具體流程參閱3.2
+
+::
+
+    FLASH_Unlock();
+
+- 清除所有flag，參閱4.4 
+
+::
+
+      FLASH_ClearFlag(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
+                      FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
+
+- 清除sector 12和13，FLASH_EraseSector若失敗會回傳非FLASH_COMPLETE之值。
+- 具體流程參閱3.4
+
+::
+
+    erase_data(GetSector(ADDR_FLASH_SECTOR_12), GetSector(ADDR_FLASH_SECTOR_13) );
+    ====================在 erase_data 函式中 =====================
+    if (FLASH_EraseSector(uwSectorCounter, VoltageRange_3) != FLASH_COMPLETE)
+        ...
+
+- 將資料寫入的sector 12，FLASH_ProgramWord(uwAddress, DATA_32)若失敗會回傳非FLASH_COMPLETE之值。
+- 具體流程參閱3.5
+
+::
+
+    program_data(ADDR_FLASH_SECTOR_12, ADDR_FLASH_SECTOR_13);
+    ====================在 program_data 函式中 =====================
+    FLASH_ProgramWord(uwAddress, DATA_32) == FLASH_COMPLETE
+
+- 使用寫入保護設定第13個sector，參閱3.8
+
+::
+
+    FLASH_OB_Unlock();
+    FLASH_OB_WRP1Config(OB_WRP_Sector_13, ENABLE);
+    if (FLASH_OB_Launch() != FLASH_COMPLETE)
+        USART1_puts("Write protection error...\r\n");
+    FLASH_OB_Lock();
 
 
-5.3 operation flow
+- 保護後，試圖寫入sector 13 會失敗。
+
+::
+
+    program_data(ADDR_FLASH_SECTOR_13, ADDR_FLASH_SECTOR_14);
+
+- 鎖起FLASH
+
+::
+
+    FLASH_Lock(); 
+
+
+
+5.3 相關API
 ------------------
-
-- 1.Flash unlock
-- GREEN LED ON
-
-::
-
-  FLASH_Unlock();
-  STM_EVAL_LEDOn(LED4);
-  printf("\r\n FLASH Unlock \r\n");
-  FLASH_ClearFlag(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | 
-                  FLASH_FLAG_PGAERR | FLASH_FLAG_PGPERR|FLASH_FLAG_PGSERR); 
+- 請參閱 firmware
+- (firmware)/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.c
+- (firmware)/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_flash.h
 
 
-- 2.Erase from sector2 to sector 11 
-- RED LED ON
-- 3.Erase complete 
-- RED LED OFF
+5.4 程式結果 (由usart傳出)
+--------------------------------
 
 ::
 
- for (i = StartSector; i <= EndSector; i += 8)
-     STM_EVAL_LEDOn(LED5);
-     printf("\r\n Erase sector:%d \r\n",a);
-     if (FLASH_EraseSector(i, VoltageRange_3) != FLASH_COMPLETE)
+    flash demo start
+    Flash unlock
+    Erase sector 12 13
+    Sector 12 (first 80 bytes)
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
 
 
-- 4.Write from sector2 to sector 11 as "0x12345678"
-- BLUE LED ON
-- 5.Finished write process
-- BLUE LED OFF
+    Sector 13 (first 80 bytes)
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
 
 
-::
-
-  printf("\r\n FLASH is writing... \r\n"); 
-  while (Address < FLASH_USER_END_ADDR){
-    STM_EVAL_LEDOn(LED6);
-    if (FLASH_ProgramWord(Address, DATA_32) == FLASH_COMPLETE) {
-
-
-- 6.Flash lock
-- GREEN LED OFF
-
-::
-
-  FLASH_Lock(); 
-  STM_EVAL_LEDOff(LED4);
-  printf("\r\n FLASH lock \r\n");
-
-- 7.Verification (Reading...)
-- YELLOW LED ON
-- 8.Read complete
-- YELLOW LED OFF
-
-::
-
-  printf("\r\n FLASH is reading... \r\n");
-    while (Address < FLASH_USER_END_ADDR){
-    STM_EVAL_LEDOn(LED3);
-    data32 = *(__IO uint32_t*)Address;
-    
-    if (data32 != DATA_32){
-     
-    printf("\r\n Read error \r\n");
-
-    }
-    Address = FLASH_USER_END_ADDR;
-    STM_EVAL_LEDOff(LED3);
-  } printf("\r\n Read complete \r\n");
-
-- 9.進入等待狀態
+    Program 0x32F429DC to sector 12
+    Sector 12 (first 80 bytes)
+    32F429DC 32F429DC 32F429DC 32F429DC
+    32F429DC 32F429DC 32F429DC 32F429DC
+    32F429DC 32F429DC 32F429DC 32F429DC
+    32F429DC 32F429DC 32F429DC 32F429DC
+    32F429DC 32F429DC 32F429DC 32F429DC
 
 
-5.4 DEMO
-------------------
- 
+    Enable write protection to sector 13
+    Attempt to program 0x32F429DC to sector 13
+    sector 13 (first 80 bytes)
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+    FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
 
-- Flash memory sector2 的內容:
 
-.. image:: /1492801_611112942271128_116086978_n.jpg
-
-
-- Demo video
-
-- http://www.youtube.com/watch?v=yW_IF_wHWBc&feature=youtu.be
+    Flash lock
 
 
 6.STM32F407VG 硬體介紹
