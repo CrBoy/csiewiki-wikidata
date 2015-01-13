@@ -732,16 +732,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     Flash lock
 
 
-6.STM32F429 硬體介紹
-=====================
-
-.. image:: /embedded/stm32f429_block_diagram_1.JPG
-
-.. image:: /embedded/stm32f429_block_diagram_2.JPG
-   DM00071990-datasheet P.18
-
-
-7.reference
+6.reference
 ===========
 
 - https://github.com/cdfq152313/stm32F429-flash
