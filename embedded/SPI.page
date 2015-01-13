@@ -363,6 +363,11 @@ Code section
 
 完整程式碼：
 
+.. code-block:: c
+
+    git clone https://github.com/Jakgn/stm32F429_SPI_demo
+    cd stm32F429_SPI_demo
+
 初始化 SPI：
 
 - Master:
