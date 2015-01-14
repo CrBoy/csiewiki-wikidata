@@ -343,7 +343,7 @@ Initialization:
   /* Enable FIFO 0 message pending Interrupt */
   CAN_ITConfig(CAN2, CAN_IT_FMP0, ENABLE);
 
-Transmition package
+Transmition package:
 
 .. code-block:: c
 
@@ -357,6 +357,32 @@ Transmition package
   TxMessage.Data[2] = p[2];
   TxMessage.Data[3] = p[3];
   CAN_Transmit(CAN2, &TxMessage);
+
+Receive package handler
+
+.. code-block:: c
+
+  void CAN2_RX0_IRQHandler(void)
+  {
+    if(CAN_GetITStatus(CAN2,CAN_IT_FMP0)==SET){
+    CAN_Receive(CAN2, CAN_FIFO0, &RxMessage);
+    CAN_ClearITPendingBit(CAN2,CAN_IT_FMP0);
+    }
+  }
+
+Interrupt Setting:
+
+.. code-block:: c
+
+  void CAN2_NVIC_Config(void)
+  {
+    NVIC_InitTypeDef NVIC_InitStructure;
+    NVIC_InitStructure.NVIC_IRQChannel = CAN2_RX0_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+  }
 
   
 
