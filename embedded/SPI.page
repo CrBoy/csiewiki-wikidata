@@ -505,13 +505,11 @@ Master 設定
 
    uint8_t RemoteLED_OnOff(uint8_t action)
    {
+    while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_TXE) == RESET);
     if(action == 1)	//Led On
             SPI_I2S_SendData(SPI1,LED_ON);
     else //Led Off
             SPI_I2S_SendData(SPI1,LED_OFF);
-    	
-
-    while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_TXE) == RESET);
     return 1;
    }
 
