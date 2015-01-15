@@ -301,7 +301,7 @@ Demo
 
 我們利用3塊STM32F429-DISCO板子裡面的L3GD20陀螺儀來量測個別板子的旋轉，然後除了用LCD顯示出來之外，同時傳送bxCAN封包告知另外的版子現在的旋轉情形。在STM32F429-DISCO上面只有CAN controller並沒有CAN transceiver 所以外接一個MCP2551才能在STM32F429-DISCO上實現CANbus網路。為了軟體維護的便利性，我們直接在硬體上做了設定ID的電路，所以可以用一樣的軟體設定不同板子的ID。 
 
-vedio:https://www.youtube.com/watch?v=4fYoXGiIdDs&feature=youtu.be
+Video : https://www.youtube.com/watch?v=4fYoXGiIdDs&feature=youtu.be
 
 .. image:: /embedded/CAN_extention.png
 
