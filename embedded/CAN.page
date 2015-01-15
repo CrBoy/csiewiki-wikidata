@@ -24,7 +24,7 @@ CANbus是一種匯流排網路，他的匯流排是由兩條線路所實現，�
 MESSAGE TRANSFER(CAN通訊的資料格式)
 --------------------------------------
 
-CAN有兩種版本，CAN2.0A(Standard),CAN2.0B(Extended)。
+CAN2.0有兩種版本，CAN2.0A(Standard),CAN2.0B(Extended)。
 
 1.DATA FRAME(資料通訊格式)：
 ''''''''''''''''''''''''''''''''''''''''
@@ -109,7 +109,7 @@ R0:保留
 * 有3bit的intermission和一直處於recessive(1)的Bus Idle
 * 除了過載通訊格式和錯誤通訊格式之外，訊息之間至少都要有intermission
 
-(ERROR HANDLING)CAN的錯誤處理
+CAN的錯誤處理
 --------------------------------------
 
 Error Detection(資料偵錯機制)
@@ -268,7 +268,20 @@ Identifier filtering
 
 在Mask mode之下，只要ID中全部的bit都符合filter的狀態，此筆資料才會被接收。通常用在需要接收特定節點資料的時後使用。
 
-* 
+* Filter bank 
+
+.. image:: /embedded/CAN_filtering.png
+
+* Filter match index
+
+Filter match index是一個可以更進一步減輕處理負擔的機制。當filter開啟的時候，接收的封包會在接收的時候加入此筆資料是從哪個filter所傳進來的，這樣可以在資料處理的時候節省很多辨識ID的工作。
+
+* Filtering mechanism
+
+以下是一個filter操作流程的範例。當接收到一筆訊息的時候，會先在filter bank當中尋找是否有符合的資料，順序是先看list在看mask。在進入FIFO之前，先加入filter match index，然後再進入FIFO排隊等待處理。
+
+.. image:: /embedded/CAN_filter_mechanism.png
+
 
 Bit Timming
 --------------------------------------
@@ -286,7 +299,9 @@ Baud rate = 1/Bittime = 1/((1+2+2)*tq) = 1Mhz
 Demo
 ====================================
 
-我們利用2塊STM32F429-DISCO板子裡面的L3GD20陀螺儀來量測板子的旋轉，然後除了用LCD顯示出來之外，同時傳送bxCAN封包告知另外的版子現在的旋轉情形。在STM32F429-DISCO上面只有CAN controller並沒有CAN transceiver 所以外接一個MCP2551才能在STM32F429-DISCO上實現CANbus網路。為了軟體維護的便利性，我們直接在硬體上做了設定ID的電路，所以可以用一樣的軟體設定不同板子的ID。 
+我們利用3塊STM32F429-DISCO板子裡面的L3GD20陀螺儀來量測個別板子的旋轉，然後除了用LCD顯示出來之外，同時傳送bxCAN封包告知另外的版子現在的旋轉情形。在STM32F429-DISCO上面只有CAN controller並沒有CAN transceiver 所以外接一個MCP2551才能在STM32F429-DISCO上實現CANbus網路。為了軟體維護的便利性，我們直接在硬體上做了設定ID的電路，所以可以用一樣的軟體設定不同板子的ID。 
+
+vedio:https://www.youtube.com/watch?v=4fYoXGiIdDs&feature=youtu.be
 
 .. image:: /embedded/CAN_extention.png
 
@@ -386,8 +401,7 @@ Interrupt Setting:
     NVIC_Init(&NVIC_InitStructure);
   }
 
-  
-
+source code : https://github.com/ming6842/STMF429_Learning/tree/master/stm32f429_Demo_CAN  
 
 Tables
 ==================
