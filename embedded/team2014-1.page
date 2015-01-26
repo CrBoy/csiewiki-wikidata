@@ -16,11 +16,12 @@
 
 Source Code
 =============
+https://github.com/beverageShawn/STM32F429_2GCellPhone
 
 預算
 ==========
-  - 3G模組：3360 NT$(含運)
-  - 相機模組：1020 NT$(含運)
+  - 3G模組SIM5320e：3360 NT$(含運)
+  - 相機模組ov7670：1020 NT$(含運), ps :強烈建議..換一個吧
 
 
 參考資料
@@ -36,4 +37,3 @@ Source Code
 實驗紀錄
 =========
  - https://phone3gcamera.hackpad.com/EC2BGsON02Q
- - https://drive.google.com/file/d/0B0dfRwePnvwsTHAyR2hrbkVuWGc/view?usp=sharing
