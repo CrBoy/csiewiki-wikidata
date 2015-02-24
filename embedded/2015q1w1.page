@@ -32,7 +32,7 @@ toc: no
     * 參閱 `Test-and-set 描述<http://en.wikipedia.org/wiki/Test-and-set>`_，對應到 ARMv6+ 就是 ldrex 和 strex 指令
 
 * 繳交方式：
-  - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2014/arm-lecture>`_，並提交修改
+  - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2015/arm-lecture>`_，並提交修改
     * 對應於 lab-1, lab-2 這兩個目錄
 
   - 編輯下方「`作業區<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_」，增添心得和 GitHub 連結
@@ -46,7 +46,7 @@ toc: no
        - 附上一份自我介紹和對課程的期許
 
 * 截止日期：
-   - Mar 13, 2014 (含) 之前
+   - Mar 13, 2015 (含) 之前
    - 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 * `Git / GitHub 教學<http://dylandy.github.io/Easy-Git-Tutorial/>`_
