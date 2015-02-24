@@ -8,9 +8,13 @@ categories: 系統頁面
 注意：**Wiki 不等同於 Wikipedia (維基百科)**。
 Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikipedia.org/>`_ 是藉由 wiki 系統建立的百科全書 (encyclopedia)。
 
+嵌入式作業系統設計與實作 (2015 Spring)
+================================
+.. image:: /embedded-os.png
+- `課程進度表<embedded/schedule>`_
+
 2014 年進階嵌入式系統開發與實作
 ------------------------------------------------
-.. image:: /embedded-os.png
 - `課程進度表<embedded/schedule>`_
 - 分組報告 (針對 STM32 週邊): `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `I2C</embedded/I2C>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `CAN</embedded/CAN>`_
 - `期末專題</embedded/team2014>`_
