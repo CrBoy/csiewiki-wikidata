@@ -14,7 +14,7 @@ toc: no
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Feb 24   `2015q1 Overview`_                        `Lab 31<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_: ARM Environment
-#2    Mar 3    Operating System Concepts               -
+#2    Mar 3    `2015q1:基本能力鑑定測驗`_                     -
 #3    Mar 10   .
 #4    Mar 17   .
 #5    Mar 24   Embedded Linux Conference               -
@@ -35,6 +35,7 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 
 .. _`2015q1 Overview`: 2015q1w1
+.. _`2015q1:基本能力鑑定測驗`: 2015q1w2
 
 
 進階嵌入式系統開發與實作 (Fall 2014)
