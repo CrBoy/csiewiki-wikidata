@@ -27,7 +27,7 @@ toc: no
 作業須知 (Lab-31)
 ----------------
 * 參閱 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_ 簡報內容
-  - Lab-1: 實做 `Fibonacci 數列<http://home.educities.edu.tw/mario123/problems/fibonacci.htm>`_，使用 ARM 組合語言
+  - Lab-1: 實做 `Fibonacci 數列<https://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97>`_，使用 ARM 組合語言
   - Lab-2: 實做 `mutex 操作<http://en.wikipedia.org/wiki/Mutual_exclusion>`_，使用 ARM 組合語言
     * 參閱 `Test-and-set 描述<http://en.wikipedia.org/wiki/Test-and-set>`_，對應到 ARMv6+ 就是 ldrex 和 strex 指令
 
