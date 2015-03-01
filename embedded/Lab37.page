@@ -10,8 +10,7 @@ toc: no
 
 Malloc/Free
 -------------------
-- Coursera: The Hardware/Software Interface ::`Lab 5: Writing a
-Dynamic Storage Allocator<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=13>`_
+* Coursera: The Hardware/Software Interface ::`Lab 5: Writing a Dynamic Storage Allocator<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=13>`_
 
 - `Lab-22</embedded/Lab22>`_
   * https://github.com/tim37021/rtenv/commits/master
