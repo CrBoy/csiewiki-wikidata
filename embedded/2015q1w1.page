@@ -14,7 +14,7 @@ toc: no
 
   - `資訊科技產業面試模擬和工作咨詢<http://wiki.csie.ncku.edu.tw/embedded/rehearsal>`_
 
-* `From Source to Binary<https://docs.google.com/presentation/d/1_L_DfSv8qSHKrPG7r60HOeu9z1QBut5-RQzmhWNx-kM/edit#slide=id.p14>`_
+* `From Source to Binary<http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain>`_
 * `Qemu JIT Code Generator and System Emulation<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_
 * `QEMU Binary Translation(TCG)<http://www.slideshare.net/RampantJeff/qemu-binary-translation>`_
 * `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
