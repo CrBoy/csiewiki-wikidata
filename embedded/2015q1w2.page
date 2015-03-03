@@ -31,6 +31,16 @@ toc: no
 * 參考測驗題目
   - `2013 年課堂測驗</embedded/quiz>`_
 
+實驗和作業
+---------------
+* 參考 `Lab 38</embedded//Lab38>`_ (ARM Environment) 說明
+  - 使用 GitHub 提交作業，程式碼註解和 Git 修改紀錄應該全部用英文撰寫
+  - 需要同時更新`作業 Hackpad<https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l>`_，作為開發紀錄
+
+* 作業繳交截止日期
+  - Mar 14, 2015 (含) 之前
+  - 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
 預習項目
 ------------
 * `How A Compiler Works: GNU Toolchain<http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain>`_
