@@ -45,3 +45,109 @@ toc: no
 .. code-block:: prettyprint
 
     cd arm-lecture
+
+* 試著編譯 ARM 版本的 "Hello World" 程式
+
+.. code-block:: prettyprint
+
+    cd arm-lecture
+    cd hello && make qemu
+
+  - 預期將看到以下輸出
+
+.. code-block:: prettyprint
+
+    arm-linux-gnueabihf-as -c  -o hello.o hello.s
+    arm-linux-gnueabihf-ld  -o hello hello.o 
+    qemu-arm ./hello
+    Hello, world!
+
+* 若沒有特別指明，後續操作都在 `arm-lecture<https://github.com/embedded2015/arm-lecture.git>`_ 目錄之下，以下指令可以從 ``hello`` 目錄返回
+
+.. code-block:: prettyprint
+
+    cd ..
+
+對照測試簡報中的範例程式碼
+---------------------------------------
+* 參閱 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_ 簡報內容
+* Example 1 (Page 31)
+
+.. code-block:: prettyprint
+
+    cd example1
+    make default qemu
+
+  - 預期輸出: ``0``
+  - 修改  ``example1.c``，將其中的 ``return 0`` 改為 ``return c``，之後再 ``make qemu``，即可知道 ``add(a,b)`` 的輸出結果
+
+* Example 2 (Page 34)
+
+.. code-block:: prettyprint
+
+    cd example2
+    make default qemu
+
+  - 預期輸出:
+
+.. code-block:: prettyprint
+
+    a * b is 140
+    a * b + c is 143
+    c - a * b is -137
+
+  - 對照簡報 Page 40-41，在 Makefile 的 ``CFLAGS`` 加上`` -mcpu=cortex-a15``，可發現生成的 ARM 機械碼使用了 ``sdiv`` 指令
+
+* Example 3 (Page 45)
+
+.. code-block:: prettyprint
+
+    cd example3
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+    a/2 / b/2 is 0
+
+* Example 4 (Page 50)
+
+.. code-block:: prettyprint
+
+    cd example4
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    a * b is 664237569
+
+* Example 5 (Page 55)
+
+.. code-block:: prettyprint
+
+    cd example5
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    a & b is 17
+    Before operation, apsr was 20030010
+    After operation, apsr was 60030010
+
+* Example 6 (Page 62)
+
+.. code-block:: prettyprint
+
+    cd example6
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    The address of a is 0xf6fff0ac
+    The value of b is now 10
