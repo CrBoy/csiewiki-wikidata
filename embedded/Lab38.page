@@ -40,13 +40,7 @@ toc: no
 
         git clone https://github.com/embedded2015/arm-lecture.git
 
-* 確認 `arm-lecture<https://github.com/embedded2015/arm-lecture.git>`_ 目錄已正確由 git 建立，接著切換工作目錄
-
-.. code-block:: prettyprint
-
-    cd arm-lecture
-
-* 試著編譯 ARM 版本的 "Hello World" 程式
+* 確認 `arm-lecture<https://github.com/embedded2015/arm-lecture.git>`_ 目錄已正確由 git 建立，接著切換工作目錄，並且編譯 ARM 版本的 "Hello World" 程式
 
 .. code-block:: prettyprint
 
