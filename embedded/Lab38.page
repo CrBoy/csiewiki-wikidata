@@ -151,3 +151,35 @@ toc: no
 
     The address of a is 0xf6fff0ac
     The value of b is now 10
+
+作業要求
+-------------
+* 參閱 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_ 簡報內容
+  - Lab-1: 實做 `Fibonacci 數列<http://home.educities.edu.tw/mario123/problems/fibonacci.htm>`_，使用 ARM 組合語言
+  - 必須實做遞迴和非遞迴的版本，分別對應 `lab-1` 和 `lab-1i` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
+  - 試著用最短的 ARM 組合語言程式碼來開發
+    - 提示：使用 Thumb2 conditional code
+
+* 繳交方式：
+  - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2015/arm-lecture>`_，並提交修改
+    * 對應於 lab-1, lab-1i 這兩個目錄
+
+  - 編輯下方「`作業區<https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l>`_」，增添開發紀錄和 GitHub 連結
+
+  - 更新共筆，將作業加入，並標注自己的 ID
+    *  寄件到 <jserv.tw@gmail.com>
+    * 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
+    * 內容：(回答以下問題)
+       - GitHub 帳號, wiki 帳號 (註冊本站)
+       - 關於 fork 出來的 repository 修改描述
+       - 附上一份自我介紹和對課程的期許
+
+* 截止日期：
+   - Mar 14, 2015 (含) 之前
+   - 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
+* `Git / GitHub 教學<http://dylandy.github.io/Easy-Git-Tutorial/>`_
+
+參考資料
+------------
+* `Thumb2 conditional code 以及程式開發心得<http://www.slideshare.net/hirokiht/arm-developement>`_, 竹內宏輝
