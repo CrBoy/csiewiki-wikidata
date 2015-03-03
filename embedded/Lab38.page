@@ -155,18 +155,20 @@ toc: no
 作業要求
 -------------
 * 參閱 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_ 簡報內容
-  - Lab-1: 實做 `Fibonacci 數列<http://home.educities.edu.tw/mario123/problems/fibonacci.htm>`_，使用 ARM 組合語言
-  - 必須實做遞迴和非遞迴的版本，分別對應 `lab-1` 和 `lab-1i` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
-  - 試著用最短的 ARM 組合語言程式碼來開發
-    - 提示：使用 Thumb2 conditional code
+  - Lab-1: 實做 `Fibonacci 數列<http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97>`_，使用 ARM 組合語言
+  - 必須實做遞迴和非遞迴的版本，分別對應 ``lab-1`` 和 ``lab-1i`` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
 
+* 試著用最短的 ARM 組合語言程式碼來開發
+  - 提示：使用 Thumb2 conditional code
+
+* 嘗試評估 `Fibonacci 數列<http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97>`_ 的執行效率，並比較遞迴和非遞迴實做的表現
 * 繳交方式：
   - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2015/arm-lecture>`_，並提交修改
     * 對應於 lab-1, lab-1i 這兩個目錄
 
   - 編輯下方「`作業區<https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l>`_」，增添開發紀錄和 GitHub 連結
 
-  - 更新共筆，將作業加入，並標注自己的 ID
+  - 更新上述 Hackpad，將作業加入，並標注自己的 ID
     *  寄件到 <jserv.tw@gmail.com>
     * 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
     * 內容：(回答以下問題)
