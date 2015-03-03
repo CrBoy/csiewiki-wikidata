@@ -34,6 +34,7 @@ toc: no
 
 預習項目
 ------------
+* `How A Compiler Works: GNU Toolchain<http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain>`_
 * `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
 * `ARMv7-A Architecture<http://www.slideshare.net/linaroorg/arm-architecture-overview-32539155>`_
 * `FreeRTOS<http://www.freertos.org/>`_
