@@ -180,6 +180,18 @@ toc: no
    - Mar 14, 2015 (含) 之前
    - 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
+挑戰題
+----------
+* 修改 Makefile 和撰寫必要的 script，讓 ``make qemu`` 可以一併自動檢驗 Fibonacci 計算的正確性
+  - 使用情境如同 ` Running unittests via QEMU<http://www.chromium.org/chromium-os/testing/qemu-unittests>`_
+
+* 計算每道 ARM/Thumb 指令的 cycle count，並且提出改善實做效能的方法
+
+* 以 `gnuplot<http://www.gnuplot.info/>`_ 繪製效能分析圖表，藉此得知 Fibonacci 數列對於效能的影響
+  - 參考資訊: `Gnuplot 純畫圖<http://user.frdm.info/ckhung/b/ma/gnuplot.php>`_
+
+* 練習 `ARM GCC Inline Assembly<http://www.ethernut.de/en/documents/arm-inline-asm.html>`_
+
 參考資料
 ------------
 * `Git / GitHub 教學<http://dylandy.github.io/Easy-Git-Tutorial/>`_
