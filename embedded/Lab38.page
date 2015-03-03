@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 ------------
-- 驗證 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>  簡報內容
+- 驗證 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>_  簡報內容
 - 學習 GNU Toolchain
 - 使用 QEMU 作為指令集模擬器
 
