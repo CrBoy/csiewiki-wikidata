@@ -9,3 +9,22 @@ toc: no
 - 學習 GNU Toolchain
 - 使用 QEMU 作為指令集模擬器
 
+預先準備動作
+-------------------
+* 在自己的電腦中，安裝 `Lubuntu<http://lubuntu.net/>`_ 14.10 作業系統 (版本太舊的話，後續操作可能會失敗)
+  - 虛擬機器環境 (不建議): `透過 VirtualBox 安裝 LubVirtualBox 安裝 Lubuntu<https://hackpad.com/VirtualBox-with-LUbuntu14.04-yza4C1MPF5s>`_
+
+* 安裝相關開發工具
+
+.. code-block:: prettyprint
+
+    sudo apt-get update
+    sudo apt-get install build-essential git-core
+    sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+    sudo apt-get install qemu-user qemu-system-arm
+
+* 使用 bash 作為 shell，避免不相容的狀況
+
+.. code-block:: prettyprint
+
+    sudo apt-get install bash
