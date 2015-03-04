@@ -160,7 +160,7 @@ toc: no
   - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2015/arm-lecture>`_，並提交修改
     * 對應於 lab-1, lab-1i 這兩個目錄
 
-  - 編輯下方「`作業區<https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l>`_」，增添開發紀錄和 GitHub 連結
+  - 編輯 Hackpad 下方「`作業區<https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l>`_」，增添開發紀錄和 GitHub 連結
 
   - 更新上述 Hackpad，將作業加入，並標注自己的 ID
     *  寄件到 <jserv.tw@gmail.com>
