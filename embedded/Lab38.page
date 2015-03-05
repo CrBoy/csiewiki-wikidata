@@ -103,6 +103,7 @@ toc: no
   - 預期輸出
 
 .. code-block:: prettyprint
+
     a/2 / b/2 is 0
 
 * Example 4 (Page 50)
