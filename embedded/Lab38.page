@@ -74,6 +74,8 @@ toc: no
 
   - 預期輸出: ``0``
   - 修改  ``example1.c``，將其中的 ``return 0`` 改為 ``return c``，之後再 ``make qemu``，即可知道 ``add(a,b)`` 的輸出結果
+  - 將 example1.c 中的 add(a,b) 改為 div(a,b)，並對照簡報 Page 40-41，在 Makefile 的 ``CFLAGS`` 加上`` -mcpu=cortex-a15``，
+    可發現生成的 ARM 機械碼使用了 ``sdiv`` 指令
 
 * Example 2 (Page 34)
 
@@ -90,7 +92,6 @@ toc: no
     a * b + c is 143
     c - a * b is -137
 
-  - 對照簡報 Page 40-41，在 Makefile 的 ``CFLAGS`` 加上`` -mcpu=cortex-a15``，可發現生成的 ARM 機械碼使用了 ``sdiv`` 指令
 
 * Example 3 (Page 45)
 
