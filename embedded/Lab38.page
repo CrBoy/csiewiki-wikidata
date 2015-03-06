@@ -23,12 +23,6 @@ toc: no
     sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
     sudo apt-get install qemu-user qemu-system-arm
 
-* 使用 bash 作為 shell，避免不相容的狀況
-
-.. code-block:: prettyprint
-
-    sudo apt-get install bash
-
 * 關於 GNU/Linux 指令，請參閱 `鳥哥的 Linux 私房菜<http://linux.vbird.org/>`_
   - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
 
