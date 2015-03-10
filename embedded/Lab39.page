@@ -142,8 +142,8 @@ ARM Semihost
 
 - 更新作業提案到共筆網站: `Lab 32 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository
-    * https://github.com/embedded2014/freertos-plus
-    * 注意: 要記得 fork `freertos-plus<https://github.com/embedded2014/freertos-plus>`_
+    * https://github.com/embedded2015/freertos-basic
+    * 注意: 要記得 fork `freertos-plus<https://github.com/embedded2015/freertos-basic>`_
 
 參考資訊
 ------------
