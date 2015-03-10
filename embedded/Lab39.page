@@ -130,7 +130,7 @@ ARM Semihost
 - 更新開發過程到共筆網站: `Lab 39 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-3-Lab39-zsLdd12X18w>`_，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository
     * https://github.com/embedded2015/freertos-basic
-    * 注意: 要記得 fork `freertos-plus<https://github.com/embedded2015/freertos-basic>`_
+    * 注意: 要記得 fork `freertos-bsaic<https://github.com/embedded2015/freertos-basic>`_
 
 參考資訊
 ------------
