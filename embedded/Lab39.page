@@ -5,11 +5,6 @@ toc: no
 
 預期目標
 ------------
-- 學習 GNU Toolchain 與 FreeRTOS
-- 使用 QEMU 作為指令集模擬器
-
-預期目標
-------------
 - 體驗一個具體而微的 MCU 程式開發過程，使用 GNU Toolchain
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
 - 接觸 FreeRTOS
