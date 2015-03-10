@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 ------------
-- 學習 GNU Toolchain
+- 學習 GNU Toolchain 與 FreeRTOS
 - 使用 QEMU 作為指令集模擬器
 
 預期目標
