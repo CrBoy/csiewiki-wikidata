@@ -15,7 +15,7 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Feb 24   `2015q1 Overview`_                      *
 #2    Mar 3    `2015q1:基本能力鑑定測驗`_                        `Lab 38`_: ARM Cross-Development Environment
-#3    Mar 10   `ARM Architecture + OS Concepts`_              -
+#3    Mar 10   `ARM Architecture + OS Concepts`_              `Lab 39'_: FreeRTOS
 #4    Mar 17   .
 #5    Mar 24   Embedded Linux Conference               -
 #6    Mar 31   .
@@ -38,6 +38,7 @@ Week  Date     Subject                                 Assignment
 .. _`2015q1:基本能力鑑定測驗`: 2015q1w2
 .. _`ARM Architecture + OS Concepts`: 2015q1w3
 .. _`Lab 38`: Lab38
+.. _`Lab 39`: Lab39
 
 進階嵌入式系統開發與實作 (Fall 2014)
 ------------------------------------------------------
