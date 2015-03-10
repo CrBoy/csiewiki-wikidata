@@ -26,3 +26,8 @@ toc: no
 
     addeqs r1, r2, r3, lsl #2
 
+* `FreeRTOS<http://www.freertos.org/>`_
+  - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
+  - 成大資訊系共筆 `FreeRTOS</embedded/freertos>`_
+  - `Study of an operating system: FreeRTOS<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS_Melot.pdf>`_
+  - `FreeRTOS 即時核心實用指南<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS-manual-zh.pdf>`_
