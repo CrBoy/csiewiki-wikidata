@@ -29,14 +29,11 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2014_05.tar.bz2<http://hrv.acomotech.com/ecg/static/toolchain-2014_05.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
 
 .. code-block:: prettyprint
 
-    cd  /
-    sudo tar jxvf /tmp/toolchain-2014_05.tar.bz2
-
-- 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2014.05/``
+    sudo apt-get install gcc-arm-none-eabi
 
 設定 Toolchain 執行檔路徑
 ------------------------------------
@@ -74,9 +71,6 @@ STM32 on QEMU 環境建立與測試
     git submodule update --init dtc || sudo apt-get install libfdt-dev
     ./configure --disable-werror --enable-debug \
         --target-list="arm-softmmu" \
-        --extra-cflags=-DDEBUG_CLKTREE \
-        --extra-cflags=-DDEBUG_STM32_RCC \
-        --extra-cflags=-DDEBUG_STM32_UART \
         --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
         --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
         --disable-gtk
@@ -97,9 +91,9 @@ FreeRTOS
 * 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容 (但是目前版本不能正確運作)
 * 測試方式
   - ``cd ~/workspace``
-  - ``git clone git@github.com:embedded2014/freertos-plus.git``
-  - # 或者: ``git clone https://github.com/embedded2014/freertos-plus.git``
-  - ``cd freertos-plus``
+  - ``git clone git@github.com:embedded2015/freertos-basic.git``
+  - # 或者: ``git clone https://github.com/embedded2015/freertos-basic.git``
+  - ``cd freertos-basic``
   - ``make``
   - ``make qemu``
   - 按下 Ctrl-Alt-1 切到 serial
@@ -144,7 +138,7 @@ ARM Semihost
 繳交作業
 ------------
 - 截止日期：
-   * Oct 4, 2014 (含) 之前
+   * Mar 21, 2015 (含) 之前
 
 - 更新作業提案到共筆網站: `Lab 32 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository
