@@ -11,7 +11,7 @@ toc: no
 
 預先準備
 -------
-- 安裝 Ubuntu Linux，建議版本為 14.04
+- 安裝 Ubuntu Linux，建議版本為 14.10
 - 安裝必要的套件
 
 .. code-block:: prettyprint
@@ -29,14 +29,6 @@ toc: no
 .. code-block:: prettyprint
 
     sudo apt-get install gcc-arm-none-eabi
-
-設定 Toolchain 執行檔路徑
-------------------------------------
-.. code-block:: prettyprint
-
-    export PATH=/usr/local/csl/arm-2014.05/bin:$PATH
-
-* 提示: 可更新到 ~/.bashrc
 
 STM32 Overview
 --------------
