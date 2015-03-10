@@ -8,6 +8,7 @@ toc: no
 * fork()  系統呼叫的原理
   - `一個fork的面試題<http://coolshell.cn/articles/7965.html>`
     + 假設 fork.c 編譯出來的結果是 ``fork``，則可用這個指令計算 '-' 數量: ``./fork | wc -c``
+
  - `In fork() which will run first, parent or child?<http://stackoverflow.com/questions/21586292/in-fork-which-will-run-first-parent-or-child>`_
   + ``sudo sysctl -w kernel.sched_child_runs_first=1``
   + `基本能力鑑定</embedded/2015q1w2>`_ 的第 4 題題意不清，所以沒有辦法作答
