@@ -114,12 +114,13 @@ ARM Semihost
 
 參考設計要求
 ------------------
-* 修正和擴充 `test`，試著追加有用的功能，如計算質數或 Fibonacci 數，並且適度回報
-* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
+* 修正和擴充 ``test``，試著追加有用的功能，如計算質數或 Fibonacci 數，並且適度回報
+* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c 的 ps_command 函示) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
 
 挑戰題
 -----
 * 修正原本檔案系統無法運作的狀況，使 ``ls`` 和 ``cat`` 一類的指令得以使用
+* 撰寫 romfs 的 test suite，可參考 zeke: https://github.com/OlliV/zeke/tree/master/kern/test/fs
 
 繳交作業
 ------------
