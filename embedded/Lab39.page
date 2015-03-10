@@ -110,15 +110,19 @@ ARM Semihost
 
 .. image:: /embedded/Lab32/freertos.png
 
-參考設計要求
+參考作業要求
 ------------------
 * 修正和擴充 ``test``，試著追加有用的功能，如計算質數或 Fibonacci 數，並且適度回報
+* 建立新的 shell 指令，如 ``new``，讓系統建立新的 FreeRTOS task，並確保 ``ps`` 可正確顯示新建立的 task
+  - 思考：系統可允許多少個這樣的 task 呢？
+
 * 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c 的 ps_command 函示) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
 
 挑戰題
 -----
 * 修正原本檔案系統無法運作的狀況，使 ``ls`` 和 ``cat`` 一類的指令得以使用
 * 撰寫 romfs 的 test suite，可參考 `zeke<https://github.com/OlliV/zeke>`_ 的 `kern/test/fs<https://github.com/OlliV/zeke/tree/master/kern/test/fs>`_
+* 模仿 ``mmtest`` 指令，開發可以驗證 FreeRTOS task 建立和摧毀的指令，並且指出無止盡建立新的 task，究竟有什麼限制
 
 繳交作業
 ------------
