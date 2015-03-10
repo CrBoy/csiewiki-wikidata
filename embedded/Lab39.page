@@ -68,7 +68,12 @@ STM32 on QEMU 環境建立與測試
     make button_QEMURUN
     make uart_echo_QEMURUN
 
---------------------------------
+小提醒
+-----
+- QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
+- 詳情可參閱 `stm32_p103_demos<http://github.com/beckus/stm32_p103_demos>`_ 目錄的 README 檔案
+- Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
+  - ``ln -s ~/下載 ~/Downloads``
 
 FreeRTOS
 ---------------
@@ -105,13 +110,6 @@ ARM Semihost
 
 .. image:: /embedded/Lab32/freertos.png
 
-小提醒
------
-- QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
-- 詳情可參閱 stm32_p103_demos 目錄的 README 檔案
-- Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
-  - ln -s ~/下載 ~/Downloads
-
 參考設計要求
 ------------------
 * 修正和擴充 ``test``，試著追加有用的功能，如計算質數或 Fibonacci 數，並且適度回報
@@ -120,7 +118,7 @@ ARM Semihost
 挑戰題
 -----
 * 修正原本檔案系統無法運作的狀況，使 ``ls`` 和 ``cat`` 一類的指令得以使用
-* 撰寫 romfs 的 test suite，可參考 zeke: https://github.com/OlliV/zeke/tree/master/kern/test/fs
+* 撰寫 romfs 的 test suite，可參考 `zeke<https://github.com/OlliV/zeke>`_ 的 `kern/test/fs<https://github.com/OlliV/zeke/tree/master/kern/test/fs>`_
 
 繳交作業
 ------------
