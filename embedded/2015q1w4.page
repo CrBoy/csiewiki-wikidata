@@ -8,6 +8,14 @@ toc: no
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
   - `Assembly language programming: ARM Cortex-M3<http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout>`_
 
+* `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+  - `Interrupt-Driven Input/Output<http://www.eng.auburn.edu/~nelson/courses/elec2220/Interrupt_IO%20part2.pdf>`_
+    * Interrupt vectors and vector table
+    * Interrupt masks and priorities
+    * NVIC
+    * STM32F4 external interrupt signals
+
+
 作業須知 (Lab-40)
 ----------------
 * 作業描述: Lab 40
