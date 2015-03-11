@@ -19,7 +19,7 @@ toc: no
     + `基本能力鑑定</embedded/2015q1w2>`_ 的第 4 題題意不清，所以沒有辦法作答
 
   - 在 GNU/Linux 上測試：事先開啟兩個虛擬終端機視窗，如下圖
-    + 右邊是測試程式 (test.c)，使用 ``watch -n 1 ./test`` 每秒更新執行結果一次
+    + 右邊是測試程式 (test.c)，使用 ``watch -n 1 ./test`` 每秒更新執行結果一次。耐心凝視結果一陣子，是否發現輸出結果會跳動？
     + 使用左邊執行 ``sudo sysctl -w kernel.sched_child_runs_first=1``，以便要求 Linux 排程器 (CFS) 讓 child process 優先於 parent process 執行
 
 .. image:: /embedded/fork-test.png
