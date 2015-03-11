@@ -9,6 +9,7 @@ toc: no
   - `ARM Cortex-M3<http://www.slideshare.net/GauravVerma3/arm-cortex-processor-compatibility-mode>`_ (詳細解說)
   - `Assembly language programming: ARM Cortex-M3<http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout>`_
 
+* 共筆: `FreeRTOS<http://wiki.csie.ncku.edu.tw/embedded/freertos>`_
 * `淺談優先權，從 ARM Cortex-M 到 FreeRTOS 設定<http://enginechang.logdown.com/posts/248297-talking-about-the-priority-from-the-arm-set-cortex-m-to-freertos>`_
   - 什麼是 Interrupt?
   - NVIC (Nested vectored interrupt controller)
