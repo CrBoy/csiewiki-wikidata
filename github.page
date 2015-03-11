@@ -4,3 +4,18 @@ toc: no
 ...
 
 (以下內容由 `許元杰<https://github.com/Jayjack0116>`_ 貢獻)
+
+建立 GitHub 帳號
+------------------------
+* Github 是個 Git 的托管網站，可讓開發者將自己的專案儲存到網路上，與全世界分享，我們可方便的使用 Git 在本機進行專案管理。
+* GitHub 同時提供付費帳號和為了開放原始碼程式提供的免費帳號。根據 2009 年的 Git 使用者調查，GitHub 是最熱門的 Git 分享網站。它提供了如 feeds、followers 和顯示開發者們如何在他們版本庫上的版本工作的圖表。 GitHub 也提供類似剪貼簿的功能，issue tracker 和網頁使用 Wiki，通過一個 git repository 即可對這些頁面進行編輯。
+
+.. image:: /use-git-01.png
+
+建立新 repository
+------------------------
+在和本機的 repository 連動之前，先給自己的專案取個名字吧，這會是你專案之後的名字，也會是其他人搜尋你專案的時候的關鍵字，好的專案一定有一個好的名字。
+
+.. image:: /use-git-02.png
+
+    這裡我是新增一個叫做 "Embedded-System-Class" 的 repository，以及 Fork 課程所用的 `embedded2015/arm-lecture<https://github.com/embedded2015/arm-lecture/>`_ 這個 repository。
