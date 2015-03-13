@@ -41,3 +41,7 @@ toc: no
 直接按下 Enter 鍵即可。
 
 .. image:: /use-git-05.png
+
+輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
+
+.. image:: /use-git-06.jpg
