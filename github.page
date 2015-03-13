@@ -34,6 +34,7 @@ SSH key 產生的方法
 
 (``$`` 開頭的表示法，就是說明在 Linux 終端機輸入指令)
 
+　
 
 1. 輸入指令
 
@@ -45,17 +46,25 @@ SSH key 產生的方法
 
 .. image:: /use-git-04.png
 
+　
+
 2. 直接按下 Enter 鍵即可。
 
 .. image:: /use-git-05.png
+
+　
 
 3. 輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
 
 .. image:: /use-git-06.jpg
 
+　
+
 4. 此時顯示的是你SSH Key的fingerprint
 
 .. image:: /use-git-07.jpg
+
+　
 
 5. 將剛剛產生的key加入ssh-agent中
 
@@ -64,4 +73,8 @@ SSH key 產生的方法
     5-1. 如果你已安裝Git Bash，輸入以下指令以啟動ssh-agent
 
     .. image:: /use-git-08.jpg
+
+    　　如果你使用的是 `msysgit<https://msysgit.github.io/>`_ 等軟體，則輸入以下指令
+
+    .. image:: /use-git-09.jpg
 
