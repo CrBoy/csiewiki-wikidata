@@ -169,3 +169,21 @@ SSH key 產生的方法
 
 Fork其他使用者的專案
 ------------------------
+Fork 是一個較為特殊的稱呼方式，意思是將其他使用者的 repository 複製到本機，我也可以直接透過他的 repository 來自己修改這個專案，讓這個專案更好。
+如果你有寫入權限的話(被加入成Collaborators)，就可以用 SSH 協定 Clone 下來：
+
+.. code-block:: prettyprint
+
+    $ git clone git@github.com:Username/repository.git
+
+如果沒有寫入權限 (Collaborators)的話，因為這個專案是公開的，所以你還是可以用 Git 協定 Clone 下來：
+
+.. code-block:: prettyprint
+
+    $ git clone git://github.com/Username/repository.git
+
+如果有防火牆問題，改用 HTTPS 協定：
+
+.. code-block:: prettyprint
+
+    $ git clone https://github.com/Username/repository.git
