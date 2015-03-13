@@ -165,7 +165,13 @@ Pull: 從遠端更新
 ------------------------
 .. code-block:: prettyprint
 
-    $ git pull 或 git pull origin master
+    $ git pull
+
+或
+
+.. code-block:: prettyprint
+
+    $ git pull origin master
 
 實際作用是先 git fetch 遠端的 branch，然後與本地端的 branch 做 merge，產生一個 merge commit 節點
 
@@ -173,12 +179,18 @@ Push: 將 Commit 送出去
 ------------------------
 .. code-block:: prettyprint
 
-    $ git push 或 git push origin master
+    $ git push
+
+或
+
+.. code-block:: prettyprint
+
+    $ git push origin master
 
 實際的作用是將本地端的 master branch 與遠端的 master branch 作 fast-forward 合併。如果出現 [rejected] 錯誤的話，表示你必須先作 pull。
 
 如果想要熟悉 Git 指令的話
 --------------------------------------
 以下是以 GUI 方式呈現指令所產生結果的網站:
-* `LearnGitBranching<http://pcottle.github.io/learnGitBranching/>`_
-* `Visualizing Git Concepts with D3<http://onlywei.github.io/explain-git-with-d3/>`_
+  * `LearnGitBranching<http://pcottle.github.io/learnGitBranching/>`_
+  * `Visualizing Git Concepts with D3<http://onlywei.github.io/explain-git-with-d3/>`_
