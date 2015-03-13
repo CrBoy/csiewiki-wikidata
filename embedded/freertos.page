@@ -16,81 +16,81 @@ toc: no
 * `Link<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
 * `GitHub<https://github.com/TheKK/myFreeRTOS>`_
 
-FreeRTOS架構
+FreeRTOS 架構
 -----------
 
-FreeRTOS是一個相對較小的系統。最小化的FreeRTOS核心僅包括3個（.c）文件和少數標頭檔，總共不到9000行程式碼，還包括了註解和空行。一個典型的編譯後（二進制）binary小於10KB。
+FreeRTOS 是一個相對其他作業系統而言較小的作業系統。最小化的 FreeRTOS 核心僅包括 3 個（.c）文件和少數標頭檔，總共不到 9000 行程式碼，還包括了註解和空行。一個典型的編譯後 binary（二進位碼）小於 10 KB。
 
-FreeRTOS的程式碼可以分解為三個主要區塊：任務、通訊，和硬體界面。
+FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體界面。
 
-* 任務 (Task): 大約有一半的FreeRTOS的核心程式碼用來處理多數作業系統首要關注的問題：任務。任務是給定優先權的用戶定義的C函數。 task.c和task.h完成了所有有關創造，排程，和維護任務的繁重工作。
+* 任務 (Task): FreeRTOS 的核心程式碼約有一半是用來處理多數作業系統首要關注的問題：任務，任務是擁有優先權的用戶所定義的 C 函數。task.c 和 task.h 負責所有關於建立、排程和維護任務的繁重工作。
 
-* 通訊 (Communication): 任務很重要，不過任務間可以互相通訊則更為重要！它給我們帶來FreeRTOS的第二項任務：通訊。大約40%的FreeRTOS核心程式碼是用來處理通訊的。 queue.c和queue.h是負責處理FreeRTOS的通訊的。任務和中斷使用隊列互相發送數據，並且使用semaphore和mutex來發送critical section的使用情況。
+* 通訊 (Communication): 任務很重要，不過任務間可以互相通訊則更為重要！它帶出了 FreeRTOS 的第二項議題：通訊。FreeRTOS 核心程式碼大約有 40% 是用來處理通訊的。queue.c 和 queue.h 負責處理 FreeRTOS 的通訊，任務和中斷(interrupt)使用佇列(佇列，queue)互相發送數據，並且使用 semaphore 和 mutex 來派發 critical section 的使用信號。
 
-* 硬體界面：接近9000行的程式碼拼湊起基本的FreeRTOS，是和硬體無關的；相同的程式碼都能夠運行，大約有6%的FreeRTOS的核心代碼，在硬體無關的FreeRTOS核心與硬體相關的程式碼間扮演著墊片的角色。我們將在下個部分討論硬體相關的程式碼。[#]_
+* 硬體界面：有近 9000 行的程式碼組成基本的 FreeRTOS，這部份是與硬體無關的(hardware-independent)，同一份程式碼在不同硬體平台上的 FreeRTOS 都可以運行。大約有 6% 的 FreeRTOS 核心代碼，在與硬體無關的 FreeRTOS 核心和與硬體相關的程式碼間扮演著墊片(`shim<http://en.wikipedia.org/wiki/Shim_%28computing%29>`_)的角色。我們將在下個部分討論與硬體相關的程式碼。[#]_
 
 .. [#] 用 `cloc<http://cloc.sourceforge.net/>`_ 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
 
 
-與平台相關的檔案
+與硬體相關的檔案
 ------------------
 * portmacro.h
-  - 定義了硬體相關變數，如資料形態定義，以及硬體相關的函式呼叫的名稱定義(以portXXXXX爲名)等，統一各平臺呼叫函式的
+  - 定義了與硬體相關的變數，如資料型態定義，以及與硬體相關的函式呼叫名稱定義(以 portXXXXX 命名)等，統一各平臺的函式呼叫
 
 * port.c
-  - 定義了包含和硬體相關的程式碼的實作
+  - 定義了包含與硬體相關的程式碼實作
 
 * FreeRTOSConfig.h
-  - 包含Clock speed, heap size, mutexes等等都在此定義
+  - 包含 clock speed, heap size, mutexes 等等都在此定義
 
 
 命名規則
 ---------
 * 變數
-  - char類型：以 c 為字首
-  - short類型：以 s 為字首
-  - long類型：以 l 為字首
-  - float類型：以 f 為字首
-  - double類型：以 d 為字首
-  - Enum變數：以 e 為字首
-  - 其他（如struct）：以 x 為字首
-  - pointer有一个額外的字首 p , 例如short類型的pointer字首為 ps
-  - unsigned類型的變數有一個額外的字首 u , 例如unsigned short類型的變數字首為 us 
+  - char 類型：以 c 為字首
+  - short 類型：以 s 為字首
+  - long 類型：以 l 為字首
+  - float 類型：以 f 為字首
+  - double 類型：以 d 為字首
+  - Enum 變數：以 e 為字首
+  - 其他（如 struct）：以 x 為字首
+  - pointer 有一個額外的字首 p , 例如 short 類型的 pointer 字首為 ps
+  - unsigned 類型的變數有一個額外的字首 u , 例如 unsigned short 類型的變數字首為 us 
     
 * Functions
   - 文件内：以 prv 為字首
-  - API：以其return類型為字首，按照對變數的定義
-  - 名字：以其所在的檔案名稱開頭。如vTaskDelete即在Task.c文件中名稱
+  - API：以其 return value 的類型為字首，按照對變數的定義
+  - 名字：以其所在的檔案名稱為開頭。如 vTaskDelete 即在 Task.c 文件中的名稱
 
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
 
 
-Task的狀態
+Task 的狀態
 ----------
 
-.. image:: /Task狀態.png
+.. image:: /tskstate.gif
 
 
 * Ready : 準備好要執行的狀態
-* Running : 正在給CPU執行的狀態
-* Block : 等待中的狀態
-* Suspended :等待中的狀態
+* Running : 正在由 CPU 執行的狀態
+* Block : 等待中的狀態(通常是在等待某個事件)
+* Suspended :等待中的狀態(透過 API 來要求退出排程)
 
-每一種狀態狀態FreeRTOS都會給予一個list儲存（除了runnning)
+每一種狀態 FreeRTOS 都會給予一個 list 儲存（除了 running)
 
 
 
-Ready list的資料形態
+Ready list 的資料形態
 ---------------------
 
-FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list的資料儲存方式如下圖
+FreeRTOS 使用 ready list 去管理待準備好要執行的 tasks，而 ready list 的資料儲存方式如下圖
 
 .. image:: /freertos-figures-full-ready-list-2.png
 
-* Context Switch 時選出下一個欲執行的task
+* Context Switch 時選出下一個欲執行的 task
 
- 下面是在ready list中依照優先度選取執行目標的程式其中，FreeRTOS的優先度排序最小優先權爲0，數字越大則優先權越高
+下面是在 ready list 中依照優先權選取執行目標的程式部分，FreeRTOS 的優先度排序最小爲 0，數字越大則優先權越高
 
 `task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ (taskSELECT_HIGHEST_PRIORITY_TASK)
 
@@ -120,9 +120,9 @@ FreeRTOS使用ready list去管理待準備好要執行的tasks，而ready list�
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
     }
 
-* 創造全新task
+* 建立全新 task
 
-TCB的資料結構：
+Task Control Block (TCB)的資料結構：
 
 `tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_
 
@@ -174,16 +174,16 @@ TCB的資料結構：
     } tskTCB;
 
 
-pxTopOfStack , pxEndOfStack :紀錄Stack的大小
+pxTopOfStack , pxEndOfStack：記錄 stack 的大小
 
-uxPriority , uxBasePriority ：紀錄優先權 ,而後者是紀錄原本的優先權（可能發生再Mutux)
+uxPriority , uxBasePriority：前者目前的記錄優先權 ,後者記錄原本的優先權（可能發生在 Mutex)
 
-xGenericListItem , xEventListItem : 當一個任務被放入到FreeRTOS的一個列表中 ，被插入pointer的地方
+xGenericListItem , xEventListItem：當一個任務被放入 FreeRTOS 的一個列表中，FreeRTOS 在 TCB 中插入指向這個任務的 pointer 的地方
 
-xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一個任務新分配一個TCB target，來記錄它的名稱，優先級，和其他細節，接著分配用戶請求的總的HeapStack（假設有足夠使用的記憶體）和在TCB的pxStack成員中記錄Stack的記憶體起點。
+xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
 
-爲了讓排程方便，以及第一次出場的task所以創造新task時，stack中除了該有的資料外，還要加上“空的”register資料(第一次執行，理論不會有register資料)，讓新task就像是一般被context switch的task一樣按照對變數的定義下面是實作方式
+爲了便於排程，創造新 task 時，stack 中除了該有的資料外，還要加上『空的』 register 資料(第一次執行時理論上 register 不會有資料)，讓新 task 就像是被 context switch 時選的 task 一樣，依照前述變數的命名規則，下面是實作方式
  
 `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L216>`_
 
@@ -220,11 +220,11 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
         return pxTopOfStack;
     }
 
-在TCB完成初始化後，要把該TCB接上其他相關的list結構，這個過程中必須暫時停止interrupts功能，以免在list還沒設定好前，被其他的task使用停止
+在 TCB 完成初始化後，要把該 TCB 接上其他相關的 list，這個過程中必須暫時停止 interrupt 功能，以免在 list 還沒設定好前就被其他的 task 中斷設定
 
 
 
-而當ARM Cortex-M4處理器在task遇上中斷時，會將register之內容push上該task的stack的頂端，待下次運行時pop回去 以下是在 port.c裡的實作
+而 ARM Cortex-M4 處理器在 task 遇到中斷時，會將 register 的內容 push 進該 task 的 stack 的頂端，待下次執行時再 pop 出去，以下是在 port.c 裡的實作
 
 `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L450>`_
 
@@ -289,7 +289,7 @@ xTaskCreate()函數被呼叫的時候，一個任務被建立。 FreeRTOS為一�
 
 
 
-Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內容設爲最高，此時將沒有任何interrupt可以被呼叫該處呼叫的函數名為ulPortSetInterruptMask()
+Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)內容設爲最高，此時將沒有任何 interrupt 可以被呼叫，該呼叫的函數名稱為 ulPortSetInterruptMask()
 
 `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L419>`_
 
@@ -310,7 +310,7 @@ Interrupt的實作，是將CPU中控制interrupt權限的暫存器(basepri)內�
             warnings. */
             return 0;
 
-藉此Mask所有的Interrupt(所有優先權低於 configMAX_SYSCALL_INTERRUPT_PRIORITY 的TASK將無法被執行 
+藉此 mask 遮罩掉所有的 interrupt (所有優先權低於 configMAX_SYSCALL_INTERRUPT_PRIORITY 的 task 將無法被執行)
 
 參照：http://www.freertos.org/RTOS-Cortex-M3-M4.html
 
