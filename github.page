@@ -115,3 +115,57 @@ SSH key 產生的方法
     6-4. 貼上key!!!!
 
     .. image:: /use-git-15.jpg
+
+　
+
+    6-5. 按下 Add key就完成啦!
+
+　
+
+7. 驗證你有沒有綁訂了
+
+　
+
+    7-1. 輸入 $ ssh -T git@github.com
+
+    .. image:: /use-git-16.jpg
+
+　
+
+    7-2. 你會看到這個 warning，然後輸入"yes"
+
+    .. image:: /use-git-17.jpg
+
+　
+
+    7-3. 你將會看到
+
+    .. image:: /use-git-18.jpg
+
+    　　這樣就成功囉!
+
+
+同步
+------------------------
+將本機repository 和 Github repository 同步
+
+打開空的 repository，Github 會指示你如何將本機 repository remote 到 Git 的 repository 進入到本機的 repository 資料夾之中，並輸入以下指令，即可連線並把目前的 repository 同步到 Github 上面了。
+
+.. code-block:: prettyprint
+
+    $ git remote add origin git@github.com:your_account/your_repository.git
+
+.. code-block:: prettyprint
+
+    $ git push -u origin master
+
+之後只需要輸入
+
+.. code-block:: prettyprint
+
+    $ git push
+
+即可
+
+Fork其他使用者的專案
+------------------------
