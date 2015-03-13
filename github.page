@@ -24,34 +24,40 @@ toc: no
 ---------------------------
 因為要讓 Github 知道是我們這台電腦上傳的專案，所以我們要和 Github 之間建立一種默契，這個默契就是使用 ssh 協定時的 `public key<http://en.wikipedia.org/wiki/Public-key_cryptography>`_，我們給 Github 我們本機的 ssh public key ，告訴 Github 拿著這個 key 的電腦才是這個帳號的使用者， 如此一來就只能由這台電腦進行管理，才不會造成其他人來我們的帳號亂上傳東西的窘境。
 
-1. 首先，點選右上角的工具按鈕，進入帳號設定頁面，在頁面的左下角點選 "SSH keys"
+首先，點選右上角的工具按鈕，進入帳號設定頁面，在頁面的左下角點選 "SSH keys"
 
 .. image:: /use-git-03.png
 
-* SSH key 產生的方法: (``$`` 開頭的表示法，就是說明在 Linux 終端機輸入指令)
+
+SSH key 產生的方法
+---------------------------
+
+(``$`` 開頭的表示法，就是說明在 Linux 終端機輸入指令)
+
+
+1. 輸入指令
 
 .. code-block:: prettyprint
 
     $ ssh-keygen -t rsa -C "your_email@example.com"
 
-後面那是自己申請 Github 所使用的信箱。之後 ssh 程式會要求輸入 passphrase：
+2. 後面那是自己申請 Github 所使用的信箱。之後 ssh 程式會要求輸入 passphrase：
 
 .. image:: /use-git-04.png
 
-直接按下 Enter 鍵即可。
+3. 直接按下 Enter 鍵即可。
 
 .. image:: /use-git-05.png
 
-輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
+4. 輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
 
 .. image:: /use-git-06.jpg
 
-此時顯示的是你SSH Key的fingerprint
+5. 此時顯示的是你SSH Key的fingerprint
 
 .. image:: /use-git-07.jpg
 
-將剛剛產生的key加入ssh-agent中
+    5-1. 將剛剛產生的key加入ssh-agent中
 
 如果你已經安裝了 `Windows版的Github<https://windows.github.com/>`_ ，你可以在不使用SSH Key的狀況下執行clone等操作。windows版本同時支援許多Git Bash tool，可運行眾多的Git指令。
-
 
