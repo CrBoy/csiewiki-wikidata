@@ -84,7 +84,7 @@ Task 的狀態
 Ready list 的資料形態
 ---------------------
 
-FreeRTOS 使用 ready list 去管理待準備好要執行的 tasks，而 ready list 的資料儲存方式如下圖
+FreeRTOS 使用 ready list 去管理準備好要執行的 tasks，而 ready list 的資料儲存方式如下圖
 
 .. image:: /freertos-figures-full-ready-list-2.png
 
@@ -174,11 +174,11 @@ Task Control Block (TCB)的資料結構：
     } tskTCB;
 
 
-pxTopOfStack , pxEndOfStack：記錄 stack 的大小
+  pxTopOfStack , pxEndOfStack：記錄 stack 的大小
 
-uxPriority , uxBasePriority：前者目前的記錄優先權 ,後者記錄原本的優先權（可能發生在 Mutex)
+  uxPriority , uxBasePriority：前者記錄目前的優先權 ,後者記錄原本的優先權（可能發生在 Mutex)
 
-xGenericListItem , xEventListItem：當一個任務被放入 FreeRTOS 的一個列表中，FreeRTOS 在 TCB 中插入指向這個任務的 pointer 的地方
+  xGenericListItem , xEventListItem：當一個任務被放入 FreeRTOS 的一個列表中，FreeRTOS 在 TCB 中插入指向這個任務的 pointer 的地方
 
 xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
@@ -312,7 +312,7 @@ Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)
 
 藉此 mask 遮罩掉所有的 interrupt (所有優先權低於 configMAX_SYSCALL_INTERRUPT_PRIORITY 的 task 將無法被執行)
 
-參照：http://www.freertos.org/RTOS-Cortex-M3-M4.html
+參照：`http://www.freertos.org/RTOS-Cortex-M3-M4.html<http://www.freertos.org/RTOS-Cortex-M3-M4.html>`_
 
 
 Communication
