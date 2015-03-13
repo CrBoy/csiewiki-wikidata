@@ -41,23 +41,27 @@ SSH key 產生的方法
 
     $ ssh-keygen -t rsa -C "your_email@example.com"
 
-2. 後面那是自己申請 Github 所使用的信箱。之後 ssh 程式會要求輸入 passphrase：
+後面那是自己申請 Github 所使用的信箱。之後 ssh 程式會要求輸入 passphrase：
 
 .. image:: /use-git-04.png
 
-3. 直接按下 Enter 鍵即可。
+2. 直接按下 Enter 鍵即可。
 
 .. image:: /use-git-05.png
 
-4. 輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
+3. 輸入一個passphrase，如不想輸入直接按下 Enter 鍵即可。
 
 .. image:: /use-git-06.jpg
 
-5. 此時顯示的是你SSH Key的fingerprint
+4. 此時顯示的是你SSH Key的fingerprint
 
 .. image:: /use-git-07.jpg
 
-    5-1. 將剛剛產生的key加入ssh-agent中
+5. 將剛剛產生的key加入ssh-agent中
 
-如果你已經安裝了 `Windows版的Github<https://windows.github.com/>`_ ，你可以在不使用SSH Key的狀況下執行clone等操作。windows版本同時支援許多Git Bash tool，可運行眾多的Git指令。
+如果你已安裝了 `Windows版的Github<https://windows.github.com/>`_ ，你可以在不使用SSH Key的狀況下執行clone等操作。windows版本同時支援許多Git Bash tool，可運行眾多的Git指令。
+
+    5-1. 如果你已安裝Git Bash，輸入以下指令以啟動ssh-agent
+
+    .. image:: /use-git-08.jpg
 
