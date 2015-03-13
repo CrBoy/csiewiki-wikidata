@@ -78,6 +78,8 @@ SSH key 產生的方法
 
     .. image:: /use-git-09.jpg
 
+　
+
     5-2. 將剛剛產生的key加入ssh-agent中
 
     .. image:: /use-git-10.jpg
@@ -95,3 +97,21 @@ SSH key 產生的方法
     6-1. 點選工具 icon
 
     .. image:: /use-git-12.jpg
+
+　
+
+    6-2. 點選SSH Keys
+
+    .. image:: /use-git-13.jpg
+
+　
+
+    6-3. 選擇 Add SSH key
+
+    .. image:: /use-git-14.jpg
+
+　
+
+    6-4. 貼上key!!!!
+
+    .. image:: /use-git-15.jpg
