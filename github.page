@@ -78,3 +78,20 @@ SSH key 產生的方法
 
     .. image:: /use-git-09.jpg
 
+    5-2. 將剛剛產生的key加入ssh-agent中
+
+    .. image:: /use-git-10.jpg
+
+　
+
+6. 到Github網站加入你的SSH KEY
+
+將SSH Key複製到你的剪貼簿，如果你的Key檔案名稱為id_dsa.pub、id_ecdsa.pub orid_ed25519.pub等，請自行將以下程式碼中「id_rsa.pub」修改成你的檔案名稱。
+
+.. image:: /use-git-11.jpg
+
+　
+
+    6-1. 點選工具 icon
+
+    .. image:: /use-git-12.jpg
