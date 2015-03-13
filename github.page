@@ -139,9 +139,9 @@ SSH key 產生的方法
 即可
 
 
-Fork 其他使用者的專案
+Clone 其他使用者的專案
 ------------------------------
-Fork 是一個較為特殊的稱呼方式，意思是將其他使用者的 repository 複製到本機，我也可以直接透過他的 repository 來自己修改這個專案，讓這個專案更好。
+Clone 是一個較為特殊的稱呼方式，意思是將遠端的 repository 複製一份到本機。在本機的 repository 可以自由修改/實驗，或是針對專案所需要的改善發送 patch 給原 repository，進而貢獻此專案。
 如果你有寫入權限的話 (被加入成 "Collaborators")，就可以用 SSH 協定 Clone 下來：
 
 .. code-block:: prettyprint
