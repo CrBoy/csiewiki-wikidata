@@ -44,6 +44,21 @@ Grasp 安裝
 
 .. image:: /embedded/Lab40/grasp.png
 
+取得 Visualizer 並測試
+------------------------------
+* 假設 `Lab-39</embedded/Lab39>`_ 的 ``freertos-lite`` 和 ``qemu_stm32`` 都放在 ``workspace`` 目錄
+  - ``cd worksapce``
+
+* 取得原始程式碼並且執行
+
+.. code-block:: prettyprint
+
+    git clone git://github.com:embedded2015/visualizer.git || git clone https://github.com/embedded2015/visualizer.git
+    cd visualizer
+    make qemuauto
+
+*  可以見到 idle task 和相關圖例
+
 參考資料
 ---------------
 * `RTOS Visualization</embedded/Sol12>`_
