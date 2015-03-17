@@ -35,6 +35,22 @@ toc: no
 * `Fibonacci fast doubling : ARM assembly 實作<http://www.slideshare.net/erickitten/fibonacci-fast-doubling>`_
 * 吳哲綱
 
+內含arm指令簡介(可參考`Quick Reference<http://users.ece.utexas.edu/~valvano/Volume1/QuickReferenceCard.pdf>`_)：
+
++-------------------+--------------------------+
+| ARM instruction   | Action                   |
++===================+==========================+
+| CLZ Rd,Rm         | Rd = leading zero of Rm  |
++-------------------+--------------------------+
+| RSB Rd,Rn,<op2>   | Rd = <op2> - Rn          |
++-------------------+--------------------------+
+| MLA Rd,Rm,Rs,Rn   | Rd = (Rn+(Rm*Rs))        |
++-------------------+--------------------------+
+| CBZ Rn,<label>    | if(Rn==0) goto <label>   |
++-------------------+--------------------------+
+| <op2>:= Rs,LSL,#N | logical shift left N     |
++-------------------+--------------------------+
+
 教材
 -------
 * `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_ (概念)
