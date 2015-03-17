@@ -1,0 +1,9 @@
+---
+title: Lab40: Scheduling (2015q1 Week #4)
+toc: no
+...
+
+預期目標
+------------
+- 分析 `FreeRTOS</embedded/freertos>`_ 排程行為
+- 學習 ARM Cortex-M3 架構並且理解 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
