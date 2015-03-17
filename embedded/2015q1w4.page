@@ -3,6 +3,28 @@ title: Week #4 (Mar 17) :: ARM Exceptions/Interrupts
 toc: no
 ...
 
+重大事項宣達
+-------------------
+* `贊助學生參加 jjhou 課程<https://www.facebook.com/groups/ncku.embedded2015/permalink/662675613878927/>`_ (Mar 20 前登記)
+  - C++ Under the Hood (C++ 底層揭密)
+  - Memory Management (記憶體管理)
+  - C++11/14 (C++新特性)
+  - Heap Management in CRT and in Windows (CRT 及 Windows系統中的Heap管理機制)
+
+* 受理一對一面試申請 (修課和旁聽學生都可申請，前者優先處理)，作為考試成績
+  - 請在 2015 年 1 月 3 日前，用 email 約定面談時段，注意以下：
+    * 寄送到 Jim Huang (黃敬群) <jserv.tw@gmail.com>
+    * 標題以 [NCKU/embedded] 開頭，後面加註姓名，依據 `資訊科技產業面試模擬和工作咨詢</embedded/rehearsal>`_ 的說明提供相關資訊
+
+  - 比照資訊科技產業面試的出題方式，本學期上課提及的概念、術語，甚至作業都在涵蓋範圍
+    * 題目會累積，所以，務必注意時間
+    * 會有紙上寫程式的要求
+
+* 第 6 周 (3 月 31 日) 確認分組名單與題目志願表，請開始物色隊友
+  - 3 到 5 人一組，建議不要都是同一個實驗室的成員
+  - GitHub 和 Hackpad 是你的好朋友，知己知彼
+  - 期中報告 + 期末專題
+
 面試經驗分享
 -------------------
 * `資訊科技產業面試模擬和工作咨詢</embedded/rehearsal>`_
