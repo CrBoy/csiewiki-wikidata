@@ -64,7 +64,13 @@ Grasp 安裝
     + 增加程式 context switch 的 Hook
     + 將程式在 idle 時的 function 也列入追蹤
 
+參考作業要求
+------------------
+* 改寫 ``main.c`` 並且引入兩個週期性 Task，使其得以使用 CPU 資源，並且讓 grasp 予以視覺化
+* 試著用程式碼自動計算出 context switch 的時間成本
+
 參考資料
 ---------------
 * `RTOS Visualization</embedded/Sol12>`_
 * `RTOS context switch</embedded/Sol8>`_
+* `Context switching time<https://www.segger.com/embos-context-switching-time.html>`_
