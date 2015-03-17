@@ -58,6 +58,11 @@ Grasp 安裝
     make qemuauto
 
 *  可以見到 idle task 和相關圖例
+* 運作原理
+  - 讀取 SysTick 中 current & reload 的數值，用來計算更精確的時間單位
+  - 增加追蹤執行狀態的 break point，藉以了解程式目前運作的位置
+    + 增加程式 context switch 的 Hook
+    + 將程式在 idle 時的 function 也列入追蹤
 
 參考資料
 ---------------
