@@ -41,3 +41,6 @@ Grasp 安裝
     sudo apt-get install libxft2:i386
 
 * 執行 Grasp、點選 ``examples`` 目錄並且挑選副檔名為 ``.grasp`` 的檔案，之後觀察視覺化輸出
+
+.. image:: /embedded/Lab40/grasp.png
+
