@@ -71,6 +71,15 @@ Grasp 安裝
 * 改寫 ``main.c`` 並且引入兩個週期性 Task，使其得以使用 CPU 資源，並且讓 grasp 予以視覺化
 * 試著用程式碼自動計算出 context switch 的時間成本
 
+繳交作業
+------------
+- 截止日期：
+   * Mar 28, 2015 (含) 之前
+
+- 更新開發過程到共筆網站: `Lab 40 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-4-Lab40>`_，需要標注自己的 ID
+    * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/visualizer
+    * 注意: 要記得 fork `visualizer<https://github.com/embedded2015/visualizer>`_
+
 參考資料
 ---------------
 * `RTOS Visualization</embedded/Sol12>`_
