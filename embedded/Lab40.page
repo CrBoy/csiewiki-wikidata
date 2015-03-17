@@ -7,3 +7,37 @@ toc: no
 ------------
 - 分析 `FreeRTOS</embedded/freertos>`_ 排程行為
 - 學習 ARM Cortex-M3 架構並且理解 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
+- 設計出一個具體而微的 FreeRTOS 視覺化機制
+
+Grasp
+-------
+- Understanding and validating the timing behavior of real-time systems is not trivial.
+- Many real-time operating systems and their development environments do not provide tracing support, and provide only limited visualization, measurements and analysis tools.
+- `Grasp<http://www.win.tue.nl/san/grasp/>`_ is a tool for tracing, visualizing and measuring the behavior of real-time systems. It provides a simple plugin infrastructure for extending Grasp with custom visualization and measurement methods.
+- PDF: `Grasp: Tracing, Visualizing and Measuring the Behavior of Real-Time Systems<http://www.win.tue.nl/~mholende/publications/Holenderski2010.pdf>`_
+
+- mutex 視覺化輸出
+
+.. image:: /embedded/Lab12/mutex.png
+
+- RTOS scheduling 視覺化輸出
+
+.. image:: /embedded/Lab12/hsf.png
+
+Grasp 安裝
+----------------
+* 抓取預先編譯的程式碼 (x86/linux): 假設和 `Lab-39</embedded/Lab39>`_ 的工作目錄一樣是 ``workspace``
+
+.. code-block:: prettyprint
+
+    sudo apt-get install zip
+    wget http://www.win.tue.nl/san/grasp/grasp_linux.zip
+    unzip grasp_linux.zip
+
+* 如果你的系統是 x86_64，需要額外安裝以下套件才能執行 Grasp
+
+.. code-block:: prettyprint
+
+    sudo apt-get install libxft2:i386
+
+* 執行 Grasp、點選 ``examples`` 目錄並且挑選副檔名為 ``.grasp`` 的檔案，之後觀察視覺化輸出
