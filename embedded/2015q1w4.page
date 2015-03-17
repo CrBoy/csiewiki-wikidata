@@ -33,9 +33,7 @@ toc: no
 `Lab-38</embedded/Lab38>`_ 心得分享
 ----------------------------------------------------------
 * `Fibonacci fast doubling : ARM assembly 實作<http://www.slideshare.net/erickitten/fibonacci-fast-doubling>`_
-* 吳哲綱
-
-內含arm指令簡介(可參考`Quick Reference<http://users.ece.utexas.edu/~valvano/Volume1/QuickReferenceCard.pdf>`_)：
+  - 程式碼使用到的 ARM 指令 (完整可見 `Quick Reference<http://users.ece.utexas.edu/~valvano/Volume1/QuickReferenceCard.pdf>`_)：
 
 +-------------------+--------------------------+
 | ARM instruction   | Action                   |
