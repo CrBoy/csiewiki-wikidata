@@ -34,6 +34,8 @@ toc: no
     * NVIC
     * STM32F4 external interrupt signals
 
+  - 延伸閱讀: 共筆 `GPIO</embedded/GPIO>`_ + `ADC</embedded/ADC>`_ (找 NVIC)
+
 
 作業須知 (Lab-40)
 ----------------
