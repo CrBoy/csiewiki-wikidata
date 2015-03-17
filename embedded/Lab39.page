@@ -124,7 +124,7 @@ ARM Semihost
 * 建立新的 shell 指令，如 ``new``，讓系統建立新的 FreeRTOS task，並確保 ``ps`` 可正確顯示新建立的 task
   - 思考：系統可允許多少個這樣的 task 呢？
 
-* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c 的 ps_command 函示) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
+* 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c 的 ps_command 函式) 透過 ARM semihosting 存放到 host 端檔案系統的 sysinfo 檔案
 
 挑戰題
 -----
