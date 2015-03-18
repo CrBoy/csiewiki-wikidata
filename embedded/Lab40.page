@@ -70,6 +70,15 @@ Grasp 安裝
     + 增加程式 context switch 的 Hook
     + 將程式在 idle 時的 function 也列入追蹤
 
+檢查清單
+--------------
+* 是否理解 ARM Cortex-M 的 interrupt 處理機制？
+  - 檔案 `main.c<https://github.com/embedded2015/visualizer/blob/master/main.c>`_ 的 ``USART2_IRQHandler``
+  - 檔案 `startup_stm32f10x_md.s<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s>`_ 的 ``g_pfnVectors``
+
+* 是否清楚 system register 的作用？
+  - 檔案 `main.c<https://github.com/embedded2015/visualizer/blob/master/main.c>`_ 中，位址開頭為 0xe0 的常數或巨集: ``NVIC_INTERRUPTx_PRIORITY``, ``get_reload()`` / ``get_current()`` / ``get_time()`` (與 SysTick 相關)
+
 參考作業要求
 ------------------
 * 改寫 ``main.c`` 並且引入兩個週期性 Task，使其得以使用 CPU 資源，並且讓 grasp 予以視覺化
@@ -77,6 +86,7 @@ Grasp 安裝
 
 挑戰題
 ----------
+* 說明為何視覺化系統得以運作，以及目前實做的限制與改進方案
 * 自動測試 `USART</embedded/USART>`_ 的中斷處理 (對應於 ``USART2_IRQHandler``)，並且透過 grasp 視覺化
 
 繳交作業
