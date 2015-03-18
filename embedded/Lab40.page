@@ -46,6 +46,12 @@ Grasp 安裝
 
 取得 Visualizer 並測試
 ------------------------------
+* Visualizer 需要 GDB，所以需要事先準備好
+
+.. code-block:: prettyprint
+
+    sudo apt-get install gdb-arm-none-eabi
+
 * 假設 `Lab-39</embedded/Lab39>`_ 的 ``freertos-basic`` 和 ``qemu_stm32`` 都放在 ``workspace`` 目錄
   - ``cd worksapce``
 
