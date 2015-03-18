@@ -12,15 +12,13 @@ toc: no
 Grasp
 -------
 .. image:: /embedded/Lab40/grasp-n-os.png
-- Understanding and validating the timing behavior of real-time systems is not trivial.
-- Many real-time operating systems and their development environments do not provide tracing support, and provide only limited visualization, measurements and analysis tools.
-- `Grasp<http://www.win.tue.nl/san/grasp/>`_ is a tool for tracing, visualizing and measuring the behavior of real-time systems. It provides a simple plugin infrastructure for extending Grasp with custom visualization and measurement methods.
 
-- mutex 視覺化輸出
+* `Grasp<http://www.win.tue.nl/san/grasp/>`_ 是個能夠追蹤、視覺化，以及測量即時系統中執行時期行為的工具，很容易擴充。
+  - 使用案例: mutex 視覺化輸出
 
 .. image:: /embedded/Lab12/mutex.png
 
-- RTOS scheduling 視覺化輸出
+  - 使用案例: RTOS scheduling 視覺化輸出
 
 .. image:: /embedded/Lab12/hsf.png
 
