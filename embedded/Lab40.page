@@ -32,10 +32,13 @@ Grasp 安裝
     wget http://www.win.tue.nl/san/grasp/grasp_linux.zip
     unzip grasp_linux.zip
 
-* 如果你的系統是 x86_64，需要額外安裝以下套件才能執行 Grasp
+* 如果你的系統是 x86_64，需要額外安裝 i386 版本的 ``libxft2`` 和 ``libxss1`` 套件才能執行 Grasp，方法如下：
 
 .. code-block:: prettyprint
 
+    sudo dpkg --add-architecture i386
+    sudo apt-get update 
+    sudo apt-get install ia32-libs
     sudo apt-get install libxft2:i386 libxss1:i386
 
 * 執行 Grasp、點選 ``examples`` 目錄並且挑選副檔名為 ``.grasp`` 的檔案，之後觀察視覺化輸出
