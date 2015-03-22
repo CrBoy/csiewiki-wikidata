@@ -26,7 +26,7 @@ toc: no
 
 綁訂機器的 SSH key
 ---------------------------
-因為要讓 Github 知道是我們這台電腦上傳的專案，所以我們要和 Github 之間建立一種默契，這個默契就是使用 ssh 協定時的 `public key<http://en.wikipedia.org/wiki/Public-key_cryptography>`_，我們給 Github 我們本機的 ssh public key ，告訴 Github 拿著這個 key 的電腦才是這個帳號的使用者， 如此一來就只能由這台電腦進行管理，才不會造成其他人來我們的帳號亂上傳東西的窘境。
+因為要讓 Github 知道是我們這台電腦上傳的專案，所以我們要和 Github 之間建立一種默契，這個默契就是使用 ssh 通訊協定時的 `public key<http://en.wikipedia.org/wiki/Public-key_cryptography>`_，我們給 Github 我們本機的 ssh public key ，告訴 Github 拿著這個 key 的電腦才是這個帳號的使用者， 如此一來就只能由這台電腦進行管理，才不會造成其他人來我們的帳號亂上傳東西的窘境。
 
 首先，點選右上角的工具按鈕，進入帳號設定頁面，在頁面的左下角點選 "SSH keys"
 
@@ -142,19 +142,19 @@ SSH key 產生的方法
 Clone 其他使用者的專案
 ------------------------------
 Clone 是一個較為特殊的稱呼方式，意思是將遠端的 repository 複製一份到本機。在本機的 repository 可以自由修改/實驗，或是針對專案所需要的改善發送 patch 給原 repository，進而貢獻此專案。
-如果你有寫入權限的話 (被加入成 "Collaborators")，就可以用 SSH 協定 Clone 下來：
+如果你有寫入權限的話 (被加入成 "Collaborators")，就可透過 SSH 通訊協定，以 git 去 "clone" 下來：
 
 .. code-block:: prettyprint
 
     $ git clone git@github.com:Username/repository.git
 
-如果沒有寫入權限 (Collaborators) 的話，因為這個專案是公開的，所以你還是可以用 Git 協定 clone 下來：
+如果沒有寫入權限 (Collaborators) 的話，因為這個專案是公開的，所以你還是可以用 Git 通訊協定 clone 下來：
 
 .. code-block:: prettyprint
 
     $ git clone git://github.com/Username/repository.git
 
-如果有防火牆問題，改用 HTTPS 協定：
+若因遭逢防火牆問題 (如成功大學校園環境)，請改用 HTTPS 通訊協定：
 
 .. code-block:: prettyprint
 
@@ -189,8 +189,8 @@ Push: 將 Commit 送出去
 
 實際的作用是將本地端的 master branch 與遠端的 master branch 作 fast-forward 合併。如果出現 [rejected] 錯誤的話，表示你必須先作 pull。
 
-如果想要熟悉 Git 指令的話
---------------------------------------
+若想要熟悉 Git 指令
+---------------------------
 以下是以 GUI 方式呈現指令所產生結果的網站:
   * `LearnGitBranching<http://pcottle.github.io/learnGitBranching/>`_
   * `Visualizing Git Concepts with D3<http://onlywei.github.io/explain-git-with-d3/>`_
