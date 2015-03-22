@@ -6,7 +6,7 @@ toc: no
 FreeRTOS
 -------------
 * 共筆: `FreeRTOS</embedded/freertos>`_
-* 能見度最高的共筆
+* 特性: 能見度最高的共筆
 * 硬體: stm32f429 discovery + beaglebone black
 * 難度：中等
 
@@ -15,6 +15,11 @@ uClinux
 * 共筆: `uClinux</embedded/uclinux>`_
 * 硬體: stm32f429 discovery
 * 難度：中等
+
+Linux
+----------
+* 硬體: beaglebone black
+* 難度：高
 
 rtenv+
 ---------
