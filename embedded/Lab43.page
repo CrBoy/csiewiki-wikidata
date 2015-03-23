@@ -1,0 +1,9 @@
+---
+title: Lab43: Buffer overflow
+toc: no
+...
+
+預期目標
+------------
+* 複習 ARM 處理器和指令集，並深入 stack 和執行時期的行為
+* 熟悉 objdump、gdb 等工具，並利用上述工具分析執行檔
