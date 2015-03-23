@@ -38,7 +38,6 @@ Grasp 安裝
 
     sudo dpkg --add-architecture i386
     sudo apt-get update 
-    sudo apt-get install ia32-libs
     sudo apt-get install libxft2:i386 libxss1:i386
 
 * 執行 Grasp、點選 ``examples`` 目錄並且挑選副檔名為 ``.grasp`` 的檔案，之後觀察視覺化輸出
