@@ -29,6 +29,7 @@ uClinux
 Linux
 ----------
 * 硬體: beaglebone black
+* 特性: 充分理解 ARM/Linux 的運作原理，從 MMU, exception/interrupt, system call, file system 到效能調整
 * 難度：高
 
 rtenv+
@@ -41,6 +42,7 @@ Xenomai / PREEMPT-RT
 --------------------------------
 * 共筆: `Xenomai</embdded/xenomai>`_
 * 硬體: stm32f429 discovery + beaglebone black
+* 特性: 理解 scheduler 運作機制並且知道影響 latency 的因素
 * 難度：中等
 
 RT-Thread
