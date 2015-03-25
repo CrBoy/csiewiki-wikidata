@@ -23,6 +23,7 @@ FreeRTOS
 uClinux
 ----------
 * 共筆: `uClinux</embedded/uclinux>`_
+* 特性: 和講師一起學習，有機會去 Linux Foundation 發表作品
 * 硬體: stm32f429 discovery
 * 難度：中等
 
@@ -35,6 +36,7 @@ Linux
 rtenv+
 ---------
 * 共筆: `rtenv+</embdded/rtenv>`_
+* 特性: 會充分理解 ARM Cortex-M 運作機制，成為強者必經之路
 * 硬體:  stm32f429 discovery
 * 難度: 高
 
@@ -55,5 +57,5 @@ RT-Thread
 Xvisor
 ---------
 * 硬體: Fast Model: ARMv8
-* 能跟 `Xvisor<http://xhypervisor.org/>`_ 主要開發者合作
+* 能跟 `Xvisor<http://xhypervisor.org/>`_ 主要開發者合作; 學習 ARM64
 * 難度: 高
