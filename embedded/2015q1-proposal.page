@@ -42,7 +42,7 @@ rtenv+
 
 Xenomai / PREEMPT-RT
 --------------------------------
-* 共筆: `Xenomai</embdded/xenomai>`_
+* 共筆: `Xenomai</embedded/xenomai>`_
 * 硬體: stm32f429 discovery + beaglebone black
 * 特性: 理解 scheduler 運作機制並且知道影響 latency 的因素
 * 難度：中等
