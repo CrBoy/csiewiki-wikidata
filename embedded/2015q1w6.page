@@ -14,4 +14,19 @@ toc: no
 教材
 ------
 * `A Beginner’s Guide on Interrupt Latency - and Interrupt Latency of the ARM Cortex-M processors<http://community.arm.com/docs/DOC-2607>`_ (2013)
+* `淺談優先權，從 ARM Cortex-M 到 FreeRTOS 設定<http://enginechang.logdown.com/posts/248297-talking-about-the-priority-from-the-arm-set-cortex-m-to-freertos>`_
+  - 什麼是 Interrupt?
+  - NVIC (Nested vectored interrupt controller)
+  - ARM Cortex-M 每個 Exception 都有自己的優先權
+  - 不同架構有不同數量的優先權
+  - FreeRTOS 的優先權
+  - FreeRTOS 的 Tick/Timer
+
+* `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+  - `Interrupt-Driven Input/Output<http://www.eng.auburn.edu/~nelson/courses/elec2220/Interrupt_IO%20part2.pdf>`_
+    * Interrupt vectors and vector table
+    * Interrupt masks and priorities
+    * NVIC
+    * STM32F4 external interrupt signals
+
 * ` Linux on Cortex-M3<http://www.linux-arm.org/LinuxKernel/LinuxM3>`_ (2011)
