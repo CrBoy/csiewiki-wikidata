@@ -3,8 +3,18 @@ title: Xenomai
 categories: embedded, arm, raspberrypi
 ...
 
+協作者
+---------
+* 2015 年春季
+* 2014 年春季
+  - 向澐
+  - 林家宏
+  - 呂科進
+  - 趙愷文
+  - 阮志偉
+  - 陳建霖
 
-建立環境
+建立 Xenomai 環境
 ==============================
 * 下載 Raspbian http://www.raspberrypi.org/downloads/
 
@@ -535,15 +545,6 @@ Hackpad
 *  討論＆紀錄 https://embedded2014.hackpad.com/Xenomai-raspberry-note-XwJtuQn9nkD
 
 *  整理 https://embedded2014.hackpad.com/Xenomai-z2CJPjPLTer
-
-組員
-====
-* 向澐
-* 林家宏
-* 呂科進
-* 趙愷文
-* 阮志偉
-* 陳建霖
 
 
 參考資料
