@@ -104,3 +104,5 @@ Grasp 安裝
 * `RTOS Visualization</embedded/Sol12>`_
 * `RTOS context switch</embedded/Sol8>`_
 * `Context switching time<https://www.segger.com/embos-context-switching-time.html>`_
+* Cortex M3 SysTick Explained
+  - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
