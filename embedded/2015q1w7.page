@@ -19,3 +19,29 @@ toc: no
 
 * 曾柏翔的 `共筆<https://embedded2015.hackpad.com/hw2-Ka5oXguvUje>`_
    + 針對優先序高的task執行太久而佔據 CPU，提出的改進方法：在 task 中加入 ``vTaskDelayUntil(&xLastWakeTime, xFrequency);``，當執行到一段時間後，就會主動釋出執行時間給別的 task 使用，從而避免因為一個 task 執行太久而造成 shell 來不及回應的問題
+
+`Lab 40</embedded/Lab40>`_: Scheduling 作業分析
+-----------------------------------------------------------------------
+* Gary Gu 的 `共筆<https://hackpad.com/Scheduling-nF35kNugzKX>`_
+  + 4 組 system register 可用來設定 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
+    - SysTick Control and status : enable , clock source, poll ,interrupt (address : 0xE000E010)
+    - SysTick reload value : value to load Current Value register when 0 is reached (address : 0xE000E014)
+    - SysTick current value : the current value of the count down (address : 0xE000E018).
+    - SysTick Calibration Value : might contain the number of ticks to generate a 10ms interval and other information, depending on the implementation (address : 0xE000E01C)
+
+  + 若要設定 SysTick，我們需要載入 SysTick event 發生間隔的數值到 reload value register，當 SysTick Control and Status Register 的 COUNTFLAG bit 內含值從 1 到 0 時，SysTick 會被啟動，所以會需要 n + 1 個 clock tick，如果 period 為 100 的話，那就是要輸入 99，reload value register 所支援的數值空間為 1 ~ 0x00FFFFFF
+  + 若想透過 SysTick 在固定的時間內產生一個事件，比如說 1ms，那可透過另外一個 Calibration register 的數值來 scale 給定的 reload register 值，Calibration register 是唯讀的暫存器，其數值表示 10 ms (SysTick 的  reload 週期) 的整數倍
+  + 若要讓 SysTick 產生中斷的話，要去設定 TICKINT (bit 1) 為 HIGH，然後透過 NVIC 去設定適當的中斷，另外還要設置 CLKSOURCE (bit 2) 為以下:
+    - 1 for core clock
+    - 0 for external reference clock
+
+  + 這次實驗就是透過讀取 current reload register 的數值，來達到精準的時間單位。系統載入階段，在記憶體初始化時，會做 memory mapping，定義的在檔案 ``CMSIS/CoreSupport/core_cm3.h`` 中
+
+  + 關於 USART2 這個 IRQ 的 handler，可以到``$(CMSIS_PLAT_SRC)/startup/gcc_ride7/startup_stm32f10x_md.s`` 中定義的 vector table 找到 ``USART2_IRQHandler``，但是這邊存放的不是處理的程式碼，而是真正 handler 的位址，ARM 核心會依據這個位址跳到真正處理的 handler 的位置進行中斷處理。在處理前，必須要先設定這個中斷，透過NVIC
+
+* hsuedw 的 `共筆<https://embedded2015.hackpad.com/Lab-40-NmDXrhMLX3B>`_ 與 `GitHub<https://github.com/hsuedw/visualizer>`_
+  + ``vTaskSwitchContext()`` 中，執行 switch out 前的那一刻記錄在 ``previous_systick_current`` 中，執行完畢之際，利用 ``traceTASK_SWITCHED_IN()`` 來記錄 task 被 switch in 的時間，而 ``traceTASK_SWITCHED_IN()`` 是 ``trace_task_switch()`` 的 wrapper。這樣的做法是，呼叫了``trace_task_switch()`` 後，才記錄 task 被 switch in 時間
+  + 這樣的作法不夠精確，因為這樣含有呼叫 ``trace_task_switch()`` 與呼叫 ``get_current()`` 的時間。嚴重錯估 context switch 成本
+
+* 延伸閱讀: Cortex M3 SysTick Explained
+  - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
