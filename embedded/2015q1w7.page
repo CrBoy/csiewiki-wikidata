@@ -22,6 +22,9 @@ toc: no
 
 `Lab 40</embedded/Lab40>`_: Scheduling 作業分析
 -----------------------------------------------------------------------
+* 沈宗穎的 `共筆<https://embedded2015.hackpad.com/WEEK4-Q9sUeYmV1Fb>`_
+  + `USART interrupt handler 運作動畫<https://www.youtube.com/watch?v=VaU17yhh994>`_
+
 * Gary Gu 的 `共筆<https://hackpad.com/Scheduling-nF35kNugzKX>`_
   + 4 組 system register 可用來設定 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
     - SysTick Control and status : enable , clock source, poll ,interrupt (address : 0xE000E010)
