@@ -19,8 +19,8 @@ Week  Date     Subject                                 Assignment
 #3    Mar 10   `ARM Architecture + OS Concepts`_              `Lab 39`_: FreeRTOS
 #4    Mar 17   `ARM Exceptions/Interrupts`_                   `Lab 40`_: Scheduling
 #5    Mar 24   `Embedded Linux Conference 2015`_               `Lab 41`_: 基礎觀念訓練
-#6    Mar 31   `ARM and RTOS`_                         確認 `Lab 38`_, `Lab 39`_, `Lab 40`_, `Lab 41`_ 均充分完成 
-#7    Apr 7    .
+#6    Mar 31   `ARM and RTOS: Part I`_                         確認 `Lab 38`_, `Lab 39`_, `Lab 40`_, `Lab 41`_ 均充分完成 
+#7    Apr 7    `ARM and RTOS: Part II`_                       `Lab 42`_: 
 #8    Apr 14   .
 #9    Apr 21   .
 #10   Apr 28   .
@@ -40,11 +40,13 @@ Week  Date     Subject                                 Assignment
 .. _`ARM Architecture + OS Concepts`: 2015q1w3
 .. _`ARM Exceptions/Interrupts`: 2015q1w4
 .. _`Embedded Linux Conference 2015`: http://events.linuxfoundation.org/events/embedded-linux-conference
-.. _`ARM and RTOS`: 2015q1w6
+.. _`ARM and RTOS: Part I`: 2015q1w6
+.. _`ARM and RTOS: Part II`: 2015q1w7
 .. _`Lab 38`: Lab38
 .. _`Lab 39`: Lab39
 .. _`Lab 40`: Lab40
 .. _`Lab 41`: Lab41
+.. _`Lab 42`: Lab42
 
 進階嵌入式系統開發與實作 (Fall 2014)
 ------------------------------------------------------
