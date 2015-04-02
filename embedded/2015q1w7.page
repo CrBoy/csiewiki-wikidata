@@ -17,3 +17,6 @@ toc: no
       - Stack：呼叫 xTaskCreate() 時，usStackDepth 設定 128，所以 stack 大小為 512 bytes (128 * 4)
       - 每建立一個 task，需佔用 624 位元組。且記憶體大小為 17K，當剩下的記憶體空間低於 624 位元組時，就無法再建立 task
     + task 建立/刪除後，一直在追蹤記憶體的變化，意外發現 vPortFree() 有個 bug，請見`重現和修正的方式<https://github.com/AdrianHuang/freertos-basic/commit/320274ddfd42cf20377e6f0b4e38bf146db9c877>`_
+
+  - 曾柏翔的 `共筆<https://embedded2015.hackpad.com/hw2-Ka5oXguvUje>`_
+    + 針對優先序高的task執行太久而佔據 CPU，提出的改進方法：在 task 中加入 ``vTaskDelayUntil(&xLastWakeTime, xFrequency);``，當執行到一段時間後，就會主動釋出執行時間給別的 task 使用，從而避免因為一個 task 執行太久而造成 shell 來不及回應的問題
