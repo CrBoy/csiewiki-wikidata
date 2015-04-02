@@ -1,0 +1,19 @@
+---
+title: Week #6 (Mar 31) :: ARM and RTOS: Part II
+toc: no
+...
+
+重大事項宣達
+-------------------
+* 分組
+
+作業分析和反思
+----------------------
+* `Lab 39</embedded/Lab39>`_: Scheduling
+  - `Adrian Huang<https://www.facebook.com/adrian.huang.10>`_ 的 `共筆<https://embedded2015.hackpad.com/Lab39-Cross-Development-2015Q1-Week3-DOv3d3rwi8b>`_ 與 `GitHub<https://github.com/AdrianHuang/freertos-basic/tree/new-task>`_
+    + 建立每一Task所需要的資料結構  (使用heap_ww.c)：
+      - XBlockLink：此結構用來記錄每一個區塊 (Block) 大小、下一個未被佔用的區塊大小與下一個未被佔用的區塊實體記憶體位址，其大小為 12 個位元組。由於使用 ARM Cortex-M3 架構，其對齊位元組為 8 個位元組。所以經過調整，一律使用 16 個位元組配置記憶體。
+      - TCB (Task Control Block)：大小為 80 個位元組
+      - Stack：呼叫 xTaskCreate() 時，usStackDepth 設定 128，所以 stack 大小為 512 bytes (128 * 4)
+      - 每建立一個 task，需佔用 624 位元組。且記憶體大小為 17K，當剩下的記憶體空間低於 624 位元組時，就無法再建立 task
+    + task 建立/刪除後，一直在追蹤記憶體的變化，意外發現 vPortFree() 有個 bug，請見`重現和修正的方式<https://github.com/AdrianHuang/freertos-basic/commit/320274ddfd42cf20377e6f0b4e38bf146db9c877>`_
