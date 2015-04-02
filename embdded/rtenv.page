@@ -1,23 +1,20 @@
 ---
-title: rtenv-plus
+title: rtenv+
 categories: embedded, arm, stm32, stm32f429
 toc: yes
 ...
 
 `HackPad 共筆<https://embedded2014.hackpad.com/Rtenv-plus-0VHEYKBpr3D>`_
 
-組員
-----
-楊震 / <`Omar002<https://github.com/Omar002/rtenv-plus/>`_>
-
-丁士宸 / <`Stanley Ding<https://github.com/StanleyDing/rtenv>`_>
-
-程政罡 / <`marktwtn<https://github.com/marktwtn/rtenv-plus>`_>
-
-李昆憶 / <`LanKuDot<https://github.com/LanKuDot/rtenv-plus>`_>
-
-鄭聖文 / <`Shengwen<https://github.com/shengwen1997/>`_>
-
+協作者
+---------
+* 2015 年春季
+* 2014 年春季
+  - `楊震 <https://github.com/Omar002>`_
+  - `丁士宸<https://github.com/StanleyDing>`_
+  - `程政罡<https://github.com/marktwtn>`_
+  - `李昆憶<https://github.com/LanKuDot>`_
+  -  `鄭聖文<https://github.com/shengwen1997/>`_
 
 作業系統架構
 ---------------
