@@ -46,5 +46,25 @@ toc: no
   + ``vTaskSwitchContext()`` 中，執行 switch out 前的那一刻記錄在 ``previous_systick_current`` 中，執行完畢之際，利用 ``traceTASK_SWITCHED_IN()`` 來記錄 task 被 switch in 的時間，而 ``traceTASK_SWITCHED_IN()`` 是 ``trace_task_switch()`` 的 wrapper。這樣的做法是，呼叫了``trace_task_switch()`` 後，才記錄 task 被 switch in 時間
   + 這樣的作法不夠精確，因為這樣含有呼叫 ``trace_task_switch()`` 與呼叫 ``get_current()`` 的時間。嚴重錯估 context switch 成本
 
+* 吳哲綱的 `共筆<https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7>`_ 與 `GitHub<https://github.com/erickitten/visualizer>`_
+  + 使用的測試 task 如下：
+
+.. code-block:: prettyprint
+
+    void cpu_run_tester_task(void *pvParameters) {
+        while (1) {
+            int i, j = 0;
+            for (i = 0; i < 1000000; i++)
+                j += i * j + i;
+            vTaskDelay(50 / portTICK_RATE_MS);
+        }
+    }
+
+.. image:: /embedded/2015q1w7/ctx.png
+
+  + ``vTaskDelay`` 設為 50ms，但在一個 task 測試下，delay 可能是 40~55ms 之間的任意值，推測可能是 idle 時 SysTick 每 10ms reload 一次，task delay 在 10ms 以下即可被排入 ready
+  + 在兩個相同 pirority 的 task 執行時，平均約 10ms 作一次 context switch (即 SysTick forced switch)
+  + 若將圖放大，可以看到 task1/2 之間的 context switch 大約耗費 0.005ms
+
 * 延伸閱讀: Cortex M3 SysTick Explained
   - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
