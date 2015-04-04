@@ -7,3 +7,68 @@ toc: no
 ------------
 * 複習 ARM 處理器和指令集，並深入 stack 和執行時期的行為
 * 熟悉 objdump、gdb 等工具，並利用上述工具分析執行檔
+
+Part 1
+------------
+目標：
+   * 利用 gdb 與 objdump 分析執行檔
+
+步驟：
+   1. 下載作業`檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_
+   2. 解壓縮後閱讀 README 查看執行方式，並且開始 Hacking!!
+.. code-block:: prettyprint
+
+    tar -xzvf bomb.tar.gz
+    cat README
+
+..
+
+程式說明：
+   * bomb 這支程式會從標準輸入讀取字串，請利用上述的工具找出正確的字串輸入
+   * 總共有 5 個階段，第 0 個階段是範例，密碼是``help``
+   * 溫馨小提示，不同階段可以從不同的方向去想
+      - 階段 1 - 比較
+      - 階段 2 - 迴圈
+      - 階段 3 - switch
+      - 階段 4 - 遞迴
+
+參考資料
+   * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
+
+Part 2
+-------------
+目標：
+   * 瞭解 buffer overflow 的原理，並且利用這項技巧攻擊程式
+
+步驟：
+
+.. code-block:: prettyprint
+
+   cd /tmp
+   git clone https://github.com/embedded2014/freertos-plus.git
+   cd freertos-plus && make
+   echo "<Your codes here>" > exploit.str
+   make exploit
+   make qemu
+
+在 FreeRTOS shell (QEMU 視窗)，輸入以下命令:
+
+.. code-block:: prettyprint
+
+   bufbomb
+
+..
+
+程式說明：
+   * bufbomb 會利用 `ARM semihosting<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html>`_ 讀取由 ``make exploit`` 產生的 ``exploit.byte``
+   * 觀察 ``bufbomb.c``，找出問題所在，輸入正確的 byte code
+   * ``str2byte`` 這支程式會讀入 hex 並且轉換成二進位檔案，需要注意的是每一行 code 結尾必須是 ``0x0A('\n')``
+   * 溫馨小提示
+      - Level 1 - 利用 buffer overflow 覆蓋 local variable 的值
+      - Level 2 - 利用 buffer overflow 覆蓋堆疊上 link register 的值
+      - Level 3 - 插入一段 exploit code 並且利用 buffer overflow 覆蓋堆疊上 link register 的值，使其能夠跳轉至 exploit code 修改 global variable 的值
+   * 在建立 exploit code 的時候可以先寫 C code，編譯後利用 objdump 將 machine code 取出
+
+參考資料：
+   * `hwswinterface lab3<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
+   * `IA32 Linux Buffer Overflow<https://d396qusza40orc.cloudfront.net/hardware/lecture_slides/tutorials/buffoverflow.pdf>`_
