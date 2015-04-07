@@ -71,5 +71,16 @@ toc: no
   + 在兩個相同 pirority 的 task 執行時，平均約 10ms 作一次 context switch (即 SysTick forced switch)
   + 若將圖放大，可以看到 task1/2 之間的 context switch 大約耗費 0.005ms
 
+* `Adrian Huang<https://www.facebook.com/adrian.huang.10>`_ 的 `共筆<https://embedded2015.hackpad.com/Lab40-Scheduling-2015q1-Week-4-WZDR0VUsHq8>`_
+  + 計算出來的時間是「從Ready Task List挑選下一個被執行的  Task」。詳情task.c: vTaskSwitchContext()。這並非發生Context Switch時，所花費的全部時間。因為發生 Context Switch 時，需要三個步驟 (參考port.c: xPortPendSVHandler())：
+    - 儲存目前 Task 狀態 (將暫存器 r4-r11 儲存至該 Task 的堆疊，並將 top of stack 位址儲存至 tskTCB 結構成員 ``pxTopOfStack``)。
+    - 從 Ready Task List 挑選下一個被執行的 Task，並將被挑中 Task 位址指定給 ``pxCurrentTCB`` (這就是函式``vTaskSwitchContext()`` 所花費的時間)
+    - 回復被挑中 Task 之狀態  (將上次儲存於 tskTCB結構成員 ``pxTopOfStack`` 的內容值取出來，並依據此內容值將上次儲存堆疊的 r4-r11 內容值回存至暫存器 r4-r11)
+
 * 延伸閱讀: Cortex M3 SysTick Explained
   - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
+
+教材
+--------
+* `STM32 程式開發流程<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
+* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_
