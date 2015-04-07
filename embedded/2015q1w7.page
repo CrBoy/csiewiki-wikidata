@@ -83,4 +83,4 @@ toc: no
 教材
 --------
 * `STM32 程式開發流程<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
-* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_
+* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_，詳細分析和操作提示，請見 `Lab 42</embedded/Lab42>`_
