@@ -1,0 +1,25 @@
+---
+title: Lab42: Preemptive Scheduler
+toc: no
+...
+
+預期目標
+------------
+- 研究一個具體而微的作業系統
+
+Mini ARM OS
+------------------
+* 設定 qemu 的路徑，假設 ``qemu_stm32`` 目錄位於 ``$HOME/workspace`` 裡面
+
+.. code-block:: prettyprint
+
+    export PATH=~/workspace/qemu_stm32/arm-softmmu
+
+* 取得 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 程式碼
+
+.. code-block:: prettyprint
+
+    git clone https://github.com/embedded2015/mini-arm-os.git || git clone git@github.com:embedded2015/mini-arm-os.git
+
+* 依據 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 指示
+
