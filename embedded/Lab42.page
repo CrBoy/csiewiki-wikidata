@@ -13,7 +13,7 @@ Mini ARM OS
 
 .. code-block:: prettyprint
 
-    export PATH=~/workspace/qemu_stm32/arm-softmmu
+    export PATH=~/workspace/qemu_stm32/arm-softmmu:$PATH
 
 * 取得 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 程式碼
 
