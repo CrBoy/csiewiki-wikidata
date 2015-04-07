@@ -68,8 +68,33 @@ Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
 
 
-Task 的狀態
+Task
 ----------
+Task 是在 FreeRTOS 中執行的基本單位，每個 task 都是由一個 C 函數所組成，意思是你需要先定義一個 C 的函數，然後再用 xTaskCreate() 這個 API 來建立一個 task，這個 C 函數有幾個特點，它的返回值必須是 void，其中通常會有一個無限迴圈，所有關於這個 task 的工作都會在迴圈中進行，而且這個函數不會有 return，FreeRTOS 不允許 task 自行結束(使用 return 或執行到函數的最後一行)
+
+Task 被建立出來後，它會配置有自己的堆疊空間和 stack variable(就是 function 中定義的變數)
+
+一個典型的 task function 如下：
+
+.. code-block:: c
+
+    void ATaskFunction(void *pvParameters)
+    {
+       int i = 0;   // 每個用這個函數建立的 task 都有自己的一份 i 變數
+
+       while(1)
+       { /* do something here */ }
+
+       /* 
+        * 如果你的 task 就是需要離開 loop 並結束
+        * 需要用 vTaskDelete 來刪除自己而非使用 return 或自然結束(執行到最後一行)
+        * 這個參數的 NULL 值是表示自己 
+        */
+       vTaskDelete(NULL);
+    }
+
+
+Task 的狀態
 
 .. image:: /tskstate.gif
 
