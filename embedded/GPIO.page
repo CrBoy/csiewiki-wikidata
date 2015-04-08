@@ -1,6 +1,6 @@
 ---
-title: General-purpose Input/Output (GPIO)
-categories: GPIO, STM32, STM32F4, STM32F429
+title: Universal Asynchronous Receiver/Transmitter
+categories: ARM, STM32, STM32F4, STM32F429, USART, UART
 ...
 
 Introduction - 簡介
