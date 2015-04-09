@@ -1,6 +1,6 @@
 ---
-title: Universal Asynchronous Receiver/Transmitter
-categories: ARM, STM32, STM32F4, STM32F429, USART, UART
+title: General Purpose Input/Output (GPIO)
+categories: ARM, STM32, STM32F4, STM32F429, GPIO, Peripheral
 ...
 
 Introduction - 簡介
