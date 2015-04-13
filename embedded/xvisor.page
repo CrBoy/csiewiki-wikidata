@@ -15,3 +15,10 @@ Hackpad
 -----------
 * `xvisor<https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm>`_
 * `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
+
+reference
+-----------
+* http://www.slideshare.net/jserv/xvisor
+* https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
+* https://samlin.hackpad.com/Xvisor--chtGSqPYWG8
+* http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
