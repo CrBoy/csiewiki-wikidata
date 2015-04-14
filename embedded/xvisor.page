@@ -16,6 +16,33 @@ Hackpad
 * `xvisor<https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm>`_
 * `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
 
+設計文件整理
+-----------
+原文： https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
+
+Modeling Virtual Machine
+.........................................................
+
+* 何謂VM(virtual machine),通常分為兩種
+  - system virtual machine: support the execution of a complete OS
+  - process virtual machine: support a single process
+
+* Xvisor為硬體系統的虛擬化軟體，可直接運行於主機機器，為Native/Type-1的Hypervisor/VMM system virtual machine通常稱為guest,而guest裏的CPU稱為VCPU(Virtual CPU),VCPU又可分為兩種
+  - 屬於Guest的稱為 Normal VCPU
+  - 不屬於任何Guest的稱為 Orphan VCPU (Orphan VCPU是為了不同的背景程序及運行中的管理daemon而建立的)
+
+* 當今CPU至少有兩種privilege mode:
+  - User mode為最低特權，運行Normal VCPUs
+  - Supervisor mode為最高特權，運行Orphan VCPUs
+
+* Xvisor當執行various background process和執行management daemons使用Orphan VCPUs
+
+下圖為Xvisor的System Virtual Machine Model
+
+.. image:: /embedded/xvisor_model.png
+
+
+
 reference
 -----------
 * http://www.slideshare.net/jserv/xvisor
