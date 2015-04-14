@@ -7,7 +7,7 @@ toc: no
 ------------
 - 研究一個具體而微的作業系統
 - 專案整合與程式碼移植
-- 學習 GNU Toolchain
+- 學習 GNU Toolchain，驗證 `Week #6</embedded/2015q1w6>`_, `Week #7</embedded/2015q1w7>`_, `Week #8</embedded/2015q1w8>`_ 所學
 - 實做 OS scheduler
 
 Mini ARM OS
@@ -69,7 +69,9 @@ Mini ARM OS
 
 參考作業要求
 -------------------
-* 將 `Lab-40</embedded/Lab40>`_ 的視覺化工具移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
+* 將 `Lab-39</embedded/Lab39>`_ 的 ARM semihosting 機制移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_，這樣就能存取 host 端的資源，如檔案操作
+  - 將排程的行為紀錄 (task switching: in/out, timestamp) 於 ``log`` 檔案中
+
 * 原本 mini-arm-os 使用 round robin 輪流執行每個 task，改為支援以下：
   - priority-based scheduling
   - message queue
@@ -78,6 +80,7 @@ Mini ARM OS
 
 挑戰題
 ----------
+* 將 `Lab-40</embedded/Lab40>`_ 的視覺化工具移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
 * 將 `Lab-39</embedded/Lab39>`_ 的 romfs 移植到 mini-arm-os
   -  linker script 和工具程式需要作一定程度的修改
 
@@ -93,7 +96,7 @@ Mini ARM OS
 參考資料
 -------------
 * `Lab11: Build RTOS for ARM</embedded/Lab11>`_
-  - Lucas Wei 的`程式碼實做</embedded/Sol11>_
+  - Lucas Wei 的`程式碼實做</embedded/Sol11>`_
 
 * `rtenv+</embedded/rtenv>`_
   - 在 rtenv+ 中提供四種檔案類型，分別為 fifo pipe (``S_IFIFO``), message queue (``S_IMSGQ``), register file (``S_IFREG``), block file (``S_IFBLK``)
