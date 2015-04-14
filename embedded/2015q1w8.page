@@ -13,6 +13,7 @@ toc: no
   - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_, `Linux</embedded/arm-linux>`_: Beaglebone Black
   - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
   - `Xvisor</embedded/xvisor>`_: N/A (模擬器)
+  - 注意：同學需要自行添購 `USB-to-Serial Cable / Converter (PL2303)<http://rayshobby.net/cart/usb-pl2303>`_
 
 * 分組報告要求
   - 理解相關背景知識，並且在去年的基礎上 (如果有的話)，進行擴充
