@@ -7,7 +7,8 @@ toc: no
 -------------------
 * 分組報告對應的硬體
   - `FreeRTOS</embedded/freertos>`_, `rtenv+</embdded/rtenv>`_, `uClinux</embedded/uclinux>`_: `STM32F429i Discovery</embedded/STM32F429>`_
-    + 參見 `Lab-35</embedded/Lab35>
+    + `STM32F429i Discovery</embedded/STM32F429>`_ 的開發操作，參見 `Lab-35</embedded/Lab35>`_
+    + `rtenv+</embdded/rtenv>`_ 需要一併使用 stm32-p103 (模擬器)，參見 `Lab-28</embedded/Lab28>`_
 
   - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_, `Linux</embedded/arm-linux>`_: Beaglebone Black
   - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
