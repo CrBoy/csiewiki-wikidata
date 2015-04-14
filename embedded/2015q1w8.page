@@ -14,6 +14,11 @@ toc: no
   - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
   - `Xvisor</embedded/xvisor>`_: N/A (模擬器)
 
+作業觀摩
+------------
+* Lab-39 / 陳建霖: `共筆<https://embedded2015.hackpad.com/Lab-39-krp7fRCjqAM>`_
+  - 把程式碼在實際的 STM32F4 Discovery 硬體上運作起來
+
 教材
 --------
 * `The Internals of "Hello World" Program<http://www.slideshare.net/jserv/helloworld-internals>`_
