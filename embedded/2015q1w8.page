@@ -23,4 +23,6 @@ toc: no
 --------
 * `The Internals of "Hello World" Program<http://www.slideshare.net/jserv/helloworld-internals>`_
 * `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
+  - 在 `STM32F429i Discovery</embedded/STM32F429>`_ 實際運作的`結果和展示<https://embedded2015.hackpad.com/Week-7-and-Lab42-clLfrDUkkjM>`_
+
 * `mini-arm-os<https://github.com/jserv/mini-arm-os>`_，詳細分析和操作提示，請見 `Lab 42</embedded/Lab42>`_
