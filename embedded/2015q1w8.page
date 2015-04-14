@@ -13,3 +13,9 @@ toc: no
   - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_, `Linux</embedded/arm-linux>`_: Beaglebone Black
   - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
   - `Xvisor</embedded/xvisor>`_: N/A (模擬器)
+
+教材
+--------
+* `The Internals of "Hello World" Program<http://www.slideshare.net/jserv/helloworld-internals>`_
+* `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
+* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_，詳細分析和操作提示，請見 `Lab 42</embedded/Lab42>`_
