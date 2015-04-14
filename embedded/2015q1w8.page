@@ -14,6 +14,13 @@ toc: no
   - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
   - `Xvisor</embedded/xvisor>`_: N/A (模擬器)
 
+* 分組報告要求
+  - 理解相關背景知識，並且在去年的基礎上 (如果有的話)，進行擴充
+  - 使用本學期介紹的分析和製圖工具 (gnuplot, grasp)，進行執行效能分析和充分的視覺化，至少涵蓋 interrupt latency, context switch, system call overhead 等等
+  - 期末需要以給定的作業系統核心為主體，提供一個完整的應用作為說明，可以是一個 (多工的) 電動玩具機台、土製音響混音器等等，請見 `2014 年秋季的期末專題</embedded/team2014>`_
+    + 每組給予台幣 6000 元的硬體補助費
+    + `Xvisor</embedded/xvisor>`_ 組別較特別，會額外要求
+
 作業觀摩
 ------------
 * Lab-39 / 陳建霖: `共筆<https://embedded2015.hackpad.com/Lab-39-krp7fRCjqAM>`_
