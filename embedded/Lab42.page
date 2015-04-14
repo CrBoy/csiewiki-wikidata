@@ -6,6 +6,9 @@ toc: no
 預期目標
 ------------
 - 研究一個具體而微的作業系統
+- 專案整合與程式碼移植
+- 學習 GNU Toolchain
+- 實做 OS scheduler
 
 Mini ARM OS
 ------------------
@@ -23,3 +26,75 @@ Mini ARM OS
 
 * 依據 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 指示
 
+實驗和觀察
+----------------
+* 00-HelloWorld
+
+.. image:: /embedded/Lab42/00.png
+
+  - 輸入``arm-none-eabi-objdump -D hello.elf``後，會看到以下：
+
+.. code-block:: prettyprint
+
+    00000000 <isr_vectors>:
+       0:        00000000         andeq        r0, r0, r0
+       4:        000000ad         andeq        r0, r0, sp, lsr #1
+
+  以及
+
+.. code-block:: prettyprint
+
+    000000ad <reset_handler>:
+    ac:    b580          push    {r7, lr}
+    ae:    af00          add    r7, sp, #0
+    b0:    f7ff ffcc     bl    4c <main>
+
+  - 發現 PC 會去抓 0x4 值 ``0x000000ad`` (LSB一定要1)，所以會去執行 ``000000ac`` 也就是 reset_handler，之後才會去執行 ``main()``
+  - ``reset_handler`` 定義在 startup.c 中：
+
+.. code-block:: prettyprint
+
+    __attribute((section(".isr_vector")))
+
+  會把以下部份
+
+.. code-block:: prettyprint
+
+    uint32_t *isr_vectors[] = {
+        0,
+        (uint32_t *) reset_handler,    /* code entry point */
+    };
+
+  放入 ``.isr_vector`` 中，linker 會把 ``0`` 重新定位於 ``0x0``，``reset_handler`` 重新定位在 ``0x4``，如此一來，PC 一開始就會去執行 ``reset_handler()``
+
+參考作業要求
+-------------------
+* 將 `Lab-40</embedded/Lab40>`_ 的視覺化工具移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
+* 原本 mini-arm-os 使用 round robin 輪流執行每個 task，改為支援以下：
+  - priority-based scheduling
+  - message queue
+
+* 可參考 `rtenv+</embedded/rtenv>`_ 的程式碼，以便理解前述所需要的實做
+
+挑戰題
+----------
+* 將 `Lab-39</embedded/Lab39>`_ 的 romfs 移植到 mini-arm-os
+  -  linker script 和工具程式需要作一定程度的修改
+
+繳交作業
+------------
+- 截止日期：
+   * Apr 25, 2015 (含) 之前
+
+- 更新開發過程到共筆網站: `Lab 42 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-7-Lab42#2015q3-Week-7-Lab42>`_，需要標注自己的 ID
+    * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/mini-arm-os
+    * 注意: 要記得 fork `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
+
+參考資料
+-------------
+* `Lab11: Build RTOS for ARM</embedded/Lab11>`_
+  - Lucas Wei 的`程式碼實做</embedded/Sol11>_
+
+* `rtenv+</embedded/rtenv>`_
+  - 在 rtenv+ 中提供四種檔案類型，分別為 fifo pipe (``S_IFIFO``), message queue (``S_IMSGQ``), register file (``S_IFREG``), block file (``S_IFBLK``)
+  - 每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 ``read``, ``write``, ``lseek`` 這三個 system call，都有提供一個檢查函式 (e.g. ``fifo_writable``) 以及一個或多個運作函式 (e.g. ``fifo_write``)
