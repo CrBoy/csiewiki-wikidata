@@ -98,6 +98,6 @@ Mini ARM OS
 * `Lab11: Build RTOS for ARM</embedded/Lab11>`_
   - Lucas Wei 的`程式碼實做</embedded/Sol11>`_
 
-* `rtenv+</embedded/rtenv>`_
+* `rtenv+</embdded/rtenv>`_
   - 在 rtenv+ 中提供四種檔案類型，分別為 fifo pipe (``S_IFIFO``), message queue (``S_IMSGQ``), register file (``S_IFREG``), block file (``S_IFBLK``)
   - 每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 ``read``, ``write``, ``lseek`` 這三個 system call，都有提供一個檢查函式 (e.g. ``fifo_writable``) 以及一個或多個運作函式 (e.g. ``fifo_write``)
