@@ -92,6 +92,7 @@ Mini ARM OS
 - 更新開發過程到共筆網站: `Lab 42 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-7-Lab42#2015q3-Week-7-Lab42>`_，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/mini-arm-os
     * 注意: 要記得 fork `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
+    * 注意: 請直接修改 ``06-Preemptive`` 目錄裡面的檔案，不要建立重複內容的新目錄
 
 參考資料
 -------------
