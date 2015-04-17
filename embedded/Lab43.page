@@ -1,5 +1,5 @@
 ---
-title: Lab43: Buffer overflow
+title: Lab43: Runtime Behavior
 toc: no
 ...
 
@@ -39,7 +39,7 @@ Part 1
 
 參考資料
    * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
-   * `lab34<http://wiki.csie.ncku.edu.tw/embedded/Lab34>`_ 
+   * `Lab34: Buffer overflow</embedded/Lab34>`_
 
 Part 2
 -------------
