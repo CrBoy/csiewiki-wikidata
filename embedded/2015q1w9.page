@@ -7,3 +7,17 @@ toc: no
 -------------------
 * `Hacking the D-Link DIR-890L<http://www.devttys0.com/2015/04/hacking-the-d-link-dir-890l/>`_
 * `What the Ridiculous Fuck, D-Link?!<http://www.devttys0.com/2015/04/what-the-ridiculous-fuck-d-link/>`_
+
+Computer Systems: A Programmer's Perspective
+--------------------------------------------------------------------
+* `CMU 官方網站<http://csapp.cs.cmu.edu/>`_
+* 推薦閱讀: (和本課程高度相關)
+  - `Machine-Level Representation of Programs<http://csapp.cs.cmu.edu/2e/ch3-preview.pdf>`_: 對應 `Week #3</embedded/2015q1w3>`_
+  - `Processor Architecture<http://csapp.cs.cmu.edu/2e/ch4-preview.pdf>`_: 對應 `Week #3</embedded/2015q1w3>`_
+  - `Optimizing Program Performance<http://csapp.cs.cmu.edu/2e/ch5-preview.pdf>`_: 對應 `Lab-38</embedded/Lab38>`_
+  - `The Memory Hierarchy<http://csapp.cs.cmu.edu/2e/ch6-preview.pdf>`_: 對應 `Week #7</embedded/2015q1w7>`_
+  - `Linking<http://csapp.cs.cmu.edu/2e/ch7-preview.pdf>`_: 對應 `Week #8</embedded/2015q1w8>`_
+  - `Exceptional Control Flow<http://csapp.cs.cmu.edu/2e/ch8-preview.pdf>`_: 對應 `Week #4</embedded/2015q1w4>`_, `Week #6</embedded/2015q1w6>`_
+  - `Virtual Memory<http://csapp.cs.cmu.edu/2e/ch9-preview.pdf>`_: 對應 `Week #8</embedded/2015q1w8>`_
+  - `System-Level I/O<http://csapp.cs.cmu.edu/2e/ch10-preview.pdf>`_: 對應 `Lab-39</embedded/Lab39>`_
+  - `Concurrent Programming<http://csapp.cs.cmu.edu/2e/ch12-preview.pdf>`_: 對應 `Week #9</embedded/2015q1w9>`_
