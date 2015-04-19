@@ -37,3 +37,8 @@ POSIX
 * `Comparative analysis of preemption vs preempt-rt<http://www.slideshare.net/linaroorg/lca14-lca14506-comparative-analysis-of-preemption-vs-preemptrt>`_
   - Linaro Connect Hong Kong 2014 中，Linaro Networking Group (LNG) 核心維護者 Gary Robertson 的演講
   - `錄影<https://www.youtube.com/watch?v=QiguBicpB88>`_
+
+作業須知 (Lab-43)
+----------------
+* 作業描述: `Lab 43</embedded/Lab43>`_
+* 截止日期: May 2, 2015 (含) 之前
