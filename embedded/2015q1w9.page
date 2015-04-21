@@ -32,6 +32,8 @@ POSIX
 * `POSIX – 25 Years of Open Standard APIs<http://rtcmagazine.com/articles/view/103514>`_
   - 用圖表說明了 PSE51, PSE52, PSE53, PSE54，以及用於即時處理應用的 IEEE 1003.13-2003 (POSIX.13) Profiles
 
+* `Getting Started With POSIX Threads<http://www.csie.ntu.edu.tw/~r92094/c++/pthread.txt>`_ (繁體中文翻譯)
+
 * `Linux As a Real-Time Operating System<http://www.freescale.com/files/soft_dev_tools/doc/white_paper/CWLNXRTOSWP.pdf>`_
   - 回顧 POSIX 中即時處理機制，特別是 SCHED_FIFO 和 SCHED_RR 這兩個 scheduler policy，以及 High Resolution POSIX Timers (HRT)
   - 即時處理的案例指出列車控制系統
