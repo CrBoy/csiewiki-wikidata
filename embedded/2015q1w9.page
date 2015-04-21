@@ -46,3 +46,4 @@ POSIX
 Kernel Concepts
 ------------------------
 * `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
+* `Making Linux do Hard Real-time<http://www.slideshare.net/jserv/realtime-linux>`_
