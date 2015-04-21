@@ -42,3 +42,7 @@ POSIX
 * `Comparative analysis of preemption vs preempt-rt<http://www.slideshare.net/linaroorg/lca14-lca14506-comparative-analysis-of-preemption-vs-preemptrt>`_
   - Linaro Connect Hong Kong 2014 中，Linaro Networking Group (LNG) 核心維護者 Gary Robertson 的演講
   - `錄影<https://www.youtube.com/watch?v=QiguBicpB88>`_
+
+Kernel Concepts
+------------------------
+* `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
