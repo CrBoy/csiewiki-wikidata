@@ -1,24 +1,16 @@
 ---
 title: uClinux
-categories: embedded, arm, stm32, stm32f429
+categories: embedded, arm, stm32, stm32f429, rtos
 toc: yes
 ...
 
 協作者
 ---------
 * 2015 年春季
-  - 林建宏
-  - 黃呂源
-  - 柳冠宇
-  - 柯翔元
-  - 鄭峰盛
-  - mshang
-  - 楊孟勳
+  - 林建宏, 黃呂源, 柳冠宇, 柯翔元, 鄭峰盛, mshang, 楊孟勳
 
 * 2014 年春季
-  - 竹內宏輝
-  - 陳勁龍
-  - 賀祐農
+  - 竹內宏輝, 陳勁龍, 賀祐農
 
 `Hackpad<https://hackpad.com/UClinux-EEaoU4qOP12>`_
 
