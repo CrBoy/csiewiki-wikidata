@@ -47,5 +47,6 @@ POSIX
 
 Kernel Concepts
 ------------------------
+* `Thread & Synchronization</embedded/2015q1w9/thread-sync.pdf>`_
 * `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
 * `Making Linux do Hard Real-time<http://www.slideshare.net/jserv/realtime-linux>`_
