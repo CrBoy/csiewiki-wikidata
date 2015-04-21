@@ -23,6 +23,32 @@ Part 1
 
 ..
 
+使用 GDB 分析
+---------------------
+* 假設 `檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_ 已經解開在 ``/tmp/bomb`` 目錄，先開啟兩個終端機
+* 在其中一個執行以下命令：
+
+.. code-block:: prettyprint
+
+     qemu-arm -g 1234 -L /usr/arm-linux-gnueabihf ./bomb
+
+* 在另一個終端機執行以下命令：
+
+.. code-block:: prettyprint
+
+    arm-none-eabi-gdb ./bomb
+
+* 在 gdb 的畫面中依序輸入以下命令：
+  - ``target remote :1234``
+  - ``b phase_0``
+  - ``b phase_1``
+  - ``b phase_2``
+  - ``b phase_3``
+  - ``info breakpoints``
+  - ``c``
+ 
+* 切換到執行 QEMU 的終端機，可見到要求輸入字串，輸入 ``help`` 並按下 Enter，這時可在 GDB 的視窗看到 ``Breakpoint 1`` 的訊息
+
 程式說明：
    * bomb 這支程式會從標準輸入讀取字串，請利用上述的工具找出正確的字串輸入
    * 總共有 5 個階段，第 0 個階段是範例，密碼是``help``
@@ -32,14 +58,14 @@ Part 1
       - 階段 3 - switch
       - 階段 4 - 遞迴
 
-進階題：
+挑戰題：
     1. 下載`檔案 (bomb2.tar.gz)</embedded/Lab43/bomb2.tar.gz>`_，其餘步驟同上
     2. 提示：回顧並熟悉上方及之前上課的內容
-
 
 參考資料
    * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
    * `Lab34: Buffer overflow</embedded/Lab34>`_
+   * `Debugging with GDB (入門篇)<http://www.study-area.org/goldencat/debug.htm>`_
 
 Part 2
 -------------
