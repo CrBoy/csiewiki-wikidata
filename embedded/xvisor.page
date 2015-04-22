@@ -4,21 +4,21 @@ categories: embedded, arm, armv8, xvisor, hypervisor, virtualization
 ...
 
 協作者
----------
+=====================================
 * 2015 年春季
    - 沈宗穎, 李育丞, 蘇誌航, 張仁傑, 鄧維岱
 
 Hackpad
------------
+=====================================
 * `xvisor<https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm>`_
 * `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
 
 設計文件整理
------------
+=====================================
 原文： https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
 
 Modeling Virtual Machine
-.........................................................
+--------------------------------------------
 
 * 何謂VM(virtual machine),通常分為兩種
   - system virtual machine: support the execution of a complete OS
@@ -38,11 +38,32 @@ Modeling Virtual Machine
 
 .. image:: /embedded/xvisor_model.png
 
+ARM-v8
+=====================================
+AArch64 指令集 (instruction set) 介紹
+--------------------------------------------
+ARMv8-A_Architecture_Reference_Manual P.111
 
+系統層級架構 (System Level Architecture)
+--------------------------------------------
+ARMv8-A_Architecture_Reference_Manual P.1405
+
+例外層級 (Exception levels)
+.........................................................
+ARMv8-A_Architecture_Reference_Manual P.1408
+
+虛擬記憶體系統架構 (Virtual Memory System Architecture)
+.........................................................
+ARMv8-A_Architecture_Reference_Manual P.1707
+
+通用計時器 (The Generic Timer)
+.........................................................
+ARMv8-A_Architecture_Reference_Manual P.1855
 
 reference
------------
+=====================================
 * http://www.slideshare.net/jserv/xvisor
 * https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
 * https://samlin.hackpad.com/Xvisor--chtGSqPYWG8
 * http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
+* `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
