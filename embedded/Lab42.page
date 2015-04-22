@@ -49,7 +49,7 @@ Mini ARM OS
     ae:    af00          add    r7, sp, #0
     b0:    f7ff ffcc     bl    4c <main>
 
-  - 發現 PC 會去抓 0x4 值 ``0x000000ad`` (LSB一定要1)，所以會去執行 ``000000ac`` 也就是 reset_handler，之後才會去執行 ``main()``
+  - 發現 PC 會去抓 0x4 值 ``0x000000ad`` (LSB一定要1)，所以會去執行 ``000000ad`` 也就是 reset_handler，之後才會去執行 ``main()``
   - ``reset_handler`` 定義在 startup.c 中：
 
 .. code-block:: prettyprint
