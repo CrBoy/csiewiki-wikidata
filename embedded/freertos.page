@@ -1,6 +1,6 @@
 ---
 title: FreeRTOS
-categories: embedded, arm, stm32, stm32f429
+categories: embedded, arm, rtos, stm32, stm32f429
 toc: no
 ...
 
@@ -8,10 +8,7 @@ toc: no
 ---------
 * 2015 年春季
 * 2014 年春季
-  - `梁穎睿<https://github.com/TheKK>`_
-  - `李奇霖<https://github.com/Shinshipower>`_
-  - `方威迪<https://github.com/waynew30777>`_
-  - `陳盈伸<https://github.com/shin21>`_
+  - `梁穎睿<https://github.com/TheKK>`_, `李奇霖<https://github.com/Shinshipower>`_, `方威迪<https://github.com/waynew30777>`_, `陳盈伸<https://github.com/shin21>`_
 
 共筆
 ----
