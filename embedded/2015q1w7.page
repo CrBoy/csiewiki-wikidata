@@ -6,7 +6,7 @@ toc: no
 重大事項宣達
 -------------------
 * 分組報告: (課堂採用 round-robin 排程，time slice 為 2 小時)
-  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embdded/rtenv>`_
+  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embedded/rtenv>`_
   - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_
   - `Linux</embedded/arm-linux>`_, `Xenomai</embedded/xenomai>`_, `uClinux</embedded/uclinux>`_
   - `Xvisor</embedded/xvisor>`_
