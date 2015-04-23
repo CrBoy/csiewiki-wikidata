@@ -9,7 +9,7 @@ toc: no
 ------------
 夏季短期嵌入式系統課程全程免費 (歡迎樂捐)，預計為期五週 (7 月 31 日起每週四 13:30-17:00)，涵蓋以下項目：
  * Linux 開發環境和 GNU Toolchain
- * 簡易多工作業系統使用，預計用 `FreeRTOS<http://freertos.org/>`_ 和 `rtenv<http://wiki.csie.ncku.edu.tw/embdded/rtenv>`_，後者是全部由成大資訊系大學部學生自主開發的作業系統核心
+ * 簡易多工作業系統使用，預計用 `FreeRTOS<http://freertos.org/>`_ 和 `rtenv</embedded/rtenv>`_，後者是全部由成大資訊系大學部學生自主開發的作業系統核心
  * 作業系統概念和設計
  * 硬體週邊控制，如 `GPIO</embedded/GPIO>`_, `ADC</embedded/ADC>`_, `USB</embedded/USB>`_
  * ARM 微處理器架構
