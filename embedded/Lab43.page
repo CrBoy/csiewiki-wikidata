@@ -49,7 +49,7 @@ Part 1
  
 * 切換到執行 QEMU 的終端機，可見到要求輸入字串，輸入 ``help`` 並按下 Enter，這時可在 GDB 的視窗看到 ``Breakpoint 1`` 的訊息
 
-程式說明：
+程式說明 (上)：
    * bomb 這支程式會從標準輸入讀取字串，請利用上述的工具找出正確的字串輸入
    * 總共有 5 個階段，第 0 個階段是範例，密碼是``help``
    * 溫馨小提示，不同階段可以從不同的方向去想
@@ -58,7 +58,7 @@ Part 1
       - 階段 3 - switch
       - 階段 4 - 遞迴
 
-挑戰題：
+程式說明 (下)：
     1. 下載`檔案 (bomb2.tar.gz)</embedded/Lab43/bomb2.tar.gz>`_，其餘步驟同上
     2. 提示：回顧並熟悉上方及之前上課的內容
 
@@ -66,6 +66,7 @@ Part 1
    * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
    * `Lab34: Buffer overflow</embedded/Lab34>`_
    * `Debugging with GDB (入門篇)<http://www.study-area.org/goldencat/debug.htm>`_
+   * `一個練習組合語言的小遊戲 -- Defusing bomb (part 1)<http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-1.html>`_
 
 Part 2
 -------------
@@ -106,3 +107,4 @@ Part 2
 參考資料：
    * `hwswinterface lab3<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
    * `IA32 Linux Buffer Overflow<https://d396qusza40orc.cloudfront.net/hardware/lecture_slides/tutorials/buffoverflow.pdf>`_
+  * `一個練習組合語言的小遊戲 -- Defusing bomb (part 2)<http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-2.html>`_
