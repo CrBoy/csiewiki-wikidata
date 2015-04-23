@@ -2,6 +2,28 @@
 title: ARMv8
 categories: ARM, ARMv8, ARM64, embedded
 ...
+ARMv8架構介紹
+=====================================
+.. image:: http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg
+
+Execution state
+----------------------------
+
+- AArch64 - 64-bit Execution state.
+
+ - 提供 31組 64-bit 的通用暫存器
+ - 提供 64-bit Program Counter(PC), Stack-Poiner(SP)與Exception-Link-Register (ELR)
+ - 定義最多四種(EL0 - EL3)特權模式
+ - 支援 64-bit 虛擬地址
+ - 定義一組PSTATE來保存PE state
+
+- AArch32 - 32-bit Execution state
+
+ - 提供 16組 32-bit 的通用暫存器
+ - 提供 1組 ELR,作為從Hyp-Mode的Exception返回之用
+ - 提供 A32(相容ARMv7 ARM)與 T32(相容ARMv7 Thumb)兩種指令集
+ - 使用32-bit 虛擬地址
+ - 使用單一的CPSR來保存PE state
 
 AArch64 指令集 (instruction set) 介紹
 =====================================
@@ -12,17 +34,18 @@ ARMv8-A_Architecture_Reference_Manual P.111
 ARMv8-A_Architecture_Reference_Manual P.1405
 
 例外層級 (Exception levels)
-=====================================
+----------------------------
 ARMv8-A_Architecture_Reference_Manual P.1408
 
 虛擬記憶體系統架構 (Virtual Memory System Architecture)
-==========================================================================
+------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1707
 
 通用計時器 (The Generic Timer)
-=====================================
+------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1855
 
 reference
 =====================================
 * `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
+* `loda armv8-與-linux的新手筆記<http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/>`_
