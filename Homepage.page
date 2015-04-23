@@ -14,7 +14,7 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 - `課程進度表<embedded/schedule>`_
 - `課堂測驗與解答<embedded/quiz>`_
 - 分組報告:
-  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embdded/rtenv>`_
+  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embedded/rtenv>`_
   - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_
   - `Linux</embedded/arm-linux>`_, `Xenomai</embedded/xenomai>`_, `uClinux</embedded/uclinux>`_
   - `Xvisor</embedded/xvisor>`_
@@ -33,7 +33,7 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 ================================
 - `課程進度表<embedded/schedule>`_
 - `課程注意事項<embedded/note2014>`_
-- `分組報告</embedded/2014-w6>`_ (針對 STM32F429 和 Raspberry Pi): `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embdded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
+- `分組報告</embedded/2014-w6>`_ (針對 STM32F429 和 Raspberry Pi): `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embedded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
 - `期末專題列表</embedded/os-team2014>`_
 
 2014 年冬季系統軟體短期課程
