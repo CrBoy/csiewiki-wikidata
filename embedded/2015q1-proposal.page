@@ -35,7 +35,7 @@ Linux
 
 rtenv+
 ---------
-* 共筆: `rtenv+</embdded/rtenv>`_
+* 共筆: `rtenv+</embedded/rtenv>`_
 * 特性: 會充分理解 ARM Cortex-M 運作機制，成為強者必經之路
 * 硬體:  stm32f429 discovery
 * 難度: 高
