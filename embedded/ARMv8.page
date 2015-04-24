@@ -63,6 +63,54 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 
 .. image:: /embedded/armv8 arch.png
 
+安全性狀態(Security state)
+---------------------------------------------------------------------------
+
+ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定址空間(Secure physical address space)。
+
+- 安全狀態(Secure state): PE可以存取安全及不安全的實體定址空間
+
+- 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間
+
+
+虛擬化Virtualization
+------------------------------------------------------------------------------------
+
+這邊的虛擬化只有支援有實現EL2的架構。以下為其基礎模型:
+
+- 一個跑在EL2的Hypervisor負責切換跑在EL1、EL0的virtual machines
+- 一些跑在virtual machines上(在EL1中)的Guest OS
+- 每個Guest OS上跑在EL0的應用程式
+
+每個VM會被Hypervisor指定一個VMID。
+
+EL2只會實現在 Non-secure state，並負責:
+
+- 提供虛擬值給少數特定的暫存器(1)。Guset OS 或其上的應用程式讀取這些暫存器時會得到虛擬的值。
+- Trapping: 當在做記憶體管理及存取其他大多數的暫存器((1)之外的)時會產生exception並由EL2處理。
+- Routing interrupt: 將中斷分配給
+  - 現在的Guest OS
+  - 現在沒在執行的Guest OS
+  - hypervisor
+
+   (以上會在個別的章節特別探討)
+
+實現EL2包含以下實作:
+
+- Hypervisor Call (HVC) exception
+- Traps to EL2
+- 虛擬中斷:
+    - 包括:
+      - Virtual SError
+      - Virtual IRQ
+      - Virtual FIQ
+
+    - 所有虛擬中斷會由EL1處理
+    - 每個虛擬中斷可由EL2個別啟用
+    - 每個虛擬中斷都會有其對應的實體中斷
+    - 當一個虛擬中斷被啟用時，其對應的實體中斷會由EL2處理(除非EL3指定他要處理)
+
+
 虛擬記憶體系統架構 (Virtual Memory System Architecture)
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1707
