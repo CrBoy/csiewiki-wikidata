@@ -63,7 +63,7 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 
 .. image:: /embedded/armv8 arch.png
 
-安全性狀態(Security state)
+安全性狀態 (Security state)
 ---------------------------------------------------------------------------
 
 ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定址空間(Secure physical address space)。
@@ -73,7 +73,7 @@ ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定�
 - 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間
 
 
-虛擬化Virtualization
+虛擬化 (Virtualization)
 ------------------------------------------------------------------------------------
 
 這邊的虛擬化只有支援有實現EL2的架構。以下為其基礎模型:
@@ -109,6 +109,49 @@ EL2只會實現在 Non-secure state，並負責:
     - 每個虛擬中斷可由EL2個別啟用
     - 每個虛擬中斷都會有其對應的實體中斷
     - 當一個虛擬中斷被啟用時，其對應的實體中斷會由EL2處理(除非EL3指定他要處理)
+
+指令與例外處理暫存器 (Registers for instruction processing and exception handling)
+------------------------------------------------------------------------------------
+
+31 個通用暫存器R0-R30。可以作為64-bit暫存器X0-X30或是 31個 32-bit暫存器W0-W30來被存取。
+
+SP暫存器 (stack pointer registers)
+......................................
+
+- 每個例外層級都有專用的SP: SP_EL0 ~ SP_EL3 (SP_EL2、SP_EL3只有在有實現該層的架構時才會存在)
+- 例外(exception)發生時，預設會使用例外目標層級的SP_ELx (例如例外目標為EL1就會選用SP_EL1)
+- 也可透過更新PSTATE.SP.選用SP_EL0
+- 可以透過t(SP_EL0)、h(SP_ELx)的後綴表明SP的例外層級
+
+.. image:: /embedded/sp_th.png
+
+SIMD 與浮點暫存器
+......................................
+- 共用32個128位暫存器V0-V31
+- 可作為以下來存取
+    - 32 doubleword (64-bit) registers, D0-D31.
+    - 32 word (32-bit) registers, S0-S31.
+    - 32 halfword (16-bit) registers, H0-H31.
+    - 32 byte (8-bit) registers, B0-B31.
+
+程式狀態儲存暫存器SPSRs (Saved Program Status Registers)
+............................................................................
+- 在例外發生時用來儲存PE的狀態
+- 在AArch64中，每個例外層級都有一個SPSR: SPSR_EL1 ~ SPSR_EL3
+- 在例外發生時，會把PE的狀態存在目標層級的SPSR中
+- 當從例外返回時，PE的狀態會從SPSR中載入
+
+.. image:: /embedded/SPSR.png
+(請對照 P.1418)
+
+例外連結暫存器ELRs (Exception Link Registers)
+.............................................
+
+- 保存例外返回的位置
+- 例如: 當例外目標為EL1時，返回的位置會存在ELR_EL1中
+- 從例外返回時，會載入ELR的位只到PC中
+- 當例外是從 AArch32 到AArch64 時 ELR bits[63:32]被設為0。
+
 
 
 虛擬記憶體系統架構 (Virtual Memory System Architecture)
