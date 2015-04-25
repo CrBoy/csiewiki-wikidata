@@ -22,7 +22,7 @@ toc: no
 目錄
 ---
 * `FreeRTOS 架構<#FreeRTOS 架構>`_
-* `與硬體相關的檔案<#與硬體相關的檔案>`_
+* `原始碼<#原始碼>`_
 * `命名規則<#命名規則>`_
 * `Run FreeRTOS on STM32F4-Discovery<#Run FreeRTOS on STM32F4-Discovery>`_
 * `任務<#任務>`_
@@ -37,6 +37,7 @@ toc: no
 
 FreeRTOS 架構
 -----------
+官方網站：`http://www.freertos.org/<http://www.freertos.org/>`_
 
 FreeRTOS 是一個相對其他作業系統而言較小的作業系統。最小化的 FreeRTOS 核心僅包括 3 個 .c 文件(tasks.c、queue.c、list.c)和少數標頭檔，總共不到 9000 行程式碼，還包括了註解和空行。一個典型的編譯後 binary（二進位碼）小於 10 KB。
 
@@ -51,16 +52,23 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 .. [#] 用 `cloc<http://cloc.sourceforge.net/>`_ 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
 
 
-與硬體相關的檔案
+原始碼
 ------------------
-* portmacro.h
-  - 定義了與硬體相關的變數，如資料型態定義，以及與硬體相關的函式呼叫名稱定義(以 portXXXXX 命名)等，統一各平臺的函式呼叫
+* 官方下載：`https://sourceforge.net/projects/freertos<https://sourceforge.net/projects/freertos>`_
 
-* port.c
-  - 定義了包含與硬體相關的程式碼實作
+* 核心程式碼
+  - tasks.c：主要掌管 task 的檔案
+  - queue.c：管理 task 間 communication (message queue 的概念)
+  - list.c：提供系統與應用實作會用到的 list 資料結構
 
-* FreeRTOSConfig.h
-  - 包含 clock speed, heap size, mutexes 等等都在此定義
+        - 兩個選擇性案：timer.c、croutine.c (co-routine)
+
+
+
+* 與硬體相關的檔案
+  - portmacro.h：定義了與硬體相關的變數，如資料型態定義，以及與硬體相關的函式呼叫名稱定義(以 portXXXXX 命名)等，統一各平臺的函式呼叫
+  - port.c：定義了包含與硬體相關的程式碼實作
+  - FreeRTOSConfig.h：包含 clock speed, heap size, mutexes 等等都在此定義
 
 
 命名規則
