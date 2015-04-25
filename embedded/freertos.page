@@ -72,14 +72,14 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
   - float 類型：以 f 為字首
   - double 類型：以 d 為字首
   - Enum 變數：以 e 為字首
-  - 其他（如 struct）：以 x 為字首
+  - portBASE_TYPE 或其他（如 struct）：以 x 為字首
   - pointer 有一個額外的字首 p , 例如 short 類型的 pointer 字首為 ps
   - unsigned 類型的變數有一個額外的字首 u , 例如 unsigned short 類型的變數字首為 us 
-    
-* Functions
-  - 文件内：以 prv 為字首
-  - API：以其 return value 的類型為字首，按照對變數的定義
-  - 名字：以其所在的檔案名稱為開頭。如 vTaskDelete 即在 Task.c 文件中的名稱
+
+* 函式：以回傳值型態與所在檔案名稱為開頭(prefix)
+  - vTaskPriority() 是 task.c 中回傳值型態為 void 的函式
+  - xQueueReceive() 是 queue.c 中回傳值型態為 portBASE_TYPE 的函式
+  - 只能在該檔案中使用的 (scope is limited in file) 函式，以 prv 為開頭 (private)
 
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
