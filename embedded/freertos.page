@@ -25,13 +25,13 @@ toc: no
 * `與硬體相關的檔案<#與硬體相關的檔案>`_
 * `命名規則<#命名規則>`_
 * `Run FreeRTOS on STM32F4-Discovery<#Run FreeRTOS on STM32F4-Discovery>`_
-* `Task<#Task>`_
+* `任務<#任務>`_
 * `Ready list 的資料形態<#Ready list 的資料形態>`_
-* `Communication<#Communication>`_
-* `Scheduling<#Scheduling>`_
-* `Interrupt handler<#Interrupt handler>`_
+* `通訊<#通訊>`_
+* `排程<#排程>`_
+* `中斷處理<#中斷處理>`_
 * `硬體驅動原理<#硬體驅動原理>`_
-* `效能表現(Profiling)<#效能表現(Profiling)>`_
+* `效能評估<#效能評估>`_
 * `測試環境架設<#測試環境架設>`_
 * `問題討論<#問題討論>`_
 
@@ -85,9 +85,9 @@ Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
 
 
-Task
+任務
 ----------
-Task 是在 FreeRTOS 中執行的基本單位，每個 task 都是由一個 C 函數所組成，意思是你需要先定義一個 C 的函數，然後再用 xTaskCreate() 這個 API 來建立一個 task，這個 C 函數有幾個特點，它的返回值必須是 void，其中通常會有一個無限迴圈，所有關於這個 task 的工作都會在迴圈中進行，而且這個函數不會有 return，FreeRTOS 不允許 task 自行結束(使用 return 或執行到函數的最後一行)
+任務 (task) 是在 FreeRTOS 中執行的基本單位，每個 task 都是由一個 C 函數所組成，意思是你需要先定義一個 C 的函數，然後再用 xTaskCreate() 這個 API 來建立一個 task，這個 C 函數有幾個特點，它的返回值必須是 void，其中通常會有一個無限迴圈，所有關於這個 task 的工作都會在迴圈中進行，而且這個函數不會有 return，FreeRTOS 不允許 task 自行結束(使用 return 或執行到函數的最後一行)
 
 Task 被建立出來後，它會配置有自己的堆疊空間和 stack variable(就是 function 中定義的變數)
 
@@ -376,7 +376,7 @@ Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)
 參照：`http://www.freertos.org/RTOS-Cortex-M3-M4.html<http://www.freertos.org/RTOS-Cortex-M3-M4.html>`_
 
 
-Communication
+通訊
 ----------------------
 
 * Queue
@@ -588,7 +588,7 @@ mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/
 
 
     
-Scheduling
+排程
 ----------------
 
 * 基本概念
@@ -778,7 +778,7 @@ wait( block ): 等待取得某資源
 
 FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較低的task則無法執行，便會發生Starvation(低優先權很長一段時間都無法獲得CPU執行)
 
-Interrupt handler
+中斷處理
 ---------------------------
  
 On way to achieve this goal consists in the creation of tasks waiting for an interrupt to occur with a semaphore, and let
@@ -1011,7 +1011,7 @@ GPIO_Init()
       }
     }
 
-效能表現
+效能評估
 ----------------
 * Context switch
 
