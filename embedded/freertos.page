@@ -123,15 +123,15 @@ Task 的狀態
 .. image:: /tskstate.gif
 
 
-* Ready : 準備好要執行的狀態
-* Running : 正在由 CPU 執行的狀態
-* Block : 等待中的狀態(通常是在等待某個事件)
-* Suspended :等待中的狀態(透過 API 來要求退出排程)
+* Ready：準備好要執行的狀態
+* Running：正在由 CPU 執行的狀態
+* Block：等待中的狀態(通常是在等待某個事件)
+* Suspended：等待中的狀態(透過 API 來要求退出排程)
 
 每一種狀態 FreeRTOS 都會給予一個 list 儲存（除了 running)
 
 
-Task 建立函數
+建立 task 的函數
 
 .. code-block:: c
     
@@ -156,9 +156,9 @@ FreeRTOS 使用 ready list 去管理準備好要執行的 tasks，而 ready list
 
 .. image:: /freertos-figures-full-ready-list-2.png
 
-* Context Switch 時選出下一個欲執行的 task
+OS 會在進行 context switch 時選出下一個欲執行的 task
 
-下面是在 ready list 中依照優先權選取執行目標的程式部分，FreeRTOS 的優先度排序最小爲 0，數字越大則優先權越高
+下面是在 ready list 中依照優先權選取執行目標的程式部分，FreeRTOS 的優先權最小爲 0，數字越大則優先權越高
 
 `task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ (taskSELECT_HIGHEST_PRIORITY_TASK)
 
@@ -188,59 +188,28 @@ FreeRTOS 使用 ready list 去管理準備好要執行的 tasks，而 ready list
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
     }
 
-* 建立全新 task
-
-Task Control Block (TCB)的資料結構：
-
-`tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_
+* Task Control Block (TCB)的資料結構(`tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_)
 
  .. code-block:: c
 
     /* In file: tasks.c */
     typedef struct tskTaskControlBlock
     {
-
-        volatile portSTACK_TYPE *pxTopOfStack;                  /* Points to the location of
-                                                                                                   the last item placed on 
-                                                                                                   the tasks stack.  THIS 
-                                                                                                   MUST BE THE FIRST MEMBER 
-                                                                                                   OF THE STRUCT. */
-
-        xListItem    xGenericListItem;                          /* List item used to place 
-                                                                                       the TCB in ready and 
-                                                                                       blocked queues. */
-
-        xListItem    xEventListItem;                            /* List item used to place 
-                                                                                     the TCB in event lists.*/
-
-        unsigned portBASE_TYPE uxPriority;                      /* The priority of the task
-                                                                                               where 0 is the lowest 
-                                                                                               priority. */
-
-        portSTACK_TYPE *pxStack;                                /* Points to the start of
-                                                                                          the stack. */
-
-        signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* Descriptive name given 
-                                                                                                                      to the task when created.
-                                                                                                                      Facilitates debugging 
-                                                                                                                      only. */
-
+        volatile portSTACK_TYPE *pxTopOfStack;                  /* 指向 task 記憶體堆疊最後一個項目的位址，這必須是 struct 中的第一個項目 (有關 offset) */
+        xListItem    xGenericListItem;                          /* 用來記錄 task 的 TCB 在 FreeRTOS ready 和 blocked queue 的位置 */
+        xListItem    xEventListItem;                            /* 用來記錄 task 的 TCB 在 FreeRTOS event queue 的位置 */
+        unsigned portBASE_TYPE uxPriority;                      /* task 的優先權 */
+        portSTACK_TYPE *pxStack;                                /* 指向 task 記憶體堆疊的起始位址 */
+        signed char    pcTaskName[ configMAX_TASK_NAME_LEN ];   /* task 被建立時被賦予的有意義名稱(為了 debug 用)*/
+    	
         #if ( portSTACK_GROWTH > 0 )
-        portSTACK_TYPE *pxEndOfStack;                         /* Used for stack overflow 
-                                                                                             checking on architectures
-                                                                                             where the stack grows up
-                                                                                             from low memory. */
+        portSTACK_TYPE *pxEndOfStack;                           /* stack overflow 時作檢查用的 */
         #endif
-
+    	
         #if ( configUSE_MUTEXES == 1 )
-        unsigned portBASE_TYPE uxBasePriority;                /* The priority last 
-                                                                                                 assigned to the task - 
-                                                                                                 used by the priority 
-                                                                                                 inheritance mechanism. */
-      #endif
-
+        unsigned portBASE_TYPE uxBasePriority;                  /* 此 task 最新的優先權 */
+        #endif
     } tskTCB;
-
 
   pxTopOfStack , pxEndOfStack：記錄 stack 的大小
 
@@ -390,7 +359,7 @@ Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)
 
   .. image:: /qu.png
 
-使用Queue來傳送data（variable或是pointer，但是用deep copy一份到queue裡，而不是用pointer指向variable）
+使用 Queue 來傳送 data（variable 或是 pointer，但是用 deep copy 一份到 queue 裡，而不是用 pointer 指向 variable）
 Queue的結構如下
 
 
