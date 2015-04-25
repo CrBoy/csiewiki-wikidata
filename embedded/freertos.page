@@ -55,20 +55,19 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 原始碼
 ------------------
 * 官方下載：`https://sourceforge.net/projects/freertos<https://sourceforge.net/projects/freertos>`_
+* 最新版本：v8.2.1
 
-* 核心程式碼
+* 核心程式碼：(Source)
   - tasks.c：主要掌管 task 的檔案
   - queue.c：管理 task 間 communication (message queue 的概念)
   - list.c：提供系統與應用實作會用到的 list 資料結構
 
-        - 兩個選擇性案：timer.c、croutine.c (co-routine)
+        - 選擇性檔案：timer.c、croutine.c (co-routine)、event_groups.c
 
-
-
-* 與硬體相關的檔案
+* 與硬體相關的檔案：以 ARM Cortext-M3 為例，可在 Source/portable/GCC/ARM_CM3 中找到
   - portmacro.h：定義了與硬體相關的變數，如資料型態定義，以及與硬體相關的函式呼叫名稱定義(以 portXXXXX 命名)等，統一各平臺的函式呼叫
   - port.c：定義了包含與硬體相關的程式碼實作
-  - FreeRTOSConfig.h：包含 clock speed, heap size, mutexes 等等都在此定義
+  - FreeRTOSConfig.h：包含 clock speed, heap size, mutexes 等等都在此定義 (v8.2.1 以前可於此目錄中找到，v8.2.1 的該檔案移至 Source/include 且更名為 FreeRTOS.h) 
 
 
 命名規則
