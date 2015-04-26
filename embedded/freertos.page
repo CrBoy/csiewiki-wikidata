@@ -160,16 +160,25 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 下面是在 ready list 中依照優先權選取執行目標的程式部分，FreeRTOS 的優先權最小爲 0，數字越大則優先權越高
 
-`task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ (taskSELECT_HIGHEST_PRIORITY_TASK)
+`task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ 
 
 .. code-block:: c
 
-    while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )
+    #define taskSELECT_HIGHEST_PRIORITY_TASK()														
     {
-        configASSERT( uxTopReadyPriority );
-        --uxTopReadyPriority;
-    }
-    listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );
+        /* 選出含有 ready task 的最高優先權 queue */								
+        while( listLIST_IS_EMPTY( &( pxReadyTasksLists[ uxTopReadyPriority ] ) ) )						
+        {																								
+            configASSERT( uxTopReadyPriority );	     //如果找不到則 assert exception														
+            --uxTopReadyPriority;																		
+        }																								
+    																									
+        /* listGET_OWNER_OF_NEXT_ENTRY indexes through the list, so the tasks of						
+           the same priority get an equal share of the processor time. */									
+           listGET_OWNER_OF_NEXT_ENTRY( pxCurrentTCB, &( pxReadyTasksLists[ uxTopReadyPriority ] ) );		
+    } 
+
+從前面的圖我們可以知道一個 ready task list 中的每個索引各自指向了一串 task list，所以 listGET_OWNER_OF_NEXT_ENTRY 就是在某個 ready task list 索引中去取得其中 task list 裡某個 task 的 TCB
 
 `include/list.h<https://github.com/TheKK/myFreeRTOS/blob/master/include/list.h#L268>`_
 
@@ -190,7 +199,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 * Task Control Block (TCB)的資料結構(`tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_)
 
- .. code-block:: c
+.. code-block:: c
 
     /* In file: tasks.c */
     typedef struct tskTaskControlBlock
@@ -211,11 +220,9 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
         #endif
     } tskTCB;
 
-  pxTopOfStack , pxEndOfStack：記錄 stack 的大小
-
-  uxPriority , uxBasePriority：前者記錄目前的優先權 ,後者記錄原本的優先權（可能發生在 Mutex)
-
-  xGenericListItem , xEventListItem：當一個任務被放入 FreeRTOS 的一個列表中，FreeRTOS 在 TCB 中插入指向這個任務的 pointer 的地方
+ - pxTopOfStack , pxEndOfStack：記錄 stack 的大小
+ - uxPriority , uxBasePriority：前者記錄目前的優先權 ,後者記錄原本的優先權（可能發生在 Mutex)
+ - xGenericListItem , xEventListItem：當一個任務被放入 FreeRTOS 的一個列表中，FreeRTOS 在 TCB 中插入指向這個任務的 pointer 的地方
 
 xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
