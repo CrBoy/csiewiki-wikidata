@@ -66,6 +66,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
 
 .. code-block:: c
 
+   cd <working dir>
    mkdir linux-rpi-3.8.y/build
 
 * Configure kernel
@@ -77,11 +78,11 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
    make mrproper
    make ARCH=arm O=build oldconfig
 
-* Compile Linux Kernel 
+* Compile Linux Kernel (此步驟耗時長，建議用make -j平行加速)
 
 .. code-block:: c
 
-   make ARCH=arm O=build CROSS_COMPILE=/home/$USER/workspace/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
+   make ARCH=arm O=build CROSS_COMPILE=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
    
 * Install modules
 
