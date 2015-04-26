@@ -226,6 +226,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
+* 硬體層次的設定
 
 爲了便於排程，創造新 task 時，stack 中除了該有的資料外，還要加上『空的』 register 資料(第一次執行時理論上 register 不會有資料)，讓新 task 就像是被 context switch 時選的 task 一樣，依照前述變數的命名規則，下面是實作方式
  
@@ -264,8 +265,7 @@ xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會
         return pxTopOfStack;
     }
 
-在 TCB 完成初始化後，要把該 TCB 接上其他相關的 list，這個過程中必須暫時停止 interrupt 功能，以免在 list 還沒設定好前就被其他的 task 中斷設定
-
+在 TCB 完成初始化後，要把該 TCB 接上其他相關的 list，這個過程中必須暫時停止 interrupt 功能，以免在 list 還沒設定好前就被中斷設定(例如 systick)
 
 
 而 ARM Cortex-M4 處理器在 task 遇到中斷時，會將 register 的內容 push 進該 task 的 stack 的頂端，待下次執行時再 pop 出去，以下是在 port.c 裡的實作
