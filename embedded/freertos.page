@@ -125,13 +125,12 @@ Task 的狀態
 
 * Ready：準備好要執行的狀態
 * Running：正在由 CPU 執行的狀態
-* Block：等待中的狀態(通常是在等待某個事件)
+* Blocked：等待中的狀態(通常是在等待某個事件)
 * Suspended：等待中的狀態(透過 API 來要求退出排程)
 
 每一種狀態 FreeRTOS 都會給予一個 list 儲存（除了 running)
 
-
-建立 task 的函數
+* 建立 task 的函數
 
 .. code-block:: c
     
@@ -331,8 +330,6 @@ xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會
     }
     
 
-
-
 Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)內容設爲最高，此時將沒有任何 interrupt 可以被呼叫，該呼叫的函數名稱為 ulPortSetInterruptMask()
 
 `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L419>`_
@@ -358,13 +355,50 @@ Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)
 
 參照：`http://www.freertos.org/RTOS-Cortex-M3-M4.html<http://www.freertos.org/RTOS-Cortex-M3-M4.html>`_
 
+當使用 vTaskCreate() 將 task 被建立出來以後，需要使用 vTaskStartScheduler() 來啟動排程器決定讓哪個 task 開始執行，當 vTaskStartScheduler() 被呼叫時，會先建立一個 idle task，這個 task 是為了確保 CPU 在任一時間至少有一個 task 可以執行 (取代直接切換回 kernel task) 而在 vTaskStartScheduler() 被呼叫時自動建立的 user task，idle task 的 priority 為 0 (lowest)，目的是為了確保當有其他 user task 進入 ready list 時可以馬上被執行
+
+vTaskStartScheduler (`tasks.c<https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/tasks.c#L1543>`_)
+
+.. code-block:: c
+
+    /* Add the idle task at the lowest priority. */
+    #if ( INCLUDE_xTaskGetIdleTaskHandle == 1 )
+    {
+        /* Create the idle task, storing its handle in xIdleTaskHandle so it can
+        be returned by the xTaskGetIdleTaskHandle() function. */
+        xReturn = xTaskCreate( prvIdleTask, "IDLE", tskIDLE_STACK_SIZE, ( void * ) NULL, ( tskIDLE_PRIORITY | portPRIVILEGE_BIT ), &xIdleTaskHandle ); /*lint !e961 MISRA exception, justified as it is not a redundant explicit cast to all supported compilers. */
+    }
+    #else
+    {
+        /* Create the idle task without storing its handle. */
+        xReturn = xTaskCreate( prvIdleTask, "IDLE", tskIDLE_STACK_SIZE, ( void * ) NULL, ( tskIDLE_PRIORITY | portPRIVILEGE_BIT ), NULL );  /*lint !e961 MISRA exception, justified as it is not a redundant explicit cast to all supported compilers. */
+    }
+    #endif /* INCLUDE_xTaskGetIdleTaskHandle */
+
+接著才呼叫 xPortStartScheduler() 去執行 task
+
+* Blocked
+
+Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生的狀態，這個事件通常是執行時間到了(例如 systick interrupt)或是同步處理的回應，如果像一開始的 ATaskFunciton() 中使用 while(1){} 這樣的無限迴圈來作等待事件，會占用 CPU 運算資源，也就是 task 實際上是在 running，但又沒做任何事情，占用著資源只為了等待 event，所以比較好的作法是改用 vTaskDelay()，當 task 呼叫了 vTaskDelay()，task 會進入 blocked 狀態，就可以讓出 CPU 資源了
+
+使用 infinite loop 的執行時序圖
+
+.. image:: /loop_blocked.png
+
+使用 vTaskDelay() 的執行時序圖
+
+.. image:: /delay_blocked.png
+
+* vTaskDelay()
+
+這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250); 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ); 這個寫法，就是讓 task 暫停 250 毫秒的意思
 
 通訊
 ----------------------
 
 * Queue
 
-  .. image:: /qu.png
+.. image:: /qu.png
 
 使用 Queue 來傳送 data（variable 或是 pointer，但是用 deep copy 一份到 queue 裡，而不是用 pointer 指向 variable）
 Queue的結構如下
