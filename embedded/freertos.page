@@ -389,24 +389,28 @@ Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生
 
 .. image:: /delay_blocked.png
 
+
 * vTaskDelay()
 
-這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250); 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ); 這個寫法，就是讓 task 暫停 250 毫秒的意思
+這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒的意思
 
 通訊
 ----------------------
+
+在 FreeRTOS 中，task 之間的溝通是透過把資料傳送到 queue 和讀取 queue 中資料實現的
 
 * Queue
 
 .. image:: /qu.png
 
-使用 Queue 來傳送 data（variable 或是 pointer，但是用 deep copy 一份到 queue 裡，而不是用 pointer 指向 variable）
-Queue的結構如下
+FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue 中，也就是會把資料按照字元一個一個複製一份到 queue 中，當要傳遞的資料很大時，建議不要這樣傳遞，改採用傳遞資料指標的方式
 
+
+* Queue 的結構
 
 `queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L125>`_
 
- .. code-block:: c
+.. code-block:: c
 
     /* In file: queue.c */
     typedef struct QueueDefinition{
@@ -446,16 +450,15 @@ Queue的結構如下
 
     } xQUEUE;
 
-由於queue可以被許多個task進行寫入資料（即send data），當queue放滿了但卻還有task要進行寫入時，則使用xTasksWaitingToSend這個list來追蹤這些被block住的task（等待寫入資料到queue裡的task），每當有一個item從queue中被移除，xTasksWaitingToSend就會被檢查是否有task在此list，並且會在這些被block的task中挑出一個priority最高的task，將他解除block然後進行寫入資料的動作，若這些task的priority都一樣高，那將會挑出等待最久的task。
+由於一個 queue 可以被多個 task 寫入（即 send data），所以有 xTasksWaitingToSend 這個 list 來追蹤被 block 住的 task（等待寫入資料到 queue 裡的 task），每當有一個 item 從 queue 中被移除，系統就會檢查 xTasksWaitingToSend，看看是否有等待中的 task 在 list 裡，並在這些 task 中選出一個 priority 最高的，讓它恢復執行來進行寫入資料的動作，若這些 task 的 priority 都一樣，那會挑等待最久的 task。
 
-相同的，許多task進行讀取資料（即receive data）亦是如次，若queue沒有任何item在裡面，而同時還有好幾個task想要讀取資料，則這些task會被插在xTasksWaitingToReceive裡，xTasksWaitingToReceive這個list用來追蹤這些被block住的task（等待從queue中讀取資料的task）。
+有許多 task 要從 queue 中讀取資料時也是一樣（即receive data），若 queue 中沒有任何 item，而同時還有好幾個 task 想要讀取資料，則這些 task 會被加入 xTasksWaitingToReceive 裡，每當有一個 item 被放入 queue 中，系統一樣去檢查 xTasksWaitingToReceive，看看是否有等待中的 task 在 list 裡，並在這些 task 中選出一個 priority 最高的，讓它恢復執行來進行讀取資料的動作，若這些 task 的 priority 都一樣，那會挑等待最久的 task。
 
-Queue在FreeRTOS的應用方式如下：
+* Queue 的用法
 
 `/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L213>`_
 
-
- .. code-block:: c
+.. code-block:: c
 
     /*file: ./CORTEX_M4F_STM32F407ZG-SK/main.c*/
     /*line:47*/
@@ -482,26 +485,23 @@ Queue在FreeRTOS的應用方式如下：
             }
     }
 
- 關於QUEUE的操作函式定義在./queue.h
+關於 queue 的操作函式定義在 Source/queue.c
 
 
-FreeRTOS也可使用Queue來實作Semaphores 和 Mutexes：
+FreeRTOS 中也可使用 queue 來實作 semaphore 和 mutex：
 
-    Semaphores按照對變數的定義
+    * Semaphores - 用來讓一個 task 喚醒喚醒(wake)另一個 task，例如: producer 和 consumer
+    * Mutexes - 用來對共享資源(critical section)做互斥存取
 
-    semaphore用來讓一個task喚醒喚醒(wake)另一個task做事，例如:producer和consumer
+mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
 
-    Mutexes
+* 實作 semaphore
 
-    mutex用來對共享資源做互斥存取
+N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 queue entries 被佔用，其中 uxItemSize 為 0，item 和 data copying 是不需要的。
 
-* 實作semaphore
+需要用到 ARM Cortex-M4F 特有的機制，才能實做 semaphore，這個機制為『在存取 uxMessagesWaiting 時必須確保同一時間只能有一個 task 在做更改（進出入 critical section）』，要防止一次兩個 task 進入修改的方法如下：
 
-N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少queue entries被佔用，其中uxItemSize為0，item和data copying是不需要的。
-
-需要 ARM Cortex-M4F 特有的機制，才能實做 semaphore，其機制為：在存取uxMessagesWaiting時必須一次只能一個task去做更改（進、出入critical section），要防止一次兩個task進入修改的機制如下：
-
- `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399>`_
+`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399>`_
 
 .. code-block:: c
 
@@ -526,12 +526,11 @@ N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少qu
         } 
     }
 
-* 實作mutex
+* 實作 mutex
 
-因為pcHead和pcTail不需要，所以overloadind來達到較好的使用率：
+因為 pcHead 和 pcTail 不需要，所以用 overloadind 來達到較好的使用率：
 
- `queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105>`_
-
+`queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105>`_
 
 .. code-block:: c
 
@@ -539,18 +538,15 @@ N-element semaphore，只需同步uxMessagesWaiting，且只需關心有多少qu
         #define uxQueueType           pcHead
         #define pxMutexHolder         pcTail
 
-uxQueueType若為0，表示this queue is being used for a mutex
+    - uxQueueType 若為 0，表示這個 queue 已經被用來當作 mutex
+    - pxMutexHolder 用來實作 priority inheritance
 
-pxMutexHolder用來實作priority inheritance
-
-mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/
-
-另外: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
+補充: http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/
 
 
 * 生產者與消費者
 
-使用FreeRTOS的semaphore和mutex來實作生產者與消費者問題：
+使用 FreeRTOS 的 semaphore 和 mutex 來實作生產者與消費者問題：
 
 .. code-block:: c
 
@@ -602,8 +598,6 @@ mutex 和 semaphore 的差異，請參見這篇短文: http://embeddedgurus.com/
             }
     }
     
-
-
     
 排程
 ----------------
