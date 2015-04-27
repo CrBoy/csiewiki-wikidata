@@ -391,7 +391,7 @@ Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生
 
 * vTaskDelay()
 
-這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒的意思
+這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒的意思 (v8.2.1 改名為 portTICK_PERIOD_MS)
 
 通訊
 ----------------------
