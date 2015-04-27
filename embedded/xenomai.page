@@ -18,6 +18,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
 -將raspbian的img檔燒進sd card上
 
 .. code-block:: c
+
  sudo dd if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0 bs=4M
 
 *if為input file,of為output file,bs為block size
