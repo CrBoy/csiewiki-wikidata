@@ -158,6 +158,47 @@ SIMD 與浮點暫存器
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1707
 
+概述
+......................................
+
+Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU)來負責控制地址轉換(address translation)。
+
+地址轉換在不同例外層級與安全狀態之間是獨立的。
+
+.. image:: /embedded/mm.jpg
+
+- 虛擬地址Virtual Address (VA)
+    - instruction 使用的地址(PC, LR, ELR, SP 保存的地址)
+    - 最大為48 bits
+    - EL1&0 的VA範圍分為兩個子範圍。 0x0000_0000_0000_0000 ~ 0x0000_FFFF_FFFF_FFFF 及  0xFFFF_0000_0000_0000 ~  0xFFFF_FFFF_FFFF_FFFF。
+
+- 中間實體地址Intermediate Physical Address (IPA) 
+    - 當提供二階地址轉換時，作為第一階的輸出，第二階的輸入。
+    - 當只提供一階地址轉換時，IPA即為PA
+    - 最大為48 bits
+
+- 實體地址Physical Address (PA)
+    - 在實體記憶體MAP中的位址
+    -  EL3 和 Secure EL1 例外層及提供獨立的Secure、Non-secure實體定址空間。
+        - Secure state存取VA可以被轉換成Secure或Non-secure的實體定址空間
+        - Non-secure state時虛擬地址只能對應到Non-secure state的實體定址空間
+
+- 地址轉換:
+    - Translation table base register (TTBR) 指向translation table的起始位置。
+        -  EL1&0 stage 1 translation 需要兩個translation table，一個是對低位址定址空間，一個是對高位址。
+
+        .. image:: /embedded/TTBR01.jpg
+
+    - TLB 可以cache Translation table entries
+
+地址轉換階級控制 Controlling address translation stages
+............................................................................
+
+- MMU相應的系統控制暫存器
+
+.. image:: /embedded/CR.jpg
+
+
 通用計時器 (The Generic Timer)
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1855
@@ -167,3 +208,4 @@ reference
 * `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
 * `loda armv8-與-linux的新手筆記<http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/>`_
 * http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
+* `Principles of ARM® Memory Maps <http://infocenter.arm.com/help/topic/com.arm.doc.den0001c/DEN0001C_principles_of_arm_memory_maps.pdf>`_
