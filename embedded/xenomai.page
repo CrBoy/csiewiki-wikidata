@@ -15,15 +15,15 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
 ==============================
 * 下載 Raspbian http://www.raspberrypi.org/downloads/
 
--將raspbian的img檔燒進sd card上
+ 將raspbian的img檔燒進sd card上
 
 .. code-block:: c
 
  sudo dd if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0 bs=4M
 
-*if為input file,of為output file,bs為block size
+ if為input file,of為output file,bs為block size
 
-*燒錄詳細介紹:http://life-of-raspberrypi.blogspot.tw/
+ 燒錄詳細介紹:http://life-of-raspberrypi.blogspot.tw/
 
 * Install Cross complier
 
@@ -89,6 +89,12 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
    make ARCH=arm O=build oldconfig
 
 * Compile Linux Kernel (此步驟耗時長，建議用make -j平行加速)
+
+在作此步驟之前須export library
+
+.. code-block:: c
+
+  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
 
 .. code-block:: c
 
