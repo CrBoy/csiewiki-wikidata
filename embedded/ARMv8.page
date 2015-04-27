@@ -191,8 +191,21 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
     - TLB 可以cache Translation table entries
 
-地址轉換階級控制 Controlling address translation stages
+地址轉換階級控制 (Controlling address translation stages)
 ............................................................................
+
+- 不同的implementation，translation stages的實作也會不同
+
+.. image:: /embedded/AArch64_translation_stages.jpg
+
+- 對每個地址轉換階級: 
+    - A system control register(CR) bit 啟用該層地址轉換
+    - A CR bit 決定轉換表查找的 endianness
+    - Translation Control Register (TCR)控制該層地址轉換
+    - 若該層VA支援分開的VA 範圍(EL0、EL1)，則提供 Translation Table Base Register (TTBR)給每個子範圍。即:
+        - 一個TCR
+        - 一個TTBR給每個VA子範圍
+    - TTBR保存查找所需的base address
 
 - MMU相應的系統控制暫存器
 
