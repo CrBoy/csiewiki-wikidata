@@ -14,7 +14,10 @@ categories: embedded, arm, raspberrypi, rpi, realtime, rtos
 建立 Xenomai 環境
 ==============================
 * 下載 Raspbian http://www.raspberrypi.org/downloads/
-
+-將raspbian的img檔燒進sd card上
+ sudo dd if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0 bs=4M
+if為input file,of為output file,bs為block size
+燒錄詳細介紹:http://life-of-raspberrypi.blogspot.tw/
 * Install Cross complier
 
 .. code-block:: c
