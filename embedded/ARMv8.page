@@ -211,6 +211,35 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 .. image:: /embedded/CR.jpg
 
+記憶體轉換顆粒大小(Memory translation granule size) (暫譯)
+............................................................................
+
+- 定義了:
+    - 單一轉換表的最大大小
+    - page size
+
+- VMSAv8-64支援4KB, 16KB, and 64KB的translation granule sizes
+
+.. image:: /embedded/granule size.jpg
+
+- granule size決定了page及一次查找可以轉換的bit數
+
+.. image:: /embedded/4KB.jpg
+
+.. image:: /embedded/16KB.jpg
+
+.. image:: /embedded/64KB.jpg
+
+Translation table walks
+.................................................................
+- 從讀取轉換表開始，TTBR會保存該階級的base address
+- 每次查找會返回一個descriptor標明以下其中一個情況:
+    - 該entry是walk的最後一個entry。此entry包含該次存取的OA、權限及屬性。
+    - 需要額外層級的查找。 此entry包含該層級查找的translation table base address。
+        - descriptor提供final translation的 hierarchical attributes
+    - invalid: Translation fault
+
+.. image:: /embedded/stage of address translation.jpg
 
 通用計時器 (The Generic Timer)
 ------------------------------------------------------------------------------------
