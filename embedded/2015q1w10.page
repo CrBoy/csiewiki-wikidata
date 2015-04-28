@@ -32,6 +32,9 @@ toc: no
 ------------------------------------------
 * 美國 Carnegie Mellon 大學 Phil Koopman 教授在 2014 年製作一份簡報 "`A Case Study of Toyota Unintended Acceleration and Software Safety<http://users.ece.cmu.edu/~koopman/pubs/koopman14_toyota_ua_slides.pdf>`_"，探討豐田汽車(Toyota Motor)在美國捲進了一樁官司背後的工程議題，涵蓋 real-time scheduling 和軟體可靠性
 * 豐田一款 2005 年份 Camry 車款在 2007 年，於美國奧克拉荷馬高速公路上發生的一場暴衝死亡車禍，肇因於該車款內的電子節流閥控制系統軟體發生錯誤，內部的錯誤碼就是造成車輛無預警暴衝的原因。
+  - `汽車電子缺陷導致事故？豐田在美惹官非<http://www.eettaiwan.com/ART_8800691341_622964_NT_9cc6a57b.HTM>`_
+  - `不良軟體碼可能殺人嗎？答案是肯定的，而且悲劇顯然已經發生<http://www.eettaiwan.com/ART_8800691385_480202_NT_bd47ba6a.HTM>`_
+
 * 2011 年，包括 Barr Group 四位專家在內的一個七人小組接手先前 NASA 為期 10 個月的調查任務，深入分析了發生事故的豐田汽車，並做成了一份長達 800 頁的調查報告。首先，檢視車用系統的即時作業系統，找出未受保護的 critical variables，且發現了電子節流閥故障安全機制中的漏洞與缺陷。
 * 該專家小組採用 Green Hills 模擬器進行了模擬，透過車輛測試，那些我們所發現的缺陷確實與無預警暴衝有關，對照檢視了汽車黑盒子內的軟體碼，發現它會錯誤記錄車輛意外前最後幾秒的駕駛人動作資訊。針對 2005 年份的 Camry L4 車款原始碼以及車內測試，證實其中有部分關鍵變數並未受軟體保護，記憶體崩潰的原始碼也顯現，stack overflow 與軟體錯誤導致記憶體崩潰，而問題的關鍵就在於那些記憶體崩潰，從而擦槍走火。
 * 軟體缺失導致重大災難的例子比比皆是，像是：
