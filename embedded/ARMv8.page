@@ -211,6 +211,18 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 .. image:: /embedded/CR.jpg
 
+
+
+- stage 2 translation 是ARM 對記憶體虛擬化的擴展。 虛擬化必須讓Guest OS不能存取hypervisor的記憶體空間。在沒有虛擬化擴展的情況下，是透過"shadow page tables"來完成這個要求。
+
+    - Shadow page tables: hypervisor 建立屬於自己的page table，當他發現有page fault時，會讀取OS所建立的page table及OS map的地址，再實際map到MMU使用的page table，因此只有hypervisor實際能把VA轉換成PA。缺點是複雜及耗能。
+
+    - With ARM Virtualization extensions: 將上面的動作交給硬體來做，hypervisor讓硬體認為guest OS產生的實體地址為虛擬地址，然後再以此地址(IPA)做第二階translation。
+
+.. image:: http://www.futurechips.org/wp-content/uploads/2013/03/stage-1-translation-3.png
+
+(圖片來自http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html)
+
 記憶體轉換顆粒大小(Memory translation granule size) (暫譯)
 ............................................................................
 
@@ -251,3 +263,4 @@ reference
 * `loda armv8-與-linux的新手筆記<http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/>`_
 * http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
 * `Principles of ARM® Memory Maps <http://infocenter.arm.com/help/topic/com.arm.doc.den0001c/DEN0001C_principles_of_arm_memory_maps.pdf>`_
+* http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html
