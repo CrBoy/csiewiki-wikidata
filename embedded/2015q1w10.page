@@ -6,7 +6,12 @@ toc: no
 重大事項宣達
 ------------------
 * 從 Week #10 開始，週二晚間沒有安排實做課程，但電腦教室仍開放，歡迎同學討論課程、分組報告及專題事宜
-* 提醒: Week #14 (Dec 18) 為「期末專題」的雛型作品報告時間
+* 分組報告會從 Week #10 進行到 Week #19
+  - 採用 round-robin 排程，time slice 為 2 hr，若準備不足或者不勝提問，可主動 yield
+  - 每個報告的組別會有對應的「提問組」，顧名思義就是讓「提問組」同學提出報告過程中不能理解之處 (沒提問的話，表示徹底理解)，教師會詢問報告組和提問組的同學
+    + 「提問組」為分組報告中對應倒數的組別，如 FreeRTOS 對 Xvisor, rtenv+ 對 uClinux，順序詳見 `Week #7</embedded/2015q1w7>`_
+
+* 本學期沒有明確的「期末專題」，但分組報告的末期，每組都該有足以說明作業系統核心運作的小型應用，以Xenomai 來說，可以是 `A Tutorial on Using Linux for Real-time Tasks<http://hackaday.com/2014/04/25/a-tutorial-on-linux-for-real-time-tasks/>`_
 
 分組報告
 ------------
