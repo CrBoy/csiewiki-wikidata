@@ -24,7 +24,7 @@ Week  Date     Subject                                 Assignment
 #7    Apr 7    `ARM and RTOS: Part II`_                       `Lab 42`_: Mini ARM OS
 #8    Apr 14   `From Hello to Preemptive Scheduler`_          `Lab 42`_: Mini ARM OS
 #9    Apr 21   `Kernel Concepts and Threading`_               `Lab 43`_: Runtime Behavior
-#10   Apr 28   期中報告
+#10   Apr 28   `2015q1:Group Presentation(1)`_                *
 #11   May 5    .
 #12   May 12   .
 #13   May 19   .
@@ -45,6 +45,7 @@ Week  Date     Subject                                 Assignment
 .. _`ARM and RTOS: Part II`: 2015q1w7
 .. _`From Hello to Preemptive Scheduler`: 2015q1w8
 .. _`Kernel Concepts and Threading`: 2015q1w9
+.. _`2015q1:Group Presentation(1)`: 2015q1w10
 .. _`Lab 38`: Lab38
 .. _`Lab 39`: Lab39
 .. _`Lab 40`: Lab40
