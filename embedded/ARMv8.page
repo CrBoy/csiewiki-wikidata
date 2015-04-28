@@ -5,7 +5,7 @@ categories: arm, armv8, arm64, embedded
 ARMv8架構介紹
 =====================================
 .. image:: http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg
-
+.. image:: /embedded/evolution_arm_arch.png
 ARMv8架構有一個重要的特點是他與其之前的架構相容。
 
 Execution state
