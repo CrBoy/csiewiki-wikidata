@@ -60,6 +60,8 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 
 - 在轉換時會將返回位址(return address)紀錄在例外連結暫存器ELR(Exception-Link-Register)。
 - 每個EL會有個別的SP(stack pointer)
+- 根據目前架構，由下層系統的Execution State決定上層系統所在模式
+- 若下層系統為32bits則上層只能為32bits，反之若為64bits則上層可為32bits or 64bits
 
 .. image:: /embedded/armv8 arch.png
 
