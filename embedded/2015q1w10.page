@@ -13,6 +13,31 @@ toc: no
 
 * 本學期沒有明確的「期末專題」，但分組報告的末期，每組都該有足以說明作業系統核心運作的小型應用，以Xenomai 來說，可以是 `A Tutorial on Using Linux for Real-time Tasks<http://hackaday.com/2014/04/25/a-tutorial-on-linux-for-real-time-tasks/>`_
 
+課程觀摩
+-------------
+* 人家一個作業抵成功大學電機資訊學院整整一門課程的專題，甚至超越碩博士論文
+  - 比別人笨不可恥，可恥的是沒自覺！
+
+* `CMU<https://www.cmu.edu>`_
+  - CS410: Operating System Design and Implementation, `Lecture Notes<https://www.cs.cmu.edu/~410/lecture.html>`_
+  - `EE349: Embedded Real-Time Systems<http://www.ece.cmu.edu/~ee349/>`_
+    + `Lab projects<http://www.ece.cmu.edu/~ee349/projects.html>`_
+    + `Lab 4: Real-Time Operating Systems<http://www.ece.cmu.edu/~ee349/f-2012/lab4/lab4-handout.pdf>`_
+    + 參考實做: `Real-Time Operating Systems<https://github.com/ironAtom/RTOS-Kernel-for-ARM>`_
+
+* `UNSW<http://www.cse.unsw.edu.au/>`_
+  - Advanced Operating System, `Project: A Simple Operating System<http://www.cse.unsw.edu.au/~cs9242/14/project/>`_
+
+案例探討：豐田汽車死亡車禍
+------------------------------------------
+* 美國 Carnegie Mellon 大學 Phil Koopman 教授在 2014 年製作一份簡報 "`A Case Study of Toyota Unintended Acceleration and Software Safety<http://users.ece.cmu.edu/~koopman/pubs/koopman14_toyota_ua_slides.pdf>`_"，探討豐田汽車(Toyota Motor)在美國捲進了一樁官司背後的工程議題，涵蓋 real-time scheduling 和軟體可靠性
+* 豐田一款 2005 年份 Camry 車款在 2007 年，於美國奧克拉荷馬高速公路上發生的一場暴衝死亡車禍，肇因於該車款內的電子節流閥控制系統軟體發生錯誤，內部的錯誤碼就是造成車輛無預警暴衝的原因。
+* 2011 年，包括 Barr Group 四位專家在內的一個七人小組接手先前 NASA 為期 10 個月的調查任務，深入分析了發生事故的豐田汽車，並做成了一份長達 800 頁的調查報告。首先，檢視車用系統的即時作業系統，找出未受保護的 critical variables，且發現了電子節流閥故障安全機制中的漏洞與缺陷。
+* 該專家小組採用 Green Hills 模擬器進行了模擬，透過車輛測試，那些我們所發現的缺陷確實與無預警暴衝有關，對照檢視了汽車黑盒子內的軟體碼，發現它會錯誤記錄車輛意外前最後幾秒的駕駛人動作資訊。針對 2005 年份的 Camry L4 車款原始碼以及車內測試，證實其中有部分關鍵變數並未受軟體保護，記憶體崩潰的原始碼也顯現，stack overflow 與軟體錯誤導致記憶體崩潰，而問題的關鍵就在於那些記憶體崩潰，從而擦槍走火。
+* 軟體缺失導致重大災難的例子比比皆是，像是：
+  - 1980 年 (冷戰時期)，北美防空聯合司令部曾告警，美國遭受導彈襲擊，差點釀成第三次世界大戰。後來證實，這是反饋系統的電路故障問題，但反饋系統軟體並未考慮故障問題引發的誤報
+  - 1996 年 6 月 4 日，Ariane 5 型運載火箭的首航，原計劃將四顆太陽風觀察衛星運送到預定軌道，但因軟體引發的問題，導致火箭在發射 39 秒後偏軌，從而觸發火箭的自我摧毀裝置。此事件肇因於一系列的 Ada 程式碼錯誤，造成高達 3.7 億美元的損失
+
 分組報告
 ------------
 * `FreeRTOS</embedded/freertos>`_
