@@ -255,6 +255,13 @@ Translation table walks
 
 .. image:: /embedded/stage of address translation.jpg
 
+
+地址轉換流程:
+
+- stage 1 translation table walk for a 48-bit input address 與 39-bit input address
+
+.. image:: /embedded/4KBtranslation.bmp
+
 通用計時器 (The Generic Timer)
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1855
