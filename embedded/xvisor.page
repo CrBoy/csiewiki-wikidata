@@ -13,6 +13,39 @@ Hackpad
 * `xvisor<https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm>`_
 * `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
 
+
+虛擬化技術 (Virtualization) 
+=====================================
+以下簡介虛擬化技術，並以Xvisor on Armv8 為例探討虛擬化技術的實作
+
+簡介
+--------------------------------------------
+
+CPU virtualization
+--------------------------------------------
+
+Xvisor
+.................................
+
+Memory virtualization
+--------------------------------------------
+
+"virtual" virtual memory
+.............................
+
+
+ARM Virtualization extension
+.................................
+
+Xvisor
+.................................
+
+device virtualization
+--------------------------------------------
+
+virtio
+.............................
+
 設計文件整理
 =====================================
 原文： https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
