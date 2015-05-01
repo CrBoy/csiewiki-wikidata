@@ -109,3 +109,10 @@ reference
 * https://samlin.hackpad.com/Xvisor--chtGSqPYWG8
 * http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
 * `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
+* `A Virtualization Infrastructure that Supports Pervasive Computing.<http://165.193.233.120/files/pdf/partners/academic/vmware-pervasive-computing_LRudolph-en.pdf>`_
+* `A Choices Hypervisor on the ARM architecture<http://www.russellgreenspan.com/software/A%20Choices%20Hypervisor%20on%20the%20ARM%20Architecture.pdf>`_
+* `Extensions to the ARMv7-A architecture<http://www.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.23.220-1-Brash-ARMv7A.pdf>`_
+* `前瞻 資訊科技 - 虛擬化 (1) - Virtualization( V12N ). 薛智文 教授<http://www.slideserve.com/quynn-dickson/cwhsueh-csie-ntu-tw-csie-ntu-tw-cwhsueh>`_
+* `前瞻 資訊科技 - 虛擬化 (2) - Virtualization( V12N ). 薛智文 教授<http://www.slideserve.com/candid/cwhsueh-csie-ntu-edu-tw-http-www-csie-ntu-edu-tw-cwhsueh-100-fall-nov-4-fri-678-dth-104>`_
+* ` An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden<http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf>`_
+* `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
