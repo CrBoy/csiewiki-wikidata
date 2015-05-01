@@ -76,6 +76,15 @@ Hypervisor的類型
 - Type III: 在user mode執行會產生不可預測的行為
     - MOVS PC, LR: 返回指令，改變PC並跳回user mode，在user mode執行會產生不可預測的結果
 
+- ARM 的敏感指令:
+    - 存取協處理器:  MRC / MCR / CDP / LDC / STC
+    - 存取SIMD/VFP 系統戰存器:  VMRS / VMSR
+    - 進入TrustZone 安全狀態: SMC
+    - 存取 Memory-Mapped I/O:  Load/Store instructions from/into memory-mapped I/O locations
+    - 直接存取CPSR:  MRS / MSR / CPS / SRS / RFE / LDM (conditional execution) / DPSPC
+    - 間接存取CPSR:  LDRT / STRT – Load/Store Unprivileged (“As User”)
+    - 存取Banked Register: LDM / STM
+
 
 
 CPU virtualization
