@@ -18,8 +18,38 @@ Hackpad
 =====================================
 以下簡介虛擬化技術，並以Xvisor on Armv8 為例探討虛擬化技術的實作
 
-簡介
+Hypervisor (virtual machine monitor)
 --------------------------------------------
+
+- Hypervisor (Virtual Machine Monitor)的功用是去管理Virtual Machine (VM)
+
+    - Host Machine: 運行Hypervisor的實體主機，但有時運行在Hypervisor之上
+
+    - Guest Machine: 運行在Hypervisor之上的虛擬主機
+
+    .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
+
+- 使用時機:
+    - 工作負載整合 (Workload Consolidation)
+    - 支援舊有軟體 (Legacy Software)
+    - 啟用多核 (Multicore Enablement)
+    - 提高可靠性 (Improved Reliability)
+    - 安全監控 (Secure Monitoring)
+
+Hypervisor的類型
+--------------------------------------------
+
+- Type-1: 本地(native)、裸機(bare-metal) hypervisors
+    - Hypervisor直接運行在host的硬體上，並直接控制硬體及管理Guest作業系統，此時host把Guest作業系統當成一個process
+        - 如: `XenServer<http://en.wikipedia.org/wiki/Xen>`_ 、 `Hyper-V<http://en.wikipedia.org/wiki/Hyper-V>`_ 、Xvisor
+- Type-2: 託管(hosted) hypervisors
+    - Hypervisor運行在host的作業系統上，再去提供虛擬化服務
+        - 如: `VMware<http://en.wikipedia.org/wiki/VMware_Workstation>`_、`VirtualBox<http://en.wikipedia.org/wiki/VirtualBox>`_
+
+- 比較:
+    - Type-1: 有較高的安全性及可靠性，但因直接運行於硬體上，所以時常為single purpose
+    - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
+
 
 CPU virtualization
 --------------------------------------------
