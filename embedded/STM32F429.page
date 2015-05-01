@@ -10,7 +10,8 @@ categories: ARM, STM32, stm32f4, embedded
 
 技術文件
 -------------
-硬體週邊介紹和驅動方式: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_,  `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `I2C</embedded/I2C>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_, `CAN</embedded/CAN>`_
+* `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
+* 硬體週邊介紹和驅動方式: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_,  `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `I2C</embedded/I2C>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_, `CAN</embedded/CAN>`_
 
 STM32F429 Discovery 開發板
 --------------------------
