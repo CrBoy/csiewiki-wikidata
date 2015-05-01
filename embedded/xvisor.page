@@ -51,6 +51,33 @@ Hypervisor的類型
     - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
 
 
+虛擬化指令(ARM)
+--------------------------------------------
+
+虛擬化定理 (Virtualization theorems)
+................................................................................
+- 定理：對於任何傳統的第三代計算機，只要其敏感指令是特權指令的一個子集，就可以為其建立VMM (from Wiki)
+    - 原本由OS在kernel mode執行的敏感指令，因OS被移到user mode而無法正常執行，所以需要被trap 給 hypervisor來執行。
+
+- 特權指令 (Privileged instructions): 若執行在user mode 會觸發trap
+
+- 控制敏感指令 (Control sensitive instructions): 會改變處理器組態或模式的指令
+
+- 行為敏感指令 (Behavior sensitive instructions): 其行為取決於處理器的狀態
+
+問題指令(Problematic Instructions)
+....................................
+- Type I: 在user mode執行會產生未定義的指令異常
+    - MCR、MRC: 需要依賴協處理器(coprocessor)
+
+- Type II: 在user mode執行會沒有作用
+    - MSR、MRS: 需要操作系統暫存器
+
+- Type III: 在user mode執行會產生不可預測的行為
+    - MOVS PC, LR: 返回指令，改變PC並跳回user mode，在user mode執行會產生不可預測的結果
+
+
+
 CPU virtualization
 --------------------------------------------
 
@@ -116,3 +143,4 @@ reference
 * `前瞻 資訊科技 - 虛擬化 (2) - Virtualization( V12N ). 薛智文 教授<http://www.slideserve.com/candid/cwhsueh-csie-ntu-edu-tw-http-www-csie-ntu-edu-tw-cwhsueh-100-fall-nov-4-fri-678-dth-104>`_
 * ` An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden<http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf>`_
 * `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
+* `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
