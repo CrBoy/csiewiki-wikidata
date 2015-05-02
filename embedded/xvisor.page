@@ -107,7 +107,7 @@ ARM Virtualization Extensions
 - CPU 虛擬化擴充
     - Guest OS kernel執行在EL1，userspace執行在EL0
     - 使大部分的敏感指令可以本地執行(native-run)在EL1上而不必trap及emulation
-    - 而能需要trap的敏感指令會被trap到EL2 (hypervisor mode HYP)
+    - 而仍需要trap的敏感指令會被trap到EL2 (hypervisor mode HYP)
         - Guest OS's Load/Store 
         - 會影響其他Guest OS的指令
         - Hypervisor Syndrome Register(HSR) 會保存被trapped的指令的資訊，因此hypervisor就能emulate它
