@@ -108,10 +108,29 @@ Solutions
     - MMU強制執行trap
     - 虛擬化擴充
 
-ARM Virtualization Extensions
-.................................................................
+記憶體虛擬化(without hardware support)
+.............................................
+- Shadow page tables:
+    - Map guest virtual address to host physical address
+    - Guest OS maintain自己的page table到 guest實體記憶體框架
+    - hypervisor 把所有的guest實體記憶體框架 map 到host實體記憶體框架
 
-請見:`ARMv8#虛擬化<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization>`_ (暫存器待補)
+.. image:: /embedded/shadow_page_table.png
+(from System Virtualization Memory Virtualization - 國立清華大學)
+
+    - 為每一個guest page table 建立 Shadow page table
+    - hypervisor要保護放著guest page table的host frame
+
+.. image:: /embedded/write_protect.png
+(from System Virtualization Memory Virtualization - 國立清華大學)
+
+
+ARM Virtualization Extensions
+--------------------------------------------
+可參考:`ARMv8#虛擬化<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization>`_ (暫存器待補)
+
+CPU virtualization
+...................................
 
 - CPU 虛擬化擴充
     - Guest OS kernel執行在EL1，userspace執行在EL0
@@ -141,21 +160,17 @@ ARM Virtualization Extensions
 
 將EL1的敏感指令(MCR、MRC、SMC、WFE、WFI)及中斷(irq、fiq)trap到EL2，並啟動stage 2 address translation
 
-CPU virtualization
---------------------------------------------
-
-Xvisor
-.................................
-
 Memory virtualization
---------------------------------------------
+...................................
+請參考: `armv8 virtual-memory-system-architecture <http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E8%A8%98%E6%86%B6%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B-virtual-memory-system-architecture>`_
 
-"virtual" virtual memory
-.............................
+- 二階位址轉換 two stage address translation:  => 實體位址(physical address)
+    - 第一階段: 虛擬位址(virtual address) => 中間實體位址(Intermediate physical address)
+        - 由Guest OS控制，並認為IPA就是PA
+    - 第二階段: 中間實體位址(Intermediate physical address) => 實體位址(physical address)
+        - 由hypervisor控制
 
 
-ARM Virtualization extension
-.................................
 
 Xvisor
 .................................
