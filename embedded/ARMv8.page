@@ -74,6 +74,8 @@ ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定�
 
 - 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間
 
+.. image:: /embedded/Security Extension.png
+(from: Hardware Support Virtualization (國立清華大學))
 
 虛擬化 (Virtualization)
 ------------------------------------------------------------------------------------
@@ -274,3 +276,4 @@ reference
 * `Principles of ARM® Memory Maps <http://infocenter.arm.com/help/topic/com.arm.doc.den0001c/DEN0001C_principles_of_arm_memory_maps.pdf>`_
 * http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html
 * http://community.arm.com/servlet/JiveServlet/previewBody/8453-102-5-16300/Porting%20to%20ARM%2064-bit.pdf
+* `Hardware Support Virtualization (國立清華大學)<http://www.google.com.tw/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=0CEcQFjAF&url=http%3A%2F%2Fwww.cs.nthu.edu.tw%2F~ychung%2Fslides%2FVirtualization%2FVM-Lecture-7-2-Hardware%2520support-ARM.pptx&ei=IV9EVb7BMcX6mQXtqIHoAw&usg=AFQjCNGHnO4BuuVHMSKBVCmZJTVJuzclEg&sig2=3_yUFkFNMRKwXlEGAY481Q>`_
