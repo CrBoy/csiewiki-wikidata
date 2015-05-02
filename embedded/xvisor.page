@@ -101,7 +101,16 @@ Solutions
 
 ARM Virtualization Extensions
 .................................................................
+
 請見:`ARMv8#虛擬化<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization>`_ (暫存器待補)
+
+- CPU 虛擬化擴充
+    - Guest OS kernel執行在EL1，userspave執行在EL0
+    - 使大部分的敏感指令可以本地執行(native-run)在EL1上而不必trap及emulation
+    - 而能需要trap的敏感指令會被trap到EL2 (hypervisor mode HYP)
+        - Guest OS's Load/Store 
+        - 會影響其他Guest OS的指令
+        - Hypervisor Syndrome Register(HSR) 會保存被trapped的指令的資訊，因此hypervisor就能emulate它
 
 * `Xvisor- cpu_vcpu_helper.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_vcpu_helper.c>`_:
 
@@ -189,3 +198,4 @@ reference
 * ` An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden<http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf>`_
 * `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
 * `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
+* `Hardware Support Virtualization (國立清華大學)<http://www.google.com.tw/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=0CEcQFjAF&url=http%3A%2F%2Fwww.cs.nthu.edu.tw%2F~ychung%2Fslides%2FVirtualization%2FVM-Lecture-7-2-Hardware%2520support-ARM.pptx&ei=IV9EVb7BMcX6mQXtqIHoAw&usg=AFQjCNGHnO4BuuVHMSKBVCmZJTVJuzclEg&sig2=3_yUFkFNMRKwXlEGAY481Q>`_
