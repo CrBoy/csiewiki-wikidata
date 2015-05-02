@@ -56,6 +56,13 @@ Hypervisor的類型
 
 虛擬化定理 (Virtualization theorems)
 ................................................................................
+- `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
+
+- 虛擬化需要滿足:
+    - 等價性 (Equivalence): 在hypervisor下執行的程式行為必須與直接跑在machine上相同。
+    - 資源控制 (Resource control): hypervisor必須完全控制虛擬化資源。
+    - 效率 (Efficiency): 統計上經常使用的機器指令hypervisor不應該介入。
+
 - 定理：對於任何傳統的第三代計算機，只要其敏感指令是特權指令的一個子集，就可以為其建立VMM (from Wiki)
     - 原本由OS在kernel mode執行的敏感指令，因OS被移到user mode而無法正常執行，所以需要被trap 給 hypervisor來執行。
 
@@ -64,6 +71,7 @@ Hypervisor的類型
 - 控制敏感指令 (Control sensitive instructions): 會改變處理器組態或模式的指令
 
 - 行為敏感指令 (Behavior sensitive instructions): 其行為取決於處理器的狀態
+
 
 問題指令(Problematic Instructions)
 ....................................
