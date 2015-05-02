@@ -16,7 +16,7 @@ Hackpad
 
 虛擬化技術 (Virtualization) 
 =====================================
-以下簡介虛擬化技術，並以Xvisor on Armv8 為例探討虛擬化技術的實作
+以下簡介虛擬化技術，並以Xvisor on `ARMv8</embedded/ARMv8>`_ 為例探討虛擬化技術的實作
 
 Hypervisor (virtual machine monitor)
 --------------------------------------------
