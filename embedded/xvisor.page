@@ -95,9 +95,18 @@ Hypervisor的類型
 
 Solutions
 ....................................
-(待補)
-- Binary translation
-- Hypercall
+
+- 軟體技術: trap and emulate
+    - Dynamic Binary Translation
+        - 把問題指令取代為hypercall以進行trap 及emulate
+    - Hypercall
+        - 對type and original instruction bits進行編碼
+        - trap 到 hypervisor，進行解碼及模擬指令
+
+- 硬體技術:
+    - 特權指令轉換(待補)
+    - MMU強制執行trap
+    - 虛擬化擴充
 
 ARM Virtualization Extensions
 .................................................................
