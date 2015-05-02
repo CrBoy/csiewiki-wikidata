@@ -351,4 +351,4 @@ reference
 * ` An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden<http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf>`_
 * `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
 * `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
-* `Hardware Support Virtualization (國立清華大學)<http://www.google.com.tw/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=0CEcQFjAF&url=http%3A%2F%2Fwww.cs.nthu.edu.tw%2F~ychung%2Fslides%2FVirtualization%2FVM-Lecture-7-2-Hardware%2520support-ARM.pptx&ei=IV9EVb7BMcX6mQXtqIHoAw&usg=AFQjCNGHnO4BuuVHMSKBVCmZJTVJuzclEg&sig2=3_yUFkFNMRKwXlEGAY481Q>`_
+* `Syllabus for CS5410 Virtualization Techniques (國立清華大學)<http://www.cs.nthu.edu.tw/~ychung/syllabus/Virtualization.htm>`_ (內有課程簡報)
