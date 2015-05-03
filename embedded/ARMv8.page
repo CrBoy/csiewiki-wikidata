@@ -301,6 +301,9 @@ PE有一個實體計數器包含系統計數器的count. (保存在CNTPCT暫存�
 虛擬計數器 (virtual counter)
 ..................................
 
+- CNTVCT 暫存器保存現在的虛擬計數器count
+- virtual counter = physical counter - 64-bit virtual offset. 
+- 當執行在Non-secure EL1 or EL0時, virtual offset值相對目前的virtual machine
 
 
 reference
