@@ -268,6 +268,25 @@ Translation table walks
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1855
 
+.. image:: /embedded/generic_timer.png
+
+- 提供系統計數器來測量時間 (in real-time)
+- 支援虛擬計數器來測量在特定虛擬機器上虛擬時間(virtual-time)
+- Timer, 它可以用在週期時間之後觸發event
+    - 可用來當count-up或者 count-down timers
+    - 可在real-time或者virtual-time上做操作
+
+System counter
+.................
+
+- Width: 至少56-bits
+- Frequency: 1-50MHz，支援多個可選擇的運作模式，如在低頻率下一次增加較多的數量，通常用來省電(power-saving)。
+- Roll-over: 大於40年
+- Accuracy: ARM沒有指定要求精度，但建議誤差不要超過10秒/24小時
+- Start-up: 從0開始
+- 它必須被實作在一個always-on power domain
+- 初始化: 必須在系統booting時設定其頻率，可以寫入CNTFRQ 暫存器來做設定。
+
 reference
 =====================================
 * `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
