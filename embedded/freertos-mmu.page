@@ -1,16 +1,16 @@
 ---
 title: FreeRTOS (MMU)
-categories: embedded, arm, rtos, beaglebone black, am335x
-toc: 12345
+categories: embedded, arm, rtos, beaglebone black, am335x, mmu
+toc: no
 ...
 
 協作者
 ---
 * 2015 年春季
-   - `陳冠任<https://github.com/dani4310>`_, `許士杰<https://github.com/Jayjack0116>`_, `黃睦林<https://github.com/MuLinForest>`_, ...
+  - `陳冠任<https://github.com/dani4310>`_, `許士杰<https://github.com/Jayjack0116>`_, `黃睦林<https://github.com/MuLinForest>`_, ...
 
 
 共筆
 ----
 * 2015 年春季
-   - `hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
+  - `hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
