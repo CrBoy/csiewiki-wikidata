@@ -246,7 +246,7 @@ cpu_interrupt.c
             rc = cpu_vcpu_data_abort(vcpu, regs, il, iss, fipa);
             break;
 
-最後呼叫 emulate_arm.c 內相對應的函式做指令模擬
+最後呼叫 emulate_arm.c 或 cpu_vcpu_emulate.c內相對應的函式做指令模擬
 
 Memory virtualization
 ...................................
