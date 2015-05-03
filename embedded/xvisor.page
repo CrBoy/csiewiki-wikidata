@@ -160,6 +160,94 @@ CPU virtualization
 
 將EL1的敏感指令(MCR、MRC、SMC、WFE、WFI)及中斷(irq、fiq)trap到EL2，並啟動stage 2 address translation
 
+Xvisor instruction emulate
+............................................................
+cpu_entry.S 內初始化Hyp vector base
+
+.. code-block:: c
+
+    vectors:
+    ventry	hyp_sync_invalid	/* Synchronous EL1t */
+    ventry	hyp_irq_invalid		/* IRQ EL1t */
+    ventry	hyp_fiq_invalid		/* FIQ EL1t */
+    ventry	hyp_error_invalid	/* Error EL1t */
+
+    ventry	hyp_sync		/* Synchronous EL1h */
+    ventry	hyp_irq			/* IRQ EL1h */
+    ventry	hyp_fiq_invalid		/* FIQ EL1h */
+    ventry	hyp_error_invalid	/* Error EL1h */
+    ........
+
+    EXCEPTION_HANDLER hyp_sync
+        PUSH_REGS
+        mov	x1, EXC_HYP_SYNC_SPx
+        CALL_EXCEPTION_CFUNC do_sync
+        PULL_REGS
+
+
+- ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊
+
+cpu_interrupt.c
+(請參考手冊p.1905頁對照ESR的編碼)
+
+.. code-block:: c
+
+    void do_sync(arch_regs_t *regs, unsigned long mode)
+    {
+
+    .......
+
+        esr = mrs(esr_el2);
+        far = mrs(far_el2);
+        elr = mrs(elr_el2);
+
+        ec = (esr & ESR_EC_MASK) >> ESR_EC_SHIFT;
+        il = (esr & ESR_IL_MASK) >> ESR_IL_SHIFT;
+        iss = (esr & ESR_ISS_MASK) >> ESR_ISS_SHIFT;
+
+    .......
+
+
+        switch (ec) {
+        case EC_UNKNOWN:
+            /* We dont expect to get this trap so error */
+            rc = VMM_EFAIL;
+            break;
+        case EC_TRAP_WFI_WFE:
+            /* WFI emulation */
+            rc = cpu_vcpu_emulate_wfi_wfe(vcpu, regs, il, iss);
+            break;
+        case EC_TRAP_MCR_MRC_CP15_A32:
+            /* MCR/MRC CP15 emulation */
+            rc = cpu_vcpu_emulate_mcr_mrc_cp15(vcpu, regs, il, iss);
+            break;
+    .........
+            break;
+        case EC_TRAP_HVC_A64:
+            /* HVC emulation for A64 guest */
+            rc = cpu_vcpu_emulate_hvc64(vcpu, regs, il, iss);
+            break;
+        case EC_TRAP_MSR_MRS_SYSTEM:
+            /* MSR/MRS/SystemRegs emulation */
+            rc = cpu_vcpu_emulate_msr_mrs_system(vcpu, regs, il, iss);
+            break;
+        case EC_TRAP_LWREL_INST_ABORT:
+            /* Stage2 instruction abort */
+            fipa = (mrs(hpfar_el2) & HPFAR_FIPA_MASK) >> HPFAR_FIPA_SHIFT;
+            fipa = fipa << HPFAR_FIPA_PAGE_SHIFT;
+            fipa = fipa | (mrs(far_el2) & HPFAR_FIPA_PAGE_MASK);
+            rc = cpu_vcpu_inst_abort(vcpu, regs, il, iss, fipa);
+            break;
+        case EC_TRAP_LWREL_DATA_ABORT:
+            /* Stage2 data abort */
+            fipa = (mrs(hpfar_el2) & HPFAR_FIPA_MASK) >> HPFAR_FIPA_SHIFT;
+            fipa = fipa << HPFAR_FIPA_PAGE_SHIFT;
+            fipa = fipa | (mrs(far_el2) & HPFAR_FIPA_PAGE_MASK);
+            rc = cpu_vcpu_data_abort(vcpu, regs, il, iss, fipa);
+            break;
+
+最後呼叫 emulate_arm.c 內相對應的函式做指令模擬
+
 Memory virtualization
 ...................................
 請參考: `armv8 virtual-memory-system-architecture <http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E8%A8%98%E6%86%B6%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B-virtual-memory-system-architecture>`_
