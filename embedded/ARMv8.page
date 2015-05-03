@@ -276,8 +276,8 @@ ARMv8-A_Architecture_Reference_Manual P.1855
     - 可用來當count-up或者 count-down timers
     - 可在real-time或者virtual-time上做操作
 
-System counter
-.................
+系統計數器 (System counter)
+..................................
 
 - Width: 至少56-bits
 - Frequency: 1-50MHz，支援多個可選擇的運作模式，如在低頻率下一次增加較多的數量，通常用來省電(power-saving)。
@@ -286,6 +286,22 @@ System counter
 - Start-up: 從0開始
 - 它必須被實作在一個always-on power domain
 - 初始化: 必須在系統booting時設定其頻率，可以寫入CNTFRQ 暫存器來做設定。
+
+實體計數器 (physical counter)
+..................................
+
+PE有一個實體計數器包含系統計數器的count. (保存在CNTPCT暫存器中)
+
+- CNTPCT:
+    - Secure EL1 modes及Non-secure Hyp mode隨時可以存取
+    - Non-secure EL1 mode CNTHCTL.EL1PCTEN 被設為1時才能存取，否則會被trap到Hyp
+    - 另外，當CNTKCTL.EL0PCTEN 被設為1時，在當下的安全性狀態的EL0、EL1就可以存取
+    - CNTKCTL 比 CNTHCTL有較高的優先權
+
+虛擬計數器 (virtual counter)
+..................................
+
+
 
 reference
 =====================================
