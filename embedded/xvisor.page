@@ -181,9 +181,30 @@ cpu_entry.S 內初始化Hyp vector base
     EXCEPTION_HANDLER hyp_sync
         PUSH_REGS
         mov	x1, EXC_HYP_SYNC_SPx
-        CALL_EXCEPTION_CFUNC do_sync
+        CALL_EXCEPTION_CFUNC do_sync    
         PULL_REGS
-
+    
+    /* 
+     *         .macro	PUSH_REGS
+     *         sub	sp, sp, #0x20
+     *         push	x28, x29
+     *         push	x26, x27
+     *         push	x24, x25
+     *         push	x22, x23
+     *        ......
+     *         push	x0, x1
+     *         add	x21, sp, #0x110
+     *         mrs	x22, elr_el2
+     *         mrs	x23, spsr_el2
+     *         stp	x30, x21, [sp, #0xF0]
+     *         stp	x22, x23, [sp, #0x100]
+     *
+     *
+     *  .macro CALL_EXCEPTION_CFUNC cfunc
+     *      mov	x0, sp                  x0 放下面 arch_regs_t *regs 的參數
+     *      bl	\cfunc
+     *  .endm
+     */
 
 - ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊
 
