@@ -70,9 +70,9 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 
 ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定址空間(Secure physical address space)。
 
-- 安全狀態(Secure state): PE可以存取安全及不安全的實體定址空間
+- 安全狀態(Secure state): PE可以存取安全及不安全的實體定址空間，有PL0.PL1.PL3
 
-- 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間
+- 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間，有PL0.PL1.PL2
 
 .. image:: /embedded/Security Extension.png
 (from: Hardware Support Virtualization (國立清華大學))
