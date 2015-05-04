@@ -32,6 +32,15 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
 注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
 
 
+**Execution modes**
+-Operation modes:
+1. Thread mode
+2. Handler mode
+
+-Main and Process Stacks
+1. MSP：Main Stack Pointer
+2. PSP：Process Stack Pointer
+
 **activate**
 
 - 功能：從 kernel mode 轉換成 user mode
@@ -69,71 +78,6 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
 
   - 所以除了 r0~r3 及 ip、sp、pc、cpsr 之外，都被換成 user-mode 的 register 了。
 
-task
-==========
-rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
-
- .. code-block:: c
-
-    struct task_control_block {
-        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
-        int pid; //記錄目前 task 的 pid
-        int status; //記錄目前 task 的狀態
-        int priority; //記錄目前 task 的優先度
-
-        struct list list; 
-    };
-    
-    // 其中 status 共有 5 種狀態被定義
-    #define TASK_READY      0
-    #define TASK_WAIT_READ  1
-    #define TASK_WAIT_WRITE 2
-    #define TASK_WAIT_INTR  3
-    #define TASK_WAIT_TIME  4
-    
-    // 其中 priority 預設為 20，最低的 priority 為39
-**GDB macro**
-利用 macro 可以快速查看目前的 task 是哪一個，並顯示出目前所有 task 的狀態以及優先度
-  
-  ::
-
-    define print_status
-        if($arg0 == 0)
-            printf "TASK_READY     "
-        end
-        if($arg0 == 1)
-            printf "TASK_WAIT_READ "
-        end
-        if($arg0 == 2)
-            printf "TASK_WAIT_WRITE"
-        end
-        if($arg0 == 3)
-            printf "TASK_WAIT_INTR "
-        end
-        if($arg0 == 4)
-            printf "TASK_WAIT_TIME "
-        end
-    end
-
-    define ps
-        printf "pid    status            priority\n"
-
-        set $t = tasks
-        set $i = 0
-        while $i != task_count
-            if ($i == current_task)
-                printf "*%2d    ", $t[$i].pid
-            else
-                printf "%3d    ", $t[$i].pid
-            end
-            print_status $t[$i].status
-            printf "%11d\n", $t[$i].priority
-            set $i = $i + 1
-        end
-    end
-
-  .. image:: /embdded/rtenv-plus/gdb_macro.png
-
 init_task
 ==========
 
@@ -146,7 +90,7 @@ init_task
     /* 傳入的參數為：欲執行 first() 的 task 的 stack位址 以及 first() 的位址 */
     unsigned int *init_task(unsigned int *stack, void (*start)())
     {
-        /* 由於 stack 的設計為 full descendent stack，
+        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
          * 所以 stack pointer 一開始必須指向最高位址。
          * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
          * 而預期將 first() 的位址存到 _lr 中，所以必須 push 9個 word
@@ -288,6 +232,70 @@ rtenv-plus 的 fork 與在同樣沒有 virtual memory 支援下所使用的 vfor
 
 另外，在其它系統上，子 task 的 PPID 會是其母 task 的 PID，所以兩者之間可以有互動，例如母 task 等待子 task 結束。但在 rtenv-plus 上，因為沒有實作 PPID ，所以兩個 task 基本上是獨立運作而互不干擾的。
 
+task
+==========
+rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
+
+ .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
+        int pid; //記錄目前 task 的 pid
+        int status; //記錄目前 task 的狀態
+        int priority; //記錄目前 task 的優先度
+
+        struct list list; 
+    };
+    
+    // 其中 status 共有 5 種狀態被定義
+    #define TASK_READY      0
+    #define TASK_WAIT_READ  1
+    #define TASK_WAIT_WRITE 2
+    #define TASK_WAIT_INTR  3
+    #define TASK_WAIT_TIME  4
+    
+    // 其中 priority 預設為 20，最低的 priority 為39
+**GDB macro**
+利用 macro 可以快速查看目前的 task 是哪一個，並顯示出目前所有 task 的狀態以及優先度
+  
+  ::
+
+    define print_status
+        if($arg0 == 0)
+            printf "TASK_READY     "
+        end
+        if($arg0 == 1)
+            printf "TASK_WAIT_READ "
+        end
+        if($arg0 == 2)
+            printf "TASK_WAIT_WRITE"
+        end
+        if($arg0 == 3)
+            printf "TASK_WAIT_INTR "
+        end
+        if($arg0 == 4)
+            printf "TASK_WAIT_TIME "
+        end
+    end
+
+    define ps
+        printf "pid    status            priority\n"
+
+        set $t = tasks
+        set $i = 0
+        while $i != task_count
+            if ($i == current_task)
+                printf "*%2d    ", $t[$i].pid
+            else
+                printf "%3d    ", $t[$i].pid
+            end
+            print_status $t[$i].status
+            printf "%11d\n", $t[$i].priority
+            set $i = $i + 1
+        end
+    end
+
+  .. image:: /embdded/rtenv-plus/gdb_macro.png
 
 list
 =====
@@ -1045,6 +1053,8 @@ gdb
 .. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
 .. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+
+.. [#] `Cortex-M3 Execution Modes<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html>`_
 
 .. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
 
