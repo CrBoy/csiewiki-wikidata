@@ -33,13 +33,28 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
 
 
 **Execution modes**
--Operation modes:
-1. Thread mode
-2. Handler mode
 
--Main and Process Stacks
-1. MSP：Main Stack Pointer
-2. PSP：Process Stack Pointer
+- User (non-privileged) mode
+ 1. has limited access to the MSR and MRS instructions, and cannot use the CPS instruction
+ 2. cannot access the system timer, NVIC, or system control block
+ 3. might have restricted access to memory or peripherals.
+
+- Privileged mode
+ - software can use all the instructions and has access to all resources.
+
+- Operation mode
+ 1. Thread mode
+  - The Cortex-M3 提供 ``Privileged`` and User ( ``non-privileged`` ) execution
+  - Privileged mode在code執行時可full access
+  - non-privileged是limited。
+ 2. Handler mode
+  - 只有在exception發生時進入，且必為Privileged。
+
+- Main and Process Stacks
+ 1. MSP：Main Stack Pointer
+  - 一開始程式進入即為MSP
+ 2. PSP：Process Stack Pointer
+  - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
 
 **activate**
 
@@ -1055,6 +1070,9 @@ gdb
 .. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
 .. [#] `Cortex-M3 Execution Modes<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html>`_
+
+.. [#] `Cortex-M3 Processor mode and privilege levels for software execution<http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html
+>`_
 
 .. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
 
