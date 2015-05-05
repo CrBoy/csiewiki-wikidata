@@ -120,6 +120,57 @@ init_task
     }
 
 
+
+ Exception (Cortex-M3)
+=================
+
+Cortex-M3有支援許多不同的Exception types
+
+  .. image:: /exception_type.jpg
+
+這裡我以SVC來做說明。
+
+當呼叫SVC 0時，SVC會觸發exception number 11並且發生exception entry
+
+Exception Entry
+--------------------------
+進入exception的條件：
+
+ 1. 要在thread mode
+
+ 2. 或者，要進入的exception的priority比正在執行的還高，則preempts，
+
+若已有其他exception正在handle，則exception變成巢狀的(exception中還有exception)。
+
+而無論exception是 tail-chained或late-arriving exception，都會自動依序將xPSR, PC, LR, R12(ip), R3, R2, R1, R0 push進去
+
+ .. image:: /exception_entry_push.png
+
+ 1. tail-chained
+   - 當一exception handler完成時，若這時剛好有其他在等待的exception符合exception entry的條件時，並要進入時，則剛剛完成的exception handler的最後就不用pop，直接執行下一個exception handler。用來加速exception servicing。
+
+ 2. late-arriving
+   -  當一exception在執行state saving時，若此時有high priority的exception進入的話，則不用中斷此state saving，因為他們是來自同一state。用來加速exception的preemption。
+
+而當此state saving完成後才會開始執行exception handler，而同時，processor也會將EXC_RETURN寫入LR
+
+ - EXC_RETURN的功能是，他要記錄你在發生exception前你的sp是位在psp還是msp，且你是在handler mode 還是 thread mode，以便得知exception return時應該有的行為。
+
+Exception Return
+--------------------
+exception有進就要有出。
+
+ exception return的條件：
+  - 在Handler mode發生，且要使PC被設為EXC_RETURN。
+
+將PC設為EXC_RETURN是為了要讓exception得的機制知道exception完成了，
+藉由偵測31~4bits，
+當全為 f 時，processor會detect到他不是一個一般的branch，並且會開始執行exception return的部分。
+
+這張圖很清楚的說明exception return做了甚麼事。
+ .. image:: /exception_return.png
+
+
 How  to fork
 ============
 
