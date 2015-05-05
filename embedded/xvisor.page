@@ -432,6 +432,9 @@ booting 流程
 without virtualization extension
 -------------------------------------------------------------
 
+arm32 指令虛擬化
+....................................
+
 - elf2cpatch.py
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
 
@@ -473,8 +476,7 @@ without virtualization extension
     	rethx = rethx | (R << 0)
     	return rethx
 
-arm32 指令虛擬化
-....................................
+- instruction emulation
 
 cpu_entry.S中註冊Exception vector
 
