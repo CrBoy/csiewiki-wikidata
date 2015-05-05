@@ -491,20 +491,25 @@ arm32/cpu_interrupts.c:
 
 .. code-block:: c
 
-    /* If vcpu priviledge is user then generate exception
-     * and return without emulating instruction
-     */
-    if ((arm_priv(vcpu)->cpsr & CPSR_MODE_MASK) == CPSR_MODE_USER) {
-        vmm_vcpu_irq_assert(vcpu, CPU_SOFT_IRQ, 0x0);
-    } else {
-        if (regs->cpsr & CPSR_THUMB_ENABLED) {
-            rc = cpu_vcpu_hypercall_thumb(vcpu, regs,
-                    *((u32 *)regs->pc));
+    void do_soft_irq(arch_regs_t *regs)
+    {
+        ........
+        /* If vcpu priviledge is user then generate exception
+         * and return without emulating instruction
+         */
+        if ((arm_priv(vcpu)->cpsr & CPSR_MODE_MASK) == CPSR_MODE_USER) {
+            vmm_vcpu_irq_assert(vcpu, CPU_SOFT_IRQ, 0x0);
         } else {
-            rc = cpu_vcpu_hypercall_arm(vcpu, regs,
-                    *((u32 *)regs->pc));
+            if (regs->cpsr & CPSR_THUMB_ENABLED) {
+                rc = cpu_vcpu_hypercall_thumb(vcpu, regs,
+                        *((u32 *)regs->pc));
+            } else {
+                rc = cpu_vcpu_hypercall_arm(vcpu, regs,
+                        *((u32 *)regs->pc));
+                }
             }
-        }
+        ........
+    }
 
 以arm emulation為例， in cpu_vcpu_hypercall_arm.c:
 
