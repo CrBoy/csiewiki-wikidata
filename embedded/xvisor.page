@@ -426,6 +426,196 @@ booting 流程
         }
     }
 
+在不同Arm架構下的虛擬化機制
+=====================================
+
+without virtualization extension
+-------------------------------------------------------------
+
+- elf2cpatch.py
+    - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
+
+
+.. code-block:: python
+
+    # MSR (immediate)
+    #	Syntax:
+    # 		msr<c> <spec_reg>, #<const>
+    #	Fields:
+    #		cond = bits[31:28]
+    #		R = bits[22:22]
+    #		mask = bits[19:16]
+    #		imm12 = bits[11:0]
+    #	Hypercall Fields:
+    #		inst_cond[31:28] = cond
+    #		inst_op[27:24] = 0xf
+    #		inst_id[23:20] = 0
+    #		inst_subid[19:17] = 2
+    #		inst_fields[16:13] = mask
+    #		inst_fields[12:1] = imm12
+    #		inst_fields[0:0] = R
+    
+    
+    def convert_msr_i_inst(hxstr):
+    	hx = int(hxstr, 16)
+    	inst_id = 0
+    	inst_subid = 2
+    	cond = (hx >> 28) & 0xF
+    	R = (hx >> 22) & 0x1
+    	mask = (hx >> 16) & 0xF
+    	imm12 = (hx >> 0) & 0xFFF
+    	rethx = 0x0F000000
+    	rethx = rethx | (cond << 28)
+    	rethx = rethx | (inst_id << 20)
+    	rethx = rethx | (inst_subid << 17)
+    	rethx = rethx | (mask << 13)
+    	rethx = rethx | (imm12 << 1)
+    	rethx = rethx | (R << 0)
+    	return rethx
+
+arm32 指令虛擬化
+....................................
+
+cpu_entry.S中註冊Exception vector
+
+.. code-block:: c
+
+    _start_vect:
+    	ldr	pc, __reset
+    	ldr	pc, __undefined_instruction
+    	ldr	pc, __software_interrupt  /* __software_interrupt:	.word _soft_irq  */
+    	......
+
+arm32/cpu_interrupts.c:
+
+
+.. code-block:: c
+
+    /* If vcpu priviledge is user then generate exception
+     * and return without emulating instruction
+     */
+    if ((arm_priv(vcpu)->cpsr & CPSR_MODE_MASK) == CPSR_MODE_USER) {
+        vmm_vcpu_irq_assert(vcpu, CPU_SOFT_IRQ, 0x0);
+    } else {
+        if (regs->cpsr & CPSR_THUMB_ENABLED) {
+            rc = cpu_vcpu_hypercall_thumb(vcpu, regs,
+                    *((u32 *)regs->pc));
+        } else {
+            rc = cpu_vcpu_hypercall_arm(vcpu, regs,
+                    *((u32 *)regs->pc));
+            }
+        }
+
+以arm emulation為例， in cpu_vcpu_hypercall_arm.c:
+
+.. code-block:: c
+
+    int cpu_vcpu_hypercall_arm(struct vmm_vcpu *vcpu,
+                               arch_regs_t *regs, u32 inst)
+    {
+        u32 id = ARM_INST_DECODE(inst,
+                                 ARM_INST_HYPERCALL_ID_MASK,
+                                 ARM_INST_HYPERCALL_ID_SHIFT);
+
+        return hcall_funcs[id](id, inst, regs, vcpu);
+    }
+
+將之前編碼後的指令解碼
+
+.. code-block:: c
+
+    static int (* const hcall_funcs[])(u32 id, u32 inst,
+                                       arch_regs_t *regs, struct vmm_vcpu *vcpu) = {
+        arm_hypercall_cps_and_co,	/* ARM_HYPERCALL_CPS_ID */
+        arm_hypercall_ldm_ue,		/* ARM_HYPERCALL_LDM_UE_ID0 */
+        arm_hypercall_ldm_ue,		/* ARM_HYPERCALL_LDM_UE_ID1 */
+        arm_hypercall_ldm_ue,		/* ARM_HYPERCALL_LDM_UE_ID2 */
+        .......
+    };
+
+以id = 0的為例(CPS, MRS, MSR, RFE, SRS, WFI, WFE, SEV, SMC等) (Q: 如何分類的？)
+
+.. code-block:: c
+
+    static int arm_hypercall_cps_and_co(u32 id, u32 inst,
+                                        arch_regs_t *regs, struct vmm_vcpu *vcpu)
+    {
+        u32 subid = ARM_INST_DECODE(inst,
+                                    ARM_INST_HYPERCALL_SUBID_MASK,
+                                    ARM_INST_HYPERCALL_SUBID_SHIFT);
+
+        return cps_and_co_funcs[subid](inst, regs, vcpu);
+    }
+
+再做一次decode(即可知其指令為何)，呼叫該指令的模擬function
+
+.. code-block:: c
+
+    static int (* const cps_and_co_funcs[])(u32 inst,
+                                            arch_regs_t *regs, struct vmm_vcpu *vcpu) = {
+        arm_hypercall_cps,	/* ARM_HYPERCALL_CPS_SUBID */
+        arm_hypercall_mrs,	/* ARM_HYPERCALL_MRS_SUBID */
+        arm_hypercall_msr_i,	/* ARM_HYPERCALL_MSR_I_SUBID */
+        arm_hypercall_msr_r,	/* ARM_HYPERCALL_MSR_R_SUBID */
+        arm_hypercall_rfe,	/* ARM_HYPERCALL_RFE_SUBID */
+        arm_hypercall_srs,	/* ARM_HYPERCALL_SRS_SUBID */
+        arm_hypercall_wfx,	/* ARM_HYPERCALL_WFI_SUBID */
+        arm_hypercall_smc	/* ARM_HYPERCALL_SMC_SUBID */
+    };
+
+以mrs為例：
+
+.. code-block:: c
+
+    /* Emulate 'mrs' hypercall */
+    static int arm_hypercall_mrs(u32 inst,
+                                 arch_regs_t *regs, struct vmm_vcpu *vcpu)
+    {
+        register u32 Rd;
+        Rd = ARM_INST_BITS(inst,
+                           ARM_HYPERCALL_MRS_RD_END,
+                           ARM_HYPERCALL_MRS_RD_START);
+        if (Rd == 15) {
+            arm_unpredictable(regs, vcpu, inst, __func__);
+            return VMM_EFAIL;
+        }
+        if (ARM_INST_BIT(inst, ARM_HYPERCALL_MRS_R_START)) {
+            cpu_vcpu_reg_write(vcpu, regs, Rd,
+                               cpu_vcpu_spsr_retrieve(vcpu));
+        } else {
+            cpu_vcpu_reg_write(vcpu, regs, Rd,
+                               cpu_vcpu_cpsr_retrieve(vcpu, regs));
+        }
+        regs->pc += 4;
+        return VMM_OK;
+    }
+
+
+    
+
+
+armv5
+....................
+
+- ARM9: With MMU
+- 
+
+armv7
+.........................
+- 有安全性擴展，但沒有虛擬化擴展
+
+
+without virtualization extension
+-------------------------------------------------------------
+
+armv7ve
+........................
+- 有安全性擴展、LPAE及虛擬化擴展
+- Cortex-A15 / Cortex-A7 (with big-LITTLE support)
+
+armv8
+.................
+
 設計文件整理
 =====================================
 原文： https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
