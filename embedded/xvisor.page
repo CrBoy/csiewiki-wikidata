@@ -298,7 +298,7 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
     - 將interrupt分為兩類，分別被安排(route)到Hypervisor或Guest OS的Vector Table
 
 - Virtual CPU interface：
-    - 協助Hypervisor Designer實作Virtual Interrupt Distributor
+    - 協助Hypervisor Designer實作Virtual Interrupt Distributor的硬體
 
 I/O device virtualization
 --------------------------------------------
