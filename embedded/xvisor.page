@@ -435,7 +435,7 @@ without virtualization extension
 arm32 指令虛擬化
 ....................................
 
-- elf2cpatch.py
+- `elf2cpatch.py<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/elf2cpatch.py>`_
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
 
 
@@ -478,7 +478,7 @@ arm32 指令虛擬化
 
 - instruction emulation
 
-cpu_entry.S中註冊Exception vector
+`cpu_entry.S<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_entry.S>`_中註冊Exception vector
 
 .. code-block:: c
 
@@ -488,7 +488,7 @@ cpu_entry.S中註冊Exception vector
     	ldr	pc, __software_interrupt  /* __software_interrupt:	.word _soft_irq  */
     	......
 
-arm32/cpu_interrupts.c:
+`cpu_interrupts.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_interrupts.c>`_
 
 
 .. code-block:: c
@@ -513,7 +513,7 @@ arm32/cpu_interrupts.c:
         ........
     }
 
-以arm emulation為例， in cpu_vcpu_hypercall_arm.c:
+以arm emulation為例， in `cpu_vcpu_hypercall_arm.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_vcpu_hypercall_arm.c>`_:
 
 .. code-block:: c
 
