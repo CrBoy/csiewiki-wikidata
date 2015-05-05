@@ -121,8 +121,8 @@ init_task
 
 
 
- Exception (Cortex-M3)
-=================
+Exception (Cortex-M3)
+--------------------------
 
 Cortex-M3有支援許多不同的Exception types
 
@@ -1121,8 +1121,7 @@ gdb
 
 .. [#] `Cortex-M3 Execution Modes<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html>`_
 
-.. [#] `Cortex-M3 Processor mode and privilege levels for software execution<http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html
->`_
+.. [#] `Cortex-M3 Processor mode and privilege levels for software execution<http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html>`_
 
 .. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
 
