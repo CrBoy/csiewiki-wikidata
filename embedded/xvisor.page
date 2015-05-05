@@ -613,7 +613,7 @@ armv7
 - 有安全性擴展，但沒有虛擬化擴展
 
 
-without virtualization extension
+with virtualization extension
 -------------------------------------------------------------
 
 armv7ve
