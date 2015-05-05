@@ -283,6 +283,10 @@ Memory virtualization
     - 第二階段: 中間實體位址(Intermediate physical address) => 實體位址(physical address)
         - 由hypervisor控制
 
+interrupt virtualization
+........................................
+
+
 I/O device virtualization
 --------------------------------------------
 - ARM 增加 Virtual Generic Interrupt Controller 介面去執行interrupt
