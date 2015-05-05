@@ -437,6 +437,7 @@ arm32 指令虛擬化
 
 - `elf2cpatch.py<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/elf2cpatch.py>`_
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
+    - 以mrs為例
 
 
 .. code-block:: python
