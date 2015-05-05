@@ -20,19 +20,8 @@ toc: no
 作業系統架構
 ---------------
 
-
-Context Switch
-===============
-
-**Kernel Mode 與 User Mode 間的轉換**
-
-kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
-
-  .. image:: /embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG
-注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
-
-
-**Execution modes**
+Execution modes
+===================
 
 - User (non-privileged) mode
  1. has limited access to the MSR and MRS instructions, and cannot use the CPS instruction
@@ -55,6 +44,16 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
   - 一開始程式進入即為MSP
  2. PSP：Process Stack Pointer
   - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
+
+Context Switch
+===============
+
+**Kernel Mode 與 User Mode 間的轉換**
+
+kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
+
+  .. image:: /embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG
+注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
 
 **activate**
 
