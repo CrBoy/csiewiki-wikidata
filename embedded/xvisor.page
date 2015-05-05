@@ -554,7 +554,7 @@ arm32/cpu_interrupts.c:
         return cps_and_co_funcs[subid](inst, regs, vcpu);
     }
 
-再做一次decode(即可知其指令為何)，呼叫該指令的模擬function
+再做一次decode(即可知其指令為何)，呼叫模擬該指令的function
 
 .. code-block:: c
 
