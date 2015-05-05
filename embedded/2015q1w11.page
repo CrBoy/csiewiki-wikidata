@@ -3,6 +3,12 @@ title: Week #11 (May 5) :: Group Presentation (2)
 toc: no
 ...
 
+Case Study
+-----------------
+* `Investigation and Improvement on the Impact of TLB misses  in Real-Time Systems<http://ertl.jp/~shinpei/conf/ospert13/slides/TakuyaIshikawa.pdf>`_
+* `Hunting birds<http://potetisensei.hatenablog.com/entry/2015/05/04/235845>`_, Yuki Koike (日本 NADA 高中)
+  - 人家高中生都可以寫精美論文提出攻擊手法
+
 分組報告
 ------------
 * `FreeRTOS (MMU)</embedded/freertos-mmu>`_
