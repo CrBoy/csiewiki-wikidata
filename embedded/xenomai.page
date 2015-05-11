@@ -18,7 +18,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
 
 .. code-block:: c
 
-    sudo dd if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0 bs=4M
+    sudo dd if=<raspbian image file> of=/dev/mmcblk0 bs=4M
 
   - ``if`` 為 input file, ``of`` 為 output file, ``bs``為 block size
   - 燒錄詳細介紹: http://life-of-raspberrypi.blogspot.tw/
@@ -111,7 +111,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
     make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
     find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
 
-* 編譯好的kernelImage,移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
+* 編譯好的kernelImage(<working dir>/linux-rpi-3.8.y/build/arch/arm/boot/Image),移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
 
 * 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
 
@@ -120,7 +120,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
 .. code-block:: c
     
   cd xenomai-head
-  export PATH=../tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
   ./configure --host=arm-bcm2708hardfp-linux-gnueabi
   cd src
   mkdir dist
