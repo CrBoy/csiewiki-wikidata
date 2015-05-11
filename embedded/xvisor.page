@@ -449,6 +449,9 @@ GIC 配置
     - DGIC_DIST_BASE=0x2c001000
     - DGIC_CPU_BASE=0x2c002000
 
+.. image:: /embedded/gic_dist_map.png
+(from GICv2 Architecture Specification P.74)
+
 .. code-block:: c
 
     /* GIC Distributor Interface Init */
@@ -462,13 +465,34 @@ GIC 配置
         bne	1f
         mov	x1, #3				/* Enable group0 & group1 */
         str	w1, [x0, #0x00]			/* Ctrl Register */
-        ldr	w1, [x0, #0x04]			/* Type Register */
+
+.. image:: /embedded/gic1.png
+
+(from GICv2 Architecture Specification)
+
+.. code-block:: c
+
+    ldr	w1, [x0, #0x04]			/* Type Register */
     1:  and	x1, x1, #0x1f			/* No. of IGROUPn registers */
         add	x2, x0, #0x080			/* IGROUP0 Register */
         movn	x3, #0				/* All interrupts to group-1 */
     2:  str	w3, [x2], #4
         subs	x1, x1, #1
         bge	2b
+
+.. image:: /embedded/gic_cpu_interface.png
+
+(from GICv2 Architecture Specification P.76)
+
+- GICC_CTLR
+
+.. image:: /embedded/gic_cpu_reg.png
+
+- GICC_PMR
+
+.. image:: /embedded/gicc_pmr.png
+
+.. code-block:: c
 
     __gic_cpu_init:
         /* GIC Secured CPU Interface Init */
