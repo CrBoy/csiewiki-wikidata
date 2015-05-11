@@ -140,20 +140,25 @@ Task 的狀態
                                unsigned portBASE_TYPE uxPriority,
                                xTaskHandle *pxCreatedTask );
 
-* pvTaskCode：就是我們定義好用來建立 task 的 C 函數
-* pcName：任意給定的 task name，這個名稱只被用來作識別，不會在 task 管理中被採用
-* usStackDepth：堆疊的大小
-* pvParameters：要傳給 task 的參數陣列，也就是我們在 C 函數宣告的參數
-* uxPriority：定義這個任務的優先權，在 FreeRTOS 中，0 最低，(configMAX_PRIORITIES – 1) 最高
-* pxCreatedTask：`handle<http://zh.wikipedia.org/wiki/%E5%8F%A5%E6%9F%84>`_，是一個被建立出來的 task 可以用到的識別符號
+  * pvTaskCode：就是我們定義好用來建立 task 的 C 函數
+  * pcName：任意給定的 task name，這個名稱只被用來作識別，不會在 task 管理中被採用
+  * usStackDepth：堆疊的大小
+  * pvParameters：要傳給 task 的參數陣列，也就是我們在 C 函數宣告的參數
+  * uxPriority：定義這個任務的優先權，在 FreeRTOS 中，0 最低，(configMAX_PRIORITIES – 1) 最高
+  * pxCreatedTask：`handle<http://zh.wikipedia.org/wiki/%E5%8F%A5%E6%9F%84>`_，是一個被建立出來的 task 可以用到的識別符號
 
 * 刪除 task 的函數
 
 .. code-block:: c
     
     void vTaskDelete( xTaskHandle pxTaskToDelete );
+
+  * pxTaskToDelete: 利用handle去識別出哪一個task。
+這種可能性存在於如果在 loop 中發生執行錯誤 (fail)，則需要跳出迴圈並終止(自己)執行，此時就需要使用 vTaskDelete 來刪除自己，發生錯誤的例子：
+    1. 假如今天一個 task 是要存取資料庫，但是資料庫或資料表不存在，則應該結束 task
+    2. 假如今天一個 client task 是要跟 server 做連線( listening 就是 loop)，卻發現 client 端沒有網路連線，則應結束 task
 	
-* pxTaskToDelete: 利用handle去識別出哪一個task。
+
 
 Ready list 的資料形態
 ---------------------
