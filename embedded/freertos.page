@@ -122,10 +122,10 @@ Task 的狀態
 .. image:: /tskstate.gif
 
 
-* Ready：準備好要執行的狀態
-* Running：正在由 CPU 執行的狀態
-* Blocked：等待中的狀態(通常是在等待某個事件)
-* Suspended：等待中的狀態(透過 API 來要求退出排程)
+  * Ready：準備好要執行的狀態
+  * Running：正在由 CPU 執行的狀態
+  * Blocked：等待中的狀態(通常是在等待某個事件)
+  * Suspended：等待中的狀態(透過 API 來要求退出排程)
 
 每一種狀態 FreeRTOS 都會給予一個 list 儲存（除了 running)
 
@@ -402,9 +402,53 @@ Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生
 .. image:: /delay_blocked.png
 
 
-* vTaskDelay()
+  * vTaskDelay()：這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒(ms)的意思 (v8.2.1 改名為 portTICK_PERIOD_MS)
 
-這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒的意思 (v8.2.1 改名為 portTICK_PERIOD_MS)
+* Suspended
+
+如果一個 task 會被 block 很久或者是會有一段時間用不到那就會被丟到 suspend 狀態。
+情境：設有一個 taskPrint 這個 task 只做 print 資料，而有好幾個 taskOperator 負責做運算，若運算要很久，則可以把 taskPrint 先丟入 suspend 狀態中，直到所有運算皆完成後，再喚醒 taskPrint 進入 ready 狀態，最後將資料 print 出來。
+
+vTaskSuspend 使用範例：
+
+.. code-block:: c
+
+     void vAFunction( void )
+
+     {
+
+         TaskHandle_t xHandle;
+
+         // Create a task, storing the handle.
+
+         xTaskCreate( vTaskCode, "NAME", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xHandle );
+
+         // ... 
+
+         // If xHandle will wait for a long time.
+
+         // Use the handle to suspend the created task.
+
+         vTaskSuspend( xHandle );
+
+         // ...
+
+         // The created task will not run during this period, unless
+
+         // another task calls vTaskResume( xHandle ).
+
+         //...
+
+         // Suspend ourselves.
+
+         vTaskSuspend( NULL );
+
+         // We cannot get here unless another task calls vTaskResume
+
+         // with our handle as the parameter.
+
+     }
+
 
 通訊
 ----------------------
@@ -1171,48 +1215,6 @@ SysTick最小只能設到1 / 100000 （十萬分之一）秒
 ----------
 **Q1:進入Suspend 的條件
 
-如果一個task會被block很久或者是會有一段時間用不到那就會被丟到suspend狀態。
-情境：設有一個taskPrint這個task只做print資料，而有好幾個taskOperator負責做運算，若運算要很久，則可以把taskPrint先丟入suspend狀態中，直到所有運算皆完成後，再喚醒taskPrint進入ready狀態，最後將資料print出來。
-
-vTaskSuspend使用範例：
-
-.. code-block:: c
-
-     void vAFunction( void )
-
-     {
-
-         TaskHandle_t xHandle;
-
-         // Create a task, storing the handle.
-
-         xTaskCreate( vTaskCode, "NAME", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xHandle );
-
-         // ... 
-
-         // If xHandle will wait for a long time.
-
-         // Use the handle to suspend the created task.
-
-         vTaskSuspend( xHandle );
-
-         // ...
-
-         // The created task will not run during this period, unless
-
-         // another task calls vTaskResume( xHandle ).
-
-         //...
-
-         // Suspend ourselves.
-
-         vTaskSuspend( NULL );
-
-         // We cannot get here unless another task calls vTaskResume
-
-         // with our handle as the parameter.
-
-     }
 
 *Q2:Suspend相關程式碼
 
