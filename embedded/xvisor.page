@@ -443,6 +443,41 @@ booting 流程
         }
     }
 
+GIC 配置
+-------------------------------------------------------------
+先看foundation model的手冊
+    - DGIC_DIST_BASE=0x2c001000
+    - DGIC_CPU_BASE=0x2c002000
+
+.. code-block:: c
+
+    /* GIC Distributor Interface Init */
+        mrs	x4, mpidr_el1
+        ldr	x5, __mpidr_mask
+        and	x4, x4, x5			/* CPU affinity */
+    __gic_dist_init:
+        ldr	x0, __gic_dist_base		/* Dist GIC base */
+        mov	x1, #0				/* non-0 cpus should at least */
+        cmp	x4, xzr				/* program IGROUP0 */
+        bne	1f
+        mov	x1, #3				/* Enable group0 & group1 */
+        str	w1, [x0, #0x00]			/* Ctrl Register */
+        ldr	w1, [x0, #0x04]			/* Type Register */
+    1:  and	x1, x1, #0x1f			/* No. of IGROUPn registers */
+        add	x2, x0, #0x080			/* IGROUP0 Register */
+        movn	x3, #0				/* All interrupts to group-1 */
+    2:  str	w3, [x2], #4
+        subs	x1, x1, #1
+        bge	2b
+
+    __gic_cpu_init:
+        /* GIC Secured CPU Interface Init */
+        ldr	x0, __gic_cpu_base		/* GIC CPU base */
+        mov	x1, #0x80
+        str	w1, [x0, #0x4]			/* GIC CPU Priority Mask */
+        mov	x1, #0x3			/* Enable group0 & group1 */
+        str	w1, [x0]			/* GIC CPU Control */
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
