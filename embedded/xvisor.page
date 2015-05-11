@@ -763,3 +763,4 @@ reference
 * `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
 * `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
 * `Syllabus for CS5410 Virtualization Techniques (國立清華大學)<http://www.cs.nthu.edu.tw/~ychung/syllabus/Virtualization.htm>`_ (內有課程簡報)
+* `GICv2 Architecture Specification<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
