@@ -443,6 +443,23 @@ booting 流程
         }
     }
 
+
+
+TCR_EL2, Translation Control Register (EL2)
+
+.. image:: /embedded/vtcr.png
+
+
+.. code-block:: c
+
+	/* Setup Hypervisor Translation Control Register */
+	ldr	x0, __htcr_set   /*__htcr_set:	(TCR_T0SZ_VAL(39) | TCR_PS_40BITS | (0x3 << TCR_SH0_SHIFT) | (0x1 << TCR_ORGN0_SHIFT) | (0x1 << TCR_IRGN0_SHIFT))*/
+	msr     tcr_el2, x0
+
+	/* Setup Hypervisor Translation Base Register */
+	ldr	x0, __httbr_set  /* def_ttbl 的位置 */
+	msr	ttbr0_el2, x0
+
 GIC 配置
 -------------------------------------------------------------
 先看foundation model的手冊
