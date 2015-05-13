@@ -458,6 +458,7 @@ TCR_EL2, Translation Control Register (EL2)
 
 - __htcr_set:	(TCR_T0SZ_VAL(39) | TCR_PS_40BITS | (0x3 << TCR_SH0_SHIFT) | (0x1 << TCR_ORGN0_SHIFT) | (0x1 << TCR_IRGN0_SHIFT))
     - TCR_T0SZ_VAL(39) = (64-39) & 0x3f: The size offset of the memory region addressed by TTBR0_EL2. The region size is 2^64-T0SZ bytes. 將 region size 設為 2^39 bytes
+        - Initial lookup level為level 1
     - TCR_PS_40BITS = 2 << 16: Physical Address Size 設為40 bits, 1 TB。
     - TCR_SH0_SHIFT = 12; 0x3: Shareability attribute for memory associated: Inner Shareable
     - TCR_ORGN0_SHIFT = 10; 0x1: Outer cacheability attribute for memory associated: Write-Back Write-Allocate Cacheable
