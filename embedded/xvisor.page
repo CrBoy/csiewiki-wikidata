@@ -335,6 +335,12 @@ booting 流程
 
         bl	_setup_initial_ttbl
 
+* `mmu_lpae.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c>`_
+
+.. code-block:: c
+
+    u8 __attribute__ ((aligned(TTBL_TABLE_SIZE))) def_ttbl[TTBL_INITIAL_TABLE_SIZE] = { 0 };
+
 初始化translation table
 * `mmu_lpae_entry_ttbl.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c>`_
 
