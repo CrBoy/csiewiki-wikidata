@@ -14,9 +14,10 @@ toc: no
 共筆
 ----
 * 2015 年春季
+   - `Hackpad<https://hackpad.com/2015-Embedded-FreeRTOS-0IEDUa7Rjct>`_
    - `GitHub<https://github.com/Justinsanity/freertos-basic>`_
 * 2014 年春季
-  - `Link<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
+  - `Hackpad<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
   - `GitHub<https://github.com/TheKK/myFreeRTOS>`_
 
 目錄
@@ -1213,9 +1214,6 @@ SysTick最小只能設到1 / 100000 （十萬分之一）秒
 
 問題討論
 ----------
-**Q1:進入Suspend 的條件
-
-
 *Q2:Suspend相關程式碼
 
 FreeRTOS提供vTaskSuspend()和vTaskResume()這兩個API來提供我們可以讓task進入suspend狀態。FreeRTOS還有另一個API為vTaskSuspendAll()而主要用途為當某一個task在執行時，某期間內可以讓scheduler被suspend，防止context switch發生，實作方法為控制uxSchedulerSuspended的變數，vTaskSuspendAll()讓uxSchedulerSuspended＋1 進入suspendall的狀態 當程式碼那段執行完時再用vTaskresumeall讓uxSchedulerSuspended-1這用法再很多task裡會用到
