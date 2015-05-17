@@ -14,8 +14,8 @@ Hackpad
 * `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
 * `報告整理區<https://mycpp.hackpad.com/Xvisor--nSiBMBB9RNN>`_
 
-設計文件整理
-======================================
+
+
 虛擬化技術 (Virtualization) 
 =====================================
 以下簡介虛擬化技術，並以Xvisor on `ARMv8</embedded/ARMv8>`_ 為例探討虛擬化技術的實作
@@ -739,7 +739,8 @@ armv8
 =====================================
 原文： https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
 
-Modeling Virtual Machine
+
+Chapter1: Modeling Virtual Machine
 --------------------------------------------
 
 * 何謂VM(virtual machine),通常分為兩種
@@ -759,8 +760,27 @@ Modeling Virtual Machine
 下圖為Xvisor的System Virtual Machine Model
 
 .. image:: /embedded/xvisor_model.png
+Chapter2: Hypervisor Configuration
+-------------------------------------------- 
+在早期，因為只有單一CPU執行OS，所以當我們要對一個系統設置OS是相當簡單的，但今日我們有強大的單一核心及多核心的處理器可針對許多的應用下作配置
+一個多核心處理器可被單一對稱多重處理(symmetric multiprocessing SMP)作業系統管理，每一個核心在非對稱多重處理(asymmetric multiprocessing AMP)的處理下可被指派給不同的OS，每一個核心都當成是獨立的處理器，Process可以在不同的處理器移動，達到平衡，使系統效率提升
 
-Xvisor 測試
+下圖為傳統單核心 vs AMP vs SMP 運作方式:
+
+.. image:: /embedded/hackpad_smp.png
+(圖片來源: http://www.rtcmagazine.com/articles/view/101663)
+
+- SMP及AMP面臨的挑戰：
+    - SMP依照workload時常不適合擴充(scale)，因為使用多個bus或crossbar switch，使得功耗過高
+    - AMP則很難去配置哪一個OS去存取哪一個device，作業系統認為他們對他們偵測到的硬體有完整的掌控權，所以這常常讓AMP有所牴觸Xvisor 
+另外: vSMP(virtual symmetric multiprocessing)：多擁有一個「協同處理核心」co-processor，通常為低功耗製程，所以較常處理低頻率的運作，另外，此核心對OS來說如同不存在，也就是說OS和應用程式都不知道核心的存在，卻會自動地運用這個核心，所以我們不需要撰寫新的程式碼並透過軟體去控制，而vSMP主要是把兩個以上的virtual processor map到單一虛擬機，這讓我們能指派多個虛擬處理器到一個擁有至少兩個邏輯處理器的虛擬機上，優點為可以達到快取記憶體一致性，使作業系統效率高，功耗最佳化
+- Xvisor提供技術去劃分或虛擬化處理器核心、記憶體和在多個OS使用的device
+    - 利用稱為device tree的樹結構，去簡化運行在單核心或多核心系統的配置，因此系統設計者可以輕易地混合運用許多不同的AMP, SMP, 核心虛擬化配置去建立系統
+    - 在Linux之中，如果為of_platform架構(e.g. PowerPC)，啟動的時候，Linux Kernel會等由boot loader產生的DTB file(Device Tree Blob/Flattened device tree)，DTB file為經過DTC(Device Tree Compiler)編譯的DTS所產生的binary file，而of_platform只probe那些在DTB file提到的drivers，這些drivers相容或符合在device tree的devices. 
+    -Xvisor不需和Linux of_platform一樣必須從DTB去設定device tree，Xvisor的device tree的來源可以很多種，不僅可從DTB去獲取，也可從ACPI table (Advanced Configuration and Power Interface)，簡單來說，Xvisor的Device Tree只是個管理hypervisor設定的資料結構
+
+
+測試
 =====================================
 1. 註冊ARM帳號
 2. 下載ARM `Foundation v8 model<http://www.arm.com/zh/products/tools/models/fast-models/foundation-model.php>`_
@@ -804,7 +824,8 @@ Xvisor 測試
     tclsh armv8_test.tcl ~/workspace/Foundation_Platformpkg/models/Linux64_GCC-4.1/Foundation_Platform
 
 (需先安裝tclsh，後面路徑假設Foundation v8 model解壓縮在workspace)
-    
+
+   
 
 reference
 =====================================
