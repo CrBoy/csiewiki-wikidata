@@ -668,6 +668,56 @@ Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>
 .. image:: /embedded/irqdesc.png
 
 
+名詞介紹IRQ (ARM Instruction Set 介紹)
+------------------------------------------------------------------ 
+ARM Instruction Set
+
+
+processor mode
+
+
+* User模式： 非特權模式（大多數工作所跑得模式）
+
+* FIQ模式 ：當比較高的優先權中斷提出時的模式
+
+* IRQ模式 ：當比較高的優先權中斷提出時的模式
+
+* Supervisor模式：當要reset和軟體中斷時的模式
+
+* Abort 模式： 記憶體保護處理模式
+
+* Undef模式：用來處理未定義指令的模式 
+
+ARM Architecture Version 4 加了第七種模式
+
+* System模式： 專門給作業系統工作的特權模式
+
+The Registers
+
+* 有一個 program counter 
+
+* 有一個 current program status register 
+
+* 有五個 saved program status registers 
+
+* 有三十個 general purpose registers
+
+
+每個模式可以存取 
+
+* r0-r12 暫存器 
+
+* r13 (the stack pointer) and r14 (link register) 
+
+* r15 (the program counter) 
+
+* cpsr (the current program status register)
+
+
+特權模式可以多存取
+
+* spsr (saved program status register)
+
 
 
 **電流處理 (Flow Handler)**
