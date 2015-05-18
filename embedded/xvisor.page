@@ -770,15 +770,43 @@ Chapter2: Hypervisor Configuration
 .. image:: /embedded/hackpad_smp.png
 (圖片來源: http://www.rtcmagazine.com/articles/view/101663)
 
-- SMP及AMP面臨的挑戰：
+* SMP及AMP面臨的挑戰：
     - SMP依照workload時常不適合擴充(scale)，因為使用多個bus或crossbar switch，使得功耗過高
-    - AMP則很難去配置哪一個OS去存取哪一個device，作業系統認為他們對他們偵測到的硬體有完整的掌控權，所以這常常讓AMP有所牴觸Xvisor 
+    - AMP則很難去配置哪一個OS去存取哪一個device，作業系統認為他們對他們偵測到的硬體有完整的掌控權，所以這常常讓AMP有所牴觸Xvisor
+ 
 另外: vSMP(virtual symmetric multiprocessing)：多擁有一個「協同處理核心」co-processor，通常為低功耗製程，所以較常處理低頻率的運作，另外，此核心對OS來說如同不存在，也就是說OS和應用程式都不知道核心的存在，卻會自動地運用這個核心，所以我們不需要撰寫新的程式碼並透過軟體去控制，而vSMP主要是把兩個以上的virtual processor map到單一虛擬機，這讓我們能指派多個虛擬處理器到一個擁有至少兩個邏輯處理器的虛擬機上，優點為可以達到快取記憶體一致性，使作業系統效率高，功耗最佳化
-- Xvisor提供技術去劃分或虛擬化處理器核心、記憶體和在多個OS使用的device
+
+* Xvisor提供技術去劃分或虛擬化處理器核心、記憶體和在多個OS使用的device
     - 利用稱為device tree的樹結構，去簡化運行在單核心或多核心系統的配置，因此系統設計者可以輕易地混合運用許多不同的AMP, SMP, 核心虛擬化配置去建立系統
     - 在Linux之中，如果為of_platform架構(e.g. PowerPC)，啟動的時候，Linux Kernel會等由boot loader產生的DTB file(Device Tree Blob/Flattened device tree)，DTB file為經過DTC(Device Tree Compiler)編譯的DTS所產生的binary file，而of_platform只probe那些在DTB file提到的drivers，這些drivers相容或符合在device tree的devices. 
-    -Xvisor不需和Linux of_platform一樣必須從DTB去設定device tree，Xvisor的device tree的來源可以很多種，不僅可從DTB去獲取，也可從ACPI table (Advanced Configuration and Power Interface)，簡單來說，Xvisor的Device Tree只是個管理hypervisor設定的資料結構
+    - Xvisor不需和Linux of_platform一樣必須從DTB去設定device tree，Xvisor的device tree的來源可以很多種，不僅可從DTB去獲取，也可從ACPI table (Advanced Configuration and Power Interface)，簡單來說，Xvisor的Device Tree只是個管理hypervisor設定的資料結構，Xvisor預設上都會支持利用DTS設置device tree，也包含Linux kernel source code的DTC及輕量級的DTB parsing library(libfdt)去設置device tree
 
+* 以下為Xvisor device tree的規則限制，以便更新或設置
+    - Node Name: It must have characters from one of the following only,
+        - digit: [0-9]
+        - lowercase letter: [a-z]
+        - upercase letter: [A-Z]
+        - underscore: _
+        - dash: -
+    - Attribute Name: It must have characters from one of the following only,
+        - digit: [0-9]
+        - lowercase letter: [a-z]
+        - upercase letter: [A-Z]
+        - underscore: _
+        - dash: -
+        - hash: #
+* Attribute String Value: A string attribute value must end with NULL 
+    character (i.e. '\0' or character value 0). For a string list, each string 
+    must be seperated by excatly one NULL character.
+
+* Attribute 32-bit unsigned Value: A 32-bit integer value must be represented
+    in big-endian format or little-endian format based on the endianess of host
+    CPU architecture. 
+* Attribute 64-bit unsigned Value: A 64-bit integer value must be represented
+    in big-endian format or little-endian format based on the endianess of host
+    CPU architecture. 
+    - Note: Architecture specific code must ensure that the above constraints are satisfied while populating device tree)
+    - Note: For standard attributes used by Xvisor refer source code.)
 
 測試
 =====================================
