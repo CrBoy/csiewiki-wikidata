@@ -721,6 +721,28 @@ GPIO
      /sys/class/gpio # cat gpiochip0/ngpio
      128
 
+NVIC
+------------
+
+NVIC是Cortex-M處理器的一部份。負責處理例外和中斷的設定，包括中斷的優先權和遮罩。他有一些很棒的特性
+
+* 彈性的控制和設定
+
+ - 每個ISR都可以獨立做啟動與關閉
+
+* 允許巢狀中斷，也就是中斷時，還可以被中斷
+
+ - 每個Exception都有自己的優先權，有些可以自由設定優先權，少數嚴重的例外不可以 (Reset, NMI, HardFault的優先權是固定的，不可改變)
+
+ - 當例外發生時，NVIC會比較例外的優先權，如果後來發生的exception優先權比較高，那就插隊先執行更優先的例外，也就是preemption。
+
+* 可以做中斷遮罩，也就是停用某些中斷
+
+ - Cotex-M3, M4提供了幾個遮罩register，例如PRIMASK，你可以停用所有的exception(除了最嚴重的HardFault和NMI不可以停用)，
+
+   好處是當你在執行一些關鍵任務，不可以被打斷（例如看片執行real-time multimedia解碼時）。
+
+   或是你可以使用BASEPRI register，來停用某個優先權以下的例外。
 
 硬體驅動原理
 ------------
@@ -811,3 +833,4 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 * `Getting Familiar with uClinux/ARM 2.6<http://opensrc.sec.samsung.com/Getting_Familiar_with_uClinuxARM2_6.html>`_
 * `Practical Advice on Running uClinux on Cortex-M3/M4<http://electronicdesign.com/embedded/practical-advice-running-uclinux-cortex-m3m4>`_
 * `µClinux for ARM Cortex-M3<http://www.eetimes.com/document.asp?doc_id=1316982>`_
+* `淺談優先權，從ARM Cortex-M到FreeRTOS設定<http://enginechang.logdown.com/posts/248297-talking-about-the-priority-from-the-arm-set-cortex-m-to-freertos>`_
