@@ -827,9 +827,9 @@ Chapter3: Hypervisor Timer
 * Hypervisor為了要達到上述幾點必須能夠提供下列兩個條件
     - one global clocksource device for each host CPU
     - one clockevent device  for each host CPU
-下圖解釋tick distortion
-.. image:: /embedded/tickless.png
 
+下圖解釋tick distortion
+    .. image:: /embedded/tickless.png
 (圖片來源:https://arm4fun.hackpad.com/Xvisor-ARMv8-Timer-BVc6RIuDGcD)
 
 
