@@ -785,19 +785,19 @@ Chapter2: Hypervisor Configuration
     - Node Name: It must have characters from one of the following only,
         - digit: [0-9]
         - lowercase letter: [a-z]
-        - upercase letter: [A-Z]
+        - uppercase letter: [A-Z]
         - underscore: _
         - dash: -
     - Attribute Name: It must have characters from one of the following only,
         - digit: [0-9]
         - lowercase letter: [a-z]
-        - upercase letter: [A-Z]
+        - uppercase letter: [A-Z]
         - underscore: _
         - dash: -
         - hash: #
 * Attribute String Value: A string attribute value must end with NULL 
     character (i.e. '\0' or character value 0). For a string list, each string 
-    must be seperated by excatly one NULL character.
+    must be separated by exactly one NULL character.
 
 * Attribute 32-bit unsigned Value: A 32-bit integer value must be represented
     in big-endian format or little-endian format based on the endianess of host
@@ -807,6 +807,20 @@ Chapter2: Hypervisor Configuration
     CPU architecture. 
     - Note: Architecture specific code must ensure that the above constraints are satisfied while populating device tree)
     - Note: For standard attributes used by Xvisor refer source code.)
+Chapter3: Hypervisor Timer
+--------------------------------------------
+* 就像許多作業系統一樣，hypervisor需要用一個timekeeping subsystem去追蹤經過的時間，我們稱Xvisor的timekeeping subsystem為hypervisor timer
+    - OS的timekeeping subsystem作以下兩件重要的事情：
+        - 1.追蹤經過的時間：最簡易的方法去實現此事為去數週期性的中斷，但是這方法非常不準確，更精確的作法是使用clocksource device(i.e.free running cycle accurate hardware counter)來當作時間參考
+        - 2.排程接下來的event：OS會讓CPU依據每一個事件的到期時間做一個list，最早到期的會先被執行Timekeeping對於hypervisor來說是不容易達成的，最主要的原因為時間被host端和許多的guest端一起使用，guest interrupt的進入以及相關的時脈資源和realtime中間不完全同步，這會使得realtime的通道發生問題。
+* Timekeeping routine被用來追蹤週期性的中斷所需要的時間，但對於legacy guest OS卻有一個嚴重的問題會發生。這些中斷可能來自於PIT或RTC。但有可能host virtualization engine 無法以適當的比率傳送中斷，導致guest time有可能落後，在high interrupt rate (EX.1000Hz)這問題會更為明顯
+    - 因此有三個解決方法被提出
+        - 如果guest有自己的time source使得我們不需去調整'wall clock' or 'real time'時，這問題就可以被忽略
+        - 如果這樣不夠我們還會需要對guest加入額外的interrupts使得interrupt rate被提升，但是只有在host load或guest lag非常多以至於無法補償的情況才會使用這個方法
+        - guest端必須主動去意識到lost ticks並且在內部進行補償，但這通常只有在理論上可行，實作上會有許多問題需要克服
+* 結論: 在Hypervisor裡，timekeeping必須是tickless和high resolution，此外PIT emulators必須要keep backlogs of pending periodic interrupts
+
+
 
 測試
 =====================================
