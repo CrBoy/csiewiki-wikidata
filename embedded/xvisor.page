@@ -819,7 +819,18 @@ Chapter3: Hypervisor Timer
         - 如果這樣不夠我們還會需要對guest加入額外的interrupts使得interrupt rate被提升，但是只有在host load或guest lag非常多以至於無法補償的情況才會使用這個方法
         - guest端必須主動去意識到lost ticks並且在內部進行補償，但這通常只有在理論上可行，實作上會有許多問題需要克服
 * 結論: 在Hypervisor裡，timekeeping必須是tickless和high resolution，此外PIT emulators必須要keep backlogs of pending periodic interrupts
+* 由於Xvisor timer 是從Linux 的hrtimer subsystems演變而來所以會有下列幾點特色
+    - 64-bit Timestamp : Timestamp代表當Xvispr被boot後時間為nanosecond等級
+    - Timer events : 可以利用expiry call back handler以及相關的expiry time來創造或消滅一個timer event
+    - Timer event當到期便會自動終止
+    - 為了要獲得週期性的timer event我們必須手動地重新啟動從它的expiry call back handler
+* Hypervisor為了要達到上述幾點必須能夠提供下列兩個條件
+    - one global clocksource device for each host CPU
+    - one clockevent device  for each host CPU
+下圖解釋tick distortion
+.. image:: /embedded/tickless.png
 
+(圖片來源:https://arm4fun.hackpad.com/Xvisor-ARMv8-Timer-BVc6RIuDGcD)
 
 
 測試
