@@ -877,8 +877,61 @@ Chapter3: Hypervisor Timer
     tclsh armv8_test.tcl ~/workspace/Foundation_Platformpkg/models/Linux64_GCC-4.1/Foundation_Platform
 
 (需先安裝tclsh，後面路徑假設Foundation v8 model解壓縮在workspace)
+Chapter 4: Hypervisor Manager
+-------------------------------------
 
-   
+Hypervisor Manager 創造和管理 VCPU & Guest instances，也同時提供觸發VCPU state changes的例行工作同時也會在 VCPU state改變時告知hypervisor scheduler。
+
+就像一般的OS,Xvisor裡的VCPU可以分成兩個部分architecture dependent part和architecture independent part，以下便列出兩個部份的細節：
+- The architecture dependent part of VCPU context consist of:
+    - Arch Registers:此register只有在user mode才會被processor更新，這些通常都是general purpose registers而且state flag會自動的被processor更新。我們將每一個VCPU裡的arch registers稱為 arch_regs_t *regs
+    - Arch Private:此registers只有在supervisor mode才會被processor更新，當Normal CPU想要讀/寫此種registers時會我們會得到exception並且回傳/更新一個virtual value，在大多數的情況arch private還是有許多額外的資料結構(EX.MMU context，shadow TLB,shadow page table...等等。)我們將每一個VCPU裡的arch private稱為 void *arch_priv
+- The architecture independent part of VCPU context consist of:
+    - ID: 全域中唯一的ID (Globally unique identification number)
+    - SUBID: parent Guest中唯一的ID.(Only for Normal VCPUs)                                                   (Identification number unique within parent Guest.)
+    - Name: 這個VCPU的名稱. (Only for Orphan VCPUs)                                                                           (The name given for this VCPU.)
+    - Device Tree Node: 指向VCPU 的 device tree 節點. (Only forNormal VCPUs)                              (Pointer to VCPU device tree node.)
+    - Is Normal: 顯示此VCPU 是 Normal 或是 Orphan的旗標.                                                               (Flag showing whether this VCPU is Normal or Orphan.)
+    - Guest: 指向 parent Guest. (Only for Normal VCPUs)                                                                          (Pointer to parent Guest.)
+    - State: VCPU的狀態. (Explained below.)                                                                                             (Current VCPU state. )
+    - Reset Count: 此VCPU曾被reset的次數.                                                                                         (Number of times the VCPU has been resetted.)
+    - Start PC: PC的起始值.                                                                                                                           (Starting value of Program Counter.)
+    - Start SP: SP的起始值. (Only for Orphan VCPUs)                                                                                (Starting value of Stack Pointer.)
+    - Virtual IRQ Info.: VCPU 虛擬中斷的管理資訊.                                                                                         ( Management information for VCPU Virtual interrupts.)
+    - Scheduling Info.: 排程器所需的管理資訊 (e.g. priority, prempt_count, time_slice, etc)               (Managment information required by scheduler )
+    - Waitqueue Info.: waitqueue 所需的資訊                                                                                       (Information required by waitqueues.)
+    - Device Emulation Context: Pointer to private information required by device emulation framework per VCPU.
+
+VCPU在任何時間只會有一個state，下列為可能state的簡單描述
+- UNKNOWN: VCPU不屬於任何Guest或Orphan VCPU，為了使用較少記憶體，在這個state預先配置了最大數量的VCPUs
+- RESET: VCPU被初始化並且等待變為READY，VCPU scheduler在創造一個新的VCPU之前會先變成UNKNOWN並初始化，之後再將新創造的VCPU轉為RESET state
+- READY: VCPU已經準備就緒在硬體上執行
+- RUNNING: VCPU正在硬體上執行
+- PAUSED: VCPU被暫停，當VCPU有idle的情況發生會被設為PAUSED
+- HALTED :VCPU被停止，當VCPU被不當執行會被設為HALTED
+
+一個VCPU很有可能因為許多情況改變state例如architecture specific code, some hypervisor thread, scheduler, some emulated device....等等，不可能將其一一列出，但Hypervisor manager必須保證VCPU state的change遵從finite state machine的原則
+下圖為finite-state machine VCPU for  VCPU state change：
+.. image:: /embedded/finite-state machine VCPU for  VCPU state change.png
+
+VCPU的virtual interrupts的個數以及他們的優先權是由architecture specific code提供。
+VCPU的virtual interrupt的插入和移除則是由architecture independent code觸發
+一個Guest instance包含下列項目：
+- ID:全域唯一識別碼( Globally unique identification number.)
+- Device Tree Node: 指向device tree node的指標(Pointer to Guest device tree node.)
+- VCPU Count: 屬於Guest的VCPU個數(Number of VCPU intances belonging to this Guest.)
+- VCPU List:屬於Guest的VCPU清單( List of VCPU instances belonging to this Guest.)
+- Guest Address Space Info: Information required for managing Guest physical address space.
+- Arch Private: Architecture dependent context of this Guest.
+一個Guest Address Space屬於architecture independent，包含下列項目：
+- Device Tree Node: Pointer to Guest Address Space device tree node
+- Guest: Pointer to Guest to which this Guest Address Space belongs.
+- Region List: A set of "Guest Regions"
+- Device Emulation Context: Pointer to private information required by  device emulation framework per Guest Address Space.
+每一個Guest Region都有一個獨特的Physical Address和Physical size,而一個Guest Region又有下列三種形式：
+- Real Guest Region: give direct access to host machine/device(e.g. RAM, UART, etc),直接地將guest physical address map至host physical address
+- Virtual Guest Region: give access to emulated device(e.g. emulated PIC, emulated Timer, etc),此region通常和emulated device是連接在一起,architecture specific code 負責redirecting virtual guest region read/write access to the Xvisor device emulation framework.
+- Aliased Guest Region: gives access to another Guest Region at an alternate Guest Physical Address
 
 reference
 =====================================
