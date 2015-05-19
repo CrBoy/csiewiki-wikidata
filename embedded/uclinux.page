@@ -29,37 +29,30 @@ uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit
 
     以往的Linux中，記憶體管理藉由虛擬記憶體來實踐（virtual memory, VM），而虛擬記憶體則透過MMU來實作。然而uClinux即是為了在no-MMU環境下運行而生，既缺乏MMU也無法實作虛擬記憶體，故也不支援swap和分頁（paging）的機制。所有行程（process）所需的記憶體，必須在硬體啟動時分配好。一個行程在執行前，系統必須為行程分配足夠的連續位址空間，然後全部載入到記憶體的連續空間中，並且無法在運行（run-time）時擴展其可用的記憶體空間。
 
-    也由於缺乏MMU，沒有記憶體保護機制，即便具有MPU（memory protection unit）也無法保證不會產生錯誤。系統kernel與所有的行程皆被分配在共享的記憶體（global pool）中，錯誤的記憶體操作可能導致其他程序崩潰，甚至破壞kernel。
+    也由於缺乏MMU，沒有記憶體保護機制，即便具有MPU（memory protection unit）也無法保證不會產生錯誤。系統kernel與所有的行程皆被分配在全域記憶體（global pool）中，錯誤的記憶體操作可能導致其他程序崩潰，甚至破壞kernel。
 
 * 記憶體分配
 
-    在uClinux中 若使用 power of 2 memory allocation來分配記憶體的話，會造成大量記憶體被浪費。
-
-    (如果一個process 需要 33KB ，以 power of 2 memory allocation 的方式分配的話，系統會給此process 64KB的空間)
-
-    所以就必須使用page_alloc2 或 kmalloc2，以節省記憶體。
-
-    page_alloc2 是以4KB為單位，如果一個process 需要 33KB ，系統會給此process 36KB的空間。
-
-    kmalloc2 也是以4KB為單位，但是以8KB來判斷。大於 8k 的需求從 free memory 的底部拿，小於 8k 的從 free memory 的起始處拿。
-
-    這樣可以減少由短暫而多次的分配，而造成無法利用的碎片記憶體區段。
+    uClinux使用的記憶體分配方式為page_alloc2，或稱kmalloc2。其實這兩者概念上是相同的，只是實作的程式碼不同。另外在linux-2.0.x主要使用kmalloc2，後來到了linux-2.4.x則使用page_alloc2（kmalloc2被合併到slab.c中），而其後面的**2**所代表的是並非使用power of 2記憶體分配法（相較於page_alloc、kmalloc）。在uClinux中，若使用power of 2記憶體分配法的話，會造成大量記憶體被浪費。舉個經典的例子來說，若一個行程需要33KB，以power of 2分配的話，系統會給此行程64KB的空間，其中有31KB被浪費。若以page_alloc2/kmalloc2方式分配，一個頁（page）的大小是4KB，以前例來看則會分配36KB記憶體給該行程，僅3KB被浪費。此外，page_alloc2/kmalloc2也提供了避免造成記憶體碎片化的機制，若超過8KB（即兩個頁）的需求則從free memory底部開始分配，小於8KB的則從free memory的起始處開始分配。
+    順帶一提，kmalloc2與page_alloc2在中文社群文章中，幾乎被認為是不一樣的，這跟國外的文獻有所出入。而後我們決定寄信向uClinux貢獻者David McCullough詢問，得到以下答案：
 
 
+        Hi,
+
+        kmalloc2    = linux-2.0.x
+
+        page_alloc2 = linux-2.4.x
+
+        The only real difference is the kernel the code works on, underneath they
+        used mostly the same concepts,
+
+        Cheers,
+
+        Davidm
 
 * 沒有brk/sbrk()
 
-     沒有VM(virtual memory)，故不存在有效實作方式。
-
-     (因為uClinux分配記憶體是以連續的方式，而且沒有VM的機制，故很少有機會直接將記憶體區段指標直接向外擴展。無法擴展時，
-
-     只能將整個行程移到另一塊足夠大小的連續記憶體上。)
-
-     只能從全域記憶體(Kernel free memory pool)直接分配。
-
-     這樣做可以節省記憶體使用量，因為當行程需要記憶體的時候，系統才會分配，
-
-     而且在行程用完後，會將記憶體還給全域記憶體。(相對於使用pre-allocated heap system)
+     brk/sbrk()用途在於增加或減少一個行程可用的記憶體空間。uClinux在硬體啟動時每個行程分配在連續的記憶體上，由於缺乏虛擬記憶體機制，行程無法擴展其可用記憶體，因此無有效的brk/sbrk()實作方式。無法擴展時，只能從將整個行程移到另一塊足夠大小的連續記憶體上，由全域記憶體(Kernel free memory pool)直接分配。這樣做可以節省記憶體使用量，因為當行程需要記憶體的時候，系統才會分配。在行程用完後，會將記憶體還給全域記憶體（相對於使用pre-allocated heap system）。
 
      
 
