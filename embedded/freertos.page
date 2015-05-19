@@ -680,10 +680,10 @@ Delay(sleep): 暫停執行一段時間
     	}
     }
 
-使用 vTaskDelay() 會將目前 task 的 ListItem 從 ReadyList 中移除並放入 DelayList 或是 OverflowDelayList 中(由現在的 systick 加上欲等待的 systick 有無 overflow 決定)，但 task 不是在呼叫了 vTaskDelay() 後馬上交出 CPU 控制權，而是在下一次的 systick interrupt 才釋出
+使用 vTaskDelay(ticks) 會將目前 task 的 ListItem 從 ReadyList 中移除並放入 DelayList 或是 OverflowDelayList 中(由現在的 systick 加上欲等待的 systick 有無 overflow 決定)，但 task 不是在呼叫了 vTaskDelay() 後馬上交出 CPU 控制權，而是在下一次的 systick interrupt 才釋出
 
 
-wait(block): 等待事件發生
+wait(block): 等待取得資源或事件發生
 
  .. code-block:: c
 
@@ -699,7 +699,7 @@ wait(block): 等待事件發生
     }
 
 
-使用xQueueReceive()，等待時間非portMAX_DELAY時，會被放入event list中等待資源。若等待時間爲portMAX_DELAY，則放入suspend list中等待資源
+使用 xQueueReceive(xQueue, *pvBuffer, xTicksToWait)，等待時間還沒到 portMAX_DELAY(FreeRTOS 最長的等待時間)時，task 會被放入 EventList 中等待取得資源或事件發生。若等待時間到了 portMAX_DELAY，則會被移到 SuspendList 中繼續等待
 
 * RTOS tick
 
