@@ -905,6 +905,72 @@ VCPU的virtual interrupt的插入和移除則是由architecture independent code
 - Virtual Guest Region: give access to emulated device(e.g. emulated PIC, emulated Timer, etc),此region通常和emulated device是連接在一起,architecture specific code 負責redirecting virtual guest region read/write access to the Xvisor device emulation framework.
 - Aliased Guest Region: gives access to another Guest Region at an alternate Guest Physical Address
 
+Chapter5: Hypervisor Scheduler
+--------------------------------------------
+
+Xvisor 的 Hypervisor排程是通用且pluggable的，他會在hypervisor manager 取得VCPU狀態改變的通知時更新per-CPU ready queue. Hypervisor scheduler使用per-CPU hypervisor 計時器事件(timer event)來分配時間間隔(time slice) 給VCPU。當一個CPU的排程計時器事件到期時，排程器會使用一些排程演算法來尋找下一個VCPU，並為他設定排程計時器事件。
+
+對Xvisor來說，Normal VCPU是一個黑盒子，只有透過exception 或 interrupt才能取回控制權。當執行xvisor時，會有以下幾種context:
+
+- IRQ Context: 當一些host端外部裝置發生中斷時
+- Normal context: 當在模擬一些Normal VCPU的功能、指令或是IO時
+- Orphan context: 當在執行部分Xvisor code 用於Orphan VCPU 或 thread 時
+
+使用處理器架構特定的exception or interrupt handlers的幫助，排程器持續追蹤現在執行的context
+VCPU context 交換預期會有以下high-level steps :
+
+- 把arch registers從stack 搬到current VCPU arch registers
+- Restore arch register (or arch_regs_t) of next VCPU on stack
+- 交換特定CPU資源的context，如 MMU, Floating point subsystem等
+
+預期會有以下幾種情況發生:
+
+- VCPU premption: 當分配給current VCPU的time slice 到期時，呼叫VCPU context switch
+- 當Normal VCPU有錯誤操作時(進入非法記憶體位址等)時，使用hypervisor manager API來停止/暫停此VCPU
+- Orphan VCPU 自願暫停(例如睡眠)
+- Orphan VCPU 自願發放time slice
+- VCPU state 可由其他VCPU透過hypervisor manager API 來改變
+
+可以在 Xvisor menuconfig選項中選擇一些排程方法。任一種方法都會從per-CPU取得以下資訊:
+
+- 優先權: 每個VCPU的優先權，數值越高有越高的優先權
+- time slice: VCPU被排成時必須取得的最小時間
+- Prempt Count: 這個VCPU保有的lock數。當Prempt Count > 0時就不能prempt
+- Private Pointer
+
+現在提供以下排程方法:
+
+- Round-Robin (RR)
+- Priority Based Round-Robin (PRR)
+
+Xvisor預設使用PRR
+
+Chapter7: Hypervisor Threads
+--------------------------------------------
+
+在Xvisor裡，管理背景threads的threading framework稱為Hypervisor Threads。Threads其實是Orphan VCPUs的包裝。
+
+若要在Xvisor裡建立一個thread，我們會需要5個必要的東西：
+
+- Nmae：thread的名字
+- Function：thread的起始function之pointer(entry function pointer)
+- Data：void pointer，指向會被傳至entry function pointer之arguments的資料
+- Priority：thread的優先權，數值愈高愈優先執行。
+- Time Slice：一旦thread被排進排成後，所分配到的最小時間。
+
+我們不需要詳細地替每個thread建立stack，hyprevisor threads framework會在每個thread被創造出來時自動建立個別的、固定大小的stack。而這個指定的stack大小可以在compile-time用Xvisor menuconfig options來修改。
+
+Thread的ID, Priority, 和Time Slice會和在其下的Orphan VCPU的ID, Priority, Time Slice相同。
+
+Thread有下列幾種state：
+
+- CREATED：剛建立還沒開始跑
+- RUNNING：跑ing
+- SLEEPING：在waitqueue裡睡覺
+- STOPPED：停止。可能執行完成或被強制終止
+
+Orphan VCPU state可以被直接設成上列其中一種，所以想知道目前的thread之state的話，可以看其下的Orphan VCPU state。
+
 測試
 =====================================
 1. 註冊ARM帳號
