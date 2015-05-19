@@ -196,7 +196,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 - `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (VMWare)
     - 全部都虛擬化(I/O, interrupt, 指令集等等)，不需要硬體或OS的協助，而是透過軟體來模擬虛擬的硬體環境，直接透過Hypervisor實現
     - 不用修改OS核心，OS不知自己運行在虛擬化的環境下
-    - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷，故效能較Para-Virtualization差
+    - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷(only 17 instructions on privileged level)，故效能較Para-Virtualization差
 
 .. image:: /embedded/virtualization_method_full.png
 
