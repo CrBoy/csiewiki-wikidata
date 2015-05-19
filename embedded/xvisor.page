@@ -28,29 +28,31 @@ Hypervisor (Virtual Machine Monitor, VMM)
 --------------------------------------------
 
 - Hypervisor (Virtual Machine Monitor)的功用是去管理Virtual Machine (VM)
-
     - Host Machine: 運行Hypervisor的實體主機，但有時運行在Hypervisor之上
-
     - Guest Machine: 運行在Hypervisor之上的虛擬主機
 
     .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
-
-- 使用時機(benefit):
+- 使用時機(benefit)
     - 工作負載整合 (Workload Consolidation)
         - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
         - 降低硬體和營運成本達 50%，減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
         - EX：成大電機系電腦教室
+
     .. image:: /embedded/workload_consolidation.png
     - 支援舊有軟體 (Legacy Software)
         - 老舊過時的軟硬體透過虛擬化移植到新的硬體或OS上
+
     .. image:: /embedded/legacy_software.png
         - APP運行於不同kernel上，可透過KVM (Kernel-based Virtual Machine)整合並切換kernel來運行app，為Bare-Metal概念
+
     .. image:: /embedded/legacy_software1.png
     - 啟用多核 (Multicore Enablement)
         - 原本舊有的APP及kernel運行在單一core上，透過虛擬化，我們可以移植到有多個core的架構，並且透過host kernel去運行
+    
     .. image:: /embedded/multicore_enablement.png
     - 提高可靠性 (Improved Reliability)
         - 因有host kernel，我們不需要太多的硬體
+
     .. image:: /embedded/improved_reliability.png
     - 安全監控 (Secure Monitoring)
         - ARM SMC(secure monitor call) to secure monitor mode
@@ -59,7 +61,9 @@ Hypervisor (Virtual Machine Monitor, VMM)
         - source: http://research.microsoft.com/pubs/153179/sim-ccs09.pdf (主要探討Secure in VM-monitor)
         - source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
         - In-VM 有較好的performance，Out-of-VM則有較好的安全性
+
     .. image:: /embedded/secure_monitoring.png
+
     .. image:: /embedded/secure_monitoring1.png
 
 
@@ -73,11 +77,12 @@ Hypervisor的類型
     - Hypervisor運行在host的作業系統上，再去提供虛擬化服務
         - 如: `VMware<http://en.wikipedia.org/wiki/VMware_Workstation>`_、`VirtualBox<http://en.wikipedia.org/wiki/VirtualBox>`_
 
-    .. image:: /embedded/hypervisor_type.png
+.. image:: /embedded/hypervisor_type.png
 
 - Type-1與Type-2比較
     - Type-1: 有較高的安全性及可靠性，但因直接運行於硬體上，所以時常為single purpose
     - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
+
 - (補充)Type-0
     - 由於Type-1及Type-2過於複雜也不易在嵌入式系統作設定，因此美國軟體公司LynuxWorks在2012年提出`Type-0 Hypervisor<http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor/>`_，此Hypervisor不需要kernel或作業系統，但`有人<http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159/>`_提出這不可能實現。
 
@@ -98,6 +103,7 @@ Popek and Goldberg virtualization requirements, 1974
 
 - VMM定義
     - VMM is the piece of **software** that provides the abstraction of a virtual machine
+
     .. image:: /embedded/VMM_pic.png
 
 - 當分析VMM建立的環境時，需要滿足以下三點性質：
