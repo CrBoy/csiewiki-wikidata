@@ -27,7 +27,7 @@ Gerald Popek 和 Robert Goldberg 定義 Virtual Machine為efficient, isolated du
 Hypervisor (Virtual Machine Monitor, VMM)
 --------------------------------------------
 
-- Hypervisor (Virtual Machine Monitor)的功用是去管理Virtual Machine (VM)
+- Hypervisor的主要功用是去管理Virtual Machines (VMs)，使他們各自獨立運行，也管理著底層硬體
     - Host Machine: 運行Hypervisor的實體主機，但有時運行在Hypervisor之上
     - Guest Machine: 運行在Hypervisor之上的虛擬主機
 
