@@ -93,8 +93,9 @@ source: http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor
 source: http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159
 
 
-Popek and Goldberg virtualization requirements, 1974
+虛擬化定理
 ----------------------------------------------------
+Popek and Goldberg virtualization requirements, 1974
 
 二人提出的`理論<http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf>`_至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
 
@@ -117,12 +118,11 @@ Popek and Goldberg virtualization requirements, 1974
         - 常被執行的主要機器指令集部分不應該被VMM干預，而是直接被處理器執行
         - It demands that a statistically dominant subset of the virtual processor's instructions be executed directly by the real processor, with no software intervention by the VMM.
 
-
 - 為了導出Virtualization theorem虛擬化理論，二人把ISA分成三個類型：(`Third Generation Computer<http://latesttechnomanias.blogspot.tw/2010/06/third-generation-computers.html>`_) 
     - 優先級指令 (Privileged instructions)
         - 必須在擁有足夠的privilege下執行
-        - 當處理器在user mode的時候，會`Trap<http://en.wikipedia.org/wiki/Trap_%28computing%29>`_
-        - 當處理器在supervisor mode的時候，不會Trap
+        - 當處理器在user mode的時候，會觸發`Trap<http://en.wikipedia.org/wiki/Trap_%28computing%29>`_
+        - 當處理器在supervisor mode的時候，不會觸發Trap
         - Privileged instructions are independent of the virtualization process. They are merely characteristics of the machine which may be determined from reading the principles of operation.
         - 指令例子
             - Access I/O devices: Poll for IO, perform DMA, catch hardware interrupt
@@ -161,6 +161,7 @@ Popek and Goldberg virtualization requirements, 1974
 - Popek and Goldberg 最後提出的理論
     - Theorem 1. 對於傳統的第三代計算機，如果sensitive instruction為privilege instruction的subset，就可建立VMM
         - 更直觀點來說，當sensitive instruction影響到VMM時，會發生trap讓VMM能夠擁有完整的控制權，這樣保證前面提到的資源控制(resource control)
+        - 原本由OS在kernel mode執行的敏感指令，因OS被移到user mode而無法正常執行，所以需要被trap 給 hypervisor來執行。
     - Theorem 2. 一個傳統的第三代計算機是遞迴虛擬的，要符合以下兩個條件
         - 他是虛擬的
         - 新建立的VMM並沒有時間依賴性(timing dependencies)
@@ -172,6 +173,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 補充：`Five Generation Computer<http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp>`_
 
 - 實現虛擬化的方式
+
 .. image:: /embedded/virtualization_method_all.png
 
 - `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (VMWare)
@@ -184,7 +186,6 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 .. image:: /embedded/virtualization_method_full1.png
 
 - Para-Virtualization (Xen)
-
     - 為了讓一些指令，The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment.
     - 由於某些Non-Virtualizable OS指令不能被hypervisor trap，所以Guest OS必須利用Hypercall呼叫Hypervisor對缺少的指令進行更換，這也是為何要修改OS的核心
     - Guest OS知道自己活在虛擬化的環境下，Guest OS知道有其他Guest OS的存在，並且看到的都是真實的硬體，Host OS則不用模擬CPU，Guest OS自行互相調配
@@ -221,25 +222,6 @@ Source: http://www.csie.ntu.edu.tw/~wcchen/asm98/asm/proj/b85506061/chap3/privil
 
 虛擬化指令(ARM)
 --------------------------------------------
-
-虛擬化定理 (Virtualization theorems)
-................................................................................
-- `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
-
-- 虛擬化需要滿足:
-    - 等價性 (Equivalence): 在hypervisor下執行的程式行為必須與直接跑在machine上相同。
-    - 資源控制 (Resource control): hypervisor必須完全控制虛擬化資源。
-    - 效率 (Efficiency): 統計上經常使用的機器指令hypervisor不應該介入。
-
-- 定理：對於任何傳統的第三代計算機，只要其敏感指令是特權指令的一個子集，就可以為其建立VMM (from Wiki)
-    - 原本由OS在kernel mode執行的敏感指令，因OS被移到user mode而無法正常執行，所以需要被trap 給 hypervisor來執行。
-
-- 特權指令 (Privileged instructions): 若執行在user mode 會觸發trap
-
-- 控制敏感指令 (Control sensitive instructions): 會改變處理器組態或模式的指令
-
-- 行為敏感指令 (Behavior sensitive instructions): 其行為取決於處理器的狀態
-
 
 問題指令(Problematic Instructions)
 ....................................
