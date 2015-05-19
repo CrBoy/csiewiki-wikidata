@@ -20,7 +20,10 @@ Hackpad
 =====================================
 以下簡介虛擬化技術，並以Xvisor on `ARMv8</embedded/ARMv8>`_ 為例探討虛擬化技術的實作
 
-Hypervisor (virtual machine monitor)
+虛擬化就是建立出一個作業系統或伺服器或儲存空間的虛擬版本，可以把擁有的資源作妥當的管理分配
+Gerald Popek 和 Robert Goldberg 定義 Virtual Machine為efficient, isolated duplicate of a real machine
+
+Hypervisor (Virtual Machine Monitor, VMM)
 --------------------------------------------
 
 - Hypervisor (Virtual Machine Monitor)的功用是去管理Virtual Machine (VM)
@@ -33,6 +36,10 @@ Hypervisor (virtual machine monitor)
 
 - 使用時機:
     - 工作負載整合 (Workload Consolidation)
+        - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
+        - 降低硬體和營運成本達 50%，減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
+        - EX：成大電機系電腦教室
+  .. image:: /embedded/workload_consolidation.png
     - 支援舊有軟體 (Legacy Software)
     - 啟用多核 (Multicore Enablement)
     - 提高可靠性 (Improved Reliability)
