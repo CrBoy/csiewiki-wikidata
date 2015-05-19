@@ -82,6 +82,23 @@ Hypervisor的類型
 - Type-1與Type-2比較
     - Type-1: 有較高的安全性及可靠性，但因直接運行於硬體上，所以時常為single purpose
     - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
+- Type-1 與 Type-2 比較
+    - Type-1
+        - 能直接與硬體溝通，有較高的安全性(掌握在hypervisor上)，適合server虛擬化
+        - 但因直接運行於硬體上，所以時常為single purpose
+        - Type-1又有分兩種設計
+            - monolithic
+                - device driver包含在hypervisor，因為沒有任何的intermediation，所以application及hardware間有良好的performance，但hypervisor會有大量的driver code，容易被攻擊
+            - microkernel
+                - device driver被安裝在parent guest. Parent guest是privileged VM，去管理non-privileged child guest VMs. 當Child guest要存取硬體資源時，必須經過parent guest，雖然performance下降，但較monolithic安全，
+    - Type-2
+        - 支援較多的I/O device及服務
+        - 因需多透過Host OS，效能較Type-1低，常應用於效率較不重要的客戶端
+
+.. image:: /embedded/hypervisor_type1.png
+
+Source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
+
 
 - (補充)Type-0
     - 由於Type-1及Type-2過於複雜也不易在嵌入式系統作設定，因此美國軟體公司LynuxWorks在2012年提出`Type-0 Hypervisor<http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor/>`_，此Hypervisor不需要kernel或作業系統，但`有人<http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159/>`_提出這不可能實現。
