@@ -19,15 +19,17 @@ toc: yes
 uClinux架構&特性
 ----------------
 
-與linux架構相同，主要的差異在MMU。
+uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit）的微控制器上（microcontroller），這也是為何稱作uClinux，uC指的就是微控制器。基本上其與linux架構相同，但因缺乏MMU而有不同特性，其中差異如下所示：
 
-* 缺乏記憶體管理
+* 使用uClibc
 
-    在uClinux中沒有MMU機制，所以沒辦法實作虛擬記憶體( virtual memory )，故也不支援swap和分頁(paging)的機制，
+    uClibc是可以在no-MMU環境下運行的C函式庫，在此取代glibc。
 
-    所以必須在硬體啟動時，就把所有的行程(process)所需的記憶體分配好。
+* 缺乏記憶體管理（memory management）
 
-    一個行程在執行前，系統必須為行程分配足夠的連續位址空間，然後全部載入到memory的連續空間中。
+    以往的Linux中，記憶體管理藉由虛擬記憶體來實踐（virtual memory, VM），而虛擬記憶體則透過MMU來實作。然而uClinux即是為了在no-MMU環境下運行而生，既缺乏MMU也無法實作虛擬記憶體，故也不支援swap和分頁（paging）的機制。所有行程（process）所需的記憶體，必須在硬體啟動時分配好。一個行程在執行前，系統必須為行程分配足夠的連續位址空間，然後全部載入到記憶體的連續空間中，並且無法在運行（run-time）時擴展其可用的記憶體空間。
+
+    也由於缺乏MMU，沒有記憶體保護機制，即便具有MPU（memory protection unit）也無法保證不會產生錯誤。系統kernel與所有的行程皆被分配在共享的記憶體（global pool）中，錯誤的記憶體操作可能導致其他程序崩潰，甚至破壞kernel。
 
 * 記憶體分配
 
