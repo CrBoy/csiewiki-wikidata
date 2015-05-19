@@ -34,16 +34,33 @@ Hypervisor (Virtual Machine Monitor, VMM)
 
     .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
 
-- 使用時機:
+- 使用時機(benefit):
     - 工作負載整合 (Workload Consolidation)
         - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
         - 降低硬體和營運成本達 50%，減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
         - EX：成大電機系電腦教室
-  .. image:: /embedded/workload_consolidation.png
+    .. image:: /embedded/workload_consolidation.png
     - 支援舊有軟體 (Legacy Software)
+        - 老舊過時的軟硬體透過虛擬化移植到新的硬體或OS上
+    .. image:: /embedded/legacy_software.png
+        - APP運行於不同kernel上，可透過KVM (Kernel-based Virtual Machine)整合並切換kernel來運行app，為Bare-Metal概念
+    .. image:: /embedded/legacy_software1.png
     - 啟用多核 (Multicore Enablement)
+        - 原本舊有的APP及kernel運行在單一core上，透過虛擬化，我們可以移植到有多個core的架構，並且透過host kernel去運行
+    .. image:: /embedded/multicore_enablement.png
     - 提高可靠性 (Improved Reliability)
+        - 因有host kernel，我們不需要太多的硬體
+    .. image:: /embedded/improved_reliability.png
     - 安全監控 (Secure Monitoring)
+        - ARM SMC(secure monitor call) to secure monitor mode
+        - kernel等級或者是rootkits的攻擊通常都是在執行擁有特權(privilege)模式的時候發生的，而透過虛擬化，我們擁有更高權限的hypervisor去控制memory protection或程式的排程優先順序
+        - 最主要我們是透過hypervisor去把security tools也就是monitor孤立出來，不會把monitor與untrusted VM放在一起，並把他們分別移到trusted secure VM，再透過introspection去掃描或觀察這些程式碼
+        - source: http://research.microsoft.com/pubs/153179/sim-ccs09.pdf (主要探討Secure in VM-monitor)
+        - source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
+        - In-VM 有較好的performance，Out-of-VM則有較好的安全性
+    .. image:: /embedded/secure_monitoring.png
+    .. image:: /embedded/secure_monitoring1.png
+
 
 Hypervisor的類型
 --------------------------------------------
