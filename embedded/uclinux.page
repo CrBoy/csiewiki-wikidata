@@ -35,7 +35,7 @@ uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit
 
     uClinux使用的記憶體分配方式為page_alloc2，或稱kmalloc2。其實這兩者概念上是相同的，只是實作的程式碼不同。另外在linux-2.0.x主要使用kmalloc2，後來到了linux-2.4.x則使用page_alloc2（kmalloc2被合併到slab.c中），而其後面的**2**所代表的是並非使用power of 2記憶體分配法（相較於page_alloc、kmalloc）。在uClinux中，若使用power of 2記憶體分配法的話，會造成大量記憶體被浪費。舉個經典的例子來說，若一個行程需要33KB，以power of 2分配的話，系統會給此行程64KB的空間，其中有31KB被浪費。若以page_alloc2/kmalloc2方式分配，一個頁（page）的大小是4KB，以前例來看則會分配36KB記憶體給該行程，僅3KB被浪費。此外，page_alloc2/kmalloc2也提供了避免造成記憶體碎片化的機制，若超過8KB（即兩個頁）的需求則從free memory底部開始分配，小於8KB的則從free memory的起始處開始分配。
 
-    順帶一提，kmalloc2與page_alloc2在中文社群文章中，幾乎被認為是不一樣的，這跟國外的文獻有所出入。而後我們決定寄信向uClinux貢獻者David McCullough詢問，得到以下答案：
+    - 順帶一提，kmalloc2與page_alloc2在中文社群文章中，幾乎被認為是不一樣的，這跟國外的文獻有所出入。我們決定寄信向uClinux貢獻者David McCullough詢問，得到以下答案：
 
 
         Hi,
@@ -45,6 +45,7 @@ uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit
         page_alloc2 = linux-2.4.x
 
         The only real difference is the kernel the code works on, underneath they
+
         used mostly the same concepts,
 
         Cheers,
@@ -59,11 +60,13 @@ uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit
 
 * vfork
 
-      因為uClinux沒有VM(virtual memory)，所以要實作fork的功能只能用vfork()，也就是說parent process 和 child process 是共享同一個記憶體。
+      在Linux中，fork()藉由copy-on-write來實作，而copy-on-write的實現需要MMU，因此uClinux難以實作fork()，改使用vfork()替代。
+
+      也就是說parent process 和 child process 是共享同一個記憶體。
 
       parent process 在初始化私有(private)的資料和建立新的task control block 後，進入suspend 狀態。
 
-      而child process 則取代現在的程式，到執行結束後把parent process 喚醒。
+      而child process 則取代現在的程式，直到執行exec()或exit()後把parent process 喚醒。
 
       - 描述
        
