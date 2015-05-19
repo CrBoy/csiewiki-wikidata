@@ -20,6 +20,47 @@ toc: no
 
 AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
+圖1 為AM335x開機流程，其包含ROM Code、MLO、U-Boot與OS Image，底下將說明ROM Code、MLO與U-Boot。
+
+.. image:: https://lh3.googleusercontent.com/-6t7H14Lj3Bc/VT3n0BPjOaI/AAAAAAAAH9M/woI49MW-TC4/w1099-h752-no/am335x-boot-sequence.png
+圖1 High-level Overview to AM335x Boot Sequence
+
+ROM Code主要有幾項任務:
+  - Stack Setup
+  - Watchdog timer 1  configuration (set to three minutes)
+  - System clock configuration
+  - Search bootable devices (must be the FAT 12/16/32 partition) for a valid booting image (the image name must be MLO)
+  - Load the content of the file "MLO" from a bootable device to internal RAM (the 128KB on-chip memory)
+  - Execute the file "MLO" stored in internal RAM
+
+圖2為ROM Code架構，由"Public ROM Code drivers"可知ROM code支援如下裝置:
+  - MMCSD (MultiMediaCard SD)
+  - NAND
+  - XIP (eXecute In Place)
+  - SPI
+  - USB UART
+  - EMAC (Ethernet Media Access Control)
+
+也就是說，系統一上電，ROM Code會掃描上述裝置，以便找到Bootable device。由於ROM Code只支援FAT檔案系統格式，所以Bootable device一定要是FAT檔案系統 (FAT12/16/32檔案系統都可以)。
+注意: 該架構的On-chip boot ROM大小為176 KB。
+
+.. image:: https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png
+圖2 ROM Code Architecuture (page 4096 in AM335x TRM)
+
+圖3為ROM Memory Map:
+  - ROM Exception Vectors (0x20000-0x2001F): 該區段定義Exception Handler的位址。譬如: 0x20000存放Reset Handler的位址，也就是板子一上電，第一個執行的地方，課程第七周有詳盡的說明，可參考此文件。詳盡的ROM Exception Vectors如表1所示。
+
+.. image:: https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png
+表1 ROM Exception Vectors (page 4099 in AM335x TRM)
+
+  - Public ROM Code CRC (0x20020): 由0x20000-0x2BFFF計算得出的四個位元組CRC值。
+  - Dead loops (0x20080-0x200FF): 該區段定義預設的exception handlers，其預設handlers都是執行while(1)迴圈，程式設計者可以定義相同名字的exception handler，如此便能覆蓋 (override)對應之預設exception handlers。可參考`mini-arm-os<https://github.com/jserv/mini-arm-os/blob/master/05-TimerInterrupt/startup.c#L63>`_與`freertos<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s#L124>`_程式碼，以便了解其設計概念。
+  - Code (started from 0x20100): ROM程式碼
+  - ROM Version (0x2BFFC-0x2BFFF): ROM Code Version
+
+.. image:: https://lh3.googleusercontent.com/-xhXu1yv0eik/VT33Y0MPSDI/AAAAAAAAH9k/S7dXDW7UrGI/w306-h329-no/ROM-memory-map.png
+圖3 ROM Memory Map (page 4098 in AM335x TRM)
+
 
 參考資料
 --------------------------------------------
