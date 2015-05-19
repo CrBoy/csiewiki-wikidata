@@ -206,7 +206,6 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
     - 為了讓一些指令，The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment.
     - 由於某些Non-Virtualizable OS指令不能被hypervisor trap，所以Guest OS必須利用Hypercall呼叫Hypervisor對缺少的指令進行更換，這也是為何要修改OS的核心
     - Guest OS知道自己活在虛擬化的環境下，Guest OS知道有其他Guest OS的存在，並且看到的都是真實的硬體，Host OS則不用模擬CPU，Guest OS自行互相調配
-    - Intel VT及AMD-V增加Ring -1並提供Hypervisor x86虛擬化指令，使Hypervisor可以去存取Ring 0的硬體，並把Guest OS放在**Ring 0**，使Guest OS能在不影響其他guest或host OS的情況下，直接執行Ring 0的指令
     - 而在Hypervisor之上，還跑著一個Host OS，是用來管理Hypervisor的，並且利用native OS的方法管理硬體上的所有I/O driver，所以hypervisor不作硬體模擬，而Guest OS不需要driver，可以直接找Host OS
 
 .. image:: /embedded/virtualization_method_para.png
@@ -218,6 +217,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
     - 引入新的指令和處理器的運行模式，讓Hypervisor及Guest OS運行在不同的mode下，OS在被監視模式下運行，需要Hypervisor介入時，則透過hardware進行切換
     - CPU Virtualization, Memory Virtualization, IO Virtualization
     - 讓Guest OS發出的privilege指令被hypervisor攔截到
+    - Intel VT及AMD-V增加Ring -1並提供Hypervisor x86虛擬化指令，使Hypervisor可以去存取Ring 0的硬體，並把Guest OS放在**Ring 0**，使Guest OS能在不影響其他guest或host OS的情況下，直接執行Ring 0的指令
 
 .. image:: /embedded/virtualization_method_hw.png
 
