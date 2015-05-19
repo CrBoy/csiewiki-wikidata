@@ -663,9 +663,9 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
 
   .. image:: /suspending.gif
 
-RTOS中除了由kernel要求task交出CPU控制權外，各task也能夠選擇自行交出CPU控制權，舉凡
+FreeRTOS 中除了由 kernel 要求 task 交出 CPU 控制權外，task 也能夠可以自行交出 CPU 控制權
 
-Delay( sleep ): 停止運行一段特定時間
+Delay(sleep): 暫停執行一段時間
 
 `/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L177>`_
 
@@ -680,7 +680,10 @@ Delay( sleep ): 停止運行一段特定時間
     	}
     }
 
-wait( block ): 等待取得某資源
+使用 vTaskDelay() 會將目前 task 的 ListItem 從 ReadyList 中移除並放入 DelayList 或是 OverflowDelayList 中(由現在的 systick 加上欲等待的 systick 有無 overflow 決定)，但 task 不是在呼叫了 vTaskDelay() 後馬上交出 CPU 控制權，而是在下一次的 systick interrupt 才釋出
+
+
+wait(block): 等待事件發生
 
  .. code-block:: c
 
@@ -695,7 +698,6 @@ wait( block ): 等待取得某資源
     	}
     }
 
-使用vTaskDelay()，會將該list item從ready list移除並放入DelayList或是OverflowDelayList中(看現在的systick加上欲等待的systick有無overflow而定)，但不會在呼叫vTaskDelay()後馬上交出CPU使用權，而是在下一次的systick interrput做交換
 
 使用xQueueReceive()，等待時間非portMAX_DELAY時，會被放入event list中等待資源。若等待時間爲portMAX_DELAY，則放入suspend list中等待資源
 
