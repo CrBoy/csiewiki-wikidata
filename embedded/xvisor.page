@@ -21,6 +21,7 @@ Hackpad
 以下簡介虛擬化技術，並以Xvisor on `ARMv8</embedded/ARMv8>`_ 為例探討虛擬化技術的實作
 
 虛擬化就是建立出一個作業系統或伺服器或儲存空間的虛擬版本，可以把擁有的資源作妥當的管理分配
+
 Gerald Popek 和 Robert Goldberg 定義 Virtual Machine為efficient, isolated duplicate of a real machine
 
 Hypervisor (Virtual Machine Monitor, VMM)
@@ -72,10 +73,145 @@ Hypervisor的類型
     - Hypervisor運行在host的作業系統上，再去提供虛擬化服務
         - 如: `VMware<http://en.wikipedia.org/wiki/VMware_Workstation>`_、`VirtualBox<http://en.wikipedia.org/wiki/VirtualBox>`_
 
-- 比較:
+    .. image:: /embedded/hypervisor_type.png
+
+- Type-1與Type-2比較
     - Type-1: 有較高的安全性及可靠性，但因直接運行於硬體上，所以時常為single purpose
     - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
+- (補充)Type-0
+    - 由於Type-1及Type-2過於複雜也不易在嵌入式系統作設定，因此美國軟體公司LynuxWorks在2012年提出`Type-0 Hypervisor<http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor/>`_，此Hypervisor不需要kernel或作業系統，但`有人<http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159/>`_提出這不可能實現。
 
+source: http://en.wikipedia.org/wiki/Hypervisor
+
+source: http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor
+
+source: http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159
+
+
+Popek and Goldberg virtualization requirements, 1974
+----------------------------------------------------
+
+二人提出的`理論<http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf>`_至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
+
+- VM定義
+    - A virtual machine is taken to be an efficient, isolated duplicate of the real machine. It is the environment created by the virtual machine monitor.
+
+- VMM定義
+    - VMM is the piece of **software** that provides the abstraction of a virtual machine
+    .. image:: /embedded/VMM_pic.png
+
+- 當分析VMM建立的環境時，需要滿足以下三點性質：
+    - 等價性 / 忠實(Equivalence / Fidelity)
+        - 一個在VMM下運行的程式的所有行為應該要和原本直接運行於相同機器上一樣
+        - The VMM provides an environment for programs which is **essentially identical** with the original machine
+    - 資源控制 / 安全性(Resource control / Safety) 
+        - VMM應該要有虛擬資源的完整控制權.
+        - The VMM is in complete control of system resources. 
+    - 效率性(Efficiency / Performance)
+        - 常被執行的主要機器指令集部分不應該被VMM干預，而是直接被處理器執行
+        - It demands that a statistically dominant subset of the virtual processor's instructions be executed directly by the real processor, with no software intervention by the VMM.
+
+
+- 為了導出Virtualization theorem虛擬化理論，二人把ISA分成三個類型：(`Third Generation Computer<http://latesttechnomanias.blogspot.tw/2010/06/third-generation-computers.html>`_) 
+    - 優先級指令 (Privileged instructions)
+        - 必須在擁有足夠的privilege下執行
+        - 當處理器在user mode的時候，會`Trap<http://en.wikipedia.org/wiki/Trap_%28computing%29>`_
+        - 當處理器在supervisor mode的時候，不會Trap
+        - Privileged instructions are independent of the virtualization process. They are merely characteristics of the machine which may be determined from reading the principles of operation.
+        - 指令例子
+            - Access I/O devices: Poll for IO, perform DMA, catch hardware interrupt
+            - Manipulate memory management: Set up page tables, load/flush the TLB and CPU caches, etc.
+            - Configure various “mode bits”:  Interrupt priority level, software trap vectors, etc.
+            - Call halt instruction: Put CPU into low-power or idle state until next interrupt
+
+    - 控制敏感指令 (Control sensitive instructions)
+         - 指令企圖去改變系統資源配置 (也就是先前提到，VMM擁有系統資源完整掌控權)
+         - 指令在不經過memory trap sequence下影響處理器模式
+         - It attempts to change the amount of (memory) resources available, or affects the processor mode without going through the memory trap sequence
+
+    - 行為敏感指令 (Behavior sensitive instructions)
+         - 指令根據資源配置(relocation-bound register的內容或處理器的模式)而有不同的行為結果
+         - Location sensitive: load physical address (IBM 360/ 67 ERA)
+         - Mode sensitive: move from previous instruction space (DeC PDP-11/45 MVPI)
+
+所以根據定義，ISA如果是sensitive，就是control sensitive或者是behavior sensitive，不然就是innocuous (無害的)。另外，如果sensitive instruction為privileged，VMM則可以被覆寫
+
+- VMM內容
+    - control program modules可概略分成三種
+        1. Dispatcher
+            - 可視為最高等級的control program module，決定呼叫哪一個module
+
+        2. Allocator
+            - 決定系統資源的分配，有resource table
+            - 在VMM只有host一個VM的情況下，allocator只需要把VM跟VMM分開
+            - 在VMM host許多VM的情況下，allocator需要避免同時把相同資源分配給VM
+            - 在VM環境下執行會改變系統資源的privileged instruction，dispatcher會去啟動allocator
+            - 例子：reset relocation-bounds register.  
+
+        3. interpreter
+            - 一個instruction，一個interpreter routine
+            - 主要功用就是simulate the effect of the instruction
+
+- Popek and Goldberg 最後提出的理論
+    - Theorem 1. 對於傳統的第三代計算機，如果sensitive instruction為privilege instruction的subset，就可建立VMM
+        - 更直觀點來說，當sensitive instruction影響到VMM時，會發生trap讓VMM能夠擁有完整的控制權，這樣保證前面提到的資源控制(resource control)
+    - Theorem 2. 一個傳統的第三代計算機是遞迴虛擬的，要符合以下兩個條件
+        - 他是虛擬的
+        - 新建立的VMM並沒有時間依賴性(timing dependencies)
+
+論文文獻：http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf
+
+Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements
+
+補充：`Five Generation Computer<http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp>`_
+
+- 實現虛擬化的方式
+.. image:: /embedded/virtualization_method_all.png
+
+- `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (VMWare)
+    - 全部都虛擬化(I/O, interrupt, 指令集等等)，不需要硬體或OS的協助，而是透過軟體來模擬虛擬的硬體環境，直接透過Hypervisor實現
+    - 不用修改OS核心，OS不知自己運行在虛擬化的環境下
+    - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷，故效能較Para-Virtualization差
+
+.. image:: /embedded/virtualization_method_full.png
+
+.. image:: /embedded/virtualization_method_full1.png
+
+- Para-Virtualization (Xen)
+
+    - 為了讓一些指令，The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment.
+    - 由於某些Non-Virtualizable OS指令不能被hypervisor trap，所以Guest OS必須利用Hypercall呼叫Hypervisor對缺少的指令進行更換，這也是為何要修改OS的核心
+    - Guest OS知道自己活在虛擬化的環境下，Guest OS知道有其他Guest OS的存在，並且看到的都是真實的硬體，Host OS則不用模擬CPU，Guest OS自行互相調配
+    - Intel VT及AMD-V增加Ring -1並提供Hypervisor x86虛擬化指令，使Hypervisor可以去存取Ring 0的硬體，並把Guest OS放在**Ring 0**，使Guest OS能在不影響其他guest或host OS的情況下，直接執行Ring 0的指令
+    - 而在Hypervisor之上，還跑著一個Host OS，是用來管理Hypervisor的，並且利用native OS的方法管理硬體上的所有I/O driver，所以hypervisor不作硬體模擬，而Guest OS不需要driver，可以直接找Host OS
+
+.. image:: /embedded/virtualization_method_para.png
+
+.. image:: /embedded/virtualization_method_para1.png
+
+- Hardware-assisted virtualization (Intel VT, AMD-V)
+    - 需要硬體的支援虛擬化
+    - 引入新的指令和處理器的運行模式，讓Hypervisor及Guest OS運行在不同的mode下，OS在被監視模式下運行，需要Hypervisor介入時，則透過hardware進行切換
+    - CPU Virtualization, Memory Virtualization, IO Virtualization
+    - 讓Guest OS發出的privilege指令被hypervisor攔截到
+
+.. image:: /embedded/virtualization_method_hw.png
+
+.. image:: /embedded/virtualization_method_hw1.png
+
+Source: http://tonysuo.blogspot.tw/2013/01/virtualization-3full-para-hardware.html
+
+- `Ring<http://en.wikipedia.org/wiki/Protection_ring>`_介紹
+    - 此機制是為了保護資料或防止錯誤
+    - x86結構中有四種級別Ring 0 ~ Ring 3
+        - Ring 0最高，有著OS Kernal
+        - Ring 3最低，也就是user mode，通常Application都在此層執行
+        - Ring 1及Ring 2供驅動程式使用，很少用到
+        - 權力最高不能直接控制權力最低，反之亦然，彼此是利用call gate溝通(提高CPL)，但有例外請閱`此P14<http://www.eecs.harvard.edu/~mdw/course/cs161/notes/osstructure.pdf>`_
+
+.. image:: /embedded/ring.png
+
+Source: http://www.csie.ntu.edu.tw/~wcchen/asm98/asm/proj/b85506061/chap3/privilege.html
 
 虛擬化指令(ARM)
 --------------------------------------------
