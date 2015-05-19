@@ -20,3 +20,30 @@ toc: no
 
 AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
+
+參考資料
+--------------------------------------------
+* Beaglebone
+  - `Rev. changes<http://elinux.org/Beagleboard:BeagleBoneBlack#Revision_C_.28Production_Version.29>`_
+  - `Schematic<http://beagleboard.org/static/beaglebone/latest/Docs/Hardware/BONE_SCH.pdf>`_
+  - `System Reference Manual<http://docs-asia.electrocomponents.com/webdocs/12d7/0900766b812d788b.pdf>`_
+
+* AM335x (3358) TRM, Datasheet
+  - `TRM<https://drive.google.com/open?id=0B90H2V1uw2FnVmNndG5jV3V5N2M&authuser=0>`_
+  - `Datasheet<https://drive.google.com/open?id=0B90H2V1uw2FnbzFDZTNpRC1jOGc&authuser=0>`_
+  - `Boot process<http://processors.wiki.ti.com/index.php/AM335x_U-Boot_User%27s_Guide#U-Boot>`_
+
+* ARM Cortex-A8
+  - `TRM<https://drive.google.com/open?id=0B90H2V1uw2FnRnJOSlpzTm4yWFU&authuser=0>`_
+  - ISA: `①<https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0>`_ `②<http://people.cs.nctu.edu.tw/~chenwj/dokuwiki/doku.php?id=arm>`_
+  - Bus:
+    - `AMBA<https://drive.google.com/open?id=0B90H2V1uw2FnRHpIWGJLaUUwZzA&authuser=0>`_
+    - `APB<https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0>`_
+    - `AXI<https://drive.google.com/open?id=0B90H2V1uw2FnSVBERUdFUFlsZkE&authuser=0>`_
+
+* POSIX
+  - `The Open Group Base Specifications Issue 7<http://pubs.opengroup.org/onlinepubs/9699919799//>`_
+  - `Open POSIX Test Suite<http://posixtest.sourceforge.net/>`_
+
+* EMMC
+  - `Kingston KE4CN2H5A<http://uk.rs-online.com/web/p/flash-memory-chips/7852322P/>`_
