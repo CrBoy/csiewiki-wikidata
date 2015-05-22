@@ -82,7 +82,7 @@ ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定�
 虛擬化 (Virtualization)
 ------------------------------------------------------------------------------------
 
-這邊的虛擬化只有支援有實現EL2的架構。以下為其基礎模型:
+這邊提到的虛擬化為**有實現EL2架構**的系統。以下為其基礎模型: (manual D1.5 Virtualization)
 
 - 一個跑在EL2的Hypervisor負責切換跑在EL1、EL0的virtual machines
 - 一些跑在virtual machines上(在EL1中)的Guest OS
