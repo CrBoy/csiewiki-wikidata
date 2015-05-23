@@ -892,30 +892,21 @@ arm32 指令虛擬化
     }
 
 
-    
-
-
-armv5
-....................
-
-- ARM9: With MMU
-- 
-
-armv7
-.........................
-- 有安全性擴展，但沒有虛擬化擴展
-
-
 with virtualization extension
 -------------------------------------------------------------
+
 
 armv7ve
 ........................
 - 有安全性擴展、LPAE及虛擬化擴展
 - Cortex-A15 / Cortex-A7 (with big-LITTLE support)
+- 原理與上方`xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate>`_ 相同，只是需要透過mrc來讀取`hsr<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0438c/CIHJEDFE.html>`_的內容。
+    - mrc     p15, 4, %0, c5, c2, 0
 
 armv8
 .................
+
+請見`xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate>`_
 
 設計文件整理
 =====================================
