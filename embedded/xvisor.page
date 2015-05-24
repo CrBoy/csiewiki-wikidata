@@ -331,6 +331,8 @@ CPU virtualization
 
 Xvisor instruction emulate
 ............................................................
+
+(armv8)
 cpu_entry.S 內初始化Hyp vector base
 
 .. code-block:: c
@@ -436,7 +438,8 @@ cpu_interrupt.c
             rc = cpu_vcpu_data_abort(vcpu, regs, il, iss, fipa);
             break;
 
-最後呼叫 emulate_arm.c 或 cpu_vcpu_emulate.c內相對應的函式做指令模擬
+最後呼叫 emulate_arm.c 或 cpu_vcpu_emulate.c內相對應的函式做指令模擬。
+需要注意到的是再hypervisor上層跑的可能是aarch64也可能是aarch32，因此需要分開處理。
 
 Memory virtualization
 ...................................
