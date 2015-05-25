@@ -76,13 +76,45 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 Adeos / iPipe
 ++++++++++++++
 
-主要負責處理irq 與 timer(HRT), ipipe的工作很簡單 就是設定timer並將interrupt往上丟
+主要負責處理irq 與 high resolution timer, ipipe的工作很簡單 就是設定timer並將interrupt往上丟
+
+* Adeos feature
+
+  - event pipeline : 
+
+    利用pipeline的方式將不同domain的interrupt或system call往上丟
+
+  - Optimistic interrupt protection :
+
+    當同一個domain在處理interrupt時，有跟她相同domain的interrupt要進來時，會將它進pending狀態，等到所有pending interrupt完成時，才會處理下個domain的interrupt。但更高優先權domain的interrupt會preempt較低優先權domain的interrupt。
+
+  - System­ event propagation :
+
+    system event(ex : page fault handle) 傳遞方式不同於interrupt，基本上是不可被stall的。
+
+* realtime support to threads running in the secondary domain
+
+  - Common priority scheme : 
+
+    當xenomai task migrates to linux domain時，linux domain會繼承xenomai task的priority。
+
+  - Predictability of program execution times :
+
+    當xenomai threads 進入linux(secondary) domain時，不可被linux domain interrupt preempt掉，也不能被其他low priority activity at linux kernel preempt掉。通常最簡單實作方式就是加一個interrupt shield domain。
+
+  - Fine-grained Linux kernel :
+
+    In order to get the best from secondary domain,we need the Linux kernel to exhibit the shortest possible nonpreemptible section, so that rescheduling opportunities are taken as soon as possible after a Xenomai thread running in the secondary domain becomes ready to run.
+
+  - Priority inversion management :
+
+    Both the real-time nucleus and the Linux kernel should handle the case where a high priority thread is kept from running because a low priority one holds a contented resourse for a possibly unbounded amount of time.
 
 * 相關檔案︰
 
   - gic.c : 
        
-      Generic Interrupt Controller, Interrupt prioritization and distribution to each CPU interface. This is known as the Distributor. Priority masking and preemption handling for each CPU. This is known as the CPU Interface.
+    Generic Interrupt Controller, Interrupt prioritization and distribution to each CPU interface. This is known as the Distributor. Priority masking and preemption handling for each CPU. This is known as the CPU Interface.
 
   - it8152.c：IRQ相關
 
@@ -90,9 +122,9 @@ Adeos / iPipe
 
   - vic.c：
 
-     The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
+    The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
 
-     功能為提供一個programable的介面讓使用者設定
+    功能為提供一個programable的介面讓使用者設定
 
   - ipipe-tsc.c:設定精準度（刻度）
 
