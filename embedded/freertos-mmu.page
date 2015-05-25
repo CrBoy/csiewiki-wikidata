@@ -5,12 +5,54 @@ toc: no
 ...
 
 協作者
----
+===
+
 * 2015 年春季
   - `陳冠任<https://github.com/dani4310>`_, `許士杰<https://github.com/Jayjack0116>`_, `黃睦林<https://github.com/MuLinForest>`_, `孫瑋<https://github.com/saya222777>`_, `涂逸祥<https://github.com/tuition0804>`_
 
 
 共筆
-----
+==
+
 * 2015 年春季
   - `hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
+
+
+目錄
+==
+* `Beaglebone black 簡介<#Beaglebone black 簡介>`_
+  - `硬體簡介<#硬體簡介>`_
+  - `開機流程<#開機流程>`_
+
+* `問題討論<#問題討論>`_
+
+
+
+`Beaglebone black 簡介<#目錄>`_
+===========================
+
+`硬體簡介<#目錄>`_
+------------
+
+* Processor: `AM335x 1GHz ARM® Cortex-A8<http://www.ti.com/product/am3358>`_                                                               
+  - 512MB DDR3 RAM
+  - 4GB 8-bit eMMC on-board flash storage
+  - 3D graphics accelerator
+  - NEON floating-point accelerator
+  - 2x PRU 32-bit microcontrollers
+
+* Connectivity
+  - USB client for power & communications
+  - USB host
+  - Ethernet
+  - HDMI
+  - 2x 46 pin headers
+
+* Software Compatibility
+  - Debian
+  - Android
+  - Ubuntu
+  - Cloud9 IDE on Node.js w/ BoneScript library
+  - plus much more
+
+.. image:: http://www.circuidipity.com/images/bbb-details3.png
