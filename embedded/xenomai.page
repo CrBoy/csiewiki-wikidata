@@ -168,10 +168,9 @@ Skins
 
 呼叫xenomai的界面, 有native rtdm posix等。
 
-問題
-++++++++++++
 
-與 RT-PREEMPT 途徑的差異？
+與PREEMPT_RT的差異
+===============================
 
 * RT-PREEMPT 機制
   - Preemptible critical sections
