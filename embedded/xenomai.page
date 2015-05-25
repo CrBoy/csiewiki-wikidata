@@ -4,7 +4,7 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
 ...
 
 協作者
----------
+=======
 * 2015 年春季
   - 吳哲綱, 曾柏翔, 林展翔, 詹志鴻, 林建慶, 呂鴻
 
@@ -44,8 +44,8 @@ Real time on Linux
 
   在xenomai中，dual kernel 就是 Xenomai 的 Nucleus / Cobalt Core 和 Linux kernel。Xenomai 改變整個系統架構，讓 ipipe -> xenomai scheduler 來預先處理 real-time task，而 Linux 則拉到上層成為一個task。這樣可以避免 Linux 因為龐大的架構而影響處理 real-time 的時間。
 
-作業系統架構
-===========
+Xenomai系統架構
+===============
 
 .. image:: /embedded/xenomai/xenomai_arch.jpg
 
@@ -73,7 +73,7 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 高優先度的domain的thread 可以preempt低優先度domain的thread
 
 
-iPipe
+Adeos / iPipe
 ++++++++++++++
 
 主要負責處理irq 與 timer(HRT), ipipe的工作很簡單 就是設定timer並將interrupt往上丟
