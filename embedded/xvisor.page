@@ -189,7 +189,8 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 
 補充：`Five Generation Computer<http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp>`_
 
-- 實現虛擬化的方式
+實現虛擬化的方式
+....................................
 
 .. image:: /embedded/virtualization_method_all.png
 
