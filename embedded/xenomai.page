@@ -30,7 +30,19 @@ Real Time 的定義
 * Safe Real Time
   
   系統能 100% 在指定時間內完成任務。
- 
+
+Real time on Linux
+==================
+
+* PREEMPT_RT (in-kernel; single kernel)
+
+  修改原本的 GNU/Linux 核心 (vanilla kernel)，以減少non-preemptible section的方式，使其逐步改善 real-time 能力。
+
+* dual kernel (如 RTLinux, RTAI, Xenomai)
+
+  運作一個 real-time 核心，然後將修改過的 GNU/Linux 核心程式碼視為該 real-time 核心的 idle task。
+
+  在xenomai中，dual kernel 就是 Xenomai 的 Nucleus / Cobalt Core 和 Linux kernel。Xenomai 改變整個系統架構，讓 ipipe -> xenomai scheduler 來預先處理 real-time task，而 Linux 則拉到上層成為一個task。這樣可以避免 Linux 因為龐大的架構而影響處理 real-time 的時間。
 
 作業系統架構
 ===========
