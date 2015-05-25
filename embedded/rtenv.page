@@ -377,6 +377,10 @@ list
   - ``list_unshift``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 next。
   - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
   - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
+ 
+  .. image:: /embedded/rtenv-plus/UOBhtQ.gif
+
+
 
 - Macro：
   - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
