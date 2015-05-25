@@ -11,131 +11,6 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
 * 2014 年春季
   - 向澐, 林家宏, 呂科進, 趙愷文, 阮志偉, 陳建霖
 
-建立 Xenomai 環境
-==============================
-* 下載 Raspbian: http://www.raspberrypi.org/downloads/
-  - 將raspbian的img檔燒進sd card上
-
-.. code-block:: c
-
-    sudo dd if=<raspbian image file> of=/dev/mmcblk0 bs=4M
-
-  - ``if`` 為 input file, ``of`` 為 output file, ``bs``為 block size
-  - 燒錄詳細介紹: http://life-of-raspberrypi.blogspot.tw/
-
-* Install Cross complier
-
-.. code-block:: c
-
-    cd <working dir>
-    wget https://github.com/raspberrypi/tools/archive/master.tar.gz
-    tar xzfv master.tar.gz
-
-* Download kernel
- 
-.. code-block:: c
-
-   git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
-
-* Download Xenomai 
-
-.. code-block:: c
-
-   git clone git://git.xenomai.org/xenomai-head.git xenomai-head
-
-* Download minimal config 
-
-.. code-block:: c
-
-   wget https://www.dropbox.com/s/dcju74md5sz45at/rpi_xenomai_config
-
-* Apply ipipe core pre-patch
-
-.. code-block:: c
-
-   cd linux-rpi-3.8.y
-   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-pre-2.patch
-
-* Apply Xenomai ipipe core patch 
-
-.. code-block:: c
-
-   cd <working dir>
-   ./xenomai-head/scripts/prepare-kernel.sh --arch=arm --linux=linux-rpi-3.8.y --adeos=xenomai-head/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-4.patch
-
-* Apply ipipe core post-patch 
-
-.. code-block:: c
-
-   cd linux-rpi-3.8.y
-   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
-
-* Create build directory 
-
-.. code-block:: c
-
-   cd <working dir>
-   mkdir linux-rpi-3.8.y/build
-
-* Configure kernel
-
-.. code-block:: c
-
-   cp rpi_xenomai_config linux-rpi-3.8.y/build/.config
-   cd linux-rpi-3.8.y
-   make mrproper
-   make ARCH=arm O=build oldconfig
-
-* Compile Linux Kernel (此步驟耗時長，建議用make -j平行加速)
-
-在作此步驟之前須export library
-
-.. code-block:: c
-
-  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
-
-.. code-block:: c
-
-   make ARCH=arm O=build CROSS_COMPILE=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
-   
-* Install modules
-
-.. code-block:: c
-
-  make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
-
-* Install headers
-
-.. code-block:: c
-
-    make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
-    find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
-
-* 編譯好的kernelImage(<working dir>/linux-rpi-3.8.y/build/arch/arm/boot/Image),移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
-
-* 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
-
-* Compile Xenomai
-
-.. code-block:: c
-    
-  cd xenomai-head
-  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
-  ./configure --host=arm-bcm2708hardfp-linux-gnueabi
-  cd src
-  mkdir dist
-  make install DESTDIR=`pwd`/dist
-
-* dist中會出現``usr/xenomai``, 將這個資料夾移到sd卡中 ``/usr/``
-
-* 用 minicom 連進 raspberry pi 中執行以下動作
-
-.. code-block:: c
-
-  export PATH=/usr/xenomai/bin:$PATH  
-  export LD_LIBRARY_PATH=/usr/xenomai/lib
-  sudo modprobe xeno_posix
-
 
 Real Time 的定義
 ==============================
@@ -273,6 +148,132 @@ Skins
   讓處理real-time task流程簡化到只剩ipipe->scheduler 就能執行
 
   不會因linux龐大的架構影響到real-time task的處理時間
+
+
+建立 Xenomai 環境
+==============================
+* 下載 Raspbian: http://www.raspberrypi.org/downloads/
+  - 將raspbian的img檔燒進sd card上
+
+.. code-block:: c
+
+    sudo dd if=<raspbian image file> of=/dev/mmcblk0 bs=4M
+
+  - ``if`` 為 input file, ``of`` 為 output file, ``bs``為 block size
+  - 燒錄詳細介紹: http://life-of-raspberrypi.blogspot.tw/
+
+* Install Cross complier
+
+.. code-block:: c
+
+    cd <working dir>
+    wget https://github.com/raspberrypi/tools/archive/master.tar.gz
+    tar xzfv master.tar.gz
+
+* Download kernel
+ 
+.. code-block:: c
+
+   git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
+
+* Download Xenomai 
+
+.. code-block:: c
+
+   git clone git://git.xenomai.org/xenomai-head.git xenomai-head
+
+* Download minimal config 
+
+.. code-block:: c
+
+   wget https://www.dropbox.com/s/dcju74md5sz45at/rpi_xenomai_config
+
+* Apply ipipe core pre-patch
+
+.. code-block:: c
+
+   cd linux-rpi-3.8.y
+   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-pre-2.patch
+
+* Apply Xenomai ipipe core patch 
+
+.. code-block:: c
+
+   cd <working dir>
+   ./xenomai-head/scripts/prepare-kernel.sh --arch=arm --linux=linux-rpi-3.8.y --adeos=xenomai-head/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-4.patch
+
+* Apply ipipe core post-patch 
+
+.. code-block:: c
+
+   cd linux-rpi-3.8.y
+   patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
+
+* Create build directory 
+
+.. code-block:: c
+
+   cd <working dir>
+   mkdir linux-rpi-3.8.y/build
+
+* Configure kernel
+
+.. code-block:: c
+
+   cp rpi_xenomai_config linux-rpi-3.8.y/build/.config
+   cd linux-rpi-3.8.y
+   make mrproper
+   make ARCH=arm O=build oldconfig
+
+* Compile Linux Kernel (此步驟耗時長，建議用make -j平行加速)
+
+在作此步驟之前須export library
+
+.. code-block:: c
+
+  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+
+.. code-block:: c
+
+   make ARCH=arm O=build CROSS_COMPILE=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
+   
+* Install modules
+
+.. code-block:: c
+
+  make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
+
+* Install headers
+
+.. code-block:: c
+
+    make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
+    find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
+
+* 編譯好的kernelImage(<working dir>/linux-rpi-3.8.y/build/arch/arm/boot/Image),移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
+
+* 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
+
+* Compile Xenomai
+
+.. code-block:: c
+    
+  cd xenomai-head
+  export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
+  ./configure --host=arm-bcm2708hardfp-linux-gnueabi
+  cd src
+  mkdir dist
+  make install DESTDIR=`pwd`/dist
+
+* dist中會出現``usr/xenomai``, 將這個資料夾移到sd卡中 ``/usr/``
+
+* 用 minicom 連進 raspberry pi 中執行以下動作
+
+.. code-block:: c
+
+  export PATH=/usr/xenomai/bin:$PATH  
+  export LD_LIBRARY_PATH=/usr/xenomai/lib
+  sudo modprobe xeno_posix
 
 觀察與分析
 =========
