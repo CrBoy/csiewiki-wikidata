@@ -98,9 +98,13 @@ Adeos / iPipe
 
     當xenomai task migrates to linux domain時，linux domain會繼承xenomai task的priority。
 
+    .. image:: /embedded/xenomai/pirority_scheme.png
+
   - Predictability of program execution times :
 
     當xenomai threads 進入linux(secondary) domain時，不可被linux domain interrupt preempt掉，也不能被其他low priority activity at linux kernel preempt掉。通常最簡單實作方式就是加一個interrupt shield domain。
+
+    .. image:: /embedded/xenomai/interrupt_shield.png
 
   - Fine-grained Linux kernel :
 
