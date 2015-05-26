@@ -35,6 +35,7 @@ toc: no
 * `效能評估<#效能評估>`_
 * `測試環境架設<#測試環境架設>`_
 * `問題討論<#問題討論>`_
+* `參考資料<#參考資料>`_
 
 FreeRTOS 架構
 -----------
@@ -1692,22 +1693,26 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 問題是這樣的，為了計算 context switch 的時間，我們需要先取的系統的時間(系統啟動至今歷經的時間)，之前在 Lab40 有使用過 tick count 來取得系統時間，在 visualizer/main.c 中的 get_time() 最後 return 的 `xTaskGetTick() + ( reload - current / reload)` 是目前系統已經執行的 ticks 加上目前系統歷經的 count downs 數 ( 1 / x tick，讀作『x 分之一 tick』)，這段就是用 tick 來表示目前經歷的時間，要把這個 ticks 轉成 human readable time，也就是要讓 ticks 轉換成 second，一個作法就是乘上『單位量級(scale)』，這個 scale 定義在 return 之前，請參考以下片段：
 <visualizer/main.c>
+.. image:: /main.png
 
 我們在意的是為什麼 scale 單位是 microsecond 呢?
 
 先往上追 configTICK_RATE_HZ 的定義：
 <visualizer/FreeRTOSConfig.h>
+.. image:: /FreeRTOSConfig.png
 
 所以 scale = 1000000/100 (tick/sec) = 10000
 但是這樣我們還是不知道該給 scale 下什麼單位，因為 configTICK_RATE_HZ 只是頻率，也就是『每單位時間內有幾次tick』，官方並沒有定義這個單位時間是什麼。
 
 但是我們注意到使用手冊中提到，FreeRTOS 在管理 task 的時候，有一個 API – vTaskDelay() 可以用來讓 Task 暫停一段時間，使用方法如下：
 <FreeRTOS 官網>
+.. image:: /vTaskFunction.png
 
 這段程式碼中使用了 vTaskDelay() 來暫停 task，文件說明這個函數的參數如果是整數常數，單位是 ticks，也就是說傳入整數如：vTaskDelay(500)，會暫停 500 ticks，而上述程式碼我們傳入的參數是 500/portTICK_RATE_MS，註解說這樣就可以讓 task 暫停 500 ms(10^-3 second)，所以 n / portTICK_RATE_MS 是 ms，然而此時的 n 應該不是 ticks 了(the result of our discussion)
  
 接著我們去追portTICK_RATE_MS 的定義：
 <freertos-basic/freertos/libraries/FreeRTOS/portable/GCC/ARM_CM3/portmacro.h>
+.. image:: /portmacro.png
 
 (in v8.2.1, portTICK_RATE_MS was renamed to portTICK_PERIOD_MS)
 
