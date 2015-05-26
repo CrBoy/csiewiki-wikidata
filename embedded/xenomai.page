@@ -253,6 +253,10 @@ Skins
 
 建立 Xenomai 環境
 ==============================
+
+Xenomai 2.6 on raspberry pi
+++++++++++++++++++++++++++++
+
 * 下載 Raspbian: http://www.raspberrypi.org/downloads/
   - 將raspbian的img檔燒進sd card上
 
@@ -375,6 +379,101 @@ Skins
   export PATH=/usr/xenomai/bin:$PATH  
   export LD_LIBRARY_PATH=/usr/xenomai/lib
   sudo modprobe xeno_posix
+
+Xenomai 3 on raspberry pi
+++++++++++++++++++++++++++
+
+* 取得 xenomai 3.0-rc、rpi-linux 3.16.y、ipipe 3.18.12 arm patch、toolchain
+
+.. code-block:: c
+
+  git clone -b rpi-3.18.y git://github.com/raspberrypi/linux.git rpi-linux
+  git clone -b v3.0-rc4 git://git.xenomai.org/xenomai-3.git xenomai-3
+  wget http://download.gna.org/adeos/patches/v3.x/arm/ipipe-core-3.18.12-arm-1.patch
+  git clone https://github.com/raspberrypi/tools.git --depth=1
+
+* 由此處取得rpi post patch
+
+`post patch<https://drive.google.com/file/d/0B6GwSked9fL9RnU3b3pSajFZbUk/view>`_
+
+*上 ipipe patch
+
+.. code-block:: c
+
+  cd rpi-linux
+  ../xenomai-3/scripts/prepare-kernel.sh --arch=arm --ipipe=<你的patch位置>/ipipe-core-3.18.12-arm-1.patch   --linux=.
+  patch -Np1 < 3.18.12-xenomai3-temp.patch
+
+* configure kernel(使用rpi提供的default)
+
+.. code-block:: c
+
+  cd rpi-linux
+  export CCPI=($working_dir)/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+  mkdir build
+  make mrproper
+  make ARCH=arm O=build CROSS_COMPILE=$CCPI bcmrpi_defconfig
+  make ARCH=arm O=build CROSS_COMPILE=$CCPI menuconfig
+
+若patch正確，會在設定表裡看到xenomai相關選項。
+
+vim build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE, CONFIG_KGDB, CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
+
+* compile kernel
+
+.. code-block:: c
+
+  make -j 5 ARCH=arm O=build CROSS_COMPILE=$CCPI
+
+* 安裝kernel modules
+
+.. code-block:: c
+
+  make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
+
+* 安裝headers
+
+.. code-block:: c
+
+  make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
+
+* xenomai
+
+.. code-block:: c
+
+  cd ../xenomai-3
+  mkdir dist
+  export PATH=/home/erickitten/workspace/xenomai/pi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/:$PATH
+
+* 設定bootstrap
+
+.. code-block:: c
+
+  ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
+
+* configure
+
+.. code-block:: c
+
+  ./configure CFLAGS="-mcpu=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard" LDFLAGS="-mcpu=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard" --host=arm-linux-gnueabihf --with-core=cobalt
+
+* install
+
+.. code-block:: c
+
+  make DESTDIR=`pwd`/dist install
+
+* 複製kernel
+
+將linux-rpi/build/arch/arm/boot/Image複製到SD卡的/boot (partition)，並改名成kernel.img。或使用config.txt，以kernel=<filename>指定名稱。
+
+* 移動module / patches (權限問題，需使用sudo)
+
+.. code-block:: c
+
+  cd ..
+  sudo cp -r rpi-linux/build/dist/lib/modules $(sdcard)/lib
+  sudo cp -r xenomai-3/dist/usr/xenomai $(sdcard)/usr
 
 觀察與分析
 =========
