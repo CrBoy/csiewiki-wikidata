@@ -70,6 +70,8 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
   - port.c：定義了包含與硬體相關的程式碼實作
   - FreeRTOSConfig.h：包含 clock speed, heap size, mutexes 等等都在此定義(需自行建立)
 
+`回目錄<#目錄>`_
+
 命名規則
 ---------
 * 變數
@@ -91,6 +93,7 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
 
+`回目錄<#目錄>`_
 
 任務
 ----------
@@ -450,6 +453,7 @@ vTaskSuspend 使用範例：
 
      }
 
+`回目錄<#目錄>`_
 
 通訊
 ----------------------
@@ -655,6 +659,7 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
             }
     }
     
+`回目錄<#目錄>`_
     
 排程
 ----------------
@@ -848,6 +853,8 @@ wait(block): 等待取得資源或事件發生
 
 FreeRTOS為MultiLevel Queue，若priority高的task霸佔CPU，對於priority較低的task則無法執行，便會發生Starvation(低優先權很長一段時間都無法獲得CPU執行)
 
+`回目錄<#目錄>`_
+
 中斷處理
 ---------------------------
  
@@ -946,6 +953,7 @@ EXTI在FreeRTOS的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:1
         NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
         NVIC_Init(&NVIC_InitStructure);
 
+`回目錄<#目錄>`_
 
 硬體驅動原理
 ------------------
@@ -1081,6 +1089,8 @@ GPIO_Init()
       }
     }
 
+`回目錄<#目錄>`_
+
 效能評估
 ----------------
 * Context switch
@@ -1167,6 +1177,8 @@ SysTick最小只能設到1 / 100000 （十萬分之一）秒
 
 * realtime capability
 
+`回目錄<#目錄>`_
+
 測試環境架設
 ----------------
 
@@ -1213,6 +1225,8 @@ SysTick最小只能設到1 / 100000 （十萬分之一）秒
     );
 
 最後，呼叫vTaskStartScheduler()正式開始排程
+
+`回目錄<#目錄>`_
 
 問題討論
 ----------
@@ -1338,6 +1352,8 @@ R12（IP）用法：
 
 P.S. 關於veneer：
 ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit 指令集），其中切換的程式段叫 veneer 
+
+`回目錄<#目錄>`_
 
 **Q9：誰把New Task 接到 Ready List**
 
@@ -1492,6 +1508,8 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
     }
 
 將pxNewListItem插入至pxList的最後面
+
+`回目錄<#目錄>`_
 
 **Q10:arm conditional code?**
 
@@ -1653,6 +1671,8 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 更新在上面內容
 
+`回目錄<#目錄>`_
+
 **Q21: queue實作是不是cycle？**
 
 是，參考
@@ -1668,6 +1688,255 @@ value to the ptr {r3-4} and r3 = r3 -4.
                     {
                             mtCOVERAGE_TEST_MARKER();
                     }
+**Q22: `Lab40 <http://wiki.csie.ncku.edu.tw/embedded/Lab40>`_ 的 visualizer/main.c 的 get_time() 裡 scale 為什麼是 microsecond ？**
+
+問題是這樣的，為了計算 context switch 的時間，我們需要先取的系統的時間(系統啟動至今歷經的時間)，之前在 Lab40 有使用過 tick count 來取得系統時間，在 visualizer/main.c 中的 get_time() 最後 return 的 `xTaskGetTick() + ( reload - current / reload)` 是目前系統已經執行的 ticks 加上目前系統歷經的 count downs 數 ( 1 / x tick，讀作『x 分之一 tick』)，這段就是用 tick 來表示目前經歷的時間，要把這個 ticks 轉成 human readable time，也就是要讓 ticks 轉換成 second，一個作法就是乘上『單位量級(scale)』，這個 scale 定義在 return 之前，請參考以下片段：
+<visualizer/main.c>
+
+我們在意的是為什麼 scale 單位是 microsecond 呢?
+
+先往上追 configTICK_RATE_HZ 的定義：
+<visualizer/FreeRTOSConfig.h>
+
+所以 scale = 1000000/100 (tick/sec) = 10000
+但是這樣我們還是不知道該給 scale 下什麼單位，因為 configTICK_RATE_HZ 只是頻率，也就是『每單位時間內有幾次tick』，官方並沒有定義這個單位時間是什麼。
+
+但是我們注意到使用手冊中提到，FreeRTOS 在管理 task 的時候，有一個 API – vTaskDelay() 可以用來讓 Task 暫停一段時間，使用方法如下：
+<FreeRTOS 官網>
+
+這段程式碼中使用了 vTaskDelay() 來暫停 task，文件說明這個函數的參數如果是整數常數，單位是 ticks，也就是說傳入整數如：vTaskDelay(500)，會暫停 500 ticks，而上述程式碼我們傳入的參數是 500/portTICK_RATE_MS，註解說這樣就可以讓 task 暫停 500 ms(10^-3 second)，所以 n / portTICK_RATE_MS 是 ms，然而此時的 n 應該不是 ticks 了(the result of our discussion)
+ 
+接著我們去追portTICK_RATE_MS 的定義：
+<freertos-basic/freertos/libraries/FreeRTOS/portable/GCC/ARM_CM3/portmacro.h>
+
+(in v8.2.1, portTICK_RATE_MS was renamed to portTICK_PERIOD_MS)
+
+至此，我們推倒如下：
+vTaskDelay() 的 parameter 是以 tick 為單位 
+vTaskDelay ( 500 / portTICK_RATE_MS ) 
+= vTaskDelay ( 500 / 1000 / configTICK_RATE_HZ ) 
+= vTaskDelay (50) 
+即 delay 50 ticks 
+
+因 `500 / portTICK_RATE_MS = 500 ms =  50 ticks`
+另 `500 ms = 500 / portTICK_RATE_MS`  意思是 `500/portTICK_RATE_MS` 可以視為 500 ms
+又 `500 / portTICK_RATE_MS = 50 ticks` => `500 (ms) = 50(tick) * portTICK_RATE_MS`
+得 `x ticks * portTICK_RATE = 10 * x ms`    
+
+又 `scale  = 1000000 / configTICK_RATE_MS`
+`= 1000 * (1000 / configTICK_RATE_MS)`
+`= 1000 * portTICK_RATE_MS` 
+
+所以 `ticks * scale = 1000 * ticks * portTICK_RATE` 可以得到 `us` 的值  #
+其實就是說，ticks 是電腦歷經的時間，我們說 『x ticks 等於 y ms』
+所以 get_time 就是要把 x tick 轉成 y ms，做法是把 x  ticks 乘上 1000/config 
+現在已經得到  y ms
+進一步要把 x tick 的轉成 us
+因 1 ms = 1000 us
+=> x ticks = y ms = 1000*y*(1/1000) ms
+所才要再乘上 1000
+#
+原來的盲點是，以為把『量級』乘 1000，這樣會使 1ms 變成 1000ms
+實際上是把『數值』乘 1000，當 1 時是對應 ms 的值，1000 則是對應 us 的值
+ return 的 式子 不精準，因為 ( reload - current ) / reload  always 0 ，( 因為 int / int )
+而這部分我有試著去改善，但是不能 return float/double (WHY ?)
+進行除法運算，FPU 可能還沒啟用
+
+`回目錄<#目錄>`_
+
+**Q23. FreeRTOS 如何追到自己? 為何知道vTaskDelete(NULL) 的 NULL是表示task本身?**
+在task.c 之中，找出 vTaskDelete(NULL) 如何實作?
+是 macro 。 (line400)
+        void vTaskDelete( TaskHandle_t xTaskToDelete )
+        {
+        TCB_t *pxTCB;
+
+                taskENTER_CRITICAL();
+                {
+         /* If null is passed in here then it is the calling task that is being deleted. */
+                        pxTCB = prvGetTCBFromHandle( xTaskToDelete );
+
+                    
+在什麼情況下，會執行到 vTaskDelete(NULL) ? 遇無窮迴圈時會執行此code嗎?? 
+Answer : 因為Freeots不准有return 也不准執行到最後一行，因此如果不需要此task，則應該刪除此task ( 參考 : http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html )
+疑問是，如果vTaskDelete()在無窮迴圈之後，已經進入無窮迴圈的情形下，會執行到vTaskDelete()嗎?
+有一個可能性是，如果在 loop 中發生執行錯誤 (fail)，則需要跳出迴圈並終止(自己)執行，此時就需要使用 vTaskDelete 來刪除自己，發生錯誤的例子：
+1. 假如今天一個 task 是要存取資料庫，但是資料庫或資料表不存在，則應該結束 task
+2. 假如今天一個 client task 是要跟 server 做連線( listening 就是 loop)，卻發現 client 端沒有網路連線，則應結束 task
+沒錯，FreeRTOS不允許有return 值發生。
+
+**Q24. 什麼情形下 task 會進入 block state? (system call , mutex)**
+例如我們希望一個 task 等待 10 ms 的時候，我們會用 `vTaskDelay(10/portTICK_PERIOD_MS);`
+這個 `vTaskDelay()` 就是一個 blocking API function
+(已經移植到 wiki)
+
+**Q25. FreeRTOS 設計Suspended 狀態的考量為何？發生什麼狀況時，會進入suspend狀態?**
+如果一個 task 會被 block 很久或者是會有一段時間用不到那就會被丟到 suspend 狀態
+(已經移植到 wiki)
+
+**Q26. 這個 usStackDepth 如何去計算他佔用空間?**
+在 FreeRTOS 裡面，usStackDepth 設定 100，假設每個 stack 為 16 bits 寬，則他所佔用的記憶體空間為 200 bytes.
+      這個值指定的是 stack 的堆疊空間 (stack size)可以保留多少 word(4 bytes)，如果設定為 100，則系統將會分配 400 bytes 給 task
+      沒有簡單的方法可以計算一個任務到底需要多少空間，大多數做法都是先簡單地給予一個初估的值，然後再隨著任務運作的訊息來調整
+
+**Q27. 為何 configMAX_PRIORITIES 要 -1 ?**
+
+從 0 開始數
+但是如果  configMAX_PRIORITIES 設定為 10
+為什麼不可以分配 10 給一個 task?
+
+從 pxReadyTasksLists[ uxTopReadyPriority ] 看起來
+
+ready list 應該是每個 index 表示不同的 priority
+(換句話說，同一個 index 的 ready list 中的 tasks 應該是具有相同 priority 的)
+
+所以，為了配置 ready list 的長度，只能從 0 ~ priority - 1
+也就是說，你若要讓 ready list 長度是 10 (分別代表著 priority 0 - 9)
+則你雖然要把 configMAX_PRIORITY 設定為  10
+分配權限時最高卻只能到  configMAX_PRIORITY
+其實我只是簡單的理解上是array 如果要有1~10個優先權定義，事實上寫程式時是定義0~9 而已，的確是由0開始數沒錯
+
+`回目錄<#目錄>`_
+
+**Q28.真正放至 ready list  的是什麼? 是放入 handle?**
+
+<freertos/libraries/FreeRTOS/include/task.h#L345>
+#define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
+在這裡把 `xTaskGenericCreate()` 包裝成 `xTaskCreate()`
+所以 main 中呼叫 `vTaskCrate()` 實際上是呼叫 `xTaskGenericCreate()`
+
+然後是呼叫 <freertos/libraries/FreeRTOS/tasks.c#L551> 的 xTaskGenericCreate
+在 xTaskGenericCreate 中我們找到把 task 加入 readyList 的地方(#704)：
+`prvAddTaskToReadyList( pxNewTCB );`
+所以實際上是把該 task 的 TCB 加入 readyList
+
+那要怎麼辨識 task 呢？
+((`configASSERT( pxTaskCode );` 並不是註冊 taskCode，`configASSERT()` 只是用來測試的))
+在 line 621 (xTaskGenericCreate)：
+/* Setup the newly allocated TCB with the initial state of the task. */
+prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+這裡看到帶有 pcName 卻沒有 taskCode，我們已知 pcName 只用做開發識別，不用做系統管理，所以追到下面
+#if( portUSING_MPU_WRAPPERS == 1 )
+{
+pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters, xRunPrivileged );
+}
+#else /* portUSING_MPU_WRAPPERS */
+{
+pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
+}
+應該是因為在 TCB 中記錄了 stack 的起始位址，這裡有 pxTaskCode 
+不是用 handle！(不過 handle 是否也是指向 pxTopOfStack???)
+
+handle (台：控制代碼、中：句柄)實際的意義是一個用來存取該 task 的『指標』，他是提供外部系統或程式來參照目前 task 用的
+
+舉個例子：刪除 task
+vTaskCreate(..., taskA, ...)
+當我們要呼叫 vTaskDelete 來刪除 taskA 時，為了讓 vTaskDelete 存取到 taskA 的記憶體位址，我們要傳入一個指向 taskA 的指標到 vTaskDelete 中，這個指標就是 handle
+
+建立 handle 的方法如下：
+xTaskHandle handleTaskA;    // 建立一個用來指向 taskA 的 handle 指標變數
+vTaskCreate(.., taskA, ..., handleTaskA);   // 傳入這個指標變數，讓 vTaskCreate 可以記錄他
+因為是 pass by address，handleTaskA 大概在 vTaskCreate() 中只是被修改值，所以離開 vTaskCreate 後就可以直接存取到 handleTaskA 的內容
+vTaskDelete(handleTaskA);   // 傳入 handle 以供 vTaskDelete 參考
+
+
+**Q29. FreeRTOS 在哪裡去更新pcCurrentTCB 這個pointer ? 指向最新正在運行的task?**
+探討如何用scheduler 
+
+**Q30. 為何不使用 linked-list 去紀錄priority value?**
+因為 linked-list 要去排序的話，有 N 個，有可能會有 n^2 或者是 nlogn 的時間複雜度，且 array 可以做 random access，這對以 priority 作為 index 的 ready list 來說，會比 linked-list 更直接的存取到指定的 priority
+
+使用uxTopReadyPrioirty 是因為用空間換時間，搜尋會只有常數時間複雜度
+
+**Q31. xListEnd在哪? **
+xLIST 中的 xListEnd 是 xLIST（linked-list？）的尾巴
+
+**Q32. FreeRTOS 的event 定義是什麼? 是同步機制還是非同步?**
+Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.
+來源：http://www.freertos.org/FreeRTOS-Event-Groups.html
+
+
+group 中有很多 bit，分別代表 task 正在等待的一個 event，並不一定所有的 bit 都會用到，看 task 需要等待多少 task
+event 例如：
+A message has been received and is ready for processing
+The application has queued a message that is ready to be sent to a network
+It is time to send a heartbeat message onto a network
+
+TCB 結構中還有兩個 xListItem：xGenericListItem 和 xEventListItem
+xListItem    xGenericListItem;               /* 用來記錄 task 的 TCB 在 FreeRTOS ready 和 blocked queue 的位置 */
+xListItem    xEventListItem;                 /* 用來記錄 task 的 TCB 在 FreeRTOS event queue 的位置 */
+
+不論 xGenericListItem 或 xEventListItem，都是 xListItem_t 型態，這個結構定義在 list.h：
+struct xLIST_ITEM
+{
+        listFIRST_LIST_ITEM_INTEGRITY_CHECK_VALUE                              
+        configLIST_VOLATILE TickType_t xItemValue;                        
+        struct xLIST_ITEM * configLIST_VOLATILE pxNext;              
+        struct xLIST_ITEM * configLIST_VOLATILE pxPrevious;       
+        void * pvOwner;                                                                             
+        void * configLIST_VOLATILE pvContainer;                              
+        listSECOND_LIST_ITEM_INTEGRITY_CHECK_VALUE                               
+};
+typedef struct xLIST_ITEM ListItem_t;                                       
+
+`回目錄<#目錄>`_
+
+*Q33. 如何知道 task現在處於哪個狀態? 對應狀態圖的程式碼在哪裡?**
+Task 有四種狀態  blocked ('B'), ready ('R'), deleted ('D') or suspended ('S')
+
+vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容print出來
+ fio_printf(1, "\n\rName          State   Priority  Stack  Num\n\r");
+ fio_printf(1, "*******************************************\n\r");
+ fio_printf(1, "%s\r\n", buf + 2);
+就可以知道task處於哪個狀態
+
+vTaskList() calls uxTaskGetSystemState(), then formats the raw data generated by uxTaskGetSystemState() into a human readable (ASCII) table that shows the state of each task, including the task's stack high water mark (the smaller the high water mark number the closer the task has come to overflowing its stack). Click here to see an example of the output generated.
+In the ASCII table the following letters are used to denote the state of a task：
+'B' - Blocked
+'R' - Ready
+'D' - Deleted (waiting clean up)
+'S' - Suspended, or Blocked without a timeout
+vTaskList() is a utility function provided for convenience only. It is not considered part of the kernel. SeevTaskGetRunTimeStats() for a utility function that generates a similar table of run time task utilisation information.
+
+Parameters:
+
+pcWriteBuffer	A buffer into which the above mentioned details will be written, in ASCII form. This buffer is assumed to be large enough to contain the generated report. Approximately 40 bytes per task should be sufficient.	
+
+**Q34. 畫一下 pxStack 以及 pxTopOfStack的記憶體位置圖。用gdb去trace。**
+
+2015 春季班 v8.2.1 版本
+freertos/libraries/FreeRTOS/portable/GCC/ARM_CM3/port.c
+/*
+ * See header file for description.
+ */
+StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t pxCode, void *pvParameters )
+{
+        /* Simulate the stack frame as it would be created by a context switch interrupt. */
+ pxTopOfStack--; /* Offset added to account for the way the MCU uses the stack on entry/exit of interrupts. */
+        *pxTopOfStack = portINITIAL_XPSR;        /* xPSR */
+        pxTopOfStack--;
+        *pxTopOfStack = ( StackType_t ) pxCode;        /* PC */
+        pxTopOfStack--;
+        *pxTopOfStack = ( StackType_t ) portTASK_RETURN_ADDRESS;        /* LR */
+        pxTopOfStack -= 5;        /* R12, R3, R2 and R1. */
+        *pxTopOfStack = ( StackType_t ) pvParameters;        /* R0 */
+        pxTopOfStack -= 8;        /* R11, R10, R9, R8, R7, R6, R5 and R4. */
+
+        return pxTopOfStack;
+}
+
+(2014 年春季班 v8.0.1 的版本)
+
+
+**Q35. 在FreeRTOS裡面，其pid在哪裡? 如何知道task的id資訊? **
+FreeRTOS 建立新 task 的方式與 Linux 不同，前者是用 vTaskCreate()，如果有回傳，只會回傳 pdPass 或 error 來表示 task 建立成功與否，如果要讓程式辨識這個 task，在 create 時就要給予 vTaskCreate 一個用來記錄該 task TCB 起始位址的 handle 指標，因此 FreeRTOS 沒有 PID
+
+FreeRTOS 透過一個 pxCurrentTCB 的指標來存取目前指向的 task 基本資訊，也就是說如果要知道 task 的資訊，都是去存取 TCB，2007 年的資料顯示，好像可以透過存取 pxCurrentTCB->uxTCBNumber 來取得 task 的編號，但是目前的 TCB 已經沒有這個項目了
+
+至於考慮使用 handle 來取得 task id 也是不對的，因為 handle 指向的是 TCB 的位址，因此他也是存取 TCB
+
+
+`回目錄<#目錄>`_
 
 參考資料
 --------
