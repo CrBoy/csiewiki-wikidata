@@ -150,11 +150,28 @@ HAL
 
 Hardware Abstract Layer:process  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
 
+檔案位置在 : xenomai-head/ksrc/arch/arm/hal.c (xenomai 2.6)
 
-Nucleus
-++++++++++++
+
+Nucleus / Cobalt
+++++++++++++++++
 
 Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
+
+檔案位置在 : xenomai-head/ksrc/nucleus (xenomai 2.6) ; xenomai-head/kernel/cobalt (xenomai 3)
+
+
+就檔案有五個關於sched.c應該有四種不同的schedule方式
+
+sched-idle.c :是專門處理idle狀態給linux schedule使用
+
+sched-rt.c:給real-time scheduler使用(FIFO+RR)
+
+sched-sporadic.c:POSIX SCHED_SPORADIC scheduling class. 
+
+sched-tp.c:Temporal partitioning (typical of IMA systems)
+
+sched.c:應該是負責四個schedule方式的檔案
 
 Scheduler
 ++++++++++++
@@ -162,6 +179,8 @@ Scheduler
 優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
 
 .. image:: /embedded/xenomai/xenomai_sched.jpg
+
+
 
 Skins
 ++++++++++++
