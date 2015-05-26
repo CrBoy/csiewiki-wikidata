@@ -72,6 +72,26 @@ http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-i
 高優先度的domain會先接收到interrupt
 高優先度的domain的thread 可以preempt低優先度domain的thread
 
+Xenomai 3
++++++++++++
+
+xenomai3有兩種configuration：
+
+* Cobalt: 採用dual kernel架構，是xenomai 2的延伸
+
+* Mercury: 使用單kernel形式，在linux kernel上提供xenomai api，由於本身依賴linux，一般來說會以PREEMPT_RT提供real-time services
+
+**Xenomai 3 dual kernal configuration : Cobalt**
+
+.. image:: /embedded/xenomai/cobalt.png
+
+多一個 priority 比 linux 還高叫 cobalt  的 core 去處理 real-time 的事情，提供不同的 real-time API 給不同的 applications 使用。並且利用Optimistic interrupt protection 機制減少 changing the interrupt mask，一般的機制在每次進入critical section時都要interrupt mask，而Optimistic interrupt protection可以不用。而real-time 在意的 "deadline"，實際上就是探討 latency (latency 越大，系統越難在時限內完成完成高優先權任務，自然即時能力就越差)，而 latency 很大的來源則是 interrupt handling。
+
+**Xenomai 3 single kernel configuration :Mercury**
+
+.. image:: /embedded/xenomai/mercury.png
+
+運用本機的 linux core 在 PREEMPT_RT之上達到 real-time 的事情，這裡不是強制的，看 applications 對反應時間和 maximum jitter 的要求，有些甚至會作到某種程度 deadline 的忽略。
 
 Adeos / iPipe
 ++++++++++++++
