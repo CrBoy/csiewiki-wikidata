@@ -243,6 +243,40 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
+* 配置TCB及stack的函式 - prvAllocateTCBAndStack()(`tasks.c<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/FreeRTOS/tasks.c#L359>`_)
+
+.. code-block:: c
+
+    
+    /* stack 記憶體由高到低 */
+    #if( portSTACK_GROWTH > 0 ) 
+    {
+            /* pvPortMalloc 就是做記憶體配置*/
+            pxNewTCB = ( TCB_t * ) pvPortMalloc( sizeof( TCB_t ) );
+
+            /* 如果pxNewTCB為空*/
+            if( pxNewTCB != NULL ) 
+            {
+                    /* 做記憶體對齊動作  */
+                    pxNewTCB->pxStack = ( StackType_t * ) pvPortMallocAligned( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ), puxStackBuffer );
+
+                    /* Stack 仍為NULL的話，則刪除TCB，並且指向NULL */
+                    if( pxNewTCB->pxStack == NULL )
+                    {
+                            
+                            vPortFree( pxNewTCB );
+                            pxNewTCB = NULL;
+                    }
+            }
+    }
+
+在進行pvPortMalloc時候，會先進行vTaskSuspendAll(); ，藉由不發生context swiitch的swap out動作，配置記憶體空間，等到配置完成再呼叫xTaskResumeAll(); 
+
+* pvPortMalloc在port.c裡面定義，基本上就是做記憶體配置，根據各不同port去實作pvPortMalloc。
+* pvPortMallocAligned在在FreeRTOS.h裡面可以看到define為如果判斷未配置空間，則進行pvPortMalloc，如果有則直接使用puxStackBuffer。
+
+
+
 * 硬體層次的設定
 
 爲了便於排程，創造新 task 時，stack 中除了該有的資料外，還要加上『空的』 register 資料(第一次執行時理論上 register 不會有資料)，讓新 task 就像是被 context switch 時選的 task 一樣，依照前述變數的命名規則，下面是實作方式
