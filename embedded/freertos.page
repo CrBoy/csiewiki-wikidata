@@ -1634,7 +1634,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 .. image:: /embedded/stm.png
 
 
-**Q17:__attribute__(( naked ))  naked是幹嘛˙?**
+**Q17:__attribute__(( naked ))  naked是幹嘛?**
 
  function經過compiler compile後都會在function entry和exit加入一些code，如save used registers，add return code.
 
@@ -1765,7 +1765,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 `回目錄<#目錄>`_
 
-**Q23. FreeRTOS 如何追到自己? 
+**Q23. FreeRTOS 如何追到自己?**
 
 * 為何知道 vTaskDelete(NULL) 的 NULL 是表示 task 本身?**
 
@@ -1793,110 +1793,133 @@ value to the ptr {r3-4} and r3 = r3 -4.
     1. 假如今天一個 task 是要存取資料庫，但是資料庫或資料表不存在，則應該結束 task
     2. 假如今天一個 client task 是要跟 server 做連線( listening 就是 loop)，卻發現 client 端沒有網路連線，則應結束 task
 
-**Q24. 什麼情形下 task 會進入 block state? (system call , mutex)**
-例如我們希望一個 task 等待 10 ms 的時候，我們會用 `vTaskDelay(10/portTICK_PERIOD_MS);`
-這個 `vTaskDelay()` 就是一個 blocking API function
-(已經移植到 wiki)
+**Q24. 這個 usStackDepth 如何去計算他佔用空間?**
 
-**Q25. FreeRTOS 設計Suspended 狀態的考量為何？發生什麼狀況時，會進入suspend狀態?**
-如果一個 task 會被 block 很久或者是會有一段時間用不到那就會被丟到 suspend 狀態
-(已經移植到 wiki)
+在 FreeRTOS 裡面，usStackDepth 設定 100，假設每個 stack 為 16 bits 寬，則他所佔用的記憶體空間為 200 bytes，這個值指定的是 stack 的堆疊空間 (stack size)可以保留多少 word(4 bytes)，如果設定為 100，則系統將會分配 400 bytes 給 task，沒有簡單的方法可以計算一個任務到底需要多少空間，大多數做法都是先簡單地給予一個初估的值，然後再隨著任務運作的訊息來調整。
 
-**Q26. 這個 usStackDepth 如何去計算他佔用空間?**
-在 FreeRTOS 裡面，usStackDepth 設定 100，假設每個 stack 為 16 bits 寬，則他所佔用的記憶體空間為 200 bytes.
-      這個值指定的是 stack 的堆疊空間 (stack size)可以保留多少 word(4 bytes)，如果設定為 100，則系統將會分配 400 bytes 給 task
-      沒有簡單的方法可以計算一個任務到底需要多少空間，大多數做法都是先簡單地給予一個初估的值，然後再隨著任務運作的訊息來調整
+**Q25. 為何 configMAX_PRIORITIES 要 -1 ?**
 
-**Q27. 為何 configMAX_PRIORITIES 要 -1 ?**
-
-從 0 開始數
-但是如果  configMAX_PRIORITIES 設定為 10
-為什麼不可以分配 10 給一個 task?
+這個問題是在想：如果 configMAX_PRIORITIES 設定為 10，為什麼不可以分配 10 給一個 task?
 
 從 pxReadyTasksLists[ uxTopReadyPriority ] 看起來
+
+.. image:: /readytasklist.png
 
 ready list 應該是每個 index 表示不同的 priority
 (換句話說，同一個 index 的 ready list 中的 tasks 應該是具有相同 priority 的)
 
-所以，為了配置 ready list 的長度，只能從 0 ~ priority - 1
-也就是說，你若要讓 ready list 長度是 10 (分別代表著 priority 0 - 9)
-則你雖然要把 configMAX_PRIORITY 設定為  10
-分配權限時最高卻只能到  configMAX_PRIORITY
-其實我只是簡單的理解上是array 如果要有1~10個優先權定義，事實上寫程式時是定義0~9 而已，的確是由0開始數沒錯
+所以，為了配置 ready list 的長度，只能從 0 ~ priority - 1，也就是說，你若要讓 ready list 長度是 10 (分別代表著 priority 0 - 9)，則你雖然要把 configMAX_PRIORITY 設定為  10，分配權限時最高卻只能到  configMAX_PRIORITY，其實我只是簡單的理解上是array 如果要有1~10個優先權定義，事實上寫程式時是定義0~9 而已，的確是由0開始數沒錯。
 
 `回目錄<#目錄>`_
 
-**Q28.真正放至 ready list  的是什麼? 是放入 handle?**
+**Q26.真正放至 ready list 的是什麼? 是放入 handle?**
 
 <freertos/libraries/FreeRTOS/include/task.h#L345>
-#define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), ( pxCreatedTask ), ( NULL ), ( NULL ) )
-在這裡把 `xTaskGenericCreate()` 包裝成 `xTaskCreate()`
-所以 main 中呼叫 `vTaskCrate()` 實際上是呼叫 `xTaskGenericCreate()`
 
-然後是呼叫 <freertos/libraries/FreeRTOS/tasks.c#L551> 的 xTaskGenericCreate
-在 xTaskGenericCreate 中我們找到把 task 加入 readyList 的地方(#704)：
-`prvAddTaskToReadyList( pxNewTCB );`
+.. code-block:: c
+
+    #define xTaskCreate( pvTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask ) 
+            xTaskGenericCreate( ( pvTaskCode ), ( pcName ), ( usStackDepth ), ( pvParameters ), ( uxPriority ), 
+            ( pxCreatedTask ), ( NULL ), ( NULL ) )
+(這三行是同一行，未方便閱讀而斷行)
+
+在這裡把 xTaskGenericCreate() 包裝成 xTaskCreate()，所以 main 中呼叫 vTaskCrate() 實際上是呼叫 xTaskGenericCreate()
+
+然後是呼叫 <freertos/libraries/FreeRTOS/tasks.c#L551> 的 xTaskGenericCreate，在 xTaskGenericCreate 中我們找到把 task 加入 readyList 的地方(#704)：
+
+
+.. code-block:: c
+    prvAddTaskToReadyList( pxNewTCB );
+
 所以實際上是把該 task 的 TCB 加入 readyList
 
 那要怎麼辨識 task 呢？
 ((`configASSERT( pxTaskCode );` 並不是註冊 taskCode，`configASSERT()` 只是用來測試的))
 在 line 621 (xTaskGenericCreate)：
-/* Setup the newly allocated TCB with the initial state of the task. */
-prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
-這裡看到帶有 pcName 卻沒有 taskCode，我們已知 pcName 只用做開發識別，不用做系統管理，所以追到下面
-#if( portUSING_MPU_WRAPPERS == 1 )
-{
-pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters, xRunPrivileged );
-}
-#else /* portUSING_MPU_WRAPPERS */
-{
-pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
-}
-應該是因為在 TCB 中記錄了 stack 的起始位址，這裡有 pxTaskCode 
-不是用 handle！(不過 handle 是否也是指向 pxTopOfStack???)
 
-handle (台：控制代碼、中：句柄)實際的意義是一個用來存取該 task 的『指標』，他是提供外部系統或程式來參照目前 task 用的
+.. code-block:: c
+ 
+    /* Setup the newly allocated TCB with the initial state of the task. */
+    prvInitialiseTCBVariables( pxNewTCB, pcName, uxPriority, xRegions, usStackDepth );
+
+這裡看到帶有 pcName 卻沒有 taskCode，我們已知 pcName 只用做開發識別，不用做系統管理，所以追到下面
+
+.. code-block:: c
+
+    #if( portUSING_MPU_WRAPPERS == 1 )
+    {
+        pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters, xRunPrivileged );
+    }
+    #else /* portUSING_MPU_WRAPPERS */
+    {
+        pxNewTCB->pxTopOfStack = pxPortInitialiseStack( pxTopOfStack, pxTaskCode, pvParameters );
+    }
+
+應該是因為在 TCB 中記錄了 stack 的起始位址，這裡有 pxTaskCode，不是用 handle！(不過 handle 是否也是指向 pxTopOfStack???)
+
+* handle: (台：控制代碼、中：句柄)實際的意義是一個用來存取該 task 的『指標』，他是提供外部系統或程式來參照目前 task 用的
 
 舉個例子：刪除 task
-vTaskCreate(..., taskA, ...)
+
+.. code-block:: c
+
+    vTaskCreate(..., taskA, ...)
+
 當我們要呼叫 vTaskDelete 來刪除 taskA 時，為了讓 vTaskDelete 存取到 taskA 的記憶體位址，我們要傳入一個指向 taskA 的指標到 vTaskDelete 中，這個指標就是 handle
 
 建立 handle 的方法如下：
-xTaskHandle handleTaskA;    // 建立一個用來指向 taskA 的 handle 指標變數
-vTaskCreate(.., taskA, ..., handleTaskA);   // 傳入這個指標變數，讓 vTaskCreate 可以記錄他
-因為是 pass by address，handleTaskA 大概在 vTaskCreate() 中只是被修改值，所以離開 vTaskCreate 後就可以直接存取到 handleTaskA 的內容
-vTaskDelete(handleTaskA);   // 傳入 handle 以供 vTaskDelete 參考
+
+.. code-block:: c
+
+    xTaskHandle handleTaskA;    // 建立一個用來指向 taskA 的 handle 指標變數
+    vTaskCreate(.., taskA, ..., handleTaskA);   // 傳入這個指標變數，讓 vTaskCreate 可以記錄他
+
+    /* 因為是 pass by address，handleTaskA 大概在 vTaskCreate() 中只是被修改值，所以離開 vTaskCreate 後就可以直接存取到 handleTaskA 的內容 */
+    vTaskDelete(handleTaskA);   // 傳入 handle 以供 vTaskDelete 參考
 
 
-**Q29. FreeRTOS 在哪裡去更新pcCurrentTCB 這個pointer ? 指向最新正在運行的task?**
-探討如何用scheduler 
+**Q27. FreeRTOS 在哪裡去更新 pcCurrentTCB 這個 pointer ? 指向最新正在運行的 task?**
 
-**Q30. 為何不使用 linked-list 去紀錄priority value?**
+這個問題是要探討如何用 scheduler，still working...to be continue.
+
+**Q28. 為何不使用 linked-list 去紀錄 priority value?**
+
 因為 linked-list 要去排序的話，有 N 個，有可能會有 n^2 或者是 nlogn 的時間複雜度，且 array 可以做 random access，這對以 priority 作為 index 的 ready list 來說，會比 linked-list 更直接的存取到指定的 priority
 
-使用uxTopReadyPrioirty 是因為用空間換時間，搜尋會只有常數時間複雜度
+使用 uxTopReadyPrioirty 是因為用空間換時間，搜尋會只有常數時間複雜度
 
-**Q31. xListEnd在哪? **
+**Q29. xListEnd在哪? **
+
 xLIST 中的 xListEnd 是 xLIST（linked-list？）的尾巴
 
-**Q32. FreeRTOS 的event 定義是什麼? 是同步機制還是非同步?**
+**Q30. FreeRTOS 的event 定義是什麼? 是同步機制還是非同步?**
+
 Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.
-來源：http://www.freertos.org/FreeRTOS-Event-Groups.html
+來源：`http://www.freertos.org/FreeRTOS-Event-Groups.html<http://www.freertos.org/FreeRTOS-Event-Groups.html>`_
 
 
 group 中有很多 bit，分別代表 task 正在等待的一個 event，並不一定所有的 bit 都會用到，看 task 需要等待多少 task
 event 例如：
-A message has been received and is ready for processing
-The application has queued a message that is ready to be sent to a network
-It is time to send a heartbeat message onto a network
+
+.. code-block:: text
+
+    A message has been received and is ready for processing
+    The application has queued a message that is ready to be sent to a network
+    It is time to send a heartbeat message onto a network
 
 TCB 結構中還有兩個 xListItem：xGenericListItem 和 xEventListItem
-xListItem    xGenericListItem;               /* 用來記錄 task 的 TCB 在 FreeRTOS ready 和 blocked queue 的位置 */
-xListItem    xEventListItem;                 /* 用來記錄 task 的 TCB 在 FreeRTOS event queue 的位置 */
+
+.. code-block:: c
+
+    xListItem    xGenericListItem;               /* 用來記錄 task 的 TCB 在 FreeRTOS ready 和 blocked queue 的位置 */
+    xListItem    xEventListItem;                 /* 用來記錄 task 的 TCB 在 FreeRTOS event queue 的位置 */
 
 不論 xGenericListItem 或 xEventListItem，都是 xListItem_t 型態，這個結構定義在 list.h：
-struct xLIST_ITEM
-{
+
+.. code-block:: c
+    
+    struct xLIST_ITEM
+    {
         listFIRST_LIST_ITEM_INTEGRITY_CHECK_VALUE                              
         configLIST_VOLATILE TickType_t xItemValue;                        
         struct xLIST_ITEM * configLIST_VOLATILE pxNext;              
@@ -1904,12 +1927,12 @@ struct xLIST_ITEM
         void * pvOwner;                                                                             
         void * configLIST_VOLATILE pvContainer;                              
         listSECOND_LIST_ITEM_INTEGRITY_CHECK_VALUE                               
-};
-typedef struct xLIST_ITEM ListItem_t;                                       
+    };
+    typedef struct xLIST_ITEM ListItem_t;                                       
 
 `回目錄<#目錄>`_
 
-*Q33. 如何知道 task現在處於哪個狀態? 對應狀態圖的程式碼在哪裡?**
+*Q31. 如何知道 task現在處於哪個狀態? 對應狀態圖的程式碼在哪裡?**
 Task 有四種狀態  blocked ('B'), ready ('R'), deleted ('D') or suspended ('S')
 
 vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容print出來
@@ -1930,7 +1953,7 @@ Parameters:
 
 pcWriteBuffer	A buffer into which the above mentioned details will be written, in ASCII form. This buffer is assumed to be large enough to contain the generated report. Approximately 40 bytes per task should be sufficient.	
 
-**Q34. 畫一下 pxStack 以及 pxTopOfStack的記憶體位置圖。用gdb去trace。**
+**Q32. 畫一下 pxStack 以及 pxTopOfStack的記憶體位置圖。用gdb去trace。**
 
 2015 春季班 v8.2.1 版本
 freertos/libraries/FreeRTOS/portable/GCC/ARM_CM3/port.c
@@ -1956,7 +1979,7 @@ StackType_t *pxPortInitialiseStack( StackType_t *pxTopOfStack, TaskFunction_t px
 (2014 年春季班 v8.0.1 的版本)
 
 
-**Q35. 在FreeRTOS裡面，其pid在哪裡? 如何知道task的id資訊? **
+**Q33. 在FreeRTOS裡面，其pid在哪裡? 如何知道task的id資訊? **
 FreeRTOS 建立新 task 的方式與 Linux 不同，前者是用 vTaskCreate()，如果有回傳，只會回傳 pdPass 或 error 來表示 task 建立成功與否，如果要讓程式辨識這個 task，在 create 時就要給予 vTaskCreate 一個用來記錄該 task TCB 起始位址的 handle 指標，因此 FreeRTOS 沒有 PID
 
 FreeRTOS 透過一個 pxCurrentTCB 的指標來存取目前指向的 task 基本資訊，也就是說如果要知道 task 的資訊，都是去存取 TCB，2007 年的資料顯示，好像可以透過存取 pxCurrentTCB->uxTCBNumber 來取得 task 的編號，但是目前的 TCB 已經沒有這個項目了
