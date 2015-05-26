@@ -176,7 +176,14 @@ Nucleus / Cobalt
 
 檔案位置在 : xenomai-head/ksrc/nucleus (xenomai 2.6) ; xenomai-head/kernel/cobalt (xenomai 3)
 
-Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
+Xenomai的kernel, 包含schedule、timer、synch、thread、lock等等一般該有的RTOS功能，負責real-time tasks的執行。
+
+Scheduler
+++++++++++++
+
+優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
+
+.. image:: /embedded/xenomai/xenomai_sched.jpg
 
 就檔案有五個關於sched.c應該有四種不同的schedule方式
 
@@ -189,14 +196,6 @@ sched-sporadic.c : POSIX SCHED_SPORADIC scheduling class.
 sched-tp.c : Temporal partitioning (typical of IMA systems)
 
 sched.c : 應該是負責四個schedule方式的檔案
-
-Scheduler
-++++++++++++
-
-優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
-
-.. image:: /embedded/xenomai/xenomai_sched.jpg
-
 
 
 Skins
