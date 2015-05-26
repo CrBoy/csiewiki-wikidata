@@ -172,7 +172,22 @@ Skins
 與PREEMPT_RT的差異
 ===============================
 
-* RT-PREEMPT 機制
+* Linux kernel preemption model 組態 (realtime程度 ↑ => latency↓ but throughput↓)
+  - PREEMPT_NONE
+
+    著重fairness和throughput，process在執行system call時無法被preempt。
+
+  - PREEMPT_VOLUNTARY(DESKTOP)
+
+    允許一個低優先權的 process把自己 preempt掉(即便該 process正在 kernel mode 執行著一個系統呼叫)
+
+  - PREEMPT(Low-Latency Desktop)
+  - PREEMPT_RT
+
+    著重determinism，對即時系統而言，作業系統的「可決定性」比 throughput 更為重要，使用固定優先權的 preemptive 排程策略 (POSIX SCHED_FIFO 與 SCHED_RR)。
+
+
+* PREEMPT_RT 機制
   - Preemptible critical sections
   - Preemptible interrupt handlers
   - Preemptible "interrupt disable" code sequences
@@ -186,7 +201,7 @@ Skins
 
   高Priority的 process才有辦法繼續執行
 
-* RT_PREEMPT 與 xenomai的差異
+* PREEMPT_RT 與 xenomai的差異
 
   RT_PREEMPT是基於linux架構去改進 讓更多地方能preempt 達到real-time的能力
 
