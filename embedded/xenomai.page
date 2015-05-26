@@ -148,18 +148,16 @@ VIC則是CPU interface的位置
 HAL
 ++++++++++++
 
-Hardware Abstract Layer:process  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
-
 檔案位置在 : xenomai-head/ksrc/arch/arm/hal.c (xenomai 2.6)
 
+Hardware Abstract Layer:process  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
 
 Nucleus / Cobalt
 ++++++++++++++++
 
-Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
-
 檔案位置在 : xenomai-head/ksrc/nucleus (xenomai 2.6) ; xenomai-head/kernel/cobalt (xenomai 3)
 
+Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
 
 就檔案有五個關於sched.c應該有四種不同的schedule方式
 
@@ -185,7 +183,9 @@ Scheduler
 Skins
 ++++++++++++
 
-呼叫xenomai的界面, 有native rtdm posix等。
+檔案位置在xenomai-head/ksrc/skins (xenomai 2.6)
+
+呼叫xenomai的界面, 有native rtdm posix psos+ uitron vrtx vxworks等。
 
 
 與PREEMPT_RT的差異
