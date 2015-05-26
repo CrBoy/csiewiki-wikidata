@@ -163,13 +163,13 @@ Xenomai的kernel, 包含一個scheduler,優先執行real-time tasks.
 
 sched-idle.c :是專門處理idle狀態給linux schedule使用
 
-sched-rt.c:給real-time scheduler使用(FIFO+RR)
+sched-rt.c : 給real-time scheduler使用(FIFO+RR)
 
-sched-sporadic.c:POSIX SCHED_SPORADIC scheduling class. 
+sched-sporadic.c : POSIX SCHED_SPORADIC scheduling class. 
 
-sched-tp.c:Temporal partitioning (typical of IMA systems)
+sched-tp.c : Temporal partitioning (typical of IMA systems)
 
-sched.c:應該是負責四個schedule方式的檔案
+sched.c : 應該是負責四個schedule方式的檔案
 
 Scheduler
 ++++++++++++
