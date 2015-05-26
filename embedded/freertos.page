@@ -1698,6 +1698,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 **Q22: `Lab40 <http://wiki.csie.ncku.edu.tw/embedded/Lab40>`_ 的 visualizer/main.c 的 get_time() 裡 scale 為什麼是 microsecond ？**
 
 問題是這樣的，為了計算 context switch 的時間，我們需要先取的系統的時間(系統啟動至今歷經的時間)，之前在 Lab40 有使用過 tick count 來取得系統時間，在 visualizer/main.c 中的 get_time() 最後 return 的 `xTaskGetTick() + ( reload - current / reload)` 是目前系統已經執行的 ticks 加上目前系統歷經的 count downs 數 ( 1 / x tick，讀作『x 分之一 tick』)，這段就是用 tick 來表示目前經歷的時間，要把這個 ticks 轉成 human readable time，也就是要讓 ticks 轉換成 second，一個作法就是乘上『單位量級(scale)』，這個 scale 定義在 return 之前，請參考以下片段：
+
 <visualizer/main.c>
 
 .. image:: /main.png
@@ -1705,6 +1706,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 我們在意的是為什麼 scale 單位是 microsecond 呢?
 
 先往上追 configTICK_RATE_HZ 的定義：
+
 <visualizer/FreeRTOSConfig.h>
 
 .. image:: /FreeRTOSConfig.png
@@ -1727,58 +1729,69 @@ value to the ptr {r3-4} and r3 = r3 -4.
 (in v8.2.1, portTICK_RATE_MS was renamed to portTICK_PERIOD_MS)
 
 至此，我們推倒如下：
-vTaskDelay() 的 parameter 是以 tick 為單位 
-vTaskDelay ( 500 / portTICK_RATE_MS ) 
-= vTaskDelay ( 500 / 1000 / configTICK_RATE_HZ ) 
-= vTaskDelay (50) 
-即 delay 50 ticks 
 
-因 `500 / portTICK_RATE_MS = 500 ms =  50 ticks`
-另 `500 ms = 500 / portTICK_RATE_MS`  意思是 `500/portTICK_RATE_MS` 可以視為 500 ms
-又 `500 / portTICK_RATE_MS = 50 ticks` => `500 (ms) = 50(tick) * portTICK_RATE_MS`
-得 `x ticks * portTICK_RATE = 10 * x ms`    
+.. code-block:: text
 
-又 `scale  = 1000000 / configTICK_RATE_MS`
-`= 1000 * (1000 / configTICK_RATE_MS)`
-`= 1000 * portTICK_RATE_MS` 
+    vTaskDelay() 的 parameter 是以 tick 為單位 
+    vTaskDelay ( 500 / portTICK_RATE_MS ) 
+    = vTaskDelay ( 500 / 1000 / configTICK_RATE_HZ ) 
+    = vTaskDelay (50) 
+    即 delay 50 ticks 
 
-所以 `ticks * scale = 1000 * ticks * portTICK_RATE` 可以得到 `us` 的值  #
-其實就是說，ticks 是電腦歷經的時間，我們說 『x ticks 等於 y ms』
-所以 get_time 就是要把 x tick 轉成 y ms，做法是把 x  ticks 乘上 1000/config 
-現在已經得到  y ms
-進一步要把 x tick 的轉成 us
-因 1 ms = 1000 us
-=> x ticks = y ms = 1000*y*(1/1000) ms
-所才要再乘上 1000
-#
-原來的盲點是，以為把『量級』乘 1000，這樣會使 1ms 變成 1000ms
-實際上是把『數值』乘 1000，當 1 時是對應 ms 的值，1000 則是對應 us 的值
- return 的 式子 不精準，因為 ( reload - current ) / reload  always 0 ，( 因為 int / int )
-而這部分我有試著去改善，但是不能 return float/double (WHY ?)
-進行除法運算，FPU 可能還沒啟用
+    因 500 / portTICK_RATE_MS = 500 ms =  50 ticks
+    另 500 ms = 500 / portTICK_RATE_MS 意思是 500/portTICK_RATE_MS 可以視為 500 ms
+    又 500 / portTICK_RATE_MS = 50 ticks => 500 (ms) = 50(tick) * portTICK_RATE_MS
+    得 x ticks * portTICK_RATE = 10 * x ms
+
+    又 scale  = 1000000 / configTICK_RATE_MS
+    = 1000 * (1000 / configTICK_RATE_MS)
+    = 1000 * portTICK_RATE_MS
+
+    所以 ticks * scale = 1000 * ticks * portTICK_RATE 可以得到 us 的值  #
+
+    其實就是說，ticks 是電腦歷經的時間，我們說 『x ticks 等於 y ms』
+    所以 get_time 就是要把 x tick 轉成 y ms，做法是把 x  ticks 乘上 1000/config 
+    現在已經得到  y ms
+    進一步要把 x tick 的轉成 us
+    因 1 ms = 1000 us
+    => x ticks = y ms = 1000*y*(1/1000) ms
+    所才要再乘上 1000
+
+原來的盲點是，以為把『量級』乘 1000，這樣會使 1ms 變成 1000ms，實際上是把『數值』乘 1000，當 1 時是對應 ms 的值，1000 則是對應 us 的值
+
+* subproblem: return 的 式子 不精準，因為 ( reload - current ) / reload  always 0 ，( 因為 int / int )，而這部分有試著去改善，但是不能 return float/double (WHY ?)
+
+    jserv：進行除法運算，FPU 可能還沒啟用
 
 `回目錄<#目錄>`_
 
-**Q23. FreeRTOS 如何追到自己? 為何知道vTaskDelete(NULL) 的 NULL是表示task本身?**
-在task.c 之中，找出 vTaskDelete(NULL) 如何實作?
-是 macro 。 (line400)
-        void vTaskDelete( TaskHandle_t xTaskToDelete )
-        {
-        TCB_t *pxTCB;
+**Q23. FreeRTOS 如何追到自己? 
 
-                taskENTER_CRITICAL();
-                {
-         /* If null is passed in here then it is the calling task that is being deleted. */
-                        pxTCB = prvGetTCBFromHandle( xTaskToDelete );
+* 為何知道 vTaskDelete(NULL) 的 NULL 是表示 task 本身?**
+
+在 task.c (line 400) 之中，我們找出了 vTaskDelete(NULL) 的實作是 macro:
+
+.. code-block:: c
+
+    void vTaskDelete( TaskHandle_t xTaskToDelete )
+    {
+        TCB_t *pxTCB;
+    
+        taskENTER_CRITICAL();
+        {
+            /* If null is passed in here then it is the calling task that is being deleted. */
+            pxTCB = prvGetTCBFromHandle( xTaskToDelete );
 
                     
-在什麼情況下，會執行到 vTaskDelete(NULL) ? 遇無窮迴圈時會執行此code嗎?? 
-Answer : 因為Freeots不准有return 也不准執行到最後一行，因此如果不需要此task，則應該刪除此task ( 參考 : http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html )
-疑問是，如果vTaskDelete()在無窮迴圈之後，已經進入無窮迴圈的情形下，會執行到vTaskDelete()嗎?
+* 在什麼情況下，會執行到 vTaskDelete(NULL) 呢? 遇無窮迴圈時會執行此code嗎?
+
+因為 FreeRTOS 不准 task function 有 return，也不准執行到最後一行，因此如果不需要此 task，則應該刪除此task 
+(參考 : `http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html<http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html>`_)
+
 有一個可能性是，如果在 loop 中發生執行錯誤 (fail)，則需要跳出迴圈並終止(自己)執行，此時就需要使用 vTaskDelete 來刪除自己，發生錯誤的例子：
-1. 假如今天一個 task 是要存取資料庫，但是資料庫或資料表不存在，則應該結束 task
-2. 假如今天一個 client task 是要跟 server 做連線( listening 就是 loop)，卻發現 client 端沒有網路連線，則應結束 task
-沒錯，FreeRTOS不允許有return 值發生。
+
+    1. 假如今天一個 task 是要存取資料庫，但是資料庫或資料表不存在，則應該結束 task
+    2. 假如今天一個 client task 是要跟 server 做連線( listening 就是 loop)，卻發現 client 端沒有網路連線，則應結束 task
 
 **Q24. 什麼情形下 task 會進入 block state? (system call , mutex)**
 例如我們希望一個 task 等待 10 ms 的時候，我們會用 `vTaskDelay(10/portTICK_PERIOD_MS);`
