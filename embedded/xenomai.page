@@ -61,8 +61,7 @@ Xenomai是一個linux kernel的patch
 ipipe_XXX -> rthal_XXX -> xnXXX
 
 負責傳送interrupt的程式稱為ipipe
-示意圖
-http://www.xenomai.org/documentation/xenomai-2.6/html/pictures/life-with-adeos-img4.jpg
+示意圖 : 
 
 .. image:: /embedded/xenomai/adeos.jpg
 
