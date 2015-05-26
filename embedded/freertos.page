@@ -1996,6 +1996,8 @@ vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容pri
 
 .. image:: /2014port.png
 
+.. image:: /stack_layout.png
+
 **Q33. 在 FreeRTOS 裡面，其 pid 在哪裡? 如何知道 task 的 id 資訊? **
 
 FreeRTOS 建立新 task 的方式與 Linux 不同，前者是用 vTaskCreate()，如果有回傳，只會回傳 pdPass 或 error 來表示 task 建立成功與否，如果要讓程式辨識這個 task，在 create 時就要給予 vTaskCreate 一個用來記錄該 task TCB 起始位址的 handle 指標，因此 FreeRTOS 沒有 PID
