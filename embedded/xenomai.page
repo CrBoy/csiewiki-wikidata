@@ -194,12 +194,13 @@ Skins
   - Priority inheritance for in-kernel spinlocks and semaphores
   - Deferred operations
   - Latency-reduction measures
+  - Execute all activities (including IRQ) in “schedulable/thread” context
 
   原本無法preempt的地方讓他可以preemt，讓spinlock 區塊在區分成可以preempt的地方跟不能preempt的地方，將IRQ handler移到thread中執行。
 
   Priority inheritance 是讓握有spinlock 或 semaphore的process可以暫時的提高優先權 讓他可以盡快做完critical section釋放spinlock或semaphore
 
-  高Priority的 process才有辦法繼續執行
+  高Priority的 process才有辦法繼續執行。
 
 * PREEMPT_RT 與 xenomai的差異
 
