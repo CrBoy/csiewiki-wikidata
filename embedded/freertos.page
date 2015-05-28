@@ -31,7 +31,7 @@ toc: no
 * `通訊<#通訊>`_
 * `排程<#排程>`_
 * `中斷處理<#中斷處理>`_
-* `硬體驅動原理<#硬體驅動原理>`_
+* `硬體驅動<#硬體驅動>`_
 * `效能評估<#效能評估>`_
 * `測試環境架設<#測試環境架設>`_
 * `問題討論一<#問題討論一>`_
@@ -965,7 +965,7 @@ file:startup_stm32f429_439xx.s  line:158
 
 EXTI 使用前必須：
 
-    1. 和 GPIO 連接(作爲觸發來源)
+    1. 和 GPIO 連接，作爲觸發來源 (有關 GPIO 的介紹請參照下一節)
     2. 設定 EXTI
 
         * 設定哪條 Line
@@ -977,7 +977,7 @@ EXTI 使用前必須：
         * PreemptionPriority，SubPriority
         * ChannelCmd( 同 LineCmd 的用途 )
 
-在 FreeRTOS 中操作 EXTI 的實作如下：file:./CORTEX_M4F_STM32F407ZG-SK/main.c  line:106
+在 FreeRTOS 中操作 EXTI 的實作如下：
 
 `CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106>`_
 
@@ -1010,14 +1010,28 @@ EXTI 使用前必須：
 
 硬體驅動
 ------------------
-* 簡介
-  - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
 
-能夠讓開發者藉由改變記憶體特定位置的資料內容，來控制各種周邊
+這裡是要透過 LED 的例子介紹用 GPIO 讓硬體驅動的方法
 
-或者，藉由外部的輸入，來改變記憶體內容，讓硬體得知其變化，來做反應
+* GPIO 簡介
+  
+GPIO 是讓開發者可藉由改變暫存器特定位置的資料內容，來控制各種周邊的硬體，或者藉由外部的輸入，來改變暫存器內容，讓硬體得知其變化後做反應
 
-使用GPIO前，必須預先設定行爲和細節，以stm32f429i_discovery.c內的LED初始作業來看
+在 STM32 的開發板上可以看到許多針腳，一般 STM32F429 的板子有 7 GPIO ports，分別是 Port A, B, C, D, E, F 和 G，每個 port 有自己的暫存器序列如下，各有 32 pins(對應 32 bits)：
+    * GPIO port mode register (GPIOx_MODER)
+    * GPIO port output type register (GPIOx_OTYPER)
+    * GPIO port output speed register (GPIOx_OSPEEDR)
+    * GPIO port pull-up/pull-down register (GPIOx_PUPDR)
+    * GPIO port input data register (GPIOx _IDR)
+    * GPIO port outp ut data register (GPIOx_ODR)
+    * GPIO port bit set/reset register (GPIOx _BSRR)
+    * GPIO port bit reset register (GPIOx_BRR)
+    * GPIO port configuration lock register (GPIOx_LCKR)
+    * GPIO alternate function low register (GPIOx_AFRL)
+    * GPIO alternate function high register (GPIOx_AFRH)
+例如當 GPIOx  的 `x` 是 A 時，表示我們現在存取的是 GPIO Port A 
+
+使用 GPIO 前，必須預先設定行爲和細節，以 stm32f429i_discovery.c 內的 LED 初始作業來看
 
 `Utilities/STM32F429I-Discovery/stm32f429i_discovery.c<https://github.com/TheKK/myFreeRTOS/blob/exti/Utilities/STM32F429I-Discovery/stm32f429i_discovery.c#122>`_
 
@@ -1039,13 +1053,14 @@ EXTI 使用前必須：
       GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
       GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
     }
-使用者開啟使用到的GPIO之bus的clock，然後使用GPIO_InitStructure(struct資料型態)來儲存相關設定，並交與GPIO_Init()去做記憶體的設定
+
+使用者開啟使用到的 GPIO 之 bus 的 clock，然後使用 GPIO_InitStructure(struct 資料型態)來儲存相關設定，並交給 GPIO_Init() 去做記憶體的設定
 
 * 底層實作
 
-用上面LED初始的過程當舉例，其中接觸到硬體設定的function爲RCC_AHB1PeriphClockCmd()和GPIO_Init()
+繼續上面 LED 初始的過程為例，其中有涉及硬體設定的 function 爲 RCC_AHB1PeriphClockCmd() 和 GPIO_Init()
 
-先從RCC_AHB1PeriphClockCmd()開始討論
+先討論 RCC_AHB1PeriphClockCmd()：
 
  .. code-block:: c
 
@@ -1082,13 +1097,13 @@ EXTI 使用前必須：
       }
     }   
 
-不難發現，GPIO周邊的設定在實作上相當單純，即在預先定義好的記憶體區段上，按照設計者定義之設定將參數寫在該處
+不難發現，GPIO 周邊的設定在實作上相當單純，即在預先定義好的記憶體區段上，按照設計者定義之設定將參數寫在該處
 
-值得一提的是，GPIO的初始化和設定皆是在執行時期進行，即使在程式運作中依然能夠重新定義甚至關閉周邊，讓MCU的使用更為彈性
+值得一提的是，GPIO 的初始化和設定皆是在執行時期進行，即使在程式運作中依然能夠重新定義甚至關閉周邊，這讓 MCU 的使用更為彈性
 
-GPIO_Init()的執行也脫離不了寫入資料至記憶體一事，但設定項目更多，設定過程也相對複雜
+GPIO_Init() 的執行也脫離不了寫入資料至記憶體一事，但設定項目較多，設定過程也較為複雜
 
-GPIO_Init()
+GPIO_Init()：
 
 `CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c＃202>`_
 
@@ -1141,6 +1156,8 @@ GPIO_Init()
         }
       }
     }
+
+- 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
 
 `回目錄<#目錄>`_
 
