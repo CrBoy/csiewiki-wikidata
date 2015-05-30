@@ -211,6 +211,7 @@ Context Switch Latency 實驗結果 及 分析
 **長條圖可直接比較Y軸(時間)，發現cache miss開始**
 
 - L1 cache miss
+    - 採用Harvard architecture(data/instruction cache分開)，分析起來相對於L2 cache容易
     - 巨觀
 
 .. image:: /embedded/arm_linux/2k_Macroscopic.png
@@ -226,6 +227,21 @@ Context Switch Latency 實驗結果 及 分析
     - 微觀長條圖-相較於折線圖，可以更明顯看到，當process number接近16(2k*16=32k,用接近是因為可能有其他程式也使用L1 cache)時，latency大幅上升
 
 .. image:: /embedded/arm_linux/2k_Microcosmic_histogram.png
+
+- L2 cache miss
+    - 由於L2 cahce採用von Neumann architecture(與L1 cache不同！)，將data與instruction混合，不易分析，不過我們可以由實驗結果，看出一些端倪。
+    - process size=24k與32k之長條圖比較
+
+.. image:: /embedded/arm_linux/24k_32k_histogram.png
+
+    - process size=24k與32k之折線圖比較
+
+.. image:: /embedded/arm_linux/24k_32k.png
+
+    - 由以上2組比較圖，可以看出
+        - process size=24k時，process number=8,N=24*8=192，latency大幅上升，合理推測這時候L2 cache miss
+        - process size=32k時，process number=5,N=32*5=160，latency大幅上升，合理推測這時候L2 cache miss
+        - 這個範圍的變動除了L2 cache除了有其他程式使用外，相較於L1的單純，還要多考慮Instruction的影響。
 
 
 - 巨觀整體趨勢圖
