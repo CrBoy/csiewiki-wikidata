@@ -40,7 +40,7 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
     $sudo apt-get install lzop
 
 - 切割SD card
-    - sd.sh
+    - `mkcard.sh<https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh>`_
     - $sh –x `mkcard.sh<https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh>`_ /dev/sdX;X為主機內看到的sd 卡掛載點 ex.sdb
 - Bootloader
 
