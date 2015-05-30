@@ -54,6 +54,8 @@ Context Switch Latency 測試理論
    - Instruction Cache與Data Cache為獨立的
    - Data Cache可用Virtual Address(以後皆稱VA)定址:意思就是記憶體為"連續的區域"
    - 子集合的基本單位(by sequence number): 1, s + 1, 2s + 1, ..., N - s + 1.
+   - Cache更新的機制為write-through
+   - Tno-miss可能包含處理器被強制等待write buffer back up的時間
 
 **論文實驗分類與討論:**
 
@@ -66,8 +68,6 @@ Context Switch Latency 測試理論
    - N為array size
    - 只要array被載入，就不再有cache miss出現，也就是永遠只有第一次載入時，會有cache miss
    - 每次遞迴的執行時間(Tno-miss)包含讀取一個Array的子集合的基本單位(stride),計算,以及將結果存回Cache
-   - Cache更新的機制為write-through
-   - Tno-miss可能包含處理器被強制等待write buffer備份的時間
 
 * REGIME 2.a :
    - array比cahce size大，所以一次沒有辦法全部讀進cahce
