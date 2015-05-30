@@ -30,6 +30,96 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
 
 編譯arm-Linux(Angstrom)給BeagleBone Black
 ------------------------------------------------
+- Environment 
+
+.. code-block:: txt
+
+    $sudo apt-get   install   zlib1g-dev   libsdl1.2-dev   build-essential   ddd   cpio   libncurses5-dev   libsdl1.2-dev u-boot-tools
+    $sudo apt-get   install   lib32gcc1 ( 64-bit required)
+    $sudo apt-get install gcc-arm-linux-gnueabi
+    $sudo apt-get install lzop
+
+- 切割SD card
+    - sd.sh
+    - $sh –x `mkcard.sh<https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh>`_ /dev/sdX;X為主機內看到的sd 卡掛載點 ex.sdb
+- Bootloader
+
+.. code-block:: txt
+
+    抓source檔
+    $ git clone git://git.denx.de/u-boot.git
+    $ cd u-boot/
+    $ git checkout v2015.01 -b tmp
+    下載一個屬於am335x的環境patch檔
+    $ wget -c https://raw.githubusercontent.com/eewiki/u-boot-patches/master/v2015.01/0001-am335x_evm-uEnv.txt-bootz-n-fixes.patch
+    編譯
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- distclean
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- am335x_evm_defconfig
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
+
+- Kernel
+
+.. code-block:: txt
+
+    抓source檔
+    $ git clone git://github.com/beagleboard/kernel.git
+    $ cd kernel
+    $ git checkout 3.8
+    $ ./patch.sh    ##This step may take 10 minutes or longer
+    編譯
+    $ cp configs/beaglebone kernel/arch/arm/configs/beaglebone_defconfig
+    $ wget http://arago-project.org/git/projects/?p=am33x-cm3.git\;a=blob_plain\;f=bin/am335x-pm-firmware.bin\;hb=HEAD -O kernel/firmware/am335x-pm-firmware.bin
+    $ cd kernel
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- beaglebone_defconfig
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs
+    $make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage-dtb.am335x-boneblack 
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- modules -j4
+
+- uEnv.txt
+
+.. code-block:: txt
+
+    mmcroot=/dev/mmcblk0p2 rw
+    mmcrootfstype=ext4 rootwait 
+    console=ttyO0,115200n8
+    kernel_file=zImage
+    fdtfile=am335x-boneblack.dtb
+    loadaddr=0x80008000
+    fdtaddr=0x88000000
+    initrd_high=0xffffffff
+    fdt_high=0xffffffff
+    ipaddr=192.168.0.25
+    serverip=192.168.0.20
+    rootpath=/home/andy/beaglebone/nfs
+    loadfdt=fatload mmc 0:1 ${fdtaddr} ${fdtfile}
+    loadkernel=fatload mmc 0:1 ${loadaddr} ${kernel_file}
+    netargs=setenv bootargs console=${console} ${optargs} root=/dev/nfs nfsroot=${serverip}:${rootpath},${nfsopts} rw ip=${ipaddr}:${serverip}::255.255.255.0:
+    netboot=echo Booting from network ...;run netargs; bootz ${loadaddr} - ${fdtaddr}
+    uenvcmd=run loadkernel;run loadfdt;run netboot; 
+    #loadfiles=run loadkernel; run loadfdt
+    #uenvcmd=mmc rescan;run loadkernel; ;run loadfdt; run fdtboot
+    #fdtboot=run mmc_args; bootz ${loadaddr} - ${fdtaddr}
+    #mmc_args=setenv bootargs console=${console} root=${mmcroot} rootfstype=${mmcrootfstype}
+
+- Filesystem
+
+.. code-block:: txt
+
+    到此網站抓取檔案系統 :http://downloads.angstrom-distribution.org/demo/beaglebone/
+    選擇 : Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz 
+    $tar –Jxvf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz
+
+- 將此filesystem放入rootfs磁區
+
+- 將以下檔案放入到boot磁區
+    - uEnv.txt
+    - MLO
+    - u-boot.img
+    - zImage({kernel}/arch/arm/boot/zImage)
+    - am335x-boneblack.dtb({kernel}/arch/arm/boot/dts/am335x-boneblack.dtb)
+
+
+
 
 
 Lmbench 3.0 測試方法分析
