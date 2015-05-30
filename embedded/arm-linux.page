@@ -24,11 +24,11 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
        - ARM Cortex A8
        - AM3358
 - 測試平台:
-   - Linux
+   - arm-Linux
        - `Angstrom<https://github.com/beagleboard/kernel/tree/3.8>`_
        - Kernel version:3.8
 
-編譯Linux(Angstrom)給BeagleBone Black
+編譯arm-Linux(Angstrom)給BeagleBone Black
 ------------------------------------------------
 
 
@@ -132,7 +132,7 @@ Lmbench 3.0 測試方法分析
 Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
 
-- 取得lmbench並編譯給BBB
+- 取得lmbench並編譯給BBB(arm-linux)
     - 由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
 
 .. code-block:: txt
