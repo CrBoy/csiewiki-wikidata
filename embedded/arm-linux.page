@@ -35,6 +35,11 @@ Lmbench 3.0 測試方法分析
 Context Switch Latency on BeagleBoard Black(Linux)
 -----------------------------------------------------
 
+- 取得lmbench並編譯給BBB
+    - git clone https://github.com/el8/lmbench-next.git
+    - cd lmbench-next
+    - make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+
 Context Switch Latency 測試理論
 =================================================
 
