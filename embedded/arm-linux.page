@@ -175,7 +175,7 @@ Context Switch Latency 實驗過程
     WARMUPS=0
     REPETITIONS=11
     CTX="2 4 8 16 24 32"
-    N="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 24 32 48 64 72 96"
+    N="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35"
     
     file_dest="./test_results/"
     extension="k.txt"
@@ -205,6 +205,42 @@ Context Switch Latency 實驗過程
 
 Context Switch Latency 實驗結果 及 分析
 =================================================
+
+**折線圖可由斜率， 得到rate of time to Size(process number * process size)，斜率突然暴增就是cache miss開始發生**
+**長條圖可直接比較Y軸(時間)，發現cache miss開始**
+
+- L1 cache miss
+    - 巨觀
+
+.. image:: /embedded/arm_linux/2k_Macroscopic.png
+
+    - 理論推算表格
+
+.. image:: /embedded/arm_linux/partical_theory_2k_table.png
+
+    - 微觀折線圖
+
+.. image:: /embedded/arm_linux/2k_Microcosmic.png
+
+    - 微觀長條圖-相較於折線圖，可以更明顯看到
+
+.. image:: /embedded/arm_linux/2k_Microcosmic_histogram.png
+
+- L2 cache miss
+
+    - 巨觀
+    - 理論推算表格
+    - 微觀折線圖
+    - 微觀長條圖-相較於折線圖，可以更明顯看到
+
+
+- 巨觀整體趨勢圖
+
+
+
+- 微觀整體趨勢圖
+
+
 
 System Call Latency on BeagleBone Black(Linux)
 ------------------------------------------------
