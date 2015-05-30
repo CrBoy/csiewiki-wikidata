@@ -24,15 +24,50 @@ Context Switch Latency on BeagleBoard Black(Linux)
 
 Context Switch Latency 測試理論
 =================================================
-*  Abstract Machine Model
+
+**Abstract Machine Model:**
 
 .. image:: /embedded/arm_linux/Abstract_Machine_Model_1.png
 
-
-
+* 方程式(1):
+   - TA,M: <程式A>在<機器M>上執行的總時間
+   - Ci,A: <程式A><執行的次數i>
+   - Pi,M: <執行次數i>在<機器M>上
 
 .. image:: /embedded/arm_linux/Abstract_Machine_Model_2.png
 
+* 方程式(2):(多了cahce/TLB miss)
+   - Fi,A (faults):為記憶體階層的第i層的miss次數
+   - Di,M (delay):每次miss所付出的懲罰
+
+**論文實驗方法:**
+
+* 測試參數:
+   - Stride: s
+   - Array size : one-dimensional array of  N k-bytes
+   - Cache/TLB size: C k-bytes
+   - Cache Line size:b words
+   - Cache Associativity: a
+
+* 基本假設:
+   - 只有L1 cache
+   - Instruction Cache與Data Cache為獨立的
+   - Data Cache可用Virtual Address(以後皆稱VA)定址:意思就是記憶體為"連續的區域"
+   - 子集合的基本單位(by sequence number): 1, s + 1, 2s + 1, ..., N - s + 1.
+
+**論文實驗分類與討論:**
+
+.. image:: /embedded/arm_linux/tlb_experiment_table.png
+
+
+* REGIME 1:
+   - N <= C
+   - C為cache的容量
+   - N為array size
+   - 只要array被載入，就不再有cache miss出現，也就是永遠只有第一次載入時，會有cache miss
+   - 每次遞迴的執行時間(Tno-miss)包含讀取一個子集合的基本單位(stride),計算,以及將結果存回Cache
+   - Cache更新的機制為write-through
+   - Tno-miss可能包含處理器被強制等待write buffer備份的時間
 
 
 * 參考資料：`Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
