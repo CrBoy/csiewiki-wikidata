@@ -665,6 +665,7 @@ IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
 Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
 
 .. image:: /embedded/irqdesc.png
+[link label](/Interrupt Overview.JPG)
 
 
 名詞介紹IRQ (ARM Instruction Set 介紹)
@@ -746,7 +747,7 @@ The Registers
 
 **Interrupt Overview**
 
-.. image:: /embedded/overview.PNG
+.. image:: /Interrupt Overview.JPG
 
 `圖片來源<http://blog.csdn.net/droidphone/article/details/7445825>`_
 
