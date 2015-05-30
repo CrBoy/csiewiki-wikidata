@@ -207,6 +207,7 @@ Context Switch Latency 實驗結果 及 分析
 =================================================
 
 **折線圖可由斜率， 得到rate of time to Size(process number * process size)，斜率突然暴增就是cache miss開始發生**
+
 **長條圖可直接比較Y軸(時間)，發現cache miss開始**
 
 - L1 cache miss
@@ -214,7 +215,7 @@ Context Switch Latency 實驗結果 及 分析
 
 .. image:: /embedded/arm_linux/2k_Macroscopic.png
 
-    - 理論推算表格
+    - 理論推算表格(僅取部分，作為代表，可依此類推)
 
 .. image:: /embedded/arm_linux/partical_theory_2k_table.png
 
@@ -222,7 +223,7 @@ Context Switch Latency 實驗結果 及 分析
 
 .. image:: /embedded/arm_linux/2k_Microcosmic.png
 
-    - 微觀長條圖-相較於折線圖，可以更明顯看到
+    - 微觀長條圖-相較於折線圖，可以更明顯看到，當process number接近16(2k*16=32k,用接近是因為可能有其他程式也使用L1 cache)時，latency大幅上升
 
 .. image:: /embedded/arm_linux/2k_Microcosmic_histogram.png
 
