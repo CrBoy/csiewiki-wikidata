@@ -65,9 +65,30 @@ Context Switch Latency 測試理論
    - C為cache的容量
    - N為array size
    - 只要array被載入，就不再有cache miss出現，也就是永遠只有第一次載入時，會有cache miss
-   - 每次遞迴的執行時間(Tno-miss)包含讀取一個子集合的基本單位(stride),計算,以及將結果存回Cache
+   - 每次遞迴的執行時間(Tno-miss)包含讀取一個Array的子集合的基本單位(stride),計算,以及將結果存回Cache
    - Cache更新的機制為write-through
    - Tno-miss可能包含處理器被強制等待write buffer備份的時間
+
+* REGIME 2.a:
+   - array比cahce size大，所以一次沒有辦法全部讀進cahce
+   - stride比line size小，所以取一次array不一定會超過cache的大小，會有s/b次miss
+   - b/s個連續存取到同一個 cache line.
+   - 第一次載入array，總是Cache miss,REGIME 2 三種討論皆是如此，不再重述。
+   - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
+
+* REGIME 2.b:
+   - Array size 比 cache容量大
+   - stride比line size大(意思是每次都會miss)
+   - stride比array size小
+   - 每次遞迴都會有cache miss,也就是說每個Array的子集合的基本單位(stride)對應到一個不同的cache line. 
+   - 每次遞迴的執行時間為Tno-miss + D
+
+* REGIME 2.c:
+   - array size比cache大
+   - stride介於array size 的1/2~1倍,所以第一次沒有讀進來的array，就再也讀不到了
+   - 記憶體位置映射到一個單位子集合的次數一定少於associativity,也就是這個情況下(2.c)，除了第一次載入Array會有miss之外，就沒有miss了
+   - 如果array有N elements,只有N/s < a可以被實驗到,且他們個別都可以被放入一個單一的子集合(stride),也就是說N/a <= s. 
+   - 每次遞迴的執行時間為Tno-miss
 
 
 * 參考資料：`Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
