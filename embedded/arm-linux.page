@@ -227,20 +227,23 @@ Context Switch Latency 實驗結果 及 分析
 
 .. image:: /embedded/arm_linux/2k_Microcosmic_histogram.png
 
-- L2 cache miss
-
-    - 巨觀
-    - 理論推算表格
-    - 微觀折線圖
-    - 微觀長條圖-相較於折線圖，可以更明顯看到
-
 
 - 巨觀整體趨勢圖
 
-
+.. image:: /embedded/arm_linux/lat_ctx_all_Macroscopic.png
 
 - 微觀整體趨勢圖
 
+.. image:: /embedded/arm_linux/lat_ctx_all_Microcosmic.png
+
+**Context Switch Latency 結論**
+
+- 當(process size)*(process number) > 32kb(L1 cache size)
+    - 比較=32kb與下一筆稍大於32kb的數據和下下一筆稍大於32kb的數據可以發現latency time是可以看出latency時間增幅會比較大的趨勢
+- 可以從整體趨勢發現，當N(process number * process size)大到某個程度後，latency的時間就趨近於固定的數字
+    - 可以看出如果process size越大，會越早到達"飽和"(就是比較快到他最終趨近的latency time)
+- 注意事項：
+    - 這個測試必須注意BBB的散熱，吹冷氣＋電風扇才不會造成異常結果
 
 
 System Call Latency on BeagleBone Black(Linux)
