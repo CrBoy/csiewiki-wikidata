@@ -137,9 +137,11 @@ Context Switch Latency on BeagleBone Black(Linux)
 
 .. code-block:: txt
 
-    ``git clone https://github.com/el8/lmbench-next.git``
-    ``cd lmbench-next``
-    ``make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-``
+    git clone https://github.com/el8/lmbench-next.git
+
+    cd lmbench-next
+
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 
 Context Switch Latency 測試理論
 =================================================
