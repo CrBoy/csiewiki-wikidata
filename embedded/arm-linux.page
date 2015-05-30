@@ -24,6 +24,13 @@ Context Switch Latency on BeagleBoard Black(Linux)
 
 Context Switch Latency 測試理論
 =================================================
+*  Abstract Machine Model
+
+.. image:: /embedded/arm_linux/Abstract_Machine_Model_1.png
+
+
+
+* 參考資料：`Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
 
 Context Switch Latency 理論與實際的結合
 =================================================
