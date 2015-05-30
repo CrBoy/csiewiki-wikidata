@@ -20,7 +20,7 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
    - Lubuntu 14.10 64 bit
 
 - 測試硬體:
-   - BeagleBoard Black:
+   - BeagleBone Black:
        - ARM Cortex A8
        - AM3358
 - 測試平台:
@@ -32,7 +32,7 @@ Lmbench 3.0 測試方法分析
 ------------------------------------------------
 
 
-Context Switch Latency on BeagleBoard Black(Linux)
+Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
 
 - 取得lmbench並編譯給BBB
@@ -121,6 +121,22 @@ Context Switch Latency 測試理論
 
 Context Switch Latency 理論與實際的結合
 =================================================
+- BBB的AM3358:
+
+.. image:: /embedded/arm_linux/BBB_hardware_1.png
+
+    - L1 Data Cache與Instruction Cache互相獨立，均為32KB
+    - L2 Cache為256KB
+
+.. image:: /embedded/arm_linux/BBB_hardware_2.png
+
+  
+**對應"Context Switch Latency 測試理論"**
+
+.. image:: /embedded/arm_linux/partical_theory.png
+
+.. image:: /embedded/arm_linux/partical_theory_2.png
+
 
 Context Switch Latency 實驗過程
 =================================================
@@ -128,15 +144,15 @@ Context Switch Latency 實驗過程
 Context Switch Latency 實驗結果 及 分析
 =================================================
 
-System Call Latency on BeagleBoard Black(Linux)
+System Call Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 
 
-Unix Latency on BeagleBoard Black(Linux)
+Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 
 
-Memory Read Latency on BeagleBoard Black(Linux)
+Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 
 
