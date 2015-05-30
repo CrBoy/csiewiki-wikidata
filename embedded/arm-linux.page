@@ -14,16 +14,16 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
 
 硬體及測試平台
 ------------------------------------------------
-* 電腦端:
+- 電腦端:
    - Intel i5/i7
    - Ubuntu 14.10 64 bit
    - Lubuntu 14.10 64 bit
 
-* 測試硬體:
+- 測試硬體:
    - BeagleBoard Black:
        - ARM Cortex A8
        - AM3358
-* 測試平台:
+- 測試平台:
    - Linux
        - `Angstrom<https://github.com/beagleboard/kernel/tree/3.8>`_
        - Kernel version:3.8
@@ -42,27 +42,27 @@ Context Switch Latency 測試理論
 
 .. image:: /embedded/arm_linux/Abstract_Machine_Model_1.png
 
-* 方程式(1):
+- 方程式(1):
    - TA,M: <程式A>在<機器M>上執行的總時間
    - Ci,A: <程式A><執行的次數i>
    - Pi,M: <執行次數i>在<機器M>上
 
 .. image:: /embedded/arm_linux/Abstract_Machine_Model_2.png
 
-* 方程式(2):(多了cahce/TLB miss)
+- 方程式(2):(多了cahce/TLB miss)
    - Fi,A (faults):為記憶體階層的第i層的miss次數
    - Di,M (delay):每次miss所付出的懲罰
 
 **論文實驗方法:**
 
-* 測試參數:
+- 測試參數:
    - Stride: s
    - Array size : one-dimensional array of  N k-bytes
    - Cache/TLB size: C k-bytes
    - Cache Line size:b words
    - Cache Associativity: a
 
-* 基本假設:
+- 基本假設:
    - 只有L1 cache
    - Instruction Cache與Data Cache為獨立的
    - Data Cache可用Virtual Address(以後皆稱VA)定址:意思就是記憶體為"連續的區域"
@@ -75,44 +75,44 @@ Context Switch Latency 測試理論
 .. image:: /embedded/arm_linux/tlb_experiment_table.png
 
 
-* REGIME 1:
+- REGIME 1:
    - N <= C
    - C為cache的容量
    - N為array size
    - 只要array被載入，就不再有cache miss出現，也就是永遠只有第一次載入時，會有cache miss
    - 每次遞迴的執行時間(Tno-miss)包含讀取一個Array的子集合的基本單位(stride),計算,以及將結果存回Cache
 
-* REGIME 2.a :
+- REGIME 2.a :
    - array比cahce size大，所以一次沒有辦法全部讀進cahce
    - stride比line size小，所以取一次array不一定會超過cache的大小，會有s/b次miss
    - b/s個連續存取到同一個 cache line.
    - 第一次載入array，總是Cache miss,REGIME 2 三種討論皆是如此，不再重述。
    - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
 
-* REGIME 2.b :
+- REGIME 2.b :
    - Array size 比 cache容量大
    - stride比line size大(意思是每次都會miss)
    - stride比array size小
    - 每次遞迴都會有cache miss,也就是說每個Array的子集合的基本單位(stride)對應到一個不同的cache line. 
    - 每次遞迴的執行時間為Tno-miss + D
 
-* REGIME 2.c :
+- REGIME 2.c :
    - array size比cache大
    - stride介於array size 的1/2~1倍,所以第一次沒有讀進來的array，就再也讀不到了
    - 記憶體位置映射到一個單位子集合的次數一定少於associativity,也就是這個情況下(2.c)，除了第一次載入Array會有miss之外，就沒有miss了
    - 如果array有N elements,只有N/s < a可以被實驗到,且他們個別都可以被放入一個單一的子集合(stride),也就是說N/a <= s. 
    - 每次遞迴的執行時間為Tno-miss
 
-* 結論
+- 結論
    - TLB的行為可視為與Cache一樣
    - Cache/TLB size可藉由測試，當發現Latency time大幅上升時，藉由比較array size(實際上的情況下面會談到)可以知道，因為D(cache miss penality)通常大於Tno-miss
    - Regime 2.a與2.b相較於2.c方法，可以用來解釋為什麼在`維基百科 wiki :CPU cache<http://en.wikipedia.org/wiki/CPU_cache>`_ 中，有一張圖及內容談到當cache associativity(也就是a)越大時，miss rate越小。
 
 .. image:: /embedded/arm_linux/tlb_wiki_associativity.png
 
-
-
-* 參考資料：`Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
+- 參考資料：
+    - `Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
+        - `整理這篇論文的過程<https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C>`_
 
 Context Switch Latency 理論與實際的結合
 =================================================
