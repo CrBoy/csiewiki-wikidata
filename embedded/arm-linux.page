@@ -62,7 +62,7 @@ Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
 
 - 取得lmbench並編譯給BBB
-由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
+    - 由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
     - git clone https://github.com/el8/lmbench-next.git
     - cd lmbench-next
     - make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
