@@ -124,9 +124,9 @@ Lmbench 3.0 測試方法分析
         } /* while */                           \
         save_n((uint64)__iterations); settime((uint64)__result);    \
     }
-1<<27 : MAX_ITER
-1.1 : CORRECTION_RATE
-3 : INCREASE_RATE
+
+
+`參考資料<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_
 
 
 Context Switch Latency on BeagleBone Black(Linux)
@@ -137,9 +137,9 @@ Context Switch Latency on BeagleBone Black(Linux)
 
 .. code-block:: txt
 
-    git clone https://github.com/el8/lmbench-next.git
-    cd lmbench-next
-    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+    ``git clone https://github.com/el8/lmbench-next.git``
+    ``cd lmbench-next``
+    ``make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-``
 
 Context Switch Latency 測試理論
 =================================================
