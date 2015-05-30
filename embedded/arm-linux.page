@@ -58,7 +58,7 @@ Lmbench 3.0 測試方法分析
     - 一次的測試，latency = (執行時間/iterations)
         - iterations為mhz benchmark module測量，故不是定值，用以確保執行時間夠長，具有代表意義。
     - repetition
-        - (執行幾次repetition結果的加總，在除以repetition)，就當作真正的結果
+        - (執行次"repetition次"結果的加總，在除以"repetition次")，就當作真正的結果
 
 Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
