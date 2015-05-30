@@ -141,6 +141,71 @@ Context Switch Latency 理論與實際的結合
 Context Switch Latency 實驗過程
 =================================================
 
+- 因為Linux無法關閉L2 cache，且要將其他程式對cache的影響降到最低，使用sync及drop_caches
+    - sync && echo 3 > /proc/sys/vm/drop_caches
+        - 但還是有些許影響，因為清完cache後，Linux還是有其他程式使用cahce，無法避免
+
+
+**shell script for 巨觀**
+
+.. code-block:: txt
+
+    #!/bin/sh
+    WARMUPS=0
+    REPETITIONS=3
+    
+    CTX="0 2 4 8 16 24 32"
+    N="2 4 6 8 10 12 16 24 32 48 64 72 96"
+    
+    set -x
+    for size in $CTX
+    do
+    #flush cache
+    sync && echo 3 > /proc/sys/vm/drop_caches
+    
+    bin/arm/lat_ctx \
+    -W $WARMUPS -N $REPETITIONS -s $size $N
+    done
+    echo "" 1>&2
+
+**shell script for 微觀**
+
+.. code-block:: txt
+
+    #!/bin/bash
+    WARMUPS=0
+    REPETITIONS=11
+    
+    CTX="2 4 8 16 24 32"
+    N="2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 24 32 48 64 72 96"
+    
+    file_dest="./test_results/"
+    extension="k.txt"
+    
+    mkdir -p $file_dest
+    
+    set -x
+    for size in $CTX
+    do      
+            for pnumber in $N
+            do
+                    RUN="bin/arm/lat_ctx -W $WARMUPS -N $REPETITIONS -s $size $pnumber"
+                    #flush cache
+                    sync && echo 3 > /proc/sys/vm/drop_caches
+    
+                    file=$file_dest$size$extension
+                    if test -s $file 
+                            then
+                            $RUN >> $file 2>&1
+                    else
+                            $RUN > $file 2>&1
+                    fi
+            done
+                                                         
+    done
+    echo "" 1>&2
+
+
 Context Switch Latency 實驗結果 及 分析
 =================================================
 
