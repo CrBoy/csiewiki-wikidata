@@ -55,19 +55,91 @@ Lmbench 3.0 測試方法分析
             - Processor clock rate calculation
 
 - 簡易說明lmebnch測量latency方式:
-    - 一次的測試，latency = (執行時間/iterations)
-        - iterations為mhz benchmark module測量，故不是定值，用以確保執行時間夠長，具有代表意義。
     - repetition
-        - (執行"repetition次"結果的加總，在除以"repetition次")，就當作真正的結果
+        - (執行"repetition次"結果的加總，在除以"repetition次")，就當作"這次"測量的結果
+
+    - 一次的測試，latency = (執行時間/iterations)
+        - iterations為`mhz benchmark<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_測量，故不是定值，用以確保執行時間夠長，具有代表意義。
+        - 執行時間不同當然是因為硬體不同所造成，然而影響最多的就是CPU架構，為了量測出準確的執行時間，必須將不確定因素降到最低，且時間與時脈(倒數關係)息息相關。
+            - GCD法(最大公因數)，必須挑選互相有相依性的指令，因為pipeline的關係，導致cycles變少，且必須防止compiler優化，導致指令不按照預期執行:
+
+.. code-block:: txt
+    
+    如果一個CPU時脈為120Mhz，且執行以下兩個指令
+    1. SHR (2 cycles)
+    2. SHR;ADD (3 cycles)
+
+    如果執行時間為:
+    1. SHR 11.1ns (2 cycles)
+    2. SHR;ADD 16.6ns (3 cycles)
+    GCD 為 5.55ns，其倒數即為120Mhz，與原先假設相同
+    
+    compiler的優化例子:
+    a+=a; // ADD optimized to a=0
+    a&=a; // AND optimized away completely
+    a^=a; // XOR optimized to a=0
+    a+=b; // ADD optimized to a+=b+b+b+…
+
+    因此mhz挑選了9組指令:
+    1. p=*p;
+    2. a^=a+a;
+    3. a^=a+a+a;
+    4. a>>=b;
+    5. a>>=a+a;
+    6. a^=a<<b;
+    7. a^=a+b;
+    8. a+=(a+b)&07;
+    9. a++;a^=1;a<<=1;
+
+實際上在source code發現，iterations的值是經由一個迴圈去不斷測試值是否大於需求(根據`mhz benchmark作者自己說<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_，是150ms)
+
+.. code-block:: c
+    
+    #define BENCH_INNER(loop_body, enough) {                \
+        static iter_t   __iterations = 1;               \
+        int     __enough = get_enough(enough);          \
+        iter_t      __n;                        \
+        double      __result = 0.;                  \
+                                        \
+        while(__result < 0.95 * __enough) {             \
+            start(0);                       \
+            for (__n = __iterations; __n > 0; __n--) {      \
+                loop_body;                  \
+            }                           \
+            __result = stop(0,0);                   \
+            if (__result < 0.99 * __enough              \
+                || __result > 1.2 * __enough) {         \
+                if (__result > 150.) {              \
+                    double  tmp = __iterations / __result;  \
+                    tmp *= 1.1 * __enough;          \
+                    __iterations = (iter_t)(tmp + 1);   \
+                } else {                    \
+                    if (__iterations > (iter_t)1<<27) { \
+                        __result = 0.;          \
+                        break;              \
+                    }                   \
+                    __iterations <<= 3;         \
+                }                       \
+            }                           \
+        } /* while */                           \
+        save_n((uint64)__iterations); settime((uint64)__result);    \
+    }
+1<<27 : MAX_ITER
+1.1 : CORRECTION_RATE
+3 : INCREASE_RATE
+
 
 Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
 
 - 取得lmbench並編譯給BBB
     - 由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
-    - git clone https://github.com/el8/lmbench-next.git
-    - cd lmbench-next
-    - make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+
+.. code-block:: txt
+
+    git clone https://github.com/el8/lmbench-next.git
+    cd lmbench-next
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 
 Context Switch Latency 測試理論
 =================================================
