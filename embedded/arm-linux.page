@@ -28,9 +28,39 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
        - `Angstrom<https://github.com/beagleboard/kernel/tree/3.8>`_
        - Kernel version:3.8
 
-Lmbench 3.0 測試方法分析
+編譯Linux(Angstrom)給BeagleBone Black
 ------------------------------------------------
 
+
+Lmbench 3.0 測試方法分析
+------------------------------------------------
+- 簡介
+    - Lmbench 3 是一套可移植性高的benchmark，由許多小的benchmark module組成，具有不少測試功能
+        - Bandwidth benchmarks
+            - Cached file read
+            - Memory copy (bcopy)
+            - Memory read
+            - Memory write
+            - Pipe
+            - TCP
+        - Latency benchmarks
+            - Context switching.
+            - Networking: connection establishment, pipe, TCP, UDP, and RPC hot potato
+            - File system creates and deletes.
+            - Process creation.
+            - Signal handling
+            - System call overhead
+            - Memory read latency
+        - Miscellanious
+            - Processor clock rate calculation
+
+- Source code內較有意義的各個函式意義
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
 
 Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
