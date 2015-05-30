@@ -11,3 +11,46 @@ categories: embedded, arm, cortex-a, cortex-a8, linux
 共筆
 ----
 * 2015 年春季: `hackpad <https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
+
+Lmbench 3.0 測試分析
+------------------------------------------------
+
+
+Context Switch Latency on BeagleBoard Black(Linux)
+-----------------------------------------------------
+
+Context Switch Latency 測試理論
+=================================================
+
+Context Switch Latency 理論與實際的結合
+=================================================
+
+Context Switch Latency 實驗過程
+=================================================
+
+Context Switch Latency 實驗結果 及 分析
+=================================================
+
+System Call Latency on BeagleBoard Black(Linux)
+------------------------------------------------
+
+
+Unix Latency on BeagleBoard Black(Linux)
+------------------------------------------------
+
+
+Memory Read Latency on BeagleBoard Black(Linux)
+------------------------------------------------
+
+
+Ftrace
+------------------------------------------------
+
+KernelShark
+------------------------------------------------
+
+Linux Kernel Timer Interrupt
+------------------------------------------------
+
+Linux Scheduler 行為分析
+------------------------------------------------
