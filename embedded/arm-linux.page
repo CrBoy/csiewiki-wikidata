@@ -55,17 +55,38 @@ Lmbench 3.0 測試方法分析
             - Processor clock rate calculation
 
 - Source code內較有意義的各個函式意義
-    - 
-    - 
-    - 
-    - 
-    - 
-    - 
+    - void benchmp(benchmp_f initialize, benchmp_f benchmark, benchmp_f cleanup, int enough, int parallel, int warmup, int repetitions, void* cookie);
+在不同的測試項目內，輸入不同參數丟給benchmp計算。
+            - initialize
+                - 一個選擇性的pointer to a function(根據不同測試項目)，用以初始化. 
+                -一開始被呼叫的時候，將iteration設為0，而且會在每個timing interval當iteration要被設定之前被呼叫. 
+            - benchmark
+                - pointer to a function
+                - 執行"iterations"次
+            - cleanup
+                - 一個選擇性的pointer to a function(根據不同測試項目)，用以清理每次執行完benchmark所占去的記憶體。
+                - iteration被設為0之後但離開該函式之前，會被呼叫一次；每次的timing interval，iteration被設定之後，都會被呼叫.
+            - enough
+                - enough can be used to ensure that a timing interval is at least ‘enough’ microseconds in duration.
+                - For most benchmarks this should be zero, but some benchmarks have to run for more time due to startup effects or other strange behavior. parallel is the number of instances of the benchmark that will be run in parallel on the system.
+            - warmup
+                - benchmarks run for warmup microseconds before the system starts making timing measurements.
+                - Note that it is a lower bound, not a fixed value, since it is simply the time that the parent sleeps after receiving the last ready signal from each child (and before it sends the go signal to the children). 
+            - repetitions
+                -  the number of times the experiment should be repeated. 
+            - cookie
+                - a pointer that can be used by the benchmark writer to pass in configuration information
+                - such as buffer size or other parameters needed by the inner loop. In lmbench it is generally used to point to a structure containing the relevant configuration information.
+    - uint64 gettime();
+            - returns the median timing interval duration
+    - uint64 get_n(); 
+            - returns the number of iterations executed during that timing interval.
 
 Context Switch Latency on BeagleBone Black(Linux)
 -----------------------------------------------------
 
 - 取得lmbench並編譯給BBB
+        - 由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
     - git clone https://github.com/el8/lmbench-next.git
     - cd lmbench-next
     - make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
