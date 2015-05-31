@@ -506,6 +506,7 @@ Unix Latency on BeagleBone Black(Linux)
 
 .. image:: /embedded/arm_linux/lat_unix_LMA_RMI.png
 
+左邊為巨觀，右邊為微觀，可以看出斜率均趨近於0。
 
 **結論**
 
