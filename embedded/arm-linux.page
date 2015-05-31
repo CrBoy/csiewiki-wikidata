@@ -469,7 +469,47 @@ System Call Latency on BeagleBone Black(Linux)
 
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
+- Lmbench3   lat_unix:
+    - lat_unix - 測量interprocess communication latency透過UNIX sockets
+    - "hot potato" benchmark
+        - benchmark不斷的在2個process間來回傳遞message
+    - process裡面沒有做任何事情
 
+-測量出的數據( 第一欄為message size<byte>,第二欄為latency<microseconds> )
+
+.. code-block:: txt
+    
+    0 3.9333
+    1 45.2623
+    2 45.3115
+    3 45.5246
+    4 45.4098
+    5 45.5410
+    6 45.5702
+    7 45.5246
+    8 45.7870
+    10 45.5000
+    12 45.5289
+    16 45.7156
+    20 45.6694
+    24 45.7523
+    32 45.7870
+    48 46.1574
+    64 45.9752
+    96 45.9091
+    128 46.0965
+    196 46.2689
+    256 46.4434
+    384 46.6555
+    512 47.1887
+
+
+.. image:: /embedded/arm_linux/lat_unix_LMA_RMI.png
+
+
+**結論**
+
+- 不論傳遞的message多大(除了0之外)，overhead都大約是46 microseconds
 
 Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
