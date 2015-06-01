@@ -20,11 +20,11 @@ toc: no
 
 **目錄**
 ======
-* `Beaglebone black 簡介<#Beaglebone black 簡介>`_
+* `Beaglebone black 簡介<#Beaglebone-black-簡介>`_
   - `硬體簡介<#硬體簡介>`_
   - `開機流程<#開機流程>`_
 
-* `FreeRTOS on Beaglebone Black<#FreeRTOS on Beaglebone Black>`_
+* `FreeRTOS on Beaglebone Black<#FreeRTOS-on-Beaglebone-Black>`_
   - `開發環境<#開發環境>`_
   - `實作過程<#實作過程>`_
 
@@ -140,3 +140,13 @@ toc: no
 結果圖如下，可看出FreeRTOS已能初步運作。
 
 .. image:: https://c1.staticflickr.com/1/476/18159470350_95ea35c12d_o.png
+
+　　
+
+**將main.c的3個task，刪減到剩下1個。
+將delay的計數器從0x1FFF改成0x3FF0000，增加閃爍時間間隔。
+並將serial_puts的function中加入'\\r'，將輸出的游標推到每行起始位置。**
+
+結果圖如下，輸出的結果比較清晰且LED的閃爍可以用肉眼察覺。
+
+.. image:: https://c1.staticflickr.com/9/8781/18344147282_2ebf303d4d_o.png
