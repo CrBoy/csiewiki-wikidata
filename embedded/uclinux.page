@@ -23,7 +23,7 @@ uClinux設計的目的即是為了能運作在缺乏MMU（memory management unit
 
 * 使用uClibc
 
-    uClibc是可以在no-MMU環境下運行的C函式庫，在此取代glibc。
+    uClibc比起glibc更小，且支援no-mmu環境運行。（不過其實uClinux官方也有提供使用glibc版本的uClinux）
 
 * 缺乏記憶體管理（memory management）
 
