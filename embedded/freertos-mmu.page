@@ -20,13 +20,14 @@ toc: no
 
 **目錄**
 ======
-* `Beaglebone black 簡介<#Beaglebone-black-簡介>`_
+* `Beaglebone black 簡介<#beaglebone-black-簡介>`_
   - `硬體簡介<#硬體簡介>`_
   - `開機流程<#開機流程>`_
 
-* `FreeRTOS on Beaglebone Black<#FreeRTOS-on-Beaglebone-Black>`_
+* `FreeRTOS on Beaglebone Black<#freertos-on-beaglebone-black>`_
   - `開發環境<#開發環境>`_
   - `實作過程<#實作過程>`_
+  - `移植FreeRTOS 8.2.1到BBB<#移植freertos-8.2.1到BBB>`_
 
 * `問題討論<#問題討論>`_
 
@@ -150,3 +151,52 @@ toc: no
 結果圖如下，輸出的結果比較清晰且LED的閃爍可以用肉眼察覺。
 
 .. image:: https://c1.staticflickr.com/9/8781/18344147282_2ebf303d4d_o.png
+
+
+`移植FreeRTOS 8.2.1到BBB<#目錄>`_
+----------------------------
+
+**到FreeRTOS官網下載`8.2.1版 (目前最新版本)<https://sourceforge.net/projects/freertos/files/latest/download?source=files>`_的source**
+
+**解壓後將8.2.1版本的source資料夾替換掉原本的source後，再來將原本的Source/portable/GCC/AM335_BeagleBone複製回去。**
+
+**然後接著修改Source/include資料夾底下的portable.h檔**
+
+將
+
+.. code-block:: header file
+
+	#ifdef GCC_AM335_BeagleBoard
+		#include "../../Source/portable/GCC/AM335_BeagleBone/portmacro.h"
+	#endif
+
+加至
+
+.. code-block:: header file
+
+	#ifndef portENTER_CRITICAL
+		#include "portmacro.h"
+	#endif
+
+的前面，以免發生錯誤。
+
+　　
+
+**接著修改Source/portable/GCC/AM335_BeagleBone底下的portmacro.h**
+
+在裡面加入
+
+.. code-block:: header file
+
+	typedef portSTACK_TYPE  StackType_t;
+	typedef long BaseType_t;
+	typedef unsigned long UBaseType_t;
+	typedef uint32_t TickType_t;
+
+　　
+
+**並將下面的 portTICK_RATE_MS 改為 portTICK_PERIOD_MS**
+
+**修改Source/portable/GCC/AM335_BeagleBone/portISR.c檔案裡的vTaskIncrementTick改為xTaskIncrementTick  (165行)**
+
+出現結果與上圖相同，但仍有許多warning需解決。
