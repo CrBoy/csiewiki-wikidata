@@ -167,7 +167,8 @@ Lmbench 3.0 測試方法分析
     如果執行時間為:
     1. SHR 11.1ns (2 cycles)
     2. SHR;ADD 16.6ns (3 cycles)
-    GCD 為 5.55ns，其倒數即為120Mhz，與原先假設相同
+    可以看出average CPI = 1.5
+    GCD 為 5.55ns，平均一個指令執行1.5*5.55ns , 其倒數(1/1.5*5.55)即為120Mhz，與原先假設相同
     
     compiler的優化例子:
     a+=a; // ADD optimized to a=0
