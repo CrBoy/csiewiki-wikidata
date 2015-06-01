@@ -457,7 +457,9 @@ Memory virtualization
 interrupt virtualization
 ........................................
 
-GIC(Generic Interrupt Controller)是ARM裡唯一的Interrupt Controller，其中包含一個Interrupt Distributor韌體和一個CPU Interface。
+.. image:: /embedded/gic_arch.png
+
+GIC(Generic Interrupt Controller) 包含Interrupt Distributor 和 CPU Interface。
 
 - Interrupt Distributor：
     - 可以將不同類型的interrupt安排(route)到該類型的state
