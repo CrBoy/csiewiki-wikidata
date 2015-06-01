@@ -500,7 +500,7 @@ vTaskSuspend 使用範例：
 
 .. image:: /qu.png
 
-FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue 中，也就是會把資料按照字元一個一個複製一份到 queue 中，當要傳遞的資料很大時，建議不要這樣傳遞，改採用傳遞資料指標的方式，如shallow copy。好處是可以直接做大資料複製，缺點就是會影響到記憶體內容。
+FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue 中，也就是會把資料按照字元一個一個複製一份到 queue 中，當要傳遞的資料很大時，建議不要這樣傳遞，改採用傳遞資料指標的方式，如shallow copy。好處是可以直接做大資料複製，缺點就是會影響到記憶體內容。不管你選擇哪一個方式放入queue中，FreeRTOS只關心data的大小，不關心是哪一種data copy的方式。
 
 * Shallow Copy 
 
