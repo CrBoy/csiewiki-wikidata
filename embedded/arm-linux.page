@@ -291,6 +291,9 @@ Context Switch Latency 測試理論
    - b/s個連續存取到同一個 cache line.
    - 第一次載入array，總是Cache miss,REGIME 2 三種討論皆是如此，不再重述。
    - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
+   - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如參考資料1的example 2)
+   - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
+   - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf/>`_
 
 - REGIME 2.b :
    - Array size 比 cache容量大
