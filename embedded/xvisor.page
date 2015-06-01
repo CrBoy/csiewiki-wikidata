@@ -457,6 +457,8 @@ Memory virtualization
 interrupt virtualization
 ........................................
 
+* `GICv2 Architecture Specification CH5: GIC Support for Virtualization <http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
+
 .. image:: /embedded/gic_arch.png
 
 GIC(Generic Interrupt Controller) 包含Interrupt Distributor 和 CPU Interface。
@@ -472,6 +474,10 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
 
 - Virtual CPU interface：
     - 協助Hypervisor Designer實作Virtual Interrupt Distributor的硬體
+
+.. image:: /embedded/gic_virt.png
+
+(可參考下方gic配置)
 
 I/O device virtualization
 --------------------------------------------
