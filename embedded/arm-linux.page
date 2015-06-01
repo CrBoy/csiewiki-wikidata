@@ -248,8 +248,8 @@ Context Switch Latency 測試理論
 
 - 方程式(1):
    - TA,M: <程式A>在<機器M>上執行的總時間
-   - Ci,A: <程式A><執行的次數i>
-   - Pi,M: <執行次數i>在<機器M>上
+   - Ci,A（數量）: <程式A><指令i>的執行次數
+   - Pi,M（時間）: <指令i>在<機器M>上的執行時間
 
 .. image:: /embedded/arm_linux/Abstract_Machine_Model_2.png
 
