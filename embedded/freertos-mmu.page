@@ -18,11 +18,15 @@ toc: no
   - `hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
 
 
-目錄
-==
+**目錄**
+======
 * `Beaglebone black 簡介<#Beaglebone black 簡介>`_
   - `硬體簡介<#硬體簡介>`_
   - `開機流程<#開機流程>`_
+
+* `FreeRTOS on Beaglebone Black<#FreeRTOS on Beaglebone Black>`_
+  - `開發環境<#開發環境>`_
+  - `實作過程<#實作過程>`_
 
 * `問題討論<#問題討論>`_
 
@@ -56,3 +60,83 @@ toc: no
   - plus much more
 
 .. image:: http://www.circuidipity.com/images/bbb-details3.png
+
+`開機流程<#目錄>`_
+------------
+
+　　當Beaglebone Black(BBB)一上電後，即開始執行ROM裡面的ROM code。再來根據腳位SYSBOOT的值來決定讀取哪裡的MLO檔，預設是讀取板子上eMMC的MLO檔。再來靠MLO讀取u-boot，u-boot再根據文件uEnv.txt載入image或file system。
+
+.. image:: https://c1.staticflickr.com/9/8827/17633638240_e7c3e007a4_o.jpg
+
+　　若是按住BBB板子上的S2按鍵，根據下圖，會讓SYS_BOOT2變成低電位，使得BBB的ROM code載入MMCSD內的MLO並執行。之後再根據MLO的程式碼來決定要載入什麼檔案執行。在我們第一次實驗時，是利用MLO去載入app並執行。
+
+.. image:: https://c2.staticflickr.com/6/5462/17823806425_3996a193f6_o.png
+
+
+`FreeRTOS on Beaglebone Black<#目錄>`_
+====================================
+
+`開發環境<#目錄>`_
+------------
+* 主機環境：Ubuntu 14.10、Linux Mint 17
+* 開發板：Beaglebone black (Rev C)
+* Cross compiler： https://launchpad.net/gcc-arm-embedded/+download 下載並解壓至喜歡的地方
+
+
+`實作過程<#目錄>`_
+------------
+**下載程式碼：**
+
+.. code-block:: bash
+
+	git clone https://github.com/henfos/BBBFreeRTOS.git
+	cd BBBFreeRTOS/Demo/AM3359_BeagleBone_GCC
+
+　　
+
+**修改 main.c ，在開頭補上 :**
+
+.. code-block:: c
+
+	#include <stdint.h>
+
+　　
+
+**修改 makefile：**
+
+將以下原本的參數
+
+.. code-block:: makefile
+
+	CC=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-gcc
+	OBJCOPY=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-objcopy
+	ARCH=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-ar
+
+改成
+
+.. code-block:: makefile
+
+		CC={Cross compiler解壓的路徑}/arm-none-eabi-gcc
+		OBJCOPY={Cross compiler解壓的路徑}/arm-none-eabi-objcopy
+		ARCH={Cross compiler解壓的路徑}/arm-none-eabi-ar
+
+　　
+
+**接下來執行make，會產生 rtosdemo-a.bin**
+
+**編寫uEnv.txt讓u-boot根據其而載入rtosdemo-a.bin，內容如下**
+
+.. code-block:: txt
+
+    bootcmd=fatload mmc 0 0x80500000 rtosdemo-a.bin; go 0x80500000;
+    uenvcmd=boot
+
+　　
+
+**將MLO、uEnv.txt、u-boot.img、rtosdemo-a.bin放入MicroSD卡**
+
+**按住BBB的S2鈕並開機**
+
+結果圖如下，可看出FreeRTOS已能初步運作。
+
+.. image:: https://c1.staticflickr.com/1/476/18159470350_95ea35c12d_o.png
