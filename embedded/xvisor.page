@@ -479,7 +479,7 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
 
 (可參考下方gic配置)
 
-`vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>_` 提供vgic的實作(其中使用module及devtree):
+`vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>`_ 提供vgic的實作(其中使用module及devtree):
 
 .. code-block:: c
 
