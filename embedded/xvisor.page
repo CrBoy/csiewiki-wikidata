@@ -759,68 +759,32 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
 
 .. code-block:: c
 
-    static void __init gic_dist_init(struct gic_chip_data *gic)
+    static int __init gic_devtree_init(struct vmm_devtree_node *node,
+                                       struct vmm_devtree_node *parent,
+                                       bool eoimode)
     {
-        unsigned int i;
-        u32 cpumask = 1 << vmm_smp_processor_id();
-        virtual_addr_t base = gic->dist_base;
-
-        cpumask |= cpumask << 8;
-        cpumask |= cpumask << 16;
-
-        /* Disable IRQ distribution */
-        gic_write(0, base + GIC_DIST_CTRL);
-
-        /*
-         * Set all global interrupts to be level triggered, active low.
-         */
-        for (i = 32; i < gic->max_irqs; i += 16) {
-            gic_write(0, base + GIC_DIST_CONFIG + i * 4 / 16);
-        }
-    
-        /*
-         * Set all global interrupts to this CPU only.
-         */
-        for (i = 32; i < gic->max_irqs; i += 4) {
-            gic_write(cpumask, base + GIC_DIST_TARGET + i * 4 / 4);
-        }
-
-        /*
-         * Set priority on all interrupts.
-         */
-        for (i = 0; i < gic->max_irqs; i += 4) {
-            gic_write(0xa0a0a0a0, base + GIC_DIST_PRI + i * 4 / 4);
-        }
-
-        /*
-         * Disable all interrupts.
-         */
-        for (i = 0; i < gic->max_irqs; i += 32) {
-            gic_write(0xffffffff,
-                      base + GIC_DIST_ENABLE_CLEAR + i * 4 / 32);
-        }
-
-        /*
-         * Setup the Host IRQ subsystem.
-         * Note: We handle all interrupts including SGIs and PPIs via C code.
-         * The Linux kernel handles pheripheral interrupts via C code and
-         * SGI/PPI via assembly code.
-         */
-        for (i = gic->irq_start; i < (gic->irq_start + gic->max_irqs); i++) {
-            vmm_host_irq_set_chip(i, &gic_chip);
-            vmm_host_irq_set_chip_data(i, gic);
-            vmm_host_irq_set_handler(i, vmm_handle_fast_eoi);
-            /* Mark SGIs and PPIs as per-CPU IRQs */
-            if (i < 32) {
-                vmm_host_irq_mark_per_cpu(i);
-            }
-        }
-
-        /* Enable IRQ distribution */
-        gic_write(1, base + GIC_DIST_CTRL);
+        .........
+       gic_init_bases(gic_cnt, eoimode, irq, cpu_base, cpu2_base, dist_base);
+       .......
     }
 
+.. code-block:: c
 
+    static int __init gic_init_bases(u32 gic_nr,
+                                     bool eoimode,
+                                     u32 irq_start,
+                                     virtual_addr_t cpu_base,
+                                     virtual_addr_t cpu2_base,
+                                     virtual_addr_t dist_base)
+    {
+        ........
+        gic_dist_init(gic);
+        gic_cpu_init(gic);
+    }
+
+設定 interrupt priority, Host IRQ subsystem, priority on PPI and SGI, mode... 等
+詳見: `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
+    
 在不同Arm架構下的虛擬化機制
 =====================================
 
