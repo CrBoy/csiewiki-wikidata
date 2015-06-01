@@ -294,7 +294,7 @@ Context Switch Latency 測試理論
    - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
    - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如參考資料1的example 2)
    - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
-   - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf/>`_
+   - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf>`_
 
 - REGIME 2.b :
    - Array size 比 cache容量大
