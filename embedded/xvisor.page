@@ -1266,4 +1266,4 @@ reference
 * `Syllabus for CS5410 Virtualization Techniques (國立清華大學)<http://www.cs.nthu.edu.tw/~ychung/syllabus/Virtualization.htm>`_ (內有課程簡報)
 * `GICv2 Architecture Specification<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
 * `New Feature: VirtIO based paravirtualization<http://xhypervisor.org/index.php?page=news/20130417>`_
-* `linux kernel linux kernel的中断子系统之（七）：GIC代码分析<http://www.wowotech.net/irq_subsystem/gic_driver.html>`_
+* `linux kernel的中断子系统之（七）：GIC代码分析<http://www.wowotech.net/irq_subsystem/gic_driver.html>`_
