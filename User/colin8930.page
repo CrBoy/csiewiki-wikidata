@@ -11,6 +11,18 @@ categories: User
 ===============
 - `xvisor<http://xhypervisor.org/>`_
 
+學期報告
+===============
+- `Armv8<http://wiki.csie.ncku.edu.tw/embedded/ARMv8>`_
+- `xvisor<http://wiki.csie.ncku.edu.tw/embedded/xvisor>`_
+
+心得
+===============
+
+git commit
+===============
+- ` [TESTS] Added test script for testing Basic Firmware on armv8 Foundation Model.<https://github.com/xvisor/xvisor/commit/49ad9b7dd401fbc5f8e63bf87a39fa80096e5c6a>`_
+
 更多資訊
 =======
 - email: ``colin8930 @ gmail.com``
