@@ -513,7 +513,7 @@ FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue �
 
 * Queue 的結構
 
-`queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L125>`_
+`queue.c<https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/queue.c#L130>`_
 
 .. code-block:: c
 
