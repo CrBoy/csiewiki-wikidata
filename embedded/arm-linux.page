@@ -296,6 +296,8 @@ Context Switch Latency 測試理論
 
 **驗證line size造成的miss的影響：**
 
+- test_line.c
+
 .. code-block:: c
     
     #include<stdio.h>
@@ -323,6 +325,8 @@ Context Switch Latency 測試理論
     return 0;
     }
 
+- shell script
+
 .. code-block:: txt
     
     #!/bin/bash
@@ -336,6 +340,12 @@ Context Switch Latency 測試理論
 
 .. image:: /embedded/arm_linux/line_size.png
 
+- 原因：
+由於BBB的line size為64byte = 16個INT，今天以一個迴圈，對其值做動作，然後每次跳躍"K"個記憶體位置，消耗的時間為CPU運算時間+line(cache) miss的時間，從圖中可發現，K <=16時，斜率較低，但消耗時間仍然有下降，可以發現是因為實質上CPU所運算的對象的確較少，然而到K=32時，CPU雖然運算比先前更少，但是可以看出line(cache) miss的影響比較大，因為同樣都是少了一半CPU運算的對象（k=8與k=16 vs k=16與k=32 vs k=32與k=64），但斜率下降更明顯，就是由於miss的次數少了一半。依此類推，K=64為K=16的miss次數的1/4，但是K=1到K=16的miss次數是一樣的，至於為什麼會這樣，見下圖說明。
+    - 今天如果有1024個line(cache) miss會發生，一個line是64byte，那麼如果小於等於64bytes的K，一樣會踩到N次<假設>的line(cache) miss，但是如果K=128bytes，由於會"跨過"某些line miss的"點"，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
+    - 今天因為BBB的CPU較慢，處理龐大的數據會佔不少時間，所以看起來可能不明顯，所以附上一個在pc(i7-5500U)的圖片，同樣在參考資料1中的example2，它也有說明。
+
+.. image:: /embedded/arm_linux/line_size_i7.png
 
    - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
    - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf>`_
