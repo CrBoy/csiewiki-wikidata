@@ -1041,6 +1041,9 @@ Virtual gic (vgic)
             vmm_vcpu_irq_wait_resume(vs->vcpu);
         }
     }
+
+
+.. image:: /embedded/vgic_flow.png
     
 在不同Arm架構下的虛擬化機制
 =====================================
