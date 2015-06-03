@@ -18,7 +18,6 @@ Hackpad
 
 虛擬化技術 (Virtualization) 
 =====================================
-以下簡介虛擬化技術，並以Xvisor on `ARMv8</embedded/ARMv8>`_ 為例探討虛擬化技術的實作
 
 虛擬化就是建立出一個作業系統或伺服器或儲存空間的虛擬版本，可以把擁有的資源作妥當的管理分配
 
@@ -77,9 +76,6 @@ Hypervisor的類型
 
 .. image:: /embedded/hypervisor_type.png
 
-- Type-1與Type-2比較
-    - Type-1: 有較高的安全性及可靠性，但因直接運行於硬體上，所以時常為single purpose
-    - Type-2: 支援較多的I/O device及服務，且較易安裝及使用，但效能較Type-1低，常應用於效率較不重要的客戶端
 - Type-1 與 Type-2 比較
     - Type-1
         - 能直接與硬體溝通，有較高的安全性(掌握在hypervisor上)，適合server虛擬化
