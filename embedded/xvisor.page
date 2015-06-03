@@ -841,19 +841,6 @@ Virtual gic (vgic)
         rc = vmm_devemu_register_emulator(&vgic_dist_emulator);
         rc = vmm_devemu_register_emulator(&vgic_cpu_emulator);
 
-        for (i = 0; i < GICD_MAX_NIRQ; i++) {
-            ARCH_ATOMIC_INIT(&vgich.host2guest_irq[i], -1);
-        }
-
-        vgich.avail = TRUE;
-
-        vgich.lr_cnt = vmm_readl((void *)vgich.hctrl_va + GICH_VTR);
-        vgich.lr_cnt = (vgich.lr_cnt & GICH_VTR_LRCNT_MASK) + 1;
-
-        vmm_smp_ipi_async_call(cpu_online_mask, vgic_enable_maint_irq,
-                               (void *)(unsigned long)vgich.maint_irq,
-                               vgic_maint_irq, NULL);
-
         ......
     }
 
