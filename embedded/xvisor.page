@@ -512,173 +512,8 @@ VirtIO specification和hypervisor與architecture是獨立的。VirtIO specificat
 Xvisor
 =========================================
 
-booting 流程
-------------------------
-可參考 `AJ NOTE<https://arm4fun.hackpad.com/ARM64-Booting-in-Xvisor-EdnevstgC0t>`_
-
-- 需要在MMU啟動前在virtual space下啟動Xvisor
-- 在assembly time時, 把img加入至.text,使用.incbin
-
-.. image:: /embedded/xvisor_memory.png
-
-* `cpu_entry.S<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S>`_
-
-.. code-block:: c
-
-    _start_mmu_init:
-        /* Setup SP as-per load address */
-        ldr	x0, __hvc_stack_end
-        mov	sp, x0
-        sub	sp, sp, x6
-        add	sp, sp, x4
-
-        .........
-
-        bl	_setup_initial_ttbl
-
-* `mmu_lpae.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c>`_
-
-.. code-block:: c
-
-    u8 __attribute__ ((aligned(TTBL_TABLE_SIZE))) def_ttbl[TTBL_INITIAL_TABLE_SIZE] = { 0 };
-
-初始化translation table
-* `mmu_lpae_entry_ttbl.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c>`_
-
-.. code-block:: c
-
-    void __attribute__ ((section(".entry")))
-        _setup_initial_ttbl(virtual_addr_t load_start, virtual_addr_t load_end,
-                    virtual_addr_t exec_start, virtual_addr_t exec_end)
-    {
-        ..........
-
-        lpae_entry.ttbl_base = to_load_pa((virtual_addr_t)&def_ttbl);   /* def_ttbl之後要放到 ttbr0_el2(Translation Base Register) 裡*/
-        lpae_entry.next_ttbl = (u64 *)lpae_entry.ttbl_base;
-
-        ..........
-
-        /* Map physical = logical
-         * Note: This mapping is using at boot time only
-         */
-        __setup_initial_ttbl(&lpae_entry, load_start, load_end, load_start,
-                AINDEX_NORMAL_WB, TRUE);
-
-        /* Map to logical addresses which are
-         * covered by read-only linker sections
-         * Note: This mapping is used at runtime
-         */
-        SETUP_RO_SECTION(lpae_entry, text);
-        SETUP_RO_SECTION(lpae_entry, init);
-        SETUP_RO_SECTION(lpae_entry, cpuinit);
-        SETUP_RO_SECTION(lpae_entry, spinlock);
-        SETUP_RO_SECTION(lpae_entry, rodata);
-
-        /* Map rest of logical addresses which are
-         * not covered by read-only linker sections
-         * Note: This mapping is used at runtime
-         */
-        __setup_initial_ttbl(&lpae_entry, exec_start, exec_end, load_start,
-                                AINDEX_NORMAL_WB, TRUE);
-    }
-
-    void __attribute__ ((section(".entry")))
-        __setup_initial_ttbl(struct mmu_lpae_entry_ctrl *lpae_entry,
-                    virtual_addr_t map_start, virtual_addr_t map_end,
-                    virtual_addr_t pa_start, u32 aindex, bool writeable)
-    {
-        ........
-        u64 *ttbl;
-
-        /* align start addresses */
-        map_start &= TTBL_L3_MAP_MASK;  /* 0xFFFFFFFFFFFFF000ULL 後面12的bit 直接map 到 output*/
-        pa_start &= TTBL_L3_MAP_MASK;
-
-        page_addr = map_start;
-
-        while (page_addr < map_end) {
-
-                /* Setup level1 table */
-                ttbl = (u64 *) lpae_entry->ttbl_base;
-                index = (page_addr & TTBL_L1_INDEX_MASK) >> TTBL_L1_INDEX_SHIFT;
-                if (ttbl[index] & TTBL_VALID_MASK) {
-                    /* Find level2 table */
-                    ttbl =
-                    (u64 *) (unsigned long)(ttbl[index] &
-                                        TTBL_OUTADDR_MASK);
-                } else {
-                    /* Allocate new level2 table */
-                    if (lpae_entry->ttbl_count == TTBL_INITIAL_TABLE_COUNT) {
-                        while (1) ;	/* No initial table available */
-                    }
-                    for (i = 0; i < TTBL_TABLE_ENTCNT; i++) {
-                        lpae_entry->next_ttbl[i] = 0x0ULL;
-                    }
-                    lpae_entry->ttbl_tree[lpae_entry->ttbl_count] =
-                        ((virtual_addr_t) ttbl -
-                        lpae_entry->ttbl_base) >> TTBL_TABLE_SIZE_SHIFT;
-                    lpae_entry->ttbl_count++;
-                    ttbl[index] |=
-                        (((virtual_addr_t) lpae_entry->next_ttbl) &
-                        TTBL_OUTADDR_MASK);
-                    ttbl[index] |= (TTBL_TABLE_MASK | TTBL_VALID_MASK);
-                    ttbl = lpae_entry->next_ttbl;
-                    lpae_entry->next_ttbl += TTBL_TABLE_ENTCNT;
-                }
-
-                /* Setup level2 table */
-                index = (page_addr & TTBL_L2_INDEX_MASK) >> TTBL_L2_INDEX_SHIFT;
-                if (ttbl[index] & TTBL_VALID_MASK) {
-                    /* Find level3 table */
-                    ttbl =
-                        (u64 *) (unsigned long)(ttbl[index] &
-                            TTBL_OUTADDR_MASK);
-                } else {
-                    /* Allocate new level3 table */
-                    ......
-                }
-
-                /* Setup level3 table */
-                index = (page_addr & TTBL_L3_INDEX_MASK) >> TTBL_L3_INDEX_SHIFT;
-                if (!(ttbl[index] & TTBL_VALID_MASK)) {
-                    /* Update level3 table */
-                    .......
-                }
-
-                /* Point to next page */
-                page_addr += TTBL_L3_BLOCK_SIZE;
-        }
-    }
-
-
-
-TCR_EL2, Translation Control Register (EL2)
-
-.. image:: /embedded/vtcr.png
-
-
-.. code-block:: c
-
-	/* Setup Hypervisor Translation Control Register */
-	ldr	x0, __htcr_set  
-	msr     tcr_el2, x0
-
-- __htcr_set:	(TCR_T0SZ_VAL(39) | TCR_PS_40BITS | (0x3 << TCR_SH0_SHIFT) | (0x1 << TCR_ORGN0_SHIFT) | (0x1 << TCR_IRGN0_SHIFT))
-    - TCR_T0SZ_VAL(39) = (64-39) & 0x3f: The size offset of the memory region addressed by TTBR0_EL2. The region size is 2^64-T0SZ bytes. 將 region size 設為 2^39 bytes
-        - Initial lookup level為level 1
-    - TCR_PS_40BITS = 2 << 16: Physical Address Size 設為40 bits, 1 TB。
-    - TCR_SH0_SHIFT = 12; 0x3: Shareability attribute for memory associated: Inner Shareable
-    - TCR_ORGN0_SHIFT = 10; 0x1: Outer cacheability attribute for memory associated: Write-Back Write-Allocate Cacheable
-    - TCR_IRGN0_SHIFT = 8; 0x1: Inner cacheability attribute for memory associated:  Write-Back Write-Allocate Cacheable
-
-.. code-block:: c
-
-	/* Setup Hypervisor Translation Base Register */
-	ldr	x0, __httbr_set  /* def_ttbl 的位置 */
-	msr	ttbr0_el2, x0
-
 GIC 配置
--------------------------------------------------------------
+------------------------
 先看foundation model的手冊
     - DGIC_DIST_BASE=0x2c001000
     - DGIC_CPU_BASE=0x2c002000
@@ -801,7 +636,7 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
 
 
 Virtual gic (vgic)
--------------------------------------------------------------
+------------------------
 
 `vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>`_ 提供vgic的實作(其中使用module及devtree):
 
@@ -1045,6 +880,172 @@ Virtual gic (vgic)
 
 .. image:: /embedded/vgic_flow.png
     
+MMU
+------------------------
+
+可參考 `AJ NOTE<https://arm4fun.hackpad.com/ARM64-Booting-in-Xvisor-EdnevstgC0t>`_
+
+- 需要在MMU啟動前在virtual space下啟動Xvisor
+- 在assembly time時, 把img加入至.text,使用.incbin
+
+.. image:: /embedded/xvisor_memory.png
+
+* `cpu_entry.S<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S>`_
+
+.. code-block:: c
+
+    _start_mmu_init:
+        /* Setup SP as-per load address */
+        ldr	x0, __hvc_stack_end
+        mov	sp, x0
+        sub	sp, sp, x6
+        add	sp, sp, x4
+
+        .........
+
+        bl	_setup_initial_ttbl
+
+* `mmu_lpae.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c>`_
+
+.. code-block:: c
+
+    u8 __attribute__ ((aligned(TTBL_TABLE_SIZE))) def_ttbl[TTBL_INITIAL_TABLE_SIZE] = { 0 };
+
+初始化translation table
+* `mmu_lpae_entry_ttbl.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c>`_
+
+.. code-block:: c
+
+    void __attribute__ ((section(".entry")))
+        _setup_initial_ttbl(virtual_addr_t load_start, virtual_addr_t load_end,
+                    virtual_addr_t exec_start, virtual_addr_t exec_end)
+    {
+        ..........
+
+        lpae_entry.ttbl_base = to_load_pa((virtual_addr_t)&def_ttbl);   /* def_ttbl之後要放到 ttbr0_el2(Translation Base Register) 裡*/
+        lpae_entry.next_ttbl = (u64 *)lpae_entry.ttbl_base;
+
+        ..........
+
+        /* Map physical = logical
+         * Note: This mapping is using at boot time only
+         */
+        __setup_initial_ttbl(&lpae_entry, load_start, load_end, load_start,
+                AINDEX_NORMAL_WB, TRUE);
+
+        /* Map to logical addresses which are
+         * covered by read-only linker sections
+         * Note: This mapping is used at runtime
+         */
+        SETUP_RO_SECTION(lpae_entry, text);
+        SETUP_RO_SECTION(lpae_entry, init);
+        SETUP_RO_SECTION(lpae_entry, cpuinit);
+        SETUP_RO_SECTION(lpae_entry, spinlock);
+        SETUP_RO_SECTION(lpae_entry, rodata);
+
+        /* Map rest of logical addresses which are
+         * not covered by read-only linker sections
+         * Note: This mapping is used at runtime
+         */
+        __setup_initial_ttbl(&lpae_entry, exec_start, exec_end, load_start,
+                                AINDEX_NORMAL_WB, TRUE);
+    }
+
+    void __attribute__ ((section(".entry")))
+        __setup_initial_ttbl(struct mmu_lpae_entry_ctrl *lpae_entry,
+                    virtual_addr_t map_start, virtual_addr_t map_end,
+                    virtual_addr_t pa_start, u32 aindex, bool writeable)
+    {
+        ........
+        u64 *ttbl;
+
+        /* align start addresses */
+        map_start &= TTBL_L3_MAP_MASK;  /* 0xFFFFFFFFFFFFF000ULL 後面12的bit 直接map 到 output*/
+        pa_start &= TTBL_L3_MAP_MASK;
+
+        page_addr = map_start;
+
+        while (page_addr < map_end) {
+
+                /* Setup level1 table */
+                ttbl = (u64 *) lpae_entry->ttbl_base;
+                index = (page_addr & TTBL_L1_INDEX_MASK) >> TTBL_L1_INDEX_SHIFT;
+                if (ttbl[index] & TTBL_VALID_MASK) {
+                    /* Find level2 table */
+                    ttbl =
+                    (u64 *) (unsigned long)(ttbl[index] &
+                                        TTBL_OUTADDR_MASK);
+                } else {
+                    /* Allocate new level2 table */
+                    if (lpae_entry->ttbl_count == TTBL_INITIAL_TABLE_COUNT) {
+                        while (1) ;	/* No initial table available */
+                    }
+                    for (i = 0; i < TTBL_TABLE_ENTCNT; i++) {
+                        lpae_entry->next_ttbl[i] = 0x0ULL;
+                    }
+                    lpae_entry->ttbl_tree[lpae_entry->ttbl_count] =
+                        ((virtual_addr_t) ttbl -
+                        lpae_entry->ttbl_base) >> TTBL_TABLE_SIZE_SHIFT;
+                    lpae_entry->ttbl_count++;
+                    ttbl[index] |=
+                        (((virtual_addr_t) lpae_entry->next_ttbl) &
+                        TTBL_OUTADDR_MASK);
+                    ttbl[index] |= (TTBL_TABLE_MASK | TTBL_VALID_MASK);
+                    ttbl = lpae_entry->next_ttbl;
+                    lpae_entry->next_ttbl += TTBL_TABLE_ENTCNT;
+                }
+
+                /* Setup level2 table */
+                index = (page_addr & TTBL_L2_INDEX_MASK) >> TTBL_L2_INDEX_SHIFT;
+                if (ttbl[index] & TTBL_VALID_MASK) {
+                    /* Find level3 table */
+                    ttbl =
+                        (u64 *) (unsigned long)(ttbl[index] &
+                            TTBL_OUTADDR_MASK);
+                } else {
+                    /* Allocate new level3 table */
+                    ......
+                }
+
+                /* Setup level3 table */
+                index = (page_addr & TTBL_L3_INDEX_MASK) >> TTBL_L3_INDEX_SHIFT;
+                if (!(ttbl[index] & TTBL_VALID_MASK)) {
+                    /* Update level3 table */
+                    .......
+                }
+
+                /* Point to next page */
+                page_addr += TTBL_L3_BLOCK_SIZE;
+        }
+    }
+
+
+
+TCR_EL2, Translation Control Register (EL2)
+
+.. image:: /embedded/vtcr.png
+
+
+.. code-block:: c
+
+	/* Setup Hypervisor Translation Control Register */
+	ldr	x0, __htcr_set  
+	msr     tcr_el2, x0
+
+- __htcr_set:	(TCR_T0SZ_VAL(39) | TCR_PS_40BITS | (0x3 << TCR_SH0_SHIFT) | (0x1 << TCR_ORGN0_SHIFT) | (0x1 << TCR_IRGN0_SHIFT))
+    - TCR_T0SZ_VAL(39) = (64-39) & 0x3f: The size offset of the memory region addressed by TTBR0_EL2. The region size is 2^64-T0SZ bytes. 將 region size 設為 2^39 bytes
+        - Initial lookup level為level 1
+    - TCR_PS_40BITS = 2 << 16: Physical Address Size 設為40 bits, 1 TB。
+    - TCR_SH0_SHIFT = 12; 0x3: Shareability attribute for memory associated: Inner Shareable
+    - TCR_ORGN0_SHIFT = 10; 0x1: Outer cacheability attribute for memory associated: Write-Back Write-Allocate Cacheable
+    - TCR_IRGN0_SHIFT = 8; 0x1: Inner cacheability attribute for memory associated:  Write-Back Write-Allocate Cacheable
+
+.. code-block:: c
+
+	/* Setup Hypervisor Translation Base Register */
+	ldr	x0, __httbr_set  /* def_ttbl 的位置 */
+	msr	ttbr0_el2, x0
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
