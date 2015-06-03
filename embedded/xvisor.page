@@ -380,8 +380,12 @@ cpu_entry.S 內初始化Hyp vector base
 
 - ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊
 
+.. image:: /embedded/esr.png
+
 cpu_interrupt.c
 (請參考手冊p.1905頁對照ESR的編碼)
+
+.. image:: /embedded/esr_ec.png
 
 .. code-block:: c
 
