@@ -339,7 +339,7 @@ Context Switch Latency 測試理論
     echo "" 1>&2
 
 .. image:: /embedded/arm_linux/line_size_compare.png
-- 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較，且兩者的L1 cache line size均為64bytes。
+- 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較，且兩者的L1 cache line size均為64bytes，另外，Y軸的時間差異不用太在意，重點是斜率。
 
 - 原因：
 
