@@ -477,157 +477,7 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
 
 .. image:: /embedded/gic_virt.png
 
-(可參考下方gic配置)
-
-`vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>`_ 提供vgic的實作(其中使用module及devtree):
-
-.. code-block:: c
-
-    static struct vmm_emulator vgic_dist_emulator = {
-        .name = "vgic-dist",
-        .match_table = vgic_dist_emuid_table,
-        .endian = VMM_DEVEMU_LITTLE_ENDIAN,
-        .probe = vgic_dist_emulator_probe,
-        .remove = vgic_dist_emulator_remove,
-        .reset = vgic_dist_emulator_reset,
-        ......
-    };
-    
-    static struct vmm_emulator vgic_cpu_emulator = {
-        .name = "vgic-cpu",
-        .match_table = vgic_cpu_emuid_table,
-        .endian = VMM_DEVEMU_LITTLE_ENDIAN,
-        .probe = vgic_cpu_emulator_probe,
-        .remove = vgic_cpu_emulator_remove,
-        .reset = vgic_cpu_emulator_reset,
-    };
-
-    static int __init vgic_emulator_init(void)
-    {
-        int i, rc;
-        struct vmm_devtree_node *node;
-
-        vgich.avail = FALSE;
-
-        .......
-        /* 取得devtree 內gic reg的位置及GIC Maintanence IRQ */
-        .......
-
-        /* 註冊vgic distributor 及 vgic cpu interface*/
-        rc = vmm_devemu_register_emulator(&vgic_dist_emulator);
-        rc = vmm_devemu_register_emulator(&vgic_cpu_emulator);
-
-        for (i = 0; i < GICD_MAX_NIRQ; i++) {
-            ARCH_ATOMIC_INIT(&vgich.host2guest_irq[i], -1);
-        }
-
-        vgich.avail = TRUE;
-
-        vgich.lr_cnt = vmm_readl((void *)vgich.hctrl_va + GICH_VTR);
-        vgich.lr_cnt = (vgich.lr_cnt & GICH_VTR_LRCNT_MASK) + 1;
-
-        vmm_smp_ipi_async_call(cpu_online_mask, vgic_enable_maint_irq,
-                               (void *)(unsigned long)vgich.maint_irq,
-                               vgic_maint_irq, NULL);
-
-        ......
-    }
-
-    VMM_DECLARE_MODULE(MODULE_DESC,
-                   MODULE_AUTHOR,
-                   MODULE_LICENSE,
-                   MODULE_IPRIORITY,
-                   MODULE_INIT,
-                   MODULE_EXIT);
-
-
-在create guest OS，初始化其address space時，就會使用之前註冊的probe來設定distributor及cpu interface。
-其中 vgic_dist_emulator_probe會讀guest device tree的內容來設定vgic_state:
-
-.. code-block:: c
-
-    static int vgic_dist_emulator_probe(struct vmm_guest *guest,
-                                        struct vmm_emudev *edev,
-                                        const struct vmm_devtree_nodeid *eid)
-    {
-        int rc;
-        u32 i, virq, hirq, len, parent_irq, num_irq;
-        struct vgic_guest_state *s;
-
-        .......
-
-        rc = vmm_devtree_read_u32(edev->node, "parent_irq", &parent_irq);
-        if (rc) {
-            return rc;
-        }
-
-        if (vmm_devtree_read_u32(edev->node, "num_irq", &num_irq)) {
-            num_irq = VGIC_MAX_NIRQ;
-        }
-        if (num_irq > VGIC_MAX_NIRQ) {
-            num_irq = VGIC_MAX_NIRQ;
-        }
-
-        s = vgic_state_alloc(edev->node->name,
-                             guest, guest->vcpu_count,
-                             num_irq, parent_irq);
-
-
-.. code-block:: c
-
-    static struct vgic_guest_state *vgic_state_alloc(const char *name,
-                                        struct vmm_guest *guest,
-                                        u32 num_cpu,
-                                        u32 num_irq,
-                                        u32 parent_irq)
-    {
-        u32 i;
-        struct vmm_vcpu *vcpu;
-        struct vgic_guest_state *s = NULL;
-
-        /* Alloc VGIC state */
-        s = vmm_zalloc(sizeof(struct vgic_guest_state));
-
-        s->guest = guest;
-
-        s->num_cpu = num_cpu;
-        s->num_irq = num_irq;
-        s->id[0] = 0x90 /* id0 */;
-        s->id[1] = 0x13 /* id1 */;
-        s->id[2] = 0x04 /* id2 */;
-        s->id[3] = 0x00 /* id3 */;
-        s->id[4] = 0x0d /* id4 */;
-        s->id[5] = 0xf0 /* id5 */;
-        s->id[6] = 0x05 /* id6 */;
-        s->id[7] = 0xb1 /* id7 */;
-
-        for (i = 0; i < VGIC_NUM_IRQ(s); i++) {
-            VGIC_SET_HOST_IRQ(s, i, UINT_MAX);
-        }
-
-        for (i = 0; i < VGIC_NUM_CPU(s); i++) {
-            s->vstate[i].vcpu = vmm_manager_guest_vcpu(guest, i);
-            s->vstate[i].parent_irq = parent_irq;
-        }
-
-        INIT_SPIN_LOCK(&s->dist_lock);
-
-        /* Register guest irq handler */
-        for (i = 0; i < VGIC_NUM_IRQ(s); i++) {
-            vmm_devemu_register_irq_handler(guest, i,
-                                            name, vgic_irq_handle, s);
-        }
-
-        /* setup 之後context switch時使用的save, restore function*/
-        /* Setup save/restore hooks */
-        list_for_each_entry(vcpu, &guest->vcpu_list, head) {
-            arm_vgic_setup(vcpu,
-                           vgic_save_vcpu_context,
-                           vgic_restore_vcpu_context, s);
-        }
-        
-        return s;
-    }
+(可參考下方gic配置及vgic)
 
 
 I/O device virtualization
@@ -943,6 +793,162 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
 
 設定 interrupt priority, Host IRQ subsystem, priority on PPI and SGI, mode... 等
 詳見: `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
+
+
+
+Virtual gic (vgic)
+-------------------------------------------------------------
+
+`vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>`_ 提供vgic的實作(其中使用module及devtree):
+
+.. code-block:: c
+
+    static struct vmm_emulator vgic_dist_emulator = {
+        .name = "vgic-dist",
+        .match_table = vgic_dist_emuid_table,
+        .endian = VMM_DEVEMU_LITTLE_ENDIAN,
+        .probe = vgic_dist_emulator_probe,
+        .remove = vgic_dist_emulator_remove,
+        .reset = vgic_dist_emulator_reset,
+        ......
+    };
+    
+    static struct vmm_emulator vgic_cpu_emulator = {
+        .name = "vgic-cpu",
+        .match_table = vgic_cpu_emuid_table,
+        .endian = VMM_DEVEMU_LITTLE_ENDIAN,
+        .probe = vgic_cpu_emulator_probe,
+        .remove = vgic_cpu_emulator_remove,
+        .reset = vgic_cpu_emulator_reset,
+    };
+
+    static int __init vgic_emulator_init(void)
+    {
+        int i, rc;
+        struct vmm_devtree_node *node;
+
+        vgich.avail = FALSE;
+
+        .......
+        /* 取得devtree 內gic reg的位置及GIC Maintanence IRQ */
+        .......
+
+        /* 註冊vgic distributor 及 vgic cpu interface*/
+        rc = vmm_devemu_register_emulator(&vgic_dist_emulator);
+        rc = vmm_devemu_register_emulator(&vgic_cpu_emulator);
+
+        for (i = 0; i < GICD_MAX_NIRQ; i++) {
+            ARCH_ATOMIC_INIT(&vgich.host2guest_irq[i], -1);
+        }
+
+        vgich.avail = TRUE;
+
+        vgich.lr_cnt = vmm_readl((void *)vgich.hctrl_va + GICH_VTR);
+        vgich.lr_cnt = (vgich.lr_cnt & GICH_VTR_LRCNT_MASK) + 1;
+
+        vmm_smp_ipi_async_call(cpu_online_mask, vgic_enable_maint_irq,
+                               (void *)(unsigned long)vgich.maint_irq,
+                               vgic_maint_irq, NULL);
+
+        ......
+    }
+
+    VMM_DECLARE_MODULE(MODULE_DESC,
+                   MODULE_AUTHOR,
+                   MODULE_LICENSE,
+                   MODULE_IPRIORITY,
+                   MODULE_INIT,
+                   MODULE_EXIT);
+
+
+在create guest OS，初始化其address space時，就會使用之前註冊的probe來設定distributor及cpu interface。
+其中 vgic_dist_emulator_probe會讀guest device tree的內容來設定vgic_state:
+
+.. code-block:: c
+
+    static int vgic_dist_emulator_probe(struct vmm_guest *guest,
+                                        struct vmm_emudev *edev,
+                                        const struct vmm_devtree_nodeid *eid)
+    {
+        int rc;
+        u32 i, virq, hirq, len, parent_irq, num_irq;
+        struct vgic_guest_state *s;
+
+        .......
+
+        rc = vmm_devtree_read_u32(edev->node, "parent_irq", &parent_irq);
+        if (rc) {
+            return rc;
+        }
+
+        if (vmm_devtree_read_u32(edev->node, "num_irq", &num_irq)) {
+            num_irq = VGIC_MAX_NIRQ;
+        }
+        if (num_irq > VGIC_MAX_NIRQ) {
+            num_irq = VGIC_MAX_NIRQ;
+        }
+
+        s = vgic_state_alloc(edev->node->name,
+                             guest, guest->vcpu_count,
+                             num_irq, parent_irq);
+
+
+.. code-block:: c
+
+    static struct vgic_guest_state *vgic_state_alloc(const char *name,
+                                        struct vmm_guest *guest,
+                                        u32 num_cpu,
+                                        u32 num_irq,
+                                        u32 parent_irq)
+    {
+        u32 i;
+        struct vmm_vcpu *vcpu;
+        struct vgic_guest_state *s = NULL;
+
+        /* Alloc VGIC state */
+        s = vmm_zalloc(sizeof(struct vgic_guest_state));
+
+        s->guest = guest;
+
+        s->num_cpu = num_cpu;
+        s->num_irq = num_irq;
+        s->id[0] = 0x90 /* id0 */;
+        s->id[1] = 0x13 /* id1 */;
+        s->id[2] = 0x04 /* id2 */;
+        s->id[3] = 0x00 /* id3 */;
+        s->id[4] = 0x0d /* id4 */;
+        s->id[5] = 0xf0 /* id5 */;
+        s->id[6] = 0x05 /* id6 */;
+        s->id[7] = 0xb1 /* id7 */;
+
+        for (i = 0; i < VGIC_NUM_IRQ(s); i++) {
+            VGIC_SET_HOST_IRQ(s, i, UINT_MAX);
+        }
+
+        for (i = 0; i < VGIC_NUM_CPU(s); i++) {
+            s->vstate[i].vcpu = vmm_manager_guest_vcpu(guest, i);
+            s->vstate[i].parent_irq = parent_irq;
+        }
+
+        INIT_SPIN_LOCK(&s->dist_lock);
+
+        /* Register guest irq handler */
+        for (i = 0; i < VGIC_NUM_IRQ(s); i++) {
+            vmm_devemu_register_irq_handler(guest, i,
+                                            name, vgic_irq_handle, s);
+        }
+
+        /* setup 之後context switch時使用的save, restore function*/
+        /* Setup save/restore hooks */
+        list_for_each_entry(vcpu, &guest->vcpu_list, head) {
+            arm_vgic_setup(vcpu,
+                           vgic_save_vcpu_context,
+                           vgic_restore_vcpu_context, s);
+        }
+        
+        return s;
+    }
+
     
 在不同Arm架構下的虛擬化機制
 =====================================
