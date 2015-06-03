@@ -292,7 +292,51 @@ Context Switch Latency 測試理論
    - b/s個連續存取到同一個 cache line.
    - 第一次載入array，總是Cache miss,REGIME 2 三種討論皆是如此，不再重述。
    - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
-   - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如參考資料1的example 2)
+   - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如下驗證 及 參考資料1的example 2)
+
+**驗證line size造成的miss的影響：**
+
+.. code-block:: c
+    
+    #include<stdio.h>
+    #include<sys/time.h>
+    #include<unistd.h>
+    #include<stdlib.h>
+    int arr[64 * 1024 * 80] = { 2 };//just for big enough
+    int test_line(int step)
+    {
+    struct timeval start;
+    struct timeval end;
+    long unsigned int i = 0;
+    gettimeofday(&start, NULL);
+    for (; i < (int)(sizeof(arr)/sizeof(int)); i += step) 
+    {
+    arr[i] *= arr[i];
+    }
+    gettimeofday(&end, NULL);
+    return ( 1000000*(end.tv_sec - start.tv_sec)+ (end.tv_usec - start.tv_usec) ) ;
+    }
+    int main(int argc, char *argv[])
+    {
+    int test_step = atoi(argv[1]);
+    printf("%d %d\n", test_step, test_line(test_step));
+    return 0;
+    }
+
+.. code-block:: txt
+    
+    #!/bin/bash
+    K="1 4 6 8 10 12 14 16 32 64 128 256"
+    #set -x
+    for size in $K
+    do
+        ./test_line $size
+    done
+    echo "" 1>&2
+
+.. image:: /embedded/arm_linux/line_size.png
+
+
    - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
    - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf>`_
 
