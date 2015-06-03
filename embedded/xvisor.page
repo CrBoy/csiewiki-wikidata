@@ -57,14 +57,12 @@ Hypervisor (Virtual Machine Monitor, VMM)
     - 安全監控 (Secure Monitoring)
         - ARM SMC(secure monitor call) to secure monitor mode
         - kernel等級或者是rootkits的攻擊通常都是在執行擁有特權(privilege)模式的時候發生的，而透過虛擬化，我們擁有更高權限的hypervisor去控制memory protection或程式的排程優先順序
-        - 最主要我們是透過hypervisor去把security tools也就是monitor孤立出來，不會把monitor與untrusted VM放在一起，並把他們分別移到trusted secure VM，再透過introspection去掃描或觀察這些程式碼
+        - 最主要我們是透過hypervisor去把security tools也就是monitor孤立出來，不會把monitor與untrusted VM放在一起，並把他們分別移到trusted secure VM，再透過 `introspection<http://askubuntu.com/questions/108174/what-does-introspection-mean-and-how-is-it-related-to-gobject-introspection>`_ 去掃描或觀察這些程式碼
         - source: http://research.microsoft.com/pubs/153179/sim-ccs09.pdf (主要探討Secure in VM-monitor)
         - source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
         - In-VM 有較好的performance，Out-of-VM則有較好的安全性
 
-    .. image:: /embedded/secure_monitoring.png
-
-    .. image:: /embedded/secure_monitoring1.png
+    .. image:: /embedded/secure_monitoring_new.png
 
 
 Hypervisor的類型
