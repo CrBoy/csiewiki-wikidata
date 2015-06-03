@@ -406,36 +406,36 @@ cpu_interrupt.c
 
 
         switch (ec) {
-        case EC_UNKNOWN:
+        case EC_UNKNOWN:      /* 0x00 */
             /* We dont expect to get this trap so error */
             rc = VMM_EFAIL;
             break;
-        case EC_TRAP_WFI_WFE:
+        case EC_TRAP_WFI_WFE:      /* 0x01 */
             /* WFI emulation */
             rc = cpu_vcpu_emulate_wfi_wfe(vcpu, regs, il, iss);
             break;
-        case EC_TRAP_MCR_MRC_CP15_A32:
+        case EC_TRAP_MCR_MRC_CP15_A32:      /* 0x03 */
             /* MCR/MRC CP15 emulation */
             rc = cpu_vcpu_emulate_mcr_mrc_cp15(vcpu, regs, il, iss);
             break;
     .........
             break;
-        case EC_TRAP_HVC_A64:
+        case EC_TRAP_HVC_A64:      /* 0x16 */
             /* HVC emulation for A64 guest */
             rc = cpu_vcpu_emulate_hvc64(vcpu, regs, il, iss);
             break;
-        case EC_TRAP_MSR_MRS_SYSTEM:
+        case EC_TRAP_MSR_MRS_SYSTEM:      /* 0x18 */
             /* MSR/MRS/SystemRegs emulation */
             rc = cpu_vcpu_emulate_msr_mrs_system(vcpu, regs, il, iss);
             break;
-        case EC_TRAP_LWREL_INST_ABORT:
+        case EC_TRAP_LWREL_INST_ABORT:      /* 0x20 */
             /* Stage2 instruction abort */
             fipa = (mrs(hpfar_el2) & HPFAR_FIPA_MASK) >> HPFAR_FIPA_SHIFT;
             fipa = fipa << HPFAR_FIPA_PAGE_SHIFT;
             fipa = fipa | (mrs(far_el2) & HPFAR_FIPA_PAGE_MASK);
             rc = cpu_vcpu_inst_abort(vcpu, regs, il, iss, fipa);
             break;
-        case EC_TRAP_LWREL_DATA_ABORT:
+        case EC_TRAP_LWREL_DATA_ABORT:      /* 0x24 */
             /* Stage2 data abort */
             fipa = (mrs(hpfar_el2) & HPFAR_FIPA_MASK) >> HPFAR_FIPA_SHIFT;
             fipa = fipa << HPFAR_FIPA_PAGE_SHIFT;
