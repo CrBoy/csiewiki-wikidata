@@ -340,7 +340,9 @@ Context Switch Latency 測試理論
 
 .. image:: /embedded/arm_linux/line_size_compare.png
 - 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較，且兩者的L1 cache line size均為64bytes。
+
 - 原因：
+
 由於BBB的line size為64byte = 16個INT，今天以一個迴圈，對其值做動作，然後每次跳躍"K"個記憶體位置，消耗的時間為CPU運算時間+cache line miss的時間，從圖中可發現，K <=16時，斜率較低，但消耗時間仍然有下降，可以發現是因為實質上CPU所運算的對象的確較少，然而到K=32時，CPU雖然運算比先前更少，但是可以看出line(cache) miss的影響比較大，因為同樣都是少了一半CPU運算的對象（k=8與k=16 vs k=16與k=32 vs k=32與k=64），但斜率下降更明顯，就是由於miss的次數少了一半。依此類推，K=64為K=16的miss次數的1/4，但是K=1到K=16的miss次數是一樣的，至於為什麼會這樣，見下圖說明。
 今天cache一次抓取line size大小的資料，所以64bytes以下的資料都會被抓進來，只是當K!=1且K<16時，會比K=1的情況下，運算較少次，但是miss次數是一樣的!
 - 說明圖片:(int的大小為4 bytes時)
