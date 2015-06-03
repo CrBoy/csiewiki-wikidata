@@ -292,7 +292,7 @@ Context Switch Latency 測試理論
    - b/s個連續存取到同一個 cache line.
    - 第一次載入array，總是Cache miss,REGIME 2 三種討論皆是如此，不再重述。
    - 因此執行時間為Tno-miss + D*s/b ;D為delay penalty(代表從主記憶體讀取資料然後恢復執行的時間)
-   - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如下驗證 及 參考資料1的example 2)
+   - 現代的cache不以byte為單位了，以cache line為一次抓取資料的單位，故2.a方法已經不再討論，也無法驗證，但是可以驗證line size(如下驗證)
 
 **驗證line size造成的miss的影響：**
 
@@ -338,10 +338,12 @@ Context Switch Latency 測試理論
     done
     echo "" 1>&2
 
-.. image:: /embedded/arm_linux/line_size.png
-
+.. image:: /embedded/arm_linux/line_size_compare.png
+- 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較。
 - 原因：
-由於BBB的line size為64byte = 16個INT，今天以一個迴圈，對其值做動作，然後每次跳躍"K"個記憶體位置，消耗的時間為CPU運算時間+line(cache) miss的時間，從圖中可發現，K <=16時，斜率較低，但消耗時間仍然有下降，可以發現是因為實質上CPU所運算的對象的確較少，然而到K=32時，CPU雖然運算比先前更少，但是可以看出line(cache) miss的影響比較大，因為同樣都是少了一半CPU運算的對象（k=8與k=16 vs k=16與k=32 vs k=32與k=64），但斜率下降更明顯，就是由於miss的次數少了一半。依此類推，K=64為K=16的miss次數的1/4，但是K=1到K=16的miss次數是一樣的，至於為什麼會這樣，見下圖說明。
+由於BBB的line size為64byte = 16個INT，今天以一個迴圈，對其值做動作，然後每次跳躍"K"個記憶體位置，消耗的時間為CPU運算時間+cache line miss的時間，從圖中可發現，K <=16時，斜率較低，但消耗時間仍然有下降，可以發現是因為實質上CPU所運算的對象的確較少，然而到K=32時，CPU雖然運算比先前更少，但是可以看出line(cache) miss的影響比較大，因為同樣都是少了一半CPU運算的對象（k=8與k=16 vs k=16與k=32 vs k=32與k=64），但斜率下降更明顯，就是由於miss的次數少了一半。依此類推，K=64為K=16的miss次數的1/4，但是K=1到K=16的miss次數是一樣的，至於為什麼會這樣，見下圖說明。
+今天cache一次抓取line size大小的資料，所以64bytes以下的資料都會被抓進來，只是當K!=1且K<16時，會比K=1的情況下，運算較少次，但是miss次數是一樣的!
+- 說明圖片:(int的大小為4 bytes時)
     - 32byte為k=8的情況
     - 64byte為k=16的情況
     - 256byte為k=64的情況
@@ -350,9 +352,8 @@ Context Switch Latency 測試理論
 .. image:: /embedded/arm_linux/line_size_illustrate.png
 
 
-    - 今天如果有1024個line(cache) miss會發生，一個line是64byte，那麼如果小於等於64bytes的K，一樣會踩到N次<假設>的line(cache) miss，但是如果K=128bytes，由於會"跨過"某些line miss的"點"，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
-    - 今天因為BBB的CPU較慢，處理龐大的數據會佔不少時間，所以看起來可能不明顯，所以附上一個在pc(i7-5500U)的圖片，同樣在參考資料1中的example2，它也有說明。
-.. image:: /embedded/arm_linux/line_size_i7.png
+    - 今天如果有一個夠大的array，一個line是64byte，那麼如果小於等於64bytes的K，會踩到N次<假設>的cache line miss，但是如果K=128bytes，由於會"跨過"某些cache line miss的"點"(因為沒有要用到那邊的資料)，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
+    - 在參考資料1中的example2，它也有說明。
 
    - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
    - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf>`_
