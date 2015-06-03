@@ -953,6 +953,70 @@ Virtual gic (vgic)
         return s;
     }
 
+.. code-block:: c
+
+    /* Process IRQ asserted by device emulation framework */
+    static void vgic_irq_handle(u32 irq, int cpu, int level, void *opaque)
+    {
+        .........
+
+        if (irq < 32) {
+            /* In case of PPIs and SGIs */
+            cm = target = (1 << cpu);
+        } else {
+            /* In case of SGIs */
+            cm = VGIC_ALL_CPU_MASK(s);
+            target = VGIC_TARGET(s, irq);
+            for (cpu = 0; cpu < VGIC_NUM_CPU(s); cpu++) {
+                if (target & (1 << cpu)) {
+                    break;
+                }
+            }
+            if (VGIC_NUM_CPU(s) <= cpu) {
+                vmm_spin_unlock_irqrestore_lite(&s->dist_lock, flags);
+                return;
+            }
+        }
+
+        /* Find out VCPU pointer */
+        vs = &s->vstate[cpu];
+
+        /* If level not changed then skip */
+        if (level == VGIC_TEST_LEVEL(s, irq, cm)) {
+            goto done;
+       }
+
+        /* Update IRQ state */
+        if (level) {
+            VGIC_SET_LEVEL(s, irq, cm);
+            if (VGIC_TEST_ENABLED(s, irq, cm)) {
+                VGIC_SET_PENDING(s, irq, target);
+                irq_pending = TRUE;
+            }
+        } else {
+           VGIC_CLEAR_LEVEL(s, irq, cm);
+        }
+
+        /* Directly updating VGIC HW for current VCPU */
+        if (vs->vcpu == vmm_scheduler_current_vcpu()) {
+            /* The VGIC HW state may have changed when the
+             * VCPU was running hence, sync VGIC VCPU state.
+             */
+            __vgic_sync_vcpu_hwstate(s, vs);
+
+            /* Flush IRQ state change to VGIC HW */
+            if (irq_pending) {
+                __vgic_flush_vcpu_hwstate_irq(s, vs, irq);
+            }
+        }
+
+    done:
+        ........
+        /* Forcefully resume VCPU if waiting for IRQ */
+        if (irq_pending) {
+            vmm_vcpu_irq_wait_resume(vs->vcpu);
+        }
+    }
     
 在不同Arm架構下的虛擬化機制
 =====================================
