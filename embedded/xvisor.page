@@ -648,6 +648,9 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
         return ret;
     }
 
+- 對應到gic cpu interface的 Interrupt Acknowledge Register GICC_IAR
+    - Purpose: The processor reads this register to obtain the interrupt ID of the signaled interrupt. This read acts as an acknowledge for the interrupt.
+
 .. code-block:: c
 
     static int __init gic_init_bases(u32 gic_nr,
