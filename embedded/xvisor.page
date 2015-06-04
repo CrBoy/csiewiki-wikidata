@@ -619,6 +619,16 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
         .........
        gic_init_bases(gic_cnt, eoimode, irq, cpu_base, cpu2_base, dist_base);
        .......
+
+       if (parent) {
+           if (vmm_devtree_read_u32(node, "parent_irq", &irq)) {
+              irq = 1020;
+           }
+           gic_cascade_irq(gic_cnt, irq);
+       } else {
+           /*  會進到這邊 */
+           vmm_host_irq_set_active_callback(gic_active_irq);
+       }
     }
 
 .. code-block:: c
