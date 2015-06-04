@@ -1126,6 +1126,17 @@ context switch
         clrex();
     }
 
+- tlb: inv_tlb_guest_allis(); 若下個排到的guest 之前的host cpu與現在的不同，那他所保有的TLB enteries就可能是舊的，因此就要invalidate tlb entries。
+    - tlbi alle1is: Invalidate all EL1&0 regime stage 1 and 2 TLB entries on all PEs in the same Inner Shareable domain.
+
+.. code-block:: c
+
+    #define inv_tlb_guest_allis()	asm volatile("tlbi alle1is\n\t" \
+    					     "dsb sy\n\t" \
+    					     "isb\n\t" \
+    					     ::: "memory", "cc") 
+
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
