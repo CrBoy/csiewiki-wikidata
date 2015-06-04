@@ -1040,6 +1040,13 @@ TCR_EL2, Translation Control Register (EL2)
 	ldr	x0, __httbr_set  /* def_ttbl 的位置 */
 	msr	ttbr0_el2, x0
 
+scheduler
+------------------------
+
+context switch
+................
+
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
