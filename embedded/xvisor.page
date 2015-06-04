@@ -512,9 +512,15 @@ GIC 配置
     - DGIC_DIST_BASE=0x2c001000
     - DGIC_CPU_BASE=0x2c002000
 
-.. image:: /embedded/gic_dist.png
-(from `GICv2 Architecture Specification P.75<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_)
+- gic distributor
 
+.. image:: /embedded/gic_dist.png
+
+- gic cpu interface
+
+.. image:: /embedded/gicc.png
+
+(from `GICv2 Architecture Specification P.75<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_)
 
 - booting前的設定
 
