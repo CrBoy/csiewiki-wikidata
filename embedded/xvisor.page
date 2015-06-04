@@ -701,6 +701,26 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
     }
 
 設定hirqctrl裡的irq們(for 的 i 即為host irq number) ，並set handelr。
+
+.. code-block:: c
+
+    void vmm_handle_fast_eoi(struct vmm_host_irq *irq, u32 cpu, void *data)
+    {
+        irq_flags_t flags;
+        struct vmm_host_irq_action *act;
+
+        list_for_each_entry(act, &irq->action_list[cpu], head) {
+            if (act->func(irq->num, act->dev) == VMM_IRQ_HANDLED) {
+                break;
+            }
+        }
+        if (irq->chip && irq->chip->irq_eoi) {
+            irq->chip->irq_eoi(irq);
+        }
+    }
+
+- 執行action_list裡的action
+
 詳見: `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
 
 
