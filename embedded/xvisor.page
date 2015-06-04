@@ -571,6 +571,17 @@ GIC 配置
 
 - host irq 初始化
 
+.. code-block:: c
+
+    struct vmm_host_irqs_ctrl {
+    	vmm_spinlock_t lock;
+    	struct vmm_host_irq *irq;
+    	u32 (*active)(u32);
+    	const struct vmm_devtree_nodeid *matches;
+    };
+
+    static struct vmm_host_irqs_ctrl hirqctrl;
+
 `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
 
 .. code-block:: c
@@ -624,7 +635,42 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
         gic_cpu_init(gic);
     }
 
-設定 interrupt priority, Host IRQ subsystem, priority on PPI and SGI, mode... 等
+    static void __init gic_dist_init(struct gic_chip_data *gic)
+    {
+
+        /* Disable IRQ distribution */
+        gic_write(0, base + GIC_DIST_CTRL);
+
+        ....
+        /*
+         * Disable all interrupts.
+         */
+        for (i = 0; i < gic->max_irqs; i += 32) {
+            gic_write(0xffffffff,
+                      base + GIC_DIST_ENABLE_CLEAR + i * 4 / 32);
+        }
+
+        /*
+         * Setup the Host IRQ subsystem.
+         * Note: We handle all interrupts including SGIs and PPIs via C code.
+         * The Linux kernel handles pheripheral interrupts via C code and
+         * SGI/PPI via assembly code.
+         */
+        for (i = gic->irq_start; i < (gic->irq_start + gic->max_irqs); i++) {
+            vmm_host_irq_set_chip(i, &gic_chip);
+            vmm_host_irq_set_chip_data(i, gic);
+            vmm_host_irq_set_handler(i, vmm_handle_fast_eoi);
+            /* Mark SGIs and PPIs as per-CPU IRQs */
+            if (i < 32) {
+                vmm_host_irq_mark_per_cpu(i);
+            }
+        }
+
+        /* Enable IRQ distribution */
+        gic_write(1, base + GIC_DIST_CTRL);
+    }
+
+設定hirqctrl裡的irq們(for 的 i 即為host irq number) ，並set handelr。
 詳見: `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
 
 
