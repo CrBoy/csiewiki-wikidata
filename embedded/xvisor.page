@@ -1047,6 +1047,85 @@ context switch
 ................
 
 
+.. code-block:: c
+
+    void arch_vcpu_switch(struct vmm_vcpu *tvcpu,
+                          struct vmm_vcpu *vcpu,
+                          arch_regs_t *regs)
+    {
+        u32 ite;
+        irq_flags_t flags;
+
+        /* Save user registers & banked registers */
+        if (tvcpu) {
+            arm_regs(tvcpu)->pc = regs->pc;
+            arm_regs(tvcpu)->lr = regs->lr;
+            arm_regs(tvcpu)->sp = regs->sp;
+            for (ite = 0; ite < CPU_GPR_COUNT; ite++) {
+                arm_regs(tvcpu)->gpr[ite] = regs->gpr[ite];
+            }
+            arm_regs(tvcpu)->pstate = regs->pstate;
+            if (tvcpu->is_normal) {
+                /* Update last host CPU */
+                arm_priv(tvcpu)->last_hcpu = vmm_smp_processor_id();
+                /* Save VGIC context */
+                arm_vgic_save(tvcpu);
+                /* Save sysregs context */
+                cpu_vcpu_sysregs_save(tvcpu);
+                /* Save VFP and SIMD context */
+                cpu_vcpu_vfp_save(tvcpu);
+                /* Save generic timer */
+                if (arm_feature(tvcpu, ARM_FEATURE_GENERIC_TIMER)) {
+                    generic_timer_vcpu_context_save(tvcpu,
+                                                    arm_gentimer_context(tvcpu));
+                }
+            }
+        }
+        /* Restore user registers & special registers */
+        regs->pc = arm_regs(vcpu)->pc;
+        regs->lr = arm_regs(vcpu)->lr;
+        regs->sp = arm_regs(vcpu)->sp;
+        for (ite = 0; ite < CPU_GPR_COUNT; ite++) {
+            regs->gpr[ite] = arm_regs(vcpu)->gpr[ite];
+        }
+        regs->pstate = arm_regs(vcpu)->pstate;
+        if (vcpu->is_normal) {
+            /* Restore hypervisor context */
+            vmm_spin_lock_irqsave(&arm_priv(vcpu)->hcr_lock, flags);
+            msr(hcr_el2, arm_priv(vcpu)->hcr);
+            vmm_spin_unlock_irqrestore(&arm_priv(vcpu)->hcr_lock, flags);
+            msr(cptr_el2, arm_priv(vcpu)->cptr);
+            msr(hstr_el2, arm_priv(vcpu)->hstr);
+            /* Restore Stage2 MMU context */
+            mmu_lpae_stage2_chttbl(vcpu->guest->id,
+                                   arm_guest_priv(vcpu->guest)->ttbl);
+            /* Restore generic timer */
+            if (arm_feature(vcpu, ARM_FEATURE_GENERIC_TIMER)) {
+                generic_timer_vcpu_context_restore(vcpu,
+                                                   arm_gentimer_context(vcpu));
+            }
+            /* Restore VFP and SIMD context */
+            cpu_vcpu_vfp_restore(vcpu);
+            /* Restore sysregs context */
+            cpu_vcpu_sysregs_restore(vcpu);
+            /* Restore VGIC context */
+            arm_vgic_restore(vcpu);
+            /* Flush TLB if moved to new host CPU */
+            if (arm_priv(vcpu)->last_hcpu != vmm_smp_processor_id()) {
+                /* Invalidate all guest TLB enteries because
+                 * we might have stale guest TLB enteries from
+                 * our previous run on new_hcpu host CPU
+                 */
+                inv_tlb_guest_allis();
+                /* Ensure changes are visible */
+                dsb();
+                isb();
+            }
+        }
+        /* Clear exclusive monitor */
+        clrex();
+    }
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
