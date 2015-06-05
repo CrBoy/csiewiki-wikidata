@@ -189,7 +189,7 @@ SIMD 與浮點暫存器
 Syndrome Register
 .............................................
 
-- 保存觸發exection的原因(可用來作instruction emulation，請對照 `xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/_edit/embedded/xvisor#xvisor-instruction-emulate>`_服用)
+- 保存觸發exection的原因(可用來作instruction emulation，請對照 `xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate>`_服用)
 
 - ex: 
         - esr_el2
