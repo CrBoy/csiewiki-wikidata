@@ -1046,6 +1046,91 @@ timer 及 time event
         ....
     }
     
+.. code-block:: c
+
+    vmm_timer_init(void)
+    {
+        struct vmm_timer_local_ctrl *tlcp = &this_cpu(tlc);
+        .....
+        INIT_LIST_HEAD(&tlcp->event_list);
+        .....
+        /* Update event handler of clockchip */
+        vmm_clockchip_set_event_handler(tlcp->cc,
+                &timer_clockchip_event_handler);
+        /* tlcp->cc->event_handler = &timer_clockchip_event_handler;  */
+        ....
+    }
+
+    static void timer_clockchip_event_handler(struct vmm_clockchip *cc)
+    {
+        irq_flags_t flags, flags1;
+        struct vmm_timer_event *e;
+        struct vmm_timer_local_ctrl *tlcp = &this_cpu(tlc);
+
+        /* Process expired active events */
+        while (!list_empty(&tlcp->event_list)) {
+            e = list_entry(list_first(&tlcp->event_list),
+                           struct vmm_timer_event, active_head);
+            /* Current timestamp */
+            if (e->expiry_tstamp <= vmm_timer_timestamp()) {
+                __timer_event_stop(e);
+                vmm_spin_unlock_irqrestore_lite(&e->active_lock, flags1);
+                /* Call event handler */
+                e->handler(e);
+            } else {
+                /* No more expired events */
+                break;
+            }
+        }
+
+        /* Schedule next timer event */
+        __timer_schedule_next_event(tlcp);
+
+    }
+
+    int vmm_timer_event_start(struct vmm_timer_event *ev, u64 duration_nsecs)
+    {
+
+        hcpu = vmm_smp_processor_id();
+        tlcp = &per_cpu(tlc, hcpu);
+        tstamp = vmm_timer_timestamp();
+
+        __timer_event_stop(ev);
+
+        ev->expiry_tstamp = tstamp + duration_nsecs;
+        ev->duration_nsecs = duration_nsecs;
+        ev->active_state = TRUE;
+        ev->active_hcpu = hcpu;
+
+        list_for_each_entry(e, &tlcp->event_list, active_head) {
+            if (ev->expiry_tstamp < e->expiry_tstamp) {
+                found_pos = TRUE;
+                break;
+            }
+        }
+
+        if (!found_pos) {
+            list_add_tail(&ev->active_head, &tlcp->event_list);
+        } else {
+            list_add_tail(&ev->active_head, &e->active_head);
+        }
+
+        __timer_schedule_next_event(tlcp);
+    }
+
+scheduler.c
+
+.. code-block:: c
+
+    int __cpuinit vmm_scheduler_init(void)
+    {
+        ......
+        INIT_TIMER_EVENT(&schedp->ev, &scheduler_timer_event, schedp);
+        ......
+        /* Start timer events */
+        vmm_timer_event_start(&schedp->ev, 0);
+    }
+
 MMU
 ------------------------
 
