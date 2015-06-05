@@ -119,7 +119,17 @@ EL2只會實現在 Non-secure state，並負責:
 指令與例外處理暫存器 (Registers for instruction processing and exception handling)
 ------------------------------------------------------------------------------------
 
+通用暫存器
+......................................
 31 個通用暫存器R0-R30。可以作為64-bit暫存器X0-X30或是 31個 32-bit暫存器W0-W30來被存取。
+
+Process state PSTATE
+......................................
+.. image:: /embedded/pstate.png
+
+- CPSR
+
+.. image:: /embedded/CPSR.png
 
 SP暫存器 (stack pointer registers)
 ......................................
