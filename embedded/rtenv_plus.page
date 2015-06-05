@@ -57,38 +57,6 @@ Execution modes
  2. PSP：Process Stack Pointer
   - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
 
-Context Switch
-===============
-
-init_task
-==========
-
-- 功能：將系統初始函式 ``first()`` 的位址放置到 process stack 的 lr 位置。藉由 ``activate`` 置換 process state 上來，可讓程式執行 ``first()``。
-
-- 運作：
-
- .. code-block:: c
-
-    /* 傳入的參數為：欲執行 first() 的 task 的 stack位址 以及 first() 的位址 */
-    unsigned int *init_task(unsigned int *stack, void (*start)())
-    {
-        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
-         * 所以 stack pointer 一開始必須指向最高位址。
-         * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
-         * 而預期將 first() 的位址存到 _lr 中，所以必須 push 9個 word
-         */
-        stack += STACK_SIZE - 9;
-        /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
-         * user_thread_stack -> |r4 |r5 |r6 |r7 |r8 |r9 |r10|fp |_lr|...
-         *             stack -> |[0]|[1]|[2]|[3]|[4]|[5]|[6]|[7]|[8]|...
-         */
-        stack[8] = (unsigned int)start;
-        /* 回傳新的 sp 給該 task */
-        return stack;
-    }
-
-
-
 Exception (Cortex-M3)
 --------------------------
 
@@ -147,8 +115,8 @@ exception有進就要有出。
 - 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
 
   .. image:: /embedded/activate_again_exc_return.PNG
-
  
+
 task
 ==========
 rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
@@ -156,22 +124,56 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
  .. code-block:: c
 
     struct task_control_block {
-        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
-        int pid; //記錄目前 task 的 pid
-        int status; //記錄目前 task 的狀態
-        int priority; //記錄目前 task 的優先度
+        struct user_thread_stack *stack;  // 指到記憶體中 stack 的位置
+        int pid;                                               //記錄目前 task 的 pid
+        int status;                                          //記錄目前 task 的狀態
+        int priority;                                       //記錄目前 task 的優先度
+        int inuse;                                           //記錄目前 task 是否使用
 
         struct list list; 
     };
     
     // 其中 status 共有 5 種狀態被定義
     #define TASK_READY      0
-    #define TASK_WAIT_READ  1
+    #define TASK_WAIT_READ  1         
     #define TASK_WAIT_WRITE 2
     #define TASK_WAIT_INTR  3
     #define TASK_WAIT_TIME  4
     
-    其中 priority 預設為 20，最低的 priority 為39
+
+init_task
+==========
+
+- 功能：將系統初始函式的位址放置到 process stack 的 lr 位置。以及 exception return 的 lr 位置
+
+- 運作：
+
+ .. code-block:: c
+
+    /* 傳入的參數為：欲初始化的 stack pointer, 與初始的 function 位置 */
+    unsigned int *init_task(unsigned int *stack, void (*start)())
+    {
+        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
+         * 所以 stack pointer 一開始必須指向最高位址。
+         * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
+         * 而預期將 thread 的初始 function 位址存到 _lr 中以及 lr 中，加上CPSR的初始值，所以必須 push 18個 word
+         */
+        stack += STACK_SIZE - 18;
+        /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
+         * user_thread_stack -> |r4 |r5 |r6 |r7 |r8 |r9 |r10| fp |_lr|...
+         *                         stack ->| [0]|[1]|[2]|[3] |[4]|[5]|  [6]| [7]|[8]|...
+         *                         其餘部份請參考
+         */
+        stack[8] = (unsigned int)start;
+        /*  lr   */
+        stack[16] = (unsigned int)start;
+        /*  CPSR  */
+        stack[17] = (unsigned int)0x01000000;
+        /* 回傳新的 sp 給該 task */
+        return stack;
+    }
+
+
 
 list
 =====
