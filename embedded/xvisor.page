@@ -372,7 +372,7 @@ cpu_entry.S 內初始化Hyp vector base
      *  .endm
      */
 
-- ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊(請對照 `armv8 syndrome-registe<http://wiki.csie.ncku.edu.tw/_edit/embedded/ARMv8#syndrome-register>`_ 服用)
+- ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊(請對照 `armv8 syndrome-registe<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#syndrome-register>`_ 服用)
 
 
 cpu_interrupt.c
