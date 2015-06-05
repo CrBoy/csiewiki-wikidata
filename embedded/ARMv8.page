@@ -139,7 +139,9 @@ CPSR
     - M(mode): 現在處理器運行的模式
         - M[4]: 0表示現在是AArch64，1則表示現在是在AArch32 
         - M[3:0]: Current processor mode
-.. image:: /embedded/CPSR_mode.png
+            - 再AArch32下mode與Armv7下的表示相同，在AArch64下則如下圖所示:
+
+            .. image:: /embedded/CPSR_mode.png
 
 Process state PSTATE
 ......................................
