@@ -1,0 +1,880 @@
+---
+title: rtenv+ 2015
+categories: embedded, arm, stm32, stm32f429, ncku, cortex-m, IoT
+toc: no
+...
+
+協作者
+------
+* 2015 年夏季:
+  - `陳建霖<https://github.com/james33344>`_
+
+* 2015 年春季:
+  - `劉家瑄<https://github.com/goldmedal/>`_, `賴弈豪<https://github.com/harry191518>`_, `陳建霖<https://github.com/james33344>`_, `蘇容德<https://github.com/rita5022>`_, 李洋逸, 戴紹軒
+
+* 2014 年春季:
+  - `楊震<https://github.com/Omar002>`_, `丁士宸<https://github.com/StanleyDing>`_, `程政罡<https://github.com/marktwtn>`_, `李昆憶<https://github.com/LanKuDot>`_, `鄭聖文<https://github.com/shengwen1997/>`_
+
+共筆
+----
+* 2015 年春季: `hackpad <https://hackpad.com/rtenv-wDf84ASaCcb#:h=Memory-Layout>`_, `Context Switch hackpad <https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
+* 2014 年春季: `hackpad <https://embedded2014.hackpad.com/Rtenv-plus-0VHEYKBpr3D>`_
+
+作業系統架構
+---------------
+
+安裝和測試 with qemu
+----------------
+1. git clone https://github.com/james33344/rtenv-plus
+
+2. 建立環境，參考 http://wiki.csie.ncku.edu.tw/embedded/Lab38
+
+3. make qemu
+
+
+Execution modes
+===================
+
+- User (non-privileged) mode
+ 1. has limited access to the MSR and MRS instructions, and cannot use the CPS instruction
+ 2. cannot access the system timer, NVIC, or system control block
+ 3. might have restricted access to memory or peripherals.
+
+- Privileged mode
+ - software can use all the instructions and has access to all resources.
+
+- Operation mode
+ 1. Thread mode
+  - The Cortex-M3 提供 ``Privileged`` and User ( ``non-privileged`` ) execution
+  - Privileged mode在code執行時可full access
+  - non-privileged是limited。
+ 2. Handler mode
+  - 只有在exception發生時進入，且必為Privileged。
+
+- Main and Process Stacks
+ 1. MSP：Main Stack Pointer
+  - 一開始程式進入即為MSP
+ 2. PSP：Process Stack Pointer
+  - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
+
+Context Switch
+===============
+
+init_task
+==========
+
+- 功能：將系統初始函式 ``first()`` 的位址放置到 process stack 的 lr 位置。藉由 ``activate`` 置換 process state 上來，可讓程式執行 ``first()``。
+
+- 運作：
+
+ .. code-block:: c
+
+    /* 傳入的參數為：欲執行 first() 的 task 的 stack位址 以及 first() 的位址 */
+    unsigned int *init_task(unsigned int *stack, void (*start)())
+    {
+        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
+         * 所以 stack pointer 一開始必須指向最高位址。
+         * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
+         * 而預期將 first() 的位址存到 _lr 中，所以必須 push 9個 word
+         */
+        stack += STACK_SIZE - 9;
+        /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
+         * user_thread_stack -> |r4 |r5 |r6 |r7 |r8 |r9 |r10|fp |_lr|...
+         *             stack -> |[0]|[1]|[2]|[3]|[4]|[5]|[6]|[7]|[8]|...
+         */
+        stack[8] = (unsigned int)start;
+        /* 回傳新的 sp 給該 task */
+        return stack;
+    }
+
+
+
+Exception (Cortex-M3)
+--------------------------
+
+Cortex-M3有支援許多不同的Exception types
+
+  .. image:: /exception_type.jpg
+
+這裡我以SVC來做說明。
+
+當呼叫SVC 0時，SVC會觸發exception number 11並且發生exception entry
+
+Exception Entry
+--------------------------
+進入exception的條件：
+
+ 1. 要在thread mode
+
+ 2. 或者，要進入的exception的priority比正在執行的還高，則preempts，
+
+若已有其他exception正在handle，則exception變成巢狀的(exception中還有exception)。
+
+而無論exception是 tail-chained或late-arriving exception，都會自動依序將xPSR, PC, LR, R12(ip), R3, R2, R1, R0 push進去
+
+ .. image:: /exception_entry_push.png
+
+ 1. tail-chained
+   - 當一exception handler完成時，若這時剛好有其他在等待的exception符合exception entry的條件時，並要進入時，則剛剛完成的exception handler的最後就不用pop，直接執行下一個exception handler。用來加速exception servicing。
+
+ 2. late-arriving
+   -  當一exception在執行state saving時，若此時有high priority的exception進入的話，則不用中斷此state saving，因為他們是來自同一state。用來加速exception的preemption。
+
+而當此state saving完成後才會開始執行exception handler，而同時，processor也會將EXC_RETURN寫入LR
+
+ - EXC_RETURN的功能是，他要記錄你在發生exception前你的sp是位在psp還是msp，且你是在handler mode 還是 thread mode，以便得知exception return時應該有的行為。
+
+Exception Return
+--------------------
+exception有進就要有出。
+
+ exception return的條件：
+  - 在Handler mode發生，且要使PC被設為EXC_RETURN。
+
+將PC設為EXC_RETURN是為了要讓exception得的機制知道exception完成了，
+藉由偵測31~4bits，
+當全為 f 時，processor會detect到他不是一個一般的branch，並且會開始執行exception return的部分。
+
+這張圖很清楚的說明exception return做了甚麼事。
+ .. image:: /exception_return.png
+
+
+- **Exception return**：當 LR 值為 EXC_RETURN 之一: 0xfffffffd 時，
+  1. processor 會轉回 thread mode
+  2. 從 process stack 取回 exception 時所 push 進去的 registers
+  3. 使用 PSP 為當下的 SP
+
+- 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
+
+  .. image:: /embedded/activate_again_exc_return.PNG
+
+ 
+task
+==========
+rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
+
+ .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
+        int pid; //記錄目前 task 的 pid
+        int status; //記錄目前 task 的狀態
+        int priority; //記錄目前 task 的優先度
+
+        struct list list; 
+    };
+    
+    // 其中 status 共有 5 種狀態被定義
+    #define TASK_READY      0
+    #define TASK_WAIT_READ  1
+    #define TASK_WAIT_WRITE 2
+    #define TASK_WAIT_INTR  3
+    #define TASK_WAIT_TIME  4
+    
+    其中 priority 預設為 20，最低的 priority 為39
+
+list
+=====
+
+- 實作檔案：list.c
+- 類型：cyclic double linked list
+
+  .. image:: /embedded/rtenv-plus/double_linked_list.PNG
+
+- 函式：
+  - ``list_init``：初始化 node，prev 及 next 都指向自己。
+  - ``list_empty``：如果 list 的 next 還是指向自己，代表 list 為空。
+  - ``list_remove``：將指定的 node 從 linked list 中移除。
+  - ``list_unshift``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 next。
+  - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
+  - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
+ 
+  .. image:: /embedded/rtenv-plus/UOBhtQ.gif
+
+
+
+- Macro：
+  - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
+
+  .. code-block:: c
+
+    #define list_entry(list, type, member) \
+        (container_of((list), type, member))
+    #define container_of(ptr, type, member) \
+        ((type *)(((void *)ptr) - offsetof(type, member)))
+
+  Macro ``offsetof( type, member )`` 會以 bytes 的形式回傳指定 member 在 type 指定的 structure 或 union 的位置。如：
+
+  .. code-block:: c
+
+    struct foo {
+        int a;
+        int b;
+    };
+
+  則 offsetof( foo, a ) 會回傳 0，offsetof( foo, b ) 會回傳 4。看到 TCB 的設計:
+
+  .. code-block:: c
+
+    struct task_control_block {
+        struct user_thread_stack *stack;
+        int pid;
+        int status;
+        int priority;
+    
+        struct list list;
+    };
+
+  使用 ``task = list_entry(curr, struct task_control_block, list);`` 傳入 list node 的位址減去 list node 在 structure 中的 byte 位置，就會得到該 structure 第一個元素的起始位址，同時也是該 structure 變數的位址。
+
+  - ``list_for_each``：以 list 為起點，搜尋所有 node。
+  - ``list_for_each_safe``：以 list 為起點，但考慮到有些因為呼叫如 ``list_shift`` 之類的 function 會把 list node pop 出來，導致搜尋的連結中斷，``list_for_each_safe`` 讓剩下的 node 可以繼續被搜尋。
+
+scheduler
+==========
+rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler 的資料結構，``ready_list`` 的每一個元素都對應到不同優先權。
+
+  .. code-block:: c
+
+    struct list ready_list[PRIORITY_LIMIT + 1];
+
+  .. image:: /embedded/rtenv-plus/ready_list_array.png
+
+在第一個 task 的初始化，fork 建立新的 task，或是利用 setpriority 設定 task 的優先權，
+會使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
+
+ .. image:: /embedded/rtenv-plus/ready_list_element.png
+
+判別 ``ready_list`` 中的 element 是否為 empty，則觀察有沒有 task 被 push 到該 element 中
+
+  .. image:: /embedded/rtenv-plus/ready_list_empty.png
+
+觸發 scheduler 選擇下一個執行的 task 有三種狀況
+
+  - ``SysTick_Handler``：STM32F4 系統時鐘預設為 168MHz
+
+  .. code-block:: c
+
+    SysTick_Config(configCPU_CLOCK_HZ / configTICK_RATE_HZ);
+
+configCPU_CLOCK_HZ 為 72MHz，
+configTICK_RATE_HZ 為 100，
+( 72M/100 ) /168M = 4.29m，每經過 4.29ms 就會觸發一次 SysTick_Handler
+
+  - ``USART2_IRQHandler``：STM32F4 與週邊裝置或是連結的電腦傳輸資料時，usart2所觸發的中斷
+  - ``SVC_Handler`` ：system call 執行 ``svc 0`` 觸發
+
+當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，最前端為正在執行的 task，
+則將該 task 放到 ``ready_list`` 元素的最末端，讓其他有相同優先權的 task 能夠被執行。
+
+  .. code-block:: c
+
+    task = &tasks[current_task];
+    if (timeup && ready_list[task->priority].next == &task->list)
+        list_push(&ready_list[task->priority], &tasks[current_task].list);
+
+每次 scheduler 在選擇下一個要執行的 task，會從 ``ready_list`` 中尋找優先權最大且最前端的 task。
+
+  .. code-block:: c
+
+    for (i = 0; list_empty(&ready_list[i]); i++); // 尋找非空的 ready_list。
+    
+    list = ready_list[i].next; // 將 list 指到 ready_list[i].next 所指的 `struct list`，這個 list 會指到某一個 struct task 裡頭的 struct list。
+    task = list_entry(list, struct task_control_block, list); // 將 task 指到上面講的 struct task
+    current_task = task->pid; // 記錄這個 task 的 pid
+
+由上述可知道 rtenv-plus 是一個使用 round-robin 排程的 preemptive 作業系統
+
+Event Monitoring
+=================
+
+- 實作檔案：event_monitor.c
+- 功能：負責接受來自 event sources 所發出的 event occurrences，並將這些 pending 轉給 handlers 來處理 event。[#]_
+- 特性：
+  - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
+  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。而每個 event sensor 都有 pending 用以暫存發出 occurrence 的 task。
+- 函式：
+  - ``event_monitor_init``：初始化 event_monitor
+  - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
+  - ``event_monitor_register``：為 handler 裝上 sendor
+  - ``event_monitor_block``：將發出 event occurrence 的 task 從 ready_list 取出放到對應 event 的 pending list 裡，使 task 等待 handler 的處理
+  - ``event_monitor_release``：標記有 occurrence pending
+  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending。處理完後將 task 從 pending list 取出到 ready list 裡
+
+
+System Call
+============
+
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``main()`` 中實作 system call 功能。
+
+system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 tasks[current_task].stack 來傳遞，因為 tasks[current_task].stack 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
+
+``main()`` 中判斷 system call 的代號並執行對應功能
+
+- ``0x1：fork``
+
+``int fork();``
+
+分支出一個新的子task，子task複製所有父task push 進去的 stack 資料，繼承優先權，並為子task設定 pid 為當前task的數量-1(第一個初始task之 pid 為0)，也將子task.list push 進 ``ready_list``。父task回傳0，子task則回傳 pid 之值(不等於0)。
+
+若task數量已達到上限，則無法分支出新的 task，回傳-1。
+
+- ``0x2：getpid``
+
+``int getpid();``
+
+回傳該 task 之 pid，也就是 current_task。
+
+- ``0x3：write``
+
+``int write(int fd, const void *buf, size_t count);`` fd 是對應的 file descriptor，buf 則是要被寫入的地方，count 則是要寫入多少資料
+
+實現行程之間的溝通以及檔案系統的實作。
+根據不同檔案類型，用 ``writable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``write(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
+
+- ``0x4：read``
+
+``int read(int fd, void *buf, size_t count);``  fd 是對應的 file descriptor，buf 則是要被讀取的地方，count 則是要讀取多少資料
+
+實現行程之間的溝通以及檔案系統的實作。
+根據不同檔案類型，用 ``readable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``read(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
+
+- ``0x5：interrupt_wait``
+
+``void interrupt_wait(int intr);`` intr 為特定的 interrupt 編號
+
+透過 ``NVIC_EnableIRQ(tasks[current_task].stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
+
+- ``0x6：getpriority``
+
+``int getpriority(int who);`` who 決定選擇哪個 task，0為 tasks[current_task]
+
+回傳 task 的優先權。
+
+- ``0x7：setpriority``
+
+``int setpriority(int who, int value);`` who 決定選擇哪個 task，0為 tasks[current_task]，value 則是優先權大小
+
+設定 task 的優先權，優先權不小於 0 也不大於 PRIORITY_LIMIT，除了設定 current_task 的優先權之外，也可以更改其他 task 的優先權。
+
+- ``0x8：mknod``
+
+``int mknod(int fd, int mode, int dev);`` fd 是對應的 file descriptor，mode 不影響，dev 決定 file_operation 結構為哪種檔案類型
+
+改變傳入對應參數 files[fd] 所指向的 file_operation 結構，結構包含write，writable，read，readable，lseek，lseekable 函式(不是 system call 的函式)。
+
+- ``0x9：sleep``
+
+``void sleep(unsigned int);`` unsigned int 表示需等待幾次 SysTick 發生
+
+將 tasks[current_task] 擋住，狀態變成 TASK_WAIT_TIME，等待觸發 ``SysTick_Handler`` ，且觸發次數必須為 unsigned int 之值，才能繼續執行。
+
+- ``0xa：lseek``
+
+``void lseek(int fd, int offset, int whence);``  fd 是對應的 file descriptor，offset 是偏移量，whence 則是決定讀寫頭一開始會指到哪裡
+
+實現檔案系統的實作。
+根據不同檔案類型，用 ``lseekable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``lseek(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
+
+- ``default：``
+
+此狀況為因應其他非 SVC_Handler 的 interrupt，如SysTick_Handler與USART2_IRQHandler。
+SysTick_Handler：timeup 設定為1，使之後進行選擇哪一個 task 來執行，並且釋放狀態為 TASK_WAIT_TIME 的 task(但要符合條件)。
+USART2_IRQHandler：關掉特定的 interrupt 使之不能夠被觸發，並且釋放狀態為 TASK_WAIT_INTR 的 task。
+
+File Descriptor
+================
+在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 read、write、lseek 這三個 system call 都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個或多個運作函式 ( e.g. fifo_write )[#]_ 。
+
+----------------
+
+檔案類型一覽表：
+
++----------------+----------+------------------------+--------------+--------------+
+| 檔案類型        | type     | 資料結構                | 處理函式      | 初始化函式    |
++================+==========+========================+==============+==============+
+| fifo pipe      | S_IFIFO  | struct pipe_ringbuffer | 沒有 lseek    | fifo_init   |
++----------------+----------+------------------------+--------------+--------------+
+| message queue  | S_IMSGQ  | struct pipe_ringbuffer | 沒有 lseek   | mq_init      |
++----------------+----------+------------------------+--------------+--------------+
+| register file  | S_IFREG  | struct regfile         | 皆有提供      | regfile_init |
++----------------+----------+------------------------+--------------+--------------+
+| block file     | S_IFBLK  | struct block           | 皆有提供      | block_init   |
++----------------+----------+------------------------+--------------+--------------+
+
+----------------
+
+**初始化**
+
+透過 system call ``int mknod(int fd, int mode, int dev)`` 來指定 file descriptor 的類型，每一種檔案類型都有提供一個初始化函式。初始化函式會：
+
+- 從 memory pool 配置一塊記憶體給該檔案的資料結構
+- 設置處理函式
+- 將資料結構中的 file 元素存到 file descriptor array。
+- 設置 event sensor
+
+
+**Structures**
+
+- file_request：task 對於 fd 的請求，或是 fd 對 fd 的請求
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;
+        char *buf;        // 請求所需的資料，可以是 buffer 或是 其他 request 的資料結構
+        int size;         // *buf 的大小
+        int whence;       // 用於 lseek，標記 lseek 的請求類型
+    };
+
+
+- file：file descriptor 的 fd number 以及所屬的處理函式
+
+  .. code-block:: c
+
+    struct file {
+        int fd;          // 獨特的 fd number
+        struct file_operations *ops;     // 指向所屬的處理函式結構
+    };
+
+- file_operations：利用 pointer to function 來設置處理函式
+
+  .. code-block:: c
+
+    struct file_operations {
+        int (*readable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*writable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*read)(struct file*, struct file_request*, struct event_monitor *);
+        int (*write)(struct file*, struct file_request*, struct event_monitor *);
+        int (*lseekable)(struct file*, struct file_request*, struct event_monitor *);
+        int (*lseek)(struct file*, struct file_request*, struct event_monitor *);
+    };
+
+
+**file descriptor 關係**
+
+.. image:: /embedded/rtenv-plus/file_descriptor_relation.PNG
+
+- 在初始化函式中，會將資料結構中的 file 元素存到 kernel 的 file descriptor array，所以只要在 file descriptor array 中拿到指定的 file 元素，透過 marco ``container_of``，就可以拿到該 file descriptor 的資料結構。
+
+
+**pipe ( fifo pipe, message queue )**
+
+- IPC 的實作方式之一。
+- 資料結構
+
+  .. code-block:: c
+
+    struct pipe_ringbuffer {
+        struct file file;      // 所屬的 fd 以及 file operations
+        int start;             // ring buffer 目前的讀寫起點
+        int end;               // ring buffer 目前的讀寫終點
+        int read_event;        // 該 fd 所屬的 read event ID
+        int write_event;       // 該 fd 所屬的 write event ID
+        char data[PIPE_BUF];   // pipe 的 buffer，ring buffer
+    };
+
+- Event Handler
+  - ``int pipe_read_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``：
+    讓因為讀取而被 block 住的 task，重新送出讀取請求。
+  - ``int pipe_write_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``：
+    讓因為寫入而被 block 住的 task，重新送出寫入請求。
+
+- Macros
+  - ``PIPE_PUSH( pipe, src )``：從 src push 1 byte 的資料到 pipe 中。
+  - ``PIPE_POP( pipe, dst )``：從 pipe pop 1 byte 的資料到 dst 中。
+  - ``PIPE_PICK( pipe, dst, size_byte )``：從 pipe 中讀取指定 size 的資料到 dst，但不會將 pipe 的資料 pop 出來。
+  - ``PIPE_LEN( pipe )``：回傳 pipe 中的資料量 in bytes。
+
+- fifo pipe ( S_IFIFO )
+  - 傳遞資料格式：| 資料 |
+  - ``fifo_readable``
+    - FILE_ACCESS_ERROR：請求讀取的大小超過 pipe buffer 的大小。
+    - FILE_ACCESS_BLOCK：pipe 中的有效資料量未達要求讀取的大小，task 會被 push 到該資料結構的 read event list 中，進入 TASK_WAIT_READ 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 中的有效資料量大於或等於要求讀取的大小。
+
+  - ``fifo_read``：1 byte 1 byte 的從 pipe POP 資料出來存到使用者提供的 buffer 裡。讀取完成後，發出 write pending 讓等待寫入同一個 file descriptor 的 task 可以寫入資料。
+  - ``fifo_writable``
+    - FILE_ACCESS_ERROR：請求寫入的大小超過 pipe buffer 的大小。
+    - FILE_ACCESS_BLOCK：如果剩餘有效空間小於要求寫入大小的話，task 會被 push 到 write event list 中，進入 TASK_WAIT_WRITE 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 有足夠空間可以寫入。
+
+  - ``fifo_write``：1 byte 1 byte 將資料從使用者提供的 buffer 寫入 pipe 裡。寫入完成後，發出 read pending 讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
+
+- message queue ( S_IMSGQ )
+  - 傳遞資料格式：| 資料長度(4 bytes) | 資料 |
+  - ``mq_readable``
+    - FILE_ACCESS_BLOCK：message queue的資料傳輸格式一定帶有 4 bytes 的資料來指示後面所帶的資料長度，所以當 pipe 的有效資料未達 4 byte 時，代表還未傳輸完成，task 會被 push 到 read event list，進入 TASK_WAIT_READ 狀態。
+    - FILE_ACCESS_ERROR：請求讀取長度大於這次傳輸的長度。透過"資料長度( 4 bytes )"來檢查。
+    - FILE_ACCESS_ACCEPT：請求長度等於或小於這次的傳輸長度。
+
+  - ``mq_read``：先從 pipe 中取出資料長度，再依照資料長度將 pipe 資料 pop 出來存到使用者提供的 buffer 裡。讀取完成後，發出 write event pending 讓等待寫入同一個 file descriptor 的 task 可以寫入資料。
+  - ``mq_writable``
+    - FILE_ACCESS_ERROR：寫入必須是 non-atomic，所以寫入長度( 包含 4 byte 的長度資訊 )不能大於 pipe 的大小。
+    - FILE_ACCESS_BLOCK：pipe 沒有足夠的有效空間寫入，將 task push 到 write event list，進入 TASK_WAIT_WRITE 狀態。
+    - FILE_ACCESS_ACCEPT：pipe 有足夠的有效空間
+
+  - ``mq_write``：先將請求寫入的長度 push 到 pipe 裡，再將資料 push 到 pipe 裡。寫入完成後，發出 read event pending，讓等待讀取同一個 file descriptor 的 task 可以讀取資料。
+
+
+**Pipe 的 Read 與 Write**
+
+以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
+
+.. image:: /embedded/rtenv-plus/Read_and_write.png
+
+以 write 的部分為例，在 ``FILE_ACCESS_ACCEPT`` 的 case 中會送出 read_event pending。執行完 write 的工作後，kernel 會繼續執行 ``event_monitor_serve()``，檢查有沒有 event pending，此時，剛剛送出的 read_event 就會被處理，檢查有沒有在 read 的時候被 push 到 read_event list 的 task。如果有，則執行 read_event 的 handler - ``pipe_read_release()``。``pipe_read_release()`` 會重新呼叫 ``file_read()``，讓 task 再次嘗試讀取 pipe，流程判斷如上圖，但是不同的 case 有不同的處理方式：
+
+- ``FILE_ACCESS_ACCEPT``：值為1，代表讀取成功。``event_monitor_serve()`` 會將該 task 從 read_event 的 list 中 pop 出來，並重新 push 回 ready_list 裡，task 的狀態也被改為 TASK_READY。
+- ``FILE_ACCESS_BLOCK``：值為0，代表仍舊未達指定讀取量，則會被繼續 BLOCK 住。
+- ``FILE_ACCESS_ERROR``：不會發生。因為在第一次嘗試讀取時，如果發生 FILE_ACCESS_ERROR，該 task 不會被 push 到 read_event 的 list 中。
+
+至於 read，則反之。下圖為從輸入到輸出所牽涉的 task 以及使用的 pipe，其中箭頭的起點方執行 write，終點方為 read：
+
+.. image:: /embedded/rtenv-plus/Tasks_with_pipe.PNG
+
+
+**Block File( S_IFBLK )**
+
+- 特性：資料的讀寫以 block 為單位，大小不定，小至1，大至 fd 所提供的 buffer 大小。當需要從硬體讀取資料時，會將一整塊資料放入緩衝區裡，系統在從緩衝區裡取得資料；寫回時也會先將資料放在緩衝區，直到資料滿了在一次寫進硬體中。[#]_
+- 資料結構
+
+  .. code-block:: c
+
+    struct block {
+        struct file file;           // 所屬的 fd 以及 block file operations
+        int driver_pid;              // 所屬 driver ( 就是將此 fd 註冊為 S_IFBLK 的 task ) 的 pid
+        struct file *driver_file;   // 所屬 driver 的 fd
+        int event;                   // block event ID
+
+        /* request */
+        int request_pid;            // 請求 access 此 fd 的 task pid，如果為 0 代表尚未對 driver 發出請求
+        int buzy;                   // 為 1 時代表此 fd 正等待 driver 處理，否則為 0
+        int pos;                    // block file 的讀寫頭位置
+        char buf[BLOCK_BUF];        // buffer
+
+        /* response */
+        int transfer_len;           // lseek：driver 計算完的新的讀寫頭位置
+    };
+
+    struct block_request {
+        int cmd;       // 請求 romdev_driver() 執行的指令
+        int task;      // 請求 task 的 pid
+        int fd;        // 請求 access 的 fd number
+        int size;      // lseek 為指定的讀寫起點；read 和 write 則為讀寫大小
+        int pos;       // 詳見 block_request_****able 條目
+    };
+
+- Event Handler: ``block_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
+
+  讓 task 重新發送一次請求，請求類別由 stack 中的 r7 值( 0x03: file_write, 0x04: file_read, 0x0a: file_lseek )判定，請求的 file descriptor 資料結構的 reference 存在 data 中。
+
+- block 的請求有 read、write、lseek，分成兩大類，一個是外部對 fd 的請求 ( block_request_ 系列 )，另一個是 driver 對 fd 的請求 ( block_driver_ 系列 )。當外部想要對此 fd 請求時，會先被 block 住，等待 driver 對 fd 發出請求並處理完後，才會讓外部重新發出請求。
+
+- ``block_request_****able``
+  - 第一次請求( request_pid 為 0 )：先對 block 所屬的 driver 發出請求，如下表：
+
+  .. image:: /embedded/rtenv-plus/block_request.PNG
+
+
+　　將 block_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 romdev_driver()。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
+
+ - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+
+- ``block_driver_****able``
+  - FILE_ACCESS_ACCEPT：只有在有 task 想要 access block fd 時 ( buzy = 1 )
+  - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 block fd
+
+
+- ``block_response``：將指定資料傳送到指定的 block file descriptor，透過這些資訊 file descriptor 可以從 block file 取得資料。
+
+  .. code-block:: c
+
+    struct block_response response = {
+        .transfer_len = len,  // 請求讀取的長度
+        .buf = buf            // 請求資料的起點
+    };
+
+
+以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
+
+- **lseek**：設定 block file 讀寫頭。回傳：新的讀寫頭位置。
+  1. ``void lseek(int fd, int offset, int whence);``： **fd** 為對象 file descriptor 的 ID；**offset** 為距離檔案起點的位置( in bytes )；**whence** 可以指定使用哪一種設置方式( SEEK_SET, SEEK_CUR, SEEK_END )。
+  2. 透過 system call 將請求資訊放到 file_request，並傳送給對象 fd。
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;   // 為請求的 task
+        char *buf;     // NULL
+        int size;      // offset
+        int whence;    // whence：SEEK_SET、SEEK_CUR、SEEK_END
+    };
+
+  3. 由於請求的 task 非 driver，所以進行 block_request_lseekable。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request ( 包在 file_request 中 )，並等待 driver 的處理。
+
+  4. driver 收到 BLOCK_CMD_SEEK 指令後，計算好要設定的讀寫頭位置，使用 SEEK_SET ( 直接指定位置 ) 設定讀寫頭：
+
+    + SEEK_SET：直接將讀寫頭設定在 ``offset`` 指定的位置
+    + SEEK_END：將讀寫頭設定在 block file 結尾 (EOF) 後 ``offset`` bytes 的位置
+    + SEEK_CUR：將讀寫頭設定在 block file 的目前讀寫頭後 ``offset`` bytes 的位置
+
+  .. code-block:: c
+
+    struct file_request {
+        struct task_control_block *task;   // driver
+        char *buf;     // NULL
+        int size;      // 相對於 block file 起點的位置
+        int whence;    // SEEK_SET
+    };
+
+  5. 現在是由 driver 發出 lseek 的請求，也確認此 fd 正有請求要處理後，執行 ``block_driver_lseek``。block_driver_lseek 會將欲設定讀寫頭的位置存在此 fd 的 transfer_len 欄位，並將 buzy 設回 0，確認處理外部 task 對此 block fd 的請求。送出 block event pending，讓等待處理的 task 繼續執行。
+  6. ``event_monitor_serve`` 處理 block event pending 會執行 ``block_event_release``，透過 ``block_event_release`` 使得請求此 fd 的 task 再次 lseek 發出請求。
+  7. 外部 task 對於此 fd 為第二次請求，而且 driver 也已經處理完請求，執行 ``block_request_lseek``。
+  8. ``block_request_lseek`` 將 driver 所欲設定的值 ( 存在 transfer_len 欄位 ) 複製到此 fd 的 pos 欄位，完成設定讀寫頭的位置。
+  9. 將此 fd 的 request_pid 設回 0，代表完成外部 task 的請求，請求 task 會被 push 回 ready list，回傳值為新的讀寫頭位置。
+
+- **read**：以 fd 的讀寫頭為起點，一次讀取指定大小的資料。回傳：實際讀取的資料量
+  1. 外部 task 對此 fd 作 read 的請求，執行 ``block_request_readable``。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request，並等待 driver 的處理。
+  2. driver 收到 request 後，執行 BLOCK_CMD_READ 指令。driver 會計算讀取的區塊是否有超過 block file 的檔案結尾，如果有就只會讀取到檔案結尾。driver 會將計算結果透過 ``block_response`` 來讓 fd 讀取 block file 的資料。
+
+    .. image:: /embedded/rtenv-plus/romdev_read_check.PNG
+
+  3. ``block_response`` 使用 system call write 來傳輸資料給指定 fd。來自於 driver 的請求，``block_driver_writable`` 檢查該 fd 是否有收到外部請求，因為在 '1.' 時有發出請求，所以執行 ``block_driver_write``。
+  4. ``block_driver_write``：將資料從 block file 複製到 fd 的 buffer 中，將寫入長度存到 fd 的 transfer_len 欄位中，將 buzy 設為 0，表示 driver 處理完請求，並發出 block event pending。
+  5. 透過 block event handler ``block_event_release``，被 block 住的 task 再次送出 read 請求。由於 driver 已經處理完請求，所以執行 ``block_request_read``。
+  6. ``block_request_read`` 將 fd buffer 中的資料複製到使用者提供的 buffer 中，並更新 fd 的讀寫頭位置。完成讀取 block file。
+
+- **write**：block file 是唯讀的，無法寫入。回傳：-1。
+  1. 如果外部對 block file 提出寫入請求，``block_request_write`` 會透過 IPC 傳送資料給 driver，而請求的 task 會被 push 到 block event list。
+  2. driver 執行 BLOCK_CMD_WRITE 指令，由於 block file 是唯讀的，所以執行``block_response(fd, NULL, -1);``。
+  3. 參考 **write** 指令中，``block_response``的執行過程，將不會讀取任何資料到 fd 的 buffer 中，而使用者的資料也不會被寫入到 block file 中。
+
+
+**Register File( S_IFREG )**
+
+- 透過 ``romfs_server()`` 註冊的檔案，類型為 S_IFREG ，皆由 ``romfs_server()`` 來管理。亦是一種 block file descriptor，從 block file 讀取資料。
+- 資料結構：
+
+  .. code-block:: c
+
+    struct romfs_file {
+        int fd;         // fd number
+        int device;     // 該檔案資料所在的 fd number
+        int start;      // 在檔案資料中的資料起點
+        size_t len;     // 在檔案資料中的長度
+    };        
+
+
+  .. code-block:: c
+
+    struct regfile {
+        struct file file;           // 所屬的 fd number 以及 regfile operations
+        int driver_pid;              // 所屬 driver ( 註冊此 fd 的 task ) 的 pid
+        struct file *driver_file;   // 所屬 driver 的 fd file
+        int event;                   // regfile event ID
+
+        /* request */
+        int request_pid;            // 請求 access 此 fd 的 task pid，如果為 0 代表尚未對 driver 發出請求
+        int buzy;                   // 為 1 時代表此 fd 正等待 driver 處理，否則為 0
+        int pos;                    // regfile 的讀寫頭位置
+        char buf[REGFILE_BUF];        // buffer
+
+        /* response */
+        int transfer_len;           // 
+    };
+
+- Event Handler: ``int regfile_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
+
+  讓 task 重新發送一次請求，請求類別由 stack 中的 r7 值( 0x03: file_write, 0x04: file_read, 0x0a: file_lseek )判定，請求的 file descriptor 資料結構的 reference 存在 data 中。
+
+- register file 對於 lseek、read、write 的請求一樣可以分成兩大類，一類是外部對於 register file descriptor 的請求 ( regfile_request_ 系列 )，一類是 block file device 對於 reigster file descriptor 的請求 ( regfile_driver_系列 )。但是請求過程與 block file 有些許不同，block file 是直接向 block device 發出請求，而 register file 則是間接透過 ``romfs_server()`` 來向 block device 發出請求。
+
+- ``regfile_request_****able``
+  - 第一次請求( request_pid 為 0 )：先對 ``romfs_server()`` 發出請求，如下表：
+
+  .. image:: /embedded/rtenv-plus/regfile_request.PNG
+
+
+　　將 fs_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 ``romdev_driver()``。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
+
+ - 第二次請求( request_pid 為請求 task 的 pid )：由 ``event_monitor_serve()`` 來幫助 task 再次發出請求。如果 driver 已經處理完請求的話 ( buzy 為 0 ) 就會回傳 ``FILE_ACCESS_ACCEPT``。否則就繼續 block 住。
+
+
+- ``regfile_driver_****able``
+  - FILE_ACCESS_ACCEPT：只有在有 task 想要 access regfile fd 時 ( buzy = 1 )
+  - FILE_ACCESS_ERROR：如果沒有 task 請求 access 該 regfile fd
+
+
+- ``regfile_response``：將指定資料傳送到指定的 register file descriptor，透過這些資訊 file descriptor 可以從 block device 取得資料。
+
+  .. code-block:: c
+
+    struct regfile_response response {
+        int transfer_len;  // 請求讀取的長度
+        char *buf;         // 請求資料的起點
+    };
+
+
+- **lseek**：``void lseek(int fd, int offset, int whence);``：設定檔案讀寫頭的位置，回傳：讀寫頭的新位置
+  1. 由外部 task 發出請求，第一次請求存取 regfile fd。``regfile_request_lseekable`` 透過 IPC 將 fs_request 傳送到 ``romfs_server()``，task 會被 push 到 event list 上，進入 TASK_WAIT_WRITE 狀態，等待 driver 的處理。
+  2. ``romfs_server()`` 執行 FS_CMD_SEEK 指令。先計算讀寫頭的位置，再使用 SEEK_SET 向請求的 fd 設置讀寫頭。
+
+    - SEEK_SET：為 offset 所指定的位置
+    - SEEK_CUR：目前讀寫頭的位置加上 offset
+    - SEEK_END：資料終點的位置加上 offset
+
+  3. 由 driver 發出的請求，而且該 fd 正有 task 要求存取，執行``regfile_driver_lseek()``。將已經計算過後新的讀寫頭位置存到該 fd 的 request_len。driver 完成處理，發出 pending 讓外部 task 重新發出請求。
+  4. 透過 ``event_monitor_serve()`` ，外部 task 重新發出請求後，是第二次發出請求。``regfile_request_lseek()`` 將 driver 存放在 request_len 的值拿來更新 fd 的讀寫頭位置。
+  5. task 再次回到 ready_list 中。
+
+- **read**：讀取指定檔案的資料
+  1. 外部 task 對 regfile fd 先發出第一次 read 請求，``regfile_request_readable()`` 透過 IPC 將 fs_request 傳送給 ``romfs_server()``，而外部 task 被 push 到 event list，進入 TASK_WAIT_READ 的狀態，等待 driver 的處理。
+  2. ``romfs_server()`` 執行 FS_CMD_READ 指令。先計算在 block device 的讀取區間，然後設定 block fd 的讀寫頭，並透過 block fd 從 block device 讀取指定大小的資料。
+  3. 將從 block device 讀取到的資料，寫入到外部請求讀取的 fd 中。由於是 driver 發出的寫入請求，所以執行 ``regfile_driver_write()``，會將 driver 暫存的讀取資料寫到 regfile fd 的 buffer 中，並將寫入長度存到 transfer_len 的欄位中，並發出 event pending。
+  4. 透過 ``event_monitor_serve()`` ，外部 task 再度發出 read 請求，是第二次發出請求，所以執行 ``regfile_request_read()``，將存在 regfile fd buffer 的資料複製到使用者提供的 buffer，更新 regfile fd 的讀寫頭位置，並回傳讀取大小。
+
+- **write**：檔案是 read only，所以一定回傳 -1。
+
+
+File System
+============
+在 rtenv-plus 中，與檔案系統有關的 task 有三個：
+
+- ``pathserver()``：檔案系統的最上層，負責管理已經註冊( register，或譯暫存 )的檔案路徑及 mount point。
+- ``romfs_server()``：向 pathserver() 註冊 ROMFS_TYPE，處理對於擁有 ROMFS_TYPE 的 mount point 的請求。
+- ``romdev_driver()``：檔案系統的底層，可以直接取得 block file 的資料。
+
+
+**初始化**
+
+- ``romfs_server()``：向 pathserver() 註冊 fs type - ROMFS_TYPE，使得 pathserver() 處理向註冊為 ROMFS_TYPE 的 mount point 請求時，可以透過 romfs_server() 來處理。
+- ``romdev_driver()``：向 pathserver() 註冊所管理的檔案路徑 ROMDEV_PATH - "/dev/rom0"，並將 path 所屬的 file descriptor 設為 block fd，以作為取得 block file 的資料之用。
+- first() 中的 ``mount("/dev/rom0", "/", ROMFS_TYPE, 0)``：設置掛載點，對於尋找 ``/`` 目錄下的檔案，會往 ``/dev/rom0`` 來尋找，並透過 ``romfs_server()`` 以及 ``romdev_driver()`` 來取得所需的檔案內容。
+
+
+**外部檔案資訊**
+
+在 rtenv-plus 中類型為 block file，透過 block file descriptor 來存取。在 ``romdev_driver()`` 中有兩個指標 - ``&_sromdev`` 及 ``&_eromdev``，分別標記 block file 的資料起點及終點。
+
+檔頭資訊的資料結構
+
+.. code-block:: c
+
+    struct romfs_entry {
+        uint32_t parent;         // parent file entry 的 offset
+        uint32_t prev;           // 同一個 parent 的前一個 child file entry 的 offset
+        uint32_t next;           // 同一個 parent 的下一個 child file entry 的 offset
+        uint32_t isdir;          // 標記是否為資料夾
+        uint32_t len;            // 檔頭後面屬於此檔案的資料長度
+        uint8_t name[PATH_MAX];  // 檔案名稱
+    };
+
+在 gdb 中可以藉由建立 marco 來取得 block file 所紀錄的資料：
+
+.. code-block:: 
+
+    (gdb) define xxd
+    >dump binary memory dump.bin $arg0 $arg1
+    >shell xxd dump.bin
+    >end
+    (gdb) xxd &_sromdev &_eromdev 
+
+
+marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb 上
+
+
+.. code-block:: 
+
+    (gdb) define get_entry_at
+    >set memcpy( &entry, &_sromdev+$arg0, sizeof(entry) )
+    >print entry
+    >end
+    (gdb) get_entry_at  # arg0 為 offset
+
+
+檔頭資訊與內容的關係如下圖：
+
+.. image:: /embedded/rtenv-plus/block_file_content.PNG
+
+如果是目錄，則其資料長度 (len 欄位) 會包含此目錄下的檔案以及子目錄的資訊，如果是檔案，則只會包含自己的檔案內容。
+
+
+**開啟一個檔案**
+
+``int open(const char *pathname, int flags);``，回傳該檔案的 fd number
+
+1. 透過 IPC 將請求的檔名傳送到 ``pathserver()``。
+2. ``pathserver()`` 先尋找已經儲存的檔案路徑，如果沒有則往 mount point 尋找。如果沒有則回傳 -1，有則透過 IPC 向 ``romfs_server()`` 請求開啟此檔案。
+3. ``romfs_server()`` 開始找尋檔案資訊：
+
+  1. ``romfs_open()`` 將先將 block fd 的讀寫頭設置在 block file 的資料起點，先讀取 root directory entry。
+  2. ``romfs_open_recur()`` 會來取得指定的檔案檔頭。其尋找方式為，如果是目錄，則依次讀取子檔案的檔頭並比對，如果遇到子目錄，則在呼叫一次 ``romfs_open_recur()`` 繼續尋找想要的檔頭。
+  3. 如果找到指定的檔案的檔頭會回傳其檔頭起點在 block file 的 offset，如果沒有則回傳 -1。
+
+4. 如果有尋找到檔案，則將檔按路徑註冊到 ``pathserver()``，並且將其 file descriptor 設置為 S_IFREG，設置其在 block device 的讀寫起點，以及可讀取的資料範圍 ( 檔頭中 len 欄位所指的資料長度 )，並回傳該 register fd 的 fd number 給最初呼叫的 task。
+
+  .. code-block:: c
+
+    struct romfs_file {
+        int fd;         // fd number
+        int device;     // 該檔案資料所在的 fd ( block device ) number
+        int start;      // 檔頭所表記的資料起點 ( offset )
+        size_t len;     // 檔頭所標記的長度
+    };
+
+5. 第一次開啟檔案後，會將路徑存到 ``pathserver()``，讓第二次之後的開檔可以直接在 ``pathserver()`` 中找到並回傳 fd number，節省尋找時間。且第二次作 lseek 是透過 ``romfs_server()`` 而非 ``romdev_driver()``。
+
+**讀取外部檔案資料**
+
+外部檔案資料的 file descriptor 都會被註冊為 register file，所以執行 read 指令時，會透過 ``romfs_server()`` 向 ``romdev_driver()`` 存取 block device 的資料。每個 regfile fd 的讀寫頭起初都會被配置在其檔頭後面所帶的資料起點，如下圖:
+
+.. image:: /embedded/rtenv-plus/block_and_regfile_offset.PNG
+
+讀取詳細過程可以參考 register file 條目的 read 細項。
+
+gdb
+=====
+
+1. 如欲使用 gdb ，先安裝 arm toolchain
+
+``sudo apt-get install gcc-arm-none-eabi``
+
+2. 執行 st-util
+
+``sudo st-util``
+
+3. 執行 arm-none-eabi-gdb
+
+ a. 到 rtenv-plus/build/
+ b. ``$arm-none-eabi-gdb main.elf``
+
+4. 設定 gdb 目標
+
+ ``(gdb) target remote :4242``
+
+硬體驅動原理
+----------------
+* `USB OTG</embedded/OTG>`_
+
+效能表現
+-----------
+
+參考資料
+-----------
+
+.. [#] `mrs指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihjcedb.html>`_ 、 `msr指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihibbbh.html>`_
+
+.. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+
+.. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+
+.. [#] `Cortex-M3 Execution Modes<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html>`_
+
+.. [#] `Cortex-M3 Processor mode and privilege levels for software execution<http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html>`_
+
+.. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
+
+.. [#] `File，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File>`_
+
+.. [#] `Block devices:drivers and files，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=Block-Devices:-Drivers-and-Fil>`_
