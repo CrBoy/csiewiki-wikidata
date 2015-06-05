@@ -112,8 +112,6 @@ exception有進就要有出。
   2. 從 process stack 取回 exception 時所 push 進去的 registers
   3. 使用 PSP 為當下的 SP
 
-- 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
-
   .. image:: /embedded/activate_again_exc_return.PNG
  
 
@@ -125,10 +123,10 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
 
     struct task_control_block {
         struct user_thread_stack *stack;  // 指到記憶體中 stack 的位置
-        int pid;                                               //記錄目前 task 的 pid
-        int status;                                          //記錄目前 task 的狀態
-        int priority;                                       //記錄目前 task 的優先度
-        int inuse;                                           //記錄目前 task 是否使用
+        int pid; //記錄目前 task 的 pid
+        int status; //記錄目前 task 的狀態
+        int priority; //記錄目前 task 的優先度
+        int inuse; //記錄目前 task 是否使用
 
         struct list list; 
     };
@@ -156,7 +154,7 @@ init_task
         /* 由於 stack 的設計為 full descendent stack（從低位到高位），
          * 所以 stack pointer 一開始必須指向最高位址。
          * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
-         * 而預期將 thread 的初始 function 位址存到 _lr 中以及 lr 中，加上CPSR的初始值，所以必須 push 18個 word
+         * 而預期將 thread 的初始 function 位址存到 _lr 中以及 lr 中，加上CPSR的初始值，所以必須 push 18個 word.
          */
         stack += STACK_SIZE - 18;
         /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
@@ -172,7 +170,6 @@ init_task
         /* 回傳新的 sp 給該 task */
         return stack;
     }
-
 
 
 list
@@ -192,8 +189,6 @@ list
   - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
  
   .. image:: /embedded/rtenv-plus/UOBhtQ.gif
-
-
 
 - Macro：
   - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
@@ -223,6 +218,7 @@ list
         int pid;
         int status;
         int priority;
+        int inuse;
     
         struct list list;
     };
