@@ -596,8 +596,8 @@ Ftrace
 KernelShark
 ------------------------------------------------
 
-Linux Scheduler 行為分析
+Linux Kernel Timer Interrupt
 ------------------------------------------------
 
-Linux Kernel Timer Interrupt
+Linux Scheduler 行為分析
 ------------------------------------------------
