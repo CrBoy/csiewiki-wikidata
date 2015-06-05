@@ -123,13 +123,26 @@ EL2只會實現在 Non-secure state，並負責:
 ......................................
 31 個通用暫存器R0-R30。可以作為64-bit暫存器X0-X30或是 31個 32-bit暫存器W0-W30來被存取。
 
+
+
+CPSR
+......................................
+
+.. image:: /embedded/CPSR.png
+
+- 與 armv7 的比較 (可參考 `loda armv8-與-linux的新手筆記<http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/>`_ ，以下圖片有些來自此網站)
+
+.. image:: http://loda.hala01.com/wp-content/uploads/2014/12/table.png
+
+    - aarch32 多了Bit 20:IL
+    - aarch64 多了Bit 9:E 被 D取代，並少了 IT，GE 
+
+    - M[3:0] (mode) : 現在處理器運行的模式
+.. image:: /embedded/CPSR_mode.png
+
 Process state PSTATE
 ......................................
 .. image:: /embedded/pstate.png
-
-- CPSR
-
-.. image:: /embedded/CPSR.png
 
 SP暫存器 (stack pointer registers)
 ......................................
