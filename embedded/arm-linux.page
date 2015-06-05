@@ -357,7 +357,7 @@ Context Switch Latency 測試理論
     - 256byte為k=64的情況
     - 碰到紅色代表會miss
 
-.. image:: /embedded/arm_linux/line_size_illustrate.png
+.. image:: /embedded/arm_linux/line_size_illustrate2.png
 
 
     - 今天如果有一個夠大的array，一個line是64byte，那麼如果小於等於64bytes的K，會踩到N次<假設>的cache line miss，但是如果K=128bytes，由於會"跨過"某些cache line miss的"點"(因為沒有要用到那邊的資料)，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
