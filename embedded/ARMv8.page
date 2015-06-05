@@ -155,6 +155,10 @@ SP暫存器 (stack pointer registers)
 - 每個例外層級都有專用的SP: SP_EL0 ~ SP_EL3 (SP_EL2、SP_EL3只有在有實現該層的架構時才會存在)
 - 例外(exception)發生時，預設會使用例外目標層級的SP_ELx (例如例外目標為EL1就會選用SP_EL1)
 - 也可透過更新PSTATE.SP.選用SP_EL0
+    - SPSel, Stack Pointer Select SP, bit [0]
+    - 0 Use SP_EL0 at all exception levels.
+    - 1 Use SP_ELx for exception level ELx.
+    - 用msr、mrs來存取
 - 可以透過t(SP_EL0)、h(SP_ELx)的後綴表明SP的例外層級
 
 .. image:: /embedded/sp_th.png
