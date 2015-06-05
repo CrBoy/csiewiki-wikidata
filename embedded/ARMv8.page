@@ -186,6 +186,19 @@ SIMD 與浮點暫存器
 - 從例外返回時，會載入ELR的位只到PC中
 - 當例外是從 AArch32 到AArch64 時 ELR bits[63:32]被設為0。
 
+Syndrome Register
+.............................................
+
+- 保存觸發exection的原因(可用來作instruction emulation，請對照 `xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/_edit/embedded/xvisor#xvisor-instruction-emulate>`_服用)
+
+- ex: 
+        - esr_el2
+
+        .. image:: /embedded/esr.png
+
+        - ec 編碼(節錄，請對照manual D8.2.25 ESR_EL2, Exception Syndrome Register (EL2) 章節):
+
+        .. image:: /embedded/esr_ec.png
 
 
 虛擬記憶體系統架構 (Virtual Memory System Architecture)
