@@ -143,6 +143,8 @@ CPSR
 
             .. image:: /embedded/CPSR_mode.png
 
+        - IT[7:2], bits [15:10] 與 IT[1:0] (AArch32), bits [26:25]: T32 IT (If-Then) instruction
+
 Process state PSTATE
 ......................................
 .. image:: /embedded/pstate.png
