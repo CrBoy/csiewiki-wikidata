@@ -183,8 +183,7 @@ POSIX thread
 - ``void task_exit(void* ptr)``
  
 .. code-block:: c
-    _disable_irq();  //利用將 current_tcb 的 list 從 ready list 移除，並且將現在的 tcb 的 inuse設為0表示
-         task 為沒使用的狀態，最後進到while(1) 等待下一次systick exception 作context switch 後將永遠不會再選到這個 task。
+    _disable_irq();  //利用將 current_tcb 的 list 從 ready list 移除，並且將現在的 tcb 的 inuse設為0表示task 為沒使用的狀態，最後進到while(1) 等待下一次systick exception 作context switch 後將永遠不會再選到這個 task。
     list_remove(&current_tcb->list);         
     /*  Never context switch here   */
     current_tcb->inuse = 0;
