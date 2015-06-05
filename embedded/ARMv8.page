@@ -136,8 +136,9 @@ CPSR
 
     - aarch32 多了Bit 20:IL
     - aarch64 多了Bit 9:E 被 D取代，並少了 IT，GE 
-
-    - M[3:0] (mode) : 現在處理器運行的模式
+    - M(mode): 現在處理器運行的模式
+        - M[4]: 0表示現在是AArch64，1則表示現在是在AArch32 
+        - M[3:0]: Current processor mode
 .. image:: /embedded/CPSR_mode.png
 
 Process state PSTATE
