@@ -259,7 +259,7 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler
 
   .. image:: /embedded/rtenv-plus/ready_list_array.png
 
-在第一個 task 的初始化，fork 建立新的 task，或是利用 setpriority 設定 task 的優先權，
+在第一個 task 的初始化，建立新的 task，或是利用 setpriority 設定 task 的優先權，
 會使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
 
  .. image:: /embedded/rtenv-plus/ready_list_element.png
@@ -308,17 +308,17 @@ Event Monitoring
 =================
 
 - 實作檔案：event_monitor.c
-- 功能：負責接受來自 event sources 所發出的 event occurrences，並將這些 pending 轉給 handlers 來處理 event。[#]_
+- 功能：負責處理所有的 event 。event 包含所有file 的 read/write、所有的exception都是一個"event"，且其有對應的handler。 [#]_
 - 特性：
   - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
-  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。而每個 event sensor 都有 pending 用以暫存發出 occurrence 的 task。
+  
 - 函式：
   - ``event_monitor_init``：初始化 event_monitor
-  - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
-  - ``event_monitor_register``：為 handler 裝上 sendor
-  - ``event_monitor_block``：將發出 event occurrence 的 task 從 ready_list 取出放到對應 event 的 pending list 裡，使 task 等待 handler 的處理
-  - ``event_monitor_release``：標記有 occurrence pending
-  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending。處理完後將 task 從 pending list 取出到 ready list 裡
+  - ``event_monitor_find_free``：找尋有無尚未 registe r的 event_monitor
+  - ``event_monitor_register``：為 event 註冊其對應的 handler 與 data
+  - ``event_monitor_block``：將傳入的 task 的 list 從原有的list中移除，並將此list link到指定的event 的 list (i.e. 此task在等此event)。
+  - ``event_monitor_release``：標記指定的 event 的狀態為pending，表示已可處理在等此event的所有task。
+  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending event 中 list 的 task。處理完後將 task 從 event 的 list 取出移到 ready list 裡
 
 
 System Call
