@@ -1131,6 +1131,7 @@ scheduler.c
         vmm_timer_event_start(&schedp->ev, 0);
     }
 
+.. image:: /embedded/time_event.png
 MMU
 ------------------------
 
