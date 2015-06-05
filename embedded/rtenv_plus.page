@@ -308,7 +308,7 @@ Event Monitoring
 =================
 
 - 實作檔案：event_monitor.c
-- 功能：負責處理所有的 event 。event 包含所有file 的 read/write、所有的exception都是一個"event"，且其有對應的handler。 [#]_
+- 功能：負責處理所有的 event 。event 包含所有file 的 read/write、所有的exception都是一個"event"，且其有對應的handler。
 - 特性：
   - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
   
@@ -324,11 +324,11 @@ Event Monitoring
 System Call
 ============
 
-user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``main()`` 中實作 system call 功能。
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``_r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``syscall()`` 中實作 system call 功能。
 
-system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 tasks[current_task].stack 來傳遞，因為 tasks[current_task].stack 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
+system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 current_tcb 來傳遞，因為 current_tcb->task 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
 
-``main()`` 中判斷 system call 的代號並執行對應功能
+``syscall()`` 中判斷 system call 的代號並執行對應功能
 
 - ``0x1：fork``
 
@@ -362,7 +362,7 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 ``void interrupt_wait(int intr);`` intr 為特定的 interrupt 編號
 
-透過 ``NVIC_EnableIRQ(tasks[current_task].stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
+透過 ``NVIC_EnableIRQ(current_tcb->stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
 
 - ``0x6：getpriority``
 
@@ -397,13 +397,12 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 - ``default：``
 
-此狀況為因應其他非 SVC_Handler 的 interrupt，如SysTick_Handler與USART2_IRQHandler。
-SysTick_Handler：timeup 設定為1，使之後進行選擇哪一個 task 來執行，並且釋放狀態為 TASK_WAIT_TIME 的 task(但要符合條件)。
-USART2_IRQHandler：關掉特定的 interrupt 使之不能夠被觸發，並且釋放狀態為 TASK_WAIT_INTR 的 task。
 
 File Descriptor
 ================
-在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 read、write、lseek 這三個 system call 都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個或多個運作函式 ( e.g. fifo_write )[#]_ 。
+在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。
+每一種檔案類型都擁有自己的資料結構以及處理函式，
+其中處理函式針對 read、write、lseek 這三個 system call 都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個或多個運作函式 ( e.g. fifo_write )[#]_ 。
 
 ----------------
 
@@ -852,25 +851,6 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
 讀取詳細過程可以參考 register file 條目的 read 細項。
 
-gdb
-=====
-
-1. 如欲使用 gdb ，先安裝 arm toolchain
-
-``sudo apt-get install gcc-arm-none-eabi``
-
-2. 執行 st-util
-
-``sudo st-util``
-
-3. 執行 arm-none-eabi-gdb
-
- a. 到 rtenv-plus/build/
- b. ``$arm-none-eabi-gdb main.elf``
-
-4. 設定 gdb 目標
-
- ``(gdb) target remote :4242``
 
 硬體驅動原理
 ----------------
@@ -881,8 +861,7 @@ gdb
 
 參考資料
 -----------
-
-.. [#] `mrs指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihjcedb.html>`_ 、 `msr指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihibbbh.html>`_
+[#]_ [#]_ [#]_ [#]_ [#]_
 
 .. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
