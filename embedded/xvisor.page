@@ -980,15 +980,15 @@ timer 及 time event
 
     VMM_CLOCKSOURCE_INIT_DECLARE(gtv8clksrc, "arm,armv8-timer", generic_timer_clocksource_init);
     /** 展開成
-    *__nidtbl struct vmm_devtree_nidtbl_entry __gtv8clksrc = {
-    *    .signature = VMM_DEVTREE_NIDTBL_SIGNATURE,
-    *    .subsys = "clocksource",
-    *    .nodeid.name =" ",
-    *    .nodeid.type =" ",
-    *    .nodeid.compatible ="arm,armv8-timer",
-    *    .nodeid.data = generic_timer_clocksource_init,
-    *}
-    */
+     *__nidtbl struct vmm_devtree_nidtbl_entry __gtv8clksrc = {
+     *    .signature = VMM_DEVTREE_NIDTBL_SIGNATURE,
+     *    .subsys = "clocksource",
+     *    .nodeid.name =" ",
+     *    .nodeid.type =" ",
+     *    .nodeid.compatible ="arm,armv8-timer",
+     *    .nodeid.data = generic_timer_clocksource_init,
+     *}
+     */
 
     static int __init generic_timer_clocksource_init(struct vmm_devtree_node *node)
     {
@@ -1017,15 +1017,15 @@ timer 及 time event
 
     VMM_CLOCKCHIP_INIT_DECLARE(gtv8clkchip, "arm,armv8-timer", generic_timer_clockchip_init);
     /** 展開成
-    *__nidtbl struct vmm_devtree_nidtbl_entry __gtv8clkchip = {
-    *    .signature = VMM_DEVTREE_NIDTBL_SIGNATURE,
-    *    .subsys = "clockchip",
-    *    .nodeid.name =" ",
-    *    .nodeid.type =" ",
-    *    .nodeid.compatible ="arm,armv8-timer",
-    *    .nodeid.data = generic_timer_clockchip_init,
-    *}
-    */
+     *__nidtbl struct vmm_devtree_nidtbl_entry __gtv8clkchip = {
+     *    .signature = VMM_DEVTREE_NIDTBL_SIGNATURE,
+     *    .subsys = "clockchip",
+     *    .nodeid.name =" ",
+     *    .nodeid.type =" ",
+     *    .nodeid.compatible ="arm,armv8-timer",
+     *    .nodeid.data = generic_timer_clockchip_init,
+     *}
+     */
 
     static int __cpuinit generic_timer_clockchip_init(struct vmm_devtree_node *node)
     {
