@@ -988,11 +988,8 @@ timer 及 time event
 
         rc =  vmm_devtree_clock_frequency(node, &generic_timer_hz);
 
-
-
         generic_timer_reg_write(GENERIC_TIMER_REG_FREQ,
                         generic_timer_hz);
-
 
         cs = vmm_zalloc(sizeof(struct vmm_clocksource));
 
