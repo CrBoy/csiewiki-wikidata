@@ -1061,6 +1061,12 @@ timer 及 time event
 
         /* Create generic hypervisor timer clockchip */
         cc = vmm_zalloc(sizeof(struct vmm_clockchip));
+        cc->name = "gen-hyp-timer";
+        cc->hirq = irq[GENERIC_HYPERVISOR_TIMER];
+        ......
+        cc->set_mode = &generic_timer_set_mode;
+        cc->set_next_event = &generic_timer_set_next_event;
+        cc->priv = NULL;
 
         ........
 
@@ -1087,9 +1093,27 @@ timer 及 time event
     {
         struct vmm_clockchip *cc = dev;
 
-        ......
-        cc->event_handler(cc);
-        ....
+        if (ctrl & GENERIC_TIMER_CTRL_IT_STAT) {
+                ctrl |= GENERIC_TIMER_CTRL_IT_MASK;
+                ctrl &= ~GENERIC_TIMER_CTRL_ENABLE;
+                generic_timer_reg_write(GENERIC_TIMER_REG_HYP_CTRL, ctrl);
+                cc->event_handler(cc);
+                return VMM_IRQ_HANDLED;
+    }
+
+    static int generic_timer_set_next_event(unsigned long evt,
+                            struct vmm_clockchip *unused)
+    {
+        unsigned long ctrl;
+
+        ctrl = generic_timer_reg_read(GENERIC_TIMER_REG_HYP_CTRL);
+        ctrl |= GENERIC_TIMER_CTRL_ENABLE;
+        ctrl &= ~GENERIC_TIMER_CTRL_IT_MASK;
+
+        generic_timer_reg_write(GENERIC_TIMER_REG_HYP_TVAL, evt);
+        generic_timer_reg_write(GENERIC_TIMER_REG_HYP_CTRL, ctrl);
+
+        return 0;
     }
     
 .. code-block:: c
