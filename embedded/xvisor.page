@@ -499,6 +499,61 @@ VirtIO specification和hypervisor與architecture是獨立的。VirtIO specificat
 
 大多數的ARM guest已啟用VirtIO device，所以不需額外的準備即可在Xvisor ARM上使用VirtIO。
 
+
+
+Figure 1. Device emulation in full virtualization and paravirtualizationenvironments
+
+.. image:: /embedded/Figure 1. Device emulation in full virtualization and paravirtualizationenvironments.PNG
+
+- Full Virtualization
+  - Guest OS不需修改即能跑在Hypervisor上
+  - Guest OS不知道自己跑在VM上
+  - 需模擬真實硬體底層的行為，效率較差且複雜
+
+- Paravirtualization
+  - Guest OS需修改
+  - Guest OS知道自己跑在VM上
+  - Guest OS和Hypervisor合作模擬硬體，效率較高
+
+
+Figure 2. Driver abstractions with virtio
+
+.. image:: /embedded/Figure 2. Driver abstractions with virtio.PNG
+
+- Front-end driver
+  - 在Guest OS上
+  - 具普遍姓
+  - ex: using QEMU
+
+- Back-end driver
+  - 在Hypervisor上
+  - 不具普遍性
+  - 模擬Front-end driver所需的behavior
+
+
+Virtual Queue：封裝Guest OS所需的指令和資料，為Front-end driver和Back-end driver的溝通媒介，通常採用ring的結構。
+
+Figure 3. High-level architecture of the virtio framework
+
+.. image:: /embedded/Figure 3. High-level architecture of the virtio framework.PNG
+
+- block devices (such as disks)
+- networkdevices
+- PCI emulation
+- balloon driver (for dynamically managing guest memory usage)
+- console driver
+
+每個Front-end driver都有一個對應的Back-end driver
+
+
+Figure 4. Object hierarchy of the virtio front end
+
+.. image:: /embedded/Figure 4. Object hierarchy of the virtio front end.png
+
+
+
+
+
 Xvisor
 =========================================
 
@@ -1947,3 +2002,4 @@ reference
 * `GICv2 Architecture Specification<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
 * `New Feature: VirtIO based paravirtualization<http://xhypervisor.org/index.php?page=news/20130417>`_
 * `linux kernel的中断子系统之（七）：GIC代码分析<http://www.wowotech.net/irq_subsystem/gic_driver.html>`_
+* `Virtio: An I/O virtualization framework for Linux<http://www.ibm.com/developerworks/library/l-virtio/>`_
