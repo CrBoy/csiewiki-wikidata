@@ -515,7 +515,7 @@ Figure 2. Driver abstractions with virtio
 
 - Front-end driver
   - 在Guest OS上
-  - 具普遍姓
+  - 具普遍性
   - ex: using QEMU
 
 - Back-end driver
