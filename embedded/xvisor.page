@@ -481,7 +481,7 @@ I/O device virtualization
 
 virtio
 .............................
-VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為PCI device或MMIO device。
+VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為`PCI<http://zh.wikipedia.org/wiki/PCI>`_ device或MMIO device。
 
 VirtIO specification和hypervisor與architecture是獨立的。VirtIO specification描述不同類型的VirtIO devices之細節和功能。
 
