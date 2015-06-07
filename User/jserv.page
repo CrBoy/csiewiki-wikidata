@@ -46,6 +46,8 @@ categories: User
 * `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_: 從無到有開發 ARM 多工作業系統，支援多執行緒，僅 400 行 C 程式碼
 * `rtenv+</embedded/rtenv>`_: 具體而微的類似 UNIX 作業系統，運作於 ARM Cortex-M3/M4
 * `rtmux<https://github.com/rtmux>`_: 在 ARM Cortex-A 架構上提供輕量級的虛擬化執行環境，支援 Linux 與 RTOS
+* `CuRT<https://github.com/jserv/curt>`_: 小型的即時多工作業系統核心，支援 ARMv5 與 x86 架構
+* `xv6-x86_64<https://github.com/jserv/xv6-x86_64>`_: 將 MIT `Xv6<http://pdos.csail.mit.edu/6.828/2014/xv6.html>`_ 移植到 x86_64 架構並重新整理程式碼，允許更多功能和效能提升
 
 過往在成大
 =========
