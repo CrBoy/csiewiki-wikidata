@@ -505,15 +505,8 @@ Figure 1. Device emulation in full virtualization and paravirtualizationenvironm
 
 .. image:: /embedded/Figure 1. Device emulation in full virtualization and paravirtualizationenvironments.PNG
 
-- Full Virtualization
-  - Guest OS不需修改即能跑在Hypervisor上
-  - Guest OS不知道自己跑在VM上
-  - 需模擬真實硬體底層的行為，效率較差且複雜
+- `Full Virtualization vs Paravirtualization<http://wiki.csie.ncku.edu.tw/embedded/xvisor#%E5%AF%A6%E7%8F%BE%E8%99%9B%E6%93%AC%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F>`_
 
-- Paravirtualization
-  - Guest OS需修改
-  - Guest OS知道自己跑在VM上
-  - Guest OS和Hypervisor合作模擬硬體，效率較高
 
 
 Figure 2. Driver abstractions with virtio
