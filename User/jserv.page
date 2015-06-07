@@ -28,8 +28,6 @@ categories: User
 - `Kaffe Virtual Machine<http://www.kaffe.org/>`_
 - `GCC<http://gcc.gnu.org/>`_ / GCJ (GCC for Java)
 - `LXDE<http://lxde.org/>`_
-- `F9 Microkernel<https://github.com/f9micro>`_
-- `RTMux: Real-time extension for Linux<https://github.com/rtmux>`_
 
 最近活動
 =======
