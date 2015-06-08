@@ -27,7 +27,12 @@ toc: no
 * `FreeRTOS on Beaglebone Black<#freertos-on-beaglebone-black>`_
   - `開發環境<#開發環境>`_
   - `實作過程<#實作過程>`_
-  - `移植FreeRTOS 8.2.1到BBB<#移植freertos-8.2.1到BBB>`_
+  - `移植FreeRTOS 8.2.1到BBB<#移植freertos-8.2.1到bbb>`_
+
+* `ARMv7-A MMU Architecture<#armv7-a-mmu-architecture>`_
+  - `Sections and pages<#sections-and-pages>`_
+  - `Translation Lookaside Buffers (TLB)<#translation-lookaside-buffers-(tlb)>`_
+  - `保護機制與記憶體行為<#保護機制與記憶體行為>`_
 
 * `問題討論<#問題討論>`_
 
@@ -90,8 +95,8 @@ toc: no
 
 .. code-block:: bash
 
-	git clone https://github.com/henfos/BBBFreeRTOS.git
-	cd BBBFreeRTOS/Demo/AM3359_BeagleBone_GCC
+    git clone https://github.com/henfos/BBBFreeRTOS.git
+    cd BBBFreeRTOS/Demo/AM3359_BeagleBone_GCC
 
 　　
 
@@ -99,7 +104,7 @@ toc: no
 
 .. code-block:: c
 
-	#include <stdint.h>
+    #include <stdint.h>
 
 　　
 
@@ -109,17 +114,17 @@ toc: no
 
 .. code-block:: makefile
 
-	CC=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-gcc
-	OBJCOPY=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-objcopy
-	ARCH=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-ar
+    CC=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-gcc
+    OBJCOPY=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-objcopy
+    ARCH=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-ar
 
 改成
 
 .. code-block:: makefile
 
-		CC={Cross compiler解壓的路徑}/arm-none-eabi-gcc
-		OBJCOPY={Cross compiler解壓的路徑}/arm-none-eabi-objcopy
-		ARCH={Cross compiler解壓的路徑}/arm-none-eabi-ar
+        CC={Cross compiler解壓的路徑}/arm-none-eabi-gcc
+        OBJCOPY={Cross compiler解壓的路徑}/arm-none-eabi-objcopy
+        ARCH={Cross compiler解壓的路徑}/arm-none-eabi-ar
 
 　　
 
@@ -166,17 +171,17 @@ toc: no
 
 .. code-block:: header file
 
-	#ifdef GCC_AM335_BeagleBoard
-		#include "../../Source/portable/GCC/AM335_BeagleBone/portmacro.h"
-	#endif
+    #ifdef GCC_AM335_BeagleBoard
+        #include "../../Source/portable/GCC/AM335_BeagleBone/portmacro.h"
+    #endif
 
 加至
 
 .. code-block:: header file
 
-	#ifndef portENTER_CRITICAL
-		#include "portmacro.h"
-	#endif
+    #ifndef portENTER_CRITICAL
+        #include "portmacro.h"
+    #endif
 
 的前面，以免發生錯誤。
 
@@ -188,10 +193,10 @@ toc: no
 
 .. code-block:: header file
 
-	typedef portSTACK_TYPE  StackType_t;
-	typedef long BaseType_t;
-	typedef unsigned long UBaseType_t;
-	typedef uint32_t TickType_t;
+    typedef portSTACK_TYPE  StackType_t;
+    typedef long BaseType_t;
+    typedef unsigned long UBaseType_t;
+    typedef uint32_t TickType_t;
 
 　　
 
@@ -200,3 +205,134 @@ toc: no
 **修改Source/portable/GCC/AM335_BeagleBone/portISR.c檔案裡的vTaskIncrementTick改為xTaskIncrementTick  (165行)**
 
 出現結果與上圖相同，但仍有許多warning需解決。
+
+
+
+
+
+`ARMv7-A MMU Architecture<#目錄>`_
+================================
+
+`Sections and pages<#目錄>`_
+--------------------------
+
+ARM 的 MMU 支援 四種 page sizes(比較大的稱 section，比較小的稱 pages )
+
+* Supersections: 16 MB memory blocks (24-bit offsets)
+
+* Sections: 1 MB memory blocks (20-bit offsets)
+
+* Large pages: 64 KB pages (16-bit offsets)
+
+* Small pages: 4 KB pages (12-bit offsets)
+
+　
+
+The MMU supports a two-level hierarchy for its page table structure.
+
+.. image:: https://c1.staticflickr.com/1/501/18421058670_79ed99103a_o.png
+
+first-level table 功能:
+
+1. 包含pointer，指向 second-level tables
+2. 當做 section 或 supersection 的 base address 
+
+
+`Translation Lookaside Buffers (TLB)<#目錄>`_
+-------------------------------------------
+
+TLB分為以下兩種:
+
+1. Micro TLB (The first-level TLB)
+2. Main TLB  (The second-level TLB)
+
+　
+
+Micro TLB 特色介紹:
+
+* 最小也最快
+* 分成兩部分，for instruction 和 for data 
+* can store 32 entries
+* fully associative and can perform a lookup in one clock cycle 
+* 使用 address space identifier(ASID)
+* Allow the operating system to identify one process’ address space from another’s without flushing the cache.
+* 避免當Task Context-Switch發生時,TLB被Flush的成本
+* Entries can also be tagged as global --> shared 
+* 每一個 entry 都有 protection bits， 用來確認每一個 address lookup
+* 如果 protections  不允許記憶體存取，則 MMU會發出 Data Abort 的訊號，將會造成一個 trap
+* 發生cache miss時，replacement algorithm 可能採用  round-robin (the default) 或 random replacement 的 policy
+
+　
+
+Main TLB 介紹:
+
+* 使用時機:  cache misses from the microTLBs
+* 他只有一個，意味著 Main TLB 要處理 data-side 或是 instruction-side MicroTLBs 產生的 misses
+* eight-way set associative with 64-byte blocks and 1 MB capacity
+* 每個Main TLB項目都會包括
+  - Virtual Address
+  - Page Size
+  - Physical Address
+  - Memory Properties
+
+　
+
+.. image:: https://c1.staticflickr.com/9/8887/17986805824_0c95da481b_o.png
+
+Figure 2 表示出所有 elements 運作流程：
+
+1. 第一步是在  MicroTLB . Instruction fetch 時存取 Instruction MicroTLB 以及在 data read/write operation時去存取Data MicroTLB。 一個資料被存取除了查表要查的到以外，還需要access permission，如果沒有 proper permissions，會產生 trap (Data Abort signal)。如果發生 miss，就會到step 2 ( 去 lookup Main TLB )。
+
+2. 當 MicroTLB lookup 產生 cache miss，會往 Main TLB去找. Lookup過程與  MicroTLB相同(matched requested page and permissions)。如果 miss，到 step 3.
+
+3. 最後的 step 是 page table(s) (在此稱為 translation table work)。系統支援 2個 first-level tables。VA 的 high-order bits 決定使用哪一個 table。根據VA的 topmost n bits是0(用 TTBR0)或者不是0(用TTBR1)。而 n 的值取決於Translation Table Base Control Register (TTBCR)。operating system 和 memory-mapped I/O 位於 upper part of the address space 並被 TTBR1 管理。user processes 在  lower part of memory 並被 TTBR0 管理。當在context switch時，operating system 為了新的 process， 必須切換到TTBR0去指向first-level table 。TTBR0仍將保留operating system 和 memory-mapped I/O 的 memory map。
+   
+   經由記憶體中page table來查找位址被稱為translation table walk，因為它可能涉及經過不同階層的table。藉由ARM MMU，section可由first-level page table直接對應出位址；page則是兩步驟的過程。如果是section，則實體基準位址是被儲存在first-level table的page table entry中，若是page，則是second-level table的位址儲存在first-level table的page table entry中。
+
+　
+
+以ARMv7架構為例,要控制TLB Translation Table,可以透過CP15的暫存器c2,其中c2主要提供以下Translation table base registers
+
+.. image:: https://c1.staticflickr.com/1/436/17986805674_4d0e1757f6_o.png
+
+　
+
+下面來談談根據TLB的設定參數組合,分別以基於16MB(SuperSection),1MB(Section),64KB(Large Page),4KB(Small Page)不同分頁的組合,來說明TLB 1級與2級 Table的運作概念,
+
+如下所示為16MB(SuperSection) 配置下,TLB分頁運作的概念
+
+.. image:: https://c1.staticflickr.com/1/466/18611607711_c9d17b382c_o.png
+
+　
+
+如下所示為1MB(Section) 配置下,TLB分頁運作的概念
+
+.. image:: https://c1.staticflickr.com/9/8875/18583078246_3d9e150433_o.png
+
+　
+
+如下所示為64KB(Large Page) 配置下,TLB分頁運作的概念
+
+.. image:: https://c1.staticflickr.com/1/271/18609453405_83fd62aed2_o.png
+
+　
+
+如下所示為4KB(Small Page) 配置下,TLB分頁運作的概念
+
+.. image:: https://c1.staticflickr.com/9/8899/18609452125_8c1c539f48_o.png
+
+
+`保護機制與記憶體行為<#目錄>`_
+------------------
+
+每次記憶體存取都會跟每個記憶體區塊的page table entry中儲存的權限做確認，無論是page還是section都是。而且page table entry還可以指定一個記憶體區域中對於其他核心或處理器來說的記憶體被修改的可見性。記憶體區域可以有以下特性：
+
+* Execute never: 阻止處理器中的指令去存取這個區域的記憶體
+* Read-only, read/write, no access:  這幾個模式可在user-mode和privileged (kernel)  mode中做不同設定。例如，kernel 的記憶體可被標示為user  mode不能存取，但kernel mode可以讀寫。
+* non-secure: 標示記憶體區域為"信任的"
+* sharable:  這個可以標示是否一個區域的記憶體可以與其他處理器共用，或是可以映射到硬體裝置。有以下幾種模式可以被設定:
+* Strongly ordered: 記憶體存取必須根據程式執行的順序
+* Device/shared  or device/non-shared: 這記憶體是直接對應到硬體裝置(因此沒有快取)，且這個裝置是否與其他處理器在匯流排中共享。
+* normal/shared,  normal/non-shared: 一般的記憶體使用，再來看可否在與其他處理器在匯流排上共享。
+
+若是記憶體存取沒有通過權限，MMU會發出Memory Abort訊號給處理器。
