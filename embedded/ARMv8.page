@@ -163,6 +163,11 @@ SP暫存器 (stack pointer registers)
 
 .. image:: /embedded/sp_th.png
 
+- SPSel, Stack Pointer Select: 可以透過MSR, MRS存取來設定要用哪個SP
+
+.. image:: /embedded/spsel.png
+
+
 SIMD 與浮點暫存器
 ......................................
 - 共用32個128位暫存器V0-V31
