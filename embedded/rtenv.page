@@ -250,6 +250,26 @@ POSIX thread
         
     while(1);
 
+
+建立與執行task
+=============
+
+一開始呼叫task_create，以以下為例
+``task_create(0, func, NULL)``
+
+在執行後：
+
+  .. image:: /embedded/TCB_init.png
+
+
+再來使current_tcb指向pid = 0的task。並開啟Systick
+
+最後``task_start()``
+會將 task的 (r7-r11, lr, _r7) 存入system register，並且切換至 PSP 開始執行 task (bx lr)
+
+  .. image:: /embedded/task_start_tcb.png
+
+
 list
 =====
 
