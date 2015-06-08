@@ -1627,6 +1627,9 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
                     return;
             }
 
+.. image:: /embedded/sche_flow.png
+
+
 在不同Arm架構下的虛擬化機制
 =====================================
 
