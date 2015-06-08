@@ -398,6 +398,68 @@ Event Monitoring
   - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending event 中 list 的 task。處理完後將 task 從 event 的 list 取出移到 ready list 裡
 
 
+PendSV
+========
+
+只負責context switch，且要在沒有exception active才會執行。
+
+  - 可減少多餘的context switch
+  - exception handler 只需關心自己要處理的部份，不用管如何context switch
+  - 有利於多exception 同時 pending 時的處理
+
+PendSV實作
+-------------
+
+當要call PendSV前，要先使PendSV pending，藉由設定ICSR (Interrupt Control and State Register)。
+
+  .. code-block:: c
+
+    void __attribute__((naked)) set_pendsv()
+    {
+    __asm volatile(
+        "ldr r4, =0xe000ed04    \n"
+        /*  Pending PendSV */
+        "mov r5, #0x12000000    \n"
+        "str r5, [r4]           \n"
+        "bx lr                  \n"
+    );   
+    }
+
+當所有exception handler都exception return後 (意即沒有active的exception)，此時處於pending的
+PendSV會開始執行其hadler:
+
+  .. code-block:: c
+
+    PendSV_Handler:
+      // 必須先關閉所有interrupt避免context switch途中遭中斷。                                                                                                      
+      cpsid i
+      //將psp存入r0
+      mrs r0, psp 
+
+      ldr r3, =current_tcb
+      ldr r2, [r3]
+      ldr r1, [r2]        
+      // 將必要的register 存回PSP (save state)
+      stmdb r0!, {r7}
+      stmdb r0!, {r4-r11,ip}
+      // 把PSP存入current_tcb
+      str r0, [r2]
+      // 注意這裡的lr是exception return的值0xfffffffX
+      stmdb sp!, {r3, lr}
+      bl context_switch
+      ldmia sp!, {r3, lr}
+      // 重新讀取current_tcb
+      ldr r1, [r3]
+      ldr r0, [r1]
+      // context switch後要將下一個要載入的task的state pop出來
+      ldmia r0!, {r4-r11,ip}
+      ldmia r0!, {r7}
+      msr psp, r0
+      cpsie i
+      // exception return
+      bx lr
+
+
 System Call
 ============
 
