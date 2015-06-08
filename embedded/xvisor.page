@@ -330,8 +330,20 @@ Xvisor instruction emulate
 (armv8)
 cpu_entry.S 內初始化Hyp vector base
 
+.. image:: /embedded/vtb_off.png
+
 .. code-block:: c
 
+    /*
+     * Exception vectors.
+     */
+    .macro	ventry	label
+        .align	7
+        b	\label
+    .endm
+
+        .align	11
+        .globl vectors;
     vectors:
     ventry	hyp_sync_invalid	/* Synchronous EL1t */
     ventry	hyp_irq_invalid		/* IRQ EL1t */
