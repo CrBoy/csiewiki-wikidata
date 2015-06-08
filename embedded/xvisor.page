@@ -19,9 +19,7 @@ Hackpad
 虛擬化技術 (Virtualization) 
 =====================================
 
-虛擬化就是建立出一個作業系統或伺服器或儲存空間的虛擬版本，可以把擁有的資源作妥當的管理分配
-
-Gerald Popek 和 Robert Goldberg 定義 Virtual Machine為efficient, isolated duplicate of a real machine
+虛擬化就是要建立出一個作業系統或伺服器的虛擬版本，可以把擁有的資源作妥當的管理分配
 
 Hypervisor (Virtual Machine Monitor, VMM)
 --------------------------------------------
@@ -34,7 +32,7 @@ Hypervisor (Virtual Machine Monitor, VMM)
 - 使用時機(benefit)
     - 工作負載整合 (Workload Consolidation)
         - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
-        - 降低硬體和營運成本達 50%，減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
+        - 以VMware資料顯示，如果透過VMware vSphere來進行伺服器的虛擬化，可以降低硬體和營運成本達 50%，並減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
         - EX：成大電機系電腦教室
 
     .. image:: /embedded/workload_consolidation.png
@@ -108,7 +106,7 @@ source: http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-
 ----------------------------------------------------
 Popek and Goldberg virtualization requirements, 1974
 
-二人提出的`理論<http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf>`_至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
+Gerald Popek及Robert Goldberg二人提出的`理論<http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf>`_至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
 
 - VM定義
     - A virtual machine is taken to be an efficient, isolated duplicate of the real machine. It is the environment created by the virtual machine monitor.
@@ -188,7 +186,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 
 .. image:: /embedded/virtualization_method_all.png
 
-- `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (VMWare)
+- `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (i.e.VMWare, xen, xvisor, kvm)
     - 全部都虛擬化(I/O, interrupt, 指令集等等)，不需要硬體或OS的協助，而是透過軟體來模擬虛擬的硬體環境，直接透過Hypervisor實現
     - 不用修改OS核心，OS不知自己運行在虛擬化的環境下
     - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷(only 17 instructions on privileged level)，故效能較Para-Virtualization差
@@ -197,7 +195,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 
 .. image:: /embedded/virtualization_method_full1.png
 
-- Para-Virtualization (Xen)
+- Para-Virtualization (i.e.Xen, xvisor, kvm)
     - 為了讓一些指令，The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment.
     - 由於某些Non-Virtualizable OS指令不能被hypervisor trap，所以Guest OS必須利用Hypercall呼叫Hypervisor對缺少的指令進行更換，這也是為何要修改OS的核心
     - Guest OS知道自己活在虛擬化的環境下，Guest OS知道有其他Guest OS的存在，並且看到的都是真實的硬體，Host OS則不用模擬CPU，Guest OS自行互相調配
