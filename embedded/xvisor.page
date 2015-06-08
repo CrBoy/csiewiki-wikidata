@@ -1390,6 +1390,7 @@ MMU
     }
 
 .. code-block:: c
+
     /* Update the httbr value */
     ldr	x1, __httbr_set_addr
     sub	x1, x1, x6
