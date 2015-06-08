@@ -1543,42 +1543,27 @@ context switch
 .. code-block:: c
 
     int __cpuinit vmm_scheduler_init(void){
-
     ....
-
     /* Initialize timer events (Per Host CPU) */
-
             INIT_TIMER_EVENT(&schedp->ev, &scheduler_timer_event, schedp);
-
             INIT_TIMER_EVENT(&schedp->sample_ev,
-
                                     &scheduler_sample_event, schedp);
-
     ....
-
     /* Start timer events */
-
             vmm_timer_event_start(&schedp->ev, 0);
-
             vmm_timer_event_start(&schedp->sample_ev, SAMPLE_EVENT_PERIOD);
-
     ....
 INIT_TIMER_EVENT會呼叫下列函式將(&schedp->ev) handler設成下列函式
 
 .. code-block:: c
 
     static void scheduler_timer_event(struct vmm_timer_event *ev)
-
     {
-
         struct vmm_scheduler_ctrl *schedp = &this_cpu(sched);
 
         if (schedp->irq_regs) {
-
             vmm_scheduler_switch(schedp, schedp->irq_regs);
-
         }
-
     }
 
 
@@ -1589,41 +1574,23 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
 .. code-block:: c
 
     static void vmm_scheduler_switch(struct vmm_scheduler_ctrl *schedp,
-
-                                     arch_regs_t *regs)   // arch_reg 只有在user mode 被更新
-
-                                 
-
+                                     arch_regs_t *regs)   // arch_reg 只有在user mode 被更新                                 
     {
-
             struct vmm_vcpu *vcpu = schedp->current_vcpu;
-
             if (!regs) {
-
                     /* This should never happen !!! */
-
                     vmm_panic("%s: null pointer to regs.\n", __func__);
-
             }
 
             if (vcpu) {
-
                     if (!vcpu->preempt_count) {   
-
                             vmm_scheduler_next(schedp, &schedp->ev, regs);
-
                     } else {
-
                             vmm_timer_event_restart(&schedp->ev);
-
                     }
-
             } else {
-
                     vmm_scheduler_next(schedp, &schedp->ev, regs);
-
             }
-
     }
 
 進入 vmm_scheduler_next(schedp, &schedp->ev, regs),分為first cheduling & normail scheduling
@@ -1632,63 +1599,32 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
 .. code-block:: c
 
     static void vmm_scheduler_next(struct vmm_scheduler_ctrl *schedp,
-
                                    struct vmm_timer_event *ev,
-
                                    arch_regs_t *regs)
-
     {
-
           /* 紀錄current state & timestamp*/
-
            .....
 
             u64 next_time_slice = VMM_VCPU_DEF_TIME_SLICE;
-
             u64 tstamp = vmm_timer_timestamp();
-
           ......  
-
             /* First time scheduling */
-
             if (!current) {
-
                     rc = rq_dequeue(schedp, &next, &next_time_slice);
-
-                    if (rc) {
-
-                            /* This should never happen !!! */
-
-                            vmm_panic("%s: dequeue error %d\n", __func__, rc);
-
-                    }
-
-                    
-
                     vmm_write_lock_irqsave_lite(&next->sched_lock, nf);
     }
     arch_vcpu_switch(NULL, next, regs); 
-
-                  
-
                     next->state_ready_nsecs += tstamp - next->state_tstamp;
-
                     arch_atomic_write(&next->state, VMM_VCPU_STATE_RUNNING);
-
                     next->state_tstamp = tstamp;
-
                     schedp->current_vcpu = next;
-
                     schedp->current_vcpu_irq_ns = schedp->irq_process_ns;
 
                /*下一個timer_event開始 */                
 
                     vmm_timer_event_start(ev, next_time_slice);
-
                     vmm_write_unlock_irqrestore_lite(&next->sched_lock, nf);
-
                     return;
-
             }
 
 在不同Arm架構下的虛擬化機制
