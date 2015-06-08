@@ -6,6 +6,9 @@ toc: no
 
 協作者
 ------
+* 2015 年夏季:
+  - `陳建霖<https://github.com/james33344>`_
+
 * 2015 年春季:
   - `劉家瑄<https://github.com/goldmedal/>`_, `賴弈豪<https://github.com/harry191518>`_, `陳建霖<https://github.com/james33344>`_, `蘇容德<https://github.com/rita5022>`_, 李洋逸, 戴紹軒
 
@@ -19,6 +22,15 @@ toc: no
 
 作業系統架構
 ---------------
+
+安裝和測試 with qemu
+----------------
+1. git clone https://github.com/james33344/rtenv-plus
+
+2. 建立環境，參考 http://wiki.csie.ncku.edu.tw/embedded/Lab38
+
+3. make qemu
+
 
 Execution modes
 ===================
@@ -44,82 +56,6 @@ Execution modes
   - 一開始程式進入即為MSP
  2. PSP：Process Stack Pointer
   - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
-
-Context Switch
-===============
-
-**Kernel Mode 與 User Mode 間的轉換**
-
-kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
-
-  .. image:: /embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG
-注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
-
-**activate**
-
-- 功能：從 kernel mode 轉換成 user mode
-
- .. code-block:: c
-
-    activate:
-     41     /* save kernel state */
-     42     mrs ip, psr
-     43     push {r4, r5, r6, r7, r8, r9, r10, r11, ip, lr}
-     44     
-     45     ldmia r0!, {r4, r5, r6, r7, r8, r9, r10, r11, lr}
-     46     ldmia r0!, {r7}
-     47
-     48     /* switch to process stack pointer */
-     49     msr psp, r0
-     50     mov r0, #3
-     51     msr control, r0
-     52     
-     53     /* program breaking code
-     54     pop {r4, r5, r6, r7, r8, r9, r10, r11, lr}
-     55     pop {r7}
-     53     */
-     54     bx lr
-
-- 指令介紹：``mrs Rd, PSR`` 及 ``msr PSR, Rd``[#]_：Rd 為 general-purpose registers，PSR 可以為 psr、cpsr、apsr、msp、psp 等。
-  ``mrs Rd, PSR`` 可以將 PSR 的值寫到 Rd，而 ``msr PSR, Rd`` 則是將 Rd 值寫到 PSR 裡。
-
-- 運作：
-  - L42, 43：將 ``psr``(program status register) 的值保存到 ``ip`` (r12) 裡，然後一同 push 到 main stack 裡。
-  - L45：將 ``user_thread_stack`` 的 register 依序 pop 到 r4~r11 及lr，也是為何 ``user_thread_stack`` 的前9個 register 設計為 r4~r10、fp、_lr。
-  - L46：再將 ``user_thread_stack`` 的 ``_r7`` pop 到 ``r7``。
-  - L49：將 ``r0`` 所帶的值寫入到 ``psp`` (process stack pointer)，注意呼叫 activate 所放的參數就是該 task 之 task_control_block 中 stack 的 address。
-  - L50, 51：將 ``control`` register 的值設為 3，藉此可以將 stack pointer 轉為指向 process stack (使 sp 值為 psp)。所以藉由 ``sp`` 可以存取其 stack 的內容。
-
-  - 所以除了 r0~r3 及 ip、sp、pc、cpsr 之外，都被換成 user-mode 的 register 了。
-
-init_task
-==========
-
-- 功能：將系統初始函式 ``first()`` 的位址放置到 process stack 的 lr 位置。藉由 ``activate`` 置換 process state 上來，可讓程式執行 ``first()``。
-
-- 運作：
-
- .. code-block:: c
-
-    /* 傳入的參數為：欲執行 first() 的 task 的 stack位址 以及 first() 的位址 */
-    unsigned int *init_task(unsigned int *stack, void (*start)())
-    {
-        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
-         * 所以 stack pointer 一開始必須指向最高位址。
-         * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
-         * 而預期將 first() 的位址存到 _lr 中，所以必須 push 9個 word
-         */
-        stack += STACK_SIZE - 9;
-        /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
-         * user_thread_stack -> |r4 |r5 |r6 |r7 |r8 |r9 |r10|fp |_lr|...
-         *             stack -> |[0]|[1]|[2]|[3]|[4]|[5]|[6]|[7]|[8]|...
-         */
-        stack[8] = (unsigned int)start;
-        /* 回傳新的 sp 給該 task */
-        return stack;
-    }
-
-
 
 Exception (Cortex-M3)
 --------------------------
@@ -171,131 +107,13 @@ exception有進就要有出。
  .. image:: /exception_return.png
 
 
-How  to fork
-============
-
-**第一次進到 while loop**
-
-  ::
-
-    [ File: main.elf ]
-    while (1) { 
-        tasks[current_task].stack = activate(tasks[current_task].stack);
-    333c:   f240 72a8   movw    r2, #1960   ; 0x7a8
-    ...
-    3354:   681b        ldr r3, [r3, #0]
-    3356:   4618        mov r0, r3
-    3358:   f00e f8e2   bl  11520 <activate>    // 由此進入 activate，所以 LR 存的值是 0x335d
-    335c:   f240 72a8   movw    r2, #1960   ; 0x7a8
-    3360:   f2c2 0200   movt    r2, #8192   ; 0x2000
-    ...
-
-
-- 進到 ``activate()`` 後，藉由 pop user state 到 register，將預先存好的 ``first()`` 的位址存到 ``LR`` 中。而原本的 LR 被 push 到 main stack 中，存有離開 ``activate()`` 後繼續執行的指令位址。Core registers 及 stacks 的狀態變化如下圖：
-
-  .. image:: /embedded/activate.PNG
-
-
-  利用 ``bx lr`` 使得程式轉往執行 ``first()``。
-
-- 進到 ``first()`` 後，程式執行第一行的 ``fork()``。
-
-  ::
-
-    [ 程式執行 fork() ]
-    void first()
-    {
-        2f84:   b580        push    {r7, lr}
-        2f86:   af00        add r7, sp, #0
-        if (!fork()) setpriority(0, 0), pathserver();
-        2f88:   f00e fb22   bl  115d0 <fork>    // 由此進入 fork()，LR存的值為 0x2f8d
-        2f8c:   4603        mov r3, r0
-        2f8e:   2b00        cmp r3, #0
-
-
-
-- 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，
-
-  .. image:: /embedded/SVC_Handler.PNG
-
-  - 左圖：同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
-  - 中圖：將目前的 state 存到 process stack。原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
-  - 右圖：將 kernel state 從 main stack 中 pop 出來，此時 ``LR`` 擁有的位址為離開 activate() 後要執行的指令位址(之前在進入 ``activate()`` 時所存的 )。所以離開 ``SVC_Handler()`` 後，程式會轉往執行 main() 的 while loop，也就是 kernel mode。
-
-
-- 目前的 process stack 狀態，會發現與 ``user_thread_stack`` 的設計一致，以及不同時期被 push 進去的 R7：
-
-  .. image:: /embedded/user_thread_stack.PNG
-
-  - 在離開 ``activate()`` 函式會回傳新的 process stack pointer 給 TCB 的 ``stack`` pointer，也就是取得 R0 的值，所以 TCB 的 stack pointer 會得到正確的 process stack 的正確位址。
-
-**進行fork**
-
-- 開始執行 kernel mode 後，藉由 ``tasks[current_task].stack->r7``，可以取得在 fork() 傳入的值。因此 kernel 判定要執行 fork 動作，將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
-
-**母task**
-
-- 進到 ``activate()`` 後，再次將 kernel state 與 user state 作交換。此時，``LR`` 含有 EXC_RETURN[#]_的值 ``0xfffffffd``，則當 processor 執行 ``bx lr`` 時必須進行 exception return。
-
-  .. image:: /embedded/activate_again.PNG
-
-
 - **Exception return**：當 LR 值為 EXC_RETURN 之一: 0xfffffffd 時，
   1. processor 會轉回 thread mode
   2. 從 process stack 取回 exception 時所 push 進去的 registers
   3. 使用 PSP 為當下的 SP
 
-- 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
-
   .. image:: /embedded/activate_again_exc_return.PNG
-
-  ::
-
-    [ fork() ]
-    .global fork
-    fork:
-        push {r7}
-       115d0:   b480        push    {r7}
-        mov r7, #0x1
-       115d2:   f04f 0701   mov.w   r7, #1
-        svc 0
-       115d6:   df00        svc 0    // <- Exception 在這裡發生，所以 PC 被存的值為 0x115d8
-        nop
-       115d8:   bf00        nop      // <- 藉由 exception return 使的程式回到這裡繼續執行
-        pop {r7}
-       115da:   bc80        pop {r7}
-        bx lr
-       115dc:   4770        bx  lr   // <- 回到 first 繼續執行
-
-
-- 由於在 kernel mode 中，已經將 fork() 所應回傳的值放到 process stack 的 r0 中，藉由 exception return 將這個值 pop 到 ``R0``。則當程式離開 ``fork()`` 時，會回傳 task_count (R0)。
-  因此，母 task 在 ``if(!fork())`` 為 false，則繼續執行下一個 fork()。
-
-  .. code-block:: c
-
-    void first()
-    {
-         if (!fork()) setpriority(0, 0), pathserver();       // 子 task 的 if 判定為 true，於是執行 pathserver()
-         if (!fork()) setpriority(0, 0), romdev_driver();    // 母 task 的 if 判定為 false，於是繼續執行下一行
-         ...
-
-
-**子task**
-
-- 在 ``activate()`` 與 exception return 的行為與母 task 相同，只是在 ``if(!fork())`` 判定中為true (因為回傳值為 0)，所以就會進行 if 下的函式，於是新的 task 就開始運行了。
-
-與 POSIX fork 差別
-====================
-不同於 POSIX fork 的使用是架構在 virtual memory 上，rtenv-plus 只是單純地將母 task 在記憶體中所使用的 stack 完完整整地複製一份到子 task 所對應的 stack。
-
-在 file descriptor 方面，因為 rtenv-plus 並沒有所謂的 file descriptor table，所以如果母 task 有開檔的話，子 task 也只是單純繼承 file descriptor 的值而已。
-
-rtenv-plus 的 fork 與在同樣沒有 virtual memory 支援下所使用的 vfork 也有非常大的不同處。
-
-1. vfork 在產生子 task 後，會先將母 task suspend 直到子 task 結束為止。而 rtenv-plus 則是兩個 task 能夠同時存在。
-2. 在記憶體使用方面，vfork 的兩個 task 會使用同一個實體記憶體位置，不同於 rtenv-plus 兩個 task 用的是不同的實體記憶體位置。
-
-另外，在其它系統上，子 task 的 PPID 會是其母 task 的 PID，所以兩者之間可以有互動，例如母 task 等待子 task 結束。但在 rtenv-plus 上，因為沒有實作 PPID ，所以兩個 task 基本上是獨立運作而互不干擾的。
+ 
 
 task
 ==========
@@ -304,63 +122,76 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
  .. code-block:: c
 
     struct task_control_block {
-        struct user_thread_stack *stack; // 指到記憶體中 stack 的位置
+        struct user_thread_stack *stack;  // 指到記憶體中 stack 的位置
         int pid; //記錄目前 task 的 pid
         int status; //記錄目前 task 的狀態
         int priority; //記錄目前 task 的優先度
+        int inuse; //記錄目前 task 是否使用
 
         struct list list; 
     };
     
     // 其中 status 共有 5 種狀態被定義
     #define TASK_READY      0
-    #define TASK_WAIT_READ  1
+    #define TASK_WAIT_READ  1         
     #define TASK_WAIT_WRITE 2
     #define TASK_WAIT_INTR  3
     #define TASK_WAIT_TIME  4
     
-    // 其中 priority 預設為 20，最低的 priority 為39
-**GDB macro**
-利用 macro 可以快速查看目前的 task 是哪一個，並顯示出目前所有 task 的狀態以及優先度
-  
-  ::
 
-    define print_status
-        if($arg0 == 0)
-            printf "TASK_READY     "
-        end
-        if($arg0 == 1)
-            printf "TASK_WAIT_READ "
-        end
-        if($arg0 == 2)
-            printf "TASK_WAIT_WRITE"
-        end
-        if($arg0 == 3)
-            printf "TASK_WAIT_INTR "
-        end
-        if($arg0 == 4)
-            printf "TASK_WAIT_TIME "
-        end
-    end
+- ``struct task_control_block *current_tcb``：
+  此 global variable 用來指向當前執行的 task 的 tcb 的頭（struct user_thread_stack *stack），
+  用於context switch與exception handler
 
-    define ps
-        printf "pid    status            priority\n"
+init_task
+==========
 
-        set $t = tasks
-        set $i = 0
-        while $i != task_count
-            if ($i == current_task)
-                printf "*%2d    ", $t[$i].pid
-            else
-                printf "%3d    ", $t[$i].pid
-            end
-            print_status $t[$i].status
-            printf "%11d\n", $t[$i].priority
-            set $i = $i + 1
-        end
-    end
+- 功能：將系統初始函式的位址放置到 process stack 的 lr 位置。以及 exception return 的 lr 位置
 
-  .. image:: /embdded/rtenv-plus/gdb_macro.png
+- 運作：
+
+ .. code-block:: c
+
+    /* 傳入的參數為：欲初始化的 stack pointer, 與初始的 function 位置 */
+    unsigned int *init_task(unsigned int *stack, void (*start)())
+    {
+        /* 由於 stack 的設計為 full descendent stack（從低位到高位），
+         * 所以 stack pointer 一開始必須指向最高位址。
+         * 觀察 user_thread_stack 的設計：r4 是最低位址，處在 stack 的底部
+         * 而預期將 thread 的初始 function 位址存到 _lr 中以及 lr 中，加上CPSR的初始值，所以必須 push 18個 word.
+         */
+        stack += STACK_SIZE - 18;
+        /* 利用 pointer arithmetic，可以將 first() 的位址存到 _lr 中：
+         * user_thread_stack -> |r4 |r5 |r6 |r7 |r8 |r9 |r10| fp |_lr|...
+         *                         stack ->| [0]|[1]|[2]|[3] |[4]|[5]|  [6]| [7]|[8]|...
+         *                         其餘部份請參考
+         */
+        stack[8] = (unsigned int)start;
+        /*  lr   */
+        stack[16] = (unsigned int)start;
+        /*  CPSR  */
+        stack[17] = (unsigned int)0x01000000;
+        /* 回傳新的 sp 給該 task */
+        return stack;
+    }
+
+POSIX thread
+=============
+
+- ``void task_create(int priority, void *func, void *arg)``
+
+- ``void task_exit(void* ptr)``
+ 
+.. code-block:: c
+
+    _disable_irq();  //利用將 current_tcb 的 list 從 ready list 移除，並且將現在的 tcb 的 inuse設為0表示task 為沒使用的狀態，最後進到while(1) 等待下一次systick exception 作context switch 後將永遠不會再選到這個 task。
+    list_remove(&current_tcb->list);         
+    /*  Never context switch here   */
+    current_tcb->inuse = 0;
+    task_count--;
+    _enable_irq();
+        
+    while(1);
 
 list
 =====
@@ -379,8 +210,6 @@ list
   - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
  
   .. image:: /embedded/rtenv-plus/UOBhtQ.gif
-
-
 
 - Macro：
   - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
@@ -410,6 +239,7 @@ list
         int pid;
         int status;
         int priority;
+        int inuse;
     
         struct list list;
     };
@@ -429,7 +259,7 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler
 
   .. image:: /embedded/rtenv-plus/ready_list_array.png
 
-在第一個 task 的初始化，fork 建立新的 task，或是利用 setpriority 設定 task 的優先權，
+在第一個 task 的初始化，建立新的 task，或是利用 setpriority 設定 task 的優先權，
 會使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
 
  .. image:: /embedded/rtenv-plus/ready_list_element.png
@@ -478,27 +308,27 @@ Event Monitoring
 =================
 
 - 實作檔案：event_monitor.c
-- 功能：負責接受來自 event sources 所發出的 event occurrences，並將這些 pending 轉給 handlers 來處理 event。[#]_
+- 功能：負責處理所有的 event 。event 包含所有file 的 read/write、所有的exception都是一個"event"，且其有對應的handler。
 - 特性：
   - Event Collection：kernel 擁有一個 event monitor 來收集 occurrences 並轉送給 handlers。
-  - Event Sensor：透過 event_monitor 中的 events 來幫 handler "裝上 Sensor"。而每個 event sensor 都有 pending 用以暫存發出 occurrence 的 task。
+  
 - 函式：
   - ``event_monitor_init``：初始化 event_monitor
-  - ``event_monitor_find_free``：找尋有無尚未被使用的 sensor
-  - ``event_monitor_register``：為 handler 裝上 sendor
-  - ``event_monitor_block``：將發出 event occurrence 的 task 從 ready_list 取出放到對應 event 的 pending list 裡，使 task 等待 handler 的處理
-  - ``event_monitor_release``：標記有 occurrence pending
-  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending。處理完後將 task 從 pending list 取出到 ready list 裡
+  - ``event_monitor_find_free``：找尋有無尚未 registe r的 event_monitor
+  - ``event_monitor_register``：為 event 註冊其對應的 handler 與 data
+  - ``event_monitor_block``：將傳入的 task 的 list 從原有的list中移除，並將此list link到指定的event 的 list (i.e. 此task在等此event)。
+  - ``event_monitor_release``：標記指定的 event 的狀態為pending，表示已可處理在等此event的所有task。
+  - ``event_monitor_serve``：檢查 pending，並讓 handler 處理 pending event 中 list 的 task。處理完後將 task 從 event 的 list 取出移到 ready list 裡
 
 
 System Call
 ============
 
-user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``main()`` 中實作 system call 功能。
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``_r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``syscall()`` 中實作 system call 功能。
 
-system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 tasks[current_task].stack 來傳遞，因為 tasks[current_task].stack 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
+system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 current_tcb 來傳遞，因為 current_tcb->task 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
 
-``main()`` 中判斷 system call 的代號並執行對應功能
+``syscall()`` 中判斷 system call 的代號並執行對應功能
 
 - ``0x1：fork``
 
@@ -532,7 +362,7 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 ``void interrupt_wait(int intr);`` intr 為特定的 interrupt 編號
 
-透過 ``NVIC_EnableIRQ(tasks[current_task].stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
+透過 ``NVIC_EnableIRQ(current_tcb->stack->r0);`` 啟動特定的 interrupt 使之後能夠被觸發，task 必須在 interrupt 被觸發之後才可以繼續執行，於是先使用 ``event_monitor_block`` 擋住 task，task的狀態變成TASK_WAIT_INTR。
 
 - ``0x6：getpriority``
 
@@ -567,13 +397,12 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 
 - ``default：``
 
-此狀況為因應其他非 SVC_Handler 的 interrupt，如SysTick_Handler與USART2_IRQHandler。
-SysTick_Handler：timeup 設定為1，使之後進行選擇哪一個 task 來執行，並且釋放狀態為 TASK_WAIT_TIME 的 task(但要符合條件)。
-USART2_IRQHandler：關掉特定的 interrupt 使之不能夠被觸發，並且釋放狀態為 TASK_WAIT_INTR 的 task。
 
 File Descriptor
 ================
-在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 read、write、lseek 這三個 system call 都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個或多個運作函式 ( e.g. fifo_write )[#]_ 。
+在 rtenv-plus 中提供四種檔案類型，分別為 fifo pipe ( S_IFIFO )、message queue ( S_IMSGQ )、register file ( S_IFREG )、block file ( S_IFBLK )。
+每一種檔案類型都擁有自己的資料結構以及處理函式，
+其中處理函式針對 read、write、lseek 這三個 system call 都有提供一個檢查函式 ( e.g. fifo_writable ) 以及一個或多個運作函式 ( e.g. fifo_write )[#]_ 。
 
 ----------------
 
@@ -1023,90 +852,6 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 讀取詳細過程可以參考 register file 條目的 read 細項。
 
 
-移植過程
------------
-1. 將舊的函式庫移除
- a. 註解硬體相關的函式庫
- b. 嘗試編譯
- c. 找出相依的 function
-
-.. image:: /embedded/rtenv-plus/comment_header.png
-.. image:: /embedded/rtenv-plus/dependency.png
-2. 加入新的函式庫 (他有的我不能少)
- a. 在檔案中加入標頭檔
- b. 修改 Makefile 中的 include path
-  
-.. image:: /embedded/rtenv-plus/makefile_port.png
-3. 確認硬體是能動的
- a. 跑範例程式
- b. 將範例程式丟入作業系統看是否能正常運作
- c. 移除範例程式，使用原先硬體
- d. 修改系統參數 ``UART2`` -> ``UART1``
- e. 嘗試 make。
- f. 把不過的部份暫時拿掉，例如 ``romfs``
- 
-4. 程式死了 
- a. gdb 下去追
- b. 修掉架構相關的 bug
- c. 修改架構所需的常數
-
-.. image:: /embedded/rtenv-plus/CPUCLOCK.png
-
-安裝與測試
-----------------
-1. 下載 rtenv-plus 程式碼
-
-https://github.com/StanleyDing/rtenv-plus
-
-或
-
-https://github.com/Omar002/rtenv-plus
-
-2. 安裝 st-link
-
-http://github.com/texane/stlink.git
-
-3. 安裝 screen
-
-``sudo apt-get install screen``
-
-4. 把線接好
-
-.. image:: /embedded/rtenv-plus/st-link.jpg
-.. image:: /embedded/rtenv-plus/pins.jpg
-
-5. 燒錄 rtenv-plus
-
- a. 進入 rtenv-plus 資料夾
- b. ``make``
- c. ``make flash``
-
-6. 開啟 screen
-
-``screen /dev/ttyUSB0 115200 8n1``
-
-7. 按下板子上的 reset 按鈕
-
-gdb
-=====
-
-1. 如欲使用 gdb ，先安裝 arm toolchain
-
-``sudo apt-get install gcc-arm-none-eabi``
-
-2. 執行 st-util
-
-``sudo st-util``
-
-3. 執行 arm-none-eabi-gdb
-
- a. 到 rtenv-plus/build/
- b. ``$arm-none-eabi-gdb main.elf``
-
-4. 設定 gdb 目標
-
- ``(gdb) target remote :4242``
-
 硬體驅動原理
 ----------------
 * `USB OTG</embedded/OTG>`_
@@ -1116,8 +861,7 @@ gdb
 
 參考資料
 -----------
-
-.. [#] `mrs指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihjcedb.html>`_ 、 `msr指令<http://infocenter.arm.com/help/topic/com.arm.doc.dui0489i/Cihibbbh.html>`_
+[#]_ [#]_ [#]_ [#]_ [#]_
 
 .. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
