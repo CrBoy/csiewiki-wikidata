@@ -134,7 +134,7 @@ CPSR
 
 .. image:: http://loda.hala01.com/wp-content/uploads/2014/12/table.png
 
-    - aarch32 多了Bit 20:IL
+    - aarch32 多了Bit 20:IL (Illegal Execution State bit)
     - aarch64 多了Bit 9:E 被 D取代，並少了 IT，GE 
     - M(mode): 現在處理器運行的模式
         - M[4]: 0表示現在是AArch64，1則表示現在是在AArch32 
