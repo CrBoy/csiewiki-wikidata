@@ -24,38 +24,95 @@ toc: no
 ---------------
 
 安裝和測試 with qemu
-----------------
-1. git clone https://github.com/james33344/rtenv-plus
+===============
 
-2. 建立環境，參考 http://wiki.csie.ncku.edu.tw/embedded/Lab38
 
-3. make qemu
+建立環境
+---------------
 
+.. code-block:: prettyprint
+
+    sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
+
+- 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install lib32gcc1 lib32ncurses5
+
+- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
+
+.. code-block:: prettyprint
+
+    sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf qemu-user qemu-system-arm
+
+
+STM32 on QEMU 環境建立與測試
+--------------------------
+
+.. code-block:: prettyprint
+
+    mkdir -p workspace
+    cd workspace
+    git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
+    git clone git://github.com/beckus/qemu_stm32.git || git clone https://github.com/beckus/qemu_stm32.git
+
+    cd qemu_stm32
+    git submodule update --init dtc || sudo apt-get install libfdt-dev
+    ./configure --disable-werror --enable-debug \
+        --target-list="arm-softmmu" \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
+        --disable-gtk
+    make
+    cd ../stm32_p103_demos
+    make all
+    make blink_flash_QEMURUN
+    make button_QEMURUN
+    make uart_echo_QEMURUN
+
+
+測試方式
+--------------------------
+
+  - ``cd ~/workspace``
+  - ``git clone https://github.com/james33344/rtenv-plus``
+  - ``cd rtenv-plus``
+  - ``make``
+  - ``make qemu``
+  - 輸入 "help" 可見已實作的 shell command
+    * ps
+    * xxd
 
 Execution modes
 ===================
 
-- User (non-privileged) mode
+  - User (non-privileged) mode
  1. has limited access to the MSR and MRS instructions, and cannot use the CPS instruction
  2. cannot access the system timer, NVIC, or system control block
  3. might have restricted access to memory or peripherals.
 
-- Privileged mode
- - software can use all the instructions and has access to all resources.
+Privileged mode
+----------------
 
-- Operation mode
+ 1. software can use all the instructions and has access to all resources.
+
+
+Operation mode
+----------------
+
  1. Thread mode
-  - The Cortex-M3 提供 ``Privileged`` and User ( ``non-privileged`` ) execution
-  - Privileged mode在code執行時可full access
-  - non-privileged是limited。
+   - The Cortex-M3 提供 ``Privileged`` and User ( ``non-privileged`` ) execution
+   - Privileged mode在code執行時可full access
+   - non-privileged是limited。
  2. Handler mode
-  - 只有在exception發生時進入，且必為Privileged。
+   - 只有在exception發生時進入，且必為Privileged。
 
-- Main and Process Stacks
+  - Main and Process Stacks
  1. MSP：Main Stack Pointer
-  - 一開始程式進入即為MSP
+   - 一開始程式進入即為MSP
  2. PSP：Process Stack Pointer
-  - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
+   - 這是Programmer可以自己利用，在切換task間的SP。就是可以讓每個task有自己的sp。
 
 Exception (Cortex-M3)
 --------------------------
