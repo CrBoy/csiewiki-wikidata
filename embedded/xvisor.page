@@ -1389,7 +1389,15 @@ MMU
         }
     }
 
-
+.. code-block:: c
+    /* Update the httbr value */
+    ldr	x1, __httbr_set_addr
+    sub	x1, x1, x6
+    add	x1, x1, x4
+    ldr	x0, [x1]
+    sub	x0, x0, x6
+    add	x0, x0, x4
+    str	x0, [x1]
 
 TCR_EL2, Translation Control Register (EL2)
 
