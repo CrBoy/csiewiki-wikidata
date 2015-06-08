@@ -164,7 +164,7 @@ SP暫存器 (stack pointer registers)
 .. image:: /embedded/sp_th.png
 
 - SPSel, Stack Pointer Select: 可以透過MSR, MRS存取來設定要用哪個SP
-    -SP, bit [0]:Stack pointer to use.
+    - SP, bit [0]:Stack pointer to use.
         - 0 Use SP_EL0 at all exception levels.
         - 1 Use SP_ELx for exception level ELx.
 
