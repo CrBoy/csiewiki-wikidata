@@ -1513,7 +1513,35 @@ context switch
     					     "dsb sy\n\t" \
     					     "isb\n\t" \
     					     ::: "memory", "cc") 
+初始化流程
+....................................................
 
+首先vmm_main.c呼叫  int __cpuinit vmm_scheduler_init(void),並初始化timer event
+.. code-block:: c
+
+    int __cpuinit vmm_scheduler_init(void){
+
+    ....
+
+    /* Initialize timer events (Per Host CPU) */
+
+            INIT_TIMER_EVENT(&schedp->ev, &scheduler_timer_event, schedp);
+
+            INIT_TIMER_EVENT(&schedp->sample_ev,
+
+                                    &scheduler_sample_event, schedp);
+
+    ....
+
+    /* Start timer events */
+
+            vmm_timer_event_start(&schedp->ev, 0);
+
+            vmm_timer_event_start(&schedp->sample_ev, SAMPLE_EVENT_PERIOD);
+
+    ....
+
+    }
 
 在不同Arm架構下的虛擬化機制
 =====================================
