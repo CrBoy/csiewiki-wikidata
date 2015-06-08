@@ -1264,6 +1264,13 @@ MMU
 
 .. code-block:: c
 
+        /*
+         * x4 -> load start
+         * x5 -> load end
+         * x6 -> execution start
+         * x7 -> execution end
+         */
+
     _start_mmu_init:
         /* Setup SP as-per load address */
         ldr	x0, __hvc_stack_end
