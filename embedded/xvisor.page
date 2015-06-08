@@ -24,12 +24,15 @@ Hackpad
 Hypervisor (Virtual Machine Monitor, VMM)
 --------------------------------------------
 
-- Hypervisor的主要功用是去管理Virtual Machines (VMs)，使他們各自獨立運行，也管理著底層硬體
+- Hypervisor的主要功用是去管理Virtual Machines (VMs)，使VM能夠各自獨立運行，同時hypervisor也管理著底層硬體
     - Host Machine: 運行Hypervisor的實體主機，但有時運行在Hypervisor之上
     - Guest Machine: 運行在Hypervisor之上的虛擬主機
 
     .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
-- 使用時機(benefit)
+
+- 目前三大open source的hypervisor為Linux KVM, Xen, Xvisor，可閱讀此`資料<https://mycpp.hackpad.com/Embedded-Hypervisor-Xvisor-A-comparative-analysis-IWiYFKqzTwD>`_
+
+- 使用時機及益處
     - 工作負載整合 (Workload Consolidation)
         - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
         - 以VMware資料顯示，如果透過VMware vSphere來進行伺服器的虛擬化，可以降低硬體和營運成本達 50%，並減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
@@ -80,9 +83,14 @@ Hypervisor的類型
         - 但因直接運行於硬體上，所以時常為single purpose
         - Type-1又有分兩種設計
             - monolithic
-                - device driver包含在hypervisor，因為沒有任何的intermediation，所以application及hardware間有良好的performance，但hypervisor會有大量的driver code，容易被攻擊
+                - device driver包含在hypervisor(也就是kernel space)，因為沒有任何的intermediation，所以application及hardware間有良好的performance，但hypervisor會有大量的driver code，容易被攻擊
+                    - Complete monolithic
+                        - 此hypervisor有個software負責host的硬體存取、CPU的虛擬化及guest的IO emulation，Xvisor屬於此類
+                    - Partially monolithic
+                        - hypervisor為GPOS的附加套件(extension)，與complete monothlic不同的是，是利用user-space software，例如QEMU來支持host的硬體存取、CPU的虛擬化及guest的IO emulation，KVM屬於此類
             - microkernel
-                - device driver被安裝在parent guest. Parent guest是privileged VM，去管理non-privileged child guest VMs. 當Child guest要存取硬體資源時，必須經過parent guest，雖然performance下降，但較monolithic安全，
+                - hypervisor為輕小的micro-kernel，利用Management Guest(例如Xen的Dom0)去提供host的硬體存取、CPU的虛擬化及guest的IO emulation
+                - device driver被安裝在parent guest(也就是user space). Parent guest是privileged VM，去管理non-privileged child guest VMs. 當Child guest要存取硬體資源時，必須經過parent guest，雖然performance下降，但較monolithic安全，Xen則屬於此類
     - Type-2
         - 支援較多的I/O device及服務
         - 因需多透過Host OS，效能較Type-1低，常應用於效率較不重要的客戶端
