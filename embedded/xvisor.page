@@ -596,6 +596,12 @@ GIC 配置
         subs	x1, x1, #1
         bge	2b
 
+.. image:: /embedded/gic_type.png
+
+If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
+
+.. image:: /embedded/GICD_IGROUPRn.png
+
 .. image:: /embedded/gic_cpu_interface.png
 
 (from GICv2 Architecture Specification P.76)
