@@ -1688,6 +1688,11 @@ arm32 指令虛擬化
     	ldr	pc, __reset
     	ldr	pc, __undefined_instruction
     	ldr	pc, __software_interrupt  /* __software_interrupt:	.word _soft_irq  */
+        /* EXCEPTION_HANDLER _soft_irq, 4
+         *PUSH_REGS 
+         *CALL_EXCEPTION_CFUNC do_soft_irq
+         *PULL_REGS
+         */ 
     	......
 
 `cpu_interrupts.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_interrupts.c>`_
