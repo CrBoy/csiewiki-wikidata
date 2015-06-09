@@ -1297,7 +1297,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
 **安裝**
 
-    1. 請先安裝st-link以及openOCD，可參考此頁 
+    1. 請先安裝 st-link 以及 openOCD，可參考`此頁<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ 
 
     2. git clone https://github.com/TheKK/myFreeRTOS.git
 
@@ -1305,7 +1305,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
     4. make
 
-    5. 將stm32 f4 - discovery接上電腦
+    5. 將 stm32 f4 - discovery 接上電腦
 
     6. make flash
 
