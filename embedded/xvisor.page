@@ -1295,6 +1295,8 @@ MMU
          * x7 -> execution end
          */
 
+.. code-block:: c
+
     _start_mmu_init:
         /* Setup SP as-per load address */
         ldr	x0, __hvc_stack_end
