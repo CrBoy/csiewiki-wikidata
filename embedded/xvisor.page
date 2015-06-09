@@ -499,15 +499,15 @@ I/O device virtualization
 
 virtio
 .............................
-VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為`PCI<http://zh.wikipedia.org/wiki/PCI>`_ device或MMIO device。
+VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為`PCI<http://zh.wikipedia.org/wiki/PCI>`_ device或`MMIO<http://en.wikipedia.org/wiki/Memory-mapped_I/O>`_ device。
 
 VirtIO specification和hypervisor與architecture是獨立的。VirtIO specification描述不同類型的VirtIO devices之細節和功能。
 
-官方的VirtIO specification可參考https://github.com/rustyrussell/virtio-spec。
+官方的VirtIO specification可參考`這裡<https://github.com/rustyrussell/virtio-spec>`_。
 
 其他支援VirtIO based paravirtualized devices的hypervisor包含Lguest、KVM和Xen。VirtIO最早是由Rusty Russell開發，用於Lguest的paravirtualization。
 
-在Xvisor裡，VirtIO devices對guest來說是一種PCI/MMIO devices的選項，因此guest OS並不會被強制使用VirtIO。
+在Xvisor裡，VirtIO devices對guest來說是一種`PCI<http://zh.wikipedia.org/wiki/PCI>`_/`MMIO<http://en.wikipedia.org/wiki/Memory-mapped_I/O>`_ devices的選項，因此guest OS並不會被強制使用VirtIO。
 
 目前在Xvisor裡有下列幾種類型的VirtIO devices：
 
