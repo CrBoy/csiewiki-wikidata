@@ -267,7 +267,7 @@ POSIX thread
 最後``task_start()``
 會將 task的 (r7-r11, lr, _r7) 存入system register，並且切換至 PSP 開始執行 task (bx lr)
 
-  .. image:: /embedded/task_start_tcb.png
+  .. image:: /embedded/task_start_tcb_1.png
 
 
 list
@@ -535,6 +535,54 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 根據不同檔案類型，用 ``lseekable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``lseek(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
 
 - ``default：``
+
+
+syscall執行說明
+---------------------------
+
+- 在 syscall (以fork說明) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，
+
+  .. image:: /embedded/syscall_save_state_1.png
+
+  1. 同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。此步即exception entry。
+  2. 進入 syscall() 根據 ``current_tcb->stack->r7`` (這裡是fork:0x01)來處理對應的syscall
+  3. 最後將 exception entry 時所 push 的 register pop 出來，並回到exception entry 時的 PC 。
+
+
+**進行fork**
+
+- 開始執行 kernel mode 後，藉由 ``tasks[current_task].stack->r7``，可以取得在 fork() 傳入的值。因此 kernel 判定要執行 fork 動作，將母 task 的 stack 內容複製到子 task 的 stack 中，但是母 task 的 r0 存的是目前產生的 task 數量，而子 task 則是 0。
+
+  ::
+
+    [ fork() ]
+    .global fork
+    fork:
+       115d0:   b480        push    {r7, lr}
+       115d2:   f04f 0701   mov.w   r7, #1
+       115d6:   df00        svc 0    // <- Exception 在這裡發生，所以 PC 被存的值為 0x115d8
+       115d8:   bf00        nop      // <- 藉由 exception return 使的程式回到這裡繼續執行
+       115da:   bc80        pop {r7, lr}
+       115dc:   4770        bx  lr   // <- 回到 task 繼續執行
+
+
+- 由於在 kernel mode 中，已經將 fork() 所應回傳的值放到 process stack 的 r0 中，藉由 exception return 將這個值 pop 到 ``R0``。則當程式離開 ``fork()`` 時，會回傳 task_count (R0)。
+
+
+與 POSIX fork 差別
+====================
+不同於 POSIX fork 的使用是架構在 virtual memory 上，利用copy-on-write的方式。
+
+rtenv-plus 只是單純地將母 task 在記憶體中所使用的 stack 完完整整地複製一份到子 task 所對應的 stack。
+
+在 file descriptor 方面，因為 rtenv-plus 並沒有所謂的 file descriptor table，所以如果母 task 有開檔的話，子 task 也只是單純繼承 file descriptor 的值而已。
+
+rtenv-plus 的 fork 與在同樣沒有 virtual memory 支援下所使用的 vfork 也有非常大的不同處。
+
+1. vfork 在產生子 task 後，會先將母 task suspend 直到子 task 結束為止。而 rtenv-plus 則是兩個 task 能夠同時存在。
+2. 在記憶體使用方面，vfork 的兩個 task 會使用同一個實體記憶體位置，不同於 rtenv-plus 兩個 task 用的是不同的實體記憶體位置。
+
+另外，在其它系統上，子 task 的 PPID 會是其母 task 的 PID，所以兩者之間可以有互動，例如母 task 等待子 task 結束。但在 rtenv-plus 上，因為沒有實作 PPID ，所以兩個 task 基本上是獨立運作而互不干擾的。
 
 
 File Descriptor
@@ -1000,7 +1048,7 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
 參考資料
 -----------
-[#]_ [#]_ [#]_ [#]_ [#]_
+[#]_ [#]_ [#]_ [#]_ [#]_ [#]_
 
 .. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
 
