@@ -160,9 +160,10 @@ Gerald Popek及Robert Goldberg二人提出的`理論<http://citeseerx.ist.psu.ed
 所以根據定義，ISA如果是sensitive，就是control sensitive或者是behavior sensitive，不然就是innocuous (無害的)。另外，如果sensitive instruction為privileged，VMM則可以被覆寫
 
 - VMM內容
+    - VMM是個軟體，在此我們稱作control program，在此program中，又包含許多modules
     - control program modules可概略分成三種
         1. Dispatcher
-            - 可視為最高等級的control program module，決定呼叫哪一個module
+            - 可視為control module之上最高等級的control program，Dispatcher決定呼叫哪一個module
 
         2. Allocator
             - 決定系統資源的分配，有resource table
@@ -216,7 +217,6 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 - Hardware-assisted virtualization (Intel VT, AMD-V)
     - 需要硬體的支援虛擬化
     - 引入新的指令和處理器的運行模式，讓Hypervisor及Guest OS運行在不同的mode下，OS在被監視模式下運行，需要Hypervisor介入時，則透過hardware進行切換
-    - CPU Virtualization, Memory Virtualization, IO Virtualization
     - 讓Guest OS發出的privilege指令被hypervisor攔截到
     - Intel VT及AMD-V增加Ring -1並提供Hypervisor x86虛擬化指令，使Hypervisor可以去存取Ring 0的硬體，並把Guest OS放在**Ring 0**，使Guest OS能在不影響其他guest或host OS的情況下，直接執行Ring 0的指令，所以不需要作Binary Translation也不需要修改OS Kernel
 
