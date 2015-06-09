@@ -1210,7 +1210,15 @@ Context switch 是指 task A 要交出 CPU 使用權給 task B 時，OS 會將 t
      		while(1){}
     	}
     }
-
+    
+    int main( void )
+    {
+        ...
+    	xTaskCreate( Task1, (signed char*)"Task1", 128, NULL, tskIDLE_PRIORITY+1, NULL );
+    	xTaskCreate( Task2, (signed char*)"Task2", 128, NULL, tskIDLE_PRIORITY+2, NULL );
+    	xTaskCreate( Task3, (signed char*)"Task3", 128, NULL, tskIDLE_PRIORITY+3, NULL );
+        ...
+    }
 .. image:: /embedded/test1contextSwitch.jpg
 1. 首先建立 task1 和 task2，其中 task2 的優先權大於 task1 的優先權。task2 先執行，並且(task2)馬上就呼叫 vTaskDelay 使 task2 移至 block 狀態 1 秒，此時就會發生 context switch，切換成 task1 執行，這 1 秒的時間內，task1 不斷的將全域變數 iii 做 ++，直到 1 秒結束後，回到 task2 執行，再由 task2 印出 iii 的值，並把 iii 重新設為 0，此為一個週期。此動作可得到 iii 在 1 秒內可跑到多少，設 1 秒可跑至 k 值。
 
