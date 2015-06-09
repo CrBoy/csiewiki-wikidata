@@ -599,5 +599,11 @@ KernelShark
 Linux Kernel Timer Interrupt
 ------------------------------------------------
 
+- timer interrupt 流程圖
+
+.. image:: /embedded/arm_linux/timer_interrupt.png
+
+
+
 Linux Scheduler 行為分析
 ------------------------------------------------
