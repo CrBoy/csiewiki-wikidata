@@ -248,6 +248,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
         .. image:: /embedded/TTBR01.jpg
 
+    - `stackoverflow<http://stackoverflow.com/questions/14460752/linux-kernel-arm-translation-table-base-ttb0-and-ttb1>`_
     - TLB 可以cache Translation table entries
 
 地址轉換階級控制 (Controlling address translation stages)
