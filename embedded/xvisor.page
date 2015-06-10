@@ -1038,6 +1038,8 @@ Virtual gic (vgic)
 
 .. image:: /embedded/vgic_flow.png
 
+.. image:: /embedded/vgic_v1.png
+
 timer 及 time event
 ------------------------------------------------
 
