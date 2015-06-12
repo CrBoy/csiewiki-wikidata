@@ -474,6 +474,211 @@ vim build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE, CONFIG_KGDB, CONFIG
   sudo cp -r rpi-linux/build/dist/lib/modules $(sdcard)/lib
   sudo cp -r xenomai-3/dist/usr/xenomai $(sdcard)/usr
 
+Beaglebone Black 環境設置
+++++++++++++++++++++++++++++
+
+* 下載Kernel Source & 編譯
+
+.. code-block:: c
+
+  cd ti-linux-kernel-dev
+  git checkout origin/ti-linux-3.14.y -b tmp
+  ./build_kernel.sh
+
+* 預設username/password
+
+.. code-block:: c
+
+  username:ubuntu
+  password:temppwd
+
+* 設定cross compile
+
+在Kernel Configuration中選擇General setup，輸入
+
+.. code-block:: c
+
+  CROSS_COMPILE=arm-linux-gnueabi-
+
+* 取得image，並且驗證 (注意:注意md5碼須相同)
+
+.. code-block:: c
+
+  wget https://rcn-ee.com/rootfs/2015-04-09/ubuntu-14.04.2-console-armhf-2015-04-09.tar.xz
+  md5sum ubuntu-14.04.2-console-armhf-2015-04-09.tar.xz
+  be1f3008aaa32d88c842897e324bcdf8  ubuntu-14.04.2-console-armhf-2015-04-09.tar.xz
+
+* 解壓縮image
+
+.. code-block:: c
+
+  tar xf ubuntu-14.04.2-console-armhf-2015-04-09.tar.xz
+  cd ubuntu-14.04.2-console-armhf-2015-04-09
+
+* 檢查SD Card位址
+
+.. code-block:: c
+
+  sudo ./setup_sdcard.sh --probe-mmc
+
+* 假設現在位址是 "/dev/mmcblk0"
+
+注意,ubuntu 一定要加 bash,因為 ubuntu 沒設定 default 為 bash
+
+.. code-block:: c
+
+  sudo bash setup_sdcard.sh --mmc /dev/mmcblk0 --dtb beaglebone
+
+* Advanced: Build Image 
+
+.. code-block:: c
+
+  git clone https://github.com/RobertCNelson/omap-image-builder.git
+  cd omap-image-builder
+  git checkout v2015.04 -b tmp
+
+* Stable
+
+.. code-block:: c
+
+  ./RootStock-NG.sh -c rcn-ee_console_ubuntu_stable_armhf
+
+* 完成上述步驟後即可上電,按 boot select button 讓它從 sd card 開機，開機後進入登入畫面，帳號/密碼寫在上面
+
+* 登入後查詢版本
+
+.. code-block:: c
+
+  sudo su
+  uname -a
+
+Xenomai 2.6 on Beaglebone
+++++++++++++++++++++++++++++
+
+使用舊版linux(Angstrom)來做測試，核心編譯步驟參考上面步驟 或 http://elinux.org/EBC_Installing_Kernel_Source
+
+Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
+
+參考資料 http://elinux.org/EBC_Xenomai 與 http://emplearn.blogspot.tw/search?q=xenomai
+
+* 設定路徑
+
+.. code-block:: c
+
+  mkdir bbb
+  cd bbb
+  export BBB=$(pwd)
+
+* 取得xenomai-2.6.4 (與 beaglebone-kernel 同一層目錄)
+
+.. code-block:: c
+
+  wget http://download.gna.org/xenomai/stable/latest/xenomai-2.6.4.tar.bz2
+
+* 檢查版本
+
+.. code-block:: c
+
+  cd bb-kernel/KERNEL
+  uname -a
+  git tags | sort | less
+
+* 選擇跟所編譯 Kernel 最接近版本，在此為 3.8.13
+
+.. code-block:: c
+
+  git checkout 3.8.13-bone67 -b xenomai
+
+* Patch the kernel
+
+.. code-block:: c
+
+  cd bb-kernel/KERNEL
+  patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-pre.patch
+  patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-4.patch
+  patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-post.patch
+
+* Prepare the kernel
+
+.. code-block:: c
+
+  cd ../../xenomai-2.6.4/scripts
+  ./prepare-kernel.sh --arch=arm --linux=../../bb-kernel/KERNEL/
+
+* Prepare the kernel
+
+.. code-block:: c
+
+  cd ../../bb-kernel
+
+* 確認已經關掉AUTO_BUILD
+
+.. code-block:: c
+
+  vi system.sh
+
+* 確認最後一行為
+
+.. code-block:: c
+
+  #AUTO_BUILD=1
+
+* 關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
+
+* 將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
+
+.. code-block:: c
+
+ cd ../../bb-kernel/KERNEL
+ make ARCH=arm menuconfig
+
+* 再重新編譯
+
+.. code-block:: c
+
+  make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- LOADADDR=0x80008000 uImage dtbs modules
+
+* 編譯完後將 SD 卡內的 Kernel 換掉
+
+.. code-block:: c
+
+  mkdir sd
+
+* 掛載 sd 卡
+
+* 確認掛載的目錄內一定要有這些路徑
+
+.. code-block:: c
+
+  sudo mount /dev/mmcblk0p1 sd
+  sudo cp beagle-kernel/kernel/arch/arm/boot/uImage sd/boot/uImage-3.8.13
+  cd beagle-kernel/kernel
+  sudo make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- INSTALL_MOD_PATH=$BBB/sd modules_install
+  cd -
+  mkdir sd/home/root/xeno_drivers
+  cp beagle-kernel/kernel/drivers/xenomai/testing/*.ko sd/home/root/xeno_drivers/
+  cp -r xenomai-2.6.3 sd/home/root
+  ./configure --target=arm-linux-gnueabi
+  mkdir -p dist; make DESTDIR=`pwd`/dist install
+
+* 將編譯後dist內的內容複製放到beaglebone上
+
+.. code-block:: c
+
+  sudo umount sd
+
+* 測試,掛載driver
+
+.. code-block:: c
+
+  cd ~/xeno_drivers
+  insmod xeno_klat.ko
+  /usr/xenomai/bin/cyclictest -p 90
+
+
+
+
+
 觀察與分析
 =========
 
