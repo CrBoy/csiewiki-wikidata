@@ -84,6 +84,76 @@ STM32 on QEMU 環境建立與測試
     * ps
     * xxd
 
+
+測試 with STM32f429i-discovery
+--------------------------------------------------------------
+
+
+1. 安裝 st-link
+
+http://github.com/texane/stlink.git
+
+2. 安裝 screen
+
+``sudo apt-get install screen``
+
+3. 把線接好
+
+.. image:: /embedded/rtenv-plus/st-link.jpg
+
+利用PL2320 (USB-to-RS232)
+
+Red->+5V supply, Black->Ground, Green->TX, White->RX
+
+.. image:: /embedded/rtenv-plus/pins.jpg
+
+因為設定是USART1，所以是PA9、PA10
+
+http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html
+
+5. 燒錄 rtenv-plus
+
+ a. 進入 rtenv-plus 資料夾
+ b. ``make stmf4``
+ c. ``make flash``
+
+6. 開啟 screen
+
+``sudo screen /dev/ttyUSB0 115200 8n1``
+
+115200為baud rate
+
+8n1為8bits per charater, no parity , 1 stop bit
+
+7. 按下板子上的 reset 按鈕
+
+
+
+gdb
+---------
+
+
+
+1. 如欲使用 gdb ，先安裝 arm toolchain
+
+``sudo apt-get install gcc-arm-none-eabi``
+``sudo apt-get install gdb-arm-none-eabi``
+
+2. 執行 st-util
+
+``sudo st-util``
+
+3. 執行 arm-none-eabi-gdb
+
+ a. 到 rtenv-plus/
+ b. ``$arm-none-eabi-gdb build_stmf4/main.elf``
+
+4. 設定 gdb 目標
+
+ ``(gdb) target ext :4242``
+
+
+
 Execution modes
 ===================
 
