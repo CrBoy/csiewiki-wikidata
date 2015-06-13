@@ -74,8 +74,16 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 
 `回目錄<#目錄>`_
 
-命名規則
+資料型態及命名規則
 ---------
+在不同硬體裝置上，通訊埠設定上也不同，定義在`portmacro.h`標頭檔內，有兩種特殊資料型態portTickType以及portBASE_TYPE。
+
+* 資料型態
+  - portTickType  : 用以儲存tick的計數值，可以用來判斷block次數
+  - portBASE_TYPE : 定義為架構基礎的變數，隨各不同硬體來應用，如在32-bit架構上，其為32-bit型態，最常用以儲存極限值或布林數。
+
+FreeRTOS明確的定義變數名稱以及資料型態，不會有unsigned以及signed搞混使用的情形發生。
+
 * 變數
   - char 類型：以 c 為字首
   - short 類型：以 s 為字首
@@ -91,6 +99,13 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
   - vTaskPriority() 是 task.c 中回傳值型態為 void 的函式
   - xQueueReceive() 是 queue.c 中回傳值型態為 portBASE_TYPE 的函式
   - 只能在該檔案中使用的 (scope is limited in file) 函式，以 prv 為開頭 (private)
+
+* 巨集名稱：巨集在FreeRTOS裡皆為大寫字母定義，名稱前小寫字母為巨集定義的地方
+  - portMAX_DELAY 			: portable.h
+  - configUSE_PREEMPTION	: FreeRTOSConfig.h
+
+一般巨集回傳值定義pdTRUE 及 pdPASS為1 , pdFALSE 及 pdFAIL 為0。
+
 
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
