@@ -1040,6 +1040,10 @@ Virtual gic (vgic)
 
 .. image:: /embedded/vgic_v1.png
 
+device emulator(以uart為例)
+------------------------------------------------
+.. image:: /embedded/vserial.png
+
 timer 及 time event
 ------------------------------------------------
 
