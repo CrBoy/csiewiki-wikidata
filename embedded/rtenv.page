@@ -23,134 +23,6 @@ toc: no
 作業系統架構
 ---------------
 
-安裝和測試 with qemu
-===============
-
-
-建立環境
----------------
-
-.. code-block:: prettyprint
-
-    sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
-
-- 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
-
-.. code-block:: prettyprint
-
-    sudo apt-get install lib32gcc1 lib32ncurses5
-
-- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
-
-.. code-block:: prettyprint
-
-    sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf qemu-user qemu-system-arm
-
-
-STM32 on QEMU 環境建立與測試
---------------------------
-
-.. code-block:: prettyprint
-
-    mkdir -p workspace
-    cd workspace
-    git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
-    git clone git://github.com/beckus/qemu_stm32.git || git clone https://github.com/beckus/qemu_stm32.git
-
-    cd qemu_stm32
-    git submodule update --init dtc || sudo apt-get install libfdt-dev
-    ./configure --disable-werror --enable-debug \
-        --target-list="arm-softmmu" \
-        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
-        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
-        --disable-gtk
-    make
-    cd ../stm32_p103_demos
-    make all
-    make blink_flash_QEMURUN
-    make button_QEMURUN
-    make uart_echo_QEMURUN
-
-
-測試方式
---------------------------
-
-  - ``cd ~/workspace``
-  - ``git clone https://github.com/james33344/rtenv-plus``
-  - ``cd rtenv-plus``
-  - ``make``
-  - ``make qemu``
-  - 輸入 "help" 可見已實作的 shell command
-    * ps
-    * xxd
-
-
-測試 with STM32f429i-discovery
---------------------------------------------------------------
-
-
-1. 安裝 st-link
-
-http://github.com/texane/stlink.git
-
-2. 安裝 screen
-
-``sudo apt-get install screen``
-
-3. 把線接好
-
-.. image:: /embedded/rtenv-plus/st-link.jpg
-
-利用PL2320 (USB-to-RS232)
-
-Red->+5V supply, Black->Ground, Green->TX, White->RX
-
-.. image:: /embedded/rtenv-plus/pins.jpg
-
-因為設定是USART1，所以是PA9、PA10
-
-http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html
-
-5. 燒錄 rtenv-plus
-
- a. 進入 rtenv-plus 資料夾
- b. ``make stmf4``
- c. ``make flash``
-
-6. 開啟 screen
-
-``sudo screen /dev/ttyUSB0 115200 8n1``
-
-115200為baud rate
-
-8n1為8bits per charater, no parity , 1 stop bit
-
-7. 按下板子上的 reset 按鈕
-
-
-
-gdb
----------
-
-
-
-1. 如欲使用 gdb ，先安裝 arm toolchain
-
-``sudo apt-get install gcc-arm-none-eabi``
-``sudo apt-get install gdb-arm-none-eabi``
-
-2. 執行 st-util
-
-``sudo st-util``
-
-3. 執行 arm-none-eabi-gdb
-
- a. 到 rtenv-plus/
- b. ``$arm-none-eabi-gdb build_stmf4/main.elf``
-
-4. 設定 gdb 目標
-
- ``(gdb) target ext :4242``
 
 
 
@@ -1107,6 +979,137 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 .. image:: /embedded/rtenv-plus/block_and_regfile_offset.PNG
 
 讀取詳細過程可以參考 register file 條目的 read 細項。
+
+安裝和測試 with qemu
+===============
+
+
+建立環境
+---------------
+
+.. code-block:: prettyprint
+
+    sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
+
+- 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
+
+.. code-block:: prettyprint
+
+    sudo apt-get install lib32gcc1 lib32ncurses5
+
+- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
+
+.. code-block:: prettyprint
+
+    sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf qemu-user qemu-system-arm
+
+
+STM32 on QEMU 環境建立與測試
+--------------------------
+
+.. code-block:: prettyprint
+
+    mkdir -p workspace
+    cd workspace
+    git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
+    git clone git://github.com/beckus/qemu_stm32.git || git clone https://github.com/beckus/qemu_stm32.git
+
+    cd qemu_stm32
+    git submodule update --init dtc || sudo apt-get install libfdt-dev
+    ./configure --disable-werror --enable-debug \
+        --target-list="arm-softmmu" \
+        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
+        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
+        --disable-gtk
+    make
+    cd ../stm32_p103_demos
+    make all
+    make blink_flash_QEMURUN
+    make button_QEMURUN
+    make uart_echo_QEMURUN
+
+
+測試方式
+--------------------------
+
+  - ``cd ~/workspace``
+  - ``git clone https://github.com/james33344/rtenv-plus``
+  - ``cd rtenv-plus``
+  - ``make``
+  - ``make qemu``
+  - 輸入 "help" 可見已實作的 shell command
+    * ps
+    * xxd
+
+
+測試 with STM32f429i-discovery
+--------------------------------------------------------------
+
+
+1. 安裝 st-link
+
+http://github.com/texane/stlink.git
+
+2. 安裝 screen
+
+``sudo apt-get install screen``
+
+3. 把線接好
+
+.. image:: /embedded/rtenv-plus/st-link.jpg
+
+利用PL2320 (USB-to-RS232)
+
+Red->+5V supply, Black->Ground, Green->TX, White->RX
+
+.. image:: /embedded/rtenv-plus/pins.jpg
+
+因為設定是USART1，所以是PA9、PA10
+
+http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html
+
+5. 燒錄 rtenv-plus
+
+ a. 進入 rtenv-plus 資料夾
+ b. ``make stmf4``
+ c. ``make flash``
+
+6. 開啟 screen
+
+``sudo screen /dev/ttyUSB0 115200 8n1``
+
+115200為baud rate
+
+8n1為8bits per charater, no parity , 1 stop bit
+
+7. 按下板子上的 reset 按鈕
+
+
+
+gdb
+---------
+
+
+
+1. 如欲使用 gdb ，先安裝 arm toolchain
+
+``sudo apt-get install gcc-arm-none-eabi``
+``sudo apt-get install gdb-arm-none-eabi``
+
+2. 執行 st-util
+
+``sudo st-util``
+
+3. 執行 arm-none-eabi-gdb
+
+ a. 到 rtenv-plus/
+ b. ``$arm-none-eabi-gdb build_stmf4/main.elf``
+
+4. 設定 gdb 目標
+
+ ``(gdb) target ext :4242``
+
+
 
 
 效能表現
