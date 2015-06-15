@@ -671,23 +671,94 @@ KernelShark
 =================================================
 - trace-cmd
         - 他是user space front end command line tool for ftrace，有一些distribution將trace-cmd裝成package，就ubuntu 14.10來講，可以透過`apt-get install`安裝，裝完就可以使用了
-        .. code-block:: txt
+
+.. code-block:: txt
 
     $sudo apt-get install trace-cmd
 
-        - 基本使用方式
-            - 簡單的方式就是先紀錄後報告
-            - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用`ls`指令是因為紀錄ftrace data進入trace.dat，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
 
-        .. code-block:: txt
+- trace-cmd 基本使用方式
+        - 簡單的方式就是先紀錄後報告
+        - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用`ls`指令是因為紀錄ftrace data進入trace.dat，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
+
+.. code-block:: txt
 
     root@garygu-Aspire-4830TG:~# trace-cmd record -e ext4 ls
     /sys/kernel/debug/tracing/events/ext4/filter
     /sys/kernel/debug/tracing/events/*/ext4/filter
     trace.dat.cpu0        trace.dat.cpu1        trace.dat.cpu2        trace.dat.cpu3
     Kernel buffer statistics:
-    Note: "entries" are the entries left in the kernel ring buffer and are not
+      Note: "entries" are the entries left in the kernel ring buffer and are not
         recorded in the trace data. They should all be zero.
+
+    CPU: 0
+    entries: 0
+    overrun: 0
+    commit overrun: 0
+    bytes: 444
+    oldest event ts: 12041.827184
+    now ts: 12041.829362
+    dropped events: 0
+    read events: 11
+
+    CPU: 1
+    entries: 0
+    overrun: 0
+    commit overrun: 0
+    bytes: 756
+    oldest event ts: 12041.826906
+    now ts: 12041.829397
+    dropped events: 0
+    read events: 19
+
+    CPU: 2
+    entries: 0
+    overrun: 0
+    commit overrun: 0
+    bytes: 604
+    oldest event ts: 12041.827041
+    now ts: 12041.829426
+    dropped events: 0
+    read events: 15
+
+    CPU: 3
+    entries: 0
+    overrun: 0
+    commit overrun: 0
+    bytes: 0
+    oldest event ts: 11939.099107
+    now ts: 12041.829453
+    dropped events: 0
+    read events: 0
+
+    CPU0 data recorded at offset=0x4ee000
+        4096 bytes in size
+    CPU1 data recorded at offset=0x4ef000
+        4096 bytes in size
+    CPU2 data recorded at offset=0x4f0000
+        4096 bytes in size
+    CPU3 data recorded at offset=0x4f1000
+        0 bytes in size
+    root@garygu-Aspire-4830TG:~# trace-cmd report
+    version = 6
+    CPU 3 is empty
+    cpus=4
+           trace-cmd-26790 [001] 12041.826906: ext4_journal_start:   dev 8,1 blocks, 35 rsv_blocks, 0 caller __ext4_new_inode+0x595
+           trace-cmd-26790 [001] 12041.826941: ext4_mark_inode_dirty: dev 8,1 ino 26214438 caller ext4_ext_tree_init+0x3a
+           trace-cmd-26790 [001] 12041.826949: ext4_mark_inode_dirty: dev 8,1 ino 26214438 caller __ext4_new_inode+0xff1
+           trace-cmd-26790 [001] 12041.826952: ext4_allocate_inode:  dev 8,1 ino 26214438 dir 26214401 mode 0>o<
+           trace-cmd-26790 [001] 12041.826955: ext4_es_lookup_extent_enter: dev 8,1 ino 26214401 lblk 0
+           trace-cmd-26790 [001] 12041.826956: ext4_es_lookup_extent_exit: dev 8,1 ino 26214401 found 1 [0/1) 10486
+
+- KernelShark
+    - kernelshark是trace-cmd的前端讀取工具，他專門讀取trace.dat的資料，然後將結果用圖形化的方式呈現出來，他預設讀取檔案就是trace.dat，然後這個kernelshark也是ubuntu可以安裝的套件，裝完就可以使用了，只需要下達`kernelshark`就可以自動讀取trace.dat的資料，然後圖示化結果
+    - 下圖就是將上面trace ext4的結果，圖像畫出來
+
+.. code-block:: txt
+
+    $sudo apt-get install kernelshark
+
+.. image:: /embedded/arm_linux/kernelshark_ext4.png
 
 Linux Kernel Timer Interrupt
 ------------------------------------------------
