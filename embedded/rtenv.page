@@ -63,10 +63,13 @@ rtenv+是一個基於Cortex-M3的極小型的RTOS系統，用以教學用。
 Source code
 -------------------------------
 
-
 原始來源： https://github.com/embedded2014/rtenv-plus
 
-擴充： https://github.com/james33344/rtenv-plus
+文件請見：`rtenv+ 2014 <http://wiki.csie.ncku.edu.tw/embedded/rtenv-2014>`_
+
+
+
+(目前)擴充： https://github.com/james33344/rtenv-plus
 
 
 Cortex-M3 基本概念
