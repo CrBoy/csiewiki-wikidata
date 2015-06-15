@@ -764,6 +764,14 @@ Linux Kernel Timer Interrupt
 ------------------------------------------------
 Linux Timer Interrupt 理論
 =================================================
+- Timer在Linux Kernel的例子
+    - 當我們有一陣子不使用電腦的時候，這時候螢幕會關掉，或是我們收到系統來的警告，要求刪除一些長久沒有使用的檔案，這是怎樣的機制?
+    - 要能做到上述這些事情，是因為timer允許kernel追蹤我們使用滑鼠和鍵盤的時間，或是記錄距離現在最近一次的使用時間(timestamp)，這是timestamp就要透過kernel去紀錄
+- 環境
+    - qemu模擬下，armv7的環境
+    - OS: linux 3.16.0-23-generic 
+    - timer interrupt frequency : 300 HZ
+
 Linux Timer Interrupt 實作
 =================================================
 
