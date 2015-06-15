@@ -40,6 +40,14 @@ rtenv+是一個基於Cortex-M3的極小型的RTOS系統，用以教學用。
     
     - file system：目前實作的部份有romfs，以block的方式read/write，但尚未實作相對應的shell指令。
 
+Source code
+-------------------------------
+
+
+原始來源：https://github.com/embedded2014/rtenv-plus
+
+擴充：https://github.com/james33344/rtenv-plus
+
 
 Cortex-M3 基本概念
 =======================
