@@ -652,9 +652,42 @@ Ftrace
         - 如果是對應用程序進行分析的話，啟動應用程序的執行，ftrace 會追蹤應用程序運行期間kernel的運作情況
         - 通過將0 寫入文件tracing_on 來暫停追蹤信息的記錄，此時追蹤器還在追蹤kernel的運行，只是不再向文件trace 中寫入追蹤信息
         - 查看文件trace 獲取追蹤信息，對kernel的運行進行分析偵錯
+- Ftrace on  BeagleBone Black (ARM)
+    - 硬體平台: BeagleBone Black(BBB) Rev.C
+        - Core Architecture: ARM
+        - Core Sub-Architecture: Cortex-A8
+        - Silicon Core Number:  AM335x 1GHz ARM® Cortex-A8
+    - 在BBB上安裝的Linux Kernel version:  .config - Linux/arm 3.8.13 Kernel 
+    - Rebuild kernel in BBB
+        - 由於我們要在BBB上使用Linux，因此在重編Kernel。
+            - 到kernel資料夾底下，重編指令，`make menuconfig ARCH=arm -j4`，即可進入config畫面
+        - 之後可以使用以下 tracer
+            - wakeup_rt 
+            - wakeup 
+            - irqsoff 
+            - function 
 
 KernelShark
 =================================================
+- trace-cmd
+        - 他是user space front end command line tool for ftrace，有一些distribution將trace-cmd裝成package，就ubuntu 14.10來講，可以透過`apt-get install`安裝，裝完就可以使用了
+        .. code-block:: txt
+
+    $sudo apt-get install trace-cmd
+
+        - 基本使用方式
+            - 簡單的方式就是先紀錄後報告
+            - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用`ls`指令是因為紀錄ftrace data進入trace.dat，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
+
+        .. code-block:: txt
+
+    root@garygu-Aspire-4830TG:~# trace-cmd record -e ext4 ls
+    /sys/kernel/debug/tracing/events/ext4/filter
+    /sys/kernel/debug/tracing/events/*/ext4/filter
+    trace.dat.cpu0        trace.dat.cpu1        trace.dat.cpu2        trace.dat.cpu3
+    Kernel buffer statistics:
+    Note: "entries" are the entries left in the kernel ring buffer and are not
+        recorded in the trace data. They should all be zero.
 
 Linux Kernel Timer Interrupt
 ------------------------------------------------
