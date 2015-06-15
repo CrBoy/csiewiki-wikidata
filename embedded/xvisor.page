@@ -1042,6 +1042,10 @@ Virtual gic (vgic)
 
 device emulator(以uart為例)
 ------------------------------------------------
+
+- `uart<http://wiki.csie.ncku.edu.tw/embedded/USART>`_
+- `pl011 manual<http://infocenter.arm.com/help/topic/com.arm.doc.ddi0183f/DDI0183.pdf>`_
+
 .. image:: /embedded/vserial.png
 
 timer 及 time event
