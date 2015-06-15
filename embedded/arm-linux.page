@@ -590,8 +590,10 @@ Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 
 
-Linux Kernel 行為分析<工具篇> Ftrace
+Linux Kernel 行為分析<工具篇>
 ------------------------------------------------
+Ftrace
+=================================================
 - 簡介
     - 第一手資料介紹
         - 原文: https://www.kernel.org/doc/Documentation/trace/ftrace.txt 
@@ -638,12 +640,28 @@ Linux Kernel 行為分析<工具篇> Ftrace
             - 可以監控的事件，例如writeback
         - trace_options
             - 控制輸出結果的資料量，也可修改追蹤器或事件的顯示資料方式
+- Ftrace tracer 操作 : 使用 
+    - 使用ftrace 提供的tracer來偵錯或者分析kernel時需要如下操作：
+        - 切換到目錄 /sys/kernel/debug/tracing/ 下
+        - 查看available_tracers ，獲取當前kernel支援的追蹤器列表
+        - 將所選擇的追蹤器的名字寫入current_tracer
+        - 通過將0 寫入tracing_on 來暫停追蹤訊息的記錄，此時追蹤器還在追蹤kernel的運行，只是不再向文件trace 中寫入追蹤信息
+        - 通過將0 寫入trace來刪除追蹤訊息的輸出
+        - 將要追蹤的函數寫入set_ftrace_filter ，將不希望追蹤的函數寫入set_ftrace_notrace。通常直接操作set_ftrace_filter 就可以了
+        - 激活ftrace 追蹤，即將1 寫入文件tracing_on。
+        - 如果是對應用程序進行分析的話，啟動應用程序的執行，ftrace 會追蹤應用程序運行期間kernel的運作情況
+        - 通過將0 寫入文件tracing_on 來暫停追蹤信息的記錄，此時追蹤器還在追蹤kernel的運行，只是不再向文件trace 中寫入追蹤信息
+        - 查看文件trace 獲取追蹤信息，對kernel的運行進行分析偵錯
 
 KernelShark
-------------------------------------------------
+=================================================
 
 Linux Kernel Timer Interrupt
 ------------------------------------------------
+Linux Timer Interrupt 理論
+=================================================
+Linux Timer Interrupt 實作
+=================================================
 
 - timer interrupt 流程圖
 
@@ -653,3 +671,7 @@ Linux Kernel Timer Interrupt
 
 Linux Scheduler 行為分析
 ------------------------------------------------
+Linux Scheduler 理論
+=================================================
+Linux Scheduler 實作
+=================================================
