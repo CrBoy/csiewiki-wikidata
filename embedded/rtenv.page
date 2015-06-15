@@ -34,14 +34,11 @@ rtenv+是一個基於Cortex-M3的極小型的RTOS系統，用以教學用。
 
   .. image:: /embedded/clientserver.jpg
 
-    - task：在rtenv+，可同時執行多 tasks (concurrency)，以priority + round-robin的方式排程。因為程式方面十分簡單、易懂，在 scheduling 與 task 方面提供極大的擴充性。目前也提供了部份的POSIX Thread。
+    - task：在rtenv+，可同時執行多 tasks (concurrency)，以priority + round-robin的方式排程。利用linked list的方式實作ready queue，event queue，並有分別的task state使task有基本的ready - running - blocked的state。因為程式方面十分簡單、易懂，在 scheduling 與 task 方面提供極大的擴充性。目前也提供了部份的POSIX Thread。
 
     - communication：rtenv+提供多種通訊方式，pipe、block、message queue、register file。所有的實作已有完整結構，未來要自由擴充十分容易。而目前主要用到的部份在於shell 的 input/ouput與file system方面。
     
     - file system：目前實作的部份有romfs，以block的方式read/write，但尚未實作相對應的shell指令。
-
-    
-
 
 
 Cortex-M3 基本概念
