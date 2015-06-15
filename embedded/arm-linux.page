@@ -590,8 +590,54 @@ Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 
 
-Ftrace
+Linux Kernel 行為分析<工具篇> Ftrace
 ------------------------------------------------
+- 簡介
+    - 第一手資料介紹
+        - 原文: https://www.kernel.org/doc/Documentation/trace/ftrace.txt 
+        - Ftrace 是內建於Linux kernel的追蹤工具，從2.6.27 開始納入kernel主要發展版本。Ftrace被設計用來幫助系統開發者和系統設計者去知道kernel裡面發生甚麼事情。它可用於 debugging 或 分析 latencies and performance 發生在 user-space 之外的問題。
+        - 雖然ftrace通常被視為 function tracer，但它是其實是一個 framework 包含各式的 tracing 工具集。有 latency tracing以檢查 interrupts disabled 和 enabled 之間發生了甚麼，以及用於 preemption(搶占) 從task被喚醒的時間到實際task scheduled。
+        - 一個ftrace最常見用法是 event tracing。有幾百個 static event points 通過kernel 我們可以藉由enabled debugfs file system 去看到kernel中某些部份發生了甚麼事情
+
+    - 作者介紹
+        - Ftrace作者為在RedHat服務的 Steven Rostedt,主要目的是為Linux Kernel提供一個系統效能分析的工具,以便用以debug或是改善/優化系統效能,Ftrace為一個以Function Trace為基礎的工具,並包含了包括行程Context-Switch,Wake-Up/Ready到執行的時間成本,中斷關閉的時間,以及是哪些函式呼叫所觸發的,這都有助於在複雜的系統執行下,提供必要資訊以便定位問題
+
+- Ftrace內的檔案 (/sys/kernel/debug/tracing)
+    - `/sys/kernel/debug/tracing`中，有些檔案是各個tracer共享使用的，有些是特定於某個tracer使用的。在操作這些檔案時，通常使用echo 來修改檔案的值，也可以在程式中通過讀寫相關的函數來操作這些檔案的值。下面只對部分檔案進行描述，詳細可以參考kernel中Documentation/trace 目錄下的檔案以及kernel/trace 下的source以了解其他文件的用途。(註: 請勿使用 vim 編輯器對這些檔案進行編輯)
+        - README
+            - 提供了一個簡短的使用說明，說明了ftrace 的操作方式。
+            - 可以通過`cat` 命令查看該文件以了解大概的操作流程。
+        - current_tracer
+            - 用於設定或顯示當前使用的tracer。
+            - 使用echo 將tracer名字寫入該文件可以切換到不同的tracer。
+            - 系統啟動後，其預設值為nop ，即不做任何trace操作。在執行完一段trace任務後，可以通過向該檔案寫入nop 來重置tracer。
+        - available_tracers
+            - 記錄了當前編譯進kernel的tracer列表，可以通過cat 查看其內容。
+            - 寫current_tracer 檔案時用到的tracer必須有列在available_tracers列表中。
+        - trace
+            - 提供了查看獲取到的trace訊息的port(輸出追蹤結果的地方，靜態)。
+            - 可以通過cat 查看該檔案以查看trace到的kernel活動記錄，也可以將其內容保存為記錄文件以備後續觀察。
+        - set_graph_function
+            - 設置要清晰顯示呼叫關係的函數，顯示的資訊結構類似於C 語言程式碼，這樣在分析kernel運作流程時會更加直觀一些。在使用function_graph tracer時使用。
+            - 預設為對所有函數都生成呼叫關係序列，可以通過寫該檔案來指定需要特別關注的函數。     
+        - buffer_size_kb
+            - 用於設置單個CPU 所使用的trace buffer的大小。
+            - tracer會將trace到的資訊寫入buffer，每個CPU 的trace buffer是一樣大的。
+            - trace buffer為環形緩衝區的形式，如果trace到的訊息太多，則舊的訊息會被新的trace訊息覆蓋掉。
+            - 注意，要更改此檔案的值需要先將current_tracer 設置為nop 才可以。
+        - tracing_on
+            - 用於控制trace的暫停追蹤或繼續追蹤。
+            - 有時候在觀察到某些事件時想暫時關閉trace，可以將0 寫入該文件以停止trace，這樣trace buffer中比較新的部分是與所關注的事件相關的；寫入1 可以繼續trace。
+        - available_filter_functions
+            - 記錄了當前可以trace的kernel函數。對於不在該檔案中列出的函數，無法trace其活動。
+        - set_ftrace_filter 和 set_ftrace_notrace
+            - 在編譯kernel時配置了動態ftrace （選中CONFIG_DYNAMIC_FTRACE 選項）後使用。
+            - 如果一個函數名同時出現在這兩個文件中，則這個函數的執行狀況不會被trace。
+            - 注意，要寫入這兩個文件的函數名必須可以在文件available_filter_functions 中看到。預設為可以trace所有kernel函數，檔案 set_ftrace_notrace 的值則為空。
+        - events(資料夾)
+            - 可以監控的事件，例如writeback
+        - trace_options
+            - 控制輸出結果的資料量，也可修改追蹤器或事件的顯示資料方式
 
 KernelShark
 ------------------------------------------------
