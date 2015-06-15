@@ -21,13 +21,34 @@ toc: no
 * 2014 年春季: `hackpad <https://embedded2014.hackpad.com/Rtenv-plus-0VHEYKBpr3D>`_
 
 作業系統架構
----------------
+-----------------------
+
+rtenv+介紹
+=======================
+
+rtenv+是一個基於Cortex-M3的極小型的RTOS系統，用以教學用。
+
+  - 設計結構：
+    
+    - dual mode：十分簡易，目前kernel mode僅負責exception handling 、system call與 context switch的處理。rtenv+將 file system server 與path server在user task執行，並將其priority設為最高，藉由message來通知server process。
+
+  .. image:: /embedded/clientserver.jpg
+
+    - task：在rtenv+，可同時執行多 tasks (concurrency)，以priority + round-robin的方式排程。因為程式方面十分簡單、易懂，在 scheduling 與 task 方面提供極大的擴充性。目前也提供了部份的POSIX Thread。
+
+    - communication：rtenv+提供多種通訊方式，pipe、block、message queue、register file。所有的實作已有完整結構，未來要自由擴充十分容易。而目前主要用到的部份在於shell 的 input/ouput與file system方面。
+    
+    - file system：目前實作的部份有romfs，以block的方式read/write，但尚未實作相對應的shell指令。
+
+    
 
 
 
+Cortex-M3 基本概念
+=======================
 
 Execution modes
-===================
+--------------------------------
 
   - User (non-privileged) mode
  1. has limited access to the MSR and MRS instructions, and cannot use the CPS instruction
@@ -113,6 +134,8 @@ exception有進就要有出。
 
   .. image:: /embedded/activate_again_exc_return.PNG
  
+Rtenv+ 系統詳細內容
+========================
 
 task
 ==========
@@ -1093,8 +1116,7 @@ gdb
 
 1. 如欲使用 gdb ，先安裝 arm toolchain
 
-``sudo apt-get install gcc-arm-none-eabi``
-``sudo apt-get install gdb-arm-none-eabi``
+``sudo apt-get install gcc-arm-none-eabi gdb-arm-none-eabi``
 
 2. 執行 st-util
 
