@@ -119,7 +119,38 @@ VMM (Virtual Machine Module) and vbus
 .. image:: https://lh3.googleusercontent.com/-NZlzQBrzD1g/VX_IJOegylI/AAAAAAAAIKQ/cE8BBcgPrPY/w1013-h314-no/rt-thread.png
 圖八、Ctrl+Alt+F4進入RT-Thread Console
 
-- vbus
+vbus
+    VMM Bus (vbus)用來讓RT-Thread與Linux相互通訊，且可以讓OS之間的功能共享，如圖九所示。
+
+.. image:: https://lh4.googleusercontent.com/-hc_Dy-0dQQ0/VUhFIzyYXPI/AAAAAAAAICE/HxlX6OUO544/w1044-h719-no/vbus-new.png
+圖九、VMM Bus
+
+OS之間的功能共享 - Finsh
+    圖十把finsh shell指向一個pipe設備，透過該設備把資料寫到ring buffer，並產生一個中斷用以通知另一個OS。另一個OS接收到該中斷後，便從ring buffer中，把資料讀取出來。
+.. image:: https://lh6.googleusercontent.com/-sh_c_z-Vqws/VUhHxfi2GuI/AAAAAAAAICc/Sntr8oZV8wI/w1087-h459-no/vbus-finsh-all.png
+圖十、Finsh/rsh共享
+
+* Two threads:
+  - Thread: "vbusout" (Priority: _BUS_OUT_THRD_PRIO = 8)
+  - Thread: "vbusin"   (Priority: _BUS_OUT_THRD_PRIO+1)
+
+
+* [Source Code]
+  - components/vbus/
+  - components/drivers/src/pipe.c
+  - components/drivers/src/ringbuffer.c
+
+
+* 支援硬體
+  - [LPC4357] Cortex-M0 & Cortex-M4
+  - bsp/lpc43xx/M0/applications/vbus_drv.c
+  - bsp/lpc43xx/M4/applications/vbus_drv.c
+
+
+* RTMux
+  - 支援硬體
+  - [Realview] Cortex-A8
+  - [Beagle Board Black] AM33x-based Processor (Cortex-A8)
 
 <Under Construction>
 
