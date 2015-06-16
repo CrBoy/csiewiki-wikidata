@@ -1554,21 +1554,7 @@ arm32 指令虛擬化
         .......
     };
 
-以id = 0的為例(CPS, MRS, MSR, RFE, SRS, WFI, WFE, SEV, SMC等) (Q: 如何分類的？)
-
-.. code-block:: c
-
-    static int arm_hypercall_cps_and_co(u32 id, u32 inst,
-                                        arch_regs_t *regs, struct vmm_vcpu *vcpu)
-    {
-        u32 subid = ARM_INST_DECODE(inst,
-                                    ARM_INST_HYPERCALL_SUBID_MASK,
-                                    ARM_INST_HYPERCALL_SUBID_SHIFT);
-
-        return cps_and_co_funcs[subid](inst, regs, vcpu);
-    }
-
-再做一次decode(即可知其指令為何)，呼叫模擬該指令的function
+若id 為 0，則要再做一次decode，呼叫模擬該指令的function
 
 .. code-block:: c
 
@@ -1611,6 +1597,7 @@ arm32 指令虛擬化
         return VMM_OK;
     }
 
+.. image:: /embedded/hypercall.png
 
 with virtualization extension
 -------------------------------------------------------------
