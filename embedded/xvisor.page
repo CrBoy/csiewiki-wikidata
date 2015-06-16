@@ -565,6 +565,21 @@ Figure 4. Object hierarchy of the virtio front end
 
 
 
+
+Virtio buffers
+- scatter-gather list: each entry in the list representing an address and a length
+
+
+
+
+Virtual Queue's 5 important functions:
+- add_buf
+- kick
+- get_buf
+- enable_cb
+- disable_cb
+
+
 Xvisor
 =========================================
 
