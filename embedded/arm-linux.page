@@ -893,3 +893,83 @@ Linux Scheduler 理論
 =================================================
 Linux Scheduler 實作
 =================================================
+根據理論篇，我們想撰寫CPU-bound和IO-bound程式，在不同的排程策略(FIFO, RR)下和給定不同的優先權下，程式會如何執行
+- 環境
+    - BeagleBone Black(BBB) Rev.C
+    - Linux Kernel version: 3.8.13
+- 指令
+    - 使用如下指令，可以改變排程策略(-f:FIFO, -r:RR)，指定優先權(EX:90,45)
+
+.. code-block:: txt
+
+    chrt -f 90 ./../CPU-bound/matrix_mul &
+    chrt -f 90 ./../CPU-bound/matrix_mul &
+
+- CPU-bound 
+    - 做的是矩陣相乘的動作，複雜度為O(n^3)
+    - 分別測試`fifo` , `rr` scheduling policy，主要是看不同scheduling policy下和不同優先權的`time slice`給定方式和行為
+    - 圖示： 橫軸 ： 第幾次switch ， 蹤軸 ： 這一次switch的time slice
+    
+
+
+    - fifo :  優先權分別為90 90
+
+.. image:: /embedded/arm_linux/sched_cpu_fifo_90_90.png
+
+初步觀察，fifo policy的time slice給定差異頗大，而且可見兩個process的執行相當不公平，不過還是可以看到前面的幾次交替還是有給後進來的process執行的機會
+
+
+
+    - fifo :  優先權分別為90 45
+
+.. image:: /embedded/arm_linux/sched_cpu_fifo_90_45.png
+
+
+
+    - rr :  優先權分別為90 90
+
+.. image:: /embedded/arm_linux/sched_cpu_rr_90_90.png
+
+初步觀察rr policy，兩個process所分配到的time slice執行時間較為相近
+
+
+
+    - rr :  優先權分別為90 45
+
+.. image:: /embedded/arm_linux/sched_cpu_rr_90_45.png
+
+從圖上看來很不公平，不像RR比較像FIFO。
+推測是給定不同優先權的關係，Linux直接以FIFO進行排班
+
+- IO-bound 
+    - 做的是讀檔和寫的動作
+    - 分別測試`fifo` , `rr` scheduling policy，主要是看不同scheduling policy下和不同優先權的`time slice`給定方式和行為
+    - 圖示： 橫軸 ： 第幾次switch ， 蹤軸 ： 這一次switch的time slice
+    - IO- BOUND的time slice都相當的短跟CPU-bound比起來
+  
+
+  
+    - fifo :  優先權分別為90 90
+
+.. image:: /embedded/arm_linux/sched_io_fifo_90_90.png
+
+從fifo policy中，還是可以觀察兩個process還是有一直切換的，主要是因為在做IO過程是需要等待的，那在等待的過程中，linux 作業系統就會切換工作
+
+
+
+    - fifo :  優先權分別為90 45
+
+.. image:: /embedded/arm_linux/sched_io_fifo_90_45.png
+
+
+
+    - rr :  優先權分別為90 90
+
+.. image:: /embedded/arm_linux/sched_io_rr_90_90.png
+
+
+
+    - rr :  優先權分別為90 45
+
+.. image:: /embedded/arm_linux/sched_io_rr_90_45.png
+
