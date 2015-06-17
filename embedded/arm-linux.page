@@ -803,17 +803,38 @@ Linux Timer Interrupt 實作
 .. image:: /embedded/arm_linux/kernelshark_timer event.png
 - 可先至<理論篇> 先了解linux kernel的timer interrupt的運作，再搭配圖示
     - 從kernelshark下面list中的event info可以看到
-      event                           info
-      irq_handler_entry     irq=34 name=timer
-      softirq_raise               vec=1 [action=TIMER]
+        - event                           info
+        - irq_handler_entry     irq=34 name=timer
+        - softirq_raise               vec=1 [action=TIMER]
     - irq和vec的號碼代表的是什麼？
         - irq 就是在 request_irq 註冊的硬體 IRQ 編號
     - irq的號碼就是註冊硬體IRQ的編號
     - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
 
-- timer interrupt 流程圖
+- Timer Interrupt Flow
+    - 所以從圖像化出來的list我們可以知道，timer interrupt的順序如下，依照event
+    #. timer_init，初始化timer，不同的function執行，會用不同的位置紀錄
+    #. timer_start，這是開始計時，和這個function他的expiration time時，他還有紀錄要執行這個function要等多少次timer interrupt，如果到達這個expiration time就會執行這個function
+    #. irq_handler_entry，timer interrupt, irq號碼是34
+    #. softirq_raise，因為通常不希望硬體中斷花太常時間，所以會希望由softirq來執行，這個event是指派要處理timer interrupt的action 到softirq_vec中
+    #. irq_handler_exit,硬體中斷離開
+    #. softirq_entry,開始執行延遲任務，開始執行剛剛指派處理timer的action，timer interrupt 加 1
+    #. timer_cancel，停止timer
+    #. timer_expire_entry，表示預計執行指令的時間到了
+    #. timer_expire_exit
+    #. softirq_exit,延遲任務執行結束，然後再下一個timer interrupt
+
+- timer interrupt flow chart
 
 .. image:: /embedded/arm_linux/timer_interrupt.png
+
+- 所以我們就可以透過這個timer interrupt的流程，搭配trace出來的資料，知道不同function被觸發或是執行的時間長度了
+
+- 可以拿一個task所執行的function來看
+    - task : sshd   , function : tcp_write_timer
+.. image:: /embedded/arm_linux/timer interrupt task timer.png
+
+從這邊可以看到要執行這個function，必須要等到51個timer interrupt之後才可以執行，所使用的timer位置是在`0xee57a390`
 
 Linux Scheduler 行為分析
 ------------------------------------------------
