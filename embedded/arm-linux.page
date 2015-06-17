@@ -891,6 +891,38 @@ Linux Scheduler 行為分析
 ------------------------------------------------
 Linux Scheduler 理論
 =================================================
+    - 藉由CPU在不同行程之間的轉換，作業系統可以讓電腦的產量提高。
+    - 在單一處理器系統中，同一時間只能有一個Process在執行，其他都必須等待直到CPU有空，才能接著重新排班。
+        - 排班(scheduling)的工作是在OS之中分配CPU時間給不同任務(task)使用
+
+- CPU-I/O 分割週期
+    - CPU排班的重點在於：行程的執行是由CPU執行的時間及 I/O 等待時間所組成的週期(cycle)，行程在這兩個狀態之間交替往返。
+        - 行程執行由一個CPU分割(CPU burst)開始，接著一個 I/O burst，然後再另一個CPU burst，再來又一個 I/O burst ，最後一個CPU burst結束時，同時會有一個系統     要求中止執行這個 task，如下圖所示。
+
+.. image:: /embedded/arm_linux/alternating sequence of cpu and io bursts.png
+
+    - CPU burst 的持續時間可被大量的量測，會大致上類似下圖的頻率曲線所示，這個曲線一般是指數型或超指數型 (hyperexponential)
+        - 短的CPU burst很多，長的CPU burst則很少。
+        - I/O bound 的程式之中一般是很多很短的 CPU burst；CPU bound 的程式就會有一些非常長的CPU burst
+            - 所以根據不同種類的程式選取適當的 CPU排班演算法是非常重要的
+
+.. image:: /embedded/arm_linux/histogram of cpu_burst durations.png
+
+- CFS (完全公平排班器，Completely Fair Scheduler)
+    - 在Linux kernel 2.6版以後引進
+    - 可參考Linux Kernel 3.0.4中有關CFS的Design文件 (路徑在Documentation/scheduler/sched-design-CFS.txt)
+    - 作者試著用一句 “CFS basically models an “ideal, precise multi-tasking CPU” on real hardware.” 來簡要說明CFS 80%設計精神
+        - 所謂理想的多工處理器,就是當處理器有100%的能力,且系統中有兩個Tasks正在運作,這兩個Tasks可以各自取得處理器50%的執行能力,並被處理器平行執行,也就是說任意時間間隔來看(例如,隨機取10ms間隔),這兩個Tasks都是分配到處理器50%的執行能力.
+    - 傳統的Unix行程排班器會給行程固定的 time-slice，但高優先權的行程比低優先權的行程先執行
+    - CFS引進新的排班演算法叫做公平排班(fair scheduling)
+        - 取代傳統固定time-slice，所有的行程被配置一定比例的行程時間
+        - CFS計算根據一個全部可執行行程的函數計算出一個行程該執行多久
+            - 一開始，假如有N個可執行的行程，CFS讓每一個行程分配處理器的 1/N時間
+            - 然後CFS根據每個行程的nice值加權該行程的分配量以調整其分配量
+                - 使用預設的nice值之行程的加權值是1，優先權不會改變
+                - 有較小nice值的行程(較高優先權)接收到較高的加權值，而較大nice值的行程(較低優先權)接收到較低的加權值。
+                    - 然後CFS對每一個行程以正比於行程加權值，除以所有可執行行程之總加權值的「time-slice」執行
+
 Linux Scheduler 實作
 =================================================
 根據理論篇，我們想撰寫CPU-bound和IO-bound程式，在不同的排程策略(FIFO, RR)下和給定不同的優先權下，程式會如何執行
