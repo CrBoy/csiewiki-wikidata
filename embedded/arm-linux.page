@@ -811,6 +811,56 @@ Linux Timer Interrupt 實作
     - irq的號碼就是註冊硬體IRQ的編號
     - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
 
+- Timer Interrupt Frequency
+在看timer interrupt在kernel內部的活動之前，要先了解timer interrupt在kernel的設置頻率為何? 
+    - 首先可以從/proc/interrupts的檔案裡頭，看到irq的紀錄，可以透過，也可從中看到是哪個CPU在負責哪些中斷請求
+
+.. code-block:: txt
+
+    cat /proc/interrupts
+                CPU0       
+     34:   38623561       GIC  34  timer
+     36:          0       GIC  36  rtc-pl031
+     37:       6126       GIC  37  uart-pl011
+     41:     170945       GIC  41  mmci-pl18x (cmd)
+     42:     932753       GIC  42  mmci-pl18x (pio)
+     44:          8       GIC  44  kmi-pl050
+     45:        113       GIC  45  kmi-pl050
+     47:        688       GIC  47  eth0
+    IPI0:          0  CPU wakeup interrupts
+    IPI1:          0  Timer broadcast interrupts
+    IPI2:          0  Rescheduling interrupts
+    IPI3:          0  Function call interrupts
+    IPI4:          0  Single function call interrupts
+    IPI5:          0  CPU stop interrupts
+    IPI6:          0  IRQ work interrupts
+    IPI7:          0  completion interrupts
+    Err:          0
+
+- 可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間那，timer interrupt做了幾次
+
+.. code-block:: txt
+
+    root@jared14-5480:/# cat /proc/interrupts | grep timer && sleep 1 && cat /proc/interrupts | grep timer
+     34:   62118555       GIC  34  timer
+     34:   62118857       GIC  34  timer
+
+所以我們就可以知道在這1秒的時間內做了幾次timer interrupt了，而這個可以得知，kernel設置timer interrupt的頻率為300HZ，所以執行一次timer interrupt的時間為3.33毫秒
+    - 透過上述這個方法在bbb上測試，接果差距很大，有時候測出來的頻率為21hz,有時是500hz，timer interrupt的頻率相當不穩定
+
+    - 如果從ftrace得到的資料看來
+        - 我們可以從kernelshark的結果圖中，選定兩個連續的timer irq計算時間差，可以得知做一次timer interrupt的周期，所以我抓了連續做了13次的timer interrupt的起始時間和終止時間，取其平均，看其大致的timer interrupt的周期為何？
+        - 看其中一個等待要被執行的function，如圖中的`pm_suspend_timer_fn`，不過不可從這裡開始算，因為這只是timer的初始化，還沒有timer interrupt，所以我們應該是從接下來的第一個timer interrupt開始紀錄(橘色標起部份)，故為`9910.799628`開始第一次timer interrupt
+
+.. image:: /embedded/arm_linux/timer interrupt frequency_01.png
+
+一直到第13個timer interrupt結束，所以我就是找到第14個timer interrupt的觸發點，表示第13個timer interrupt結束的時間，故為`9910.851424`
+
+.. image:: /embedded/arm_linux/timer interrupt frequency_02.png
+
+所以我們就可以算出一個大概的timer interrupt周期
+(9910.851424 - 9910.799628) / 13 = 0.003984秒，也就是3.984毫秒，跟我們透過/proc/interrupt中看到的頻率有一些誤差
+
 - Timer Interrupt Flow
     - 所以從圖像化出來的list我們可以知道，timer interrupt的順序如下，依照event
     #. timer_init，初始化timer，不同的function執行，會用不同的位置紀錄
@@ -832,6 +882,7 @@ Linux Timer Interrupt 實作
 
 - 可以拿一個task所執行的function來看
     - task : sshd   , function : tcp_write_timer
+
 .. image:: /embedded/arm_linux/timer interrupt task timer.png
 
 從這邊可以看到要執行這個function，必須要等到51個timer interrupt之後才可以執行，所使用的timer位置是在`0xee57a390`
