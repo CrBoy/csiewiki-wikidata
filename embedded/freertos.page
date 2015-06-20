@@ -2124,11 +2124,9 @@ vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容pri
         return pxTopOfStack;
     }
 
-(2014 年春季班 v8.0.1 的版本)
+參考了 `Lab33<http://wiki.csie.ncku.edu.tw/embedded/Lab33>`_使用 "(gdb) target: remote" + "info registers" 來觀察暫存器內容，而在 freertos-basic/tool/gdbscript 中就已經有 target: remote 3333 了，freertos/mk/qemu.mk 呼叫 qemu 並且直接進入 gdb，因此可以使用 info registers 來觀察，下圖是 pxPortStackInitialise() 執行完畢以後的暫存器狀態圖
 
-.. image:: /2014port.png
-
-.. image:: /stack_layout.png
+.. image:: /end_pxPortStackInitialise.png
 
 **Q33. 在 FreeRTOS 裡面，其 pid 在哪裡? 如何知道 task 的 id 資訊? **
 
