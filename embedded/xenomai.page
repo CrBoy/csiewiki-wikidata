@@ -1006,15 +1006,46 @@ Max:最大延遲
 
   .. image:: /embedded/xenomai/comparingto3mechanism.png
 
-  Max latency:
+  - 實驗數據
 
-  Linux preempt : 271
+  +-----------------+-----------+
+  | Max latency     | occurences|
+  +=================+===========+
+  | Linux preempt   | 271       |
+  +-----------------+-----------+
+  | Full preempt_rt | 96        |
+  +-----------------+-----------+
+  | Xenomai 2.6.4   | 38        |
+  +-----------------+-----------+
 
-  Full preempt_rt : 96
+示波器 實驗
+==============
 
-  Xenomai 2.6.4 : 38  
+試著撰寫driver驅動板子,進而使用示波器測試latency,驗證在不同因素之下造成不同的 max latency
 
-  (unit:happened occurence)
+* Source code
+
+  https://github.com/jacky6016/GPIO-test
+
+  https://github.com/erickitten/GPIO_test_xenomai3_2
+
+* 實驗數據
+
++----------------------------------+-----------+
+| Driver model                     |max latency|
++==================================+===========+
+| rpi xenomai-2 RTDM               | 4.71  us  |
++----------------------------------+-----------+
+| beaglebone xenomai-2 RTDM        | 7.46  us  |
++----------------------------------+-----------+
+| rpi xenomai-3 RTDM               | 7.022 us  |
++----------------------------------+-----------+
+| rpi xenomai-2 linux native       | 10.92 us  |
++----------------------------------+-----------+
+| rpi xenomai-2 user-level(python) | 244   us  |
++----------------------------------+-----------+
+
+* `詳細實驗紀錄<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe/>`_	
 
 Q&A
 ==============
