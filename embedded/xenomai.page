@@ -956,6 +956,34 @@ Q&A
 
   .. image:: /embedded/xenomai/tasklatency.jpg
 
+* Q2:ipipe的效益為何?為什麼要切割damain?切割完要如何確保real-time的穩定速度?
+  - A: 
+
+  ipipe的主要效益是用來切割domain，讓real-time和linux interrupt可以在不同domain下進行運作。
+
+  切割domain原因是因為real-time domain的優先序是最高的，當有real-time interrupt進來，就會直接進入real-time domain去執 行，不會在經過整個linux的複雜架構下進行preempt的動作，可確保real-time 能在短時間內進行處理。
+
+* Q3:ipipe/Adeos理論基礎中的Fine-grained是什麼?
+  - A: 
+
+.. image:: /embedded/xenomai/criticalsection.png
+
+  在`life with andeos <http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5628&rep=rep1&type=pdf>`_這篇指的fine-grained linux kernel，是指在編寫linux kernel  code時，盡量讓critical section能愈短愈好，確保當real-time thread running in the secondary domain能在一定時間內遇到schedule point，也就可以在schedule point處理real-time thread。
+
+* Q4:ipipe的相關檔案，gic.c、it8152.c ... 之類的有什麼關係?
+  - A: 
+
+* Q5:請解釋下圖
+
+.. image:: /embedded/xenomai/interuptdistributor.png
+
+  - A: 
+
+* Q6:Xenimai2與Xenomai3架構圖
+  - A: 
+
+* Q7:要如何知道每個CPU上跑哪一個task? SMP是如何排程?
+  - A: 
 
 Hackpad
 =======
