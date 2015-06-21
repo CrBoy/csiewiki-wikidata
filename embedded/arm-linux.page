@@ -932,47 +932,59 @@ Linux Scheduler 理論
 Linux Scheduler 實作
 =================================================
 根據理論篇，我們想撰寫CPU-bound和IO-bound程式，在不同的排程策略(FIFO, RR)下和給定不同的優先權下，程式會如何執行
+
 - 環境
     - BeagleBone Black(BBB) Rev.C
     - Linux Kernel version: 3.8.13
 - 指令
-    - 使用如下指令，可以改變排程策略(-f:FIFO, -r:RR)，指定優先權(EX:90,45)
-
-.. code-block:: txt
-
-    chrt -f 90 ./../CPU-bound/matrix_mul &
-    chrt -f 90 ./../CPU-bound/matrix_mul &
+    - 使用如下指令，可以改變排程策略(-f : FIFO, -r : RR)，指定優先權(EX:90,45)
 
 - CPU-bound 
     - 做的是矩陣相乘的動作，複雜度為O(n^3)
     - 分別測試`fifo` , `rr` scheduling policy，主要是看不同scheduling policy下和不同優先權的`time slice`給定方式和行為
     - 圖示： 橫軸 ： 第幾次switch ， 蹤軸 ： 這一次switch的time slice
+
     
+.. code-block:: txt
 
+    chrt -f 90 ./../CPU-bound/matrix_mul &
+    chrt -f 90 ./../CPU-bound/matrix_mul &
 
-    - fifo :  優先權分別為90 90
+fifo :  優先權分別為90 90
 
 .. image:: /embedded/arm_linux/sched_cpu_fifo_90_90.png
 
 初步觀察，fifo policy的time slice給定差異頗大，而且可見兩個process的執行相當不公平，不過還是可以看到前面的幾次交替還是有給後進來的process執行的機會
 
 
+.. code-block:: txt
 
-    - fifo :  優先權分別為90 45
+    chrt -f 90 ./../CPU-bound/matrix_mul &
+    chrt -f 45 ./../CPU-bound/matrix_mul &
+
+fifo :  優先權分別為90 45
 
 .. image:: /embedded/arm_linux/sched_cpu_fifo_90_45.png
 
 
+.. code-block:: txt
 
-    - rr :  優先權分別為90 90
+    chrt -r 90 ./../CPU-bound/matrix_mul &
+    chrt -r 90 ./../CPU-bound/matrix_mul &
+
+rr :  優先權分別為90 90
 
 .. image:: /embedded/arm_linux/sched_cpu_rr_90_90.png
 
 初步觀察rr policy，兩個process所分配到的time slice執行時間較為相近
 
 
+.. code-block:: txt
 
-    - rr :  優先權分別為90 45
+    chrt -r 90 ./../CPU-bound/matrix_mul &
+    chrt -r 45 ./../CPU-bound/matrix_mul &
+
+rr :  優先權分別為90 45
 
 .. image:: /embedded/arm_linux/sched_cpu_rr_90_45.png
 
@@ -987,7 +999,7 @@ Linux Scheduler 實作
   
 
   
-    - fifo :  優先權分別為90 90
+fifo :  優先權分別為90 90
 
 .. image:: /embedded/arm_linux/sched_io_fifo_90_90.png
 
@@ -995,19 +1007,19 @@ Linux Scheduler 實作
 
 
 
-    - fifo :  優先權分別為90 45
+fifo :  優先權分別為90 45
 
 .. image:: /embedded/arm_linux/sched_io_fifo_90_45.png
 
 
 
-    - rr :  優先權分別為90 90
+rr :  優先權分別為90 90
 
 .. image:: /embedded/arm_linux/sched_io_rr_90_90.png
 
 
 
-    - rr :  優先權分別為90 45
+rr :  優先權分別為90 45
 
 .. image:: /embedded/arm_linux/sched_io_rr_90_45.png
 
