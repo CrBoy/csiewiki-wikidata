@@ -679,11 +679,12 @@ KernelShark
 
 - trace-cmd 基本使用方式
         - 簡單的方式就是先紀錄後報告
-        - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用`ls`指令是因為紀錄ftrace data進入trace.dat，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
+        - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用record指令將ftrace data紀錄到trace.dat的檔案中，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
 
 .. code-block:: txt
 
-    root@garygu-Aspire-4830TG:~# trace-cmd record -e ext4 ls
+    root@garygu-Aspire-4830TG:~# trace-cmd record -e ext4
+    root@garygu-Aspire-4830TG:~# trace-cmd report
     /sys/kernel/debug/tracing/events/ext4/filter
     /sys/kernel/debug/tracing/events/*/ext4/filter
     trace.dat.cpu0        trace.dat.cpu1        trace.dat.cpu2        trace.dat.cpu3
