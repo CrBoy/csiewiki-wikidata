@@ -1023,3 +1023,6 @@ rr :  優先權分別為90 45
 
 .. image:: /embedded/arm_linux/sched_io_rr_90_45.png
 
+Q & A
+------
+* ARM-Linux Q & A : `hackpad <https://embedded2015.hackpad.com/QA-ARM-Linux-YNnKlrWkbeU>`_
