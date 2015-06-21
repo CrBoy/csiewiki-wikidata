@@ -17,6 +17,10 @@ toc: no
 目錄
 ---
 * `AM335x ARM Cortex-A8 Boot Sequence<#AM335x ARM Cortex-A8 Boot Sequence>`_
+* `記憶體管理<#記憶體管理>`_
+   - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
+   - `Heap<#Heap>'_
+   - `Slab Allocator<#Slab Allocator>'_
 
 AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
@@ -153,6 +157,383 @@ OS之間的功能共享 - Finsh
   - [Beagle Board Black] AM33x-based Processor (Cortex-A8)
 
 <Under Construction>
+
+
+記憶體管理
+==========
+
+RT-Thread 的記憶體管理分成幾個部份：
+
+-  固定大小/數量 memory pool (mempool.c)
+
+**rtconfig.h 設定及程式介面**
+
+
+
+固定區塊 memory pool：
+
+-  啟用 RT\_USING\_MEMPOOL，記憶體需要事先手動分配 rt\_mempool。
+
+動態：
+
+-  啟用 RT\_USING\_HEAP，可選擇 memheap(RT\_USING\_MEMHEAP +
+   RT\_USING\_MEMHEAP\_AS\_HEAP) ***或*** slab( RT\_USING\_SLAB )，包含
+   rt\_malloc, rt\_page\_alloc 等介面。
+
+另外 memheap 可以獨立使用，不要打開 RT\_USING\_MEMHEAP\_AS\_HEAP 即可。
+
+Memory Pool (mempool.c)
+-----------------------
+
+RT-Thread 中的 Memory Pool
+的記憶體來源可以是原有的全域變數，也可以是動態
+
+分配來的空間(heap/slab)。
+
+Memory pool 提供的是一個固定 block 大小及數量的記憶體空間管理，只能取得
+
+固定的 buffer 大小。裏面目前空閒的 block 以 linked list 型態串接，稱為
+**free list**\ 。
+
+因為大小是固定大小，因此只要還有記憶體，分配的時間便是一個常數，若沒有空間，
+
+則依據要求記憶體的參數決定要讓該 task suspend 或是直接回傳分配失敗。
+
+**API**
+
+初始化 (& 動態分配 memory pool 空間)：
+
+-  rt\_mp\_init(); // 把現有的記憶體空間建成 rt\_mempool
+-  rt\_mp\_create() // 使用 heap 做出新的 rt\_mempool。
+
+解構 / 解構加釋放：
+
+-  rt\_mp\_detach() // 僅解構
+-  rt\_mp\_free() // 從 heap 來的物件需要再做釋放。
+
+使用 memory pool 分配固定大小的記憶體：
+
+-  rt\_mp\_alloc()
+-  rt\_mp\_free()
+
+若 block\_free\_count 不為 0，則將 block\_list 指向 list
+中下一個並回傳，而 block 中的前 4 個 byte 則當作指標指回
+mp\_pool，以便在需要歸還時能夠找到對應的 rt\_mempool。
+
+第二個參數是等待時間，若沒有可用的記憶體會讓 task 進入 suspend
+狀態，直到時間到或是有可用記憶體為止。
+
+-  一個全新的 rt\_mempool 示意圖，其中左邊的 block
+   可以是靜態記憶體(rt\_mp\_init)、或是從 heap 中拿取(rt\_mp\_create)，
+
+.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766635817_Reg1-6.png
+   :alt: 
+
+-  假設經過幾次 allocate / free 後，中間兩個 block 目前被程式使用中。
+-  因為還有空閒物件，thread\_objects 為空。
+
+.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766694494_Reg1-6.png
+   :alt: 
+
+**對 Real-time 能力的影響**
+
+allocate / deallocate 的過程中會關閉 interrupt，因此有可能會造成
+jitter，另外當記憶體不足時會使得 task 被暫停。
+
+Heap
+----
+
+較簡單的記憶體管理器，使用 free list 串接可用記憶體，並以 first fit
+策略尋找，為了減輕碎片化的問題，加上了最小區塊的限制。
+
+-  define RT\_MEMHEAP\_MINIALLOC 12
+   ================================
+
+Slab Allocator
+--------------
+
+slab 的其中一個作法是藉由減少物件的 construct 成本以增進效率，而又因為
+slab
+
+常用在經常進行 allocate 和 free 的物件，因此也有cache 上的優勢。
+
+**介面**
+
+假設原本產生新的動態物件的流程如下:
+
+-  ::
+
+       obj = allocate(sizeOfObject);
+       construct(obj);
+
+使用完畢後的清理:
+
+-  ::
+
+       destruct(obj);
+       deallocate(obj);
+
+Slab Allocator 的作法則是這樣:
+
+-  ::
+
+       if(there's an object in cache){
+           take(); // already constructed
+       }else{
+           allocate();
+           construct();
+       }
+
+至於清理則是：
+
+-  ::
+
+       return to cache; // not destructed
+
+另外在記憶體不足時可以選擇將 cache 內的物件 destruct 之後釋放
+
+**全域 vs. 特定物件**
+
+Object caching 的機制可以套用到個別物件的
+allocater，也可以針對所有種類的
+
+物件， paper 中提到實作全域配置器的好處：
+
+1. 因為記憶體統一管理，可以釋放部份物件空間給予其他物件使用
+2. 單層的配置器資料結構較多層配置器簡單，較容易除錯
+3. 避免多種相同功能的程式增加 code size
+
+**資料結構**
+
+一個 "slab" 是一個 page 大小，在這裡指的是 4k：(在 RT-Thread 中則是
+slab\_zone)
+
+.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434029743241_Reg1-6.png
+   :alt: 
+
+其中若 buf 處於 free 的狀態，其最後面一個 word 的空間用來放置指標指向
+free-
+
+list 的下個物件(稱為bufctl)，若 buf 裏面存的是一個 constructed
+object，則
+
+allocator 會多分配一個 word，避免破壞物件狀態。
+
+若是較大的物件(比方說大於一個page)則不能直接使用上面的資料結構，因為沒辦法從
+
+buffer 算出所屬的 slab 的位址，且空間效率降低(slab
+中容易保留很大的空間但又
+
+不足以放下另一個物件)，因此在較大的物件要使用不同的資料結構，另外分配記憶體
+
+，由物件本身管理 slab, bufctl，並且加上一個 hash table 來做
+buffer-to-bufctl
+
+的轉換。
+
+每個不同的物件擁有一個 cache，包含一些由雙向 linked list 串起來的
+slabs，
+
+全部都被使用的 slab 在首，部份使用在中間，全空在最後(最多一個)。
+
+**Allocate / Free 操作**
+
+Free 的時候因為是 page aligned，因此可以算出 slab 的位址，將要 free
+的物件
+
+接回 slab 中的 buf free-list 即可。
+
+由於 slabs free-list 有經過排序，當一個 slab
+全空時會放回最後，當要再次進行
+
+allocate 時避免從全空的 slab 中取用記憶體，當沒有新的 page
+時有機會可以歸還
+
+回系統，並增加使用中記憶體密集度，使 cache hit rate 提升。
+
+當系統記憶體不足需要回收 page 時，allocator
+在釋放時會檢查最近被使用的時間，
+
+避免將常用記憶體歸還造成 thrashing 問題(類似於磁碟不停 swapping
+的效應)。
+
+**Slab allocator 在 Cache Utilization 上的優勢**
+
+這裡提到一個「Buffer Address
+Distribution」的概念，要調整效能首先要先知道
+
+處理器 cache 的架構及大小等資訊。
+
+am3358(Cortex-A8):
+
+-  L1 Cache(I-cache/D-cache, VIPT)
+   - 4-way set associative
+   -  16 word line
+   -  128 bit interface(16 byte)
+   -  32KB
+   -  64 Byte line length
+
+Q: What does line length mean?
+
+-  ` <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html>`__\ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html
+
+.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737577888_Reg1-6.png
+   :alt: 
+
+|image0|
+
+.. raw:: html
+
+   <li>
+
+**硬體上關注的點**
+
+.. raw:: html
+
+   </li>
+
+-  cache 不同的架構：direct mapping(1-way)、n-way/fully associative
+
+-  Set associative 意味著同一個位址的資料在 cache
+   中有幾個位置可以選擇，接近 fully-associate 的 cache 就沒必要進行
+   coloring。
+
+-  每個 word line 的大小，決定 coloring 的作法。
+
+.. raw:: html
+
+   <li>
+
+**軟體上關注的點**
+
+.. raw:: html
+
+   </li>
+
+-  物件的記憶體起點(是否對應到 bus 起點)
+-  物件內部的 hot data 分佈
+-  allocate / free 物件的 pattern
+
+.. raw:: html
+
+   <li>
+
+**作法**
+
+.. raw:: html
+
+   </li>
+
+1. 在 slab 中並不使用 2 的冪次方作為 buffer 邊界
+
+在於\ ***非*** fully-associative 的 cache 架構上佔優勢：
+
+若一個常用物件總是對齊某個 2 的冪次方邊界，因為在 cache 中位置衝突，會
+
+使得 cache 經常被換出而降低效能，避開對齊使得每個 buffer
+比較不會搶同一條
+
+cache line。
+
+2. Slab Coloring: 在一個 slab 開頭的邊界加上 offset(color)
+
+目的是使不同的 slab 起點的物件不會佔用同樣的 cache line。
+
+**RT-Thread 的實作**
+
+在 RT-Thread 省去了 slab 的物件建構及解構過程，只使用他的 memory pool
+實作。
+
+*初始化*
+
+首先是 page 的分配，在系統起始時將 heap 範圍中的 page 串入
+rt\_page\_list (透過 rt\_page\_free)。
+
+*Zone size / Zone limit 計算*
+
+-  ::
+
+    define ZALLOC\_ZONE\_LIMIT (16 \* 1024)
+    define ZALLOC\_MIN\_ZONE\_SIZE (32 \* 1024)
+    define ZALLOC\_MAX\_ZONE\_SIZE (128 \* 1024)
+    define RT\_MM\_PAGE\_SIZE 4096 // include/rtdef.h
+
+MIN < zone\_size < MAX or limsize / 1k
+
+zoom\_limit = min( zone\_size / 4 , ZONE\_LIMIT
+
+*struct memusage*
+
+-  rt\_uint32\_t type:2
+-  rt\_uint32\_t size:30
+
+*處理記憶體要求*
+
+分成兩種 case：
+
+-  大於等於 zone\_limit：使用 rt\_page\_alloc 直接取得整塊記憶體。
+-  小於 zone\_limit：
+
+-  request size -> buffer size \| buffer index(\ ``zoneindex``\ 回傳值)
+-  ::
+
+       < 128      ->  補到 8    byte 倍數   |         0 ~ 15 (size/8 - 1)
+       < 256      ->  補到 16   byte 倍數   |        16 ~ 23 (size/8 - 1 + 8)   <- 128 / 16 = 8
+       < 512      ->  補到 32   byte 倍數   |        24 ~ 31
+       < 1024     ->  補到 64   byte 倍數   |        32 ~ 39
+       < 2048     ->  補到 128  byte 倍數   |        40 ~ 47
+       < 4096     ->  補到 256  byte 倍數   |        48 ~ 55
+       < 8192     ->  補到 512  byte 倍數   |        56 ~ 63
+       < 16384    ->  補到 1024 byte 倍數   |        64 ~ 72
+
+.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434740946804_slab.png
+   :alt: 
+
+**總結**
+
+RT-Thread 中的實作目前看起來跟 mempool 高度相似，並沒有實作 paper 中的
+coloring (也許是參數不足？)，以及 hot cache 的 queue，跟 mempool
+不同的地方在於預先為各種大小分配好的 zones(slabs)，自動 allocate 新的
+page 等機制。
+
+在程式碼註解中提到這個 slab allocator 的實作是 per-cpu，不使用
+mutex/semaphore，而是透過 critical section(資料需要保護的時間很短)。
+
+另外他提到了不同 cpu 間的 free 要透過 asynchronous IPIs(inter-processors
+interrupts) 進行，不過程式碼中並沒有看到相關實作，註解中也提到 cpu 間的
+Balancing(for what?) 也還沒實作，或是移植時被去除了。
+
+**Hook**
+
+RT-Thread 在記憶體 alloc / free 結束時，會呼叫使用者指定的
+callback，使用：
+
+rt\_malloc\_sethook(func);
+rt\_free\_sethook(func);
+
+參考影片
+--------
+
+-  
+
+` <https://www.youtube.com/watch?v=h0VMLXavx30>`__\ https://www.youtube.com/watch?v=h0VMLXavx30
+
+解說了 slob, slab, slub 三種 "slab" 的歷史與實作。
+
+影片中 "Slab" 代表三種意思：Allocator 類別、Allocator
+類別中的一種、一個被管理的 page(或是大型物件)。
+
+裏面提到了 slab 的一些特性：
+
+-  預先消耗的記憶體
+-  紀錄 hot memory
+-  物件為基礎
+-  需要定時掃描
+-  比較不適用於多核心環境(每個核心要管理自己的 cache)
+
+部份特性在 RT-Thread 沒有實作。
+
+.. |image0| image:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737812001_Reg1-6.png
 
 參考資料
 --------------------------------------------
