@@ -772,8 +772,8 @@ Linux Timer Interrupt 理論
     - qemu模擬下，armv7的環境
     - OS: linux 3.16.0-23-generic 
     - timer interrupt frequency : 300 HZ
-- 初始化timer interrupt - init_timers()
-    - timer interrupt 的用處在於
+
+- timer interrupt 的用處在於
     #. 在規定的時間範圍到達時執行指定的function
     #. 更新日期，時間，和系統開機到目前經過的時間
     #. 更新系統資源使用率統計
@@ -808,9 +808,8 @@ Linux Timer Interrupt 實作
         - irq_handler_entry     irq=34 name=timer
         - softirq_raise               vec=1 [action=TIMER]
     - irq和vec的號碼代表的是什麼？
-        - irq 就是在 request_irq 註冊的硬體 IRQ 編號
-    - irq的號碼就是註冊硬體IRQ的編號
-    - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
+        - irq的號碼就是註冊硬體IRQ的編號
+        - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
 
 - Timer Interrupt Frequency
 在看timer interrupt在kernel內部的活動之前，要先了解timer interrupt在kernel的設置頻率為何? 
@@ -847,11 +846,17 @@ Linux Timer Interrupt 實作
      34:   62118857       GIC  34  timer
 
 所以我們就可以知道在這1秒的時間內做了幾次timer interrupt了，而這個可以得知，kernel設置timer interrupt的頻率為300HZ，所以執行一次timer interrupt的時間為3.33毫秒
-    - 透過上述這個方法在bbb上測試，接果差距很大，有時候測出來的頻率為21hz,有時是500hz，timer interrupt的頻率相當不穩定
+    - 但是透過上述這個方法在bbb上測試，結果差距很大，有時候測出來的頻率為21hz,有時是500hz，timer interrupt的頻率相當不固定，這是因為linux kernel希望在idle的時候做少一點事情，可以達到省電的效果，所以設計了這種動態調整timer interrupt frequency的機制
 
-    - 如果從ftrace得到的資料看來
-        - 我們可以從kernelshark的結果圖中，選定兩個連續的timer irq計算時間差，可以得知做一次timer interrupt的周期，所以我抓了連續做了13次的timer interrupt的起始時間和終止時間，取其平均，看其大致的timer interrupt的周期為何？
-        - 看其中一個等待要被執行的function，如圖中的`pm_suspend_timer_fn`，不過不可從這裡開始算，因為這只是timer的初始化，還沒有timer interrupt，所以我們應該是從接下來的第一個timer interrupt開始紀錄(橘色標起部份)，故為`9910.799628`開始第一次timer interrupt
+.. code-block:: txt
+
+    Tickless OS的補充
+        就是讓kernel的timer interrupt頻率不固定，一般的timer interrupt frequency都會在編譯階段設定好，但是linux kernel希望能做到在idle階段做少一點事 情，也能夠省電，所以有了tickless的機制，也就是這個timer interrupt的頻率是動態調整的，想要有這個功能就必須在編譯kernel的時候勾選`NO_HZ`，在menuconfig中的  ->General setup ->Timer subsystem -> Tickless System (dynamic Ticks)，而我們的beaglebone就是設置了這個Tickless System，才使得每次測出來的timer interrupt頻率不相同
+
+
+如果從ftrace得到的資料看來
+    - 我們可以從kernelshark的結果圖中，選定兩個連續的timer irq計算時間差，可以得知做一次timer interrupt的周期，所以我抓了連續做了13次的timer interrupt的起始時間和終止時間，取其平均，看其大致的timer interrupt的周期為何？
+    - 看其中一個等待要被執行的function，如圖中的`pm_suspend_timer_fn`，不過不可從這裡開始算，因為這只是timer的初始化，還沒有timer interrupt，所以我們應該是從接下來的第一個timer interrupt開始紀錄(橘色標起部份)，故為`9910.799628`開始第一次timer interrupt
 
 .. image:: /embedded/arm_linux/timer interrupt frequency_01.png
 
