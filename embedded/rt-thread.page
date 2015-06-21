@@ -19,8 +19,8 @@ toc: no
 * `AM335x ARM Cortex-A8 Boot Sequence<#AM335x ARM Cortex-A8 Boot Sequence>`_
 * `記憶體管理<#記憶體管理>`_
    - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
-   - `Heap<#Heap>'_
-   - `Slab Allocator<#Slab Allocator>'_
+   - `Heap<#Heap>`_
+   - `Slab Allocator<#Slab Allocator>`_
 
 AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
@@ -156,7 +156,7 @@ OS之間的功能共享 - Finsh
   - [Realview] Cortex-A8
   - [Beagle Board Black] AM33x-based Processor (Cortex-A8)
 
-<Under Construction>
+<Under Construction...>
 
 
 記憶體管理
@@ -246,8 +246,9 @@ Heap
 較簡單的記憶體管理器，使用 free list 串接可用記憶體，並以 first fit
 策略尋找，為了減輕碎片化的問題，加上了最小區塊的限制。
 
--  define RT\_MEMHEAP\_MINIALLOC 12
-   ================================
+::
+
+    define RT\_MEMHEAP\_MINIALLOC 12
 
 Slab Allocator
 --------------
@@ -261,21 +262,21 @@ slab
 
 假設原本產生新的動態物件的流程如下:
 
--  ::
+::
 
        obj = allocate(sizeOfObject);
        construct(obj);
 
 使用完畢後的清理:
 
--  ::
+::
 
        destruct(obj);
        deallocate(obj);
 
 Slab Allocator 的作法則是這樣:
 
--  ::
+::
 
        if(there's an object in cache){
            take(); // already constructed
@@ -286,7 +287,7 @@ Slab Allocator 的作法則是這樣:
 
 至於清理則是：
 
--  ::
+::
 
        return to cache; // not destructed
 
@@ -451,7 +452,7 @@ rt\_page\_list (透過 rt\_page\_free)。
 
 *Zone size / Zone limit 計算*
 
--  ::
+::
 
     define ZALLOC\_ZONE\_LIMIT (16 \* 1024)
     define ZALLOC\_MIN\_ZONE\_SIZE (32 \* 1024)
@@ -475,7 +476,7 @@ zoom\_limit = min( zone\_size / 4 , ZONE\_LIMIT
 -  小於 zone\_limit：
 
 -  request size -> buffer size \| buffer index(\ ``zoneindex``\ 回傳值)
--  ::
+::
 
        < 128      ->  補到 8    byte 倍數   |         0 ~ 15 (size/8 - 1)
        < 256      ->  補到 16   byte 倍數   |        16 ~ 23 (size/8 - 1 + 8)   <- 128 / 16 = 8
