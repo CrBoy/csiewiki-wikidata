@@ -266,6 +266,24 @@ Skins
   不會因linux龐大的架構影響到real-time task的處理時間
 
 
+硬體規格
+==============================
+
+Raspberry pi 2 (Model B) & Beaglebone 
+++++++++++++++++++++++++++++++++++++++
+
+* Raspberry pi
+
+  .. image:: /embedded/xenomai/respberrypi.png
+
+* Beaglebone
+
+  .. image:: /embedded/xenomai/beaglebone.png
+
+* 詳細規格,腳位圖,及GPIO
+
+  - https://hackpad.com/Raspberry-pi-beaglebone-xvENpXJvKIF#:h=GPIO
+
 建立 Xenomai 環境
 ==============================
 
