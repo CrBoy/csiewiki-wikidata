@@ -822,6 +822,26 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 
 .. image:: /embedded/xenomai/002.png
 
+* User,kernal,timer IRQ 在R-pi上使用Xenomai 2.6與Xenomai 3.0之比較圖
+
+  - Xenomai 3.0
+
+  .. image:: /embedded/xenomai/Rpi_xenomai3.png
+
+  - Xenomai 2.6
+
+  .. image:: /Rpi_xenomai2.png
+
+* User,kernal,timer IRQ 在Beaglebone上使用Xenomai 2.6與Xenomai 3.0之比較圖
+
+  - Xenomai 3.0
+
+  .. image:: /Beaglebonxenomai3.png
+
+  - Xenomai 2.6
+
+  .. image:: /Beaglebonexenomai2.png
+
 Cyclictest 原理
 ==============
 
@@ -978,9 +998,23 @@ Avg:平均延遲
 
 Max:最大延遲
 
-最重要的是Max值 為了確保realtime 要能知道worst case 
+最重要的是Max值 為了確保realtime 要能知道worst case,讓開發者可以評估最差的情況可以在多少時間內可以做出回應
 
-讓開發者可以評估最差的情況可以在多少時間內可以做出回應
+* 比較Cyclictest 於使用 PREEMPT LINUX,RT-PREEMPT以及Xenomai
+
+  - 使用R-pi model B+ , Xenoami 2.6.4
+
+  .. image:: /embedded/xenomai/comparingto3mechanism.png
+
+  Max latency:
+
+  Linux preempt : 271
+
+  Full preempt_rt : 96
+
+  Xenomai 2.6.4 : 38  
+
+  (unit:happened occurence)
 
 Q&A
 ==============
