@@ -7,11 +7,24 @@ categories: User
 ====
 - 成功大學104級 電機系
 
-作業 GitHub
+作業
 ===============
+
+Github
+--------------------
+
 - `visualizer<https://github.com/colin8930/visualizer>`_
 - `mini-arm-os<https://github.com/colin8930/mini-arm-os>`_
 - `freertos-basic<https://github.com/colin8930/freertos-basic>`_
+
+NOTE
+--------------------
+- `lab38<https://embedded2014.hackpad.com/Week-2-5ZwqRU6MZIQ>`_: 使用gnuplot分析。
+- `lab39<https://embedded2015.hackpad.com/LAB-39-zlSzpXZzzC7>`_: 實作ls、pwd、cd等指令。並透過建立task分析不同的memory allocate algo。實作auto-completion及 $PS1 (Prompt shell variable)。 `影片<https://www.youtube.com/watch?v=Iy7-w-JQNO8&feature=youtu.be>`_
+- `lab40<https://embedded2015.hackpad.com/WEEK4-Q9sUeYmV1Fb>`_ : 分析UART中斷處理。  `中斷說明影片<https://www.youtube.com/watch?v=VaU17yhh994&feature=youtu.be>`_
+- `lab41<https://embedded2015.hackpad.com/NZnT0pELDfb>`_
+- `lab42<https://embedded2015.hackpad.com/WEEK7-8ylLPlOYTpr>`_ : 實作ready queue、priority-based scheduling，並透過lab 40的工具分析context switch time。
+- lab43: 出挑戰題。其他題目在上學期已完成。
 
 開放原始碼專案參與
 ===============
