@@ -806,7 +806,7 @@ Linux Timer Interrupt 理論
 
     $garygu@garygu-Aspire-4830TG:/usr/src/linux-headers-3.16.0-37-generic$ sudo make menuconfig
 - 如上所示，到這個資料夾底下，下達 $sudo make menuconfig，可以看到圖形化的menuconfig，依照選單選擇Processor type and features ----> Timer frequency (250HZ)，就可以找到，因為我們的環境下沒有這個設定檔，所以我就先拿自己的電腦測試
-- 另外還有一種作法可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間那，timer interrupt做了幾次
+- 另外還有一種作法可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間內，timer interrupt做了幾次
     - 透過這個檢測，可以知道這個linux kernel預設的timer interrupt頻率為300HZ，所以推算出一個timer interrupt所需時間為3.33毫秒
 以上這些方法，都是參考`Adrian's Blog <http://adrianhuang.blogspot.tw/2007/10/linux-kernel-hz-tick-and-jiffies.html>`_
 
