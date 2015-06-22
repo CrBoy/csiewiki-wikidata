@@ -789,51 +789,23 @@ Linux Timer Interrupt 理論
 - Timer在Linux Kernel的例子
     - 當我們有一陣子不使用電腦的時候，這時候螢幕會關掉，或是我們收到系統來的警告，要求刪除一些長久沒有使用的檔案，這是怎樣的機制?
     - 要能做到上述這些事情，是因為timer允許kernel追蹤我們使用滑鼠和鍵盤的時間，或是記錄距離現在最近一次的使用時間(timestamp)，這是timestamp就要透過kernel去紀錄
-- 環境
-    - qemu模擬下，armv7的環境
-    - OS: linux 3.16.0-23-generic 
-    - timer interrupt frequency : 300 HZ
 
 - Timer interrupt 的用處在於
+
     #. 在規定的時間範圍到達時執行指定的function
     #. 更新日期，時間，和系統開機到目前經過的時間
     #. 更新系統資源使用率統計
     #. 檢查目前的所在執行的process是否超過它原本給定的額度，如果是的話，則preempt這個process讓其他程序執行(process switch)
     #. 檢查軟體中斷(alarm 系統呼叫)，跟時間延遲的函式(delay function)，其延遲時間是否已經超過
     
-    - 紀錄時間的是透過linux kernel裡面的變數叫做`jiffies`，透過這個變數去紀錄從系統開機後到現在所累積的timer interrupt次數，然後這個次數是根據中斷的發生而增加，另外硬體也定義了一個週期(一個timer interrupt)大概是多少時間，我們可以透過兩個方法找到這個周期定義:
+
+- 紀錄時間的是透過linux kernel裡面的變數叫做`jiffies`，透過這個變數去紀錄從系統開機後到現在所累積的timer interrupt次數，然後這個次數是根據中斷的發生而增加，另外硬體也定義了一個週期(一個timer interrupt)大概是多少時間，我們可以透過兩個方法找到這個周期定義:
+
 .. code-block:: txt
 
     $garygu@garygu-Aspire-4830TG:/usr/src/linux-headers-3.16.0-37-generic$ sudo make menuconfig
 - 如上所示，到這個資料夾底下，下達 $sudo make menuconfig，可以看到圖形化的menuconfig，依照選單選擇Processor type and features ----> Timer frequency (250HZ)，就可以找到，因為我們的環境下沒有這個設定檔，所以我就先拿自己的電腦測試
-- 另外還有一種作法可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間內，timer interrupt做了幾次
-    - 透過這個檢測，可以知道這個linux kernel預設的timer interrupt頻率為300HZ，所以推算出一個timer interrupt所需時間為3.33毫秒
-以上這些方法，都是參考`Adrian's Blog <http://adrianhuang.blogspot.tw/2007/10/linux-kernel-hz-tick-and-jiffies.html>`_
-
-Linux Timer Interrupt 實作
-=================================================
-- 在剛架設好的qemu模擬的ARMv7環境，去trace timer interrupt
-    - 下達`trace-cmd`指令
-        - 在bbb上編譯安裝trace-cmd和kernelshark，為了方便觀看ftrace的event，目前已經成功安裝trace-cmd，但是在編譯gui的kernelshark的過程有出現一些問題，先是遇到`error: operator '<' has no left operand`看了一下出錯的檔案，錯誤發生在`#if GTK_VERSION < CALC_GTK_VERSION(2,18,0)`看來是GTK_VERSION沒有值，所以我直接手動輸入，雖然最後正確編譯完成但是當我要執行`kernelshark`的時候遇到了`(kernelshark:7179): Gtk-WARNING **: cannot open display:`，另外編譯過程也一直出現`awk:cmd. line:1: Math support is not compiled in`，所以目前還是先在host端用kernelshark看trace-cmd的結果
-
-.. code-block:: txt
-
-    $sudo trace-cmd record -e all
-
-- 這時資料輸出到trace.dat，在將檔案移到我本地端的電腦執行kernelshark，可以看到如下圖，先fliter掉其他task和event只觀察timer event，irq event，然後我先挑一個cpu來觀察CPU0，先行分析
-
-.. image:: /embedded/arm_linux/kernelshark_timer event.png
-- 可先至<理論篇> 先了解linux kernel的timer interrupt的運作，再搭配圖示
-    - 從kernelshark下面list中的event info可以看到
-        - event                           info
-        - irq_handler_entry     irq=34 name=timer
-        - softirq_raise               vec=1 [action=TIMER]
-    - irq和vec的號碼代表的是什麼？
-        - irq的號碼就是註冊硬體IRQ的編號
-        - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
-
-- Timer Interrupt Frequency
-在看timer interrupt在kernel內部的活動之前，要先了解timer interrupt在kernel的設置頻率為何? 
+- 另外還有一種作法可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間內timer interrupt的次數變化，就可以知道timer interrupt frequency
     - 首先可以從/proc/interrupts的檔案裡頭，看到irq的紀錄，可以透過，也可從中看到是哪個CPU在負責哪些中斷請求
 
 .. code-block:: txt
@@ -858,35 +830,48 @@ Linux Timer Interrupt 實作
     IPI7:          0  completion interrupts
     Err:          0
 
-- 可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間那，timer interrupt做了幾次
-
 .. code-block:: txt
 
     root@jared14-5480:/# cat /proc/interrupts | grep timer && sleep 1 && cat /proc/interrupts | grep timer
      34:   62118555       GIC  34  timer
      34:   62118857       GIC  34  timer
 
-所以我們就可以知道在這1秒的時間內做了幾次timer interrupt了，而這個可以得知，kernel設置timer interrupt的頻率為300HZ，所以執行一次timer interrupt的時間為3.33毫秒
+- 透過這個檢測，可以知道這個linux kernel預設的timer interrupt頻率為300HZ，所以推算出一個timer interrupt所需時間為3.33毫秒
+
+以上這些方法，都是參考`Adrian's Blog <http://adrianhuang.blogspot.tw/2007/10/linux-kernel-hz-tick-and-jiffies.html>`_
+
+Linux Timer Interrupt 實作
+=================================================
+
+- Timer Interrupt Frequency
+
     - 但是透過上述這個方法在bbb上測試，結果差距很大，有時候測出來的頻率為21hz,有時是500hz，timer interrupt的頻率相當不固定，這是因為linux kernel希望在idle的時候做少一點事情，可以達到省電的效果，所以設計了這種動態調整timer interrupt frequency的機制
 
 .. code-block:: txt
 
     Tickless OS的補充
-        就是讓kernel的timer interrupt頻率不固定，一般的timer interrupt frequency都會在編譯階段設定好，但是linux kernel希望能做到在idle階段做少一點事 情，也能夠省電，所以有了tickless的機制，也就是這個timer interrupt的頻率是動態調整的，想要有這個功能就必須在編譯kernel的時候勾選`NO_HZ`，在menuconfig中的  ->General setup ->Timer subsystem -> Tickless System (dynamic Ticks)，而我們的beaglebone就是設置了這個Tickless System，才使得每次測出來的timer interrupt頻率不相同
+        就是讓kernel的timer interrupt頻率不固定，一般的timer interrupt frequency都會在編譯階段設定好，但是linux kernel希望能做到在idle階段做少一點事 情，也能夠省電，所以有了tickless的機制，也就是這個timer interrupt的頻率是動態調整的。
+        想要有這個功能就必須在編譯kernel的時候勾選`NO_HZ`，在menuconfig中的  ->General setup ->Timer subsystem -> Tickless System (dynamic Ticks)，而我們的beaglebone就是設置了這個Tickless System，才使得每次測出來的timer interrupt頻率不相同
 
+- 在架設好的qemu模擬的ARMv7環境，去trace timer interrupt
+    - 下達`trace-cmd`指令
+        - 在bbb上編譯安裝trace-cmd和kernelshark，為了方便觀看ftrace的event，目前已經成功安裝trace-cmd，但是在編譯gui的kernelshark的過程有出現一些問題，先是遇到`error: operator '<' has no left operand`看了一下出錯的檔案，錯誤發生在`#if GTK_VERSION < CALC_GTK_VERSION(2,18,0)`看來是GTK_VERSION沒有值，所以我直接手動輸入，雖然最後正確編譯完成但是當我要執行`kernelshark`的時候遇到了`(kernelshark:7179): Gtk-WARNING **: cannot open display:`，另外編譯過程也一直出現`awk:cmd. line:1: Math support is not compiled in`，所以目前還是先在host端用kernelshark看trace-cmd的結果
 
-如果從ftrace得到的資料看來
-    - 我們可以從kernelshark的結果圖中，選定兩個連續的timer irq計算時間差，可以得知做一次timer interrupt的周期，所以我抓了連續做了13次的timer interrupt的起始時間和終止時間，取其平均，看其大致的timer interrupt的周期為何？
-    - 看其中一個等待要被執行的function，如圖中的`pm_suspend_timer_fn`，不過不可從這裡開始算，因為這只是timer的初始化，還沒有timer interrupt，所以我們應該是從接下來的第一個timer interrupt開始紀錄(橘色標起部份)，故為`9910.799628`開始第一次timer interrupt
+.. code-block:: txt
 
-.. image:: /embedded/arm_linux/timer interrupt frequency_01.png
+    $sudo trace-cmd record -e all
 
-一直到第13個timer interrupt結束，所以我就是找到第14個timer interrupt的觸發點，表示第13個timer interrupt結束的時間，故為`9910.851424`
+- 這時資料輸出到trace.dat，在將檔案移到我本地端的電腦執行kernelshark，可以看到如下圖，先fliter掉其他task和event只觀察timer event，irq event，然後我先挑一個cpu來觀察CPU0，先行分析
 
-.. image:: /embedded/arm_linux/timer interrupt frequency_02.png
-
-所以我們就可以算出一個大概的timer interrupt周期
-(9910.851424 - 9910.799628) / 13 = 0.003984秒，也就是3.984毫秒，跟我們透過/proc/interrupt中看到的頻率有一些誤差
+.. image:: /embedded/arm_linux/kernelshark_timer event.png
+- 可先至<理論篇> 先了解linux kernel的timer interrupt的運作，再搭配圖示
+    - 從kernelshark下面list中的event info可以看到
+        - event                           info
+        - irq_handler_entry     irq=34 name=timer
+        - softirq_raise               vec=1 [action=TIMER]
+    - irq和vec的號碼代表的是什麼？
+        - irq的號碼就是註冊硬體IRQ的編號
+        - vec號碼，就是註冊softirq的號碼，這個延遲任務是timer
 
 - Timer Interrupt Flow
     - 所以從圖像化出來的list我們可以知道，timer interrupt的順序如下，依照event
