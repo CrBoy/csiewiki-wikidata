@@ -797,7 +797,7 @@ Linux Timer Interrupt 理論
     #. 更新日期，時間，和系統開機到目前經過的時間
     #. 更新系統資源使用率統計
     #. 檢查目前的所在執行的process是否超過它原本給定的額度，如果是的話，則preempt這個process讓其他程序執行(process switch)
-    #. 檢查軟體中斷(alarm 系統呼叫)，跟時間延遲的函式(delay function)，其延遲時間是否已經超過
+    #. 檢查軟體時間器(alarm 系統呼叫)，跟時間延遲的函式(delay function)，其延遲時間是否已經超過
     
 
 另外硬體也定義了timer interrupt 的週期大概是多少時間，我們可以透過兩個方法找到這個周期定義:
