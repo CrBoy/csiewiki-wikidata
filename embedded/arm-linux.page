@@ -761,6 +761,27 @@ KernelShark
 
 .. image:: /embedded/arm_linux/kernelshark_ext4.png
 
+Ftrace和Trace-cmd + KernelShark 綜合使用方式
+=================================================
+- event tracer: 當需要對對特定事件去觀察時, 使用event tracer較能看出事件發生的影響.  而且只trace特定事件, tracer開啟時對於系統效能的影響較小
+- 使用方式: 
+
+.. code-block:: txt
+
+    mount -t debugfs debugfs /sys/kernel/debug/
+    cd /sys/kernel/debug/tracing
+    cat available_events (列出目前能使用的event)
+    echo "irq==21" > events/irq/irq_handler_entry/filter (設定irq_handler_entry事件的 filter條件)
+    echo "irq==21" > events/irq/irq_handler_exit/filter (設定irq_handler_exit事件的 filter條件)
+    echo 1 > events/irq/irq_handler_entry/enable (開啟irq_handler_entry event)
+    echo 1 > events/irq/irq_handler_exit/enable (開啟irq_handler_entry event)
+
+- trace-cmd + kernelshark: 利用trace-cmd擷取trace資料並用kernelshark圖形化表示
+    - 以trace-cmd record持續紀錄trace data
+        - ./trace-cmd record -e irq_handler_entry -f "irq==21"  -e irq_handler_exit -f "irq==21"
+    - 按ctrl + c 中止紀錄
+    - 使用kernelshark載入trace.data
+
 Linux Kernel Timer Interrupt
 ------------------------------------------------
 Linux Timer Interrupt 理論
