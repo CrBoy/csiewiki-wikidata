@@ -978,6 +978,16 @@ rr :  優先權分別為90 90
 
 初步觀察rr policy，兩個process所分配到的time slice執行時間較為相近
 
+另外我們可以從linux kernel原始碼中，看到預設的time slice給定是100 msecs，跟我們測出來的結果，大致符合！
+
+.. code-block:: txt
+
+    /*  
+     * default timeslice is 100 msecs (used only for SCHED_RR tasks).
+     * Timeslices get refilled after they expire.
+     */
+    #define RR_TIMESLICE        (100 * HZ / 1000)
+
 
 .. code-block:: txt
 
