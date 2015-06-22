@@ -794,7 +794,7 @@ Linux Timer Interrupt 理論
     - OS: linux 3.16.0-23-generic 
     - timer interrupt frequency : 300 HZ
 
-- timer interrupt 的用處在於
+- Timer interrupt 的用處在於
     #. 在規定的時間範圍到達時執行指定的function
     #. 更新日期，時間，和系統開機到目前經過的時間
     #. 更新系統資源使用率統計
@@ -952,6 +952,12 @@ Linux Scheduler 理論
 
 Linux Scheduler 實作
 =================================================
+- 重編Kernel，讓環境單純化，才會比較符合理論值
+    - 關掉 SMP
+        - 關掉SMP的功能，因為BBB是單核心，不需要這個功能，會影響效能
+    - 高解析度計時器
+        - 高解析度計時器的解析度為1 ns
+
 根據理論篇，我們想撰寫CPU-bound和IO-bound程式，在不同的排程策略(FIFO, RR)下和給定不同的優先權下，程式會如何執行
 
 - 環境
