@@ -1316,15 +1316,15 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 測試環境架設
 ----------------
 
-.. image:: /embedded/pingpong.jpg
+.. image:: /FreeRTOS_porting.jpg
 
 **安裝**
 
     1. 請先安裝 st-link 以及 openOCD，可參考`此頁<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ 
 
-    2. git clone https://github.com/TheKK/myFreeRTOS.git
+    2. git clone https://github.com/Justinsanity/freertos-basic.git
 
-    3. git checkout game
+    3. git checkout porting
 
     4. make
 
@@ -1336,29 +1336,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
 **解說**
 
-* In CORTEX_M4F_STM32F407ZG-SK/game/game.c
-
-.. image:: /embedded/table1.jpg
-
-
-* In CORTEX_M4F_STM32F407ZG-SK/game/game.c
-
-.. image:: /embedded/table2.jpg
-
-在main function中，首先初始化有用上的GPIO裝置，再來呼叫函式xTaskCreate()來建立欲排程的task，xTaskCreate()的輸入參數如下
-
-.. code-block:: c
-
-    BaseType_t xTaskCreate( 
-        TaskFunction_t pvTaskCode,         /* 欲排程的函式名稱 */
-        const char * const pcName,          /* 在FreeRTOS中顯示的名稱，方便debug用 */
-        unsigned short usStackDepth,     /* stack可以容納之變數的數量(不是設定stack的大小) */
-        void *pvParameters,                       /* 建立task時的額外參數 */
-        unsigned BaseType_t uxPriority,  /* 優先權 */
-        TaskHandle_t *pvCreatedTask     /* 該task的參照，可用以檢查是否建立成功 */
-    );
-
-最後，呼叫vTaskStartScheduler()正式開始排程
+* FreeRTOS version: 8.2.1
 
 `回目錄<#目錄>`_
 
