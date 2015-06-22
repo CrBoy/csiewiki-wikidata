@@ -940,6 +940,16 @@ Linux Scheduler 理論
     - 可參考Linux Kernel 3.0.4中有關CFS的Design文件 (路徑在Documentation/scheduler/sched-design-CFS.txt)
     - 作者試著用一句 “CFS basically models an “ideal, precise multi-tasking CPU” on real hardware.” 來簡要說明CFS 80%設計精神
         - 所謂理想的多工處理器,就是當處理器有100%的能力,且系統中有兩個Tasks正在運作,這兩個Tasks可以各自取得處理器50%的執行能力,並被處理器平行執行,也就是說任意時間間隔來看(例如,隨機取10ms間隔),這兩個Tasks都是分配到處理器50%的執行能力.
+        - 因為在實際的機器上，一次只會執行一個task，所以就必須介紹一下`virtual runtime`的概念，他表示你這個task被CPU執行了多久了
+        - 因為CFS的宗旨是在理想的情況下，希望每個task都能夠被公平的執行，所以照裡來說，每個task的virtual runtime要是相同的，但是事實上不可能是這樣的，一定友人執行的多友人執行的少，為了要balance每個task的執行時間，所以每次在挑task執行時，都會去找virtual runtime最小的task來執行，上述是CFS的理想設計理念，但是也是有跳脫這個基本設計理念的，想是nice levels ,  multiprocessing , and various algorithms
+        - 既然要挑最少被執行的task，那要怎麼紀錄每個task的執行時間 ？這邊linux kernel是使用time-ordered `rbtree` data structure去maintain這些資料，這個資料結構的特性是愈左邊的結點runtime愈少，愈右邊就是執行的比較久的task，所以CFS就會去找leftmost的task起來做
+
+    - 大體而言，CFS的執行過程是
+      #. TASK執行一陣子後被scheduler switch out
+      #. 這時就會總結執行的時間到這個task的virtual runtime
+      #. 一旦這個task他總共所執行的時間大於了另一個task的virtual runtime，這時候就是那個task成為rbtree中leftmost task
+      #. 所以這時候就會preempt掉目前正在執行的task，換執行這一個新的leftmost的task
+
     - 傳統的Unix行程排班器會給行程固定的 time-slice，但高優先權的行程比低優先權的行程先執行
     - CFS引進新的排班演算法叫做公平排班(fair scheduling)
         - 取代傳統固定time-slice，所有的行程被配置一定比例的行程時間
