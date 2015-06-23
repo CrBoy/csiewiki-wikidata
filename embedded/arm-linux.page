@@ -639,10 +639,17 @@ Memory Read Latency on BeagleBone Black(Linux)
 #. 再看到若當讀取的stride大小超過line size時，最後的收斂時間大約都相同，差不多在220ns左右。因為一次存取的大小就是一個line size，所以stride大於64的數據收斂時間都是差不多的。
 
 **補充**
+
 - 下圖為存取1M大小，在stride大小不超過line size的情況，可以發現收斂時間是呈現線性的。
 
 .. image:: /embedded/arm_linux/lat_mem_rd-1M-stride.png
+- 過程中發現stride=1、2 時數據測出來都是0，推測是因為memory在讀取的時候一次都是1 個word，所以stride=1、2是沒有意義的。
 
+- 下列一系列圖為memory size=8M，不同stride，在beaglebone black 上所測量到的數據(x軸為log2的基底)，單獨畫出來做比較
+
+.. image:: /embedded/arm_linux/lat_mem_rd-8M.png
+
+.. image:: /embedded/arm_linux/lat_mem_rd8M-2.png
 
 Linux Kernel 行為分析<工具篇>
 ------------------------------------------------
