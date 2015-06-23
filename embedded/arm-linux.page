@@ -627,9 +627,18 @@ Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - 根據不同的記憶體大小與strides測量讀取記憶體的延遲時間
 - 藉由man page 得知由memory read latency 所得到的數據可以判斷出測量平台的記憶體階層。
-- 下圖比較memory size從1M到8M，以不同stride，在BeagleBone Black 上所測量到的數據(x軸為log2的基底)
+- 下圖比較memory size 1M、2M、4M、8M，以不同stride，在BeagleBone Black 上所測量到的數據(x軸為log2的基底)
 
 .. image:: /embedded/arm_linux/lat_mem_rd-all.png
+
+**分析**
+
+#. 從上圖可以看到與理論相符的結果，在L1 cache=32 KB 的地方都會接著一個突起的值。也就是說，當要讀取的值超過L1 cache 的大小時，就必須往下一層的cache去存取資料，因此讀取的時間就會有一定幅度的增加。
+#. 接著要看L2 cache，採用von Neumann architecture，將data與instruction混合，由上面的圖發現大約都是在size在125KB或187KB 時會接著一個突起的值。而BBB的L2 cache為256KB，因為還要再考慮其他程式與instruction的影響，且再與Context Switch Latency的實驗比較結果是相近的，所以與理論相符。
+#. 當讀取的大小超過1M後，每筆資料都會趨近於一個定值，而不同的stride收斂的時間有些不同，stride=16的時間大約為stride=32的一半，從原始數據大看大約為57ns與110ns。當stride不超過line size的大小時，收斂的時間應是成線性比例的，這部分可以再做實驗收集數據看結果。
+#. 再看到若當讀取的stride大小超過line size時，最後的收斂時間大約都相同，差不多在220ns左右。因為一次存取的大小就是一個line size，所以後面幾筆數據的收斂時間都是差不多的。
+
+
 Linux Kernel 行為分析<工具篇>
 ------------------------------------------------
 Ftrace
