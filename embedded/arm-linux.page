@@ -667,6 +667,39 @@ Ftrace
             - irqsoff 
             - function 
 
+- Trace Event
+    - Ftrace 最常見用法是 event tracing
+        - 有幾百個 static event points 通過kernel 我們可以藉由enabled debugfs file system 去看到kernel中某些部份發生了甚麼事情
+    - debugfs默認是掛載在/sys/kernel/debug下，可以通過debugfs下的tracing/events查看各個event。
+
+.. image:: /embedded/arm_linux/trace_event_01.png
+
+- 以下是跟scheduling相關的event
+
+.. image:: /embedded/arm_linux/trace_event_02.png
+
+- 操作步驟範例
+
+.. code-block:: txt
+
+    echo 0 > /sys/kernel/debug/tracing/tracing_on
+    echo 0 > /sys/kernel/debug/tracing/trace
+    echo nop > /sys/kernel/debug/tracing/current_tracer
+    echo 1 > /sys/kernel/debug/tracing/events/sched/enable
+    echo 0 > /sys/kernel/debug/tracing/events/syscalls/enable
+    echo 1 > /sys/kernel/debug/tracing/tracing_on
+    nohup chrt -r 90 ./matrix_mul &
+    pid1=$!
+    nohup chrt -r 90 ./matrix_mul &
+    pid2=$!
+    wait $pid1 $pid2
+    echo 0 > /sys/kernel/debug/tracing/tracing_on
+    cat /sys/kernel/debug/tracing/trace 
+
+- 結果
+
+.. image:: /embedded/arm_linux/trace_event_03.png
+
 KernelShark
 =================================================
 - trace-cmd
@@ -953,6 +986,8 @@ Linux Scheduler 實作
         - 關掉SMP的功能，因為BBB是單核心，不需要這個功能，會影響效能
     - 高解析度計時器
         - 高解析度計時器的解析度為1 ns
+    - 關掉休眠(省電)機制
+        - 由於kernel內建休眠機制，這會導致在執行程式時，CPU顯現之效能會隨時間不一致
 
 根據理論篇，我們想撰寫CPU-bound和IO-bound程式，在不同的排程策略(FIFO, RR)下和給定不同的優先權下，程式會如何執行
 
