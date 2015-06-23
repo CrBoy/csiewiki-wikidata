@@ -536,7 +536,11 @@ Context Switch Latency 實驗結果 及 分析
 
 System Call Latency on BeagleBone Black(Linux)
 ------------------------------------------------
-
+- Lmbench3   lat_unix:
+    - lat_unix - 測量interprocess communication latency透過UNIX sockets
+    - "hot potato" benchmark
+        - benchmark不斷的在2個process間來回傳遞message
+    - process裡面沒有做任何事情
 
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
