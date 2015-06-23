@@ -596,9 +596,13 @@ TTBR0的參數定義
 * `1.6.3<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SD_Booting>`_ Stages in SD Booting
 * `1.6.4<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_UART_Booting>`_ Stages in UART Booting
 
+　
+
 **Q5: eMMC在板子的哪裡?**
 
 .. image:: http://www.circuidipity.com/images/bbb-details3.png
+
+　
 
 **Q6: ROM code 的功能與限制?**
 
@@ -615,22 +619,26 @@ TTBR0的參數定義
 
 .. image:: https://c1.staticflickr.com/1/349/18888649319_3e8d8e343e_o.png
 
+　
+
 **Q7: 什麼是 TCM(Tightly-Coupled Memory)?**
 
 　　TCM 是一個固定大小的RAM，緊密地耦合至處理器內核，提供與cache相當的性能，相較於cache的優點是，程式碼可以精確地控制什麼函數或代碼放在 RAM的哪裡。TCM對於以下幾種情況的代碼是非常有用、也是需要的：predictable及時處理（中斷處理）、時間可預見（加密算法）、避免 cache分析（加密算法）、或者只是要求高性能的代碼（編解碼功能）。`reference<http://blog.csdn.net/sergeycao/article/details/6030226>`_
+
+　
 
 **Q8:為什麼fcse可以加快context switch速度? 又 ARMv6 後捨棄 FCSE，採用什麼架構？**
 
 　　因為不同的PID可以讓對應到相同記憶體空間的位址變成不一樣的記憶體空間，不用每次存取相同記憶體時還需要flush掉cache而增加額外負擔。
 -> FCSEIDR
 
-**Q9: MIDR (Main ID Register)、CTR (Cache Type Register)、TCMTR (TCM Type Register) 是什麼?**
-
-    MIDR:The purpose of the Main ID Register is to return the device ID code that contains information about the processor.
-
 　
 
-    ex:To access the Main ID Register, read CP15 with:
+**Q9: MIDR (Main ID Register)、CTR (Cache Type Register)、TCMTR (TCM Type Register) 是什麼?**
+
+    MIDR: The purpose of the Main ID Register is to return the device ID code that contains information about the processor.
+
+ex: To access the Main ID Register, read CP15 with:
 
 .. code-block:: ARM assembly
 
@@ -640,13 +648,15 @@ TTBR0的參數定義
 
 　
 
-    ex:To access the Cache Type Register, read CP15 with:
+ex: To access the Cache Type Register, read CP15 with:
 
 .. code-block:: ARM assembly
 
     MRC p15, 0, <Rd>, c0, c0, 1 ; Read Cache Type Register
 
     TCMTR:The TCM(Tightly-coupled memory) is designed to provide low-latency memory that can be used by the processor without the unpredictability that is a feature of caches.而在Cortex-A8並沒有實作TCM
+
+　
 
 **Q10: 為何不能直接改register(為什麼要先讀再寫)?**
 
