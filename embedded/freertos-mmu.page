@@ -574,22 +574,22 @@ TTBR0的參數定義
 
 **Q1: Cortex A8 pipeline整數運算有幾級**
 
-    13-stage integer pipeline
+　　13-stage integer pipeline
 
-    source : http://processors.wiki.ti.com/index.php/Cortex-A8_Architecture
+　　source : http://processors.wiki.ti.com/index.php/Cortex-A8_Architecture
 
 
 **Q2: five stage 為什麼有WB?**
 
-    During this stage, both single cycle and two cycle instructions write their results into the register file. 
+　　During this stage, both single cycle and two cycle instructions write their results into the register file. 
 
 **Q3: 什麼是spinlock hazard?**
 
-    The longer a lock is held by a thread, the greater the risk is that the thread will be interrupted by the OS scheduler while holding the lock. If this happens, other threads will be left "spinning" (repeatedly trying to acquire the lock), while the thread holding the lock is not making progress towards releasing it.  
+　　The longer a lock is held by a thread, the greater the risk is that the thread will be interrupted by the OS scheduler while holding the lock. If this happens, other threads will be left "spinning" (repeatedly trying to acquire the lock), while the thread holding the lock is not making progress towards releasing it.  
 
 **Q4: Beaglebone black 有幾種開機方法?**
 
-    http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing
+　　http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing
 
 * `1.6.1<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SPI_Booting>`_ Stages in SPI Booting
 * `1.6.2<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_NAND_Booting>`_ Stages in NAND Booting
