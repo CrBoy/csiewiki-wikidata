@@ -554,6 +554,13 @@ System Call Latency on BeagleBone Black(Linux)
         - fstat: measures how long it takes to fstat( ) an open file whose inode is already cached.
         
         - open: measures how long it takes to open( ) and then close( ) a file.
+   - Intel core i5 lmbench3 lat_syscall:
+.. code-block:: txt
+
+   Simple syscall: 0.0516 microseconds
+   Simple open/close: 1.0371 microseconds
+   Simple read: 0.1096 microseconds
+   Simple write: 0.1173 microseconds
 
 
 .. image:: /embedded/arm_linux/syscall_latency.png
