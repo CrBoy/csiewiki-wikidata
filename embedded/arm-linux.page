@@ -573,6 +573,10 @@ System Call Latency on BeagleBone Black(Linux)
 
 .. image:: /embedded/arm_linux/syscall_latency.png
 
+**結論**
+
+- 可以從上圖看出syscall latency 不論在Intel-core-i5或者Beaglebone black上測出來都是一個穩定的值，藉此還能分別看出 getppid、open/close、read、write這幾個syscall 在其不同硬體上的latency會有不同。
+
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
