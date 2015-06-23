@@ -8,7 +8,7 @@ toc: no
 * 依據`第 8 週課程公告</embedded/2015q1w8>`_，各組在期末 (`6 月 27 日評分</embedded/2015q1w15>`_前) 需要以給定的作業系統核心為主體，提供一個完整的應用作為說明
   - 完成能夠說明分組報告的應用 (Xvisor 和 ARM-Linux 組別不用有實際硬體展示) 後，在 6 月 27 日 23:30 前，發信給助教李明益 ``<pyth7853@gmail.com>``，通知已完成
   - 應用要能夠展示分組報告的作業系統特性，比方說 uClinux 組別可以作一個簡單的電腦遊戲，由觸碰螢幕進行人機互動，藉此說明 uClinux 驅動程式和多工處理
-  - 多工是必要的，而且分組報告的 wiki 上必須充分說明
+  - 多工和同步操作是必要的，而且分組報告的 wiki 上必須充分說明
 
 * 學期分數有 40% 是學生自我評分，請參照 `張家榮</User/JaredCJR>`_ 的示範
   - 請同學在建立好個人頁面之後，到 `此Google表單<https://docs.google.com/spreadsheets/d/14ShJlKRDLChiVKEiMYdYwuV5u_fXFSdrb87ZiS0SDkY/edit#gid=0>`_ 填寫你的 CSIE Wiki 帳號，以便老師進行評分及追蹤各位的進度。
