@@ -606,8 +606,7 @@ TTBR0的參數定義
 
 **Q6: ROM code 的功能與限制?**
 
-    ROM Code主要有幾項任務:
-
+　　ROM Code主要有幾項任務:
 * Stack Setup
 * Watchdog timer 1  configuration (set to three minutes)
 * System clock configuration
@@ -615,7 +614,7 @@ TTBR0的參數定義
 * Load the content of the file "MLO" from a bootable device to internal RAM (the 128KB on-chip memory)
 * Execute the file "MLO" stored in internal RAM
 
-  ROM code可放的容量很小，在am335x technical reference manual中提到cortex-a8的ROM code只有176kbyte(下表)，因此能做的事不多
+　　ROM code可放的容量很小，在am335x technical reference manual中提到cortex-a8的ROM code只有176kbyte(下表)，因此能做的事不多
 
 .. image:: https://c1.staticflickr.com/1/349/18888649319_3e8d8e343e_o.png
 
@@ -636,31 +635,31 @@ TTBR0的參數定義
 
 **Q9: MIDR (Main ID Register)、CTR (Cache Type Register)、TCMTR (TCM Type Register) 是什麼?**
 
-    MIDR: The purpose of the Main ID Register is to return the device ID code that contains information about the processor.
+　　MIDR: The purpose of the Main ID Register is to return the device ID code that contains information about the processor.
 
-ex: To access the Main ID Register, read CP15 with:
+　　ex: To access the Main ID Register, read CP15 with:
 
 .. code-block:: ARM assembly
 
     MRC p15, 0, <Rd>, c0, c0, 0 ; Read Main ID Register
 
-    CTR:The purpose of the Cache Type Register is to determine the instruction and data cache minimum line length in bytes to enable a range of addresses to be invalidated.
+　　CTR:The purpose of the Cache Type Register is to determine the instruction and data cache minimum line length in bytes to enable a range of addresses to be invalidated.
 
 　
 
-ex: To access the Cache Type Register, read CP15 with:
+　　ex: To access the Cache Type Register, read CP15 with:
 
 .. code-block:: ARM assembly
 
     MRC p15, 0, <Rd>, c0, c0, 1 ; Read Cache Type Register
 
-    TCMTR:The TCM(Tightly-coupled memory) is designed to provide low-latency memory that can be used by the processor without the unpredictability that is a feature of caches.而在Cortex-A8並沒有實作TCM
+　　TCMTR:The TCM(Tightly-coupled memory) is designed to provide low-latency memory that can be used by the processor without the unpredictability that is a feature of caches.而在Cortex-A8並沒有實作TCM
 
 　
 
 **Q10: 為何不能直接改register(為什麼要先讀再寫)?**
 
-    為了保留除須更改的bit(s)以外的其他設定
+　　為了保留除須更改的bit(s)以外的其他設定
 
 
 `參考資料<#目錄>`_
