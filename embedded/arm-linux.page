@@ -562,7 +562,7 @@ System Call Latency on BeagleBone Black(Linux)
    Simple read: 0.1096 microseconds
    Simple write: 0.1173 microseconds   
 
-- Beaglebone black`lmbench-next <https://github.com/el8/lmbench-next>`_
+- Beaglebone black lmbench-next
 .. code-block:: txt
 
    Simple getppid: 0.4375 microseconds
