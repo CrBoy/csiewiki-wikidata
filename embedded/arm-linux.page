@@ -383,9 +383,6 @@ Context Switch Latency 測試理論
 - 結論
    - TLB的行為可視為與Cache一樣
    - Cache/TLB size可藉由測試，當發現Latency time大幅上升時，藉由比較array size(實際上的情況下面會談到)可以知道，因為D(cache miss penality)通常大於Tno-miss
-   - Regime 2.a與2.b相較於2.c方法，可以用來解釋為什麼在`維基百科 wiki :CPU cache<http://en.wikipedia.org/wiki/CPU_cache>`_ 中，有一張圖及內容談到當cache associativity(也就是a)越大時，miss rate越小。
-
-.. image:: /embedded/arm_linux/tlb_wiki_associativity.png
 
 - 參考資料：
     - `Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
