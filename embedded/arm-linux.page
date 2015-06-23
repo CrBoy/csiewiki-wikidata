@@ -541,8 +541,7 @@ System Call Latency on BeagleBone Black(Linux)
     - SYNOPSIS
 .. code-block:: txt
 
-      lat_syscall   [   -P   <parallelism>   ]   [   -W   <warmups>   ]   [  -N  <repetitions>  ]  
-getppid | read | write | stat | fstat | open [ file ]   
+      lat_syscall   [   -P   <parallelism>   ]   [   -W   <warmups>   ]   [  -N  <repetitions>  ] getppid | read | write | stat | fstat | open [ file ]   
     - DESCRIPTION
         - getppid : measures how long it takes to do getppid( ).  We chose getppid(  ) because in all  UNIX variants  we  are  aware  of,  it requires a round-trip to/from kernel space and the actual work required inside the kernel is small and bounded.
         
