@@ -33,7 +33,7 @@ toc: no
   - FreeRTOS 的 Tick/Timer
 
 * `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
-  - `Interrupt-Driven Input/Output<http://www.eng.auburn.edu/~nelson/courses/elec2220/Interrupt_IO%20part2.pdf>`_
+  - `Interrupt-Driven Input/Output</embedded/2015q1w4/interrupt_part2.pdf>`_
     * Interrupt vectors and vector table
     * Interrupt masks and priorities
     * NVIC
