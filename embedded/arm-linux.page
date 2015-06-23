@@ -625,8 +625,11 @@ Unix Latency on BeagleBone Black(Linux)
 
 Memory Read Latency on BeagleBone Black(Linux)
 ------------------------------------------------
+- 根據不同的記憶體大小與strides測量讀取記憶體的延遲時間
+- 藉由man page 得知由memory read latency 所得到的數據可以判斷出測量平台的記憶體階層。
+- 下圖比較memory size從1M到8M，以不同stride，在BeagleBone Black 上所測量到的數據(x軸為log2的基底)
 
-
+.. image:: /embedded/arm_linux/lat_mem_rd-all.png
 Linux Kernel 行為分析<工具篇>
 ------------------------------------------------
 Ftrace
