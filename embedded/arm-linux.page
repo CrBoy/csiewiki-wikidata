@@ -555,6 +555,11 @@ System Call Latency on BeagleBone Black(Linux)
         
         - open: measures how long it takes to open( ) and then close( ) a file.
 
+
+.. image:: /embedded/arm_linux/intel_core_i5.jpg
+
+.. image:: /embedded/arm_linux/bbb_arm_cortexa8.jpg
+
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
