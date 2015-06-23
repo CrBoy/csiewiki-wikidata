@@ -549,8 +549,11 @@ getppid | read | write | stat | fstat | open [ file ]
         - stat:  measures how long it takes to stat( ) a file whose inode is already cached.
         - fstat: measures how long it takes to fstat( ) an open file whose inode is already cached.
         - open: measures how long it takes to open( ) and then close( ) a file.
+
 .. image:: /embedded/arm_linux/intel_core_i5.png
+
 .. image:: /embedded/arm_linux/bbb_arm_cortexa8.png
+
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
