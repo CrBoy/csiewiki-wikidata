@@ -557,13 +557,6 @@ getppid | read | write | stat | fstat | open [ file ]
         
         - open: measures how long it takes to open( ) and then close( ) a file.
 
-.. image:: /embedded/arm_linux/intel_core_i5.png
-
-<<<<<<< edited
-=======
-.. image:: /embedded/arm_linux/bbb_arm_cortexa8.png
-
->>>>>>> 84e801ac44725c13ea9f86dd863b6f03591890a0
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
