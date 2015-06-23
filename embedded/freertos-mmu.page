@@ -385,20 +385,21 @@ Move to ARM register from coprocessor.
 
 where:
 
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | cond       | is an optional condition code (see Conditional execution).                                                              |
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | coproc     | is the name of the coprocessor the instruction is for. The standard name is pn, where n is an integer in the range 0-15.|
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | opcode1    | is a coprocessor-specific opcode.                                                                                       |
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | Rd         | is the ARM destination register. If Rd is r15, only the flags field is affected.                                        |
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | CRn, CRm   | are coprocessor registers.                                                                                              |
- +------------+-------------------------------------------------------------------------------------------------------------------------+
- | opcode2    | is an optional coprocessor-specific opcode.                                                                             |
- +------------+-------------------------------------------------------------------------------------------------------------------------+
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| cond       | is an optional condition code (see Conditional execution).                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| coproc     | is the name of the coprocessor the instruction is for. The standard name is pn, where n is an integer in the range 0-15.|
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| opcode1    | is a coprocessor-specific opcode.                                                                                       |
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| Rd         | is the ARM destination register. If Rd is r15, only the flags field is affected.                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| CRn, CRm   | are coprocessor registers.                                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------+
+| opcode2    | is an optional coprocessor-specific opcode.                                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------+
 
+　
 
 function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0344k/ch03s02s01.html
 
@@ -446,10 +447,10 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 5. **Setup Domain Access Control Register**
 
- * Domain: 支援16個domain，一個domain包含若干個sections。Domain可被設定成 (DACR, Domain Access Control Register):
-   - No access (0b00): 只要存取該記憶體空間，則觸發Domain fault。
-   - Clients (0x01): 做存取權限檢查，也就是有可能產生Permission fault。
-   - Managers (0x11): 不做存取權限檢查，不會產生Permission fault。
+* Domain: 支援16個domain，一個domain包含若干個sections。Domain可被設定成 (DACR, Domain Access Control Register):
+  - No access (0b00): 只要存取該記憶體空間，則觸發Domain fault。
+  - Clients (0x01): 做存取權限檢查，也就是有可能產生Permission fault。
+  - Managers (0x11): 不做存取權限檢查，不會產生Permission fault。
 .. image:: https://c1.staticflickr.com/1/455/19021371465_559888f426_o.png
 
 .. code-block:: ARM assembly
@@ -468,26 +469,26 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 .. image:: https://c1.staticflickr.com/1/388/19024481031_e0d57672d6_o.png
 
 
- * **C** : Cacheable
- * **B** : Buferrable
- * **TEX[2:0]** : TEX Type Extension (TEX) bit 如下以SCTLR.TRE=0 (透過CP15的c1取得 System Control Register 32bits值的bit 28 來設定),也就是TEX Remap disabled模式,來說明記憶體區段屬性的配置與意義.
+* **C** : Cacheable
+* **B** : Buferrable
+* **TEX[2:0]** : TEX Type Extension (TEX) bit 如下以SCTLR.TRE=0 (透過CP15的c1取得 System Control Register 32bits值的bit 28 來設定),也就是TEX Remap disabled模式,來說明記憶體區段屬性的配置與意義.
 
 .. image:: https://c1.staticflickr.com/1/519/18996675206_b1546ecfd2_o.png
 
 
- * **XN** : 為Execute Never 的屬性,若該記憶體分頁 XN Bit設定為1,表示該分頁不會被處理器Fetch指令進來執行,在Client Domain (也就是會稽核Access Permission狀態)下,記憶體分頁必須要 XN Bit為0,且記憶體屬性是設定為可讀取,同時沒有其他Prefech Abort發生的狀態下,才可以被執行. 如果該記憶體分頁是屬於Manager Domain,XN Bit就不會被當做稽核的條件. (所以就可以嘗試去執行,而不會導致例外發生).
+* **XN** : 為Execute Never 的屬性,若該記憶體分頁 XN Bit設定為1,表示該分頁不會被處理器Fetch指令進來執行,在Client Domain (也就是會稽核Access Permission狀態)下,記憶體分頁必須要 XN Bit為0,且記憶體屬性是設定為可讀取,同時沒有其他Prefech Abort發生的狀態下,才可以被執行. 如果該記憶體分頁是屬於Manager Domain,XN Bit就不會被當做稽核的條件. (所以就可以嘗試去執行,而不會導致例外發生).
 
- * **NS** : 這個屬性在支援 Trust Zone Security Extensions環境下,才會有作用.
+* **NS** : 這個屬性在支援 Trust Zone Security Extensions環境下,才會有作用.
 
- * **Domain** : 參考ARMv7的文件, VMSA() 會以4-bits表示Domain的Index,也就是說最大可以定義到16個Domain,每個Domain Index會依序對應到Domain Access Control Register 32-bits值中以各2-bits依序產生的16個欄位.
+* **Domain** : 參考ARMv7的文件, VMSA() 會以4-bits表示Domain的Index,也就是說最大可以定義到16個Domain,每個Domain Index會依序對應到Domain Access Control Register 32-bits值中以各2-bits依序產生的16個欄位.
 
- * **S** : 用以定義該記憶體分頁是否為Shareable,S為 0 表示該記憶體分頁為Non-shareable,S 為 1 表示該記憶體分頁為 Shareable.
+* **S** : 用以定義該記憶體分頁是否為Shareable,S為 0 表示該記憶體分頁為Non-shareable,S 為 1 表示該記憶體分頁為 Shareable.
 
- * **nG** : 這屬性為Non-Global,用來定義該記憶體分頁是否為Global,如果nG為0,表示該記憶體分頁為Global,如果為1,表示該記憶體分頁屬於目前正在運作的ASID(Address Space Identifier),該值會對應到正在運作的Task (請參考CONTEXTIDR)
+* **nG** : 這屬性為Non-Global,用來定義該記憶體分頁是否為Global,如果nG為0,表示該記憶體分頁為Global,如果為1,表示該記憶體分頁屬於目前正在運作的ASID(Address Space Identifier),該值會對應到正在運作的Task (請參考CONTEXTIDR)
 
- * **Bit [18]** : when bits [1:0] == 0b10
-   - 0 Descriptor is for a Section.
-   - 1 Descriptor is for a Supersection.
+* **Bit [18]** : when bits [1:0] == 0b10
+  - 0 Descriptor is for a Section.
+  - 1 Descriptor is for a Supersection.
 
 
 7. **Enable MMU**
