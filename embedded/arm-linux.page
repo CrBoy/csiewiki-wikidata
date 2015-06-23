@@ -540,6 +540,7 @@ System Call Latency on BeagleBone Black(Linux)
     - lat_syscall - This is useful as a lower bound cost on anything that has to interact with the operating system.
     - SYNOPSIS
 .. code-block:: txt
+
       lat_syscall   [   -P   <parallelism>   ]   [   -W   <warmups>   ]   [  -N  <repetitions>  ]  
 getppid | read | write | stat | fstat | open [ file ]   
     - DESCRIPTION
