@@ -537,11 +537,20 @@ Context Switch Latency 實驗結果 及 分析
 System Call Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
-    - lat_unix - 測量interprocess communication latency透過UNIX sockets
-    - "hot potato" benchmark
-        - benchmark不斷的在2個process間來回傳遞message
-    - process裡面沒有做任何事情
-
+    - lat_syscall - This is useful as a lower bound cost on anything that has to interact with the operating system.
+    - SYNOPSIS
+.. code-block:: txt
+lat_syscall   [   -P   <parallelism>   ]   [   -W   <warmups>   ]   [  -N  <repetitions>  ]  
+getppid | read | write | stat | fstat | open [ file ]        
+    - DESCRIPTION
+        - getppid : measures how long it takes to do getppid( ).  We chose getppid(  ) because in all  UNIX variants  we  are  aware  of,  it requires a round-trip to/from kernel space and the actual work required inside the kernel is small and bounded.
+        - read :  measures how long it takes to read one byte from /dev/zero.  Note that some  operating systems do not support /dev/zero.
+        - write:  times  how  long it takes to write one byte to /dev/null.  This is useful as a lower bound cost on anything that has to interact with the operating system.
+        - stat:  measures how long it takes to stat( ) a file whose inode is already cached.
+        - fstat: measures how long it takes to fstat( ) an open file whose inode is already cached.
+        - open: measures how long it takes to open( ) and then close( ) a file.
+.. image:: /embedded/arm_linux/intel_core_i5.png
+.. image:: /embedded/arm_linux/bbb_arm_cortexa8.png
 Unix Latency on BeagleBone Black(Linux)
 ------------------------------------------------
 - Lmbench3   lat_unix:
