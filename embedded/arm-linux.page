@@ -1105,6 +1105,18 @@ Linux Scheduler 實作
 
 .. image:: /embedded/arm_linux/sched_io_rr_90_45.png
 
+Linux kernel scheduling CFS trace event
+=================================================
+
+- 驗證CFS行為
+    - 下圖因為綠色覆蓋在紅色之上所以看不太出來是交替執行，可參考下下圖可知兩個task以極短執行時間交互運行
+
+.. image:: /embedded/arm_linux/cfs_trace_event_01.png
+
+
+
+.. image:: /embedded/arm_linux/cfs_trace_event_02.png
+
 Q & A
 ------
 * ARM-Linux Q & A : `hackpad <https://embedded2015.hackpad.com/QA-ARM-Linux-YNnKlrWkbeU>`_
