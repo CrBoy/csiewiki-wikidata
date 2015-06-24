@@ -36,6 +36,10 @@ NOTE
 ===============
 - `ARMv8</embedded/ARMv8>`_
 - `Xvisor</embedded/xvisor>`_
+- 負責:
+    - ARMv8
+    - Foundation model、 QEMU 環境
+    - 研究Xvisor虛擬化技術的實作，包括: CPU virtualization、instruction emulate、Virtual gic、device emulator、MMU。
 
 git commit
 ===============
