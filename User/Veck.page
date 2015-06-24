@@ -68,12 +68,14 @@ veck 蕭奕凱
 - 工作 Work：延續 2014 年同學的成果，繼續延伸研究這個作業系統，並更新、補充與改善內容
 - 成果 Presentation：
     - `Wiki <http://wiki.csie.ncku.edu.tw/embedded/freertos>`_
-    - `GitHub <https://github.com/Justinsanity/freertos-basic>`_
+    - `GitHub <https://ggthub.com/Justinsanity/freertos-basic>`_
     - 更新 FreeRTOS Kernel Version 到 8.2.1 (2014 年採用 8.0.0)
     - 補充、修正 Wiki 原文內容，將原文不太通順，或是描述不清楚的敘述弄清楚，添加圖例或程式碼片段
     - 增加研讀 Wiki 原文並輔以實驗 FreeRTOS 程式的問題集(問題討論二)
     - 增加 FreeRTOS 移植到 STM32 的描述
     - 設計新的 Profiling 方法
+
+  .. image:: /FreeRTOS_porting.jpg
 
 自我評量 (1 ~ 10) Self-assessment
 =================================
