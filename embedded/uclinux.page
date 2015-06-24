@@ -547,124 +547,144 @@ Scheduler
 Interrupt Handler
 ------------------
 
-當外部中斷發生時，硬體會自動將被中斷程式的下一條指令位址保存到stack裏並且關閉中斷，接着把自中斷向量表找尋到的對應的中斷服務程式位址送到PC，完成程式跳轉。
+執行user process時，會根據kernel內建的排程演算法，由ＯＳ定期強制切換執行程式。因此user process稱為「preemptive (可被搶占的)」，這個切換process的動作稱為「context switch」，由kernel/sched.c底下的schedule()實作。schedule()會被kernel中的許多地方所呼叫，主要包含下列三者:
+user context開始sleep的時候
+嚐試鎖定spin lock的時候(enable CONFIG_PREEMPT)
+timer scheduler呼叫時
 
-以 Cortex-M4 爲例：外部中斷發生後，NVIC 會更新 IPSR，並把 PC 設成 0xE000 0000 + offset (=中斷源編號*4) 的值。此時PC便指向中斷服務程式的首位位址。
-
-.. image:: /embedded/memory_access_behavior.jpg
-
-.. image:: /embedded/vectorTable.png
-
-在一個中斷請求中，除了少數緊急事務要處理之外，常常包含不緊急的事務，如資料的處理或分析。
-
-因此 uClinux 保留了 Linux 處理中斷的手法，將ISR分成前半 (top half) 和後半 (bottom half)。
-
-要立即回應的事務寫在前半，可以稍後處理的事務寫在後半。爲了對這2種中斷進行管理，在kernel內構成了硬中斷系統和軟中斷系統。
+.. image:: /preemptive.png
 
 
-爲回應外部設備的 IRQ，kernel均爲每個 IRQ 提供一個函式。
+一個user space 的thread執行到一半時，可能會因為上述原因觸發process scheduler，始得ＣＰＵ轉而執行另外一個thread。而linux kernel space的特徵之一即是他不是preemptive的，換句話說，一個處於kernel space中執行到的一半的thread並不會被process scheduler強行暫停。唯一的例外是發生hardware interrupt的時候，此時中斷處理函式會強制取得CPU的使用權(同時也意味著它有最高度的優先權)
 
-IRQ的個數被定義在arch/arm/mach-stm32/include/mach/irqs.h裏。
+.. image:: /preemptable.png
 
-   .. code-block:: c
+何謂 interrupt呢？　這是一個讓軟體(kernel)在接到來自硬體的通告，作出反應的機制。以網路卡為例，硬體在接收到外部的封包之後，便會以interrupt通知OS，展開對應此狀況的中斷處理程序(interrupt handler)，運行架構如下圖所示。
 
-        #define NR_IRQS     90  /* STM32F2 */  
+.. image:: /interrupt.png
 
-中斷發生後需要有一個結構陣列來處理中斷程序。以下是Interrupt descriptor的定義 (include/linux/irq.h):
-
-   .. code-block:: c
-
-    struct irq_desc {
-        unsigned int        irq;        // 中斷源編號
-        struct timer_rand_state *timer_rand_state;
-        unsigned int            *kstat_irqs;
-    #ifdef CONFIG_INTR_REMAP
-        struct irq_2_iommu      *irq_2_iommu;  //
-    #endif
-        irq_flow_handler_t  handle_irq; // 使用chip中提供的特定於控制器的方法，進行處理中斷所必須的底層操作。[if NULL, __do_IRQ()]
-        struct irq_chip     *chip;      // 定義了與硬體的操作方式，如電流處理
-        struct msi_desc     *msi_desc;
-        void            *handler_data;  // 指向與 handler_irq 相關的資料
-        void            *chip_data;     // 指向與 chip 相關的資料
-        struct irqaction    *action;    /* IRQ action list */
-        unsigned int        status;     /* IRQ status */
-        unsigned int        depth;      /* 決定 IRQ 是否被啓用。假設某段程式碼禁用此中斷，便讓depth + 1。這個中斷被再次啓用就 -1。當depth歸0時表示沒有程式碼禁用，硬體才能再次使用IRQ，depth是扮演計數器的角色。 */
-        unsigned int        wake_depth; // 與設定哪些IRQ 可以喚醒CPU有關
-        unsigned int        irq_count;  /* For detecting broken IRQs */
-        unsigned long       last_unhandled; /* Aging timer for unhandled count */
-        unsigned int        irqs_unhandled;
-        raw_spinlock_t      lock;
-    #ifdef CONFIG_SMP    /* (單晶片不需用到) */
-        cpumask_var_t       affinity;
-        unsigned int        node;
-    #ifdef CONFIG_GENERIC_PENDING_IRQ
-        cpumask_var_t       pending_mask;
-    #endif
-    #endif
-        atomic_t        threads_active;
-        wait_queue_head_t       wait_for_threads;
-    #ifdef CONFIG_PROC_FS
-        struct proc_dir_entry   *dir;  // 把某些資訊如irq_count, last_unhandled等記錄到 /proc/irq/NN
-    #endif
-
-        const char      *name;         // 指定中斷類型。對邊緣觸發中斷，通常是"edge"，對條件觸發中斷，通常是"level", 將顯示在 /proc/interrupts。在uclinux裏面會是空的(?)
-    } ____cacheline_internodealigned_in_smp;
+而interrupt context具有最高優先權一事也意味著，scheduler動不了它，所以它不可陷入sleep，或是呼叫任何有機會導致本身sleep的system call，否則沒人叫的醒。基於同樣的理由，它也不可以被preempt。最後，interrupt context本身必須僅可能的簡短，若是花太多時間處理的話，將導致後續的interrupt被遺漏，引起其他問題。
 
 
-核心會透過上述descriptor的 action 成員執行中斷程式。
+以STM32開發板為例，首先先來關心上圖中device至interrupt controller(NVIC)的部份，我們知道電子產品的信號多數都是電壓的改變，因此device對interrupt controller送出訊號的方式會是對後者送出某個特定的電壓訊號。考慮到可能有複數個device的狀況，便會有複數條線路用以傳送電壓訊號，此一線路稱為「IRQ line」，若要知道是哪個裝置發出訊號的話，只要檢察是哪條IRQ line送來的訊號即可。但隨著device數量增加，亦有多個device共用同一條IRQ line的情形。
+
+
+若想收到控制的裝置送出的中斷訊號，就必須事先登記中段處理程序，這個過程多數是在驅動程式載入後，或是裝置初始化完成之後執行，使用的是request_irq()這個kernel/irq/manage.c底下的函式
 
    .. code-block:: c
 
-    struct irqaction {
-        irq_handler_t handler;       // 中斷處理程式
+        int request_irq(  unsigned int irq,　irqreturn_t handler,　unsigned long irqflags, const char *devname, void *dev_id)
+
+* 變數概略說明如下
+      - irq即是IRQ line之編號
+      - handler為指向中斷處理函式之指標
+      - irqflags可以透過第n個位元的值來描述該irq的某些特徵，於<interrupt.h>中定義，像是IRQF_SHARED 標明了該irq是否共用同一條IRQ line等
+      - devname為/proc/interrupts記錄檔中會出現的裝置名稱
+      - dev_id用已辨明同一條IRQ line中不同的device用
+
+每一個相同的IRQ line在linux中會串成一條link list，kernel在接獲一條IRQ line上產生的訊號時，會從link list的前端開始，沿路呼叫每一個node的handler function，而該handler function則必須檢查這個訊號是否由自身所屬的device所發出。若否，則handler function要盡快把控制權丟出來以免拖累整個interrupt handling的處理速度。若訊號源來自handler自己所對應的裝置，則在處理中斷工作結束後回傳IRQ_HANDLED。
+
+.. image:: /IRQ list.png
+
+接著我們以linux處理Level-Triggered Interrupts的流程來介紹maskng。所謂的Level-Triggered是指當我的輸入電位高過某個水平之後，即視為device遇到狀況了，需要CPU的關心。而在device本身降低自己在這個port的電壓前，電壓將持續的維持在高位。這意味著我們需要暫時無視這個port的訊號，待處理完interrupt handling後(順便期待處理會使的電位降低)，重新檢視這個port的訊號。又或者是通知device controller說OS開始處理這個interrupt了，讓device決定下一步動作(例如降低該port之電位)。在下面這個流程圖中採取了雙管齊下的策略。
+
+(補圖)
+
+* 簡單的流程說明如下:
+      - 當CPU收到一個irq request時，它會先遮蔽(mask)來自該irq line的訊號，並同時給 device controller 一個訊號(ack)表明已接收到這個interrupt。
+      - 接著檢查這個irq line是不是有其它的CPU已經先一步開始處理了，若有了就別管他。
+      - 再來檢查是否有handler function，或這個IRQ本身已被標記為就算發生了也別管他
+      - 通過上述檢查後，將IRQ_INPROGRESS對應的bit標記為1，防止半路殺出別的CPU接手
+      - 處理IRQ
+      - 移除IRQ_INPROGRESS標記，以便unmask時又收到訊號可以被再次處理
+
+觀察上面的簡要流程，會發現我們需要兩樣未提及東西：masking的控制，以及該條IRQ line的狀態。
+
+其中將訊號遮蔽的masking可以透過寫入interrupt controller的register來達成。STM32使用的是cortex M處理器，其Nest Vector Interrupt Controller(NVIC)  masking所對應的位址如下表。
+
+.. image:: /NVIC_clear.jpg
+
+而能在handler function層級中控制一個irq line的masking與否，意味著OS必須有能力處理不同硬體間的差異，如此一來才具備可攜性。這在linux底下主要透過三個資料結構，分別為irq_chip、 irqaction以及 irq_desc來達成，其主要成員如下。
+
+   .. code-block:: c
+
+        struct irq_chip {
+        const char        *name;
+        void                (*enable)(unsigned int irq);
+        void                (*disable)(unsigned int irq);
+        void                (*ack)(unsigned int irq);
+        void                (*mask)(unsigned int irq);
+        void                (*mask_ack)(unsigned int irq);
+        void                (*unmask)(unsigned int irq);
+        ....
+        ....
+        }
+
+
+- \\include\\linux\\interrupt.h
+
+   .. code-block:: c
+
+        struct irqaction {
+        irq_handler_t handler;
         unsigned long flags;
-        const char *name;            // 標識設備名稱
-        void *dev_id;                // 指向設備的資料結構instance,在共享中斷的時候於與辨識。
-        struct irqaction *next;      // 指向下一個 irqaction
-        int irq;
-        struct proc_dir_entry *dir;  // 指向 proc/irq/NN/name 檔案
-        irq_handler_t thread_fn;
-        struct task_struct *thread;
-        unsigned long thread_flags;
-    };
+        const char *name;
+        void *dev_id;
+        struct irqaction *next;
+        ...
+        ...
+        };
 
-爲了控制 interrupt controller，我們需要定義一個結構來對它操作。
-注：爲了相容核心版本2.6前的程式碼，irq_chip定義了別名 hw_interrupt_type。
+
+- \\include\\linux\\irq.h
 
    .. code-block:: c
 
-    struct irq_chip {
-        const char  *name;
-        unsigned int    (*startup)(unsigned int irq);
-        void        (*shutdown)(unsigned int irq);
-        void        (*enable)(unsigned int irq);
-        void        (*disable)(unsigned int irq);
-        void        (*ack)(unsigned int irq);
-        void        (*mask)(unsigned int irq);
-        void        (*mask_ack)(unsigned int irq);
-        void        (*unmask)(unsigned int irq);
-        void        (*eoi)(unsigned int irq);
-        void        (*end)(unsigned int irq);
-        int     (*set_affinity)(unsigned int irq,
-                        const struct cpumask *dest);
-        int     (*retrigger)(unsigned int irq);
-        int     (*set_type)(unsigned int irq, unsigned int flow_type);    /* IRQ_TYPE_RISING, IRQ_TYPE_FALLING, IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW, IRQ_TYPE_EDGE_BOTH, IRQ_TYPE_NONE */
-        int     (*set_wake)(unsigned int irq, unsigned int on);
-        void        (*bus_lock)(unsigned int irq);
-        void        (*bus_sync_unlock)(unsigned int irq);
+        struct irq_desc {
+        unsigned int                irq;
+        struct irq_chip                *chip;
+        struct irqaction        *action;        /* IRQ action list */
+        unsigned int                status;                /* IRQ status */
+        ...
+        ....
+        }
 
-        /* Currently used only by UML, might disappear one day.*/
 
-    #ifdef CONFIG_IRQ_RELEASE_METHOD
-        void        (*release)(unsigned int irq, void *dev_id);
-    #endif
+ irq_desc，如同其名稱(discription)，內描述了該條IRQ line的狀態，所有操作皆可透過他達成。irq_desc中有兩個指標分別指向了irq_chip以及irqaction兩個結構，前者負責與最底層硬體的溝通，後者則是處理interrupt service routine重要的一員，三者的關係如下圖所示。inturrupt發生時OS會沿著該條IRQ line檢察是否有符合的device id，並呼叫對應的handler function。
 
-        const char  *typename; /* =name, 相容於舊版的kernel而宣告*/
-    };
+.. image:: /IRQ_struct.png
 
-Interrupt 結構  (` 來源<http://blog.csdn.net/luyesy/article/details/5947310>`_)
+從最底層最接近硬體的部分開始，我們可以看見irq_chip這個struct底下主要由一系列指向函數指標所組成。以mask當作例子，可以在在nvic.c底下找到nvic_mask_irq這個函數直接操作硬體register的函數，其中 NVIC_CLEAR_ENABLE為對應上表register，為　0xe000e000e180，將特定的bit設為1之後即可遮蓋特定的IRQ line
 
-.. image:: /embedded/irqdesc.png
+   .. code-block:: c
+
+        static void nvic_mask_irq(unsigned int irq)
+        {
+        u32 mask = 1 << (irq % 32);
+        spin_lock(&irq_controller_lock);
+        writel(mask, NVIC_CLEAR_ENABLE + irq / 32 * 4);
+        spin_unlock(&irq_controller_lock);
+        }
+
+
+接著我們可以在同樣一份nvic.c底下找到屬於struct irq_chip的nvic_chip與nvic_mask_irq這個函數的關聯
+
+   .. code-block:: c
+
+        static struct irq_chip nvic_chip = {
+        .name                = "NVIC",
+        .ack                = nvic_ack_irq,
+        .mask                = nvic_mask_irq,
+        .unmask                = nvic_unmask_irq,
+        }
+
+以及在nvic初始化中的迴圈有一段 set_irq_chip(i, &nvic_chip)。這個函數的功能是將nvic_chip，包裝到資料結構struct irq_desc底下，以及初始化一些nvic_chip中未填入的資訊。上層函數若需要呼叫nvic_mask_irq()這個函數時，只要持有相對應的irq_desc，利用
+
+   .. code-block:: c
+
+        desc->chip->mask(irq)
+
+即可達成在handler層級使用相同的code控制不同硬體之目標。
 
 
 
