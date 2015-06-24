@@ -21,9 +21,9 @@ Github
 
 NOTE
 --------------------
-- `lab38<https://embedded2015.hackpad.com/Week-2-ctu3SnJ5zB6>`_
-- `lab39<https://embedded2015.hackpad.com/2015q3-X2ljN3BAif1>`_
-- `lab40<https://mycpp.hackpad.com/2015q4-in3pou3fgHO>`_
+- `lab38<https://embedded2015.hackpad.com/Week-2-ctu3SnJ5zB6>`_:實作遞迴以及非遞迴版本的fibonacci以及使用Thumb2 instruction改善效能
+- `lab39<https://embedded2015.hackpad.com/2015q3-X2ljN3BAif1>`_:'new'指令新增task,'test showfib'指令顯示前20個fibonacci數列結果
+- `lab40<https://mycpp.hackpad.com/2015q4-in3pou3fgHO>`_:新增兩個task，計算context switch時間
 - `lab41<https://embedded2015.hackpad.com/Week-5-Lab41-beU5Qb7IYhr>`_
 - `lab42`_
 
@@ -43,7 +43,7 @@ NOTE
 
 - 這學期的ARMv8、Xvisor報告對我來說也是很大的挑戰，之前重來沒接觸過ARM、更別說是虛擬化，但是有了這個機會可以參與這次Xvisor的報告，讓我懂得如何去trace大型的程式(以前寫code沒寫超過兩千行)而Xvisor裡光是vgic就已經接近兩千行，不只如此也讓我學習到coding style，你寫的code不能只讓自己看懂，以及Xvisor使用許多對我來說很神奇的程式寫法(可能是自己見識淺薄)，觀摩神人寫的程式，也能讓自己進步。而ARMv8更是一個未知的領域，而想去網路上找一些參考資料，幾乎沒有中文的資料可以參考，就算是英文有許多東西重複性也是很高，所以只好從官方手冊下手，了解到讀手冊的重要，像是GDB的使用也必須得靠自己去閱讀官方手冊。還有虛擬化的部分，由於是在一個作業系統去運行其他多個作業系統再加上現在的CPU都是多核心架構，中間的行為就變得更加複雜EX.tick distortion的問題，Xvisor的程式也會用到許多作業系統的概念也讓我必須去加強這一部分的知識，由於這學期才修作業系統，因為做了這份報告讓我對於同步、排程、記憶體管理都比較能夠瞭解實作的部分。
  
-- 以及這學期老師提供了許多開放式課程的學習資料，雖然數量實在很多根本來不及看完，但對於我專業知識的提升有很大的幫助，以及觀摩世界數一數二的大學EX.CMU的課程資訊，讓我看到別的學校和我相同年紀的人都在做甚麼事，才了解到原來我還離世界頂尖大學的學生非常遙遠，自己應該要更努力。
+- 以及這學期老師提供了許多開放式課程的學習資料，雖然數量實在很多根本來不及看完，但對於我專業知識的提升有很大的幫助，以及觀摩世界數一數二的大學EX.CMU的課程資訊，讓我看到別的學校和我相同年紀的人都在做甚麼事，才了解到原來我還離世界頂尖大學的學生非常遙遠，自己應該要加快腳步。
 
 自我評量分數 (1 到 10 級分)
 ====================================
