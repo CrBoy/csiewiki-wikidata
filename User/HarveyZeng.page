@@ -1,0 +1,56 @@
+HarveyZeng(曾柏翔)
+------------------
+**簡介:**
+
+- 成功大學電機工程學系暨學士學位學程學系104
+- 成功大學電腦與通信工程研究所104
+
+作業及筆記
+============
+- Github : `github<https://github.com/harveyzeng>`_
+- homework1 : `hw1<https://embedded2014.hackpad.com/WMqqlK2hZUv>`_
+- homework2 : `hw2<https://embedded2015.hackpad.com/hw2-Ka5oXguvUje>`_
+- homework3 : `hw3<https://hackpad.com/LAB-40-HW3-Bg4LSLvXFf4>`_
+- homework4 : `hw4<https://embedded2015.hackpad.com/week5-lab41-yr2WLfoa7ED>`_
+- homework5 : `hw5<https://hackpad.com/lab-42-hw5-OnYODUZzuZ8>`_
+
+報告
+=========
+- xenomai : `CSIE WIKI<http://wiki.csie.ncku.edu.tw/embedded/xenomai>`_
+- Xenomai開發紀錄 : `Hackpad<https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP>`_ 
+- Xenomai_lab_data : `Hackpad<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe>`_
+- Xenomai_Q&A : `Hackpad<https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt>`_
+- 負責項目:
+
+1. Raspberry pi 環境設置 for xenomai 2 &&xenomai 3 
+2. 研究xenomai 3 跟xenomai 2 架構上的不同
+3. 研究xenoami(Andeo&&ipipe)特色以及架構
+
+學習到的知識
+=============
+- 在這堂課學到了熟悉linux開發，在修這堂課之前對於linux知識實在是非常淺，我也從原本的虛擬機晉升到了雙系統。
+- 也學習到了如何使用github來做版本控制，學會此種技巧在以後跟人開發專案上有很大的幫助
+- 在作業一學習到了如何使用QEMU來模擬指令集，也學習到如何計算每道 ARM/Thumb 指令的 cycle count，我也利用計算 ARM 組合語言程式的 cycle count，並從中找出規律，利用 Excel 的公式推算出後面幾個 input 的數字(10~30)，最後再經由 R 語言繪圖出來做分析。
+- 在作業二我學習到了如何看大量的code，並且試著去修改open source code
+- 在作業三學到了如何用視覺化系統來讓我們更方便的分析schedule 機制
+- 在作業四重新把之前不熟悉的計算機結構還有一些基本的概念複習一次。
+- 在作業五動手去修改教授親自開發的mini-arm-os，並從中學習到一顆實際上的os是如何進行排程管理。
+- 在xenomai報告中學習到如何看大量的原文資料，也學習到了如何在板子上建立xenomai的環境(畢竟這學期是我第一次接觸到需用linux開發的板子)
+
+學習心得
+=============
+- 這學期讓我受益良多，從以前很多知識都是有個概念，但對於實際應用以及更深的概念都不懂。就像`DeepC<`http://www.slideshare.net/olvemaudal/deep-c >`_中的小男孩一樣，在考試應付已足夠，但全無法上戰場。雖然到現在還是有很多不懂的地方，但我已經知道未來的學習方式應該是怎樣了。
+- 這學期hackpad開放式的教學，對於我來說是受益良多，因為這堂課有許多厲害的同學在修，可以藉由看大家的github 上的code和hackpad上統整的知識，加強我對專業的認知。
+- 對我來說，這學期可說是有的完全不一樣的啟發，接下來研究所的兩年內，我想我已經知道要如何學習才能夠應付之後的戰場，即使沒有繼續修這堂課，我也會繼續追蹤社團的資訊，並且在有空的時候繼續來寫作業讓老師code review。
+
+自我評量分數 (1 到 10 級分)
+============================
+- 我給自己10級分。
+- 因為對我來說雖然現在並沒有很厲害，但我認為自己進步是非常多的，從完全不懂linux到已可熟悉的利用linux環境來開發板子，也對ARM架構有著初淺的認識。而在開學前幾個禮拜也下了極大的功夫，幾乎所有時間都耗在這，雖然在期中有實驗室的計畫要忙，時間有點分散，但只要有空閒的時間就會努力的學習。
+
+
+聯絡資訊:
+=========
+- email: ``an4001022@gmail.com``
+
+
