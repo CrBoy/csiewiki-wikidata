@@ -606,6 +606,8 @@ timer scheduler呼叫時
 
 而能在handler function層級中控制一個irq line的masking與否，意味著OS必須有能力處理不同硬體間的差異，如此一來才具備可攜性。這在linux底下主要透過三個資料結構，分別為irq_chip、 irqaction以及 irq_desc來達成，其主要成員如下。
 
+- \\include\\linux\\irq.h
+
    .. code-block:: c
 
         struct irq_chip {
@@ -650,11 +652,11 @@ timer scheduler呼叫時
         }
 
 
- irq_desc，如同其名稱(discription)，內描述了該條IRQ line的狀態，所有操作皆可透過他達成。irq_desc中有兩個指標分別指向了irq_chip以及irqaction兩個結構，前者負責與最底層硬體的溝通，後者則是處理interrupt service routine重要的一員，三者的關係如下圖所示。inturrupt發生時OS會沿著該條IRQ line檢察是否有符合的device id，並呼叫對應的handler function。
+ irq_desc，如同其名稱(discription)所示，內描述了該條IRQ line的狀態，所有操作皆可透過他達成。irq_desc中有兩個指標分別指向了irq_chip以及irqaction兩個結構，前者負責與最底層硬體的溝通，後者則是處理interrupt service routine重要的一員，三者的關係如下圖所示。inturrupt發生時OS會沿著該條IRQ line檢察是否有符合的device id，並呼叫對應的handler function。
 
 .. image:: /IRQ_struct.png
 
-從最底層最接近硬體的部分開始，我們可以看見irq_chip這個struct底下主要由一系列指向函數指標所組成。以mask當作例子，可以在在nvic.c底下找到nvic_mask_irq這個函數直接操作硬體register的函數，其中 NVIC_CLEAR_ENABLE為對應上表register，為　0xe000e000e180，將特定的bit設為1之後即可遮蓋特定的IRQ line
+從最底層最接近硬體的部分開始，我們可以看見irq_chip這個struct底下主要由一系列指向函數指標所組成。以mask當作例子，可以在在nvic.c底下找到nvic_mask_irq這個函數直接操作硬體register的函數，其中 NVIC_CLEAR_ENABLE為對應上表register，為0xe000e000e180，將特定的bit設為1之後即可遮蓋特定的IRQ line
 
    .. code-block:: c
 
