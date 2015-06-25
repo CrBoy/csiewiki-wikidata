@@ -677,7 +677,93 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 Xenomai 3 on Beaglebone
 ++++++++++++++++++++++++++++
 
+* 設定路徑
 
+.. code-block:: c
+
+  mkdir bbb
+  cd bbb
+  export BBB=$(pwd)
+
+* 取得xenomai-2.6.4 (與 beaglebone-kernel 同一層目錄)
+
+.. code-block:: c
+
+  wget http://download.gna.org/xenomai/stable/latest/xenomai-2.6.4.tar.bz2
+
+* 檢查版本
+
+  .. image:: /embedded/xenomai/thumb2.png
+
+.. code-block:: c
+
+  cd bb-kernel/KERNEL
+  uname -a
+  git tags | sort | less
+
+* 選擇跟所編譯 Kernel 最接近版本，在此為 3.8.13
+
+.. code-block:: c
+
+  git checkout 3.18-rc4 -b xenomai
+
+* 開啟Thumb2 Kernel，下載 patch
+
+.. code-block:: c
+
+  cd bb-kernel/KERNEL
+
+  patch -p1 < ../../ipipe-core-3.18.12-arm-1.patch
+
+* 確認狀態，關掉休眠
+
+  關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
+  將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
+
+  .. image:: /shutdownhibernation.png
+
+* 重新 compiler
+
+.. code-block:: c
+
+  make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- LOADADDR=0x80008000 uImage dtbs modules
+
+* 因為angstrom會有開不了機的現象，所以這裡改成用debian,把dtb和zImage換掉 把dtb和zImage換掉 `(參考連結)<https://randomlinuxhacks.wordpress.com/2015/02/22/installing-xenomai-on-beaglebone-using-debian-distribution/>`_
+
+.. code-block:: c
+
+  wget http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
+  sudo -s
+  xz -dkc ../bone-debian-7.5-2014-05-14-2gb.img.xz > /dev/mmcblck0
+  exit
+
+* Compile Xenomai3
+
+  .. code-block:: c
+
+  cd xenomai-3-3.0-rc4
+  mkdir dist
+  export PATH=/home/neal/Xenomai/tool-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/:$PATH
+  ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
+  ./configure  CFLAGS="-march=armv7-a -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon  -ffast-math" --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf
+
+* dist中會出現usr/xenomai, 將這個資料夾移到sd卡中 /usr/
+
+* Install module : 
+
+  .. code-block:: c
+
+  cd bb-kernel/KERNEL
+  mkdir dist
+  sudo make ARCH=arm INSTALL_MOD_PATH=dist modules_install
+
+* 把 modules 移到 SD card /lib/modules 內
+
+  .. code-block:: c
+
+  sudo cp -rp dist/lib/modules/3.18.0-rc7+/ /media/neal/rootfs/lib/modules/
+
+* 成功
 
 觀察與分析
 =========
