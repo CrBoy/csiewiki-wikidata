@@ -19,7 +19,8 @@ categories: User
 分組報告
 ====
 - `rtenv+ wiki<http://wiki.csie.ncku.edu.tw/embedded/rtenv>`_
-- 協作 Hackpad : `rtenv+測試<https://hackpad.com/rtenv-wDf84ASaCcb#:h=Memory-Layout>`_, `rtenv+ context switch<https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
+- 主要負責做context-switch的測試
+- `rtenv+ context switch<https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
 - `Q&A<https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW>`_
 
 學期成果
