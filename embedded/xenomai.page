@@ -674,84 +674,87 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
   insmod xeno_klat.ko
   /usr/xenomai/bin/cyclictest -p 90
 
-Xenomai 3 on Beaglebone
-++++++++++++++++++++++++++++
 
-* 設定路徑
+Xenomai 3 on Beaglebone Black 
+++++++++++++++++++++++++++++++++
 
-.. code-block:: c
-
-  mkdir bbb
-  cd bbb
-  export BBB=$(pwd)
-
-* 取得xenomai-2.6.4 (與 beaglebone-kernel 同一層目錄)
+* 先下載 linux kernel:
+  - 參考資料 : http://elinux.org/EBC_Installing_Kernel_Source
 
 .. code-block:: c
 
-  wget http://download.gna.org/xenomai/stable/latest/xenomai-2.6.4.tar.bz2
+  git clone git://github.com/RobertCNelson/bb-kernel.git
+  cd bb-kernel
+  git tag  (This shows what versions can be checked out.)
+  git checkout 3.18-rc7 -b 3.18-rc7
+  ./build_kernel.sh
 
-* 檢查版本
-
-  .. image:: /embedded/xenomai/thumb2.png
-
-.. code-block:: c
-
-  cd bb-kernel/KERNEL
-  uname -a
-  git tags | sort | less
-
-* 選擇跟所編譯 Kernel 最接近版本，在此為 3.8.13
+* Prepare the kernel
 
 .. code-block:: c
 
-  git checkout 3.18-rc4 -b xenomai
+  cd ../../xenomai-2.6.4/scripts
+  ./prepare-kernel.sh --arch=arm --linux=../../bb-kernel/KERNEL/
 
-* 開啟Thumb2 Kernel，下載 patch
+* Compile Kernel
 
 .. code-block:: c
 
-  cd bb-kernel/KERNEL
-
-  patch -p1 < ../../ipipe-core-3.18.12-arm-1.patch
+  cd ../../bb-kernel
 
 * 確認狀態，關掉休眠
-
-  關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
-  將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
+  - 關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
+  - 將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
 
   .. image:: /shutdownhibernation.png
 
-* 重新 compiler
+.. code-block:: c
+
+  make ARCH=arm menuconfig
+
+* 再重新編譯
 
 .. code-block:: c
 
-  make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- LOADADDR=0x80008000 uImage dtbs modules
+  make -j 8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- LOADADDR=0x80008000 uImage dtbs modules
 
-* 因為angstrom會有開不了機的現象，所以這裡改成用debian,把dtb和zImage換掉 把dtb和zImage換掉 `(參考連結)<https://randomlinuxhacks.wordpress.com/2015/02/22/installing-xenomai-on-beaglebone-using-debian-distribution/>`_
+* 把 SD card format 並 燒錄 debian (要進入 root 模式)
 
 .. code-block:: c
 
-  wget http://debian.beagleboard.org/images/bone-debian-7.5-2014-05-14-2gb.img.xz
-  sudo -s
-  xz -dkc ../bone-debian-7.5-2014-05-14-2gb.img.xz > /dev/mmcblck0
-  exit
+  sudo mkfs -t ext4 /dev/mmcblk0
+  sudo xz -dkc bone-debian-7.5-2014-05-14-2gb.img.xz > /dev/mmcblk0
 
-* Compile Xenomai3
+* 把dtb file (or dts) and zImage 換掉，把 zImage 放入到 SD card 內
+就可以成功開機了!
 
-  .. code-block:: c
+* 然後去下載 Xenomai3.git
+  - 參考資料 :http://git.xenomai.org/xenomai-3.git
+
+.. code-block:: c
+
+  wget http://git.xenomai.org/xenomai-3.git/snapshot/xenomai-3-3.0-rc4.tar.bz2
+  tar jxvf xenomai-3-3.0-rc4.tar.bz2
+  wget http://download.gna.org/adeos/patches/v3.x/arm/ipipe-core-3.18.12-arm-1.patch //載 ipipe patch
+  cd bb-kernel/KERNEL
+  patch -p1 < ../../ipipe-core-3.18.12-arm-1.patch
+
+* Compile Xenomai 3
+
+.. code-block:: c
 
   cd xenomai-3-3.0-rc4
   mkdir dist
   export PATH=/home/neal/Xenomai/tool-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/:$PATH
   ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
-  ./configure  CFLAGS="-march=armv7-a -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon  -ffast-math" --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf
+  ./configure  CFLAGS="-march=armv7-a -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -ffast-math" --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf
+  mkdir -p dist; make DESTDIR=`pwd`/dist install
 
 * dist中會出現usr/xenomai, 將這個資料夾移到sd卡中 /usr/
 
 * Install module : 
 
-  .. code-block:: c
+.. code-block:: c
 
   cd bb-kernel/KERNEL
   mkdir dist
@@ -759,11 +762,12 @@ Xenomai 3 on Beaglebone
 
 * 把 modules 移到 SD card /lib/modules 內
 
-  .. code-block:: c
+.. code-block:: c
 
   sudo cp -rp dist/lib/modules/3.18.0-rc7+/ /media/neal/rootfs/lib/modules/
 
-* 成功
+* 即可成功 run xenomai 3 的 內建執行檔. 
+  - ex : sudo /usr/xenomai/bin/arm-linux-gnueabihf-latency
 
 觀察與分析
 =========
