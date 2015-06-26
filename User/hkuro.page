@@ -38,8 +38,21 @@ categories: User
 
 - 參與協作的 Hackpad 
     - `個人筆記<https://embedded2015.hackpad.com/hkuro-drE19cLLkxl>`_
-        - 
+        - `Week#3 Note<https://embedded2015.hackpad.com/Week3-Note-z3ngFQODIqC>`_
+        - `Week#4 Note<https://embedded2015.hackpad.com/Week4-Note-lm2Q9FCgDnq>`_
+        - `Week#5 GitHub Note<https://embedded2015.hackpad.com/Week5-Note-JT5k4JNItXY>`_
+        - `Week#6 Note<https://embedded2015.hackpad.com/Week6-Note-vz3TBYMf6DE>`_
+        - `Week#7 Note<https://embedded2015.hackpad.com/Week7-Note-s6gD3WnM1kI>`_
+        - `Week#8 Note<https://embedded2015.hackpad.com/Week8-Note-ukXdv8pmyXc>`_
+        - `Week#9 Note<https://embedded2015.hackpad.com/Week9-Note-ra2QdJ7yPvG>`_
+        - `Week#10 Note<https://embedded2015.hackpad.com/Week10-Note-rXiAuENFJZP>`_
+        - `Week#11 Note<https://embedded2015.hackpad.com/Week11-Note-Ta33xiV7Pdt>`_
     - `報告筆記<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
+        - `Linux Kernel 行為分析(理論): Scheduling + Timer Interrupt<https://embedded2015.hackpad.com/Linux-Kernel-Scheduling-Timer-Interrupt-Y1yFStkKVyr>`_
+        - `Linux Kernel 行為分析(工具): Ftrace + KernelShark<https://embedded2015.hackpad.com/Linux-Kernel-Ftrace-KernelShark-QdfD65akDu7#:h=KernelShark>`_
+        - `Linux Kernel 行為分析(實作): Scheduling + Timer Interrupt<https://hackpad.com/Linux-Kernel--b4sSwvUcRr0#:h=下一步，目標是透過-Ftrace-去驗證-Linux-sch>`_
+        - `數學問題 (2015.05.12)<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
+        - `Yocto PPt<https://dl.dropboxusercontent.com/u/33532799/Yocto%20Project.pptx>`_
 
 - 學期報告的 wiki
     - CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
