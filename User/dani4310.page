@@ -1,0 +1,48 @@
+---
+title: 陳冠任
+categories: User
+toc: no
+...
+
+簡介
+==
+
+　　成功大學工程科學系104級
+
+作業及筆記
+======
+
+* week#2 : `GitHub<https://github.com/dani4310/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/m6pJq7jctyP>`_
+* week#3 : `GitHub<https://github.com/dani4310/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/uGO4QAK07xP>`_
+* week#4 : `GitHub<https://github.com/dani4310/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/iH7yXFpMdcx>`_
+* week#5 : `Hackpad<https://embedded2015.hackpad.com/wteicLuLkWs>`_
+* week#7,8 : `GitHub<https://github.com/dani4310/mini-arm-os>`_, `Hackpad<https://embedded2015.hackpad.com/aqrptIzrcJF>`_
+
+專題報告
+====
+
+* CSIE Wiki: `FreeRTOS (MMU)<http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu>`_
+* 主要負責部分: 讓FreeRTOS可以在beaglebone black上正常運作並加上shell功能，協助mmu整合及debug。
+* Hackpad筆記: `Hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
+* MMU with FreeRTOS 8.2.1 for Beagle Bone Black: `Github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+
+
+所見所聞心得
+======
+
+    大四下原本想著要找幾門涼課來過爽爽的養老生活，但看到這門課的介紹後就被深深吸引，於是毅然決然的就選了這門課！
+    在課程中讓我最喜歡的是課程中會應用到許多之前所學的東西，像是Operating System、datastructure、computer organization…等！以前在學這此科目的時候，對於其內容，只有知道有這個東西、這種功能的印像，至於如何實作則是一知半解，然而在這門課中，將這些課程中所教的東西都用上了，並且有實作過程，看得到完整的code，因此對於這些東西會有十分深刻的印像！
+    修完這門課，不得不說這是一門硬課，需要非常非常多的時間來做作業，然而同時也會發現許多自已之前所學不清楚的地方，進而彌補自己的不足，經過一個學期的訓練，會深深的感到自己真的"爆弱"，但比之學期初的自己，已有非常多的進步！
+    
+
+自我評量分數 (1 到 10 級分)
+==================
+
+* 我給自己8級分。
+
+* 原因：在這門課中感覺到自己進步了不少，但也深深的瞭解到自己的所學的不足，雖然花了非常多時間去寫作業和看code，但卻很難達到心中想做出的成果，而且也發現自己看code的速度不夠快，導致做作業的效率不佳。
+
+
+聯絡資訊
+====
+* Email: ``steven510838@gmail.com``
