@@ -15,16 +15,15 @@ Sunny(蔣亞翰)
 報告筆記
 =========
 - 整體 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
-- Arm v7-A VMSA : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-v7-A-VMSA-6dMVuS4kALA>`_
+- ARM CP15 與MMU : `Hackpad<https://embedded2015.hackpad.com/ARM-CP15-MMU-Lgl4ew73EO6>`_
 - lmbench3簡介 : `Hackpad<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
 - Measuring Cache and TLB Performance and Their Effect on Benchmark Runtimes 論文分析 : `Hackpad<https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C>`_
-- lmbench3 - lat_ctx實驗過程(較新的部分都直接更新在wiki上，以wiki為主) : `Hackpad<https://embedded2015.hackpad.com/lmbench-lat_ctx-on-BBB-linux-x2YKz26rtxX>`_
 
 
 報告
 =========
 - CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
-- 主要負責context switch理論分析以及實驗暨結果探討
+- 主要負責lmbech的lat_syscall分析以及實驗暨結果探討
 
 所見所聞心得
 =============
@@ -43,6 +42,6 @@ Sunny(蔣亞翰)
 
 聯絡資訊:
 =========
-- email: ``empire89090@gmail.com``
+- email: ``sunnyboyr930709@gmail.com``
 
 
