@@ -2,40 +2,53 @@
 ----------
 張瑋豪
 
-成功大學  工程科學所 103級
+成功大學  工程科學所 103
 
 作業
 ----------
 Lab38：ARM Cross-Development Environment
  `Github <https://github.com/parkson1128/arm-lecture/commit/006aa3244c875cf01ef59982e89e382530a8b1a0>`_,
  `Hackpad <https://embedded2015.hackpad.com/Lab-38-d68DrHGAJsB>`_,
-學習心得：
 
 Lab39：FreeRTOS
  `Github <https://github.com/parkson1128/freertos-basic/commit/8650abdb8c1b6a1b1e97caccea4ab2db58378219>`_,
  `Hackpad <https://embedded2015.hackpad.com/Lab-39-qfqC3ZPwCRr>`_,
-學習心得：
 
 Lab40：Scheduling
   `Github <https://github.com/parkson1128/visualizer/commits/master>`_,
   `Hackpad <https://embedded2015.hackpad.com/Lab40--BF8IZt7lxvX>`_,
-學習心得：
 
 Lab41： 基礎觀念訓練
   `Hackpad <https://embedded2015.hackpad.com/LAB41-FnRSwfKCh5p>`_,
-學習心得：
-
 
 分組報告
 ----------
 FreeRTOS： `Wiki <http://wiki.csie.ncku.edu.tw/embedded/freertos>`_, `Hackpad <https://hackpad.com/2015-Embedded-FreeRTOS-0IEDUa7Rjct>`_,
 
-分組負責的部分：
+負責的項目
+
+1.Protin環境建置：負責去研究要如何把FreeRTOS proting到板子上
+
+2.要怎麼去修改我們的FreeRTOS版本，讓我們的內容可以porting到版子上
 
 
-整體心得
+學到的知識
 ----------
-自我評量分數  (1 到 10 級分) 
+1. Lab38中，我徹底知道以前學的X86組語根本不是真的會，在寫作業時一開始覺得很難不知道該怎麼寫，不停找所有可能的相關資料，所有看似很難的東西，很多時候都是因為自己心中覺得難，給自己侷限住了
+2. Lab39中開始研究程式碼，首先遇到的問題就是檔案很多，根本不知道該從哪個地方開始看code，也不確定自己所看的就一定是自己所想要的code，因為有Hackpad，所以可以看強者同學的心得，讓自己快速的找到重點code。但是不可能永遠都有強者在前面PO教學文PO心得文，所以自己還是要去面對這個問題，不要去一行一行看CODE，要先懂整體的架構，如有需要再去懂細節
+3. Lab40中學會使用視覺化工具，可以讓兩個TASK的執行差異更容易被看出來，自己作業的成果有出來，但是自己仍需加強舉一反三的能力，把視覺化工具真正的搞懂，真正的會使用。讓其他地方也可以使用視覺化，不然就只是照著步驟執行程式就會動了，這樣就沒意義
+4. Lab41中是一些基礎觀念的訓練，有些觀念自己忘了，在這裡算是幫自己再複習，再ㄧ次加強觀念，不過這作業我發現影片很多，又不能快速播放，所以並沒有每個影片都有看過
+
+學習心得
+----------
+這學期在課堂上學到很多，對ARM有基礎的認識，對FreeRTOS有點了解，更了解到英文更是工程師的母語，偏偏英文不夠好要比別人花更多的時間去克服。讓我從ubuntu 都沒用過，變成可以灌好了雙系統，可以在上面寫作業、改程式，同時也是第一次玩版子，第一次使用Github、Hackpad，有好多的第一次。在以前所學都是為了考試，很多東西考完試後就都忘。而在這就像學做菜一樣，不能只有看食譜，要真正有做出菜才算是真的學會。學習的過程中，每一次的作業就是一次瓶頸，瓶頸有突破才真正的有成長，沒突破，那之前的努力都是白費，有多努力都沒用!!
+
+
+自我評量分數
+----------
+自評8.5分 
+
+在這堂課中我自認進步蠻多的，同時我覺得學到最多的是學習的態度以及跟自己說要撐下去的意志力，要放棄很簡單要撐下去卻很難。老師課堂上常叮嚀我們不要只去當一般的工程師，要努力讓自己變成那1%的優異的工程師，就算這目標可能有點遠，但我打從心中會希望變成這樣的工程師。這學期初，很多時間都花在這上面，讓自己建立了基礎，期中開始事情變多，時間也比較分散，但還是去盡力去克服困難，想辦法在實驗室的meeting以及這堂課中抓到平衡點。
 
 
 聯絡方式
