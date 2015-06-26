@@ -1,0 +1,48 @@
+---
+title: MuLin (黃睦林)
+categories: User
+toc: no
+...
+
+簡介
+==
+
+　　成功大學工程科學系104級
+
+作業及筆記
+======
+
+* week#2 : `GitHub<https://github.com/MuLinForest/arm-lecture>`_, `Hackpad<https://hackpad.com/1Nqa107f9Mg>`_
+* week#3 : `GitHub<https://github.com/MuLinForest/freertos-basic>`_, `Hackpad<https://hackpad.com/tKfTJ9NE0Ge>`_
+* week#4 : `GitHub<https://github.com/MuLinForest/visualizer>`_, `Hackpad<https://hackpad.com/pvNAx4ZVUas>`_
+* week#5 : `Hackpad<https://hackpad.com/KgiNguC3881>`_
+* week#7,8 : `GitHub<https://github.com/MuLinForest/mini-arm-os>`_, `Hackpad<https://hackpad.com/J327emEgEJg>`_
+
+專題報告
+====
+
+* CSIE Wiki: `FreeRTOS (MMU)<http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu>`_
+* 主要負責部分: 協助debug與編輯wiki。
+* Hackpad筆記: `Hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
+* FreeRTOS 8.2.1 for Beagle Bone Black: `Github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+
+
+所見所聞心得
+======
+
+　　這是我大學裡修過最難的課之一，從一開始的期初測驗，就需要以前學過的各式課程的知識。接下來每個禮拜的課程和lab都是沒嘗試過的東西，在每次lab中的嘗試與和同學的討論中，學習到了很多，也逐漸學了不同的東西。雖然還是不及很強的同學，但是也有體會到從不會到會的過程，像是在一次lab中有一個romfs的檔案系統，慢慢去看他程式碼，然後慢慢了解到這個檔案系統的原理，於是就能根據此而試著實作出ls的功能，雖然只是粗糙的原型，但是從中獲得的成就感是有的。
+
+　　學期後半，開始進入專題討論的階段，我們這組需要做到將作業系統移植到BBB上且啟動MMU功能，期間獲得教授與助教的許多協助，終於弄出了一些雛形。這期間光靠一個人是弄不出來的，需要團隊的合作才能互補，在此感謝各位組員付出還有教授的教導。
+    
+
+自我評量分數 (1 到 10 級分)
+==================
+
+* 我給自己7級分。
+
+* 原因：在做lab與專題方面，認為自己還沒到完美的地步，仍有許多方面還能更加強，像是原理理解、程式碼修繕、溝通能力之類的，所以讓自己留了很大的進步空間，讓自己不到滿分就得持續努力進步。
+
+
+聯絡資訊
+====
+* Email: ``ZinniaMuLin@gmail.com``
