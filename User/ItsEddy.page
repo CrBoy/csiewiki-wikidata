@@ -21,7 +21,7 @@ categories: User
 ===============
 
 - `RT-Thread<https://github.com/RT-Thread/rt-thread>`_
-- `My fork<https://github.com/Eddy0402/rt-thread>`_
+- `My fork<https://github.com/Eddy0402/rt-thread>`_ (fix build error, fix driver issue, add device driver)
 
 學期報告
 ===============
@@ -29,20 +29,28 @@ categories: User
 - `Hackpad 目錄<https://rt-thread.hackpad.com/RT-Thread-on-Beaglebone-Black-i93C7gRxZuW>`_
 - 負責:
     - 追蹤程式碼，紀錄 RT-Thread 中較特別的 `資料結構<https://rt-thread.hackpad.com/vxCyQSu44ja>`_
-    - 研究 Driver framework，將 GPIO driver 接上 RT-Thread 的 API：`Hackpad<https://rt-thread.hackpad.com/GPIO-KBASrt0UROL>`_, `Code<https://github.com/RT-Thread/rt-thread/commit/cb54ac81973d006d9c273f8364529c2fed6b4230>`_
     - 研究在 Cortex-A8 上的 `libcpu port <https://rt-thread.hackpad.com/LibCPU-am335x-au5OQM4byoW>`_
+    - 研究 Driver framework，將 GPIO driver 接上 RT-Thread 的 API：`Hackpad<https://rt-thread.hackpad.com/GPIO-KBASrt0UROL>`_, `Code<https://github.com/RT-Thread/rt-thread/commit/cb54ac81973d006d9c273f8364529c2fed6b4230>`_
     - 研究 `Slab allocator <https://rt-thread.hackpad.com/PpK8VwT14da>`_ 的行為及目的
 
 心得
 ===============
+這是我第二次修這門課程，相較於上個學期，這學期花更多時間在閱讀各種資料上。
 
+這學期的作業有部份跟上學期類似，所以得以花時間在寫程式本身以外、但同樣重要的議題，例如單元測試、靜態程式碼分析等等，也多嘗試了其他有用的工具可以幫助理解較大的程式。比較可惜的是因為進度不夠快，也有部份原因是因為實在是修太多課而分心，使得額外想研究的部份大多只進行了一部份，就要繼續進行下一週的作業。
 
+分組報告方面，原本以為經過上學期的經驗，應該更能知道如何跟人進行文件及程式碼的協作，但是狀況反而比上學期還不佳。因為分工不明確，沒有帶起組員的參與及自我學習的風氣，使得很難專注在我想負責的部份上。到學期末報告還沒能完整呈現這個作業系統的特色，程式回饋方面也沒達到預期的目標。
+
+雖然這學期在程式方面進展較少，不過在基礎概念總算是有比較踏實。對於記憶體管理、MMU 及 cache 之間的互動關係有比較深入的了解，也花了很多時間遍歷過整個 RT-Thread 的核心部份的程式碼。
 
 自我評量分數 (1 到 10 級分)
 ====================================
 
+6分。
 
-更多資訊
+剩下的4分希望能在未來的 open source 貢獻中補回來。
+
+其他資訊
 =======
 - email: ``yukkcake @ gmail.com``
 - facebook: https://fb.me/eddy0402
