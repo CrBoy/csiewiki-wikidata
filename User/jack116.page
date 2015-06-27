@@ -1,0 +1,36 @@
+---
+title: jack116(林建宏)
+categories: User
+...
+
+簡介
+==
+- 成功大學資訊工程學系105級
+- 台灣高雄人, 現居台南市
+
+學習成果
+====
+- 作業
+  - Lab38 (ARM Cross-Development Environment) : `Hackpad<https://hackpad.com/Embeded-System-2015q1-Week-12-Note-SkwJpzSZeFq>`_ `GitHub<https://github.com/nekoneko/arm-lecture>`_
+  - Lab39 (FreeRTOS) : `Hackpad<https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb>`_ `GitHub<https://github.com/nekoneko/freertos-basic>`_
+  - Lab40 (Scheduling) : `Hackpad<https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb>`_ `GitHub<https://github.com/nekoneko/visualizer>`_
+  - Lab41 (基礎觀念訓練) : `Hackpad<https://embedded2015.hackpad.com/GPtX9tCyXYO>`_ (未完成)
+  - Lab42 (Mini ARM OS) : 沒完成
+
+- 期中報告
+  - 沒完成
+
+學期心得
+====
+- 這學期從一開始的第一份作業,arm組語,到學期中的,春假基礎練習，作業剛派下來都不知道要從何開始，大概從第二份開始，開始觀摩同學的筆記，跟著同學的腳步一起學習。其實每次的作業，花在寫程式碼的時間並不是最多的，花最多時間的是將老師上課提供的教材或是解釋程式碼的文件理解，此外發現自己雖然前幾周的作業有在寫筆記，但老師給的教材，參考資料卻沒有一次完整的瀏覽過一次，這部份自己有需要再改進。
+
+- 自己在這門課的學習成效到後來其實沒有很理想，原因是出在自己的身上。這學期前一個半月稍微落後的跟著作業進度走，到春假過後不久，學習的動力就沒有像學期初那麼有衝勁。看著有付出努力的同學，在能力上也有獲得進步，同學與自己的差距漸漸拉大。感覺上，以後出去學校到資訊業界也會是這樣的環境，技術不斷的在更新，沒有持續學習新的知識的能力與熱情，漸漸的就會被埋沒在這產業後面。何況現在網路發達，透過網路，學習知識更加容易。只覺得，若以自己現在目前的學習情況，以後在資訊產業上，必定會吃虧。
+
+自我評量分數 (1到10級分)
+===============
+- 3級
+  - 原因：學期初，有花時間在前幾份作業上，但是最後2份作業沒有完成，此外課堂教材超過1/4沒有瀏覽完畢，所以這邊給與3級分
+  - 在期中之後，並沒有照實的把期中報告完成，助教與老師的友善提醒也沒有照實做到，這邊給0級分
+
+期末專題
+====
