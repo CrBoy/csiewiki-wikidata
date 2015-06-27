@@ -1168,7 +1168,7 @@ Linux kernel scheduling CFS trace event
 自動化測試工具
 ------------------------------------------------
 - 前置作業
-  -安裝lmbench
+  - 安裝lmbench
 
 .. code-block:: txt
 
@@ -1176,6 +1176,8 @@ Linux kernel scheduling CFS trace event
     cd lmbench-next
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 
+
+  - kernel shark 安裝參考 `Hackpad<https://embedded2015.hackpad.com/Linux-Kernel-Ftrace-KernelShark-QdfD65akDu7#:h=KernelShark>`_
 
 - 主程式為 auto 執行檔，藉由編譯auto.c 而來
 - 程式流程圖如下
