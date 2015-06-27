@@ -1167,6 +1167,8 @@ Linux kernel scheduling CFS trace event
 
 自動化測試工具
 ------------------------------------------------
+`Source Code <https://github.com/hkuro/ARM-Linux_performance_analysis>`_
+
 - 前置作業
   - 詳情請見 `Hackpad <https://hackpad.com/Install-gnuplot-on-the-beaglebone-black-oCP8XM60OC5>`_
   - 安裝lmbench
@@ -1189,7 +1191,9 @@ Linux kernel scheduling CFS trace event
 - 若是使用Ftrace 進行 Linux-scheduling 分析，則可以在``AUTO_TEST/CPU-bound 和 AUTO_TEST/IO-bound`` 中找到相對應的results 目錄，裡面會存放著結果原始檔與其畫出的圖表。
 
     - 每次選擇一項功能後，會使用Ftrace 對應的腳本檔輸出原始資料到results 目錄下，並且在使用gnuplot對其畫出圖表，幫助使用者分析。
+    
     - 分析內容依照類別可分為:
+        
         - CPU-bound / IO-bound
         - CFS / RR / FIFO
         - 權限相同(90/90) / 權限不同(90/45)
