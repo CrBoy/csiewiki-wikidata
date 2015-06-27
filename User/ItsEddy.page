@@ -1,0 +1,48 @@
+---
+title: User/ItsEddy (吳子晨)
+categories: User
+...
+
+簡介
+====
+- 成功大學資訊系106級 
+
+作業
+===============
+
+- Lab38 : `Note<https://embedded2015.hackpad.com/Week-2-LiYv8l3Fnez>`_, `Github<https://github.com/Eddy0402/arm-lecture-2015>`_
+- Lab39 : `Note<https://embedded2015.hackpad.com/Lab39-yHaQPe9K36C>`_, `Github<https://github.com/Eddy0402/freertos-basic>`_
+- Lab40 : `Note<https://embedded2015.hackpad.com/Week-4-QxFWOE2pSdh>`_, `Github<https://github.com/Eddy0402/visualizer>`_
+- Lab41 : `Note<https://embedded2015.hackpad.com/ysJ6r4bBpvP>`_
+- Lab42 : `Note<https://embedded2015.hackpad.com/fV9s38DkLRB>`_, `Github<https://github.com/Eddy0402/mini-arm-os-1>`_
+- Lab43 : `Note<https://embedded2015.hackpad.com/cHRxHBL2j2j>`_
+
+開放原始碼專案參與
+===============
+
+- `RT-Thread<https://github.com/RT-Thread/rt-thread>`_
+- `My fork<https://github.com/Eddy0402/rt-thread>`_
+
+學期報告
+===============
+- `RT-Thread</embedded/rt-thread>`_
+- `Hackpad 目錄<https://rt-thread.hackpad.com/RT-Thread-on-Beaglebone-Black-i93C7gRxZuW>`_
+- 負責:
+    - 追蹤程式碼，紀錄 RT-Thread 中較特別的 `資料結構<https://rt-thread.hackpad.com/vxCyQSu44ja>`_
+    - 研究 Driver framework，將 GPIO driver 接上 RT-Thread 的 API：`Hackpad<https://rt-thread.hackpad.com/GPIO-KBASrt0UROL>`_, `Code<https://github.com/RT-Thread/rt-thread/commit/cb54ac81973d006d9c273f8364529c2fed6b4230>`_
+    - 研究在 Cortex-A8 上的 `libcpu port <https://rt-thread.hackpad.com/LibCPU-am335x-au5OQM4byoW>`_
+    - 研究 `Slab allocator <https://rt-thread.hackpad.com/PpK8VwT14da>`_ 的行為及目的
+
+心得
+===============
+
+
+
+自我評量分數 (1 到 10 級分)
+====================================
+
+
+更多資訊
+=======
+- email: ``yukkcake @ gmail.com``
+- facebook: https://fb.me/eddy0402
