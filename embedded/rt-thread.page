@@ -23,6 +23,11 @@ toc: no
    - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
    - `Heap<#Heap>`_
    - `Slab Allocator<#Slab Allocator>`_
+* `Device File Systestem<#Device File Systestem>`_
+   - `RTT的應用層接口實作<#RTT的應用層接口實作>`_
+   - `DFS框架的組成內容<#DFS框架的組成內容>`_
+   - `RTT文件系統初始化過程<#RTT文件系統初始化過程>`_
+
 
 AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
@@ -66,8 +71,6 @@ ROM Code主要有幾項任務:
 
 .. image:: https://lh3.googleusercontent.com/-xhXu1yv0eik/VT33Y0MPSDI/AAAAAAAAH9k/S7dXDW7UrGI/w306-h329-no/ROM-memory-map.png
 圖3 ROM Memory Map (page 4098 in AM335x TRM)
-
-
 
 
 VMM (Virtual Machine Module) and vbus
@@ -520,8 +523,6 @@ rt\_free\_sethook(func);
 參考影片
 --------
 
--  
-
 ` <https://www.youtube.com/watch?v=h0VMLXavx30>`__\ https://www.youtube.com/watch?v=h0VMLXavx30
 
 解說了 slob, slab, slub 三種 "slab" 的歷史與實作。
@@ -540,6 +541,186 @@ rt\_free\_sethook(func);
 部份特性在 RT-Thread 沒有實作。
 
 .. |image0| image:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737812001_Reg1-6.png
+
+Device File System
+------------------
+
+RTT的應用層接口實作
+------------------
+
+提供API給應用層開發者使用，源碼在.\components\dfs\src\dfs_posix.c, 提供的API包括：
+chdir、close 、closedir、fstat、getcwd、lseek、mkdir、open、opendir、read、readdir、rename、rewinddir、rmdir、seekdir、stat、statfs、telldir、unlink、write
+
+dfs_posix.c會調用dfs.c,dfs_fs,c,dfs_file.c中的一些函數：
+
+.. image:: /rt-thread_dfs.png
+
+DFS框架的組成內容
+------------------
+* filesystem_operation_table：每一個table表示一個FS對應的一套操作函數及相關屬性，不管是什麼FS其操作函數的形式是一致的
+
+.. code-block:: c
+
+    /* File system operations struct */  
+    struct dfs_filesystem_operation  
+    {  
+        char *name;   //FS的名稱
+        rt_uint32_t flags;    //操作標識  
+      
+        /* mount and unmount file system */  
+        int (*mount)    (struct dfs_filesystem *fs, unsigned long rwflag, const void *data);  //掛載  
+        int (*unmount)  (struct dfs_filesystem *fs);                //取消掛載
+  
+        /* make a file system */  
+        int (*mkfs)     (rt_device_t devid);                                  //創建一個FS文件  
+        int (*statfs)   (struct dfs_filesystem *fs, struct statfs *buf);   //獲得FS當前狀態信息
+  
+        int (*open)     (struct dfs_fd *fd);                 //打開
+        int (*close)    (struct dfs_fd *fd);                 //關閉文件
+        int (*ioctl)    (struct dfs_fd *fd, int cmd, void *args);   //文件控制
+        int (*read)     (struct dfs_fd *fd, void *buf, rt_size_t count);     //讀文件  
+        int (*write)    (struct dfs_fd *fd, const void *buf, rt_size_t count);  //寫文件写  
+        int (*flush)    (struct dfs_fd *fd);                                   //將文件內容保存到設備上
+        int (*lseek)    (struct dfs_fd *fd, rt_off_t offset);                  //文件內容定位
+        int (*getdents) (struct dfs_fd *fd, struct dirent *dirp, rt_uint32_t count);    //獲取目錄條目
+  
+        int (*unlink)   (struct dfs_filesystem *fs, const char *pathname);  //從FS中移出一個目錄
+        int (*stat)     (struct dfs_filesystem *fs, const char *filename, struct stat *buf);   //獲得文件狀態信息  
+        int (*rename)   (struct dfs_filesystem *fs, const char *oldpath, const char *newpath);  //文件重命名  
+    };  
+
+* filesystem_table：此table記錄已掛載的FS，每一個table表示掛載的的一个FS
+
+.. code-block:: c
+
+    /* Mounted file system */  
+    struct dfs_filesystem  
+    {  
+        rt_device_t dev_id;  //此FS對應的ID 
+  
+        char *path;          //此FS的掛載點  
+        const struct dfs_filesystem_operation *ops; //此FS對應的操作接口集，指向filesystem_operation_table對應的表项  
+  
+        void *data;            //FS的數據
+    };  
+    fd_table：記錄目前打開的文件集合，每一個table表示一個打開的文件句柄
+    /* file descriptor */  
+    #define DFS_FD_MAGIC     0xfdfd  
+    struct dfs_fd  
+    {  
+        rt_uint16_t magic;           //文件描述魔術
+        rt_uint16_t type;            //文件類型
+        char *path;                  //相對於掛載點的路徑  
+        int ref_count;               //目前被關聯的次數
+  
+        struct dfs_filesystem *fs;   //對應的FS  
+  
+        rt_uint32_t flags;           //標識
+        rt_size_t   size;            //文件大小  
+        rt_off_t    pos;             //當前文件位置  
+  
+        void *data;                  
+    };  
+
+DFS框架的組成內容
+------------------
+* DFS架構初始化(最頂層)
+
+.. code-block:: c
+
+    void dfs_init(void)  
+    {  
+       //清空filesystem_operation_table、filesystem_table、fd_table
+       rt_memset((void *)filesystem_operation_table, 0, sizeof(filesystem_operation_table));  
+       rt_memset(filesystem_table, 0, sizeof(filesystem_table)); 
+       rt_memset(fd_table, 0, sizeof(fd_table));  
+  
+       /* create device filesystem lock */  
+       rt_mutex_init(&fslock, "fslock", RT_IPC_FLAG_FIFO);  //FS MUTEX初始化  
+  
+     #ifdef DFS_USING_WORKDIR  
+       /* set current working directory */  
+       rt_memset(working_directory, 0, sizeof(working_directory));  //工作路徑初始化
+       working_directory[0] = '/';  
+     #endif  
+     }  
+
+
+* 具體的FS初始化(中間層)，以ELMFAT文件系統爲例：
+
+.. code-block:: c
+
+    int elm_init(void)
+    {  
+        /* register fatfs file system */  
+        dfs_register(&dfs_elm);  //註冊elmfat文件系統
+  
+        return 0;  
+    }  
+    int dfs_register(const struct dfs_filesystem_operation *ops)  
+    {  
+        int index, result;  
+        int free_index;  
+  
+        result = 0;  
+        free_index = DFS_FILESYSTEM_TYPES_MAX;  
+  
+        //首先獲得文件操作權限  
+        dfs_lock();  
+  
+        //檢查該FS是否註冊過  
+        for (index = 0; index < DFS_FILESYSTEM_TYPES_MAX; index++)  
+        {  
+            if (filesystem_operation_table[index] == RT_NULL)  
+            {  
+                /* find out an empty filesystem type entry */  
+                if (free_index == DFS_FILESYSTEM_TYPES_MAX)  //記錄第一個空閒位置  
+                    free_index = index;  
+            }  
+            else if (strcmp(filesystem_operation_table[index]->name, ops->name) == 0)  //若已註冊，则返回錯誤  
+            {  
+                result = -1;  
+                goto err;  
+            }  
+         }  
+  
+        /* filesystem type table full */  
+        if (free_index == DFS_FILESYSTEM_TYPES_MAX)  //若FS已滿，則返回錯誤  
+        {  
+            result = -1;  
+            goto err;  
+        }  
+  
+        /* save the filesystem's operations */  
+        filesystem_operation_table[free_index] = ops;  //將目前操作集合記錄到空閒位置
+
+    err:  
+        dfs_unlock();  //釋放FS操作權限
+        return result;  
+    }  
+
+
+* FS對應的具體設備驅動初始化(底層)
+
+.. image:: /rt-thread_dfs_mapping.png
+
+應建立起對應的：
+rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型是rt_err_t的可默認返回RT_EOK)
+
+* 掛載FS(將各層具體關聯起來)
+
+.. code-block:: c
+
+    /* mount SPI flash as root directory */  
+        if (dfs_mount("flash0", "/", "elm", 0, 0) == 0)  //掛載名爲elm的FS，該FS對應的設備名为flash0，掛載點爲/
+        {  
+            rt_kprintf("flash0 mount to /.\n");  
+        }  
+        else  
+        {  
+             rt_kprintf("flash0 mount to / failed.\n");  
+        }  
+
 
 參考資料
 --------------------------------------------
