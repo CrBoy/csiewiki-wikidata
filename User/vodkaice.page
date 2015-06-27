@@ -9,33 +9,35 @@ categories: User
 
 作業及筆記
 =========
-- 個人Hackpad `2015 embedded note<https://hackpad.com/2015-embedded-note-cfqT2gyhiOV>`_
-- 作業 GitHub、Hackpad 
- - Lab38 : `Hackpad<https://embedded2015.hackpad.com/W6HSoRIJq52>`_ 、`GitHub<https://github.com/vodkaice/arm-lecture>`_
- - Lab39 : `Hackpad<https://embedded2015.hackpad.com/6MsKRHDTtw7>`_ 、`GitHub<https://github.com/vodkaice/qemu_stm32>`_
- - Lab40 : `Hackpad<https://embedded2015.hackpad.com/tyig2oi4LjU#:h=Lab40>`_ 、`GitHub<https://github.com/vodkaice/freertos-basic>`_
- - Lab41 : `Hackpad<https://hackpad.com/QWKMfDMbZhg>`_(春假筆記)
- - Lab42 : `Hackpad<https://embedded2015.hackpad.com/7jmmjWEdEIR>`_ 、`GitHub<https://github.com/vodkaice/mini-arm-os>`_
+- 個人Hackpad: `2015 embedded note<https://hackpad.com/2015-embedded-note-cfqT2gyhiOV>`_
+
+- 作業 GitHub、Hackpad
+  - Lab38 : `Hackpad<https://embedded2015.hackpad.com/W6HSoRIJq52>`_ 、`GitHub<https://github.com/vodkaice/arm-lecture>`_
+  - Lab39 : `Hackpad<https://embedded2015.hackpad.com/6MsKRHDTtw7>`_ 、`GitHub<https://github.com/vodkaice/qemu_stm32>`_
+  - Lab40 : `Hackpad<https://embedded2015.hackpad.com/tyig2oi4LjU#:h=Lab40>`_ 、`GitHub<https://github.com/vodkaice/freertos-basic>`_
+  - Lab41 : `Hackpad<https://hackpad.com/QWKMfDMbZhg>`_(春假筆記)
+  - Lab42 : `Hackpad<https://embedded2015.hackpad.com/7jmmjWEdEIR>`_ 、`GitHub<https://github.com/vodkaice/mini-arm-os>`_
 
 
 報告
 ========
-- CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
-- 小組共筆:`Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
 - 主要負責實驗環境及工具研究與Lmbench memory read 實驗分析以及結果探討
-- Lmbench:`介紹<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
-- Lmbench-lat_mem_rd 分析:`Hackpad<https://embedded2015.hackpad.com/lmbench-lat_mem_rd-HmvaVbBONTY>`_
-- gnuplot:`Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL>`_
-- 數學問題:`Hackpad<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
+- CSIE Wiki : `ARM-Linux</embedded/arm-linux>`_
+- 小組共筆 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
+- Lmbench介紹 : `Hackpad<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
+- Lmbench-lat_mem_rd 分析 : `Hackpad<https://embedded2015.hackpad.com/lmbench-lat_mem_rd-HmvaVbBONTY>`_
+- gnuplot : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL>`_
+- 數學問題 : `Hackpad<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
 
 
 所見所聞心得
 ===========
+- 
 
 自我評量分數 (1 到 10 級分)
 ============================
+- 
 
-
-聯絡資訊:
+聯絡資訊
 =========
 - email: ``brandedwolf@gmail.com``
