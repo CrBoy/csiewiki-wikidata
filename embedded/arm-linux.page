@@ -566,10 +566,10 @@ System Call Latency on BeagleBone Black(Linux)
 
 .. code-block:: txt
 
-   Simple getppid: 0.4375 microseconds
-   Simple open/close: 406.0000 microseconds
-   Simple read: 0.8028 microseconds
-   Simple write: 0.7370 microseconds
+   Simple getppid: 0.5671 microseconds
+   Simple open/close: 11.5381 microseconds
+   Simple read: 0.9199 microseconds
+   Simple write: 0.9514 microseconds
 
 .. image:: /embedded/arm_linux/syscall_latency.png
 
