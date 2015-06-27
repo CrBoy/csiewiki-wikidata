@@ -17,7 +17,9 @@ toc: no
 目錄
 ---
 * `AM335x ARM Cortex-A8 Boot Sequence<#AM335x ARM Cortex-A8 Boot Sequence>`_
+* `VMM (Virtual Machine Module) and vbus<#VMM (Virtual Machine Module) and vbus>`_
 * `記憶體管理<#記憶體管理>`_
+   - `MMU Configuration in RT-Thread<#MMU Configuration in RT-Thread>`_
    - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
    - `Heap<#Heap>`_
    - `Slab Allocator<#Slab Allocator>`_
@@ -66,23 +68,7 @@ ROM Code主要有幾項任務:
 圖3 ROM Memory Map (page 4098 in AM335x TRM)
 
 
-MMU Configuration in RT-Thread
---------------------------------------------
-MRC/MCR Instruction
-MMU設定跟Coprocessor 15有關，下圖為Coprocessor 15暫存器配置圖 。
 
-.. image:: https://lh5.googleusercontent.com/-XhcpJ1M19PI/VVC07E249nI/AAAAAAAAIEM/o41r7sl8cwQ/w1083-h564-no/cp15-overview.png
-圖四 VMSA: Virtual Memory System Architecture
-
-    MRC: Move to ARM register from coprocessor
-    - MRC coproc, opcode1, Rd, CRn, CRm{, opcode2}, where Rd is ARM source register
-    MCR: Move to coprocessor from ARM registers
-    - MCR coproc, opcode1, Rd, CRn, CRm{, opcode2}, where Rd is ARM source register
-
-MMU Initialization in RT-Thread
-       Disable Data Cache
-                 mrc p15, 0, r0, c1, c0, 0 /* Read System Control Register */
-.. image:: https://lh3.googleusercontent.com/-Rz5eQdg4EcM/VVC5t2eTCjI/AAAAAAAAIEY/9YMC3tQf6yw/w1160-h566-no/cp15-c1.png
 
 VMM (Virtual Machine Module) and vbus
 --------------------------------------------
@@ -160,7 +146,26 @@ OS之間的功能共享 - Finsh
 
 
 記憶體管理
-==========
+--------------------------------------------
+
+MMU Configuration in RT-Thread
+--------------------------------------------
+MRC/MCR Instruction
+MMU設定跟Coprocessor 15有關，下圖為Coprocessor 15暫存器配置圖 。
+
+.. image:: https://lh5.googleusercontent.com/-XhcpJ1M19PI/VVC07E249nI/AAAAAAAAIEM/o41r7sl8cwQ/w1083-h564-no/cp15-overview.png
+圖四 VMSA: Virtual Memory System Architecture
+
+    MRC: Move to ARM register from coprocessor
+    - MRC coproc, opcode1, Rd, CRn, CRm{, opcode2}, where Rd is ARM source register
+    MCR: Move to coprocessor from ARM registers
+    - MCR coproc, opcode1, Rd, CRn, CRm{, opcode2}, where Rd is ARM source register
+
+MMU Initialization in RT-Thread
+       Disable Data Cache
+                 mrc p15, 0, r0, c1, c0, 0 /* Read System Control Register */
+.. image:: https://lh3.googleusercontent.com/-Rz5eQdg4EcM/VVC5t2eTCjI/AAAAAAAAIEY/9YMC3tQf6yw/w1160-h566-no/cp15-c1.png
+
 
 RT-Thread 的記憶體管理分成幾個部份：
 
