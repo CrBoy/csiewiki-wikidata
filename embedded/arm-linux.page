@@ -571,7 +571,7 @@ System Call Latency on BeagleBone Black(Linux)
    Simple read: 0.9199 microseconds
    Simple write: 0.9514 microseconds
 
-.. image:: /embedded/arm_linux/syscall_latency.png
+.. image:: /embedded/arm_linux/inteli5_vs_bbb.png
 
 **結論**
 
