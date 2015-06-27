@@ -1,0 +1,38 @@
+---
+title: User/jax_goldmedal
+categories: User
+...
+
+簡介
+====
+- 劉家瑄
+- 成功大學資訊工程系 104 級
+- 成功大學製造資訊與系統研究所 陳朝鈞教授研究生
+- 台灣桃園人
+
+作業
+====
+- Lab 38 (ARM Cross-Development Environment) : `GitHub<https://github.com/goldmedal/arm-lecture>`_, `Hackpad<https://hackpad.com/Week2-Arm-Lecture-Lab-38-7SWffUclyhK>`_
+- Lab 39 (FreeRTOS) : `GitHub<https://github.com/goldmedal/freertos-basic>`_, `Hackpad<https://hackpad.com/Week3-Lab39-JktdLS9GMl7>`_
+- Lab 40 (Scheduling) : `GitHub<https://github.com/goldmedal/visualizer>`_, `Hackpad<https://hackpad.com/Lab40-KMnCIaUL653>`_
+
+分組報告
+====
+- `rtenv+ wiki<http://wiki.csie.ncku.edu.tw/embedded/rtenv>`_
+- 主要負責做context-switch的測試
+- `rtenv+ context switch<https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
+- `Q&A<https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW>`_
+
+學期成果
+====
+- 修課心得 :
+    因為自己一直對於嵌入式系統滿有興趣的，所以從大三開始就一直想要來修這門課。但因為自己大一大二混了滿多日子，大三大四要補很多門課的學分，所以一直拖到了自己確定有研究所可以念之後，才決定來修這門課。
+
+    這門課其實給了我非常大的震撼，一開始的期初考試，讓自己赤裸裸地面對自己的無能，尤其是對於基礎知識的貧乏。上課老師所問的許多關於作業系統或是計算機組織的問題，無法回答出來時，就會讓我去懊悔過去為什麼沒有再更深入的鑽研那知識。而且大學至今，也未曾有過如此鉅細靡遺地Trace code經驗，學會使用GDB、ctag、cscope之類等工具也是我在本門課非常大的收穫。學期初到學期中真的花了不少時間，再研究lab與期中報告，但很遺憾自己一直沒有鼓起勇氣向老師提問。但是在研究rtenv+與FreeRTOS時，倒是複習了非常多關於作業系統的知識，也著手進行了一些測試，去驗證自己的想法與觀念是否正確。
+
+    學期中之後，因為需要還過去三年的一些債務，讓自己陷入期中期末考與報告的輪迴。為了能夠先順利畢業，所以重心就放在其他科目與實驗室裡面的相關事務上。導致期中之後，花在這門課的心思就非常少了。
+
+    希望在暑假能有機會，比較專心地來修習這門課。
+
+- 自我評量分數 : 6分
+    自己只有在學期初到學期中這段時間比較認真的在研究各項lab與報告，到了後期因為各科的考試接踵而至，實在沒有多餘地心力來完成課程最後的要求。只有勉強的在組員的幫助下，完成rtenv+ context switch的實驗。
