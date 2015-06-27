@@ -21,13 +21,17 @@ categories: User
 
 報告
 ========
-- 主要負責實驗環境及工具研究與Lmbench memory read 實驗分析以及結果探討
-- CSIE Wiki : `ARM-Linux</embedded/arm-linux>`_
-- 小組共筆 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
-- Lmbench介紹 : `Hackpad<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
-- Lmbench-lat_mem_rd 分析 : `Hackpad<https://embedded2015.hackpad.com/lmbench-lat_mem_rd-HmvaVbBONTY>`_
-- gnuplot : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL>`_
-- 數學問題 : `Hackpad<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
+- 主要負責實驗環境及工具研究與Lmbench memory read 實驗分析以及結果探討 
+
+- 報告成果
+    - CSIE Wiki : `ARM-Linux</embedded/arm-linux>`_
+    - 小組共筆 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
+
+- 協作共筆
+    - Lmbench介紹 : `Hackpad<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
+    - Lmbench-lat_mem_rd 分析 : `Hackpad<https://embedded2015.hackpad.com/lmbench-lat_mem_rd-HmvaVbBONTY>`_
+    - gnuplot : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL>`_
+    - 數學問題 : `Hackpad<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
 
 
 所見所聞心得
