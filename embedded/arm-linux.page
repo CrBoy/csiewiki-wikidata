@@ -1165,6 +1165,26 @@ Linux kernel scheduling CFS trace event
 
 .. image:: /embedded/arm_linux/cfs_trace_event_02.png
 
+自動化測試工具
+------------------------------------------------
+- 前置作業
+  -安裝lmbench
+
+.. code-block:: txt
+
+    git clone https://github.com/el8/lmbench-next.git
+    cd lmbench-next
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+
+
+- 主程式為 auto 執行檔，藉由編譯auto.c 而來
+- 程式流程圖如下
+
+.. image:: /embedded/arm_linux/flow-chart.png
+
+- 若是使用lmbench 中的指令來分析，則可以在AUTO_TEST/lmbench-next/AUTO_TEST/ 中找到相對應的results 資料夾，裡面會存放著結果原始檔與其畫出的圖表。
+- 
+
 Q & A
 ------
 * ARM-Linux Q & A : `hackpad <https://embedded2015.hackpad.com/QA-ARM-Linux-YNnKlrWkbeU>`_
