@@ -11,7 +11,7 @@ JackyLin(林展翔)
 
 作業及筆記
 ============
-- Github : `github<https://github.com/jacky6016>`_
+- Github : `jacky6016<https://github.com/jacky6016>`_
 - homework1 : `hw1<https://embedded2015.hackpad.com/HW1-iZwU965eg7Q>`_
 - homework2 : `hw2<https://embedded2015.hackpad.com/jf3ujg756Os>`_
 - homework3 : `hw3<https://embedded2015.hackpad.com/Homework-3-Co3Bt4OozBn>`_
@@ -25,6 +25,21 @@ JackyLin(林展翔)
 - Xenomai_lab_data : `Hackpad<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe>`_
 - Xenomai_Q&A : `Hackpad<https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt>`_
 - 負責項目:
+
+1. Raspberry pi 環境設置 for xenomai 2.6.4 
+2. 撰寫程式測試分析Xenomai在不同情況下的interrupt latency
+
+    - Xenomai version: 2.6.4 vs 3.0
+    - Hardware: Raspberry pi(1B+) vs Beaglebone Black (負責pi的部份)
+    - Process level: User-level vs Kernel-level
+    - Realtime method: PREEMPT_RT vs Xenomai
+    - Driver model: Linux-native vs RTDM
+
+3. 撰寫步進馬達驅動程式(Xenomai和Linux kernel兩種版本), 比較兩種版本的realtime性能差異, 並藉由(期末)實際demo展示
+
+
+學習到的知識
+=============
 
 
 
