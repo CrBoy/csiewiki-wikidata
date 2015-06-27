@@ -1183,9 +1183,11 @@ Linux kernel scheduling CFS trace event
 - 程式流程圖如下
 
 .. image:: /embedded/arm_linux/flow-chart.png
+ 
+- 若是使用lmbench 中的指令來分析，則可以在AUTO_TEST/lmbench-next/AUTO_TEST/ 中找到相對應的results 目錄，裡面會存放著結果原始檔與其畫出的圖表。
 
-- 若是使用lmbench 中的指令來分析，則可以在AUTO_TEST/lmbench-next/AUTO_TEST/ 中找到相對應的results 資料夾，裡面會存放著結果原始檔與其畫出的圖表。
-- 
+   - 每次選擇一項功能後，會使用lmbench 對應的執行檔輸出原始資料到results 目錄下，並且在使用gnuplot對其畫出圖表，幫助使用者分析。
+- 若是使用 kernel shark 分析
 
 Q & A
 ------
