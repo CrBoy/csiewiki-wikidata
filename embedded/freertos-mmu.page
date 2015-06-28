@@ -52,7 +52,7 @@ toc: no
 `硬體簡介<#目錄>`_
 ------------
 
-* Processor: `AM335x 1GHz ARM® Cortex-A8<http://www.ti.com/product/am3358>`_                                                               
+* Processor: `AM335x 1GHz ARM® Cortex-A8<http://www.ti.com/product/am3358>`_                                                          	 
   - 512MB DDR3 RAM
   - 4GB 8-bit eMMC on-board flash storage
   - 3D graphics accelerator
@@ -103,8 +103,8 @@ toc: no
 
 .. code-block:: bash
 
-    git clone https://github.com/henfos/BBBFreeRTOS.git
-    cd BBBFreeRTOS/Demo/AM3359_BeagleBone_GCC
+	git clone https://github.com/henfos/BBBFreeRTOS.git
+	cd BBBFreeRTOS/Demo/AM3359_BeagleBone_GCC
 
 　　
 
@@ -112,7 +112,16 @@ toc: no
 
 .. code-block:: c
 
-    #include <stdint.h>
+	#include <stdint.h>
+
+　　
+
+**設定環境變數 :**
+
+.. code-block:: bash
+
+	export PATH=(cross compiler 解壓縮路徑)/gcc-arm-none-eabi-xxxxxxxx/bin:$PATH
+	export LIB_PATH=(cross compiler 解壓縮路徑)/gcc-arm-none-eabi-xxxxxxxx
 
 　　
 
@@ -122,17 +131,17 @@ toc: no
 
 .. code-block:: makefile
 
-    CC=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-gcc
-    OBJCOPY=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-objcopy
-    ARCH=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-ar
+	CC=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-gcc
+	OBJCOPY=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-objcopy
+	ARCH=/home/henrifo/Nedlastinger/gcc-arm-none-eabi-4_8-2013q4/bin/arm-none-eabi-ar
 
 改成
 
 .. code-block:: makefile
 
-        CC={Cross compiler解壓的路徑}/arm-none-eabi-gcc
-        OBJCOPY={Cross compiler解壓的路徑}/arm-none-eabi-objcopy
-        ARCH={Cross compiler解壓的路徑}/arm-none-eabi-ar
+    	CC=arm-none-eabi-gcc
+    	OBJCOPY=arm-none-eabi-objcopy
+    	ARCH=arm-none-eabi-ar
 
 　　
 
@@ -142,8 +151,8 @@ toc: no
 
 .. code-block:: txt
 
-    bootcmd=fatload mmc 0 0x80500000 rtosdemo-a.bin; go 0x80500000;
-    uenvcmd=boot
+	bootcmd=fatload mmc 0 0x80500000 rtosdemo-a.bin; go 0x80500000;
+	uenvcmd=boot
 
 　　
 
@@ -179,17 +188,17 @@ toc: no
 
 .. code-block:: header file
 
-    #ifdef GCC_AM335_BeagleBoard
-        #include "../../Source/portable/GCC/AM335_BeagleBone/portmacro.h"
-    #endif
+	#ifdef GCC_AM335_BeagleBoard
+    	#include "../../Source/portable/GCC/AM335_BeagleBone/portmacro.h"
+	#endif
 
 加至
 
 .. code-block:: header file
 
-    #ifndef portENTER_CRITICAL
-        #include "portmacro.h"
-    #endif
+	#ifndef portENTER_CRITICAL
+    	#include "portmacro.h"
+	#endif
 
 的前面，以免發生錯誤。
 
@@ -201,10 +210,10 @@ toc: no
 
 .. code-block:: header file
 
-    typedef portSTACK_TYPE  StackType_t;
-    typedef long BaseType_t;
-    typedef unsigned long UBaseType_t;
-    typedef uint32_t TickType_t;
+	typedef portSTACK_TYPE  StackType_t;
+	typedef long BaseType_t;
+	typedef unsigned long UBaseType_t;
+	typedef uint32_t TickType_t;
 
 　　
 
@@ -375,28 +384,28 @@ MMU 可以透過 system control coprocessor (CP15) registers 進行設定 (`refe
 `MRC instruction<#目錄>`_
 -----------------------
 
-Move to ARM register from coprocessor. 
+Move to ARM register from coprocessor.
 
 .. code-block:: @@~
 
-    MRC{cond} coproc, opcode1, Rd, CRn, CRm{, opcode2}
-    MRC2 coproc, opcode1, Rd, CRn, CRm{, opcode2}
+	MRC{cond} coproc, opcode1, Rd, CRn, CRm{, opcode2}
+	MRC2 coproc, opcode1, Rd, CRn, CRm{, opcode2}
 
 
 where:
 
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| cond       | is an optional condition code (see Conditional execution).                                                              |
+| cond   	| is an optional condition code (see Conditional execution).                                                          	|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| coproc     | is the name of the coprocessor the instruction is for. The standard name is pn, where n is an integer in the range 0-15.|
+| coproc 	| is the name of the coprocessor the instruction is for. The standard name is pn, where n is an integer in the range 0-15.|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| opcode1    | is a coprocessor-specific opcode.                                                                                       |
+| opcode1	| is a coprocessor-specific opcode.                                                                                   	|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| Rd         | is the ARM destination register. If Rd is r15, only the flags field is affected.                                        |
+| Rd     	| is the ARM destination register. If Rd is r15, only the flags field is affected.                                    	|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| CRn, CRm   | are coprocessor registers.                                                                                              |
+| CRn, CRm   | are coprocessor registers.                                                                                          	|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
-| opcode2    | is an optional coprocessor-specific opcode.                                                                             |
+| opcode2	| is an optional coprocessor-specific opcode.                                                                         	|
 +------------+-------------------------------------------------------------------------------------------------------------------------+
 
 　
@@ -411,9 +420,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0
-    BIC     r0,  r0, #0x00000004
-    MCR     p15, #0, r0, c1, c0, #0
+	MRC 	p15, #0, r0, c1, c0, #0
+	BIC 	r0,  r0, #0x00000004
+	MCR 	p15, #0, r0, c1, c0, #0
 
 　
 
@@ -421,9 +430,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0
-    BIC     r0,  r0, #0x00001000
-    MCR     p15, #0, r0, c1, c0, #0
+	MRC 	p15, #0, r0, c1, c0, #0
+	BIC 	r0,  r0, #0x00001000
+	MCR 	p15, #0, r0, c1, c0, #0
 
 　
 
@@ -431,9 +440,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0    
-    BIC     r0, r0, #1      
-    MCR     p15, #0, r0, c1, c0, #0    ; Clear MMU bit
+	MRC 	p15, #0, r0, c1, c0, #0    
+	BIC 	r0, r0, #1 	 
+	MCR 	p15, #0, r0, c1, c0, #0	; Clear MMU bit
 
 　
 
@@ -441,7 +450,7 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MCR     p15, #0, r0, c8, c7, #0    ; r0 value will be ignored
+	MCR 	p15, #0, r0, c8, c7, #0	; r0 value will be ignored
 
 　
 
@@ -455,8 +464,8 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    LDR     r0, 0x55555555
-    MCR     p15, #0, r0, c3, c0, #0
+	LDR 	r0, 0x55555555
+	MCR 	p15, #0, r0, c3, c0, #0
 
 　
 
@@ -464,7 +473,7 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MCR     p15, #0, r0, c2, c0, #0
+	MCR 	p15, #0, r0, c2, c0, #0
 
 .. image:: https://c1.staticflickr.com/1/388/19024481031_e0d57672d6_o.png
 
@@ -495,9 +504,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0
-    ORR     r0, r0, #0x001
-    MCR     p15, #0, r0, c1, c0, #0    ; Set MMU Enable bit
+	MRC 	p15, #0, r0, c1, c0, #0
+	ORR 	r0, r0, #0x001
+	MCR 	p15, #0, r0, c1, c0, #0	; Set MMU Enable bit
 
 　
 
@@ -505,9 +514,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0
-    ORR     r0,  r0, #0x00001000
-    MCR     p15, #0, r0, c1, c0, #0 
+	MRC 	p15, #0, r0, c1, c0, #0
+	ORR 	r0,  r0, #0x00001000
+	MCR 	p15, #0, r0, c1, c0, #0
 
 　
 
@@ -515,9 +524,9 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 .. code-block:: ARM assembly
 
-    MRC     p15, #0, r0, c1, c0, #0 
-    ORR     r0,  r0, #0x00000004
-    MCR     p15, #0, r0, c1, c0, #0
+	MRC 	p15, #0, r0, c1, c0, #0
+	ORR 	r0,  r0, #0x00000004
+	MCR 	p15, #0, r0, c1, c0, #0
 
 
 `DEMO<#目錄>`_
@@ -527,70 +536,70 @@ TTBR0的參數定義
 
 .. code-block:: C
 
-    #define DESC_SEC        (0x2)
-    #define AP_RW           (3<<10) //supervisor=RW, user=RW
-    #define CB              (3<<2)  //cache_on, write_back
-    #define NCNB            (0<<2)  //cache_off,WR_BUF off
-    #define DOMAIN0         (0x0<<5)
-    #define RW_NCNB         (AP_RW|DOMAIN0|NCNB|DESC_SEC)   /* Read/Write without cache and write buffer */
-    #define RW_CB           (AP_RW|DOMAIN0|CB|DESC_SEC)     /* Read/Write, cache, write back */
-    #define DESC_ONE        (0x1)
-    #define DOMAIN1         (0x1<<5)
-    #define ATTR_INNER      (DESC_ONE | DOMAIN1)
-    #define RW_FA           ((0<<9)|(3<<4)) //AP[2] | AP[1:0], read/write full access
-    #define WB_WA           (7 << 6) //TEX ,write back ,write allocate
-    #define S               (1<<10) //sharable
-    #define nG              (1<<11) // non global
-    #define ATTR_OUTER      (DESC_SEC | RW_FA | WB_WA | S | nG
+	#define DESC_SEC    	(0x2)
+	#define AP_RW       	(3<<10) //supervisor=RW, user=RW
+	#define CB          	(3<<2)  //cache_on, write_back
+	#define NCNB        	(0<<2)  //cache_off,WR_BUF off
+	#define DOMAIN0     	(0x0<<5)
+	#define RW_NCNB     	(AP_RW|DOMAIN0|NCNB|DESC_SEC)   /* Read/Write without cache and write buffer */
+	#define RW_CB       	(AP_RW|DOMAIN0|CB|DESC_SEC) 	/* Read/Write, cache, write back */
+	#define DESC_ONE    	(0x1)
+	#define DOMAIN1     	(0x1<<5)
+	#define ATTR_INNER  	(DESC_ONE | DOMAIN1)
+	#define RW_FA       	((0<<9)|(3<<4)) //AP[2] | AP[1:0], read/write full access
+	#define WB_WA       	(7 << 6) //TEX ,write back ,write allocate
+	#define S           	(1<<10) //sharable
+	#define nG          	(1<<11) // non global
+	#define ATTR_OUTER  	(DESC_SEC | RW_FA | WB_WA | S | nG
 
 
 設定TTBR0
 
 .. code-block:: C
 
-    void mmu_setmtt(unsigned int vaddrStart, unsigned int vaddrEnd, unsigned int paddrStart, unsigned int attr)
-    {
-        volatile unsigned int *pTT;
-        volatile int i,nSec;
-        pTT=(unsigned int *)_page_table+(vaddrStart>>20);
-        nSec=(vaddrEnd>>20)-(vaddrStart>>20);
-        for(i=0;i<=nSec;i++)
-        {
-            *pTT = attr |(((paddrStart>>20)+i)<<20);
-            pTT++;
-        }
-    }
+	void mmu_setmtt(unsigned int vaddrStart, unsigned int vaddrEnd, unsigned int paddrStart, unsigned int attr)
+	{
+    	volatile unsigned int *pTT;
+    	volatile int i,nSec;
+    	pTT=(unsigned int *)_page_table+(vaddrStart>>20);
+    	nSec=(vaddrEnd>>20)-(vaddrStart>>20);
+    	for(i=0;i<=nSec;i++)
+    	{
+        	*pTT = attr |(((paddrStart>>20)+i)<<20);
+        	pTT++;
+    	}
+	}
 
 
 設定 Page Table(Small page)
 
 .. code-block:: C
 
-    //set Small Page Table
-    void mmu_setpg(unsigned int vaddrStart,unsigned int pageTableBassAddress, unsigned int paddrStart)
-    {
-        volatile unsigned int *pTT;
-        volatile unsigned int *pTT2;
-        volatile int j;
-        pTT=(unsigned int *)_page_table+(vaddrStart>>20);
-        pTT2=(unsigned int *)pageTableBassAddress;
-        *pTT = ATTR_INNER | ((pageTableBassAddress>>10)<<10);
+	//set Small Page Table
+	void mmu_setpg(unsigned int vaddrStart,unsigned int pageTableBassAddress, unsigned int paddrStart)
+	{
+    	volatile unsigned int *pTT;
+    	volatile unsigned int *pTT2;
+    	volatile int j;
+    	pTT=(unsigned int *)_page_table+(vaddrStart>>20);
+    	pTT2=(unsigned int *)pageTableBassAddress;
+    	*pTT = ATTR_INNER | ((pageTableBassAddress>>10)<<10);
 
-        for(j =0; j < 256 ; j++){
-            *pTT2 = ATTR_OUTER | (((paddrStart>>12)+j)<<12);
-            pTT2++;
-        }
-    }
+    	for(j =0; j < 256 ; j++){
+        	*pTT2 = ATTR_OUTER | (((paddrStart>>12)+j)<<12);
+        	pTT2++;
+    	}
+	}
 
 
 .. code-block:: C
 
-    /* set page table */
-    mmu_setmtt(0x00000000, 0xFFFFFFFF, 0x00000000, RW_NCNB);    /* None cached for 4G memory    */
-    mmu_setmtt(0x90000000, 0xB0000000-1, 0xA0600000, RW_CB);    /* cached DDR Memory            */
-    mmu_setmtt(0xB0000000, 0xD8000000-1, 0xA0600000, RW_NCNB);  /* none-cached DDR memory       */
-    mmu_setmtt(0x80000000, 0x80020000-1, 0x80000000, RW_CB);    /* 128k OnChip memory           */
-    mmu_setpg(0x90000000,0xA0600000,0xC0000000);                /* (VA,section address, PA)     */
+	/* set page table */
+	mmu_setmtt(0x00000000, 0xFFFFFFFF, 0x00000000, RW_NCNB);	/* None cached for 4G memory	*/
+	mmu_setmtt(0x90000000, 0xB0000000-1, 0xA0600000, RW_CB);	/* cached DDR Memory        	*/
+	mmu_setmtt(0xB0000000, 0xD8000000-1, 0xA0600000, RW_NCNB);  /* none-cached DDR memory   	*/
+	mmu_setmtt(0x80000000, 0x80020000-1, 0x80000000, RW_CB);	/* 128k OnChip memory       	*/
+	mmu_setpg(0x90000000,0xA0600000,0xC0000000);            	/* (VA,section address, PA) 	*/
 
 
 
@@ -611,7 +620,7 @@ TTBR0的參數定義
 
 **Q2: five stage 為什麼有WB?**
 
-　　During this stage, both single cycle and two cycle instructions write their results into the register file. 
+　　During this stage, both single cycle and two cycle instructions write their results into the register file.
 
 **Q3: 什麼是spinlock hazard?**
 
@@ -671,7 +680,7 @@ TTBR0的參數定義
 
 .. code-block:: ARM assembly
 
-    MRC p15, 0, <Rd>, c0, c0, 0 ; Read Main ID Register
+	MRC p15, 0, <Rd>, c0, c0, 0 ; Read Main ID Register
 
 　　CTR:The purpose of the Cache Type Register is to determine the instruction and data cache minimum line length in bytes to enable a range of addresses to be invalidated.
 
@@ -681,7 +690,7 @@ TTBR0的參數定義
 
 .. code-block:: ARM assembly
 
-    MRC p15, 0, <Rd>, c0, c0, 1 ; Read Cache Type Register
+	MRC p15, 0, <Rd>, c0, c0, 1 ; Read Cache Type Register
 
 　　TCMTR:The TCM(Tightly-coupled memory) is designed to provide low-latency memory that can be used by the processor without the unpredictability that is a feature of caches.而在Cortex-A8並沒有實作TCM
 
