@@ -17,6 +17,8 @@ JackyLin(林展翔)
 - homework3 : `hw3<https://embedded2015.hackpad.com/Homework-3-Co3Bt4OozBn>`_
 - homework4 : `hw4<https://embedded2015.hackpad.com/61ujxggRJcp>`_
 - homework5 : `hw5<https://embedded2015.hackpad.com/R7GnTyUYmQZ>`_
+- linux kernel study : `kernel study<https://hackpad.com/Linux-Kernel-Study-ljsFa8rXHzp>`_
+- kernel data structure : `kernel data structure<https://linux-study.hackpad.com/Linux-Kernel-Data-Structure-OLcLGggZvN4>`_
 
 報告
 =========
@@ -36,14 +38,20 @@ JackyLin(林展翔)
     - Driver model: Linux-native vs RTDM
 
 3. 撰寫步進馬達驅動程式(Xenomai和Linux kernel兩種版本), 比較兩種版本的realtime性能差異, 並藉由(期末)實際demo展示
-
+4. 研究統計學假說檢定(hypothesis testing)的部份, 用於分析模擬＆實際測試的數據
+5. 研究linux kernel資料結構以及Xenomai的其他應用, 希望在之後能將Xenomai使用在更高層級的應用
 
 學習到的知識
 =============
+- 使用雙系統, 實際成為linux的使用者, 學習並熟悉linux command line的操作方式, 藉此也更了解電腦的原理
+- 使用並習慣以github做版本控制
+- 在研究Xenomai的過程中, 學會如何撰寫device driver, 包括RTDM與linux native兩種方式
+- 自己買書研究linux kernel, 對某些linux kernel的部份機制和實作（例如interrupt handling）有更深入的了解
+- 負責執行Xenomai的效能測試實驗, 熟悉操作的流程, 了解該如何做測試和分析（例如用stress command給予不同的loading等等）, 並將這套方法應用在其他課程的報告上
 
 
+學習心得
+=============
 
-
-
-
-
+自我評量分數 (1 到 10 級分)
+============================
