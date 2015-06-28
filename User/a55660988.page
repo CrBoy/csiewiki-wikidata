@@ -8,7 +8,12 @@ categories: User
 
 - 成功大學電機系104級
 - 凌群電腦實習生(2014.07-2014.08)
+  - Hadoop, Hive, TF-IDF
+
 - University of Wisconsin-Madison交換生(2014.08-2014.12)
+  - CS537 Intro. to Operating System
+  - CS577 Intro. to Algorithm
+
 - NXP恩智浦實習生(2015.07-2015.08)
 - 北京清華大學交換生(2015.09-2016.01)
 
@@ -21,14 +26,26 @@ categories: User
 
 - `Github<https://github.com/a55660988/>`_
 
+- `Hackpad<https://mycpp.hackpad.com/>`_
 
+  - `HW1 Github<https://github.com/a55660988/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/Week-1-2--syaCV7qmwn1>`_
+  - `HW2 Github<https://github.com/a55660988/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/Week-4--AXlZBUWtF6i>`_
+  - `HW3 Github<https://github.com/a55660988/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/Week-3--fB88Mot5IUz>`_
+  - `HW4 Hackpad<https://embedded2015.hackpad.com/Week-5-Lab41-yhRxPtb23F0>`_
+    
 **報告**
 
 - `Xvisor<http://wiki.csie.ncku.edu.tw/embedded/xvisor>`_ 
 
 - `ARMv8<http://wiki.csie.ncku.edu.tw/embedded/ARMv8>`_
 
+- 主要負責
+  - 虛擬化技術整理及SMP.AMP，並用淺顯易懂方式整理呈現
+  - ARMv8歷史，ARMv8文件至虛擬化章節前
+  - Xvisor Manual文件翻譯
+  - Xvisor 論文翻譯，並增加相關資料以便更清楚了解
 
+- 特別感謝`Colin8930<http://wiki.csie.ncku.edu.tw/User/colin8930>`_在我trace scheduler及timer code不懂時指導我
 
 心得
 ------------------
