@@ -17,7 +17,13 @@ toc: no
 目錄
 ---
 * `AM335x ARM Cortex-A8 Boot Sequence<#AM335x ARM Cortex-A8 Boot Sequence>`_
-* `VMM (Virtual Machine Module) and vbus<#VMM (Virtual Machine Module) and vbus>`_
+
+* `VMM (Virtual Machine Module) and vbus <#VMM (Virtual Machine Module) and vbus>`_
+  - `Introduction to VMM <#Introduction to VMM>`_
+  - `Running VMM on QEMU (target machine: realview-pb-a8) <#Running VMM on QEMU (target machine: realview-pb-a8)>`_
+  - `Running VMM on BeagleBone Black <#Running VMM on BeagleBone Black>`_
+  - `Introduction to vbus <#Introduction to vbus>`_
+
 * `記憶體管理<#記憶體管理>`_
    - `MMU Configuration in RT-Thread<#MMU Configuration in RT-Thread>`_
    - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
@@ -75,16 +81,22 @@ ROM Code主要有幾項任務:
 
 VMM (Virtual Machine Module) and vbus
 --------------------------------------------
-- VMM (Virtual Machine Module)
-  VMM模組可同時運行Linux與RT-Thread，如圖五所示。VMM以半虛擬化方式 (para-virtualization)運行另一個OS。
+
+Introduction to VMM
+--------------------------------------------
+VMM模組可同時運行Linux與RT-Thread，如圖五所示。VMM以半虛擬化方式 (para-virtualization)運行另一個OS。
 
 .. image:: https://lh4.googleusercontent.com/-49-7jFwVpZM/VUgwLRtPPqI/AAAAAAAAIBs/w0K4npFRaJg/w939-h634-no/rt-thread-vmm.png
 圖五、VMM/vbus Framework
 
-  三個元件需要用來實現同時運行RT-Thread與Linux，如下所述:
+
+三個元件需要用來實現同時運行RT-Thread與Linux，如下所述:
     1. Linux VMM Kernel Patches: RT-Thread開發者發佈`兩個Kernel Patches <https://github.com/AdrianHuang/rt-thread-for-vmm/tree/master/components/vmm/linux_patch-v3.8>`_支援多個作業系統同時運行。
     2. Linux VMM Kernel Module (rtvmm.ko): 此模組用來載入RT-Thread Binary File。
     3. RT-Thread Binary File (rtthread.bin): RT-Thread作業系統二進制檔。
+
+Running VMM on QEMU (target machine: realview-pb-a8)
+----------------------------------------------------
 
 [編譯與執行]
 
@@ -112,8 +124,65 @@ VMM (Virtual Machine Module) and vbus
 .. image:: https://lh3.googleusercontent.com/-NZlzQBrzD1g/VX_IJOegylI/AAAAAAAAIKQ/cE8BBcgPrPY/w1013-h314-no/rt-thread.png
 圖八、Ctrl+Alt+F4進入RT-Thread Console
 
-vbus
-    VMM Bus (vbus)用來讓RT-Thread與Linux相互通訊，且可以讓OS之間的功能共享，如圖九所示。
+
+Running VMM on BeagleBone Black
+--------------------------------------------
+參考`Building BBB Kernel - Downloading and building the Linux Kernel <http://elinux.org/Building_BBB_Kernel#Downloading_and_building_the_Linux_Kernel>`_，嘗試將Linux VMM Kernel Patches加進該kernel (v3.8.13)。然而，遇到底下幾個問題:
+
+**編譯錯誤**: 執行`make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs`命令後，出現底下編譯錯誤:
+
+.. code-block:: prettyprint
+
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs
+      ...
+      ...
+      CC      arch/arm/vmm/am33xx/virq.o
+      LD      arch/arm/vmm/built-in.o
+      CC      arch/arm/kernel/elf.o
+      AS      arch/arm/kernel/entry-armv.o
+    arch/arm/kernel/entry-armv.S: Assembler messages:
+    arch/arm/kernel/entry-armv.S:257: Error: Thumb load/store multiple does not support {reglist}^ -- `ldmia sp,{r0-pc}^`
+    make[1]: *** [arch/arm/kernel/entry-armv.o] Error 1
+    make: *** [arch/arm/kernel] Error 2
+
+其中{reglist}^的"^"，代表該指令執行於ARM state，詳情參考`ARM官網 <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204j/Cihcadda.html>`_。底下兩個方法避免此編譯錯誤:
+
+[編譯錯誤解決方法 - 加入ARM()巨集]
+
+.. code-block:: prettyprint
+
+ #if defined(CONFIG_CPU_V6)
+        ldr     r0, [sp]
+        strex   r1, r2, [sp]                    @ clear the exclusive monitor
+        ldmib   sp, {r1 - pc}^                  @ load r1 - pc, cpsr
+ #elif defined(CONFIG_CPU_32v6K)
+        clrex                                   @ clear the exclusive monitor
+        ARM( ldmia      sp, {r0 - pc}^ )        @ load r0 - pc, cpsr 原始程式碼沒加ARM巨集，加入該巨集可以避免編譯錯誤
+ #else
+        ldmia   sp, {r0 - pc}^                  @ load r0 - pc, cpsr
+ #endif
+
+編譯成功後，開進Linux kernel (uImage)，發現OS會一直停在**Uncompressing Linux... done, booting the kernel.**，如下圖所示:
+
+.. image:: https://lh3.googleusercontent.com/-38rtH8m72j8/VZDcAG1y_pI/AAAAAAAAILI/qpbgNeQwoIo/s884/vmm-hang.jpg
+
+追蹤核心原始碼`arch/arm/include/asm/unified.h <http://lxr.free-electrons.com/source/arch/arm/include/asm/unified.h#L44>`_，發現開啟CONFIG_THUMB2_KERNEL選項，ARM()巨集是空巨集，導致核心卡住。故關閉CONFIG_THUMB2_KERNEL (注意: ARM()巨集不用加到arch/arm/kernel/entry-armv.S)。
+
+[編譯錯誤解決方法 - 關閉CONFIG_THUMB2_KERNEL選項]
+關閉CONFIG_THUMB2_KERNEL選項，編譯能成功且可以順利開進核心。然而，載入rtvmm.ko模組會發生錯誤，如下圖所示:
+
+.. image:: https://lh3.googleusercontent.com/-khpnrNqw25M/VZDnyc2x_4I/AAAAAAAAILk/QhfHHGuS-Mo/s615/vmm-no-thumb2-kernel-option.png
+成功開進VMM支援的核心    
+
+.. image:: https://lh3.googleusercontent.com/-vCmD1QGqsrM/VZDnynjpefI/AAAAAAAAILs/IeOaCy3Nl_U/s800/vmm-no-thumb2-kernel-option-insmod-rtvmm-failed.png
+載入rtvmm.ko出錯畫面
+
+追縱RT-thread程式後，發現沒有支援BeagleBone Black的VMM功能 (詳見: `libcpu/arm/am335x <https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/am335x>`_。目前正在參考`Realview Cortex A8 VMM的支援 <https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/realview-a8-vmm>`_，以便在BeagleBone Black支援VMM。
+
+
+Introduction to vbus
+--------------------------------------------
+VMM Bus (vbus)用來讓RT-Thread與Linux相互通訊，且可以讓OS之間的功能共享，如圖九所示。
 
 .. image:: https://lh4.googleusercontent.com/-hc_Dy-0dQQ0/VUhFIzyYXPI/AAAAAAAAICE/HxlX6OUO544/w1044-h719-no/vbus-new.png
 圖九、VMM Bus
