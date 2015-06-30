@@ -13,4 +13,15 @@ categories: User
 - hw1 : `lab38<https://hackpad.com/Embedded-System-2015-Lab38-ARM-revisit-4la8C6ATfwW>`_
 - hw2 : `lab39<https://hackpad.com/Embedded-System-2015-Lab39-Cross-Development-h4g0uWu4zfM>`_
 - hw3 : `lab40<https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7>`_
-- hw4 : `lab42<hhttps://hackpad.com/Embedded-System-2015-Lab42-Mini-ARM-OS-cKmip54ZmK8>`_
+- hw4 : `lab42<https://hackpad.com/Embedded-System-2015-Lab42-Mini-ARM-OS-cKmip54ZmK8>`_
+
+報告
+=============
+- xenomai : `CSIE WIKI<http://wiki.csie.ncku.edu.tw/embedded/xenomai>`_
+- Xenomai開發紀錄 : `Hackpad<https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP>`_ 
+- Xenomai_lab_data : `Hackpad<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe>`_
+- Xenomai_Q&A : `Hackpad<https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt>`_
+- 負責項目:
+  - xenomai 3 rpi patch / port
+  - xenomai 3 latency & 示波器測試
+  - (應該算是)組長
