@@ -491,6 +491,10 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 * **Domain** : 參考ARMv7的文件, VMSA() 會以4-bits表示Domain的Index,也就是說最大可以定義到16個Domain,每個Domain Index會依序對應到Domain Access Control Register 32-bits值中以各2-bits依序產生的16個欄位.
 
+* **AP[2:0]** :
+
+.. image:: https://farm1.staticflickr.com/526/19763052715_44c4313bea_o.png
+
 * **S** : 用以定義該記憶體分頁是否為Shareable,S為 0 表示該記憶體分頁為Non-shareable,S 為 1 表示該記憶體分頁為 Shareable.
 
 * **nG** : 這屬性為Non-Global,用來定義該記憶體分頁是否為Global,如果nG為0,表示該記憶體分頁為Global,如果為1,表示該記憶體分頁屬於目前正在運作的ASID(Address Space Identifier),該值會對應到正在運作的Task (請參考CONTEXTIDR)
