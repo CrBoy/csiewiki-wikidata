@@ -15,21 +15,19 @@ categories: embedded, arm, raspberrypi, rpi, realtime, linux, rtos, xenomai, pre
 Real Time 的定義
 ==============================
 
+一個real time的系統需要保證其工作在給定的時間限制內完成(稱為deadline)。
+系統不需要以最快的速度(real fast)完成任務，但需要時常或每次皆在deadline之內完成。
+
+在這個前提下，real time系統的任務完成時間是可確定的(deterministic)。
+而根據系統的限制不同，real time可分為：
+
 * Soft Real Time
   
-  根據 Scheduling 的結果執行任務。
+  系統不一定每次皆需要遵守deadline，但較多的deadline miss會導致服務品質降低。
 
-* 95% Hard Real Time
+* Hard Real Time
   
-  系統至少有 95% 在指定時間內完成任務。 
-
-* 100% Hard Real Time
-  
-  系統能 100% 在指定時間內完成任務。 
-
-* Safe Real Time
-  
-  系統能 100% 在指定時間內完成任務。
+  系統能每次皆能在deadline內完成任務。 
 
 Real time on Linux
 ==================
