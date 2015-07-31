@@ -445,13 +445,12 @@ Xenomai 3 on raspberry pi
 
 .. code-block:: c
 
-  patch -Np1 < 3.18.12-xenomai3-temp.patch
+  patch -Np1 < <你的patch位置>/3.18.12-xenomai3-temp.patch
 
 * configure kernel(使用rpi提供的default)
 
 .. code-block:: c
 
-  cd rpi-linux
   export CCPI=($working_dir)/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
   mkdir build
   make mrproper
@@ -460,7 +459,7 @@ Xenomai 3 on raspberry pi
 
 若patch正確，會在設定表裡看到xenomai相關選項。
 
-vim build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE , CONFIG_KGDB , CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
+使用manuconfig或編輯build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE , CONFIG_KGDB , CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
 
 * compile kernel
 
