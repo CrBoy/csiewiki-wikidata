@@ -414,7 +414,7 @@ Xenomai 2.6 on raspberry pi
 Xenomai 3 on raspberry pi
 ++++++++++++++++++++++++++
 
-* 取得 xenomai 3.0-rc、rpi-linux 3.16.y、ipipe 3.18.12 arm patch、toolchain
+* 取得 xenomai 3.0-rc、rpi-linux 3.18.y、ipipe 3.18.12 arm patch、toolchain
 
 .. code-block:: c
 
@@ -423,16 +423,28 @@ Xenomai 3 on raspberry pi
   wget http://download.gna.org/adeos/patches/v3.x/arm/ipipe-core-3.18.12-arm-1.patch
   git clone https://github.com/raspberrypi/tools.git --depth=1
 
+* checkout rpi-linux至3.18.12
+
+.. code-block:: c
+  
+  git checkout c963de6d8caec6278c0dde76831f9fdab5bace52
+  git checkout -b 3.18.12
+
 * 由此處取得rpi post patch
 
 `post patch<https://drive.google.com/file/d/0B6GwSked9fL9RnU3b3pSajFZbUk/view>`_
 
-*上 ipipe patch
+* 上 ipipe patch
 
 .. code-block:: c
 
   cd rpi-linux
   ../xenomai-3/scripts/prepare-kernel.sh --arch=arm --ipipe=<你的patch位置>/ipipe-core-3.18.12-arm-1.patch   --linux=.
+
+* ipipe post patch (註：pre patch為解決ipipe patch衝突之用，此處無衝突故不需要)
+
+.. code-block:: c
+
   patch -Np1 < 3.18.12-xenomai3-temp.patch
 
 * configure kernel(使用rpi提供的default)
@@ -448,7 +460,7 @@ Xenomai 3 on raspberry pi
 
 若patch正確，會在設定表裡看到xenomai相關選項。
 
-vim build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE, CONFIG_KGDB, CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
+vim build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE , CONFIG_KGDB , CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
 
 * compile kernel
 
