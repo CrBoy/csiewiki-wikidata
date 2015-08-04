@@ -149,31 +149,27 @@ Adeos / iPipe
 
 * 相關檔案︰
 
-  - gic.c : 
+  - gic.c(舊版) -> irq-gic.c(新版) : 
        
-    Generic Interrupt Controller, Interrupt prioritization and distribution to each CPU interface. This is known as the Distributor. Priority masking and preemption handling for each CPU. This is known as the CPU Interface.
+    Generic Interrupt Controller(GIC)為ARM架構中負責分配interrupt至cpu的裝置。此檔案實作gic功能的界面，包含init、mask、產生軟體interrupt、end of interrupt、取得資訊等。內容除了gic register操作外，也包含了spin locks。
 
-  - it8152.c：IRQ相關
+  - it8152.c：提供ITE8152 (PCI Bridge)的支援。目前該硬體已經停止生產 。
 
-  - timer-sp.c：dual timer module(sp804)
+  - timer-sp.c：ARM Dual-Timer Module (SP804)的界面。SP804提供兩個32/64bit count down counter，並提供timer interrupt。
 
-  - vic.c：
+  - vic.c -> irq-vic.c：
 
-    The VIC provides a software interface to the interrupt system. In a system with an interrupt controller, software must determine the source that is requesting service and where its service routine is loaded. A VIC does both of these in hardware.
+    提供Vectored Interrupt Controller(VIC)的界面。VIC主要存在於armv6或以前的架構中，提供priority、IRQ vector等功能，但並不支援SMP。在armv7之後的架構中，其漸漸被NVIC(Cortex-M)與GIC(Cortex-R/A)取代。
 
-    功能為提供一個programable的介面讓使用者設定
+  - ipipe-tsc.c -> ipipe_tsc.c：Time Stamp Counter的界面，提供自reset起cycle數的計算。
 
-  - ipipe-tsc.c:設定精準度（刻度）
+  - ipipe/compat.c：與I-pipe legacy interface相關。
 
-  - ipipe/compat.c:interrupt
-
-  - sched/clock.c:取得cpu_clock 解析度為nanosecond,開機後從0開始上數
+  - sched/clock.c：取得cpu_clock 解析度為nanosecond，開機後從0開始上數。在新版(3.18)ipipe中，此檔案並無修改。
 
 .. image:: /embedded/xenomai/cpu_distribute.jpg
 
 GIC大約是上圖的distributor的位置
-
-VIC則是CPU interface的位置
 
 但raspberry pi只有一顆CPU所以不會有SMP與 CPU affinity設定的問題
 
