@@ -1086,7 +1086,7 @@ STM32 on QEMU 環境建立與測試
 --------------------------
 
   - ``cd ~/workspace``
-  - ``git clone https://github.com/james33344/rtenv-plus``
+  - ``git clone https://github.com/lecopzer/rtenv-plus``
   - ``cd rtenv-plus``
   - ``make``
   - ``make qemu``
