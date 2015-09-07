@@ -15,50 +15,50 @@ toc: no
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 24   `2015q1 Overview`_                      *
-#2    Mar 3    `2015q1:基本能力鑑定測驗`_                        `Lab 38`_: ARM Cross-Development Environment
-#3    Mar 10   `ARM Architecture + OS Concepts`_              `Lab 39`_: FreeRTOS
-#4    Mar 17   `ARM Exceptions/Interrupts`_                   `Lab 40`_: Scheduling
-#5    Mar 24   `Embedded Linux Conference 2015`_               `Lab 41`_: 基礎觀念訓練
-#6    Mar 31   `ARM and RTOS: Part I`_                         確認 `Lab 38`_, `Lab 39`_, `Lab 40`_, `Lab 41`_ 均充分完成 
-#7    Apr 7    `ARM and RTOS: Part II`_                       `Lab 42`_: Mini ARM OS
-#8    Apr 14   `From Hello to Preemptive Scheduler`_          `Lab 42`_: Mini ARM OS
-#9    Apr 21   `Kernel Concepts and Threading`_               `Lab 43`_: Runtime Behavior
-#10   Apr 28   `2015q1:Group Presentation(1)`_                *
-#11   May 5    `2015q1:Group Presentation(2)`_                *
-#12   May 12   `2015q1:Group Presentation(3)`_                *
-#13   May 19   `2015q1:Group Presentation(4)`_                *
-#14   May 26   `2015q1:Group Presentation(5)`_                *
-#15   Jun 2    `2015q1:Group Presentation(6)`_                *
-#16   Jun 9    `2015q1:Group Presentation(7)`_                *
-#17   Jun 16   `2015q1:Group Presentation(8)`_                *
-#18   Jun 23   `2015q1:Group Presentation(9)`_                *
+#1    Feb 24   [2015q1 Overview]                      *
+#2    Mar 3    [2015q1:基本能力鑑定測驗]                        [Lab 38]: ARM Cross-Development Environment
+#3    Mar 10   [ARM Architecture + OS Concepts]              [Lab 39]: FreeRTOS
+#4    Mar 17   [ARM Exceptions/Interrupts]                   [Lab 40]: Scheduling
+#5    Mar 24   [Embedded Linux Conference 2015]               [Lab 41]: 基礎觀念訓練
+#6    Mar 31   [ARM and RTOS: Part I]                         確認 [Lab 38], [Lab 39], [Lab 40], [Lab 41] 均充分完成 
+#7    Apr 7    [ARM and RTOS: Part II]                       [Lab 42]: Mini ARM OS
+#8    Apr 14   [From Hello to Preemptive Scheduler]          [Lab 42]: Mini ARM OS
+#9    Apr 21   [Kernel Concepts and Threading]               [Lab 43]: Runtime Behavior
+#10   Apr 28   [2015q1:Group Presentation(1)]                *
+#11   May 5    [2015q1:Group Presentation(2)]                *
+#12   May 12   [2015q1:Group Presentation(3)]                *
+#13   May 19   [2015q1:Group Presentation(4)]                *
+#14   May 26   [2015q1:Group Presentation(5)]                *
+#15   Jun 2    [2015q1:Group Presentation(6)]                *
+#16   Jun 9    [2015q1:Group Presentation(7)]                *
+#17   Jun 16   [2015q1:Group Presentation(8)]                *
+#18   Jun 23   [2015q1:Group Presentation(9)]                *
 ====  ====     =======                                 ==========
 
-.. _`2015q1 Overview`: 2015q1w1
-.. _`2015q1:基本能力鑑定測驗`: 2015q1w2
-.. _`ARM Architecture + OS Concepts`: 2015q1w3
-.. _`ARM Exceptions/Interrupts`: 2015q1w4
-.. _`Embedded Linux Conference 2015`: http://events.linuxfoundation.org/events/embedded-linux-conference
-.. _`ARM and RTOS: Part I`: 2015q1w6
-.. _`ARM and RTOS: Part II`: 2015q1w7
-.. _`From Hello to Preemptive Scheduler`: 2015q1w8
-.. _`Kernel Concepts and Threading`: 2015q1w9
-.. _`2015q1:Group Presentation(1)`: 2015q1w10
-.. _`2015q1:Group Presentation(2)`: 2015q1w11
-.. _`2015q1:Group Presentation(3)`: 2015q1w12
-.. _`2015q1:Group Presentation(4)`: 2015q1w13
-.. _`2015q1:Group Presentation(5)`: 2015q1w14
-.. _`2015q1:Group Presentation(6)`: 2015q1w15
-.. _`2015q1:Group Presentation(7)`: 2015q1w16
-.. _`2015q1:Group Presentation(8)`: 2015q1w17
-.. _`2015q1:Group Presentation(9)`: 2015q1w18
-.. _`Lab 38`: Lab38
-.. _`Lab 39`: Lab39
-.. _`Lab 40`: Lab40
-.. _`Lab 41`: Lab41
-.. _`Lab 42`: Lab42
-.. _`Lab 43`: Lab43
+[2015q1 Overview]: 2015q1w1
+[2015q1:基本能力鑑定測驗]: 2015q1w2
+[ARM Architecture + OS Concepts]: 2015q1w3
+[ARM Exceptions/Interrupts]: 2015q1w4
+[Embedded Linux Conference 2015]: http://events.linuxfoundation.org/events/embedded-linux-conference
+[ARM and RTOS: Part I]: 2015q1w6
+[ARM and RTOS: Part II]: 2015q1w7
+[From Hello to Preemptive Scheduler]: 2015q1w8
+[Kernel Concepts and Threading]: 2015q1w9
+[2015q1:Group Presentation(1)]: 2015q1w10
+[2015q1:Group Presentation(2)]: 2015q1w11
+[2015q1:Group Presentation(3)]: 2015q1w12
+[2015q1:Group Presentation(4)]: 2015q1w13
+[2015q1:Group Presentation(5)]: 2015q1w14
+[2015q1:Group Presentation(6)]: 2015q1w15
+[2015q1:Group Presentation(7)]: 2015q1w16
+[2015q1:Group Presentation(8)]: 2015q1w17
+[2015q1:Group Presentation(9)]: 2015q1w18
+[Lab 38]: Lab38
+[Lab 39]: Lab39
+[Lab 40]: Lab40
+[Lab 41]: Lab41
+[Lab 42]: Lab42
+[Lab 43]: Lab43
 
 進階嵌入式系統開發與實作 (Fall 2014)
 ------------------------------------------------------
@@ -67,49 +67,49 @@ Week  Date     Subject                                 Assignment
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 #1    Sep 18   [2014q3 Overview`_                       `Lab 31](https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT): ARM Environment
-#2    Sep 25   `ARM Architecture (cont)`_                               `Lab 32`_: QEMU + FreeRTOS
-#3    Oct 2    `ARM Architecture (cont2)`_                              `Lab 33`_: GDB + FreeRTOS
-#4    Oct 9    `ARM Architecture and Interface`_                    `Lab 34`_: Buffer overflow
-#5    Oct 16    `Hardware Concepts Review`_               `Lab 35`_: STM32F429
-#6    Oct 23   `Code Review for Lab 32-33`_                `Lab 35`_: STM32F429
-#7    Oct 30   `Code Review + ELF`_                              `Lab 36`_: ELF
-#8    Nov 6    `Interrupt/Exceptions + RTOS`_                    `Lab 37`_: Memory allocation
-#9    Nov 13   `2014q3:Group Presentation (1)`_                            -
-#10   Nov 20   `2014q3:Group Presentation (2)`_                           -
-#11   Nov 27   `2014q3:Group Presentation (3)`_                           -
-#12   Dec 4    `2014q3:Group Presentation (4)`_                            -
+#2    Sep 25   [ARM Architecture (cont)]                               [Lab 32]: QEMU + FreeRTOS
+#3    Oct 2    [ARM Architecture (cont2)]                              [Lab 33]: GDB + FreeRTOS
+#4    Oct 9    [ARM Architecture and Interface]                    [Lab 34]: Buffer overflow
+#5    Oct 16    [Hardware Concepts Review]               [Lab 35]: STM32F429
+#6    Oct 23   [Code Review for Lab 32-33]                [Lab 35]: STM32F429
+#7    Oct 30   [Code Review + ELF]                              [Lab 36]: ELF
+#8    Nov 6    [Interrupt/Exceptions + RTOS]                    [Lab 37]: Memory allocation
+#9    Nov 13   [2014q3:Group Presentation (1)]                            -
+#10   Nov 20   [2014q3:Group Presentation (2)]                           -
+#11   Nov 27   [2014q3:Group Presentation (3)]                           -
+#12   Dec 4    [2014q3:Group Presentation (4)]                            -
 #13   Dec 11   [2014q3:Group Presentation (5)`_                           `侯捷 C++ 底層技術課程分享](https://www.facebook.com/events/481983738609693/)
-#14   Dec 18   `2014q3:Group Presentation (6)`_                           -
-#15   Dec 25   `2014q3:Group Presentation (7)`_                           -
+#14   Dec 18   [2014q3:Group Presentation (6)]                           -
+#15   Dec 25   [2014q3:Group Presentation (7)]                           -
 #16   Jan 1      Happy New Year!
-#17   Jan 8    `2014q3:Group Presentation (8)`_                             -
-#18   Jan 15   `2014q3:Group Presentation (9)`_                            -
+#17   Jan 8    [2014q3:Group Presentation (8)]                             -
+#18   Jan 15   [2014q3:Group Presentation (9)]                            -
 #18   Jan 17   期末展示                                
 ====  ====     =======                                 ==========
 
-.. _`2014q3 Overview`: 2014q3w1
-.. _`ARM Architecture (cont)`: 2014q3w2
-.. _`ARM Architecture (cont2)`: 2014q3w3
-.. _`ARM Architecture and Interface`: 2014q3w4
-.. _`Hardware Concepts Review`: 2014q3w5
-.. _`Code Review for Lab 32-33`: 2014q3w6
-.. _`Code Review + ELF`: 2014q3w7
-.. _`Interrupt/Exceptions + RTOS`: 2014q3w8
-.. _`2014q3:Group Presentation (1)`: 2014q3w9
-.. _`2014q3:Group Presentation (2)`: 2014q3w10
-.. _`2014q3:Group Presentation (3)`: 2014q3w11
-.. _`2014q3:Group Presentation (4)`: 2014q3w12
-.. _`2014q3:Group Presentation (5)`: 2014q3w13
-.. _`2014q3:Group Presentation (6)`: 2014q3w14
-.. _`2014q3:Group Presentation (7)`: 2014q3w15
-.. _`2014q3:Group Presentation (8)`: 2014q3w17
-.. _`2014q3:Group Presentation (9)`: 2014q3w18
-.. _`Lab 32`: Lab32
-.. _`Lab 33`: Lab33
-.. _`Lab 34`: Lab34
-.. _`Lab 35`: Lab35
-.. _`Lab 36`: Lab36
-.. _`Lab 37`: Lab37
+[2014q3 Overview]: 2014q3w1
+[ARM Architecture (cont)]: 2014q3w2
+[ARM Architecture (cont2)]: 2014q3w3
+[ARM Architecture and Interface]: 2014q3w4
+[Hardware Concepts Review]: 2014q3w5
+[Code Review for Lab 32-33]: 2014q3w6
+[Code Review + ELF]: 2014q3w7
+[Interrupt/Exceptions + RTOS]: 2014q3w8
+[2014q3:Group Presentation (1)]: 2014q3w9
+[2014q3:Group Presentation (2)]: 2014q3w10
+[2014q3:Group Presentation (3)]: 2014q3w11
+[2014q3:Group Presentation (4)]: 2014q3w12
+[2014q3:Group Presentation (5)]: 2014q3w13
+[2014q3:Group Presentation (6)]: 2014q3w14
+[2014q3:Group Presentation (7)]: 2014q3w15
+[2014q3:Group Presentation (8)]: 2014q3w17
+[2014q3:Group Presentation (9)]: 2014q3w18
+[Lab 32]: Lab32
+[Lab 33]: Lab33
+[Lab 34]: Lab34
+[Lab 35]: Lab35
+[Lab 36]: Lab36
+[Lab 37]: Lab37
 
 嵌入式作業系統設計與實作 (Spring 2014)
 ------------------------------------------------------
@@ -117,47 +117,47 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 18   `Overview: Embedded Systems and OS`_       `Lab 25`_
-#2    Feb 25   `ARM Architecture Evolution`_                        `Lab 26`_
-#3    Mar  4   `Case: Quadcopter`_                        `Lab 27`_
-#4    Mar 11   `Assignment Review`_                    `Lab 28`_
-#5    Mar 18   `ARM Cortex-M + RTOS Concepts`_            `Lab 29`_
-#6    Mar 25   `ARM I/O, Interrupt, Exception`_           `Lab 30`_
+#1    Feb 18   [Overview: Embedded Systems and OS]       [Lab 25]
+#2    Feb 25   [ARM Architecture Evolution]                        [Lab 26]
+#3    Mar  4   [Case: Quadcopter]                        [Lab 27]
+#4    Mar 11   [Assignment Review]                    [Lab 28]
+#5    Mar 18   [ARM Cortex-M + RTOS Concepts]            [Lab 29]
+#6    Mar 25   [ARM I/O, Interrupt, Exception]           [Lab 30]
 #7    Apr  1   春假
-#8    Apr  8   `Advanced OS Design issues`_               :
-#9    Apr 15   `Group Presentation (a)`_                  :
-#10   Apr 22   `Group Presentation (b)`_                  :
-#11   Apr 29   `Group Presentation (c)`_                  :
-#12   May  6   `Group Presentation (d)`_                  :
-#13   May 13   `Group Presentation (d)`_                  :
-#14   May 20   `Group Presentation (f)`_                  :
-#15   May 27   `Group Presentation (g)`_                  :
-#16   Jun  3   `Group Presentation (h)`_                              :
+#8    Apr  8   [Advanced OS Design issues]               :
+#9    Apr 15   [Group Presentation (a)]                  :
+#10   Apr 22   [Group Presentation (b)]                  :
+#11   Apr 29   [Group Presentation (c)]                  :
+#12   May  6   [Group Presentation (d)]                  :
+#13   May 13   [Group Presentation (d)]                  :
+#14   May 20   [Group Presentation (f)]                  :
+#15   May 27   [Group Presentation (g)]                  :
+#16   Jun  3   [Group Presentation (h)]                              :
 #17   Jun 10   Talk: 雲、端、架構                      :
 #18   June 17   Group Presentation
 #18   Jun 21   Embedded Technology Conference          :
 ====  ====     =======                                 ==========
 
-.. _`Overview: Embedded Systems and OS`: 2014-w1
-.. _`ARM Architecture Evolution`: 2014-w2
-.. _`Case: Quadcopter`: 2014-w3
-.. _`Assignment Review`: 2014-w4
-.. _`ARM Cortex-M + RTOS Concepts`: 2014-w5
-.. _`ARM I/O, Interrupt, Exception`: 2014-w6
-.. _`Advanced OS Design issues`: 2014-w8
-.. _`Group Presentation (a)`: 2014-w9
-.. _`Group Presentation (b)`: 2014-w10
-.. _`Group Presentation (c)`: 2014-w11
-.. _`Group Presentation (d)`: 2014-w12
-.. _`Group Presentation (f)`: 2014-w14
-.. _`Group Presentation (g)`: 2014-w15
-.. _`Group Presentation (h)`: 2014-w16
-.. _`Lab 25`: Lab25
-.. _`Lab 26`: Lab26
-.. _`Lab 27`: Lab27
-.. _`Lab 28`: Lab28
-.. _`Lab 29`: Lab29
-.. _`Lab 30`: Lab30
+[Overview: Embedded Systems and OS]: 2014-w1
+[ARM Architecture Evolution]: 2014-w2
+[Case: Quadcopter]: 2014-w3
+[Assignment Review]: 2014-w4
+[ARM Cortex-M + RTOS Concepts]: 2014-w5
+[ARM I/O, Interrupt, Exception]: 2014-w6
+[Advanced OS Design issues]: 2014-w8
+[Group Presentation (a)]: 2014-w9
+[Group Presentation (b)]: 2014-w10
+[Group Presentation (c)]: 2014-w11
+[Group Presentation (d)]: 2014-w12
+[Group Presentation (f)]: 2014-w14
+[Group Presentation (g)]: 2014-w15
+[Group Presentation (h)]: 2014-w16
+[Lab 25]: Lab25
+[Lab 26]: Lab26
+[Lab 27]: Lab27
+[Lab 28]: Lab28
+[Lab 29]: Lab29
+[Lab 30]: Lab30
 
 
 進階嵌入式系統開發與實作 (Fall 2013)
@@ -166,51 +166,51 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Sep 17   `Overview: Embedded in our world`_      `Lab 19`_: QEMU
-#2    Sep 23   `ARM Architecture and SoC`_             `Lab 20`_: GNU Toolchain
-#3    Oct 1    `Operating Systems for Embedded`_       `Lab 20`_: GNU Toolchain
-#4    Oct 8    `ARM: Instructions`_                    `Lab 21`_: RTOS (1)
-#5    Oct 15   `ARM: Toolchain and Peripherals`_       `Lab 22`_: RTOS (2)
-#6    Oct 22   `ARM: Interrupts and Exceptions`_       `Lab 23`_: RTOS (3)
-#7    Oct 29   `Code Review`_                                       -
-#8    Nov 5    `Code Review + Group Presentation(1)`_  `Lab 24`_: Hardware
-#9    Nov 12   `3D Printer + Group Presentation(2)`_   -
-#10   Nov 19   `Group Presentation(3)`_                -
-#11   Nov 26   `Speech + Group Presentation(4)`_       -
-#12   Dec 3    `Group Presentation(5)`_                -
-#13   Dec 10   `Group Presentation(6)`_                -
-#14   Dec 17   `Group Presentation(7)`_                -
-#15   Dec 24   `Group Presentation(8)`_                -
-#16   Dec 31   `Group Presentation(9)`_                -
-#17   Jan 7    `Group Presentation(10)`_               -
+#1    Sep 17   [Overview: Embedded in our world]      [Lab 19]: QEMU
+#2    Sep 23   [ARM Architecture and SoC]             [Lab 20]: GNU Toolchain
+#3    Oct 1    [Operating Systems for Embedded]       [Lab 20]: GNU Toolchain
+#4    Oct 8    [ARM: Instructions]                    [Lab 21]: RTOS (1)
+#5    Oct 15   [ARM: Toolchain and Peripherals]       [Lab 22]: RTOS (2)
+#6    Oct 22   [ARM: Interrupts and Exceptions]       [Lab 23]: RTOS (3)
+#7    Oct 29   [Code Review]                                       -
+#8    Nov 5    [Code Review + Group Presentation(1)]  [Lab 24]: Hardware
+#9    Nov 12   [3D Printer + Group Presentation(2)]   -
+#10   Nov 19   [Group Presentation(3)]                -
+#11   Nov 26   [Speech + Group Presentation(4)]       -
+#12   Dec 3    [Group Presentation(5)]                -
+#13   Dec 10   [Group Presentation(6)]                -
+#14   Dec 17   [Group Presentation(7)]                -
+#15   Dec 24   [Group Presentation(8)]                -
+#16   Dec 31   [Group Presentation(9)]                -
+#17   Jan 7    [Group Presentation(10)]               -
 #18   Jan 12   期末展示                                
 ====  ====     =======                                 ==========
 
-.. _`Overview: Embedded in our world`: 2013-w1
-.. _`ARM Architecture and SoC`: 2013-w2
-.. _`Operating Systems for Embedded`: 2013-w3
-.. _`ARM: Instructions`: 2013-w4
-.. _`ARM: Toolchain and Peripherals`: 2013-w5
-.. _`ARM: Interrupts and Exceptions`: 2013-w6
-.. _`Code Review`: 2013-w7
-.. _`Code Review + Group Presentation(1)`: 2013-w8
-.. _`3D Printer + Group Presentation(2)`: 2013-w9
-.. _`Group Presentation(3)`: 2013-w10
-.. _`Speech + Group Presentation(4)`: 2013-w11
-.. _`Group Presentation(5)`: 2013-w7
-.. _`Group Presentation(6)`: 2013-w7
-.. _`Group Presentation(7)`: 2013-w7
-.. _`Group Presentation(8)`: 2013-w15
-.. _`Group Presentation(9)`: 2013-w7
-.. _`Group Presentation(10)`: 2013-w7
-.. _`Lab 19`: Lab19
-.. _`Lab 20`: Lab20
-.. _`Lab 21`: Lab21
-.. _`Lab 22`: Lab22
-.. _`Lab 23`: Lab23
-.. _`Lab 24`: Lab24
-.. _`Lab 25`: Lab25
-.. _`Lab 26`: Lab26
+[Overview: Embedded in our world]: 2013-w1
+[ARM Architecture and SoC]: 2013-w2
+[Operating Systems for Embedded]: 2013-w3
+[ARM: Instructions]: 2013-w4
+[ARM: Toolchain and Peripherals]: 2013-w5
+[ARM: Interrupts and Exceptions]: 2013-w6
+[Code Review]: 2013-w7
+[Code Review + Group Presentation(1)]: 2013-w8
+[3D Printer + Group Presentation(2)]: 2013-w9
+[Group Presentation(3)]: 2013-w10
+[Speech + Group Presentation(4)]: 2013-w11
+[Group Presentation(5)]: 2013-w7
+[Group Presentation(6)]: 2013-w7
+[Group Presentation(7)]: 2013-w7
+[Group Presentation(8)]: 2013-w15
+[Group Presentation(9)]: 2013-w7
+[Group Presentation(10)]: 2013-w7
+[Lab 19]: Lab19
+[Lab 20]: Lab20
+[Lab 21]: Lab21
+[Lab 22]: Lab22
+[Lab 23]: Lab23
+[Lab 24]: Lab24
+[Lab 25]: Lab25
+[Lab 26]: Lab26
 
 嵌入式作業系統設計與實作 (Spring 2013)
 ------------------------------------------------------
@@ -218,56 +218,56 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Feb 19   `課程介紹 + 期初考`_                       
-#2    Feb 26   `Embedded Operating System Concepts`_   `Lab 8`_ : GNU Toolchain + RTOS (`Sol 8`_)
-#3    Mar  5   `RTOS Characteristics`_                 `Lab 9`_ : Multitasking programming (`Sol 9`_)
-#4    Mar 12   `從火星探測號談 scheduling`_                   `Lab 10`_ : Priority Inversion (`Sol 10`_)
-#5    Mar 19   `ARM Architecture Intro`_                     `Lab 11`_: Build RTOS for ARM (`Sol 11`_)
-#6    Mar 26   `ARM Architecture Intro`_ + 月考               `Lab 12`_: RTOS Visualization (`Sol 12`_)
+#1    Feb 19   [課程介紹 + 期初考]                       
+#2    Feb 26   [Embedded Operating System Concepts]   [Lab 8] : GNU Toolchain + RTOS ([Sol 8])
+#3    Mar  5   [RTOS Characteristics]                 [Lab 9] : Multitasking programming ([Sol 9])
+#4    Mar 12   [從火星探測號談 scheduling]                   [Lab 10] : Priority Inversion ([Sol 10])
+#5    Mar 19   [ARM Architecture Intro]                     [Lab 11]: Build RTOS for ARM ([Sol 11])
+#6    Mar 26   [ARM Architecture Intro] + 月考               [Lab 12]: RTOS Visualization ([Sol 12])
 #7    Apr  2   春假                                        
-#8    Apr  9   `ARM and Assignment Review`_                    `Lab 13`_: ARM Programming with GNU Toolchain (`Sol 11`_)
-#9    Apr 16   `I/O, Interrupt, Exception (ARM)`_         `Lab 14`_: OS and BSP Porting (`Sol 14`_)
-#10   Apr 23   `RTOS Evaluation`_                               `Lab 15`_: Benchmarking concepts
-#11   Apr 30   `Case Study: Train control`_ + 月考                    `Lab 15`_: Validation and benchmarking
-#12   May  7   `Tickless scheduling`_                                        `Lab 16`_: Hardware Enablement
-#13   May 14   `Embedded Kernel Design Review`_                      `Lab 17`_: Tickless scheduling for ARM hardware 
-#14   May 21   `Embedded Kernel Design Review-2`_                                          `Lab 18`_: OS Evaluation for ARM
-#15   May 28   `Automotive Linux Summit (Spring)`_ + 月考
+#8    Apr  9   [ARM and Assignment Review]                    [Lab 13]: ARM Programming with GNU Toolchain ([Sol 11])
+#9    Apr 16   [I/O, Interrupt, Exception (ARM)]         [Lab 14]: OS and BSP Porting ([Sol 14])
+#10   Apr 23   [RTOS Evaluation]                               [Lab 15]: Benchmarking concepts
+#11   Apr 30   [Case Study: Train control] + 月考                    [Lab 15]: Validation and benchmarking
+#12   May  7   [Tickless scheduling]                                        [Lab 16]: Hardware Enablement
+#13   May 14   [Embedded Kernel Design Review]                      [Lab 17]: Tickless scheduling for ARM hardware 
+#14   May 21   [Embedded Kernel Design Review-2]                                          [Lab 18]: OS Evaluation for ARM
+#15   May 28   [Automotive Linux Summit (Spring)] + 月考
 #16   Jun  4    Open Discussion
 #17   Jun 11   The End
 ====  ====     =======                                 ==========
 
-.. _`課程介紹 + 期初考`: 2013w1
-.. _`Embedded Operating System Concepts`: 2013w2
-.. _`RTOS Characteristics`: 2013w3
-.. _`從火星探測號談 scheduling`: 2013w4
-.. _`ARM Architecture Intro`: 2013w5
-.. _`ARM and Assignment Review`: 2013w8
-.. _`I/O, Interrupt, Exception (ARM)`: 2013w9
-.. _`RTOS Evaluation`: 2013w10
-.. _`Case Study: Train control`: 2013w11
-.. _`Tickless scheduling`: 2013w12
-.. _`Embedded Kernel Design Review`: 2013w13
-.. _`Embedded Kernel Design Review-2`: 2013w14
-.. _`Lab 8`: Lab8
-.. _`Sol 8`: Sol8
-.. _`Lab 9`: Lab9
-.. _`Sol 9`: Sol9
-.. _`Lab 10`: Lab10
-.. _`Sol 10`: Sol10
-.. _`Lab 11`: Lab11
-.. _`Sol 11`: Sol11
-.. _`Lab 12`: Lab12
-.. _`Sol 12`: Sol12
-.. _`Lab 13`: Lab13
-.. _`Lab 14`: Lab14
-.. _`Sol 14`: Sol14
-.. _`Lab 15`: Lab15
-.. _`Lab 16`: Lab16
-.. _`Lab 17`: Lab17
-.. _`Lab 18`: Lab18
-.. _`Automotive Linux Summit (Spring)`: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
-.. _`LinuxCon Japan`: http://events.linuxfoundation.org/events/linuxcon-japan
+[課程介紹 + 期初考]: 2013w1
+[Embedded Operating System Concepts]: 2013w2
+[RTOS Characteristics]: 2013w3
+[從火星探測號談 scheduling]: 2013w4
+[ARM Architecture Intro]: 2013w5
+[ARM and Assignment Review]: 2013w8
+[I/O, Interrupt, Exception (ARM)]: 2013w9
+[RTOS Evaluation]: 2013w10
+[Case Study: Train control]: 2013w11
+[Tickless scheduling]: 2013w12
+[Embedded Kernel Design Review]: 2013w13
+[Embedded Kernel Design Review-2]: 2013w14
+[Lab 8]: Lab8
+[Sol 8]: Sol8
+[Lab 9]: Lab9
+[Sol 9]: Sol9
+[Lab 10]: Lab10
+[Sol 10]: Sol10
+[Lab 11]: Lab11
+[Sol 11]: Sol11
+[Lab 12]: Lab12
+[Sol 12]: Sol12
+[Lab 13]: Lab13
+[Lab 14]: Lab14
+[Sol 14]: Sol14
+[Lab 15]: Lab15
+[Lab 16]: Lab16
+[Lab 17]: Lab17
+[Lab 18]: Lab18
+[Automotive Linux Summit (Spring)]: http://events.linuxfoundation.org/events/automotive-linux-summit-spring
+[LinuxCon Japan]: http://events.linuxfoundation.org/events/linuxcon-japan
 
 進階嵌入式系統開發與實作 (Fall 2012)
 ------------------------------------------------------
@@ -275,48 +275,48 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Sep 18   `Overview: Embedded - Why and How`_     `Lab 1`_: QEMU
-#2    Sep 25   `ARM Architecture`_ (Basic)             `Lab 2`_: GNU Toolchain + QEMU/ARM
-#3    Oct  2   `Realtime Operating System`_ (Basic)    `Lab 2`_s: GNU Toolchain + QEMU/ARM
-#4    Oct  9   `Timer, Interrupt, Exception in ARM`_   `Lab 3`_: GNU Toolchain + RTOS
-#5    Oct 16   `RTOS Design and Implementation`_       `Lab 4`_: RTOS for MCU
-#6    Oct 23   `Code review of Lab assignments`_       `Lab 5`_: RTOS modifications
-#7    Oct 30   `Peripherals and hardware interface`_   `Lab 6`_: Hardware
-#8    Nov  6   `Embedded Linux Conference Europe`_     分組準備與討論
-#9    Nov 13   `Group Presentation (1)`_               分組準備與討論
-#10   Nov 20   `Group Presentation (2)`_               `Lab 6`_s: Hardware + Unit Test
-#11   Nov 27   `Group Presentation (3)`_               `Lab 6`_s: Hardware + On-Chip Debugger
-#12   Dec  4   `Group Presentation (4)`_               `Lab 7`_: On-Chip Debugger + semihosting
-#13   Dec 11   `Group Presentation (5)`_               Hack!
-#14   Dec 18   `Group Presentation (6)`_               Hack!
-#15   Dec 25   `Group Presentation (7)`_               Hack!
+#1    Sep 18   [Overview: Embedded - Why and How]     [Lab 1]: QEMU
+#2    Sep 25   [ARM Architecture] (Basic)             [Lab 2]: GNU Toolchain + QEMU/ARM
+#3    Oct  2   [Realtime Operating System] (Basic)    [Lab 2]s: GNU Toolchain + QEMU/ARM
+#4    Oct  9   [Timer, Interrupt, Exception in ARM]   [Lab 3]: GNU Toolchain + RTOS
+#5    Oct 16   [RTOS Design and Implementation]       [Lab 4]: RTOS for MCU
+#6    Oct 23   [Code review of Lab assignments]       [Lab 5]: RTOS modifications
+#7    Oct 30   [Peripherals and hardware interface]   [Lab 6]: Hardware
+#8    Nov  6   [Embedded Linux Conference Europe]     分組準備與討論
+#9    Nov 13   [Group Presentation (1)]               分組準備與討論
+#10   Nov 20   [Group Presentation (2)]               [Lab 6]s: Hardware + Unit Test
+#11   Nov 27   [Group Presentation (3)]               [Lab 6]s: Hardware + On-Chip Debugger
+#12   Dec  4   [Group Presentation (4)]               [Lab 7]: On-Chip Debugger + semihosting
+#13   Dec 11   [Group Presentation (5)]               Hack!
+#14   Dec 18   [Group Presentation (6)]               Hack!
+#15   Dec 25   [Group Presentation (7)]               Hack!
 #16   Jan  1   Happy New Year - 2013                   N/A
 #17   Jan  8   Final project review  (and vote)        N/A
 #18   Jan 15   Make Your Own System (and profit)       DONE
 ====  ====     =======                                 ==========
 
 
-.. _`Overview: Embedded - Why and How`: 2012w1
-.. _`ARM Architecture`: 2012w2
-.. _`Realtime Operating System`: 2012w3
-.. _`Timer, Interrupt, Exception in ARM`: 2012w4
-.. _`RTOS Design and Implementation`: 2012w5
-.. _`Code review of Lab assignments`: https://gitcafe.com/embedded2012/P-jserv
-.. _`Peripherals and hardware interface`: 2012w7
-.. _`ARM Cortex-M series`: 2012w7
-.. _`Microkernel overview`: 2012w12
-.. _`Embedded Linux Conference Europe`: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
-.. _`Group Presentation (1)`: 2012w9
-.. _`Group Presentation (2)`: 2012w10
-.. _`Group Presentation (3)`: 2012w11
-.. _`Group Presentation (4)`: 2012w12
-.. _`Group Presentation (5)`: 2012w13
-.. _`Group Presentation (6)`: 2012w14
-.. _`Group Presentation (7)`: 2012w15
-.. _`Lab 1`: Lab1
-.. _`Lab 2`: Lab2
-.. _`Lab 3`: Lab3
-.. _`Lab 4`: Lab4
-.. _`Lab 5`: Lab5
-.. _`Lab 6`: Lab6
-.. _`Lab 7`: Lab7
+[Overview: Embedded - Why and How]: 2012w1
+[ARM Architecture]: 2012w2
+[Realtime Operating System]: 2012w3
+[Timer, Interrupt, Exception in ARM]: 2012w4
+[RTOS Design and Implementation]: 2012w5
+[Code review of Lab assignments]: https://gitcafe.com/embedded2012/P-jserv
+[Peripherals and hardware interface]: 2012w7
+[ARM Cortex-M series]: 2012w7
+[Microkernel overview]: 2012w12
+[Embedded Linux Conference Europe]: https://events.linuxfoundation.org/events/embedded-linux-conference-europe
+[Group Presentation (1)]: 2012w9
+[Group Presentation (2)]: 2012w10
+[Group Presentation (3)]: 2012w11
+[Group Presentation (4)]: 2012w12
+[Group Presentation (5)]: 2012w13
+[Group Presentation (6)]: 2012w14
+[Group Presentation (7)]: 2012w15
+[Lab 1]: Lab1
+[Lab 2]: Lab2
+[Lab 3]: Lab3
+[Lab 4]: Lab4
+[Lab 5]: Lab5
+[Lab 6]: Lab6
+[Lab 7]: Lab7

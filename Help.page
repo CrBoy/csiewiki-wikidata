@@ -163,9 +163,9 @@ Wiki links
 
 ::
 
-    `其他名稱或描述`_
+    [其他名稱或描述]
 
-    .. _`其他名稱或描述`: 頁面名稱
+    [其他名稱或描述]: 頁面名稱
 
 注意：頁面名稱允許包含空白與部份特殊字元。
 They need not be CamelCase. CamelCase words are *not* automatically

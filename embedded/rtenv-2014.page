@@ -86,7 +86,7 @@ kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> 
 - 運作：
   - L42, 43：將 ``psr``(program status register) 的值保存到 ``ip`` (r12) 裡，然後一同 push 到 main stack 裡。
   - L45：將 ``user_thread_stack`` 的 register 依序 pop 到 r4~r11 及lr，也是為何 ``user_thread_stack`` 的前9個 register 設計為 r4~r10、fp、_lr。
-  - L46：再將 ``user_thread_stack`` 的 ``_r7`` pop 到 ``r7``。
+  - L46：再將 [`user_thread_stack`` 的 `]r7`` pop 到 ``r7``。
   - L49：將 ``r0`` 所帶的值寫入到 ``psp`` (process stack pointer)，注意呼叫 activate 所放的參數就是該 task 之 task_control_block 中 stack 的 address。
   - L50, 51：將 ``control`` register 的值設為 3，藉此可以將 stack pointer 轉為指向 process stack (使 sp 值為 psp)。所以藉由 ``sp`` 可以存取其 stack 的內容。
 

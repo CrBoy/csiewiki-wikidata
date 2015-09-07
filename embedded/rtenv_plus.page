@@ -324,7 +324,7 @@ Event Monitoring
 System Call
 ============
 
-user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 ``_r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``syscall()`` 中實作 system call 功能。
+user mode 時，執行屬於 system call 的函式，將 system call 的代碼存入 []r7`` 並觸發 SVC exception，執行 ``SVC_Handler`` 轉換成 kernel mode 後，在 ``syscall()`` 中實作 system call 功能。
 
 system call 函數的參數以及原本 user mode push 進去的暫存器之值，皆可透過 current_tcb 來傳遞，因為 current_tcb->task 指向 task 在 user mode 用來 push 的 stack，且 system call 的函數變數會先儲存到暫存器 r0 ~ r3
 

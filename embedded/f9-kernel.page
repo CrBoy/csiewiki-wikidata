@@ -769,7 +769,7 @@ Context Switch
     		as_setup_mpu(current->as, current->ctx.sp, ((uint32_t*)current->ctx.sp)[REG_PC], current->stack_base, current->stack_size);
     }
 
-實作 pendsv_handler 時是宣告成``__NAKED``的，所以必須自己處理函式呼叫的prologue、epilogue，因為沒有對 stack 進行處理，在使用 local 變數的時候加上``register``修飾，強制將變數存放在暫存器中(編譯器判斷有空閒的暫存器的話)，接著呼叫``schedule_select()``取得排程的下一個任務進行切換。切換的方法是先將目前任務的 ctx(包含lr) 儲存，接著將``current``切換成下一個任務，最後取出新任務的 ctx，這時 lr 會是新任務的返回地址，因此就可以使用``bx lr``恢復任務。但如果排程器選出的任務與當前任務是一樣的，代表不需要切換，也就不需要進行 ctx 的儲存，可以直接在將 lr 從堆疊中取出，並且返回。
+實作 pendsv_handler 時是宣告成[]_NAKED``的，所以必須自己處理函式呼叫的prologue、epilogue，因為沒有對 stack 進行處理，在使用 local 變數的時候加上``register``修飾，強制將變數存放在暫存器中(編譯器判斷有空閒的暫存器的話)，接著呼叫``schedule_select()``取得排程的下一個任務進行切換。切換的方法是先將目前任務的 ctx(包含lr) 儲存，接著將``current``切換成下一個任務，最後取出新任務的 ctx，這時 lr 會是新任務的返回地址，因此就可以使用``bx lr``恢復任務。但如果排程器選出的任務與當前任務是一樣的，代表不需要切換，也就不需要進行 ctx 的儲存，可以直接在將 lr 從堆疊中取出，並且返回。
 
 下面列出``irq_save()``、``irq_restore()``以及``context_switch()``的流程：
 
