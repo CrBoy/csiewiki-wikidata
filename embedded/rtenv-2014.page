@@ -52,7 +52,7 @@ Context Switch
 
 kernel mode --- ``activate()`` ---> user mode --- ``syscall`` or interrupt ---> exception --- exception handler ---> kernel mode
 
-  .. image:: /embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG
+  ![Image](/embdded/rtenv-plus/kernel_mode_vs_user_mode.PNG)
 注：在下方 ``fork原理`` 以 fork 為例，可以知道轉換細節。
 
 **activate**
@@ -126,7 +126,7 @@ Exception (Cortex-M3)
 
 Cortex-M3有支援許多不同的Exception types
 
-  .. image:: /exception_type.jpg
+  ![Image](/exception_type.jpg)
 
 這裡我以SVC來做說明。
 
@@ -144,7 +144,7 @@ Exception Entry
 
 而無論exception是 tail-chained或late-arriving exception，都會自動依序將xPSR, PC, LR, R12(ip), R3, R2, R1, R0 push進去
 
- .. image:: /exception_entry_push.png
+ ![Image](/exception_entry_push.png)
 
  1. tail-chained
    - 當一exception handler完成時，若這時剛好有其他在等待的exception符合exception entry的條件時，並要進入時，則剛剛完成的exception handler的最後就不用pop，直接執行下一個exception handler。用來加速exception servicing。
@@ -168,7 +168,7 @@ exception有進就要有出。
 當全為 f 時，processor會detect到他不是一個一般的branch，並且會開始執行exception return的部分。
 
 這張圖很清楚的說明exception return做了甚麼事。
- .. image:: /exception_return.png
+ ![Image](/exception_return.png)
 
 
 How  to fork
@@ -193,7 +193,7 @@ How  to fork
 
 - 進到 ``activate()`` 後，藉由 pop user state 到 register，將預先存好的 ``first()`` 的位址存到 ``LR`` 中。而原本的 LR 被 push 到 main stack 中，存有離開 ``activate()`` 後繼續執行的指令位址。Core registers 及 stacks 的狀態變化如下圖：
 
-  .. image:: /embedded/activate.PNG
+  ![Image](/embedded/activate.PNG)
 
 
   利用 ``bx lr`` 使得程式轉往執行 ``first()``。
@@ -216,7 +216,7 @@ How  to fork
 
 - 在 syscall (這裡是fork) 中，會觸發 svc exception，程式轉往執行 ``SVC_Handler()``，
 
-  .. image:: /embedded/SVC_Handler.PNG
+  ![Image](/embedded/SVC_Handler.PNG)
 
   - 左圖：同時 processor 會將 xPSR、PC、LR、R12、R3、R2、R1、R0[#]_依序 push 到目前的 stack 中 ( process stack )，被 push 到 process stack 的資訊中含有離開 ``fork()`` 後繼續執行的指令位址。
   - 中圖：將目前的 state 存到 process stack。原本的 ``LR`` 含有 exception return ( 0xfffffffd ) 的資訊，也會一併被 push 到 process stack 中儲存。
@@ -225,7 +225,7 @@ How  to fork
 
 - 目前的 process stack 狀態，會發現與 ``user_thread_stack`` 的設計一致，以及不同時期被 push 進去的 R7：
 
-  .. image:: /embedded/user_thread_stack.PNG
+  ![Image](/embedded/user_thread_stack.PNG)
 
   - 在離開 ``activate()`` 函式會回傳新的 process stack pointer 給 TCB 的 ``stack`` pointer，也就是取得 R0 的值，所以 TCB 的 stack pointer 會得到正確的 process stack 的正確位址。
 
@@ -237,7 +237,7 @@ How  to fork
 
 - 進到 ``activate()`` 後，再次將 kernel state 與 user state 作交換。此時，``LR`` 含有 EXC_RETURN[#]_的值 ``0xfffffffd``，則當 processor 執行 ``bx lr`` 時必須進行 exception return。
 
-  .. image:: /embedded/activate_again.PNG
+  ![Image](/embedded/activate_again.PNG)
 
 
 - **Exception return**：當 LR 值為 EXC_RETURN 之一: 0xfffffffd 時，
@@ -247,7 +247,7 @@ How  to fork
 
 - 也就是說，進行 exception return 後，``PC`` 會擁有之前 exception 發生的的下一行指令位址，至於 ``LR`` 則為離開 fork() 而回到 first() 繼續執行的位址。
 
-  .. image:: /embedded/activate_again_exc_return.PNG
+  ![Image](/embedded/activate_again_exc_return.PNG)
 
   ::
 
@@ -360,7 +360,7 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
         end
     end
 
-  .. image:: /embdded/rtenv-plus/gdb_macro.png
+  ![Image](/embdded/rtenv-plus/gdb_macro.png)
 
 list
 =====
@@ -368,7 +368,7 @@ list
 - 實作檔案：list.c
 - 類型：cyclic double linked list
 
-  .. image:: /embedded/rtenv-plus/double_linked_list.PNG
+  ![Image](/embedded/rtenv-plus/double_linked_list.PNG)
 
 - 函式：
   - ``list_init``：初始化 node，prev 及 next 都指向自己。
@@ -378,7 +378,7 @@ list
   - ``list_push``：將 new 從原本的 linked list 中移除，再將其 push 到 list 的 prev。
   - ``list_shift``：將 list 的 next 從 linked list 中 pop 出來。
  
-  .. image:: /embedded/rtenv-plus/UOBhtQ.gif
+  ![Image](/embedded/rtenv-plus/UOBhtQ.gif)
 
 
 
@@ -427,16 +427,16 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler
 
     struct list ready_list[PRIORITY_LIMIT + 1];
 
-  .. image:: /embedded/rtenv-plus/ready_list_array.png
+  ![Image](/embedded/rtenv-plus/ready_list_array.png)
 
 在第一個 task 的初始化，fork 建立新的 task，或是利用 setpriority 設定 task 的優先權，
 會使用 ``list_push`` 將 task  push 到對應優先權的 ``ready_list`` 中，多個 task 之優先權可能相同 
 
- .. image:: /embedded/rtenv-plus/ready_list_element.png
+ ![Image](/embedded/rtenv-plus/ready_list_element.png)
 
 判別 ``ready_list`` 中的 element 是否為 empty，則觀察有沒有 task 被 push 到該 element 中
 
-  .. image:: /embedded/rtenv-plus/ready_list_empty.png
+  ![Image](/embedded/rtenv-plus/ready_list_empty.png)
 
 觸發 scheduler 選擇下一個執行的 task 有三種狀況
 
@@ -642,7 +642,7 @@ File Descriptor
 
 **file descriptor 關係**
 
-.. image:: /embedded/rtenv-plus/file_descriptor_relation.PNG
+![Image](/embedded/rtenv-plus/file_descriptor_relation.PNG)
 
 - 在初始化函式中，會將資料結構中的 file 元素存到 kernel 的 file descriptor array，所以只要在 file descriptor array 中拿到指定的 file 元素，透過 marco ``container_of``，就可以拿到該 file descriptor 的資料結構。
 
@@ -710,7 +710,7 @@ File Descriptor
 
 以 ``serialout()`` 與 ``rs232_xmit_msg_task()`` 為例。``/dev/tty0/out`` 為 fifo pipe，而 ``rs232_xmit_msg_task()`` 寫入資料到 pipe 中，``serialout()`` 從這個 pipe 讀出資料。
 
-.. image:: /embedded/rtenv-plus/Read_and_write.png
+![Image](/embedded/rtenv-plus/Read_and_write.png)
 
 以 write 的部分為例，在 ``FILE_ACCESS_ACCEPT`` 的 case 中會送出 read_event pending。執行完 write 的工作後，kernel 會繼續執行 ``event_monitor_serve()``，檢查有沒有 event pending，此時，剛剛送出的 read_event 就會被處理，檢查有沒有在 read 的時候被 push 到 read_event list 的 task。如果有，則執行 read_event 的 handler - ``pipe_read_release()``。``pipe_read_release()`` 會重新呼叫 ``file_read()``，讓 task 再次嘗試讀取 pipe，流程判斷如上圖，但是不同的 case 有不同的處理方式：
 
@@ -720,7 +720,7 @@ File Descriptor
 
 至於 read，則反之。下圖為從輸入到輸出所牽涉的 task 以及使用的 pipe，其中箭頭的起點方執行 write，終點方為 read：
 
-.. image:: /embedded/rtenv-plus/Tasks_with_pipe.PNG
+![Image](/embedded/rtenv-plus/Tasks_with_pipe.PNG)
 
 
 **Block File( S_IFBLK )**
@@ -763,7 +763,7 @@ File Descriptor
 - ``block_request_****able``
   - 第一次請求( request_pid 為 0 )：先對 block 所屬的 driver 發出請求，如下表：
 
-  .. image:: /embedded/rtenv-plus/block_request.PNG
+  ![Image](/embedded/rtenv-plus/block_request.PNG)
 
 
 　　將 block_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 romdev_driver()。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
@@ -827,7 +827,7 @@ File Descriptor
   1. 外部 task 對此 fd 作 read 的請求，執行 ``block_request_readable``。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request，並等待 driver 的處理。
   2. driver 收到 request 後，執行 BLOCK_CMD_READ 指令。driver 會計算讀取的區塊是否有超過 block file 的檔案結尾，如果有就只會讀取到檔案結尾。driver 會將計算結果透過 ``block_response`` 來讓 fd 讀取 block file 的資料。
 
-    .. image:: /embedded/rtenv-plus/romdev_read_check.PNG
+    ![Image](/embedded/rtenv-plus/romdev_read_check.PNG)
 
   3. ``block_response`` 使用 system call write 來傳輸資料給指定 fd。來自於 driver 的請求，``block_driver_writable`` 檢查該 fd 是否有收到外部請求，因為在 '1.' 時有發出請求，所以執行 ``block_driver_write``。
   4. ``block_driver_write``：將資料從 block file 複製到 fd 的 buffer 中，將寫入長度存到 fd 的 transfer_len 欄位中，將 buzy 設為 0，表示 driver 處理完請求，並發出 block event pending。
@@ -882,7 +882,7 @@ File Descriptor
 - ``regfile_request_****able``
   - 第一次請求( request_pid 為 0 )：先對 ``romfs_server()`` 發出請求，如下表：
 
-  .. image:: /embedded/rtenv-plus/regfile_request.PNG
+  ![Image](/embedded/rtenv-plus/regfile_request.PNG)
 
 
 　　將 fs_request 的 reference 存到 file_request，透過 IPC 將 file_request 傳給 ``romdev_driver()``。並將 fd 的 request_pid 設為自己的 pid，將 buzy 設為 1，代表對 driver 發出 access 此 fd 的請求。task 會被 push 到該 fd 的 event list 中，進入 TASK_WAIT_WRITE 狀態。
@@ -984,7 +984,7 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
 檔頭資訊與內容的關係如下圖：
 
-.. image:: /embedded/rtenv-plus/block_file_content.PNG
+![Image](/embedded/rtenv-plus/block_file_content.PNG)
 
 如果是目錄，則其資料長度 (len 欄位) 會包含此目錄下的檔案以及子目錄的資訊，如果是檔案，則只會包含自己的檔案內容。
 
@@ -1018,7 +1018,7 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
 外部檔案資料的 file descriptor 都會被註冊為 register file，所以執行 read 指令時，會透過 ``romfs_server()`` 向 ``romdev_driver()`` 存取 block device 的資料。每個 regfile fd 的讀寫頭起初都會被配置在其檔頭後面所帶的資料起點，如下圖:
 
-.. image:: /embedded/rtenv-plus/block_and_regfile_offset.PNG
+![Image](/embedded/rtenv-plus/block_and_regfile_offset.PNG)
 
 讀取詳細過程可以參考 register file 條目的 read 細項。
 
@@ -1030,13 +1030,13 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
  b. 嘗試編譯
  c. 找出相依的 function
 
-.. image:: /embedded/rtenv-plus/comment_header.png
-.. image:: /embedded/rtenv-plus/dependency.png
+![Image](/embedded/rtenv-plus/comment_header.png)
+![Image](/embedded/rtenv-plus/dependency.png)
 2. 加入新的函式庫 (他有的我不能少)
  a. 在檔案中加入標頭檔
  b. 修改 Makefile 中的 include path
   
-.. image:: /embedded/rtenv-plus/makefile_port.png
+![Image](/embedded/rtenv-plus/makefile_port.png)
 3. 確認硬體是能動的
  a. 跑範例程式
  b. 將範例程式丟入作業系統看是否能正常運作
@@ -1050,7 +1050,7 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
  b. 修掉架構相關的 bug
  c. 修改架構所需的常數
 
-.. image:: /embedded/rtenv-plus/CPUCLOCK.png
+![Image](/embedded/rtenv-plus/CPUCLOCK.png)
 
 安裝與測試
 ----------------
@@ -1072,8 +1072,8 @@ http://github.com/texane/stlink.git
 
 4. 把線接好
 
-.. image:: /embedded/rtenv-plus/st-link.jpg
-.. image:: /embedded/rtenv-plus/pins.jpg
+![Image](/embedded/rtenv-plus/st-link.jpg)
+![Image](/embedded/rtenv-plus/pins.jpg)
 
 5. 燒錄 rtenv-plus
 

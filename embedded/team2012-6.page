@@ -31,8 +31,8 @@ toc: no
 照片
 ----
 
-.. image:: /2.jpg
-.. image:: /1.jpg
+![Image](/2.jpg)
+![Image](/1.jpg)
 
 圖片中為我們所焊完之板子
 

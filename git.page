@@ -12,7 +12,7 @@ categories: 版本控制
 檔案在git的旅程
 --------------
 
-.. image:: /git_file_status.PNG
+![Image](/git_file_status.PNG)
 
 - **untracked**：檔案一開始都在這個狀態。
 - **unmodified**：經由指令將``untracked``的檔案加入追蹤，或是，``staged``狀態的檔案經由commit，會到這個狀態。另外在這狀態的檔案可以藉由指令來取消追蹤。

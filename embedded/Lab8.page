@@ -42,7 +42,7 @@ STM32 Overview
   - One for most use cases
   - [Introduction presentation](/embedded/CM-STM32.pdf)
 
-.. image:: /STM32-P103-01.jpg
+![Image](/STM32-P103-01.jpg)
 
 
 GTKWave
@@ -59,7 +59,7 @@ GTKWave
 
 - 參考輸出畫面。記得要先選取左下方 Type / Signals 並以 Append 加入到分析的清單中
 
-.. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
+![Image](http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png)
 
 - 建立 sample.vcd 檔案，觀察 GTKWave 輸出。內容如下：
 
@@ -136,7 +136,7 @@ FreeRTOS for STM32
 - FreeRTOS 程式碼已經過適度修改，引入 mini tracer 的機制，並準備特製的 GDB script，使其得以紀錄 task switch 的狀況 (需要包含 timing 資訊)，最終可輸出 VCD  檔案，透過 GTKWave 視覺化
 - 最終預期在 freertos 目錄下，當 ``make qemuauto`` 執行後，會自動啟動 QEMU + GDB + FreeRTOS，並在 5 秒後 kill 必要的 process 且能夠輸出 VCD 檔案，檔名為 ``sched.vcd``。以下是參考的 GTKWave 瀏覽畫面：
 
-.. image:: /embedded/Lab3/gtkwave.png
+![Image](/embedded/Lab3/gtkwave.png)
 
 
 繳交作業

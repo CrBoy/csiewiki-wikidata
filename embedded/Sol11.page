@@ -19,7 +19,7 @@ priority scheduling
   - 可用四倍 delay time的方式，來輪流輸出hello1 hello2。
 * 驗證 priority scheduling 的方式，是使用 GDB 來追蹤狀態，如下圖：
 
-.. image:: /embedded/Sol11/prio.png
+![Image](/embedded/Sol11/prio.png)
 
 message queue
 -------------------------
@@ -30,7 +30,7 @@ message queue
 * 將寫入寫出的部份更改為 system call，避免在過程中被 interupt，導致輸出入不完全，
 * 而在驗證的過程中，發現同時ECHO會有延遲，之後大量輸出的問題，如圖
 
-.. image:: /embedded/Sol11/mq.png
+![Image](/embedded/Sol11/mq.png)
 
 * 後來經過長時間的追蹤後發現，是因為 ring buffer 內部的 macro 寫錯了，所導致的 buffer overflow
   * 會將要輸出的字元寫到下一個ring buffer

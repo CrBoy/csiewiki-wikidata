@@ -20,7 +20,7 @@ NRZ標準資料格式(Mark/Space)
 
    它的特色是編碼解碼較為簡單，但缺乏同步傳輸的能力，且無法提供較佳的訊號校正能力。
 
-.. image:: /NRZcode.png
+![Image](/NRZcode.png)
 
 圖片來源：[wikipedia](http://zh.wikipedia.org/wiki/%E4%B8%8D%E6%AD%B8%E9%9B%B6)
 
@@ -36,9 +36,9 @@ Synchronous 同步傳輸
    - 同步: 額外提供時脈訊號，使兩端機器在溝通時能夠藉此同步收發資料。比起非同步傳輸，同步傳輸不需要start/stop bit，因此能夠一次傳較多的資料。同步傳輸需要解決時鐘偏移對資料傳輸造成的影響，除此之外，額外的時脈分佈網也需要大量的驅動電路，比起非同步傳輸增加了更多的耗能。一般同步系統會用阻斷時脈的方式(clock gating)，來令不需運作的模組進入睡眠狀態(sleeping mode)到省電的目的，這個機制需要額外的電路及再次同步的額外延遲，不僅造成多餘的能源損耗，也增加了電路設計上的困難度。
 
 
-.. image:: /synchronous_transmission.png
+![Image](/synchronous_transmission.png)
 
-.. image:: /usart_syn.png
+![Image](/usart_syn.png)
 
 
 CLOCK SKEW
@@ -53,7 +53,7 @@ Asynchronous 非同步傳輸
 
    - 非同步: 在傳送資料時插入額外資訊，表示資料起始、結束。好處是設定時間短、硬體成本低、機器時脈不同也能傳資料，缺點是單次傳輸的資料量較少。
 
-.. image:: /embedded/ASYNC.gif
+![Image](/embedded/ASYNC.gif)
 
 來源: [webopedia](http://www.webopedia.com/FIG/ASYNC.gif)
 
@@ -61,7 +61,7 @@ Asynchronous 非同步傳輸
 半/全雙工、同步/非同步 & Serial bus 示意圖
 =========================================
 
-.. image:: /embedded/USART_connection_type.jpg
+![Image](/embedded/USART_connection_type.jpg)
 
 
 
@@ -86,18 +86,18 @@ RS-232的機械特性
  - Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
  - Data circuit-terminating equipment，對類比訊號做編解碼，藉此傳收數位資料的機器。常見的機器為數據機。
 
-.. image:: /RS232_DB9pin2.png
+![Image](/RS232_DB9pin2.png)
 
-.. image:: /embedded/RS232_DB9Name3.png
+![Image](/embedded/RS232_DB9Name3.png)
 
 RS-232訊號傳輸
 -------------
 
-.. image:: /RS232_Signal.png
+![Image](/RS232_Signal.png)
 
  - 傳送單一封包時，一個package有1個startbit、8個data bits，1個stop bit。傳送完成後再傳送一個idle。
 
-.. image:: /signal_noidle.jpg
+![Image](/signal_noidle.jpg)
 
  - 而傳送多個連續封包時，在資料傳輸完以前並不會傳送idle，代表還沒有結束傳輸，原因是因為UART傳輸速度太慢，放入idle則會浪費頻寬。
 
@@ -110,11 +110,11 @@ null modem
 
  - 跳線就是一個傳送的訊號必須到達對方的接收腳位，如此才能形成一個完整的通路，所以通路的形成就是將一方的傳送與接收的腳位作對調；如此一來，甲方的傳送資料必定到達乙方的接收通道；而乙方的傳送資料則會到達甲方的接收通道，雙方的送收形成一個完整的迴路，最精簡的情形就是只使用2、3、5即可以完成資料傳輸。 
 
-.. image:: /embedded/USART_NullModemBriefview.jpg
+![Image](/embedded/USART_NullModemBriefview.jpg)
 
 也有市售的接頭
 
-.. image:: /embedded/USART_NullModem.jpg
+![Image](/embedded/USART_NullModem.jpg)
 
 RS-232阻礙
   - 過大的電壓擺幅，造成耗電量的增加
@@ -127,7 +127,7 @@ RS-232阻礙
 
 單端信號傳輸
 
-.. image:: /embedded/single-ended.png
+![Image](/embedded/single-ended.png)
 
  - 採用的是多個信號線共同使用信號返回的地線的方式。進行電壓檢測時，通過地線信號的電位，判斷邏輯。
 
@@ -147,7 +147,7 @@ RS-232阻礙
 
 至於來自於外部的噪音，即使在正負兩端的信號線外施加同樣的噪音，因差分傳輸而容易發現信號線間的電位差，所以噪音會被消除，不易引發錯誤。
 
-.. image:: /embedded/differential_noise.png
+![Image](/embedded/differential_noise.png)
 
  - 通過相互間逆向流過電流，抵消磁通，由此降低信號高次諧波所引發的電磁干擾噪音。
 
@@ -192,7 +192,7 @@ STM32 USART介紹與特性
 
 USART Block Diagram
 ======================================
-.. image:: /embedded/USART_pic296.jpg
+![Image](/embedded/USART_pic296.jpg)
 Ref: [RM0090 Reference Manual P.949](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
@@ -228,7 +228,7 @@ USART data frame & M bit
 
 
 
-.. image:: /embedded/USART_DataFrame.jpg
+![Image](/embedded/USART_DataFrame.jpg)
 
 
 .. code-block:: c
@@ -238,7 +238,7 @@ USART data frame & M bit
 
 
 
-.. image:: /embedded/USART_8bit_length.jpg
+![Image](/embedded/USART_8bit_length.jpg)
 
 
 .. code-block:: c
@@ -250,7 +250,7 @@ USART data frame & M bit
     發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
 
 
-.. image:: /embedded/USART_9bit_length.jpg
+![Image](/embedded/USART_9bit_length.jpg)
 
 
 .. code-block:: c
@@ -331,11 +331,11 @@ Ref: [RM0090 Reference Manual P.952](http://www.st.com/web/en/resource/technical
 傳送器的設定
 ----------
 
-.. image:: /usart_fig298.jpg
+![Image](/usart_fig298.jpg)
 
-.. image:: /embedded/USART_DataTransmission.gif
+![Image](/embedded/USART_DataTransmission.gif)
 
-.. image:: /usart_transmiter.png
+![Image](/usart_transmiter.png)
 
 設定流程如下:
    1. 設定USART_CR1的UE為1來啟動傳輸，如圖中的(a)
@@ -366,7 +366,7 @@ Ref: [RM0090 Reference Manual P.952](http://www.st.com/web/en/resource/technical
 
 在一般模式下，若要清除TC，可以直接對TC寫入0。如果是使用多重緩衝區模式，則要先讀取USART_SR暫存器，再對USART_DR暫存器做寫入動作。
 
-.. image:: /embedded/USART_pic299.jpg
+![Image](/embedded/USART_pic299.jpg)
 
 
 傳送斷開符號
@@ -394,12 +394,12 @@ Oversampling
 
 目的： 可用於改善 影響解析度、減少雜訊和避免aliasing
 
-.. image:: /embedded/oversampling_tmmg.jpg
+![Image](/embedded/oversampling_tmmg.jpg)
 
 起始位元偵測(oversampling)
 ------------------------------------
 
-.. image:: /usart_fig300.jpg
+![Image](/usart_fig300.jpg)
 
 
 在USART中，如果辨認出一個特殊的採樣序列( 1 1 1 0 X 0 X 0 X 0 0 0 0 )，則認定偵測到一個起始位。不論是用哪種oversampling(16 or 8)方法，這個序列都一樣。
@@ -415,7 +415,7 @@ Oversampling
 
 **採樣的時間間隔**
 
-.. image:: /usart_sampling.png
+![Image](/usart_sampling.png)
 
 假設baud rate = 9600 bps，則一個bit的傳輸時間為104us，usart會在接收器啟動後的52us，開始採樣
 
@@ -439,7 +439,7 @@ Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 
 接收器的設定
 ------------------------------------
 
-.. image:: /usart_recevier.png
+![Image](/usart_recevier.png)
 
 
    1. 設定USART_CR1的UE為1來啟動USART接收，如圖中的(a)
@@ -523,13 +523,13 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
    - 該次無效資料會從received shift register移入USART_DR
    - 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
 
-.. image:: /oversampling16.png
+![Image](/oversampling16.png)
 
-.. image:: /oversampling8.png
+![Image](/oversampling8.png)
 
-.. image:: /noisedetection.png
+![Image](/noisedetection.png)
 
-.. image:: /noisedetectionsampledata.png
+![Image](/noisedetectionsampledata.png)
 
 
 Frame錯誤(Frame error)
@@ -552,7 +552,7 @@ Frame錯誤(Frame error)
  - Parity control是用來確保傳輸資料的正確性。其原理是在傳輸端產生一個parity bit，然後在接收端可以重新計算parity bit以確保在傳輸過程沒有發生錯誤。
  - 在STM32，它可以透過設定USART_CR1 register的PCE bit來打開。STM32的frame長度是由M bit所決定，所以USART的frame有以下這些可能格式：
 
-.. image:: /frame_formats.png
+![Image](/frame_formats.png)
 
 parity依算方式的不同分成兩種方式，even parity和odd parity
 
@@ -590,7 +590,7 @@ parity依算方式的不同分成兩種方式，even parity和odd parity
 
  - 接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
 
-.. image:: /baud.png
+![Image](/baud.png)
 Ref: [RM0090 Reference Manual P.959](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 其中USARTDIV為一個無號的定點數(unsigned fixed point number)，fCK為給周邊設備的時鐘。
@@ -649,7 +649,7 @@ Idle line detection(WAKE=0)
 
  - RWU也可以用軟體設定成0。
 
-.. image:: /embedded/USART_pic303.jpg
+![Image](/embedded/USART_pic303.jpg)
 
 Address mark detection(WAKE=1)
 ------------------------------
@@ -662,7 +662,7 @@ Address mark detection(WAKE=1)
 
  - 在接收器的緩衝區沒有資料時(USART_SR的RXNE為0)，可以對RWU寫入0或1。有資料時，對RWU的寫入動作一律不承認。
 
-.. image:: /embedded/USART_pic304.jpg
+![Image](/embedded/USART_pic304.jpg)
 
 USART 與 SPI之關係
 =================
@@ -750,7 +750,7 @@ LIN接收器
 
  - 若開啟了LIN模式，當framing錯誤發生時(收stop bit時卻收到0，有可能是收到break了)，接收器會停止，直到break偵測迴路收到1(確認不是收到break)，或是收到break後也收到分隔符號(確認收到break)。
 
-.. image:: /embedded/USART_pic305.png
+![Image](/embedded/USART_pic305.png)
 
 
 單線半雙工模式
@@ -777,9 +777,9 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 
  - Smartcard mode在ISO7816-3標準中，Smartcard介面可支援非同步傳輸。
 
-.. image:: /smart_card.jpg
+![Image](/smart_card.jpg)
 
-.. image:: /embedded/USART_SmartCardPin.jpg
+![Image](/embedded/USART_SmartCardPin.jpg)
 
 若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
    - USART_CR2的LINEN
@@ -793,7 +793,7 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 
 不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
 
-.. image:: /parity_smartcard.png
+![Image](/parity_smartcard.png)
 
 當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
 
@@ -826,12 +826,12 @@ SIR(slow Infrared)編碼器(傳輸端)會從USART將資料調變成non return to
 
 SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並將之解調變成non return to zero(NRZ)資料流，接著送到USART做處理。解碼器在Idle state時通常為高電位，而編碼器與解碼器的極性通常是相反的。在解碼器收到低電位訊號時，代表已經收到了start bit了。
 
-.. image:: /irda.PNG
+![Image](/irda.PNG)
 
    - IrDA是個半雙工通訊協定。若傳送器TX正在忙碌(USART傳送資料給IrDA編碼器)，在IrDA接收端上的所有資料會被解碼器忽略。反之，若接收器正在忙碌(IrDA解碼器傳送已解碼的資料給USART)，在USART_TX上要傳給IrDA編碼器的資料，不會被IrDA編碼器處理。所以接收資料時，盡量避免有任何傳輸的動作，因資料可能會毀損。
    - 邏輯0會被傳輸成高電位訊號，而邏輯1會被當成0來傳輸(見下圖)。在一般模式下，脈衝訊號寬度由3/16 bit period決定。
 
-.. image:: /normal_mode.PNG
+![Image](/normal_mode.PNG)
 
    - SIR解碼器會將IrDA相容訊號轉換成USART資料流。編碼器則是相反行為。
    - SIR接收器會將高電位轉換成邏輯1，低電位轉換成邏輯0。傳送器則是相反的。
@@ -863,7 +863,7 @@ USART可以使用DMA達到連續通訊的效果，不過DMA會個別對於RX和T
 Transmission using DMA
 ------------------------
 
-.. image:: /tx_uart_dma.png
+![Image](/tx_uart_dma.png)
 
 若要啟用DMA模式，要在USART_CR3把DMAT啟用。在TXE bit被設立時，資料會先從SRAM(要先由DMA周邊設定，請參考DMA說明手冊)載入到USART_DR暫存器。在系統保留的SRAM，TX/RX的資料緩衝使用集中型DMA。
 
@@ -885,7 +885,7 @@ Transmission using DMA
 Reception using DMA
 ----------------------
 
-.. image:: /rx_usart_dma.png
+![Image](/rx_usart_dma.png)
 
 DMA模式也可以用於接收資料，須設定USART_CR3的DMAR。只要收到任何一個byte時，該次資料會從USART_DR載入至SRAM(要先由DMA周邊設定，請參考DMA說明手冊)。如果要把DMA通道對應給USART接收器，請使用下列流程:
 
@@ -916,14 +916,14 @@ USART使用modem modes時，會變成雙線半雙工通訊(UART)。通訊流控�
 利用nCTS跟nRTS控制TX、RX是否再傳送或接收data。
 可個別設定USART_CR3的RTSE以及CTSE為1，藉此允許RTS或CTS flow control。
 
-.. image:: /hardware_control_2usarts.png
+![Image](/hardware_control_2usarts.png)
 
 RTS Flow Control
 -------------------------
 
  - 如果開啟RTS flow control(要把RTSE設為1)，nRTS會被拉至低電位，直到USART接收器準備好要接收下一筆資料才會拉高。如果接收器的暫存器滿了，會先把nRTS拉至高電位，告知另外一端的傳送器在傳完這個資料frame之後，應該要停止傳送資料。
 
-.. image:: /rst_flow_control.png
+![Image](/rst_flow_control.png)
 
 CTS Flow Control
 -----------------------
@@ -934,7 +934,7 @@ CTS Flow Control
 
 另外，在開啟CTS flow的情況下，傳送器在送出break時不會去檢查nCTS的狀態。
 
-.. image:: /cst_flow_control.png
+![Image](/cst_flow_control.png)
 
 
 RS-232收發器-MAX232
@@ -942,7 +942,7 @@ RS-232收發器-MAX232
  - MAX232晶片是美信（MAXIM）公司專為RS-232標準串口設計的介面電路，屬於+3.0V to +5.5V RS-232 收發器，收發器採用專有的低壓差發送器輸出級，利用雙電荷泵在3.0至5.5V單電源供電時能夠實現真正的RS-232功能，MAX232是一個雙RS-232驅動器/接收器且可以從單一的+5V電源產生RS-232電位(voltage level)(充電泵可轉換+5V為 ±10V)，假設我們要用RS232來進行PC(serial port) 與微處理器間的溝通，就要用MAX232來處理訊號電位轉換的功能，方便微處理器處理轉換後的訊號。
  - 其包含兩個驅動器和兩個接收器，功耗僅40mW 且傳輸速率可以達120Kbps。
 
-.. image:: /MAX232_pin.png
+![Image](/MAX232_pin.png)
 
 MAX232 內部結構
 ===============
@@ -960,7 +960,7 @@ MAX232 內部結構
 
 成因是因為一個直流電壓大多時是通過交流電壓整流、濾波而來，濾波若不乾淨則會使交流成分疊加在直流穩定分量上，另外電池的直供電也會因負載的波動而產生波紋。
 
-.. image:: /MAX232_ripple2.jpg
+![Image](/MAX232_ripple2.jpg)
 
 MAX232工作原理
 ================
@@ -982,14 +982,14 @@ MAX232工作原理
 
 下拉電阻(Pull-down resistors):原理相同於上拉電阻，但其是與GND連接，故可以使邏輯訊號保持在接近0V的狀態。
 
-.. image:: /MAX232_waveform2.png
+![Image](/MAX232_waveform2.png)
 
 供電
  - 15腳GND、16腳VCC（+5V）。
 
 等校電路說明
 
-.. image:: /embedded/MAX232_circuit.jpg
+![Image](/embedded/MAX232_circuit.jpg)
 
 TXD為TTL輸入端，RXD為TTL輸出端，由於二極體與電容的作用使二極體D1與電容C7交接處的電壓保持在-3V~-15V。
 
@@ -1012,7 +1012,7 @@ USB to UART 橋接器-CP2102
 
 CP2102是一個十分完整的USB轉UART橋接器，運用了最小化元件和最少的PCB空間，其中包含了USB2.0的全速電路、USB收發器、振盪器、EEPROM(電子抹除式可複寫唯讀記憶體)、非同步串列資料匯流排。
 
-.. image:: /CP2102.png
+![Image](/CP2102.png)
 
  - EEPROM是用來儲存USB供應商ID、產品ID、產品說明、電源參數、裝置版本號、裝置序號，寫入次數壽命為10萬次。
 
@@ -1020,7 +1020,7 @@ CP2102是一個十分完整的USB轉UART橋接器，運用了最小化元件和�
 
  - UART支持RTS／CTS、DSR／DTR和X-On／X-Off作hand-shaking。
 
-.. image:: /CP2102_table.png
+![Image](/CP2102_table.png)
 
 handshaking:早期不同的終端設備或電腦以RS232作資訊通訊時，為了確認已建立通訊連結作先作hand shaking，確認後才會開始作資料傳輸。
 
@@ -1034,7 +1034,7 @@ CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排�
 
  - 裝置可以是由「匯流排供電」(Bus-powered)，也就是從USB連接的介面取電。
 
-.. image:: /CP2102_buspowered.png
+![Image](/CP2102_buspowered.png)
 
  - 匯流排供電情況:會將VBUS與REGIN接通，Vin由VBUS輸入。
 
@@ -1042,11 +1042,11 @@ CP2102內部有一個5 to 3V的電壓調節器，如此才能配置成匯流排�
 
  - 裝置由USB電源線提供電源，也就是「自行供電」(Self-powered)、或是由電池或外接電源供電。
 
-.. image:: /CP2102_selfpowered.png
+![Image](/CP2102_selfpowered.png)
 
  - 自行供電情況(功能由軟體的Boolean flag啟動，True代表使用self-powered):Vin由5V Power net輸入，REGIN和VBUS並不接通。
 
-.. image:: /CP2102_selfpowered_bypassed.png
+![Image](/CP2102_selfpowered_bypassed.png)
 
  - 另外一種self-powered(選擇功能)是若將3V的POWER NET電壓給VDD且將VDD和REGIN接在一起，則可以關掉電壓調節器，不通過其而產生輸出。
 
@@ -1065,11 +1065,11 @@ USB功能控制器負責管理所有UART及USB間的資料傳輸，和處理來�
 
 注意當Reset時，SUSPEND和SUSPEND'會有暫時的突波電壓，可放置一個10kΩ的下拉電阻在11腳位以保持重啟時低電位。
 
-.. image:: /CP2102_elec.png
+![Image](/CP2102_elec.png)
 
 工作流程
 
-.. image:: /embedded/CP2102_MAX232.jpg
+![Image](/embedded/CP2102_MAX232.jpg)
 
  - 大多時候CP2102會搭配MAX232作使用，在RS232與CP2102之間還會接一個Max232來達到穩壓的效果及轉換訊號的功能，資料從RS232的pin2傳出去，MAX232的R2IN收到，接著從R2OUT輸出一個TTL/CMOS訊號到CP2102裡面，因為CP2102裡面有兩條數據傳輸通道以及緩衝區，振盪器和USB function controller會去控制資料的緩衝和傳遞​，由USB傳送端從usb port傳出去。
 
@@ -1078,7 +1078,7 @@ STM32 USART Register 總表
 
 Status register(USART_SR)
 
-.. image:: /embedded/USART_SR.jpg
+![Image](/embedded/USART_SR.jpg)
 
 Data register(USART_DR)
 
@@ -1086,19 +1086,19 @@ Baud rate register(USART_BRR)
 
 Control Register 1(USART_CR1)
 
-.. image:: /embedded/USART_CR1.jpg
+![Image](/embedded/USART_CR1.jpg)
 
 Control Register 2(USART_CR2)
 
-.. image:: /embedded/USART_CR2.jpg
+![Image](/embedded/USART_CR2.jpg)
 
 Control Register 3(USART_CR3)
 
-.. image:: /embedded/USART_CR3.jpg
+![Image](/embedded/USART_CR3.jpg)
 
 Guard time and prescaler register(USART_GTPR)
 
-.. image:: /USART_register.png
+![Image](/USART_register.png)
 
 
 STM32F429-USART程式碼 & 示波器圖解
@@ -1214,7 +1214,7 @@ Download sample code :
         while(1);	// Don't want to exit
     }   
 
-.. image:: /embedded/USART_pin.jpg
+![Image](/embedded/USART_pin.jpg)
 
 
 .. code-block:: c
@@ -1225,7 +1225,7 @@ Download sample code :
 
 
 
-.. image:: /embedded/USART_Osc_PC.jpg
+![Image](/embedded/USART_Osc_PC.jpg)
 
 
 .. code-block:: c
@@ -1234,7 +1234,7 @@ Download sample code :
     開始連線後，板子會傳送USART字串。一直按板子的reset，會如圖中下方所示。
 
 
-.. image:: /embedded/USART_Osc_brief.jpg
+![Image](/embedded/USART_Osc_brief.jpg)
 
 
 .. code-block:: c
@@ -1245,10 +1245,10 @@ Download sample code :
     **時間區間沒調好，波形會變成下圖這樣**
 
 
-.. image:: /embedded/USART_Oscilloscope.jpg
+![Image](/embedded/USART_Oscilloscope.jpg)
 
 
-.. image:: /embedded/USART_Oscilloscope_char_b.jpg
+![Image](/embedded/USART_Oscilloscope_char_b.jpg)
 
 
 .. code-block:: c
@@ -1258,7 +1258,7 @@ Download sample code :
     整體波形變得不平整，但還是看得到USART輸出的波形。
 
 
-.. image:: /embedded/USART_Osc_IDLE_USART.jpg
+![Image](/embedded/USART_Osc_IDLE_USART.jpg)
 
 
 .. code-block:: c

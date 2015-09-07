@@ -9,7 +9,7 @@ Introduction
 - 串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
 - SPI提供兩種序列傳輸協定，分別是SPI protocol跟I2S audio protocol，預設是用SPI protocol，可藉由software來做轉換
 
-.. image:: /single_slave.png
+![Image](/single_slave.png)
 
 System Overview
 ===============
@@ -23,7 +23,7 @@ System Overview
 - 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置(Master端)”, 從屬裝置(Slave端)會用此頻率訊號來對收到的位串流進行同步
 - 如果有多個周邊晶片被連到同一個SPI介面 , 主控裝置能透過SS pin腳的電位高低來選擇接收資料的周邊裝置
 
-.. image:: /three_slaves.png
+![Image](/three_slaves.png)
 
 同步非同步之定義:
 ============
@@ -34,7 +34,7 @@ System Overview
 接收端的接收時脈(Receiver Clock，RxC)產生方式和傳送者的位元傳輸時脈(Transmitter Clock，TxC)是互相獨立無關的
 此種傳輸方式是允許傳送與接收時脈的頻率不那麼同步(允許一定程度的誤差)的情況下進行，故稱為非同步傳輸
 
-.. image:: /asynchronization.png
+![Image](/asynchronization.png)
 
 
 - 同步串列傳輸
@@ -42,7 +42,7 @@ System Overview
 對接收端而言並沒有自己的時脈產生電路，而是依據傳送端送過來的時脈來接收資料
 (即傳送端和接收端共用同一個CLOCK)，傳送端以一條導線送出資料，同時以另一條導線送出傳送時脈，提供接收端之同步訊號
 
-.. image:: /synchronization.png
+![Image](/synchronization.png)
 
 
 SPI features(STM32)
@@ -64,7 +64,7 @@ SPI features(STM32)
 Device overview
 ===============
 
-.. image:: /stm32f40x_block_diagram.png
+![Image](/stm32f40x_block_diagram.png)
 STM32F40x block diagram (STM32F407xx datasheet p.18) 
 
 - 3 SPI的傳輸速度
@@ -226,7 +226,7 @@ SPI communication using DMA
 
 - 要開啟此DMA request必須將SPI_CR2 register裡的TXDMAEN跟RXDMAEN bit設置為1
 
-.. image:: /embedded/Transmission_using_DMA.png
+![Image](/embedded/Transmission_using_DMA.png)
 
 CRC calculation (Cyclic redundancy check)
 -----------------------------------------
@@ -258,11 +258,11 @@ CRC error
 
 SPI interrupts
 --------------
-.. image:: /embedded/SPI_interrupt.png
+![Image](/embedded/SPI_interrupt.png)
 
 I²S functional description
 ==========================
-.. image:: /embedded/I2S_block_diagram.png
+![Image](/embedded/I2S_block_diagram.png)
 
 general
 -------
@@ -300,7 +300,7 @@ I²S Philips standard
 ''''''''''''''''''''
 WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS訊號會在傳輸第一個bits(MSB)前的一個CK clock cycle作切換
 
-.. image:: /embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG
+![Image](/embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG)
 
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 - WS signal在falling edge時作切換
@@ -355,7 +355,7 @@ PCM standard
 
 Code section
 ============
-.. image:: /embedded/spi_demo_stm32.jpg
+![Image](/embedded/spi_demo_stm32.jpg)
 
 - 左板為slave 右板為master
 - (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
@@ -594,11 +594,11 @@ main
 
 示波器圖解
 ============
-.. image:: /embedded/0xFF.png
+![Image](/embedded/0xFF.png)
 
 藍色線為Master的SCLK，紅色線為Master的output(MOSI)，此次訊號是一直傳送0xFF的結果。當SCLK在高電位時，此時的MOSI值即為Master的Output(高電位為1，低電位為0)
 
-.. image:: /embedded/for_0x55.png
+![Image](/embedded/for_0x55.png)
 
 上圖為加入for迴圈製造delay並傳送0x55的結果。我們發現當SPI沒有傳送時，SCLK也一直在低電位!
 
@@ -616,7 +616,7 @@ Question question
 
 I2S
 ---
-.. image:: /2013-12-17_151324.png
+![Image](/2013-12-17_151324.png)
 - SD(Serial Data) 與 SPI 的 MOSI 共用腳位
 - ext_SD  與 SPI 的 MISO 共用腳位
 - WS(Word Select) 與 SPI 的NSS 共用腳位 
@@ -627,16 +627,16 @@ GPIO clock的設定
  下列四圖中，黃色線為SPI之MOSI腳位輸出(0x55 -> 01010101)，藍色線為SCK。
  由更改GPIO_Speed 與 BaudRatePrescaler 以比較不同之處。
 
-.. image:: /M50P2.png
+![Image](/M50P2.png)
 此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除2，通訊正常
 
-.. image:: /M50P4.png
+![Image](/M50P4.png)
 此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除4，與上圖比較，可以看出時脈頻率為上圖的1/2，通訊正常
 
-.. image:: /M2P2.png
+![Image](/M2P2.png)
 此圖為 GPIO_Speed_2MHz，BaudRatePrescaler除2，可以看到時脈輸出跟不上訊號變換，無法正常通訊
 
-.. image:: /M25P2.png
+![Image](/M25P2.png)
 此圖為 GPIO_Speed_25MHz，BaudRatePrescaler除2，與GPIO_Speed_50MHz，BaudRatePrescaler除2的圖比較，看不出差異，且通訊正常
 
 Bus和prescaler的關係

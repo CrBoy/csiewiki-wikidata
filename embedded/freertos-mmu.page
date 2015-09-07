@@ -73,18 +73,18 @@ toc: no
   - Cloud9 IDE on Node.js w/ BoneScript library
   - plus much more
 
-.. image:: http://www.circuidipity.com/images/bbb-details3.png
+![Image](http://www.circuidipity.com/images/bbb-details3.png)
 
 [開機流程](#目錄)
 ------------
 
 　　當Beaglebone Black(BBB)一上電後，即開始執行ROM裡面的ROM code。再來根據腳位SYSBOOT的值來決定讀取哪裡的MLO檔，預設是讀取板子上eMMC的MLO檔。再來靠MLO讀取u-boot，u-boot再根據文件uEnv.txt載入image或file system。
 
-.. image:: https://c1.staticflickr.com/9/8827/17633638240_e7c3e007a4_o.jpg
+![Image](https://c1.staticflickr.com/9/8827/17633638240_e7c3e007a4_o.jpg)
 
 　　若是按住BBB板子上的S2按鍵，根據下圖，會讓SYS_BOOT2變成低電位，使得BBB的ROM code載入MMCSD內的MLO並執行。之後再根據MLO的程式碼來決定要載入什麼檔案執行。在我們第一次實驗時，是利用MLO去載入app並執行。
 
-.. image:: https://c2.staticflickr.com/6/5462/17823806425_3996a193f6_o.png
+![Image](https://c2.staticflickr.com/6/5462/17823806425_3996a193f6_o.png)
 
 
 [FreeRTOS on Beaglebone Black](#目錄)
@@ -162,7 +162,7 @@ toc: no
 
 結果圖如下，可看出FreeRTOS已能初步運作。
 
-.. image:: https://c1.staticflickr.com/1/476/18159470350_95ea35c12d_o.png
+![Image](https://c1.staticflickr.com/1/476/18159470350_95ea35c12d_o.png)
 
 　　
 
@@ -172,7 +172,7 @@ toc: no
 
 結果圖如下，輸出的結果比較清晰且LED的閃爍可以用肉眼察覺。
 
-.. image:: https://c1.staticflickr.com/9/8781/18344147282_2ebf303d4d_o.png
+![Image](https://c1.staticflickr.com/9/8781/18344147282_2ebf303d4d_o.png)
 
 
 [移植FreeRTOS 8.2.1到BBB](#目錄)
@@ -226,24 +226,24 @@ toc: no
 [UART I/O](#目錄)
 -------------------------
 
-.. image:: https://c4.staticflickr.com/4/3895/18887195080_3ca4d1f5aa_o.png
+![Image](https://c4.staticflickr.com/4/3895/18887195080_3ca4d1f5aa_o.png)
 
 　
 
 初始化設定：
 
-.. image:: https://c1.staticflickr.com/1/527/18887194920_b4a8b51c4c_o.png
+![Image](https://c1.staticflickr.com/1/527/18887194920_b4a8b51c4c_o.png)
 
 　
 
 　　IER[4]設為0(sleep mode)，才可設定DLL與DLH，接著將LCR[7]設為1，base+0x0和base+0x4的位置會對應到DLL、DLH，接著設定DLL與DLH(baud rate 相關設定)，再將LCR[7]設為0
 接著RTS DTR output active(傳輸的通知訊號)
 
-.. image:: https://c1.staticflickr.com/1/434/18452416814_9107ac21db_o.png
+![Image](https://c1.staticflickr.com/1/434/18452416814_9107ac21db_o.png)
 
 　
 
-.. image:: https://c1.staticflickr.com/1/559/19048682456_0ae3c5b5c5_o.png
+![Image](https://c1.staticflickr.com/1/559/19048682456_0ae3c5b5c5_o.png)
 
 [ARMv7-A MMU Architecture](#目錄)
 ================================
@@ -265,7 +265,7 @@ ARM 的 MMU 支援 四種 page sizes(比較大的稱 section，比較小的稱 p
 
 The MMU supports a two-level hierarchy for its page table structure.
 
-.. image:: https://c1.staticflickr.com/1/501/18421058670_79ed99103a_o.png
+![Image](https://c1.staticflickr.com/1/501/18421058670_79ed99103a_o.png)
 
 first-level table 功能:
 
@@ -312,7 +312,7 @@ Main TLB 介紹:
 
 　
 
-.. image:: https://c1.staticflickr.com/9/8887/17986805824_0c95da481b_o.png
+![Image](https://c1.staticflickr.com/9/8887/17986805824_0c95da481b_o.png)
 
 Figure 2 表示出所有 elements 運作流程：
 
@@ -328,7 +328,7 @@ Figure 2 表示出所有 elements 運作流程：
 
 以ARMv7架構為例,要控制TLB Translation Table,可以透過CP15的暫存器c2,其中c2主要提供以下Translation table base registers
 
-.. image:: https://c1.staticflickr.com/1/436/17986805674_4d0e1757f6_o.png
+![Image](https://c1.staticflickr.com/1/436/17986805674_4d0e1757f6_o.png)
 
 　
 
@@ -336,25 +336,25 @@ Figure 2 表示出所有 elements 運作流程：
 
 如下所示為16MB(SuperSection) 配置下,TLB分頁運作的概念
 
-.. image:: https://c1.staticflickr.com/1/466/18611607711_c9d17b382c_o.png
+![Image](https://c1.staticflickr.com/1/466/18611607711_c9d17b382c_o.png)
 
 　
 
 如下所示為1MB(Section) 配置下,TLB分頁運作的概念
 
-.. image:: https://c1.staticflickr.com/9/8875/18583078246_3d9e150433_o.png
+![Image](https://c1.staticflickr.com/9/8875/18583078246_3d9e150433_o.png)
 
 　
 
 如下所示為64KB(Large Page) 配置下,TLB分頁運作的概念
 
-.. image:: https://c1.staticflickr.com/1/271/18609453405_83fd62aed2_o.png
+![Image](https://c1.staticflickr.com/1/271/18609453405_83fd62aed2_o.png)
 
 　
 
 如下所示為4KB(Small Page) 配置下,TLB分頁運作的概念
 
-.. image:: https://c1.staticflickr.com/9/8899/18609452125_8c1c539f48_o.png
+![Image](https://c1.staticflickr.com/9/8899/18609452125_8c1c539f48_o.png)
 
 
 [保護機制與記憶體行為](#目錄)
@@ -460,7 +460,7 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
   - No access (0b00): 只要存取該記憶體空間，則觸發Domain fault。
   - Clients (0x01): 做存取權限檢查，也就是有可能產生Permission fault。
   - Managers (0x11): 不做存取權限檢查，不會產生Permission fault。
-.. image:: https://c1.staticflickr.com/1/455/19021371465_559888f426_o.png
+![Image](https://c1.staticflickr.com/1/455/19021371465_559888f426_o.png)
 
 .. code-block:: ARM assembly
 
@@ -475,14 +475,14 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
     MCR     p15, #0, r0, c2, c0, #0
 
-.. image:: https://c1.staticflickr.com/1/388/19024481031_e0d57672d6_o.png
+![Image](https://c1.staticflickr.com/1/388/19024481031_e0d57672d6_o.png)
 
 
 * **C** : Cacheable
 * **B** : Buferrable
 * **TEX[2:0]** : TEX Type Extension (TEX) bit 如下以SCTLR.TRE=0 (透過CP15的c1取得 System Control Register 32bits值的bit 28 來設定),也就是TEX Remap disabled模式,來說明記憶體區段屬性的配置與意義.
 
-.. image:: https://c1.staticflickr.com/1/519/18996675206_b1546ecfd2_o.png
+![Image](https://c1.staticflickr.com/1/519/18996675206_b1546ecfd2_o.png)
 
 
 * **XN** : 為Execute Never 的屬性,若該記憶體分頁 XN Bit設定為1,表示該分頁不會被處理器Fetch指令進來執行,在Client Domain (也就是會稽核Access Permission狀態)下,記憶體分頁必須要 XN Bit為0,且記憶體屬性是設定為可讀取,同時沒有其他Prefech Abort發生的狀態下,才可以被執行. 如果該記憶體分頁是屬於Manager Domain,XN Bit就不會被當做稽核的條件. (所以就可以嘗試去執行,而不會導致例外發生).
@@ -493,7 +493,7 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
 
 * **AP[2:0]** :
 
-.. image:: https://farm1.staticflickr.com/526/19763052715_44c4313bea_o.png
+![Image](https://farm1.staticflickr.com/526/19763052715_44c4313bea_o.png)
 
 * **S** : 用以定義該記憶體分頁是否為Shareable,S為 0 表示該記憶體分頁為Non-shareable,S 為 1 表示該記憶體分頁為 Shareable.
 
@@ -609,7 +609,7 @@ TTBR0的參數定義
 
 記憶體映射位址對照
 
-.. image:: https://c1.staticflickr.com/1/437/18452839034_a8de3ec9f4_o.png
+![Image](https://c1.staticflickr.com/1/437/18452839034_a8de3ec9f4_o.png)
 
 
 [問題討論](#目錄)
@@ -643,7 +643,7 @@ TTBR0的參數定義
 
 **Q5: eMMC在板子的哪裡?**
 
-.. image:: http://www.circuidipity.com/images/bbb-details3.png
+![Image](http://www.circuidipity.com/images/bbb-details3.png)
 
 　
 
@@ -659,7 +659,7 @@ TTBR0的參數定義
 
 　　ROM code可放的容量很小，在am335x technical reference manual中提到cortex-a8的ROM code只有176kbyte(下表)，因此能做的事不多
 
-.. image:: https://c1.staticflickr.com/1/349/18888649319_3e8d8e343e_o.png
+![Image](https://c1.staticflickr.com/1/349/18888649319_3e8d8e343e_o.png)
 
 　
 

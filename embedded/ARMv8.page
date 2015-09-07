@@ -4,8 +4,8 @@ categories: arm, armv8, arm64, embedded
 ...
 ARMv8架構介紹
 =====================================
-.. image:: http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg
-.. image:: /embedded/evolution_arm_arch.png
+![Image](http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg)
+![Image](/embedded/evolution_arm_arch.png)
 ARMv8架構有一個重要的特點是他與其之前的架構相容。
 
 Execution state
@@ -31,7 +31,7 @@ Execution state
 
 在A32與T32中做切換只要透過BX即可，但要在AArch32與AArch64間做切換只能透過Exception
 
-.. image:: http://loda.hala01.com/wp-content/uploads/2014/12/image005.png
+![Image](http://loda.hala01.com/wp-content/uploads/2014/12/image005.png)
 
 (圖片來自loda大大的blog)
 
@@ -128,11 +128,11 @@ EL2只會實現在 Non-secure state，並負責:
 CPSR
 ......................................
 
-.. image:: /embedded/CPSR.png
+![Image](/embedded/CPSR.png)
 
 - 與 armv7 的比較 (可參考 [loda armv8-與-linux的新手筆記](http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/) ，以下圖片有些來自此網站)
 
-.. image:: http://loda.hala01.com/wp-content/uploads/2014/12/table.png
+![Image](http://loda.hala01.com/wp-content/uploads/2014/12/table.png)
 
     - aarch32 多了Bit 20:IL (Illegal Execution State bit)
     - aarch64 多了Bit 9:E 被 D取代，並少了 IT，GE 
@@ -141,13 +141,13 @@ CPSR
         - M[3:0]: Current processor mode
             - 再AArch32下mode與Armv7下的表示相同，在AArch64下則如下圖所示:
 
-            .. image:: /embedded/CPSR_mode.png
+            ![Image](/embedded/CPSR_mode.png)
 
         - IT[7:2], bits [15:10] 與 IT[1:0] (AArch32), bits [26:25]: T32 IT (If-Then) instruction
 
 Process state PSTATE
 ......................................
-.. image:: /embedded/pstate.png
+![Image](/embedded/pstate.png)
 
 SP暫存器 (stack pointer registers)
 ......................................
@@ -161,14 +161,14 @@ SP暫存器 (stack pointer registers)
     - 用msr、mrs來存取
 - 可以透過t(SP_EL0)、h(SP_ELx)的後綴表明SP的例外層級
 
-.. image:: /embedded/sp_th.png
+![Image](/embedded/sp_th.png)
 
 - SPSel, Stack Pointer Select: 可以透過MSR, MRS存取來設定要用哪個SP
     - SP, bit [0]:Stack pointer to use.
         - 0 Use SP_EL0 at all exception levels.
         - 1 Use SP_ELx for exception level ELx.
 
-.. image:: /embedded/spsel.png
+![Image](/embedded/spsel.png)
 
 
 SIMD 與浮點暫存器
@@ -187,7 +187,7 @@ SIMD 與浮點暫存器
 - 在例外發生時，會把PE的狀態存在目標層級的SPSR中
 - 當從例外返回時，PE的狀態會從SPSR中載入
 
-.. image:: /embedded/SPSR.png
+![Image](/embedded/SPSR.png)
 (請對照 P.1418)
 
 例外連結暫存器ELRs (Exception Link Registers)
@@ -206,11 +206,11 @@ Syndrome Register
 - ex: 
         - esr_el2
 
-        .. image:: /embedded/esr.png
+        ![Image](/embedded/esr.png)
 
         - ec 編碼(節錄，請對照manual D8.2.25 ESR_EL2, Exception Syndrome Register (EL2) 章節):
 
-        .. image:: /embedded/esr_ec.png
+        ![Image](/embedded/esr_ec.png)
 
 
 虛擬記憶體系統架構 (Virtual Memory System Architecture)
@@ -224,7 +224,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 地址轉換在不同例外層級與安全狀態之間是獨立的。
 
-.. image:: /embedded/mm.jpg
+![Image](/embedded/mm.jpg)
 
 - 虛擬地址Virtual Address (VA)
     - instruction 使用的地址(PC, LR, ELR, SP 保存的地址)
@@ -246,7 +246,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
     - Translation table base register (TTBR) 指向translation table的起始位置。
         -  EL1&0 stage 1 translation 需要兩個translation table，一個是對低位址定址空間，一個是對高位址。
 
-        .. image:: /embedded/TTBR01.jpg
+        ![Image](/embedded/TTBR01.jpg)
 
     - [stackoverflow](http://stackoverflow.com/questions/14460752/linux-kernel-arm-translation-table-base-ttb0-and-ttb1)
     - TLB 可以cache Translation table entries
@@ -256,7 +256,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 - 不同的implementation，translation stages的實作也會不同
 
-.. image:: /embedded/AArch64_translation_stages.jpg
+![Image](/embedded/AArch64_translation_stages.jpg)
 
 - 對每個地址轉換階級: 
     - A system control register(CR) bit 啟用該層地址轉換
@@ -269,7 +269,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 - MMU相應的系統控制暫存器
 
-.. image:: /embedded/CR.jpg
+![Image](/embedded/CR.jpg)
 
 
 
@@ -279,7 +279,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
     - With ARM Virtualization extensions: 將上面的動作交給硬體來做，hypervisor讓硬體認為guest OS產生的實體地址為虛擬地址，然後再以此地址(IPA)做第二階translation。
 
-.. image:: http://www.futurechips.org/wp-content/uploads/2013/03/stage-1-translation-3.png
+![Image](http://www.futurechips.org/wp-content/uploads/2013/03/stage-1-translation-3.png)
 
 (圖片來自http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html)
 
@@ -296,11 +296,11 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 - granule size決定了page及一次查找可以轉換的bit數
 
-.. image:: /embedded/4KB.jpg
+![Image](/embedded/4KB.jpg)
 
-.. image:: /embedded/16KB.jpg
+![Image](/embedded/16KB.jpg)
 
-.. image:: /embedded/64KB.jpg
+![Image](/embedded/64KB.jpg)
 
 Translation table walks
 .................................................................
@@ -318,13 +318,13 @@ Translation table walks
 
 - stage 1 translation table walk for a 48-bit input address 與 39-bit input address
 
-.. image:: /embedded/4KBtranslation.bmp
+![Image](/embedded/4KBtranslation.bmp)
 
 通用計時器 (The Generic Timer)
 ------------------------------------------------------------------------------------
 ARMv8-A_Architecture_Reference_Manual P.1855
 
-.. image:: /embedded/generic_timer.png
+![Image](/embedded/generic_timer.png)
 
 - 提供系統計數器來測量時間 (in real-time)
 - 支援虛擬計數器來測量在特定虛擬機器上虛擬時間(virtual-time)

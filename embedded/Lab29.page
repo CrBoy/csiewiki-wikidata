@@ -57,7 +57,7 @@ qemu-semihost 操作
 
 參考執行畫面:
 
- .. image:: /embedded/Lab20/semihost.png
+ ![Image](/embedded/Lab20/semihost.png)
 
 Memory Management
 ----------------------------------

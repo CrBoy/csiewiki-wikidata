@@ -13,7 +13,7 @@ I²C的參考設計使用一個7位元長度的位址空間但保留了16個位�
 I²C bus
 ...................
 
-.. image:: /embedded/i2c_structure.gif
+![Image](/embedded/i2c_structure.gif)
 
 I2C 使用兩條雙向 open-drain Line：
  - SDA : Serial Data Line, holds Data or address signal
@@ -51,7 +51,7 @@ I²C data mode :
  - slave transmit — slave node is sending data to the master
  - slave receive — slave node is receiving data from the master
 
-.. image:: /embbeded/i2c_data_transmit.png
+![Image](/embbeded/i2c_data_transmit.png)
 
 I²C data Transmit :
  - Data Transfer is initiated with a START bit (S) signaled by SDA being pulled low while SCL stays high.
@@ -62,7 +62,7 @@ I²C data Transmit :
 
 I²C arbitration
 ...................
-.. image:: /embedded/i2c_arbitration.png
+![Image](/embedded/i2c_arbitration.png)
 
 I²C 的仲裁
  - 避免同時間有 2個以上的master (不同資料) 控制 i2c
@@ -109,7 +109,7 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 - I²S的角色可以是一個主控端(Master)監控裝置,也可以同時是一個傳輸控制器(Tx), 接收器(Rx)  或是兩個從端角色的裝置。
 - I²S 介面傳輸資料具有兩個左右音訊通道的資料, 它靠 WS = 0 設定為零時; 定義為 通道 1 (左聲道資料讀取) ; WS = 1 ; 通道 2 (右聲道資料讀取)。
 
-.. image:: /embedded/I2S_Fig1.jpg
+![Image](/embedded/I2S_Fig1.jpg)
 
 
 
@@ -127,7 +127,7 @@ I²C 特性
 
  - STOP condition: SCL=High 且 SDA=為正緣
 
-  .. image:: /embedded/i2c_condition.png
+  ![Image](/embedded/i2c_condition.png)
 
  - 由Master發送起始信號來開起通訊，所有的slave device接收到起始信號後會進入接收數據模式。接著Master需要發送通訊目標設備的address及R/W資訊。
 
@@ -135,7 +135,7 @@ I²C 特性
 
    - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R(1)/W(0)後，該 address 的slave端會發送一個bit的 Ack(acknowledge) bit，ACK=0表設定成功(Slave把SDA拉到LOW)，開始數據傳送。 
 
-    .. image:: /embedded/i2c_com.png
+    ![Image](/embedded/i2c_com.png)
 
     (7bit mode)
 
@@ -143,7 +143,7 @@ I²C 特性
    
 
 
-    .. image:: /embedded/i2c_10bit.gif
+    ![Image](/embedded/i2c_10bit.gif)
     
 
     (10bit mode)
@@ -167,7 +167,7 @@ I²C block diagram(on STM32F42x)
 ......................................
 
 
-.. image:: /embedded/i2c_block_diagram.jpg
+![Image](/embedded/i2c_block_diagram.jpg)
 
 
 I²C interrupt and Event
@@ -178,7 +178,7 @@ I²C interrupt and Event
  - successful address/ data communication  (ITEVFEN ITBUFEN)
  - error condition (ITERREN)
 
-    .. image:: /embedded/i2c_interrupt.png
+    ![Image](/embedded/i2c_interrupt.png)
 
 clock control register
 ------------------------------------
@@ -189,11 +189,11 @@ clock control register
 
 
 
-.. image:: /embedded/ccr2.jpg
+![Image](/embedded/ccr2.jpg)
 
 設定 Fm mode 的duty cycle
 
-.. image:: /embedded/ccr.jpg
+![Image](/embedded/ccr.jpg)
 
 透過設定CCR來產生SCL頻率。
 
@@ -202,7 +202,7 @@ clock control register
 control register
 ------------------------------------
 
-.. image:: /embedded/cr1.jpg
+![Image](/embedded/cr1.jpg)
 
 - ACK: Acknowledge enable
 
@@ -211,7 +211,7 @@ control register
  - NOSTRETCH: Clock stretching disable (Slave mode)
  - 當STOP, START bit 被set後, 在他們被硬體clear前不能從軟體寫入I2C_CR1。
 
-.. image:: /embedded/cr2.jpg
+![Image](/embedded/cr2.jpg)
 
 - ITBUFEN: Buffer interrupt enable
 
@@ -244,9 +244,9 @@ control register
 status register
 ------------------------------------
 
-    .. image:: /embedded/i2c_status_register(1).png
+    ![Image](/embedded/i2c_status_register(1).png)
 
-    .. image:: /embedded/i2c_status_register(2).png
+    ![Image](/embedded/i2c_status_register(2).png)
 
   .. code-block:: c
 
@@ -340,7 +340,7 @@ four I²C modes
 Master transmitter
 ------------------------------------
 
-.. image:: /embedded/i2c_master_transmitter.png
+![Image](/embedded/i2c_master_transmitter.png)
 
 
 WriteOneByte
@@ -356,7 +356,7 @@ WriteOneByte
 Master receiver
 ------------------------------------
 
-.. image:: /embedded/i2c_master_receiver.png
+![Image](/embedded/i2c_master_receiver.png)
 
 ReadOneByte
 
@@ -373,7 +373,7 @@ ReadOneByte
 Slave transmitter
 ------------------------------------
 
-.. image:: /embedded/i2c_slave_transmitter.png
+![Image](/embedded/i2c_slave_transmitter.png)
 
 - 等待EV1
 - 中斷 -> I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED
@@ -385,7 +385,7 @@ Slave transmitter
 Slave receiver
 ------------------------------------
 
-.. image:: /embedded/i2c_slave_receiver.png
+![Image](/embedded/i2c_slave_receiver.png)
 
 - 等待EV1
 - 中斷 -> I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED
@@ -399,11 +399,11 @@ flow chart(two boards)
 
 - master transmitter/slave receiver
 
- .. image:: /embedded/flow_chart_master_t_slave_r.jpg
+ ![Image](/embedded/flow_chart_master_t_slave_r.jpg)
 
 - master receiver/slave transmitter
 
- .. image:: /embedded/flow_chart_master_r_slave_t.jpg
+ ![Image](/embedded/flow_chart_master_r_slave_t.jpg)
 
 I²C on STM32F429-Discovery
 =====================================
@@ -612,37 +612,37 @@ SDA: PC9
 slave address: 0x82 (0x10000010)
 (可以在datasheet p10找到) 
 
-.. image:: /embedded/i2c_picture.jpg
+![Image](/embedded/i2c_picture.jpg)
 
-.. image:: /embedded/scope_5.jpg
+![Image](/embedded/scope_5.jpg)
 start bit -> send address and transmitter bit -> ack -> senddata(register address 0x00)
 
-.. image:: /embedded/scope_6.jpg
+![Image](/embedded/scope_6.jpg)
 start bit -> send address and receiver bit -> ack -> data send by slave
 
-.. image:: /embedded/scope_8.jpg
+![Image](/embedded/scope_8.jpg)
 stop bit -> start bit -> send address and transmitter bit -> ack -> senddata(register address 0x01)
 
-.. image:: /embedded/scope_9.jpg
+![Image](/embedded/scope_9.jpg)
 start bit -> send address and receiver bit -> ack -> data send by slave
 
-.. image:: /embedded/scope_12.jpg
+![Image](/embedded/scope_12.jpg)
 改變I2C CLOCK SPEED -> 400kHz
 
-.. image:: /embedded/scope_14.jpg
+![Image](/embedded/scope_14.jpg)
 要注意探棒衰減...
 
 
 以下是邏輯分析儀的結果
 
-.. image:: /embedded/touch1.jpg
+![Image](/embedded/touch1.jpg)
 IOE_ReadID() 讀0x00、0x01暫存器的值
 
 start bit -> 0x82(slave address) + W bit -> Send 0x00 -> start bit -> 0x82(slave address)  + R bit ->Receive 0x08 ->
 
 start bit -> 0x82(slave address)  + W bit -> Send 0x01 -> start bit -> 0x82(slave address)  + R bit ->Receive 0x11
 
-.. image:: /embedded/touch2.jpg
+![Image](/embedded/touch2.jpg)
 
 I2C_ReadDeviceRegister(IOE_REG_TP_CTRL);    //IOE_REG_TP_CTRL = 0x40. 如果panel有被觸碰，會回傳0x80
 
@@ -655,7 +655,7 @@ I2C_ReadDeviceRegister(IOE_REG_TP_DATA_Z);  //IOE_REG_TP_DATA_Z = 0x51
 start bit -> 0x82(slave address)  + W bit -> Send 0x51 -> start bit -> 0x82(slave address)  + R bit ->Receive 0x00 0x00
 
 
-.. image:: /embedded/touch3.jpg
+![Image](/embedded/touch3.jpg)
 
 I2C_WriteDeviceRegister(IOE_REG_FIFO_STA,0x01); //IOE_REG_FIFO_STA = 0x4B
 
@@ -687,31 +687,31 @@ master
  make
  make flash
 
-.. image:: /embedded/IMG_1571.JPG
+![Image](/embedded/IMG_1571.JPG)
 
 - start bit
 
-.. image:: /embedded/i2c6.jpg
+![Image](/embedded/i2c6.jpg)
 
 - send address
 
-.. image:: /embedded/i2c1.jpg
+![Image](/embedded/i2c1.jpg)
 
 - 0x30
 
-.. image:: /embedded/i2c2.jpg
+![Image](/embedded/i2c2.jpg)
 
 - start bit
 
-.. image:: /embedded/i2c3.jpg
+![Image](/embedded/i2c3.jpg)
 
 - send address
 
-.. image:: /embedded/i2c4.jpg
+![Image](/embedded/i2c4.jpg)
 
 - 0x31
 
-.. image:: /embedded/i2c5.jpg
+![Image](/embedded/i2c5.jpg)
 
 master: 
 - [http://youtu.be/Y0udSje3PDc  ](http://youtu.be/Y0udSje3PDc)
@@ -722,7 +722,7 @@ slave:
 SMBus
 ======
 
-.. image:: /embedded/SMBus1.jpg
+![Image](/embedded/SMBus1.jpg)
 
 I2C起源於電視設計，但之後朝通用路線發展，各種電子設計都有機會用到I2C；而SMBus則在之後為PC所制訂的先進組態與電源管理介面（Advanced Configuration & Power  Interface；ACPI）規範中成為基礎的管理訊息傳遞介面、控制傳遞介面。
 
@@ -732,9 +732,9 @@ I2C起源於電視設計，但之後朝通用路線發展，各種電子設計�
 
 * Low Operating Frequency and Timeout:
 
-.. image:: /embedded/SMBus2.jpg
+![Image](/embedded/SMBus2.jpg)
 
-.. image:: /embedded/SMBus3.jpg
+![Image](/embedded/SMBus3.jpg)
 
 以運作頻率來說，I2C此方面相當寬裕，最低頻可至0Hz（直流狀態，等於時間暫停），高可 100kHz（Standard Mode）、400kHz（Fast Mode）、乃至3.4MHz（High Speed Mode），相對的SMBus就很拘限，最慢不慢於10kHz，最快不快於100kHz。至於為何要維持在10kHz以上，主要的原因是為了管理監控，另一個用意是只要在保持一定傳速運作的情況下加入參數，就可輕鬆獲知匯流排目前是否處於閒置（Idle）中，省去逐一偵測傳輸過程中的停斷（STOP）信號，或持續保有停斷偵測並輔以額外參數偵測，如此對匯流排閒置後
 的再取用會更有效快速。　
@@ -747,7 +747,7 @@ SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設�
 
 * Different Logic levels
 
-.. image:: /embedded/SMBus6.jpg
+![Image](/embedded/SMBus6.jpg)
 
 SMbus在能耗上優於I2C
 
@@ -767,7 +767,7 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
  
    Table 4.為保留的Slave address,在設備選擇Slave address要避免使用這些address
 
-.. image:: /embedded/SMBus7.jpg
+![Image](/embedded/SMBus7.jpg)
 
   - Purpose-assigned addresses
 
@@ -777,7 +777,7 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
    Prototype Addresses保留用於設備與應用程式作為雛型驗證及工程開發，它們永遠不能分配給任何設備
 
-.. image:: /embedded/SMBus8.jpg
+![Image](/embedded/SMBus8.jpg)
 
   - Miscellaneous device addresses
 
@@ -816,7 +816,7 @@ PMBus(Power Management Bus)，是一種數位電源管理協議標準，使電�
 
 一個典型的PMBus連接方式
 
-.. image:: /embedded/PMBus1.jpg
+![Image](/embedded/PMBus1.jpg)
 
 PMBus協議規定所有slave device必須將其默認的配置數據保存在永久性存儲器內，這樣它們在上電時無須再與BUS通信跟SMBus比較起來，PMBus多了兩種與Power converter共用的兩種hardware signal，一個是Control Line，用於啟動或關閉單個slave device，另一個是write protect用於防止更改到永久性儲存器的內容。
 
@@ -826,11 +826,11 @@ Block Write跟Group_command protocol(基於PIC16F886這個PMBus device)如下所
 
 Block Write
 
-.. image:: /embedded/PMBus2.jpg
+![Image](/embedded/PMBus2.jpg)
 
 Group_Command_Protocol
 
-.. image:: /embedded/PMBus3.jpg
+![Image](/embedded/PMBus3.jpg)
 
 Reference
 =====================================

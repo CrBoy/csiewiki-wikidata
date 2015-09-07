@@ -3,18 +3,18 @@ title: USB (Universal Serial Bus)
 categories: USB, STM32, STM32F4, STM32F429
 ...
 
-.. image:: http://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/USB_Icon.svg/200px-USB_Icon.svg.png
+![Image](http://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/USB_Icon.svg/200px-USB_Icon.svg.png)
 
 
 USB歷史簡介
 ^^^^^^^^^^^^^^^^
 早在USB出來之前，資料的傳輸主要是使用並列埠(parallel port)傳輸，如圖
 
-.. image:: /embedded/parallel.png
+![Image](/embedded/parallel.png)
 
 早期為了想加快傳遞資料，透過此種並列線進行平行傳輸，這比起在更早之前的串列傳輸(serial port)，大大的提升了傳輸的速度，如圖
 
-.. image:: /embedded/serial.png
+![Image](/embedded/serial.png)
 
 但是在使用並列埠傳輸會遇到一些問題，像是:
 
@@ -58,9 +58,9 @@ USB是一種序列資料傳輸界面(serial interface)，設計目標為隨插�
 
 實體層
 =======
-.. image:: /embedded/usb/pin.png
+![Image](/embedded/usb/pin.png)
 
-.. image:: /embedded/usb/800px-USB_InSide.JPG
+![Image](/embedded/usb/800px-USB_InSide.JPG)
 
 訊號傳輸
 =======
@@ -70,32 +70,32 @@ USB是一種序列資料傳輸界面(serial interface)，設計目標為隨插�
   - 傳輸過程都要盡量阻抗匹配，要不然會產生反射波，導致訊號錯誤
   - 圖示講解傳輸線理論
   
-.. image:: /embedded/transmission_1.png
+![Image](/embedded/transmission_1.png)
 
-.. image:: /embedded/transmission_2.png
+![Image](/embedded/transmission_2.png)
 
-.. image:: /embedded/transmission_3.png
+![Image](/embedded/transmission_3.png)
 
-.. image:: /embedded/transmission_4.png
+![Image](/embedded/transmission_4.png)
 
   - 如果想要每一步的傳輸都是很穩定的，就要使傳輸線每一段的阻抗值相同，如果不相同，會導致阻抗不匹配，產生反射波，干擾訊號
 
 * USB 訊號使用標記為D+ 和D- 的雙絞線(twisted pair)傳輸，以抵消長導線的電磁干擾。
 
-.. image:: /400px-USB_Twisted_Pair.svg.png
+![Image](/400px-USB_Twisted_Pair.svg.png)
 
    它們各自使用半雙工的差動訊號(Differential signal), 並利用NRZI(non-return-to-zero Inverted)的編碼方式來傳送。
 
 * 差動訊號：訊號傳輸在兩根不同的線上，這兩個信號的振幅相等，相位相反。
 
-.. image:: /DiffSig.png
+![Image](/DiffSig.png)
 
 another illustration
 
-.. image:: /embedded/Differential_Signaling.png
+![Image](/embedded/Differential_Signaling.png)
 * NRZI Code: NRZI(Non Return to Zero Invert，不歸零就反向)的編碼方式，無需同步的時脈信號也能產生同步的資料存取。NRZI的編碼規則是，當資料位元為 “1” 時不轉換，為 “0” 時再作轉換。
 
-.. image:: /embedded/USB/3.png
+![Image](/embedded/USB/3.png)
 
 * J state:Idle state(閒置)
 
@@ -118,18 +118,18 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 * 資料傳輸流程
 
-.. image:: /USB_SCHEMA.gif
+![Image](/USB_SCHEMA.gif)
 
 傳輸速率
 ========
 * 上述簡介中的USB傳輸速度(low speed：1.5 Mb/s、full speed 12 Mb/s、high speed 480 Mb/s)的給定，主要是依據USB規格書上的定義，這些速度可以透過pull-up    resistor來調整
    -low speed
 
-.. image:: /embedded/low_speed.png
+![Image](/embedded/low_speed.png)
 
    -full speed
 
-.. image:: /embedded/full_speed.png
+![Image](/embedded/full_speed.png)
 
    -high speed
        - 首先電路連接方式跟full speed一樣，就在 device 跟 host 端連接時，host端會先傳送一個USB RESET signal給device端，device端接收後，接下來就是device 端跟 host 端的速度協商，如果device有支援high speed的話，就會發出chirp K signal給host端，如果host端有支援high speed，也會回應一連串交替的chirp k 和 chirp J signal回給device端，達成handshake，就可以改用high speed傳輸。
@@ -148,7 +148,7 @@ USB Host 提供一個接口，如果要連接更多週邊，需要使用Hub。
 * 考慮訊號傳遞衰減和時間限制，網路架構最多七層。
 * USB網路最多可支援127個裝置節點(7 bits in Token packet = 2^7 - 1)。
 
-.. image:: /embedded/usb/tiernetwork.png
+![Image](/embedded/usb/tiernetwork.png)
 
 USB Device 又可以分為：
 
@@ -164,7 +164,7 @@ USB是一種Polled Bus，由Host啟動(Initiates)資料傳輸，Device做出回�
 
 * 此處的Polling(輪詢)是Host Controller來執行，當Bus需要被注意時，會發出中斷讓OS處理。
 
-.. image:: /embedded/usb/comm_model.png
+![Image](/embedded/usb/comm_model.png)
 
 USB由幾種Protocol Layers所組成，資料藉由Pipes傳輸。
 
@@ -183,7 +183,7 @@ Endpoints可以被視為資料的來源或目標(Source or Sink)。一個裝置�
 每個Endpoint只能有一個傳輸方向，只有Endpoint 0 是例外。Endpoint 0 可以有IN和OUT的雙向傳輸（透過Message Pipe），用來控制裝置（Device)。
 
 
-.. image:: /transfermodel.png
+![Image](/transfermodel.png)
 
 
 傳輸型態
@@ -203,7 +203,7 @@ Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包，封
 一個 Transaction 通常由三個封包組成，但依傳輸型態而定，一個 Transaction 可能包含一個、兩個、三個封包。
 
 
-.. image:: /packet.jpg
+![Image](/packet.jpg)
 
 ![Image](/embedded/USB/PID)types.jpg
 
@@ -214,7 +214,7 @@ Transaction
 
 Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包 （Token packet, Data packet, Handshake 或稱  Status packet ）。
 
-.. image:: /embedded/usb/pipemodel.png
+![Image](/embedded/usb/pipemodel.png)
 
 * Transaction可能是從Host傳向Device，或是從Device傳向Host。
 * 傳送方向是由Token packet中指定。  
@@ -225,24 +225,24 @@ Frame
 
 為了確保同步，USB把時間切割成固定長度的小區間。低速和全速的時候是以 1 ms 為單位，稱為一個Frame；高速時再把一個Frame切成八等分，一個 0.125 ms 為單位，稱為microframes。
 
-.. image:: /embedded/usb/ums_g_hs_frames.gif
+![Image](/embedded/usb/ums_g_hs_frames.gif)
 
 
 SOF (Start-of-Frame packet) 是一種特殊的封包，他在每一個frame開始時發送。
 
-.. image:: /embedded/usb/startofframe.png
+![Image](/embedded/usb/startofframe.png)
 
 Packet
 =========
 封包被視為每次傳輸的最小單位。
 
-.. image:: /embedded/usb/packetmodel.png
+![Image](/embedded/usb/packetmodel.png)
 
 * 封包是以同步訊號（Synchronization Pattern）為開頭。
 * 接著是資料區段，順序為Big-endian。（least significant bit first）。
 * 最後已EOP訊號（End of Packet）結尾，完成一個封包的傳輸，Bus回到idle的狀態。
 
-.. image:: /embedded/usb/dataNRZI.jpg
+![Image](/embedded/usb/dataNRZI.jpg)
 
 Token 封包
 ---------------
@@ -295,13 +295,13 @@ USB OTG (On-The-Go)
 原先USB裝置的角色都是固定的(主機或週邊)。
 USB OTG讓原本只能為週邊的裝置也能成為主機(dual-role device),例如讓鍵盤接上手機使用。
 
-.. image:: /N110128002020110128120354.jpg
+![Image](/N110128002020110128120354.jpg)
 
 圖中type A connector作為host裝置，用來提供電源；type B則是目標裝置，接收電源。如此，可以避免兩個供應電源的裝置相接，引發傷害裝置的情形(嚴重甚至起火)。
 
 * Dual Role Device (OTG-DRD)
 
-.. image:: /embedded/DRD.png
+![Image](/embedded/DRD.png)
 
 
 協定(Protocol)
@@ -334,7 +334,7 @@ Host Negotiation Protocol (HNP, 主機通令協議)
 Block Diagram
 ==============
 
-.. image:: /embedded/OTG_full_speed.png
+![Image](/embedded/OTG_full_speed.png)
 
  * ID pin 用來辨識OTG(on-the-go)裝置是主機還是週邊
  * marco-A插頭的ID pin接地 vs marco-B插頭的ID pin懸空，用來區別主機和週邊 （marco-A為主機，marco-B為週邊） 
@@ -350,9 +350,9 @@ Bus Timing/Electrical Characteristics
 =======================================
 可以看參考資料USB 2.0 Specification的7.3.2章的內容
 
-.. image:: /embedded/USB/DCEC1.png
-.. image:: /embedded/USB/DCEC2.png
-.. image:: /embedded/USB/DCEC3.png
+![Image](/embedded/USB/DCEC1.png)
+![Image](/embedded/USB/DCEC2.png)
+![Image](/embedded/USB/DCEC3.png)
 
 * Table 7-8. High-speed Source Electrical Characteristics
 
@@ -394,7 +394,7 @@ CDC Class
 
 Communications Device Class，CDC 類是 USB 通信設備類的簡稱。CDC 類是 USB 組織定義的一類專門給各種通信設備（電信通信設備和中速網絡通信設備）使用的 USB 類別。大部分的作業系統都帶有支持 CDC 類的設備驅動軟體，可以自動識識 CDC 類的裝置，這樣不僅免去了寫專用驅動裝置的負擔，同時簡化了驅動裝置的安裝。
 
-.. image:: /embedded/USB2CDC.jpg
+![Image](/embedded/USB2CDC.jpg)
 
 MSC Class
 =========
@@ -408,15 +408,15 @@ MSC 支援目前大多數的作業系統，許多舊版本的作業系統經過�
 ^^^^^^^^^^^
 * 
 
-.. image:: /embedded/eumeration.png
+![Image](/embedded/eumeration.png)
 
 *
 
-.. image:: /embedded/eumeration_1.png
+![Image](/embedded/eumeration_1.png)
 
 *
 
-.. image:: /embedded/eumeration_2.png
+![Image](/embedded/eumeration_2.png)
 
 
 Demo 程式 - USB MSC HOST
@@ -446,7 +446,7 @@ make 編譯
 * 寫入簽名檔，並且關閉file
 * 當隨身碟拔出後，會在隨身碟中留下文件。
 
-.. image:: /usb_hacking.png
+![Image](/usb_hacking.png)
 
 * [ASCII Art ](http://en.wikipedia.org/wiki/ASCII_art)
 * [Matlab image generator ](http://www.mathworks.com/matlabcentral/fileexchange/4732-ascii-text-image-generator)
@@ -456,14 +456,14 @@ make 編譯
 
 * STM32提供大量的函式庫來操作USB，包跨底層的driver到提供使用者應用的API。
 
-.. image:: /USB_Lib.png
+![Image](/USB_Lib.png)
 
 本實驗主要將裝置STM32F429設定為Host，而隨身碟為Device。
 
 
 * Host state machine 
 
-.. image:: /host_statemachine.png
+![Image](/host_statemachine.png)
 
 * HOST_IDLE : 初始化之後，USB Core會不斷輪詢（Polling）是否有USB裝置被偵測。此時VBus為了省電會關起來。
 * HOST_ISSUE_CORE_RESET : 當有裝置連接時，USB為了建立BUS，會進入Reset狀態。
@@ -477,7 +477,7 @@ make 編譯
 
 * Enumeration 
 
-.. image:: /enumeration.png
+![Image](/enumeration.png)
 
 Demo 程式 - USB HID DEVICE
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -506,15 +506,15 @@ make 編譯
 * 這個時候，我們就可以按下USER_BUTTON鍵，電腦就會接受到"WIN+R"的鍵盤指令
 * 圖示
 
-.. image:: /embedded/HID_image.png
+![Image](/embedded/HID_image.png)
 
 利用電腦軟體分析封包資料
 ========================
 
-.. image:: /embedded/USB_analyzer.png
+![Image](/embedded/USB_analyzer.png)
 
 
-.. image:: /embedded/USB_analyzer2.png
+![Image](/embedded/USB_analyzer2.png)
 
 Q & A
 ^^^^^^^^

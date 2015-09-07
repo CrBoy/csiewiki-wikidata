@@ -22,7 +22,7 @@ Information
 * Git 裡的程式並未包含 Mutex Task、Semaphore 以及中斷追蹤
   - 如有需要請打上 Lab-12 目錄下的 patch 以重現圖中的效果
 
-.. image:: /embedded/Sol12/visual.png
+![Image](/embedded/Sol12/visual.png)
 
 * 灰色是正在執行的任務，而斜紋代表佔據 mutex
 * switch in 與 switch out 之間會有小間隔，代表 context switch，但是太細而幾乎看不見

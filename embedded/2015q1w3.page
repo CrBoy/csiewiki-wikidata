@@ -22,7 +22,7 @@ toc: no
     + 右邊是測試程式 (test.c)，使用 ``watch -n 1 ./test`` 每秒更新執行結果一次。耐心凝視結果一陣子，是否發現輸出結果會跳動？
     + 使用左邊執行 ``sudo sysctl -w kernel.sched_child_runs_first=1``，以便要求 Linux 排程器 (CFS) 讓 child process 優先於 parent process 執行
 
-.. image:: /embedded/fork-test.png
+![Image](/embedded/fork-test.png)
 
     + ``test.c`` 程式碼如下，編譯請用 ``gcc -o test -std=c99 test.c``
 

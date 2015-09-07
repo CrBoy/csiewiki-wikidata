@@ -28,7 +28,7 @@ Hypervisor (Virtual Machine Monitor, VMM)
     - Host Machine: 運行Hypervisor的實體主機，但有時運行在Hypervisor之上
     - Guest Machine: 運行在Hypervisor之上的虛擬主機
 
-    .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
+    ![Image](http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg)
 
 - 目前三大open source的hypervisor為Linux KVM, Xen, Xvisor，可閱讀此[資料](https://mycpp.hackpad.com/Embedded-Hypervisor-Xvisor-A-comparative-analysis-IWiYFKqzTwD)
 
@@ -38,22 +38,22 @@ Hypervisor (Virtual Machine Monitor, VMM)
         - 以VMware資料顯示，如果透過VMware vSphere來進行伺服器的虛擬化，可以降低硬體和營運成本達 50%，並減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: [VMware](http://www.vmware.com/tw/consolidation)
         - EX：成大電機系電腦教室
 
-    .. image:: /embedded/workload_consolidation.png
+    ![Image](/embedded/workload_consolidation.png)
     - 支援舊有軟體 (Legacy Software)
         - 老舊過時的軟硬體透過虛擬化移植到新的硬體或OS上
 
-    .. image:: /embedded/legacy_software.png
+    ![Image](/embedded/legacy_software.png)
         - APP運行於不同kernel上，可透過KVM (Kernel-based Virtual Machine)整合並切換kernel來運行app，為Bare-Metal概念
 
-    .. image:: /embedded/legacy_software1.png
+    ![Image](/embedded/legacy_software1.png)
     - 啟用多核 (Multicore Enablement)
         - 原本舊有的APP及kernel運行在單一core上，透過虛擬化，我們可以移植到有多個core的架構，並且透過host kernel去運行
     
-    .. image:: /embedded/multicore_enablement.png
+    ![Image](/embedded/multicore_enablement.png)
     - 提高可靠性 (Improved Reliability)
         - 因有host kernel，我們不需要太多的硬體
 
-    .. image:: /embedded/improved_reliability.png
+    ![Image](/embedded/improved_reliability.png)
     - 安全監控 (Secure Monitoring)
         - ARM SMC(secure monitor call) to secure monitor mode
         - kernel等級或者是rootkits的攻擊通常都是在執行擁有特權(privilege)模式的時候發生的，而透過虛擬化，我們擁有更高權限的hypervisor去控制memory protection或程式的排程優先順序
@@ -62,7 +62,7 @@ Hypervisor (Virtual Machine Monitor, VMM)
         - source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
         - In-VM 有較好的performance，Out-of-VM則有較好的安全性
 
-    .. image:: /embedded/secure_monitoring_new.png
+    ![Image](/embedded/secure_monitoring_new.png)
 
 
 Hypervisor的類型
@@ -75,7 +75,7 @@ Hypervisor的類型
     - Hypervisor運行在host的作業系統上，再去提供虛擬化服務
         - 如: [VMware](http://en.wikipedia.org/wiki/VMware_Workstation)、[VirtualBox](http://en.wikipedia.org/wiki/VirtualBox)
 
-.. image:: /embedded/hypervisor_type.png
+![Image](/embedded/hypervisor_type.png)
 
 - Type-1 與 Type-2 比較
     - Type-1
@@ -95,7 +95,7 @@ Hypervisor的類型
         - 支援較多的I/O device及服務
         - 因需多透過Host OS，效能較Type-1低，常應用於效率較不重要的客戶端
 
-.. image:: /embedded/hypervisor_type1.png
+![Image](/embedded/hypervisor_type1.png)
 
 Source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
 
@@ -122,7 +122,7 @@ Gerald Popek及Robert Goldberg二人提出的[理論](http://citeseerx.ist.psu.e
 - VMM定義
     - VMM is the piece of **software** that provides the abstraction of a virtual machine
 
-    .. image:: /embedded/VMM_pic.png
+    ![Image](/embedded/VMM_pic.png)
 
 - 當分析VMM建立的環境時，需要滿足以下三點性質：
     - 等價性 / 忠實(Equivalence / Fidelity)
@@ -193,16 +193,16 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 實現虛擬化的方式
 ....................................
 
-.. image:: /embedded/virtualization_method_all.png
+![Image](/embedded/virtualization_method_all.png)
 
 - [Full-Virtualization](http://en.wikipedia.org/wiki/Full_virtualization) (i.e.VMWare, xen, xvisor, kvm)
     - 全部都虛擬化(I/O, interrupt, 指令集等等)，不需要硬體或OS的協助，而是透過軟體來模擬虛擬的硬體環境，直接透過Hypervisor實現
     - 不用修改OS核心，OS不知自己運行在虛擬化的環境下
     - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷(only 17 instructions on privileged level)，故效能較Para-Virtualization差
 
-.. image:: /embedded/virtualization_method_full.png
+![Image](/embedded/virtualization_method_full.png)
 
-.. image:: /embedded/virtualization_method_full1.png
+![Image](/embedded/virtualization_method_full1.png)
 
 - Para-Virtualization (i.e.Xen, xvisor, kvm)
     - 必須要修改OS Kernel，並且增加Hypercall
@@ -210,9 +210,9 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
     - Guest OS知道自己活在虛擬化的環境下，Guest OS知道有其他Guest OS的存在，並且看到的都是真實的硬體，Host OS則不用模擬CPU，Guest OS自行互相調配
     - 而在Hypervisor之上，還跑著一個Host OS(Dom0 in Xen)，是用來管理Hypervisor的，並且利用native OS的方法管理硬體上的所有I/O driver，所以hypervisor不作硬體模擬，而Guest OS不需要driver，可以直接找Host OS
 
-.. image:: /embedded/virtualization_method_para.png
+![Image](/embedded/virtualization_method_para.png)
 
-.. image:: /embedded/virtualization_method_para1.png
+![Image](/embedded/virtualization_method_para1.png)
 
 - Hardware-assisted virtualization (Intel VT, AMD-V)
     - 需要硬體的支援虛擬化
@@ -220,9 +220,9 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
     - 讓Guest OS發出的privilege指令被hypervisor攔截到
     - Intel VT及AMD-V增加Ring -1並提供Hypervisor x86虛擬化指令，使Hypervisor可以去存取Ring 0的硬體，並把Guest OS放在**Ring 0**，使Guest OS能在不影響其他guest或host OS的情況下，直接執行Ring 0的指令，所以不需要作Binary Translation也不需要修改OS Kernel
 
-.. image:: /embedded/virtualization_method_hw.png
+![Image](/embedded/virtualization_method_hw.png)
 
-.. image:: /embedded/virtualization_method_hw1.png
+![Image](/embedded/virtualization_method_hw1.png)
 
 Source: http://tonysuo.blogspot.tw/2013/01/virtualization-3full-para-hardware.html
 
@@ -234,7 +234,7 @@ Source: http://tonysuo.blogspot.tw/2013/01/virtualization-3full-para-hardware.ht
         - Ring 1及Ring 2供驅動程式使用，很少用到
         - 權力最高不能直接控制權力最低，反之亦然，彼此是利用call gate溝通(提高CPL)，但有例外請閱[此P14](http://www.eecs.harvard.edu/~mdw/course/cs161/notes/osstructure.pdf)
 
-.. image:: /embedded/ring.png
+![Image](/embedded/ring.png)
 
 Source: http://www.csie.ntu.edu.tw/~wcchen/asm98/asm/proj/b85506061/chap3/privilege.html
 
@@ -283,13 +283,13 @@ Solutions
     - Guest OS maintain自己的page table到 guest實體記憶體框架
     - hypervisor 把所有的guest實體記憶體框架 map 到host實體記憶體框架
 
-.. image:: /embedded/shadow_page_table.png
+![Image](/embedded/shadow_page_table.png)
 (from System Virtualization Memory Virtualization - 國立清華大學)
 
     - 為每一個guest page table 建立 Shadow page table
     - hypervisor要保護放著guest page table的host frame
 
-.. image:: /embedded/write_protect.png
+![Image](/embedded/write_protect.png)
 (from System Virtualization Memory Virtualization - 國立清華大學)
 
 
@@ -336,7 +336,7 @@ Xvisor instruction emulate
 (armv8)
 cpu_entry.S 內初始化Hyp vector base
 
-.. image:: /embedded/vtb_off.png
+![Image](/embedded/vtb_off.png)
 
 .. code-block:: c
 
@@ -471,7 +471,7 @@ interrupt virtualization
 
 * [GICv2 Architecture Specification CH5: GIC Support for Virtualization ](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf)
 
-.. image:: /embedded/gic_arch.png
+![Image](/embedded/gic_arch.png)
 
 GIC(Generic Interrupt Controller) 包含Interrupt Distributor 和 CPU Interface。
 
@@ -487,7 +487,7 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
 - Virtual CPU interface：
     - 協助Hypervisor Designer實作Virtual Interrupt Distributor的硬體
 
-.. image:: /embedded/gic_virt.png
+![Image](/embedded/gic_virt.png)
 
 (可參考下方gic配置及vgic)
 
@@ -593,11 +593,11 @@ GIC 配置
 
 - gic distributor
 
-.. image:: /embedded/gic_dist.png
+![Image](/embedded/gic_dist.png)
 
 - gic cpu interface
 
-.. image:: /embedded/gicc.png
+![Image](/embedded/gicc.png)
 
 (from [GICv2 Architecture Specification P.75](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf))
 
@@ -617,7 +617,7 @@ GIC 配置
         mov	x1, #3				/* Enable group0 & group1 */
         str	w1, [x0, #0x00]			/* Ctrl Register */
 
-.. image:: /embedded/gic1.png
+![Image](/embedded/gic1.png)
 
 (from GICv2 Architecture Specification)
 
@@ -631,23 +631,23 @@ GIC 配置
         subs	x1, x1, #1
         bge	2b
 
-.. image:: /embedded/gic_type.png
+![Image](/embedded/gic_type.png)
 
 If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
 
-.. image:: /embedded/GICD_IGROUPRn.png
+![Image](/embedded/GICD_IGROUPRn.png)
 
-.. image:: /embedded/gic_cpu_interface.png
+![Image](/embedded/gic_cpu_interface.png)
 
 (from GICv2 Architecture Specification P.76)
 
 - GICC_CTLR
 
-.. image:: /embedded/gic_cpu_reg.png
+![Image](/embedded/gic_cpu_reg.png)
 
 - GICC_PMR
 
-.. image:: /embedded/gicc_pmr.png
+![Image](/embedded/gicc_pmr.png)
 
 .. code-block:: c
 
@@ -1053,9 +1053,9 @@ Virtual gic (vgic)
     }
 
 
-.. image:: /embedded/vgic_flow.png
+![Image](/embedded/vgic_flow.png)
 
-.. image:: /embedded/vgic_v1.png
+![Image](/embedded/vgic_v1.png)
 
 device emulator(以uart為例)
 ------------------------------------------------
@@ -1063,7 +1063,7 @@ device emulator(以uart為例)
 - [uart](http://wiki.csie.ncku.edu.tw/embedded/USART)
 - [pl011 manual](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0183f/DDI0183.pdf)
 
-.. image:: /embedded/vserial.png
+![Image](/embedded/vserial.png)
 
 timer 及 time event
 ------------------------------------------------
@@ -1071,7 +1071,7 @@ timer 及 time event
 
 [相關程式碼](https://mycpp.hackpad.com/schedule-dgwbh5KckKm)
 
-.. image:: /embedded/time_event.png
+![Image](/embedded/time_event.png)
 
 
 MMU
@@ -1082,7 +1082,7 @@ MMU
 - 需要在MMU啟動前在virtual space下啟動Xvisor
 - 在assembly time時, 把img加入至.text,使用.incbin
 
-.. image:: /embedded/xvisor_memory.png
+![Image](/embedded/xvisor_memory.png)
 
 * [cpu_entry.S](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S)
 
@@ -1236,7 +1236,7 @@ MMU
 
 TCR_EL2, Translation Control Register (EL2)
 
-.. image:: /embedded/vtcr.png
+![Image](/embedded/vtcr.png)
 
 
 .. code-block:: c
@@ -1448,7 +1448,7 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
                     return;
             }
 
-.. image:: /embedded/sche_flow.png
+![Image](/embedded/sche_flow.png)
 
 
 在不同Arm架構下的虛擬化機制
@@ -1614,7 +1614,7 @@ arm32 指令虛擬化
         return VMM_OK;
     }
 
-.. image:: /embedded/hypercall.png
+![Image](/embedded/hypercall.png)
 
 with virtualization extension
 -------------------------------------------------------------
@@ -1656,7 +1656,7 @@ Chapter1: Modeling Virtual Machine
 
 下圖為Xvisor的System Virtual Machine Model
 
-.. image:: /embedded/xvisor_model.png
+![Image](/embedded/xvisor_model.png)
 Chapter2: Hypervisor Configuration
 -------------------------------------------- 
 在早期，因為只有單一CPU執行OS，所以當我們要對一個系統設置OS是相當簡單的，但今日我們有強大的單一核心及多核心的處理器可針對許多的應用下作配置
@@ -1664,7 +1664,7 @@ Chapter2: Hypervisor Configuration
 
 下圖為傳統單核心 vs AMP vs SMP 運作方式:
 
-.. image:: /embedded/hackpad_smp.png
+![Image](/embedded/hackpad_smp.png)
 (圖片來源: http://www.rtcmagazine.com/articles/view/101663)
 
 * SMP及AMP面臨的挑戰：
@@ -1726,7 +1726,7 @@ Chapter3: Hypervisor Timer
     - one clockevent device  for each host CPU
 
 下圖解釋tick distortion
-    .. image:: /embedded/tickless.png
+    ![Image](/embedded/tickless.png)
 (圖片來源:https://arm4fun.hackpad.com/Xvisor-ARMv8-Timer-BVc6RIuDGcD)
 
 Chapter4: Hypervisor Manager

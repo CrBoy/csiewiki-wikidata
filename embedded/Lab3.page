@@ -27,7 +27,7 @@ GTKWave
 
 - 參考輸出畫面。記得要先選取左下方 Type / Signals 並以 Append 加入到分析的清單中
 
-.. image:: http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png
+![Image](http://www.gentoo.org/proj/en/science/electronics/tests/gtkwave.png)
 
 - 建立 sample.vcd 檔案，觀察 GTKWave 輸出。內容如下：
 
@@ -107,14 +107,14 @@ FreeRTOS for STM32
 - 研讀 FreeRTOS 程式碼關於 scheduling 的實做
 - 在這過程，可進一步學習 GDB 工具的使用。有很多視覺化工具可輔助，如：
 
-.. image:: /embedded/Lab3/ddd.png
+![Image](/embedded/Lab3/ddd.png)
 
 - 適度修改 FreeRTOS 程式碼，引入 mini tracer 的機制，並準備特製的 GDB script，使其得以紀錄 task switch 的狀況 (需要包含 timing 資訊)，最終可輸出 VCD  檔案，透過 GTKWave 視覺化
   * 提示：可準備 gdb2vcd.py 一類的工具程式，協助將 GDB 操作過程作分析與轉換
 
 - 最終預期在 freertos 目錄下，當 ``make qemuauto`` 執行後，會自動啟動 QEMU + GDB + FreeRTOS，並在 5 秒後 kill 必要的 process 且能夠輸出 VCD 檔案，檔名為 ``sched.vcd``。以下是參考的 GTKWave 瀏覽畫面：
 
-.. image:: /embedded/Lab3/gtkwave.png
+![Image](/embedded/Lab3/gtkwave.png)
 
 - 提示：
   * 舉凡 FreeRTOS, main.c, GDB scripts, emulate.sh 等檔案都能修改，重點是建立 mini tracer 的機制，以利後續 RTOS 追蹤分析使用

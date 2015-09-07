@@ -22,7 +22,7 @@ Basic Idea
 +++++++++++
 傳統的作業系統核心(monolithic)會提供大部分的服務，像是UNIX-like的系統都有一些典型的階層架構，示意圖如下：
 
-.. image:: /embedded/f9-kernel/os_structure.png
+![Image](/embedded/f9-kernel/os_structure.png)
 
 一個μ-kernel的概念則是盡可能的縮小核心，並將系統服務移到kernel外，而在這種系統中會使用IPC去呼叫服務。
 
@@ -51,12 +51,12 @@ L4與他的前代L3一樣，都是由德國電腦科學家Jochen Liedtke做出�
 
 現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用([L4 + AMSS](https://code.google.com/p/docl4amss/wiki/SoftwareOverview))。
 
-.. image:: /embedded/f9-kernel/l4_family.png
+![Image](/embedded/f9-kernel/l4_family.png)
 
 作業系統架構
 ------------
 
-.. image:: /embedded/f9-kerenl/f9-arch.png
+![Image](/embedded/f9-kerenl/f9-arch.png)
 
 
 
@@ -87,7 +87,7 @@ Address page
 
 在Cortex-M中，MPU只支援2^n大小的區域，假設我們要建立一個96 bytes的page，我們應該要切成較小的區域，並且建立出一條包含32 byte與64 byte的fpage chain，這邊就是實作複雜的原因。
 
-.. image:: /embedded/f9-kernel/memory_arch.png
+![Image](/embedded/f9-kernel/memory_arch.png)
 
 Memory pool
 ===========
@@ -566,7 +566,7 @@ Address space(AS)
 
 ``map_area``將指定的base位置以及大小，從來源的AS中找出符合的fpage映射到目的AS
 
-.. image:: /embedded/f9-kernel/map_area.png
+![Image](/embedded/f9-kernel/map_area.png)
 
 .. code-block:: prettyprint linenums
     
@@ -830,7 +830,7 @@ F9-kernel 提供一個用來定義 IRQ Handler 的巨集
 
 下圖是 SysTick 中斷的處理過程：
 
-.. image:: /embedded/f9-kernel/f9_context_switch.png
+![Image](/embedded/f9-kernel/f9_context_switch.png)
 
 
 硬體驅動原理
@@ -879,7 +879,7 @@ Arm提供兩個除錯模式：
 
 此外，ARM也提供debug registers
 
-   .. image:: /embedded/f9-kernel/debugreg.jpg
+   ![Image](/embedded/f9-kernel/debugreg.jpg)
 
 F9使用的是 Debug monitor mode。
 
@@ -925,7 +925,7 @@ MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位�
 * 當overlap發生時，存取權限會以編號較高的區域屬性為準。例如區域7與任何其他的區域發生重疊時，都會以區域7的屬性為主
     重疊的區域在賦予存取權限時可以有比較大的彈性，例如有一個小型的嵌入式系統，總共有256KB的記憶體，而起始位置在0x00000000，其中有一塊是privileged的系統區域32KB，不能被使用者存取，並且從0x00000000開始放起，剩下的記憶體則是給使用者。這個系統使用兩個區域：256KB的user區域跟32KB的privileged區域，因為privileged區域的優先度比較大，所以privileged區域使用編號1，user區域使用編號0。
 
-    .. image:: /embedded/f9-kernel/overlapping.png
+    ![Image](/embedded/f9-kernel/overlapping.png)
 
 * 背景區域與預設的memory map有相同的屬性，但是只能被privileged的軟體存取
     重疊區域的另一個用處在背景區域－用來替一大塊記憶體空間分配相同屬性的低優先度區域，其他較高優先度的區域就能改變背景區域中的某一塊屬性。背景區域可以用來保護一些睡眠狀態的記憶體，使其不會被非法存取，而此時由另一個處於活躍狀態的記憶體就能被使用。
@@ -934,7 +934,7 @@ MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位�
 
     下圖是一個簡單的3-task保護架構，區域3定義了active task的保護屬性，而背景區域0則負責保護其他睡眠狀態的任務資源。
 
-    .. image:: /embedded/f9-kernel/background_region.png
+    ![Image](/embedded/f9-kernel/background_region.png)
     
 * 指令存取(instruction access)與資料存取(data access)是使用相同的區域設定
 * 當程式要存取受到MPU保護的區域時，會產生``MemManage fault(fault exception)``。在作業系統的環境中，kernel可以在程式執行時動態更新MPU區域。通常一個嵌入式OS會使用MPU作為memory protection
@@ -956,7 +956,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 這邊先定義好mpu暫存器的位置，這些位置可以從arm的手冊中找到。至於``MPU_REGION_MASK``是用來取得區域用的遮罩值。
 
 * MPU_BASE([MPU Region Base Address Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html))
-   - .. image:: /embedded/f9-kernel/mpu_base.png
+   - ![Image](/embedded/f9-kernel/mpu_base.png)
    - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
    - ADDR - 區域的base位置
    - VALID
@@ -965,7 +965,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
         + 也就是說，設定0的話會更新原來的MPU_RNR區域的base，1的話就是先切換MPU_RNR區域在更新base
    - REGION - 區域的index
 * MPU_ATTR([MPU Region Attribute and Size Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html)) 
-   - .. image:: /embedded/f9-kernel/mpu_attr.png
+   - ![Image](/embedded/f9-kernel/mpu_attr.png)
    - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
    - XN
       + 0 - enable instruction fetch
@@ -980,7 +980,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
    - SIZE - MPU區域的大小
    - ENABLE - 區域enable
 * MPU_CTRL([MPU Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html))
-   - .. image:: /embedded/f9-kernel/mpu_ctrl.png
+   - ![Image](/embedded/f9-kernel/mpu_ctrl.png)
    - PRIVDEFENA
       + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
       + 1 - enable預設的memory map，background區域給priviledged軟體使用
@@ -1060,7 +1060,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 當存取到違反MPU權限設定的區域時，會產生``MemManage fault``，MemManage Fault Status Register(MMFSR)位在``0xE000ED28``，結構如下：
 
-.. image:: /embedded/f9-kernel/MMFSR.png
+![Image](/embedded/f9-kernel/MMFSR.png)
 
 * MMARVALID
    - 0 - MMAR中的位置是無效的
@@ -1187,7 +1187,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 ``mpu_select_lru``會找尋目標位址有沒有存在當前的AS中，如果有的話就更新fpage至MPU，更新的方法是先略過前面留給stack的MPU，接著更新目前的fpage，最後接著將之前的fpage依據順序補上。範例如下：
 
-.. image:: /embedded/f9-kernel/MPU.png
+![Image](/embedded/f9-kernel/MPU.png)
 
 
 IPC
@@ -1251,7 +1251,7 @@ Typed Word
 
 Message Tag的作用是描述本次message的内容。
 
-    .. image:: /embedded/f9-kernel/MR0.jpg
+    ![Image](/embedded/f9-kernel/MR0.jpg)
 
     * u : untyped words的數量
     * t : words裡面有typed item的數量
@@ -1261,7 +1261,7 @@ Message Tag的作用是描述本次message的内容。
 
 此外，Message Tag也是接收内容的描述。
 
-    .. image:: /embedded/f9-kernel/resultmr0.jpg
+    ![Image](/embedded/f9-kernel/resultmr0.jpg)
 
     * u : 收到的Untyped words數量
     * t : 收到的Typed items數量
@@ -1290,7 +1290,7 @@ MapItem
 Map的動作是透過將要map的fpage組成部分message傳送給Mappee。
 Fpage細節由兩個words來組成：
 
-    .. image:: /embedded/f9-kernel/MapItemMR.jpg
+    ![Image](/embedded/f9-kernel/MapItemMR.jpg)
 
     * r w x : 權限
     * snd base ： 在L4的文件中，snd base在snd fpage大於/小於接收者能接收的窗口中扮演不同的角色。而在F9的程式碼看起来，snd base是要map的目標位置，而snd fpage是size。
@@ -1317,7 +1317,7 @@ StringItem又可以分為連續和不連續的string：
 
 連續性的bytes。由两個words組成：
 
-    .. image:: /embedded/f9-kernel/SimpleStringMR.jpg
+    ![Image](/embedded/f9-kernel/SimpleStringMR.jpg)
 
     * string ptr :要發送的字串起始位置或者是接收到字串的buffer起始位置。字串和buffer需要完全符合使用者空間可用位置。
     * string length :要發送的string長度或者是接收的buffer長度。
@@ -1327,7 +1327,7 @@ StringItem又可以分為連續和不連續的string：
 
 一個不連續/鄰近的字串，由落在使用者空間中多個連續性的子字串組成，子字串之間不可以重疊。
 
-    .. image:: /embedded/f9-kernel/CompoundSTRMR.jpg
+    ![Image](/embedded/f9-kernel/CompoundSTRMR.jpg)
 
     * 0hhC在第一個string descriptor word才需要，後面會被忽略。
     * j :接下來連續的str-ptr word的數量。
@@ -1335,7 +1335,7 @@ StringItem又可以分為連續和不連續的string：
 
 * String Examples
 
-    .. image:: /embedded/f9-kernel/StringMRExample.jpg
+    ![Image](/embedded/f9-kernel/StringMRExample.jpg)
 
 Buffer Register
 ================
@@ -1715,7 +1715,7 @@ TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存�
 context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, xpsr 設在sp當中。
 其中ctl是arm 中的control register, 有三個控制項
 
-    .. image:: /embedded/f9-kernel/controlreg.jpg
+    ![Image](/embedded/f9-kernel/controlreg.jpg)
 
 User-level Thread Control Block
 ================================
@@ -2775,7 +2775,7 @@ ktable有提供下列的API可供使用：
    // 取得該元素位在ktable內的id
    uint32_t ktable_getid(ktable_t *kt, void *element);
 
-.. image:: /embedded/f9-kernel/ktable.png
+![Image](/embedded/f9-kernel/ktable.png)
 
 Bitmap
 #######
@@ -2859,7 +2859,7 @@ System bus interface包含了一個bit-band的存取邏輯：
 * bit-band 0x20000000[0]-0x20000000[1]-0x20000000[2]-0x20000000[3]-0x20000000[4]
 * alias    0x22000000   -0x20000004   -0x20000008   -0x2000000C   -0x20000010 
 
-.. image:: /embedded/f9-kernel/bitmap.png
+![Image](/embedded/f9-kernel/bitmap.png)
 
 **直接存取alias**
 
@@ -2947,7 +2947,7 @@ F9中內建一套除錯工具，預設是會在開機時啟動，目前支援以
 2. 確認USB連上電腦
 3. screen /dev/ttyUSB0 115200 8n1
 
-.. image:: /embedded/f9-kernel/f9_kdb.jpg
+![Image](/embedded/f9-kernel/f9_kdb.jpg)
 
 Troubleshooting
 ================

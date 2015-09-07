@@ -34,21 +34,21 @@ ChibiOS/RT 參考應用
 
  3. run testsuite
        輸入 neocon /dev/ttyUSB0 會看到以下畫面
-         .. image:: /embedded/test_neocon.png
+         ![Image](/embedded/test_neocon.png)
 
        接著按下 Enter 後，會見當畫面如下
-         .. image:: /embedded/ch_neocon.png
+         ![Image](/embedded/ch_neocon.png)
       
 
        輸入 test 後會看到test suite的結果
-         .. image:: /embedded/ch_test_suite.png
+         ![Image](/embedded/ch_test_suite.png)
 
 
 作業系統架構
 ------------
   ChibiOS/RT  是一個相當模組化的設計，部由許多主要的獨立組件構成。而每一個組件又可能細分成許多子系統
 
- .. image:: /embedded/chibi_architecture.png
+ ![Image](/embedded/chibi_architecture.png)
 
 * kernel : OS kernel中與平台無關的部份
 * port layer ：OS kernel中與結構/編譯器 相關的部份
@@ -57,18 +57,18 @@ ChibiOS/RT 參考應用
 * various : 提供各種額外但不包含在特定組件的工具的函式庫
 
  * HAL 與 platform關係如下
-     .. image:: /embedded/chibi_HAL_plat.png
+     ![Image](/embedded/chibi_HAL_plat.png)
 
 系統狀態(System States)
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png
+![Image](http://chibios.sourceforge.net/html/dot_inline_dotgraph_1.png)
 
 |
 
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png
+![Image](http://chibios.sourceforge.net/html/dot_inline_dotgraph_2.png)
 
-.. image:: http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png
+![Image](http://chibios.sourceforge.net/html/dot_inline_dotgraph_3.png)
 
 * Init
     + ChibiOS/RT 進行OS初始化之前的狀態，進行所謂的物理重置(physical reset)時也會進到這個狀態
@@ -203,7 +203,7 @@ ChibiOS/RT 參考應用
 執行緒(Thread)狀態
 ^^^^^^^^^^^^^
 
-.. image:: /embedded/chibiThdState.png
+![Image](/embedded/chibiThdState.png)
 
 * Start : 初始的狀態
 * Suspended : Thread剛被create出來時的狀態,尚未決定要被放進ReadyList等待執行或是直接執行
@@ -220,7 +220,7 @@ ChbiOS/RT 初始化後會建立兩個 thread
 
 Thread and Structure Reference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- .. image:: /thread_stuct.png
+ ![Image](/thread_stuct.png)
 
 * 較重要的 member data
     + p_prio : Thread priority
@@ -363,7 +363,7 @@ Ready List
 ^^^^^^^^^^^^^
 ChibiOS/RT 的 ready list以doubly linked list 實作
 
- .. image:: /embedded/chibi_ready_list.png
+ ![Image](/embedded/chibi_ready_list.png)
 
 數字愈大，優先權愈大 ( priority 相同的話，採用 round-robin strategy)
 
@@ -383,7 +383,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 選出下一個可執行的thread， 並進行Context Switch
 
-   .. image:: /embedded/ch_schedule.png
+   ![Image](/embedded/ch_schedule.png)
 
 
 
@@ -396,7 +396,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 * Round Robin scheduling
 
    + 執行中的thread 自主性地呼叫chThdYield() API，讓其他相同priority的thread來執行
-            .. image:: /embedded/chThdYield.png
+            ![Image](/embedded/chThdYield.png)
 
    + 執行中的thread 自主性地進入sleep mode且當有thread被wake up時，執行中的thread 就會被中斷並插入其他任意一個相  
        同priority thread的後面
@@ -418,7 +418,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 |     intctx {r4-r11, lr}
 | 
 
-.. image:: /embedded/chibi_extctx_and_intctx.jpg
+![Image](/embedded/chibi_extctx_and_intctx.jpg)
 
 |
 | 分別是發生interrupt時會被自動存起來的extctx(external context)，和程式內部在執行context switch時會存起來的intctx(interanl context)。
@@ -429,7 +429,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 | 每一個thread被切換回來的時候，會再呼叫svc call來將artificial exception return context丟掉並取回原本的extctx。
 |
 
-.. image:: /embedded/chibi_artificial_context.jpg
+![Image](/embedded/chibi_artificial_context.jpg)
 
 |
 | _port_irq_epilogue()
@@ -593,7 +593,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 * DMA2D的架構簡圖：
 
-.. image:: /DMA2D_structure.png
+![Image](/DMA2D_structure.png)
 
 * 在對硬體的driver作設計時會用到很多_IO的type
  + 在[core_cm4.h](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207)裡找到相關定義
@@ -603,8 +603,8 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 
 * DMA2D的流程簡圖：
 
-.. image:: /dma2dflow.png
-.. image:: /dma2d_flow.JPG
+![Image](/dma2dflow.png)
+![Image](/dma2d_flow.JPG)
 
  + [Init](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L208)
 
@@ -705,7 +705,7 @@ BGCLUT[256]              Background CLUT                                     800
 
         在時間內每次iteration作四次的Wakeup的動作，最後乘以二
 
-            .. image:: /embedded/ch_context_switch1.png
+            ![Image](/embedded/ch_context_switch1.png)
 
     + Message send and receive
 
@@ -746,7 +746,7 @@ BGCLUT[256]              Background CLUT                                     800
                        return n;
                    }
 
-             .. image:: /embedded/ch_context_switch2.png
+             ![Image](/embedded/ch_context_switch2.png)
            
            - 情況1：  Send priority 比 Receive priority 高(Test Case 11.1)
                         context switch的次數 341088 ctxswc/S =>341088 次/秒 = 2.93 us/次
@@ -804,7 +804,7 @@ Q & A：
 
  + A: Heap is O(n) ，根據實驗所做之圖：
       
-      .. image:: /embedded/heap_test.PNG
+      ![Image](/embedded/heap_test.PNG)
 
 * Q7：mutex與semephore(binary)為何在同時間內的lock與unlock次數不同？
 

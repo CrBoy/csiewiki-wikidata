@@ -17,11 +17,11 @@ Grasp
 
 - mutex 視覺化輸出
 
-.. image:: /embedded/Lab12/mutex.png
+![Image](/embedded/Lab12/mutex.png)
 
 - RTOS scheduling 視覺化輸出
 
-.. image:: /embedded/Lab12/hsf.png
+![Image](/embedded/Lab12/hsf.png)
 
 作業
 -------

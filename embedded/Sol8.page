@@ -36,4 +36,4 @@ context switch 的精確度
   * 而為了取得想要的數值，有對每個 break point 時資料的輸出方式做更改，目前是將需要的資料在 break point
     時輸出，在於之後的 ``gdbtovcd.py`` 內進行進一步的計算
 
-.. image:: /embedded/Sol8/sched.png
+![Image](/embedded/Sol8/sched.png)

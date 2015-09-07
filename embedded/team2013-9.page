@@ -139,9 +139,9 @@ toc: yes
 - 2013-12-23 重新修正全機的水平，校正X軸平台及擠出機
 - 2013-12-25 試印25mm小方塊....... 成功  <(_ _)>  一個最好的聖誕禮物...
 
-.. image:: /3dp_example1.jpg
+![Image](/3dp_example1.jpg)
 
-.. image:: /3dp_example2.jpg
+![Image](/3dp_example2.jpg)
 
 [過程影片(一小小段)](http://www.youtube.com/watch?v=Ef0Zm-XJ-S8)
 
@@ -151,30 +151,30 @@ toc: yes
  
  *  將Z軸兩個步進馬達由並聯改成串聯，並降低Z軸轉速 Ref: [Z軸總是搞不定!?](http://diy3dprint.blogspot.tw/2013/10/z.html)
 
-.. image:: /3dp_img3.JPG
+![Image](/3dp_img3.JPG)
 
  * 調整X軸及Y軸皮帶，利用束線繃緊皮帶，防止皮帶鬆垮
 
-.. image:: /3dp_img1.JPG
+![Image](/3dp_img1.JPG)
 
-.. image:: /3dp_img2.JPG
+![Image](/3dp_img2.JPG)
 
 **調整後的試印，目前最大的問題仍是平台如何校準**
  
-.. image:: /3dp_result1.JPG
+![Image](/3dp_result1.JPG)
  
 
-.. image:: /3dp_result2.JPG
+![Image](/3dp_result2.JPG)
  
 左邊是調整前，可以看出完全不圓，整體偏向一邊，右邊是調整過後的結果
  
  
-.. image:: /3dp_result3.JPG
+![Image](/3dp_result3.JPG)
 
 中心仍然還是有點問題
  
  
-.. image:: /3dp_result4.JPG
+![Image](/3dp_result4.JPG)
  
  利用銼刀打磨過齒輪的中心
 
