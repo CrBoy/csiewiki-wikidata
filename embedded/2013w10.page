@@ -25,7 +25,7 @@ toc: no
   * http://www.amara.org/zh-tw/videos/dibPLfzC8Yco/zh-tw/209419/
 
 * RTOS 觀念彙整
-  * `An Introduction to Real-Time Operating Systems and Schedulability Analysis</embedded/2013w10/RTOS-sched.pdf>`_
+  * [An Introduction to Real-Time Operating Systems and Schedulability Analysis](/embedded/2013w10/RTOS-sched.pdf)
   * Background on Operating Systems Theory
   * An Introduction to RT Systems
   * Model-based development of Embedded RT systems

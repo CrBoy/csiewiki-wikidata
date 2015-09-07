@@ -7,17 +7,17 @@ toc: no
 -------
 - 學習 GNU Toolchain 的使用
 - 學習 FreeRTOS 程式開發
-- 藉由 `coroutine<http://en.wikipedia.org/wiki/Coroutine>`_ 的實做，作為日後 RTOS 學習的準備
+- 藉由 [coroutine](http://en.wikipedia.org/wiki/Coroutine) 的實做，作為日後 RTOS 學習的準備
 
 預先準備
 -------
-- 確保 `Lab 8</embedded/Lab8>`_ 的環境設定一切無誤
-- 參閱 `Git 簡易操作</git>`_ 與 `寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_
-- 強者我同事的演講: `MCLinker -- an LLVM Linker for Mobile Computing<http://www.youtube.com/watch?v=nCAlAoXKWVk>`_
+- 確保 [Lab 8](/embedded/Lab8) 的環境設定一切無誤
+- 參閱 [Git 簡易操作](/git) 與 [寫給大家的 Git 教學](http://www.slideshare.net/littlebtc/git-5528339)
+- 強者我同事的演講: [MCLinker -- an LLVM Linker for Mobile Computing](http://www.youtube.com/watch?v=nCAlAoXKWVk)
 
 QEMU + GDB 操作
 ----------------------
-- 切換到 `Lab 8</embedded/Lab8>`_ 所取得的 Labs 目錄，並更新程式碼
+- 切換到 [Lab 8](/embedded/Lab8) 所取得的 Labs 目錄，並更新程式碼
 
 .. code-block:: prettyprint
 

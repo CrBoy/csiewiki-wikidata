@@ -7,20 +7,20 @@ Gitit
 =====
 
 Gitit is a wiki program written in Haskell. It uses
-`Happstack <http://happstack.com>`_ for the web server and
-`pandoc <http://johnmacfarlane.net/pandoc>`_ for markup processing.
-Pages and uploaded files are stored in a `git <http://git.or.cz>`_,
-`darcs <http://darcs.net>`_, or
-`mercurial <http://mercurial.selenic.com/>`_ repository and may be
+[Happstack ](http://happstack.com) for the web server and
+[pandoc ](http://johnmacfarlane.net/pandoc) for markup processing.
+Pages and uploaded files are stored in a [git ](http://git.or.cz),
+[darcs ](http://darcs.net), or
+[mercurial ](http://mercurial.selenic.com/) repository and may be
 modified either by using the VCS’s command-line tools or through the
 wiki’s web interface. By default, pandoc’s extended version of markdown
 is used as a markup language, but reStructuredText, LaTeX, or HTML can
 also be used. Pages can be exported in a number of different formats,
 including LaTeX, RTF, OpenOffice ODT, and MediaWiki markup. Gitit can be
 configured to display TeX math (using
-`texmath <http://github.com/jgm/texmath/tree/master>`_) and highlighted
+[texmath ](http://github.com/jgm/texmath/tree/master)) and highlighted
 source code (using
-`highlighting-kate <http://johnmacfarlane.net/highlighting-kate/>`_).
+[highlighting-kate ](http://johnmacfarlane.net/highlighting-kate/)).
 
 Other features include
 
@@ -49,11 +49,11 @@ Getting started
 Compiling and installing gitit
 ------------------------------
 
-You’ll need the `GHC <http://www.haskell.org/ghc/>`_ compiler and the
-`cabal-install <http://hackage.haskell.org/trac/hackage/wiki/CabalInstall>`_
-tool. GHC can be downloaded `here <http://www.haskell.org/ghc/>`_. Note
+You’ll need the [GHC ](http://www.haskell.org/ghc/) compiler and the
+[cabal-install ](http://hackage.haskell.org/trac/hackage/wiki/CabalInstall)
+tool. GHC can be downloaded [here ](http://www.haskell.org/ghc/). Note
 that, starting with release 0.5, GHC 6.10 or higher is required. For
-`cabal-install <http://hackage.haskell.org/trac/hackage/wiki/CabalInstall>`_
+[cabal-install ](http://hackage.haskell.org/trac/hackage/wiki/CabalInstall)
 on \*nix, follow the `quick
 install <http://hackage.haskell.org/trac/hackage/wiki/CabalInstall#Quick%20Installation%20on%20Unix>`_
 instructions.
@@ -93,7 +93,7 @@ If pandoc was compiled with optional syntax highlighting support, this
 will be available in gitit too. This feature is recommended if you plan
 to display source code on your wiki.
 
-Highlighting support requires the `pcre <http://www.pcre.org/>`_
+Highlighting support requires the [pcre ](http://www.pcre.org/)
 library, so make sure that is installed before continuing.
 
 To install gitit with highlighting support, first ensure that pandoc is
@@ -152,7 +152,7 @@ page.
 
 Gitit interprets links with empty URLs as wikilinks. Thus, in markdown
 pages, ``[Front Page]()`` creates an internal wikilink to the page
-``Front Page``. In reStructuredText pages, ```Front Page <>`_`` has the
+[`Front Page``. In reStructuredText pages, ```Front Page ]()`` has the
 same effect.
 
 If you want to link to a directory listing for a subdirectory, use a
@@ -352,7 +352,7 @@ Gitit can display TeX math in three different ways, depending on the
 setting of ``math`` in the configuration file:
 
 1. ``mathml`` (default): Math will be converted to MathML using
-   `texmath <http://github.com/jgm/texmath/tree/master>`_. This method
+   [texmath ](http://github.com/jgm/texmath/tree/master). This method
    works with IE+mathplayer, Firefox, and Opera, but not Safari.
 
 2. ``jsMath``: Math will be rendered using the [jsMath][] javascript. If
@@ -531,7 +531,7 @@ Proxying to ``http://mysite.com/wiki``
 
 Make sure the ``mod_proxy``, ``mod_headers``, ``mod_proxy_http``, and
 ``mod_proxy_html`` modules are loaded. ``mod_proxy_html`` is an external
-module, which can be obtained `here <http://www.haskell.org/ghc/>`_
+module, which can be obtained [here ](http://www.haskell.org/ghc/)
 (http://apache.webthing.com/mod\_proxy\_html/). It rewrites URLs that
 occur in web pages. Here we will use it to rewrite gitit’s links so that
 they all begin with ``/wiki/``.

@@ -7,19 +7,19 @@ HarveyZeng(曾柏翔)
 
 作業及筆記
 ============
-- Github : `github<https://github.com/harveyzeng>`_
-- homework1 : `hw1<https://embedded2014.hackpad.com/WMqqlK2hZUv>`_
-- homework2 : `hw2<https://embedded2015.hackpad.com/hw2-Ka5oXguvUje>`_
-- homework3 : `hw3<https://hackpad.com/LAB-40-HW3-Bg4LSLvXFf4>`_
-- homework4 : `hw4<https://embedded2015.hackpad.com/week5-lab41-yr2WLfoa7ED>`_
-- homework5 : `hw5<https://hackpad.com/lab-42-hw5-OnYODUZzuZ8>`_
+- Github : [github](https://github.com/harveyzeng)
+- homework1 : [hw1](https://embedded2014.hackpad.com/WMqqlK2hZUv)
+- homework2 : [hw2](https://embedded2015.hackpad.com/hw2-Ka5oXguvUje)
+- homework3 : [hw3](https://hackpad.com/LAB-40-HW3-Bg4LSLvXFf4)
+- homework4 : [hw4](https://embedded2015.hackpad.com/week5-lab41-yr2WLfoa7ED)
+- homework5 : [hw5](https://hackpad.com/lab-42-hw5-OnYODUZzuZ8)
 
 報告
 =========
-- xenomai : `CSIE WIKI<http://wiki.csie.ncku.edu.tw/embedded/xenomai>`_
-- Xenomai開發紀錄 : `Hackpad<https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP>`_ 
-- Xenomai_lab_data : `Hackpad<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe>`_
-- Xenomai_Q&A : `Hackpad<https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt>`_
+- xenomai : [CSIE WIKI](http://wiki.csie.ncku.edu.tw/embedded/xenomai)
+- Xenomai開發紀錄 : [Hackpad](https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP) 
+- Xenomai_lab_data : [Hackpad](https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe)
+- Xenomai_Q&A : [Hackpad](https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt)
 - 負責項目:
 
 1. Raspberry pi 環境設置 for xenomai 2 &&xenomai 3 
@@ -39,7 +39,7 @@ HarveyZeng(曾柏翔)
 
 學習心得
 =============
-- 這學期讓我受益良多，從以前很多知識都是有個概念，但對於實際應用以及更深的概念都不懂。就像`DeepC<`http://www.slideshare.net/olvemaudal/deep-c >`_中的小男孩一樣，在考試應付已足夠，但全無法上戰場。雖然到現在還是有很多不懂的地方，但我已經知道未來的學習方式應該是怎樣了。
+- 這學期讓我受益良多，從以前很多知識都是有個概念，但對於實際應用以及更深的概念都不懂。就像[DeepC](`http://www.slideshare.net/olvemaudal/deep-c )中的小男孩一樣，在考試應付已足夠，但全無法上戰場。雖然到現在還是有很多不懂的地方，但我已經知道未來的學習方式應該是怎樣了。
 - 這學期hackpad開放式的教學，對於我來說是受益良多，因為這堂課有許多厲害的同學在修，可以藉由看大家的github 上的code和hackpad上統整的知識，加強我對專業的認知。
 - 對我來說，這學期可說是有的完全不一樣的啟發，接下來研究所的兩年內，我想我已經知道要如何學習才能夠應付之後的戰場，即使沒有繼續修這堂課，我也會繼續追蹤社團的資訊，並且在有空的時候繼續來寫作業讓老師code review。
 

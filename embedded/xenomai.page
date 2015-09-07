@@ -428,7 +428,7 @@ Xenomai 3 on raspberry pi
 
 * 由此處取得rpi post patch
 
-`post patch<https://drive.google.com/file/d/0B6GwSked9fL9RnU3b3pSajFZbUk/view>`_
+[post patch](https://drive.google.com/file/d/0B6GwSked9fL9RnU3b3pSajFZbUk/view)
 
 * 上 ipipe patch
 
@@ -1010,7 +1010,7 @@ Cyclictest 原理
         return err; 
      }
 
-* `Cyclictest<https://rt.wiki.kernel.org/index.php/Cyclictest>`_
+* [Cyclictest](https://rt.wiki.kernel.org/index.php/Cyclictest)
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
   - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
 
@@ -1106,7 +1106,7 @@ Max:最大延遲
 | rpi xenomai-2 user-level(python) | 244           |
 +----------------------------------+---------------+
 
-* `詳細實驗紀錄<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe/>`_	
+* [詳細實驗紀錄](https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe/)	
 
 Q&A
 ==============
@@ -1128,7 +1128,7 @@ Q&A
 
   .. image:: /criticalsection.png
 
-  在`life with andeos <http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5628&rep=rep1&type=pdf>`_這篇指的fine-grained linux kernel，是指在編寫linux kernel  code時，盡量讓critical section能愈短愈好，確保當real-time thread running in the secondary domain能在一定時間內遇到schedule point，也就可以在schedule point處理real-time thread。
+  在[life with andeos ](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5628&rep=rep1&type=pdf)這篇指的fine-grained linux kernel，是指在編寫linux kernel  code時，盡量讓critical section能愈短愈好，確保當real-time thread running in the secondary domain能在一定時間內遇到schedule point，也就可以在schedule point處理real-time thread。
 
 * Q4:ipipe的相關檔案，gic.c、it8152.c ... 之類的有什麼關係?
 
@@ -1194,13 +1194,13 @@ Hackpad
 * https://code.google.com/p/picnc/wiki/RPiXenomaiKernel
 * https://code.google.com/p/picnc/wiki/CreateRaspbianLinuxCNC
 * http://www.camelsoftware.com/firetail/blog/raspberry-pi/real-time-operating-systems/
-* `Quadruped Linux robot feels its way over obstacles<http://linuxgizmos.com/hyq-quadruped-robot-runs-real-time-linux/>`_
-* ` Choosing between Xenomai and Linux for real-time applications<https://www.osadl.org/fileadmin/dam/rtlws/12/Brown.pdf>`_
-* `Real Time Systems<http://www.slideshare.net/anil_pugalia/real-time-systems>`_
+* [Quadruped Linux robot feels its way over obstacles](http://linuxgizmos.com/hyq-quadruped-robot-runs-real-time-linux/)
+* [ Choosing between Xenomai and Linux for real-time applications](https://www.osadl.org/fileadmin/dam/rtlws/12/Brown.pdf)
+* [Real Time Systems](http://www.slideshare.net/anil_pugalia/real-time-systems)
 * http://www.cs.ru.nl/lab/xenomai/exercises/
-* `背景知識 <https://www.osadl.org/fileadmin/dam/rtlws/12/Brown.pdf>`_
-* `應用案例 <http://veter-project.blogspot.tw/search/label/xenomai>`_
-* `應用案例II <https://www.youtube.com/watch?v=cNZPRsrwumQ>`_
-* `real-time Linux 介紹 <http://class.svuca.edu/~sau/class/CE460/IntroEmbeddedLinuxDesign_Spring2014_Sec_13.ppt>`_
-* `Xenomai 專案維護人的介紹 <http://elinux.org/images/7/70/Gerum-elce-09.odp>`_
-* `RTOS 定義 <http://open-robotics.com/report/rtos/>`_
+* [背景知識 ](https://www.osadl.org/fileadmin/dam/rtlws/12/Brown.pdf)
+* [應用案例 ](http://veter-project.blogspot.tw/search/label/xenomai)
+* [應用案例II ](https://www.youtube.com/watch?v=cNZPRsrwumQ)
+* [real-time Linux 介紹 ](http://class.svuca.edu/~sau/class/CE460/IntroEmbeddedLinuxDesign_Spring2014_Sec_13.ppt)
+* [Xenomai 專案維護人的介紹 ](http://elinux.org/images/7/70/Gerum-elce-09.odp)
+* [RTOS 定義 ](http://open-robotics.com/report/rtos/)

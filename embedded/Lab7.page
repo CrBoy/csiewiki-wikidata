@@ -37,7 +37,7 @@ User-mode Emulation
 
 OpenOCD + STM32F4
 ------------------
-* OpenOCD 的安裝請見 `Lab-6</embedded/Lab6>`_
+* OpenOCD 的安裝請見 [Lab-6](/embedded/Lab6)
 * ARM On-Chip Debugging demonstration: http://www.youtube.com/watch?v=NSVOuHToJ6c
 * Beginner’s look at On-Chip Debugging: http://hackaday.com/2012/09/27/beginners-look-at-on-chip-debugging/
 * Architecture and Core Commands of OpenOCD

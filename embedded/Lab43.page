@@ -14,7 +14,7 @@ Part 1
    * 利用 gdb 與 objdump 分析執行檔
 
 步驟：
-   1. 下載作業`檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_
+   1. 下載作業[檔案 (bomb.tar.gz)](/embedded/Lab34/bomb.tar.gz)
    2. 解壓縮後閱讀 README 查看執行方式，並且開始 Hacking!!
 .. code-block:: prettyprint
 
@@ -25,7 +25,7 @@ Part 1
 
 使用 GDB 分析
 ---------------------
-* 假設 `檔案 (bomb.tar.gz)</embedded/Lab34/bomb.tar.gz>`_ 已經解開在 ``/tmp/bomb`` 目錄，先開啟兩個終端機
+* 假設 [檔案 (bomb.tar.gz)](/embedded/Lab34/bomb.tar.gz) 已經解開在 ``/tmp/bomb`` 目錄，先開啟兩個終端機
 * 在其中一個執行以下命令：
 
 .. code-block:: prettyprint
@@ -59,14 +59,14 @@ Part 1
       - 階段 4 - 遞迴
 
 程式說明 (下)：
-    1. 下載`檔案 (bomb2.tar.gz)</embedded/Lab43/bomb2.tar.gz>`_，其餘步驟同上
+    1. 下載[檔案 (bomb2.tar.gz)](/embedded/Lab43/bomb2.tar.gz)，其餘步驟同上
     2. 提示：回顧並熟悉上方及之前上課的內容
 
 參考資料
-  * `hwswinterface lab2<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
-  * `Lab34: Buffer overflow</embedded/Lab34>`_
-  * `Debugging with GDB (入門篇)<http://www.study-area.org/goldencat/debug.htm>`_
-  * `一個練習組合語言的小遊戲 -- Defusing bomb (part 1)<http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-1.html>`_
+  * [hwswinterface lab2](https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=7) (請先註冊 [Coursera](https://www.coursera.org/) 帳號並登入)
+  * [Lab34: Buffer overflow](/embedded/Lab34)
+  * [Debugging with GDB (入門篇)](http://www.study-area.org/goldencat/debug.htm)
+  * [一個練習組合語言的小遊戲 -- Defusing bomb (part 1)](http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-1.html)
 
 Part 2
 -------------
@@ -75,7 +75,7 @@ Part 2
 
 步驟：
 
-* 假設 `Lab-39</embedded/Lab39>`_ 的  `qemu_stm32<https://github.com/beckus/qemu_stm32>`_ 放在 ``$HOME/workspace`` 目錄下
+* 假設 [Lab-39](/embedded/Lab39) 的  [qemu_stm32](https://github.com/beckus/qemu_stm32) 放在 ``$HOME/workspace`` 目錄下
 
 .. code-block:: prettyprint
 
@@ -95,7 +95,7 @@ Part 2
 ..
 
 程式說明：
-   * bufbomb 會利用 `ARM semihosting<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html>`_ 讀取由 ``make exploit`` 產生的 ``exploit.byte``
+   * bufbomb 會利用 [ARM semihosting](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html) 讀取由 ``make exploit`` 產生的 ``exploit.byte``
    * 觀察 ``bufbomb.c``，找出問題所在，輸入正確的 byte code
    * ``str2byte`` 這支程式會讀入 hex 並且轉換成二進位檔案，需要注意的是每一行 code 結尾必須是 ``0x0A('\n')``
    * 溫馨小提示
@@ -105,13 +105,13 @@ Part 2
    * 在建立 exploit code 的時候可以先寫 C code，編譯後利用 objdump 將 machine code 取出
 
 參考資料：
-  * `hwswinterface lab3<https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
-  * `IA32 Linux Buffer Overflow<https://d396qusza40orc.cloudfront.net/hardware/lecture_slides/tutorials/buffoverflow.pdf>`_
-  * `一個練習組合語言的小遊戲 -- Defusing bomb (part 2)<http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-2.html>`_
+  * [hwswinterface lab3](https://class.coursera.org/hwswinterface-002/assignment/view?assignment_id=9) (請先註冊 [Coursera](https://www.coursera.org/) 帳號並登入)
+  * [IA32 Linux Buffer Overflow](https://d396qusza40orc.cloudfront.net/hardware/lecture_slides/tutorials/buffoverflow.pdf)
+  * [一個練習組合語言的小遊戲 -- Defusing bomb (part 2)](http://albert-oma.blogspot.tw/2015/02/embedded-defusing-bomb-part-2.html)
 
 繳交作業
 -------------
 * 截止日期：
   - May 2, 2015 (含) 之前
 
-* 更新解題過程到共筆網站: `Lab 43 / 作業共筆<https://embedded2015.hackpad.com/Lab43>`_，需要標注自己的 ID
+* 更新解題過程到共筆網站: [Lab 43 / 作業共筆](https://embedded2015.hackpad.com/Lab43)，需要標注自己的 ID

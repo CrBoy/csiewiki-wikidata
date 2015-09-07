@@ -7,23 +7,23 @@ categories: User
 ==
 - 成功大學工程科學系104級
 - 成功大學電腦與通信工程(甲) 碩0生
-- `Github<https://github.com/Jayjack0116>`_
+- [Github](https://github.com/Jayjack0116)
 
 
 作業及筆記
 ======
-- week1&2 : `GitHub<https://github.com/Jayjack0116/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/Fiif0IZOBiO>`_
-- week3 : `GitHub<https://github.com/Jayjack0116/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/-Week-3-Lab39-QPGeogUZPYH>`_
-- week4 : `GitHub<https://github.com/Jayjack0116/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/-2015-Week-4-Lab40-R7yMskhsW3B>`_
-- week5&6 : `Hackpad<https://embedded2015.hackpad.com/-Week-5-Lab41-dmHSY8aToOy>`_
-- week7&8 : `GitHub<https://github.com/Jayjack0116/mini-arm-os>`_, `Hackpad<https://embedded2015.hackpad.com/-Week-7-Qn1ur96Sg72>`_
+- week1&2 : [GitHub](https://github.com/Jayjack0116/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/Fiif0IZOBiO)
+- week3 : [GitHub](https://github.com/Jayjack0116/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/-Week-3-Lab39-QPGeogUZPYH)
+- week4 : [GitHub](https://github.com/Jayjack0116/visualizer), [Hackpad](https://embedded2015.hackpad.com/-2015-Week-4-Lab40-R7yMskhsW3B)
+- week5&6 : [Hackpad](https://embedded2015.hackpad.com/-Week-5-Lab41-dmHSY8aToOy)
+- week7&8 : [GitHub](https://github.com/Jayjack0116/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/-Week-7-Qn1ur96Sg72)
 
 FreeRTOS(MMU) 報告與筆記
 ====================
-- CSIE Wiki: `FreeRTOS (MMU)<http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu>`_
+- CSIE Wiki: [FreeRTOS (MMU)](http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu)
 - 負責部分: 研讀與在Beagle Bone Black上開啟設定 MMU 功能
-- 筆記: `Hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
-- FreeRTOS 8.2.1 for Beagle Bone Black: `Github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+- 筆記: [Hackpad](https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy)
+- FreeRTOS 8.2.1 for Beagle Bone Black: [Github](https://github.com/dani4310/BBBFreeRTOS_shell_MMU)
 
 心得感想
 =====

@@ -7,27 +7,27 @@ Sunny(蔣亞翰)
 
 每週上課筆記
 ============
-- 每週上課的課堂筆記 :`Hackpad<https://hackpad.com/317-jserv-AGNFMsNrnOh>`_
+- 每週上課的課堂筆記 :[Hackpad](https://hackpad.com/317-jserv-AGNFMsNrnOh)
 
 作業及筆記
 ============
-- week1&2 : `GitHub<https://github.com/r930709/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/1-EaaA9oSTt3C>`_
-- week3 : `GitHub<https://github.com/r930709/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/-Week-3-Lab39-oZqeipjm0Ft>`_
-- week4 : `GitHub<https://github.com/r930709/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/-Week-3-Lab40-XWu1T2TrI5A#:h=取得Visualizer-並進行測試>`_
-- week5 : `Hackpad<https://embedded2015.hackpad.com/ySL4iagyhuF>`_
+- week1&2 : [GitHub](https://github.com/r930709/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/1-EaaA9oSTt3C)
+- week3 : [GitHub](https://github.com/r930709/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/-Week-3-Lab39-oZqeipjm0Ft)
+- week4 : [GitHub](https://github.com/r930709/visualizer), [Hackpad](https://embedded2015.hackpad.com/-Week-3-Lab40-XWu1T2TrI5A#:h=取得Visualizer-並進行測試)
+- week5 : [Hackpad](https://embedded2015.hackpad.com/ySL4iagyhuF)
 
 
 報告筆記
 =========
-- 整體 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
-- ARM CP15 與MMU : `Hackpad<https://embedded2015.hackpad.com/ARM-CP15-MMU-Lgl4ew73EO6>`_
-- lmbench3: measuring scalability論文分析並實測lat_syscall結果 : `Hackpad<https://embedded2015.hackpad.com/lmbench-an-extensible-micro-benchmark-suite-7ydSAPfnx0I>`_
-- Computer Architecture_memory篇 : `Hackpad<https://embedded2015.hackpad.com/Computer-Architecture_memory-VFqFVomUX93>`_
+- 整體 : [Hackpad](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
+- ARM CP15 與MMU : [Hackpad](https://embedded2015.hackpad.com/ARM-CP15-MMU-Lgl4ew73EO6)
+- lmbench3: measuring scalability論文分析並實測lat_syscall結果 : [Hackpad](https://embedded2015.hackpad.com/lmbench-an-extensible-micro-benchmark-suite-7ydSAPfnx0I)
+- Computer Architecture_memory篇 : [Hackpad](https://embedded2015.hackpad.com/Computer-Architecture_memory-VFqFVomUX93)
 
 
 報告
 =========
-- CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
+- CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
 - 主要負責整理Memory以及ARM-Linux MMU的心得
 - lmbech的lat_syscall分析以及實驗暨結果探討
 

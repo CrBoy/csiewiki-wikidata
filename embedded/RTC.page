@@ -36,7 +36,7 @@ Block Diagram
 --------------------
 [#]_
 
-.. [#] `Block Diagram <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
+.. [#] [Block Diagram ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.780
 .. image:: /rtc_block.png
 
 
@@ -63,7 +63,7 @@ Secondary Clock:
 
 ----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源 [#]_
 
-.. [#] `Clock Source <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.150
+.. [#] [Clock Source ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.150
 
 -------------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ LSI: 32kHz / (**127**+1) /(**249**+1) =1Hz
 
 [#]_
 
-.. [#] `prescaler <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.781
+.. [#] [prescaler ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.781
 
 -------------------------------------------
 
@@ -104,7 +104,7 @@ Calibration
 
 RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth calibration。[#]_
 
-.. [#] `Calibration <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.787
+.. [#] [Calibration ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.787
 
 這兩個校正不能同時被使用，而前者只能固定修正，後者則可以動態的校正。後者也可以較大範圍及更精準的校正。
 
@@ -145,7 +145,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 - 利用外部時鐘校正，其時鐘源必須要比LSE的時鐘還精準。[#]_
 
-.. [#] `RTC reference clock <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.786
+.. [#] [RTC reference clock ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.786
 
 RTC Calendar 
 --------------------
@@ -168,7 +168,7 @@ RTC Calendar
 
 [#]_
 
-.. [#] `Calendar <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.780
+.. [#] [Calendar ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.780
 
 -----------------------------
 
@@ -204,7 +204,7 @@ Alternate function 可以將RTC某些功能對應到輸出的接腳(GPIO Pin)，
 
 
 
-.. [#] `Alternate Function Outputs & Inputs <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.227
+.. [#] [Alternate Function Outputs & Inputs ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.227
 
 
 *PI8接腳參考: datasheet p.10*
@@ -242,7 +242,7 @@ Low Power Modes
 
   - 待機模式：2uA
 
-.. [#] `Low Power Modes <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.126
+.. [#] [Low Power Modes ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.126
 
 ---------------------------------------------------
 
@@ -269,7 +269,7 @@ Alarm
 .. image:: /Alarm3.png
 
 
-.. [#] `Alarm <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.781
+.. [#] [Alarm ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.781
 
 
 **利用MSKx bits設定遮罩改變Alarm的行為:** [#]_
@@ -281,7 +281,7 @@ As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是00
 
 
 
-.. [#] `Alarm application note <http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/application_note/DM00025071.pdf>`_ p.11
+.. [#] [Alarm application note ](http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/application_note/DM00025071.pdf) p.11
 
 
 ------------------------------------------------------------------------------------------
@@ -356,7 +356,7 @@ Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
 
 
 
-.. [#] `Periodic Wakeup Unit <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.782
+.. [#] [Periodic Wakeup Unit ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.782
 
 --------------------------
 
@@ -379,7 +379,7 @@ Time-stamp function 提供自動幫你儲存日曆的功能
 
 
 
-.. [#] `Time-stamp Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.790
+.. [#] [Time-stamp Function](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.790
 
 -----------------------------------------------------------------------------------------------
 
@@ -407,7 +407,7 @@ Tamper Detection是一個可以檢測系統是否有被竄改的功能。在Tamp
 
 
 
-.. [#] `Tamper Detection Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.792
+.. [#] [Tamper Detection Function](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.792
 
 ------------------------------------------
 
@@ -429,7 +429,7 @@ SRAM:靜態隨機存取存儲器（Static Random-Access Memory, SRAM）是隨機
 
 .. image:: /backupdomain.PNG
 
-.. [#] `Tamper Detection Function<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p.115
+.. [#] [Tamper Detection Function](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.115
 
 
 
@@ -470,7 +470,7 @@ Initialize RTC
 
 [#]_
 
-.. [#] `Device overview <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.18
+.. [#] [Device overview ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00037051.pdf) p.18
 
 -----------------------------------------------------------------
 
@@ -787,7 +787,7 @@ MSP430 USB Debugging Interface :http://www.ti.com/tool/cc-debugger
 
 Reference
 ================
-`RTC application note<http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/application_note/DM00025071.pdf>`_
+[RTC application note](http://www.st.com/st-web-ui/static/active/cn/resource/technical/document/application_note/DM00025071.pdf)
 
 `STM32F405xx/07xx, STM32F415xx/17xx, STM32F42xxx and STM32F43xxx Reference Manual
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
@@ -796,6 +796,6 @@ Reference
 <http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00037051.pdf>`_
 
 
-`LCD introduction (選左邊清單的"LCD控制")<http://faculty.stust.edu.tw/~wjshieh/>`_
+[LCD introduction (選左邊清單的"LCD控制")](http://faculty.stust.edu.tw/~wjshieh/)
 
-`電池規格<http://zh.wikipedia.org/wiki/%E4%B9%BE%E9%9B%BB%E6%B1%A0/>`_
+[電池規格](http://zh.wikipedia.org/wiki/%E4%B9%BE%E9%9B%BB%E6%B1%A0/)

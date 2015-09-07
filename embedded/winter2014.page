@@ -13,7 +13,7 @@ toc: no
  * 案例探討：四軸飛行器
    - 飛行原理和物理模型
    - open source hardware + software stack: FreeRTOS 開發示範
-   - `打造四軸飛行器全紀錄<https://embeddedcool.hackpad.com/Y38T9JXygI8>`_
+   - [打造四軸飛行器全紀錄](https://embeddedcool.hackpad.com/Y38T9JXygI8)
 
 討論區
 -------
@@ -22,7 +22,7 @@ toc: no
 
 報名方式
 -----------
-自由參加即可，請先到 `共筆網站<https://system2014.hackpad.com/>`_ 簽到
+自由參加即可，請先到 [共筆網站](https://system2014.hackpad.com/) 簽到
 
 課程表
 ----------
@@ -38,7 +38,7 @@ toc: no
 
 參考資料
 -----------
- * `嵌入式系統課程</embedded/schedule>`_
+ * [嵌入式系統課程](/embedded/schedule)
  * Microkernel evolution: http://www.slideshare.net/jserv/microkernel-evolution
  * F9 microkernel: http://www.slideshare.net/jserv/f9-microkernel
  * olibc: http://www.slideshare.net/jserv/olibc
@@ -46,4 +46,4 @@ toc: no
  * UNIXv6 internals: http://www.slideshare.net/jserv/unix-v6study
  * C and UNIX: http://www.slideshare.net/jserv/unix-crevise
 
-- contact: `Jim Huang</User/jserv>`_ (黃敬群) <jserv.tw@gmail.com>
+- contact: [Jim Huang](/User/jserv) (黃敬群) <jserv.tw@gmail.com>

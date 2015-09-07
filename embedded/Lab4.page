@@ -5,16 +5,16 @@ toc: no
 
 預期目標
 -------
-* 搭配`第三周</embedded/2012w3>`_、`第四周</embedded/2012w4>`_與`第五周</embedded/2012w4>`_課程進度
+* 搭配[第三周](/embedded/2012w3)、[第四周](/embedded/2012w4)與[第五周](/embedded/2012w4)課程進度
 * 反省前三次作業的實做並探討可能的改進機會
 
 教學影片觀賞
 ----------
-- `開放教材/嵌入式系統導論<http://ocw.nctu.edu.tw/course_detail_3.php?bgid=9&gid=0&nid=246#.UHzse3alYs2>`_, 交大資工/曹孝櫟教授
+- [開放教材/嵌入式系統導論](http://ocw.nctu.edu.tw/course_detail_3.php?bgid=9&gid=0&nid=246#.UHzse3alYs2), 交大資工/曹孝櫟教授
   * Introduction to ARM architecture and extension bus
   * Introduction to Embedded Software
 
-- `EE192C - Embedded Systems Engineering<http://www.cmax.net/ee192c-0708/>`_, Max Klein, Stanford University
+- [EE192C - Embedded Systems Engineering](http://www.cmax.net/ee192c-0708/), Max Klein, Stanford University
   * Lecture 9: Real Time Systems. Interrupts (IRQ and ISR). Timers. Pulse-width modulation (PWM)
   * Lecture 10: IRQ and PWM Follow-up. AVR-SCPNT Development Boards. Real Time Operating Systems. Intro to FreeRTOS: Task Creation.
   * Lecture 11: IRQ updates. Intro to FreeRTOS: Delays, Queues.
@@ -22,7 +22,7 @@ toc: no
 
 作業
 ----
-- 持續改進 `Lab-2</embedded/Lab2>`_ 與 `Lab-3</embedded/Lab3>`_
+- 持續改進 [Lab-2](/embedded/Lab2) 與 [Lab-3](/embedded/Lab3)
   * 初步評分會在 Oct 22 進行，務必在該日中午前提交到 GitCafe 上，否則零分計算
 
 - 簡述撰寫 Labs 作業與開放課程學習的心得，寄件到 <jserv.tw@gmail.com>，並且預約面談時間 (已約談過者，可忽略)

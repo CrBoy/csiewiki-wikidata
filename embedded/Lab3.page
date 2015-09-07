@@ -5,9 +5,9 @@ toc: no
 
 預期目標
 -------
-* 搭配`第三周</embedded/2012w3>`_與`第四周</embedded/2012w4>`_課程進度
+* 搭配[第三周](/embedded/2012w3)與[第四周](/embedded/2012w4)課程進度
 - 更進一步學習 GNU Toolchain 的使用，特別用在自動化分析環境
-- 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+- 在 QEMU 模擬的 STM32 環境中，嘗試執行 [FreeRTOS](http://www.freertos.org/) 並且學習相關的操作
 - 熟悉 FreeRTOS 的內部運作機制
 - 對 RTOS 內部運作進行視覺化，以銜接未來的硬體操作
 - 實地練習 Multi-tasking 程式設計
@@ -15,7 +15,7 @@ toc: no
 
 GTKWave
 --------------
-- `GTKWave<http://gtkwave.sourceforge.net/>`_: 強大的 wave viewer
+- [GTKWave](http://gtkwave.sourceforge.net/): 強大的 wave viewer
 - 在 Ubuntu Linux 的安裝與操作
 
 .. code-block:: prettyprint
@@ -57,7 +57,7 @@ GTKWave
 
 FreeRTOS for STM32
 ----------------------------------
-- 仿造 `Lab-2</embedded/Lab2>`_ 操作，取得最新的 Lab3 程式碼
+- 仿造 [Lab-2](/embedded/Lab2) 操作，取得最新的 Lab3 程式碼
 - 狀況一：只是在課堂練習
 
 .. code-block:: prettyprint
@@ -65,7 +65,7 @@ FreeRTOS for STM32
     git clone git://gitcafe.com/embedded2012/Labs.git
     cd Labs/Lab-3
 
-- 狀況二：整合到 P-<username>，準備可提交作業的環境。以 `jserv</User/jserv>`_ 為例：
+- 狀況二：整合到 P-<username>，準備可提交作業的環境。以 [jserv](/User/jserv) 為例：
 
 .. code-block:: prettyprint
 
@@ -92,7 +92,7 @@ FreeRTOS for STM32
         --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN
     make && cd ..
 
-- 仿造 `Lab-2</embedded/Lab2>`_ 的操作，編譯並執行 FreeRTOS 程式
+- 仿造 [Lab-2](/embedded/Lab2) 的操作，編譯並執行 FreeRTOS 程式
 
 .. code-block:: prettyprint
 
@@ -122,7 +122,7 @@ FreeRTOS for STM32
 
 作業 (B)
 -------------
-- 以 FreeRTOS 的 multi-tasking 重寫 `Lab2</embedded/Lab2>`_ 的作業 (B)，基本條件照舊，只是改為兩個以上的 Task
+- 以 FreeRTOS 的 multi-tasking 重寫 [Lab2](/embedded/Lab2) 的作業 (B)，基本條件照舊，只是改為兩個以上的 Task
 
 .. code-block:: prettyprint
 
@@ -153,6 +153,6 @@ FreeRTOS for STM32
   * http://www.freertos.org/tutorial/
 
 - FreeRTOS Training
-  * `Task Management<http://www.slideshare.net/amraldo/free-freertos-coursetask-management>`_
-  * `Queue Management<http://www.slideshare.net/amraldo/m3-introduction-to-free-rtos-v605>`_
-  * `Semaphore/Mutex Management<http://www.slideshare.net/amraldo/freertos-course-semaphoremutex-management>`_
+  * [Task Management](http://www.slideshare.net/amraldo/free-freertos-coursetask-management)
+  * [Queue Management](http://www.slideshare.net/amraldo/m3-introduction-to-free-rtos-v605)
+  * [Semaphore/Mutex Management](http://www.slideshare.net/amraldo/freertos-course-semaphoremutex-management)

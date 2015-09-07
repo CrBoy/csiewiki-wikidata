@@ -7,23 +7,23 @@ toc: no
 -----------
 - Nov 6: 硬體教學課程 (助教)
 - Nov 13 / Nov 20: 分組報告個別週邊與 FreeRTOS 介面包裝的狀況 (利用 wiki 作共筆平台)
-  * `GPIO</embedded/GPIO>`_
-  * `USART</embedded/USART>`_
-  * `ADC</embedded/ADC>`_
-  * `RTC</embedded/RTC>`_
-  * `PWM</embedded/PWM>`_
-  * `USB</embedded/USB>`_ (含 OTG)
-  * `SPI</embedded/SPI>`_
-  * `Flash</embedded/Flash>`_
+  * [GPIO](/embedded/GPIO)
+  * [USART](/embedded/USART)
+  * [ADC](/embedded/ADC)
+  * [RTC](/embedded/RTC)
+  * [PWM](/embedded/PWM)
+  * [USB](/embedded/USB) (含 OTG)
+  * [SPI](/embedded/SPI)
+  * [Flash](/embedded/Flash)
   * 或者：
-    - 驗證 (重新實做) `現有硬體與專案</embedded/resources>`_ (open source)
+    - 驗證 (重新實做) [現有硬體與專案](/embedded/resources) (open source)
 
 - 目前分組報告順序為:
   * 3_ADC > 4_RTC > 5_PWM > 8_FLASH > 7_SPI > 1_GPIO > 2_USART > 6_USB
   * 每周 3 組報告 請同學準備
 
 - 為 FreeRTOS 建立類似 Arduino 的 API driver model
-  * 可參考 RT-Thread / ART 的 `libarduino<https://github.com/RT-Thread/ART/tree/master/software/platform>`_
+  * 可參考 RT-Thread / ART 的 [libarduino](https://github.com/RT-Thread/ART/tree/master/software/platform)
   * 每組需要提供延伸自 FreeRTOS 的週邊 API 與參考的軟硬體實做
   * 透過示波器解說硬體特性
 
@@ -31,29 +31,29 @@ toc: no
 教材：稀里糊塗學 STM32
 --------------------
 - 來源: http://www.amobbs.com/thread-4548727-1-1.html / Ling.Ju
-- `第一講：涇渭分明</embedded/learn-stm32-part-1.pdf>`_
+- [第一講：涇渭分明](/embedded/learn-stm32-part-1.pdf)
   * 涇河水清，渭河水渾，涇河的水流入渭河時，清濁不混。比喻界限清楚或是非分明。同樣，學習 STM32 的過程也如同大河匯聚一樣，無數的支流匯聚成大江，聚少成多，積沙成塔。
 
-- `第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
+- [第二講：源源不絕](/embedded/learn-stm32-part-2.pdf)
   * 俗氣的馬克思主義者認為：「世界是物質的，物質是運動的，運動是有規律的，規律是由事物內部的矛盾決定的」。這句話裡有兩點對於本講是很重要的，一點是「物質是運動的」，一點是「運動是有規律的」。STM32 也是一樣，他的運動源源不絕，且有著他特定的規律。
 
-- `第三講：事出有因</embedded/learn-stm32-part-3.pdf>`_
+- [第三講：事出有因](/embedded/learn-stm32-part-3.pdf)
   * 世事無絕對，不可能總是一氣呵成，做人也是一樣，人生勢必坎坷磨難，只要平常心即可。程序亦是如此，不可能總是 while(1); ，中斷在所難免,本講「事出有因」即是簡述 STM32 的中斷過程，Cortex M3 的 NVIC 中斷也是一大亮點，希望經過本講能知其「因」，得其「果」。
 
-- `第四講：白駒過隙</embedded/learn-stm32-part-4.pdf>`_
+- [第四講：白駒過隙](/embedded/learn-stm32-part-4.pdf)
   * 《莊子·知北遊》中提到「人生天地之間，若白駒之過郤，忽然而已」，時間像白色駿馬在細小的縫隙前跑過一樣過得極快。可以用稍縱即逝來形容，時間是連續的，模擬量與數字量最大的區別也在於連續，本講講結合時鐘中斷，完成對 ADC 的控制與讀取。記住！時間很寶貴！稍縱即逝！人生沒有第二次！
 
-- `第五講：爭分奪秒</embedded/learn-stm32-part-5.pdf>`_
+- [第五講：爭分奪秒](/embedded/learn-stm32-part-5.pdf)
   * 常語人曰：「大禹聖者，乃惜寸陰，至於眾人，當惜分陰。」人生當爭分奪秒。
 
-- `第六講：川流不息</embedded/learn-stm32-part-6.pdf>`_
+- [第六講：川流不息](/embedded/learn-stm32-part-6.pdf)
   * 百川東到海，何時復西歸！
 
-- `番外篇：初探 F4</embedded/learn-stm32-part-N.pdf>`_
+- [番外篇：初探 F4](/embedded/learn-stm32-part-N.pdf)
 
 
 STM32F4 Discovery
 ------------------
-- `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
+- [STM32F4-Discovery 中文使用手冊](/embedded/STM32-Discovery-Manual-Chinese.pdf)
 - STM32F4-DISCOVERY kit for STM32 F4 series - with STM32F407 MCU
   * http://www.st.com/internet/evalboard/product/252419.jsp

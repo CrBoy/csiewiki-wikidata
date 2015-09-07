@@ -7,40 +7,40 @@ toc: no
 協作者
 ------
 * 2015 年夏季:
-  - `陳建霖<https://github.com/lecopzer>`_
+  - [陳建霖](https://github.com/lecopzer)
 
 * 2015 年春季:
-  - `劉家瑄<https://github.com/goldmedal/>`_, `賴弈豪<https://github.com/harry191518>`_, `陳建霖<https://github.com/james33344>`_, `蘇容德<https://github.com/rita5022>`_, 李洋逸, 戴紹軒
+  - [劉家瑄](https://github.com/goldmedal/), [賴弈豪](https://github.com/harry191518), [陳建霖](https://github.com/james33344), [蘇容德](https://github.com/rita5022), 李洋逸, 戴紹軒
 
 * 2014 年春季:
-  - `楊震<https://github.com/Omar002>`_, `丁士宸<https://github.com/StanleyDing>`_, `程政罡<https://github.com/marktwtn>`_, `李昆憶<https://github.com/LanKuDot>`_, `鄭聖文<https://github.com/shengwen1997/>`_
+  - [楊震](https://github.com/Omar002), [丁士宸](https://github.com/StanleyDing), [程政罡](https://github.com/marktwtn), [李昆憶](https://github.com/LanKuDot), [鄭聖文](https://github.com/shengwen1997/)
 
 共筆
 ----
 
-* 2015 年夏季: `PSE51 <https://hackpad.com/PSE51-on-rtenv-hcA51kSKeIa>`_
-* 2015 年春季: `hackpad <https://hackpad.com/rtenv-wDf84ASaCcb#:h=Memory-Layout>`_, `Context Switch hackpad <https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
-* 2014 年春季: `hackpad <https://embedded2014.hackpad.com/Rtenv-plus-0VHEYKBpr3D>`_
+* 2015 年夏季: [PSE51 ](https://hackpad.com/PSE51-on-rtenv-hcA51kSKeIa)
+* 2015 年春季: [hackpad ](https://hackpad.com/rtenv-wDf84ASaCcb#:h=Memory-Layout), [Context Switch hackpad ](https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj)
+* 2014 年春季: [hackpad ](https://embedded2014.hackpad.com/Rtenv-plus-0VHEYKBpr3D)
 
 目錄
 -------
-* `rtenv+介紹<#rtenv+介紹>`_
-* `Source code<#Source code>`_
-* `Cortex-M3 基本概念<#Cortex-M3 基本概念>`_
-* `Exception (Cortex-M3)<#Exception (Cortex-M3)>`_
-* `task<#task>`_
-* `建立與執行task<#建立與執行task>`_
-* `list<#list>`_
-* `scheduler<#scheduler>`_
-* `Event Monitoring<#Event Monitoring>`_
-* `PendSV<#PendSV>`_
-* `System Call<#System Call>`_
-* `File Descriptor<#File Descriptor>`_
-* `File System<#File System>`_
-* `建立環境<#建立環境>`_
-* `測試 with STM32f429i-discovery<#測試 with STM32f429i-discovery>`_
-* `效能表現<#效能表現>`_
-* `參考資料<#參考資料>`_
+* [rtenv+介紹](#rtenv+介紹)
+* [Source code](#Source code)
+* [Cortex-M3 基本概念](#Cortex-M3 基本概念)
+* [Exception (Cortex-M3)](#Exception (Cortex-M3))
+* [task](#task)
+* [建立與執行task](#建立與執行task)
+* [list](#list)
+* [scheduler](#scheduler)
+* [Event Monitoring](#Event Monitoring)
+* [PendSV](#PendSV)
+* [System Call](#System Call)
+* [File Descriptor](#File Descriptor)
+* [File System](#File System)
+* [建立環境](#建立環境)
+* [測試 with STM32f429i-discovery](#測試 with STM32f429i-discovery)
+* [效能表現](#效能表現)
+* [參考資料](#參考資料)
 
 作業系統架構
 -----------------------
@@ -67,7 +67,7 @@ Source code
 
 原始來源： https://github.com/embedded2014/rtenv-plus
 
-文件請見：`rtenv+ 2014 <http://wiki.csie.ncku.edu.tw/embedded/rtenv-2014>`_
+文件請見：[rtenv+ 2014 ](http://wiki.csie.ncku.edu.tw/embedded/rtenv-2014)
 
 
 
@@ -1050,7 +1050,7 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
+- 取得 GNU Toolchain: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded) ，或用 apt-get 取得，操作如下
 
 .. code-block:: prettyprint
 
@@ -1171,16 +1171,16 @@ gdb
 -----------
 [#]_ [#]_ [#]_ [#]_ [#]_ [#]_
 
-.. [#] `Cortex-M3 Exception Entry<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+.. [#] [Cortex-M3 Exception Entry](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html)
 
-.. [#] `Cortex-M3 Exception Return<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html>`_
+.. [#] [Cortex-M3 Exception Return](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Babefdjc.html)
 
-.. [#] `Cortex-M3 Execution Modes<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html>`_
+.. [#] [Cortex-M3 Execution Modes](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s06.html)
 
-.. [#] `Cortex-M3 Processor mode and privilege levels for software execution<http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html>`_
+.. [#] [Cortex-M3 Processor mode and privilege levels for software execution](http://infocenter.arm.com/help/index.jsp?topic=%2Fcom.arm.doc.dui0552a%2FCHDIGFCA.html)
 
-.. [#] `WikiPedia: Event Monitoring<http://en.wikipedia.org/wiki/Event_monitoring>`_
+.. [#] [WikiPedia: Event Monitoring](http://en.wikipedia.org/wiki/Event_monitoring)
 
-.. [#] `File，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File>`_
+.. [#] [File，hackpad，廖健富](https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=File)
 
-.. [#] `Block devices:drivers and files，hackpad，廖健富<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=Block-Devices:-Drivers-and-Fil>`_
+.. [#] [Block devices:drivers and files，hackpad，廖健富](https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt#:h=Block-Devices:-Drivers-and-Fil)

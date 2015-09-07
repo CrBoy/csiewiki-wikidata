@@ -5,15 +5,15 @@ toc: no
 
 教材
 ---------
-- `Timer, Interrupt, Exception in ARM</embedded/2012w4/tim-int-ex.pdf>`_
-- `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
-- `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
-- `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+- [Timer, Interrupt, Exception in ARM](/embedded/2012w4/tim-int-ex.pdf)
+- [Concurrent processes and real-time scheduling](/embedded/2012w4/concurrency-scheduling.pdf)
+- [Co-routines vs. Tasks](http://www.freertos.org/taskandcr.html)
+- [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  * [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 參考資訊
 ---------
-- `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
+- [FreeRTOS Implementation](http://www.freertos.org/implementation/main.html)
 
 - ARM "Cortex-M3 Technical Reference Manual"
   * http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0337i

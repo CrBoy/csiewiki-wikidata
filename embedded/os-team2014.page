@@ -9,12 +9,12 @@ toc: no
 最新資訊
 --------
 * 期末專題訂於 2014 年 6 月 21 日 (週六)
-* 地點：成功大學電機系一樓 繁城講堂 (`地圖<http://www.ncku.edu.tw/ver2006/ch/ncku/map/map.htm>`_)
+* 地點：成功大學電機系一樓 繁城講堂 ([地圖](http://www.ncku.edu.tw/ver2006/ch/ncku/map/map.htm))
 
 時間表
 ------
 * 每組 25 分鐘 (含 Q&A)
-* 關於演講人黃耀文執行長的`商周報導<http://www.businessweekly.com.tw/KWebArticle.aspx?ID=51410>`_
+* 關於演講人黃耀文執行長的[商周報導](http://www.businessweekly.com.tw/KWebArticle.aspx?ID=51410)
 
 +---------------+------------+
 | 時段          | 議程       |
@@ -37,23 +37,23 @@ toc: no
 期末專題目標
 ------------
 * 「人在作，Google 在看」，我們會邀請同學未來可能的雇主、同事們來評分
-  - 去年的 `期末專題</embedded/team2013>`_ 水準
+  - 去年的 [期末專題](/embedded/team2013) 水準
 
 * 所有開發過程都公開，最終成果用 open source 形式釋出
 * 從底層到上層應用，一手通包，體驗打造具體而微系統的過程
 
 分組表
 =====
-* `第1組</embedded/os-team2014-1>`_  (2G手機) [1]
-* `第2組</embedded/os-team2014-2>`_  (電吉他調音器) [4]
-* `第3組</embedded/os-team2014-3>`_  (robot arm)
-* `第4組</embedded/os-team2014-4>`_  (F9 microkernel 的 driver model)
-* `第5組</embedded/os-team2014-5>`_  (高精度繪圖機) [2]
-* `第6組</embedded/os-team2014-6>`_  (防盜攝影機) [3]
-* `第7組</embedded/os-team2014-7>`_  (空氣烏克麗麗) [6]
-* `第8組</embedded/os-team2014-8>`_  (Firefox OS) [5]
-* `第9組</embedded/os-team2014-9>`_  (自動翻書機) [7]
-* `第10組</embedded/os-team2014-10>`_  (uGFX) [8]
+* [第1組](/embedded/os-team2014-1)  (2G手機) [1]
+* [第2組](/embedded/os-team2014-2)  (電吉他調音器) [4]
+* [第3組](/embedded/os-team2014-3)  (robot arm)
+* [第4組](/embedded/os-team2014-4)  (F9 microkernel 的 driver model)
+* [第5組](/embedded/os-team2014-5)  (高精度繪圖機) [2]
+* [第6組](/embedded/os-team2014-6)  (防盜攝影機) [3]
+* [第7組](/embedded/os-team2014-7)  (空氣烏克麗麗) [6]
+* [第8組](/embedded/os-team2014-8)  (Firefox OS) [5]
+* [第9組](/embedded/os-team2014-9)  (自動翻書機) [7]
+* [第10組](/embedded/os-team2014-10)  (uGFX) [8]
 * 第11組 (基於 OpenRISC 之多核心軟硬體整合專案開發) [9]
 
 (方括號數字為報告順序)

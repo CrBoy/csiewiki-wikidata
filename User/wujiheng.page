@@ -21,7 +21,7 @@ toc: no
 ===============
 * 3D Printer
 
-    Ref: `RepRap<http://reprap.org/wiki/RepRap>`_
+    Ref: [RepRap](http://reprap.org/wiki/RepRap)
 
     目前的計畫是先從組裝一台別人研究好的3D Printer為基礎，練習組裝及校正的經驗，接著可以利用這台3D Printer為基底，
     
@@ -31,7 +31,7 @@ toc: no
 
     - 改成雙噴頭雙色輸出，可分層或分邊印刷
 
-    - 利用STM32取代`RepRap Arduino Mega Pololu Shield(RAMPS)<http://reprap.org/wiki/RAMPS_1.4>`_及`Arduino<http://arduino.cc/>`_控制板來降低成本及增加未來的擴充彈性。
+    - 利用STM32取代[RepRap Arduino Mega Pololu Shield(RAMPS)](http://reprap.org/wiki/RAMPS_1.4)及[Arduino](http://arduino.cc/)控制板來降低成本及增加未來的擴充彈性。
 
     - 改裝底板，讓成品可以自動送出(類似輸送帶這樣)，印完就自動將成品推出底板，方便重複印刷。
 
@@ -40,7 +40,7 @@ toc: no
 
 * 赤道儀 Equatorial mount
 
-    Ref: `Equatorial mount<http://en.wikipedia.org/wiki/Equatorial_mount>`_
+    Ref: [Equatorial mount](http://en.wikipedia.org/wiki/Equatorial_mount)
 
     **目前構想:**
 

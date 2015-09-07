@@ -10,7 +10,7 @@ toc: no
 
 修改 rtenv
 -----------
-* 同 `Lab25</embedded/Lab25>`_ 取得 rtenv 並編譯執行
+* 同 [Lab25](/embedded/Lab25) 取得 rtenv 並編譯執行
 * 修改 syscall.s 將 ``push {r7}`` 和 ``mov r7,`` 及 ``pop {r7}`` 等等指令中的 r7 改為 r8
 * 修改 kernel.c 的 main() 函式，將 r7 改為 r8
 * 重新編譯: ``make clean all``
@@ -20,8 +20,8 @@ toc: no
 
 作業要求 (歡迎替換)
 -------------------
-* 繼續分析 rtenv 的執行過程，試圖說明 process, system call, scheduler, pipe 等行為，更新於 `Lab25</embedded/Lab25>`_ 的共筆
-  - 位於 Hackpad 的 `Lab25 共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
+* 繼續分析 rtenv 的執行過程，試圖說明 process, system call, scheduler, pipe 等行為，更新於 [Lab25](/embedded/Lab25) 的共筆
+  - 位於 Hackpad 的 [Lab25 共筆](https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU)
 
 * 將 ABI 定為透過 r8 來傳遞 system call / ISR number
 

@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-* 擴展 ``rtenv`` 的功能：引入 `rtenv-plus<https://github.com/embedded2014/rtenv-plus>`_，一個強化的 ``rtenv`` 版本，未來將逐步使其具備商用 RTOS 能力
+* 擴展 [`rtenv`` 的功能：引入 `rtenv-plus](https://github.com/embedded2014/rtenv-plus)，一個強化的 ``rtenv`` 版本，未來將逐步使其具備商用 RTOS 能力
 * 分析 romfs，並實作基本檔案處理
 * 複習前幾周的實作技巧
 * 整合之前的 unit test
@@ -39,7 +39,7 @@ rtenv-plus: 強化的 rtenv
   - 在 UART 輸入 ``xxd /X``，可見到以下輸出：
     * 00000000: 580a                  X.
 
-  - 由此可見，`rtenv-plus<https://github.com/embedded2014/rtenv-plus>`_ 提供了一份檔案系統實作，而且可在編譯時期加入到 ``main.bin`` 中。驗證方法：
+  - 由此可見，[rtenv-plus](https://github.com/embedded2014/rtenv-plus) 提供了一份檔案系統實作，而且可在編譯時期加入到 ``main.bin`` 中。驗證方法：
     * ``make clean``
     * ``echo NCKU > data/rom0/X``
     * ``make``
@@ -63,10 +63,10 @@ romfs 實作
   - src/romfs.c: 檔案系統和相關界面
 
 * 參考資訊
-  - `Lab21</embedded/Lab21>`_
-  - `Lab21 實作程式碼<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_
+  - [Lab21](/embedded/Lab21)
+  - [Lab21 實作程式碼](https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f)
 
-* `Block Devices: Drivers and Files<http://hssl.cs.jhu.edu/~randal/419/lectures/L5.5.BDD.pdf>`_
+* [Block Devices: Drivers and Files](http://hssl.cs.jhu.edu/~randal/419/lectures/L5.5.BDD.pdf)
 
 參考作業提案
 -------------
@@ -80,7 +80,7 @@ romfs 實作
 
 作業繳交方式
 -------------
-* 更新作業提案到共筆網站: `Lab 28 / 作業共筆<https://embedded2014.hackpad.com/Lab28-Extend-RTOS-5evpv6zmkx1>`_，需要標注自己的 ID
+* 更新作業提案到共筆網站: [Lab 28 / 作業共筆](https://embedded2014.hackpad.com/Lab28-Extend-RTOS-5evpv6zmkx1)，需要標注自己的 ID
 * 在 Mar 21 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
   - https://github.com/embedded2014/rtenv-plus
   - 注意: 要記得 fork ``rtenv-plus``

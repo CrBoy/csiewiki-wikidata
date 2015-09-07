@@ -11,20 +11,20 @@ toc: no
 預先準備
 -------
 - 在本 wiki 註冊帳號
-- 加入/訂閱位於 Google Groups 的 `embedded2013 郵件討論群組<https://groups.google.com/group/embedded2013>`_，以獲得討論資訊
-- 在 `GitCafe<https://gitcafe.com>`_ 註冊帳號
+- 加入/訂閱位於 Google Groups 的 [embedded2013 郵件討論群組](https://groups.google.com/group/embedded2013)，以獲得討論資訊
+- 在 [GitCafe](https://gitcafe.com) 註冊帳號
   - 確認在 Account Settings 加入 SSH Key
-  - 可參考「`產生 SSH key 給 Bitbucket/Github 使用<http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/>`_」一文
-  - 於 GitCafe 中的 SSH key 設定，可參閱「`GitCafe SSH key設定官方說明  <https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md/>`_」
+  - 可參考「[產生 SSH key 給 Bitbucket/Github 使用](http://nyllep.wordpress.com/2012/01/21/sshkey-for-bitbucket/)」一文
+  - 於 GitCafe 中的 SSH key 設定，可參閱「[GitCafe SSH key設定官方說明  ](https://gitcafe.com/GitCafe/Help/blob/master/Setup_Git.md/)」
 
 - 將註冊的帳號名稱，通知講師 <jserv.tw@gmail.com>，
-  - 於 `Organization **embedded2013**<https://gitcafe.com/embedded2013>`_ 加入用於紀錄開發動態的 Git repository
-  - 範例: `P-jserv<https://gitcafe.com/embedded2013/P-jserv>`_，最好與 wiki 帳號名稱一致，以利於識別
+  - 於 [Organization **embedded2013**](https://gitcafe.com/embedded2013) 加入用於紀錄開發動態的 Git repository
+  - 範例: [P-jserv](https://gitcafe.com/embedded2013/P-jserv)，最好與 wiki 帳號名稱一致，以利於識別
   - 點選 **SSH (Read+Write)** 可得到 git repository 的位址，如上例為
 
     ``git@gitcafe.com:embedded2013/P-jserv.git``
 
-- 參閱 `Git 簡易操作</git>`_ 與 `寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_
+- 參閱 [Git 簡易操作](/git) 與 [寫給大家的 Git 教學](http://www.slideshare.net/littlebtc/git-5528339)
 
 
 自本次開始所採用的 Git repository
@@ -32,8 +32,8 @@ toc: no
 - 線上瀏覽
   * https://gitcafe.com/embedded2013/Labs
 
-- 已取得 `GitCafe<https://gitcafe.com>`_ Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發
-- 以 "`jserv</User/jserv>`_" 為例：(請替換成指定的帳號)
+- 已取得 [GitCafe](https://gitcafe.com) Notification 告知 P-xxx 之 Git repository 後，即可著手進行開發
+- 以 "[jserv](/User/jserv)" 為例：(請替換成指定的帳號)
 
 .. code-block:: prettyprint
 
@@ -47,15 +47,15 @@ toc: no
 - 將過程所需要的檔案透過 ``git add`` 指令加入到工作區，接著透過 ``git push`` 來提交修改
   * 最好事先以 ``git pull`` 確認整合伺服器端的修改
 
-- 確認詳加閱讀「`寫給大家的 Git 教學<http://www.slideshare.net/littlebtc/git-5528339>`_」投影片以得知 Git 基本操作
+- 確認詳加閱讀「[寫給大家的 Git 教學](http://www.slideshare.net/littlebtc/git-5528339)」投影片以得知 Git 基本操作
 - 或，僅想測試 Labs 的操作 (適合在課堂 / 電腦教室的環境)
 
     ``git clone https://gitcafe.com/embedded2013/Labs.git``
 
 FreeRTOS
 ----------------
-- `FreeRTOS Tutorial<http://www.socialledge.com/sjsu/index.php?title=FreeRTOS_Tutorial>`_
-- `CptS 466: Spring, 2013: Embedded Systems<http://eecs.wsu.edu/~aofallon/cpts466/schedule.htm>`_
+- [FreeRTOS Tutorial](http://www.socialledge.com/sjsu/index.php?title=FreeRTOS_Tutorial)
+- [CptS 466: Spring, 2013: Embedded Systems](http://eecs.wsu.edu/~aofallon/cpts466/schedule.htm)
 
 作業要求
 ------------

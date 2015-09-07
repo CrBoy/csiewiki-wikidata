@@ -5,7 +5,7 @@ toc: no
 
 動機
 ------
-新竹清華大學在 2013 年春季有個特別的課程：「`App創業與實作課程<http://course.appuniverz.org/>`_」，在該校育成中心的支持下，邀請相關產業的專家來校授課，並要求學生在期中提出創業計畫，從而在期末作展示，這次成果相當好，甚至有三分之一以上的團隊獲得外部創投公司的關注。筆者有幸也是這個課程的講者與學生團隊的導師，希望將這個經驗帶到成功大學，切入點是「打造有商業潛力的電子產品雛型」，而暑期的嵌入式教育訓練就是希望及早培養出可在學校嵌入式系統課程進行前，能協助投入電子產品開發的同學，並且秉持「作中學」的概念，與學員互動，進而在茫茫資訊大海中，找出可一同耕耘的項目。
+新竹清華大學在 2013 年春季有個特別的課程：「[App創業與實作課程](http://course.appuniverz.org/)」，在該校育成中心的支持下，邀請相關產業的專家來校授課，並要求學生在期中提出創業計畫，從而在期末作展示，這次成果相當好，甚至有三分之一以上的團隊獲得外部創投公司的關注。筆者有幸也是這個課程的講者與學生團隊的導師，希望將這個經驗帶到成功大學，切入點是「打造有商業潛力的電子產品雛型」，而暑期的嵌入式教育訓練就是希望及早培養出可在學校嵌入式系統課程進行前，能協助投入電子產品開發的同學，並且秉持「作中學」的概念，與學員互動，進而在茫茫資訊大海中，找出可一同耕耘的項目。
 
 課程規劃
 ------------
@@ -40,12 +40,12 @@ toc: no
 課程資料
 --------------------
 * 課程進行中，請多利用架設於 Hackpad 的共筆系統
-  * `2013 暑期嵌入式短期訓練課程 :: 共筆<https://hackpad.com/ep/group/yTLLeVNF05O>`_
+  * [2013 暑期嵌入式短期訓練課程 :: 共筆](https://hackpad.com/ep/group/yTLLeVNF05O)
 
 * 此訓練課程為成功大學資訊工程系嵌入式系統課程的精簡＋科普版本
   * http://wiki.csie.ncku.edu.tw/embedded/schedule
 
-* 位於 Facebook 的`討論區<https://www.facebook.com/groups/embedded.summer2013>`_
+* 位於 Facebook 的[討論區](https://www.facebook.com/groups/embedded.summer2013)
 
 GDB + Microcontroller
 
@@ -64,6 +64,6 @@ Low Power mode + Tickless scheduling
 
 參考資料
 -----------
- * `嵌入式系統課程</embedded/schedule>`_
+ * [嵌入式系統課程](/embedded/schedule)
 
-- contact: `Jim Huang</User/jserv>`_ (黃敬群) <jserv.tw@gmail.com>
+- contact: [Jim Huang](/User/jserv) (黃敬群) <jserv.tw@gmail.com>

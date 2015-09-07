@@ -5,20 +5,20 @@ toc: no
 
 重大事項宣達
 ------------------
-* `2015 全國大學校院智慧電子系統設計競賽<http://iecontest.nctu.edu.tw/>`_ 報名即將截止，歡迎各位同學將期末專題拿出去比賽，爭取展現自己能力的舞台，這對於升學和就業都很有幫助。該競賽有三組：
+* [2015 全國大學校院智慧電子系統設計競賽](http://iecontest.nctu.edu.tw/) 報名即將截止，歡迎各位同學將期末專題拿出去比賽，爭取展現自己能力的舞台，這對於升學和就業都很有幫助。該競賽有三組：
   - 系統應用組
   - 核心技術組
   - 定題挑戰組
 
 * 期末專題展，會聯合成大電機系課程於 2015 年 1 月 17 日共同舉辦
-  - 林偉棻老師：`科技教育與電子教具設計<http://course-query.acad.ncku.edu.tw/crm/course_map/course.php?dept=E2&cono=E245600>`_
-  - 張天豪老師：`網際網路程式設計<http://course-query.acad.ncku.edu.tw/crm/course_map/course.php?dept=E2&cono=E233700>`_
+  - 林偉棻老師：[科技教育與電子教具設計](http://course-query.acad.ncku.edu.tw/crm/course_map/course.php?dept=E2&cono=E245600)
+  - 張天豪老師：[網際網路程式設計](http://course-query.acad.ncku.edu.tw/crm/course_map/course.php?dept=E2&cono=E233700)
 
-* 源於成大的 `開放原始碼專案</embedded/openprojects>`_，歡迎各位寒假來挑戰
+* 源於成大的 [開放原始碼專案](/embedded/openprojects)，歡迎各位寒假來挑戰
 
 分組報告
 ------------
-* `PWM</embedded/PWM>`_
-  - `Q&A: PWM<https://embedded2014.hackpad.com/QA-PWM-qdQ4XodX8IM>`_ (課堂問答皆在此追蹤)
+* [PWM](/embedded/PWM)
+  - [Q&A: PWM](https://embedded2014.hackpad.com/QA-PWM-qdQ4XodX8IM) (課堂問答皆在此追蹤)
 
-* StackOverflow 上`和 STM32F4 相關的討論<http://stackoverflow.com/questions/tagged/stm32f4discovery>`_
+* StackOverflow 上[和 STM32F4 相關的討論](http://stackoverflow.com/questions/tagged/stm32f4discovery)

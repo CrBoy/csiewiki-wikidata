@@ -5,7 +5,7 @@ toc: no
 
 說明
 -----
-* 第 6 周 (3 月 31 日; 117:30 前) 確認分組名單與題目志願表，更新於 `共筆: 2015 春季班分組<https://embedded2015.hackpad.com/2015-FvJfghhxBc8>`_
+* 第 6 周 (3 月 31 日; 117:30 前) 確認分組名單與題目志願表，更新於 [共筆: 2015 春季班分組](https://embedded2015.hackpad.com/2015-FvJfghhxBc8)
 * 3 到 5 人一組，建議不要都是同一個實驗室的成員
   -  旁聽同學也可加入
   - 每組至少要有 3 位修課學生
@@ -15,14 +15,14 @@ toc: no
 
 FreeRTOS
 -------------
-* 共筆: `FreeRTOS</embedded/freertos>`_
+* 共筆: [FreeRTOS](/embedded/freertos)
 * 特性: 能見度最高的共筆
 * 硬體: stm32f429 discovery + beaglebone black
 * 難度：中等
 
 uClinux
 ----------
-* 共筆: `uClinux</embedded/uclinux>`_
+* 共筆: [uClinux](/embedded/uclinux)
 * 特性: 和講師一起學習，有機會去 Linux Foundation 發表作品
 * 硬體: stm32f429 discovery
 * 難度：中等
@@ -35,14 +35,14 @@ Linux
 
 rtenv+
 ---------
-* 共筆: `rtenv+</embedded/rtenv>`_
+* 共筆: [rtenv+](/embedded/rtenv)
 * 特性: 會充分理解 ARM Cortex-M 運作機制，成為強者必經之路
 * 硬體:  stm32f429 discovery
 * 難度: 高
 
 Xenomai / PREEMPT-RT
 --------------------------------
-* 共筆: `Xenomai</embedded/xenomai>`_
+* 共筆: [Xenomai](/embedded/xenomai)
 * 硬體: stm32f429 discovery + beaglebone black
 * 特性: 理解 scheduler 運作機制並且知道影響 latency 的因素
 * 難度：中等
@@ -51,11 +51,11 @@ RT-Thread
 --------------
 * 硬體: stm32f429 / beaglebone black
 * 預計涵蓋 RT-VMM，開發虛擬化解決方案
-* 能跟 `RT-Thread<http://www.rt-thread.org/>`_ 主要開發者合作
+* 能跟 [RT-Thread](http://www.rt-thread.org/) 主要開發者合作
 * 難度: 高
 
 Xvisor
 ---------
 * 硬體: Fast Model: ARMv8
-* 能跟 `Xvisor<http://xhypervisor.org/>`_ 主要開發者合作; 學習 ARM64
+* 能跟 [Xvisor](http://xhypervisor.org/) 主要開發者合作; 學習 ARM64
 * 難度: 高

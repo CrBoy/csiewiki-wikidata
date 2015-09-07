@@ -11,10 +11,10 @@ categories: User
 學習成果
 ====
 - 作業
-  - Lab38 (ARM Cross-Development Environment) : `Hackpad<https://hackpad.com/Embeded-System-2015q1-Week-12-Note-SkwJpzSZeFq>`_ `GitHub<https://github.com/nekoneko/arm-lecture>`_
-  - Lab39 (FreeRTOS) : `Hackpad<https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb>`_ `GitHub<https://github.com/nekoneko/freertos-basic>`_
-  - Lab40 (Scheduling) : `Hackpad<https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb>`_ `GitHub<https://github.com/nekoneko/visualizer>`_
-  - Lab41 (基礎觀念訓練) : `Hackpad<https://embedded2015.hackpad.com/GPtX9tCyXYO>`_ (未完成)
+  - Lab38 (ARM Cross-Development Environment) : [Hackpad](https://hackpad.com/Embeded-System-2015q1-Week-12-Note-SkwJpzSZeFq) [GitHub](https://github.com/nekoneko/arm-lecture)
+  - Lab39 (FreeRTOS) : [Hackpad](https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb) [GitHub](https://github.com/nekoneko/freertos-basic)
+  - Lab40 (Scheduling) : [Hackpad](https://embedded2015.hackpad.com/Week-3-Lab39-8NGNQeRIlmb) [GitHub](https://github.com/nekoneko/visualizer)
+  - Lab41 (基礎觀念訓練) : [Hackpad](https://embedded2015.hackpad.com/GPtX9tCyXYO) (未完成)
   - Lab42 (Mini ARM OS) : 沒完成
 
 - 期中報告

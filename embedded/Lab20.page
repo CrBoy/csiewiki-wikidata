@@ -5,14 +5,14 @@ toc: no
 
 預期目標
 -------
-* 搭配`第二周<http://wiki.csie.ncku.edu.tw/embedded/2013-w2>`_課程進度
+* 搭配[第二周](http://wiki.csie.ncku.edu.tw/embedded/2013-w2)課程進度
 - 學習 Linux 工具和 GNU Toolchain 的使用
 - 學期 Automation 技巧
 - 學習 ARM semihosting 的使用
 
 QEMU + GDB操作
 ----------------------------
-- 假設 `Lab-19</embedded/Lab19>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+- 假設 [Lab-19](/embedded/Lab19) 所使用 QEMU 的目錄已放在 workspace 目錄
 
 .. code-block:: prettyprint
 
@@ -157,13 +157,13 @@ qemu-semihost 操作
 
 參考作業 (B) 要求
 ------------------
-- 從 `rtenv<https://github.com/embedded2013/rtenv>`_ 移植或參考其 pathserver, read, write 實作，使得 qemu-semihost 的 hello.c 得以從 Linux host 端讀取和寫入檔案
+- 從 [rtenv](https://github.com/embedded2013/rtenv) 移植或參考其 pathserver, read, write 實作，使得 qemu-semihost 的 hello.c 得以從 Linux host 端讀取和寫入檔案
 - 至少得讀取 host 端檔案，加入特定字串後，再寫回到 host 端
 
 作業繳交方式
 ------------------
-* 請更新作業提案到共筆網站: `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_
-  - 需要標注自己的 ID，可參考 `Lab 19 / 作業共筆<https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe>`_ 格式
+* 請更新作業提案到共筆網站: [Lab 20 / 作業共筆](https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c)
+  - 需要標注自己的 ID，可參考 [Lab 19 / 作業共筆](https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe) 格式
 * 請在 Oct 5, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
   - https://github.com/embedded2013/gdb-automation
   - https://github.com/embedded2013/qemu-semihost

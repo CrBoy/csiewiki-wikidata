@@ -8,51 +8,51 @@ toc: no
 ===
 
 * 2015 年春季
-  - `陳冠任<https://github.com/dani4310>`_, `許士杰<https://github.com/Jayjack0116>`_, `黃睦林<https://github.com/MuLinForest>`_, `孫瑋<https://github.com/saya222777>`_, `涂逸祥<https://github.com/tuition0804>`_
+  - [陳冠任](https://github.com/dani4310), [許士杰](https://github.com/Jayjack0116), [黃睦林](https://github.com/MuLinForest), [孫瑋](https://github.com/saya222777), [涂逸祥](https://github.com/tuition0804)
 
 
 共筆
 ==
 
 * 2015 年春季
-  - `hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
-  - `github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+  - [hackpad](https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy)
+  - [github](https://github.com/dani4310/BBBFreeRTOS_shell_MMU)
 
 
 **目錄**
 ======
-* `Beaglebone black 簡介<#beaglebone-black-簡介>`_
-  - `硬體簡介<#硬體簡介>`_
-  - `開機流程<#開機流程>`_
+* [Beaglebone black 簡介](#beaglebone-black-簡介)
+  - [硬體簡介](#硬體簡介)
+  - [開機流程](#開機流程)
 
-* `FreeRTOS on Beaglebone Black<#freertos-on-beaglebone-black>`_
-  - `開發環境<#開發環境>`_
-  - `實作過程<#實作過程>`_
-  - `移植FreeRTOS 8.2.1到BBB<#移植freertos-8.2.1到bbb>`_
-  - `UART I/O<#uart-io>`_
+* [FreeRTOS on Beaglebone Black](#freertos-on-beaglebone-black)
+  - [開發環境](#開發環境)
+  - [實作過程](#實作過程)
+  - [移植FreeRTOS 8.2.1到BBB](#移植freertos-8.2.1到bbb)
+  - [UART I/O](#uart-io)
 
-* `ARMv7-A MMU Architecture<#armv7-a-mmu-architecture>`_
-  - `Sections and pages<#sections-and-pages>`_
-  - `Translation Lookaside Buffers (TLB)<#translation-lookaside-buffers-tlb>`_
-  - `保護機制與記憶體行為<#保護機制與記憶體行為>`_
+* [ARMv7-A MMU Architecture](#armv7-a-mmu-architecture)
+  - [Sections and pages](#sections-and-pages)
+  - [Translation Lookaside Buffers (TLB)](#translation-lookaside-buffers-tlb)
+  - [保護機制與記憶體行為](#保護機制與記憶體行為)
 
-* `ARMv7-A 啟用MMU設定<#armv7-a-啟用mmu設定>`_
-  - `MRC instruction<#mrc-instruction>`_
-  - `MMU啟用流程<#mmu啟用流程>`_
-  - `DEMO<#demo>`_
+* [ARMv7-A 啟用MMU設定](#armv7-a-啟用mmu設定)
+  - [MRC instruction](#mrc-instruction)
+  - [MMU啟用流程](#mmu啟用流程)
+  - [DEMO](#demo)
 
-* `問題討論<#問題討論>`_
-* `參考資料<#參考資料>`_
+* [問題討論](#問題討論)
+* [參考資料](#參考資料)
 
 
 
-`Beaglebone black 簡介<#目錄>`_
+[Beaglebone black 簡介](#目錄)
 ===========================
 
-`硬體簡介<#目錄>`_
+[硬體簡介](#目錄)
 ------------
 
-* Processor: `AM335x 1GHz ARM® Cortex-A8<http://www.ti.com/product/am3358>`_                                                               
+* Processor: [AM335x 1GHz ARM® Cortex-A8](http://www.ti.com/product/am3358)                                                               
   - 512MB DDR3 RAM
   - 4GB 8-bit eMMC on-board flash storage
   - 3D graphics accelerator
@@ -75,7 +75,7 @@ toc: no
 
 .. image:: http://www.circuidipity.com/images/bbb-details3.png
 
-`開機流程<#目錄>`_
+[開機流程](#目錄)
 ------------
 
 　　當Beaglebone Black(BBB)一上電後，即開始執行ROM裡面的ROM code。再來根據腳位SYSBOOT的值來決定讀取哪裡的MLO檔，預設是讀取板子上eMMC的MLO檔。再來靠MLO讀取u-boot，u-boot再根據文件uEnv.txt載入image或file system。
@@ -87,17 +87,17 @@ toc: no
 .. image:: https://c2.staticflickr.com/6/5462/17823806425_3996a193f6_o.png
 
 
-`FreeRTOS on Beaglebone Black<#目錄>`_
+[FreeRTOS on Beaglebone Black](#目錄)
 ====================================
 
-`開發環境<#目錄>`_
+[開發環境](#目錄)
 ------------
 * 主機環境：Ubuntu 14.10、Linux Mint 17
 * 開發板：Beaglebone black (Rev C)
 * Cross compiler： https://launchpad.net/gcc-arm-embedded/+download 下載並解壓至喜歡的地方
 
 
-`實作過程<#目錄>`_
+[實作過程](#目錄)
 ------------
 **下載程式碼：**
 
@@ -175,10 +175,10 @@ toc: no
 .. image:: https://c1.staticflickr.com/9/8781/18344147282_2ebf303d4d_o.png
 
 
-`移植FreeRTOS 8.2.1到BBB<#目錄>`_
+[移植FreeRTOS 8.2.1到BBB](#目錄)
 ----------------------------
 
-**到FreeRTOS官網下載`8.2.1版 (目前最新版本)<https://sourceforge.net/projects/freertos/files/latest/download?source=files>`_的source**
+**到FreeRTOS官網下載[8.2.1版 (目前最新版本)](https://sourceforge.net/projects/freertos/files/latest/download?source=files)的source**
 
 **解壓後將8.2.1版本的source資料夾替換掉原本的source後，再來將原本的Source/portable/GCC/AM335_BeagleBone複製回去。**
 
@@ -223,7 +223,7 @@ toc: no
 
 出現結果與上圖相同，但仍有許多warning需解決。
 
-`UART I/O<#目錄>`_
+[UART I/O](#目錄)
 -------------------------
 
 .. image:: https://c4.staticflickr.com/4/3895/18887195080_3ca4d1f5aa_o.png
@@ -245,10 +245,10 @@ toc: no
 
 .. image:: https://c1.staticflickr.com/1/559/19048682456_0ae3c5b5c5_o.png
 
-`ARMv7-A MMU Architecture<#目錄>`_
+[ARMv7-A MMU Architecture](#目錄)
 ================================
 
-`Sections and pages<#目錄>`_
+[Sections and pages](#目錄)
 --------------------------
 
 ARM 的 MMU 支援 四種 page sizes(比較大的稱 section，比較小的稱 pages )
@@ -273,7 +273,7 @@ first-level table 功能:
 2. 當做 section 或 supersection 的 base address
 
 
-`Translation Lookaside Buffers (TLB)<#目錄>`_
+[Translation Lookaside Buffers (TLB)](#目錄)
 -------------------------------------------
 
 TLB分為以下兩種:
@@ -357,7 +357,7 @@ Figure 2 表示出所有 elements 運作流程：
 .. image:: https://c1.staticflickr.com/9/8899/18609452125_8c1c539f48_o.png
 
 
-`保護機制與記憶體行為<#目錄>`_
+[保護機制與記憶體行為](#目錄)
 ------------------
 
 每次記憶體存取都會跟每個記憶體區塊的page table entry中儲存的權限做確認，無論是page還是section都是。而且page table entry還可以指定一個記憶體區域中對於其他核心或處理器來說的記憶體被修改的可見性。記憶體區域可以有以下特性：
@@ -374,14 +374,14 @@ Figure 2 表示出所有 elements 運作流程：
 
 
 
-`ARMv7-A 啟用MMU設定<#目錄>`_
+[ARMv7-A 啟用MMU設定](#目錄)
 =======================
 
-MMU 可以透過 system control coprocessor (CP15) registers 進行設定 (`reference here<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0344k/Bahchhaj.html>`_)
+MMU 可以透過 system control coprocessor (CP15) registers 進行設定 ([reference here](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0344k/Bahchhaj.html))
 
-`CP15<http://infocenter.arm.com/help/topic/com.arm.doc.ddi0290g/DDI0290G_arm1156t2fs_r0p4_trm.pdf>`_ 又稱系統控制協同處理器 (system control coprocessor)，其中有 c0 到 c15 暫存器，暫存器中的位可用來做不同的設置。透過指令 mrc 或是 mcr 讀寫 CP15 裡面的暫存器，mrc 是將 CP15 (c) 的暫存器讀至通用暫存器 (r); mcr 則反之。CP15 上某些暫存器實際上有多個實體暫存器，必須透過 opcode_2 指定要存取哪一個。例如，CP15:c0 有 MIDR (Main ID Register)、CTR (Cache Type Register)、TCMTR (TCM Type Register) 等等。
+[CP15](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0290g/DDI0290G_arm1156t2fs_r0p4_trm.pdf) 又稱系統控制協同處理器 (system control coprocessor)，其中有 c0 到 c15 暫存器，暫存器中的位可用來做不同的設置。透過指令 mrc 或是 mcr 讀寫 CP15 裡面的暫存器，mrc 是將 CP15 (c) 的暫存器讀至通用暫存器 (r); mcr 則反之。CP15 上某些暫存器實際上有多個實體暫存器，必須透過 opcode_2 指定要存取哪一個。例如，CP15:c0 有 MIDR (Main ID Register)、CTR (Cache Type Register)、TCMTR (TCM Type Register) 等等。
 
-`MRC instruction<#目錄>`_
+[MRC instruction](#目錄)
 -----------------------
 
 Move to ARM register from coprocessor. 
@@ -413,7 +413,7 @@ where:
 function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0344k/ch03s02s01.html
 
 
-`MMU啟用流程<#目錄>`_
+[MMU啟用流程](#目錄)
 ---------------
 
 1. **Disable Data Cache**
@@ -533,7 +533,7 @@ function的設定可以參考 :http://infocenter.arm.com/help/index.jsp?topic=/c
     MCR     p15, #0, r0, c1, c0, #0
 
 
-`DEMO<#目錄>`_
+[DEMO](#目錄)
 ------------
 
 TTBR0的參數定義
@@ -612,7 +612,7 @@ TTBR0的參數定義
 .. image:: https://c1.staticflickr.com/1/437/18452839034_a8de3ec9f4_o.png
 
 
-`問題討論<#目錄>`_
+[問題討論](#目錄)
 ============
 
 **Q1: Cortex A8 pipeline整數運算有幾級**
@@ -634,10 +634,10 @@ TTBR0的參數定義
 
 　　http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing
 
-* `1.6.1<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SPI_Booting>`_ Stages in SPI Booting
-* `1.6.2<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_NAND_Booting>`_ Stages in NAND Booting
-* `1.6.3<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SD_Booting>`_ Stages in SD Booting
-* `1.6.4<http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_UART_Booting>`_ Stages in UART Booting
+* [1.6.1](http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SPI_Booting) Stages in SPI Booting
+* [1.6.2](http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_NAND_Booting) Stages in NAND Booting
+* [1.6.3](http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_SD_Booting) Stages in SD Booting
+* [1.6.4](http://processors.wiki.ti.com/index.php/AM335X_StarterWare_Booting_And_Flashing#Stages_in_UART_Booting) Stages in UART Booting
 
 　
 
@@ -665,7 +665,7 @@ TTBR0的參數定義
 
 **Q7: 什麼是 TCM(Tightly-Coupled Memory)?**
 
-　　TCM 是一個固定大小的RAM，緊密地耦合至處理器內核，提供與cache相當的性能，相較於cache的優點是，程式碼可以精確地控制什麼函數或代碼放在 RAM的哪裡。TCM對於以下幾種情況的代碼是非常有用、也是需要的：predictable及時處理（中斷處理）、時間可預見（加密算法）、避免 cache分析（加密算法）、或者只是要求高性能的代碼（編解碼功能）。`reference<http://blog.csdn.net/sergeycao/article/details/6030226>`_
+　　TCM 是一個固定大小的RAM，緊密地耦合至處理器內核，提供與cache相當的性能，相較於cache的優點是，程式碼可以精確地控制什麼函數或代碼放在 RAM的哪裡。TCM對於以下幾種情況的代碼是非常有用、也是需要的：predictable及時處理（中斷處理）、時間可預見（加密算法）、避免 cache分析（加密算法）、或者只是要求高性能的代碼（編解碼功能）。[reference](http://blog.csdn.net/sergeycao/article/details/6030226)
 
 　
 
@@ -705,18 +705,18 @@ TTBR0的參數定義
 　　為了保留除須更改的bit(s)以外的其他設定
 
 
-`參考資料<#目錄>`_
+[參考資料](#目錄)
 ============
 
-* `StarterWare Getting Started 02.00.XX.XX <http://processors.wiki.ti.com/index.php/StarterWare_Getting_Started_02.00.XX.XX#Host_platform_Requirementshttp://processors.wiki.ti.com/index.php/StarterWare_Getting_Started_02.00.XX.XX#Host_platform_Requirements>`_
-* `嵌入式Linux学习笔记(四)-内存管理单元mmu<http://wenku.baidu.com/view/06075f0103d8ce2f00662394.html>`_
-* `arm - 韋任的維基百科 <http://people.cs.nctu.edu.tw/~chenwj/dokuwiki/doku.php?id=arm>`_
-* `ARM 学习笔记（四） 快速上下文切换（FCSE）技术<http://blog.csdn.net/dayong1001/article/details/6894414>`_
-* `ARM中MMU地址转换理解<http://blog.csdn.net/coldsnow33/article/details/37957743>`_
-* `3.2.71. c13, FCSE PID Register <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html>`_
-* `ARM  Architecture<http://www.wikiwand.com/en/ARM_architecture#Coprocessors>`_
-* `ARM Processor MMU<http://homepages.wmich.edu/~grantner/ece6050/ARM7100vA_3.pdf>`_
-* `Memory Management: Paging<https://www.cs.rutgers.edu/~pxk/416/notes/10-paging.html>`_
-* `Cortex-A8 Architecture<http://processors.wiki.ti.com/index.php/Cortex-A8_Architecture>`_
-* `ARM與Cortex筆記-ARM MPCore (Multi-Processor Core) 多核心架構解析 <http://loda.hala01.com/2011/06/arm%E8%88%87cortex%E7%AD%86%E8%A8%98-arm-mpcore-multi-processor-core-%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90/>`_
-* `有關 Cache 的 read/write through/back/allocate 的意義<http://dannynote.blogspot.tw/2007/04/cachereadwrite-throughbackallocate.html>`_
+* [StarterWare Getting Started 02.00.XX.XX ](http://processors.wiki.ti.com/index.php/StarterWare_Getting_Started_02.00.XX.XX#Host_platform_Requirementshttp://processors.wiki.ti.com/index.php/StarterWare_Getting_Started_02.00.XX.XX#Host_platform_Requirements)
+* [嵌入式Linux学习笔记(四)-内存管理单元mmu](http://wenku.baidu.com/view/06075f0103d8ce2f00662394.html)
+* [arm - 韋任的維基百科 ](http://people.cs.nctu.edu.tw/~chenwj/dokuwiki/doku.php?id=arm)
+* [ARM 学习笔记（四） 快速上下文切换（FCSE）技术](http://blog.csdn.net/dayong1001/article/details/6894414)
+* [ARM中MMU地址转换理解](http://blog.csdn.net/coldsnow33/article/details/37957743)
+* [3.2.71. c13, FCSE PID Register ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html)
+* [ARM  Architecture](http://www.wikiwand.com/en/ARM_architecture#Coprocessors)
+* [ARM Processor MMU](http://homepages.wmich.edu/~grantner/ece6050/ARM7100vA_3.pdf)
+* [Memory Management: Paging](https://www.cs.rutgers.edu/~pxk/416/notes/10-paging.html)
+* [Cortex-A8 Architecture](http://processors.wiki.ti.com/index.php/Cortex-A8_Architecture)
+* [ARM與Cortex筆記-ARM MPCore (Multi-Processor Core) 多核心架構解析 ](http://loda.hala01.com/2011/06/arm%E8%88%87cortex%E7%AD%86%E8%A8%98-arm-mpcore-multi-processor-core-%E6%9E%B6%E6%A7%8B%E8%A7%A3%E6%9E%90/)
+* [有關 Cache 的 read/write through/back/allocate 的意義](http://dannynote.blogspot.tw/2007/04/cachereadwrite-throughbackallocate.html)

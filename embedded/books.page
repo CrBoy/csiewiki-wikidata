@@ -6,30 +6,30 @@ title: 嵌入式系統開發與實作 / 參考書目
 科普類型
 =======
 
-- 《`浪潮之巔<http://www.books.com.tw/exep/prod/booksfile.php?item=0010541187>`_》
-- 《`電的旅程<http://www.books.com.tw/exep/prod/booksfile.php?item=0010498148>`_》
-- 《`黑客列傳<http://www.books.com.tw/exep/prod/booksfile.php?item=0010548392>`_》
-- 《`A Quarter Century of UNIX<http://www.amazon.com/Quarter-Century-UNIX-Peter-Salus/dp/0201547775>`_》
+- 《[浪潮之巔](http://www.books.com.tw/exep/prod/booksfile.php?item=0010541187)》
+- 《[電的旅程](http://www.books.com.tw/exep/prod/booksfile.php?item=0010498148)》
+- 《[黑客列傳](http://www.books.com.tw/exep/prod/booksfile.php?item=0010548392)》
+- 《[A Quarter Century of UNIX](http://www.amazon.com/Quarter-Century-UNIX-Peter-Salus/dp/0201547775)》
 
 =======
 背景知識
 =======
 
-- 《`編碼：藏匿在計算機軟硬件面前的言語<http://machine.emm3.net/computer/share/623.html>`_》 (簡體中文; CODE: The Hidden Language of Computer Hardware and Software)
+- 《[編碼：藏匿在計算機軟硬件面前的言語](http://machine.emm3.net/computer/share/623.html)》 (簡體中文; CODE: The Hidden Language of Computer Hardware and Software)
 - 《穿越計算機的迷霧》 (簡體中文)
-- 《`大話處理器：了解DSP、CPU及MCU基礎架構<http://www.books.com.tw/exep/prod/booksfile.php?item=0010532845>`_》
+- 《[大話處理器：了解DSP、CPU及MCU基礎架構](http://www.books.com.tw/exep/prod/booksfile.php?item=0010532845)》
 
 =======
 入門導引
 =======
 
-- 《`Making Embedded Systems: Design Patterns for Great Software<http://shop.oreilly.com/product/0636920017776.do>`_》
-- 《`STM32自學筆記<http://bbs.cepark.com/thread-36009-1-1.html>`_》 (簡體中文)
+- 《[Making Embedded Systems: Design Patterns for Great Software](http://shop.oreilly.com/product/0636920017776.do)》
+- 《[STM32自學筆記](http://bbs.cepark.com/thread-36009-1-1.html)》 (簡體中文)
 
 ========================
 Jonathan Valvano 系列教材
 ========================
 
-- Volume 1, 《`Introduction to ARM Cortex-M3 Microcontrollers<http://users.ece.utexas.edu/~valvano/arm/outline1.htm>`_》, ISBN: 978-1477508992
-- Volume 2, 《`Real-Time Interfacing to the ARM Cortex-M3<http://users.ece.utexas.edu/~valvano/arm/outline.htm>`_》, ISBN: 978-1463590154,
-- Volume 3, 《`Real-Time Operating Systems for the ARM Cortex-M3<http://users.ece.utexas.edu/~valvano/arm/outline3.htm>`_》, ISBN: 978-1466468863
+- Volume 1, 《[Introduction to ARM Cortex-M3 Microcontrollers](http://users.ece.utexas.edu/~valvano/arm/outline1.htm)》, ISBN: 978-1477508992
+- Volume 2, 《[Real-Time Interfacing to the ARM Cortex-M3](http://users.ece.utexas.edu/~valvano/arm/outline.htm)》, ISBN: 978-1463590154,
+- Volume 3, 《[Real-Time Operating Systems for the ARM Cortex-M3](http://users.ece.utexas.edu/~valvano/arm/outline3.htm)》, ISBN: 978-1466468863

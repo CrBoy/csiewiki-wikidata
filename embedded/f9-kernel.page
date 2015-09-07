@@ -10,7 +10,7 @@ toc: yes
 * 鄒宗延 / slpbaby / yan(wiki)
 * 詹凱傑 / bpotatog
                                                        
-* 共筆 / `Hackpad<https://hackpad.com/F9-Kernel-Note-UnUXDVd9Zv2>`_
+* 共筆 / [Hackpad](https://hackpad.com/F9-Kernel-Note-UnUXDVd9Zv2)
 
 Overview
 ---------
@@ -49,7 +49,7 @@ L4屬於第二代的微內核，通常被用來實作Unix-like的作業系統。
 
 L4與他的前代L3一樣，都是由德國電腦科學家Jochen Liedtke做出來的，目的是為了反應前代不好的效能表現。Jochen Liedtke認為系統的設計應該以高效能為目的出發，如此才能做出實際上可以使用的東西。他最初以Intel i386的組合語言實作出系統後，馬上引起電腦工業圈的熱烈關注。自從L4問世以來，L4已經被發展成獨立於平台之上，並且改善安全性(security)、獨立性(isolation)、以及容錯性(robustness)。
 
-現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用(`L4 + AMSS<https://code.google.com/p/docl4amss/wiki/SoftwareOverview>`_)。
+現在已經有很多版本重新實作原來L4的ABI，例如：L4Ka::Pistachio、L4/MIPS、Fiasco。因此現在L4不再指Liedtke最初實作的版本，而是指所有包含L4核心界面的μ-kernel家族。這其中有一個OKL4版本，已經在超過15億的行動裝置上使用([L4 + AMSS](https://code.google.com/p/docl4amss/wiki/SoftwareOverview))。
 
 .. image:: /embedded/f9-kernel/l4_family.png
 
@@ -955,7 +955,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
 這邊先定義好mpu暫存器的位置，這些位置可以從arm的手冊中找到。至於``MPU_REGION_MASK``是用來取得區域用的遮罩值。
 
-* MPU_BASE(`MPU Region Base Address Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html>`_)
+* MPU_BASE([MPU Region Base Address Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html))
    - .. image:: /embedded/f9-kernel/mpu_base.png
    - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
    - ADDR - 區域的base位置
@@ -964,7 +964,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
         + 1 - 將MPU_RNR更新成REGION，更新由MPU_RNR指定的MPU區域的base位置
         + 也就是說，設定0的話會更新原來的MPU_RNR區域的base，1的話就是先切換MPU_RNR區域在更新base
    - REGION - 區域的index
-* MPU_ATTR(`MPU Region Attribute and Size Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html>`_) 
+* MPU_ATTR([MPU Region Attribute and Size Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html)) 
    - .. image:: /embedded/f9-kernel/mpu_attr.png
    - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
    - XN
@@ -979,7 +979,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
       + 區域在大小在128byte以下不能使用子區域
    - SIZE - MPU區域的大小
    - ENABLE - 區域enable
-* MPU_CTRL(`MPU Control Register<http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html>`_)
+* MPU_CTRL([MPU Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html))
    - .. image:: /embedded/f9-kernel/mpu_ctrl.png
    - PRIVDEFENA
       + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
@@ -2735,7 +2735,7 @@ ktable是一套快速的物件管理機制，結構如下：
 
     typedef struct ktable ktable_t;
 * tname ： table名稱
-* `bitmap<#bitmap>`_ ： 紀錄table的使用情況
+* [bitmap](#bitmap) ： 紀錄table的使用情況
 * data ： 實際存放資料的區域
 * num ： 總共有幾個區塊
 * size ： 每個區塊的大小
@@ -2914,11 +2914,11 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
 需要的套件：
 
 * arm-none-eabi- toolchain，必須支援Cortex-M4F
-   - `Sourcey CodeBench(arm-2012.03, arm-2013.05, arm-2013.11)<http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/>`_
-   - `GNU Tools for ARM Embedded Processors(4.8-2013-q4-major)<https://launchpad.net/gcc-arm-embedded>`_
+   - [Sourcey CodeBench(arm-2012.03, arm-2013.05, arm-2013.11)](http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/)
+   - [GNU Tools for ARM Embedded Processors(4.8-2013-q4-major)](https://launchpad.net/gcc-arm-embedded)
 
 * libncurses5-dev
-* `stlink<https://github.com/texane/stlink>`_
+* [stlink](https://github.com/texane/stlink)
 
 步驟：
 
@@ -2956,7 +2956,7 @@ Troubleshooting
 * 沒有`screen`  - 執行sudo apt-get install screen
 * screen連接失敗 - 執行sudo screen /dev/ttyUSB0 115200 8n1
 * screen傳輸的資料有問題 - 重新接線，重新啟動STM32F4
-   - 可以改用`neocon<http://wiki.openmoko.org/wiki/NeoCon>`_，支援自動連線，會比screen方便(by jserv)
+   - 可以改用[neocon](http://wiki.openmoko.org/wiki/NeoCon)，支援自動連線，會比screen方便(by jserv)
    - neocon 在 mac os x 10.9.2 也能跑(by Benux Wei)
    - 打dmesg再次確認ttyUSB0的訊息是否正確(by Wen)
 
@@ -2970,25 +2970,25 @@ Troubleshooting
 --------
 * http://www.slideshare.net/jserv/f9-microkernel
 * http://www.slideshare.net/vh21/2014-0109f9kernelktimer
-* `ARM System Developer's Guide : Designing and Optimizing System Software<http://eee.guc.edu.eg/Courses/Electronics/ELCT912%20Advanced%20Embedded%20Systems/Lectures/ARM%20System%20Developer's%20Guide.pdf>`_
+* [ARM System Developer's Guide : Designing and Optimizing System Software](http://eee.guc.edu.eg/Courses/Electronics/ELCT912%20Advanced%20Embedded%20Systems/Lectures/ARM%20System%20Developer's%20Guide.pdf)
 * Kernel Interface Page
    - http://www.l4ka.org/l4ka/l4-x2-r7.pdf
 
 * Bitmap
    - http://en.wikipedia.org/wiki/Bit_array
-   - `ARM Information Center(2.5. Bit-banding)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html>`_
+   - [ARM Information Center(2.5. Bit-banding)](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/CHDJHIDF.html)
 
 * Init Hook
    - http://kunyichen.wordpress.com/2014/04/18/f9-kernel-%E4%B9%8B-init_hook
    - https://github.com/f9micro/f9-kernel/blob/master/Documentation/init-hooks.txt
 
 * MPU
-   - `ARM Information Center(4.5. Optional Memory Protection Unit)<hhttp://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0553a/Cihjddef.html>`_
+   - [ARM Information Center(4.5. Optional Memory Protection Unit)](hhttp://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0553a/Cihjddef.html)
 
 * Overview
    - http://www.ertos.nicta.com.au/research/l4/microkernels.pml
-   - `Wikipedia(Microkernel)<http://en.wikipedia.org/wiki/Microkernel>`_
-   - `Wikipedia(L4_microkernel)<http://en.wikipedia.org/wiki/L4_microkernel>`_
+   - [Wikipedia(Microkernel)](http://en.wikipedia.org/wiki/Microkernel)
+   - [Wikipedia(L4_microkernel)](http://en.wikipedia.org/wiki/L4_microkernel)
 
 * IPC
    - http://www.l4ka.org/l4ka/l4-x2-r7.pdf
@@ -3003,4 +3003,4 @@ Troubleshooting
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439d/CEGJGDCJ.html
 
 * Interrupt Request
-   - `4.3.3. Interrupt Control and State Register<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Cihfaaha.html>`_
+   - [4.3.3. Interrupt Control and State Register](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0552a/Cihfaaha.html)

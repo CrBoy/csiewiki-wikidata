@@ -5,36 +5,36 @@ toc: no
 
 教材
 ----------
-* `進階嵌入式系統開發與實做 (2014 年秋季) 課程說明<http://www.slideshare.net/jserv/embedded2014>`_
+* [進階嵌入式系統開發與實做 (2014 年秋季) 課程說明](http://www.slideshare.net/jserv/embedded2014)
   - Facebook 討論區: https://www.facebook.com/groups/ncku.embedded2014
   - 共筆: https://embedded2014.hackpad.com
     * 使用案例
-      - `2014 年暑期課程<https://system2014.hackpad.com/2014--wfVtDbAFN1G>`_
-      - `2014 年冬季系統軟體短期課程<http://system2014.hackpad.com/>`_
+      - [2014 年暑期課程](https://system2014.hackpad.com/2014--wfVtDbAFN1G)
+      - [2014 年冬季系統軟體短期課程](http://system2014.hackpad.com/)
 
   - 資訊科技產業面試模擬和工作咨詢: http://wiki.csie.ncku.edu.tw/embedded/rehearsal
 
-* `From Source to Binary<https://docs.google.com/presentation/d/1_L_DfSv8qSHKrPG7r60HOeu9z1QBut5-RQzmhWNx-kM/edit#slide=id.p14>`_
-* `Qemu JIT Code Generator and System Emulation<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_
-* `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
+* [From Source to Binary](https://docs.google.com/presentation/d/1_L_DfSv8qSHKrPG7r60HOeu9z1QBut5-RQzmhWNx-kM/edit#slide=id.p14)
+* [Qemu JIT Code Generator and System Emulation](http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation)
+* [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
 
 實驗和作業
 ---------------
-* 參照 `2014q3 Week #1 Hackpad<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_
-  - 參考資訊: `Hackpad<https://system2014.hackpad.com/Week-1-Jul-31-2014-vIAFyVvyFkb>`_
+* 參照 [2014q3 Week #1 Hackpad](https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT)
+  - 參考資訊: [Hackpad](https://system2014.hackpad.com/Week-1-Jul-31-2014-vIAFyVvyFkb)
 
 作業須知 (Lab-31)
 ----------------
-* 參閱 `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_ 簡報內容
-  - Lab-1: 實做 `Fibonacci 數列<http://home.educities.edu.tw/mario123/problems/fibonacci.htm>`_，使用 ARM 組合語言
-  - Lab-2: 實做 `mutex 操作<http://en.wikipedia.org/wiki/Mutual_exclusion>`_，使用 ARM 組合語言
-    * 參閱 `Test-and-set 描述<http://en.wikipedia.org/wiki/Test-and-set>`_，對應到 ARMv6+ 就是 ldrex 和 strex 指令
+* 參閱 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報內容
+  - Lab-1: 實做 [Fibonacci 數列](http://home.educities.edu.tw/mario123/problems/fibonacci.htm)，使用 ARM 組合語言
+  - Lab-2: 實做 [mutex 操作](http://en.wikipedia.org/wiki/Mutual_exclusion)，使用 ARM 組合語言
+    * 參閱 [Test-and-set 描述](http://en.wikipedia.org/wiki/Test-and-set)，對應到 ARMv6+ 就是 ldrex 和 strex 指令
 
 * 繳交方式：
-  - 在 GitHub 上 Fork `arm-lecture<https://github.com/embedded2014/arm-lecture>`_，並提交修改
+  - 在 GitHub 上 Fork [arm-lecture](https://github.com/embedded2014/arm-lecture)，並提交修改
     * 對應於 lab-1, lab-2 這兩個目錄
 
-  - 編輯下方「`作業區<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_」，增添心得和 GitHub 連結
+  - 編輯下方「[作業區](https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT)」，增添心得和 GitHub 連結
 
   - 更新共筆，將作業加入，並標注自己的 ID
     *  寄件到 <jserv.tw@gmail.com>
@@ -48,14 +48,14 @@ toc: no
    - Sep 27, 2014 (含) 之前
    - 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
-* `Git / GitHub 教學<http://dylandy.github.io/Easy-Git-Tutorial/>`_
+* [Git / GitHub 教學](http://dylandy.github.io/Easy-Git-Tutorial/)
 
 預習項目
 ------------
-* `ARMv7-A Architecture<http://www.slideshare.net/linaroorg/arm-architecture-overview-32539155>`_
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文<http://www.ituring.com.cn/article/4063>`_
+* [ARMv7-A Architecture](http://www.slideshare.net/linaroorg/arm-architecture-overview-32539155)
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文](http://www.ituring.com.cn/article/4063)
 
-* `Study of an operating system: FreeRTOS<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS_Melot.pdf>`_
-* `FreeRTOS 即時核心實用指南<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS-manual-zh.pdf>`_
+* [Study of an operating system: FreeRTOS](http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS_Melot.pdf)
+* [FreeRTOS 即時核心實用指南](http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS-manual-zh.pdf)
 

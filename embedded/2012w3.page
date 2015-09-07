@@ -5,9 +5,9 @@ toc: no
 
 教材
 ---------
-- `The ARM Architecture (with focus on Cortex-M3)</embedded/2012w3/arm-cortex-m3.pptx>`_
-- `快快樂樂設計即時多工作業系統</embedded/2012w3/HappyRTOS.pdf>`_
-- `課堂筆記：前半段</embedded/2012w3/notes>`_
+- [The ARM Architecture (with focus on Cortex-M3)](/embedded/2012w3/arm-cortex-m3.pptx)
+- [快快樂樂設計即時多工作業系統](/embedded/2012w3/HappyRTOS.pdf)
+- [課堂筆記：前半段](/embedded/2012w3/notes)
 
 參考資訊
 ---------

@@ -5,21 +5,21 @@ toc: no
 
 應用案例
 ------------
-* `Raspberry Pi 可以這樣用<http://wiki.csie.ncku.edu.tw/embedded/RaspberryPi>`_
-* Facebook 工程職缺: `Software Engineer, ARM Server<https://www.facebook.com/careers/department?dept=engineering&req=a0IA0000006cPTMMA2>`_
-* `Facebook 向 ARM 核心伺服器張開雙臂<http://www.eettaiwan.com/emag/1303_06_DT.html>`_
+* [Raspberry Pi 可以這樣用](http://wiki.csie.ncku.edu.tw/embedded/RaspberryPi)
+* Facebook 工程職缺: [Software Engineer, ARM Server](https://www.facebook.com/careers/department?dept=engineering&req=a0IA0000006cPTMMA2)
+* [Facebook 向 ARM 核心伺服器張開雙臂](http://www.eettaiwan.com/emag/1303_06_DT.html)
   - ARMv8; 64-bit
 
-* `iOS 7 的創新<http://techorange.com/2013/09/16/future-plan-of-apple/>`_: ARMv8
+* [iOS 7 的創新](http://techorange.com/2013/09/16/future-plan-of-apple/): ARMv8
 
 為何課程如此設計？
 ---------------
 * 「你會先學會使用辭海，才去寫作文，還是先寫文章，再去使用辭海？」
 * @jaceju: 大神如雷貫耳的一句話：「不應該說技術不是重點，而應該說技術是你必須非常熟練，而用來實現你想法的輔助工具。就像你不會跟會計說：『九九乘法不重要』。」
 * 鳥哥：「技術真的沒有什麼了不起，因為大學過後你不見得用的到。但是，學習技術的態度才是重要的！因為以後你永遠都在用！」
-* `Lab19</embedded/Lab19>`_ 的開發狀況
+* [Lab19](/embedded/Lab19) 的開發狀況
   - https://github.com/embedded2013/rtenv/network
-  - `Lab19 共筆<https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe>`_
+  - [Lab19 共筆](https://embedded2013.hackpad.com/Lab19-QEMU-Modeling-cabeJyAnAFe)
 
 GDB + Microcontroller
 
@@ -32,7 +32,7 @@ Low Power mode + Tickless scheduling
 
 教材
 ----------
-* (科普介紹) `安謀是要怎樣<http://www.cool3c.com/book/export/html/57613>`_
+* (科普介紹) [安謀是要怎樣](http://www.cool3c.com/book/export/html/57613)
   - ARM 到底是怎樣的一家公司？
   - 應用處理器是？
   - 為何 ARM 應用處理器能省電？
@@ -54,9 +54,9 @@ Low Power mode + Tickless scheduling
   - 以 A5X 為例，GPU 架構肥大化風氣也吹到 ARM 架構上 ...
 
 * ARM & SoC 訓練:
-  - `Part I<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_ (閱讀 Page 1-44)
-  - `Part II<http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system>`_ (閱讀 Page 23-37)
+  - [Part I](http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview) (閱讀 Page 1-44)
+  - [Part II](http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system) (閱讀 Page 23-37)
 
-* `ARMv8-A Architecture Reference Manual<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a/>`_
-* `QEMU 模擬器<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_ (閱讀 Page 7-56)
+* [ARMv8-A Architecture Reference Manual](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a/)
+* [QEMU 模擬器](http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation) (閱讀 Page 7-56)
 

@@ -7,7 +7,7 @@ toc: no
 ------------
 - 研究一個具體而微的作業系統
 - 專案整合與程式碼移植
-- 學習 GNU Toolchain，驗證 `Week #6</embedded/2015q1w6>`_, `Week #7</embedded/2015q1w7>`_, `Week #8</embedded/2015q1w8>`_ 所學
+- 學習 GNU Toolchain，驗證 [Week #6](/embedded/2015q1w6), [Week #7](/embedded/2015q1w7), [Week #8](/embedded/2015q1w8) 所學
 - 實做 OS scheduler
 
 Mini ARM OS
@@ -18,13 +18,13 @@ Mini ARM OS
 
     export PATH=~/workspace/qemu_stm32/arm-softmmu:$PATH
 
-* 取得 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 程式碼
+* 取得 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 程式碼
 
 .. code-block:: prettyprint
 
     git clone https://github.com/embedded2015/mini-arm-os.git || git clone git@github.com:embedded2015/mini-arm-os.git
 
-* 依據 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_ 指示
+* 依據 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 指示
 
 實驗和觀察
 ----------------
@@ -69,19 +69,19 @@ Mini ARM OS
 
 參考作業要求
 -------------------
-* 將 `Lab-39</embedded/Lab39>`_ 的 ARM semihosting 機制移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_，這樣就能存取 host 端的資源，如檔案操作
+* 將 [Lab-39](/embedded/Lab39) 的 ARM semihosting 機制移植到 [mini-arm-os](https://github.com/embedded2015/mini-arm-os)，這樣就能存取 host 端的資源，如檔案操作
   - 將排程的行為紀錄 (task switching: in/out, timestamp) 於 ``log`` 檔案中
 
 * 原本 mini-arm-os 使用 round robin 輪流執行每個 task，改為支援以下：
   - priority-based scheduling
   - message queue
 
-* 可參考 `rtenv+</embedded/rtenv>`_ 的程式碼，以便理解前述所需要的實做
+* 可參考 [rtenv+](/embedded/rtenv) 的程式碼，以便理解前述所需要的實做
 
 挑戰題
 ----------
-* 將 `Lab-40</embedded/Lab40>`_ 的視覺化工具移植到 `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
-* 將 `Lab-39</embedded/Lab39>`_ 的 romfs 移植到 mini-arm-os
+* 將 [Lab-40](/embedded/Lab40) 的視覺化工具移植到 [mini-arm-os](https://github.com/embedded2015/mini-arm-os)
+* 將 [Lab-39](/embedded/Lab39) 的 romfs 移植到 mini-arm-os
   -  linker script 和工具程式需要作一定程度的修改
 
 繳交作業
@@ -89,16 +89,16 @@ Mini ARM OS
 - 截止日期：
    * Apr 25, 2015 (含) 之前
 
-- 更新開發過程到共筆網站: `Lab 42 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-7-Lab42#2015q3-Week-7-Lab42>`_，需要標注自己的 ID
+- 更新開發過程到共筆網站: [Lab 42 / 作業共筆](https://embedded2015.hackpad.com/2015q3-Week-7-Lab42#2015q3-Week-7-Lab42)，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/mini-arm-os
-    * 注意: 要記得 fork `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_
+    * 注意: 要記得 fork [mini-arm-os](https://github.com/embedded2015/mini-arm-os)
     * 注意: 請直接修改 ``06-Preemptive`` 目錄裡面的檔案，不要建立重複內容的新目錄
 
 參考資料
 -------------
-* `Lab11: Build RTOS for ARM</embedded/Lab11>`_
-  - Lucas Wei 的`程式碼實做</embedded/Sol11>`_
+* [Lab11: Build RTOS for ARM](/embedded/Lab11)
+  - Lucas Wei 的[程式碼實做](/embedded/Sol11)
 
-* `rtenv+</embedded/rtenv>`_
+* [rtenv+](/embedded/rtenv)
   - 在 rtenv+ 中提供四種檔案類型，分別為 fifo pipe (``S_IFIFO``), message queue (``S_IMSGQ``), register file (``S_IFREG``), block file (``S_IFBLK``)
   - 每一種檔案類型都擁有自己的資料結構以及處理函式，其中處理函式針對 ``read``, ``write``, ``lseek`` 這三個 system call，都有提供一個檢查函式 (e.g. ``fifo_writable``) 以及一個或多個運作函式 (e.g. ``fifo_write``)

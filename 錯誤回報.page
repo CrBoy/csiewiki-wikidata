@@ -10,7 +10,7 @@ categories: 系統頁面
 0. 錯誤範例
   - 發生位置
   
-    `錯誤回報 <>`_
+    [錯誤回報 ]()
 
   - 錯誤描述
 
@@ -22,7 +22,7 @@ categories: 系統頁面
 1. 輸入框邊框消失 (*已解決*)
   - 發生位置
 
-    `登入頁 <_login>`_\ ，以及其他有輸入框的地方
+    [登入頁 ](_login)\ ，以及其他有輸入框的地方
 
   - 描述
 
@@ -55,7 +55,7 @@ categories: 系統頁面
 5. Reset Password無作用
   - 發生位置
 
-    `Reset Password<_resetPassword>`_
+    [Reset Password](_resetPassword)
 
   - 描述
 
@@ -78,7 +78,7 @@ categories: 系統頁面
 8. 資源整理
   - 發生位置
 
-    Wiki 之`所有頁面 <http://wiki.csie.ncku.edu.tw/_index>`_
+    Wiki 之[所有頁面 ](http://wiki.csie.ncku.edu.tw/_index)
 
   - 描述
 

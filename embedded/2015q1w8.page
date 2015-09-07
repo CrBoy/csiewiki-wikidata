@@ -6,33 +6,33 @@ toc: no
 重大事項宣達
 -------------------
 * 分組報告對應的硬體
-  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embedded/rtenv>`_, `uClinux</embedded/uclinux>`_: `STM32F429i Discovery</embedded/STM32F429>`_
-    + `STM32F429i Discovery</embedded/STM32F429>`_ 的開發操作，參見 `Lab-35</embedded/Lab35>`_
-    + `rtenv+</embedded/rtenv>`_ 需要一併使用 stm32-p103 (模擬器)，參見 `Lab-28</embedded/Lab28>`_
+  - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv), [uClinux](/embedded/uclinux): [STM32F429i Discovery](/embedded/STM32F429)
+    + [STM32F429i Discovery](/embedded/STM32F429) 的開發操作，參見 [Lab-35](/embedded/Lab35)
+    + [rtenv+](/embedded/rtenv) 需要一併使用 stm32-p103 (模擬器)，參見 [Lab-28](/embedded/Lab28)
 
-  - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_, `Linux</embedded/arm-linux>`_: Beaglebone Black
-  - `Xenomai</embedded/xenomai>`_: Rapsberry Pi + Beaglebone Black
-  - `Xvisor</embedded/xvisor>`_: N/A (模擬器)
-  - 注意：同學需要自行添購 `USB-to-Serial Cable / Converter (PL2303)<http://rayshobby.net/cart/usb-pl2303>`_
+  - [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread), [Linux](/embedded/arm-linux): Beaglebone Black
+  - [Xenomai](/embedded/xenomai): Rapsberry Pi + Beaglebone Black
+  - [Xvisor](/embedded/xvisor): N/A (模擬器)
+  - 注意：同學需要自行添購 [USB-to-Serial Cable / Converter (PL2303)](http://rayshobby.net/cart/usb-pl2303)
 
 * 分組報告要求
   - 4 月 28 日課堂開始作期中報告
   - 理解相關背景知識，並且在去年的基礎上 (如果有的話)，進行擴充
   - 使用本學期介紹的分析和製圖工具 (gnuplot, grasp)，進行執行效能分析和充分的視覺化，至少涵蓋 interrupt latency, context switch, system call overhead 等等
-  - 期末需要以給定的作業系統核心為主體，提供一個完整的應用作為說明，可以是一個 (多工的) 電動玩具機台、土製音響混音器等等，請見 `2014 年秋季的期末專題</embedded/team2014>`_
+  - 期末需要以給定的作業系統核心為主體，提供一個完整的應用作為說明，可以是一個 (多工的) 電動玩具機台、土製音響混音器等等，請見 [2014 年秋季的期末專題](/embedded/team2014)
     + 每組給予台幣 6000 元的硬體補助費
-    + `Xvisor</embedded/xvisor>`_ 組別較特別，會額外要求
+    + [Xvisor](/embedded/xvisor) 組別較特別，會額外要求
 
 作業觀摩
 ------------
-* Lab-39 / 陳建霖: `共筆<https://embedded2015.hackpad.com/Lab-39-krp7fRCjqAM>`_
+* Lab-39 / 陳建霖: [共筆](https://embedded2015.hackpad.com/Lab-39-krp7fRCjqAM)
   - 把程式碼在實際的 STM32F4 Discovery 硬體上運作起來
 
 教材
 --------
-* `The Internals of "Hello World" Program<http://www.slideshare.net/jserv/helloworld-internals>`_
-* `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
-  - 檔案下載: `stm32-prog.pdf</embedded/Lab19/stm32-prog.pdf>`_
-  - 在 `STM32F429i Discovery</embedded/STM32F429>`_ 實際運作的`結果和展示<https://embedded2015.hackpad.com/Week-7-and-Lab42-clLfrDUkkjM>`_
+* [The Internals of "Hello World" Program](http://www.slideshare.net/jserv/helloworld-internals)
+* [STM32 程式開發流程：以 GNU Toolchain 為例](https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit)
+  - 檔案下載: [stm32-prog.pdf](/embedded/Lab19/stm32-prog.pdf)
+  - 在 [STM32F429i Discovery](/embedded/STM32F429) 實際運作的[結果和展示](https://embedded2015.hackpad.com/Week-7-and-Lab42-clLfrDUkkjM)
 
-* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_，詳細分析和操作提示，請見 `Lab 42</embedded/Lab42>`_
+* [mini-arm-os](https://github.com/jserv/mini-arm-os)，詳細分析和操作提示，請見 [Lab 42](/embedded/Lab42)

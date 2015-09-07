@@ -12,19 +12,19 @@ toc: no
 作業及筆記
 ======
 
-* week#2 : `GitHub<https://github.com/dani4310/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/m6pJq7jctyP>`_
-* week#3 : `GitHub<https://github.com/dani4310/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/uGO4QAK07xP>`_
-* week#4 : `GitHub<https://github.com/dani4310/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/iH7yXFpMdcx>`_
-* week#5 : `Hackpad<https://embedded2015.hackpad.com/wteicLuLkWs>`_
-* week#7,8 : `GitHub<https://github.com/dani4310/mini-arm-os>`_, `Hackpad<https://embedded2015.hackpad.com/aqrptIzrcJF>`_
+* week#2 : [GitHub](https://github.com/dani4310/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/m6pJq7jctyP)
+* week#3 : [GitHub](https://github.com/dani4310/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/uGO4QAK07xP)
+* week#4 : [GitHub](https://github.com/dani4310/visualizer), [Hackpad](https://embedded2015.hackpad.com/iH7yXFpMdcx)
+* week#5 : [Hackpad](https://embedded2015.hackpad.com/wteicLuLkWs)
+* week#7,8 : [GitHub](https://github.com/dani4310/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/aqrptIzrcJF)
 
 專題報告
 ====
 
-* CSIE Wiki: `FreeRTOS (MMU)<http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu>`_
+* CSIE Wiki: [FreeRTOS (MMU)](http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu)
 * 主要負責部分: 讓FreeRTOS可以在beaglebone black上正常運作並加上shell功能，協助mmu整合及debug。
-* Hackpad筆記: `Hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
-* MMU with FreeRTOS 8.2.1 for Beagle Bone Black: `Github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+* Hackpad筆記: [Hackpad](https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy)
+* MMU with FreeRTOS 8.2.1 for Beagle Bone Black: [Github](https://github.com/dani4310/BBBFreeRTOS_shell_MMU)
 
 
 所見所聞心得

@@ -6,10 +6,10 @@ toc: no
 教材
 ---------
 - 完全看懂 ARM 處理器: http://www.techbang.com/posts/10678
-- `ARM System Overview<http://0xlab.org/~jserv/tmp/arm-overview.pdf>`_
+- [ARM System Overview](http://0xlab.org/~jserv/tmp/arm-overview.pdf)
 
 參考資訊
 ---------
-- `ARM Training (Part I)<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_
--  `ARM Training (Part II)<http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system>`_
-- `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
+- [ARM Training (Part I)](http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview)
+-  [ARM Training (Part II)](http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system)
+- [From Source to Binary](http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works)

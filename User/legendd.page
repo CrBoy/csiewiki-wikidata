@@ -13,7 +13,7 @@ categories: User
 
 修課心得
 ====
-在學長的熱血之下，得知了這一門``進階嵌入式系統開發與實作``的課程，過去也有耳聞`Jserv大大<http://wiki.csie.ncku.edu.tw/User/jserv>`_的厲害，果然上了一兩門課之後，發現老師真的**很強啊**!!
+在學長的熱血之下，得知了這一門[`進階嵌入式系統開發與實作``的課程，過去也有耳聞`Jserv大大](http://wiki.csie.ncku.edu.tw/User/jserv)的厲害，果然上了一兩門課之後，發現老師真的**很強啊**!!
 
 除了在專業知識的傳授之外，還有製作投影片的用心，甚至於改變教育的決心，真的覺得很佩服，在上課的過程中聽到的知識雖然
 
@@ -29,22 +29,22 @@ categories: User
 
 期末專題
 ====
-- `The Propeller Clock<https://www.youtube.com/watch?v=XARK4lavfqE>`_ :這實在是太酷了!! ``註解`` **補充影片** [#]_  **類似的實作(露天拍賣)** [#]_ 
+- [The Propeller Clock](https://www.youtube.com/watch?v=XARK4lavfqE) :這實在是太酷了!! ``註解`` **補充影片** [#]_  **類似的實作(露天拍賣)** [#]_ 
 
 **Propeller:螺旋槳**；利用視覺暫留的錯覺，加上一直變換(而讓人眼辨識不出來)的方式，看起來就會像是一個時鐘。
 
 .. image:: http://www.luberth.com/propeller_clock_images/www.harrydronkert.com_prop6.jpg
    :scale: 70
 
-- LED Cube:製作部落格`LED 小玩具之 4x4x4 Cube LED <http://ant2sky.blogspot.tw/2013/10/led-4x4x4-cube-led.html>`_
+- LED Cube:製作部落格[LED 小玩具之 4x4x4 Cube LED ](http://ant2sky.blogspot.tw/2013/10/led-4x4x4-cube-led.html)
 
-**影片支援**:`8x8x8 on Arduino<https://www.youtube.com/watch?v=GUcX41pokZY>`_
+**影片支援**:[8x8x8 on Arduino](https://www.youtube.com/watch?v=GUcX41pokZY)
 
-`更多影片&期末專題構想<https://embedded2013.hackpad.com/Ideas-TyDir94W9je>`_
+[更多影片&期末專題構想](https://embedded2013.hackpad.com/Ideas-TyDir94W9je)
 
-.. [#] `Propellerclock - Ring Of Fire<https://www.youtube.com/watch?v=Md78sOI1-r8>`_
-.. [#] `十字旋轉LED點陣屏<http://goods.ruten.com.tw/item/show?21001234336320>`_
+.. [#] [Propellerclock - Ring Of Fire](https://www.youtube.com/watch?v=Md78sOI1-r8)
+.. [#] [十字旋轉LED點陣屏](http://goods.ruten.com.tw/item/show?21001234336320)
 
 編輯參考
 ====
-`reStructuredText簡易入門<http://www.openfoundry.org/index.php?option=com_docman&task=doc_details&gid=418&Itemid=1>`_
+[reStructuredText簡易入門](http://www.openfoundry.org/index.php?option=com_docman&task=doc_details&gid=418&Itemid=1)

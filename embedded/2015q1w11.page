@@ -5,14 +5,14 @@ toc: no
 
 Case Study
 -----------------
-* `Investigation and Improvement on the Impact of TLB misses  in Real-Time Systems<http://ertl.jp/~shinpei/conf/ospert13/slides/TakuyaIshikawa.pdf>`_
-* `Hunting birds<http://potetisensei.hatenablog.com/entry/2015/05/04/235845>`_, Yuki Koike (日本 NADA 高中)
+* [Investigation and Improvement on the Impact of TLB misses  in Real-Time Systems](http://ertl.jp/~shinpei/conf/ospert13/slides/TakuyaIshikawa.pdf)
+* [Hunting birds](http://potetisensei.hatenablog.com/entry/2015/05/04/235845), Yuki Koike (日本 NADA 高中)
   - 人家高中生都可以寫精美論文提出攻擊手法
 
 分組報告
 ------------
-* `FreeRTOS (MMU)</embedded/freertos-mmu>`_
-  - `Q&A: FreeRTOS (MMU)<https://embedded2015.hackpad.com/QA-FreeRTOS-MMU-cWaGNl2HGlE>`_ (課堂問答皆在此追蹤)
+* [FreeRTOS (MMU)](/embedded/freertos-mmu)
+  - [Q&A: FreeRTOS (MMU)](https://embedded2015.hackpad.com/QA-FreeRTOS-MMU-cWaGNl2HGlE) (課堂問答皆在此追蹤)
 
-* `RT-Thread</embedded/rt-thread>`_
-  - `Q&A: RT-Thread<https://embedded2015.hackpad.com/QA-RT-Thread-nAlzH6xsI8c>`_ (課堂問答皆在此追蹤)
+* [RT-Thread](/embedded/rt-thread)
+  - [Q&A: RT-Thread](https://embedded2015.hackpad.com/QA-RT-Thread-nAlzH6xsI8c) (課堂問答皆在此追蹤)

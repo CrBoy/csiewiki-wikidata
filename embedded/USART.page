@@ -22,7 +22,7 @@ NRZ標準資料格式(Mark/Space)
 
 .. image:: /NRZcode.png
 
-圖片來源：`wikipedia<http://zh.wikipedia.org/wiki/%E4%B8%8D%E6%AD%B8%E9%9B%B6>`_
+圖片來源：[wikipedia](http://zh.wikipedia.org/wiki/%E4%B8%8D%E6%AD%B8%E9%9B%B6)
 
 半雙工/全雙工
 ===================
@@ -55,7 +55,7 @@ Asynchronous 非同步傳輸
 
 .. image:: /embedded/ASYNC.gif
 
-來源: `webopedia<http://www.webopedia.com/FIG/ASYNC.gif>`_
+來源: [webopedia](http://www.webopedia.com/FIG/ASYNC.gif)
 
 
 半/全雙工、同步/非同步 & Serial bus 示意圖
@@ -193,7 +193,7 @@ STM32 USART介紹與特性
 USART Block Diagram
 ======================================
 .. image:: /embedded/USART_pic296.jpg
-Ref: `RM0090 Reference Manual P.949<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+Ref: [RM0090 Reference Manual P.949](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
    - RX: 接收資料輸入。藉由Oversampling技術判斷有效資料及噪音
@@ -325,7 +325,7 @@ TE被開啟時，會立即送出一個idle frame。
 
 **另外，由於資料搬移到transmit shift register中最少需要1/2 baud clock，因此在Smartcard mode的接收中，最少必須設定0.5 bit的stop bits**
 
-Ref: `RM0090 Reference Manual P.952<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+Ref: [RM0090 Reference Manual P.952](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 
 傳送器的設定
@@ -591,7 +591,7 @@ parity依算方式的不同分成兩種方式，even parity和odd parity
  - 接收器和傳送器的Baud rate分別由USART_BRR設置USARTDIV的整數部分(Mantissa)及小數部分(Fraction)，計算方式如下所示:
 
 .. image:: /baud.png
-Ref: `RM0090 Reference Manual P.959<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+Ref: [RM0090 Reference Manual P.959](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 其中USARTDIV為一個無號的定點數(unsigned fixed point number)，fCK為給周邊設備的時鐘。
 
@@ -814,7 +814,7 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 紅外線編碼模式
 =============
 
-Ref: `RM0090 Reference Manual P.979<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+Ref: [RM0090 Reference Manual P.979](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
    - USART_CR2的LINEN、STOP、CLKEN
@@ -856,7 +856,7 @@ IrDA 低功率模式
 直接記憶體存取(DMA)模式
 ===================================
 
-Ref: `Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+Ref: [Using The DMA controller on STM32](http://www.mind-dump.net/using-the-dma-controller-on-stm32f4)
 
 USART可以使用DMA達到連續通訊的效果，不過DMA會個別對於RX和TX緩衝器送出請求。
 
@@ -1275,16 +1275,16 @@ Download sample code :
    
 REFERENCE
 ..................
-- `[1]Universal asynchronous receiver/transmitter wikipedia.<http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions>`_
+- [[1]Universal asynchronous receiver/transmitter wikipedia.](http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions)
 
-- `[2]STM32F407xx Reference Manual P.946 ~ P.997<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+- [[2]STM32F407xx Reference Manual P.946 ~ P.997](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 
-- `[3]IrDA and RS-232<http://china.maximintegrated.com/app-notes/index.mvp/id/3024>`_
+- [[3]IrDA and RS-232](http://china.maximintegrated.com/app-notes/index.mvp/id/3024)
 
-- `[4]Using The DMA controller on STM32<http://www.mind-dump.net/using-the-dma-controller-on-stm32f4>`_
+- [[4]Using The DMA controller on STM32](http://www.mind-dump.net/using-the-dma-controller-on-stm32f4)
 
-- `[5]ISO 7816-3<http://www.cardwerk.com/smartcards/smartcard_standard_ISO7816-3.aspx>`_
+- [[5]ISO 7816-3](http://www.cardwerk.com/smartcards/smartcard_standard_ISO7816-3.aspx)
 
 Q&A
 ...................
@@ -1345,4 +1345,4 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 
 .. image:: /unmatched clocks.png
 
-`圖片來源<http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed>`_
+[圖片來源](http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed)

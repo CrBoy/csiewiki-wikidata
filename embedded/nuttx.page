@@ -16,7 +16,7 @@ toc: no
 
 Nuttx 參考應用
 ---------------
-* `PX4 autopilot<http://pixhawk.org/dev/nuttx/start>`_
+* [PX4 autopilot](http://pixhawk.org/dev/nuttx/start)
 
 NuttX 架構
 ------------
@@ -644,7 +644,7 @@ FPU
  
 硬體驅動原理
 ------------
-* `UART<embedded/USART>`_
+* [UART](embedded/USART)
 * FPU (Floating Point Unit)
 
 效能表現

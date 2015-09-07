@@ -7,7 +7,7 @@ toc: no
 預期目標
 -------
 - 實際體驗 STM32 硬體操作
-- 以 `STM32F4-Discovery<http://www.st.com/internet/evalboard/product/252419.jsp>`_ 為參考硬體，探討相關的軟體開發工具與流程
+- 以 [STM32F4-Discovery](http://www.st.com/internet/evalboard/product/252419.jsp) 為參考硬體，探討相關的軟體開發工具與流程
 - Unit Test 概念的落實
 
 
@@ -15,7 +15,7 @@ toc: no
 ----------------
 - GNU Toolchain: 同之前 Lab
 - ICE = In-Circuit Emulator
-- `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
+- [Remote Debugging using GDB](http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
 .. code-block:: prettyprint
 
@@ -34,7 +34,7 @@ toc: no
 
     git clone git://openocd.git.sourceforge.net/gitroot/openocd/openocd
 
-  * 或者 `openocd-d2f61e1a4592449188305164b27f495f78dca00a.tar.bz2</embedded/Lab6/openocd-d2f61e1a4592449188305164b27f495f78dca00a.tar.bz2>`_
+  * 或者 [openocd-d2f61e1a4592449188305164b27f495f78dca00a.tar.bz2](/embedded/Lab6/openocd-d2f61e1a4592449188305164b27f495f78dca00a.tar.bz2)
 
 - 編譯 OpenOCD
 
@@ -55,7 +55,7 @@ toc: no
 
 Programming STM32 F2, F4 ARMs under Linux
 ------------------------------------------
-- `A Tutorial from Scratch<http://www.triplespark.net/elec/pdev/arm/stm32.html>`_
+- [A Tutorial from Scratch](http://www.triplespark.net/elec/pdev/arm/stm32.html)
   * Introduction STM32, STM32F2, STM32F4
   * Obtaining and Setting Up OpenOCD
   * Setting up the Hardware: STM32F4Discovery with integrated ST-Link/V2
@@ -66,7 +66,7 @@ Programming STM32 F2, F4 ARMs under Linux
 
 工作環境
 -------
-- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+- 取得最新 Labs 內容 (與之前 [Lab3](/embedded/Lab3) 操作相似)：
 
 .. code-block:: prettyprint
 
@@ -158,5 +158,5 @@ Unit Test
 
 參考資訊
 -------
-- `STM32F4-Discovery 繁體中文簡易操作<http://cms.mcuapps.com/products/stm32f4-discovery/README.html>`_
-- `OpenOCD 繁體中文簡易操作<http://cms.mcuapps.com/techinfo/toolchains/openocd/>`_
+- [STM32F4-Discovery 繁體中文簡易操作](http://cms.mcuapps.com/products/stm32f4-discovery/README.html)
+- [OpenOCD 繁體中文簡易操作](http://cms.mcuapps.com/techinfo/toolchains/openocd/)

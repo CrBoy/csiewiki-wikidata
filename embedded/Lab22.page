@@ -5,27 +5,27 @@ toc: no
 
 預期目標
 -------
-* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 [FreeRTOS](http://www.freertos.org/) 並且學習相關的操作
   - 熟悉 FreeRTOS 的內部運作機制
 
 * 學習 memory mangement
   - 實作 ``malloc`` / ``free`` 和驗證其功能
-  - 搭配 `Week #5</embedded/2013-w5>`_ 進度，學習 heap, stack 的規劃
+  - 搭配 [Week #5](/embedded/2013-w5) 進度，學習 heap, stack 的規劃
   - defragmentation
 
 Memory Management
 ----------------------------------
-* `System-wide Memory Management for Linux Embedded Systems<http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf>`_
-* `Tips of malloc & free<http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf>`_
+* [System-wide Memory Management for Linux Embedded Systems](http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf)
+* [Tips of malloc & free](http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf)
 
 FreeRTOS
 ---------------
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 FreeRTOS: Memory management
 -------------------------------
-- `Memory Management<http://www.freertos.org/a00111.html>`_
+- [Memory Management](http://www.freertos.org/a00111.html)
 -  The RTOS kernel allocates RAM each time a task, queue, mutex, software timer or semaphore is created. The standard C library malloc() and free() functions can sometimes be used for this purpose, but ...
     + they are not always available on embedded systems,
     + they take up valuable code space,
@@ -61,7 +61,7 @@ hack-malloc
 
 參考作業提案
 --------------------
-* 將 `hack-malloc<https://github.com/embedded2013/hack-malloc>`_ 移植回去 FreeRTOS，並且配合 `Lab 21</embedded/Lab21>`_，在 shell 中建立一個命令: ``mmtest``
+* 將 [hack-malloc](https://github.com/embedded2013/hack-malloc) 移植回去 FreeRTOS，並且配合 [Lab 21](/embedded/Lab21)，在 shell 中建立一個命令: ``mmtest``
   - 加分: 將 ``tryit`` 移植回去 ``rtenv``
 
 * 修改 ``hack-malloc/tryit.c`` 的 prng (pseudorandom number generator)，用 inline assembly 重寫該函式
@@ -71,12 +71,12 @@ hack-malloc
 
 作業繳交方式
 -------------------
-* 更新作業提案到共筆網站: `Lab 22 / 作業共筆<https://embedded2013.hackpad.com/Lab22-RTOS-wnRrVcPhtUU>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
+* 更新作業提案到共筆網站: [Lab 22 / 作業共筆](https://embedded2013.hackpad.com/Lab22-RTOS-wnRrVcPhtUU)，需要標注自己的 ID，可參考 [Lab 20 / 作業共筆](https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c) 格式
 * 在 Oct 25, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
    - https://github.com/embedded2013/freertos
 
 參考資訊
 -------------
-* `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
-* `ARM GCC Inline Assembler Cookbook<http://www.ethernut.de/en/documents/arm-inline-asm.html>`_
-* `Malloc implementation in FreeRTOS <http://pramode.net/fosstronics/memory-management.txt>`_
+* [FreeRTOS Implementation](http://www.freertos.org/implementation/main.html)
+* [ARM GCC Inline Assembler Cookbook](http://www.ethernut.de/en/documents/arm-inline-asm.html)
+* [Malloc implementation in FreeRTOS ](http://pramode.net/fosstronics/memory-management.txt)

@@ -764,11 +764,11 @@ VCO = Fref * PLL_N
 
 Reference
 =========
-- `General Purpose Input/Output - Wikipedia, the free encyclopedia <http://en.wikipedia.org/wiki/General_Purpose_Input/Output>`_
-- `STM32F429xx Datasheet<http://www.st.com/web/en/resource/technical/document/datasheet/DM00071990.pdf>`_
-- `STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-- `STM32F429xx I/O pin mapping<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
-- `STM32F4-Discovery 中文使用手冊</embedded/STM32-Discovery-Manual-Chinese.pdf>`_
-- `稀里糊塗學 STM32 第二講：源源不絕</embedded/learn-stm32-part-2.pdf>`_
-- `給資工系的嵌入式電子學<https://embedded-note.hackpad.com/0KF0hrjt78j>`_
-- `舊GPIO PPT</embedded/GPIO_v3.ppt>`_
+- [General Purpose Input/Output - Wikipedia, the free encyclopedia ](http://en.wikipedia.org/wiki/General_Purpose_Input/Output)
+- [STM32F429xx Datasheet](http://www.st.com/web/en/resource/technical/document/datasheet/DM00071990.pdf)
+- [STM32F42xxx Reference Manual](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
+- [STM32F429xx I/O pin mapping](http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html)
+- [STM32F4-Discovery 中文使用手冊](/embedded/STM32-Discovery-Manual-Chinese.pdf)
+- [稀里糊塗學 STM32 第二講：源源不絕](/embedded/learn-stm32-part-2.pdf)
+- [給資工系的嵌入式電子學](https://embedded-note.hackpad.com/0KF0hrjt78j)
+- [舊GPIO PPT](/embedded/GPIO_v3.ppt)

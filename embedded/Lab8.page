@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-- 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+- 在 QEMU 模擬的 STM32 環境中，嘗試執行 [FreeRTOS](http://www.freertos.org/) 並且學習相關的操作
 - 熟悉 FreeRTOS 的內部運作機制
 - 對 RTOS 內部運作進行視覺化，以銜接未來的硬體操作
 - 實地練習 Multi-tasking 程式設計
@@ -26,7 +26,7 @@ toc: no
     sudo apt-get install lib32gcc1
     sudo apt-get install lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 並解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
+- 取得 GNU Toolchain: [toolchain-2012_03.tar.bz2](/embedded/Lab1/toolchain-2012_03.tar.bz2) 並解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
 
 .. code-block:: prettyprint
 
@@ -40,14 +40,14 @@ STM32 Overview
   - Wireless Connectivity
   - Computing/Prototyping
   - One for most use cases
-  - `Introduction presentation</embedded/CM-STM32.pdf>`_
+  - [Introduction presentation](/embedded/CM-STM32.pdf)
 
 .. image:: /STM32-P103-01.jpg
 
 
 GTKWave
 --------------
-- `GTKWave<http://gtkwave.sourceforge.net/>`_: 強大的 wave viewer
+- [GTKWave](http://gtkwave.sourceforge.net/): 強大的 wave viewer
 - 在 Ubuntu Linux 的安裝與操作
 
 .. code-block:: prettyprint
@@ -99,7 +99,7 @@ FreeRTOS for STM32
 - 取得最新的 QEMU-STM32：
     ``git clone https://gitcafe.com/embedded2012/qemu_stm32.git``
 
-若 git 取得失敗的話，請改用以下： `qemu_stm32-git.tar.bz2</embedded/qemu_stm32-git.tar.bz2>`_
+若 git 取得失敗的話，請改用以下： [qemu_stm32-git.tar.bz2](/embedded/qemu_stm32-git.tar.bz2)
 
 .. code-block:: prettyprint
 
@@ -119,7 +119,7 @@ FreeRTOS for STM32
         --extra-ldflags="-lrt"
     make && cd ..
 
-- 仿造 `Lab-2</embedded/Lab2>`_ 的操作，編譯並執行 FreeRTOS 程式
+- 仿造 [Lab-2](/embedded/Lab2) 的操作，編譯並執行 FreeRTOS 程式
 
 .. code-block:: prettyprint
 

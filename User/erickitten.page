@@ -9,18 +9,18 @@ categories: User
 
 作業及筆記
 ==============
-- Github : `github<https://github.com/erickitten>`_
-- hw1 : `lab38<https://hackpad.com/Embedded-System-2015-Lab38-ARM-revisit-4la8C6ATfwW>`_
-- hw2 : `lab39<https://hackpad.com/Embedded-System-2015-Lab39-Cross-Development-h4g0uWu4zfM>`_
-- hw3 : `lab40<https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7>`_
-- hw4 : `lab42<https://hackpad.com/Embedded-System-2015-Lab42-Mini-ARM-OS-cKmip54ZmK8>`_
+- Github : [github](https://github.com/erickitten)
+- hw1 : [lab38](https://hackpad.com/Embedded-System-2015-Lab38-ARM-revisit-4la8C6ATfwW)
+- hw2 : [lab39](https://hackpad.com/Embedded-System-2015-Lab39-Cross-Development-h4g0uWu4zfM)
+- hw3 : [lab40](https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7)
+- hw4 : [lab42](https://hackpad.com/Embedded-System-2015-Lab42-Mini-ARM-OS-cKmip54ZmK8)
 
 報告
 =============
-- xenomai : `CSIE WIKI<http://wiki.csie.ncku.edu.tw/embedded/xenomai>`_
-- Xenomai開發紀錄 : `Hackpad<https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP>`_ 
-- Xenomai_lab_data : `Hackpad<https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe>`_
-- Xenomai_Q&A : `Hackpad<https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt>`_
+- xenomai : [CSIE WIKI](http://wiki.csie.ncku.edu.tw/embedded/xenomai)
+- Xenomai開發紀錄 : [Hackpad](https://embedded2015.hackpad.com/Xenomai-LydARMEzEWP) 
+- Xenomai_lab_data : [Hackpad](https://embedded2015.hackpad.com/Xenomai-lab-data-FlbetsD4sEe)
+- Xenomai_Q&A : [Hackpad](https://embedded2015.hackpad.com/QA-Xenomai-inygeG7dnpt)
 - 負責項目:
   - xenomai 3 rpi patch / port
   - xenomai latency & 示波器測試

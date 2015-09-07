@@ -12,19 +12,19 @@ toc: no
 作業及筆記
 ======
 
-* week#2 : `GitHub<https://github.com/MuLinForest/arm-lecture>`_, `Hackpad<https://hackpad.com/1Nqa107f9Mg>`_
-* week#3 : `GitHub<https://github.com/MuLinForest/freertos-basic>`_, `Hackpad<https://hackpad.com/tKfTJ9NE0Ge>`_
-* week#4 : `GitHub<https://github.com/MuLinForest/visualizer>`_, `Hackpad<https://hackpad.com/pvNAx4ZVUas>`_
-* week#5 : `Hackpad<https://hackpad.com/KgiNguC3881>`_
-* week#7,8 : `GitHub<https://github.com/MuLinForest/mini-arm-os>`_, `Hackpad<https://hackpad.com/J327emEgEJg>`_
+* week#2 : [GitHub](https://github.com/MuLinForest/arm-lecture), [Hackpad](https://hackpad.com/1Nqa107f9Mg)
+* week#3 : [GitHub](https://github.com/MuLinForest/freertos-basic), [Hackpad](https://hackpad.com/tKfTJ9NE0Ge)
+* week#4 : [GitHub](https://github.com/MuLinForest/visualizer), [Hackpad](https://hackpad.com/pvNAx4ZVUas)
+* week#5 : [Hackpad](https://hackpad.com/KgiNguC3881)
+* week#7,8 : [GitHub](https://github.com/MuLinForest/mini-arm-os), [Hackpad](https://hackpad.com/J327emEgEJg)
 
 專題報告
 ====
 
-* CSIE Wiki: `FreeRTOS (MMU)<http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu>`_
+* CSIE Wiki: [FreeRTOS (MMU)](http://wiki.csie.ncku.edu.tw/embedded/freertos-mmu)
 * 主要負責部分: 協助debug與編輯wiki。
-* Hackpad筆記: `Hackpad<https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy>`_
-* FreeRTOS 8.2.1 for Beagle Bone Black: `Github<https://github.com/dani4310/BBBFreeRTOS_shell_MMU>`_
+* Hackpad筆記: [Hackpad](https://hackpad.com/FreeRTOS-MMU-7T05PYBOFIy)
+* FreeRTOS 8.2.1 for Beagle Bone Black: [Github](https://github.com/dani4310/BBBFreeRTOS_shell_MMU)
 
 
 所見所聞心得

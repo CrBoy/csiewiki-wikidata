@@ -5,6 +5,6 @@ toc: no
 
 教材
 ------
-* `ARM lecture: Operating Systems</embedded/lec8-os.pdf>`_
-* `Microkerel Evolution<http://www.slideshare.net/jserv/microkernel-evolution>`_
-* `From L3 to seL4: What Have We Learnt in 20 Years of L4 Microkernels?<http://ssrg.nicta.com.au/projects/TS/20years.pdf >`_
+* [ARM lecture: Operating Systems](/embedded/lec8-os.pdf)
+* [Microkerel Evolution](http://www.slideshare.net/jserv/microkernel-evolution)
+* [From L3 to seL4: What Have We Learnt in 20 Years of L4 Microkernels?](http://ssrg.nicta.com.au/projects/TS/20years.pdf )

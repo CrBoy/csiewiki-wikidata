@@ -20,23 +20,23 @@ toc: no
   * ARM Cortex-A50 - AArch64: http://www.techbang.com/posts/12224-arm-of-the-64-bit-revolution-resolution
   * 完全看懂 ARM 處理器: http://www.techbang.com/posts/10678
 
-* `ARM System Overview</embedded/arm-overview.pdf>`_
-* `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
+* [ARM System Overview](/embedded/arm-overview.pdf)
+* [From Source to Binary](http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works)
 
 Assignment Review
 -------------------------------
 
-- `Lab 8</embedded/Lab8>`_: GNU Toolchain + RTOS
+- [Lab 8](/embedded/Lab8): GNU Toolchain + RTOS
    * Due: March 12, 2013
-   * `Lab 8 Solution</embedded/Sol8>`_; provider: Lucas Wei
+   * [Lab 8 Solution](/embedded/Sol8); provider: Lucas Wei
 
-- `Lab 9</embedded/Lab9>`_: Multitasking programming
+- [Lab 9](/embedded/Lab9): Multitasking programming
   * Due: March 15, 2013
-  * `Lab 9 Solution</embedded/Sol9>`_; provider: Ji-Heng Wu
+  * [Lab 9 Solution](/embedded/Sol9); provider: Ji-Heng Wu
 
-- `Lab 10</embedded/Lab10>`_: Priority Inversion
+- [Lab 10](/embedded/Lab10): Priority Inversion
   * Due: March 22, 2013
-  * `Lab 10 Solution</embedded/Sol10>`_;  provider: Lucas, Taylor
+  * [Lab 10 Solution](/embedded/Sol10);  provider: Lucas, Taylor
 
 
 取得參考實作

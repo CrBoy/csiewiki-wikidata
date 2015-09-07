@@ -6,7 +6,7 @@ toc: no
 預期目標
 -------
 - 學習使用 Debugger，並且理解從硬體到軟體相關的處理機制
-- 配合`第三周進度</embedded/2014-w3>`_，學習 Linux 工具和 GNU Toolchain 的使用
+- 配合[第三周進度](/embedded/2014-w3)，學習 Linux 工具和 GNU Toolchain 的使用
 - 學習 Automation 技巧
 
 GDB
@@ -16,7 +16,7 @@ GDB
 
 QEMU + GDB 操作
 ----------------
-- 假設 `Lab-25</embedded/Lab25>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+- 假設 [Lab-25](/embedded/Lab25) 所使用 QEMU 的目錄已放在 workspace 目錄
 
 .. code-block:: prettyprint
 
@@ -110,14 +110,14 @@ GDB Automation
 
 參考作業要求
 ------------------
-* 將 rtenv-gdbautomation 機制移植回去 `Lab-25</embedded/Lab25>`_ 的 rtenv，使得 ``make check`` 時，可以透過 GDB script 自動測試之前加入的功能、函式，並且比對預期輸出，作為 unit test
+* 將 rtenv-gdbautomation 機制移植回去 [Lab-25](/embedded/Lab25) 的 rtenv，使得 ``make check`` 時，可以透過 GDB script 自動測試之前加入的功能、函式，並且比對預期輸出，作為 unit test
 * [加分] 用 GDB script 顯示執行時期資訊
 
 作業繳交方式
 ------------------
-* 請更新作業提案到共筆網站: `Lab 27 / 作業共筆<https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw>`_
-  - 需要標注自己的 ID，可參考 `Lab 25 / 作業共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_ 的格式
-* 請在 Mar 14, 2014 前，將符合作業提案的程式碼，提交到 `Lab-25</embedded/Lab25>`_ 時 fork 出來的 rtenv
+* 請更新作業提案到共筆網站: [Lab 27 / 作業共筆](https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw)
+  - 需要標注自己的 ID，可參考 [Lab 25 / 作業共筆](https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU) 的格式
+* 請在 Mar 14, 2014 前，將符合作業提案的程式碼，提交到 [Lab-25](/embedded/Lab25) 時 fork 出來的 rtenv
   - https://github.com/embedded2014/rtenv
 
 參考資訊

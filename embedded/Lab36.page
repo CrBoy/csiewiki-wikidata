@@ -5,18 +5,18 @@ toc: no
 
 預期目標
 -------------
-* 在 `STM32F429i Discovery</embedded/STM32F429>`_ 開發簡易 ELF loader
+* 在 [STM32F429i Discovery](/embedded/STM32F429) 開發簡易 ELF loader
 * 學習 OpenOCD 和 gdb
-* 複習 `Week #7: ELF</embedded/2014q3w7>`_ 學習進度
+* 複習 [Week #7: ELF](/embedded/2014q3w7) 學習進度
 
 預先準備
 ------------
-* 確認 ``$PATH`` 可找到 `Lab 35</embedded/Lab35>`_ 設定的 GNU Toolchain
+* 確認 [`$PATH`` 可找到 `Lab 35](/embedded/Lab35) 設定的 GNU Toolchain
   - ``arm-none-eabi-gcc -v`` 預期輸出 ``4.8.3-11ubuntu1`` 一類包含 ubuntu 的字串
   - 若否，請重新設定 PATH 環境變數
   - ``export PATH=/usr/bin:$PATH``
 
-* 確認 `STM32F429i Discovery</embedded/STM32F429>`_ 板子已經由 USB 線接上裝有 GNU/Linux 的開發環境，並確保 `Lab 35</embedded/Lab35>`_ 所提及的工具均已正確安裝，如 openocd 與 gdb
+* 確認 [STM32F429i Discovery](/embedded/STM32F429) 板子已經由 USB 線接上裝有 GNU/Linux 的開發環境，並確保 [Lab 35](/embedded/Lab35) 所提及的工具均已正確安裝，如 openocd 與 gdb
 
 取得 ELF loader 並在 STM32 驗證
 --------------------------------------------
@@ -71,19 +71,19 @@ toc: no
 
 參考作業要求
 -----------------
-* 擴充 `Lab 35 STM32F429</embedded/Lab35>`_ 作業的 `freertos-stm32<https://github.com/embedded2014/freertos-stm32>`_，允許在執行時期透過 OpenOCD，從 host 端載入 ELF 執行檔 (可視為遊戲程式的 plugin) 並執行 
-* 整合 `Lab 32</embedded/Lab32>`_ 開發的檔案系統與 shell，除了 ``ls`` 和``cat`` 命令外，額外提供 ``exec`` 命令
+* 擴充 [Lab 35 STM32F429](/embedded/Lab35) 作業的 [freertos-stm32](https://github.com/embedded2014/freertos-stm32)，允許在執行時期透過 OpenOCD，從 host 端載入 ELF 執行檔 (可視為遊戲程式的 plugin) 並執行 
+* 整合 [Lab 32](/embedded/Lab32) 開發的檔案系統與 shell，除了 ``ls`` 和``cat`` 命令外，額外提供 ``exec`` 命令
 
 繳交作業
 -------------
 * 截止日期
   - Nov 8, 2014 (含) 之前
 
-* 更新作業提案到共筆網站: `Lab 36 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-7-lzIBL1fkunQ>`_，需要標注自己的 ID
-  - 將符合作業提案的程式碼，提交到自行 fork 的 `freertos-stm32<https://github.com/embedded2014/freertos-stm32>`_
+* 更新作業提案到共筆網站: [Lab 36 / 作業共筆](https://embedded2014.hackpad.com/2014q3-Week-7-lzIBL1fkunQ)，需要標注自己的 ID
+  - 將符合作業提案的程式碼，提交到自行 fork 的 [freertos-stm32](https://github.com/embedded2014/freertos-stm32)
 
 參考資料
 ------------
-* `BeagleBoard OpenOCD<http://elinux.org/BeagleBoardOpenOCD>`_
-* `GDB and OpenOCD<http://openocd.sourceforge.net/doc/html/GDB-and-OpenOCD.html>`_
-* `Anatomy of Linux dynamic libraries<http://www.ibm.com/developerworks/library/l-dynamic-libraries/>`_
+* [BeagleBoard OpenOCD](http://elinux.org/BeagleBoardOpenOCD)
+* [GDB and OpenOCD](http://openocd.sourceforge.net/doc/html/GDB-and-OpenOCD.html)
+* [Anatomy of Linux dynamic libraries](http://www.ibm.com/developerworks/library/l-dynamic-libraries/)

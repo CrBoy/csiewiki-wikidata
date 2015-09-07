@@ -5,7 +5,7 @@ categories: User
 
 簡介
 ====
-- 成功大學資訊工程系 92 級，`蘇文鈺教授<http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/12>`_的導生
+- 成功大學資訊工程系 92 級，[蘇文鈺教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/12)的導生
 - 熱血工讀生
 - 台灣苗栗人，現居台南市
 - 英文名: Jim Huang
@@ -23,31 +23,31 @@ categories: User
 
 開放原始碼專案參與
 ===============
-- `AOSP<http://source.android.com/>`_ (Android Open Source Project)
-- `新酷音輸入法<http://chewing.im/>`_
-- `Kaffe Virtual Machine<http://www.kaffe.org/>`_
-- `GCC<http://gcc.gnu.org/>`_ / GCJ (GCC for Java)
-- `LXDE<http://lxde.org/>`_
+- [AOSP](http://source.android.com/) (Android Open Source Project)
+- [新酷音輸入法](http://chewing.im/)
+- [Kaffe Virtual Machine](http://www.kaffe.org/)
+- [GCC](http://gcc.gnu.org/) / GCJ (GCC for Java)
+- [LXDE](http://lxde.org/)
 
 最近活動
 =======
-- `演講行程和公告<https://github.com/jserv/talks>`_
-- 「`進階嵌入式系統開發與實作</embedded/schedule>`_」、「`嵌入式作業系統設計與實作</embedded/schedule>`_」課程 (成功大學)
-- 「`自由開源軟體與專案協作<https://sites.google.com/site/fossapc/>`_」課程 (交通大學)
-- `AppUniverz: 校園創業創作環境<http://www.appuniverz.org/>`_
-- `MOSUT<http://mosut.org/>`_ (Meet Open Source Users in Tainan)
-- `作業系統開發<http://www.juluos.org/>`_
-- `MOPCON<http://mopcon.org>`_ (Mobile Open Platform Conference)
+- [演講行程和公告](https://github.com/jserv/talks)
+- 「[進階嵌入式系統開發與實作](/embedded/schedule)」、「[嵌入式作業系統設計與實作](/embedded/schedule)」課程 (成功大學)
+- 「[自由開源軟體與專案協作](https://sites.google.com/site/fossapc/)」課程 (交通大學)
+- [AppUniverz: 校園創業創作環境](http://www.appuniverz.org/)
+- [MOSUT](http://mosut.org/) (Meet Open Source Users in Tainan)
+- [作業系統開發](http://www.juluos.org/)
+- [MOPCON](http://mopcon.org) (Mobile Open Platform Conference)
 
 作業系統核心作品
 ==============
-* `F9 microkernel<https://github.com/f9micro>`_: 依循 `L4 microkernel<https://en.wikipedia.org/wiki/L4_microkernel_family>`_ 設計原則，特色是針對 ARM Cortex-M 提供安全和高效能的嵌入式作業系統核心，約 3000 行 C 程式碼 [2014 年商業應用]
-* `mini-arm-os<https://github.com/embedded2015/mini-arm-os>`_: 從無到有開發 ARM 多工作業系統，支援多執行緒，僅 400 行 C 程式碼
-* `rtenv+</embedded/rtenv>`_: 具體而微的類似 UNIX 作業系統，運作於 ARM Cortex-M3/M4
-* `rtmux<https://github.com/rtmux>`_: 在 ARM Cortex-A 架構上提供輕量級的虛擬化執行環境，支援 Linux 與 RTOS
-* `CuRT<https://github.com/jserv/curt>`_: 小型的即時多工作業系統核心，支援 ARMv5 與 x86 架構
-* `xv6-x86_64<https://github.com/jserv/xv6-x86_64>`_: 將 MIT `Xv6<http://pdos.csail.mit.edu/6.828/2014/xv6.html>`_ 移植到 x86_64 架構並重新整理程式碼，允許更多功能和效能提升
-* `Codezero microkernel<https://github.com/jserv/codezero>`_: 依循 `L4 microkernel<https://en.wikipedia.org/wiki/L4_microkernel_family>`_ 設計原則，實作短小精悍的作業系統核心，支援 ARMv5 架構 [2011 年商業應用]
+* [F9 microkernel](https://github.com/f9micro): 依循 [L4 microkernel](https://en.wikipedia.org/wiki/L4_microkernel_family) 設計原則，特色是針對 ARM Cortex-M 提供安全和高效能的嵌入式作業系統核心，約 3000 行 C 程式碼 [2014 年商業應用]
+* [mini-arm-os](https://github.com/embedded2015/mini-arm-os): 從無到有開發 ARM 多工作業系統，支援多執行緒，僅 400 行 C 程式碼
+* [rtenv+](/embedded/rtenv): 具體而微的類似 UNIX 作業系統，運作於 ARM Cortex-M3/M4
+* [rtmux](https://github.com/rtmux): 在 ARM Cortex-A 架構上提供輕量級的虛擬化執行環境，支援 Linux 與 RTOS
+* [CuRT](https://github.com/jserv/curt): 小型的即時多工作業系統核心，支援 ARMv5 與 x86 架構
+* [xv6-x86_64](https://github.com/jserv/xv6-x86_64): 將 MIT [Xv6](http://pdos.csail.mit.edu/6.828/2014/xv6.html) 移植到 x86_64 架構並重新整理程式碼，允許更多功能和效能提升
+* [Codezero microkernel](https://github.com/jserv/codezero): 依循 [L4 microkernel](https://en.wikipedia.org/wiki/L4_microkernel_family) 設計原則，實作短小精悍的作業系統核心，支援 ARMv5 架構 [2011 年商業應用]
 
 過往在成大
 =========
@@ -64,4 +64,4 @@ categories: User
 - blog (舊): http://blog.linux.org.tw/jserv
 - twitter: https://twitter.com/jserv
 - facebook: https://www.facebook.com/microjserv
-- `成大資訊系簡介頁面<http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/74>`_
+- [成大資訊系簡介頁面](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/74)

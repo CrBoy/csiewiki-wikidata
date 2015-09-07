@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-- 複習`第二周</embedded/2012w2>`_、`第三周</embedded/2012w3>`_，與`第五周</embedded/2012w5>`_進度
+- 複習[第二周](/embedded/2012w2)、[第三周](/embedded/2012w3)，與[第五周](/embedded/2012w5)進度
 - 實際整合一個既有的程式碼到 FreeRTOS 環境中
 - 體驗系統整合的流程及技術挑戰
 - 為期末專題累積若干可重用的軟體元件
@@ -15,7 +15,7 @@ toc: no
 - 安裝 lcov
   * sudo apt-get install lcov
 
-- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+- 取得最新 Labs 內容 (與之前 [Lab3](/embedded/Lab3) 操作相似)：
 
 .. code-block:: prettyprint
 
@@ -25,21 +25,21 @@ toc: no
 
 Code Coverage
 --------------
-- GNU code coverage tool `gcov<http://gcc.gnu.org/onlinedocs/gcc/Gcov.html>`_ is generally used to dump the coverage data when the program exits
+- GNU code coverage tool [gcov](http://gcc.gnu.org/onlinedocs/gcc/Gcov.html) is generally used to dump the coverage data when the program exits
   * for some embedded systems or for server processes you need a means to dump coverage data of particular situations, i.e. when a client connects.
 
 - Code quality analysis for embedded systems
   * Memory management with Valgrind
   * Code coverage testing with Gcov
 
-- `Code Quality Analysis Toolset for Embedded Systems<http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf>`_
-- `Using gcov and lcov<http://www.slideshare.net/maguschen/using-gcov-and-lcov>`_
+- [Code Quality Analysis Toolset for Embedded Systems](http://www.eclipsecon.org/2008/sub/attachments/Code_Quality_Analysis_Toolset_for_Embedded_Systems.pdf)
+- [Using gcov and lcov](http://www.slideshare.net/maguschen/using-gcov-and-lcov)
 - 新酷音輸入法系統的核心函式庫 (libchewing) 分析
   * http://kanru.info/chewing/lcov-check
 
 執行時期輸出 gcov 資料
 --------------------
-- `Dumping gcov data at runtime - a simple example<https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf>`_
+- [Dumping gcov data at runtime - a simple example](https://www.osadl.org/fileadmin/dam/interface/docbook/howtos/coverage.pdf)
 - Instructions for invoking gcov
 
 .. code-block:: prettyprint

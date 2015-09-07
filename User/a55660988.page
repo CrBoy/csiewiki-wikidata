@@ -24,20 +24,20 @@ categories: User
 
 **作業**
 
-- `Github<https://github.com/a55660988/>`_
+- [Github](https://github.com/a55660988/)
 
-- `Hackpad<https://mycpp.hackpad.com/>`_
+- [Hackpad](https://mycpp.hackpad.com/)
 
-  - `HW1 Github<https://github.com/a55660988/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/Week-1-2--syaCV7qmwn1>`_
-  - `HW2 Github<https://github.com/a55660988/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/Week-4--AXlZBUWtF6i>`_
-  - `HW3 Github<https://github.com/a55660988/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/Week-3--fB88Mot5IUz>`_
-  - `HW4 Hackpad<https://embedded2015.hackpad.com/Week-5-Lab41-yhRxPtb23F0>`_
+  - [HW1 Github](https://github.com/a55660988/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/Week-1-2--syaCV7qmwn1)
+  - [HW2 Github](https://github.com/a55660988/visualizer), [Hackpad](https://embedded2015.hackpad.com/Week-4--AXlZBUWtF6i)
+  - [HW3 Github](https://github.com/a55660988/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/Week-3--fB88Mot5IUz)
+  - [HW4 Hackpad](https://embedded2015.hackpad.com/Week-5-Lab41-yhRxPtb23F0)
     
 **報告**
 
-- `Xvisor<http://wiki.csie.ncku.edu.tw/embedded/xvisor>`_ 
+- [Xvisor](http://wiki.csie.ncku.edu.tw/embedded/xvisor) 
 
-- `ARMv8<http://wiki.csie.ncku.edu.tw/embedded/ARMv8>`_
+- [ARMv8](http://wiki.csie.ncku.edu.tw/embedded/ARMv8)
 
 - 主要負責
   - 虛擬化技術整理及SMP.AMP，並用淺顯易懂方式整理呈現
@@ -45,7 +45,7 @@ categories: User
   - Xvisor Manual文件翻譯
   - Xvisor 論文翻譯，並增加相關資料以便更清楚了解
 
-- 特別感謝`Colin8930<http://wiki.csie.ncku.edu.tw/User/colin8930>`_在我trace scheduler及timer code不懂時指導我
+- 特別感謝[Colin8930](http://wiki.csie.ncku.edu.tw/User/colin8930)在我trace scheduler及timer code不懂時指導我
 
 心得
 ------------------
@@ -55,7 +55,7 @@ categories: User
 
 - 我想，課堂上最大的收穫就是jserv每次分享業界的心得以及人生經驗，甚至是現在產業界的最新資訊，非常敬佩jserv擁有技術background，又有涉略business
 
-- 在美國University of Wisconsin-Madison當交換學生時，我曾修習CS537作業系統，當時是使用xv6，也是我第一次接觸kernel的部份，xv6部分的作業內容大致有scheduler, VM memory, concurrency等等，但當是迫於英文的能力又是第一次接觸，讓我學習時比較沒有抓到重點，與同儕討論時也比較胡言亂語，而在這學期，許多組雖然作的東西都不同，但每每聽取其他組別的報告，一直都有提到幾個相同內容，像是MMU的運作, scheduler的計算, LPAE等等，當我在5月初期決定重新複習了之前在`CS537<http://pages.cs.wisc.edu/~cs537-2/>`_的作業時，比較得心意手，作了第二次，看到自己有成長並抓到重點，有點小雀躍！
+- 在美國University of Wisconsin-Madison當交換學生時，我曾修習CS537作業系統，當時是使用xv6，也是我第一次接觸kernel的部份，xv6部分的作業內容大致有scheduler, VM memory, concurrency等等，但當是迫於英文的能力又是第一次接觸，讓我學習時比較沒有抓到重點，與同儕討論時也比較胡言亂語，而在這學期，許多組雖然作的東西都不同，但每每聽取其他組別的報告，一直都有提到幾個相同內容，像是MMU的運作, scheduler的計算, LPAE等等，當我在5月初期決定重新複習了之前在[CS537](http://pages.cs.wisc.edu/~cs537-2/)的作業時，比較得心意手，作了第二次，看到自己有成長並抓到重點，有點小雀躍！
 
 - 而在我們這組Xivsor報告中，涉獵了**非常非常非常**多的原文資料，從上千頁的manual中找尋有用的資料並建立觀念，由於網路上對於Xvisor的探討資料與其他組的內容相比並不多，導致trace code時常常會暈頭轉向不知所云，Xvisor官方資料也還沒齊全，有時在觀念跟實作進行整合時還是有很大的問題...，好險有沈宗穎大神的支援，至少有些東西(timer跟scheduler的關係)經過他的解惑，比較上手些
 
@@ -63,7 +63,7 @@ categories: User
 -------------
 
 - 8.5級分
-  - 1級分要加給`Colin8930<http://wiki.csie.ncku.edu.tw/User/colin8930>`_
+  - 1級分要加給[Colin8930](http://wiki.csie.ncku.edu.tw/User/colin8930)
   - 0.5級分扣給我在組別報告所負責的內容較為簡單，且幾乎都在複習jserv點出來我許多不足的基礎知識上
 
 

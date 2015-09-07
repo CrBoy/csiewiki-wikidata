@@ -5,13 +5,13 @@ toc: no
 
 教材
 -------
-* 《`矽谷大革命-開發麥金塔的非凡歷史歲月<http://books.gotop.com.tw/o_A165>`_》(Revolution in The Valley)
-* `台大教授：最難的一課，我們卻沒教給學生<http://www.businessweekly.com.tw/KBlogArticle.aspx?id=3676>`_
+* 《[矽谷大革命-開發麥金塔的非凡歷史歲月](http://books.gotop.com.tw/o_A165)》(Revolution in The Valley)
+* [台大教授：最難的一課，我們卻沒教給學生](http://www.businessweekly.com.tw/KBlogArticle.aspx?id=3676)
 * RTOS Myth
-  * `Myth #1: Mutexes and Semaphores are Interchangeable<http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/>`_
-  * `Myth #2: RMA is for Academics<http://embeddedgurus.com/barr-code/2008/03/rtos-myth-2-rma-is-for-academics/>`_
-  * `Myth #3: Mutexes are Needed at the Task Level<http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/>`_
+  * [Myth #1: Mutexes and Semaphores are Interchangeable](http://embeddedgurus.com/barr-code/2008/01/rtos-myth-1-mutexes-and-semaphores-are-interchangeable/)
+  * [Myth #2: RMA is for Academics](http://embeddedgurus.com/barr-code/2008/03/rtos-myth-2-rma-is-for-academics/)
+  * [Myth #3: Mutexes are Needed at the Task Level](http://embeddedgurus.com/barr-code/2008/03/rtos-myth-3-mutexes-are-needed-at-the-task-level/)
 
 * FreeRTOS
-  * `FreeRTOS操作系统Tickless低功耗特性的实现原理<http://www.energymcu.com/home.php?mod=space&uid=2&do=blog&id=13>`_
-  * `NVIC & PendSV<http://essayoflive.blogspot.tw/2011/11/freertos.html>`_
+  * [FreeRTOS操作系统Tickless低功耗特性的实现原理](http://www.energymcu.com/home.php?mod=space&uid=2&do=blog&id=13)
+  * [NVIC & PendSV](http://essayoflive.blogspot.tw/2011/11/freertos.html)

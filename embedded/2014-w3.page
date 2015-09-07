@@ -16,41 +16,41 @@ toc: no
 
 GDB: GNU Debugger
 -----------------
-* `GDB Rocks<http://www.slideshare.net/chenkaie/gdb-rocks-16951548>`_
+* [GDB Rocks](http://www.slideshare.net/chenkaie/gdb-rocks-16951548)
 
 作業觀摩
 ---------
 * 王證淇
-  - Hackpad: `strlen,strcmp,strncmp<https://hackpad.com/rtenv-strlenstrcmpstrncmp-4CmAQtGGVKQ>`_
-  - Hackpad: `rtenv<https://hackpad.com/rtenv--Y5EUMu575nG>`_
+  - Hackpad: [strlen,strcmp,strncmp](https://hackpad.com/rtenv-strlenstrcmpstrncmp-4CmAQtGGVKQ)
+  - Hackpad: [rtenv](https://hackpad.com/rtenv--Y5EUMu575nG)
   - GitHub: https://github.com/davesjoewang/rtenv
 
 * 張仁傑
-  - Hackpad: `rtenv<https://labtryanderror.hackpad.com/XD-2hBXkK5VnQt>`_
+  - Hackpad: [rtenv](https://labtryanderror.hackpad.com/XD-2hBXkK5VnQt)
   - GitHub: https://github.com/ajblane/rtenv
 
 * 廖健富
-  - Hackpad: `rtenv<https://hackpad.com/RTENV-xzo9mDkptBW>`_
+  - Hackpad: [rtenv](https://hackpad.com/RTENV-xzo9mDkptBW)
   - GitHub: https://github.com/rampant1018/rtenv-1
 
-* `Lab25/26 開發紀錄和討論<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
-* `GitHub Network Graph<https://github.com/embedded2014/rtenv/network>`_
+* [Lab25/26 開發紀錄和討論](https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU)
+* [GitHub Network Graph](https://github.com/embedded2014/rtenv/network)
 
 趨勢分析
 --------
-* `低價手機市場大戰準備開打<http://www.eettaiwan.com/ART_8800695682_617723_NT_b925b769.HTM>`_
+* [低價手機市場大戰準備開打](http://www.eettaiwan.com/ART_8800695682_617723_NT_b925b769.HTM)
   - IDC 估計，在 2013 年取得 39.2% 成長率、銷售量超過 10 億支的全球智慧型手機市場，2014 年的成長率將減少至 19.3%，到 2018 年更進一步僅剩 6.2%
   - 50 美元以下手機的銷售成長速度更快，由 2012 年的 90 萬支，增加到 2013 年的 1950 萬支
   - 今年 MWC 期間 Firefox 與中國手機晶片業者展訊 (Spreadtrum) 共同宣布，將催生 25 美元廉價智慧型手機的訊息
   - 新興市場的實際情況非常生疏，在那些區域，人們可能沒有 PC、不能上網、甚至沒有電話線，但他們能接取 2G/2.5G 行動網路 (有一些區域有 3G)
 
-* `LTE 汽車蓄勢待發<http://www.eettaiwan.com/ART_8800695539_617723_NT_44653902.HTM>`_
+* [LTE 汽車蓄勢待發](http://www.eettaiwan.com/ART_8800695539_617723_NT_44653902.HTM)
   - 智慧型手機不再是行動通訊服務業者唯一能撈錢的平台，現在他們的搖錢樹又多了一棵 ── 汽車
   - 有不少行動通訊服務業者都將汽車視為下一個具備龐大成長潛力的商機，汽車業者同樣也看好新的收入來源，並開始炒作「有四個輪子的智慧型手機」議題
   - 汽車業者看到連網技術已經遠超出過去的車用資訊娛樂領域應用；車內 LTE 通訊模組的新興應用，包括車輛與外部環境與其他車輛的互動，藉以提升駕駛人與乘客的安全性、效率以及便利性
 
-* `MWC 2014 的可穿戴式裝置<http://www.eettaiwan.com/ART_8800695640_617723_NT_b14ac988.HTM>`_
-* `無線充電市場向前衝<http://www.eettaiwan.com/ART_8800695353_675763_NT_374056b8.HTM>`_
+* [MWC 2014 的可穿戴式裝置](http://www.eettaiwan.com/ART_8800695640_617723_NT_b14ac988.HTM)
+* [無線充電市場向前衝](http://www.eettaiwan.com/ART_8800695353_675763_NT_374056b8.HTM)
   - 無線充電技術的目標應用不只是智慧型手機，其真正的成長推動力將來自物聯網 (IoT)
   - 市場上有三種主要的無線充電技術
     - 電磁感應 (magnetic induction) 式
@@ -63,5 +63,5 @@ GDB: GNU Debugger
 
 背景知識：計算機架構
 ---------------------
-* `交通大學開放課程<http://ocw.nctu.edu.tw/course_detail_3.php?bgid=9&gid=0&nid=238#.UxVdoEOsxgJ>`_
-* `清華大學開放課程<http://www.youtube.com/playlist?list=PLS0SUwlYe8cxMiFW_PiaBu53nOAXl3dxS>`_
+* [交通大學開放課程](http://ocw.nctu.edu.tw/course_detail_3.php?bgid=9&gid=0&nid=238#.UxVdoEOsxgJ)
+* [清華大學開放課程](http://www.youtube.com/playlist?list=PLS0SUwlYe8cxMiFW_PiaBu53nOAXl3dxS)

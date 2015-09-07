@@ -12,6 +12,6 @@ title: Week #9 (Apr 16) :: I/O, Interrupt, Exception (ARM)
   - http://www.youtube.com/watch?v=WLIo7TA82xE (Realtime Linux CNC)
   - https://www.facebook.com/roboard.lab
 
-* `ARM System Overview</embedded/arm-overview.pdf>`_
+* [ARM System Overview](/embedded/arm-overview.pdf)
 * 小型多工作業系統核心分析: https://gitcafe.com/embedded2013/simple-arm/
   - 搭配 ``git log -p`` 指令以得知每一步的修改

@@ -5,17 +5,17 @@ toc: no
 
 教材
 ----------
-* `進階嵌入式系統開發與實作 (2013 秋季班) 課程說明<http://www.slideshare.net/jserv/embedded-lecture2013>`_
+* [進階嵌入式系統開發與實作 (2013 秋季班) 課程說明](http://www.slideshare.net/jserv/embedded-lecture2013)
   - Facebook 討論區: https://www.facebook.com/groups/ncku.embedded2013
   - 共筆: https://embedded2013.hackpad.com
     * 共筆使用案例: https://hackpad.com/ep/group/yTLLeVNF05O
 
-* `Embedded Systems Laboratory<http://users.ece.utexas.edu/~valvano/ASEE2013.pdf>`_, Jonathan Valvano
+* [Embedded Systems Laboratory](http://users.ece.utexas.edu/~valvano/ASEE2013.pdf), Jonathan Valvano
   - Using ARM Cortex M4
   - From the Basics to Applications
 
-* 演講：FLOSS + Art 與 `Openlab.Taipei<http://www.openlabtaipei.org/>`_ 社群
-  - 從研究所時代開始接觸科技藝術，從中發現對於數位工具依賴的問題，然後透過工作坊了解國外藝術家對於這樣相關現象的回應方式，透過 FLOSS (Free / Libre Open Source Software)去找回創作自由、動手實踐的更大可能性。從這領域的研究延伸到 `Openlab.taipei<http://www.openlabtaipei.org/>`_ 社群，然後於近年的 Hackerspace 空間經營的過程，讓我深刻體會到科技和創作一樣是人的想像產出，而科技的發展必須是保有人的關懷與溫度，以開放的方式與世界互動才更有意義。
+* 演講：FLOSS + Art 與 [Openlab.Taipei](http://www.openlabtaipei.org/) 社群
+  - 從研究所時代開始接觸科技藝術，從中發現對於數位工具依賴的問題，然後透過工作坊了解國外藝術家對於這樣相關現象的回應方式，透過 FLOSS (Free / Libre Open Source Software)去找回創作自由、動手實踐的更大可能性。從這領域的研究延伸到 [Openlab.taipei](http://www.openlabtaipei.org/) 社群，然後於近年的 Hackerspace 空間經營的過程，讓我深刻體會到科技和創作一樣是人的想像產出，而科技的發展必須是保有人的關懷與溫度，以開放的方式與世界互動才更有意義。
 
 
 預習項目
@@ -26,18 +26,18 @@ toc: no
 * QEMU 模擬器 (閱讀 Page 7 -> Page 56)
   - http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation
 
-* `開放原始碼軟體衝擊下的新思維<http://www.slideshare.net/jserv/opensource-everywhere>`_
+* [開放原始碼軟體衝擊下的新思維](http://www.slideshare.net/jserv/opensource-everywhere)
 
 所見所聞
 -------------
-* `畢業生應該加入新創公司的三個理由，看完還會想去大企業嗎？<http://techorange.com/2013/09/16/why-join-startup-first/>`_ / 台大資工系洪士灝教授的眉批： 
+* [畢業生應該加入新創公司的三個理由，看完還會想去大企業嗎？](http://techorange.com/2013/09/16/why-join-startup-first/) / 台大資工系洪士灝教授的眉批： 
 
   - 友人說了一句還滿生動的比喻：「草食族文化」 —— 只要找有草的地方居住，草難吃沒關係，可以談飽肚子就行了；生活中要看得到草，才能安心度日。
   - 唸到了大學，習性大致決定，沒有具體的事例，我們再怎麼呼籲，學生也是聽一聽，即便有成為獅子的資質，也很難下決心要成為獅子。
   - 書唸得好，考公務員、進大公司，圖的是能在較大的草原上劃個地盤；練得一技之長，能像長頸鹿般吃到別人吃不到的樹葉；要不就是學駱駝，以耐操著稱，乾旱時可以撐得比別人久。
   - 友人的比喻有點道理。從戒嚴時期開始，台灣不斷在馴養的，是一批一批的草食族。一堆數落年輕人不努力當草食族的言論，不知是五十步笑百步，還是百步笑五十步？其實很多人可以成為獅子的，設法先看清楚自己。
 
-* `美國出差行<http://www.inside.com.tw/2013/09/15/after-us-business-trip>`_
+* [美國出差行](http://www.inside.com.tw/2013/09/15/after-us-business-trip)
   - 在電子製造業於美國無利可途的環境下，美國的消費產業，善用消費者及製造端的特性，開發出一樣又一樣的試驗型產品，雖然目前的穿戴式設備仍有電力及資料傳輸便利性的問題，但消費者、生產者及資本市場，仍不吝於給與嘗試的機會。
   - Square, Uber 等電子化消費工具，將交易的成本降低，讓金錢的流通更迅速，加強美國在商業環境上的競爭力。在工業上，因為油頁岩探勘技術的突破，美國煉鋼成本大降，未來成為汽車等製造業成本最低的國家。
   - 在短短的五年間，美國就脫胎換骨，找到未來十年發展的發產潛力；反觀台灣，在過去幾年間，仍是以炒作房地產為主，家庭收入六成都卡在房貸上，民間消費全部停下來，百貨業今年的銷售額只有前一年的六成。

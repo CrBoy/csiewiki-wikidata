@@ -18,7 +18,7 @@ toc: yes
 組員
 ===============
 
-  * `吳季恆(wujiheng)</User/wujiheng>`_ <wujiheng.tw@gmail.com>
+  * [吳季恆(wujiheng)](/User/wujiheng) <wujiheng.tw@gmail.com>
 
  
 預算
@@ -34,33 +34,33 @@ toc: yes
          - M8光軸   350mm * 2  (用於z軸)
          - M8光軸   406mm * 2  (用於y軸)
          - M8光軸   420mm * 2  (用於x軸)
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21305200306024>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21305200306024)
 
 
   * Arduino Mega 2560 主板
     - NT$420
     - Ramps的控制底板
-    - Ref: `露天拍賣_u9113336<http://goods.ruten.com.tw/item/show?21311202144214>`_
+    - Ref: [露天拍賣_u9113336](http://goods.ruten.com.tw/item/show?21311202144214)
 
 
   * 42步進馬達 * 5
     - NT$400 * 5 
     - 步進角1.8度
     - 用在X、Y、Z軸及擠壓機*2
-    - Ref: `露天拍賣_yyyfly<http://goods.ruten.com.tw/item/show?21312041259561>`_
+    - Ref: [露天拍賣_yyyfly](http://goods.ruten.com.tw/item/show?21312041259561)
 
 
   * RepRap Arduino Mega Pololu Shield(Ramps 1.4版) [含A4988步進馬達驅動器*4]
     - NT$1450
     - 用於控制步進馬達、限位開關及溫度檢測
-    - Ref: `露天拍賣_robotcube<http://goods.ruten.com.tw/item/show?21311160747092>`_
+    - Ref: [露天拍賣_robotcube](http://goods.ruten.com.tw/item/show?21311160747092)
   
 
   * 線性軸承(LMK8UU、SCS8UU、608ZZ、624ZZ)
     - LMK8UU、SCS8UU NT$108 * 7 
     - 608ZZ NT$22 * 4
     - 624ZZ NT$24 * 6
-    - Ref: `P3-P32.pdf<http://www.sunhoist.com.tw/dl/tran_pdf/P3-P32.pdf>`_
+    - Ref: [P3-P32.pdf](http://www.sunhoist.com.tw/dl/tran_pdf/P3-P32.pdf)
 
 
   * 彈性聯軸器
@@ -72,43 +72,43 @@ toc: yes
   * 同步齒輪20齒
     - NT$300 * 2
     - X、Y軸用，含止付螺絲
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21307125448490>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21307125448490)
 
 
   * Prusa i2 塑膠零件
     - NT$2500
     - 可以找別人印(省錢)，不過要注意到精密度，尤其是連接螺紋桿、光軸的孔部分要特別注意，或是拿銼刀稍微磨一下
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21306258383258>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21306258383258)
 
 
   * 壓克力底板
     - NT$670
     - Y軸的平面
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21306179584253>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21306179584253)
 
 
   * 12V 240W 電源供應器
     - NT$660
     - 穩壓輸出12V，供應加熱頭、步進馬達的主要電源
-    - Ref: `露天拍賣_hi4c<http://goods.ruten.com.tw/item/show?21309213100350>`_
+    - Ref: [露天拍賣_hi4c](http://goods.ruten.com.tw/item/show?21309213100350)
 
  
   * 光學限位開關
     - NT$150 * 3
     - 光學開關，含3PIN線(有點短)，如果想省錢可以找微動開關比較便宜，但用久了會跑掉要重新調整
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21307257944622>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21307257944622)
 
 
   * J-HEAD擠出頭 
     - NT$1450 * 2
     - 兩組擠出頭，含100K熱敏電阻及加熱頭，3mm/0.4mm規格
-    - Ref: `露天拍賣_pinguo<http://goods.ruten.com.tw/item/show?21312042490345>`_
+    - Ref: [露天拍賣_pinguo](http://goods.ruten.com.tw/item/show?21312042490345)
 
 
   * 3mm PLA 環保膠條 兩組
     - NT$1000 * 2
     - 藍色及白色，直徑3mm
-    - Ref: `露天拍賣_theta_james<http://goods.ruten.com.tw/item/show?21308025497113>`_
+    - Ref: [露天拍賣_theta_james](http://goods.ruten.com.tw/item/show?21308025497113)
 
 
   * 其他零件
@@ -120,11 +120,11 @@ toc: yes
 
 參考資訊
 ===============
-`RepRap<http://reprap.org/wiki/Main_Page>`_
+[RepRap](http://reprap.org/wiki/Main_Page)
 
-`RAMPS 1.4<http://reprap.org/wiki/RAMPS_1.4>`_
+[RAMPS 1.4](http://reprap.org/wiki/RAMPS_1.4)
 
-`Prusa Mendel iteration 2 材料清單(BOM)<http://www.reprap.org/wiki/Prusa_Mendel>`_
+[Prusa Mendel iteration 2 材料清單(BOM)](http://www.reprap.org/wiki/Prusa_Mendel)
 
 
 研究紀錄
@@ -143,13 +143,13 @@ toc: yes
 
 .. image:: /3dp_example2.jpg
 
-`過程影片(一小小段)<http://www.youtube.com/watch?v=Ef0Zm-XJ-S8>`_
+[過程影片(一小小段)](http://www.youtube.com/watch?v=Ef0Zm-XJ-S8)
 
 為什麼影片只有一分鐘呢...  因為剩下來的半小時都在做重複的事情....  有空再來拍縮時
 
 - 2014-01-03
  
- *  將Z軸兩個步進馬達由並聯改成串聯，並降低Z軸轉速 Ref: `Z軸總是搞不定!?<http://diy3dprint.blogspot.tw/2013/10/z.html>`_
+ *  將Z軸兩個步進馬達由並聯改成串聯，並降低Z軸轉速 Ref: [Z軸總是搞不定!?](http://diy3dprint.blogspot.tw/2013/10/z.html)
 
 .. image:: /3dp_img3.JPG
 

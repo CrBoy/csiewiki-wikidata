@@ -186,7 +186,7 @@ mirrorlist
 
 - 產生語系
 
-  `見locale的功能/意義<http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/locale.html>`_
+  [見locale的功能/意義](http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut/locale.html)
 
   把 ``/etc/locale.gen`` 當中要產生的語系取消註解，並使用
   ::
@@ -205,7 +205,7 @@ mirrorlist
 
 產生kernel image
 ===========================
-詳見`kernel image的功能<http://blog.linux.org.tw/~jserv/archives/001954.html>`_
+詳見[kernel image的功能](http://blog.linux.org.tw/~jserv/archives/001954.html)
 
 ::
 
@@ -453,39 +453,39 @@ Gnome
 
 應用軟體
 ~~~~~~~~~~~~~~~~
-- `gnome-terminal <https://wiki.gnome.org/Apps/Terminal>`_
+- [gnome-terminal ](https://wiki.gnome.org/Apps/Terminal)
   * 終端機
 
-- `nautilus <https://wiki.gnome.org/Apps/Nautilus>`_
+- [nautilus ](https://wiki.gnome.org/Apps/Nautilus)
   * 檔案管理員
   * 如果安裝了相關套件，可能需要關閉隱藏的nautilus，輸入
     ::
 
         nautilus -q 
 
-- `file-roller <http://fileroller.sourceforge.net>`_
+- [file-roller ](http://fileroller.sourceforge.net)
   * 壓縮檔管理
   * 可直接從壓縮檔的右鍵選單中解壓縮
 
-- `evince <https://wiki.gnome.org/Apps/Evince>`_
+- [evince ](https://wiki.gnome.org/Apps/Evince)
   * 開啟PDF
 
-- `gedit <https://wiki.gnome.org/Apps/Gedit>`_
+- [gedit ](https://wiki.gnome.org/Apps/Gedit)
   * 文字編輯器
   * 需要額外插件請裝 gedit-plugins
 
-- `abiword <http://www.abisource.com/>`_
+- [abiword ](http://www.abisource.com/)
   * 文書處理
   * 開啟速度很快
 
-- `gnumeric <http://www.gnumeric.org/>`_
+- [gnumeric ](http://www.gnumeric.org/)
   * 試算表
   * 開啟速度很快
 
-- `eog <https://wiki.gnome.org/Apps/EyeOfGnome>`_
+- [eog ](https://wiki.gnome.org/Apps/EyeOfGnome)
   * 看圖軟體
 
-- `totem <https://wiki.gnome.org/action/show/Apps/Videos?action=show&redirect=Apps%2FTotem>`_
+- [totem ](https://wiki.gnome.org/action/show/Apps/Videos?action=show&redirect=Apps%2FTotem)
   * 播放影片、聲音
 
 - gnome-packagekit
@@ -516,7 +516,7 @@ KDE
 =========================
 - ibus-chewing
 
-- `wqy-zenhei <http://wenq.org/wqy2/index.cgi>`_
+- [wqy-zenhei ](http://wenq.org/wqy2/index.cgi)
 
 網路相關套件
 =========================
@@ -528,9 +528,9 @@ KDE
 powerline
 -------------------
 - zsh
-    如果只有要更改zsh的prompt，這裡有一個簡單的方法：`powerline for zsh <http://klaig.blogspot.tw/2012/09/powerline-for-zsh.html>`_
+    如果只有要更改zsh的prompt，這裡有一個簡單的方法：[powerline for zsh ](http://klaig.blogspot.tw/2012/09/powerline-for-zsh.html)
 
-    下載這個`字型<https://gist.github.com/epegzz/1634235/download>`_ 並解壓縮至~/.fonts
+    下載這個[字型](https://gist.github.com/epegzz/1634235/download) 並解壓縮至~/.fonts
 ::
 
   fc-cache -vf

@@ -21,9 +21,9 @@ a :sub:`2`
 
 *斜體*
 
-`站內連結 <help>`_
+[站內連結 ](help)
 
-`外部連結 <http://www.google.com>`_
+[外部連結 ](http://www.google.com)
 
 .. raw:: html
 
@@ -110,7 +110,7 @@ True   True   True
 
 [#]_
 
-.. [#] `我是註解 <http://123>`_ 額外說明
+.. [#] [我是註解 ](http://123) 額外說明
 
 
 ++

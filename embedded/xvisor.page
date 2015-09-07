@@ -10,9 +10,9 @@ categories: embedded, arm, armv8, arm64, xvisor, hypervisor, virtualization
 
 Hackpad
 =====================================
-* `xvisor<https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm>`_
-* `design doc整理<https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf>`_
-* `報告整理區<https://mycpp.hackpad.com/Xvisor--nSiBMBB9RNN>`_
+* [xvisor](https://mycpp.hackpad.com/xvisor-xQUUkRHWwmm)
+* [design doc整理](https://mycpp.hackpad.com/Xvisor--WzicRuv3qqf)
+* [報告整理區](https://mycpp.hackpad.com/Xvisor--nSiBMBB9RNN)
 
 
 
@@ -30,12 +30,12 @@ Hypervisor (Virtual Machine Monitor, VMM)
 
     .. image:: http://electronicdesign.com/site-files/electronicdesign.com/files/archive/electronicdesign.com/files/29/20211/fig_01.jpg
 
-- 目前三大open source的hypervisor為Linux KVM, Xen, Xvisor，可閱讀此`資料<https://mycpp.hackpad.com/Embedded-Hypervisor-Xvisor-A-comparative-analysis-IWiYFKqzTwD>`_
+- 目前三大open source的hypervisor為Linux KVM, Xen, Xvisor，可閱讀此[資料](https://mycpp.hackpad.com/Embedded-Hypervisor-Xvisor-A-comparative-analysis-IWiYFKqzTwD)
 
 - 使用時機及益處
     - 工作負載整合 (Workload Consolidation)
         - 許多舊有的系統或程式在各自的硬體上，我們可以透過hypervisor的分配，共同使用硬體資源
-        - 以VMware資料顯示，如果透過VMware vSphere來進行伺服器的虛擬化，可以降低硬體和營運成本達 50%，並減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: `VMware<http://www.vmware.com/tw/consolidation>`_
+        - 以VMware資料顯示，如果透過VMware vSphere來進行伺服器的虛擬化，可以降低硬體和營運成本達 50%，並減少能源成本達 80%，且每完成一個虛擬化伺服器工作負載，每年可節省的成本超過 $3,000 美元。最多可減少 70% 佈建新伺服器所需的時間。source: [VMware](http://www.vmware.com/tw/consolidation)
         - EX：成大電機系電腦教室
 
     .. image:: /embedded/workload_consolidation.png
@@ -57,7 +57,7 @@ Hypervisor (Virtual Machine Monitor, VMM)
     - 安全監控 (Secure Monitoring)
         - ARM SMC(secure monitor call) to secure monitor mode
         - kernel等級或者是rootkits的攻擊通常都是在執行擁有特權(privilege)模式的時候發生的，而透過虛擬化，我們擁有更高權限的hypervisor去控制memory protection或程式的排程優先順序
-        - 最主要我們是透過hypervisor去把security tools也就是monitor孤立出來，不會把monitor與untrusted VM放在一起，並把他們分別移到trusted secure VM，再透過 `introspection<http://askubuntu.com/questions/108174/what-does-introspection-mean-and-how-is-it-related-to-gobject-introspection>`_ 去掃描或觀察這些程式碼
+        - 最主要我們是透過hypervisor去把security tools也就是monitor孤立出來，不會把monitor與untrusted VM放在一起，並把他們分別移到trusted secure VM，再透過 [introspection](http://askubuntu.com/questions/108174/what-does-introspection-mean-and-how-is-it-related-to-gobject-introspection) 去掃描或觀察這些程式碼
         - source: http://research.microsoft.com/pubs/153179/sim-ccs09.pdf (主要探討Secure in VM-monitor)
         - source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
         - In-VM 有較好的performance，Out-of-VM則有較好的安全性
@@ -70,10 +70,10 @@ Hypervisor的類型
 
 - Type-1: 本地(native)、裸機(bare-metal) hypervisors
     - Hypervisor直接運行在host的硬體上，並直接控制硬體及管理Guest作業系統，此時host把Guest作業系統當成一個process
-        - 如: `XenServer<http://en.wikipedia.org/wiki/Xen>`_ 、 `Hyper-V<http://en.wikipedia.org/wiki/Hyper-V>`_ 、Xvisor
+        - 如: [XenServer](http://en.wikipedia.org/wiki/Xen) 、 [Hyper-V](http://en.wikipedia.org/wiki/Hyper-V) 、Xvisor
 - Type-2: 託管(hosted) hypervisors
     - Hypervisor運行在host的作業系統上，再去提供虛擬化服務
-        - 如: `VMware<http://en.wikipedia.org/wiki/VMware_Workstation>`_、`VirtualBox<http://en.wikipedia.org/wiki/VirtualBox>`_
+        - 如: [VMware](http://en.wikipedia.org/wiki/VMware_Workstation)、[VirtualBox](http://en.wikipedia.org/wiki/VirtualBox)
 
 .. image:: /embedded/hypervisor_type.png
 
@@ -101,7 +101,7 @@ Source: https://www.ma.rhul.ac.uk/static/techrep/2011/RHUL-MA-2011-09.pdf
 
 
 - (補充)Type-0
-    - 由於Type-1及Type-2過於複雜也不易在嵌入式系統作設定，因此美國軟體公司LynuxWorks在2012年提出`Type-0 Hypervisor<http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor/>`_，此Hypervisor不需要kernel或作業系統，但`有人<http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159/>`_提出這不可能實現。
+    - 由於Type-1及Type-2過於複雜也不易在嵌入式系統作設定，因此美國軟體公司LynuxWorks在2012年提出[Type-0 Hypervisor](http://www.lynx.com/whitepaper/the-rise-of-the-type-zero-hypervisor/)，此Hypervisor不需要kernel或作業系統，但[有人](http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-17159/)提出這不可能實現。
 
 source: http://en.wikipedia.org/wiki/Hypervisor
 
@@ -114,7 +114,7 @@ source: http://www.virtualizationpractice.com/type-0-hypervisor-fact-or-fiction-
 ----------------------------------------------------
 Popek and Goldberg virtualization requirements, 1974
 
-Gerald Popek及Robert Goldberg二人提出的`理論<http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf>`_至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
+Gerald Popek及Robert Goldberg二人提出的[理論](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.141.4815&rep=rep1&type=pdf)至今仍是非常便利的方法去決定計算機架構是否支持虛擬化，也是設計虛擬化計算機架構的導則
 
 - VM定義
     - A virtual machine is taken to be an efficient, isolated duplicate of the real machine. It is the environment created by the virtual machine monitor.
@@ -135,10 +135,10 @@ Gerald Popek及Robert Goldberg二人提出的`理論<http://citeseerx.ist.psu.ed
         - 常被執行的主要機器指令集部分不應該被VMM干預，而是直接被處理器執行
         - It demands that a statistically dominant subset of the virtual processor's instructions be executed directly by the real processor, with no software intervention by the VMM.
 
-- 為了導出Virtualization theorem虛擬化理論，二人把ISA分成三個類型：(`Third Generation Computer<http://latesttechnomanias.blogspot.tw/2010/06/third-generation-computers.html>`_) 
+- 為了導出Virtualization theorem虛擬化理論，二人把ISA分成三個類型：([Third Generation Computer](http://latesttechnomanias.blogspot.tw/2010/06/third-generation-computers.html)) 
     - 優先級指令 (Privileged instructions)
         - 必須在擁有足夠的privilege下執行
-        - 當處理器在user mode的時候，會觸發`Trap<http://en.wikipedia.org/wiki/Trap_%28computing%29>`_
+        - 當處理器在user mode的時候，會觸發[Trap](http://en.wikipedia.org/wiki/Trap_%28computing%29)
         - 當處理器在supervisor mode的時候，不會觸發Trap
         - Privileged instructions are independent of the virtualization process. They are merely characteristics of the machine which may be determined from reading the principles of operation.
         - 指令例子
@@ -188,14 +188,14 @@ Gerald Popek及Robert Goldberg二人提出的`理論<http://citeseerx.ist.psu.ed
 
 Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements
 
-補充：`Five Generation Computer<http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp>`_
+補充：[Five Generation Computer](http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp)
 
 實現虛擬化的方式
 ....................................
 
 .. image:: /embedded/virtualization_method_all.png
 
-- `Full-Virtualization<http://en.wikipedia.org/wiki/Full_virtualization>`_ (i.e.VMWare, xen, xvisor, kvm)
+- [Full-Virtualization](http://en.wikipedia.org/wiki/Full_virtualization) (i.e.VMWare, xen, xvisor, kvm)
     - 全部都虛擬化(I/O, interrupt, 指令集等等)，不需要硬體或OS的協助，而是透過軟體來模擬虛擬的硬體環境，直接透過Hypervisor實現
     - 不用修改OS核心，OS不知自己運行在虛擬化的環境下
     - Guest OS privilege operation需被Hypervisor intercept(攔截)，之後經過Binary Translation為machine code，以彌補x86的缺陷(only 17 instructions on privileged level)，故效能較Para-Virtualization差
@@ -226,13 +226,13 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 
 Source: http://tonysuo.blogspot.tw/2013/01/virtualization-3full-para-hardware.html
 
-- `Ring<http://en.wikipedia.org/wiki/Protection_ring>`_介紹
+- [Ring](http://en.wikipedia.org/wiki/Protection_ring)介紹
     - 此機制是為了保護資料或防止錯誤
     - x86結構中有四種級別Ring 0 ~ Ring 3
         - Ring 0最高，有著OS Kernal
         - Ring 3最低，也就是user mode，通常Application都在此層執行
         - Ring 1及Ring 2供驅動程式使用，很少用到
-        - 權力最高不能直接控制權力最低，反之亦然，彼此是利用call gate溝通(提高CPL)，但有例外請閱`此P14<http://www.eecs.harvard.edu/~mdw/course/cs161/notes/osstructure.pdf>`_
+        - 權力最高不能直接控制權力最低，反之亦然，彼此是利用call gate溝通(提高CPL)，但有例外請閱[此P14](http://www.eecs.harvard.edu/~mdw/course/cs161/notes/osstructure.pdf)
 
 .. image:: /embedded/ring.png
 
@@ -295,7 +295,7 @@ Solutions
 
 ARM Virtualization Extensions
 --------------------------------------------
-可參考:`ARMv8#虛擬化<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization>`_ (暫存器待補)
+可參考:[ARMv8#虛擬化](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization) (暫存器待補)
 
 CPU virtualization
 ...................................
@@ -310,7 +310,7 @@ CPU virtualization
         - 會影響其他Guest OS的指令
         - Hypervisor Syndrome Register(HSR) 會保存被trapped的指令的資訊，因此hypervisor就能emulate它
 
-* `Xvisor- cpu_vcpu_helper.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_vcpu_helper.c>`_:
+* [Xvisor- cpu_vcpu_helper.c](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_vcpu_helper.c):
 
 .. code-block:: c
 
@@ -390,7 +390,7 @@ cpu_entry.S 內初始化Hyp vector base
      *  .endm
      */
 
-- ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊(請對照 `armv8 syndrome-registe<http://wiki.csie.ncku.edu.tw/embedded/ARMv8#syndrome-register>`_ 服用)
+- ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊(請對照 [armv8 syndrome-registe](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#syndrome-register) 服用)
 
 
 cpu_interrupt.c
@@ -456,7 +456,7 @@ cpu_interrupt.c
 
 Memory virtualization
 ...................................
-請參考: `armv8 virtual-memory-system-architecture <http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E8%A8%98%E6%86%B6%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B-virtual-memory-system-architecture>`_
+請參考: [armv8 virtual-memory-system-architecture ](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E8%A8%98%E6%86%B6%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B-virtual-memory-system-architecture)
 
 - ARM 增加 Intermediate Physical Address，使得Guest OS不能直接存取實體位址(physical address)    
 
@@ -469,7 +469,7 @@ Memory virtualization
 interrupt virtualization
 ........................................
 
-* `GICv2 Architecture Specification CH5: GIC Support for Virtualization <http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
+* [GICv2 Architecture Specification CH5: GIC Support for Virtualization ](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf)
 
 .. image:: /embedded/gic_arch.png
 
@@ -499,15 +499,15 @@ I/O device virtualization
 
 virtio
 .............................
-VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為`PCI<http://zh.wikipedia.org/wiki/PCI>`_ device或`MMIO<http://en.wikipedia.org/wiki/Memory-mapped_I/O>`_ device。
+VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為[PCI](http://zh.wikipedia.org/wiki/PCI) device或[MMIO](http://en.wikipedia.org/wiki/Memory-mapped_I/O) device。
 
 VirtIO specification和hypervisor與architecture是獨立的。VirtIO specification描述不同類型的VirtIO devices之細節和功能。
 
-官方的VirtIO specification可參考`這裡<https://github.com/rustyrussell/virtio-spec>`_。
+官方的VirtIO specification可參考[這裡](https://github.com/rustyrussell/virtio-spec)。
 
 其他支援VirtIO based paravirtualized devices的hypervisor包含Lguest、KVM和Xen。VirtIO最早是由Rusty Russell開發，用於Lguest的paravirtualization。
 
-在Xvisor裡，VirtIO devices對guest來說是一種`PCI<http://zh.wikipedia.org/wiki/PCI>`_/`MMIO<http://en.wikipedia.org/wiki/Memory-mapped_I/O>`_ devices的選項，因此guest OS並不會被強制使用VirtIO。
+在Xvisor裡，VirtIO devices對guest來說是一種[PCI](http://zh.wikipedia.org/wiki/PCI)/[MMIO](http://en.wikipedia.org/wiki/Memory-mapped_I/O) devices的選項，因此guest OS並不會被強制使用VirtIO。
 
 目前在Xvisor裡有下列幾種類型的VirtIO devices：
 
@@ -523,7 +523,7 @@ Figure 1. Device emulation in full virtualization and paravirtualizationenvironm
 
 .. image:: /embedded/Figure 1. Device emulation in full virtualization and paravirtualizationenvironments.PNG
 
-- `Full Virtualization vs Paravirtualization<http://wiki.csie.ncku.edu.tw/embedded/xvisor#%E5%AF%A6%E7%8F%BE%E8%99%9B%E6%93%AC%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F>`_
+- [Full Virtualization vs Paravirtualization](http://wiki.csie.ncku.edu.tw/embedded/xvisor#%E5%AF%A6%E7%8F%BE%E8%99%9B%E6%93%AC%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F)
 
 
 
@@ -599,7 +599,7 @@ GIC 配置
 
 .. image:: /embedded/gicc.png
 
-(from `GICv2 Architecture Specification P.75<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_)
+(from [GICv2 Architecture Specification P.75](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf))
 
 - booting前的設定
 
@@ -673,12 +673,12 @@ If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
 
     static struct vmm_host_irqs_ctrl hirqctrl;
 
-`drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
+[drivers/irqchip/irq-gic.c](https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c)
 
 .. code-block:: c
     VMM_HOST_IRQ_INIT_DECLARE(ca15gic, "arm,cortex-a15-gic", gic_eoimode_init);
 
-(arm,cortex-a15-gic 為 `foundation-v8.dtsi<https://github.com/xvisor/xvisor/blob/master/arch/arm/board/generic/dts/foundation-v8/foundation-v8.dtsi>`_ 設定的 gic compatible)
+(arm,cortex-a15-gic 為 [foundation-v8.dtsi](https://github.com/xvisor/xvisor/blob/master/arch/arm/board/generic/dts/foundation-v8/foundation-v8.dtsi) 設定的 gic compatible)
 
 會展開成
 
@@ -806,14 +806,14 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
 
 - 執行action_list裡的action
 
-詳見: `drivers/irqchip/irq-gic.c<https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c>`_
+詳見: [drivers/irqchip/irq-gic.c](https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c)
 
 
 
 Virtual gic (vgic)
 ------------------------
 
-`vgic.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c>`_ 提供vgic的實作(其中使用module及devtree):
+[vgic.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c) 提供vgic的實作(其中使用module及devtree):
 
 .. code-block:: c
 
@@ -1060,8 +1060,8 @@ Virtual gic (vgic)
 device emulator(以uart為例)
 ------------------------------------------------
 
-- `uart<http://wiki.csie.ncku.edu.tw/embedded/USART>`_
-- `pl011 manual<http://infocenter.arm.com/help/topic/com.arm.doc.ddi0183f/DDI0183.pdf>`_
+- [uart](http://wiki.csie.ncku.edu.tw/embedded/USART)
+- [pl011 manual](http://infocenter.arm.com/help/topic/com.arm.doc.ddi0183f/DDI0183.pdf)
 
 .. image:: /embedded/vserial.png
 
@@ -1069,7 +1069,7 @@ timer 及 time event
 ------------------------------------------------
 
 
-`相關程式碼<https://mycpp.hackpad.com/schedule-dgwbh5KckKm>`_
+[相關程式碼](https://mycpp.hackpad.com/schedule-dgwbh5KckKm)
 
 .. image:: /embedded/time_event.png
 
@@ -1077,14 +1077,14 @@ timer 及 time event
 MMU
 ------------------------
 
-可參考 `AJ NOTE<https://arm4fun.hackpad.com/ARM64-Booting-in-Xvisor-EdnevstgC0t>`_
+可參考 [AJ NOTE](https://arm4fun.hackpad.com/ARM64-Booting-in-Xvisor-EdnevstgC0t)
 
 - 需要在MMU啟動前在virtual space下啟動Xvisor
 - 在assembly time時, 把img加入至.text,使用.incbin
 
 .. image:: /embedded/xvisor_memory.png
 
-* `cpu_entry.S<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S>`_
+* [cpu_entry.S](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S)
 
 .. code-block:: c
 
@@ -1109,14 +1109,14 @@ MMU
 
         bl	_setup_initial_ttbl
 
-* `mmu_lpae.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c>`_
+* [mmu_lpae.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c)
 
 .. code-block:: c
 
     u8 __attribute__ ((aligned(TTBL_TABLE_SIZE))) def_ttbl[TTBL_INITIAL_TABLE_SIZE] = { 0 };
 
 初始化translation table
-* `mmu_lpae_entry_ttbl.c<https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c>`_
+* [mmu_lpae_entry_ttbl.c](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c)
 
 .. code-block:: c
 
@@ -1253,7 +1253,7 @@ TCR_EL2, Translation Control Register (EL2)
     - TCR_SH0_SHIFT = 12; 0x3: Shareability attribute for memory associated: Inner Shareable
     - TCR_ORGN0_SHIFT = 10; 0x1: Outer cacheability attribute for memory associated: Write-Back Write-Allocate Cacheable
     - TCR_IRGN0_SHIFT = 8; 0x1: Inner cacheability attribute for memory associated:  Write-Back Write-Allocate Cacheable
-    - `Write-Back Write-Allocate<http://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg>`_
+    - [Write-Back Write-Allocate](http://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg)
 
 .. code-block:: c
 
@@ -1460,7 +1460,7 @@ without virtualization extension
 arm32 指令虛擬化
 ....................................
 
-- `elf2cpatch.py<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/elf2cpatch.py>`_
+- [elf2cpatch.py](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/elf2cpatch.py)
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
     - 以mrs為例
 
@@ -1504,7 +1504,7 @@ arm32 指令虛擬化
 
 - instruction emulation
 
-`cpu_entry.S<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_entry.S>`_中註冊Exception vector
+[cpu_entry.S](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_entry.S)中註冊Exception vector
 
 .. code-block:: c
 
@@ -1519,7 +1519,7 @@ arm32 指令虛擬化
          */ 
     	......
 
-`cpu_interrupts.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_interrupts.c>`_
+[cpu_interrupts.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_interrupts.c)
 
 
 .. code-block:: c
@@ -1544,7 +1544,7 @@ arm32 指令虛擬化
         ........
     }
 
-以arm emulation為例， in `cpu_vcpu_hypercall_arm.c<https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_vcpu_hypercall_arm.c>`_:
+以arm emulation為例， in [cpu_vcpu_hypercall_arm.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_vcpu_hypercall_arm.c):
 
 .. code-block:: c
 
@@ -1624,13 +1624,13 @@ armv7ve
 ........................
 - 有安全性擴展、LPAE及虛擬化擴展
 - Cortex-A15 / Cortex-A7 (with big-LITTLE support)
-- 原理與上方`xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate>`_ 相同，只是需要透過mrc來讀取`hsr<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0438c/CIHJEDFE.html>`_的內容。
+- 原理與上方[xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate) 相同，只是需要透過mrc來讀取[hsr](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0438c/CIHJEDFE.html)的內容。
     - mrc     p15, 4, %0, c5, c2, 0
 
 armv8
 .................
 
-請見`xvisor-instruction-emulate<http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate>`_
+請見[xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate)
 
 設計文件整理
 =====================================
@@ -1864,7 +1864,7 @@ Orphan VCPU state可以被直接設成上列其中一種，所以想知道目前
 測試
 =====================================
 1. 註冊ARM帳號
-2. 下載ARM `Foundation v8 model<http://www.arm.com/zh/products/tools/models/fast-models/foundation-model.php>`_
+2. 下載ARM [Foundation v8 model](http://www.arm.com/zh/products/tools/models/fast-models/foundation-model.php)
 3. 解壓縮到workspace
 4. 安裝toolchain
 
@@ -1912,17 +1912,17 @@ reference
 * https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
 * https://samlin.hackpad.com/Xvisor--chtGSqPYWG8
 * http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
-* `ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html>`_
-* `A Virtualization Infrastructure that Supports Pervasive Computing.<http://165.193.233.120/files/pdf/partners/academic/vmware-pervasive-computing_LRudolph-en.pdf>`_
-* `A Choices Hypervisor on the ARM architecture<http://www.russellgreenspan.com/software/A%20Choices%20Hypervisor%20on%20the%20ARM%20Architecture.pdf>`_
-* `Extensions to the ARMv7-A architecture<http://www.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.23.220-1-Brash-ARMv7A.pdf>`_
-* `前瞻 資訊科技 - 虛擬化 (1) - Virtualization( V12N ). 薛智文 教授<http://www.slideserve.com/quynn-dickson/cwhsueh-csie-ntu-tw-csie-ntu-tw-cwhsueh>`_
-* `前瞻 資訊科技 - 虛擬化 (2) - Virtualization( V12N ). 薛智文 教授<http://www.slideserve.com/candid/cwhsueh-csie-ntu-edu-tw-http-www-csie-ntu-edu-tw-cwhsueh-100-fall-nov-4-fri-678-dth-104>`_
-* ` An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden<http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf>`_
-* `Hardware accelerated Virtualization in the ARM Cortex™ Processors<http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf>`_
-* `Popek and Goldberg virtualization requirements<http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements>`_
-* `Syllabus for CS5410 Virtualization Techniques (國立清華大學)<http://www.cs.nthu.edu.tw/~ychung/syllabus/Virtualization.htm>`_ (內有課程簡報)
-* `GICv2 Architecture Specification<http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf>`_
-* `New Feature: VirtIO based paravirtualization<http://xhypervisor.org/index.php?page=news/20130417>`_
-* `linux kernel的中断子系统之（七）：GIC代码分析<http://www.wowotech.net/irq_subsystem/gic_driver.html>`_
-* `Virtio: An I/O virtualization framework for Linux<http://www.ibm.com/developerworks/library/l-virtio/>`_
+* [ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html)
+* [A Virtualization Infrastructure that Supports Pervasive Computing.](http://165.193.233.120/files/pdf/partners/academic/vmware-pervasive-computing_LRudolph-en.pdf)
+* [A Choices Hypervisor on the ARM architecture](http://www.russellgreenspan.com/software/A%20Choices%20Hypervisor%20on%20the%20ARM%20Architecture.pdf)
+* [Extensions to the ARMv7-A architecture](http://www.hotchips.org/wp-content/uploads/hc_archives/hc22/HC22.23.220-1-Brash-ARMv7A.pdf)
+* [前瞻 資訊科技 - 虛擬化 (1) - Virtualization( V12N ). 薛智文 教授](http://www.slideserve.com/quynn-dickson/cwhsueh-csie-ntu-tw-csie-ntu-tw-cwhsueh)
+* [前瞻 資訊科技 - 虛擬化 (2) - Virtualization( V12N ). 薛智文 教授](http://www.slideserve.com/candid/cwhsueh-csie-ntu-edu-tw-http-www-csie-ntu-edu-tw-cwhsueh-100-fall-nov-4-fri-678-dth-104)
+* [ An Overview of Microkernel, Hypervisor and Microvisor Virtualization Approaches for Embedded Systems, Asif Iqbal, Nayeema Sadeque and Rafika Ida Mutia, Lund University, Sweden](http://www.eit.lth.se/fileadmin/eit/project/142/virtApproaches.pdf)
+* [Hardware accelerated Virtualization in the ARM Cortex™ Processors](http://www-archive.xenproject.org/files/xensummit_seoul11/nov2/2_XSAsia11_JGoodacre_HW_accelerated_virtualization_in_the_ARM_Cortex_processors.pdf)
+* [Popek and Goldberg virtualization requirements](http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requirements)
+* [Syllabus for CS5410 Virtualization Techniques (國立清華大學)](http://www.cs.nthu.edu.tw/~ychung/syllabus/Virtualization.htm) (內有課程簡報)
+* [GICv2 Architecture Specification](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf)
+* [New Feature: VirtIO based paravirtualization](http://xhypervisor.org/index.php?page=news/20130417)
+* [linux kernel的中断子系统之（七）：GIC代码分析](http://www.wowotech.net/irq_subsystem/gic_driver.html)
+* [Virtio: An I/O virtualization framework for Linux](http://www.ibm.com/developerworks/library/l-virtio/)

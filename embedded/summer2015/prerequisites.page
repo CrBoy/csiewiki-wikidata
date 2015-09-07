@@ -7,54 +7,54 @@ toc: no
 
 注意
 ----
-* 一定要事先閱讀列出下列資料 3 分之 1 以上，並在課程開始前 2 日，記錄學習心得和疑惑於共筆中，否則不得報名`暑期課程</embedded/summer2015>`_
-* `2015 年暑期課程</embedded/summer2015>`_雖然全程免費，但沒做好充分準備的聽眾，並非是授課預期對象，懇請見諒
+* 一定要事先閱讀列出下列資料 3 分之 1 以上，並在課程開始前 2 日，記錄學習心得和疑惑於共筆中，否則不得報名[暑期課程](/embedded/summer2015)
+* [2015 年暑期課程](/embedded/summer2015)雖然全程免費，但沒做好充分準備的聽眾，並非是授課預期對象，懇請見諒
 
 系統程式概念
 -----------
-* `From Source to Binary<http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain>`_
-* `Hello World!<http://wen00072-blog.logdown.com/posts/190025-hello-world>`_
-* `Something Behind Hello World<http://www.slideshare.net/jserv/helloworld-internals>`_
+* [From Source to Binary](http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain)
+* [Hello World!](http://wen00072-blog.logdown.com/posts/190025-hello-world)
+* [Something Behind Hello World](http://www.slideshare.net/jserv/helloworld-internals)
 
 C 語言程式設計
 ------------
-* `Deep C<http://www.slideshare.net/olvemaudal/deep-c>`_ (前 246 頁)
+* [Deep C](http://www.slideshare.net/olvemaudal/deep-c) (前 246 頁)
 
 作業系統概念
 -----------
 * CS4414: Operating Systems
-  - `影片 + 繁體中文字幕<https://www.youtube.com/channel/UCIm-u7l65hp5jboSJrB7U5w/feed>`_ (歡迎訂閱)
-  - `課程資料<http://www.rust-class.org/>`_
+  - [影片 + 繁體中文字幕](https://www.youtube.com/channel/UCIm-u7l65hp5jboSJrB7U5w/feed) (歡迎訂閱)
+  - [課程資料](http://www.rust-class.org/)
 
 計算機組織結構
 ------------
 * 黃婷婷教授的 Computer Architecture
-  - `影片<https://www.youtube.com/playlist?list=PLS0SUwlYe8cxMiFW_PiaBu53nOAXl3dxS>`_
-  - `共筆和補充<https://neal.hackpad.com/Computer-Architecture-Notes-W3x4n3Ht2oA>`_
+  - [影片](https://www.youtube.com/playlist?list=PLS0SUwlYe8cxMiFW_PiaBu53nOAXl3dxS)
+  - [共筆和補充](https://neal.hackpad.com/Computer-Architecture-Notes-W3x4n3Ht2oA)
 
 編譯器和虛擬機器
 --------------
-* `Virtual Machine Constructions for Dummies<http://www.slideshare.net/jserv/vm-construct>`_
-* `CS143: Compilers<http://web.stanford.edu/class/cs143/>`_ (至少要閱讀到 Lecture 11: Semantic Analysis II)
+* [Virtual Machine Constructions for Dummies](http://www.slideshare.net/jserv/vm-construct)
+* [CS143: Compilers](http://web.stanford.edu/class/cs143/) (至少要閱讀到 Lecture 11: Semantic Analysis II)
 
 ARM 處理器架構
 -------------
-* `ARMv7-A Architecture<http://www.slideshare.net/linaroorg/arm-architecture-overview-32539155>`_
-* `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
-* `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
-* `ARM Cortex-M3<http://www.slideshare.net/GauravVerma3/arm-cortex-processor-compatibility-mode>`_
-* `Assembly language programming: ARM Cortex-M3<http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout>`_
-* `Introduction: the ARM Cortex-M3 Exception / Interrupt<http://wiki.csie.ncku.edu.tw/embedded/arm-exceptions.pdf>`_
-  - `Interrupt-Driven Input/Output<http://wiki.csie.ncku.edu.tw/embedded/2015q1w4/interrupt_part2.pdf>`_
+* [ARMv7-A Architecture](http://www.slideshare.net/linaroorg/arm-architecture-overview-32539155)
+* [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
+* [ARM Cortex-M3 Introduction](http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf)
+* [ARM Cortex-M3](http://www.slideshare.net/GauravVerma3/arm-cortex-processor-compatibility-mode)
+* [Assembly language programming: ARM Cortex-M3](http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout)
+* [Introduction: the ARM Cortex-M3 Exception / Interrupt](http://wiki.csie.ncku.edu.tw/embedded/arm-exceptions.pdf)
+  - [Interrupt-Driven Input/Output](http://wiki.csie.ncku.edu.tw/embedded/2015q1w4/interrupt_part2.pdf)
 
 自由軟體和開放原始碼
 -----------------
 * Revolution OS
-  - `影片 + 繁體中文字幕<https://www.youtube.com/watch?v=vWwvh3036Fw>`_
-  - `共筆和資料補充<https://fossapc.hackpad.com/-Revolution-OS--RrJpYEByzmr>`_
-  - 延伸閱讀: `Unix 歷史和觀念彙整<https://embedded2015.hackpad.com/UNIX-History-o6ganUMGhbm>`_
+  - [影片 + 繁體中文字幕](https://www.youtube.com/watch?v=vWwvh3036Fw)
+  - [共筆和資料補充](https://fossapc.hackpad.com/-Revolution-OS--RrJpYEByzmr)
+  - 延伸閱讀: [Unix 歷史和觀念彙整](https://embedded2015.hackpad.com/UNIX-History-o6ganUMGhbm)
 
 * The Code
-  - `影片 + 中文解說<https://fossapc.hackpad.com/C2-tMmvkW0UtB1>`_
+  - [影片 + 中文解說](https://fossapc.hackpad.com/C2-tMmvkW0UtB1)
 
-* `BSD 發展與影響<https://fossapc.hackpad.com/B0-1oYaaSKkruW>`_
+* [BSD 發展與影響](https://fossapc.hackpad.com/B0-1oYaaSKkruW)

@@ -5,50 +5,50 @@ toc: no
 
 資訊安全議題
 -------------------
-* `Hacking the D-Link DIR-890L<http://www.devttys0.com/2015/04/hacking-the-d-link-dir-890l/>`_
-* `What the Ridiculous Fuck, D-Link?!<http://www.devttys0.com/2015/04/what-the-ridiculous-fuck-d-link/>`_
-* `MS15-034/CVE-2015-1635 HTTP 遠端程式碼執行漏洞分析<http://blogs.360.cn/blog/cve_2015_6135_http_rce_analysis/>`_
+* [Hacking the D-Link DIR-890L](http://www.devttys0.com/2015/04/hacking-the-d-link-dir-890l/)
+* [What the Ridiculous Fuck, D-Link?!](http://www.devttys0.com/2015/04/what-the-ridiculous-fuck-d-link/)
+* [MS15-034/CVE-2015-1635 HTTP 遠端程式碼執行漏洞分析](http://blogs.360.cn/blog/cve_2015_6135_http_rce_analysis/)
 
 作業須知 (Lab-43)
 ----------------
-* 作業描述: `Lab 43</embedded/Lab43>`_
+* 作業描述: [Lab 43](/embedded/Lab43)
 * 截止日期: May 2, 2015 (含) 之前
 
 Computer Systems: A Programmer's Perspective
 --------------------------------------------------------------------
-* `CMU 官方網站<http://csapp.cs.cmu.edu/>`_
+* [CMU 官方網站](http://csapp.cs.cmu.edu/)
 * 推薦閱讀: (和本課程高度相關)
-  - `Machine-Level Representation of Programs<http://csapp.cs.cmu.edu/2e/ch3-preview.pdf>`_: 對應 `Week #3</embedded/2015q1w3>`_
-  - `Processor Architecture<http://csapp.cs.cmu.edu/2e/ch4-preview.pdf>`_: 對應 `Week #3</embedded/2015q1w3>`_
-  - `Optimizing Program Performance<http://csapp.cs.cmu.edu/2e/ch5-preview.pdf>`_: 對應 `Lab-38</embedded/Lab38>`_
-  - `The Memory Hierarchy<http://csapp.cs.cmu.edu/2e/ch6-preview.pdf>`_: 對應 `Week #7</embedded/2015q1w7>`_
-  - `Linking<http://csapp.cs.cmu.edu/2e/ch7-preview.pdf>`_: 對應 `Week #8</embedded/2015q1w8>`_
-  - `Exceptional Control Flow<http://csapp.cs.cmu.edu/2e/ch8-preview.pdf>`_: 對應 `Week #4</embedded/2015q1w4>`_, `Week #6</embedded/2015q1w6>`_
-  - `Virtual Memory<http://csapp.cs.cmu.edu/2e/ch9-preview.pdf>`_: 對應 `Week #8</embedded/2015q1w8>`_
-  - `System-Level I/O<http://csapp.cs.cmu.edu/2e/ch10-preview.pdf>`_: 對應 `Lab-39</embedded/Lab39>`_
-  - `Concurrent Programming<http://csapp.cs.cmu.edu/2e/ch12-preview.pdf>`_: 對應 `Week #9</embedded/2015q1w9>`_
+  - [Machine-Level Representation of Programs](http://csapp.cs.cmu.edu/2e/ch3-preview.pdf): 對應 [Week #3](/embedded/2015q1w3)
+  - [Processor Architecture](http://csapp.cs.cmu.edu/2e/ch4-preview.pdf): 對應 [Week #3](/embedded/2015q1w3)
+  - [Optimizing Program Performance](http://csapp.cs.cmu.edu/2e/ch5-preview.pdf): 對應 [Lab-38](/embedded/Lab38)
+  - [The Memory Hierarchy](http://csapp.cs.cmu.edu/2e/ch6-preview.pdf): 對應 [Week #7](/embedded/2015q1w7)
+  - [Linking](http://csapp.cs.cmu.edu/2e/ch7-preview.pdf): 對應 [Week #8](/embedded/2015q1w8)
+  - [Exceptional Control Flow](http://csapp.cs.cmu.edu/2e/ch8-preview.pdf): 對應 [Week #4](/embedded/2015q1w4), [Week #6](/embedded/2015q1w6)
+  - [Virtual Memory](http://csapp.cs.cmu.edu/2e/ch9-preview.pdf): 對應 [Week #8](/embedded/2015q1w8)
+  - [System-Level I/O](http://csapp.cs.cmu.edu/2e/ch10-preview.pdf): 對應 [Lab-39](/embedded/Lab39)
+  - [Concurrent Programming](http://csapp.cs.cmu.edu/2e/ch12-preview.pdf): 對應 [Week #9](/embedded/2015q1w9)
 
 POSIX
 ---------
-* `POSIX – 25 Years of Open Standard APIs<http://rtcmagazine.com/articles/view/103514>`_
+* [POSIX – 25 Years of Open Standard APIs](http://rtcmagazine.com/articles/view/103514)
   - 用圖表說明了 PSE51, PSE52, PSE53, PSE54，以及用於即時處理應用的 IEEE 1003.13-2003 (POSIX.13) Profiles
 
-* `Getting Started With POSIX Threads<http://www.csie.ntu.edu.tw/~r92094/c++/pthread.txt>`_ (繁體中文翻譯)
+* [Getting Started With POSIX Threads](http://www.csie.ntu.edu.tw/~r92094/c++/pthread.txt) (繁體中文翻譯)
 
-* `Linux As a Real-Time Operating System<http://www.freescale.com/files/soft_dev_tools/doc/white_paper/CWLNXRTOSWP.pdf>`_
+* [Linux As a Real-Time Operating System](http://www.freescale.com/files/soft_dev_tools/doc/white_paper/CWLNXRTOSWP.pdf)
   - 回顧 POSIX 中即時處理機制，特別是 SCHED_FIFO 和 SCHED_RR 這兩個 scheduler policy，以及 High Resolution POSIX Timers (HRT)
   - 即時處理的案例指出列車控制系統
   - SGI 的 IRIX 改善即時處理效能的途徑，是在通用的作業系統核心 (如 Unix) 中加入若干 preemption point，這點也被 PREEMPT-RT 採用
   - 從報告中清楚得知，為什麼資訊工程系的學生該把機率統計學好呢？我們要得知一個系統的即時處理效能，就要從 PDF (probability distribution function) 去分析
   - 「如果你研究沒做到統計，表示你還不夠深入」
 
-* `Comparative analysis of preemption vs preempt-rt<http://www.slideshare.net/linaroorg/lca14-lca14506-comparative-analysis-of-preemption-vs-preemptrt>`_
+* [Comparative analysis of preemption vs preempt-rt](http://www.slideshare.net/linaroorg/lca14-lca14506-comparative-analysis-of-preemption-vs-preemptrt)
   - Linaro Connect Hong Kong 2014 中，Linaro Networking Group (LNG) 核心維護者 Gary Robertson 的演講
-  - `錄影<https://www.youtube.com/watch?v=QiguBicpB88>`_
+  - [錄影](https://www.youtube.com/watch?v=QiguBicpB88)
 
 Kernel Concepts
 ------------------------
-* `Thread & Synchronization</embedded/2015q1w9/thread-sync.pdf>`_
-* `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
-* `Making Linux do Hard Real-time<http://www.slideshare.net/jserv/realtime-linux>`_
+* [Thread & Synchronization](/embedded/2015q1w9/thread-sync.pdf)
+* [Priority Inversion on Mars](http://www.slideshare.net/jserv/priority-inversion-30367388)
+* [Making Linux do Hard Real-time](http://www.slideshare.net/jserv/realtime-linux)
     - 4 月 23 日 19:30 在資訊系舊館一樓 4203 教室有 Real-time Linux 演講

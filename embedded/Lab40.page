@@ -5,15 +5,15 @@ toc: no
 
 預期目標
 ------------
-- 分析 `FreeRTOS</embedded/freertos>`_ 排程行為
-- 學習 ARM Cortex-M3 架構並且理解 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
+- 分析 [FreeRTOS](/embedded/freertos) 排程行為
+- 學習 ARM Cortex-M3 架構並且理解 [SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html)
 - 設計出一個具體而微的 FreeRTOS 視覺化機制
 
 Grasp
 -------
 .. image:: /embedded/Lab40/grasp-n-os.png
 
-* `Grasp<http://www.win.tue.nl/san/grasp/>`_ 是個能夠追蹤、視覺化，以及測量即時系統中執行時期行為的工具，很容易擴充。
+* [Grasp](http://www.win.tue.nl/san/grasp/) 是個能夠追蹤、視覺化，以及測量即時系統中執行時期行為的工具，很容易擴充。
   - 使用案例: mutex 視覺化輸出
 
 .. image:: /embedded/Lab12/mutex.png
@@ -24,7 +24,7 @@ Grasp
 
 Grasp 安裝
 ----------------
-* 抓取預先編譯的程式碼 (x86/linux): 假設和 `Lab-39</embedded/Lab39>`_ 的工作目錄一樣是 ``workspace``
+* 抓取預先編譯的程式碼 (x86/linux): 假設和 [Lab-39](/embedded/Lab39) 的工作目錄一樣是 ``workspace``
 
 .. code-block:: prettyprint
 
@@ -52,7 +52,7 @@ Grasp 安裝
 
     sudo apt-get install gdb-arm-none-eabi
 
-* 假設 `Lab-39</embedded/Lab39>`_ 的 ``freertos-basic`` 和 ``qemu_stm32`` 都放在 ``workspace`` 目錄
+* 假設 [Lab-39](/embedded/Lab39) 的 ``freertos-basic`` 和 ``qemu_stm32`` 都放在 ``workspace`` 目錄
   - ``cd worksapce``
 
 * 取得原始程式碼並且執行
@@ -65,7 +65,7 @@ Grasp 安裝
 
 *  可以見到 idle task 和相關圖例
 * 運作原理
-  - 讀取 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_ 中 current & reload 的數值，用來計算更精確的時間單位
+  - 讀取 [SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html) 中 current & reload 的數值，用來計算更精確的時間單位
   - 增加追蹤執行狀態的 break point，藉以了解程式目前運作的位置
     + 增加程式 context switch 的 Hook
     + 將程式在 idle 時的 function 也列入追蹤
@@ -73,11 +73,11 @@ Grasp 安裝
 檢查清單
 --------------
 * 是否理解 ARM Cortex-M 的 interrupt 處理機制？
-  - 檔案 `main.c<https://github.com/embedded2015/visualizer/blob/master/main.c>`_ 的 ``USART2_IRQHandler``
-  - 檔案 `startup_stm32f10x_md.s<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s>`_ 的 ``g_pfnVectors``
+  - 檔案 [main.c](https://github.com/embedded2015/visualizer/blob/master/main.c) 的 ``USART2_IRQHandler``
+  - 檔案 [startup_stm32f10x_md.s](https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s) 的 ``g_pfnVectors``
 
 * 是否清楚 system register 的作用？
-  - 檔案 `main.c<https://github.com/embedded2015/visualizer/blob/master/main.c>`_ 中，位址開頭為 0xe0 的常數或巨集: ``NVIC_INTERRUPTx_PRIORITY``, ``get_reload()`` / ``get_current()`` / ``get_time()`` (與 SysTick 相關)
+  - 檔案 [main.c](https://github.com/embedded2015/visualizer/blob/master/main.c) 中，位址開頭為 0xe0 的常數或巨集: ``NVIC_INTERRUPTx_PRIORITY``, ``get_reload()`` / ``get_current()`` / ``get_time()`` (與 SysTick 相關)
 
 參考作業要求
 ------------------
@@ -87,22 +87,22 @@ Grasp 安裝
 挑戰題
 ----------
 * 說明為何視覺化系統得以運作，以及目前實做的限制與改進方案
-* 自動測試 `USART</embedded/USART>`_ 的中斷處理 (對應於 ``USART2_IRQHandler``)，並且透過 grasp 視覺化
+* 自動測試 [USART](/embedded/USART) 的中斷處理 (對應於 ``USART2_IRQHandler``)，並且透過 grasp 視覺化
 
 繳交作業
 ------------
 - 截止日期：
    * Mar 28, 2015 (含) 之前
 
-- 更新開發過程到共筆網站: `Lab 40 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-4-Lab40>`_，需要標注自己的 ID
+- 更新開發過程到共筆網站: [Lab 40 / 作業共筆](https://embedded2015.hackpad.com/2015q3-Week-4-Lab40)，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/visualizer
-    * 注意: 要記得 fork `visualizer<https://github.com/embedded2015/visualizer>`_
+    * 注意: 要記得 fork [visualizer](https://github.com/embedded2015/visualizer)
 
 參考資料
 ---------------
-* `Grasp: Tracing, Visualizing and Measuring the Behavior of Real-Time Systems<http://www.win.tue.nl/~mholende/publications/Holenderski2010.pdf>`_
-* `RTOS Visualization</embedded/Sol12>`_
-* `RTOS context switch</embedded/Sol8>`_
-* `Context switching time<https://www.segger.com/embos-context-switching-time.html>`_
+* [Grasp: Tracing, Visualizing and Measuring the Behavior of Real-Time Systems](http://www.win.tue.nl/~mholende/publications/Holenderski2010.pdf)
+* [RTOS Visualization](/embedded/Sol12)
+* [RTOS context switch](/embedded/Sol8)
+* [Context switching time](https://www.segger.com/embos-context-switching-time.html)
 * Cortex M3 SysTick Explained
-  - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
+  - [Part I](http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/), [Part II](http://www.zembedded.com/cortex-m3-systick-explained-part-ii/)

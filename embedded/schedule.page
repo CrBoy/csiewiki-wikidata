@@ -4,10 +4,10 @@ categories: embedded, arm, stm32, rtos, kernel, linux, ncku
 toc: no
 ...
 
-- Instructor: `Jim Huang</User/jserv>`_ (黃敬群) <jserv.tw@gmail.com>
+- Instructor: [Jim Huang](/User/jserv) (黃敬群) <jserv.tw@gmail.com>
 - 討論區: https://www.facebook.com/groups/ncku.embedded2015
 - 共筆: https://embedded2015.hackpad.com
-- 參考硬體平台: `STM32</embedded/STM32F429>`_, STMicroelectronics
+- 參考硬體平台: [STM32](/embedded/STM32F429), STMicroelectronics
 
 嵌入式作業系統設計與實作 (Spring 2015)
 ------------------------------------------------------
@@ -66,7 +66,7 @@ Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
 Week  Date     Subject                                 Assignment
 ====  ====     =======                                 ==========
-#1    Sep 18   `2014q3 Overview`_                       `Lab 31<https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT>`_: ARM Environment
+#1    Sep 18   [2014q3 Overview`_                       `Lab 31](https://embedded2014.hackpad.com/2014q3-Week-1-mQLneatLPcT): ARM Environment
 #2    Sep 25   `ARM Architecture (cont)`_                               `Lab 32`_: QEMU + FreeRTOS
 #3    Oct 2    `ARM Architecture (cont2)`_                              `Lab 33`_: GDB + FreeRTOS
 #4    Oct 9    `ARM Architecture and Interface`_                    `Lab 34`_: Buffer overflow
@@ -78,7 +78,7 @@ Week  Date     Subject                                 Assignment
 #10   Nov 20   `2014q3:Group Presentation (2)`_                           -
 #11   Nov 27   `2014q3:Group Presentation (3)`_                           -
 #12   Dec 4    `2014q3:Group Presentation (4)`_                            -
-#13   Dec 11   `2014q3:Group Presentation (5)`_                           `侯捷 C++ 底層技術課程分享<https://www.facebook.com/events/481983738609693/>`_
+#13   Dec 11   [2014q3:Group Presentation (5)`_                           `侯捷 C++ 底層技術課程分享](https://www.facebook.com/events/481983738609693/)
 #14   Dec 18   `2014q3:Group Presentation (6)`_                           -
 #15   Dec 25   `2014q3:Group Presentation (7)`_                           -
 #16   Jan 1      Happy New Year!

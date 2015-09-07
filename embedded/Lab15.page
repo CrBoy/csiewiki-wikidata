@@ -10,19 +10,19 @@ toc: no
 
 背景知識
 -------------
-* `Measuring Real-Time Performance Of An RTOS<http://rtos.com/PDFs/MeasuringRTOSPerformance.pdf >`_
-* `Performance benchmarking of FreeRTOS and its Hardware Abstraction<http://alexandria.tue.nl/extra2/afstversl/wsk-i/xu2008.pdf>`_
+* [Measuring Real-Time Performance Of An RTOS](http://rtos.com/PDFs/MeasuringRTOSPerformance.pdf )
+* [Performance benchmarking of FreeRTOS and its Hardware Abstraction](http://alexandria.tue.nl/extra2/afstversl/wsk-i/xu2008.pdf)
 
 BeRTOS Benchmark
 ----------------------------------
-* `Context-switch overhead<http://www.bertos.org/scopri/benchmark/context-switch/>`_
-* `Memory Footprint<http://www.bertos.org/scopri/benchmark/memory-footprint/>`_
+* [Context-switch overhead](http://www.bertos.org/scopri/benchmark/context-switch/)
+* [Memory Footprint](http://www.bertos.org/scopri/benchmark/memory-footprint/)
 * 比照之前 Git 指示，可取得部份整合的程式碼，位於 ``Lab-15/benchmark`` 目錄
-* 參考資訊: `BeRTOS Real Time Operating System Developers' site<http://dev.bertos.org/>`_
+* 參考資訊: [BeRTOS Real Time Operating System Developers' site](http://dev.bertos.org/)
 
 作業要求
 ------------
-* 確保 `Lab-11</embedded/Lab11>`_ 與 `Lab-14</embedded/Lab14>`_ 已充分完成 (可採用公佈的參考解答為基礎)
+* 確保 [Lab-11](/embedded/Lab11) 與 [Lab-14](/embedded/Lab14) 已充分完成 (可採用公佈的參考解答為基礎)
 * 修改 Lab-15/benchmark，使其符合以下：
    - 將 sig_ 系列的 API 換成我們自訂的 FIFO
    - 將 process 系列的呼叫改為我們自訂的 Task

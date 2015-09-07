@@ -15,7 +15,7 @@ toc: no
 
 不要妄自菲薄
 ----------
-- 成大會計系碩士論文題目：「`藉由迴避衝突來提昇 Transactional Memory 效能之研究<http://etds.lib.ncku.edu.tw/etdservice/view_metadata?etdun=U0026-1004201213190900&query_field1=keyword&query_word1=TM>`_」
+- 成大會計系碩士論文題目：「[藉由迴避衝突來提昇 Transactional Memory 效能之研究](http://etds.lib.ncku.edu.tw/etdservice/view_metadata?etdun=U0026-1004201213190900&query_field1=keyword&query_word1=TM)」
   * 連會計系都做 Software Transactional Memory，那資工系的學生不就都飛天了？
 
 為什麼要問為什麼？
@@ -55,7 +55,7 @@ toc: no
 動手作
 ---------
 - 如果美術老師自己從來不動手素描、調色，或者雕刻，只會拿一堆大師作品來嚇唬你，這樣的美術課程真的會讓你成長嗎？
-- 北京清華大學的陳渝教授身體力行，告訴學生雙手萬能。實驗室沒錢買 ARM 硬體怎麼辦？自幹一套完整的硬體模擬器: `Skyeye<http://skyeye.sourceforge.net>`_。學生對作業系統理解不足怎麼辦？自幹一套完整又簡潔的作業系統: `ucore<https://code.google.com/p/ucore-x64-smp/>`_ 來當教材
+- 北京清華大學的陳渝教授身體力行，告訴學生雙手萬能。實驗室沒錢買 ARM 硬體怎麼辦？自幹一套完整的硬體模擬器: [Skyeye](http://skyeye.sourceforge.net)。學生對作業系統理解不足怎麼辦？自幹一套完整又簡潔的作業系統: [ucore](https://code.google.com/p/ucore-x64-smp/) 來當教材
 
 2012 年操作系統課程設計 (北大清華)
 ----------------------------------------
@@ -71,8 +71,8 @@ Dennis Ritchie 逝世一週年
 -----------------------
 - 2011 年 10 月 12 日，C 語言和 Unix 共同作者 Dennis Ritchie 逝世 (1941-2011)
 - 著名電腦科學家 Brian Kernighan 說，牛頓說他是站在巨人的肩膀上，而「我們都是在站在 Dennis 的肩膀上」
-- 上個月，貝爾實驗室辦了紀念活動「`Dennis Ritchie 的永久遺產：軟體對社會的影響<http://lucent.com/events/2012/dennis-ritchie/>`_」
-  * `C, the Enduring Legacy of Dennis Ritchie<http://www.cs.columbia.edu/~aho/Talks/12-09-07_DMR.pdf>`_
+- 上個月，貝爾實驗室辦了紀念活動「[Dennis Ritchie 的永久遺產：軟體對社會的影響](http://lucent.com/events/2012/dennis-ritchie/)」
+  * [C, the Enduring Legacy of Dennis Ritchie](http://www.cs.columbia.edu/~aho/Talks/12-09-07_DMR.pdf)
 
 - 前貝爾實驗室研究員 Al Aho 教授在紀念活動中闡述 C 語言的重要性，他說 C 的變種控制了從 iPhone 到火星好奇號的各種機器
   * http://www.youtube.com/watch?v=GfoSbffSIQ4

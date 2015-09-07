@@ -6,12 +6,12 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
 協作者
 ------
 * 2015 年春季
-  - `洪文麟<https://github.com/hkuro>`_, `蔣亞翰<https://github.com/r930709>`_, `邱酩仁<https://github.com/vodkaice>`_, `張家榮<https://github.com/JaredCJR>`_, `顧又榮<https://github.com/iGaryGu>`_ 
+  - [洪文麟](https://github.com/hkuro), [蔣亞翰](https://github.com/r930709), [邱酩仁](https://github.com/vodkaice), [張家榮](https://github.com/JaredCJR), [顧又榮](https://github.com/iGaryGu) 
 
 
 共筆
 ----
-* 2015 年春季: `hackpad <https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
+* 2015 年春季: [hackpad ](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
 
 硬體及測試平台
 ------------------------------------------------
@@ -26,7 +26,7 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
        - AM3358
 - 測試平台:
    - arm-Linux
-       - `Angstrom<https://github.com/beagleboard/kernel/tree/3.8>`_
+       - [Angstrom](https://github.com/beagleboard/kernel/tree/3.8)
        - Kernel version:3.8
 
 編譯arm-Linux(Angstrom)給BeagleBone Black
@@ -41,8 +41,8 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
     $sudo apt-get install lzop
 
 - 切割SD card
-    - `mkcard.sh<https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh>`_
-    - $sh –x `mkcard.sh<https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh>`_ /dev/sdX;X為主機內看到的sd 卡掛載點 ex.sdb
+    - [mkcard.sh](https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh)
+    - $sh –x [mkcard.sh](https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh) /dev/sdX;X為主機內看到的sd 卡掛載點 ex.sdb
 - Bootloader
 
 .. code-block:: txt
@@ -155,7 +155,7 @@ Lmbench 3.0 測試方法分析
         - (執行"repetition次"結果的加總，在除以"repetition次")，就當作"這次"測量的結果
 
     - 一次的測試，latency = (執行時間/iterations)
-        - iterations為`mhz benchmark<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_測量，故不是定值，用以確保執行時間夠長，具有代表意義。
+        - iterations為[mhz benchmark](http://www.bitmover.com/lmbench/mhz-usenix.pdf)測量，故不是定值，用以確保執行時間夠長，具有代表意義。
         - 執行時間不同當然是因為硬體不同所造成，然而影響最多的就是CPU架構，為了量測出準確的執行時間，必須將不確定因素降到最低，且時間與時脈(倒數關係)息息相關。
             - GCD法(最大公因數)，必須挑選互相有相依性的指令，因為pipeline的關係，導致cycles變少，且必須防止compiler優化，導致指令不按照預期執行:
 
@@ -188,7 +188,7 @@ Lmbench 3.0 測試方法分析
     8. a+=(a+b)&07;
     9. a++;a^=1;a<<=1;
 
-實際上在source code發現，iterations的值是經由一個迴圈去不斷測試值是否大於需求(根據`mhz benchmark作者自己說<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_，是150ms)
+實際上在source code發現，iterations的值是經由一個迴圈去不斷測試值是否大於需求(根據[mhz benchmark作者自己說](http://www.bitmover.com/lmbench/mhz-usenix.pdf)，是150ms)
 
 .. code-block:: c
     
@@ -223,7 +223,7 @@ Lmbench 3.0 測試方法分析
     }
 
 
-`參考資料<http://www.bitmover.com/lmbench/mhz-usenix.pdf>`_
+[參考資料](http://www.bitmover.com/lmbench/mhz-usenix.pdf)
 
 
 Context Switch Latency on BeagleBone Black(Linux)
@@ -364,8 +364,8 @@ Context Switch Latency 測試理論
     - 今天如果有一個夠大的array，一個line是64byte，那麼如果小於等於64bytes的K，會踩到N次<假設>的cache line miss，但是如果K=128bytes，由於會"跨過"某些cache line miss的"點"(因為沒有要用到那邊的資料)，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
     - 在參考資料1中的example2，它也有說明。
 
-   - `參考資料1<http://igoro.com/archive/gallery-of-processor-cache-effects/>`_
-   - `參考資料2<https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf>`_
+   - [參考資料1](http://igoro.com/archive/gallery-of-processor-cache-effects/)
+   - [參考資料2](https://www.scss.tcd.ie/Jeremy.Jones/CS3021/5%20caches.pdf)
 
 - REGIME 2.b :
    - Array size 比 cache容量大
@@ -386,8 +386,8 @@ Context Switch Latency 測試理論
    - Cache/TLB size可藉由測試，當發現Latency time大幅上升時，藉由比較array size(實際上的情況下面會談到)可以知道，因為D(cache miss penality)通常大於Tno-miss
 
 - 參考資料：
-    - `Measuring cache and TLB performance and their effect on benchmark runtimes<http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697>`_
-        - `整理這篇論文的過程<https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C>`_
+    - [Measuring cache and TLB performance and their effect on benchmark runtimes](http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=467697&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D467697)
+        - [整理這篇論文的過程](https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C)
 
 Context Switch Latency 理論與實際的結合
 =================================================
@@ -935,7 +935,7 @@ Linux Timer Interrupt 理論
 
 - 透過這個檢測，可以知道這個linux kernel預設的timer interrupt頻率為300HZ，所以推算出一個timer interrupt所需時間為3.33毫秒
 
-以上這些方法，是參考`Adrian's Blog <http://adrianhuang.blogspot.tw/2007/10/linux-kernel-hz-tick-and-jiffies.html>`_
+以上這些方法，是參考[Adrian's Blog ](http://adrianhuang.blogspot.tw/2007/10/linux-kernel-hz-tick-and-jiffies.html)
 
 Linux Timer Interrupt 實作
 =================================================
@@ -1168,10 +1168,10 @@ Linux kernel scheduling CFS trace event
 
 自動化測試工具
 ------------------------------------------------
-`Source Code <https://github.com/hkuro/ARM-Linux_performance_analysis>`_
+[Source Code ](https://github.com/hkuro/ARM-Linux_performance_analysis)
 
 - 前置作業
-  - 詳情請見 `Hackpad <https://hackpad.com/Install-gnuplot-on-the-beaglebone-black-oCP8XM60OC5>`_
+  - 詳情請見 [Hackpad ](https://hackpad.com/Install-gnuplot-on-the-beaglebone-black-oCP8XM60OC5)
   - 安裝lmbench
 
 .. code-block:: txt
@@ -1199,4 +1199,4 @@ Linux kernel scheduling CFS trace event
 
 Q & A
 ------
-* ARM-Linux Q & A : `hackpad <https://embedded2015.hackpad.com/QA-ARM-Linux-YNnKlrWkbeU>`_
+* ARM-Linux Q & A : [hackpad ](https://embedded2015.hackpad.com/QA-ARM-Linux-YNnKlrWkbeU)

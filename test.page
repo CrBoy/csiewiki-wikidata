@@ -6,73 +6,73 @@ categories: 系統頁面
 
 這是成大資工的 wiki 系統，您可自由地在此編撰與閱讀學習筆記。
 注意：**Wiki 不等同於 Wikipedia (維基百科)**。
-Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikipedia.org/>`_ 是藉由 wiki 系統建立的百科全書 (encyclopedia)。
+Wiki 泛指提供多人協同編撰的平台，而 [Wikipedia](http://www.wikipedia.org/) 是藉由 wiki 系統建立的百科全書 (encyclopedia)。
 
 2015 年暑期嵌入式系統課程
 ------------------------------------------------
-- ` 課程資訊與進度表<embedded/summer2015>`_
+- [ 課程資訊與進度表](embedded/summer2015)
 
 嵌入式作業系統設計與實作 (2015 Spring)
 ================================
 .. image:: /embedded-os.png
-- `課程進度表<embedded/schedule>`_
-- `課堂測驗與解答<embedded/quiz>`_
+- [課程進度表](embedded/schedule)
+- [課堂測驗與解答](embedded/quiz)
 - 分組報告:
-  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embedded/rtenv>`_
-  - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_
-  - `Linux</embedded/arm-linux>`_, `Xenomai</embedded/xenomai>`_, `uClinux</embedded/uclinux>`_
-  - `Xvisor</embedded/xvisor>`_  ( `ARMv8</embedded/ARMv8>`_ )
+  - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv)
+  - [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread)
+  - [Linux](/embedded/arm-linux), [Xenomai](/embedded/xenomai), [uClinux](/embedded/uclinux)
+  - [Xvisor](/embedded/xvisor)  ( [ARMv8](/embedded/ARMv8) )
 
 2014 年進階嵌入式系統開發與實作
 ------------------------------------------------
-- `課程進度表<embedded/schedule>`_
-- 分組報告 (針對 STM32 週邊): `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `I2C</embedded/I2C>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `CAN</embedded/CAN>`_
-- `期末專題</embedded/team2014>`_
+- [課程進度表](embedded/schedule)
+- 分組報告 (針對 STM32 週邊): [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [I2C](/embedded/I2C), [PWM](/embedded/PWM), [USB](/embedded/USB), [SPI](/embedded/SPI), [Flash](/embedded/Flash), [CAN](/embedded/CAN)
+- [期末專題](/embedded/team2014)
 
 2014 年暑期嵌入式系統課程
 ------------------------------------------------
-- ` 課程資訊與進度表<embedded/summer2014>`_
+- [ 課程資訊與進度表](embedded/summer2014)
 
 嵌入式作業系統設計與實作 (2014 Spring)
 ================================
-- `課程進度表<embedded/schedule>`_
-- `課程注意事項<embedded/note2014>`_
-- `分組報告</embedded/2014-w6>`_ (針對 STM32F429 和 Raspberry Pi): `FreeRTOS</embedded/freertos>`_, `ChibiOS/RT</embedded/chibios>`_, `nuttx</embedded/nuttx>`_, `uClinux</embedded/uclinux>`_, `Xenomai</embedded/xenomai>`_, `rtenv-plus</embedded/rtenv>`_, `F9 microkernel</embedded/f9-kernel>`_
-- `期末專題列表</embedded/os-team2014>`_
+- [課程進度表](embedded/schedule)
+- [課程注意事項](embedded/note2014)
+- [分組報告](/embedded/2014-w6) (針對 STM32F429 和 Raspberry Pi): [FreeRTOS](/embedded/freertos), [ChibiOS/RT](/embedded/chibios), [nuttx](/embedded/nuttx), [uClinux](/embedded/uclinux), [Xenomai](/embedded/xenomai), [rtenv-plus](/embedded/rtenv), [F9 microkernel](/embedded/f9-kernel)
+- [期末專題列表](/embedded/os-team2014)
 
 2014 年冬季系統軟體短期課程
 ------------------------------
-- ` 課程資訊與進度表<embedded/winter2014>`_
+- [ 課程資訊與進度表](embedded/winter2014)
 
 進階嵌入式系統開發與實作 (2013 Fall)
 ================================
-- `課程進度表<embedded/schedule>`_
-- `參考書目<embedded/books>`_
-- `線上資源<embedded/resources>`_
-- `課程注意事項<embedded/note2013>`_
-- `期末專題列表<embedded/team2013>`_
-- 分組報告 (針對 STM32 週邊): `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_, `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_
+- [課程進度表](embedded/schedule)
+- [參考書目](embedded/books)
+- [線上資源](embedded/resources)
+- [課程注意事項](embedded/note2013)
+- [期末專題列表](embedded/team2013)
+- 分組報告 (針對 STM32 週邊): [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [RTC](/embedded/RTC), [PWM](/embedded/PWM), [USB](/embedded/USB), [SPI](/embedded/SPI), [Flash](/embedded/Flash), [SDIO](/embedded/SDIO)
 
 嵌入式系統短期訓練 (2013 Summer)
 ================================
-- ` 課程資訊與進度表<embedded/summer2013>`_
+- [ 課程資訊與進度表](embedded/summer2013)
 
 嵌入式作業系統設計與實作 (2013 Spring)
 ================================
-- `課程進度表<embedded/schedule>`_
-- `課堂測驗與解答<embedded/quiz>`_
-- `參考書目<embedded/books>`_
-- `線上資源<embedded/resources>`_
-- `課程注意事項<embedded/os-note>`_
+- [課程進度表](embedded/schedule)
+- [課堂測驗與解答](embedded/quiz)
+- [參考書目](embedded/books)
+- [線上資源](embedded/resources)
+- [課程注意事項](embedded/os-note)
 
 進階嵌入式系統開發與實作 (2012 Fall)
 ================================
-- `課程進度表<embedded/schedule>`_
-- `參考書目<embedded/books>`_
-- `線上資源<embedded/resources>`_
-- `課程注意事項<embedded/note>`_
-- `拾人牙慧<embedded/collections>`_
-- `期末專題分組列表<embedded/team2012>`_
+- [課程進度表](embedded/schedule)
+- [參考書目](embedded/books)
+- [線上資源](embedded/resources)
+- [課程注意事項](embedded/note)
+- [拾人牙慧](embedded/collections)
+- [期末專題分組列表](embedded/team2012)
 
 --------
 
@@ -94,14 +94,14 @@ Wiki 泛指提供多人協同編撰的平台，而 `Wikipedia<http://www.wikiped
 編輯 wiki 時要用一種稱為 reStructuredText 的語法撰寫。編輯時，左方就有範例可以參考。
 放心，這比維基百科的語法簡單多了....歡迎來討論！
 
-你可以在編輯時建立連到其他 wiki 頁面的超連結，`說明文件 <Help#wiki-links>`_中有詳細的說明。
+你可以在編輯時建立連到其他 wiki 頁面的超連結，[說明文件 ](Help#wiki-links)中有詳細的說明。
 如果該頁面不存在，也可以透過這個連結建立新頁面。
 
 如何開始
 =======
 這裡有一些實用的頁面，可以先看看：
 
-- `Sandbox <sandbox>`_ 可用來測試 wiki 語法，可自由寫作運用。此外，編輯時有「Preview」按鈕可預覽結果，避免出錯。
-- `錯誤回報 <>`_是用來回報錯誤的，如果你發現系統有錯誤，請到上面回報，管理員會儘量處理。回報前請先看看這個問題是不是已經被別人提過了。
+- [Sandbox ](sandbox) 可用來測試 wiki 語法，可自由寫作運用。此外，編輯時有「Preview」按鈕可預覽結果，避免出錯。
+- [錯誤回報 ]()是用來回報錯誤的，如果你發現系統有錯誤，請到上面回報，管理員會儘量處理。回報前請先看看這個問題是不是已經被別人提過了。
 
-說明文件可在側欄中的「說明」取得，更多相關資訊可參考 `Gitit User's Guide <Gitit User's Guide>`_。
+說明文件可在側欄中的「說明」取得，更多相關資訊可參考 [Gitit User's Guide ](Gitit User's Guide)。

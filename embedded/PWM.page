@@ -25,7 +25,7 @@ Clock control
 
 [#]_
 
-.. [#] ` Clock tree<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 212
+.. [#] [ Clock tree](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 212
 
 .. image:: /Timer_clock.png
 
@@ -34,7 +34,7 @@ Clock control
 
 [#]_
 
-.. [#] ` system_stm32f4xx.c<https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/system_stm32f4xx.c>`_
+.. [#] [ system_stm32f4xx.c](https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/system_stm32f4xx.c)
 
 - APBx timer clocks 計算
 
@@ -90,13 +90,13 @@ Timers
   - Timer可被用於多種用途, 其中包含量測輸入訊號之pulse寬度, 或產生輸出波形。
   - Real-Time Clock(RTC)是負責記錄時間的專用積體電路，出現在需要長期使用時鐘的電子設備中。[#]_
 
-.. [#] `RTC introducion<http://wiki.csie.ncku.edu.tw/embedded/RTC#introduction>`_
+.. [#] [RTC introducion](http://wiki.csie.ncku.edu.tw/embedded/RTC#introduction)
 
 Basic timers 基本定時器(TIM6 和 TIM7) 
 ----------------------------------------
 [#]_
 
-.. [#] ` TIM6 和 TIM7<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 678
+.. [#] [ TIM6 和 TIM7](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 678
 
 - 具有 16-bit auto-reload upcounter driven by a programmable prescaler
 
@@ -106,7 +106,7 @@ Advanced-control timers 高級控制定時器(TIM1 和 TIM8)
 -----------------------------------------------------
 [#]_
 
-.. [#] ` TIM1 和 TIM8<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 507
+.. [#] [ TIM1 和 TIM8](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 507
 
 - 具有 16-bit up, down, up/down auto-reload counter driven by a programmable prescaler which allowing dividing the counter clock frequency either by any factor between 1 and 65536(2^16).
 
@@ -118,7 +118,7 @@ General-purpose timers 通用定時器(TIM9 to TIM14)
 ------------------------------------------------------
 [#]_
 
-.. [#] ` TIM9 to TIM14<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 637
+.. [#] [ TIM9 to TIM14](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 637
 
 - 具有16-bit auto-reload up counter.
 
@@ -130,7 +130,7 @@ General-purpose timers 通用定時器(TIM2 to TIM5)
 --------------------------------------------------------------------------------------
 [#]_
 
-.. [#] ` TIM2 to TIM5<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 576
+.. [#] [ TIM2 to TIM5](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 576
 
 - 具有16-bit (TIM3 & TIM4) or 32-bit (TIM2 & TIM5) up, down, up/dowm auto-reload counter.
 
@@ -181,7 +181,7 @@ Counter Modes
 =============
 [#]_
 
-.. [#] ` Counter Modes<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 579
+.. [#] [ Counter Modes](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 579
 
 Registers
 ---------
@@ -239,7 +239,7 @@ Prescaler Description
 
 [#]_
 
-.. [#] ` Clock tree<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 578
+.. [#] [ Clock tree](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 578
 
 .. code-block:: prettyprint linenums
    
@@ -304,7 +304,7 @@ Input capture mode
 
 [#]_
 
-.. [#] `Input capture mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 592
+.. [#] [Input capture mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 592
 
 - 目的 : 用來計算某外部信號特定狀態發生的時間點
 - 用途 : 脈波寬測量, 頻率量測
@@ -314,7 +314,7 @@ PWM input mode
 --------------
 [#]_
 
-.. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 593
+.. [#] [PWM input mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 593
 
 - 為Input capture mode的一個特例，此模式能夠量測到TI1上的PWM訊號週期(存於TIMx_CCR1暫存器)和工作週期(存於TIMx_CCR2暫存器)，所以會使用到兩個通道。
 - 我們可以透過此mode來得知input 進來的PWM period 及 duty cycle
@@ -337,7 +337,7 @@ Forced output mode
 -------------------
 [#]_
 
-.. [#] `Forced output mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
+.. [#] [Forced output mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 594
 
 .. code-block:: prettyprint linenums
 
@@ -365,7 +365,7 @@ Output compare mode
 -------------------
 [#]_
 
-.. [#] `PWM input mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 594
+.. [#] [PWM input mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 594
 
 .. code-block:: prettyprint linenums
 
@@ -379,7 +379,7 @@ Output compare mode
 
 [#]_
 
-.. [#] `TIMx_CCMR1<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 621
+.. [#] [TIMx_CCMR1](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 621
 
 .. image:: /embedded/OC1M(output compare mode).png
 
@@ -390,7 +390,7 @@ Output compare mode
 
 [#]_
 
-.. [#] `PWM mode<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 595
+.. [#] [PWM mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 595
 
 - PWM edge-aligned mode
 
@@ -469,7 +469,7 @@ PWM realize ADC and DAC
 =======================
 [#]_
 
-.. [#] `PWM實現ADC與DAC<http://www.xjtudll.cn/Exp/143/>`_額外補充
+.. [#] [PWM實現ADC與DAC](http://www.xjtudll.cn/Exp/143/)額外補充
 
 PWM realize ADC :
 -------------------
@@ -488,7 +488,7 @@ RC circuit's response to a PWM signal:
 
 [#]_
 
-.. [#] `What is the RC circuit's response to a PWM signal?<http://www3.nd.edu/~lemmon/courses/ee224/web-manual/web-manual/lab8a/node5.html>`_reference
+.. [#] [What is the RC circuit's response to a PWM signal?](http://www3.nd.edu/~lemmon/courses/ee224/web-manual/web-manual/lab8a/node5.html)reference
 
 .. image:: /embedded/RC_equation.png
 .. image:: /embedded/PWM_wave.png
@@ -524,7 +524,7 @@ Code_section
 =============
 [#]_
 
-.. [#] `Demo Codes main.c<https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/main.c>`_
+.. [#] [Demo Codes main.c](https://github.com/PJayChen/STM32f4_discovery_TIM_PWM_Output/blob/master/TIM_PWM_Output/main.c)
 
 RCC_Configuration
 --------------------
@@ -642,9 +642,9 @@ demo2 PWM_SERVO
 
 Demo video
 ==========
-1. `伺服馬達 0~90度 <https://www.youtube.com/watch?v=VqC9MU66_8A>`_
-2. `伺服馬達 0~180度 <https://www.youtube.com/watch?v=wWvxnqRv5_w>`_
-3. `PWM呼吸燈 <https://www.youtube.com/watch?v=cdTIS62fxU8>`_
+1. [伺服馬達 0~90度 ](https://www.youtube.com/watch?v=VqC9MU66_8A)
+2. [伺服馬達 0~180度 ](https://www.youtube.com/watch?v=wWvxnqRv5_w)
+3. [PWM呼吸燈 ](https://www.youtube.com/watch?v=cdTIS62fxU8)
 
 補充
 =============
@@ -669,7 +669,7 @@ PWM先高後低和先低後高 在Motor上表現有什麼差別?
 
   - (2)半可變電阻:多用於微調用或一次設定好後除非又偏差才需要調整的電路, 像類比指針式三用電表的歸零值調整等.
 
-- `Reference <http://wiki.dzsc.com/info/7527.html>`_
+- [Reference ](http://wiki.dzsc.com/info/7527.html)
 
 Clock Tree
 -----------
@@ -688,7 +688,7 @@ Clock Tree
 
 [#]_
 
-.. [#] `N倍頻電路</N倍頻電路.ppt>`_
+.. [#] [N倍頻電路](/N倍頻電路.ppt)
 
 - PLL之前要先除頻原因為
 
@@ -701,7 +701,7 @@ TIx XOR
 
 [#]_
 
-.. [#] `ITx XOR<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_ p. 602
+.. [#] [ITx XOR](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 602
 
 .. image:: /Tim_input_xor.PNG
 
@@ -714,7 +714,7 @@ Setup Time
 
 .. image:: /part of counter wave.PNG
 
-`Ref. 數位IC設計, 陳培殷教授, slide 40, 41 <http://dic.csie.ncku.edu.tw/vlsi_2013/CHAPTER-5.pdf>`_
+[Ref. 數位IC設計, 陳培殷教授, slide 40, 41 ](http://dic.csie.ncku.edu.tw/vlsi_2013/CHAPTER-5.pdf)
 
 .. image:: /DFF_setup_time.PNG
 
@@ -757,12 +757,12 @@ Reference
 Website
 --------
 
-- `張晏甄同學hackpad Timer筆記 <http://blog.csdn.net/scarlettsp/article/details/6656588>`_
-- `Shadow register <http://blog.csdn.net/scarlettsp/article/details/6656588>`_
-- `Wikipedia-PWM<http://en.wikipedia.org/wiki/Pulse-width_modulation>`_
-- `TIM_ClockDivision功用說明<http://blog.sina.com.cn/s/blog_76c545390100ovfj.html>`_
-- `PWM實現ADC與DAC<http://www.xjtudll.cn/Exp/143/>`_
-- `UNIVERSITA' DI BOLOGNA 的Timer 教材<http://www-micrel.deis.unibo.it/LABARCH/slidecorso2013/Lab4_2013.pdf>`_
+- [張晏甄同學hackpad Timer筆記 ](http://blog.csdn.net/scarlettsp/article/details/6656588)
+- [Shadow register ](http://blog.csdn.net/scarlettsp/article/details/6656588)
+- [Wikipedia-PWM](http://en.wikipedia.org/wiki/Pulse-width_modulation)
+- [TIM_ClockDivision功用說明](http://blog.sina.com.cn/s/blog_76c545390100ovfj.html)
+- [PWM實現ADC與DAC](http://www.xjtudll.cn/Exp/143/)
+- [UNIVERSITA' DI BOLOGNA 的Timer 教材](http://www-micrel.deis.unibo.it/LABARCH/slidecorso2013/Lab4_2013.pdf)
   
 Books
 ------

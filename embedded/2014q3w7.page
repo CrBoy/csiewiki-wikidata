@@ -5,11 +5,11 @@ toc: no
 
 重大事項宣達
 ------------------
-* 依據已登記的`分組名單<https://embedded2014.hackpad.com/2014-IsUOusILy9X>`_，自 Week #9 (Nov 13, 2014) 開始進行期中報告
-  - 更新 wiki 頁面: `GPIO</embedded/GPIO>`_ (Team #3), `USART</embedded/USART>`_ (Team #1), `ADC</embedded/ADC>`_ (Team #2), `I2C</embedded/I2C>`_ (Team #9), `PWM</embedded/PWM>`_ (Team #6), `USB</embedded/USB>`_ (Team #5), `SPI</embedded/SPI>`_ (Team #8), `Flash</embedded/Flash>`_ (Team #4), `SDIO</embedded/SDIO>`_ (Team #7), `CAN</embedded/CAN>`_ (Team #10)
+* 依據已登記的[分組名單](https://embedded2014.hackpad.com/2014-IsUOusILy9X)，自 Week #9 (Nov 13, 2014) 開始進行期中報告
+  - 更新 wiki 頁面: [GPIO](/embedded/GPIO) (Team #3), [USART](/embedded/USART) (Team #1), [ADC](/embedded/ADC) (Team #2), [I2C](/embedded/I2C) (Team #9), [PWM](/embedded/PWM) (Team #6), [USB](/embedded/USB) (Team #5), [SPI](/embedded/SPI) (Team #8), [Flash](/embedded/Flash) (Team #4), [SDIO](/embedded/SDIO) (Team #7), [CAN](/embedded/CAN) (Team #10)
   - 前述為報告順序
   - 報告內容應該全數在 wiki 中，不得使用任何簡報軟體 (PowerPoint, OpenOffice 等等)
-  - 依據 `STM32F429i Discovery</embedded/STM32F429>`_ 特性介紹對應的硬體週邊和原理 (物理、電子、邏輯電路)，並撰寫相關的韌體程式 (發布於 GitHub)
+  - 依據 [STM32F429i Discovery](/embedded/STM32F429) 特性介紹對應的硬體週邊和原理 (物理、電子、邏輯電路)，並撰寫相關的韌體程式 (發布於 GitHub)
   - 需要列出 datasheet 和參考資料
 
 * Week #8 (Nov 6) 請各組準備 5 分鐘內的「期末專題」提案，並推舉一人到課堂報告
@@ -17,36 +17,36 @@ toc: no
 
 Code Review
 -----------------
-* `Lab35</embedded/Lab35>`_: `2D 射擊遊戲<https://embedded2014.hackpad.com/Week45-6wWE63zdqo4>`_
-* `Lab 34<https://embedded2014.hackpad.com/2014q3-Week-4-8fGeiYGrWq5>`_
+* [Lab35](/embedded/Lab35): [2D 射擊遊戲](https://embedded2014.hackpad.com/Week45-6wWE63zdqo4)
+* [Lab 34](https://embedded2014.hackpad.com/2014q3-Week-4-8fGeiYGrWq5)
 
 UAV (Unmanned aerial vehicle)
 --------------------------------------------
-* `PrecisionHawk UAV & Data Software<https://www.youtube.com/watch?v=V244qPNz_4k>`_
+* [PrecisionHawk UAV & Data Software](https://www.youtube.com/watch?v=V244qPNz_4k)
 
 教材
 ------
 * ARM ELF
-  - `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p206>`_ (Page 149)
+  - [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p206) (Page 149)
 
-* `How it's made: C++ compilers (GCC)<http://www.slideshare.net/szborows/how-its-made-c-compilers-gcc>`_
-* `Dynamic Linker<http://www.slideshare.net/sanjivmalik/dynamic-linker-presentation>`_
+* [How it's made: C++ compilers (GCC)](http://www.slideshare.net/szborows/how-its-made-c-compilers-gcc)
+* [Dynamic Linker](http://www.slideshare.net/sanjivmalik/dynamic-linker-presentation)
 
 預習課程 (期中報告會參照到)
 ---------------------------------------
 * ARM® Cortex M Boot & CMSIS
-  - `Part I<http://www.slideshare.net/RaahulRaghavan/cortex-m-bootupcmsispart13>`_
-  - `Part II<http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootupcmsispart23>`_
-  - `Part III<http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootup-cmsispart33debugarchitecture>`_
+  - [Part I](http://www.slideshare.net/RaahulRaghavan/cortex-m-bootupcmsispart13)
+  - [Part II](http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootupcmsispart23)
+  - [Part III](http://www.slideshare.net/RaahulRaghavan/arm-cortex-m-bootup-cmsispart33debugarchitecture)
 
-* `作業系統基本觀念複習<http://www.slideshare.net/azole/20110824-40848849>`_
+* [作業系統基本觀念複習](http://www.slideshare.net/azole/20110824-40848849)
 
-`Lab36</embedded/Lab36>`_: ELF
+[Lab36](/embedded/Lab36): ELF
 ------------------------------------------------
-* `GNU Linker manual<https://sourceware.org/binutils/docs/ld/>`_
-* `GNU Make 中文手冊<http://www.cc.ntut.edu.tw/~yccheng/oop2005f/GNUMakeManual.pdf>`_
+* [GNU Linker manual](https://sourceware.org/binutils/docs/ld/)
+* [GNU Make 中文手冊](http://www.cc.ntut.edu.tw/~yccheng/oop2005f/GNUMakeManual.pdf)
 
 C4Labs + Linux 讀書會
 ------------------------------
-* Linux 讀書會的 `共筆資訊<https://linux-study.hackpad.com/Linux-Study-F6akvpO8zUg>`_
-* `C4Labs<https://www.facebook.com/groups/219341058274160>`_
+* Linux 讀書會的 [共筆資訊](https://linux-study.hackpad.com/Linux-Study-F6akvpO8zUg)
+* [C4Labs](https://www.facebook.com/groups/219341058274160)

@@ -7,7 +7,7 @@ toc: no
 -------
 - 體驗一個具體而微的 MCU 程式開發過程，使用 GNU Toolchain
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
-- 學習基本 `Git</git>`_ 操作
+- 學習基本 [Git](/git) 操作
 - 以實驗點出日後課程的提綱
 
 預先準備
@@ -25,7 +25,7 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+- 取得 GNU Toolchain: [toolchain-2012_03.tar.bz2](/embedded/Lab1/toolchain-2012_03.tar.bz2) 、保存到 /tmp 目錄，並且解開到系統中，操作如下
 
 .. code-block:: prettyprint
 
@@ -76,8 +76,8 @@ STM32 on QEMU 環境建立與測試
 Git / GitHub
 -------------------
 * 註冊 GitHub 帳號: https://github.com/
-* `Git 簡易教學 + GitHub 介紹<http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html>`_
-* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository `rtenv<https://github.com/embedded2014/rtenv>`_
+* [Git 簡易教學 + GitHub 介紹](http://ncu-csie-snmg.github.io/2013-NCU-CSIE-Website-Design-Competition/git.html)
+* 嘗試用你的 GitHub 帳號去 fork 指定的 Git repository [rtenv](https://github.com/embedded2014/rtenv)
 
 rtenv: 成大資工系同學開發的小型 RTOS
 ------------------------------------------------------
@@ -123,5 +123,5 @@ rtenv: 成大資工系同學開發的小型 RTOS
 
 參考資料
 ------------
-- 位於 Hackpad 的 `Lab25 共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
-- `STM32 Programming (中文)</embedded/Lab19/stm32-prog.pdf>`_
+- 位於 Hackpad 的 [Lab25 共筆](https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU)
+- [STM32 Programming (中文)](/embedded/Lab19/stm32-prog.pdf)

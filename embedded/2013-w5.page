@@ -15,17 +15,17 @@ toc: no
 
 影片
 ------
-* `Dale Dougherty: 我們都是製造家<http://www.ted.com/talks/lang/zh-tw/dale_dougherty_we_are_makers.html>`_
+* [Dale Dougherty: 我們都是製造家](http://www.ted.com/talks/lang/zh-tw/dale_dougherty_we_are_makers.html)
   - 美國是製造家建立的 —— 好奇、熱情的業餘發明家因為改造物品的愛好而引領出全新的產業。《Make》雜誌發行人 Dale Dougherty 在 TED@ MotorCity 中說，所有人本質上都是製造家，並展示一些很酷的新工具，如 Arduino 開放源碼硬體平台、價格合理的 3D 印表機，甚至還有 DIY 衛星
 
-* `MorpHex<https://www.youtube.com/watch?v=HuC6q9kbryw>`_
+* [MorpHex](https://www.youtube.com/watch?v=HuC6q9kbryw)
   -  Boca Bearing Company’s Innovation Contest Winner
-  -  blog: `Zenta - Robotic Creations<http://zentasrobots.com/>`_
+  -  blog: [Zenta - Robotic Creations](http://zentasrobots.com/)
 
-* `Bringing the Incredible Bionic Man<https://www.youtube.com/watch?v=2B7Iu15NPDM>`_
+* [Bringing the Incredible Bionic Man](https://www.youtube.com/watch?v=2B7Iu15NPDM)
   - 由全球 17 家廠商協力打造的「仿生人」(Bionic Man) 在美國登場，這具仿生人以蘇黎世大學社會心理學家 Bertolt Meyer 的臉孔為範本，擁有 60% 到 70% 的真實人體功能，包括人造腎臟、心臟、血液和循環系統
   - 身高185公分，可以在脊椎傷患輔助行走器具的幫助下行走、坐下和站立。它有一顆利用電子幫浦運作的心臟，會跳動並流通人工血液，而人工血液就像真正的血液一樣含有氧氣；一具可植入的人工腎臟則能取代當今洗腎設備的功能
-  - source: `「仿生人」紐約亮相　185cm擁近7成人體功能<http://www.ettoday.net/news/20131012/281281.htm>`_
+  - source: [「仿生人」紐約亮相　185cm擁近7成人體功能](http://www.ettoday.net/news/20131012/281281.htm)
 
 
 Code Review
@@ -57,5 +57,5 @@ Code Review
 
 教材
 ------
-* `ARM Architecture, Instructions, Toolchain/ABI</embedded/arm-lecture-1.pdf>`_
-* `ARM Hardware and Interrupts</embedded/arm-lecture-2.pdf>`_
+* [ARM Architecture, Instructions, Toolchain/ABI](/embedded/arm-lecture-1.pdf)
+* [ARM Hardware and Interrupts](/embedded/arm-lecture-2.pdf)

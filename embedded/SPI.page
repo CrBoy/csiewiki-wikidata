@@ -83,7 +83,7 @@ SPI functional description
 .. image:: /embedded/SPI/SPI block diagram.png
 SPI block diagram [#]_
 
-.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.661
+.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.661
 
 general
 -------
@@ -116,7 +116,7 @@ general
 .. image:: /embedded/SPI/single master _ single slave application.png
 SPI single master/single slave application [#]_
 
-.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.662
+.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.662
 
 .. baud rate ref menual p.834
 
@@ -144,7 +144,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 .. image:: /embedded/SPI/SPI Dota clock timing diagram.png
 Data clock timing diagram[#]_
 
-.. [#] `STM32F407xx Reference Manual <https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA>`_ p.664
+.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.664
 
 Data frame format
 '''''''''''''''''
@@ -686,7 +686,7 @@ Error flags
 
 .. image:: /alternate function mapping.png
 Alternate function mapping[#]_
-.. [#] `Datasheet <http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf>`_ p.61
+.. [#] [Datasheet ](http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf) p.61
 
 .. image:: /Alternate function mapping continued.png
 由於GPIOE的AF最少，功能最為乾淨(不易佔用其他功能所需之腳位)，適合作為IO port 腳。
@@ -708,7 +708,7 @@ STM32F407xx Datasheet p.64
 有沒有 SPI 串接的可能？
 ---------------------
 
-可參考`SPI - Serial Peripheral Interface<http://www.mct.net/faq/spi.html>`_
+可參考[SPI - Serial Peripheral Interface](http://www.mct.net/faq/spi.html)
 這種做法是用在Master的Chip Select腳位很少的情況所使用的。這樣也可以節省硬體的線路，不用在Layout 多餘的線路。
 但這必須要Master 與 Slave軟體上的搭配才可行。
 
@@ -739,6 +739,6 @@ LIS302DL 資料傳送速度是100Hz 或 400Hz。<http://www.st.com/internet/com/
 
 Reference
 =========
-- `STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-- `STM32F429xx I/O pin mapping<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
-- `序列周邊介面 - Wikipedia<http://zh.wikipedia.org/wiki/%E5%BA%8F%E5%88%97%E5%91%A8%E9%82%8A%E4%BB%8B%E9%9D%A2>`_
+- [STM32F42xxx Reference Manual](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
+- [STM32F429xx I/O pin mapping](http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html)
+- [序列周邊介面 - Wikipedia](http://zh.wikipedia.org/wiki/%E5%BA%8F%E5%88%97%E5%91%A8%E9%82%8A%E4%BB%8B%E9%9D%A2)

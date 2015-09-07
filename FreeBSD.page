@@ -1,4 +1,4 @@
-FreeBSD 為一個 `Unix-Like <>`_ 作業系統，由 `BSD <>`_ 衍生出來的一個版本，受到不少人喜愛。後來由 FreeBSD 延伸出其他發行版，如 `PC-BSD <http://www.pcbsd.org/>`_、Desktop-BSD、`FreeNAS <http://www.freenas.org/>`_ 等。
+FreeBSD 為一個 [Unix-Like ]() 作業系統，由 [BSD ]() 衍生出來的一個版本，受到不少人喜愛。後來由 FreeBSD 延伸出其他發行版，如 [PC-BSD ](http://www.pcbsd.org/)、Desktop-BSD、[FreeNAS ](http://www.freenas.org/) 等。
 
 
 安裝
@@ -179,5 +179,5 @@ pkg_info 用於檢視套件資訊：
 
 Reference
 =========
-- `FreeBSD.org <http://www.freebsd.org/>`_
-- `FreeBSD 使用手冊 <http://www.freebsd.org/doc/zh_TW/books/handbook/index.html>`_
+- [FreeBSD.org ](http://www.freebsd.org/)
+- [FreeBSD 使用手冊 ](http://www.freebsd.org/doc/zh_TW/books/handbook/index.html)

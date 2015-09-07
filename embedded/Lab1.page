@@ -24,7 +24,7 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2012_03.tar.bz2</embedded/Lab1/toolchain-2012_03.tar.bz2>`_ 並解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
+- 取得 GNU Toolchain: [toolchain-2012_03.tar.bz2](/embedded/Lab1/toolchain-2012_03.tar.bz2) 並解開到 /usr/local/csl/arm-2012.03 目錄，操作如下
 
 .. code-block:: prettyprint
 

@@ -22,7 +22,7 @@ ARM Information
 作業要求
 -------------
 * 修改 Lab-14/rtenv 目錄底下的檔案，使 kernel.c 為主體的簡易作業系統，得以在 STM32F10x 環境運作
-   - 預期的執行行為應該與 `Lab-11</embedded/Lab11>`_ 相同
+   - 預期的執行行為應該與 [Lab-11](/embedded/Lab11) 相同
    - 可使用原有 FreeRTOS 在 STM32/ARM_CM3 平台的原始程式碼
 
 * 檢查項目:

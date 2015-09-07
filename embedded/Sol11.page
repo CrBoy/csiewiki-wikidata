@@ -15,7 +15,7 @@ priority scheduling
   - 其中又有紀錄 status, priority, stack pointer, delaytime (by tick)，因此可以針對每個 task 有更好的架構
 
 * 針對 system call 方面就因此有 delay 和 setpriority 的產生，可以用來更進一步的操作 TASK
-* 有了 delay 後，新增兩個 task: task1 task2，用來模仿 `Lab-8</embedded/Lab8>`_ 的呈現方式
+* 有了 delay 後，新增兩個 task: task1 task2，用來模仿 [Lab-8](/embedded/Lab8) 的呈現方式
   - 可用四倍 delay time的方式，來輪流輸出hello1 hello2。
 * 驗證 priority scheduling 的方式，是使用 GDB 來追蹤狀態，如下圖：
 

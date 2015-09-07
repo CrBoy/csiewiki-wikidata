@@ -10,22 +10,22 @@ toc: no
 
 STM32F429 Discovery
 -------------------
-* `環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ (Hackpad)
-* `Remote GDB 使用<https://stm32f429.hackpad.com/GDB-3KbCVTstWZj>`_ (Hackpad)
-* `SEGA 遊戲模擬器<http://winfred-lu.blogspot.tw/2014/03/stm32f429i-discovery-sms-emulator-with.html>`_
+* [環境設定](https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR) (Hackpad)
+* [Remote GDB 使用](https://stm32f429.hackpad.com/GDB-3KbCVTstWZj) (Hackpad)
+* [SEGA 遊戲模擬器](http://winfred-lu.blogspot.tw/2014/03/stm32f429i-discovery-sms-emulator-with.html)
 
 可在 STM32F429 Discovery 運作的作業系統 (示範)
 ---------------------------------------------
-* `安裝說明<https://stm32f429.hackpad.com/OS-Support-lYHA4crLwSO>`_ (Hackpad)
+* [安裝說明](https://stm32f429.hackpad.com/OS-Support-lYHA4crLwSO) (Hackpad)
 * uClinux
 * ChibiOS/RT
 * RT-Thread
 
 STM32F4 開發板介紹
 -------------------
-* `一起來認識 STM32F4 開發套件 (1)<http://www.rs-online.com/designspark/electronics/chn/blog/chi-blog-stm32f4%281%29>`_
-* `一起來認識 STM32F4 開發套件 (2)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%282%29>`_
-* `一起來認識 STM32F4 開發套件 (3)<http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%283%29>`_
+* [一起來認識 STM32F4 開發套件 (1)](http://www.rs-online.com/designspark/electronics/chn/blog/chi-blog-stm32f4%281%29)
+* [一起來認識 STM32F4 開發套件 (2)](http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%282%29)
+* [一起來認識 STM32F4 開發套件 (3)](http://www.rs-online.com/designspark/electronics/eng/blog/stm32f4%283%29)
 
 作業要求
 --------

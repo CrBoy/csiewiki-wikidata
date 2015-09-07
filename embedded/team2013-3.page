@@ -22,22 +22,22 @@ toc: no
 
 組員
 ----
-  * `趙愷文</User/kevin>`_
-  * `楊曜賓</User/Andy>`_
-  * `簡源鋒</User/pippen6668>`_
+  * [趙愷文](/User/kevin)
+  * [楊曜賓](/User/Andy)
+  * [簡源鋒](/User/pippen6668)
 
 預算
 ----
-* `六自由度舵機支架含底盤 <http://goods.ruten.com.tw/item/show?21308188214402>`_ - 3738 NTD 
-* `32路舵機控制板<http://goods.ruten.com.tw/item/show?21309039146277>`_ + `五個伺服馬達<http://goods.ruten.com.tw/item/show?21211166626666>`_ （舵機）- 2426 NTD
+* [六自由度舵機支架含底盤 ](http://goods.ruten.com.tw/item/show?21308188214402) - 3738 NTD 
+* [32路舵機控制板](http://goods.ruten.com.tw/item/show?21309039146277) + [五個伺服馬達](http://goods.ruten.com.tw/item/show?21211166626666) （舵機）- 2426 NTD
 
 程式碼
 -------
-* `Robot Arm Controller <https://github.com/kvzhao/FreeRTOS-STM32F4/tree/RobotARM>`_ : 利用STM32F4實踐
-* `Machine Vision System <https://github.com/kvzhao/Pi-TempMatch>`_ : 利用Raspiberry Pi + Camera
+* [Robot Arm Controller ](https://github.com/kvzhao/FreeRTOS-STM32F4/tree/RobotARM) : 利用STM32F4實踐
+* [Machine Vision System ](https://github.com/kvzhao/Pi-TempMatch) : 利用Raspiberry Pi + Camera
 
 開發日誌
 --------
 
-* `Blogger <http://kvzhao.blogspot.tw/2013/12/visual-servo-project.html>`_
+* [Blogger ](http://kvzhao.blogspot.tw/2013/12/visual-servo-project.html)
 

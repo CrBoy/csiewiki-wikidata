@@ -6,24 +6,24 @@ JaredCJR(張家榮)
 
 作業及筆記
 ============
-- week1&2 : `GitHub<https://github.com/JaredCJR/arm-lecture>`_, `Hackpad<https://embedded2014.hackpad.com/Embedded-System-2015-Week-12-sf6Jmps07Gr>`_
-- week3 : `GitHub<https://github.com/JaredCJR/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/Embeded-System-2015-Week3-m1jrag8Cyfn>`_
-- week4 : `GitHub<https://github.com/JaredCJR/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/2015q1-Week4-Lab40-LhLVBnrOSpN>`_
-- week7&8 : `GitHub<https://github.com/JaredCJR/mini-arm-os>`_, `Hackpad<https://embedded2015.hackpad.com/Week7Week-8-eifNIs0bjEF>`_
-- week9 : `Hackpad<https://embedded2015.hackpad.com/Lab43-waG48D3Jofi>`_
+- week1&2 : [GitHub](https://github.com/JaredCJR/arm-lecture), [Hackpad](https://embedded2014.hackpad.com/Embedded-System-2015-Week-12-sf6Jmps07Gr)
+- week3 : [GitHub](https://github.com/JaredCJR/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/Embeded-System-2015-Week3-m1jrag8Cyfn)
+- week4 : [GitHub](https://github.com/JaredCJR/visualizer), [Hackpad](https://embedded2015.hackpad.com/2015q1-Week4-Lab40-LhLVBnrOSpN)
+- week7&8 : [GitHub](https://github.com/JaredCJR/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/Week7Week-8-eifNIs0bjEF)
+- week9 : [Hackpad](https://embedded2015.hackpad.com/Lab43-waG48D3Jofi)
 
 報告筆記
 =========
-- 整體 : `Hackpad<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
-- Arm v7-A VMSA : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-v7-A-VMSA-6dMVuS4kALA>`_
-- lmbench3簡介 : `Hackpad<https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2>`_
-- Measuring Cache and TLB Performance and Their Effect on Benchmark Runtimes 論文分析 : `Hackpad<https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C>`_
-- lmbench3 - lat_ctx實驗過程(較新的部分都直接更新在wiki上，以wiki為主) : `Hackpad<https://embedded2015.hackpad.com/lmbench-lat_ctx-on-BBB-linux-x2YKz26rtxX>`_
-- gnuplot使用分析 : `Hackpad<https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL>`_
+- 整體 : [Hackpad](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
+- Arm v7-A VMSA : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-v7-A-VMSA-6dMVuS4kALA)
+- lmbench3簡介 : [Hackpad](https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2)
+- Measuring Cache and TLB Performance and Their Effect on Benchmark Runtimes 論文分析 : [Hackpad](https://embedded2015.hackpad.com/Team6-ARM-Linux-lmbench-Rlcb2b5Bw6O#:h=IV.-EXPERIMENTAL-RESULTS-FOR-C)
+- lmbench3 - lat_ctx實驗過程(較新的部分都直接更新在wiki上，以wiki為主) : [Hackpad](https://embedded2015.hackpad.com/lmbench-lat_ctx-on-BBB-linux-x2YKz26rtxX)
+- gnuplot使用分析 : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL)
 
 報告
 =========
-- CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
+- CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
 - 主要負責context switch理論分析以及實驗暨結果探討
 
 所見所聞心得

@@ -5,18 +5,18 @@ toc: no
 
 科技公司面試心得
 -------------------------
-* `面試心得:  向澐<http://www.slideshare.net/Arbelge/ss-40098256>`_
-* `面試題目: Synology + MediaTek<https://hackpad.com/ikCrtESFTIR>`_
+* [面試心得:  向澐](http://www.slideshare.net/Arbelge/ss-40098256)
+* [面試題目: Synology + MediaTek](https://hackpad.com/ikCrtESFTIR)
 
 教材
 ----------
 * fork()  系統呼叫的原理
-  - `一個fork的面試題<http://coolshell.cn/articles/7965.html>`_
+  - [一個fork的面試題](http://coolshell.cn/articles/7965.html)
     + 假設 fork.c 編譯出來的結果是 ``fork``，則可用這個指令計算 '-' 數量: ``./fork | wc -c``
 
-  - `In fork() which will run first, parent or child?<http://stackoverflow.com/questions/21586292/in-fork-which-will-run-first-parent-or-child>`_
+  - [In fork() which will run first, parent or child?](http://stackoverflow.com/questions/21586292/in-fork-which-will-run-first-parent-or-child)
     + ``sudo sysctl -w kernel.sched_child_runs_first=1``
-    + `基本能力鑑定</embedded/2015q1w2>`_ 的第 4 題題意不清，所以沒有辦法作答
+    + [基本能力鑑定](/embedded/2015q1w2) 的第 4 題題意不清，所以沒有辦法作答
 
   - 在 GNU/Linux 上測試：事先開啟兩個虛擬終端機視窗，如下圖
     + 右邊是測試程式 (test.c)，使用 ``watch -n 1 ./test`` 每秒更新執行結果一次。耐心凝視結果一陣子，是否發現輸出結果會跳動？
@@ -40,8 +40,8 @@ toc: no
         }
     }
 
-* `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
-  - `ARM Conditional Execution<http://www.davespace.co.uk/arm/introduction-to-arm/conditional.html>`_，以 C 程式來說:
+* [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
+  - [ARM Conditional Execution](http://www.davespace.co.uk/arm/introduction-to-arm/conditional.html)，以 C 程式來說:
 
 .. code-block:: prettyprint
 
@@ -53,13 +53,13 @@ toc: no
 
     addeqs r1, r2, r3, lsl #2
 
-* `FreeRTOS<http://www.freertos.org/>`_
-  - `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - 成大資訊系共筆 `FreeRTOS</embedded/freertos>`_
-  - `Study of an operating system: FreeRTOS<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS_Melot.pdf>`_
-  - `FreeRTOS 即時核心實用指南<http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS-manual-zh.pdf>`_
+* [FreeRTOS](http://www.freertos.org/)
+  - [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - 成大資訊系共筆 [FreeRTOS](/embedded/freertos)
+  - [Study of an operating system: FreeRTOS](http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS_Melot.pdf)
+  - [FreeRTOS 即時核心實用指南](http://wiki.csie.ncku.edu.tw/embedded/FreeRTOS-manual-zh.pdf)
 
 作業須知 (Lab-39)
 ----------------
-* 作業描述: `Lab 39</embedded/Lab39>`_
+* 作業描述: [Lab 39](/embedded/Lab39)
 * 截止日期: Mar 21, 2015 (含) 之前

@@ -3,7 +3,7 @@ title: GitHub 設定指引
 toc: no
 ...
 
-(以下內容由 `許元杰<https://github.com/Jayjack0116>`_ 貢獻)
+(以下內容由 [許元杰](https://github.com/Jayjack0116) 貢獻)
 
 建立 GitHub 帳號
 ------------------------
@@ -20,13 +20,13 @@ toc: no
 
 .. image:: /use-git-02.png
 
-上圖是筆者新增一個叫做 "Embedded-System-Class" 的 repository，以及 Fork 課程所用的 `embedded2015/arm-lecture<https://github.com/embedded2015/arm-lecture/>`_ 這個 repository。
+上圖是筆者新增一個叫做 "Embedded-System-Class" 的 repository，以及 Fork 課程所用的 [embedded2015/arm-lecture](https://github.com/embedded2015/arm-lecture/) 這個 repository。
 
 　
 
 綁訂機器的 SSH key
 ---------------------------
-因為要讓 Github 知道是我們這台電腦上傳的專案，所以我們要和 Github 之間建立一種默契，這個默契就是使用 ssh 通訊協定時的 `public key<http://en.wikipedia.org/wiki/Public-key_cryptography>`_，我們給 Github 我們本機的 ssh public key ，告訴 Github 拿著這個 key 的電腦才是這個帳號的使用者， 如此一來就只能由這台電腦進行管理，才不會造成其他人來我們的帳號亂上傳東西的窘境。
+因為要讓 Github 知道是我們這台電腦上傳的專案，所以我們要和 Github 之間建立一種默契，這個默契就是使用 ssh 通訊協定時的 [public key](http://en.wikipedia.org/wiki/Public-key_cryptography)，我們給 Github 我們本機的 ssh public key ，告訴 Github 拿著這個 key 的電腦才是這個帳號的使用者， 如此一來就只能由這台電腦進行管理，才不會造成其他人來我們的帳號亂上傳東西的窘境。
 
 首先，點選右上角的工具按鈕，進入帳號設定頁面，在頁面的左下角點選 "SSH keys"
 
@@ -62,13 +62,13 @@ SSH key 產生的方法
 
 5. 將剛剛產生的 key 加入 ``ssh-agent`` 中
 
-如果你已安裝了 `Windows 版的 Github<https://windows.github.com/>`_ ，你可以在不使用 SSH Key 的狀況下，執行 clone 等操作。Windows版本同時支援許多 Git bash tool，可運行眾多的 Git 指令。
+如果你已安裝了 [Windows 版的 Github](https://windows.github.com/) ，你可以在不使用 SSH Key 的狀況下，執行 clone 等操作。Windows版本同時支援許多 Git bash tool，可運行眾多的 Git 指令。
 
     5-1. 如果你已安裝 Git bash，輸入以下指令以啟動 ``ssh-agent``
 
     .. image:: /use-git-08.jpg
 
-    　　如果你使用的是 `msysgit<https://msysgit.github.io/>`_ 等軟體，則輸入以下指令
+    　　如果你使用的是 [msysgit](https://msysgit.github.io/) 等軟體，則輸入以下指令
 
     .. image:: /use-git-09.jpg
 
@@ -192,5 +192,5 @@ Push: 將 Commit 送出去
 若想要熟悉 Git 指令
 ---------------------------
 以下是以 GUI 方式呈現指令所產生結果的網站:
-  * `LearnGitBranching<http://pcottle.github.io/learnGitBranching/>`_
-  * `Visualizing Git Concepts with D3<http://onlywei.github.io/explain-git-with-d3/>`_
+  * [LearnGitBranching](http://pcottle.github.io/learnGitBranching/)
+  * [Visualizing Git Concepts with D3](http://onlywei.github.io/explain-git-with-d3/)

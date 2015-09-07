@@ -12,11 +12,11 @@ toc: no
 開發工具使用
 ---------------------
 * 參考上學期課程:
-  - `Lab 6</embedded/Lab6>`_ 與 `Lab 7</embedded/Lab7>`_
+  - [Lab 6](/embedded/Lab6) 與 [Lab 7](/embedded/Lab7)
   - https://gitcafe.com/embedded2012/P-jserv
 
 * descent 的「作業系統之前的程式 for stm32f4discovery」系列文章
-  - `打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
-  - `1+2+3...+10 (ARM 組合語言版本)<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html>`_
-  - `點亮 LED<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html>`_
-  - `USART<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html>`_
+  - [打造 Linux 開發環境](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html)
+  - [1+2+3...+10 (ARM 組合語言版本)](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html)
+  - [點亮 LED](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html)
+  - [USART](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html)

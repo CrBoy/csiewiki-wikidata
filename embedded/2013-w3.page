@@ -5,7 +5,7 @@ toc: no
 
 群眾募資示範
 --------------------
-* `Observer 雲端視訊遙控車<http://www.flyingv.cc/project/374>`_
+* [Observer 雲端視訊遙控車](http://www.flyingv.cc/project/374)
   - 團隊：來自高雄應用科技大學資管系學生所組成的 Neubo，整個產品的開發過程大約花 4 個月的時間
   - 動機：
     * 我們觀察到現代人工作忙碌不在家時，心中總會掛念著親人及寵物們，都會希望在外就能隨時了解他們的動態，但因他們通常都會在家自由活動行走，不會固定在一個位置上，因此我們一直在思考，是否有一項產品，可以讓我們隨時隨地從遠處操控它，不受環境範圍的限制到處行走，即時看見家人或寵物等狀況
@@ -14,21 +14,21 @@ toc: no
     平板，雲端遠程操控遙控車，即時看見您所關心的人事物。
 
   - 硬體規格:
-    * `Raspberry Pi<http://goods.ruten.com.tw/item/show?21212282499259>`_  Rev. 2 (控制核心)
-    * `USB 網路卡<http://goods.ruten.com.tw/item/show?21305120622633>`_
+    * [Raspberry Pi](http://goods.ruten.com.tw/item/show?21212282499259)  Rev. 2 (控制核心)
+    * [USB 網路卡](http://goods.ruten.com.tw/item/show?21305120622633)
     * webcam (羅技)
-    * `舵機控制板<http://goods.ruten.com.tw/item/show?21307228893106>`_
-    * `舵機 (MG995)<http://goods.ruten.com.tw/item/show?21212114973092>`_
-    * `電壓量測模組<http://goods.ruten.com.tw/item/show?21209300116487#auc>`_
-    * `降壓模組<http://goods.ruten.com.tw/item/show?21209276073526>`_
+    * [舵機控制板](http://goods.ruten.com.tw/item/show?21307228893106)
+    * [舵機 (MG995)](http://goods.ruten.com.tw/item/show?21212114973092)
+    * [電壓量測模組](http://goods.ruten.com.tw/item/show?21209300116487#auc)
+    * [降壓模組](http://goods.ruten.com.tw/item/show?21209276073526)
 
 
 教材
 ---------
-- `快快樂樂設計即時多工作業系統</embedded/2012w3/HappyRTOS.pdf>`_
-- `The ARM Architecture (with focus on Cortex-M3)</embedded/2012w3/arm-cortex-m3.pptx>`_
-- `Real Time Systems and RTOS<http://www.slideshare.net/cherviralavm/real-time-systems-amp-rtos>`_
+- [快快樂樂設計即時多工作業系統](/embedded/2012w3/HappyRTOS.pdf)
+- [The ARM Architecture (with focus on Cortex-M3)](/embedded/2012w3/arm-cortex-m3.pptx)
+- [Real Time Systems and RTOS](http://www.slideshare.net/cherviralavm/real-time-systems-amp-rtos)
 
 延伸閱讀
 -------------
-- `Design & Analysis for Embedded & Time-Critical Systems<http://zh.scribd.com/doc/44959852/RTOSlec>`_, Dr. Tom Clarke
+- [Design & Analysis for Embedded & Time-Critical Systems](http://zh.scribd.com/doc/44959852/RTOSlec), Dr. Tom Clarke

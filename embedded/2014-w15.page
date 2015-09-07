@@ -5,13 +5,13 @@ toc: no
 
 教學影片：來自 Intel 的第一手資訊，從多核心到平行處理
 ----------------------------------------------------
-* `多核心處理器有前途嗎？<https://www.youtube.com/watch?v=yixQwNj7G0w>`_
-* `瞭解任務與資料的平行處理功能<https://www.youtube.com/watch?v=B0aK2YN7MzA>`_
-* `關於三項平行處理功能必須要知道的事<https://www.youtube.com/watch?v=M4E8pSQBF1U>`_
+* [多核心處理器有前途嗎？](https://www.youtube.com/watch?v=yixQwNj7G0w)
+* [瞭解任務與資料的平行處理功能](https://www.youtube.com/watch?v=B0aK2YN7MzA)
+* [關於三項平行處理功能必須要知道的事](https://www.youtube.com/watch?v=M4E8pSQBF1U)
 
 擁抱未來世界的九大原則
 ---------------------
-* MIT Media Lab (麻省理工學院多媒體實驗室) 的主任伊藤穰一 (Joi Ito) 的 `TED 演講<http://thethirdthinking.wordpress.com/2014/05/26/>`_
+* MIT Media Lab (麻省理工學院多媒體實驗室) 的主任伊藤穰一 (Joi Ito) 的 [TED 演講](http://thethirdthinking.wordpress.com/2014/05/26/)
   - Resilience over strength. (韌性而非強勢)
   - System over objects (系統而非物件)
   - Disobedience over compliance (反思而非服從)
@@ -24,14 +24,14 @@ toc: no
 
 分組報告
 --------
-* `ChibiOS/RT</embedded/chibios>`_
-  - `問題彙整<https://embedded2014.hackpad.com/ChibiOSRT--V6y7XWEWXRo>`_ (Hackpad)
+* [ChibiOS/RT](/embedded/chibios)
+  - [問題彙整](https://embedded2014.hackpad.com/ChibiOSRT--V6y7XWEWXRo) (Hackpad)
 
-* `Nuttx</embedded/nuttx>`_
-  - `問題彙整<https://embedded2014.hackpad.com/Nuttx--wLwwv4ME67J>`_ (Hackpad)
+* [Nuttx](/embedded/nuttx)
+  - [問題彙整](https://embedded2014.hackpad.com/Nuttx--wLwwv4ME67J) (Hackpad)
 
-* `uClinux</embedded/uclinux>`_
-  - `問題彙整<https://hackpad.com/uClinux-EEaoU4qOP12>`_ (Hackpad)
+* [uClinux](/embedded/uclinux)
+  - [問題彙整](https://hackpad.com/uClinux-EEaoU4qOP12) (Hackpad)
 
-* `Xenomai</embedded/xenomai>`_
-* `rtenv+</embdded/rtenv>`_
+* [Xenomai](/embedded/xenomai)
+* [rtenv+](/embdded/rtenv)

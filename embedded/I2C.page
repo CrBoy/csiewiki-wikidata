@@ -36,7 +36,7 @@ Definition of I2C-bus terminology :
  - Arbitration : procedure to ensure that, if more than one master simultaneously tries to control the bus, only one is allowed to do so and the    winning message is not corrupted
  - Synchronization : procedure to synchronize the clock signals of two or more devices.
 
-.. [#] `pullup resistor <http://www.nxp.com/documents/user_manual/UM10204.pdf>`_ p.55
+.. [#] [pullup resistor ](http://www.nxp.com/documents/user_manual/UM10204.pdf) p.55
 
 Master & Slave mode :
  - Master node — node that generates the clock and initiates communication with slaves
@@ -413,7 +413,7 @@ I²C on STM32F429-Discovery
 
 觀察及使用觸控螢幕，並量測對應的i2c訊號
 
-- `Data sheet: STMPE811 <http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf>`_
+- [Data sheet: STMPE811 ](http://www.st.com/web/en/resource/technical/document/datasheet/CD00186725.pdf)
 
 demo code: 
 
@@ -714,10 +714,10 @@ master
 .. image:: /embedded/i2c5.jpg
 
 master: 
-- `http://youtu.be/Y0udSje3PDc  <http://youtu.be/Y0udSje3PDc>`_
+- [http://youtu.be/Y0udSje3PDc  ](http://youtu.be/Y0udSje3PDc)
 
 slave: 
-- `http://youtu.be/nAkrzcuHWQU  <http://youtu.be/nAkrzcuHWQU>`_
+- [http://youtu.be/nAkrzcuHWQU  ](http://youtu.be/nAkrzcuHWQU)
 
 SMBus
 ======
@@ -787,7 +787,7 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
    SMbus(2.0版本)可透過動態分配給每個Slave一個唯一的adress來解決地址衝突，需遵從ARP(Address Resolution Protocol)地址解析協議
 
-   (有關更詳細動態分配部分可參考- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.6章的部分)
+   (有關更詳細動態分配部分可參考- [reference_manual ](http://smbus.org/specs/smbus20.pdf)  5.6章的部分)
 
 * ALERT mechanism:
 
@@ -801,13 +801,13 @@ SMBus只有絕對認定，Hi為2.1V，Lo為0.8V　
 
 是否傳輸PEC byte.
 
-PEC的BUS協議:- `reference_manual <http://smbus.org/specs/smbus20.pdf>`_  5.5章的部分
+PEC的BUS協議:- [reference_manual ](http://smbus.org/specs/smbus20.pdf)  5.5章的部分
 
 -補充-:CRC演算法
 
 用來檢查資料是否有問題的方法，把資料轉成一多項式，再用另一固定自選多項式進行除法後所得到餘數比對，最後檢查是否和預定值相同
 
-CRC演算法:- `WIKI-循環冗餘校驗 <http://zh.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97>`_
+CRC演算法:- [WIKI-循環冗餘校驗 ](http://zh.wikipedia.org/wiki/%E5%BE%AA%E7%92%B0%E5%86%97%E9%A4%98%E6%A0%A1%E9%A9%97)
 
 PMBUS
 =======
@@ -834,11 +834,11 @@ Group_Command_Protocol
 
 Reference
 =====================================
-- `reference_manual <http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
-- `wikipedia <http://zh.wikipedia.org/wiki/I%C2%B2C>`_
-- `http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf <_http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf>`_
-- `I2C-bus specification and user manual <http://www.nxp.com/documents/user_manual/UM10204.pdf>`_
-- `http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf <http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf>`_
-- `Microchip PMBus Stack User's guide <http://ww1.microchip.com/downloads/en/DeviceDoc/41361A.pdf>`_
+- [reference_manual ](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
+- [wikipedia ](http://zh.wikipedia.org/wiki/I%C2%B2C)
+- [http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf ](_http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf)
+- [I2C-bus specification and user manual ](http://www.nxp.com/documents/user_manual/UM10204.pdf)
+- [http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf ](http://www.ue.pwr.wroc.pl/systemy_rt/RTE9.pdf)
+- [Microchip PMBus Stack User's guide ](http://ww1.microchip.com/downloads/en/DeviceDoc/41361A.pdf)
 
     

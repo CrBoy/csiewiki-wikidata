@@ -5,7 +5,7 @@ toc: no
 
 預期目標
 -------
-* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 [FreeRTOS](http://www.freertos.org/) 並且學習相關的操作
   - 熟悉 FreeRTOS 的內部運作機制
   - 實地練習 Multi-tasking 程式設計
 
@@ -14,8 +14,8 @@ toc: no
 
 FreeRTOS
 ---------------
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 FreeRTOS + romfs
 -------------------------------
@@ -46,10 +46,10 @@ FreeRTOS + romfs
 
 作業繳交方式
 -------------------
-* 更新作業提案到共筆網站: `Lab 21 / 作業共筆<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
+* 更新作業提案到共筆網站: [Lab 21 / 作業共筆](https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f)，需要標注自己的 ID，可參考 [Lab 20 / 作業共筆](https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c) 格式
 * 在 Oct 18, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
    - https://github.com/embedded2013/freertos
 
 參考資訊
 -------------
-* `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
+* [FreeRTOS Implementation](http://www.freertos.org/implementation/main.html)

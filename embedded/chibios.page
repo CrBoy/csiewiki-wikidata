@@ -12,11 +12,11 @@ toc: yes
 * 陳易駿 / alex122380
 * 郭耀琮 / rbugoo131
 
-共筆:  `hackpad<https://stm32f429.hackpad.com/ChibiOSRT--tRTURqqJOhr>`_
+共筆:  [hackpad](https://stm32f429.hackpad.com/ChibiOSRT--tRTURqqJOhr)
 
 ChibiOS/RT 參考應用
 --------------------
-* `ChibiOS/RT users<http://www.chibios.org/dokuwiki/doku.php?id=chibios:users>`_
+* [ChibiOS/RT users](http://www.chibios.org/dokuwiki/doku.php?id=chibios:users)
 
 測試環境架設
 --------------------
@@ -30,7 +30,7 @@ ChibiOS/RT 參考應用
 
      cp neocon /usr/bin
 
- 2. 燒錄ChibiOS/RT，參考 `ChbiOSRT<https://stm32f429.hackpad.com/ChibiOSRT-TX2cgbgXnxB>`_
+ 2. 燒錄ChibiOS/RT，參考 [ChbiOSRT](https://stm32f429.hackpad.com/ChibiOSRT-TX2cgbgXnxB)
 
  3. run testsuite
        輸入 neocon /dev/ttyUSB0 會看到以下畫面
@@ -85,7 +85,7 @@ ChibiOS/RT 參考應用
     + 所有可遮罩式中斷資源全部失效，系統僅能處理不可遮罩式中斷(NMI)
     + 除了可以呼叫chSysEnable()到達Normal狀態，以及chSysSuspend()到達Suspended狀態之外，其他所有system API都不能呼叫
 * Sleep 
-    + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 `idle thread<idle thread>`_，到達這個狀態
+    + 當系統中沒有其他的Thread要跑時，此時系統會執行一個 [idle thread](idle thread)，到達這個狀態
     + 此時系統將處於 low power mode，並等待一個中斷跳出這個狀態
     + 接收到一個IRQ時，將會跑到 SRI 狀態去處理中斷，處理完後會回到 Normal 
 
@@ -158,9 +158,9 @@ ChibiOS/RT 參考應用
 
 * Chibi OS/RT 中對 STM32F4XX 系列所支援的中斷
     +  共定義了99種中斷
-    + `hal_lld.h<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/hal/platforms/STM32F4xx/hal_lld.h>`_ 中定義了可用的 ISR name 和 對應的 vector name
-    + 而在 `/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c<https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c>`_ 中則定義了 Interrupt Vector Table 及宣告了處理 Interrupt 的函式
-    + 另外在 `/os/hal/platforms/STM32F4xx/stm32f4xx.h <https://github.com/ChibiOS/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_ 中有一段 code 定義了 Interrupt number
+    + [hal_lld.h](https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/hal/platforms/STM32F4xx/hal_lld.h) 中定義了可用的 ISR name 和 對應的 vector name
+    + 而在 [/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c](https://github.com/ChibiOS/ChibiOS-RT/blob/master/os/ports/GCC/ARMCMx/STM32F4xx/vectors.c) 中則定義了 Interrupt Vector Table 及宣告了處理 Interrupt 的函式
+    + 另外在 [/os/hal/platforms/STM32F4xx/stm32f4xx.h ](https://github.com/ChibiOS/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h) 中有一段 code 定義了 Interrupt number
 
 * 如何設定中斷
     + 中斷的初始設定
@@ -240,13 +240,13 @@ Creating Thread
         - 包括這條 Thread 所需要的 stack memory , Thread 自己本身存 stucture data 用的 memory
         - 還有 external context, internal context (詳見後面 context switch 的部分)和 interrupt stack(用來 serve interrupt 用的)
 
-    + 接著呼叫 `chThdCreateStatic()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00187>`_ 來創造一個靜態的 Thread
+    + 接著呼叫 [chThdCreateStatic()](http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00187) 來創造一個靜態的 Thread
     + chThdCreateStatic () 裡面會呼叫到一行 chSchWakeupS(tp = chThdCreateI(wsp, size, prio, pf, arg), RDY_OK);
-        - `chThdCreateI()<http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00157>`_ 會將這個 Thread 的資料結構做好初始化 (包括設定好 priority, 初始的 function pointer...等等)
-        - `chSchWakeupS()<http://chibios.sourceforge.net/html/chschd_8c_source.html#l00225>`_ 則是會比對新建的 Thread, 與目前的 Thread 哪個 priority 比較高, 並決定新建的 Thread 是可以立刻開始跑或是要被放入 ready list。
+        - [chThdCreateI()](http://chibios.sourceforge.net/html/chthreads_8c_source.html#l00157) 會將這個 Thread 的資料結構做好初始化 (包括設定好 priority, 初始的 function pointer...等等)
+        - [chSchWakeupS()](http://chibios.sourceforge.net/html/chschd_8c_source.html#l00225) 則是會比對新建的 Thread, 與目前的 Thread 哪個 priority 比較高, 並決定新建的 Thread 是可以立刻開始跑或是要被放入 ready list。
 
 * 動態
-   + 可利用 `chThdCreateFromHeap()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00130>`_ 或是 `chThdCreateFromMemoryPool()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00179>`_ 來動態新增 Thread
+   + 可利用 [chThdCreateFromHeap()](http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00130) 或是 [chThdCreateFromMemoryPool()](http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00179) 來動態新增 Thread
    + From heap:
       - 從Heap中動態配置一塊記憶體
       - Create 時間不固定，但宣告的working area 大小是彈性的 (相同大小的記憶體下 memory pool 較快，1/2倍左右)
@@ -261,7 +261,7 @@ Creating Thread
       - 可直接release memory pool，一次操作就好
 
   之後做的事情跟創造靜態 Thread 的時候幾乎一模一樣 ( chThdCreateI() , chSchWakeupS() )
-  + 動態 Thread 的釋放 : `chThdRelease()<http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074>`_
+  + 動態 Thread 的釋放 : [chThdRelease()](http://chibios.sourceforge.net/html/chdynamic_8c_source.html#l00074)
        - 會先查看 Thread 有無執行完，且是否還有其他 Thread 指向這塊記憶體
        - Thread 的狀態是執行完且沒有其他 Thread 指向這塊記憶體的話就進行釋放記憶體的動作
       
@@ -510,7 +510,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
     }
 
 
-| ` chSchDoReschedule ()<https://github.com/louis7340/ChibiOS-RT-Community/blob/master/os/kernel/src/chschd.c#L355>`_
+| [ chSchDoReschedule ()](https://github.com/louis7340/ChibiOS-RT-Community/blob/master/os/kernel/src/chschd.c#L355)
 
 .. code-block:: c
 
@@ -596,7 +596,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 .. image:: /DMA2D_structure.png
 
 * 在對硬體的driver作設計時會用到很多_IO的type
- + 在`core_cm4.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207>`_裡找到相關定義
+ + 在[core_cm4.h](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/ports/common/ARMCMx/CMSIS/include/core_cm4.h#L207)裡找到相關定義
 .. code-block:: c
 
    #define     __IO    volatile             /*!< Defines 'read / write' permissions*/
@@ -606,13 +606,13 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
 .. image:: /dma2dflow.png
 .. image:: /dma2d_flow.JPG
 
- + `Init<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L208>`_
+ + [Init](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L208)
 
- + `Start<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L290>`_
+ + [Start](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32/DMA2Dv1/stm32_dma2d.c#L290)
 
 * DMA2D memory address
-  + 記錄在`stm32f4xx.h<https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h>`_
-  + 記憶體區間在：0x4002 B000 - 0x4002 BBFF  `reference<http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+  + 記錄在[stm32f4xx.h](https://github.com/rbugoo131/ChibiOS-RT-Community/blob/master/os/hal/platforms/STM32F4xx/stm32f4xx.h)
+  + 記憶體區間在：0x4002 B000 - 0x4002 BBFF  [reference](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 .. code-block:: c
 
@@ -637,7 +637,7 @@ ChibiOS/RT 的 ready list以doubly linked list 實作
    #define DMA2D_JOB_CONST         (3 << 16)   /**< Default color only (FG REG).*/
 
 *
-* DMA2D的API與資料結構設定，記錄在`stm32_dma2d<https://github.com/rbugoo131/ChibiOS-RT-Community/tree/master/os/hal/platforms/STM32/DMA2Dv1>`_
+* DMA2D的API與資料結構設定，記錄在[stm32_dma2d](https://github.com/rbugoo131/ChibiOS-RT-Community/tree/master/os/hal/platforms/STM32/DMA2Dv1)
 
   + dma2d_layercfg_t的struct
 
@@ -780,7 +780,7 @@ Q & A：
 
             ->chSysUnlock()                                         <- ntp被switch離開 系統狀態 I 至 S ,資源給chSysUnlock執行結束後系統回到Normal 狀態
 
-      - `Analysis<https://embedded2014.hackpad.com/Analysis-41cL5mtRq1K>`_
+      - [Analysis](https://embedded2014.hackpad.com/Analysis-41cL5mtRq1K)
 
      -狀況二：(Normal -> SRI -> I-state )
 
@@ -790,7 +790,7 @@ Q & A：
 
 * Q3：msg_queue ＆ thread_queue 關聯在哪？用法? List & Queue 用途?
 
- + A： ThreadQueue因為是採用priority_insert的方式,所以用double linked list實作效率會比較高 (`code<https://embedded2014.hackpad.com/Answer-t13AUYmr714>`_)
+ + A： ThreadQueue因為是採用priority_insert的方式,所以用double linked list實作效率會比較高 ([code](https://embedded2014.hackpad.com/Answer-t13AUYmr714))
 
 * Q4：Binary Semaphore 與mutex 本質上有什麼不同？
 
@@ -798,7 +798,7 @@ Q & A：
 
 * Q5：context switch效能測試算法中為何在取得時間前要做乘2動作?
 
- + A： `因為<https://stm32f429.hackpad.com/ChibiOSRT-test-uxwcLZpZQIS>`_
+ + A： [因為](https://stm32f429.hackpad.com/ChibiOSRT-test-uxwcLZpZQIS)
 
 * Q6：Create thread from heap v.s. mem pool的時間複雜度為何(bigO)?
 
@@ -808,7 +808,7 @@ Q & A：
 
 * Q7：mutex與semephore(binary)為何在同時間內的lock與unlock次數不同？
 
- + A：因為mutex會有priority inversion的可能，所以會較semaphore慢(1.`mutex v.s semaphore<http://swem.logdown.com/posts/177651-mutexes-and-semaphores-demystified>`_ 2. `chibios<http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:semaphores_mutexes>`_)
+ + A：因為mutex會有priority inversion的可能，所以會較semaphore慢(1.[mutex v.s semaphore](http://swem.logdown.com/posts/177651-mutexes-and-semaphores-demystified) 2. [chibios](http://www.chibios.org/dokuwiki/doku.php?id=chibios:articles:semaphores_mutexes))
 
      in code priority inversion 的實作：
 
@@ -854,6 +854,6 @@ Q & A：
 
 參考資料
 --------
-* `Building eye-catching GUIs for your embedded MCU designs<http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs>`_
-* `ChibiOS/RT - SourceForge<http://chibios.sourceforge.net/html/index.html>`_
-* `Overview of the Cortex-M3, Chapter 2<http://www.arm.com/files/word/Yiu_Ch2.pdf>`_
+* [Building eye-catching GUIs for your embedded MCU designs](http://www.embedded.com/design/mcus-processors-and-socs/4426244/1/Building-eye-catching-GUIs-for-your-embedded-MCU-designs)
+* [ChibiOS/RT - SourceForge](http://chibios.sourceforge.net/html/index.html)
+* [Overview of the Cortex-M3, Chapter 2](http://www.arm.com/files/word/Yiu_Ch2.pdf)

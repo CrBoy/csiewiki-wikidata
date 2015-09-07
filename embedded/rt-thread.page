@@ -7,32 +7,32 @@ toc: no
 協作者
 ---
 * 2015 年春季
-   - `周曠宇<https://github.com/luckyjoou>`_, `吳子晨<https://github.com/Eddy0402>`_, `Adrian Huang<https://github.com/AdrianHuang>`_, `吳念祖<https://github.com/nienzu>`_, `吳義路<https://github.com/jackraken>`_, `江冠霆<https://github.com/CKT-tw>`_
+   - [周曠宇](https://github.com/luckyjoou), [吳子晨](https://github.com/Eddy0402), [Adrian Huang](https://github.com/AdrianHuang), [吳念祖](https://github.com/nienzu), [吳義路](https://github.com/jackraken), [江冠霆](https://github.com/CKT-tw)
 
 共筆
 ----
 * 2015 年春季
-   - `Hackpad<https://rt-thread.hackpad.com/RT-Thread-on-Beaglebone-Black-i93C7gRxZuW>`_
+   - [Hackpad](https://rt-thread.hackpad.com/RT-Thread-on-Beaglebone-Black-i93C7gRxZuW)
 
 目錄
 ---
-* `AM335x ARM Cortex-A8 Boot Sequence<#AM335x ARM Cortex-A8 Boot Sequence>`_
+* [AM335x ARM Cortex-A8 Boot Sequence](#AM335x ARM Cortex-A8 Boot Sequence)
 
-* `VMM (Virtual Machine Module) and vbus <#VMM (Virtual Machine Module) and vbus>`_
-  - `Introduction to VMM <#Introduction to VMM>`_
-  - `Running VMM on QEMU (target machine: realview-pb-a8) <#Running VMM on QEMU (target machine: realview-pb-a8)>`_
-  - `Running VMM on BeagleBone Black <#Running VMM on BeagleBone Black>`_
-  - `Introduction to vbus <#Introduction to vbus>`_
+* [VMM (Virtual Machine Module) and vbus ](#VMM (Virtual Machine Module) and vbus)
+  - [Introduction to VMM ](#Introduction to VMM)
+  - [Running VMM on QEMU (target machine: realview-pb-a8) ](#Running VMM on QEMU (target machine: realview-pb-a8))
+  - [Running VMM on BeagleBone Black ](#Running VMM on BeagleBone Black)
+  - [Introduction to vbus ](#Introduction to vbus)
 
-* `記憶體管理<#記憶體管理>`_
-   - `MMU Configuration in RT-Thread<#MMU Configuration in RT-Thread>`_
-   - `Memory Pool (mempool.c)<#Memory Pool (mempool.c)>`_
-   - `Heap<#Heap>`_
-   - `Slab Allocator<#Slab Allocator>`_
-* `Device File Systestem<#Device File Systestem>`_
-   - `RTT的應用層接口實作<#RTT的應用層接口實作>`_
-   - `DFS框架的組成內容<#DFS框架的組成內容>`_
-   - `RTT文件系統初始化過程<#RTT文件系統初始化過程>`_
+* [記憶體管理](#記憶體管理)
+   - [MMU Configuration in RT-Thread](#MMU Configuration in RT-Thread)
+   - [Memory Pool (mempool.c)](#Memory Pool (mempool.c))
+   - [Heap](#Heap)
+   - [Slab Allocator](#Slab Allocator)
+* [Device File Systestem](#Device File Systestem)
+   - [RTT的應用層接口實作](#RTT的應用層接口實作)
+   - [DFS框架的組成內容](#DFS框架的組成內容)
+   - [RTT文件系統初始化過程](#RTT文件系統初始化過程)
 
 
 AM335x ARM Cortex-A8 Boot Sequence
@@ -71,7 +71,7 @@ ROM Code主要有幾項任務:
 表1 ROM Exception Vectors (page 4099 in AM335x TRM)
 
   - Public ROM Code CRC (0x20020): 由0x20000-0x2BFFF計算得出的四個位元組CRC值。
-  - Dead loops (0x20080-0x200FF): 該區段定義預設的exception handlers，其預設handlers都是執行while(1)迴圈，程式設計者可以定義相同名字的exception handler，如此便能覆蓋 (override)對應之預設exception handlers。可參考`mini-arm-os<https://github.com/jserv/mini-arm-os/blob/master/05-TimerInterrupt/startup.c#L63>`_與`freertos<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s#L124>`_程式碼，以便了解其設計概念。
+  - Dead loops (0x20080-0x200FF): 該區段定義預設的exception handlers，其預設handlers都是執行while(1)迴圈，程式設計者可以定義相同名字的exception handler，如此便能覆蓋 (override)對應之預設exception handlers。可參考[mini-arm-os](https://github.com/jserv/mini-arm-os/blob/master/05-TimerInterrupt/startup.c#L63)與[freertos](https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/startup/gcc_ride7/startup_stm32f10x_md.s#L124)程式碼，以便了解其設計概念。
   - Code (started from 0x20100): ROM程式碼
   - ROM Version (0x2BFFC-0x2BFFF): ROM Code Version
 
@@ -91,7 +91,7 @@ VMM模組可同時運行Linux與RT-Thread，如圖五所示。VMM以半虛擬化
 
 
 三個元件需要用來實現同時運行RT-Thread與Linux，如下所述:
-    1. Linux VMM Kernel Patches: RT-Thread開發者發佈`兩個Kernel Patches <https://github.com/AdrianHuang/rt-thread-for-vmm/tree/master/components/vmm/linux_patch-v3.8>`_支援多個作業系統同時運行。
+    1. Linux VMM Kernel Patches: RT-Thread開發者發佈[兩個Kernel Patches ](https://github.com/AdrianHuang/rt-thread-for-vmm/tree/master/components/vmm/linux_patch-v3.8)支援多個作業系統同時運行。
     2. Linux VMM Kernel Module (rtvmm.ko): 此模組用來載入RT-Thread Binary File。
     3. RT-Thread Binary File (rtthread.bin): RT-Thread作業系統二進制檔。
 
@@ -100,7 +100,7 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 
 [編譯與執行]
 
-`rt-thread-vmm-builder <https://github.com/AdrianHuang/rt-thread-vmm-builder>`_自動地將Linux VMM Kernel Patches、Linux VMM Kernel Module與RT-Thread Binary File編譯，並產生kernel image (zImage)與root file system。參考底下步驟 (同時可參考`rt-thread-vmm-builder README檔 <https://github.com/AdrianHuang/rt-thread-vmm-builder>`_建構環境及相關Toolchain):
+[rt-thread-vmm-builder ](https://github.com/AdrianHuang/rt-thread-vmm-builder)自動地將Linux VMM Kernel Patches、Linux VMM Kernel Module與RT-Thread Binary File編譯，並產生kernel image (zImage)與root file system。參考底下步驟 (同時可參考[rt-thread-vmm-builder README檔 ](https://github.com/AdrianHuang/rt-thread-vmm-builder)建構環境及相關Toolchain):
 
 .. code-block:: prettyprint
 
@@ -127,7 +127,7 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 
 Running VMM on BeagleBone Black
 --------------------------------------------
-參考`Building BBB Kernel - Downloading and building the Linux Kernel <http://elinux.org/Building_BBB_Kernel#Downloading_and_building_the_Linux_Kernel>`_，嘗試將Linux VMM Kernel Patches加進該kernel (v3.8.13)。然而，遇到底下幾個問題:
+參考[Building BBB Kernel - Downloading and building the Linux Kernel ](http://elinux.org/Building_BBB_Kernel#Downloading_and_building_the_Linux_Kernel)，嘗試將Linux VMM Kernel Patches加進該kernel (v3.8.13)。然而，遇到底下幾個問題:
 
 **編譯錯誤**: 執行`make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs`命令後，出現底下編譯錯誤:
 
@@ -145,7 +145,7 @@ Running VMM on BeagleBone Black
     make[1]: *** [arch/arm/kernel/entry-armv.o] Error 1
     make: *** [arch/arm/kernel] Error 2
 
-其中{reglist}^的"^"，代表該指令執行於ARM state，詳情參考`ARM官網 <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204j/Cihcadda.html>`_。底下兩個方法避免此編譯錯誤:
+其中{reglist}^的"^"，代表該指令執行於ARM state，詳情參考[ARM官網 ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204j/Cihcadda.html)。底下兩個方法避免此編譯錯誤:
 
 [編譯錯誤解決方法 - 加入ARM()巨集]
 
@@ -166,7 +166,7 @@ Running VMM on BeagleBone Black
 
 .. image:: https://lh3.googleusercontent.com/-38rtH8m72j8/VZDcAG1y_pI/AAAAAAAAILI/qpbgNeQwoIo/s884/vmm-hang.jpg
 
-追蹤核心原始碼`arch/arm/include/asm/unified.h <http://lxr.free-electrons.com/source/arch/arm/include/asm/unified.h#L44>`_，發現開啟CONFIG_THUMB2_KERNEL選項，ARM()巨集是空巨集，導致核心卡住。故關閉CONFIG_THUMB2_KERNEL (注意: ARM()巨集不用加到arch/arm/kernel/entry-armv.S)。
+追蹤核心原始碼[arch/arm/include/asm/unified.h ](http://lxr.free-electrons.com/source/arch/arm/include/asm/unified.h#L44)，發現開啟CONFIG_THUMB2_KERNEL選項，ARM()巨集是空巨集，導致核心卡住。故關閉CONFIG_THUMB2_KERNEL (注意: ARM()巨集不用加到arch/arm/kernel/entry-armv.S)。
 
 [編譯錯誤解決方法 - 關閉CONFIG_THUMB2_KERNEL選項]
 關閉CONFIG_THUMB2_KERNEL選項，編譯能成功且可以順利開進核心。然而，載入rtvmm.ko模組會發生錯誤，如下圖所示:
@@ -177,7 +177,7 @@ Running VMM on BeagleBone Black
 .. image:: https://lh3.googleusercontent.com/-vCmD1QGqsrM/VZDnynjpefI/AAAAAAAAILs/IeOaCy3Nl_U/s800/vmm-no-thumb2-kernel-option-insmod-rtvmm-failed.png
 載入rtvmm.ko出錯畫面
 
-追縱RT-thread程式後，發現沒有支援BeagleBone Black的VMM功能 (詳見: `libcpu/arm/am335x <https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/am335x>`_。目前正在參考`Realview Cortex A8 VMM的支援 <https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/realview-a8-vmm>`_，以便在BeagleBone Black支援VMM。
+追縱RT-thread程式後，發現沒有支援BeagleBone Black的VMM功能 (詳見: [libcpu/arm/am335x ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/am335x)。目前正在參考[Realview Cortex A8 VMM的支援 ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/realview-a8-vmm)，以便在BeagleBone Black支援VMM。
 
 
 Introduction to vbus
@@ -453,7 +453,7 @@ am3358(Cortex-A8):
 
 Q: What does line length mean?
 
--  ` <http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html>`__\ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html
+-  [ ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html)_\ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html
 
 .. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737577888_Reg1-6.png
    :alt: 
@@ -592,7 +592,7 @@ rt\_free\_sethook(func);
 參考影片
 --------
 
-` <https://www.youtube.com/watch?v=h0VMLXavx30>`__\ https://www.youtube.com/watch?v=h0VMLXavx30
+[ ](https://www.youtube.com/watch?v=h0VMLXavx30)_\ https://www.youtube.com/watch?v=h0VMLXavx30
 
 解說了 slob, slab, slub 三種 "slab" 的歷史與實作。
 
@@ -794,26 +794,26 @@ rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型
 參考資料
 --------------------------------------------
 * Beaglebone
-  - `Rev. changes<http://elinux.org/Beagleboard:BeagleBoneBlack#Revision_C_.28Production_Version.29>`_
-  - `Schematic<http://beagleboard.org/static/beaglebone/latest/Docs/Hardware/BONE_SCH.pdf>`_
-  - `System Reference Manual<http://docs-asia.electrocomponents.com/webdocs/12d7/0900766b812d788b.pdf>`_
+  - [Rev. changes](http://elinux.org/Beagleboard:BeagleBoneBlack#Revision_C_.28Production_Version.29)
+  - [Schematic](http://beagleboard.org/static/beaglebone/latest/Docs/Hardware/BONE_SCH.pdf)
+  - [System Reference Manual](http://docs-asia.electrocomponents.com/webdocs/12d7/0900766b812d788b.pdf)
 
 * AM335x (3358) TRM, Datasheet
-  - `TRM<https://drive.google.com/open?id=0B90H2V1uw2FnVmNndG5jV3V5N2M&authuser=0>`_
-  - `Datasheet<https://drive.google.com/open?id=0B90H2V1uw2FnbzFDZTNpRC1jOGc&authuser=0>`_
-  - `Boot process<http://processors.wiki.ti.com/index.php/AM335x_U-Boot_User%27s_Guide#U-Boot>`_
+  - [TRM](https://drive.google.com/open?id=0B90H2V1uw2FnVmNndG5jV3V5N2M&authuser=0)
+  - [Datasheet](https://drive.google.com/open?id=0B90H2V1uw2FnbzFDZTNpRC1jOGc&authuser=0)
+  - [Boot process](http://processors.wiki.ti.com/index.php/AM335x_U-Boot_User%27s_Guide#U-Boot)
 
 * ARM Cortex-A8
-  - `TRM<https://drive.google.com/open?id=0B90H2V1uw2FnRnJOSlpzTm4yWFU&authuser=0>`_
-  - ISA: `①<https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0>`_ `②<http://people.cs.nctu.edu.tw/~chenwj/dokuwiki/doku.php?id=arm>`_
+  - [TRM](https://drive.google.com/open?id=0B90H2V1uw2FnRnJOSlpzTm4yWFU&authuser=0)
+  - ISA: [①](https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0) [②](http://people.cs.nctu.edu.tw/~chenwj/dokuwiki/doku.php?id=arm)
   - Bus:
-    - `AMBA<https://drive.google.com/open?id=0B90H2V1uw2FnRHpIWGJLaUUwZzA&authuser=0>`_
-    - `APB<https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0>`_
-    - `AXI<https://drive.google.com/open?id=0B90H2V1uw2FnSVBERUdFUFlsZkE&authuser=0>`_
+    - [AMBA](https://drive.google.com/open?id=0B90H2V1uw2FnRHpIWGJLaUUwZzA&authuser=0)
+    - [APB](https://drive.google.com/open?id=0B90H2V1uw2FnUEZzWFpmR3JKa1U&authuser=0)
+    - [AXI](https://drive.google.com/open?id=0B90H2V1uw2FnSVBERUdFUFlsZkE&authuser=0)
 
 * POSIX
-  - `The Open Group Base Specifications Issue 7<http://pubs.opengroup.org/onlinepubs/9699919799//>`_
-  - `Open POSIX Test Suite<http://posixtest.sourceforge.net/>`_
+  - [The Open Group Base Specifications Issue 7](http://pubs.opengroup.org/onlinepubs/9699919799//)
+  - [Open POSIX Test Suite](http://posixtest.sourceforge.net/)
 
 * EMMC
-  - `Kingston KE4CN2H5A<http://uk.rs-online.com/web/p/flash-memory-chips/7852322P/>`_
+  - [Kingston KE4CN2H5A](http://uk.rs-online.com/web/p/flash-memory-chips/7852322P/)

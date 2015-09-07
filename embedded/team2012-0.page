@@ -15,7 +15,7 @@ toc: no
 
 組員
 ----
- * `jserv</User/jserv>`_
+ * [jserv](/User/jserv)
 
 預算
 ----
@@ -23,7 +23,7 @@ toc: no
    + http://www.segger.com/jlink.html
 
 程式碼
- * `F9 Microkernel<https://github.com/f9micro/f9-kernel>`_ at GitHub
+ * [F9 Microkernel](https://github.com/f9micro/f9-kernel) at GitHub
 
 參考資訊
 -------

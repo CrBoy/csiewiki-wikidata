@@ -5,15 +5,15 @@ toc: no
 
 教材
 ---
-- `Real Time Operating Systems</embedded/2012w5/rtos-design-issues.pdf>`_
-- `RTOS Design #1</embedded/2012w5/RTOS-1.pdf>`_
-- `RTOS Design #2</embedded/2012w5/RTOS-2.pdf>`_
-- `RTOS Design #3</embedded/2012w5/RTOS-3.pdf>`_
-- `RTOS Design #4</embedded/2012w5/RTOS-4.pdf>`_
-- `RTOS Design #5</embedded/2012w5/RTOS-5.pdf>`_
-- `RTOS Design #6</embedded/2012w5/RTOS-6.pdf>`_
-- `RTOS Design #7</embedded/2012w5/RTOS-7.pdf>`_
-- `RTOS Design #8</embedded/2012w5/RTOS-8.pdf>`_
+- [Real Time Operating Systems](/embedded/2012w5/rtos-design-issues.pdf)
+- [RTOS Design #1](/embedded/2012w5/RTOS-1.pdf)
+- [RTOS Design #2](/embedded/2012w5/RTOS-2.pdf)
+- [RTOS Design #3](/embedded/2012w5/RTOS-3.pdf)
+- [RTOS Design #4](/embedded/2012w5/RTOS-4.pdf)
+- [RTOS Design #5](/embedded/2012w5/RTOS-5.pdf)
+- [RTOS Design #6](/embedded/2012w5/RTOS-6.pdf)
+- [RTOS Design #7](/embedded/2012w5/RTOS-7.pdf)
+- [RTOS Design #8](/embedded/2012w5/RTOS-8.pdf)
 
 參考資訊
 -------

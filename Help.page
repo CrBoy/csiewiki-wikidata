@@ -143,10 +143,10 @@ Markup
 ======
 
 This wiki’s pages are written in
-`reStructuredText <http://docutils.sourceforge.net/rst.html>`_. If
+[reStructuredText ](http://docutils.sourceforge.net/rst.html). If
 you’re not familiar with reStructuredText, you should start by looking
 at the
-`primer <http://docutils.sourceforge.net/docs/user/rst/quickstart.html>`_
+[primer ](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
 and the `quick reference
 guide <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_.
 Note that not all reStructuredText constructs are currently supported.
@@ -155,11 +155,11 @@ Use the preview button if you’re in doubt.
 Wiki links
 ----------
 
-連結到其他 wiki 頁面的寫法為: ```頁面名稱 <>`_``.
+連結到其他 wiki 頁面的寫法為: [``頁面名稱 ]()``.
 (Gitit 系統會轉換沒有標的之連結為 wikilinks.)
 
 若新增非頁面名稱所標示的連結，可這麼寫:
-```其他名稱或描述 <頁面名稱>`_`` 或
+[``其他名稱或描述 ](頁面名稱)`` 或
 
 ::
 
@@ -180,10 +180,10 @@ pages on wine, you may wish to organize them like so:
     Wine/Burgundy
     Wine/Cabernet Sauvignon
 
-Note that a wiki link ```Burgundy <>`_`` that occurs inside the ``Wine``
+Note that a wiki link [``Burgundy ]()`` that occurs inside the ``Wine``
 directory will link to ``Wine/Burgundy``, and not to ``Burgundy``. To
 link to a top-level page called ``Burgundy``, you’d have to use
-```Burgundy </Burgundy>`_``.
+[``Burgundy ](/Burgundy)``.
 
 To link to a directory listing for a subdirectory, use a trailing slash:
-```Wine/ <>`_`` will link to a listing of the ``Wine`` subdirectory.
+[``Wine/ ]()`` will link to a listing of the ``Wine`` subdirectory.

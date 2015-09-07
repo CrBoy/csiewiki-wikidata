@@ -13,13 +13,13 @@ LED 電子看板
 
 Domburg 的任務是藉由可公開取得的工具取得連結該電腦、並透過網路取得完整控制權的方法；而一旦讓 LED 看板恢復原本的功能，他又進行了下一步──利用 Raspberry Pi 來驅動它。Domburg 在 Raspberry Pi 裝載了 Linux 系統以及視訊客戶端介面，達到了以下視訊連結中展示的結果；視訊中的畫面閃爍是因為透過攝影機翻拍，肉眼直接觀看並沒有問題。
 
-`利用Raspberry Pi驅動的LED看板<http://www.youtube.com/watch?v=YMd-9ujyaY0>`_
+[利用Raspberry Pi驅動的LED看板](http://www.youtube.com/watch?v=YMd-9ujyaY0)
 
 嵌入傳統電話機的音樂播放控制器
 --------------------------------------------------
 另一位 Kees Van Weert 利用 Raspberry Pi 讓傳統電話機變身音訊系統的控制介面；他在電話機裡放了一台 Raspberry Pi，作為指令翻譯並傳送出正確的結果。從下面的視訊可以看到，能用傳統電話機的案件來控制音樂曲目選擇、音量大小等等。
 
-`嵌入傳統電話機的音樂播放控制器<http://www.youtube.com/watch?v=MZjX6UAjFxQ>`_
+[嵌入傳統電話機的音樂播放控制器](http://www.youtube.com/watch?v=MZjX6UAjFxQ)
 
 
 Raspberry Pi 位元幣挖礦機
@@ -35,13 +35,13 @@ Raspberry Pi 溫室控制系統
 ----------------------------------------
 這個設計範例能讓 Raspberry Pi 真的能拿來種覆盆子 (編按：Raspberry就是覆盆子啦…)！以下視訊展示的是種植番茄，但其實應用於所有的植物都可以；Raspberry Pi 會追蹤植物種植箱的溫度、濕度以及日照，並根據需要做適度的調整，包括澆水、控制光線等等，其收成結果值得期待…
 
-`Raspberry Pi 溫室控制系統<http://www.youtube.com/watch?v=k3OU84bd3oU>`_
+[Raspberry Pi 溫室控制系統](http://www.youtube.com/watch?v=k3OU84bd3oU)
 
 Raspberry Pi 智慧型微波爐
 ----------------------------------------
 Nathan Broadbent 所開發的 Raspberry Pi 微波爐據說可提供的功能包括：重新設計過的觸控操作面板、比較好聽的聲音、藉由網際網路自動調整時鐘、支援語音控制、能用條碼掃描機查看網路上的食譜、能透過手機來控制並設定烹調方法…當然，當東西煮好了它還是會嗶嗶叫。其實這真的很有潛力賣到商業市場！
 
-`Raspberry Pi智慧型微波爐<http://www.youtube.com/watch?v=e2YtARzJTys>`_
+[Raspberry Pi智慧型微波爐](http://www.youtube.com/watch?v=e2YtARzJTys)
 
 滲透測試電腦
 --------------------------------------------------
@@ -54,13 +54,13 @@ http://www.pwnpi.com/
 ----------------
 有一個名為 The Developer Garden 的團隊，在 Oracle 工程師的幫助下打造了能透過打電話來煮咖啡的機器；其操作如同以下視訊連結所示。理論上 (目前該裝置還在原型階段) 使用者只要在下班路上打個電話，就能在回到家時享用一杯美味的咖啡──接下來它應該還會升級到可添加奶精、糖的功能。
 
-`聲控咖啡機<http://vimeo.com/54300364>`_
+[聲控咖啡機](http://vimeo.com/54300364)
 
 Raspberry Pi要當狗狗的好朋友！
 ------------------------------------------------
 狗狗是人類最忠實的朋友，而在這個設計範例中，Raspberry Pi 則成為狗狗最好的朋友！如下面的視訊所展示，這台 Raspberry Pi 平台機器會接受電子郵件，當有新的訊息進來，就會送出飼料並拍攝照片。
 
-`Raspberry Pi 寵物餵食機<http://www.youtube.com/watch?v=PAHrBA0jYAo>`_
+[Raspberry Pi 寵物餵食機](http://www.youtube.com/watch?v=PAHrBA0jYAo)
 
 用 Raspberry Pi 打造傳統遊戲機台
 --------------------------------------------------
@@ -70,4 +70,4 @@ Raspberry Pi 讓 R2D2 成真！
 ---------------------------------------------
 電影裡的 R2D2 機器人可藉由 Raspberry Pi 實現！以下的範例透過 Raspberry Pi 為一台 R2 機器人賦予支援聲控、臉部辨識、超音波測距等等功能。
 
-`Raspberry Pi打造R2D2機器人<http://www.youtube.com/watch?v=znuUm5vbSpI>`_
+[Raspberry Pi打造R2D2機器人](http://www.youtube.com/watch?v=znuUm5vbSpI)

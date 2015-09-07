@@ -6,7 +6,7 @@ toc: yes
 
 題目
 ====
-- `自動寫春聯機<https://www.youtube.com/watch?v=WRdwvQpyOZI>`_
+- [自動寫春聯機](https://www.youtube.com/watch?v=WRdwvQpyOZI)
 
 預期目標
 ========
@@ -14,8 +14,8 @@ toc: yes
 
 組員
 ====
-* `蕭傳錡</User/legendd>`_ ；FB:https://www.facebook.com/legend.shiao
-* `鄭煒翰</User/skylinen4s>`_ ；FB:https://www.facebook.com/weihan.zheng
+* [蕭傳錡](/User/legendd) ；FB:https://www.facebook.com/legend.shiao
+* [鄭煒翰](/User/skylinen4s) ；FB:https://www.facebook.com/weihan.zheng
 
 預算
 ====
@@ -47,13 +47,13 @@ toc: yes
   * **總額** ：NT＄1704
 參考資料
 ========
-- `L298 Reference<https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf>`_ 
-- `四線步進馬達驅動方法<http://blog.csdn.net/feiyinzilgd/article/details/5743730>`_ 
-- `透過L297/L298控制二相步進馬達<http://wukcsoft.blogspot.tw/2011/05/L297-L298.html>`_ 
+- [L298 Reference](https://www.sparkfun.com/datasheets/Robotics/L298_H_Bridge.pdf) 
+- [四線步進馬達驅動方法](http://blog.csdn.net/feiyinzilgd/article/details/5743730) 
+- [透過L297/L298控制二相步進馬達](http://wukcsoft.blogspot.tw/2011/05/L297-L298.html) 
 
 研究紀錄
 ========
-- `研究記錄共筆<https://autowrite.hackpad.com/Working-Record-pgtrerXo4mM>`_ 
+- [研究記錄共筆](https://autowrite.hackpad.com/Working-Record-pgtrerXo4mM) 
 - 2013.12.18 了解萌典中筆畫順序的架構(XML、JSON)，還有Parser的作用
 - 2013.12.20 用實驗室中已有的伺服馬達組裝，但是發現不適合此專案
 - 2013.12.23 了解步進馬達的使用、還有驅動電路L298，準備用GPIO來控制輸入訊號

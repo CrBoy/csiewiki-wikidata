@@ -5,7 +5,7 @@ categories: User
 
 簡介
 ====
-- 成功大學工程科學所 105 級，`黃悅民教授<https://sites.google.com/site/huangpage/home>`_的學生
+- 成功大學工程科學所 105 級，[黃悅民教授](https://sites.google.com/site/huangpage/home)的學生
 - 台灣嘉義人，現居台南市
 - 英文名: Kuro Hung
 
@@ -31,35 +31,35 @@ categories: User
 學習成果
 -------
 - 作業 GitHub
-    - Lab38 : `GitHub<https://github.com/hkuro/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/pSiJC6LvXcp#開發紀錄>`_
-    - Lab39 : `GitHub<https://github.com/hkuro/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/2015q3-Week-3-Lab39-R9DIxF4i5vO>`_
-    - Lab40 : `GitHub<https://github.com/hkuro/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/x56aYRrtwV7>`_
-    - Lab41 : `學習紀錄<https://embedded2015.hackpad.com/B5tCwI9rCTM>`_
+    - Lab38 : [GitHub](https://github.com/hkuro/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/pSiJC6LvXcp#開發紀錄)
+    - Lab39 : [GitHub](https://github.com/hkuro/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/2015q3-Week-3-Lab39-R9DIxF4i5vO)
+    - Lab40 : [GitHub](https://github.com/hkuro/visualizer), [Hackpad](https://embedded2015.hackpad.com/x56aYRrtwV7)
+    - Lab41 : [學習紀錄](https://embedded2015.hackpad.com/B5tCwI9rCTM)
 
 - 參與協作的 Hackpad 
-    - `個人筆記<https://embedded2015.hackpad.com/hkuro-drE19cLLkxl>`_
-        - `Week#3 Note<https://embedded2015.hackpad.com/Week3-Note-z3ngFQODIqC>`_
-        - `Week#4 Note<https://embedded2015.hackpad.com/Week4-Note-lm2Q9FCgDnq>`_
-        - `Week#5 GitHub Note<https://embedded2015.hackpad.com/Week5-Note-JT5k4JNItXY>`_
-        - `Week#6 Note<https://embedded2015.hackpad.com/Week6-Note-vz3TBYMf6DE>`_
-        - `Week#7 Note<https://embedded2015.hackpad.com/Week7-Note-s6gD3WnM1kI>`_
-        - `Week#8 Note<https://embedded2015.hackpad.com/Week8-Note-ukXdv8pmyXc>`_
-        - `Week#9 Note<https://embedded2015.hackpad.com/Week9-Note-ra2QdJ7yPvG>`_
-        - `Week#10 Note<https://embedded2015.hackpad.com/Week10-Note-rXiAuENFJZP>`_
-        - `Week#11 Note<https://embedded2015.hackpad.com/Week11-Note-Ta33xiV7Pdt>`_
-    - `報告筆記<https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH>`_
-        - `Linux Kernel 行為分析(理論): Scheduling + Timer Interrupt<https://embedded2015.hackpad.com/Linux-Kernel-Scheduling-Timer-Interrupt-Y1yFStkKVyr>`_
-        - `Linux Kernel 行為分析(工具): Ftrace + KernelShark<https://embedded2015.hackpad.com/Linux-Kernel-Ftrace-KernelShark-QdfD65akDu7#:h=KernelShark>`_
-        - `Linux Kernel 行為分析(實作): Scheduling + Timer Interrupt<https://hackpad.com/Linux-Kernel--b4sSwvUcRr0#:h=下一步，目標是透過-Ftrace-去驗證-Linux-sch>`_
-        - `數學問題 (2015.05.12)<https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8>`_
-        - `Yocto PPt<https://dl.dropboxusercontent.com/u/33532799/Yocto%20Project.pptx>`_
+    - [個人筆記](https://embedded2015.hackpad.com/hkuro-drE19cLLkxl)
+        - [Week#3 Note](https://embedded2015.hackpad.com/Week3-Note-z3ngFQODIqC)
+        - [Week#4 Note](https://embedded2015.hackpad.com/Week4-Note-lm2Q9FCgDnq)
+        - [Week#5 GitHub Note](https://embedded2015.hackpad.com/Week5-Note-JT5k4JNItXY)
+        - [Week#6 Note](https://embedded2015.hackpad.com/Week6-Note-vz3TBYMf6DE)
+        - [Week#7 Note](https://embedded2015.hackpad.com/Week7-Note-s6gD3WnM1kI)
+        - [Week#8 Note](https://embedded2015.hackpad.com/Week8-Note-ukXdv8pmyXc)
+        - [Week#9 Note](https://embedded2015.hackpad.com/Week9-Note-ra2QdJ7yPvG)
+        - [Week#10 Note](https://embedded2015.hackpad.com/Week10-Note-rXiAuENFJZP)
+        - [Week#11 Note](https://embedded2015.hackpad.com/Week11-Note-Ta33xiV7Pdt)
+    - [報告筆記](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
+        - [Linux Kernel 行為分析(理論): Scheduling + Timer Interrupt](https://embedded2015.hackpad.com/Linux-Kernel-Scheduling-Timer-Interrupt-Y1yFStkKVyr)
+        - [Linux Kernel 行為分析(工具): Ftrace + KernelShark](https://embedded2015.hackpad.com/Linux-Kernel-Ftrace-KernelShark-QdfD65akDu7#:h=KernelShark)
+        - [Linux Kernel 行為分析(實作): Scheduling + Timer Interrupt](https://hackpad.com/Linux-Kernel--b4sSwvUcRr0#:h=下一步，目標是透過-Ftrace-去驗證-Linux-sch)
+        - [數學問題 (2015.05.12)](https://embedded2015.hackpad.com/-2015.05.12-Sy7yX9JJpY8)
+        - [Yocto PPt](https://dl.dropboxusercontent.com/u/33532799/Yocto%20Project.pptx)
 
 - 學期報告的 wiki
-    - CSIE Wiki:`ARM-Linux</embedded/arm-linux>`_
+    - CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
     - 主要負責Linux Scheduling 理論探討、研究工具、實驗分析
 
 - 所見所聞心得
-    - 從老師還沒正式上課之前的 `給自己更好未來的3個練習：嵌入式作業系統設計、實做，與移植 (2015 年春季 ) 課程說明<http://www.slideshare.net/jserv/embedded-os2015>`_，就覺得為了讓自己變強一定要來修這門課，讓自己變強者。但從第一次的考試開始，就知道自己是多麼的弱小，即使Open Book也看不懂許多專業知識，這門課需要的基礎如數位邏輯、計算機組織、作業系統甚至C語言程式設計都非常的不足，讓我感到無力。在上課的過程中，大部分的東西都無法直接聽懂，只能盡量把關鍵詞記下來，問問強者同學或翻書上網查詢；作業因為基礎過於薄弱，常常不知如何下手，也好在這堂課是以共筆和GitHub進行，可以參考強者同學的筆記，但一路上一直都似懂非懂，強者之路不好走...
+    - 從老師還沒正式上課之前的 [給自己更好未來的3個練習：嵌入式作業系統設計、實做，與移植 (2015 年春季 ) 課程說明](http://www.slideshare.net/jserv/embedded-os2015)，就覺得為了讓自己變強一定要來修這門課，讓自己變強者。但從第一次的考試開始，就知道自己是多麼的弱小，即使Open Book也看不懂許多專業知識，這門課需要的基礎如數位邏輯、計算機組織、作業系統甚至C語言程式設計都非常的不足，讓我感到無力。在上課的過程中，大部分的東西都無法直接聽懂，只能盡量把關鍵詞記下來，問問強者同學或翻書上網查詢；作業因為基礎過於薄弱，常常不知如何下手，也好在這堂課是以共筆和GitHub進行，可以參考強者同學的筆記，但一路上一直都似懂非懂，強者之路不好走...
     - 在上課期間，老師很常分享學生工作面試心得，在這段期間，一直在思考是不是要走這條路，適不適合這方面的工作，在這個領域不是「不排斥」就可以，想要變強者、真的在這領域發光發熱，一定要有熱情、耐心、毅力的持續下去。其實中間一度想要放棄，但最後回歸出發點：「要有能力讓自己過更好的生活」，我決定努力在這條路走下去，從難題中尋找答案得到的成就感、勇於誠實面對自己的不足並紮實有耐心的花時間去補足、多與強者同學討論並且分享成果，是我目前正在努力的。
     - 這堂課從作業和報告中學到許多工具如GitHub、gnuplot、Ftrace、lmbench、vim環境:ctags+cscope、Linux操作等，並且買了許多書，如:ARM Linux內核源碼分析、精通Linux核心開發第三版、作業系統與計算機組織設計教科書(以前沒修過)等，學到了許多知識如Linux Scheduling機制、ARM架構、timer的概念，跟別組比較起來，其實我們在做報告時沒寫很多Code，大部分時間花在了解背景知識甚至是複習數學，老師一直強調不要「舉燭」，直接看Code沒有意義也看不懂，透過了解理論、學習工具、最後透過實驗分析去驗證所學理論，是一個很好的學習方法，讓我們深刻了解知識，真正成為「專業」。
 

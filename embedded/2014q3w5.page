@@ -8,21 +8,21 @@ toc: no
 * 下週課堂時間 (10 月 23 日) 確認分組名單，若因故要缺席，請務必委託組員登記
    - 3 到 4 人一組，建議不要都是同一個實驗室的成員
 
-* 凡是修課的學生，都可取得 ARM 開發板。所有硬體都來自廠商和好心人的捐贈，若手頭已有 `STM32F429i Discovery</embedded/STM32F429>`_ 硬體者，就把這份愛心留給其他人，勿領取
+* 凡是修課的學生，都可取得 ARM 開發板。所有硬體都來自廠商和好心人的捐贈，若手頭已有 [STM32F429i Discovery](/embedded/STM32F429) 硬體者，就把這份愛心留給其他人，勿領取
 
 教材
 -------
-* `複習電子電路和數位邏輯<https://docs.google.com/presentation/d/1VKZ9OAVBGPFI_LjPJ-iR2zbc1bVYijkq0kLz9SGUENI/edit#slide=id.p>`_
+* [複習電子電路和數位邏輯](https://docs.google.com/presentation/d/1VKZ9OAVBGPFI_LjPJ-iR2zbc1bVYijkq0kLz9SGUENI/edit#slide=id.p)
 
 預習項目 (為期中報告作準備)
 -----------------------------------------
-* `STM32F429</embedded/STM32F429>`_
-* `GPIO</embedded/GPIO>`_
-* `ADC</embedded/ADC>`_
-* `PWM</embedded/PWM>`_
+* [STM32F429](/embedded/STM32F429)
+* [GPIO](/embedded/GPIO)
+* [ADC](/embedded/ADC)
+* [PWM](/embedded/PWM)
 
 作業須知 (Lab-35)
 --------------------
-* 作業描述: `Lab 35: STM32F429</embedded/Lab35>`_
+* 作業描述: [Lab 35: STM32F429](/embedded/Lab35)
 * 截止日期：
    - Oct 25, 2014 (含) 之前

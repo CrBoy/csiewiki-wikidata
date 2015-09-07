@@ -448,8 +448,8 @@ make 編譯
 
 .. image:: /usb_hacking.png
 
-* `ASCII Art <http://en.wikipedia.org/wiki/ASCII_art>`_
-* `Matlab image generator <http://www.mathworks.com/matlabcentral/fileexchange/4732-ascii-text-image-generator>`_
+* [ASCII Art ](http://en.wikipedia.org/wiki/ASCII_art)
+* [Matlab image generator ](http://www.mathworks.com/matlabcentral/fileexchange/4732-ascii-text-image-generator)
 
 程式說明
 ========
@@ -521,27 +521,27 @@ Q & A
 
 參考資料
 ^^^^^^^
-`行動電化學蝕刻  <http://blog.ntsec.edu.tw/index.php?tid=531&id=228>`_
+[行動電化學蝕刻  ](http://blog.ntsec.edu.tw/index.php?tid=531&id=228)
 
-`Basic Concept of USB, Keil <http://www.keil.com/support/man/docs/rlarm/rlarm_usb_concepts.htm>`_
+[Basic Concept of USB, Keil ](http://www.keil.com/support/man/docs/rlarm/rlarm_usb_concepts.htm)
 
-`USB Made Simple <http://www.usbmadesimple.co.uk/ums_3.htm>`_
+[USB Made Simple ](http://www.usbmadesimple.co.uk/ums_3.htm)
 
-`STM32Fxx USB on-the-go Host and device library <http://www.st.com/web/en/catalog/tools/PF257882>`_
+[STM32Fxx USB on-the-go Host and device library ](http://www.st.com/web/en/catalog/tools/PF257882)
 
-`USB Audio Class <http://baike.baidu.com/view/7879812.htm>`_
+[USB Audio Class ](http://baike.baidu.com/view/7879812.htm)
 
-`USB OTG 中文 <http://chamberplus.myweb.hinet.net/usb.htm>`_
+[USB OTG 中文 ](http://chamberplus.myweb.hinet.net/usb.htm)
 
-`MSC <http://baike.baidu.com/view/66940.htm>`_
+[MSC ](http://baike.baidu.com/view/66940.htm)
 
-`USB 3.1 Specification <http://www.usb.org/developers/docs>`_
+[USB 3.1 Specification ](http://www.usb.org/developers/docs)
 
-`STM32F42xxx Reference Manual<http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf>`_
+[STM32F42xxx Reference Manual](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
-`USB On The Go <http://www.mem.com.tw/article_content.asp?sn=1101280010>`_
+[USB On The Go ](http://www.mem.com.tw/article_content.asp?sn=1101280010)
 
-`USB in a NutShell <http://www.beyondlogic.org/usbnutshell/usb1.shtml>`_
-  - `〈USB in a NutShell〉中文修改版<http://www.crifan.com/files/doc/docbook/usb_basic/release/pdf/usb_basic.pdf>`_
+[USB in a NutShell ](http://www.beyondlogic.org/usbnutshell/usb1.shtml)
+  - [〈USB in a NutShell〉中文修改版](http://www.crifan.com/files/doc/docbook/usb_basic/release/pdf/usb_basic.pdf)
 
-`USB 2.0 Specification <http://sdphca.ucsd.edu/Lab_Equip_Manuals/usb_20.pdf>`_
+[USB 2.0 Specification ](http://sdphca.ucsd.edu/Lab_Equip_Manuals/usb_20.pdf)

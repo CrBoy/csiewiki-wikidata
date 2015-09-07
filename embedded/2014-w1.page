@@ -5,16 +5,16 @@ toc: no
 
 教材
 ----------
-* `嵌入式作業系統設計、實作與移植 (2014 年春季) 課程說明<http://www.slideshare.net/jserv/embedded-os2014>`_
+* [嵌入式作業系統設計、實作與移植 (2014 年春季) 課程說明](http://www.slideshare.net/jserv/embedded-os2014)
   - Facebook 討論區: https://www.facebook.com/groups/ncku.embedded2014
   - 共筆: https://embedded2014.hackpad.com
     * 共筆使用案例
-      - `2014 年冬季系統軟體短期課程<http://system2014.hackpad.com/>`_
-      - `2013 暑期嵌入式短期訓練課程<https://hackpad.com/ep/group/yTLLeVNF05O>`_
+      - [2014 年冬季系統軟體短期課程](http://system2014.hackpad.com/)
+      - [2013 暑期嵌入式短期訓練課程](https://hackpad.com/ep/group/yTLLeVNF05O)
 
-* `面試心得分享<http://www.slideshare.net/KuoE0/ss-28407246>`_: 從就業市場，看作業系統觀念的重要性
+* [面試心得分享](http://www.slideshare.net/KuoE0/ss-28407246): 從就業市場，看作業系統觀念的重要性
 
-* Case study: `高速公路收費站的故事<http://alumni-voice.nctu.edu.tw/works/works_prose002.htm>`_
+* Case study: [高速公路收費站的故事](http://alumni-voice.nctu.edu.tw/works/works_prose002.htm)
   - 判斷車子的狀態圖的設計要根據車道的實測結果不斷的修正，加上一些計時器以過濾掉許多干擾信號。這些調校都是由硬體 TTL 線路上加上電容、電阻等零件去過濾，一片印刷電路板後來焊上了許多的違章建築，真是苦不堪言。若用微電腦的話，改改程式就可達到目，這工作會輕鬆很多。在當時微電腦剛冒出土，知道的人甚少。好在經過數個月的調校，準確度總算到達可以接受的程度了
   - 高工局沿用泰山站的設計，規定迷你電腦要採用聞名的 DEC (Digital Equipment Computer) 的 PDP-11。在當時，DEC 可是全世界排名前三名的電腦公司，在迷你電腦的領域執世界牛耳。生意好得不得了，交貨期長達14個月，若等到交貨後，我們的程式才能開始測試，正式啟用就不知道又要拖到甚麼時候。汐止站的開通日不可能等，而且按照合約規定，延誤一天罰總價的千分之三。總價約台幣八百多萬的合約，若要等到這迷你電腦正式啟用，大概合約總價會被罰光光
   - 買了一片名為 KIM-1 的 6502 微電腦板與兩片 8 Mega Byte 的記憶板(每片單價 NT15,000—同樣價錢，今天在 PCHome，4GB DRAM 的價格NT1,000 元，價格相差 7500 倍)，自己再設計一片有兩個序列埠 (UART) 與並聯輸出入 (Parallel IO) 的擴充版。... 於是，一台克難的電腦就此完成；以不到台幣五萬元的微電腦，想要取代一、兩百萬台幣的迷你電腦的功能，是不是痴人夢話？當時也沒絕對的把握，但是過河卒子，沒有退路，只能硬著頭皮幹了。
@@ -24,12 +24,12 @@ toc: no
 
 Video
 ------
-* `Make Your Own Smart Watch<http://hackaday.com/2014/02/17/make-your-own-smart-watch/>`_
-* `Massimo Banzi: Arduino 是如何打開想像力的<http://www.ted.com/talks/massimo_banzi_how_arduino_is_open_sourcing_imagination.html>`_
+* [Make Your Own Smart Watch](http://hackaday.com/2014/02/17/make-your-own-smart-watch/)
+* [Massimo Banzi: Arduino 是如何打開想像力的](http://www.ted.com/talks/massimo_banzi_how_arduino_is_open_sourcing_imagination.html)
 
 預習項目
 ------------
-* `Priority Inversion on Mars<http://www.slideshare.net/jserv/priority-inversion-30367388>`_
-* `ARM & SoC 訓練<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_: (閱讀 Page 1 -> Page 44)
-* `QEMU 模擬器<http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation>`_ (閱讀 Page 7 -> Page 56)
-* `開放原始碼軟體衝擊下的新思維<http://www.slideshare.net/jserv/opensource-everywhere>`_
+* [Priority Inversion on Mars](http://www.slideshare.net/jserv/priority-inversion-30367388)
+* [ARM & SoC 訓練](http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview): (閱讀 Page 1 -> Page 44)
+* [QEMU 模擬器](http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation) (閱讀 Page 7 -> Page 56)
+* [開放原始碼軟體衝擊下的新思維](http://www.slideshare.net/jserv/opensource-everywhere)

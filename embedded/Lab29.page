@@ -5,8 +5,8 @@ toc: no
 
 預期目標
 -------
-* 配合 `Week #5</embedded/2014-w5>`_ 進度
-* 在 QEMU 模擬的 STM32 環境中，嘗試執行 `FreeRTOS<http://www.freertos.org/>`_ 並且學習相關的操作
+* 配合 [Week #5](/embedded/2014-w5) 進度
+* 在 QEMU 模擬的 STM32 環境中，嘗試執行 [FreeRTOS](http://www.freertos.org/) 並且學習相關的操作
   - 熟悉 FreeRTOS 的內部運作機制
   - 實地練習 Multi-tasking 程式設計
 
@@ -14,8 +14,8 @@ toc: no
 
 FreeRTOS
 ---------------
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 * 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容
 * 測試方式
@@ -61,12 +61,12 @@ qemu-semihost 操作
 
 Memory Management
 ----------------------------------
-* `System-wide Memory Management for Linux Embedded Systems<http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf>`_
-* `Tips of malloc & free<http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf>`_
+* [System-wide Memory Management for Linux Embedded Systems](http://elinux.org/images/b/b9/Elc2013-embedded-memory-management.pdf)
+* [Tips of malloc & free](http://elinux.org/images/b/b5/Elc2013_Kobayashi.pdf)
 
 FreeRTOS: Memory management
 -------------------------------
-- `Memory Management<http://www.freertos.org/a00111.html>`_
+- [Memory Management](http://www.freertos.org/a00111.html)
 -  The RTOS kernel allocates RAM each time a task, queue, mutex, software timer or semaphore is created. The standard C library malloc() and free() functions can sometimes be used for this purpose, but ...
     + they are not always available on embedded systems,
     + they take up valuable code space,
@@ -105,13 +105,13 @@ hack-malloc
 * 在 FreeRTOS 中建立新的 task，定期將系統資訊 (參考 shell.c [ps_command]) 透過 ARM semihosting 存放到 host 端檔案系統的 ``sysinfo`` 檔案
 * 在 shell 中建立新指令 ``dumpsys`` (後方接 task ID)，可將指定的 task control block 輸出到 host 端檔案系統的 ``sysinfo`` 檔案，並且撰寫 host 端分析工具
   - 提示: 回想之前 program loader 如何實作
-  - 提示: 透過 GDB 的 `dump/restore 命令<https://sourceware.org/gdb/onlinedocs/gdb/Dump_002fRestore-Files.html>`_ 可自動化此操作
+  - 提示: 透過 GDB 的 [dump/restore 命令](https://sourceware.org/gdb/onlinedocs/gdb/Dump_002fRestore-Files.html) 可自動化此操作
 
 * 學習既有的 ``mmtest``，試著作壓力測試
 
 作業繳交方式
 -------------
-* 更新作業提案到共筆網站: `Lab 29 / 作業共筆<https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx>`_，需要標注自己的 ID
+* 更新作業提案到共筆網站: [Lab 29 / 作業共筆](https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx)，需要標注自己的 ID
 * 在 Mar 28 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
   - https://github.com/embedded2014/freertos
   - 注意: 要記得 fork ``freertos``

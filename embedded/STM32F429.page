@@ -6,22 +6,22 @@ categories: ARM, STM32, stm32f4, embedded
 
 說明
 ------
-國立成功大學資訊工程系/所自 2012 年，開設一系列`嵌入式系統相關課程</embedded/schedule>`_，選定 STM32 硬體作為教材，過程中師生共同撰寫技術文件、範例程式碼、工具程式、作業系統核心，以及具體而微的專案，這些都以開放內容、開放原始碼的形式釋出，一方面希望社會各界能夠給予批評指教，另一方面也希望讓學生們日後有更多的選擇機會。
+國立成功大學資訊工程系/所自 2012 年，開設一系列[嵌入式系統相關課程](/embedded/schedule)，選定 STM32 硬體作為教材，過程中師生共同撰寫技術文件、範例程式碼、工具程式、作業系統核心，以及具體而微的專案，這些都以開放內容、開放原始碼的形式釋出，一方面希望社會各界能夠給予批評指教，另一方面也希望讓學生們日後有更多的選擇機會。
 
 技術文件
 -------------
-* `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
-* 硬體週邊介紹和驅動方式: `GPIO</embedded/GPIO>`_, `USART</embedded/USART>`_, `ADC</embedded/ADC>`_, `RTC</embedded/RTC>`_, `PWM</embedded/PWM>`_,  `USB</embedded/USB>`_, `SPI</embedded/SPI>`_, `I2C</embedded/I2C>`_, `Flash</embedded/Flash>`_, `SDIO</embedded/SDIO>`_, `CAN</embedded/CAN>`_
+* [STM32 程式開發流程：以 GNU Toolchain 為例](https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit)
+* 硬體週邊介紹和驅動方式: [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [RTC](/embedded/RTC), [PWM](/embedded/PWM),  [USB](/embedded/USB), [SPI](/embedded/SPI), [I2C](/embedded/I2C), [Flash](/embedded/Flash), [SDIO](/embedded/SDIO), [CAN](/embedded/CAN)
 
 STM32F429 Discovery 開發板
 --------------------------
 .. image:: /embedded/STM32F429I-DISCO.jpg
 
-* 官方訓練教材: `STM32F429 CombinedModules</embedded/STM32F429-CombinedModules.pdf>`_ (必讀!)
+* 官方訓練教材: [STM32F429 CombinedModules](/embedded/STM32F429-CombinedModules.pdf) (必讀!)
 * STM32F429ZIT6 microcontroller featuring 2 MB of Flash memory, 256 KB of RAM in an LQFP144 package
 * On-board ST-LINK/V2 with selection mode switch to use the kit as a standalone
 * ST-LINK/V2 (with SWD connector for programming and debugging)
-* Board power supply: through the `USB</embedded/USB>`_ bus or from an external 3 V or 5 V supply voltage
+* Board power supply: through the [USB](/embedded/USB) bus or from an external 3 V or 5 V supply voltage
 * 2.4" QVGA TFT LCD
 * SDRAM 64 Mbits
 * L3GD20, ST MEMS motion sensor, 3-axis digital output gyroscope
@@ -37,8 +37,8 @@ STM32F429 Discovery 開發板
 
 硬體腳位配置
 -------------
-* 請先閱讀 `General-purpose Input/Output (GPIO)</embedded/GPIO>`_
-  - `GPIO 腳位定義<http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html>`_
+* 請先閱讀 [General-purpose Input/Output (GPIO)](/embedded/GPIO)
+  - [GPIO 腳位定義](http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html)
 
 * 前視圖:
 
@@ -50,12 +50,12 @@ STM32F429 Discovery 開發板
 
 高度整合開發工具: STM32Cube
 ---------------------------
-* `意法半導體推 STM32Cube 新軟體平台<http://www.digitimes.com.tw/tw/dt/n/shwnws.asp?cnlid=13&id=0000370826_EVE7G4MW327YAT5FYLFBA>`_
-* `Product overview - STM32Cube making STM32 development easier<https://www.youtube.com/watch?v=bt1YFG9wErg>`_ (介紹影片)
+* [意法半導體推 STM32Cube 新軟體平台](http://www.digitimes.com.tw/tw/dt/n/shwnws.asp?cnlid=13&id=0000370826_EVE7G4MW327YAT5FYLFBA)
+* [Product overview - STM32Cube making STM32 development easier](https://www.youtube.com/watch?v=bt1YFG9wErg) (介紹影片)
 
 .. image:: /embedded/stm32cubef4.jpg
 
-* `STM32CubeF4<http://www.st.com/web/en/catalog/tools/PF259243>`_ Key Features
+* [STM32CubeF4](http://www.st.com/web/en/catalog/tools/PF259243) Key Features
   - Consistent and complete embedded software offer that frees the user from dependency issues
   - Maximized portability between all STM32 series supported by STM32Cube
   - Hundreds of examples for easy understanding
@@ -65,20 +65,20 @@ STM32F429 Discovery 開發板
 
 軟體支援
 --------
-* `GNU/Linux 端開發環境設定<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_
+* [GNU/Linux 端開發環境設定](https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR)
 * 作業系統移植
-  - `FreeRTOS</embedded/freertos>`_
-  - `ChibiOS/RT</embedded/chibios>`_
-  - `nuttx</embedded/nuttx>`_
-  - `uClinux</embedded/uclinux>`_
-  - `rtenv-plus</embedded/rtenv>`_
-  - `F9 microkernel</embedded/f9-kernel>`_
+  - [FreeRTOS](/embedded/freertos)
+  - [ChibiOS/RT](/embedded/chibios)
+  - [nuttx](/embedded/nuttx)
+  - [uClinux](/embedded/uclinux)
+  - [rtenv-plus](/embedded/rtenv)
+  - [F9 microkernel](/embedded/f9-kernel)
 
 具體而微的高整合開放原始碼專案
 ----------------------------------------------
 * 由歷屆修課學生貢獻的期末專題，完整程式碼以開放原始碼授權釋出
-* `從無到有打造的四軸飛行器<https://github.com/ursuspilot/>`_: 含硬體設計、韌體程式碼，以及對應的地面站軟體
-* `從訊號處理到作業系統核心都自行開發的電吉他調音器</embedded/os-team2014-2>`_: 採用自行開發的 `rtenv+</embedded/rtenv>`_ 作業系統核心，驅動 DSP, ADC, Touchscreen 等週邊
-* `土製 3G 手機</embedded/os-team2014-1>`_: 使用 `FreeRTOS</embedded/freertos>`_ 搭配自行開發的使用者觸碰螢幕界面，得以透過 3G 模組撥打接聽電話
-* `自動演奏吉他的機器人</embedded/team2013-8>`_
-* `可用毛筆寫春聯的機器</embedded/team2013-11>`_
+* [從無到有打造的四軸飛行器](https://github.com/ursuspilot/): 含硬體設計、韌體程式碼，以及對應的地面站軟體
+* [從訊號處理到作業系統核心都自行開發的電吉他調音器](/embedded/os-team2014-2): 採用自行開發的 [rtenv+](/embedded/rtenv) 作業系統核心，驅動 DSP, ADC, Touchscreen 等週邊
+* [土製 3G 手機](/embedded/os-team2014-1): 使用 [FreeRTOS](/embedded/freertos) 搭配自行開發的使用者觸碰螢幕界面，得以透過 3G 模組撥打接聽電話
+* [自動演奏吉他的機器人](/embedded/team2013-8)
+* [可用毛筆寫春聯的機器](/embedded/team2013-11)

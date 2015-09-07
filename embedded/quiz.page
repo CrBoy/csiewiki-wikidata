@@ -5,11 +5,11 @@ toc: no
 
 2015 年
 -----------
-- 春季班`期初基本能力測驗試題</embedded/exam-2015spring.doc>`_
+- 春季班[期初基本能力測驗試題](/embedded/exam-2015spring.doc)
 
 2013 年
 ------------
-- #0: `Feb 19, 2013</embedded/exam-2013-0-full.doc>`_
+- #0: [Feb 19, 2013](/embedded/exam-2013-0-full.doc)
    * Four conditions that must hold for deadlock to occur
    * Compute the average turnaround time: SJF, RR
    *  read/write requests for sectors on tracks
@@ -20,13 +20,13 @@ toc: no
    * Probability
    * sequence of memory references, cache invalidates on a write hit
 
-- #1: `Mar 26, 2013</embedded/exam-1-full.doc>`_
+- #1: [Mar 26, 2013](/embedded/exam-1-full.doc)
    * critical section
    * Rate Monotonic scheduling; Earlies Deadline First scheduling
    * synchronization
    * priority inversion
    * FreeRTOS programming: semaphore API
 
-- #2: `Apr 30, 2013</embedded/exam-2013-2-full.doc>`_
+- #2: [Apr 30, 2013](/embedded/exam-2013-2-full.doc)
 
-- #3: `May 28, 2013</embedded/exam-2013-3-full.doc>`_
+- #3: [May 28, 2013](/embedded/exam-2013-3-full.doc)

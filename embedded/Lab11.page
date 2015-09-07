@@ -10,7 +10,7 @@ toc: no
 
 自 Git repository 取得程式碼
 -------------------------------
-- 請參照 `Lab-10</embedded/Lab10>`_ 得知 Git 使用方式
+- 請參照 [Lab-10](/embedded/Lab10) 得知 Git 使用方式
 - 取得最新的作業及參考內容
 
 .. code-block:: prettyprint
@@ -63,7 +63,7 @@ QEMU執行
    * priority-based scheduling
    * message queue
 
-* 預期執行時期的行為應該與 `Lab-9</embedded/Lab9>`_ 相同
+* 預期執行時期的行為應該與 [Lab-9](/embedded/Lab9) 相同
 * 提示
   * 可參考 FreeRTOS 的原始程式碼，參照 TCB 與其對應的 stack
 

@@ -6,17 +6,17 @@ toc: no
 預期目標
 -------
 * 深入學習 GNU Toolchain 與 open source 專案的常見開發工具
-* 培養足夠的技術基礎，得以進行 `Lab 11</embedded/Lab11>`_ 
+* 培養足夠的技術基礎，得以進行 [Lab 11](/embedded/Lab11) 
 
 藉由 GNU Toolchain 學習系統程式開發
 ----------------------------------------------------------
-* `Embedded Programming with the GNU Toolchain<http://www.bravegnu.org/gnu-eprog/>`_, Vijay Kumar B.
-* `ARM System Overview</embedded/arm-overview.pdf>`_
-* `From Source to Binary<http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works>`_
+* [Embedded Programming with the GNU Toolchain](http://www.bravegnu.org/gnu-eprog/), Vijay Kumar B.
+* [ARM System Overview](/embedded/arm-overview.pdf)
+* [From Source to Binary](http://www.slideshare.net/jserv/from-source-to-binary-how-gnu-toolchain-works)
 
 作業要求
 -------------
-* 與 `Lab 11</embedded/Lab11>`_  相同，繼續完成指定功能
+* 與 [Lab 11](/embedded/Lab11)  相同，繼續完成指定功能
 
 繳交作業
 ------------

@@ -5,34 +5,34 @@ toc: no
 
 應用案例
 ------------
-* `Raspberry Pi 可以這樣用<http://wiki.csie.ncku.edu.tw/embedded/RaspberryPi>`_
-* `64 位元 ARM Cortex A57 架構，AMD Opteron A1100 參考平台<http://chinese.vr-zone.com/99881/codename-seattle-with-arm-cortex-a57-64-bit-amd-opteron-a1100-announced-01292014/>`_
-* `Facebook 向 ARM 核心伺服器張開雙臂<http://www.eettaiwan.com/emag/1303_06_DT.html>`_
+* [Raspberry Pi 可以這樣用](http://wiki.csie.ncku.edu.tw/embedded/RaspberryPi)
+* [64 位元 ARM Cortex A57 架構，AMD Opteron A1100 參考平台](http://chinese.vr-zone.com/99881/codename-seattle-with-arm-cortex-a57-64-bit-amd-opteron-a1100-announced-01292014/)
+* [Facebook 向 ARM 核心伺服器張開雙臂](http://www.eettaiwan.com/emag/1303_06_DT.html)
   - ARMv8; 64-bit
 
-* `iOS 7 的創新<http://techorange.com/2013/09/16/future-plan-of-apple/>`_: ARMv8
+* [iOS 7 的創新](http://techorange.com/2013/09/16/future-plan-of-apple/): ARMv8
 
 ARM 架構與 SoC
 ----------------
 * ARM & SoC 訓練:
-  - `Part I<http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview>`_
-  - `Part II<http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system>`_
+  - [Part I](http://www.slideshare.net/jserv/arm-and-soc-traning-part-i-overview)
+  - [Part II](http://www.slideshare.net/jserv/arm-and-soc-traning-part-ii-system)
 
-* `ARMv8-A Architecture Reference Manual<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a/>`_
+* [ARMv8-A Architecture Reference Manual](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a/)
 
 為何課程如此設計？
 ---------------
 * 「你會先學會使用辭海，才去寫作文，還是先寫文章，再去使用辭海？」
 * @jaceju: 大神如雷貫耳的一句話：「不應該說技術不是重點，而應該說技術是你必須非常熟練，而用來實現你想法的輔助工具。就像你不會跟會計說：『九九乘法不重要』。」
 * 鳥哥：「技術真的沒有什麼了不起，因為大學過後你不見得用的到。但是，學習技術的態度才是重要的！因為以後你永遠都在用！」
-* `Lab25</embedded/Lab25>`_ 的開發狀況
+* [Lab25](/embedded/Lab25) 的開發狀況
   - https://github.com/embedded2014/rtenv/network
-  - `Lab25 共筆<https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU>`_
+  - [Lab25 共筆](https://embedded2014.hackpad.com/Lab25-GNU-Toolchain-iqMI18AAgwU)
 
 
 教材
 ----------
-* (科普介紹) `安謀是要怎樣<http://www.cool3c.com/book/export/html/57613>`_
+* (科普介紹) [安謀是要怎樣](http://www.cool3c.com/book/export/html/57613)
   - ARM 到底是怎樣的一家公司？
   - 應用處理器是？
   - 為何 ARM 應用處理器能省電？

@@ -8,7 +8,7 @@ toc: no
 * 即日起受理一對一面試申請 (修課和旁聽學生都可申請，前者優先處理)
   - 請先用 email 約定面談時段，並提供以下資訊：
     * 標題以 ``[NCKU/embedded]`` 開頭，後面加註學號及姓名
-    * 一份簡歷，兩頁以內，可參考 `應徵軟體工程師<http://www.slideshare.net/KuoE0/ss-31336294>`_
+    * 一份簡歷，兩頁以內，可參考 [應徵軟體工程師](http://www.slideshare.net/KuoE0/ss-31336294)
     * 偏好時段，目前可選擇：週三晚間、週四整日、週六、週日。一次面試約 2 小時，並且會依據需求追加複試或第 N 階段面試
     * 寄送到 Jim Huang (黃敬群) <jserv.tw@gmail.com> (Instructor)，副本寄至 陳秉文 <nicholas800208@gmail.com> (TA)
 
@@ -25,32 +25,32 @@ toc: no
 
 所見所聞
 ---------
-* `10 種不復存在的職業<http://www.adaymag.com/2014/03/03/10-jobs-that-have-gone-extinct.html>`_
-* `為什麼計算機的學生要學習 Linux 開源技術<http://www.tinylab.org/why-computer-students-learn-linux-open-source-technologies/>`_
+* [10 種不復存在的職業](http://www.adaymag.com/2014/03/03/10-jobs-that-have-gone-extinct.html)
+* [為什麼計算機的學生要學習 Linux 開源技術](http://www.tinylab.org/why-computer-students-learn-linux-open-source-technologies/)
   - 研究平台: 因為開源的優勢，有非常多的開放的文件可以參考，有很多有趣的點子可以拿來做深入的研究。任何一個點挖進去都是一片天地
   - 專業視野: 通過那些開放的項目，你可以通過郵件列表、Linkedin、Google Groups 接觸到來自全球各地的天才，不僅可以提升英文讀寫能力，認識國際友人，還可以把握領域前沿，甚至還有機會得到大佬們的指點迷津
   - 工作機會: 目前的 Linux 人才看似很多，剛從學校畢業沒什麼編碼經驗的學生也可以很快寫個小驅動，看似門檻很低，但是真正能夠從系統層面解決問題，做了工作不用別人搽屁股的高端人才很少。如果從大學開始抓取，畢業的時候就比其他同學多了四年的使用經驗和思維培養。對於後續的研究和工作來說，都會是非常重要的競爭力
   - 課程實踐: 幾乎從硬件到軟件，Linux 平台能夠提供從下而上的所有觸及「靈魂」的學習案例，讓所有課程從紙上談兵轉變成沙場實戰，會極大地提升工程實踐的效率和技能
 
-* `Amazon 前技術副總裁解剖完美技術面試<http://share.inside.com.tw/posts/4093>`_
-* `所謂「世代剝削論」<http://www.chinatimes.com/newspapers/20140309000038-260202>`_
+* [Amazon 前技術副總裁解剖完美技術面試](http://share.inside.com.tw/posts/4093)
+* [所謂「世代剝削論」](http://www.chinatimes.com/newspapers/20140309000038-260202)
   - 以今日台灣百家爭鳴、百花齊放的政經情勢，個人處境真的比不上從前嗎？如今被奉為宅神、刀神的意見領袖，在網路世界快意暢行，又豈是當年在加工出口區孜孜矻矻的女工們所能奢望？
   - 當代民主國家年輕人的處境會比從極權烏克蘭逃到美國的年輕人差嗎？這些逃難者中的一位，創辦了即時通訊軟體WhatsAPP，剛與臉書創辦人查克柏格簽下190億美元的超級併購合約。WhatsAPP創辦人庫姆（Jan Koum）以190億美元天價，證明了夢想與企圖心有多大，成功也就有無限的可能；努力不一定成功，但不努力一定不會成功。
 
 案例探討
 -------
-* `一個 sqrt 函數引發的血案<http://kb.cnblogs.com/page/189867/>`_
+* [一個 sqrt 函數引發的血案](http://kb.cnblogs.com/page/189867/)
 
 作業觀摩
 ---------
 * 李昆憶
-  - GitHub: `rtenv<https://github.com/LanKuDot/rtenv>`_
-  - `Hackpad<https://embedded2014.hackpad.com/GDB-Automation-tCGLJZe3QpK>`_
+  - GitHub: [rtenv](https://github.com/LanKuDot/rtenv)
+  - [Hackpad](https://embedded2014.hackpad.com/GDB-Automation-tCGLJZe3QpK)
 
 * 廖健富
-  - GitHub: `rtenv<https://github.com/LanKuDot/rtenv>`_
-  - `Hackpad: malloc<https://hackpad.com/Malloc-n4FKmaEZINq>`_
+  - GitHub: [rtenv](https://github.com/LanKuDot/rtenv)
+  - [Hackpad: malloc](https://hackpad.com/Malloc-n4FKmaEZINq)
 
 * 丁士宸
-  - GitHub: `rtenv<https://github.com/StanleyDing/rtenv>`_
-  - `Hackpad<https://embedded2014.hackpad.com/rtenv-with-GDB-HZD7IjD7j2I>`_
+  - GitHub: [rtenv](https://github.com/StanleyDing/rtenv)
+  - [Hackpad](https://embedded2014.hackpad.com/rtenv-with-GDB-HZD7IjD7j2I)

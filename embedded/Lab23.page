@@ -19,7 +19,7 @@ Interrupt Service Routine
 
 * 注意 LED 和 USART 的變化 (對照 Host 端和 QEMU serial0 輸出)
 * 程式碼: demos/uart_repeat_write_int/main.c
-* `FreeRTOS Tick<http://www.freertos.org/implementation/a00011.html>`_
+* [FreeRTOS Tick](http://www.freertos.org/implementation/a00011.html)
 
 SysTick
 -------------
@@ -27,7 +27,7 @@ SysTick
 * 讀取 SysTick 中 current & reload 的數值，用來計算更精確的時間單位 (小於tick)
    - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html
 
-* 參考資訊: `Lab-8</embedded/Lab8>`_
+* 參考資訊: [Lab-8](/embedded/Lab8)
   - https://gitcafe.com/embedded2013/Labs/blob/SOL-8/Lab-8/freertos/gdbscript
 
 參考作業要求
@@ -41,6 +41,6 @@ SysTick
 
 作業繳交方式
 -------------------
-* 更新作業提案到共筆網站: `Lab 23 / 作業共筆<https://embedded2013.hackpad.com/Lab23-RTOS-mxRAhTfjcJh>`_，需要標注自己的 ID，可參考 `Lab 20 / 作業共筆<https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c>`_ 格式
+* 更新作業提案到共筆網站: [Lab 23 / 作業共筆](https://embedded2013.hackpad.com/Lab23-RTOS-mxRAhTfjcJh)，需要標注自己的 ID，可參考 [Lab 20 / 作業共筆](https://embedded2013.hackpad.com/Lab20-GNU-Toolchain-zI6gzN3uv1c) 格式
 * 在 Nov 1, 2013 前，將符合作業提案的程式碼，提交到自行 fork 的 repository
   - https://github.com/embedded2013/rtenv

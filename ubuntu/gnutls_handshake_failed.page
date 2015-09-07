@@ -1,14 +1,14 @@
 解決 GnuTLS handshake() failed 問題
 ===================================
 
-如果各位在 Ubuntu 下有使用 add-apt-repository 時，出現 GnuTLS handshake failed 的錯誤訊息的話，請這篇文章：`解決 pycurl 造成的 gnutls_handshake() failed 錯誤 <http://blog.kuoe0.tw/posts/2012/09/25/resolve-the-error-gnutls-handshake-failed-caused-by-pycurl>`_
+如果各位在 Ubuntu 下有使用 add-apt-repository 時，出現 GnuTLS handshake failed 的錯誤訊息的話，請這篇文章：[解決 pycurl 造成的 gnutls_handshake() failed 錯誤 ](http://blog.kuoe0.tw/posts/2012/09/25/resolve-the-error-gnutls-handshake-failed-caused-by-pycurl)
 
-在 GIT 使用 ssh 進行 clone 時也會有相同的問題，也可以參考 `Git GnuTLS handshake error <http://blog.float.tw/2012/06/git-gnutls-handshake-error.html>`_ 這篇文章！
+在 GIT 使用 ssh 進行 clone 時也會有相同的問題，也可以參考 [Git GnuTLS handshake error ](http://blog.float.tw/2012/06/git-gnutls-handshake-error.html) 這篇文章！
 
 如果懶得一步一步看的話沒關係，以下提供兩個 script 可以自動重新編譯好 PyCurl 以及 GIT，並進行安裝加上防止升級：
 
-`for PyCurl <https://gist.github.com/KuoE0/6192061>`_
+[for PyCurl ](https://gist.github.com/KuoE0/6192061)
 
-`for GIT <https://gist.github.com/KuoE0/6620246>`_
+[for GIT ](https://gist.github.com/KuoE0/6620246)
 
 如果使用上有 BUG 也歡迎告知我，感謝！

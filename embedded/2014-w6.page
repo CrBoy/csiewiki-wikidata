@@ -5,26 +5,26 @@ toc: no
 
 作業觀摩
 --------
-* 廖健富 `Hackpad<https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt>`_
-* 張仁傑 `Hackpad<https://labtryanderror.hackpad.com/>`_
+* 廖健富 [Hackpad](https://hackpad.com/RTENV-PLUS-note-8UW04eGdBtt)
+* 張仁傑 [Hackpad](https://labtryanderror.hackpad.com/)
 
 課程資料
 -------
-* `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
+* [Introduction: the ARM Cortex-M3 Exception / Interrupt](/embedded/arm-exceptions.pdf)
 
 STM32F429 Discovery
 --------------------
-* `STM32F429 Seminar</embedded/STM32F429-Seminar.pdf>`_
-* `展示影片<https://stm32f429.hackpad.com/Demo-Video-FULfnsoVXk2>`_ (Hackpad)
+* [STM32F429 Seminar](/embedded/STM32F429-Seminar.pdf)
+* [展示影片](https://stm32f429.hackpad.com/Demo-Video-FULfnsoVXk2) (Hackpad)
 
 Sign-Up & 期中分組
 ------------------
-* `Hackpad<https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3>`_
+* [Hackpad](https://embedded2014.hackpad.com/Signup-dnO2aHCfrg3)
 * 順序:
-  - `FreeRTOS</embedded/freertos>`_
-  - `ChibiOS/RT</embedded/chibios>`_
-  - `nuttx</embedded/nuttx>`_
-  - `uClinux</embedded/uclinux>`_
-  - `Xenomai</embedded/xenomai>`_
-  - `rtenv-plus</embdded/rtenv>`_
-  - `F9 microkernel</embedded/f9-kernel>`_
+  - [FreeRTOS](/embedded/freertos)
+  - [ChibiOS/RT](/embedded/chibios)
+  - [nuttx](/embedded/nuttx)
+  - [uClinux](/embedded/uclinux)
+  - [Xenomai](/embedded/xenomai)
+  - [rtenv-plus](/embdded/rtenv)
+  - [F9 microkernel](/embedded/f9-kernel)

@@ -7,40 +7,40 @@ toc: no
 協作者
 ---
 * 2015 年春季
-   - `蕭奕凱<https://github.com/fbukevin>`_, `張瑋豪<https://github.com/parkson1128>`_, `余誌偉<https://github.com/peter1yu>`_, `王皓昱<https://github.com/larrywhy>`_, `洪煒凱<https://github.com/WaiKevin>`_
+   - [蕭奕凱](https://github.com/fbukevin), [張瑋豪](https://github.com/parkson1128), [余誌偉](https://github.com/peter1yu), [王皓昱](https://github.com/larrywhy), [洪煒凱](https://github.com/WaiKevin)
 * 2014 年春季
-   - `梁穎睿<https://github.com/TheKK>`_, `李奇霖<https://github.com/Shinshipower>`_, `方威迪<https://github.com/waynew30777>`_, `陳盈伸<https://github.com/shin21>`_
+   - [梁穎睿](https://github.com/TheKK), [李奇霖](https://github.com/Shinshipower), [方威迪](https://github.com/waynew30777), [陳盈伸](https://github.com/shin21)
 
 共筆
 ----
 * 2015 年春季
-   - `Hackpad<https://hackpad.com/2015-Embedded-FreeRTOS-0IEDUa7Rjct>`_
-   - `GitHub<https://github.com/Justinsanity/freertos-basic>`_
+   - [Hackpad](https://hackpad.com/2015-Embedded-FreeRTOS-0IEDUa7Rjct)
+   - [GitHub](https://github.com/Justinsanity/freertos-basic)
 * 2014 年春季
-  - `Hackpad<https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E>`_
-  - `GitHub<https://github.com/TheKK/myFreeRTOS>`_
+  - [Hackpad](https://hackpad.com/FreeRTOSV8.0.0-PU3awKuzHz6#:h=%3Chardware-interfacing%3E)
+  - [GitHub](https://github.com/TheKK/myFreeRTOS)
 
 目錄
 ---
-* `FreeRTOS 架構<#FreeRTOS 架構>`_
-* `原始碼<#原始碼>`_
-* `命名規則<#命名規則>`_
-* `Run FreeRTOS on STM32F4-Discovery<#Run FreeRTOS on STM32F4-Discovery>`_
-* `任務<#任務>`_
-* `Ready list 的資料形態<#Ready list 的資料形態>`_
-* `通訊<#通訊>`_
-* `排程<#排程>`_
-* `中斷處理<#中斷處理>`_
-* `硬體驅動<#硬體驅動>`_
-* `效能評估<#效能評估>`_
-* `測試環境架設<#測試環境架設>`_
-* `問題討論一<#問題討論一>`_
-* `問題討論二<#問題討論二>`_
-* `參考資料<#參考資料>`_
+* [FreeRTOS 架構](#FreeRTOS 架構)
+* [原始碼](#原始碼)
+* [命名規則](#命名規則)
+* [Run FreeRTOS on STM32F4-Discovery](#Run FreeRTOS on STM32F4-Discovery)
+* [任務](#任務)
+* [Ready list 的資料形態](#Ready list 的資料形態)
+* [通訊](#通訊)
+* [排程](#排程)
+* [中斷處理](#中斷處理)
+* [硬體驅動](#硬體驅動)
+* [效能評估](#效能評估)
+* [測試環境架設](#測試環境架設)
+* [問題討論一](#問題討論一)
+* [問題討論二](#問題討論二)
+* [參考資料](#參考資料)
 
 FreeRTOS 架構
 -----------
-官方網站：`http://www.freertos.org/<http://www.freertos.org/>`_
+官方網站：[http://www.freertos.org/](http://www.freertos.org/)
 
 FreeRTOS 是一個相對其他作業系統而言較小的作業系統。最小化的 FreeRTOS 核心僅包括 3 個 .c 文件(tasks.c、queue.c、list.c)和少數標頭檔，總共不到 9000 行程式碼，還包括了註解和空行。一個典型的編譯後 binary（二進位碼）小於 10 KB。
 
@@ -50,14 +50,14 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 
 * 通訊 (Communication): 任務很重要，不過任務間可以互相通訊則更為重要！它帶出了 FreeRTOS 的第二項議題：通訊。FreeRTOS 核心程式碼大約有 40% 是用來處理通訊的。queue.c 和 queue.h 負責處理 FreeRTOS 的通訊，任務和中斷(interrupt)使用佇列(佇列，queue)互相發送數據，並且使用 semaphore 和 mutex 來派發 critical section 的使用信號。
 
-* 硬體界面：有近 9000 行的程式碼組成基本的 FreeRTOS，這部份是與硬體無關的(hardware-independent)，同一份程式碼在不同硬體平台上的 FreeRTOS 都可以運行。大約有 6% 的 FreeRTOS 核心代碼，在與硬體無關的 FreeRTOS 核心和與硬體相關的程式碼間扮演著墊片(`shim<http://en.wikipedia.org/wiki/Shim_%28computing%29>`_)的角色。我們將在下個部分討論與硬體相關的程式碼。[#]_
+* 硬體界面：有近 9000 行的程式碼組成基本的 FreeRTOS，這部份是與硬體無關的(hardware-independent)，同一份程式碼在不同硬體平台上的 FreeRTOS 都可以運行。大約有 6% 的 FreeRTOS 核心代碼，在與硬體無關的 FreeRTOS 核心和與硬體相關的程式碼間扮演著墊片([shim](http://en.wikipedia.org/wiki/Shim_%28computing%29))的角色。我們將在下個部分討論與硬體相關的程式碼。[#]_
 
-.. [#] 用 `cloc<http://cloc.sourceforge.net/>`_ 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
+.. [#] 用 [cloc](http://cloc.sourceforge.net/) 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
 
 
 原始碼
 ------------------
-* 官方下載：`https://sourceforge.net/projects/freertos<https://sourceforge.net/projects/freertos>`_
+* 官方下載：[https://sourceforge.net/projects/freertos](https://sourceforge.net/projects/freertos)
 * 最新版本：v8.2.1
 
 * 核心程式碼：(Source)
@@ -72,7 +72,7 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
   - port.c：定義了包含與硬體相關的程式碼實作
   - FreeRTOSConfig.h：包含 clock speed, heap size, mutexes 等等都在此定義(需自行建立)
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 資料型態及命名規則
 ---------
@@ -110,7 +110,7 @@ FreeRTOS明確的定義變數名稱以及資料型態，不會有unsigned以及s
 Run FreeRTOS on STM32F4-Discovery
 --------------------------------------------------------
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 任務
 ----------
@@ -166,7 +166,7 @@ Task 的狀態
   * usStackDepth：堆疊的大小
   * pvParameters：要傳給 task 的參數陣列，也就是我們在 C 函數宣告的參數
   * uxPriority：定義這個任務的優先權，在 FreeRTOS 中，0 最低，(configMAX_PRIORITIES – 1) 最高
-  * pxCreatedTask：`handle<http://zh.wikipedia.org/wiki/%E5%8F%A5%E6%9F%84>`_，是一個被建立出來的 task 可以用到的識別符號
+  * pxCreatedTask：[handle](http://zh.wikipedia.org/wiki/%E5%8F%A5%E6%9F%84)，是一個被建立出來的 task 可以用到的識別符號
 
 * 刪除 task 的函數
 
@@ -192,7 +192,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 下面是在 ready list 中依照優先權選取執行目標的程式部分，FreeRTOS 的優先權最小爲 0，數字越大則優先權越高
 
-`task.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284>`_ 
+[task.c](https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L284) 
 
 .. code-block:: c
 
@@ -212,7 +212,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 從前面的圖我們可以知道一個 ready task list 中的每個索引各自指向了一串 task list，所以 listGET_OWNER_OF_NEXT_ENTRY 就是在某個 ready task list 索引中去取得其中 task list 裡某個 task 的 TCB
 
-`include/list.h<https://github.com/TheKK/myFreeRTOS/blob/master/include/list.h#L268>`_
+[include/list.h](https://github.com/TheKK/myFreeRTOS/blob/master/include/list.h#L268)
 
 .. code-block:: c
 
@@ -229,7 +229,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
         ( pxTCB ) = ( pxConstList )->pxIndex->pvOwner;
     }
 
-* Task Control Block (TCB)的資料結構(`tasks.c<https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120>`_)
+* Task Control Block (TCB)的資料結構([tasks.c](https://github.com/TheKK/myFreeRTOS/blob/master/tasks.c#L120))
 
 .. code-block:: c
 
@@ -258,7 +258,7 @@ OS 會在進行 context switch 時選出下一個欲執行的 task
 
 xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會為每一個任務分配一個新的 TCB target，用來記錄它的名稱、優先權和其他細節，接著配置用戶所請求的 HeapStack 空間（假設有足夠使用的記憶體），並在 TCB 的 pxStack 成員中記錄 Stack 的記憶體起始位址。
 
-* 配置TCB及stack的函式 - prvAllocateTCBAndStack()(`tasks.c<https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/FreeRTOS/tasks.c#L359>`_)
+* 配置TCB及stack的函式 - prvAllocateTCBAndStack()([tasks.c](https://github.com/embedded2015/freertos-basic/blob/master/freertos/libraries/FreeRTOS/tasks.c#L359))
 
 .. code-block:: c
 
@@ -296,7 +296,7 @@ xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會
 
 爲了便於排程，創造新 task 時，stack 中除了該有的資料外，還要加上『空的』 register 資料(第一次執行時理論上 register 不會有資料)，讓新 task 就像是被 context switch 時選的 task 一樣，依照前述變數的命名規則，下面是實作方式
  
-`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L216>`_
+[portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L216)
 
 .. code-block:: c
 
@@ -336,7 +336,7 @@ xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會
 
 而 ARM Cortex-M4 處理器在 task 遇到中斷時，會將 register 的內容 push 進該 task 的 stack 的頂端，待下次執行時再 pop 出去，以下是在 port.c 裡的實作
 
-`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L450>`_
+[portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L450)
 
  .. code-block:: c
 
@@ -399,7 +399,7 @@ xTaskCreate() 函數被呼叫的時候，一個任務會被建立。FreeRTOS 會
 
 Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)內容設爲最高，此時將沒有任何 interrupt 可以被呼叫，該呼叫的函數名稱為 ulPortSetInterruptMask()
 
-`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L419>`_
+[portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L419)
 
 .. code-block:: c
 
@@ -420,11 +420,11 @@ Interrupt 的實作，是將 CPU 中控制 interrupt 權限的暫存器(basepri)
 
 藉此 mask 遮罩掉所有的 interrupt (所有優先權低於 configMAX_SYSCALL_INTERRUPT_PRIORITY 的 task 將無法被執行)
 
-參照：`http://www.freertos.org/RTOS-Cortex-M3-M4.html<http://www.freertos.org/RTOS-Cortex-M3-M4.html>`_
+參照：[http://www.freertos.org/RTOS-Cortex-M3-M4.html](http://www.freertos.org/RTOS-Cortex-M3-M4.html)
 
 當使用 vTaskCreate() 將 task 被建立出來以後，需要使用 vTaskStartScheduler() 來啟動排程器決定讓哪個 task 開始執行，當 vTaskStartScheduler() 被呼叫時，會先建立一個 idle task，這個 task 是為了確保 CPU 在任一時間至少有一個 task 可以執行 (取代直接切換回 kernel task) 而在 vTaskStartScheduler() 被呼叫時自動建立的 user task，idle task 的 priority 為 0 (lowest)，目的是為了確保當有其他 user task 進入 ready list 時可以馬上被執行
 
-vTaskStartScheduler (`tasks.c<https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/tasks.c#L1543>`_)
+vTaskStartScheduler ([tasks.c](https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/tasks.c#L1543))
 
 .. code-block:: c
 
@@ -504,7 +504,7 @@ vTaskSuspend 使用範例：
 
      }
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 通訊
 ----------------------
@@ -528,7 +528,7 @@ FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue �
 
 * Queue 的結構
 
-`queue.c<https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/queue.c#L130>`_
+[queue.c](https://github.com/Justinsanity/freertos-basic/blob/v8.2.1/freertos/libraries/FreeRTOS/queue.c#L130)
 
 .. code-block:: c
 
@@ -576,7 +576,7 @@ FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue �
 
 * Queue 的用法
 
-`/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L213>`_
+[/CORTEX_M4F_STM32_DISCOVERY/main.c](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L213)
 
 .. code-block:: c
 
@@ -621,7 +621,7 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
 
 需要用到 ARM Cortex-M4F 特有的機制，才能實做 semaphore，這個機制為『在存取 uxMessagesWaiting 時必須確保同一時間只能有一個 task 在做更改（進出入 critical section）』，要防止一次兩個 task 進入修改的方法如下：
 
-`portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399>`_
+[portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L399)
 
 .. code-block:: c
 
@@ -650,7 +650,7 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
 
 因為 pcHead 和 pcTail 不需要，所以用 overloadind 來達到較好的使用率：
 
-`queue.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105>`_
+[queue.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L105)
 
 .. code-block:: c
 
@@ -718,7 +718,7 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
             }
     }
     
-`回目錄<#目錄>`_
+[回目錄](#目錄)
     
 排程
 ----------------
@@ -731,7 +731,7 @@ FreeRTOS 中除了由 kernel 要求 task 交出 CPU 控制權外，task 也能�
 
 Delay(sleep): 暫停執行一段時間
 
-`/CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L177>`_
+[/CORTEX_M4F_STM32_DISCOVERY/main.c](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L177)
 
  .. code-block:: c
 
@@ -769,7 +769,7 @@ wait(block): 等待取得資源或事件發生
 
   .. image:: /TickISR.gif
 
- `portable/GCC/ARM_CM4F/port.c<https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L506>`_ 
+ [portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L506) 
 
 實作細節
 
@@ -913,7 +913,7 @@ wait(block): 等待取得資源或事件發生
 
 (FreeRTOS 排程採用的是 multi-level queue, so?)
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 中斷處理
 ---------------------------
@@ -951,7 +951,7 @@ NVIC 是 Cortex-M3 的一部分，他是一組用來管理各種硬體周邊發�
     * 處理器(硬體實作)在 interrupt 發生時會『自動』將當前狀態 stack 起來，interrupt 結束後再 unstack 回來，藉此減少 interrupt latency
     * 只需要將資料放入 Software Trigger Interrupt Register(STIR)，就能夠觸發 interrupt
 
-在 `Lab40<http://wiki.csie.ncku.edu.tw/embedded/Lab40>`_ 中，visualizer/main.c 中就有定義了 interrupt 的 priority 和取得 interrupt 的種類：
+在 [Lab40](http://wiki.csie.ncku.edu.tw/embedded/Lab40) 中，visualizer/main.c 中就有定義了 interrupt 的 priority 和取得 interrupt 的種類：
 
 .. code-block:: c
 
@@ -971,7 +971,7 @@ NVIC 是 Cortex-M3 的一部分，他是一組用來管理各種硬體周邊發�
 
 file:startup_stm32f429_439xx.s  line:158
 
- `CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s＃L82>`_
+ [CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/startup/startup_stm32f4xx.s＃L82)
 
  .. code-block:: c
 
@@ -1002,7 +1002,7 @@ EXTI 使用前必須：
 
 在 FreeRTOS 中操作 EXTI 的實作如下：
 
-`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106>`_
+[CORTEX_M4F_STM32_DISCOVERY/main.c](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106)
 
  .. code-block:: c
 
@@ -1029,7 +1029,7 @@ EXTI 使用前必須：
         NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
         NVIC_Init(&NVIC_InitStructure);
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 硬體驅動
 ------------------
@@ -1056,7 +1056,7 @@ GPIO 是讓開發者可藉由改變暫存器特定位置的資料內容，來控
 
 使用 GPIO 前，必須預先設定行爲和細節，以 stm32f429i_discovery.c 內的 LED 初始作業來看
 
-`Utilities/STM32F429I-Discovery/stm32f429i_discovery.c<https://github.com/TheKK/myFreeRTOS/blob/exti/Utilities/STM32F429I-Discovery/stm32f429i_discovery.c#122>`_
+[Utilities/STM32F429I-Discovery/stm32f429i_discovery.c](https://github.com/TheKK/myFreeRTOS/blob/exti/Utilities/STM32F429I-Discovery/stm32f429i_discovery.c#122)
 
  .. code-block:: c
 
@@ -1128,7 +1128,7 @@ GPIO_Init() 的執行也脫離不了寫入資料至記憶體一事，但設定�
 
 GPIO_Init()：
 
-`CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c＃202>`_
+[CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c＃202)
 
  .. code-block:: c
 
@@ -1182,7 +1182,7 @@ GPIO_Init()：
 
 - 參考 STM32Cube_FW_F4_V1.1.0/Projects/STM32F429I-Discovery/Examples/GPIO/GPIO_EXTI/readme.txt
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 效能評估
 ----------------
@@ -1191,7 +1191,7 @@ GPIO_Init()：
 Context switch 是指 task A 要交出 CPU 使用權給 task B 時，OS 會將 task A 當前的狀態和暫存器內的資料存放到記憶體，再將先前 task B 的狀態從記憶體讀取至暫存器的過程
 
 想得知 FreeRTOS 中 context switch 時間，我們設計了一個測試方法：
-`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/shin21/myFreeRTO-1/blob/ContextSwitchTest/CORTEX_M4F_STM32F407ZG-SK/main.c#L178>`_
+[CORTEX_M4F_STM32_DISCOVERY/main.c](https://github.com/shin21/myFreeRTO-1/blob/ContextSwitchTest/CORTEX_M4F_STM32F407ZG-SK/main.c#L178)
 
 .. code-block:: c
 
@@ -1253,7 +1253,7 @@ Context switch 是指 task A 要交出 CPU 使用權給 task B 時，OS 會將 t
 
 我們測量的架構為是手動設定一個 external interrupt，發生在 BUTTON_USER 按下時，下面程式是我們的實作：
 
-`CORTEX_M4F_STM32_DISCOVERY/main.c<https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106>`_
+[CORTEX_M4F_STM32_DISCOVERY/main.c](https://github.com/TheKK/myFreeRTOS/blob/exti/CORTEX_M4F_STM32_DISCOVERY/main.c#L106)
 
 
 .. code-block:: c
@@ -1269,7 +1269,7 @@ Context switch 是指 task A 要交出 CPU 使用權給 task B 時，OS 會將 t
 
 * IPC（Inter-Process Communication） throughput
 
-`測試程式，在第 167 行可以改要執行的時間<https://github.com/TheKK/myFreeRTOS/blob/IPC-ThroughPut/CORTEX_M4F_STM32_DISCOVERY/main.c#L167>`_
+[測試程式，在第 167 行可以改要執行的時間](https://github.com/TheKK/myFreeRTOS/blob/IPC-ThroughPut/CORTEX_M4F_STM32_DISCOVERY/main.c#L167)
 
 SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
@@ -1311,7 +1311,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
 * realtime capability
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 測試環境架設
 ----------------
@@ -1320,7 +1320,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
 **安裝**
 
-    1. 請先安裝 st-link 以及 openOCD，可參考`此頁<https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR>`_ 
+    1. 請先安裝 st-link 以及 openOCD，可參考[此頁](https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR) 
 
     2. git clone https://github.com/Justinsanity/freertos-basic.git
 
@@ -1371,7 +1371,7 @@ Hint：main.c 有樣板，在 STM32F429I-Discovery_FW_V1.0.1/Projects/Template
 
 API：Utilities/STM32F429I-Discovery 
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 問題討論一
 ----------
@@ -1498,7 +1498,7 @@ R12（IP）用法：
 P.S. 關於veneer：
 ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit 指令集），其中切換的程式段叫 veneer 
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 **Q9：誰把New Task 接到 Ready List**
 
@@ -1654,7 +1654,7 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
 
 將pxNewListItem插入至pxList的最後面
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 **Q10:arm conditional code?**
 
@@ -1832,13 +1832,13 @@ value to the ptr {r3-4} and r3 = r3 -4.
                             mtCOVERAGE_TEST_MARKER();
                     }
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 問題討論二
 ----------
 (分兩部分純粹是為了目錄連結方便)
 
-**Q22: `Lab40 <http://wiki.csie.ncku.edu.tw/embedded/Lab40>`_ 的 visualizer/main.c 的 get_time() 裡 scale 為什麼是 microsecond ？**
+**Q22: [Lab40 ](http://wiki.csie.ncku.edu.tw/embedded/Lab40) 的 visualizer/main.c 的 get_time() 裡 scale 為什麼是 microsecond ？**
 
 問題是這樣的，為了計算 context switch 的時間，我們需要先取的系統的時間(系統啟動至今歷經的時間)，之前在 Lab40 有使用過 tick count 來取得系統時間，在 visualizer/main.c 中的 get_time() 最後 return 的 `xTaskGetTick() + ( reload - current / reload)` 是目前系統已經執行的 ticks 加上目前系統歷經的 count downs 數 ( 1 / x tick，讀作『x 分之一 tick』)，這段就是用 tick 來表示目前經歷的時間，要把這個 ticks 轉成 human readable time，也就是要讓 ticks 轉換成 second，一個作法就是乘上『單位量級(scale)』，這個 scale 定義在 return 之前，請參考以下片段：
 
@@ -1906,7 +1906,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
     jserv：進行除法運算，FPU 可能還沒啟用
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 **Q23. FreeRTOS 如何追到自己?**
 
@@ -1929,7 +1929,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 * 在什麼情況下，會執行到 vTaskDelete(NULL) 呢? 遇無窮迴圈時會執行此code嗎?
 
 因為 FreeRTOS 不准 task function 有 return，也不准執行到最後一行，因此如果不需要此 task，則應該刪除此task 
-(參考 : `http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html<http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html>`_)
+(參考 : [http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html](http://redmilk525study.blogspot.tw/2014/09/freertos-task-management.html))
 
 有一個可能性是，如果在 loop 中發生執行錯誤 (fail)，則需要跳出迴圈並終止(自己)執行，此時就需要使用 vTaskDelete 來刪除自己，發生錯誤的例子：
 
@@ -1953,7 +1953,7 @@ ready list 應該是每個 index 表示不同的 priority
 
 所以，為了配置 ready list 的長度，只能從 0 ~ priority - 1，也就是說，你若要讓 ready list 長度是 10 (分別代表著 priority 0 - 9)，則你雖然要把 configMAX_PRIORITY 設定為  10，分配權限時最高卻只能到  configMAX_PRIORITY，其實我只是簡單的理解上是array 如果要有1~10個優先權定義，事實上寫程式時是定義0~9 而已，的確是由0開始數沒錯。
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 **Q26.真正放至 ready list 的是什麼? 是放入 handle?**
 
@@ -2038,7 +2038,7 @@ xLIST 中的 xListEnd 是 xLIST（linked-list？）的尾巴
 **Q30. FreeRTOS 的event 定義是什麼? 是同步機制還是非同步?**
 
     -Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.
-    -來源：`http://www.freertos.org/FreeRTOS-Event-Groups.html<http://www.freertos.org/FreeRTOS-Event-Groups.html>`_
+    -來源：[http://www.freertos.org/FreeRTOS-Event-Groups.html](http://www.freertos.org/FreeRTOS-Event-Groups.html)
 
 .. image:: /eventbit.png
 
@@ -2074,7 +2074,7 @@ TCB 結構中還有兩個 xListItem：xGenericListItem 和 xEventListItem
     };
     typedef struct xLIST_ITEM ListItem_t;                                       
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 **Q31. 如何知道 task現在處於哪個狀態? 對應狀態圖的程式碼在哪裡?**
 
@@ -2135,7 +2135,7 @@ vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容pri
         return pxTopOfStack;
     }
 
-參考了 `Lab33<http://wiki.csie.ncku.edu.tw/embedded/Lab33>`_使用 "(gdb) target: remote" + "info registers" 來觀察暫存器內容，而在 freertos-basic/tool/gdbscript 中就已經有 target: remote 3333 了，freertos/mk/qemu.mk 呼叫 qemu 並且直接進入 gdb，因此可以使用 info registers 來觀察，下圖是 pxPortStackInitialise() 執行完畢以後的暫存器狀態圖
+參考了 [Lab33](http://wiki.csie.ncku.edu.tw/embedded/Lab33)使用 "(gdb) target: remote" + "info registers" 來觀察暫存器內容，而在 freertos-basic/tool/gdbscript 中就已經有 target: remote 3333 了，freertos/mk/qemu.mk 呼叫 qemu 並且直接進入 gdb，因此可以使用 info registers 來觀察，下圖是 pxPortStackInitialise() 執行完畢以後的暫存器狀態圖
 
 .. image:: /end_pxPortStackInitialise.png
 
@@ -2148,12 +2148,12 @@ FreeRTOS 透過一個 pxCurrentTCB 的指標來存取目前指向的 task 基本
 至於考慮使用 handle 來取得 task id 也是不對的，因為 handle 指向的是 TCB 的位址，因此他也是存取 TCB
 
 
-`回目錄<#目錄>`_
+[回目錄](#目錄)
 
 參考資料
 --------
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
-* `Study of an operating system: FreeRTOS</embedded/FreeRTOS_Melot.pdf>`_
-* `FreeRTOS 即時核心實用指南</embedded/FreeRTOS-manual-zh.pdf>`_
+* [Study of an operating system: FreeRTOS](/embedded/FreeRTOS_Melot.pdf)
+* [FreeRTOS 即時核心實用指南](/embedded/FreeRTOS-manual-zh.pdf)

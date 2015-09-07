@@ -5,12 +5,12 @@ toc: no
 
 重大事項宣達
 -------------------
-* 今天 17:30 前，確認`分組名單與題目志願表<https://embedded2015.hackpad.com/2015--FvJfghhxBc8>`_
-* `爭取屬於自己的舞台<https://www.facebook.com/groups/ncku.embedded2015/permalink/677685349044620/>`_
-  - `Open Projects</embedded/openprojects>`_: 展開幾項有特色的專案，希望一面培養學生的實做訓練，一面提昇在國際上的能見度 
+* 今天 17:30 前，確認[分組名單與題目志願表](https://embedded2015.hackpad.com/2015--FvJfghhxBc8)
+* [爭取屬於自己的舞台](https://www.facebook.com/groups/ncku.embedded2015/permalink/677685349044620/)
+  - [Open Projects](/embedded/openprojects): 展開幾項有特色的專案，希望一面培養學生的實做訓練，一面提昇在國際上的能見度 
 
-* `PyCON Taiwan 議程徵稿最後一天<https://www.facebook.com/groups/ncku.embedded2015/permalink/678446135635208/>`_
-* 今晚沒有安排 Lab，但請在 4 月 6 日前確認 `Lab 38</embedded/Lab38>`_, `Lab 39</embedded/Lab39>`_, `Lab 40</embedded/Lab40>`_, `Lab 41</embedded/Lab41>`_ 均充分完成
+* [PyCON Taiwan 議程徵稿最後一天](https://www.facebook.com/groups/ncku.embedded2015/permalink/678446135635208/)
+* 今晚沒有安排 Lab，但請在 4 月 6 日前確認 [Lab 38](/embedded/Lab38), [Lab 39](/embedded/Lab39), [Lab 40](/embedded/Lab40), [Lab 41](/embedded/Lab41) 均充分完成
   - 依據 GitHub / Hackpad 上教師提供的建議去改進
 
 * 可預約一對一輔導
@@ -19,12 +19,12 @@ toc: no
 
 拾人牙慧
 ------------
-* `陪著跑或是鼓鼓掌<https://www.facebook.com/1383694918554214/photos/a.1439931472930558.1073741830.1383694918554214/1591770817746622/>`_
+* [陪著跑或是鼓鼓掌](https://www.facebook.com/1383694918554214/photos/a.1439931472930558.1073741830.1383694918554214/1591770817746622/)
 
 教材
 ------
-* `A Beginner’s Guide on Interrupt Latency - and Interrupt Latency of the ARM Cortex-M processors<http://community.arm.com/docs/DOC-2607>`_ (2013)
-* `淺談優先權，從 ARM Cortex-M 到 FreeRTOS 設定<http://enginechang.logdown.com/posts/248297-talking-about-the-priority-from-the-arm-set-cortex-m-to-freertos>`_
+* [A Beginner’s Guide on Interrupt Latency - and Interrupt Latency of the ARM Cortex-M processors](http://community.arm.com/docs/DOC-2607) (2013)
+* [淺談優先權，從 ARM Cortex-M 到 FreeRTOS 設定](http://enginechang.logdown.com/posts/248297-talking-about-the-priority-from-the-arm-set-cortex-m-to-freertos)
   - 什麼是 Interrupt?
   - NVIC (Nested vectored interrupt controller)
   - ARM Cortex-M 每個 Exception 都有自己的優先權
@@ -32,11 +32,11 @@ toc: no
   - FreeRTOS 的優先權
   - FreeRTOS 的 Tick/Timer
 
-* `Introduction: the ARM Cortex-M3 Exception / Interrupt</embedded/arm-exceptions.pdf>`_
-  - `Interrupt-Driven Input/Output</embedded/2015q1w4/interrupt_part2.pdf>`_
+* [Introduction: the ARM Cortex-M3 Exception / Interrupt](/embedded/arm-exceptions.pdf)
+  - [Interrupt-Driven Input/Output](/embedded/2015q1w4/interrupt_part2.pdf)
     * Interrupt vectors and vector table
     * Interrupt masks and priorities
     * NVIC
     * STM32F4 external interrupt signals
 
-* ` Linux on Cortex-M3<http://www.linux-arm.org/LinuxKernel/LinuxM3>`_ (2011)
+* [ Linux on Cortex-M3](http://www.linux-arm.org/LinuxKernel/LinuxM3) (2011)

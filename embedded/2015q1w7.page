@@ -6,32 +6,32 @@ toc: no
 重大事項宣達
 -------------------
 * 分組報告: (課堂採用 round-robin 排程，time slice 為 2 小時)
-  - `FreeRTOS</embedded/freertos>`_, `rtenv+</embedded/rtenv>`_
-  - `FreeRTOS (MMU)</embedded/freertos-mmu>`_, `RT-Thread</embedded/rt-thread>`_
-  - `Linux</embedded/arm-linux>`_, `Xenomai</embedded/xenomai>`_, `uClinux</embedded/uclinux>`_
-  - `Xvisor</embedded/xvisor>`_
+  - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv)
+  - [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread)
+  - [Linux](/embedded/arm-linux), [Xenomai](/embedded/xenomai), [uClinux](/embedded/uclinux)
+  - [Xvisor](/embedded/xvisor)
 
 
-`Lab 39</embedded/Lab39>`_: FreeRTOS 作業分析
+[Lab 39](/embedded/Lab39): FreeRTOS 作業分析
 ---------------------------------------------------------------------
-* `Adrian Huang<https://www.facebook.com/adrian.huang.10>`_ 的 `共筆<https://embedded2015.hackpad.com/Lab39-Cross-Development-2015Q1-Week3-DOv3d3rwi8b>`_ 與 `GitHub<https://github.com/AdrianHuang/freertos-basic/tree/new-task>`_
+* [Adrian Huang](https://www.facebook.com/adrian.huang.10) 的 [共筆](https://embedded2015.hackpad.com/Lab39-Cross-Development-2015Q1-Week3-DOv3d3rwi8b) 與 [GitHub](https://github.com/AdrianHuang/freertos-basic/tree/new-task)
   + 建立每一Task所需要的資料結構  (使用heap_ww.c)：
     - XBlockLink：此結構用來記錄每一個區塊 (Block) 大小、下一個未被佔用的區塊大小與下一個未被佔用的區塊實體記憶體位址，其大小為 12 個位元組。由於使用 ARM Cortex-M3 架構，其對齊位元組為 8 個位元組。所以經過調整，一律使用 16 個位元組配置記憶體。
     - TCB (Task Control Block)：大小為 80 個位元組
     - Stack：呼叫 xTaskCreate() 時，usStackDepth 設定 128，所以 stack 大小為 512 bytes (128 * 4)
     - 每建立一個 task，需佔用 624 位元組。且記憶體大小為 17K，當剩下的記憶體空間低於 624 位元組時，就無法再建立 task
-  + task 建立/刪除後，一直在追蹤記憶體的變化，意外發現 vPortFree() 有個 bug，請見`重現和修正的方式<https://github.com/AdrianHuang/freertos-basic/commit/320274ddfd42cf20377e6f0b4e38bf146db9c877>`_
+  + task 建立/刪除後，一直在追蹤記憶體的變化，意外發現 vPortFree() 有個 bug，請見[重現和修正的方式](https://github.com/AdrianHuang/freertos-basic/commit/320274ddfd42cf20377e6f0b4e38bf146db9c877)
 
-* 曾柏翔的 `共筆<https://embedded2015.hackpad.com/hw2-Ka5oXguvUje>`_
+* 曾柏翔的 [共筆](https://embedded2015.hackpad.com/hw2-Ka5oXguvUje)
    + 針對優先序高的task執行太久而佔據 CPU，提出的改進方法：在 task 中加入 ``vTaskDelayUntil(&xLastWakeTime, xFrequency);``，當執行到一段時間後，就會主動釋出執行時間給別的 task 使用，從而避免因為一個 task 執行太久而造成 shell 來不及回應的問題
 
-`Lab 40</embedded/Lab40>`_: Scheduling 作業分析
+[Lab 40](/embedded/Lab40): Scheduling 作業分析
 -----------------------------------------------------------------------
-* 沈宗穎的 `共筆<https://embedded2015.hackpad.com/WEEK4-Q9sUeYmV1Fb>`_
-  + `USART interrupt handler 運作動畫<https://www.youtube.com/watch?v=VaU17yhh994>`_
+* 沈宗穎的 [共筆](https://embedded2015.hackpad.com/WEEK4-Q9sUeYmV1Fb)
+  + [USART interrupt handler 運作動畫](https://www.youtube.com/watch?v=VaU17yhh994)
 
-* Gary Gu 的 `共筆<https://hackpad.com/Scheduling-nF35kNugzKX>`_
-  + 4 組 system register 可用來設定 `SysTick<http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html>`_
+* Gary Gu 的 [共筆](https://hackpad.com/Scheduling-nF35kNugzKX)
+  + 4 組 system register 可用來設定 [SysTick](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dai0179b/ar01s02s08.html)
     - SysTick Control and status : enable , clock source, poll ,interrupt (address : 0xE000E010)
     - SysTick reload value : value to load Current Value register when 0 is reached (address : 0xE000E014)
     - SysTick current value : the current value of the count down (address : 0xE000E018).
@@ -47,11 +47,11 @@ toc: no
 
   + 關於 USART2 這個 IRQ 的 handler，可以到``$(CMSIS_PLAT_SRC)/startup/gcc_ride7/startup_stm32f10x_md.s`` 中定義的 vector table 找到 ``USART2_IRQHandler``，但是這邊存放的不是處理的程式碼，而是真正 handler 的位址，ARM 核心會依據這個位址跳到真正處理的 handler 的位置進行中斷處理。在處理前，必須要先設定這個中斷，透過NVIC
 
-* hsuedw 的 `共筆<https://embedded2015.hackpad.com/Lab-40-NmDXrhMLX3B>`_ 與 `GitHub<https://github.com/hsuedw/visualizer>`_
+* hsuedw 的 [共筆](https://embedded2015.hackpad.com/Lab-40-NmDXrhMLX3B) 與 [GitHub](https://github.com/hsuedw/visualizer)
   + ``vTaskSwitchContext()`` 中，執行 switch out 前的那一刻記錄在 ``previous_systick_current`` 中，執行完畢之際，利用 ``traceTASK_SWITCHED_IN()`` 來記錄 task 被 switch in 的時間，而 ``traceTASK_SWITCHED_IN()`` 是 ``trace_task_switch()`` 的 wrapper。這樣的做法是，呼叫了``trace_task_switch()`` 後，才記錄 task 被 switch in 時間
   + 這樣的作法不夠精確，因為這樣含有呼叫 ``trace_task_switch()`` 與呼叫 ``get_current()`` 的時間。嚴重錯估 context switch 成本
 
-* 吳哲綱的 `共筆<https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7>`_ 與 `GitHub<https://github.com/erickitten/visualizer>`_
+* 吳哲綱的 [共筆](https://hackpad.com/Embedded-System-2015-Lab40-Scheduling-ecrqVugBcN7) 與 [GitHub](https://github.com/erickitten/visualizer)
   + 使用的測試 task 如下：
 
 .. code-block:: prettyprint
@@ -71,16 +71,16 @@ toc: no
   + 在兩個相同 pirority 的 task 執行時，平均約 10ms 作一次 context switch (即 SysTick forced switch)
   + 若將圖放大，可以看到 task1/2 之間的 context switch 大約耗費 0.005ms
 
-* `Adrian Huang<https://www.facebook.com/adrian.huang.10>`_ 的 `共筆<https://embedded2015.hackpad.com/Lab40-Scheduling-2015q1-Week-4-WZDR0VUsHq8>`_
+* [Adrian Huang](https://www.facebook.com/adrian.huang.10) 的 [共筆](https://embedded2015.hackpad.com/Lab40-Scheduling-2015q1-Week-4-WZDR0VUsHq8)
   + 計算出來的時間是「從Ready Task List挑選下一個被執行的  Task」。詳情task.c: vTaskSwitchContext()。這並非發生Context Switch時，所花費的全部時間。因為發生 Context Switch 時，需要三個步驟 (參考port.c: xPortPendSVHandler())：
     - 儲存目前 Task 狀態 (將暫存器 r4-r11 儲存至該 Task 的堆疊，並將 top of stack 位址儲存至 tskTCB 結構成員 ``pxTopOfStack``)。
     - 從 Ready Task List 挑選下一個被執行的 Task，並將被挑中 Task 位址指定給 ``pxCurrentTCB`` (這就是函式``vTaskSwitchContext()`` 所花費的時間)
     - 回復被挑中 Task 之狀態  (將上次儲存於 tskTCB結構成員 ``pxTopOfStack`` 的內容值取出來，並依據此內容值將上次儲存堆疊的 r4-r11 內容值回存至暫存器 r4-r11)
 
 * 延伸閱讀: Cortex M3 SysTick Explained
-  - `Part I<http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/>`_, `Part II<http://www.zembedded.com/cortex-m3-systick-explained-part-ii/>`_
+  - [Part I](http://www.zembedded.com/cortex-m3-sys-tick-explained-part-i/), [Part II](http://www.zembedded.com/cortex-m3-systick-explained-part-ii/)
 
 教材
 --------
-* `STM32 程式開發流程：以 GNU Toolchain 為例<https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit>`_
-* `mini-arm-os<https://github.com/jserv/mini-arm-os>`_，詳細分析和操作提示，請見 `Lab 42</embedded/Lab42>`_
+* [STM32 程式開發流程：以 GNU Toolchain 為例](https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit)
+* [mini-arm-os](https://github.com/jserv/mini-arm-os)，詳細分析和操作提示，請見 [Lab 42](/embedded/Lab42)

@@ -12,17 +12,17 @@ categories: User
 
 作業
 ====
-- Lab 38 (ARM Cross-Development Environment) : `GitHub<https://github.com/harry191518/arm-lecture>`_, `Hackpad<https://embedded2015.hackpad.com/ayk2o7G5mLZ>`_
-- Lab 39 (FreeRTOS) : `GitHub<https://github.com/harry191518/freertos-basic>`_, `Hackpad<https://embedded2015.hackpad.com/XiuxRcxtGS1>`_
-- Lab 40 (Scheduling) : `GitHub<https://github.com/harry191518/visualizer>`_, `Hackpad<https://embedded2015.hackpad.com/ltlZe4EFO6L>`_
-- Lab 41 (基礎觀念訓練) : `Hackpad<https://embedded2015.hackpad.com/Oq1R1Swlizf>`_
+- Lab 38 (ARM Cross-Development Environment) : [GitHub](https://github.com/harry191518/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/ayk2o7G5mLZ)
+- Lab 39 (FreeRTOS) : [GitHub](https://github.com/harry191518/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/XiuxRcxtGS1)
+- Lab 40 (Scheduling) : [GitHub](https://github.com/harry191518/visualizer), [Hackpad](https://embedded2015.hackpad.com/ltlZe4EFO6L)
+- Lab 41 (基礎觀念訓練) : [Hackpad](https://embedded2015.hackpad.com/Oq1R1Swlizf)
 
 分組報告
 ====
-- `rtenv+ wiki<http://wiki.csie.ncku.edu.tw/embedded/rtenv>`_
+- [rtenv+ wiki](http://wiki.csie.ncku.edu.tw/embedded/rtenv)
 - 主要負責做context-switch的測試
-- `rtenv+ context switch<https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
-- `Q&A<https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW>`_
+- [rtenv+ context switch](https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj)
+- [Q&A](https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW)
 
 學期成果
 ====

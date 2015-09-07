@@ -6,20 +6,20 @@ toc: no
 重大事項宣達
 ------------------
 * 本學期最後一次上課日為 6 月 23 日
-* 依據`評分標準<http://www.slideshare.net/jserv/embedded-os2015>`_，「學生自我評量」佔總分 40%，請開始準備相關資料，並在 CSIE wiki 上建立新的頁面，裡頭提到本學期的學習成果和自我評量分數 (1 到 10 級分)
+* 依據[評分標準](http://www.slideshare.net/jserv/embedded-os2015)，「學生自我評量」佔總分 40%，請開始準備相關資料，並在 CSIE wiki 上建立新的頁面，裡頭提到本學期的學習成果和自我評量分數 (1 到 10 級分)
   - 需要提及作業 GitHub 連結、參與協作的 Hackpad 連結、學期報告的 wiki，所見所聞心得，以及貢獻的上游開放原始碼專案 (Git commits) 等等
-  - wiki 頁面名稱為 ``User/你的帳號名稱``，範例: `User/jserv</User/jserv>`_
+  - wiki 頁面名稱為 [`User/你的帳號名稱``，範例: `User/jserv](/User/jserv)
   - 本課程評分時段為 6 月 27-30 日，有任何疑慮請來信 <``jserv.tw@gmail.com``>
 
 數學觀念
 -------------
-* `TED: Conrad Wolfram - 使用電腦教導小孩們真正的數學<https://www.youtube.com/watch?v=NMiLOU14r4o>`_
-* `四色定理<http://baike.baidu.com/view/43945.htm>`_
-  - `Graph Coloring 的應用<http://ihack.sinaapp.com/2013/05/31/>`_
-  - `Register allocation<http://en.wikipedia.org/wiki/Register_allocation>`_
-  - `Global Register Allocation<http://user.it.uu.se/~kostis/Teaching/KT1-11/Slides/lecture16.pdf>`_
+* [TED: Conrad Wolfram - 使用電腦教導小孩們真正的數學](https://www.youtube.com/watch?v=NMiLOU14r4o)
+* [四色定理](http://baike.baidu.com/view/43945.htm)
+  - [Graph Coloring 的應用](http://ihack.sinaapp.com/2013/05/31/)
+  - [Register allocation](http://en.wikipedia.org/wiki/Register_allocation)
+  - [Global Register Allocation](http://user.it.uu.se/~kostis/Teaching/KT1-11/Slides/lecture16.pdf)
 
 分組報告
 ------------
-* `uClinux</embedded/uclinux>`_
-  - `QA: uClinux<https://embedded2015.hackpad.com/QA-uClinux-RxaJba2c18q>`_
+* [uClinux](/embedded/uclinux)
+  - [QA: uClinux](https://embedded2015.hackpad.com/QA-uClinux-RxaJba2c18q)

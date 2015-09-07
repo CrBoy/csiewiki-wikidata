@@ -12,16 +12,16 @@ categories: User
 
 作業
 ====
-- Lab 38 (ARM Cross-Development Environment) : `GitHub<https://github.com/goldmedal/arm-lecture>`_, `Hackpad<https://hackpad.com/Week2-Arm-Lecture-Lab-38-7SWffUclyhK>`_
-- Lab 39 (FreeRTOS) : `GitHub<https://github.com/goldmedal/freertos-basic>`_, `Hackpad<https://hackpad.com/Week3-Lab39-JktdLS9GMl7>`_
-- Lab 40 (Scheduling) : `GitHub<https://github.com/goldmedal/visualizer>`_, `Hackpad<https://hackpad.com/Lab40-KMnCIaUL653>`_
+- Lab 38 (ARM Cross-Development Environment) : [GitHub](https://github.com/goldmedal/arm-lecture), [Hackpad](https://hackpad.com/Week2-Arm-Lecture-Lab-38-7SWffUclyhK)
+- Lab 39 (FreeRTOS) : [GitHub](https://github.com/goldmedal/freertos-basic), [Hackpad](https://hackpad.com/Week3-Lab39-JktdLS9GMl7)
+- Lab 40 (Scheduling) : [GitHub](https://github.com/goldmedal/visualizer), [Hackpad](https://hackpad.com/Lab40-KMnCIaUL653)
 
 分組報告
 ====
-- `rtenv+ wiki<http://wiki.csie.ncku.edu.tw/embedded/rtenv>`_
+- [rtenv+ wiki](http://wiki.csie.ncku.edu.tw/embedded/rtenv)
 - 主要負責做context-switch的測試
-- `rtenv+ context switch<https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj>`_
-- `Q&A<https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW>`_
+- [rtenv+ context switch](https://hackpad.com/rtenv-Count-Switch--j4Fv5v30zyj)
+- [Q&A](https://embedded2015.hackpad.com/QA-rtenv-479a2LFzjqW)
 
 學期成果
 ====

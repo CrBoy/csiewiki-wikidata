@@ -24,7 +24,7 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `toolchain-2014_05.tar.bz2<http://hrv.acomotech.com/ecg/static/toolchain-2014_05.tar.bz2>`_ 、保存到 /tmp 目錄，並且解開到系統中，操作如下
+- 取得 GNU Toolchain: [toolchain-2014_05.tar.bz2](http://hrv.acomotech.com/ecg/static/toolchain-2014_05.tar.bz2) 、保存到 /tmp 目錄，並且解開到系統中，操作如下
 
 .. code-block:: prettyprint
 
@@ -48,7 +48,7 @@ STM32 Overview
   - Computing/Prototyping
   - One for most use cases
 
-- `STM32-P103<https://www.olimex.com/Products/ARM/ST/STM32-P103/>`_
+- [STM32-P103](https://www.olimex.com/Products/ARM/ST/STM32-P103/)
   * MCU: STM32F103RBT6 ARM Cortex-M3, up to 72MHz operation
   * 128K Bytes Program Flash, 20K Bytes RAM
   * USB, CAN, x2 I2C, x2 ADC 12 bit, x3 UART, x2 SPI, x3 TIMERS
@@ -86,8 +86,8 @@ STM32 on QEMU 環境建立與測試
 
 FreeRTOS
 ---------------
-* `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  - `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+* [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  - [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 * 已整合檔案系統到 FreeRTOS 中，並可在 UART 顯示檔案系統 (romfs) 中的內容 (但是目前版本不能正確運作)
 * 測試方式
@@ -141,12 +141,12 @@ ARM Semihost
 - 截止日期：
    * Oct 4, 2014 (含) 之前
 
-- 更新作業提案到共筆網站: `Lab 32 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_，需要標注自己的 ID
+- 更新作業提案到共筆網站: [Lab 32 / 作業共筆](https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag)，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository
     * https://github.com/embedded2014/freertos-plus
-    * 注意: 要記得 fork `freertos-plus<https://github.com/embedded2014/freertos-plus>`_
+    * 注意: 要記得 fork [freertos-plus](https://github.com/embedded2014/freertos-plus)
 
 參考資訊
 ------------
-* `Lab21: RTOS - Hackpad<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_ (檔案系統原理)
-* `Lab29: FreeRTOS - Hackpad<https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx>`_
+* [Lab21: RTOS - Hackpad](https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f) (檔案系統原理)
+* [Lab29: FreeRTOS - Hackpad](https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx)

@@ -10,12 +10,12 @@ toc: no
 
 GDB
 ----
-* `GDB Rocks!<http://www.slideshare.net/chenkaie/gdb-rocks-16951548>`_
-* `作業系統之前的程式 for stm32f4discovery：打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
+* [GDB Rocks!](http://www.slideshare.net/chenkaie/gdb-rocks-16951548)
+* [作業系統之前的程式 for stm32f4discovery：打造 Linux 開發環境](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html)
 
 QEMU + GDB 操作
 ----------------
-- 假設 `Lab-32</embedded/Lab32>`_ 所使用 QEMU 的目錄已放在 workspace 目錄
+- 假設 [Lab-32](/embedded/Lab32) 所使用 QEMU 的目錄已放在 workspace 目錄
 
 .. code-block:: prettyprint
 
@@ -50,9 +50,9 @@ QEMU + GDB 操作
 - 截止日期：
    * Oct 11, 2014 (含) 之前
 
-- 更新作業提案到共筆網站: `Lab 33 / 作業共筆<https://embedded2014.hackpad.com/2014q3-Week-3-rR0cpeJsDcp>`_，需要標注自己的 ID
-    * 將符合作業提案的程式碼，提交到自行 fork 的 repository `freertos-plus<https://github.com/embedded2014/freertos-plus>`_ (設定與 `Lab 32</embedded/Lab32>`_ 相同)
-    * 可搭配 GDB 完成 `Lab 32</embedded/Lab32>`_ 提案中的開發工作
+- 更新作業提案到共筆網站: [Lab 33 / 作業共筆](https://embedded2014.hackpad.com/2014q3-Week-3-rR0cpeJsDcp)，需要標注自己的 ID
+    * 將符合作業提案的程式碼，提交到自行 fork 的 repository [freertos-plus](https://github.com/embedded2014/freertos-plus) (設定與 [Lab 32](/embedded/Lab32) 相同)
+    * 可搭配 GDB 完成 [Lab 32](/embedded/Lab32) 提案中的開發工作
 
 
 參考資訊
@@ -70,4 +70,4 @@ QEMU + GDB 操作
   * http://sourceware.org/gdb/current/onlinedocs/gdb/
   * Commands, Remote Debugging, Extending GDB
 
-- `Lab 27: GDB Automation<https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw>`_
+- [Lab 27: GDB Automation](https://embedded2014.hackpad.com/Lab-27-GDB-Automation-L1ohwuTnRMw)

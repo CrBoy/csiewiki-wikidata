@@ -7,7 +7,7 @@ toc: no
 ------------
 - 體驗一個具體而微的 MCU 程式開發過程，使用 GNU Toolchain
 - 藉由 QEMU 模擬環境，嘗試控制週邊 (STM32 USART) 並觀察其行為
-- 接觸 `FreeRTOS</embedded/freertos>`_
+- 接觸 [FreeRTOS](/embedded/freertos)
 
 預先準備
 -------
@@ -24,7 +24,7 @@ toc: no
 
     sudo apt-get install lib32gcc1 lib32ncurses5
 
-- 取得 GNU Toolchain: `GNU Tools for ARM Embedded Processors<https://launchpad.net/gcc-arm-embedded>`_ ，或用 apt-get 取得，操作如下
+- 取得 GNU Toolchain: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded) ，或用 apt-get 取得，操作如下
 
 .. code-block:: prettyprint
 
@@ -37,7 +37,7 @@ STM32 Overview
   - Computing/Prototyping
   - One for most use cases
 
-- `STM32-P103<https://www.olimex.com/Products/ARM/ST/STM32-P103/>`_
+- [STM32-P103](https://www.olimex.com/Products/ARM/ST/STM32-P103/)
   * MCU: STM32F103RBT6 ARM Cortex-M3, up to 72MHz operation
   * 128K Bytes Program Flash, 20K Bytes RAM
   * USB, CAN, x2 I2C, x2 ADC 12 bit, x3 UART, x2 SPI, x3 TIMERS
@@ -79,7 +79,7 @@ STM32 on QEMU 環境建立與測試
     $ source env/bin/activate
 
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
-- 詳情可參閱 `stm32_p103_demos<http://github.com/beckus/stm32_p103_demos>`_ 目錄的 README 檔案
+- 詳情可參閱 [stm32_p103_demos](http://github.com/beckus/stm32_p103_demos) 目錄的 README 檔案
 - Ubuntu Linux 的「下載」目錄名稱就叫做「下載」，建議可建立 symbolic link 到 "Downloads" 目錄，如下：
   - ``ln -s ~/下載 ~/Downloads``
 
@@ -129,7 +129,7 @@ ARM Semihost
 挑戰題
 -----
 * 修正原本檔案系統無法運作的狀況，使 ``ls`` 和 ``cat`` 一類的指令得以使用
-* 撰寫 romfs 的 test suite，可參考 `zeke<https://github.com/OlliV/zeke>`_ 的 `kern/test/fs<https://github.com/OlliV/zeke/tree/master/kern/test/fs>`_
+* 撰寫 romfs 的 test suite，可參考 [zeke](https://github.com/OlliV/zeke) 的 [kern/test/fs](https://github.com/OlliV/zeke/tree/master/kern/test/fs)
 * 模仿 ``mmtest`` 指令，開發可以驗證 FreeRTOS task 建立和摧毀的指令，並且指出無止盡建立新的 task，究竟有什麼限制
 
 繳交作業
@@ -137,12 +137,12 @@ ARM Semihost
 - 截止日期：
    * Mar 21, 2015 (含) 之前
 
-- 更新開發過程到共筆網站: `Lab 39 / 作業共筆<https://embedded2015.hackpad.com/2015q3-Week-3-Lab39-zsLdd12X18w>`_，需要標注自己的 ID
+- 更新開發過程到共筆網站: [Lab 39 / 作業共筆](https://embedded2015.hackpad.com/2015q3-Week-3-Lab39-zsLdd12X18w)，需要標注自己的 ID
     * 將符合作業提案的程式碼，提交到自行 fork 的 repository: https://github.com/embedded2015/freertos-basic
-    * 注意: 要記得 fork `freertos-basic<https://github.com/embedded2015/freertos-basic>`_
+    * 注意: 要記得 fork [freertos-basic](https://github.com/embedded2015/freertos-basic)
 
 參考資訊
 ------------
-* `Lab 21: RTOS - Hackpad<https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f>`_ (檔案系統原理)
-* `Lab 29: FreeRTOS - Hackpad<https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx>`_
-* `Lab 32: FreeRTOS - Hackpad<https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag>`_
+* [Lab 21: RTOS - Hackpad](https://embedded2013.hackpad.com/Lab21-RTOS-shzzlckJ50f) (檔案系統原理)
+* [Lab 29: FreeRTOS - Hackpad](https://embedded2014.hackpad.com/Lab29-FreeRTOS-yUCJMwo7ZNx)
+* [Lab 32: FreeRTOS - Hackpad](https://embedded2014.hackpad.com/2014q3-Week-2-efkTFt0x7Ag)

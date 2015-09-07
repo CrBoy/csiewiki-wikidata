@@ -12,7 +12,7 @@ toc: no
 開發工具使用
 ---------------------
 * 參考上學期課程:
-  - `Lab 6</embedded/Lab6>`_ 與 `Lab 7</embedded/Lab7>`_
+  - [Lab 6](/embedded/Lab6) 與 [Lab 7](/embedded/Lab7)
   - https://gitcafe.com/embedded2012/P-jserv/tree/Lab-7
 
 FreeRTOS for STM32F4-Discovery
@@ -29,7 +29,7 @@ Reference
 作業要求
 ------------
 * 建立一個 *public* git repository
-  - 衍生自 `freertos-stm32f4-discovery<https://gitcafe.com/embedded2013/freertos-stm32f4-discovery>`_
+  - 衍生自 [freertos-stm32f4-discovery](https://gitcafe.com/embedded2013/freertos-stm32f4-discovery)
 * 確保 FreeRTOS 已正確啟用 Low Power support，並以實例證明
 * 移植之前作業中的工具 (context-switch visualizer, benchmark) 到 FreeRTOS
 

@@ -6,30 +6,30 @@ toc: no
 重大事項宣達
 -------------
 * 期末專題發表會 / ETC (Embedded Technology Conference) 訂於 6 月 21 日
-* 5 月 13 日中午前，完成 `期末專題</embedded/os-team2014>`_ 的登記 (自行編輯 wiki)
-  - 可參考 `Week #5 公告</embedded/2014-w5>`_
+* 5 月 13 日中午前，完成 [期末專題](/embedded/os-team2014) 的登記 (自行編輯 wiki)
+  - 可參考 [Week #5 公告](/embedded/2014-w5)
   - 4 到 5 人一組
   - 每組可申請最多 NTD $6000 補助，但需要詳列預算和說明
 
 所見所聞
 ----------
-* `MIT Operating System Engineering<http://pdos.csail.mit.edu/6.828/2012/>`_
+* [MIT Operating System Engineering](http://pdos.csail.mit.edu/6.828/2012/)
   - Fall 2012: Final project: http://pdos.csail.mit.edu/6.828/2012/project-ideas.html
 
-* 「`在劇烈變動的時代，善於學習的人們將會擁有未來。那些自認已經不需要學習的人們，常常會發現自己的能力只適用於那不再存在的過去<http://www.cw.com.tw/blog/blogTopic.action?id=299&nid=4232>`_」
-* `Google Self Driving Car on City Streets<https://www.youtube.com/watch?v=lT3N842qYlM>`_
-* `GitHub OctoTales • UC Berkeley<https://www.youtube.com/watch?v=KgVHcguTNtQ>`_
-  - `GitHub Education<https://education.github.com/>`_
+* 「[在劇烈變動的時代，善於學習的人們將會擁有未來。那些自認已經不需要學習的人們，常常會發現自己的能力只適用於那不再存在的過去](http://www.cw.com.tw/blog/blogTopic.action?id=299&nid=4232)」
+* [Google Self Driving Car on City Streets](https://www.youtube.com/watch?v=lT3N842qYlM)
+* [GitHub OctoTales • UC Berkeley](https://www.youtube.com/watch?v=KgVHcguTNtQ)
+  - [GitHub Education](https://education.github.com/)
 
-* `GPU 發展簡史，從 NVIDIA Fermi 到 Maxwell：核心群組打散重排，製程未改中階先行<http://www.techbang.com/posts/17196-efficiency-priority-nvidia-maxwell-schema-core-group-scatters-rearrangement-process-no-change-order-in-advance>`_
+* [GPU 發展簡史，從 NVIDIA Fermi 到 Maxwell：核心群組打散重排，製程未改中階先行](http://www.techbang.com/posts/17196-efficiency-priority-nvidia-maxwell-schema-core-group-scatters-rearrangement-process-no-change-order-in-advance)
 
 	
 分組報告
 --------
-* `ChibiOS/RT</embedded/chibios>`_
-  - `問題彙整<https://embedded2014.hackpad.com/ChibiOSRT--V6y7XWEWXRo>`_ (Hackpad)
+* [ChibiOS/RT](/embedded/chibios)
+  - [問題彙整](https://embedded2014.hackpad.com/ChibiOSRT--V6y7XWEWXRo) (Hackpad)
 
-* `Nuttx</embedded/nuttx>`_
-  - `問題彙整<https://embedded2014.hackpad.com/Nuttx--wLwwv4ME67J>`_ (Hackpad)
+* [Nuttx](/embedded/nuttx)
+  - [問題彙整](https://embedded2014.hackpad.com/Nuttx--wLwwv4ME67J) (Hackpad)
 
-* `uClinux</embedded/uclinux>`_
+* [uClinux](/embedded/uclinux)

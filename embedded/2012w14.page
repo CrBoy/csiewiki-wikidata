@@ -4,4 +4,4 @@ toc: no
 ...
 
 - 分組報告個別週邊與 FreeRTOS 介面包裝的狀況
-  * `USB</embedded/USB>`_
+  * [USB](/embedded/USB)

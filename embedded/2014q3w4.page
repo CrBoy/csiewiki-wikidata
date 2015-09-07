@@ -8,7 +8,7 @@ toc: no
 * 受理一對一面試申請 (修課和旁聽學生都可申請，前者優先處理)，作為考試成績
   - 請在 2015 年 1 月 3 日前，用 email 約定面談時段，注意以下：
     * 寄送到 Jim Huang (黃敬群) <jserv.tw@gmail.com>
-    * 標題以 [NCKU/embedded] 開頭，後面加註姓名，依據 `資訊科技產業面試模擬和工作咨詢</embedded/rehearsal>`_ 的說明提供相關資訊
+    * 標題以 [NCKU/embedded] 開頭，後面加註姓名，依據 [資訊科技產業面試模擬和工作咨詢](/embedded/rehearsal) 的說明提供相關資訊
 
   - 比照資訊科技產業面試的出題方式，本學期上課提及的概念、術語，甚至作業都在涵蓋範圍
     * 題目會累積，所以，務必注意時間
@@ -21,45 +21,45 @@ toc: no
   - GitHub 和 Hackpad 是你的好朋友，知己知彼
   - 期中報告
   - 期末專題: 開發真正能用的電子產品 (雛型)
-    * 今年水準: `2013 年秋季班</embedded/team2013>`_, `2014 年春季班</embedded/os-team2014>`_
+    * 今年水準: [2013 年秋季班](/embedded/team2013), [2014 年春季班](/embedded/os-team2014)
     * 副校長、電機學院院長都會出席，同時也邀請新聞媒體採訪
 
 期末專題參考專案 (期望表現)
 ---------------------------------------
-* `Lulu's hand<https://www.flyingv.cc/project/3615>`_ (一個月在 FlyingV 募資突破台幣 100 萬!)
-* `四軸飛行器<https://www.youtube.com/watch?v=Bist_WKoFH8>`_
-* `四足機器人<https://robot_control.hackpad.com/quadruped-robot--jdowyBd9FAa>`_
-* `電路切割裝置<https://www.kickstarter.com/projects/otherfab/the-othermill-custom-circuits-at-your-fingertips>`_
-* `期末專題想法 :: Hackpad<https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ>`_
+* [Lulu's hand](https://www.flyingv.cc/project/3615) (一個月在 FlyingV 募資突破台幣 100 萬!)
+* [四軸飛行器](https://www.youtube.com/watch?v=Bist_WKoFH8)
+* [四足機器人](https://robot_control.hackpad.com/quadruped-robot--jdowyBd9FAa)
+* [電路切割裝置](https://www.kickstarter.com/projects/otherfab/the-othermill-custom-circuits-at-your-fingertips)
+* [期末專題想法 :: Hackpad](https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ)
 
 教材
 -------
-* `Shellshock 威脅案例<http://www.slideshare.net/d3vc0r3/shell-shock>`_
-  - `BASH ShellShock 漏洞分析<http://timhsu.chroot.org/2014/10/bash-shellshock.html>`_
-  - `bash代碼注入的安全漏洞<http://coolshell.cn/articles/11973.html>`_
-  - `Wikipedia - Shellshock<http://en.wikipedia.org/wiki/Shellshock_%28software_bug%29>`_
+* [Shellshock 威脅案例](http://www.slideshare.net/d3vc0r3/shell-shock)
+  - [BASH ShellShock 漏洞分析](http://timhsu.chroot.org/2014/10/bash-shellshock.html)
+  - [bash代碼注入的安全漏洞](http://coolshell.cn/articles/11973.html)
+  - [Wikipedia - Shellshock](http://en.wikipedia.org/wiki/Shellshock_%28software_bug%29)
 
-* `Introduction to ARM Architecture<https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14>`_
-* `ARM Cortex-M3 Introduction<http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf>`_
-  - `Assembly language programming: ARM Cortex-M3<http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout>`_
+* [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
+* [ARM Cortex-M3 Introduction](http://www.arm.com/files/pdf/CortexM3_Uni_Intro.pdf)
+  - [Assembly language programming: ARM Cortex-M3](http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout)
 
-* `The Hardware/Software Interface<https://class.coursera.org/hwswinterface-002>`_ (請先註冊 `Coursera<https://www.coursera.org/>`_ 帳號並登入)
-  - `中文討論區<https://www.facebook.com/groups/1437352483196710/>`_
+* [The Hardware/Software Interface](https://class.coursera.org/hwswinterface-002) (請先註冊 [Coursera](https://www.coursera.org/) 帳號並登入)
+  - [中文討論區](https://www.facebook.com/groups/1437352483196710/)
 
 科技公司面試心得
 -------------------------
-* `面試心得:  向澐<http://www.slideshare.net/Arbelge/ss-40098256>`_
-* `面試題目:  向澐<https://hackpad.com/ikCrtESFTIR>`_
+* [面試心得:  向澐](http://www.slideshare.net/Arbelge/ss-40098256)
+* [面試題目:  向澐](https://hackpad.com/ikCrtESFTIR)
 
 Code Review
 -----------------
-* `Lab 32: QEMU + FreeRTOS</embedded/Lab32>`_
-* `可讀寫的 ramfs + VFS<https://github.com/sonicyang/freertos-plus/commits/master>`_
-* `移植 Linux romfs<https://github.com/hirokiht/freertos-plus/commits/master>`_
-   - `Hackpad<https://embedded2014.hackpad.com/Embedded-System-LAB-32-tPapnk7ufb3>`_
+* [Lab 32: QEMU + FreeRTOS](/embedded/Lab32)
+* [可讀寫的 ramfs + VFS](https://github.com/sonicyang/freertos-plus/commits/master)
+* [移植 Linux romfs](https://github.com/hirokiht/freertos-plus/commits/master)
+   - [Hackpad](https://embedded2014.hackpad.com/Embedded-System-LAB-32-tPapnk7ufb3)
 
 作業須知 (Lab-34)
 ----------------
-* 作業描述: `Lab 34: Buffer overflow</embedded/Lab34>`_
+* 作業描述: [Lab 34: Buffer overflow](/embedded/Lab34)
 * 截止日期：
    - Oct 18, 2014 (含) 之前

@@ -6,7 +6,7 @@ toc: no
 公告
 ---------
 - 請訂閱 Google Groups，以獲得最新的公告資訊與參與討論
-  * `http://groups.google.com/group/embedded2013<http://groups.google.com/group/embedded2013>`_
+  * [http://groups.google.com/group/embedded2013](http://groups.google.com/group/embedded2013)
 
 - 成大: Lab 課程改到 4201 教室; 19:30 開始
 - 第二次考試 (選擇性)
@@ -20,20 +20,20 @@ toc: no
 教材
 ---------
 - YouTube: 
-  * `登月機具：導航系統<http://www.youtube.com/watch?v=INO_3daAFtY>`_
-  * `What most schools don't teach<http://blog.youtubelearn.com/what-most-schools-dont-teach/>`_
+  * [登月機具：導航系統](http://www.youtube.com/watch?v=INO_3daAFtY)
+  * [What most schools don't teach](http://blog.youtubelearn.com/what-most-schools-dont-teach/)
 
-- `Concurrent processes and real-time scheduling</embedded/2012w4/concurrency-scheduling.pdf>`_
-  * `使用 coroutine 實做 user-level thread<http://blog.linux.org.tw/~jserv/archives/001848.html>`_
-  * `Coroutine in FPPA<http://godspeedlee.myweb.hinet.net/coroutine.html>`_
-  * `淺談coroutine與gevent<http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/>`_
-  * FreeRTOS: `Co-routines vs. Tasks<http://www.freertos.org/taskandcr.html>`_
-  * FreeRTOS: `Quick Co-routine Example<http://www.freertos.org/coroutine-example-code.html>`_
+- [Concurrent processes and real-time scheduling](/embedded/2012w4/concurrency-scheduling.pdf)
+  * [使用 coroutine 實做 user-level thread](http://blog.linux.org.tw/~jserv/archives/001848.html)
+  * [Coroutine in FPPA](http://godspeedlee.myweb.hinet.net/coroutine.html)
+  * [淺談coroutine與gevent](http://blog.ez2learn.com/2010/07/17/talk-about-coroutine-and-gevent/)
+  * FreeRTOS: [Co-routines vs. Tasks](http://www.freertos.org/taskandcr.html)
+  * FreeRTOS: [Quick Co-routine Example](http://www.freertos.org/coroutine-example-code.html)
 
-- `The Architecture of Open Source Applications: FreeRTOS<http://www.aosabook.org/en/freertos.html>`_
-  * `簡體中文翻譯<http://www.ituring.com.cn/article/4063>`_
+- [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
+  * [簡體中文翻譯](http://www.ituring.com.cn/article/4063)
 
 參考資訊
 ---------
-- `FreeRTOS Implementation<http://www.freertos.org/implementation/main.html>`_
-- `What really happened on Mars ?<http://research.microsoft.com/en-us/um/people/mbj/Mars_Pathfinder/Authoritative_Account.html>`_
+- [FreeRTOS Implementation](http://www.freertos.org/implementation/main.html)
+- [What really happened on Mars ?](http://research.microsoft.com/en-us/um/people/mbj/Mars_Pathfinder/Authoritative_Account.html)

@@ -33,7 +33,7 @@ http://en.wikipedia.org/wiki/Joint_Test_Action_Group
 ----------------
 - GNU Toolchain: 同之前 Lab
 - ICE = In-Circuit Emulator
-- `Remote Debugging using GDB<http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB>`_
+- [Remote Debugging using GDB](http://www.codeproject.com/Articles/14983/Remote-Debugging-using-GDB)
 
 .. code-block:: prettyprint
 
@@ -73,7 +73,7 @@ http://en.wikipedia.org/wiki/Joint_Test_Action_Group
 
 Programming STM32 F2, F4 ARMs under Linux
 ------------------------------------------
-- `A Tutorial from Scratch<http://www.triplespark.net/elec/pdev/arm/stm32.html>`_
+- [A Tutorial from Scratch](http://www.triplespark.net/elec/pdev/arm/stm32.html)
   * Introduction STM32, STM32F2, STM32F4
   * Obtaining and Setting Up OpenOCD
   * Setting up the Hardware: STM32F4Discovery with integrated ST-Link/V2
@@ -84,7 +84,7 @@ Programming STM32 F2, F4 ARMs under Linux
 
 工作環境
 -------
-- 取得最新 Labs 內容 (與之前 `Lab3</embedded/Lab3>`_ 操作相似)：
+- 取得最新 Labs 內容 (與之前 [Lab3](/embedded/Lab3) 操作相似)：
 
 .. code-block:: prettyprint
 
@@ -134,11 +134,11 @@ USB 相關程式
 
 「作業系統之前的程式 for stm32f4discovery」系列文章
 --------------------------------------------------------------------------
-* `打造 Linux 開發環境<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html>`_
-  - `1+2+3...+10 (ARM 組合語言版本)<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html>`_
-* `點亮 LED<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html>`_
-* `USART<http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html>`_
+* [打造 Linux 開發環境](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-0-linux.html)
+  - [1+2+3...+10 (ARM 組合語言版本)](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4-discovery-1-10-asm-version.html)
+* [點亮 LED](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-2-led-c-version.html)
+* [USART](http://descent-incoming.blogspot.tw/2013/04/for-stm32f4discovery-3-usart.html)
 
 Reference
 ---------------
-* `Lab6</embedded/Lab6>`_
+* [Lab6](/embedded/Lab6)
