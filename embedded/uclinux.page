@@ -584,7 +584,7 @@ timer scheduler呼叫時
 
 每一個相同的IRQ line在linux中會串成一條link list，kernel在接獲一條IRQ line上產生的訊號時，會從link list的前端開始，沿路呼叫每一個node的handler function，而該handler function則必須檢查這個訊號是否由自身所屬的device所發出。若否，則handler function要盡快把控制權丟出來以免拖累整個interrupt handling的處理速度。若訊號源來自handler自己所對應的裝置，則在處理中斷工作結束後回傳IRQ_HANDLED。
 
-.. image:: /IRQ list.png
+![Image](/IRQ)list.png
 
 接著我們以linux處理Level-Triggered Interrupts的流程來介紹maskng。所謂的Level-Triggered是指當我的輸入電位高過某個水平之後，即視為device遇到狀況了，需要CPU的關心。而在device本身降低自己在這個port的電壓前，電壓將持續的維持在高位。這意味著我們需要暫時無視這個port的訊號，待處理完interrupt handling後(順便期待處理會使的電位降低)，重新檢視這個port的訊號。又或者是通知device controller說OS開始處理這個interrupt了，讓device決定下一步動作(例如降低該port之電位)。在下面這個流程圖中採取了雙管齊下的策略。
 

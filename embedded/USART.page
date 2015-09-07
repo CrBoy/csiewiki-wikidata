@@ -141,7 +141,7 @@ RS-232阻礙
 
 差分信號傳輸
 
-.. image:: /embedded/Differential Signal.png
+![Image](/embedded/Differential)Signal.png
 
  - 使用兩根信號線，這兩個信號的振幅相同，相位相反，電流在彼此間逆向流動，信號接收端比較這兩個電壓的差值來判斷發送端發送的是邏輯0還是邏輯1。在電路板上，差分走線必須是等長、等寬、緊密靠近、且在同一層面的兩根線，USB3.0就是高速差分傳輸的一種。
 
@@ -1343,6 +1343,6 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 
 如果我們在中間取樣，可以容許一定程度的取樣頻率誤差
 
-.. image:: /unmatched clocks.png
+![Image](/unmatched)clocks.png
 
 [圖片來源](http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed)

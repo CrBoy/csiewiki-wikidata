@@ -743,7 +743,7 @@ I2C起源於電視設計，但之後朝通用路線發展，各種電子設計�
 
 SMBus提供clock同步機制,允許不同速度之設備在共同的bus上,設備可以週期性地延長每個clock cycle,但必須維持fSMB,MIN frequency of 10 KHz ( fSMB,MIN-1= 100µs),以維護SMBus的頻寬
 
-.. image:: /embedded/SMBus4.jpg 
+![Image](/embedded/SMBus4.jpg)
 
 * Different Logic levels
 

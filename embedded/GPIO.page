@@ -96,7 +96,7 @@ Configuration - 配置圖
 =======================
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
-.. image:: /GPIO_ Input_configurations.png
+![Image](/GPIO_)Input_configurations.png
 When the I/O port is programmed as Input:
 
 - the output buffer is disabled
@@ -114,7 +114,7 @@ When the I/O port is programmed as Input:
 
 Output configuration (P.274, **8.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
-.. image:: /GPIO_ Output_configurations.png
+![Image](/GPIO_)Output_configurations.png
 When the I/O port is programmed as output:
 
 .. TODO: Output Control
@@ -318,7 +318,7 @@ Demo - 測試實驗
   - demo3, demo4
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
-.. image:: /embedded/starting_ state.jpg
+![Image](/embedded/starting_)state.jpg
 * 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
   - demo3, demo4

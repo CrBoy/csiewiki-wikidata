@@ -246,7 +246,7 @@ STM32F4xx ADC Control
 - 可使用SWSTART/JSWSTART開始ADC的轉換
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **兩個(F407) / 三個（F429）內部訊號源**。每個外部訊號源對應一個通道。
 
-.. image:: /embedded/ADC/ADC on STM32F4
+![Image](/embedded/ADC/ADC)on STM32F4
 
 
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
@@ -558,7 +558,7 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
 
 
-.. image:: /embedded/ADC/ADC on STM32F4
+![Image](/embedded/ADC/ADC)on STM32F4
 
 
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。

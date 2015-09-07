@@ -114,7 +114,7 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
 
 * 相對的，接收端在作資料接收之前，就必需先執行NRZI解碼，然後再作位元反填塞(Bit-destuffing)。
 
-.. image:: /embedded/bit stuffing.png
+![Image](/embedded/bit)stuffing.png
 
 * 資料傳輸流程
 
@@ -135,7 +135,7 @@ USB 對這個問題的解決辦法，就是強制插0，也就是bit-stuffing，
        - 首先電路連接方式跟full speed一樣，就在 device 跟 host 端連接時，host端會先傳送一個USB RESET signal給device端，device端接收後，接下來就是device 端跟 host 端的速度協商，如果device有支援high speed的話，就會發出chirp K signal給host端，如果host端有支援high speed，也會回應一連串交替的chirp k 和 chirp J signal回給device端，達成handshake，就可以改用high speed傳輸。
        - 另外，chirp訊號是只有支援high speed傳輸的device和host端才會有的傳輸，如果沒有支援就不會有這種訊號傳輸!
  
-.. image:: /embedded/high speed.png
+![Image](/embedded/high)speed.png
 
 網路層
 ========
@@ -205,7 +205,7 @@ Transaction指USB資料的傳輸，大部分的傳輸包含了三種封包，封
 
 .. image:: /packet.jpg
 
-.. image:: /embedded/USB/PID types.jpg
+![Image](/embedded/USB/PID)types.jpg
 
 由上面的表可以看到，PID實際上只使用到前四個 bits，後面四個bits是前面四個bits的倒數，主要是因為USB傳輸編碼是透過NRZI，這樣的話，就可以避免出現bit-stuffing
 
@@ -254,10 +254,10 @@ Token 封包
 * 對於IN處理，位址與端點欄位用來選擇傳送資料的端點。
 * PID 後面緊接著他的補數，是為了避免bit-stuffing
 
-.. image:: /Token Format.jpg
+![Image](/Token)Format.jpg
 SOF(Start-of-Frame)為一個特別的Token封包類型，包含目前的frame的號碼(訊框號碼)，主機每隔一段很小的間隔就會發出一次SOF封包，所有裝置以及hub都會收到SOF封包。對只需要時間資訊的裝置而言，只需要知道PID為SOF即可，剩餘的frame number以及CRC的資訊皆可忽略。
 
-.. image:: /SOF Packet.jpg
+![Image](/SOF)Packet.jpg
 
 PID: Packet Identifier
 
@@ -274,7 +274,7 @@ Data 封包
 
 Data封包包含處理此動作的資料。在low-speed裝置中，Data封包最大的資料量為8 bytes；在full-speed裝置中，Data封包最大的資料量為1023 bytes；在high-speed裝置中，Data封包最大的資料量為1024 bytes以上。其中 Data0 及 Data1 是兩個基本的資料封包，使用這些資料封包以提供一個機制來確定將傳送端和接收端之間的資料切換同步(data toggle synchronization)。另外在 USB2.0 當中更增加了 Data2 及 MData 資料封包，用於執行高速的即時傳輸(Isochronous Transfers)。
 
-.. image:: /embedded/USB/Data Packets.jpg
+![Image](/embedded/USB/Data)Packets.jpg
 
 Handshake 封包
 ---------------
@@ -288,7 +288,7 @@ Handshake封包由一個PID所組成，用來表示資料傳輸的狀態，部�
 
 * STALL表示裝置無法傳送或接收資料，需要主機介入來清除延遲狀況。
 
-.. image:: /embedded/USB/Handshake Packet.jpg
+![Image](/embedded/USB/Handshake)Packet.jpg
 
 USB OTG (On-The-Go)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -344,7 +344,7 @@ Block Diagram
 
 USB host and device
 ======================
-.. image:: /embedded/usb host:device .png
+![Image](/embedded/usb)host:device .png
 
 Bus Timing/Electrical Characteristics
 =======================================

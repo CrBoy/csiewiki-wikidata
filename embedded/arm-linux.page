@@ -959,7 +959,7 @@ Linux Timer Interrupt 實作
 
 - 這時資料輸出到trace.dat，在將檔案移到我本地端的電腦執行kernelshark，可以看到如下圖，先fliter掉其他task和event只觀察timer event，irq event，然後我先挑一個cpu來觀察CPU0，先行分析
 
-.. image:: /embedded/arm_linux/kernelshark_timer event.png
+![Image](/embedded/arm_linux/kernelshark_timer)event.png
 - 可先至<理論篇> 先了解linux kernel的timer interrupt的運作，再搭配圖示
     - 從kernelshark下面list中的event info可以看到
         - event                           info
@@ -991,7 +991,7 @@ Linux Timer Interrupt 實作
 - 可以拿一個task所執行的function來看
     - task : sshd   , function : tcp_write_timer
 
-.. image:: /embedded/arm_linux/timer interrupt task timer.png
+![Image](/embedded/arm_linux/timer)interrupt task timer.png
 
 從這邊可以看到要執行這個function，必須要等到51個timer interrupt之後才可以執行，所使用的timer位置是在`0xee57a390`
 
@@ -1007,14 +1007,14 @@ Linux Scheduler 理論
     - CPU排班的重點在於：行程的執行是由CPU執行的時間及 I/O 等待時間所組成的週期(cycle)，行程在這兩個狀態之間交替往返。
         - 行程執行由一個CPU分割(CPU burst)開始，接著一個 I/O burst，然後再另一個CPU burst，再來又一個 I/O burst ，最後一個CPU burst結束時，同時會有一個系統     要求中止執行這個 task，如下圖所示。
 
-.. image:: /embedded/arm_linux/alternating sequence of cpu and io bursts.png
+![Image](/embedded/arm_linux/alternating)sequence of cpu and io bursts.png
 
     - CPU burst 的持續時間可被大量的量測，會大致上類似下圖的頻率曲線所示，這個曲線一般是指數型或超指數型 (hyperexponential)
         - 短的CPU burst很多，長的CPU burst則很少。
         - I/O bound 的程式之中一般是很多很短的 CPU burst；CPU bound 的程式就會有一些非常長的CPU burst
             - 所以根據不同種類的程式選取適當的 CPU排班演算法是非常重要的
 
-.. image:: /embedded/arm_linux/histogram of cpu_burst durations.png
+![Image](/embedded/arm_linux/histogram)of cpu_burst durations.png
 
 - CFS (完全公平排班器，Completely Fair Scheduler)
     - 在Linux kernel 2.6版以後引進

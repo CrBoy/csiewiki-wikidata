@@ -80,7 +80,7 @@ STM32F40x block diagram (STM32F407xx datasheet p.18)
 SPI functional description
 ==========================
 
-.. image:: /embedded/SPI/SPI block diagram.png
+![Image](/embedded/SPI/SPI)block diagram.png
 SPI block diagram [#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.661
@@ -113,7 +113,7 @@ general
       * slave mode:
         * 當NSS低電位時，代表被選為要接收資料的slave
 
-.. image:: /embedded/SPI/single master _ single slave application.png
+![Image](/embedded/SPI/single)master _ single slave application.png
 SPI single master/single slave application [#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.662
@@ -141,7 +141,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 
   * CPHA = 1 表示在第二個 edge (Rising,when CPOL=1.Falling,when CPOL=0.)取值。
 
-.. image:: /embedded/SPI/SPI Dota clock timing diagram.png
+![Image](/embedded/SPI/SPI)Dota clock timing diagram.png
 Data clock timing diagram[#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.664
@@ -195,7 +195,7 @@ BUSY flag：用以指示SPI 正忙於傳輸的 flag
 
 SPI 通訊過程
 ------------
-.. image:: /TXE_RXNE_BSY behavior in Master _full-duplex mode(P.672).png
+![Image](/TXE_RXNE_BSY)behavior in Master _full-duplex mode(P.672).png
 
 - 傳送步驟：
   * 將第一筆資料寫入SPI_DR register裡(清除TXE bit、BSY flag設為1)
@@ -305,25 +305,25 @@ WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 - WS signal在falling edge時作切換
 
-.. image:: /embedded/I2S Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
+![Image](/embedded/I2S)Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
 
 - 上面的情況需要對SPI_DR作兩次讀寫的動作，舉例如下圖
 
-.. image:: /embedded/I2S Philips standard waveforms Transmitting 0x8EAA33.PNG
+![Image](/embedded/I2S)Philips standard waveforms Transmitting 0x8EAA33.PNG
 
 - 下圖只需對SPI_DR作一次讀寫即可，剩餘的16 bits會被hardware強制設為0x0000
 
-.. image:: /embedded/I2S Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![Image](/embedded/I2S)Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 MSB justified standard
 ''''''''''''''''''''''
 在傳輸第一個bits(MSB)時，WS訊號同時作切換，如下圖
 
-.. image:: /embedded/MSB Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
+![Image](/embedded/MSB)Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
 
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 
-.. image:: /embedded/MSB Justified 24-bit frame length with CPOL = 0_fix.PNG
+![Image](/embedded/MSB)Justified 24-bit frame length with CPOL = 0_fix.PNG
 
 LSB justified standard
 ''''''''''''''''''''''
@@ -331,13 +331,13 @@ LSB justified standard
 - 對於16-bit、32-bit full-accuracy frame formats來說，與MSB justified standard相同
 - 與MSB justified standard的差別在於24-bit frame length與16-bit extended to 32-bit packet frame
 
-.. image:: /embedded/LSB Justified 24-bit frame length with CPOL = 0.PNG
+![Image](/embedded/LSB)Justified 24-bit frame length with CPOL = 0.PNG
 
-.. image:: /embedded/LSB Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG
+![Image](/embedded/LSB)Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG
 
 - 上圖，在接收或傳送時，需由software或DMA對SPI_DR作兩次讀寫
 
-.. image:: /embedded/LSB justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![Image](/embedded/LSB)justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 - 舉例如果要傳輸的資料是0x76A3(0x0000 76A3 extended to 32-bit)，那只需要對SPI_DR作一次讀寫即可
 - 在傳送端，當TXE flag升起，hardware會先將0x0000傳輸過去，再來當TXE flag又升起，由software對SPI_DR寫入0x76A3
@@ -348,7 +348,7 @@ PCM standard
 - 不需用到Left channel和Right channel
 - 分成兩種PCM modes(short frame、long frame)，可利用PCMSYNC bit(in SPI_I2SCFGR)來作設定
 
-.. image:: /embedded/PCM standard waveforms (16-bit).PNG
+![Image](/embedded/PCM)standard waveforms (16-bit).PNG
 
 - 在long frame mode時，WS訊號在前13個bits(MSB)都處於升起的狀態
 - 在short frame mode時，WS訊號升起的時間只有一個cycle
@@ -684,11 +684,11 @@ Error flags
 怎麼知道要使用哪些腳位？
 ---------------------
 
-.. image:: /alternate function mapping.png
+![Image](/alternate)function mapping.png
 Alternate function mapping[#]_
 .. [#] [Datasheet ](http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf) p.61
 
-.. image:: /Alternate function mapping continued.png
+![Image](/Alternate)function mapping continued.png
 由於GPIOE的AF最少，功能最為乾淨(不易佔用其他功能所需之腳位)，適合作為IO port 腳。
 STM32F407xx Datasheet p.64
 

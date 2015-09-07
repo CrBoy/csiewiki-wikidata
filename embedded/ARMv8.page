@@ -65,7 +65,7 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 - 根據目前架構，由下層系統的Execution State決定上層系統所在模式
 - 若下層系統為32bits則上層只能為32bits，反之若為64bits則上層可為32bits or 64bits
 
-.. image:: /embedded/armv8 arch.png
+![Image](/embedded/armv8)arch.png
 
 安全性狀態 (Security state)
 ---------------------------------------------------------------------------
@@ -76,7 +76,7 @@ ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定�
 
 - 不安全狀態(Non-Secure state): 只能存取不安全的實體定址空間，有EL0.EL1.EL2
 
-.. image:: /embedded/Security Extension.png
+![Image](/embedded/Security)Extension.png
 (from: Hardware Support Virtualization (國立清華大學))
 
 虛擬化 (Virtualization)
@@ -292,7 +292,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 - VMSAv8-64支援4KB, 16KB, and 64KB的translation granule sizes
 
-.. image:: /embedded/granule size.jpg
+![Image](/embedded/granule)size.jpg
 
 - granule size決定了page及一次查找可以轉換的bit數
 
@@ -311,7 +311,7 @@ Translation table walks
         - descriptor提供final translation的 hierarchical attributes
     - invalid: Translation fault
 
-.. image:: /embedded/stage of address translation.jpg
+![Image](/embedded/stage)of address translation.jpg
 
 
 地址轉換流程:

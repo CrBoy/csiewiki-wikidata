@@ -71,7 +71,7 @@ Clock control
 PLL(Phase-Lockedloop) 鎖相迴路
 ----------------------------------------
 
-.. image:: /embedded/ pll.png
+![Image](/embedded/)pll.png
 
 若 Fin 訊號為一頻率參考訊號，Fdout 為除頻器的輸出訊號，PLL(Phase-Lockedloop)的動作就是藉由相位頻率偵測器(PFD)偵測其兩訊號的相位差(領先或落後)，然後再將此訊息送進電荷充放器。電荷充放器會根據此領先或落後的訊號下達充電或放電的命令，接著訊號經過低通濾波器後將會轉換成一低頻的控制電壓以改變壓控震盪器的震盪頻率，再經由除頻器作除頻動作後，回授給相位頻率偵測器，也就是藉著這些一次次的回授動作而使輸出到達一個穩定的頻率。
 
@@ -144,7 +144,7 @@ Clock Selection
 
 - Block diagram
   - in Adavanced-control timers & General-purpose timers
-.. image:: /BD of GP timer.png
+![Image](/BD)of GP timer.png
 
 - TIMx_CHx
   - 每個TIMER會對應到4個channel，這些channel會mapping到STM32F429上面的pin腳
@@ -381,7 +381,7 @@ Output compare mode
 
 .. [#] [TIMx_CCMR1](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 621
 
-.. image:: /embedded/OC1M(output compare mode).png
+![Image](/embedded/OC1M(output)compare mode).png
 
 
 **PWM mode：分為 edge-aligned & center-aligned mode**
@@ -683,7 +683,7 @@ Clock Tree
 
 - 先倍頻在除頻係因倍頻與除頻的電路設計上的差異, 因PLL設計較為複雜, 而prescaler則以counter即可實現, 所以設計上不會直接將Oscillator產生之頻率倍頻至各裝置所需之頻率.
 
-.. image:: /before PLL.PNG
+![Image](/before)PLL.PNG
 
 
 [#]_
@@ -712,7 +712,7 @@ TIx XOR
 Setup Time
 -----------
 
-.. image:: /part of counter wave.PNG
+![Image](/part)of counter wave.PNG
 
 [Ref. 數位IC設計, 陳培殷教授, slide 40, 41 ](http://dic.csie.ncku.edu.tw/vlsi_2013/CHAPTER-5.pdf)
 

@@ -78,7 +78,7 @@ Secondary Clock:
 Prescaler 
 --------------------
 
-.. image:: /stm32 RTC prescaler.png
+![Image](/stm32)RTC prescaler.png
 
 ``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。*ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
 
@@ -122,7 +122,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 -----------------------------------------------------------------
 
-.. image:: /coarse cal.png
+![Image](/coarse)cal.png
 
 **2、RTC  smooth calibration：**
 
@@ -139,7 +139,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 ----------------------------------------------------------------------------
 
 
-.. image:: /smooth cal.png
+![Image](/smooth)cal.png
 
 **3、RTC reference clock detection：**
 
