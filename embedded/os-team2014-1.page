@@ -39,7 +39,7 @@ Demo
   * 通訊模組改成 SIM5320E，因為 SIM900A 的支援國家不包括台灣
   * 因為時間因素，來不及將函式庫移到 F9-kernel 使用，因此改成使用 FreeRTOS
 
-![Image](/embedded/os-team2014-1/phone.jpg)
+![](/embedded/os-team2014-1/phone.jpg)
 
 專題紀錄
 --------

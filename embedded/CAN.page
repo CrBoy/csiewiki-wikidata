@@ -7,7 +7,7 @@ Introduction
 ============
 控制器區域網路 (Controller Area Network, 簡稱 CAN 或 CANbus)是一種網路，其特點是允許網路上的多個微控制器或設備直接互相通訊，網路上不需要主機(Host)控制通訊，並且提供高安全等級及有效率的即時控制。更具備了偵錯和優先權判別的機制，網路訊息的傳輸變的更為可靠而有效率。訊息的ID並不是定義在節點，而是定義在訊息上，所以只要在軟體上修正就能夠輕易增加或移除節點，增加了在升級網路時的便利性。實作上又因為只需雙線溝通的特性，也降低線路複雜易造成錯誤的發生機會。總而言之，CANbus具有高擴充性 、高可靠度且低成本等特性。
 
-![Image](/embedded/CAN)Bus_Diagram1.png
+![](/embedded/CAN)Bus_Diagram1.png
 
 Features
 ============
@@ -15,11 +15,11 @@ Features
 Network Topology(CANbus網路架構)
 --------------------------------------
 
-![Image](/embedded/CAN_topology.png)
+![](/embedded/CAN_topology.png)
 
 CANbus是一種匯流排網路，他的匯流排是由兩條線路所實現，當兩條線路電位差小的時候為1，電位差大的時候為0。
 
-![Image](/embedded/CAN_01.png)
+![](/embedded/CAN_01.png)
 
 MESSAGE TRANSFER(CAN通訊的資料格式)
 --------------------------------------
@@ -30,21 +30,21 @@ CAN2.0有兩種版本，CAN2.0A(Standard),CAN2.0B(Extended)。
 ''''''''''''''''''''''''''''''''''''''''
 資料通訊格式主要用於傳送資料，主要分成5個部分。
 
-![Image](/embedded/CAN_dataframe1.png)
+![](/embedded/CAN_dataframe1.png)
 
-![Image](/embedded/CAN_dataframe2.png)
+![](/embedded/CAN_dataframe2.png)
 
 * Start of Frame(SOF):送出1位元dominant(0)，用來同步。
 
 * Arbitration Field:表示節點的優先權，用來判別優先權。若多個節點同時傳送，在仲裁欄位逐一比對優先權，位元為dominant(0)可優先傳送。長度有兩種11bits(Standard identifier)和29bits(Extended Identifier)。
 
-![Image](/embedded/CAN_priroity.png)
+![](/embedded/CAN_priroity.png)
 
 RTR 則為優先判斷與資料接收與否的識別，RTR=dominant(0)，表資料要傳出，RTR=recessive(1)，表要接收資料。
 
 * Control Field:資料的長度。
 
-![Image](/embedded/CAN_dataframe_control_field.png)
+![](/embedded/CAN_dataframe_control_field.png)
 
 IDE: 標準格式(Standard identifier)為dominant(0);延伸格式(Extended Identifier)為 recessive(1)。
 
@@ -52,23 +52,23 @@ R0:保留
 
 * Data Field:0-8bytes的資料。
 
-![Image](/embedded/CAN_dataframe_data.png)
+![](/embedded/CAN_dataframe_data.png)
 
 資料長度0-8 bytes
 
 * CRC Field:錯誤檢查。
 
-![Image](/embedded/CAN_dataframe_CRC.png)
+![](/embedded/CAN_dataframe_CRC.png)
 
 * ACK Field:接收正確，接收端送出1位元dominant(0)。
 
-![Image](/embedded/CAN_dataframe_ACK.png)
+![](/embedded/CAN_dataframe_ACK.png)
 
 傳送端送出一個recessive bit(1)當接收端正確收到一個訊息，則在ACK Slot中回傳一個為dominant(0)位元，告知傳送端。
 
 * End of Frame(EOF):通訊格式結束的欄位。
 
-![Image](/embedded/CAN_EOF.png)
+![](/embedded/CAN_EOF.png)
 
 每一個資料都是由7個連續的recessive(1)位元作為結束。
 
@@ -76,7 +76,7 @@ R0:保留
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 遠端通訊格式用來請求遠端節點傳送資料。
 
-![Image](/embedded/CAN_RTRF.png)
+![](/embedded/CAN_RTRF.png)
 
 遠端通訊格式基本上就是資料長度為0的資料通訊格式，指示設定上略有不同。當A節點需要B節點送出資料時，可藉由送出一個遠端通訊格式來完成，將B節點的ID寫入仲裁欄位，在RTR填入recessive(1)。
 
@@ -84,11 +84,11 @@ R0:保留
 '''''''''''''''''''''''''''''''''''''''''''''''''''''
 當接收到的訊息有錯誤時，節點會發送錯誤通訊格式通知其他節點。
 
-![Image](/embedded/CAN_errorframe_active.png)
+![](/embedded/CAN_errorframe_active.png)
 
 * CAN有5種錯誤檢查來確保收發資料的正確性，在偵測到錯誤的當下決定要在資料的哪個位元回傳錯誤訊息(一定是在Data資料不完整的狀態下)。
 
-![Image](/embedded/CAN_errorframe_type.png)
+![](/embedded/CAN_errorframe_type.png)
 
 * 在節點的狀態方面共有3種(主動,被動,關閉)。通訊格式上，則有主動和被動之分，差別在於Error Flag的值不同。主動是6個dominant(0)，被動是6個recessive(1)。
 
@@ -96,7 +96,7 @@ R0:保留
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 通知其他節點延遲傳送資料的格式
 
-![Image](/embedded/CAN_overloadframe.png)
+![](/embedded/CAN_overloadframe.png)
 
 節點處理資料中，對於下一筆資料需要延遲時使用，通常接在遠端通訊格式或資料通訊格式後面。
 
@@ -104,7 +104,7 @@ R0:保留
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 與前一個資料間隔的格式
 
-![Image](/embedded/CAN_Inter_Frame_Space.png)
+![](/embedded/CAN_Inter_Frame_Space.png)
 
 * 有3bit的intermission和一直處於recessive(1)的Bus Idle
 * 除了過載通訊格式和錯誤通訊格式之外，訊息之間至少都要有intermission
@@ -119,17 +119,17 @@ Error Detection(資料偵錯機制)
 
 發送資料中的節點會比較發送的資料和bus中的電位高低變化是否一致，如果不一致則直在位傳完的訊息後方接著傳送Error Frame。這種偵錯機制僅限於SOF,control,data,CRC field。 
 
-![Image](/embedded/CAN_bit_error.png)
+![](/embedded/CAN_bit_error.png)
 
 * STUFF ERROR
 
 bit stuffing，就是接收端和傳送端約定連續傳幾個相同的bits就要傳送一個相反的bit，用來和訊息中的某些delimiter 做區隔，避免錯亂。在CAN當中是規定某些資料格式中最多只能有5個連續相同的bit，下一個bit就會自動安插相反的bit，並且在接收端會做de-stuffed的動作來把這個bit清除來還原資料。
 
-![Image](/embedded/CAN_bit_stuffing.png)
+![](/embedded/CAN_bit_stuffing.png)
 
 CAN只在Data Frame中的SOF, ARBITRATION FIELD, CONTROL FIELD,DATA FIELD 和 CRC SEQUENCE這些非固定格式的部分有bit stuffing 的機制。所以當訊息中的這些部分連續偵測到6個相同的bit的時候，就會從下一個bit開始傳送Error Frame。 
 
-![Image](/embedded/CAN_bitstuffing_error.png)
+![](/embedded/CAN_bitstuffing_error.png)
 
 * CRC ERROR
 
@@ -144,32 +144,32 @@ M(x)*x^n = Q(x)*K(x) + R(x)
 
 ex:假設資料位元(message polynomial)為10101010，generator polynomial為x^4+x^2+x^1+1 (10111)
 
-![Image](/embedded/CAN_CRC_ex.png)
+![](/embedded/CAN_CRC_ex.png)
 
 1100為此資料在以x^4+x^2+x^1+1為generator polynomial之下的CRC。
 
 在CAN當中M(x)是下圖中的Fields所產生的message polynomial，K(x)則是x^15 + x^14 + x^10 + x^8 + x^7 + x^4 + x^3 + 1。
 
-![Image](/embedded/CAN_CRC_error.png)
+![](/embedded/CAN_CRC_error.png)
 
 * FORM ERROR
 
 CRC,ACK Field 都有delimiter，甚至EOF本身就是Data Frame的delimiter，這些bit都預設為recessive(1)，如果在這些bit上讀到dominant(0)，那從下一個bit開始就傳送Error Frame。 
 
-![Image](/embedded/CAN_form_error.png)
+![](/embedded/CAN_form_error.png)
 
 * ACKNOWLEDGMENT ERROR
 
 傳送端會傳出2個bit的recessive(1)為ACK Field，前者為ACK Slot後者為ACK delimiter。當傳送端在ACK Slot送出recessive(1)的時候，接收端要回傳dominant(0)，告知傳送端。如果沒有那就在ACK delimiter後面傳送error frame。 
 
-![Image](/embedded/CAN_ACK_error.png)
+![](/embedded/CAN_ACK_error.png)
 
 FAULT CONFINEMENT(節點錯誤機制)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 CAN的每個節點都有計數器來記錄錯誤的歷史(Transmit Error Counter(TEC) & Receive Error Counter (REC)。評估節點的方式則是根據不同的錯誤形式有不同的權重去計算出狀態數值，並且當節點反應正常的時候還會有下修機制避免因為長時間執行造成的錯誤。當這個評估的數值大於127這個門檻後，就會判定節點從Error active state轉為Error passive state。當節點變成Error passive state的時候，錯誤訊息格式內的flag則是從Active-error flag(6 recessives)改成Passive-error flag(6 dominants)，錯誤提醒的部分則是從Error active state的主動全部節點的提醒，改成只在該錯誤節點記錄錯誤。當數值大於255，就判定此節點失效並且關閉此節點的所有行為。當失效節點偵測到128次連續11個recessive(0)bit的時候，重新出始化節點所有的TEC和REC數值歸零，以Error active state的狀態重新回到bus當中。
 
-![Image](/embedded/CAN_note_state.png)
+![](/embedded/CAN_note_state.png)
 
 CAN in STM32F429 Board
 ====================================
@@ -191,7 +191,7 @@ Sleep mode主要是為了省電而設計的，藉由拉起CAN_MCR裡的SLEEP bit
 
 最主要的工作模式。藉由拉低INAK和SLAK bit進入。
 
-![Image](/embedded/CAN_oprerating_mode.png)
+![](/embedded/CAN_oprerating_mode.png)
 
 Test modes
 --------------------------------------
@@ -202,19 +202,19 @@ Test modes主要是用來測試node狀態， 藉由設定CAN_BTR寄存器的SILM
 
 就是把node設定成只進不出的狀態。就連接收成功的ACK bit也傳不出去。
 
-![Image](/embedded/CAN_slient_mode.png)
+![](/embedded/CAN_slient_mode.png)
 
 * Loop back mode
 
 就是把node設定成只出不進的狀態。並且把自己傳出的message存回Rx mailbox之中。
 
-![Image](/embedded/CAN_loopback_mode.png)
+![](/embedded/CAN_loopback_mode.png)
 
 * Combined mode
 
 自己的Tx直接進入自己的Rx，通常用來檢測node本身。
 
-![Image](/embedded/CAN_sli_loop_mode.png)
+![](/embedded/CAN_sli_loop_mode.png)
 
 
 Transmission handling
@@ -238,7 +238,7 @@ mailbox處理主要分成3個階段,PENDING,SCHEDULED和TRANSMIT。當傳送的�
 
 傳送資料不止一筆的時候，bxCAN會排定傳送順序。排定的方法有兩種，一種是依照順序，一種是依照ID。號碼小的優先傳送，如果ID一樣的時候mailbox號碼小的優先。
 
-![Image](/embedded/CAN_transmit_mailbox.png)
+![](/embedded/CAN_transmit_mailbox.png)
 
 Reception handling
 --------------------------------------
@@ -253,7 +253,7 @@ Reception handling
 
 Overrun處理有兩種模式。第一種是有開啟FIFO lock。當三階段的FIFO都滿了，但CPU還沒處理。接下來的資料都會遺失。此時CAN_RFR寄存器的FOVR bit會被拉起。第二種是沒有開啟FIFO lock，接下來的資料則會直接覆蓋FIFO的最後一筆資料。
 
-![Image](/embedded/CAN_reception_FIFO.png)
+![](/embedded/CAN_reception_FIFO.png)
 
 Identifier filtering
 --------------------------------------
@@ -270,7 +270,7 @@ Identifier filtering
 
 * Filter bank 
 
-![Image](/embedded/CAN_filtering.png)
+![](/embedded/CAN_filtering.png)
 
 * Filter match index
 
@@ -280,13 +280,13 @@ Filter match index是一個可以更進一步減輕處理負擔的機制。當fi
 
 以下是一個filter操作流程的範例。當接收到一筆訊息的時候，會先在filter bank當中尋找是否有符合的資料，順序是先看list在看mask。在進入FIFO之前，先加入filter match index，然後再進入FIFO排隊等待處理。
 
-![Image](/embedded/CAN_filter_mechanism.png)
+![](/embedded/CAN_filter_mechanism.png)
 
 
 Bit Timming
 --------------------------------------
 
-![Image](/embedded/CAN_bit_timing.png)
+![](/embedded/CAN_bit_timing.png)
 
 ex:假設APB clock為45Mhz如何得到1Mhz的baud rate?
 
@@ -303,7 +303,7 @@ Demo
 
 Video : https://www.youtube.com/watch?v=4fYoXGiIdDs&feature=youtu.be
 
-![Image](/embedded/CAN_extention.png)
+![](/embedded/CAN_extention.png)
 
 Initialization:
 
@@ -406,7 +406,7 @@ source code : https://github.com/ming6842/STMF429_Learning/tree/master/stm32f429
 Tables
 ==================
 
-![Image]()/embedded/CAN_falut_confinment_table.png
+![]()/embedded/CAN_falut_confinment_table.png
 
 References
 ==================

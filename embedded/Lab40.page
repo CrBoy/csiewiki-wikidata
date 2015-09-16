@@ -11,16 +11,16 @@ toc: no
 
 Grasp
 -------
-![Image](/embedded/Lab40/grasp-n-os.png)
+![](/embedded/Lab40/grasp-n-os.png)
 
 * [Grasp](http://www.win.tue.nl/san/grasp/) 是個能夠追蹤、視覺化，以及測量即時系統中執行時期行為的工具，很容易擴充。
   - 使用案例: mutex 視覺化輸出
 
-![Image](/embedded/Lab12/mutex.png)
+![](/embedded/Lab12/mutex.png)
 
   - 使用案例: RTOS scheduling 視覺化輸出
 
-![Image](/embedded/Lab12/hsf.png)
+![](/embedded/Lab12/hsf.png)
 
 Grasp 安裝
 ----------------
@@ -42,7 +42,7 @@ Grasp 安裝
 
 * 執行 Grasp、點選 ``examples`` 目錄並且挑選副檔名為 ``.grasp`` 的檔案，之後觀察視覺化輸出
 
-![Image](/embedded/Lab40/grasp.png)
+![](/embedded/Lab40/grasp.png)
 
 取得 Visualizer 並測試
 ------------------------------

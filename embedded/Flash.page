@@ -25,13 +25,13 @@ categories: STM32, STM32F4, STM32F429
     - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
     - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
 
-![Image](/EPROM.jpg)
+![](/EPROM.jpg)
 - EPROM: 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
   - 利用高電壓將資料編程寫入，但抹除時需將線路曝光於紫外線下一段時間，資料始可被清空。
   - 封裝外殼上會留一個石英玻璃所製的透明窗以便進行紫外線曝光。
   - 寫入程式後通常會用貼紙遮蓋透明窗，以防日久不慎曝光過量影響資料。
 
-![Image](/EEPROM.jpg)
+![](/EEPROM.jpg)
 - EEPROM: 電子抹除式可複寫唯讀記憶體(Electrically-Erasable Programmable Read-Only Memory)
   - 是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
   - EEPROM有兩種種類：序列式(serial)、並列式(parallel)，其中並列式通常會以Flash來稱呼。
@@ -41,7 +41,7 @@ categories: STM32, STM32F4, STM32F429
   - 3線：Microwire(型號以93為開頭) 、SPI(型號以25為開頭) 
   - 資料更新方式:以位元組為單位
 
-![Image](/FLASH.png)
+![](/FLASH.png)
 - Flash Memory:
   - 於1984年發表，Intel之後於1988年發表第一款商業型的NOR Flash晶片
   - 以價格便宜、位元密度接手EEPROM的市場位置
@@ -53,20 +53,20 @@ categories: STM32, STM32F4, STM32F429
 
 1.2 Flash原理介紹
 -------------
-![Image](/Flash_Construction_1.jpg)
+![](/Flash_Construction_1.jpg)
   - 當給予電晶體(MOSFET)的Gate端正電壓後，通道會呈現導通狀態，意即電流會從Source端流到Drain端
   - Flash的基本架構則是在原本電晶體的Gate端上加入一層特殊氧化層，使得電子可以在沒電壓供應的情況下，持續儲存在Floating Gate
   - 清除(Erase)的方式是在Control Gate給予大約-9~-12V的電壓，並且Source給予大約6V的電壓，清除後的Cell的狀態為bit 1
   - 寫入(Write) bit 0的方式是在Control Gate給予大約12V的電壓，並且Drain給予大約7V的電壓
   - 讀取(Read)的方式是在Control Gate給予大約5V的電壓，如此一來通道會依據Floating Gate的狀態，出現電流，之後再依據電流大小來判斷是1還是0
-![Image](/Flash_Construction_2.jpg)
+![](/Flash_Construction_2.jpg)
   - Bit Line: Drain
   - Word Line: Gate
   - Source Line: Source
 
 1.3 NOR/NAND Flash介紹
 -----------------------------------------
-![Image](/NORNAND.png)
+![](/NORNAND.png)
 - **NOR Flash**
   - Intel於1988年發表
   - 支援**隨機存取**，讀資料的方式跟RAM接近，給address，data就能讀出
@@ -109,7 +109,7 @@ categories: STM32, STM32F4, STM32F429
 Bus Matrix:(利用round-robin演算法來仲裁)
 上方為master，右方為slave，bus matrix提供master可concurrent並有效率進行存取slave。
 
-![Image](/bus_matrix.png)
+![](/bus_matrix.png)
    DM00031020-referenceManual P.62
 
 - **AHB(Advanced High-performance Bus)**: AMBA的一部分，負責連接高性能高頻寬的模組，例如processor, DMA controller,  memory
@@ -127,7 +127,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - **ACCEL** : Adaptive real-time memory accelerator (ART Accelerator)，可以執行Instruction Prefetch, Instruction cache memory和Data management來加速執行指令的速度。
 
   - **Instruction Prefetch**: 因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate，每個flash memory的讀取動作可以讀取128-bits的指令(4個32bits指令或8個16bits指令)，所以在循序讀取code的時候，至少需要四個CPU cycles來執行上一串指令。而Instruction Prefetch可以事先讀取下一串指令，不需要Wait State。設定**FLASH_ACR register**裡的**PRFTEN bit**可以開啟Prefetch功能。
-![Image](/ACCEL.png)
+![](/ACCEL.png)
   - **Instruction cache memory**: 為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory，只要開啟**FLASH_ACR register**的**ICEN bit**就可以開啟這個功能。每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
 
   - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。(LDR r0, =0 的 =0就是一個literal，編譯器會在記憶體放一個0，放0的位址則會用一個literal來代表，因此當取得這個literal時需要到literal pool找尋它代表的位址)
@@ -135,7 +135,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 2.2 Flash interface in system architecture
 ---------------------------------------------
 
-![Image](/Flash_system_architecture.png)
+![](/Flash_system_architecture.png)
    DM00031020-referenceManual P.74
 
 2.3 Flash模組的組成
@@ -146,7 +146,7 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - OTP (One-Time Programmable) : 一次性寫入的空間，共528bytes(512+16)，如放軟體version，硬體version，key…等 for user data，可參考(http://forum.eepw.com.cn/thread/120354/1)
 - Option byte : 用來設定讀寫保護、電壓level、軟硬體看門狗與Standby or Stop模式下的重置，每個bank各一個，共32(16+16)bytes.
 
-![Image](/flash)module organization.png
+![](/flash)module organization.png
    DM00031020-referenceManual P.77
 
 STM32F429中的Flash有以下特性：
@@ -168,7 +168,7 @@ STM32F429中的Flash有以下特性：
 - 為了要正確的從Flash中讀取data，必須在Flash access control register(FLASH_ACR)中，依據CPU clock frequency(HCLK)與device供應的電壓，來設定正確的wait states(LATENCY)值。
 - 因為CPU的運行速度遠比Flash快得多，依下表來看，STM32F429的Flash最快access速度為<=30MHZ，如果CPU frequency超過此速度，那就必須增加等待時間。wait states與CPU clock freqency的關係如下表所示 :
 
-![Image](/embedded/number_of_wait_states.png)
+![](/embedded/number_of_wait_states.png)
    DM00031020-referenceManual P.81
 
 - 在Reset之後，CPU clock frequency為16MHz，並且FLASH_ACR中的wait states值被設為0。
@@ -254,7 +254,7 @@ p.s. 加快cpu freqency的step 1~2等於減慢cpu freqency的step4~5；加快cpu
 - Parallelism為在操作program或erase時，最大能夠寫幾bit的0。
 - PSIZE是在FLASH_CR register中，此值必須在programming/erasing前正確的被寫入。對應表如下表：
 
-![Image](/parallelism.JPG)
+![](/parallelism.JPG)
    DM00031020-referenceManual P.85
 
 - 以下是各種型態單次寫入時所需的大小
@@ -358,7 +358,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 
   - 此時，若FLASH_CR register中的error interrupt enable bit(ERRIE)為1，則FLASH_SR register中的operation error bit(OPERR)會在錯誤發生時被設定。
  
-![Image](/embedded/flash_interrupt_request.jpg)
+![](/embedded/flash_interrupt_request.jpg)
    DM00031020-referenceManual P.88
 
 3.8 Option bytes
@@ -400,10 +400,10 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     - 由flash memory啟動的程式依然可以存取(讀、寫、抹除)flash memory。
     - 一旦設定成level 2以後就無法再更改為level 1 和2。
 
-![Image](/embedded/access_versus_read_protection_level.jpg)
+![](/embedded/access_versus_read_protection_level.jpg)
    DM00031020-referenceManual P.94
   
-![Image](/embedded/RDP_levels.jpg)
+![](/embedded/RDP_levels.jpg)
    DM00031020-referenceManual P.94  
    
 - **Write Protections(寫入保護) **
@@ -422,7 +422,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
     - 任何來自D-Bus的讀取會使RDERR(Proprietary readout protection error) flag被設立.
     - 任何寫入及抹除的動作會使WRPERR(Write protection error) flag被設立。
 
-![Image](/embedded/PCROP_levels.jpg)
+![](/embedded/PCROP_levels.jpg)
    DM00031020-referenceManual P.96
 
 3.9 One-time programmable (OTP)
@@ -436,7 +436,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - OTP lock bytes:有16 bytes LOCKBi (0 ≤ i ≤ 15)分別控制相對應的16個block--for locking the correspaonding OTP
 - 在OTP lock byte 為 0x00 的時候，OTP 才可以被寫入資料(原本為0xFF)；而OTP block byte只能為0x00或是0xFF，否則OTP可能會讀不到正確的值
  
-![Image](http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png)
+![](http://3.bp.blogspot.com/-F9ULpiVgyY8/Uqkt_At7hMI/AAAAAAAAAD0/0px2QSGozeI/s1600/OTP.png)
    DM00031020-referenceManual P.97
 
 4 Flash interface registers
@@ -455,7 +455,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x00
 - Reset value: 0x0000 0000
 
-![Image](/embedded/1.png)
+![](/embedded/1.png)
 
 - Bits 31:13 保留位置，必須保持淨空。
 - Bit 12 DCRST : Data cache reset. 0: not reset; 1: reset. (當D cache未啟用時才可寫入)
@@ -477,7 +477,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 -------------------------------------------------------------
 - 用來允許存取Flash control register、program和清除operations
 
-![Image](/embedded/2.png)
+![](/embedded/2.png)
 
 - Bits 31:0 FKEYR: FPEC key
   - The following values must be programmed consecutively to unlock the FLASH_CR register and allow programming/erasing it:
@@ -490,7 +490,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x08
 - Reset value: 0x0000 0000
 
-![Image](/embedded/3.png)
+![](/embedded/3.png)
 
 - Bits 31:0 OPTKEYR: Option byte key
   - The following values must be programmed consecutively to unlock the FLASH_OPTCR register and allow programming it:
@@ -503,7 +503,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x0C
 - Reset value: 0x0000 0000
 
-![Image](/embedded/Flash)status register (FLASH_SR).png
+![](/embedded/Flash)status register (FLASH_SR).png
 
 - Bits 31:17 Reserved, must be kept cleared.
 - Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。(若無任何操作時會自動清除)
@@ -524,7 +524,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x10
 - Reset value: 0x8000 0000
 
-![Image](/Flash)control register(FLASH_CR).png
+![](/Flash)control register(FLASH_CR).png
 
 - Bit 31 LOCK : Lock. 只能寫為1，當值為1時，FLASH_CR將鎖住不可更改，唯有偵測到解鎖序列才會清除。
 - Bits 30:26 保留位置，必須保持淨空。
@@ -567,7 +567,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x14
 - Reset value: 0x0FFF AAED.
 
-![Image](/embedded/Flash)option control register (FLASH_OPTCR).png
+![](/embedded/Flash)option control register (FLASH_OPTCR).png
 
 - Bits 31 SPRMOD: Selection of protection mode for nWPRi bits
   - 0: PCROP disabled. nWPRi bits used for Write protection on sector i.
@@ -595,7 +595,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x18
 - Reset value: 0x0FFF 0000. 
 
-![Image](/embedded/Flash)option control register (FLASH_OPTCR1).png
+![](/embedded/Flash)option control register (FLASH_OPTCR1).png
 
 - Bits 31:28 Reserved, must be kept cleared.
 - Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.

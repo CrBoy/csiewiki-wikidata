@@ -15,7 +15,7 @@ categories: ARM, STM32, stm32f4, embedded
 
 STM32F429 Discovery 開發板
 --------------------------
-![Image](/embedded/STM32F429I-DISCO.jpg)
+![](/embedded/STM32F429I-DISCO.jpg)
 
 * 官方訓練教材: [STM32F429 CombinedModules](/embedded/STM32F429-CombinedModules.pdf) (必讀!)
 * STM32F429ZIT6 microcontroller featuring 2 MB of Flash memory, 256 KB of RAM in an LQFP144 package
@@ -42,18 +42,18 @@ STM32F429 Discovery 開發板
 
 * 前視圖:
 
-![Image](/embedded/STM32F429I-DISCO-top.jpg)
+![](/embedded/STM32F429I-DISCO-top.jpg)
 
 * 後視圖:
 
-![Image](/embedded/STM32F429I-DISCO-bottom.jpg)
+![](/embedded/STM32F429I-DISCO-bottom.jpg)
 
 高度整合開發工具: STM32Cube
 ---------------------------
 * [意法半導體推 STM32Cube 新軟體平台](http://www.digitimes.com.tw/tw/dt/n/shwnws.asp?cnlid=13&id=0000370826_EVE7G4MW327YAT5FYLFBA)
 * [Product overview - STM32Cube making STM32 development easier](https://www.youtube.com/watch?v=bt1YFG9wErg) (介紹影片)
 
-![Image](/embedded/stm32cubef4.jpg)
+![](/embedded/stm32cubef4.jpg)
 
 * [STM32CubeF4](http://www.st.com/web/en/catalog/tools/PF259243) Key Features
   - Consistent and complete embedded software offer that frees the user from dependency issues

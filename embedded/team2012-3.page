@@ -44,16 +44,16 @@ toc: no
  - 若系統判定疑似說謊，則藍燈會亮起或出現嗶嗶聲
  - 若系統判定確定在說謊，則蜂鳴器會出現一長音
 
-![Image](/embedded_g3_4)
+![](/embedded_g3_4)
  * 全貌
 
-![Image](/embedded_g3_1)
+![](/embedded_g3_1)
  * 皮膚電阻量測電路板（為了配合皮膚電阻的範圍，左邊的開關可做三段切換）
 
-![Image](/embedded_g3_2)
+![](/embedded_g3_2)
  * 心律量測電路板
 
-![Image](/embedded_g3_3)
+![](/embedded_g3_3)
  * 配戴方式（一共需要五個貼片）
 
 展示影片

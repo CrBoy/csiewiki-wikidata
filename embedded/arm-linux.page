@@ -245,14 +245,14 @@ Context Switch Latency 測試理論
 
 **Abstract Machine Model:**
 
-![Image](/embedded/arm_linux/Abstract_Machine_Model_1.png)
+![](/embedded/arm_linux/Abstract_Machine_Model_1.png)
 
 - 方程式(1):
    - TA,M: <程式A>在<機器M>上執行的總時間
    - Ci,A（數量）: <程式A><指令i>的執行次數
    - Pi,M（時間）: <指令i>在<機器M>上的執行時間
 
-![Image](/embedded/arm_linux/Abstract_Machine_Model_2.png)
+![](/embedded/arm_linux/Abstract_Machine_Model_2.png)
 
 - 方程式(2):(多了cahce/TLB miss)
    - Fi,A (faults):為記憶體階層的第i層的miss次數
@@ -277,7 +277,7 @@ Context Switch Latency 測試理論
 
 **論文實驗分類與討論:**
 
-![Image](/embedded/arm_linux/tlb_experiment_table.png)
+![](/embedded/arm_linux/tlb_experiment_table.png)
 
 
 - REGIME 1:
@@ -339,7 +339,7 @@ Context Switch Latency 測試理論
     done
     echo "" 1>&2
 
-![Image](/embedded/arm_linux/line_size_compare.png)
+![](/embedded/arm_linux/line_size_compare.png)
 - 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較，且兩者的L1 cache line size均為64bytes，另外，Y軸的時間差異不用太在意，重點是斜率。
 
 - 原因：現代的cache一次是抓取一個line size的資料，在這裡就是64bytes，所以今天array一次就是讀64bytes進來，有以下幾個範例(注意:INT array一格的大小是4bytes，所以16個就是64bytes):
@@ -358,7 +358,7 @@ Context Switch Latency 測試理論
     - 256byte為k=64的情況
     - 碰到紅色代表會miss
 
-![Image](/embedded/arm_linux/line_size_illustrate2.png)
+![](/embedded/arm_linux/line_size_illustrate2.png)
 
 
     - 今天如果有一個夠大的array，一個line是64byte，那麼如果小於等於64bytes的K，會踩到N次<假設>的cache line miss，但是如果K=128bytes，由於會"跨過"某些cache line miss的"點"(因為沒有要用到那邊的資料)，所以時間會大幅降低（因為cache miss的overhead很大，實際上是少了1/2的miss次數），若是K=256bytes，則為少了1/4的miss次數（相較於K<=64bytes）
@@ -393,19 +393,19 @@ Context Switch Latency 理論與實際的結合
 =================================================
 - BBB的AM3358:
 
-![Image](/embedded/arm_linux/BBB_hardware_1.png)
+![](/embedded/arm_linux/BBB_hardware_1.png)
 
     - L1 Data Cache與Instruction Cache互相獨立，均為32KB
     - L2 Cache為256KB
 
-![Image](/embedded/arm_linux/BBB_hardware_2.png)
+![](/embedded/arm_linux/BBB_hardware_2.png)
 
   
 **對應"Context Switch Latency 測試理論"**
 
-![Image](/embedded/arm_linux/partical_theory.png)
+![](/embedded/arm_linux/partical_theory.png)
 
-![Image](/embedded/arm_linux/partical_theory_2.png)
+![](/embedded/arm_linux/partical_theory_2.png)
 
 
 Context Switch Latency 實驗過程
@@ -484,29 +484,29 @@ Context Switch Latency 實驗結果 及 分析
     - 採用Harvard architecture(data/instruction cache分開)，分析起來相對於L2 cache容易
     - 巨觀
 
-![Image](/embedded/arm_linux/2k_Macroscopic.png)
+![](/embedded/arm_linux/2k_Macroscopic.png)
 
     - 理論推算表格(僅取部分，作為代表，可依此類推)
 
-![Image](/embedded/arm_linux/partical_theory_2k_table.png)
+![](/embedded/arm_linux/partical_theory_2k_table.png)
 
     - 微觀折線圖
 
-![Image](/embedded/arm_linux/2k_Microcosmic.png)
+![](/embedded/arm_linux/2k_Microcosmic.png)
 
     - 微觀長條圖-相較於折線圖，可以更明顯看到，當process number接近16(2k*16=32k,用接近是因為可能有其他程式也使用L1 cache)時，latency大幅上升
 
-![Image](/embedded/arm_linux/2k_Microcosmic_histogram.png)
+![](/embedded/arm_linux/2k_Microcosmic_histogram.png)
 
 - L2 cache miss
     - 由於L2 cahce採用von Neumann architecture(與L1 cache不同！)，將data與instruction混合，不易分析，不過我們可以由實驗結果，看出一些端倪。
     - process size=24k與32k之長條圖比較
 
-![Image](/embedded/arm_linux/24k_32k_histogram.png)
+![](/embedded/arm_linux/24k_32k_histogram.png)
 
     - process size=24k與32k之折線圖比較
 
-![Image](/embedded/arm_linux/24k_32k.png)
+![](/embedded/arm_linux/24k_32k.png)
 
     - 由以上2組比較圖，可以看出
         - process size=24k時，process number=8,N=24*8=192，latency大幅上升，合理推測這時候L2 cache miss
@@ -516,11 +516,11 @@ Context Switch Latency 實驗結果 及 分析
 
 - 巨觀整體趨勢圖
 
-![Image](/embedded/arm_linux/lat_ctx_all_Macroscopic.png)
+![](/embedded/arm_linux/lat_ctx_all_Macroscopic.png)
 
 - 微觀整體趨勢圖
 
-![Image](/embedded/arm_linux/lat_ctx_all_Microcosmic.png)
+![](/embedded/arm_linux/lat_ctx_all_Microcosmic.png)
 
 **Context Switch Latency 結論**
 
@@ -572,7 +572,7 @@ System Call Latency on BeagleBone Black(Linux)
    Simple read: 0.9199 microseconds
    Simple write: 0.9514 microseconds
 
-![Image](/embedded/arm_linux/inteli5_vs_bbb.png)
+![](/embedded/arm_linux/inteli5_vs_bbb.png)
 
 **結論**
 
@@ -616,7 +616,7 @@ Unix Latency on BeagleBone Black(Linux)
     512 47.1887
 
 
-![Image](/embedded/arm_linux/lat_unix_LMA_RMI.png)
+![](/embedded/arm_linux/lat_unix_LMA_RMI.png)
 
 左邊為巨觀，右邊為微觀，可以看出斜率均趨近於0。
 
@@ -630,7 +630,7 @@ Memory Read Latency on BeagleBone Black(Linux)
 - 藉由man page 得知由memory read latency 所得到的數據可以判斷出測量平台的記憶體階層。
 - 下圖比較memory size 1M、2M、4M、8M，以不同stride，在BeagleBone Black 上所測量到的數據(x軸為log2的基底)
 
-![Image](/embedded/arm_linux/lat_mem_rd-all.png)
+![](/embedded/arm_linux/lat_mem_rd-all.png)
 
 **分析**
 
@@ -643,14 +643,14 @@ Memory Read Latency on BeagleBone Black(Linux)
 
 - 下圖為存取1M大小，在stride大小不超過line size的情況，可以發現收斂時間是呈現線性的。
 
-![Image](/embedded/arm_linux/lat_mem_rd-1M-stride.png)
+![](/embedded/arm_linux/lat_mem_rd-1M-stride.png)
 - 過程中發現stride=1、2 時數據測出來都是0，推測是因為memory在讀取的時候一次都是1 個word，所以stride=1、2是沒有意義的。
 
 - 下列一系列圖為memory size=8M，不同stride，在beaglebone black 上所測量到的數據(x軸為log2的基底)，單獨畫出來做比較
 
-![Image](/embedded/arm_linux/lat_mem_rd-8M.png)
+![](/embedded/arm_linux/lat_mem_rd-8M.png)
 
-![Image](/embedded/arm_linux/lat_mem_rd8M-2.png)
+![](/embedded/arm_linux/lat_mem_rd8M-2.png)
 
 Linux Kernel 行為分析<工具篇>
 ------------------------------------------------
@@ -734,11 +734,11 @@ Ftrace
         - 有幾百個 static event points 通過kernel 我們可以藉由enabled debugfs file system 去看到kernel中某些部份發生了甚麼事情
     - debugfs默認是掛載在/sys/kernel/debug下，可以通過debugfs下的tracing/events查看各個event。
 
-![Image](/embedded/arm_linux/trace_event_01.png)
+![](/embedded/arm_linux/trace_event_01.png)
 
 - 以下是跟scheduling相關的event
 
-![Image](/embedded/arm_linux/trace_event_02.png)
+![](/embedded/arm_linux/trace_event_02.png)
 
 - 操作步驟範例
 
@@ -760,7 +760,7 @@ Ftrace
 
 - 結果
 
-![Image](/embedded/arm_linux/trace_event_03.png)
+![](/embedded/arm_linux/trace_event_03.png)
 
 KernelShark
 =================================================
@@ -854,7 +854,7 @@ KernelShark
 
     $sudo apt-get install kernelshark
 
-![Image](/embedded/arm_linux/kernelshark_ext4.png)
+![](/embedded/arm_linux/kernelshark_ext4.png)
 
 Ftrace和Trace-cmd + KernelShark 綜合使用方式
 =================================================
@@ -959,7 +959,7 @@ Linux Timer Interrupt 實作
 
 - 這時資料輸出到trace.dat，在將檔案移到我本地端的電腦執行kernelshark，可以看到如下圖，先fliter掉其他task和event只觀察timer event，irq event，然後我先挑一個cpu來觀察CPU0，先行分析
 
-![Image](/embedded/arm_linux/kernelshark_timer)event.png
+![](/embedded/arm_linux/kernelshark_timer)event.png
 - 可先至<理論篇> 先了解linux kernel的timer interrupt的運作，再搭配圖示
     - 從kernelshark下面list中的event info可以看到
         - event                           info
@@ -984,14 +984,14 @@ Linux Timer Interrupt 實作
 
 - timer interrupt flow chart
 
-![Image](/embedded/arm_linux/timer_interrupt.png)
+![](/embedded/arm_linux/timer_interrupt.png)
 
 - 所以我們就可以透過這個timer interrupt的流程，搭配trace出來的資料，知道不同function被觸發或是執行的時間長度了
 
 - 可以拿一個task所執行的function來看
     - task : sshd   , function : tcp_write_timer
 
-![Image](/embedded/arm_linux/timer)interrupt task timer.png
+![](/embedded/arm_linux/timer)interrupt task timer.png
 
 從這邊可以看到要執行這個function，必須要等到51個timer interrupt之後才可以執行，所使用的timer位置是在`0xee57a390`
 
@@ -1007,14 +1007,14 @@ Linux Scheduler 理論
     - CPU排班的重點在於：行程的執行是由CPU執行的時間及 I/O 等待時間所組成的週期(cycle)，行程在這兩個狀態之間交替往返。
         - 行程執行由一個CPU分割(CPU burst)開始，接著一個 I/O burst，然後再另一個CPU burst，再來又一個 I/O burst ，最後一個CPU burst結束時，同時會有一個系統     要求中止執行這個 task，如下圖所示。
 
-![Image](/embedded/arm_linux/alternating)sequence of cpu and io bursts.png
+![](/embedded/arm_linux/alternating)sequence of cpu and io bursts.png
 
     - CPU burst 的持續時間可被大量的量測，會大致上類似下圖的頻率曲線所示，這個曲線一般是指數型或超指數型 (hyperexponential)
         - 短的CPU burst很多，長的CPU burst則很少。
         - I/O bound 的程式之中一般是很多很短的 CPU burst；CPU bound 的程式就會有一些非常長的CPU burst
             - 所以根據不同種類的程式選取適當的 CPU排班演算法是非常重要的
 
-![Image](/embedded/arm_linux/histogram)of cpu_burst durations.png
+![](/embedded/arm_linux/histogram)of cpu_burst durations.png
 
 - CFS (完全公平排班器，Completely Fair Scheduler)
     - 在Linux kernel 2.6版以後引進
@@ -1040,7 +1040,7 @@ Linux Scheduler 理論
                 - 使用預設的nice值之行程的加權值是1，優先權不會改變
                 - 有較小nice值的行程(較高優先權)接收到較高的加權值，而較大nice值的行程(較低優先權)接收到較低的加權值。
 
-![Image](/embedded/arm_linux/sched_prio.png)
+![](/embedded/arm_linux/sched_prio.png)
 
 Linux Scheduler 實作
 =================================================
@@ -1073,7 +1073,7 @@ Linux Scheduler 實作
     chrt -f 90 ./../CPU-bound/matrix_mul &
 
 
-![Image](/embedded/arm_linux/sched_cpu_fifo_90_90.png)
+![](/embedded/arm_linux/sched_cpu_fifo_90_90.png)
 
 初步觀察，fifo policy的time slice給定差異頗大，而且可見兩個process的執行相當不公平，不過還是可以看到前面的幾次交替還是有給後進來的process執行的機會
 
@@ -1085,7 +1085,7 @@ Linux Scheduler 實作
     chrt -f 45 ./../CPU-bound/matrix_mul &
 
 
-![Image](/embedded/arm_linux/sched_cpu_fifo_90_45.png)
+![](/embedded/arm_linux/sched_cpu_fifo_90_45.png)
 
 - rr :  優先權分別為90 90
 
@@ -1095,7 +1095,7 @@ Linux Scheduler 實作
     chrt -r 90 ./../CPU-bound/matrix_mul &
 
 
-![Image](/embedded/arm_linux/sched_cpu_rr_90_90.png)
+![](/embedded/arm_linux/sched_cpu_rr_90_90.png)
 
 初步觀察rr policy，兩個process所分配到的time slice執行時間較為相近
 
@@ -1117,7 +1117,7 @@ Linux Scheduler 實作
     chrt -r 45 ./../CPU-bound/matrix_mul &
 
 
-![Image](/embedded/arm_linux/sched_cpu_rr_90_45.png)
+![](/embedded/arm_linux/sched_cpu_rr_90_45.png)
 
 從圖上看來很不公平，不像RR比較像FIFO。
 推測是給定不同優先權的關係，Linux直接以FIFO進行排班
@@ -1132,7 +1132,7 @@ Linux Scheduler 實作
   
 - fifo :  優先權分別為90 90
 
-![Image](/embedded/arm_linux/sched_io_fifo_90_90.png)
+![](/embedded/arm_linux/sched_io_fifo_90_90.png)
 
 從fifo policy中，還是可以觀察兩個process還是有一直切換的，主要是因為在做IO過程是需要等待的，那在等待的過程中，linux 作業系統就會切換工作
 
@@ -1140,19 +1140,19 @@ Linux Scheduler 實作
 
 - fifo :  優先權分別為90 45
 
-![Image](/embedded/arm_linux/sched_io_fifo_90_45.png)
+![](/embedded/arm_linux/sched_io_fifo_90_45.png)
 
 
 
 - rr :  優先權分別為90 90
 
-![Image](/embedded/arm_linux/sched_io_rr_90_90.png)
+![](/embedded/arm_linux/sched_io_rr_90_90.png)
 
 
 
 - rr :  優先權分別為90 45
 
-![Image](/embedded/arm_linux/sched_io_rr_90_45.png)
+![](/embedded/arm_linux/sched_io_rr_90_45.png)
 
 Linux kernel scheduling CFS trace event
 =================================================
@@ -1160,11 +1160,11 @@ Linux kernel scheduling CFS trace event
 - 驗證CFS行為
     - 下圖因為綠色覆蓋在紅色之上所以看不太出來是交替執行，可參考下下圖可知兩個task以極短執行時間交互運行
 
-![Image](/embedded/arm_linux/cfs_trace_event_01.png)
+![](/embedded/arm_linux/cfs_trace_event_01.png)
 
 
 
-![Image](/embedded/arm_linux/cfs_trace_event_02.png)
+![](/embedded/arm_linux/cfs_trace_event_02.png)
 
 自動化測試工具
 ------------------------------------------------
@@ -1183,7 +1183,7 @@ Linux kernel scheduling CFS trace event
 - 主程式為 auto 執行檔，藉由編譯auto.c 而來
 - 程式流程圖如下
 
-![Image](/embedded/arm_linux/flow-chart.png)
+![](/embedded/arm_linux/flow-chart.png)
  
 - 若是使用lmbench 中的指令來分析，則可以在``AUTO_TEST/lmbench-next/AUTO_TEST/`` 中找到相對應的results 目錄，裡面會存放著結果原始檔與其畫出的圖表。
 

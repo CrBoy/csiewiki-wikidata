@@ -60,7 +60,7 @@ pull-up/pull-down電阻在大部分腳位上為40kΩ，在PA10/PB12上為10kΩ�
 
 將類比訊號的波形整成數位電路所能處理的方波波形，以利被input register讀取(處理完只能分辨出高低電位的差別)。
 
-![Image](/embedded/Schmitt_trigger.jpg)
+![](/embedded/Schmitt_trigger.jpg)
 (施密特觸發器具有整流效果)
 
 output
@@ -80,7 +80,7 @@ analog
 
 basic structure (P.266, **Figure 25. Basic structure of a five-volt tolerant I/O port bit** in Reference manual)
 -------------------------------------------------------------------------------------------------------------------
-![Image](/embedded/GPIO_basic_src.PNG)
+![](/embedded/GPIO_basic_src.PNG)
 - VDD：晶片內部的工作電壓
 - VDD_FT : I/O port專用電壓，與VDD不同
 - VSS：接地點
@@ -96,7 +96,7 @@ Configuration - 配置圖
 =======================
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
-![Image](/GPIO_)Input_configurations.png
+![](/GPIO_)Input_configurations.png
 When the I/O port is programmed as Input:
 
 - the output buffer is disabled
@@ -114,7 +114,7 @@ When the I/O port is programmed as Input:
 
 Output configuration (P.274, **8.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
-![Image](/GPIO_)Output_configurations.png
+![](/GPIO_)Output_configurations.png
 When the I/O port is programmed as output:
 
 .. TODO: Output Control
@@ -132,7 +132,7 @@ When the I/O port is programmed as output:
 
 Alternate function configuration (P.275, **8.3.11 Alternate function configuration** in Reference manual)
 ---------------------------------------------------------------------------------------------------------
-![Image](/GPIO_Alternate_function_configuration.PNG)
+![](/GPIO_Alternate_function_configuration.PNG)
 When the I/O port is programmed as alternate function:
 
 - The output buffer can be configured as open-drain or push-pull
@@ -149,7 +149,7 @@ For more information, please refer to **Table 12. Alternate function mapping** f
 
 Analog configuration (P.276, **8.3.12 Analog configuration** in Reference manual)
 ---------------------------------------------------------------------------------
-![Image](/GPIO_Analog_configurations.PNG)
+![](/GPIO_Analog_configurations.PNG)
 When the I/O port is programmed as analog configuration:
 
 - The output buffer is disabled
@@ -171,12 +171,12 @@ Registers - 暫存器
 ==================
 Overview
 ---------
-![Image](/GPIO_img01)
+![](/GPIO_img01)
 - Mode, Speed, Type, PuPd 對應表
 
 P.278, **GPIO port mode register (GPIOx_MODER)** in Reference manual
 --------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_mode.png)
+![](/embedded/GPIO_port_mode.png)
 MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
 
 - 00: Input
@@ -188,7 +188,7 @@ MODERy[1:0]決定第y pin GPIO使用的configuration，2個bit為一組
 
 P.279, **GPIO port output type register(GPIOx_OTYPER)** in Reference manual
 ---------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_output_type.png)
+![](/embedded/GPIO_port_output_type.png)
 決定在output時使用的模式(如前面Functional Description.output所述)。
 
 - 0: Output push-pull
@@ -197,7 +197,7 @@ P.279, **GPIO port output type register(GPIOx_OTYPER)** in Reference manual
 
 P.279, **GPIO port output speed register (GPIOx_OSPEEDR)** in Reference manual
 ------------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_output_speed.png)
+![](/embedded/GPIO_port_output_speed.png)
 OSPEEDRy[1:0]決定output的速度。在不同的電容與電壓(VDD)下，輸出頻率可能不同，以下只列出代表值。
 
 - 00: Low speed (2MHz)
@@ -218,7 +218,7 @@ OSPEEDRy[1:0]決定output的速度。在不同的電容與電壓(VDD)下，輸�
 
 P.280, **GPIO port pull-up/pull-down register (GPIOx_PUPDR)** in Reference manual
 ---------------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_pull.png)
+![](/embedded/GPIO_port_pull.png)
 PUPDRy[1:0]決定pin y是否pull-up/pull-down
 
 - 00: No pull-up, pull-down
@@ -229,7 +229,7 @@ PUPDRy[1:0]決定pin y是否pull-up/pull-down
 
 P.280, **GPIO port input data register (GPIOx_IDR)** in Reference manual
 ------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_input_data.png)
+![](/embedded/GPIO_port_input_data.png)
 讀取IDRy為input y的值。
 
 - Bits 31:16 Reserved, must be kept at reset value.
@@ -239,7 +239,7 @@ P.280, **GPIO port input data register (GPIOx_IDR)** in Reference manual
 
 P.281, **GPIO port output data register (GPIOx_ODR)** in Reference manual
 -------------------------------------------------------------------------
-![Image](/GPIO_port_output_data.png)
+![](/GPIO_port_output_data.png)
 輸出pin output的值。
 
 - Bits 31:16 Reserved, must be kept at reset value.
@@ -248,7 +248,7 @@ P.281, **GPIO port output data register (GPIOx_ODR)** in Reference manual
 
 P.281, **GPIO port bit set/reset register (GPIOx_BSRR)** in Reference manual
 ----------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_set_reset.png)
+![](/embedded/GPIO_port_set_reset.png)
 set或reset對應pin output data register的值。
 
 - Bits 31:16 BRy: reset bit y
@@ -259,7 +259,7 @@ set或reset對應pin output data register的值。
 
 P.281, **GPIO port configuration lock register (GPIOx_LCKR)** in Reference manual
 ---------------------------------------------------------------------------------
-![Image](/embedded/GPIO_port_configuration_lock.png)
+![](/embedded/GPIO_port_configuration_lock.png)
 若給bit 16(LCKK)一個正確的write sequence，可以鎖住bits [15:0]對應的configurations。
 當lock sequence正確執行之後，GPIOx_LCKR在下次reset之前無法修改。
 
@@ -300,8 +300,8 @@ P.281, **GPIO port configuration lock register (GPIOx_LCKR)** in Reference manua
 
 P.283, **GPIO alternate function low/high register(GPIOx_AFRL/GPIOx_AFRH)** in Reference manual
 -----------------------------------------------------------------------------------------------
-![Image](/embedded/GPIO_alternate_function_low.pn)
-![Image](/embedded/GPIO_alternate_function_high.png)
+![](/embedded/GPIO_alternate_function_low.pn)
+![](/embedded/GPIO_alternate_function_high.png)
 選擇pin y的alternate function。
 
 - AFRLy/AFRHy : Alternate function selection for bit y
@@ -318,37 +318,37 @@ Demo - 測試實驗
   - demo3, demo4
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
-![Image](/embedded/starting_)state.jpg
+![](/embedded/starting_)state.jpg
 * 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
   - demo3, demo4
 
 --------
 
-![Image](/embedded/schmitt_sin.jpg)
+![](/embedded/schmitt_sin.jpg)
 * 90.9Hz ,sin波
 
 --------
 
-![Image](/embedded/schmitt_tri.jpg)
+![](/embedded/schmitt_tri.jpg)
 * 90.9Hz ,三角波
 
 --------
 
-![Image](/embedded/interrupt_func_delay.jpg)
+![](/embedded/interrupt_func_delay.jpg)
 * 87000HZ ,interrupt with function call
 * visible interrupt delay ,about 2000ns
   - demo4 使用 GPIO_ToggleBits 切換
 
 --------
 
-![Image](/embedded/interrupt_func_1M.jpg)
+![](/embedded/interrupt_func_1M.jpg)
 * 833000Hz ,interrupt with function call
 * 頻率再增加, 會造成無法正常的解析波形
 
 --------
 
-![Image](/embedded/polling_func_delay.jpg)
+![](/embedded/polling_func_delay.jpg)
 * polling with function call
 * 使用polling的結果，delay大約750ns
   - demo3 使用 GPIO_ToggleBits 切換
@@ -356,21 +356,21 @@ Demo - 測試實驗
 
 --------
 
-![Image](/embedded/interrupt_dir_delay.jpg)
+![](/embedded/interrupt_dir_delay.jpg)
 * 88500Hz ,interrupt without function call
 * interrupt不用function call，delay大約1500ns
   - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 --------
 
-![Image](/embedded/pulling_dir_delay.jpg)
+![](/embedded/pulling_dir_delay.jpg)
 * polling without function call
 * 不用function call，delay大約250ns
   - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 --------
 
-![Image](/embedded/interrupt_func_frqup.jpg)
+![](/embedded/interrupt_func_frqup.jpg)
 * 260000Hz ,interrupt without function call
 * 頻率加快的結果
   - demo4
@@ -378,7 +378,7 @@ Demo - 測試實驗
 
 --------
 
-![Image](/embedded/interrupt_func_frqup2.jpg)
+![](/embedded/interrupt_func_frqup2.jpg)
 * 1111000Hz ,interrupt without function call
 * 頻率再增加的結果
   - demo4
@@ -386,12 +386,12 @@ Demo - 測試實驗
 
 --------
 
-![Image](/embedded/pull_down_res.jpg)
+![](/embedded/pull_down_res.jpg)
 * 一般的下拉電阻
 
 --------
 
-![Image](/embedded/pull_down_resl.jpg)
+![](/embedded/pull_down_resl.jpg)
 * PA10 /PB12 的例外電阻
 
 Code Section - 程式碼
@@ -660,17 +660,17 @@ Demo 範例選擇 :
   - 根據ARM Cortex-M4的文件，ISR stacking需12個cycle => 250ns
   - pre-stacking delay = 340-250 = 90ns
 
-![Image](/embedded/6.JPG)
+![](/embedded/6.JPG)
 
 * interrupt latency = pre-stacking latency + 250ns + function stacking latency + toggle latency
   - 560ns
 
-![Image](/embedded/8.JPG)
+![](/embedded/8.JPG)
 
 * interrupt latency without function stacking = pre-stacking latency + 250ns + toggle latency
   - 420ns
 
-![Image](/embedded/9.JPG)
+![](/embedded/9.JPG)
 
 * Toggle latency = 80ns
   - 0->1 的時間
@@ -723,7 +723,7 @@ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.ht
 
 * System Clock與PLL
 
-![Image](/embedded/stm32f429clock.png)
+![](/embedded/stm32f429clock.png)
 
 Reference Manual p.222 PLL_CFGR (DM00031020.pdf)
 
@@ -744,7 +744,7 @@ Fref = HSE(8 Mhz) / PLL_M
 
 VCO = Fref * PLL_N 
 
-![Image](/embedded/Pll.png)
+![](/embedded/Pll.png)
 
 -----------
 
@@ -754,13 +754,13 @@ VCO = Fref * PLL_N
 
 - 8.065MHz, HSE
 
-![Image](/embedded/HSE.JPG)
+![](/embedded/HSE.JPG)
 
 ----------------
 
 - 16.13MHz, HSI
 
-![Image](/embedded/HSI.JPG)
+![](/embedded/HSI.JPG)
 
 Reference
 =========

@@ -9,7 +9,7 @@ Introduction
 - 串列外設介面一般是4線，有時亦可為3線 , 可連接memory , RTC , ADC ,DAC …etc
 - SPI提供兩種序列傳輸協定，分別是SPI protocol跟I2S audio protocol，預設是用SPI protocol，可藉由software來做轉換
 
-![Image](/single_slave.png)
+![](/single_slave.png)
 
 System Overview
 ===============
@@ -23,7 +23,7 @@ System Overview
 - 所有的傳輸都會根據一個共同的頻率訊號 , 此頻率訊號產生自”主控裝置(Master端)”, 從屬裝置(Slave端)會用此頻率訊號來對收到的位串流進行同步
 - 如果有多個周邊晶片被連到同一個SPI介面 , 主控裝置能透過SS pin腳的電位高低來選擇接收資料的周邊裝置
 
-![Image](/three_slaves.png)
+![](/three_slaves.png)
 
 同步非同步之定義:
 ============
@@ -34,7 +34,7 @@ System Overview
 接收端的接收時脈(Receiver Clock，RxC)產生方式和傳送者的位元傳輸時脈(Transmitter Clock，TxC)是互相獨立無關的
 此種傳輸方式是允許傳送與接收時脈的頻率不那麼同步(允許一定程度的誤差)的情況下進行，故稱為非同步傳輸
 
-![Image](/asynchronization.png)
+![](/asynchronization.png)
 
 
 - 同步串列傳輸
@@ -42,7 +42,7 @@ System Overview
 對接收端而言並沒有自己的時脈產生電路，而是依據傳送端送過來的時脈來接收資料
 (即傳送端和接收端共用同一個CLOCK)，傳送端以一條導線送出資料，同時以另一條導線送出傳送時脈，提供接收端之同步訊號
 
-![Image](/synchronization.png)
+![](/synchronization.png)
 
 
 SPI features(STM32)
@@ -64,7 +64,7 @@ SPI features(STM32)
 Device overview
 ===============
 
-![Image](/stm32f40x_block_diagram.png)
+![](/stm32f40x_block_diagram.png)
 STM32F40x block diagram (STM32F407xx datasheet p.18) 
 
 - 3 SPI的傳輸速度
@@ -80,7 +80,7 @@ STM32F40x block diagram (STM32F407xx datasheet p.18)
 SPI functional description
 ==========================
 
-![Image](/embedded/SPI/SPI)block diagram.png
+![](/embedded/SPI/SPI)block diagram.png
 SPI block diagram [#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.661
@@ -113,7 +113,7 @@ general
       * slave mode:
         * 當NSS低電位時，代表被選為要接收資料的slave
 
-![Image](/embedded/SPI/single)master _ single slave application.png
+![](/embedded/SPI/single)master _ single slave application.png
 SPI single master/single slave application [#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.662
@@ -141,7 +141,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 
   * CPHA = 1 表示在第二個 edge (Rising,when CPOL=1.Falling,when CPOL=0.)取值。
 
-![Image](/embedded/SPI/SPI)Dota clock timing diagram.png
+![](/embedded/SPI/SPI)Dota clock timing diagram.png
 Data clock timing diagram[#]_
 
 .. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.664
@@ -195,7 +195,7 @@ BUSY flag：用以指示SPI 正忙於傳輸的 flag
 
 SPI 通訊過程
 ------------
-![Image](/TXE_RXNE_BSY)behavior in Master _full-duplex mode(P.672).png
+![](/TXE_RXNE_BSY)behavior in Master _full-duplex mode(P.672).png
 
 - 傳送步驟：
   * 將第一筆資料寫入SPI_DR register裡(清除TXE bit、BSY flag設為1)
@@ -226,7 +226,7 @@ SPI communication using DMA
 
 - 要開啟此DMA request必須將SPI_CR2 register裡的TXDMAEN跟RXDMAEN bit設置為1
 
-![Image](/embedded/Transmission_using_DMA.png)
+![](/embedded/Transmission_using_DMA.png)
 
 CRC calculation (Cyclic redundancy check)
 -----------------------------------------
@@ -258,11 +258,11 @@ CRC error
 
 SPI interrupts
 --------------
-![Image](/embedded/SPI_interrupt.png)
+![](/embedded/SPI_interrupt.png)
 
 I²S functional description
 ==========================
-![Image](/embedded/I2S_block_diagram.png)
+![](/embedded/I2S_block_diagram.png)
 
 general
 -------
@@ -300,30 +300,30 @@ I²S Philips standard
 ''''''''''''''''''''
 WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS訊號會在傳輸第一個bits(MSB)前的一個CK clock cycle作切換
 
-![Image](/embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG)
+![](/embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG)
 
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 - WS signal在falling edge時作切換
 
-![Image](/embedded/I2S)Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
+![](/embedded/I2S)Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
 
 - 上面的情況需要對SPI_DR作兩次讀寫的動作，舉例如下圖
 
-![Image](/embedded/I2S)Philips standard waveforms Transmitting 0x8EAA33.PNG
+![](/embedded/I2S)Philips standard waveforms Transmitting 0x8EAA33.PNG
 
 - 下圖只需對SPI_DR作一次讀寫即可，剩餘的16 bits會被hardware強制設為0x0000
 
-![Image](/embedded/I2S)Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![](/embedded/I2S)Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 MSB justified standard
 ''''''''''''''''''''''
 在傳輸第一個bits(MSB)時，WS訊號同時作切換，如下圖
 
-![Image](/embedded/MSB)Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
+![](/embedded/MSB)Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
 
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 
-![Image](/embedded/MSB)Justified 24-bit frame length with CPOL = 0_fix.PNG
+![](/embedded/MSB)Justified 24-bit frame length with CPOL = 0_fix.PNG
 
 LSB justified standard
 ''''''''''''''''''''''
@@ -331,13 +331,13 @@ LSB justified standard
 - 對於16-bit、32-bit full-accuracy frame formats來說，與MSB justified standard相同
 - 與MSB justified standard的差別在於24-bit frame length與16-bit extended to 32-bit packet frame
 
-![Image](/embedded/LSB)Justified 24-bit frame length with CPOL = 0.PNG
+![](/embedded/LSB)Justified 24-bit frame length with CPOL = 0.PNG
 
-![Image](/embedded/LSB)Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG
+![](/embedded/LSB)Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG
 
 - 上圖，在接收或傳送時，需由software或DMA對SPI_DR作兩次讀寫
 
-![Image](/embedded/LSB)justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![](/embedded/LSB)justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 - 舉例如果要傳輸的資料是0x76A3(0x0000 76A3 extended to 32-bit)，那只需要對SPI_DR作一次讀寫即可
 - 在傳送端，當TXE flag升起，hardware會先將0x0000傳輸過去，再來當TXE flag又升起，由software對SPI_DR寫入0x76A3
@@ -348,14 +348,14 @@ PCM standard
 - 不需用到Left channel和Right channel
 - 分成兩種PCM modes(short frame、long frame)，可利用PCMSYNC bit(in SPI_I2SCFGR)來作設定
 
-![Image](/embedded/PCM)standard waveforms (16-bit).PNG
+![](/embedded/PCM)standard waveforms (16-bit).PNG
 
 - 在long frame mode時，WS訊號在前13個bits(MSB)都處於升起的狀態
 - 在short frame mode時，WS訊號升起的時間只有一個cycle
 
 Code section
 ============
-![Image](/embedded/spi_demo_stm32.jpg)
+![](/embedded/spi_demo_stm32.jpg)
 
 - 左板為slave 右板為master
 - (PA5接PA5 -- SCK、PA6接PA6 -- MISO、PA7接PA7 -- MOSI)
@@ -594,11 +594,11 @@ main
 
 示波器圖解
 ============
-![Image](/embedded/0xFF.png)
+![](/embedded/0xFF.png)
 
 藍色線為Master的SCLK，紅色線為Master的output(MOSI)，此次訊號是一直傳送0xFF的結果。當SCLK在高電位時，此時的MOSI值即為Master的Output(高電位為1，低電位為0)
 
-![Image](/embedded/for_0x55.png)
+![](/embedded/for_0x55.png)
 
 上圖為加入for迴圈製造delay並傳送0x55的結果。我們發現當SPI沒有傳送時，SCLK也一直在低電位!
 
@@ -616,7 +616,7 @@ Question question
 
 I2S
 ---
-![Image](/2013-12-17_151324.png)
+![](/2013-12-17_151324.png)
 - SD(Serial Data) 與 SPI 的 MOSI 共用腳位
 - ext_SD  與 SPI 的 MISO 共用腳位
 - WS(Word Select) 與 SPI 的NSS 共用腳位 
@@ -627,16 +627,16 @@ GPIO clock的設定
  下列四圖中，黃色線為SPI之MOSI腳位輸出(0x55 -> 01010101)，藍色線為SCK。
  由更改GPIO_Speed 與 BaudRatePrescaler 以比較不同之處。
 
-![Image](/M50P2.png)
+![](/M50P2.png)
 此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除2，通訊正常
 
-![Image](/M50P4.png)
+![](/M50P4.png)
 此圖為 GPIO_Speed_50MHz，BaudRatePrescaler除4，與上圖比較，可以看出時脈頻率為上圖的1/2，通訊正常
 
-![Image](/M2P2.png)
+![](/M2P2.png)
 此圖為 GPIO_Speed_2MHz，BaudRatePrescaler除2，可以看到時脈輸出跟不上訊號變換，無法正常通訊
 
-![Image](/M25P2.png)
+![](/M25P2.png)
 此圖為 GPIO_Speed_25MHz，BaudRatePrescaler除2，與GPIO_Speed_50MHz，BaudRatePrescaler除2的圖比較，看不出差異，且通訊正常
 
 Bus和prescaler的關係
@@ -684,11 +684,11 @@ Error flags
 怎麼知道要使用哪些腳位？
 ---------------------
 
-![Image](/alternate)function mapping.png
+![](/alternate)function mapping.png
 Alternate function mapping[#]_
 .. [#] [Datasheet ](http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf) p.61
 
-![Image](/Alternate)function mapping continued.png
+![](/Alternate)function mapping continued.png
 由於GPIOE的AF最少，功能最為乾淨(不易佔用其他功能所需之腳位)，適合作為IO port 腳。
 STM32F407xx Datasheet p.64
 

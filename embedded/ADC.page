@@ -13,13 +13,13 @@ Introduction To ADC
 - 用於將類比形式的連續訊號轉換為數位形式的離散訊號的一類設備。
 
 
-![Image](/embedded/ADC/圖片2.png)
+![](/embedded/ADC/圖片2.png)
 
 - 當嵌入式電子產品必須根據週遭環境的物理條件如溫度、壓力等產生適當反應，就必須由 ADC 將感測器採得的類比訊號轉為數位訊號。
 - 自然界的訊號主要為類比訊號，時間與大小是連續的；adc 負責將類比訊號轉為數位訊號，時間與大小變成離散的。
 
-![Image](http://www.msbtech.com/support/DAC-sampling_in_4_bit_convertor.gif)
-![Image](/embedded/ADC/adc_convert.png)
+![](http://www.msbtech.com/support/DAC-sampling_in_4_bit_convertor.gif)
+![](/embedded/ADC/adc_convert.png)
 
 ADC的規格
 --------
@@ -67,11 +67,11 @@ ADC 轉換公式
 
 1.反相放大電路(Vo = - A * Vin)
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg)
 
 2.正相放大電路(Vo = A * Vin)
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg)
 
 
 Sampling Theorem
@@ -85,7 +85,7 @@ Sampling Theorem
 
 - 證明：
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg)
 
 
 但是通常會使用OverSampling，用遠高於 2f 的頻率來取樣，提升訊號的品質。
@@ -130,11 +130,11 @@ Successive approximation ADC
  - 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
  - 由這一個狀態迭代至LSB為止
 
-![Image](http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png)
+![](http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png)
 
 ADC Block Diagram
 ------------------
-![Image](http://wiki.csie.ncku.edu.tw/ADC%20Block%20Diagram%20HiRes)
+![](http://wiki.csie.ncku.edu.tw/ADC%20Block%20Diagram%20HiRes)
 
 **1.  Analog MUX 類比多工器：**
 
@@ -159,7 +159,7 @@ ADC 所接受的電壓值在 GND 與參考電壓之間，注意其必須接上�
 
 ------------------------------
 
-![Image](http://wiki.csie.ncku.edu.tw/ADC%20GPIO%20Path)
+![](http://wiki.csie.ncku.edu.tw/ADC%20GPIO%20Path)
 
 Refer to [GPIO Presentation](http://wiki.csie.ncku.edu.tw/embedded/GPIO)
 
@@ -232,21 +232,21 @@ STM32F4xx Internal Channel
 
 - 設定TSVREFE bit，參考下圖
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384075370541_temp.jpeg)
 
 
 STM32F4xx ADC Control
 ---------------------
 
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
 
 
 - 可設 ADON 打開ADC電源，重設來關掉電源
 - 可使用SWSTART/JSWSTART開始ADC的轉換
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **兩個(F407) / 三個（F429）內部訊號源**。每個外部訊號源對應一個通道。
 
-![Image](/embedded/ADC/ADC)on STM32F4
+![](/embedded/ADC/ADC)on STM32F4
 
 
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
@@ -259,7 +259,7 @@ ADC之轉換時間
 
 ### Timing Diagram
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383732301081_adctime.jpeg)
 
 **Tconv（Total Conversion Time） =  Sampling time + N Cycles **
   - N = 12 cycles (12 bits resolution)
@@ -275,7 +275,7 @@ ADC之轉換時間
   - Each channel can be sampled with a different sampling time.
   - Sample Time = [3 - 480] cycles
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383727784220_AA.jpeg)
 
 - Example:
 
@@ -298,7 +298,7 @@ ADC的轉換速度範圍
 
 -----------------------------
 
-![Image](/embedded/ADC/table7.jpg)
+![](/embedded/ADC/table7.jpg)
 
 Refer from: STM32F4xx Datasheet P125
 
@@ -319,7 +319,7 @@ ADC Clock 最大可容忍頻率
 ----------------------
 在Datasheet中，因為DISCO的參考電壓VREF為VDD為2.97V，故**ADC Clock Frequency為[0.6-36]MHz**。
 
-![Image](/embedded/ADC/table6.jpg)
+![](/embedded/ADC/table6.jpg)
 
 Refer from: STM32F4xx Datasheet P124
 
@@ -347,7 +347,7 @@ Independent mode
 **ADC 通道配置**
 通道可分成 **regular**, **injected** 二組，每個通道能任意屬於哪一組。
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383586655329_test.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383586655329_test.jpeg)
 
 **Regular group**
 
@@ -357,7 +357,7 @@ Independent mode
 
 - 有二種控制條件，組合出四種模式：
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383626797723_jus2.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383626797723_jus2.jpeg)
 
   - ADC_InitStruct->ADC_ScanConvMode = ENABLE or DISABLE ;
 
@@ -422,13 +422,13 @@ Multi Mode
 
 Dual Mode:
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg)
 
 兩個 ADCs 同時觸發而轉換 injected groups.
 
 Triple Mode:
 
-![Image](http://i.imgur.com/UkbQN4t.png)
+![](http://i.imgur.com/UkbQN4t.png)
 
 三個 ADCs 同時觸發而轉換 injected groups.
 
@@ -436,7 +436,7 @@ Triple Mode:
 
 Dual Mode:
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg)
 
 - 2 ADCs 外部訊號同時觸發，一起對所負責通道依序轉換，結果存在 ADC1 DR.
 
@@ -444,7 +444,7 @@ Dual Mode:
 
 Triple Mode:
 
-![Image](http://i.imgur.com/UcUn2il.png)
+![](http://i.imgur.com/UcUn2il.png)
 
 - 以上兩者的差別在於不同的group
 
@@ -453,7 +453,7 @@ Triple Mode:
 
 Dual Mode:
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg)
 
 - 透過兩個以上的ADC交互轉換同一個通道可以達到更高的取樣頻率
 
@@ -461,14 +461,14 @@ Dual Mode:
 
 Triple Mode:
 
-![Image](http://i.imgur.com/vDDkT9j.png)
+![](http://i.imgur.com/vDDkT9j.png)
 
 
 **4.Alternate trigger mode**
 
 Dual Mode:
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg)
 
 - 只能用在雙方的 injected groups, 用同樣外部訊號輪流接受觸發。
 
@@ -476,7 +476,7 @@ Dual Mode:
 
 Triple Mode:
 
-![Image](http://i.imgur.com/lKt5MAG.png)
+![](http://i.imgur.com/lKt5MAG.png)
 
 
 STM32F4xx Internal Temperature Sensor
@@ -499,7 +499,7 @@ ADC Temperature Measurement
   ConvertedVoltage = ConvertedValue*VDD/4095;
   ConverTemp= ((((ConverValue*VDD)/4095)-V25)/Slope + 25;
 
-![Image](/embedded/ADC/formula.png)
+![](/embedded/ADC/formula.png)
 
 溫度的範圍
 ---------
@@ -553,12 +553,12 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 
 - ADC 可設 ADON 打開電源，重設來關掉電源
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
 
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
 
 
-![Image](/embedded/ADC/ADC)on STM32F4
+![](/embedded/ADC/ADC)on STM32F4
 
 
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
@@ -596,7 +596,7 @@ ADC + DAC
 ----------
 基本設置：使用8bit模式已提升速度，使用DMA將ADC資料讀入後再用DMA將資料速給DAC做輸出。
 
-![Image](https://farm8.staticflickr.com/7518/15679849349_048c02e0a8_h.jpg)
+![](https://farm8.staticflickr.com/7518/15679849349_048c02e0a8_h.jpg)
 
 
 12bits vs 8 bits
@@ -607,11 +607,11 @@ ADC與DAC使用的resolution是相同的
 
  - 1. 12bits
 
-![Image](https://farm8.staticflickr.com/7566/15678517300_6c992cfc73_h.jpg)
+![](https://farm8.staticflickr.com/7566/15678517300_6c992cfc73_h.jpg)
 
  - 2. 8 bits
 
-![Image](https://farm8.staticflickr.com/7482/15678343048_fdbfc38df0_b.jpg)
+![](https://farm8.staticflickr.com/7482/15678343048_fdbfc38df0_b.jpg)
 
 
 Sampling Theorem、訊號 Aliasing
@@ -636,7 +636,7 @@ Lissajous曲線可以看出兩個訊號的頻率、相位、強度差異。
 假設目前有 Asin(aw + d) 與 Bsin(bw)兩個訊號
 當a = b時，頻率相同，所以圖形將會是直線、橢圓或是正圓，端看d大小，參考下圖。
 
-![Image](http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Lissajous_phase.svg/600px-Lissajous_phase.svg.png)
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Lissajous_phase.svg/600px-Lissajous_phase.svg.png)
 
 如果兩個訊號頻率不同，a != b，則圖形將會是圖形將不再是圓，而會是曲線，由此可以看出兩個訊號已經不相同
 
@@ -654,7 +654,7 @@ Questions 2013
 
 - 證明：
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg)
 
 
 
@@ -682,11 +682,11 @@ Questions 2013
 
 1.反相放大電路
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg)
 
 2.正相放大電路
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg)
 
 
 3. 說明 ADC Block Diagram 之 Vrefint 與 TIM1_TRGO 是什麼？
@@ -728,10 +728,10 @@ Questions 2013
 - 可以利用單一電阻的電阻會隨溫度上昇而增加電阻值來反推溫度。
 
   - 電阻隨溫度呈現性上昇
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386002201111_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-03%20%E4%B8%8A%E5%8D%8812.35.27.png)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386002201111_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-03%20%E4%B8%8A%E5%8D%8812.35.27.png)
 
   - 可利用上面之特性搭配 ADC 來做溫度量測
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386003301130_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%2011_1%20(3).jpg)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386003301130_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%2011_1%20(3).jpg)
 
 7. 說明 EOC 等之術語。
 
@@ -749,7 +749,7 @@ Questions 2013
 
   - 參考手冊表格如下：
 
-![Image](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385977408698_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-02%20%E4%B8%8B%E5%8D%885.42.48.png)
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385977408698_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202013-12-02%20%E4%B8%8B%E5%8D%885.42.48.png)
 
 Questions 2012
 ==============
@@ -763,7 +763,7 @@ Questions 2012
   Total conversion time = [0.50 - 16.40] µs，with ADCCLK = 30MHz.
   So, Sample Time must > 16.4µs 。
 
-![Image](/embedded/ADC/table7.jpg)
+![](/embedded/ADC/table7.jpg)
 
 Refer from: STM32F407xx Datasheet P125
 
@@ -772,14 +772,14 @@ Refer from: STM32F407xx Datasheet P125
 - 3. 頻率響應為多少,可容忍的最大頻率呢?
     在Datasheet中，因為我們參考電壓VDD為2.97V，故**Frequency為[0.6-36]MHz**。
 
-![Image](/embedded/ADC/table6.jpg)
+![](/embedded/ADC/table6.jpg)
 
 Refer from: STM32F407xx Datasheet P124
 
 - 4. ADC在Stm32的flow中,會經過的,會用到的電路和元件有哪些?
     有**External Event Trigger(e.g. timer capture,EXTI)，GPIO ports，External/Internal Reference Voltage，Analog to Digital convert core， Temperature Sensor，Analog Multiplexer，Injected/Regular data register，Analog watchdog，Address/date bus，ADC Clock...**。
 
-![Image](/embedded/ADC/22.JPG)
+![](/embedded/ADC/22.JPG)
 
 [STM32F407xx Reference Manual](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) 參照P264 ADC block diagram 
 
@@ -848,11 +848,11 @@ Refer from: STM32F407xx Datasheet P124
     分別為以下︰
     - 1.ExternalTrigConvEdge  
 
-    ![Image](/embedded/ADC/table9.jpg)
+    ![](/embedded/ADC/table9.jpg)
 
     - 2.ExternalTrigConv  
 
-    ![Image](/embedded/ADC/table10.jpg)
+    ![](/embedded/ADC/table10.jpg)
 
 - 15. DMA跟ADC之間是在幹嘛的?
     規則通道轉換後的數值儲存在一個唯一的暫存器中，所以當轉換多個規則通道時需要使用DMA，用來避免遺失已經儲存在ADC_DR暫存器的數據。
@@ -874,7 +874,7 @@ Refer from: STM32F407xx Datasheet P124
 
     您的問題應該是Sampling Rate(取樣頻率)，就根據使用者需求來設定轉換模式，並算出轉換頻率。
 
-![Image](/embedded/ADC/table8.jpg)
+![](/embedded/ADC/table8.jpg)
 Sample Code
 ===========
 

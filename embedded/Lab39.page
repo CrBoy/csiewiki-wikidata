@@ -42,7 +42,7 @@ STM32 Overview
   * 128K Bytes Program Flash, 20K Bytes RAM
   * USB, CAN, x2 I2C, x2 ADC 12 bit, x3 UART, x2 SPI, x3 TIMERS
   
-![Image](/STM32-P103-01.jpg)
+![](/STM32-P103-01.jpg)
 
 STM32 on QEMU 環境建立與測試
 --------------------------
@@ -116,7 +116,7 @@ ARM Semihost
 
 參考執行畫面:
 
-![Image](/embedded/Lab32/freertos.png)
+![](/embedded/Lab32/freertos.png)
 
 參考作業要求
 ------------------

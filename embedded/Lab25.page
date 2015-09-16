@@ -43,7 +43,7 @@ STM32 Overview
   - One for most use cases
   - open source: http://code.google.com/hosting/search?q=label:STM32 
 
-![Image](/STM32-P103-01.jpg)
+![](/STM32-P103-01.jpg)
 
 STM32 on QEMU 環境建立與測試
 --------------------------
@@ -90,7 +90,7 @@ rtenv: 成大資工系同學開發的小型 RTOS
 * make qemuauto
 * make qemu # 記得按下 Ctrl-Alt-2 切換到 UART 輸出
 
-![Image](/embedded/rtenv-2014.png)
+![](/embedded/rtenv-2014.png)
 
 參考作業要求 (歡迎替換)
 -------------------

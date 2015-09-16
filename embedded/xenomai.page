@@ -45,7 +45,7 @@ Real time on Linux
 Xenomai系統架構
 ===============
 
-![Image](/embedded/xenomai/xenomai_arch.jpg)
+![](/embedded/xenomai/xenomai_arch.jpg)
 
 Xenomai是一個linux kernel的patch
 藉由在底層增加一個架構
@@ -61,7 +61,7 @@ ipipe_XXX -> rthal_XXX -> xnXXX
 負責傳送interrupt的程式稱為ipipe
 示意圖 : 
 
-![Image](/embedded/xenomai/adeos.jpg)
+![](/embedded/xenomai/adeos.jpg)
 
 可以找到ipipe_raise_irq()將interrupt推到pipeline
 
@@ -80,13 +80,13 @@ xenomai3有兩種configuration：
 
 **Xenomai 3 dual kernal configuration : Cobalt**
 
-![Image](/embedded/xenomai/cobalt.png)
+![](/embedded/xenomai/cobalt.png)
 
 多一個 priority 比 linux 還高叫 cobalt  的 core 去處理 real-time 的事情，提供不同的 real-time API 給不同的 applications 使用。並且利用Optimistic interrupt protection 機制減少 changing the interrupt mask，一般的機制在每次進入critical section時都要interrupt mask，而Optimistic interrupt protection可以不用。而real-time 在意的 "deadline"，實際上就是探討 latency (latency 越大，系統越難在時限內完成完成高優先權任務，自然即時能力就越差)，而 latency 很大的來源則是 interrupt handling。
 
 **Xenomai 3 single kernel configuration :Mercury**
 
-![Image](/embedded/xenomai/mercury.png)
+![](/embedded/xenomai/mercury.png)
 
 運用本機的 linux core 在 PREEMPT_RT之上達到 real-time 的事情，這裡不是強制的，看 applications 對反應時間和 maximum jitter 的要求，有些甚至會作到某種程度 deadline 的忽略。
 
@@ -109,15 +109,15 @@ Adeos / iPipe
 
     Original case:
 
-    ![Image](/embedded/xenomai/originalcase1.png)
+    ![](/embedded/xenomai/originalcase1.png)
 
-    ![Image](/embedded/xenomai/originalcase2.png)
+    ![](/embedded/xenomai/originalcase2.png)
 
     Optimistic case:
 
-    ![Image](/embedded/xenomai/optiminsticcase1.png)
+    ![](/embedded/xenomai/optiminsticcase1.png)
 
-    ![Image](/embedded/xenomai/optiminsticcase2.png)
+    ![](/embedded/xenomai/optiminsticcase2.png)
 
     從前兩張圖可看出一般的機制在每次進入critical section時都要interrupt mask，而Optimistic interrupt protection可以不用，所以在interrupt management的時間差很多。而real-time 在意的 “deadline”，實際上就是探討 latency (latency 越大，系統越難在時限內完成完成高優先權任務，自然即時能力就越差)，而 latency 很大的來源則是 interrupt handling。
 
@@ -131,13 +131,13 @@ Adeos / iPipe
 
     當xenomai task migrates to linux domain時，linux domain會繼承xenomai task的priority。
 
-    ![Image](/embedded/xenomai/pirority_scheme.png)
+    ![](/embedded/xenomai/pirority_scheme.png)
 
   - Predictability of program execution times :
 
     當xenomai threads 進入linux(secondary) domain時，不可被linux domain interrupt preempt掉，也不能被其他low priority activity at linux kernel preempt掉。通常最簡單實作方式就是加一個interrupt shield domain。
 
-    ![Image](/embedded/xenomai/interrupt_shield.png)
+    ![](/embedded/xenomai/interrupt_shield.png)
 
   - Fine-grained Linux kernel :
 
@@ -167,7 +167,7 @@ Adeos / iPipe
 
   - sched/clock.c：取得cpu_clock 解析度為nanosecond，開機後從0開始上數。在新版(3.18)ipipe中，此檔案並無修改。
 
-![Image](/embedded/xenomai/cpu_distribute.jpg)
+![](/embedded/xenomai/cpu_distribute.jpg)
 
 GIC大約是上圖的distributor的位置
 
@@ -193,7 +193,7 @@ Scheduler
 
 優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
 
-![Image](/embedded/xenomai/xenomai_sched.jpg)
+![](/embedded/xenomai/xenomai_sched.jpg)
 
 就檔案有五個關於sched.c應該有四種不同的schedule方式
 
@@ -268,11 +268,11 @@ Raspberry pi (Model B+) & Beaglebone
 
 * Raspberry pi
 
-  ![Image](/embedded/xenomai/respberrypi.png)
+  ![](/embedded/xenomai/respberrypi.png)
 
 * Beaglebone
 
-  ![Image](/embedded/xenomai/beaglebone.png)
+  ![](/embedded/xenomai/beaglebone.png)
 
 * 詳細規格,腳位圖,及GPIO
 
@@ -711,7 +711,7 @@ Xenomai 3 on Beaglebone Black
   - 關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
   - 將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
 
-  ![Image](/shutdownhibernation.png)
+  ![](/shutdownhibernation.png)
 
 .. code-block:: c
 
@@ -865,7 +865,7 @@ Xenomai 3 on Beaglebone Black
 
    cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
-![Image](/embedded/xenomai/001.png)
+![](/embedded/xenomai/001.png)
 
 * PREEMPT_RT-patched Linux
 
@@ -873,7 +873,7 @@ Xenomai 3 on Beaglebone Black
 
    cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
 
-![Image](/embedded/xenomai/preemptRt.png)
+![](/embedded/xenomai/preemptRt.png)
 
 * Xenomai-patched Linux
 
@@ -881,27 +881,27 @@ Xenomai 3 on Beaglebone Black
 
    /usr/xenomai/bin/cyclictest -p 90 - m -c 0 -i 200 -n -v 100 -q -l 100" >log
 
-![Image](/embedded/xenomai/002.png)
+![](/embedded/xenomai/002.png)
 
 * User,kernal,timer IRQ 在R-pi上使用Xenomai 2.6與Xenomai 3.0之比較圖
 
   - Xenomai 3.0
 
-  ![Image](/embedded/xenomai/Rpi_xenomai3.png)
+  ![](/embedded/xenomai/Rpi_xenomai3.png)
 
   - Xenomai 2.6
 
-  ![Image](/Rpi_xenomai2.png)
+  ![](/Rpi_xenomai2.png)
 
 * User,kernal,timer IRQ 在Beaglebone上使用Xenomai 2.6與Xenomai 3.0之比較圖
 
   - Xenomai 3.0
 
-  ![Image](/Beaglebonxenomai3.png)
+  ![](/Beaglebonxenomai3.png)
 
   - Xenomai 2.6
 
-  ![Image](/Beaglebonexenomai2.png)
+  ![](/Beaglebonexenomai2.png)
 
 Cyclictest 原理
 ==============
@@ -1065,7 +1065,7 @@ Max:最大延遲
 
   - 使用R-pi model B+ , Xenoami 2.6.4
 
-  ![Image](/embedded/xenomai/comparingto3mechanism.png)
+  ![](/embedded/xenomai/comparingto3mechanism.png)
 
   - 實驗數據
 
@@ -1114,7 +1114,7 @@ Q&A
 * Q1:handler duration 與 schedule latency 之間的延遲原因為何?
   - A: 
 
-  ![Image](/embedded/xenomai/tasklatency.jpg)
+  ![](/embedded/xenomai/tasklatency.jpg)
 
 * Q2:ipipe的效益為何?為什麼要切割damain?切割完要如何確保real-time的穩定速度?
   - A: 
@@ -1126,7 +1126,7 @@ Q&A
 * Q3:ipipe/Adeos理論基礎中的Fine-grained是什麼?
   - A: 
 
-  ![Image](/criticalsection.png)
+  ![](/criticalsection.png)
 
   在[life with andeos ](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5628&rep=rep1&type=pdf)這篇指的fine-grained linux kernel，是指在編寫linux kernel  code時，盡量讓critical section能愈短愈好，確保當real-time thread running in the secondary domain能在一定時間內遇到schedule point，也就可以在schedule point處理real-time thread。
 
@@ -1136,13 +1136,13 @@ Q&A
 
 * Q5:請解釋下圖
 
-  ![Image](/interuptdistributor.png)
+  ![](/interuptdistributor.png)
 
   - A: 
   
     GIC:Generic Interrupt Controller(GIC)是arm用來集中分配interrupt至cpu的裝置。它主要分為distributor與cpu interfaces.
 
-    ![Image](/embedded/xenomai/gic.png)
+    ![](/embedded/xenomai/gic.png)
 
     distributor:負責分配interrupts，紀錄執行狀態，並提供registers以決定每個interrupt的enable、priority level、target processor。每個interrupt會有固定的interrupt ID，以供接收的cpu辨認。
 

@@ -53,7 +53,7 @@ Code Review
   - 「測試向量」(Test Vector) 或者「測試案例」(Test Cases) 的概念，就是程式碼單元的一對輸入與預期的輸出。單元測試作業將比較預期結果與實際結果，以產生相關報表
   - GitHub: https://github.com/school510587/rtenv/commits/gdb_test_case
 
-![Image](/embedded/unit-test.jpg)
+![](/embedded/unit-test.jpg)
 
 教材
 ------

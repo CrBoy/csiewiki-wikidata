@@ -39,7 +39,7 @@ AM335x ARM Cortex-A8 Boot Sequence
 --------------------------------------------
 圖1 為AM335x開機流程，其包含ROM Code、MLO、U-Boot與OS Image，底下將說明ROM Code、MLO與U-Boot。
 
-![Image](https://lh3.googleusercontent.com/-6t7H14Lj3Bc/VT3n0BPjOaI/AAAAAAAAH9M/woI49MW-TC4/w1099-h752-no/am335x-boot-sequence.png)
+![](https://lh3.googleusercontent.com/-6t7H14Lj3Bc/VT3n0BPjOaI/AAAAAAAAH9M/woI49MW-TC4/w1099-h752-no/am335x-boot-sequence.png)
 圖1 High-level Overview to AM335x Boot Sequence
 
 ROM Code主要有幾項任務:
@@ -61,13 +61,13 @@ ROM Code主要有幾項任務:
 也就是說，系統一上電，ROM Code會掃描上述裝置，以便找到Bootable device。由於ROM Code只支援FAT檔案系統格式，所以Bootable device一定要是FAT檔案系統 (FAT12/16/32檔案系統都可以)。
 注意: 該架構的On-chip boot ROM大小為176 KB。
 
-![Image](https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png)
+![](https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png)
 圖2 ROM Code Architecuture (page 4096 in AM335x TRM)
 
 圖3為ROM Memory Map:
   - ROM Exception Vectors (0x20000-0x2001F): 該區段定義Exception Handler的位址。譬如: 0x20000存放Reset Handler的位址，也就是板子一上電，第一個執行的地方，課程第七周有詳盡的說明，可參考此文件。詳盡的ROM Exception Vectors如表1所示。
 
-![Image](https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png)
+![](https://lh5.googleusercontent.com/-ClS3EZ2u0Hk/VT33Y8THfxI/AAAAAAAAH9w/t9gFp9N6ajM/w1011-h631-no/ROM-code-architecture.png)
 表1 ROM Exception Vectors (page 4099 in AM335x TRM)
 
   - Public ROM Code CRC (0x20020): 由0x20000-0x2BFFF計算得出的四個位元組CRC值。
@@ -75,7 +75,7 @@ ROM Code主要有幾項任務:
   - Code (started from 0x20100): ROM程式碼
   - ROM Version (0x2BFFC-0x2BFFF): ROM Code Version
 
-![Image](https://lh3.googleusercontent.com/-xhXu1yv0eik/VT33Y0MPSDI/AAAAAAAAH9k/S7dXDW7UrGI/w306-h329-no/ROM-memory-map.png)
+![](https://lh3.googleusercontent.com/-xhXu1yv0eik/VT33Y0MPSDI/AAAAAAAAH9k/S7dXDW7UrGI/w306-h329-no/ROM-memory-map.png)
 圖3 ROM Memory Map (page 4098 in AM335x TRM)
 
 
@@ -86,7 +86,7 @@ Introduction to VMM
 --------------------------------------------
 VMM模組可同時運行Linux與RT-Thread，如圖五所示。VMM以半虛擬化方式 (para-virtualization)運行另一個OS。
 
-![Image](https://lh4.googleusercontent.com/-49-7jFwVpZM/VUgwLRtPPqI/AAAAAAAAIBs/w0K4npFRaJg/w939-h634-no/rt-thread-vmm.png)
+![](https://lh4.googleusercontent.com/-49-7jFwVpZM/VUgwLRtPPqI/AAAAAAAAIBs/w0K4npFRaJg/w939-h634-no/rt-thread-vmm.png)
 圖五、VMM/vbus Framework
 
 
@@ -115,13 +115,13 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 
 [執行畫面]
 
-![Image](https://lh6.googleusercontent.com/-rhNG5HsX5bk/VX_IJMNczbI/AAAAAAAAIKU/hM1CFIP0cKM/w790-h569-no/linux-1.png)
+![](https://lh6.googleusercontent.com/-rhNG5HsX5bk/VX_IJMNczbI/AAAAAAAAIKU/hM1CFIP0cKM/w790-h569-no/linux-1.png)
 圖六、執行'make qemu'並按Ctrl+Alt+F3進入Linux Console
 
-![Image](https://lh5.googleusercontent.com/-zM0eIcnkK-U/VX_IJD9ZevI/AAAAAAAAIKM/b_CZuAyN_1o/w1011-h307-no/linux-insmod-rtvmm-driver.png)
+![](https://lh5.googleusercontent.com/-zM0eIcnkK-U/VX_IJD9ZevI/AAAAAAAAIKM/b_CZuAyN_1o/w1011-h307-no/linux-insmod-rtvmm-driver.png)
 圖七、載入rtvmm.ko模組
 
-![Image](https://lh3.googleusercontent.com/-NZlzQBrzD1g/VX_IJOegylI/AAAAAAAAIKQ/cE8BBcgPrPY/w1013-h314-no/rt-thread.png)
+![](https://lh3.googleusercontent.com/-NZlzQBrzD1g/VX_IJOegylI/AAAAAAAAIKQ/cE8BBcgPrPY/w1013-h314-no/rt-thread.png)
 圖八、Ctrl+Alt+F4進入RT-Thread Console
 
 
@@ -164,17 +164,17 @@ Running VMM on BeagleBone Black
 
 編譯成功後，開進Linux kernel (uImage)，發現OS會一直停在**Uncompressing Linux... done, booting the kernel.**，如下圖所示:
 
-![Image](https://lh3.googleusercontent.com/-38rtH8m72j8/VZDcAG1y_pI/AAAAAAAAILI/qpbgNeQwoIo/s884/vmm-hang.jpg)
+![](https://lh3.googleusercontent.com/-38rtH8m72j8/VZDcAG1y_pI/AAAAAAAAILI/qpbgNeQwoIo/s884/vmm-hang.jpg)
 
 追蹤核心原始碼[arch/arm/include/asm/unified.h ](http://lxr.free-electrons.com/source/arch/arm/include/asm/unified.h#L44)，發現開啟CONFIG_THUMB2_KERNEL選項，ARM()巨集是空巨集，導致核心卡住。故關閉CONFIG_THUMB2_KERNEL (注意: ARM()巨集不用加到arch/arm/kernel/entry-armv.S)。
 
 [編譯錯誤解決方法 - 關閉CONFIG_THUMB2_KERNEL選項]
 關閉CONFIG_THUMB2_KERNEL選項，編譯能成功且可以順利開進核心。然而，載入rtvmm.ko模組會發生錯誤，如下圖所示:
 
-![Image](https://lh3.googleusercontent.com/-khpnrNqw25M/VZDnyc2x_4I/AAAAAAAAILk/QhfHHGuS-Mo/s615/vmm-no-thumb2-kernel-option.png)
+![](https://lh3.googleusercontent.com/-khpnrNqw25M/VZDnyc2x_4I/AAAAAAAAILk/QhfHHGuS-Mo/s615/vmm-no-thumb2-kernel-option.png)
 成功開進VMM支援的核心    
 
-![Image](https://lh3.googleusercontent.com/-vCmD1QGqsrM/VZDnynjpefI/AAAAAAAAILs/IeOaCy3Nl_U/s800/vmm-no-thumb2-kernel-option-insmod-rtvmm-failed.png)
+![](https://lh3.googleusercontent.com/-vCmD1QGqsrM/VZDnynjpefI/AAAAAAAAILs/IeOaCy3Nl_U/s800/vmm-no-thumb2-kernel-option-insmod-rtvmm-failed.png)
 載入rtvmm.ko出錯畫面
 
 追縱RT-thread程式後，發現沒有支援BeagleBone Black的VMM功能 (詳見: [libcpu/arm/am335x ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/am335x)。目前正在參考[Realview Cortex A8 VMM的支援 ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/realview-a8-vmm)，以便在BeagleBone Black支援VMM。
@@ -184,12 +184,12 @@ Introduction to vbus
 --------------------------------------------
 VMM Bus (vbus)用來讓RT-Thread與Linux相互通訊，且可以讓OS之間的功能共享，如圖九所示。
 
-![Image](https://lh4.googleusercontent.com/-hc_Dy-0dQQ0/VUhFIzyYXPI/AAAAAAAAICE/HxlX6OUO544/w1044-h719-no/vbus-new.png)
+![](https://lh4.googleusercontent.com/-hc_Dy-0dQQ0/VUhFIzyYXPI/AAAAAAAAICE/HxlX6OUO544/w1044-h719-no/vbus-new.png)
 圖九、VMM Bus
 
 OS之間的功能共享 - Finsh
     圖十把finsh shell指向一個pipe設備，透過該設備把資料寫到ring buffer，並產生一個中斷用以通知另一個OS。另一個OS接收到該中斷後，便從ring buffer中，把資料讀取出來。
-![Image](https://lh6.googleusercontent.com/-sh_c_z-Vqws/VUhHxfi2GuI/AAAAAAAAICc/Sntr8oZV8wI/w1087-h459-no/vbus-finsh-all.png)
+![](https://lh6.googleusercontent.com/-sh_c_z-Vqws/VUhHxfi2GuI/AAAAAAAAICc/Sntr8oZV8wI/w1087-h459-no/vbus-finsh-all.png)
 圖十、Finsh/rsh共享
 
 * Two threads:
@@ -225,7 +225,7 @@ MMU Configuration in RT-Thread
 MRC/MCR Instruction
 MMU設定跟Coprocessor 15有關，下圖為Coprocessor 15暫存器配置圖 。
 
-![Image](https://lh5.googleusercontent.com/-XhcpJ1M19PI/VVC07E249nI/AAAAAAAAIEM/o41r7sl8cwQ/w1083-h564-no/cp15-overview.png)
+![](https://lh5.googleusercontent.com/-XhcpJ1M19PI/VVC07E249nI/AAAAAAAAIEM/o41r7sl8cwQ/w1083-h564-no/cp15-overview.png)
 圖四 VMSA: Virtual Memory System Architecture
 
     MRC: Move to ARM register from coprocessor
@@ -236,7 +236,7 @@ MMU設定跟Coprocessor 15有關，下圖為Coprocessor 15暫存器配置圖 。
 MMU Initialization in RT-Thread
        Disable Data Cache
                  mrc p15, 0, r0, c1, c0, 0 /* Read System Control Register */
-![Image](https://lh3.googleusercontent.com/-Rz5eQdg4EcM/VVC5t2eTCjI/AAAAAAAAIEY/9YMC3tQf6yw/w1160-h566-no/cp15-c1.png)
+![](https://lh3.googleusercontent.com/-Rz5eQdg4EcM/VVC5t2eTCjI/AAAAAAAAIEY/9YMC3tQf6yw/w1160-h566-no/cp15-c1.png)
 
 
 RT-Thread 的記憶體管理分成幾個部份：
@@ -609,7 +609,7 @@ rt\_free\_sethook(func);
 
 部份特性在 RT-Thread 沒有實作。
 
-.. |image![Image](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737812001_Reg1-6.png)
+.. |image![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737812001_Reg1-6.png)
 
 Device File System
 ------------------
@@ -622,7 +622,7 @@ chdir、close 、closedir、fstat、getcwd、lseek、mkdir、open、opendir、re
 
 dfs_posix.c會調用dfs.c,dfs_fs,c,dfs_file.c中的一些函數：
 
-![Image](/rt-thread_dfs.png)
+![](/rt-thread_dfs.png)
 
 DFS框架的組成內容
 ------------------
@@ -771,7 +771,7 @@ DFS框架的組成內容
 
 * FS對應的具體設備驅動初始化(底層)
 
-![Image](/rt-thread_dfs_mapping.png)
+![](/rt-thread_dfs_mapping.png)
 
 應建立起對應的：
 rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型是rt_err_t的可默認返回RT_EOK)

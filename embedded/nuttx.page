@@ -66,7 +66,7 @@ Task Control Interfaces
 
 Task state
 ------------
-![Image](/task_state3.jpg)
+![](/task_state3.jpg)
 
 include/nuttx/sched.h
 
@@ -97,7 +97,7 @@ include/nuttx/sched.h
 Register
 ---------
 
-![Image](/ARM_register.jpg)
+![](/ARM_register.jpg)
 
 
 

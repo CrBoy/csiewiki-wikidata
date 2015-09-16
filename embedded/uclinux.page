@@ -119,17 +119,17 @@ uClinux的檔案系統:Romfs
 
        未使用XIP的情況
 
-       ![Image](/embedded/nornal_with_VM.png)
+       ![](/embedded/nornal_with_VM.png)
 
        有VM的XIP
 
-       ![Image](/embedded/XIP_with_VM.png)
+       ![](/embedded/XIP_with_VM.png)
 
        來源:http://elinux.org/images/8/8c/Elc2013_Kumar.pdf
        
        下圖為uclinux下XIP示意圖([ 來源](http://netlab.cse.yzu.edu.tw/~bpmania/%C5%F8%C0Y/%AD%D7%BD%D2/951%20%B4O%A4J%A6%A1%A7Y%AE%C9%A7@%B7~%A8t%B2%CE/%C1%BF%B8q/03%20uCLinux%20%C2%B2%A4%B6.pdf))
        
-       ![Image](/embedded/XIP.jpg)
+       ![](/embedded/XIP.jpg)
        
     xip_file_read(定義在uclinux/mm/filemap_xip.c)
 
@@ -260,7 +260,7 @@ uClinux的檔案系統:Romfs
 
 * romfs結構([ 來源](http://www.360doc.com/content/10/1130/21/1378815_73855062.shtml))
 
-    ![Image](/embedded/romfs_struct.jpg)
+    ![](/embedded/romfs_struct.jpg)
 
 
 * romfs_super_block  結構 定義在 include/linux/romfs_fs.h
@@ -331,11 +331,11 @@ EXT2
 
 下圖是目錄的結構 ([ 來源 ](http://www.science.unitn.it/~fiorella/guidelinux/tlk/node99.html))            
 
-![Image](/embedded/ext2_menu.jpg)
+![](/embedded/ext2_menu.jpg)
 
 ext2_inode示意圖  ([ 來源](http://en.wikipedia.org/wiki/Ext2))
 
-![Image](/embedded/ext2_inode.jpg)
+![](/embedded/ext2_inode.jpg)
 
 Process State
 --------------
@@ -360,7 +360,7 @@ uclinux 的狀態與 linux 相似，其狀態定義在include/linux/sched.h : li
 
 下圖為狀態示意圖  （來源：<<嵌入式軟體Linux入門>> 任哲 樊生文編著）
 
-![Image](/embedded/status.jpg)
+![](/embedded/status.jpg)
 
 * process state 切換的條件
 
@@ -552,16 +552,16 @@ user context開始sleep的時候
 嚐試鎖定spin lock的時候(enable CONFIG_PREEMPT)
 timer scheduler呼叫時
 
-![Image](/preemptive.png)
+![](/preemptive.png)
 
 
 一個user space 的thread執行到一半時，可能會因為上述原因觸發process scheduler，始得ＣＰＵ轉而執行另外一個thread。而linux kernel space的特徵之一即是他不是preemptive的，換句話說，一個處於kernel space中執行到的一半的thread並不會被process scheduler強行暫停。唯一的例外是發生hardware interrupt的時候，此時中斷處理函式會強制取得CPU的使用權(同時也意味著它有最高度的優先權)
 
-![Image](/preemptable.png)
+![](/preemptable.png)
 
 何謂 interrupt呢？　這是一個讓軟體(kernel)在接到來自硬體的通告，作出反應的機制。以網路卡為例，硬體在接收到外部的封包之後，便會以interrupt通知OS，展開對應此狀況的中斷處理程序(interrupt handler)，運行架構如下圖所示。
 
-![Image](/interrupt.png)
+![](/interrupt.png)
 
 而interrupt context具有最高優先權一事也意味著，scheduler動不了它，所以它不可陷入sleep，或是呼叫任何有機會導致本身sleep的system call，否則沒人叫的醒。基於同樣的理由，它也不可以被preempt。最後，interrupt context本身必須僅可能的簡短，若是花太多時間處理的話，將導致後續的interrupt被遺漏，引起其他問題。
 
@@ -584,7 +584,7 @@ timer scheduler呼叫時
 
 每一個相同的IRQ line在linux中會串成一條link list，kernel在接獲一條IRQ line上產生的訊號時，會從link list的前端開始，沿路呼叫每一個node的handler function，而該handler function則必須檢查這個訊號是否由自身所屬的device所發出。若否，則handler function要盡快把控制權丟出來以免拖累整個interrupt handling的處理速度。若訊號源來自handler自己所對應的裝置，則在處理中斷工作結束後回傳IRQ_HANDLED。
 
-![Image](/IRQ)list.png
+![](/IRQ)list.png
 
 接著我們以linux處理Level-Triggered Interrupts的流程來介紹maskng。所謂的Level-Triggered是指當我的輸入電位高過某個水平之後，即視為device遇到狀況了，需要CPU的關心。而在device本身降低自己在這個port的電壓前，電壓將持續的維持在高位。這意味著我們需要暫時無視這個port的訊號，待處理完interrupt handling後(順便期待處理會使的電位降低)，重新檢視這個port的訊號。又或者是通知device controller說OS開始處理這個interrupt了，讓device決定下一步動作(例如降低該port之電位)。在下面這個流程圖中採取了雙管齊下的策略。
 
@@ -602,7 +602,7 @@ timer scheduler呼叫時
 
 其中將訊號遮蔽的masking可以透過寫入interrupt controller的register來達成。STM32使用的是cortex M處理器，其Nest Vector Interrupt Controller(NVIC)  masking所對應的位址如下表。
 
-![Image](/NVIC_clear.jpg)
+![](/NVIC_clear.jpg)
 
 而能在handler function層級中控制一個irq line的masking與否，意味著OS必須有能力處理不同硬體間的差異，如此一來才具備可攜性。這在linux底下主要透過三個資料結構，分別為irq_chip、 irqaction以及 irq_desc來達成，其主要成員如下。
 
@@ -654,7 +654,7 @@ timer scheduler呼叫時
 
  irq_desc，如同其名稱(discription)所示，內描述了該條IRQ line的狀態，所有操作皆可透過他達成。irq_desc中有兩個指標分別指向了irq_chip以及irqaction兩個結構，前者負責與最底層硬體的溝通，後者則是處理interrupt service routine重要的一員，三者的關係如下圖所示。inturrupt發生時OS會沿著該條IRQ line檢察是否有符合的device id，並呼叫對應的handler function。
 
-![Image](/IRQ_struct.png)
+![](/IRQ_struct.png)
 
 從最底層最接近硬體的部分開始，我們可以看見irq_chip這個struct底下主要由一系列指向函數指標所組成。以mask當作例子，可以在在nvic.c底下找到nvic_mask_irq這個函數直接操作硬體register的函數，其中 NVIC_CLEAR_ENABLE為對應上表register，為0xe000e000e180，將特定的bit設為1之後即可遮蓋特定的IRQ line
 
@@ -747,12 +747,12 @@ The Registers
 
 邊緣觸發中斷：
 
-![Image](/embedded/handle_edge_irq.jpg)
+![](/embedded/handle_edge_irq.jpg)
 
 
 條件觸發中斷：
 
-![Image](/embedded/handle_level_irq.jpg)
+![](/embedded/handle_level_irq.jpg)
 
 
 其他類型的中斷（較不常用）：
@@ -769,7 +769,7 @@ The Registers
 
 **Interrupt Overview**
 
-![Image](/InterruptOverview.JPG)
+![](/InterruptOverview.JPG)
 
 [圖片來源](http://blog.csdn.net/droidphone/article/details/7445825)
 
@@ -855,7 +855,7 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 如果產生page fault，則只能去storage把程式載入到記憶體中。
 
-![Image](/embedded/TLB.jpg)
+![](/embedded/TLB.jpg)
 
 **Q3. What is slab & slob allocator?**
 
@@ -867,7 +867,7 @@ Translation Lookaside Buffer，為一種cache，可加快mapping的速度。
 
 下圖為示意圖([ 來源](http://www.cs.sunysb.edu/~prade/Teaching/Spring13/prez/L06/L06.pdf))
 
-![Image](/embedded/buddy.PNG)
+![](/embedded/buddy.PNG)
 
 **Q5. How program loader load OS?(以uClinux為例)**
 

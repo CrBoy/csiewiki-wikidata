@@ -7,7 +7,7 @@ Introduction
 ============
 - Pulse-Width Modulation, 又稱pulse-duration modulation(PDM),是將脈波轉為類比信號的"一種技術",利用在頻率不變的狀態下, 改變工作週期大小, 使整體平均電壓值上升或下降, 藉此間歇性電壓及功率切換以節省能源及控制等效果.
 
-![Image](/PWM_intr.PNG)
+![](/PWM_intr.PNG)
 
 -  duty cycle
   在一個信號週期裡，代表1的正脈衝的持續時間與脈衝總周期的比值。舉例來說，發出訊號1秒鐘，之後99秒沒有訊號，這是一個週期；之後又是發出一秒鐘的訊號，如此循環下去。而該訊號的工作週期就是1/(1+99)=1%。 
@@ -27,7 +27,7 @@ Clock control
 
 .. [#] [ Clock tree](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 212
 
-![Image](/Timer_clock.png)
+![](/Timer_clock.png)
 
 - 我們使用Crystal resonator作為外部震盪, 其頻率為8MHz（由STM32f4 discovery user manual 可知）
 
@@ -71,7 +71,7 @@ Clock control
 PLL(Phase-Lockedloop) 鎖相迴路
 ----------------------------------------
 
-![Image](/embedded/)pll.png
+![](/embedded/)pll.png
 
 若 Fin 訊號為一頻率參考訊號，Fdout 為除頻器的輸出訊號，PLL(Phase-Lockedloop)的動作就是藉由相位頻率偵測器(PFD)偵測其兩訊號的相位差(領先或落後)，然後再將此訊息送進電荷充放器。電荷充放器會根據此領先或落後的訊號下達充電或放電的命令，接著訊號經過低通濾波器後將會轉換成一低頻的控制電壓以改變壓控震盪器的震盪頻率，再經由除頻器作除頻動作後，回授給相位頻率偵測器，也就是藉著這些一次次的回授動作而使輸出到達一個穩定的頻率。
 
@@ -144,13 +144,13 @@ Clock Selection
 
 - Block diagram
   - in Adavanced-control timers & General-purpose timers
-![Image](/BD)of GP timer.png
+![](/BD)of GP timer.png
 
 - TIMx_CHx
   - 每個TIMER會對應到4個channel，這些channel會mapping到STM32F429上面的pin腳
   - 這裡以TIM4為範例 對應到STM32上的腳位分別是PD12、PD13、PD14、PD15   Reference 
 
-![Image](/TIM_CHx.png)
+![](/TIM_CHx.png)
 
 - clock來源 : 
   
@@ -164,7 +164,7 @@ Clock Selection
     - 此時利用到SMCR的TS[2:0]來選擇輸入源
     - ITR0.1.2.3, TI1 Edge Detector , TIFP1 , T2FP2 , ETRF
 
-![Image](/ITR.jpg)
+![](/ITR.jpg)
 
   - External clock mode2:
     - 在input每次的rising or falling edge時 counter 計數
@@ -175,7 +175,7 @@ Clock Selection
     - 使用另一個timer作為prescaler來產生除頻後之clock
     - 舉例 : 用Timer 1 的(update event)當做Timer 2 的prescaler
 
-![Image](/ITRx.png)
+![](/ITRx.png)
 
 Counter Modes
 =============
@@ -204,7 +204,7 @@ Registers
  2. edge-aligned 下數時，發生underflow
  3. center-aligned mode, overflow 或 underflow
 
-![Image](/embedded/Timer_UEV_and_RCR_relation_example.png)
+![](/embedded/Timer_UEV_and_RCR_relation_example.png)
 
  - Update Event(UEV)發生時會做的事情有：
     1. 會把所有的reg. update
@@ -249,7 +249,7 @@ Prescaler Description
 
 - example: prescaler control register設為1,但須等 update event產生才會載入至prescaler buffer, 因此下一個計數週期才會依據該值來除頻.
 
-![Image](/Timer_prescaler_description.PNG)
+![](/Timer_prescaler_description.PNG)
 
 Upcounting mode
 ----------------
@@ -265,17 +265,17 @@ Upcounting mode
 
 - Example: TIMx_ARR = 0x36, prescaler buffer  = 1
 
-![Image](/Timer_upcounting.png)
+![](/Timer_upcounting.png)
 ########
 
 - Example: TIMx_ARR = 0x36, ARPE = 0
 
-![Image](/Timer_upcount_ARPE0.PNG)
+![](/Timer_upcount_ARPE0.PNG)
 ########
 
 - Example: TIMx_ARR = 0x36, ARPE = 1
 
-![Image](/Timer_upcount_ARPE1.PNG)
+![](/Timer_upcount_ARPE1.PNG)
 
 UEV(clear by hardware) occurs every time an overflow occurs, and UIF is a flag triggered when overflow occurs, if you don't clean the flag, it will remain triggered(clear by software). 
 
@@ -285,7 +285,7 @@ Downcounting mode
 
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
 
-![Image](/countdown.png)
+![](/countdown.png)
 
 Center-aligned mode
 -------------------
@@ -293,7 +293,7 @@ Center-aligned mode
 
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
 
-![Image](/center_aligned.png)
+![](/center_aligned.png)
 
 Functional Modes
 =================
@@ -331,7 +331,7 @@ PWM input mode
   - 然後接著，當TI1 inactive(降下)時，IC2 會capture，CCR2就會儲存CNT當下的值(也就是2)。
   - 這樣我們可以由CCR1得知pwm的period從CCR2得知pwm的duty cycle。
 
-![Image](/embedded/Timer_pwm_input_mode.png)
+![](/embedded/Timer_pwm_input_mode.png)
 
 Forced output mode
 -------------------
@@ -381,7 +381,7 @@ Output compare mode
 
 .. [#] [TIMx_CCMR1](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 621
 
-![Image](/embedded/OC1M(output)compare mode).png
+![](/embedded/OC1M(output)compare mode).png
 
 
 **PWM mode：分為 edge-aligned & center-aligned mode**
@@ -402,7 +402,7 @@ Output compare mode
 
   - 下圖是PWM1(由CCMR的OC1M決定), 上數(由CR1的DIR bit決定)：
 
-![Image](/embedded/Timer_EdgeAligned_PWM_ARR8.png)
+![](/embedded/Timer_EdgeAligned_PWM_ARR8.png)
 
  - 在此PWM edge-aligned mode下，有一個要注意的地方：
     - 當設定為PWM2且下數時，會無法產生出 0% PWM。
@@ -420,7 +420,7 @@ Output compare mode
 
   - 下圖一樣是 PWM mode 1,但為 center-aligned mode(即上數完下數，下數完上數)
 
-![Image](/embedded/Timer_CenterAligned_PWM_ARR8.png)
+![](/embedded/Timer_CenterAligned_PWM_ARR8.png)
 
 - PWM configuration
 
@@ -450,7 +450,7 @@ Output compare mode
 
 - Example: PWM mode 1, 向上計數並以LED為例：
 
-![Image](/timer.png)
+![](/timer.png)
 
   - TIM_Prescaler = 500-1, TIM_Period = 1680-1 , TIMxCLK = 84MHz
 
@@ -462,7 +462,7 @@ Output compare mode
 
 - Example: PWM mode 1, 中央對齊計數方式:
 
-![Image](/中央對齊.png)
+![](/中央對齊.png)
 
 
 PWM realize ADC and DAC
@@ -474,7 +474,7 @@ PWM realize ADC and DAC
 PWM realize ADC :
 -------------------
 
-![Image](/PWM實現ADC.png)
+![](/PWM實現ADC.png)
 
 - principle brief:
 
@@ -490,9 +490,9 @@ RC circuit's response to a PWM signal:
 
 .. [#] [What is the RC circuit's response to a PWM signal?](http://www3.nd.edu/~lemmon/courses/ee224/web-manual/web-manual/lab8a/node5.html)reference
 
-![Image](/embedded/RC_equation.png)
-![Image](/embedded/PWM_wave.png)
-![Image](/embedded/response_of_PWM.png)
+![](/embedded/RC_equation.png)
+![](/embedded/PWM_wave.png)
+![](/embedded/response_of_PWM.png)
 
 ADC transform :
 -----------------
@@ -512,7 +512,7 @@ featrue of PWM realize ADC:
 PWM realize DAC:
 ------------------
 
-![Image](/PWM實現DAC.png)
+![](/PWM實現DAC.png)
 
 - principle brief:
 
@@ -611,7 +611,7 @@ demo1 PWM_LED
 
 -----------------------------------------------------------
  
-![Image](/pwm_servo_pic.png)
+![](/pwm_servo_pic.png)
 
 demo2 PWM_SERVO
 --------------------
@@ -661,7 +661,7 @@ PWM先高後低和先低後高 在Motor上表現有什麼差別?
 
 - (2)半可變電阻器:為調整電阻後可以固定。
 
-![Image](/可變電阻.jpg)
+![](/可變電阻.jpg)
 
 - 用處:
 
@@ -677,13 +677,13 @@ Clock Tree
 - Clock Tree 是把 Clock Source 分配到每個Device讓它的Skew minimize。
 - 一般的邏輯閘fan out都有上限﹐一推20就可能會推不上去拉，所以需要長tree 1推10，每個再推10個.就像樹狀圖一樣，這就是clock tree。
 
-![Image](/ClockTree_SYSCLK.PNG)
+![](/ClockTree_SYSCLK.PNG)
 
 - 為保證所有周邊裝置能夠得到期望的頻率, 所以先將頻率倍頻至最高需求頻率(Ethernet PTP clock), 其餘周邊裝置再除頻至所需之clock.
 
 - 先倍頻在除頻係因倍頻與除頻的電路設計上的差異, 因PLL設計較為複雜, 而prescaler則以counter即可實現, 所以設計上不會直接將Oscillator產生之頻率倍頻至各裝置所需之頻率.
 
-![Image](/before)PLL.PNG
+![](/before)PLL.PNG
 
 
 [#]_
@@ -703,7 +703,7 @@ TIx XOR
 
 .. [#] [ITx XOR](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 602
 
-![Image](/Tim_input_xor.PNG)
+![](/Tim_input_xor.PNG)
 
 - XOR設置目的為:有三個輸入的信號(例如霍爾感測器)。
   - 霍爾感測器物理意義為電壓與磁力成正比，所以可以藉由霍爾感測器得出的電壓算出Motor的轉速。
@@ -712,16 +712,16 @@ TIx XOR
 Setup Time
 -----------
 
-![Image](/part)of counter wave.PNG
+![](/part)of counter wave.PNG
 
 [Ref. 數位IC設計, 陳培殷教授, slide 40, 41 ](http://dic.csie.ncku.edu.tw/vlsi_2013/CHAPTER-5.pdf)
 
-![Image](/DFF_setup_time.PNG)
+![](/DFF_setup_time.PNG)
 
 Motor Principle
 -------------------
 
-![Image](/motor1.jpg)
+![](/motor1.jpg)
 
 - 直流有刷馬達
 
@@ -744,7 +744,7 @@ Motor Principle
   - 轉子的N極此時雨或爾元件最接近，造成B端輸出較大電壓倒通電晶體，L2線圈的左側呈現S極並與轉子的N極吸引，鐵心逆時鐘旋轉，依此類推以上3個步驟。
 
 
-![Image](/motor2.jpg)
+![](/motor2.jpg)
 
 
 - 直流馬達 '有刷' . '無刷'比較

@@ -40,7 +40,7 @@ STM32 Overview
   - One for most use cases
   - open source: http://code.google.com/hosting/search?q=label:STM32 
 
-![Image](/STM32-P103-01.jpg)
+![](/STM32-P103-01.jpg)
 
 STM32 on QEMU 環境建立與測試
 --------------------------

@@ -30,7 +30,7 @@ Mini ARM OS
 ----------------
 * 00-HelloWorld
 
-![Image](/embedded/Lab42/00.png)
+![](/embedded/Lab42/00.png)
 
   - 輸入``arm-none-eabi-objdump -D hello.elf``後，會看到以下：
 

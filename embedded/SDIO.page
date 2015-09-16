@@ -12,7 +12,7 @@ What is the SD/MMC?
 
 - SD 是一種 flash memory card 的標準，也就是一般常見的 SD 記憶卡，而 MMC 則是較早的一種記憶卡標準，目前已經被 SD 標準所取代.
 
-![Image](/sdio2.png)
+![](/sdio2.png)
 
 後來還出了 SDHC(Secure Digital High Capacity)，是由 SD 卡協會（SD Card Association）在 2006 年 3 月發表的 Secure Digital 高容量版本。SD 卡協會有强制規定，所有符合 SDHC 規範的設備都必須標明 “SDHC” 的標誌。
 
@@ -20,7 +20,7 @@ SDHC 與 SD 的主要差異在於，舊版本使用 FAT16 檔案系統，意思�
 
 發佈 SDHC 的時候，制定了三種不同的級數 (Class)，分別是 Class 2、Class 4 及 Class 6，表示**該記憶卡穩定的最小存取速度**。後來，又增加了 Class 10 及全新制定的 UHS（Ultra High Speed）標準。
 
-![Image](/class_speed.png)
+![](/class_speed.png)
 
 What is the SDIO?
 -----------------
@@ -41,24 +41,24 @@ What is the SDIO?
 - Many other SDIO devices have been proposed, but it is now more common for I/O devices to connect using the USB interface.
 - SDIO cards support most of the memory commands of SD cards. SDIO cards can be structured as 8 logical cards, although currently, the typical way that an SDIO card uses this capability is to structure itself as one I/O card and one memory card.
 
-![Image](/sdio1.png)
+![](/sdio1.png)
 
 SDIO bus topology
 =================
 
-![Image](/Selection_015.png)
-![Image](/Selection_016.png)
+![](/Selection_015.png)
+![](/Selection_016.png)
 
 *注意：若 ``Busy`` 信號被斷言 (SDIO_D0 pulled low)，則 SDIO 並不會傳送任何資料*
 
-![Image](/Selection_017.png)
-![Image](/Selection_018.png)
-![Image](/Selection_019.png)
+![](/Selection_017.png)
+![](/Selection_018.png)
+![](/Selection_019.png)
 
 SDIO functional description
 ============================
 
-![Image](/sdio_functional_description.png)
+![](/sdio_functional_description.png)
 
 圖說明：
 
@@ -90,13 +90,13 @@ SDIO_CK is the clock to the card:
 
 The signals shown in Table 149 are used on the MultiMediaCard/SD/SD I/O card bus
 
-![Image](/SDIO_IO_definitions.png)
+![](/SDIO_IO_definitions.png)
 
 SDIO adapter
 ============
 block diagram of an SDIO adapter.
 
-![Image](/sdio_adapter.png)
+![](/sdio_adapter.png)
 
 上圖中包含了五個子單元：
 
@@ -127,7 +127,7 @@ Control Unit
 ------------
 這部份又在其內部分為兩個子單元，一個是 Power management，另一個是 Clock management，這兩個子單元都受 Adapter registers 控制。詳見下圖：
 
-![Image](/control_unit.png)
+![](/control_unit.png)
 
 **Power management**
 
@@ -156,11 +156,11 @@ Command Path
 ------------
 Command path 用來傳遞外來命令與接收卡片回應，是 SDIO 中負責處理外部裝置 command 的單位。
 
-![Image](/sdio-command_path.png)
+![](/sdio-command_path.png)
 
 Command registers 中具有各 state flags 來表示 command path 目前的狀態，而狀態間的轉移可以用 state machine 表示：
 
-![Image](/SDIO_CPSM.png)
+![](/SDIO_CPSM.png)
 
 當 command register 被寫入且 enable bit 被設為真值，command 的傳送即告開始。Command 被傳送後，CPSM 會進入 ``Idle`` 狀態且自動設定 status flags 的值。若該命令需要回應，則等待回應。當回應產生後，command path 會比較回傳的 CRC 與內部產生的 code，然後對應的 status flag 會自動被設定。
 
@@ -172,7 +172,7 @@ Command registers 中具有各 state flags 來表示 command path 目前的狀�
 
 底下則是典型 SDIO command transfer 的示意圖：
 
-![Image](/SDIO_command-transfer.png)
+![](/SDIO_command-transfer.png)
 
 當 CPSM 不在 ``Send`` 狀態，SDIO_CMD 會處於 Hi-Z 狀態。
 
@@ -180,7 +180,7 @@ Command registers 中具有各 state flags 來表示 command path 目前的狀�
 
 一般 Command（普通 MMC, SD card 與 SDIO 裝置）的長度固定在 48 個 bit，上面 CPSM 提到的 CE-ATA 則是 MMC v4.2 的延伸功能，其格式與普通 command 相同。Command path 是以**半雙工**模式運作，亦即同時間只能傳送 command 或接收 response。
 
-![Image](/SDIO-command_format.png)
+![](/SDIO-command_format.png)
 
 Response 則分為 **48 bit 的短回應**與 **136 bit 的長回應**兩種，兩種都使用 CRC 作為錯誤檢測的依據。
 
@@ -188,11 +188,11 @@ Response 則分為 **48 bit 的短回應**與 **136 bit 的長回應**兩種，�
 
 底下是這兩種回應的詳細格式：
 
-![Image](/SDIO-response_format.png)
+![](/SDIO-response_format.png)
 
 另外，在 command register 中存有 command index，這除了可以分辨 response 屬於哪種格式外（包含 6 個 bit 的資訊，Command Index in short format, [133:128] in long format），亦可分辨該 command 需不需要 response。Command path 並包含以下的 flag 指示目前的 command/response 傳輸狀態：
 
-![Image](/SDIO-command_path_status_flags.png)
+![](/SDIO-command_path_status_flags.png)
 
 CRC chscksum 為 7 個 bit，在短格式中，以 CRC7 之前所有欄位的資料作計算；在長格式中，則以 CID/CSD 前 120 個 bit 為基準作計算（亦即不包含 start bit, transmission bit 與 6 個保留 bit）。
 
@@ -201,13 +201,13 @@ Data Path
 
 Data path 負責資料的傳輸，底下是該子單元的 block diagram：
 
-![Image](/SDIO-data_path.png)
+![](/SDIO-data_path.png)
 
 Data bus 的長度是可以透過 clock control register 控制的，若我們指定使用 4-bit 長的傳輸模式，則代表在每一個 clock cycle 中，會由 SDIO_D[3:0] 傳輸 4 bit 的資料；若為 8-bit 長，則為 SDIO_D[7:0]；若 ``wide bus`` 模式未啟動，則單一 clock cycle 只傳輸一個 bit。
 
 Data path 與 command path 相同，可以用 state machine 表示 data path 的各狀態間的關係與運作方式：
 
-![Image](/SDIO-DPSM.png)
+![](/SDIO-DPSM.png)
 
 DPSM 運作在 SDIO_CK 的頻率上，包含若干狀態。
 
@@ -272,13 +272,13 @@ The transmit FIFO is accessible via 32 sequential addresses. The transmit FIFO c
 
 If the transmit FIFO is disabled, all status flags are deasserted. The data path subunit asserts ``TXACT`` when it transmits data.
 
-![Image](/SDIO-transmit_FIFO_status_flag.png)
+![](/SDIO-transmit_FIFO_status_flag.png)
 
 **Receive FIFO**
 
 When the data path subunit receives a word of data, it drives the data on the write databus. The write pointer is incremented after the write operation completes. On the read side, the contents of the FIFO word pointed to by the current value of the read pointer is driven onto the read databus. If the receive FIFO is disabled, all status flags are deasserted, and the read and write pointers are reset. The data path subunit asserts ``RXACT`` when it receives data.
 
-![Image](/SDIO-receive_FIFO_status_flag.png)
+![](/SDIO-receive_FIFO_status_flag.png)
 
 
 SDIO interrupt

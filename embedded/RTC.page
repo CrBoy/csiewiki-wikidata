@@ -37,7 +37,7 @@ Block Diagram
 [#]_
 
 .. [#] [Block Diagram ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.780
-![Image](/rtc_block.png)
+![](/rtc_block.png)
 
 
 
@@ -46,7 +46,7 @@ Functional Description
 Clock Source 
 --------------------
 
-![Image](/clocksource2.png)
+![](/clocksource2.png)
 
 **STM32的 Clock 有分成「SYSCLK」和「Secondary Clock」：**
 
@@ -78,13 +78,13 @@ Secondary Clock:
 Prescaler 
 --------------------
 
-![Image](/stm32)RTC prescaler.png
+![](/stm32)RTC prescaler.png
 
 ``ck_spre``一般而言要降為1Hz的頻率，因為省電的因素STM設計了兩個Prescaler。7 bit非同步prescaler(``PREDIV_A``)和15 bit同步的prescaler(``PREDIV_S``)。這兩個prescaler要在RTC_PRER的暫存器設定。*ST在Reference有說明當兩個Prescaler都使用時，建議讓非同步的Prescaler讓他有較大的值，以讓系統更省電*
 
 所以``ck_spre``與兩個prescaler的關係為:
 
-![Image](/ck_spre2.png)
+![](/ck_spre2.png)
 
 
 例如:
@@ -122,7 +122,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 
 -----------------------------------------------------------------
 
-![Image](/coarse)cal.png
+![](/coarse)cal.png
 
 **2、RTC  smooth calibration：**
 
@@ -139,7 +139,7 @@ RTC裡面有兩個校正功能，一個是coarse calibration另一個是smooth c
 ----------------------------------------------------------------------------
 
 
-![Image](/smooth)cal.png
+![](/smooth)cal.png
 
 **3、RTC reference clock detection：**
 
@@ -151,7 +151,7 @@ RTC Calendar
 --------------------
 
 
-![Image](/RTC_calendar.png)
+![](/RTC_calendar.png)
 
 
 **讀取Calendar:**
@@ -219,7 +219,7 @@ Low Power Modes
 
 - 在低功率( low power mode)模式下，Alarm, tamper event, time stamp event, and wakeup 依然會被中斷所啟動。
 
-![Image](/Power.png)
+![](/Power.png)
 
 
 **比較三種低功耗**
@@ -260,13 +260,13 @@ Alarm
 - 可利用Mask達成不同時間的鬧鈴效果。
 
 
-![Image](/embedded/RTC/alarm_pass.png)
+![](/embedded/RTC/alarm_pass.png)
 
 - 以設定來說，生效的時候會透過EXTI_Line17的外部中斷RTC Alarm，讓ALRAF(ALRBF)的bit設成1 (Reference Manual p.380)
 
 -----------------------------------------------
 
-![Image](/Alarm3.png)
+![](/Alarm3.png)
 
 
 .. [#] [Alarm ](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.781
@@ -277,7 +277,7 @@ Alarm
 As an example, to configure the alarm time to 23:15:07 on Monday (預設MSK是0000)
 
 
-![Image](/MSK2.png)
+![](/MSK2.png)
 
 
 
@@ -311,7 +311,7 @@ Configuration 3: **long wakeup** periods
 
 Prescalers connected to the timebase/wakeup unit
 
-![Image](/wuck1.png)
+![](/wuck1.png)
 
 在這個設定中，wakeup unit，會接受由RTCCLK再經過Prescaler的clock。RTC_WUTR(RTC Wakeup Timer Register)為一個
 
@@ -329,7 +329,7 @@ auto-reload的down counting timer，這表示當使用者在初始化時設了�
 
 Prescalers connected to the wakeup unit for configurations 2 and 3
 
-![Image](/wuck2.png)
+![](/wuck2.png)
 
 2和3的clock source相同，都是用來計算calendar的ck_spre。
 
@@ -352,7 +352,7 @@ Prescalers connected to the wakeup unit for configurations 2 and 3
 Min. and max. timebase/wakeup period when RTCCLK= 32768Hz
 
 
-![Image](/MaxMin.png)
+![](/MaxMin.png)
 
 
 
@@ -375,7 +375,7 @@ Time-stamp function 提供自動幫你儲存日曆的功能
 
 **RTC_TSSR register** : 會去讀取RTC_SSR 裡面的Sub-second 的資料並儲存
 
-![Image](/timestamp.png)
+![](/timestamp.png)
 
 
 
@@ -427,7 +427,7 @@ Backup Domain 有下列幾個主要裝置:
 
 SRAM:靜態隨機存取存儲器（Static Random-Access Memory, SRAM）是隨機存取儲存器的一種。所謂的「靜態」，是指這種存儲器只要保持通電，裡面儲存的數據就可以恆常保。
 
-![Image](/backupdomain.PNG)
+![](/backupdomain.PNG)
 
 .. [#] [Tamper Detection Function](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p.115
 
@@ -441,7 +441,7 @@ Example of Code
 `[ YouTube連結--實現RTC ] 
 <https://www.youtube.com/watch?v=SbWUkchJd-8>`_
 
-![Image](/RTCdemo.png)
+![](/RTCdemo.png)
 
 Initialize RTC
 --------------------
@@ -639,10 +639,10 @@ LCD使用了 **14 pin** .
 Control Method
 ------------------
 
-![Image](/lcdcontrol.PNG)
+![](/lcdcontrol.PNG)
 
                                              
-![Image](/LCDset2.png)
+![](/LCDset2.png)
 
 
 Initial LCD Code
@@ -760,11 +760,11 @@ Ans:
 
   **上數計時器**
 
-![Image](/jkup.png)
+![](/jkup.png)
 
   **下數計時器**
 
-![Image](/jkdown.png)
+![](/jkdown.png)
 
 ----------------------------------------------
   

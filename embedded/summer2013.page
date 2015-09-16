@@ -49,11 +49,11 @@ toc: no
 
 GDB + Microcontroller
 
-![Image](/embedded/gdb-with-gdb-server.png)
+![](/embedded/gdb-with-gdb-server.png)
 
 Low Power mode + Tickless scheduling
 
-![Image](/embedded/task-with-tick-interrupts.png)
+![](/embedded/task-with-tick-interrupts.png)
 
 
 請求贊助

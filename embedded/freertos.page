@@ -140,7 +140,7 @@ Task 被建立出來後，它會配置有自己的堆疊空間和 stack variable
 
 Task 的狀態
 
-![Image](/tskstate.gif)
+![](/tskstate.gif)
 
 
   * Ready：準備好要執行的狀態
@@ -186,7 +186,7 @@ Ready list 的資料形態
 
 FreeRTOS 使用 ready list 去管理準備好要執行的 tasks，而 ready list 的資料儲存方式如下圖
 
-![Image](/freertos-figures-full-ready-list-2.png)
+![](/freertos-figures-full-ready-list-2.png)
 
 OS 會在進行 context switch 時選出下一個欲執行的 task
 
@@ -450,11 +450,11 @@ Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生
 
 使用 infinite loop 的執行時序圖
 
-![Image](/loop_blocked.png)
+![](/loop_blocked.png)
 
 使用 vTaskDelay() 的執行時序圖
 
-![Image](/delay_blocked.png)
+![](/delay_blocked.png)
 
 
   * vTaskDelay()：這個函式的參數如果直接給數值，是 ticks，例如 vTaskDelay(250) 是暫停 250 個 ticks 的意思，由於每個 CPU 的一個 tick 時間長度不同，FreeRTOS 提供了 portTICK_RATE_MS 這個巨集常數，可以幫我們轉換 ticks 數為毫秒 (ms)，也就是說 vTaskDelay( 250/portTICK_RATE_MS ) 這個寫法，就是讓 task 暫停 250 毫秒(ms)的意思 (v8.2.1 改名為 portTICK_PERIOD_MS)
@@ -513,17 +513,17 @@ vTaskSuspend 使用範例：
 
 * Queue
 
-![Image](/qu.png)
+![](/qu.png)
 
 FreeRTOS 的 task 預設是採用 deep copy 的方式來將資料送到 queue 中，也就是會把資料按照字元一個一個複製一份到 queue 中，當要傳遞的資料很大時，建議不要這樣傳遞，改採用傳遞資料指標的方式，如 shallow copy。好處是可以直接做大資料複製，缺點就是會影響到記憶體內容。不管你選擇哪一個方式放入 queue 中，FreeRTOS 只關心 data 的大小，不關心是哪一種 data copy 的方式。
 
 * Shallow Copy 
 
-![Image](/shallow_copy.png)
+![](/shallow_copy.png)
 
 * Deep Copy
 
-![Image](/deep_copy.png)
+![](/deep_copy.png)
 
 
 * Queue 的結構
@@ -725,7 +725,7 @@ N-element semaphore，只需同步 uxMessagesWaiting，且只需關心有多少 
 
 * 基本概念
 
-  ![Image](/suspending.gif)
+  ![](/suspending.gif)
 
 FreeRTOS 中除了由 kernel 要求 task 交出 CPU 控制權外，task 也能夠可以自行交出 CPU 控制權
 
@@ -767,7 +767,7 @@ wait(block): 等待取得資源或事件發生
 
 * RTOS tick
 
-  ![Image](/TickISR.gif)
+  ![](/TickISR.gif)
 
  [portable/GCC/ARM_CM4F/port.c](https://github.com/TheKK/myFreeRTOS/blob/master/portable/GCC/ARM_CM4F/port.c#L506) 
 
@@ -935,13 +935,13 @@ wait(block): 等待取得資源或事件發生
 
 在處理中斷上軟硬體的介接關係圖如下：
 
-![Image](/interupt.JPG)
+![](/interupt.JPG)
 
 * Nested Vectored Interrupt Controller(NVIC)
 
 NVIC 是 Cortex-M3 的一部分，他是一組用來管理各種硬體周邊發生中斷訊號的暫存器，EXIT 則是 STM32 板子上管理各種硬體發生中斷的控制器，EXIT 會通過 GPIO 把中斷訊號送給 Cortext-M3 上的 NVIC 暫存器， FreeRTOS 在透過操作 NVIC 與呼叫 interrupt service routine 來處理硬體中斷。
 
-![Image](/NVIC_Register.png)
+![](/NVIC_Register.png)
 
     * 能夠定義 1~240 種 interrupt (FreeRTOS on ARM Cortex-M3 與 Cortex-M4 原始定義了 107 個 interrupt)
         * Cortex-M4 提供 240 個 Interrupt Priority Registers(IPR) 去記錄
@@ -1234,14 +1234,14 @@ Context switch 是指 task A 要交出 CPU 使用權給 task B 時，OS 會將 t
     	xTaskCreate( Task3, (signed char*)"Task3", 128, NULL, tskIDLE_PRIORITY+3, NULL );
         ...
     }
-![Image](/embedded/test1contextSwitch.jpg)
+![](/embedded/test1contextSwitch.jpg)
 1. 首先建立 task1 和 task2，其中 task2 的優先權大於 task1 的優先權。task2 先執行，並且(task2)馬上就呼叫 vTaskDelay 使 task2 移至 block 狀態 1 秒，此時就會發生 context switch，切換成 task1 執行，這 1 秒的時間內，task1 不斷的將全域變數 iii 做 ++，直到 1 秒結束後，回到 task2 執行，再由 task2 印出 iii 的值，並把 iii 重新設為 0，此為一個週期。此動作可得到 iii 在 1 秒內可跑到多少，設 1 秒可跑至 k 值。
 
 2. 建立 task3 並設定其優先權高於 task2，task3 會執行 vTaskDelay 300 秒，當 300 秒結束後，會中斷 task1 所執行的 iii++，再由 task3 印出 iii 值，設其為 final_i，k 值與 final_i 值的差額，即為 context switch 的總時間。
 
 下圖為隨機挑出 45 個 iii 值做成圖表，其中平均 iii 值為：4280015
 
-![Image](/embedded/test2contextSwitch.jpg)
+![](/embedded/test2contextSwitch.jpg)
 接著我們測出的 final_i 值，平均為：3913853，故可得到 (4280015 - 3913853)/ 4280015 = 0.0855 (秒)
 
 0.0855 秒代表在 300 秒的測試內的所有 context switch 時間之總和
@@ -1303,7 +1303,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
 若每個ItemSize為uint64_t，則throughput約為：2.823 * 100000 * 8 = 2.258（Mbytes/s）
 
-![Image](/embedded/IPC-test.png)
+![](/embedded/IPC-test.png)
 
 以上三者比較，在uint64_t時有最好的throughput，且snd和rcv相差最小。
 
@@ -1316,7 +1316,7 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 測試環境架設
 ----------------
 
-![Image](/FreeRTOS_porting.jpg)
+![](/FreeRTOS_porting.jpg)
 
 **安裝**
 
@@ -1660,7 +1660,7 @@ ARM 能支援 32-bit 和 16-bit 指令互相切換（THUMB 是 ARM 的 16-bit �
 
 conditional code用法為附加在某些條件指令之後，用來定義指令執行的代碼
 
-![Image](/embedded/condition.png)
+![](/embedded/condition.png)
 
 **Q11:Thumb state bit? execution state bit?**
 
@@ -1711,14 +1711,14 @@ http://wiki.csie.ncku.edu.tw/embedded/freertos
 
 **Q13:R4~R11用在甚麼時候?**
 
-![Image](/embedded/coreReg.png)
+![](/embedded/coreReg.png)
 
 **Q14:接續Q5,問FreeRTOS設計概念,回去看OS的fork部分**
 
 摘自且翻譯恐龍書八版P110～112：
 * 父程序（parent process）產生子程序（child process），這些新的程序被產生（fork()）後，會形成程序樹（tree of processes）。
 
-![Image](/embedded/ProcessTree.jpg)
+![](/embedded/ProcessTree.jpg)
 
 * 一般而言，一個程序會需要一些資源（resource），子程序可以直接獲得資源或是子程序被限制在父程序的資源裡。「限制子程序在父程序資源裡」可以防止因為產生太多子程序而發生超載（overloading）。
 
@@ -1728,7 +1728,7 @@ http://wiki.csie.ncku.edu.tw/embedded/freertos
 
 ARM 浮點數架構 （VFP，全名Vector Floating-Point）為對浮點運算的操作提供的硬體支援。
 
-![Image](/embedded/VFP.png)
+![](/embedded/VFP.png)
 
 http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/Chdhfiah.html
 
@@ -1774,7 +1774,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 * 關於STMxx和LDMxx指令
 
-![Image](/embedded/stm.png)
+![](/embedded/stm.png)
 
 
 **Q17:__attribute__(( naked ))  naked是幹嘛?**
@@ -1844,7 +1844,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 <visualizer/main.c>
 
-![Image](/main.png)
+![](/main.png)
 
 我們在意的是為什麼 scale 單位是 microsecond 呢?
 
@@ -1852,7 +1852,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 <visualizer/FreeRTOSConfig.h>
 
-![Image](/FreeRTOSConfig.png)
+![](/FreeRTOSConfig.png)
 
 所以 scale = 1000000/100 (tick/sec) = 10000
 但是這樣我們還是不知道該給 scale 下什麼單位，因為 configTICK_RATE_HZ 只是頻率，也就是『每單位時間內有幾次tick』，官方並沒有定義這個單位時間是什麼。
@@ -1860,14 +1860,14 @@ value to the ptr {r3-4} and r3 = r3 -4.
 但是我們注意到使用手冊中提到，FreeRTOS 在管理 task 的時候，有一個 API – vTaskDelay() 可以用來讓 Task 暫停一段時間，使用方法如下：
 <FreeRTOS 官網>
 
-![Image](/vTaskFunction.png)
+![](/vTaskFunction.png)
 
 這段程式碼中使用了 vTaskDelay() 來暫停 task，文件說明這個函數的參數如果是整數常數，單位是 ticks，也就是說傳入整數如：vTaskDelay(500)，會暫停 500 ticks，而上述程式碼我們傳入的參數是 500/portTICK_RATE_MS，註解說這樣就可以讓 task 暫停 500 ms(10^-3 second)，所以 n / portTICK_RATE_MS 是 ms，然而此時的 n 應該不是 ticks 了(the result of our discussion)
  
 接著我們去追portTICK_RATE_MS 的定義：
 <freertos-basic/freertos/libraries/FreeRTOS/portable/GCC/ARM_CM3/portmacro.h>
 
-![Image](/portmacro.png)
+![](/portmacro.png)
 
 (in v8.2.1, portTICK_RATE_MS was renamed to portTICK_PERIOD_MS)
 
@@ -1946,7 +1946,7 @@ value to the ptr {r3-4} and r3 = r3 -4.
 
 從 pxReadyTasksLists[ uxTopReadyPriority ] 看起來
 
-![Image](/readytasklist.png)
+![](/readytasklist.png)
 
 ready list 應該是每個 index 表示不同的 priority
 (換句話說，同一個 index 的 ready list 中的 tasks 應該是具有相同 priority 的)
@@ -2040,7 +2040,7 @@ xLIST 中的 xListEnd 是 xLIST（linked-list？）的尾巴
     -Event bits are used to indicate if an event has occurred or not. Event bits are often referred to as event flags.
     -來源：[http://www.freertos.org/FreeRTOS-Event-Groups.html](http://www.freertos.org/FreeRTOS-Event-Groups.html)
 
-![Image](/eventbit.png)
+![](/eventbit.png)
 
 group 中有很多 bit，分別代表 task 正在等待的一個 event，並不一定所有的 bit 都會用到，看 task 需要等待多少 task
 event 例如：
@@ -2137,7 +2137,7 @@ vTaskList(buf)  將task的所有資訊寫進buf內，之後再把buf的內容pri
 
 參考了 [Lab33](http://wiki.csie.ncku.edu.tw/embedded/Lab33)使用 "(gdb) target: remote" + "info registers" 來觀察暫存器內容，而在 freertos-basic/tool/gdbscript 中就已經有 target: remote 3333 了，freertos/mk/qemu.mk 呼叫 qemu 並且直接進入 gdb，因此可以使用 info registers 來觀察，下圖是 pxPortStackInitialise() 執行完畢以後的暫存器狀態圖
 
-![Image](/end_pxPortStackInitialise.png)
+![](/end_pxPortStackInitialise.png)
 
 **Q33. 在 FreeRTOS 裡面，其 pid 在哪裡? 如何知道 task 的 id 資訊? **
 

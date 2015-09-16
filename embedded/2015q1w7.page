@@ -65,7 +65,7 @@ toc: no
         }
     }
 
-![Image](/embedded/2015q1w7/ctx.png)
+![](/embedded/2015q1w7/ctx.png)
 
   + ``vTaskDelay`` 設為 50ms，但在一個 task 測試下，delay 可能是 40~55ms 之間的任意值，推測可能是 idle 時 SysTick 每 10ms reload 一次，task delay 在 10ms 以下即可被排入 ready
   + 在兩個相同 pirority 的 task 執行時，平均約 10ms 作一次 context switch (即 SysTick forced switch)
