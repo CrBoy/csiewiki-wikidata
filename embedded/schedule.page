@@ -17,7 +17,7 @@ toc: no
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
 |#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    |                  * |
-|#2    |Sep 25   | 2015q3:基本能力鑑定測驗   |                     - |
+|#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
 |#3    |Oct 2  | ARM Architecture + Hardware Concepts      |        - |
 |#4    |Oct 9  | ARM Exceptions/Interrupts           |        - |
 |#5    |Oct 16  | Hardware and Software Interface |         - |
@@ -35,7 +35,7 @@ toc: no
 |#17   |Jan 8  | Software Quality        |        * |
 |#18   |Jun 15  | Security Issues         |       * |
 
-[2015q3 Overview]: 2015q3w1
+[2015q3:基本能力鑑定測驗]: 2015q3w2
 
 
 嵌入式作業系統設計與實作 (Spring 2015)
