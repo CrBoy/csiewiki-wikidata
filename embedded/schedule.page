@@ -16,16 +16,16 @@ toc: no
 
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
-|#1   | Sep 18   |[2015q3 Overview]    |                  * |
-|#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
-|#3    |Oct 2  | [ARM Architecture + Hardware Concepts]      |        - |
-|#4    |Oct 9  | [ARM Exceptions/Interrupts]           |        - |
-|#5    |Oct 16  |[Hardware and Software Interface] |         - |
-|#6    |Oct 23  | [ARM and RTOS: Part I]                |         -  |
-|#7    |Oct 30   | [ARM and RTOS: Part II]               |        - |
-|#8    |Nov 6  | [From Hello to Preemptive Scheduler]  |        - |
-|#9    |Nov 13  | [Kernel Concepts and Threading]       |        - |
-|#10   |Nov 20  |Peripherals|        * |
+|#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    |                  * |
+|#2    |Sep 25   | 2015q3:基本能力鑑定測驗   |                     - |
+|#3    |Oct 2  | ARM Architecture + Hardware Concepts      |        - |
+|#4    |Oct 9  | ARM Exceptions/Interrupts           |        - |
+|#5    |Oct 16  | Hardware and Software Interface |         - |
+|#6    |Oct 23  | ARM and RTOS: Part I                |         -  |
+|#7    |Oct 30   | ARM and RTOS: Part II               |        - |
+|#8    |Nov 6  |  From Hello to Preemptive Scheduler  |        - |
+|#9    |Nov 13  | Kernel Concepts and Threading       |        - |
+|#10   |Nov 20  | Peripherals |        * |
 |#11   |Nov 27  |Peripherals: [GPIO](/embedded/GPIO)  |        * |
 |#12   |Dec 4  | Peripherals: [ADC](/embedded/ADC)       |        * |
 |#13   |Dec 11  |Peripherals: [SPI](/embedded/SPI)      |        * |
@@ -36,14 +36,6 @@ toc: no
 |#18   |Jun 15  | Security Issues         |       * |
 
 [2015q3 Overview]: 2015q3w1
-[2015q3:基本能力鑑定測驗]: 2015q3w2
-[ARM Architecture + Hardware Concepts]: 2015q3w3
-[ARM Exceptions/Interrupts]: 2015q3w4
-[Hardware and Software Interface]: 2015q3w5
-[ARM and RTOS: Part I]: 2015q3w6
-[ARM and RTOS: Part II]: 2015q3w7
-[From Hello to Preemptive Scheduler]: 2015q3w8
-[Kernel Concepts and Threading]: 2015q3w9
 
 
 嵌入式作業系統設計與實作 (Spring 2015)
