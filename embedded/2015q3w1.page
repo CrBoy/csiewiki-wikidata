@@ -1,0 +1,23 @@
+---
+title: Week #1 (Sep 18) :: Embedded System Overview
+toc: no
+...
+
+教材
+----------
+* [進階嵌入式系統設計與實做 (2015 年秋季 )  課程說明](http://www.slideshare.net/jserv/embedded-fall2015)
+  - Facebook 討論區: https://www.facebook.com/groups/ncku.embedded2015
+  - 共筆: https://embedded2015.hackpad.com
+    * 使用案例
+      - [2015 年暑期課程](/embedded/summer2015)
+
+  - [資訊科技產業面試模擬和工作咨詢](http://wiki.csie.ncku.edu.tw/embedded/rehearsal)
+
+* [From Source to Binary](http://www.slideshare.net/jserv/how-a-compiler-works-gnu-toolchain)
+* [Qemu JIT Code Generator and System Emulation](http://www.slideshare.net/jserv/qemu-jit-code-generator-and-system-emulation)
+* [QEMU Binary Translation(TCG)](http://www.slideshare.net/RampantJeff/qemu-binary-translation)
+* [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
+
+實驗和作業
+---------------
+* 
