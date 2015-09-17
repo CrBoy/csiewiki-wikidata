@@ -18,32 +18,32 @@ toc: no
 |:----|:----|:----|:----|
 |#1   | Sep 18   |[2015q3 Overview]    |                  * |
 |#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
-|#3    |Oct 2  | [ARM Architecture + OS Concepts]      |        - |
+|#3    |Oct 2  | [ARM Architecture + Hardware Concepts]      |        - |
 |#4    |Oct 9  | [ARM Exceptions/Interrupts]           |        - |
-|#5    |Oct 16  | [Embedded Linux Conference 2015]      |         - |
+|#5    |Oct 16  |[Hardware and Software Interface] |         - |
 |#6    |Oct 23  | [ARM and RTOS: Part I]                |         -  |
 |#7    |Oct 30   | [ARM and RTOS: Part II]               |        - |
 |#8    |Nov 6  | [From Hello to Preemptive Scheduler]  |        - |
 |#9    |Nov 13  | [Kernel Concepts and Threading]       |        - |
-|#10   |Nov 20  | [2015q1:Group Presentation(1)]        |        * |
-|#11   |Nov 27  | [2015q1:Group Presentation(2)]        |        * |
-|#12   |Dec 4  | [2015q1:Group Presentation(3)]        |        * |
-|#13   |Dec 11  | [2015q1:Group Presentation(4)]        |        * |
-|#14   |Dec 18  | [2015q1:Group Presentation(5)]        |        * |
-|#15   |Dec 25   | [2015q1:Group Presentation(6)]        |        * |
+|#10   |Nov 20  |Peripherals|        * |
+|#11   |Nov 27  |Peripherals: [GPIO](/embedded/GPIO)  |        * |
+|#12   |Dec 4  | Peripherals: [ADC](/embedded/ADC)       |        * |
+|#13   |Dec 11  |Peripherals: [SPI](/embedded/SPI)      |        * |
+|#14   |Dec 18  |Peripherals: [USB](/embedded/USB)        |        * |
+|#15   |Dec 25   | OS: [FreeRTOS](/embedded/freertos)       |        * |
 |#16   |Jan 1  | Happy New Year!        |        * |
-|#17   |Jan 8  | [2015q1:Group Presentation(8)]        |        * |
-|#18   |Jun 15  | [2015q1:Group Presentation(9)]         |       * |
+|#17   |Jan 8  | Software Quality        |        * |
+|#18   |Jun 15  | Security Issues         |       * |
 
 [2015q3 Overview]: 2015q3w1
 [2015q3:基本能力鑑定測驗]: 2015q3w2
-[ARM Architecture + OS Concepts]: 2015q1w3
-[ARM Exceptions/Interrupts]: 2015q1w4
-[Embedded Linux Conference 2015]: http://events.linuxfoundation.org/events/embedded-linux-conference
-[ARM and RTOS: Part I]: 2015q1w6
-[ARM and RTOS: Part II]: 2015q1w7
-[From Hello to Preemptive Scheduler]: 2015q1w8
-[Kernel Concepts and Threading]: 2015q1w9
+[ARM Architecture + Hardware Concepts]: 2015q3w3
+[ARM Exceptions/Interrupts]: 2015q3w4
+[Hardware and Software Interface]: 2015q3w5
+[ARM and RTOS: Part I]: 2015q3w6
+[ARM and RTOS: Part II]: 2015q3w7
+[From Hello to Preemptive Scheduler]: 2015q3w8
+[Kernel Concepts and Threading]: 2015q3w9
 
 
 嵌入式作業系統設計與實作 (Spring 2015)
