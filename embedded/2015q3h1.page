@@ -1,0 +1,191 @@
+---
+title: 2015q3 Homework #1
+toc: no
+...
+
+預期目標
+------------
+- 驗證 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)  簡報內容
+- 學習 GNU Toolchain
+- 使用 QEMU 作為指令集模擬器
+
+預先準備動作
+-------------------
+* 在自己的電腦中，安裝 [Lubuntu](http://lubuntu.net/) 15.04 作業系統 (版本太舊的話，後續操作可能會失敗)
+  - 虛擬機器環境 (不建議): [透過 VirtualBox 安裝 LubVirtualBox 安裝 Lubuntu](https://hackpad.com/VirtualBox-with-LUbuntu14.04-yza4C1MPF5s)
+
+* 安裝相關開發工具
+
+.. code-block:: prettyprint
+
+    sudo apt-get update
+    sudo apt-get install build-essential git-core
+    sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+    sudo apt-get install qemu-user qemu-system-arm
+
+* 關於 GNU/Linux 指令，請參閱 [鳥哥的 Linux 私房菜](http://linux.vbird.org/)
+  - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
+
+* [熟悉 Git 和 GitHub 操作](/github)
+
+範例程式碼操作
+---------------------
+* 取得 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報對應的程式碼
+
+.. code-block:: prettyprint
+
+        git clone https://github.com/embedded2015/arm-lecture.git
+
+* 確認 [arm-lecture](https://github.com/embedded2015/arm-lecture.git) 目錄已正確由 git 建立，接著切換工作目錄，並且編譯 ARM 版本的 "Hello World" 程式
+
+.. code-block:: prettyprint
+
+    cd arm-lecture
+    cd hello && make qemu
+
+  - 預期將看到以下輸出
+
+.. code-block:: prettyprint
+
+    arm-linux-gnueabihf-as -c  -o hello.o hello.s
+    arm-linux-gnueabihf-ld  -o hello hello.o 
+    qemu-arm ./hello
+    Hello, world!
+
+* 若沒有特別指明，後續操作都在 [arm-lecture](https://github.com/embedded2015/arm-lecture.git) 目錄之下，以下指令可以從 ``hello`` 目錄返回
+
+.. code-block:: prettyprint
+
+    cd ..
+
+對照測試簡報中的範例程式碼
+---------------------------------------
+* 參閱 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報內容
+* Example 1 (Page 31)
+
+.. code-block:: prettyprint
+
+    cd example1
+    make default qemu
+
+  - 預期輸出: ``0``
+  - 修改  ``example1.c``，將其中的 ``return 0`` 改為 ``return c``，之後再 ``make qemu``，即可知道 ``add(a,b)`` 的輸出結果
+  - 將 example1.c 中的 add(a,b) 改為 div(a,b)，並對照簡報 Page 40-41，在 Makefile 的 ``CFLAGS`` 加上`` -mcpu=cortex-a15``，
+    可發現生成的 ARM 機械碼使用了 ``sdiv`` 指令
+
+* Example 2 (Page 34)
+
+.. code-block:: prettyprint
+
+    cd example2
+    make default qemu
+
+  - 預期輸出:
+
+.. code-block:: prettyprint
+
+    a * b is 140
+    a * b + c is 143
+    c - a * b is -137
+
+
+* Example 3 (Page 45)
+
+.. code-block:: prettyprint
+
+    cd example3
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    a/2 / b/2 is 0
+
+* Example 4 (Page 50)
+
+.. code-block:: prettyprint
+
+    cd example4
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    a * b is 664237569
+
+* Example 5 (Page 55)
+
+.. code-block:: prettyprint
+
+    cd example5
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    a & b is 17
+    Before operation, apsr was 20030010
+    After operation, apsr was 60030010
+
+* Example 6 (Page 62)
+
+.. code-block:: prettyprint
+
+    cd example6
+    make default qemu
+
+  - 預期輸出
+
+.. code-block:: prettyprint
+
+    The address of a is 0xf6fff0ac
+    The value of b is now 10
+
+作業要求
+-------------
+* 參閱 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報內容
+  - Lab-1: 實做 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97)，使用 ARM 組合語言
+  - 必須實做遞迴和非遞迴的版本，分別對應 ``lab-1`` 和 ``lab-1i`` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
+
+* 嘗試評估 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97) 的執行效率，並比較遞迴和非遞迴實做的表現
+* 繳交方式：
+  - 在 GitHub 上 Fork [arm-lecture](https://github.com/embedded2015/arm-lecture)，並提交修改
+    * 對應於 lab-1, lab-1i 這兩個目錄
+
+  - 編輯 Hackpad 下方「[作業區]()」，增添開發紀錄和 GitHub 連結
+
+  - 更新上述 Hackpad，將作業加入，並標注自己的 ID
+    *  寄件到 <embedded.master2015@gmail.com>
+    * 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
+    * 內容：(回答以下問題)
+       - GitHub 帳號, wiki 帳號 (註冊本站)
+       - 關於 fork 出來的 repository 修改描述
+       - 附上一份自我介紹和對課程的期許
+
+* 截止日期：
+   - Oct 3, 2015 (含) 之前
+   - 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
+挑戰題
+----------
+* 修改 Makefile 和撰寫必要的 script，讓 ``make qemu`` 可以一併自動檢驗 Fibonacci 計算的正確性
+  - 使用情境如同 [ Running unittests via QEMU](http://www.chromium.org/chromium-os/testing/qemu-unittests)
+
+* 計算每道 ARM/Thumb 指令的 cycle count，並且提出改善實做效能的方法
+
+* 以 [gnuplot](http://www.gnuplot.info/) 繪製效能分析圖表，藉此得知 Fibonacci 數列對於效能的影響
+  - 參考資訊: [Gnuplot 純畫圖](http://user.frdm.info/ckhung/b/ma/gnuplot.php)
+
+* 練習 [ARM GCC Inline Assembly](http://www.ethernut.de/en/documents/arm-inline-asm.html)
+
+參考資料
+------------
+* [30 天精通 Git 版本控管](https://github.com/doggy8088/Learn-Git-in-30-days)
+* [史上最淺顯易懂的 Git 教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) (簡體中文)
+* [Git / GitHub 教學](http://dylandy.github.io/Easy-Git-Tutorial/)
+* [Learn Git Branching](http://pcottle.github.io/learnGitBranching/) (精美動畫，必看)
+* [2015 年春季班共筆](https://embedded2015.hackpad.com/Week-2-Mar-3-ARM-Environment-PxsRjeEkz5l)
+* [Thumb2 conditional code 以及程式開發心得](http://www.slideshare.net/hirokiht/arm-developement), 竹內宏輝
