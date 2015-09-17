@@ -22,8 +22,7 @@ sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 sudo apt-get install qemu-user qemu-system-arm
 ```
 * 關於 GNU/Linux 指令，請參閱 [鳥哥的 Linux 私房菜](http://linux.vbird.org/)
-  - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
-
+    - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
 * [熟悉 Git 和 GitHub 操作](/github)
 
 範例程式碼操作
@@ -142,38 +141,35 @@ cd ..
 作業要求
 -------------
 * 參閱 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報內容
-  - Lab-1: 實做 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97)，使用 ARM 組合語言
-  - 必須實做遞迴和非遞迴的版本，分別對應 ``lab-1`` 和 ``lab-1i`` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
-  - 可參考張家榮同學的[精美筆記](https://embedded2015.hackpad.com/ep/pad/static/c0m3ff7P1X0)
+    - Lab-1: 實做 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97)，使用 ARM 組合語言
+    - 必須實做遞迴和非遞迴的版本，分別對應 ``lab-1`` 和 ``lab-1i`` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
+    - 可參考張家榮同學的[精美筆記](https://embedded2015.hackpad.com/ep/pad/static/c0m3ff7P1X0)
 
 * 繳交方式：
-  - 在 GitHub 上 Fork [arm-lecture](https://github.com/embedded2015/arm-lecture)，並提交修改
-    * 對應於 lab-1, lab-1i 這兩個目錄
+    - 在 GitHub 上 Fork [arm-lecture](https://github.com/embedded2015/arm-lecture)，並提交修改
+        * 對應於 lab-1, lab-1i 這兩個目錄
 
-  - 編輯 Hackpad 下方「[作業區](https://embedded2015.hackpad.com/2015q3Homeowork1-qquvswe5R0g)」，增添開發紀錄和 GitHub 連結
+    - 編輯 Hackpad 下方「[作業區](https://embedded2015.hackpad.com/2015q3Homeowork1-qquvswe5R0g)」，增添開發紀錄和 GitHub 連結
 
-  - 更新上述 Hackpad，將作業加入，並標注自己的 ID
-    *  寄件到 <embedded.master2015@gmail.com>
-    * 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
-    * 內容：(回答以下問題)
-       - GitHub 帳號, wiki 帳號 (註冊本站)
-       - 關於 fork 出來的 repository 修改描述
-       - 附上一份自我介紹和對課程的期許
+    - 更新上述 Hackpad，將作業加入，並標注自己的 ID
+        *  寄件到 <embedded.master2015@gmail.com>
+        * 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
+        * 內容：(回答以下問題)
+            - GitHub 帳號, wiki 帳號 (註冊本站)
+             - 關於 fork 出來的 repository 修改描述
+             - 附上一份自我介紹和對課程的期許
 
 * 截止日期：
-   - Oct 3, 2015 (含) 之前
-   - 越早在 GitHub 上有動態、越早接受 code review，評分越高
+     - Oct 3, 2015 (含) 之前
+     - 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 挑戰題
 ----------
 * 修改 Makefile 和撰寫必要的 script，讓 ``make qemu`` 可以一併自動檢驗 Fibonacci 計算的正確性
-  - 使用情境如同 [Running unittests via QEMU](http://www.chromium.org/chromium-os/testing/qemu-unittests)
-
+    - 使用情境如同 [Running unittests via QEMU](http://www.chromium.org/chromium-os/testing/qemu-unittests)
 * 計算每道 ARM/Thumb 指令的 cycle count，並且提出改善實做效能的方法
-
 * 以 [gnuplot](http://www.gnuplot.info/) 繪製效能分析圖表，藉此得知 Fibonacci 數列對於效能的影響
-  - 參考資訊: [Gnuplot 純畫圖](http://user.frdm.info/ckhung/b/ma/gnuplot.php)
-
+    - 參考資訊: [Gnuplot 純畫圖](http://user.frdm.info/ckhung/b/ma/gnuplot.php)
 * 練習 [ARM GCC Inline Assembly](http://www.ethernut.de/en/documents/arm-inline-asm.html)
 
 參考資料
