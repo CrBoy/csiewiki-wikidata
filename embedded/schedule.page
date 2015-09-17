@@ -10,10 +10,45 @@ toc: no
 - 共筆: [https://embedded2015.hackpad.com](https://embedded2015.hackpad.com)
 - 參考硬體平台: [STM32](/embedded/STM32F429), STMicroelectronics
 
+進階嵌入式系統設計與實作 (Fall 2015)
+------------------------------------------------------
+![](/embedded/logo-2012-small.png)
+
+|Week  |Date     |Subject                                 |Assignment|
+|:----|:----|:----|:----|
+|#1   | Sep 18   |[2015q3 Overview]    |                  * |
+|#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
+|#3    |Oct 2  | [ARM Architecture + OS Concepts]      |        - |
+|#4    |Oct 9  | [ARM Exceptions/Interrupts]           |        - |
+|#5    |Oct 16  | [Embedded Linux Conference 2015]      |         - |
+|#6    |Oct 23  | [ARM and RTOS: Part I]                |         -  |
+|#7    |Oct 30   | [ARM and RTOS: Part II]               |        - |
+|#8    |Nov 6  | [From Hello to Preemptive Scheduler]  |        - |
+|#9    |Nov 13  | [Kernel Concepts and Threading]       |        - |
+|#10   |Nov 20  | [2015q1:Group Presentation(1)]        |        * |
+|#11   |Nov 27  | [2015q1:Group Presentation(2)]        |        * |
+|#12   |Dec 4  | [2015q1:Group Presentation(3)]        |        * |
+|#13   |Dec 11  | [2015q1:Group Presentation(4)]        |        * |
+|#14   |Dec 18  | [2015q1:Group Presentation(5)]        |        * |
+|#15   |Dec 25   | [2015q1:Group Presentation(6)]        |        * |
+|#16   |Jan 1  | Happy New Year!        |        * |
+|#17   |Jan 8  | [2015q1:Group Presentation(8)]        |        * |
+|#18   |Jun 15  | [2015q1:Group Presentation(9)]         |       * |
+
+[2015q3 Overview]: 2015q3w1
+[2015q3:基本能力鑑定測驗]: 2015q3w2
+[ARM Architecture + OS Concepts]: 2015q1w3
+[ARM Exceptions/Interrupts]: 2015q1w4
+[Embedded Linux Conference 2015]: http://events.linuxfoundation.org/events/embedded-linux-conference
+[ARM and RTOS: Part I]: 2015q1w6
+[ARM and RTOS: Part II]: 2015q1w7
+[From Hello to Preemptive Scheduler]: 2015q1w8
+[Kernel Concepts and Threading]: 2015q1w9
+
+
 嵌入式作業系統設計與實作 (Spring 2015)
 ------------------------------------------------------
 ![](/embedded-os.png)
-
 
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
