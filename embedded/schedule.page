@@ -16,7 +16,7 @@ toc: no
 
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
-|#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    |                  * |
+|#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    |[2015q3: Homework1]: 環境設定 |
 |#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
 |#3    |Oct 2  | ARM Architecture + Hardware Concepts      |        - |
 |#4    |Oct 9  | ARM Exceptions/Interrupts           |        - |
@@ -36,6 +36,7 @@ toc: no
 |#18   |Jun 15  | Security Issues         |       * |
 
 [2015q3:基本能力鑑定測驗]: 2015q3w2
+[2015q3: Homework1]: 2015q3h1
 
 
 嵌入式作業系統設計與實作 (Spring 2015)
