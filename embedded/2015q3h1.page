@@ -144,13 +144,13 @@ cd ..
 * 參閱 [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14) 簡報內容
   - Lab-1: 實做 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97)，使用 ARM 組合語言
   - 必須實做遞迴和非遞迴的版本，分別對應 ``lab-1`` 和 ``lab-1i`` 目錄，請直接修改這兩個目錄中的程式碼，不需要建立新目錄
+  - 可參考張家榮同學的[精美筆記](https://embedded2015.hackpad.com/ep/pad/static/c0m3ff7P1X0)
 
-* 嘗試評估 [Fibonacci 數列](http://zh.wikipedia.org/zh-tw/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97) 的執行效率，並比較遞迴和非遞迴實做的表現
 * 繳交方式：
   - 在 GitHub 上 Fork [arm-lecture](https://github.com/embedded2015/arm-lecture)，並提交修改
     * 對應於 lab-1, lab-1i 這兩個目錄
 
-  - 編輯 Hackpad 下方「[作業區]()」，增添開發紀錄和 GitHub 連結
+  - 編輯 Hackpad 下方「[作業區](https://embedded2015.hackpad.com/2015q3Homeowork1-qquvswe5R0g)」，增添開發紀錄和 GitHub 連結
 
   - 更新上述 Hackpad，將作業加入，並標注自己的 ID
     *  寄件到 <embedded.master2015@gmail.com>
@@ -167,7 +167,7 @@ cd ..
 挑戰題
 ----------
 * 修改 Makefile 和撰寫必要的 script，讓 ``make qemu`` 可以一併自動檢驗 Fibonacci 計算的正確性
-  - 使用情境如同 [ Running unittests via QEMU](http://www.chromium.org/chromium-os/testing/qemu-unittests)
+  - 使用情境如同 [Running unittests via QEMU](http://www.chromium.org/chromium-os/testing/qemu-unittests)
 
 * 計算每道 ARM/Thumb 指令的 cycle count，並且提出改善實做效能的方法
 
