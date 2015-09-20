@@ -15,7 +15,7 @@ Baseline
 ------------
 ```c
 #include <stdint.h>
-double compute_pi(size dt)
+double compute_pi(size_t dt)
 {
     double pi = 0.0;
    double delta = 1.0 / dt;
