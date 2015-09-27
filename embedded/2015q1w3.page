@@ -24,10 +24,8 @@ toc: no
 
 ![](/embedded/fork-test.png)
 
-    + ``test.c`` 程式碼如下，編譯請用 ``gcc -o test -std=c99 test.c``
-
-.. code-block:: prettyprint
-
+``test.c`` 程式碼如下，編譯請用 ``gcc -o test -std=c99 test.c``
+```c
     int main()
     {
        for (int i = 0; i < 3; i++) {
@@ -39,20 +37,20 @@ toc: no
            }
         }
     }
-
+```
 * [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
   - [ARM Conditional Execution](http://www.davespace.co.uk/arm/introduction-to-arm/conditional.html)，以 C 程式來說:
 
-.. code-block:: prettyprint
-
-    if (z == 1) R1 = R2 + (R3 * 4) 
-
+```c
+if (z == 1) R1 = R2 + (R3 * 4) 
+```
 對應的 ARM 組合語言為
+```
+addeqs r1, r2, r3, lsl #2
+```
 
-.. code-block:: prettyprint
-
-    addeqs r1, r2, r3, lsl #2
-
+先修材料
+------------
 * [FreeRTOS](http://www.freertos.org/)
   - [The Architecture of Open Source Applications: FreeRTOS](http://www.aosabook.org/en/freertos.html)
   - 成大資訊系共筆 [FreeRTOS](/embedded/freertos)
