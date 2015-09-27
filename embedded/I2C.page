@@ -205,7 +205,7 @@ clock control register
 
 透過設定CCR來產生SCL頻率。
 
-例如: 當在Sm mode時，若 FREQR為08 (8MHz), TPCLK1為 125ns, 則CCR必須要是0x28(40d*125ns*2=10000ns), 才能產生100KHz的SCL
+例如: 當在Sm mode時，若 FREQR為08 (8MHz), TPCLK1為 125ns, 則CCR必須要是0x28(40d × 125ns × 2 = 10000ns), 才能產生100KHz的SCL
 
 control register
 ------------------------------------
