@@ -186,7 +186,7 @@ I²C interrupt and Event
  - successful address/ data communication  (ITEVFEN ITBUFEN)
  - error condition (ITERREN)
 
-    ![](/embedded/i2c_interrupt.png)
+![](/embedded/i2c_interrupt.png)
 
 clock control register
 ------------------------------------
@@ -252,9 +252,9 @@ control register
 status register
 ------------------------------------
 
-    ![](/embedded/i2c_status_register(1).png)
+![](/embedded/i2c_status_register(1).png)
 
-    ![](/embedded/i2c_status_register(2).png)
+![](/embedded/i2c_status_register(2).png)
 
   .. code-block:: c
 
