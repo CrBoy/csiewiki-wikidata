@@ -17,9 +17,9 @@ toc: no
 
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
-|#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    |[2015q3: Homework1] ; [2015q3: Ext1](/embedded/2015q3h1ext) |
+|#1   | Sep 18   | [2015q3 Overview](https://embedded2015.hackpad.com/ep/pad/static/QXYBh2n9wLD)    | = [2015q3: Homework1] ; [2015q3: Ext1](/embedded/2015q3h1ext) = |
 |#2    |Sep 25   | [2015q3:基本能力鑑定測驗]   |                     - |
-|#3    |Oct 2  | [ARM Architecture and Optimization Concepts](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)      |   [2015q3: Homework2]  |
+|#3    |Oct 2  | [ARM Architecture and Optimization Concepts](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)      | = [2015q3: Homework2] ; [2015q3: Homework3] = |
 |#4    |Oct 9  | 國定假日           |        - |
 |#5    |Oct 16  | Hardware and Software Interface |         - |
 |#6    |Oct 23  | ARM and RTOS: Part I                |         -  |
@@ -39,6 +39,7 @@ toc: no
 [2015q3:基本能力鑑定測驗]: 2015q3w2
 [2015q3: Homework1]: 2015q3h1
 [2015q3: Homework2]: 2015q3h2
+[2015q3: Homework3]: 2015q3h3
 
 
 嵌入式作業系統設計與實作 (Spring 2015)
