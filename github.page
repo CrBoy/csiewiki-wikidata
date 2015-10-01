@@ -39,11 +39,9 @@ SSH key 產生的方法
 (``$`` 開頭的表示法，就是說明在 Linux 終端機輸入指令)
 
 1. 輸入指令
-
-.. code-block:: prettyprint
-
+```
     $ ssh-keygen -t rsa -C "your_email@example.com"
-
+```
 後面那是自己申請 Github 所使用的信箱。之後 ssh 程式會要求輸入 passphrase：
 
 ![](/use-git-04.png)
@@ -121,21 +119,14 @@ SSH key 產生的方法
 將本機 repository 和遠端 Github repository 同步
 
 打開空的 repository，Github 會指示你如何將本機 repository 的 remote 設定為遠端的 repository 目錄，並輸入以下指令，即可連線並把目前的 repository 同步到 Github 上面了。
-
-.. code-block:: prettyprint
-
+```
     $ git remote add origin git@github.com:your_account/your_repository.git
-
-.. code-block:: prettyprint
-
     $ git push -u origin master
-
+```
 之後只需要輸入
-
-.. code-block:: prettyprint
-
+```
     $ git push
-
+```
 即可
 
 
@@ -143,54 +134,43 @@ Clone 其他使用者的專案
 ------------------------------
 Clone 是一個較為特殊的稱呼方式，意思是將遠端的 repository 複製一份到本機。在本機的 repository 可以自由修改/實驗，或是針對專案所需要的改善發送 patch 給原 repository，進而貢獻此專案。
 如果你有寫入權限的話 (被加入成 "Collaborators")，就可透過 SSH 通訊協定，以 git 去 "clone" 下來：
-
-.. code-block:: prettyprint
-
+```
     $ git clone git@github.com:Username/repository.git
+```
 
 如果沒有寫入權限 (Collaborators) 的話，因為這個專案是公開的，所以你還是可以用 Git 通訊協定 clone 下來：
-
-.. code-block:: prettyprint
-
+```
     $ git clone git://github.com/Username/repository.git
-
+```
 若因遭逢防火牆問題 (如成功大學校園環境)，請改用 HTTPS 通訊協定：
-
-.. code-block:: prettyprint
-
+```
     $ git clone https://github.com/Username/repository.git
-
+```
 
 Pull: 從遠端更新
 ------------------------
-.. code-block:: prettyprint
-
+```
     $ git pull
-
+```
 或
-
-.. code-block:: prettyprint
-
+```
     $ git pull origin master
-
+```
 實際作用是先 git fetch 遠端的 branch，然後與本地端的 branch 做 merge，產生一個 merge commit 節點
 
 Push: 將 Commit 送出去
 ------------------------
-.. code-block:: prettyprint
-
+```
     $ git push
-
+```
 或
-
-.. code-block:: prettyprint
-
+```
     $ git push origin master
-
+```
 實際的作用是將本地端的 master branch 與遠端的 master branch 作 fast-forward 合併。如果出現 [rejected] 錯誤的話，表示你必須先作 pull。
 
 若想要熟悉 Git 指令
 ---------------------------
 以下是以 GUI 方式呈現指令所產生結果的網站:
-  * [LearnGitBranching](http://pcottle.github.io/learnGitBranching/)
-  * [Visualizing Git Concepts with D3](http://onlywei.github.io/explain-git-with-d3/)
+    * [LearnGitBranching](http://pcottle.github.io/learnGitBranching/)
+    * [Visualizing Git Concepts with D3](http://onlywei.github.io/explain-git-with-d3/)
