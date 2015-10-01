@@ -62,17 +62,17 @@ SSH key 產生的方法
 
 如果你已安裝了 [Windows 版的 Github](https://windows.github.com/) ，你可以在不使用 SSH Key 的狀況下，執行 clone 等操作。Windows版本同時支援許多 Git bash tool，可運行眾多的 Git 指令。
 
-    5-1. 如果你已安裝 Git bash，輸入以下指令以啟動 ``ssh-agent``
+* 如果你已安裝 Git bash，輸入以下指令以啟動 ``ssh-agent``
 
-    ![](/use-git-08.jpg)
+![](/use-git-08.jpg)
 
-    　　如果你使用的是 [msysgit](https://msysgit.github.io/) 等軟體，則輸入以下指令
+* 如果你使用的是 [msysgit](https://msysgit.github.io/) 等軟體，則輸入以下指令
 
-    ![](/use-git-09.jpg)
+![](/use-git-09.jpg)
 
-    5-2. 將剛剛產生的 key 加入 ``ssh-agent`` 中
+* 將剛剛產生的 key 加入 ``ssh-agent`` 中
 
-    ![](/use-git-10.jpg)
+![](/use-git-10.jpg)
 
 6. 到 Github 網站加入你的 SSH key
 
@@ -80,39 +80,39 @@ SSH key 產生的方法
 
 ![](/use-git-11.jpg)
 
-    6-1. 點選工具 icon
+* 點選工具 icon
 
-    ![](/use-git-12.jpg)
+![](/use-git-12.jpg)
 
-    6-2. 點選SSH Keys
+* 點選SSH Keys
 
-    ![](/use-git-13.jpg)
+![](/use-git-13.jpg)
 
-    6-3. 選擇 Add SSH key
+* 選擇 Add SSH key
 
-    ![](/use-git-14.jpg)
+![](/use-git-14.jpg)
 
-    6-4. 貼上key!!!!
+* 貼上key!!!!
 
-    ![](/use-git-15.jpg)
+![](/use-git-15.jpg)
 
-    6-5. 按下 Add key就完成啦!
+* 按下 Add key就完成啦!
 
 7. 驗證你有沒有綁訂了
 
-    7-1. 輸入 ``ssh -T git@github.com``
+* 輸入 ``ssh -T git@github.com``
 
-    ![](/use-git-16.jpg)
+![](/use-git-16.jpg)
 
-    7-2. 你會看到這個 warning，然後輸入"yes"
+* 你會看到這個 warning，然後輸入"yes"
 
-    ![](/use-git-17.jpg)
+![](/use-git-17.jpg)
 
-    7-3. 你將會看到
+* 你將會看到
 
-    ![](/use-git-18.jpg)
+![](/use-git-18.jpg)
 
-    　　這樣就成功囉!
+這樣就成功囉!
 
 同步
 ----------
@@ -137,7 +137,6 @@ Clone 是一個較為特殊的稱呼方式，意思是將遠端的 repository �
 ```
     $ git clone git@github.com:Username/repository.git
 ```
-
 如果沒有寫入權限 (Collaborators) 的話，因為這個專案是公開的，所以你還是可以用 Git 通訊協定 clone 下來：
 ```
     $ git clone git://github.com/Username/repository.git
