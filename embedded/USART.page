@@ -3,6 +3,8 @@ title: Universal Asynchronous Receiver/Transmitter
 categories: ARM, USART, UART, STM32, STM32F4, STM32F429
 ...
 
+Magic Smoke!
+
 USART簡介與特性
 ...................
 串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NZR工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
