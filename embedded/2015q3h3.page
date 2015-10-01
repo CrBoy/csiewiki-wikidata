@@ -9,13 +9,14 @@ toc: no
 
 作業要求
 ------------
-* 實做 [Week #2 程式題目](http://people.debian.org.tw/~jserv/ncku/2015q3.pdf)，解釋其運作原理
+* 實做 [Week #2 程式題目](http://people.debian.org.tw/~jserv/ncku/2015q3.pdf)，解釋其運作原理 (至少 4 題，限定 [C99](https://en.wikipedia.org/wiki/C99) 或以上的規格)
+    - Question #2, #3, #4, #5, #6, #27
 * 應該要有完整的測試程式，並測試各項邊界狀況
     - 執行時間分析
     - cache miss 分析
     - 時間複雜度分析
 * 善用 `assert`
-* 提供遞迴與非遞迴的實做
+* 提供遞迴與非遞迴的版本
 
 * 截止日期：
      - Oct 17, 2015 (含) 之前
