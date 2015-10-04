@@ -54,7 +54,8 @@ sudo apt-get install linux-tools-3.16.0-50-generic linux-cloud-tools-3.16.0-50-g
 
 ![](https://hackpad-attachments.s3.amazonaws.com/charles620016.hackpad.com_lifHi7P9FAL_p.431773_1443532263301_Selection_001.png)
 
-``kernel.perf_event_paranoid`` 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 `kernel.perf_event_paranoid＝1`，你可以輸入 ``$ cat /proc/sys/kernel/perf_event_paranoid``來查看權限值。一共有四種權限值
+``kernel.perf_event_paranoid`` 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 `kernel.perf_event_paranoid＝1`，你可以輸入 ``$ cat /proc/sys/kernel/perf_event_paranoid``來查看權限值。一共有四種權限值:
+
 * `2` : 不允許任何量測。但部份用來查看或分析已存在的紀錄的指令仍可使用，如 perf ls、perf report、perf timechart、 perf trace。
 * `1` : 不允許 CPU events data。但可以使用 perf stat、perf record 並取得 Kernel profiling data。
 * `0` : 不允許 raw tracepoint access。但可以使用 perf stat、perf record 並取得 CPU events data。
