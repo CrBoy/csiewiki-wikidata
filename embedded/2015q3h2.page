@@ -131,5 +131,9 @@ $ echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
 
 挑戰題
 ----------
+* 除了降低 `findName()` 的 cache miss 與執行成本，`append()` 也該想辦法縮減時間
+    - 建立 phone book 時，既然 lastName 是索引值，可以優先建立搜尋表格，其他資料可稍後再補上
+    - 用 PThread 建立 [manager/worker thread model](http://stackoverflow.com/questions/12282393/how-to-synchronize-manager-worker-pthreads-without-a-join)
 * 支援 [fuzzy search](http://www.informit.com/articles/article.aspx?p=1848528)，允許搜尋 lastName 時，不用精準打出正確的寫法
     - 比方說電話簿有一筆資料是 `McDonald`，但若使用者輸入 `MacDonald` 或 `McDonalds`，也一併檢索出來
+* 改善電話簿的效能分析，透過大量的重複執行，找出 95% 信賴區間，而且允許動態新增資料 (較符合現實) 和查詢
