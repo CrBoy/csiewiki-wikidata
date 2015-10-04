@@ -60,9 +60,9 @@ sudo apt-get install linux-tools-3.16.0-50-generic linux-cloud-tools-3.16.0-50-g
 * `0` : 不允許 raw tracepoint access。但可以使用 perf stat、perf record 並取得 CPU events data。
 * `-1`: 權限全開
 
-最後如果要檢測 cache miss event ，需要先取消 kernel pointer 的禁用。
+最後如果要檢測 cache miss event ，需要先取消 kernel pointer 的限制。
 ```
-$ sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict" `
+$ sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 ```
 
 先來個範例暖身吧！
