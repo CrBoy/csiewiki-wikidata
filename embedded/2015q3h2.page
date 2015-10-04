@@ -20,7 +20,7 @@ toc: no
 $ sudo apt-get update
 $ sudo apt-get install build-essential
 $ sudo apt-get install linux-tools-common linux-tools-generic
-$ sudo apt-get install colordiff
+$ sudo apt-get install astyle colordiff
 ```
 
 Linux 效能分析工具: Perf
@@ -104,14 +104,24 @@ perf top -p $pid
 預設的 performance event 是 "cycles"，所以這條指令可以分析出消耗 CPU 週期最多的部份，結果顯示函式 compute_pi_baseline() 佔了近 99.9％，跟預期一樣，此函式是程式中的「熱點」！
 
 
+
 作業要求
 -------
+* 在 GitHub 上 fork [phonebook](https://github.com/embedded2015/phonebook)，然後適度修改 `phonebook_opt.c` 和 `phonebook_opt.h` 兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
+    - `phonebook_orig.[ch]` 不需要修改，我們關注的是 `phonebook_opt.[ch]`，當然要修改 `main.c` 也是允許的
+    - `findName()` 與 `append()` 的時間必須比 [Week #3 課程](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY) 列出的數據，來得更快 
+* 務必使用 astyle 排版，詳細使用方式見 [README.md](https://github.com/embedded2015/phonebook/blob/master/README.md)
+* 可能的效能改進方向：
+    - 改寫 `struct __PHONE_BOOK_ENTRY` 的成員，搬動到新的結構中
+    - 使用 hash function 來加速查詢
+    - 既然 first name, last name, address 都是合法的英文 (可假設成立)，使用[字串壓縮的演算法](http://stackoverflow.com/questions/1138345/best-compression-algorithm-for-short-text-strings)，降低資料表示的成本
+    - 使用 binary search tree 改寫演算法
+
 * 截止日期：
      - Oct 12, 2015 (含) 之前
      - 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 挑戰題
 ----------
-
-參考資料
-------------
+* 支援 [fuzzy search](http://www.informit.com/articles/article.aspx?p=1848528)，允許搜尋 lastName 時，不用精準打出正確的寫法
+    - 比方說電話簿有一筆資料是 `McDonald`，但若使用者輸入 `MacDonald` 或 `McDonalds`，也一併檢索出來
