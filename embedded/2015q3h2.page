@@ -11,7 +11,7 @@ toc: no
 
 標注須知
 -------
-下方只要是 `$ ` 開頭，就表示在 GNU/Linux 的終端機裡面輸入的指令，比方說 `$ sudo apt-get update`
+下方只要是 `$ ` 開頭，就表示在 GNU/Linux 的終端機裡面輸入的指令，比方說 `$ sudo apt-get update`，就表示要輸入 `sudo apt-get update`。
 
 預先準備動作
 -------------------
@@ -33,13 +33,13 @@ Perf 可取樣的事件非常多，可以分析 Hardware event，如 cpu-cycles�
 
 Perf 安裝
 ---------
-首先利用以下指令查看目前的 Kernel config 有沒有啟用 Perf。如果電腦已安裝常見 GNU/Linux 發行版本，預設值應該都有開啟。
+首先利用以下指令查看目前的 Kernel config 有沒有啟用 perf。如果電腦已安裝常見 GNU/Linux 發行版本，預設值應該都有開啟。
 ```
 ＄ cat "/boot/config-`uname -r`" | grep "PERF_EVENT"
 ```
 
 參考的環境是 `Ubuntu 14.04`
-接著輸入``$ perf list`` 或 ``sudo perf top`` 檢查一下 perf 可不可以使用。
+輸入`$ perf list` 或 `$ sudo perf top` 檢查一下 perf 可不可以使用。
 
 如果出現以下的訊息，表示還漏了些東西。（底下的 Kernel 版本可能和你不一樣，根據指示安裝起來即可。不放心的話可以使用 `＄ uname -r` 確認）
 ```
@@ -104,7 +104,8 @@ perf top -p $pid
 預設的 performance event 是 "cycles"，所以這條指令可以分析出消耗 CPU 週期最多的部份，結果顯示函式 compute_pi_baseline() 佔了近 99.9％，跟預期一樣，此函式是程式中的「熱點」！
 
 
-
+作業要求
+-------
 * 截止日期：
      - Oct 12, 2015 (含) 之前
      - 越早在 GitHub 上有動態、越早接受 code review，評分越高
