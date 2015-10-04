@@ -50,7 +50,7 @@ You may need to install the following packages for this specific kernel:
 ```
 於是執行以下指令:
 ```
-sudo apt-get install linux-tools-3.16.0-50-generic linux-cloud-tools-3.16.0-50-generic
+$ sudo apt-get install linux-tools-3.16.0-50-generic linux-cloud-tools-3.16.0-50-generic
 ```
 到這裡 perf 的安裝就完成了。
 
