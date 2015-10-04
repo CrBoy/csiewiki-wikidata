@@ -72,7 +72,7 @@ $ sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 
 先來個範例暖身吧！
 
-一開始，我們先使用第一次作業 「計算圓周率」 的程式來體會一下 perf 使用。
+一開始，我們先使用第一次作業 [計算圓周率](/embedded/2015q3h1ext) 的程式來體會一下 perf 使用。
 ```c
 #include <stdio.h>
 #include <unistd.h>
