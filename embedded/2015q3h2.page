@@ -15,7 +15,7 @@ toc: no
 ```
 sudo apt-get update
 sudo apt-get install build-essential
-sudo apt-get install linux-tools-common
+sudo apt-get install linux-tools-common linux-tools-generic
 sudo apt-get install colordiff
 ```
 
