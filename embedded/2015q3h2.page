@@ -9,14 +9,18 @@ toc: no
 - 學習效能分析工具
 - 研究軟體最佳化
 
+標注須知
+-------
+下方只要是 `$ ` 開頭，就表示在 GNU/Linux 的終端機裡面輸入的指令，比方說 `$ sudo apt-get update`
+
 預先準備動作
 -------------------
 * 安裝相關開發工具
 ```
-sudo apt-get update
-sudo apt-get install build-essential
-sudo apt-get install linux-tools-common linux-tools-generic
-sudo apt-get install colordiff
+$ sudo apt-get update
+$ sudo apt-get install build-essential
+$ sudo apt-get install linux-tools-common linux-tools-generic
+$ sudo apt-get install colordiff
 ```
 
 Linux 效能分析工具: Perf
@@ -35,9 +39,9 @@ Perf 安裝
 ```
 
 參考的環境是 `Ubuntu 14.04`
-接著輸入``perf list`` 或 ``sudo perf top`` 檢查一下 perf 可不可以使用。
+接著輸入``$ perf list`` 或 ``sudo perf top`` 檢查一下 perf 可不可以使用。
 
-如果出現以下的訊息，表示還漏了些東西。（底下的 Kernel 版本可能和你不一樣，根據指示安裝起來即可。不放心的話可以使用 ``＄ uname -r`` 確認）
+如果出現以下的訊息，表示還漏了些東西。（底下的 Kernel 版本可能和你不一樣，根據指示安裝起來即可。不放心的話可以使用 `＄ uname -r` 確認）
 ```
 WARNING: perf not found for kernel 3.16.0-50
 You may need to install the following packages for this specific kernel:
@@ -50,11 +54,11 @@ sudo apt-get install linux-tools-3.16.0-50-generic linux-cloud-tools-3.16.0-50-g
 ```
 到這裡 perf 的安裝就完成了。
 
-如果你不是切換到 root 的情況下輸入 ``$ perf top``，會出現以下錯誤畫面：
+如果你不是切換到 root 的情況下輸入 `$ perf top`，會出現以下錯誤畫面：
 
 ![](https://hackpad-attachments.s3.amazonaws.com/charles620016.hackpad.com_lifHi7P9FAL_p.431773_1443532263301_Selection_001.png)
 
-``kernel.perf_event_paranoid`` 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 `kernel.perf_event_paranoid＝1`，你可以輸入 ``$ cat /proc/sys/kernel/perf_event_paranoid``來查看權限值。一共有四種權限值:
+`kernel.perf_event_paranoid` 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 `kernel.perf_event_paranoid＝1`，你可以輸入 `$ cat /proc/sys/kernel/perf_event_paranoid` 來查看權限值。一共有四種權限值:
 
 * `2` : 不允許任何量測。但部份用來查看或分析已存在的紀錄的指令仍可使用，如 perf ls、perf report、perf timechart、 perf trace。
 * `1` : 不允許 CPU events data。但可以使用 perf stat、perf record 並取得 Kernel profiling data。
@@ -89,7 +93,11 @@ int main() {
     return 0;
 }
 ```
-執行上述程式後，根據 pid 輸入 ``perf top -p $pid``。應該會得到類似下面的結果：
+執行上述程式後，會看到 `pid: ` 顯示數字，然後開啟新的終端機畫面，設定 pid 的值 `$ export pid=`，後方加上剛看到的數字。之後再執行 perf:
+```sh
+perf top -p $pid
+```
+應該會得到類似下面的結果：
 
 ![](https://hackpad-attachments.s3.amazonaws.com/charles620016.hackpad.com_lifHi7P9FAL_p.431773_1443547847244_Selection_001.png)
 
