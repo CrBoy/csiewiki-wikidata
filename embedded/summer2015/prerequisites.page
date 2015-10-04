@@ -23,14 +23,14 @@ C 語言程式設計
 作業系統概念
 -----------
 * CS4414: Operating Systems
-  - [影片 + 繁體中文字幕](https://www.youtube.com/channel/UCIm-u7l65hp5jboSJrB7U5w/feed) (歡迎訂閱)
-  - [課程資料](http://www.rust-class.org/)
+    - [影片 + 繁體中文字幕](https://www.youtube.com/channel/UCIm-u7l65hp5jboSJrB7U5w/feed) (歡迎訂閱)
+    - [課程資料](http://www.rust-class.org/)
 
 計算機組織結構
 ------------
 * 黃婷婷教授的 Computer Architecture
   - [影片](https://www.youtube.com/playlist?list=PLS0SUwlYe8cxMiFW_PiaBu53nOAXl3dxS)
-  - [共筆和補充](https://neal.hackpad.com/Computer-Architecture-Notes-W3x4n3Ht2oA)
+    - [共筆和補充](https://neal.hackpad.com/Computer-Architecture-Notes-W3x4n3Ht2oA)
 
 編譯器和虛擬機器
 --------------
@@ -45,16 +45,16 @@ ARM 處理器架構
 * [ARM Cortex-M3](http://www.slideshare.net/GauravVerma3/arm-cortex-processor-compatibility-mode)
 * [Assembly language programming: ARM Cortex-M3](http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout)
 * [Introduction: the ARM Cortex-M3 Exception / Interrupt](http://wiki.csie.ncku.edu.tw/embedded/arm-exceptions.pdf)
-  - [Interrupt-Driven Input/Output](http://wiki.csie.ncku.edu.tw/embedded/2015q1w4/interrupt_part2.pdf)
+    - [Interrupt-Driven Input/Output](http://wiki.csie.ncku.edu.tw/embedded/2015q1w4/interrupt_part2.pdf)
 
 自由軟體和開放原始碼
 -----------------
 * Revolution OS
-  - [影片 + 繁體中文字幕](https://www.youtube.com/watch?v=vWwvh3036Fw)
-  - [共筆和資料補充](https://fossapc.hackpad.com/-Revolution-OS--RrJpYEByzmr)
-  - 延伸閱讀: [Unix 歷史和觀念彙整](https://embedded2015.hackpad.com/UNIX-History-o6ganUMGhbm)
+    - [影片 + 繁體中文字幕](https://www.youtube.com/watch?v=vWwvh3036Fw)
+    - [共筆和資料補充](https://fossapc.hackpad.com/-Revolution-OS--RrJpYEByzmr)
+    - 延伸閱讀: [Unix 歷史和觀念彙整](https://embedded2015.hackpad.com/UNIX-History-o6ganUMGhbm)
 
 * The Code
-  - [影片 + 中文解說](https://fossapc.hackpad.com/C2-tMmvkW0UtB1)
+    - [影片 + 中文解說](https://fossapc.hackpad.com/C2-tMmvkW0UtB1)
 
 * [BSD 發展與影響](https://fossapc.hackpad.com/B0-1oYaaSKkruW)
