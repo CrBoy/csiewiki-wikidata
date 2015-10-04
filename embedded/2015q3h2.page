@@ -107,6 +107,7 @@ perf top -p $pid
 
 作業要求
 -------
+* 詳細閱讀 Week #3 課程的 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法
 * 在 GitHub 上 fork [phonebook](https://github.com/embedded2015/phonebook)，然後適度修改 `phonebook_opt.c` 和 `phonebook_opt.h` 兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
     - `phonebook_orig.[ch]` 不需要修改，我們關注的是 `phonebook_opt.[ch]`，當然要修改 `main.c` 也是允許的
     - `findName()` 與 `append()` 的時間必須比 [Week #3 課程](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY) 列出的數據，來得更快
