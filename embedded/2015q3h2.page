@@ -112,6 +112,7 @@ perf top -p $pid
     - `phonebook_orig.[ch]` 不需要修改，我們關注的是 `phonebook_opt.[ch]`，當然要修改 `main.c` 也是允許的
     - `findName()` 的時間必須比 [Week #3 課程](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY) 列出的數據，來得更快
     - `append()` 的時間可以比原始版本稍久，但不應該增加太多
+    - `main.c` 應該只有一份，不要建立新的 `main()`，善用 Makefile 定義對應的 `CFLAGS`
     - 在執行程式(`phonebook_orig` 和 `phonebook_opt`) 前，先清空 cache:
 ```sh
 $ echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
