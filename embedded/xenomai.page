@@ -776,14 +776,12 @@ Xenomai 3 on Beaglebone Black
 
 觀察與分析
 =========
-
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:～$ cat /proc/xenomai/stat
      CPU    PID        MSW                  CSW           PF         STAT            %CPU    NAME
      0      0            0                  206           0          00500080        100.0   ROOT
      0      0            0                  2688553       0          00000000        0.0     IRQ3: [timer]
-
+```
 * CPU : 目前這個tread是使用哪個CPU在運行，而rpi是單核心CPU，故顯示皆為0
 * MSW : Mode SWitches, This value should only increase over time for threads that are expected to interact with Linux services.
   - 當process從primary mode轉成secondary mode或是secondary mode轉成primary mode時，將會紀錄一次的轉換。
@@ -796,29 +794,28 @@ Xenomai 3 on Beaglebone Black
 * %CPU : CPU share of the thread (or IRQ handler) since the last retrieval of the statistics.
 * NAME : Name of the thread (or IRQ number and registered driver). Can be set, e.g., with the (non portable) POSIX-API-function pthread_set_name_np. See API documentation of the RTOS skin in question.
 
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:～$ sudo /usr/xenomai/bin/cyclictest >/dev/null 2>/dev/null &
      [1] 2253
+```
 
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:～$ ps aux | grep -i "cy"
      root      2253  0.5  0.3   4580   1464  ?        S    03:34   0:00   sudo /usr/xenomai/bin/cyclictest
      root      2254  2.7  0.4   2340   2132  ?        SLl  03:34   0:00   /usr/xenomai/bin/cyclictest
      pi        2259  0.0  0.1   3540   820   ttyAMA0  S+   03:34   0:00   grep --color=auto -i cy
+```
 
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:～$ cat /proc/xenomai/stat
      CPU    PID        MSW                CSW              PF        STAT        %CPU    NAME
      0      0          0                  255              0         00500080    100.0   ROOT
      0      2254       1                  1                0         00b00380    0.0     cyclictest
      0      2256       2                  48               0         00300184    0.0     cyclictest
      0      0          0                  2913946          0         00000000    0.0     IRQ3: [timer]
+```
 
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:~$ watch -n 1 cat /proc/xenomai/stat
      Every 1.0s: cat /proc/xenomai/stat                      Wed Jan  8 03:38:43 2014
 
@@ -827,11 +824,11 @@ Xenomai 3 on Beaglebone Black
      0      2254       1                  1             0         00b00380     0.0      cyclictest
      0      2256       2                  235           0         00300184     0.0      cyclictest
      0      0          0                  2953543       0         00000000     0.1      IRQ3: [timer]
+```
 
 在這邊可以看到cyclictest有兩個pid，因為/usr/xenomai/bin/cyclictest它會先創一個thread，並讓這個thread跑nanosleep，所以會有兩個process。接著看向CSW，pid 2254的cyclictest, 他的CSW只有1。pid 2256的卻有235，這是因為2256是一個xenomai realtime task，而 2254是一個 linux的process，所以2256會優先執行，直到realtime task都做完才會換low priority的linux domain process取得CPU，因此2254的CSW值才會是1而沒有增加。
 
-.. code-block:: prettyprint
-
+```
      pi@raspberrypi:~$ sudo kill 2254
 
      pi@raspberrypi:~$ ps aux | grep -i "cy"
@@ -839,13 +836,12 @@ Xenomai 3 on Beaglebone Black
      [1]+  Done                    sudo /usr/xenomai/bin/cyclictest > /dev/null 2> /dev/null
 
      pi@raspberrypi:~$ sudo /usr/xenomai/bin/cyclictest -p FIFO >/dev/null 2>/dev/null &
+```
 
 * 在我們了解MSW時，嘗試了在-p後面加上了文字(如：FIFO、RR……)  
 
 * 發現MSV的值開始往上增加，也發現一開始對於MSW的定義理解錯誤
-
-.. code-block:: prettyprint
-
+```
       CPU    PID        MSW                CSW                PF         STAT          %CPU     NAME
       0      0          0                  75266              0          00500080      99.9     ROOT
       0      2978       1                  1                  0          00b00380      0.0      cyclictest
@@ -853,6 +849,7 @@ Xenomai 3 on Beaglebone Black
       0      7559       1                  1                  0          00b00380      0.0      cyclictest
       0      7561       66                 130                0          00b00184      0.0      cyclictest
       0      0          0                  11266931           0          00000000      0.1      IRQ3: [timer]
+```
 
 * trace後才了解，這是xenomai在-p的指令上是使用atoi，將輸入的數字轉為int，但並沒有進行偵錯，才導致segment fault，而需跳轉到linux domain進行除錯。
 
@@ -860,26 +857,23 @@ Xenomai 3 on Beaglebone Black
 =======
 
 * Stock Linux 
-
-.. code-block:: prettyprint
-
+```
    cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
+```
 
 ![](/embedded/xenomai/001.png)
 
 * PREEMPT_RT-patched Linux
-
-.. code-block:: prettyprint
-
+```
    cyclictest -p 90 - m -c 0 -i 200 -n -h 100 -q -l 1000 >log
+```
 
 ![](/embedded/xenomai/preemptRt.png)
 
 * Xenomai-patched Linux
-
-.. code-block:: prettyprint
-
+```
    /usr/xenomai/bin/cyclictest -p 90 - m -c 0 -i 200 -n -v 100 -q -l 100" >log
+```
 
 ![](/embedded/xenomai/002.png)
 
@@ -909,9 +903,7 @@ Cyclictest 原理
 * 概念:設定一個時間間隔->取得現在時間->讓process 睡一個間隔->process醒來後再取一次時間->比對兩次取得的時間差與設定的間隔差距
 
 * pseudocode:
-
-  .. code-block:: prettyprint
-
+```c
     clock_gettime((&now))
     next = now + par->interval
     while (!shutdown) {
@@ -922,6 +914,7 @@ Cyclictest 原理
         # update the histogram data
         next += interval
     }
+```
 
 * 造成時間差的原因
 
@@ -957,11 +950,7 @@ Cyclictest 原理
   3.使用 xntimer_get_timeout_stopped 取得 tick
 
   4.使用 ticks2ts 轉換時間單位
-
-
-
-.. code-block:: prettyprint
-
+```c
      int clock_nanosleep (clockid_t clock_id, int flags, const struct timespec *rqtp, struct timespec *rmtp)
      {
         xnthread_t *cur;
@@ -1009,39 +998,37 @@ Cyclictest 原理
 
         return err; 
      }
+```
 
 * [Cyclictest](https://rt.wiki.kernel.org/index.php/Cyclictest)
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
   - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
 
 * 使用 PREEMPT LINUX
-
-.. code-block:: prettyprint
-
+```
     root@raspberrypi:/home/pi# sudo ./cyclictest -t1 -p 80 -i 500 -l 100000
     # /dev/cpu_dma_latency set to 0us
     policy: fifo: loadavg: 0.00 0.01 0.05 1/61 2064          
     T: 0 ( 2063) P:80 I:500 C: 100000 Min:     27 Act:   49 Avg:   42 Max:    1060
+```
 
 * 使用 RT-PREEMPT
-
-.. code-block:: prettyprint
-
+```
     Linux raspberrypi 3.6.11+ #474 PREEMPT Thu Jun 13 17:14:42 BST 2013 armv6l GNU/Linux
     Min:     22 Act:   31 Avg:   32 Max:     169
+```
 
 * 使用 Xenomai
-
-.. code-block:: prettyprint
-
+```
     Linux raspberrypi 3.8.13-core+ #1 Thu Feb 27 03:02:16 CST 2014 armv6l GNU/Linux
     Min:      1 Act:    5 Avg:    6 Max:      41
+```
 
-.. code-block:: prettyprint
-
+```
     root@raspberrypi:/home/pi# /usr/xenomai/bin/cyclictest -t1 -p 80 -i 500 -l 10000 
     0.08 0.06 0.05 1/61 2060          
     T: 0 ( 2060) P:80 I:     500 C:  100000 Min:      -4 Act:      -2 Avg:       0 Max:      30
+```
 
 T:thread
 
