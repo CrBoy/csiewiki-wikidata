@@ -32,42 +32,42 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
 編譯arm-Linux(Angstrom)給BeagleBone Black
 ------------------------------------------------
 - Environment 
-
-.. code-block:: txt
-
-    $sudo apt-get install   zlib1g-dev   libsdl1.2-dev   build-essential   ddd   cpio   libncurses5-dev  u-boot-tools
-    $sudo apt-get install   lib32gcc1 ( 64-bit required)
-    $sudo apt-get install gcc-arm-linux-gnueabi
-    $sudo apt-get install lzop
+```
+    $ sudo apt-get install   zlib1g-dev   libsdl1.2-dev   build-essential   ddd   cpio   libncurses5-dev  u-boot-tools
+    $ sudo apt-get install   lib32gcc1 ( 64-bit required)
+    $ sudo apt-get install gcc-arm-linux-gnueabi
+    $ sudo apt-get install lzop
+```
 
 - 切割SD card
     - [mkcard.sh](https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh)
     - $sh –x [mkcard.sh](https://github.com/nmenon/uomapfs/blob/master/scripts/mkcard.sh) /dev/sdX;X為主機內看到的sd 卡掛載點 ex.sdb
 - Bootloader
-
-.. code-block:: txt
-
     抓source檔
+```
     $ git clone git://git.denx.de/u-boot.git
     $ cd u-boot/
     $ git checkout v2015.01 -b tmp
+```
     下載一個屬於am335x的環境patch檔
+```
     $ wget -c https://raw.githubusercontent.com/eewiki/u-boot-patches/master/v2015.01/0001-am335x_evm-uEnv.txt-bootz-n-fixes.patch
     編譯
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- distclean
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- am335x_evm_defconfig
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- -j4
+```
 
 - Kernel
-
-.. code-block:: txt
-
     抓source檔
+```
     $ git clone git://github.com/beagleboard/kernel.git
     $ cd kernel
     $ git checkout 3.8
     $ ./patch.sh    ##This step may take 10 minutes or longer
+```
     編譯
+```
     $ cp configs/beaglebone kernel/arch/arm/configs/beaglebone_defconfig
     $ wget http://arago-project.org/git/projects/?p=am33x-cm3.git\;a=blob_plain\;f=bin/am335x-pm-firmware.bin\;hb=HEAD -O kernel/firmware/am335x-pm-firmware.bin
     $ cd kernel
@@ -75,11 +75,10 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
     $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs
     $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage-dtb.am335x-boneblack 
     $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- modules -j4
+```
 
 - uEnv.txt
-
-.. code-block:: txt
-
+```
     mmcroot=/dev/mmcblk0p2 rw
     mmcrootfstype=ext4 rootwait 
     console=ttyO0,115200n8
@@ -106,14 +105,14 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
     uenvcmd=mmc rescan;run loadkernel;run loadfdt; run fdtboot
     fdtboot=run mmc_args; bootz ${loadaddr} - ${fdtaddr}
     mmc_args=setenv bootargs console=${console} root=${mmcroot} rootfstype=${mmcrootfstype}
+```
 
 - Filesystem
-
-.. code-block:: txt
-
-    到此網站抓取檔案系統 :http://downloads.angstrom-distribution.org/demo/beaglebone/
-    選擇 : Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz 
-    $tar –Jxvf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz
+    到此網站抓取檔案系統: http://downloads.angstrom-distribution.org/demo/beaglebone/
+    選擇 : Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz 
+```
+    $ tar –Jxvf Angstrom-systemd-image-eglibc-ipk-v2012.12-beaglebone-2013.09.12.rootfs.tar.xz
+```
 
 - 將此filesystem放入rootfs磁區
 
@@ -123,9 +122,6 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-linux,lmbench ,ftrace
     - u-boot.img
     - zImage({kernel}/arch/arm/boot/zImage)
     - am335x-boneblack.dtb({kernel}/arch/arm/boot/dts/am335x-boneblack.dtb)
-
-
-
 
 
 Lmbench 3.0 測試方法分析
@@ -159,8 +155,6 @@ Lmbench 3.0 測試方法分析
         - 執行時間不同當然是因為硬體不同所造成，然而影響最多的就是CPU架構，為了量測出準確的執行時間，必須將不確定因素降到最低，且時間與時脈(倒數關係)息息相關。
             - GCD法(最大公因數)，必須挑選互相有相依性的指令，因為pipeline的關係，導致cycles變少，且必須防止compiler優化，導致指令不按照預期執行:
 
-.. code-block:: txt
-    
     如果一個CPU時脈為120Mhz，且執行以下兩個指令
     1. SHR (2 cycles)
     2. SHR;ADD (3 cycles)
@@ -189,9 +183,7 @@ Lmbench 3.0 測試方法分析
     9. a++;a^=1;a<<=1;
 
 實際上在source code發現，iterations的值是經由一個迴圈去不斷測試值是否大於需求(根據[mhz benchmark作者自己說](http://www.bitmover.com/lmbench/mhz-usenix.pdf)，是150ms)
-
-.. code-block:: c
-    
+```c
     #define BENCH_INNER(loop_body, enough) {                \
         static iter_t   __iterations = 1;               \
         int     __enough = get_enough(enough);          \
@@ -221,7 +213,7 @@ Lmbench 3.0 測試方法分析
         } /* while */                           \
         save_n((uint64)__iterations); settime((uint64)__result);    \
     }
-
+```
 
 [參考資料](http://www.bitmover.com/lmbench/mhz-usenix.pdf)
 
@@ -231,14 +223,11 @@ Context Switch Latency on BeagleBone Black(Linux)
 
 - 取得lmbench並編譯給BBB(arm-linux)
     - 由於lmbench 3已經很久沒有更新，lmbench-next為基於Linux的優化開源專案，並不保證能夠正常運作於non-Linux system
-
-.. code-block:: txt
-
+```
     git clone https://github.com/el8/lmbench-next.git
-
     cd lmbench-next
-
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+```
 
 Context Switch Latency 測試理論
 =================================================
@@ -298,38 +287,33 @@ Context Switch Latency 測試理論
 **驗證line size造成的miss的影響：**
 
 - test_line.c
-
-.. code-block:: c
-    
+```c    
     #include<stdio.h>
     #include<sys/time.h>
     #include<unistd.h>
     #include<stdlib.h>
     int arr[64 * 1024 * 80] = { 2 };//just for big enough
-    int test_line(int step)
-    {
-    struct timeval start;
-    struct timeval end;
-    long unsigned int i = 0;
-    gettimeofday(&start, NULL);
-    for (; i < (int)(sizeof(arr)/sizeof(int)); i += step) 
-    {
-    arr[i] *= arr[i];
-    }
-    gettimeofday(&end, NULL);
-    return ( 1000000*(end.tv_sec - start.tv_sec)+ (end.tv_usec - start.tv_usec) ) ;
+    int test_line(int step) {
+        struct timeval start;
+        struct timeval end;
+        long unsigned int i = 0;
+        gettimeofday(&start, NULL);
+        for (; i < (int)(sizeof(arr)/sizeof(int)); i += step)  {
+            arr[i] *= arr[i];
+        }
+        gettimeofday(&end, NULL);
+        return ( 1000000*(end.tv_sec - start.tv_sec)+ (end.tv_usec - start.tv_usec) ) ;
     }
     int main(int argc, char *argv[])
     {
-    int test_step = atoi(argv[1]);
-    printf("%d %d\n", test_step, test_line(test_step));
-    return 0;
+        int test_step = atoi(argv[1]);
+        printf("%d %d\n", test_step, test_line(test_step));
+        return 0;
     }
+```
 
 - shell script
-
-.. code-block:: txt
-    
+```
     #!/bin/bash
     K="1 4 6 8 10 12 14 16 32 64 128 256"
     #set -x
@@ -338,6 +322,7 @@ Context Switch Latency 測試理論
         ./test_line $size
     done
     echo "" 1>&2
+```
 
 ![](/embedded/arm_linux/line_size_compare.png)
 - 會同時放上BBB和i7-5500U的結果是因為，cache line miss的overhead固然不小，但由於BBB的CPU運算較慢，較不明顯，所以放上較快的i7-5500U做為比較，且兩者的L1 cache line size均為64bytes，另外，Y軸的時間差異不用太在意，重點是斜率。
@@ -417,9 +402,7 @@ Context Switch Latency 實驗過程
 
 
 **shell script for 巨觀**
-
-.. code-block:: txt
-
+```
     #!/bin/sh
     WARMUPS=0
     REPETITIONS=11
@@ -436,11 +419,10 @@ Context Switch Latency 實驗過程
     -W $WARMUPS -N $REPETITIONS -s $size $N
     done
     echo "" 1>&2
+```
 
 **shell script for 微觀**
-
-.. code-block:: txt
-
+```
     #!/bin/bash
     WARMUPS=0
     REPETITIONS=11
@@ -471,7 +453,7 @@ Context Switch Latency 實驗過程
                                                          
     done
     echo "" 1>&2
-
+```
 
 Context Switch Latency 實驗結果 及 分析
 =================================================
@@ -540,8 +522,7 @@ System Call Latency on BeagleBone Black(Linux)
 - Lmbench3   lat_unix:
     - lat_syscall - This is useful as a lower bound cost on anything that has to interact with the operating system.
     - SYNOPSIS
-.. code-block:: txt
-
+```
       lat_syscall   [   -P   <parallelism>   ]   [   -W   <warmups>   ]   [  -N  <repetitions>  ] getppid | read | write | stat | fstat | open [ file ]   
     - DESCRIPTION
         - getppid : measures how long it takes to do getppid( ).  We chose getppid(  ) because in all  UNIX variants  we  are  aware  of,  it requires a round-trip to/from kernel space and the actual work required inside the kernel is small and bounded.
@@ -555,22 +536,22 @@ System Call Latency on BeagleBone Black(Linux)
         - fstat: measures how long it takes to fstat( ) an open file whose inode is already cached.
         
         - open: measures how long it takes to open( ) and then close( ) a file.
+```
    - Intel core i5 lmbench3 lat_syscall
-.. code-block:: txt
-
+```
    Simple syscall: 0.0516 microseconds
    Simple open/close: 1.0371 microseconds
    Simple read: 0.1096 microseconds
    Simple write: 0.1173 microseconds   
+```
 
 - Beaglebone black lmbench-next
-
-.. code-block:: txt
-
+```
    Simple getppid: 0.5671 microseconds
    Simple open/close: 11.5381 microseconds
    Simple read: 0.9199 microseconds
    Simple write: 0.9514 microseconds
+```
 
 ![](/embedded/arm_linux/inteli5_vs_bbb.png)
 
@@ -588,9 +569,7 @@ Unix Latency on BeagleBone Black(Linux)
     - process裡面沒有做任何事情
 
 -測量出的數據( 第一欄為message size<byte>,第二欄為latency<microseconds> )
-
-.. code-block:: txt
-    
+```    
     0 3.9333
     1 45.2623
     2 45.3115
@@ -614,7 +593,7 @@ Unix Latency on BeagleBone Black(Linux)
     256 46.4434
     384 46.6555
     512 47.1887
-
+```
 
 ![](/embedded/arm_linux/lat_unix_LMA_RMI.png)
 
@@ -741,9 +720,7 @@ Ftrace
 ![](/embedded/arm_linux/trace_event_02.png)
 
 - 操作步驟範例
-
-.. code-block:: txt
-
+```
     echo 0 > /sys/kernel/debug/tracing/tracing_on
     echo 0 > /sys/kernel/debug/tracing/trace
     echo nop > /sys/kernel/debug/tracing/current_tracer
@@ -757,6 +734,7 @@ Ftrace
     wait $pid1 $pid2
     echo 0 > /sys/kernel/debug/tracing/tracing_on
     cat /sys/kernel/debug/tracing/trace 
+```
 
 - 結果
 
@@ -766,18 +744,15 @@ KernelShark
 =================================================
 - trace-cmd
         - 他是user space front end command line tool for ftrace，有一些distribution將trace-cmd裝成package，就ubuntu 14.10來講，可以透過`apt-get install`安裝，裝完就可以使用了
-
-.. code-block:: txt
-
-    $sudo apt-get install trace-cmd
-
+```
+    $ sudo apt-get install trace-cmd
+```
 
 - trace-cmd 基本使用方式
         - 簡單的方式就是先紀錄後報告
         - 下面的這個指令是，enables the ext4 tracepoints for Ftrace，然後用record指令將ftrace data紀錄到trace.dat的檔案中，然後在透過report指令參數，讀取trace.dat的結果，然後輸出
 
-.. code-block:: txt
-
+```
     root@garygu-Aspire-4830TG:~# trace-cmd record -e ext4
     root@garygu-Aspire-4830TG:~# trace-cmd report
     /sys/kernel/debug/tracing/events/ext4/filter
@@ -845,14 +820,14 @@ KernelShark
            trace-cmd-26790 [001] 12041.826952: ext4_allocate_inode:  dev 8,1 ino 26214438 dir 26214401 mode 0>o<
            trace-cmd-26790 [001] 12041.826955: ext4_es_lookup_extent_enter: dev 8,1 ino 26214401 lblk 0
            trace-cmd-26790 [001] 12041.826956: ext4_es_lookup_extent_exit: dev 8,1 ino 26214401 found 1 [0/1) 10486
+```
 
 - KernelShark
     - kernelshark是trace-cmd的前端讀取工具，他專門讀取trace.dat的資料，然後將結果用圖形化的方式呈現出來，他預設讀取檔案就是trace.dat，然後這個kernelshark也是ubuntu可以安裝的套件，裝完就可以使用了，只需要下達`kernelshark`就可以自動讀取trace.dat的資料，然後圖示化結果
     - 下圖就是將上面trace ext4的結果，圖像畫出來
-
-.. code-block:: txt
-
-    $sudo apt-get install kernelshark
+```
+    $ sudo apt-get install kernelshark
+```
 
 ![](/embedded/arm_linux/kernelshark_ext4.png)
 
@@ -860,16 +835,15 @@ Ftrace和Trace-cmd + KernelShark 綜合使用方式
 =================================================
 - event tracer: 當需要對對特定事件去觀察時, 使用event tracer較能看出事件發生的影響.  而且只trace特定事件, tracer開啟時對於系統效能的影響較小
 - 使用方式: 
-
-.. code-block:: txt
-
+```
     mount -t debugfs debugfs /sys/kernel/debug/
     cd /sys/kernel/debug/tracing
-    cat available_events (列出目前能使用的event)
-    echo "irq==21" > events/irq/irq_handler_entry/filter (設定irq_handler_entry事件的 filter條件)
-    echo "irq==21" > events/irq/irq_handler_exit/filter (設定irq_handler_exit事件的 filter條件)
-    echo 1 > events/irq/irq_handler_entry/enable (開啟irq_handler_entry event)
-    echo 1 > events/irq/irq_handler_exit/enable (開啟irq_handler_entry event)
+    cat available_events # 列出目前能使用的event)
+    echo "irq==21" > events/irq/irq_handler_entry/filter # 設定irq_handler_entry事件的 filter條件
+    echo "irq==21" > events/irq/irq_handler_exit/filter # 設定irq_handler_exit事件的 filter條件
+    echo 1 > events/irq/irq_handler_entry/enable # 開啟irq_handler_entry event
+    echo 1 > events/irq/irq_handler_exit/enable # 開啟irq_handler_entry event
+```
 
 - trace-cmd + kernelshark: 利用trace-cmd擷取trace資料並用kernelshark圖形化表示
     - 以trace-cmd record持續紀錄trace data
@@ -896,17 +870,15 @@ Linux Timer Interrupt 理論
     
 
 另外硬體也定義了timer interrupt 的週期大概是多少時間，我們可以透過兩個方法找到這個周期定義:
+```
+    $ sudo make menuconfig
+```
 
-.. code-block:: txt
-
-    $garygu@garygu-Aspire-4830TG:/usr/src/linux-headers-3.16.0-37-generic$ sudo make menuconfig
 - 如上所示，到這個資料夾底下，下達 $sudo make menuconfig，可以看到圖形化的menuconfig，依照選單選擇Processor type and features ----> Timer frequency (250HZ)，就可以找到，因為我們的環境下沒有這個設定檔，所以我就先拿自己的電腦測試
 
 - 另外還有一種作法可以透過/proc/interrupts這個檔案去trace間隔 1 秒的時間內timer interrupt的次數變化，就可以知道timer interrupt frequency
     - 首先可以從/proc/interrupts的檔案裡頭，看到irq的紀錄，可以透過，也可從中看到是哪個CPU在負責哪些中斷請求
-
-.. code-block:: txt
-
+```
     cat /proc/interrupts
                 CPU0       
      34:   38623561       GIC  34  timer
@@ -926,12 +898,13 @@ Linux Timer Interrupt 理論
     IPI6:          0  IRQ work interrupts
     IPI7:          0  completion interrupts
     Err:          0
+```
 
-.. code-block:: txt
-
+```
     root@jared14-5480:/# cat /proc/interrupts | grep timer && sleep 1 && cat /proc/interrupts | grep timer
      34:   62118555       GIC  34  timer
      34:   62118857       GIC  34  timer
+```
 
 - 透過這個檢測，可以知道這個linux kernel預設的timer interrupt頻率為300HZ，所以推算出一個timer interrupt所需時間為3.33毫秒
 
@@ -944,18 +917,17 @@ Linux Timer Interrupt 實作
 
     - 但是透過上述這個方法在bbb上測試，結果差距很大，有時候測出來的頻率為21hz,有時是500hz，timer interrupt的頻率相當不固定，這是因為linux kernel希望在idle的時候做少一點事情，可以達到省電的效果，所以設計了這種動態調整timer interrupt frequency的機制
 
-.. code-block:: txt
-
+```
     Tickless OS的補充
         就是讓kernel的timer interrupt頻率不固定，一般的timer interrupt frequency都會在編譯階段設定好，但是linux kernel希望能做到在idle階段做少一點事 情，也能夠省電，所以有了tickless的機制，也就是這個timer interrupt的頻率是動態調整的。
         想要有這個功能就必須在編譯kernel的時候勾選`NO_HZ`，在menuconfig中的  ->General setup ->Timer subsystem -> Tickless System (dynamic Ticks)，而我們的beaglebone就是設置了這個Tickless System，才使得每次測出來的timer interrupt頻率不相同
+```
 
 - 在架設好的qemu模擬的ARMv7環境，去trace timer interrupt
     - 下達`trace-cmd`指令，去紀錄從現在開始kernel內部的所有event活動
-
-.. code-block:: txt
-
-    $sudo trace-cmd record -e all
+```
+    $ sudo trace-cmd record -e all
+```
 
 - 這時資料輸出到trace.dat，在將檔案移到我本地端的電腦執行kernelshark，可以看到如下圖，先fliter掉其他task和event只觀察timer event，irq event，然後我先挑一個cpu來觀察CPU0，先行分析
 
@@ -1066,56 +1038,47 @@ Linux Scheduler 實作
     - 圖示： 橫軸 ： 第幾次switch ， 蹤軸 ： 這一次switch的time slice
 
 - fifo :  優先權分別為90 90
-    
-.. code-block:: txt
-
+```
     chrt -f 90 ./../CPU-bound/matrix_mul &
     chrt -f 90 ./../CPU-bound/matrix_mul &
-
+```
 
 ![](/embedded/arm_linux/sched_cpu_fifo_90_90.png)
 
 初步觀察，fifo policy的time slice給定差異頗大，而且可見兩個process的執行相當不公平，不過還是可以看到前面的幾次交替還是有給後進來的process執行的機會
 
 - fifo :  優先權分別為90 45
-
-.. code-block:: txt
-
+```
     chrt -f 90 ./../CPU-bound/matrix_mul &
     chrt -f 45 ./../CPU-bound/matrix_mul &
-
+```
 
 ![](/embedded/arm_linux/sched_cpu_fifo_90_45.png)
 
 - rr :  優先權分別為90 90
-
-.. code-block:: txt
-
+```
     chrt -r 90 ./../CPU-bound/matrix_mul &
     chrt -r 90 ./../CPU-bound/matrix_mul &
-
+```
 
 ![](/embedded/arm_linux/sched_cpu_rr_90_90.png)
 
 初步觀察rr policy，兩個process所分配到的time slice執行時間較為相近
 
 另外我們可以從linux kernel原始碼中，看到預設的time slice給定是100 msecs，跟我們測出來的結果，大致符合！
-
-.. code-block:: txt
-
+```
     /*  
      * default timeslice is 100 msecs (used only for SCHED_RR tasks).
      * Timeslices get refilled after they expire.
      */
     #define RR_TIMESLICE        (100 * HZ / 1000)
+```
 
 - rr :  優先權分別為90 45
-
-.. code-block:: txt
-
+```
     chrt -r 90 ./../CPU-bound/matrix_mul &
     chrt -r 45 ./../CPU-bound/matrix_mul &
-
+```
 
 ![](/embedded/arm_linux/sched_cpu_rr_90_45.png)
 
@@ -1173,12 +1136,11 @@ Linux kernel scheduling CFS trace event
 - 前置作業
   - 詳情請見 [Hackpad ](https://hackpad.com/Install-gnuplot-on-the-beaglebone-black-oCP8XM60OC5)
   - 安裝lmbench
-
-.. code-block:: txt
-
+```
     git clone https://github.com/el8/lmbench-next.git
     cd lmbench-next
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+```
 
 - 主程式為 auto 執行檔，藉由編譯auto.c 而來
 - 程式流程圖如下
