@@ -286,232 +286,201 @@ Xenomai 2.6 on raspberry pi
 
 * 下載 Raspbian: http://www.raspberrypi.org/downloads/
   - 將raspbian的img檔燒進sd card上
-
-.. code-block:: c
-
+```
     sudo dd if=<raspbian image file> of=/dev/mmcblk0 bs=4M
+```
 
   - ``if`` 為 input file, ``of`` 為 output file, ``bs``為 block size
   - 燒錄詳細介紹: http://life-of-raspberrypi.blogspot.tw/
 
 * Install Cross complier
-
-.. code-block:: c
-
+```
     cd <working dir>
     wget https://github.com/raspberrypi/tools/archive/master.tar.gz
     tar xzfv master.tar.gz
+```
 
 * Download kernel
- 
-.. code-block:: c
-
+```
    git clone -b rpi-3.8.y --depth 1 git://github.com/raspberrypi/linux.git linux-rpi-3.8.y
+```
 
 * Download Xenomai 
-
-.. code-block:: c
-
+```
    git clone git://git.xenomai.org/xenomai-head.git xenomai-head
+```
 
 * Download minimal config 
-
-.. code-block:: c
-
+```
    wget https://www.dropbox.com/s/dcju74md5sz45at/rpi_xenomai_config
+```
 
 * Apply ipipe core pre-patch
-
-.. code-block:: c
-
+```
    cd linux-rpi-3.8.y
    patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-pre-2.patch
+```
 
 * Apply Xenomai ipipe core patch 
-
-.. code-block:: c
-
+```
    cd <working dir>
    ./xenomai-head/scripts/prepare-kernel.sh --arch=arm --linux=linux-rpi-3.8.y --adeos=xenomai-head/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-4.patch
+```
 
 * Apply ipipe core post-patch 
-
-.. code-block:: c
-
+```
    cd linux-rpi-3.8.y
    patch -Np1 < ../xenomai-head/ksrc/arch/arm/patches/raspberry/ipipe-core-3.8.13-raspberry-post-2.patch
+```
 
 * Create build directory 
-
-.. code-block:: c
-
+```
    cd <working dir>
    mkdir linux-rpi-3.8.y/build
+```
 
 * Configure kernel
-
-.. code-block:: c
-
+```
    cp rpi_xenomai_config linux-rpi-3.8.y/build/.config
    cd linux-rpi-3.8.y
    make mrproper
    make ARCH=arm O=build oldconfig
+```
 
 * Compile Linux Kernel (此步驟耗時長，建議用make -j平行加速)
 
 在作此步驟之前須export library
-
-.. code-block:: c
-
+```
   export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
-
-.. code-block:: c
-
    make ARCH=arm O=build CROSS_COMPILE=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
-   
+```
+
 * Install modules
-
-.. code-block:: c
-
+```
   make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
+```
 
 * Install headers
-
-.. code-block:: c
-
+```
     make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
     find build/dist/include \( -name .install -o -name ..install.cmd \) -delete
+```
 
 * 編譯好的kernelImage(<working dir>/linux-rpi-3.8.y/build/arch/arm/boot/Image),移到SD卡的 ``/boot/`` 路徑下並更改名稱為kernel.img
 
 * 將``linux-rpi-3.8.y/build/dist``中的Module,移到SD卡中的``/lib/modules``
 
 * Compile Xenomai
-
-.. code-block:: c
-    
+```
   cd xenomai-head
   export PATH=<working dir(full path)>/tools-master/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/:$PATH
   ./configure --host=arm-bcm2708hardfp-linux-gnueabi
   cd src
   mkdir dist
   make install DESTDIR=`pwd`/dist
+```
 
 * dist中會出現``usr/xenomai``, 將這個資料夾移到sd卡中 ``/usr/``
 
 * 用 minicom 連進 raspberry pi 中執行以下動作
-
-.. code-block:: c
-
+```
   export PATH=/usr/xenomai/bin:$PATH  
   export LD_LIBRARY_PATH=/usr/xenomai/lib
   sudo modprobe xeno_posix
+```
 
 Xenomai 3 on raspberry pi
 ++++++++++++++++++++++++++
 
 * 取得 xenomai 3.0-rc、rpi-linux 3.18.y、ipipe 3.18.12 arm patch、toolchain
-
-.. code-block:: c
-
+```
   git clone -b rpi-3.18.y git://github.com/raspberrypi/linux.git rpi-linux
   git clone -b v3.0-rc4 git://git.xenomai.org/xenomai-3.git xenomai-3
   wget http://download.gna.org/adeos/patches/v3.x/arm/ipipe-core-3.18.12-arm-1.patch
   git clone https://github.com/raspberrypi/tools.git --depth=1
+```
 
 * checkout rpi-linux至3.18.12
-
-.. code-block:: c
-  
+```
   git checkout c963de6d8caec6278c0dde76831f9fdab5bace52
   git checkout -b 3.18.12
+```
 
 * 由此處取得rpi post patch
 
 [post patch](https://drive.google.com/file/d/0B6GwSked9fL9RnU3b3pSajFZbUk/view)
 
 * 上 ipipe patch
-
-.. code-block:: c
-
+```
   cd rpi-linux
   ../xenomai-3/scripts/prepare-kernel.sh --arch=arm --ipipe=<你的patch位置>/ipipe-core-3.18.12-arm-1.patch   --linux=.
+```
 
 * ipipe post patch (註：pre patch為解決ipipe patch衝突之用，此處無衝突故不需要)
-
-.. code-block:: c
-
+```
   patch -Np1 < <你的patch位置>/3.18.12-xenomai3-temp.patch
+```
 
 * configure kernel(使用rpi提供的default)
-
-.. code-block:: c
-
+```
   export CCPI=($working_dir)/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
   mkdir build
   make mrproper
   make ARCH=arm O=build CROSS_COMPILE=$CCPI bcmrpi_defconfig
   make ARCH=arm O=build CROSS_COMPILE=$CCPI menuconfig
+```
 
 若patch正確，會在設定表裡看到xenomai相關選項。
 
 使用manuconfig或編輯build/.config，找到CONFIG_CPU_FREQ , CONFIG_CPU_IDLE , CONFIG_KGDB , CONFIG_CONTEXT_TRACKING_FORCE(若有的話)設為n。
 
 * compile kernel
-
-.. code-block:: c
-
+```
   make -j 5 ARCH=arm O=build CROSS_COMPILE=$CCPI
+```
 
 * 安裝kernel modules
-
-.. code-block:: c
-
+```
   make ARCH=arm O=build INSTALL_MOD_PATH=dist modules_install
+```
 
 * 安裝headers
-
-.. code-block:: c
-
+```
   make ARCH=arm O=build INSTALL_HDR_PATH=dist headers_install
+```
 
 * xenomai
-
-.. code-block:: c
-
+```
   cd ../xenomai-3
   mkdir dist
   export PATH=/home/erickitten/workspace/xenomai/pi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/:$PATH
+```
 
 * 設定bootstrap
-
-.. code-block:: c
-
+```
   ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
+```
 
 * configure
-
-.. code-block:: c
-
+```
   ./configure CFLAGS="-mcpu=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard" LDFLAGS="-mcpu=arm1176jzf-s -mfpu=vfp -mfloat-abi=hard" --host=arm-linux-gnueabihf --with-core=cobalt
+```
 
 * install
-
-.. code-block:: c
-
+```
   make DESTDIR=`pwd`/dist install
+```
 
 * 複製kernel
 
 將linux-rpi/build/arch/arm/boot/Image複製到SD卡的/boot (partition)，並改名成kernel.img。或使用config.txt，以kernel=<filename>指定名稱。
 
 * 移動module / patches (權限問題，需使用sudo)
-
-.. code-block:: c
-
+```
   cd ..
   sudo cp -r rpi-linux/build/dist/lib/modules $(sdcard)/lib
   sudo cp -r xenomai-3/dist/usr/xenomai $(sdcard)/usr
+```
 
 Beaglebone Black 環境設置
 ++++++++++++++++++++++++++++
@@ -519,44 +488,39 @@ Beaglebone Black 環境設置
 使用舊版linux(Angstrom)來做測試，核心編譯步驟參考上面步驟 或 http://elinux.org/EBC_Installing_Kernel_Source
 
 * 下載Kernel Source & 編譯
-
-.. code-block:: c
-
+```
   host$ git clone git://github.com/RobertCNelson/bb-kernel.git
   host$ cd bb-kernel
   host$ git tag  (This shows what versions can be checked out.)
   host$ git checkout 3.8.13-bone67 -b 3.8.13-bone67
+```
 
 * 預設username/password
-
-.. code-block:: c
-
+```
   host$ ./build_kernel.sh
   username:root
+```
 
 * 設定cross compile
 
 在Kernel Configuration中選擇General setup，輸入
-
-.. code-block:: c
-
+```
   CROSS_COMPILE=arm-linux-gnueabi-
+```
 
 * 安裝必要套件
-
-.. code-block:: c
-
+```
   sudo apt-get update
   sudo apt-get install build-essential device-tree-compiler fakeroot lzma lzop u-boot-tools   libncurses5-dev:amd64 libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386
+```
 
 * 完成上述步驟後即可上電,按 boot select button 讓它從 sd card 開機，開機後進入登入畫面，帳號/密碼寫在上面
 
 * 登入後查詢版本
-
-.. code-block:: c
-
+```
   sudo su
   uname -a
+```
 
 Xenomai 2.6 on Beaglebone
 ++++++++++++++++++++++++++++
@@ -566,94 +530,80 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 參考資料 http://elinux.org/EBC_Xenomai 與 http://emplearn.blogspot.tw/search?q=xenomai
 
 * 設定路徑
-
-.. code-block:: c
-
+```
   mkdir bbb
   cd bbb
   export BBB=$(pwd)
+```
 
 * 取得xenomai-2.6.4 (與 beaglebone-kernel 同一層目錄)
-
-.. code-block:: c
-
+```
   wget http://download.gna.org/xenomai/stable/latest/xenomai-2.6.4.tar.bz2
+```
 
 * 檢查版本
-
-.. code-block:: c
-
+```
   cd bb-kernel/KERNEL
   uname -a
   git tags | sort | less
+```
 
 * 選擇跟所編譯 Kernel 最接近版本，在此為 3.8.13
-
-.. code-block:: c
-
+```
   git checkout 3.8.13-bone67 -b xenomai
+```
 
 * Patch the kernel
-
-.. code-block:: c
-
+```
   cd bb-kernel/KERNEL
   patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-pre.patch
   patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/ipipe-core-3.8.13-arm-4.patch
   patch -p1 < ../../xenomai-2.6.4/ksrc/arch/arm/patches/beaglebone/ipipe-core-3.8.13-beaglebone-post.patch
+```
 
 * Prepare the kernel
-
-.. code-block:: c
-
+```
   cd ../../xenomai-2.6.4/scripts
   ./prepare-kernel.sh --arch=arm --linux=../../bb-kernel/KERNEL/
+```
 
 * Prepare the kernel
-
-.. code-block:: c
-
+```
   cd ../../bb-kernel
+```
 
 * 確認已經關掉AUTO_BUILD
-
-.. code-block:: c
-
+```
   vi system.sh
+```
 
 * 確認最後一行為
-
-.. code-block:: c
-
+```
   #AUTO_BUILD=1
+```
 
 * 關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
 
 * 將Real-time sub-system ---> Drivers ---> Testing drivers中的選項全部打開
-
-.. code-block:: c
-
+```
  cd ../../bb-kernel/KERNEL
  make ARCH=arm menuconfig
+```
 
 * 再重新編譯
-
-.. code-block:: c
-
+```
   make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- LOADADDR=0x80008000 uImage dtbs modules
+```
 
 * 編譯完後將 SD 卡內的 Kernel 換掉
-
-.. code-block:: c
-
+```
   mkdir sd
+```
 
 * 掛載 sd 卡
 
 * 確認掛載的目錄內一定要有這些路徑
-
-.. code-block:: c
-
+```
   sudo mount /dev/mmcblk0p1 sd
   sudo cp beagle-kernel/kernel/arch/arm/boot/uImage sd/boot/uImage-3.8.13
   cd beagle-kernel/kernel
@@ -664,48 +614,43 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
   cp -r xenomai-2.6.3 sd/home/root
   ./configure --target=arm-linux-gnueabi
   mkdir -p dist; make DESTDIR=`pwd`/dist install
+```
 
 * 將編譯後dist內的內容複製放到beaglebone上
-
-.. code-block:: c
-
+```
   sudo umount sd
+```
 
 * 測試,掛載driver
-
-.. code-block:: c
-
+```
   cd ~/xeno_drivers
   insmod xeno_klat.ko
   /usr/xenomai/bin/cyclictest -p 90
-
+```
 
 Xenomai 3 on Beaglebone Black 
 ++++++++++++++++++++++++++++++++
 
 * 先下載 linux kernel:
   - 參考資料 : http://elinux.org/EBC_Installing_Kernel_Source
-
-.. code-block:: c
-
+```
   git clone git://github.com/RobertCNelson/bb-kernel.git
   cd bb-kernel
   git tag  (This shows what versions can be checked out.)
   git checkout 3.18-rc7 -b 3.18-rc7
   ./build_kernel.sh
+```
 
 * Prepare the kernel
-
-.. code-block:: c
-
+```
   cd ../../xenomai-2.6.4/scripts
   ./prepare-kernel.sh --arch=arm --linux=../../bb-kernel/KERNEL/
+```
 
 * Compile Kernel
-
-.. code-block:: c
-
+```
   cd ../../bb-kernel
+```
 
 * 確認狀態，關掉休眠
   - 關掉 CPU Power Management ---> CPU Frequency scaling中的 [ ] CPU Frequency scaling.
@@ -713,63 +658,58 @@ Xenomai 3 on Beaglebone Black
 
   ![](/shutdownhibernation.png)
 
-.. code-block:: c
-
+```
   make ARCH=arm menuconfig
+```
 
 * 再重新編譯
-
-.. code-block:: c
-
+```
   make -j 8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- LOADADDR=0x80008000 uImage dtbs modules
+```
 
 * 把 SD card format 並 燒錄 debian (要進入 root 模式)
-
-.. code-block:: c
-
+```
   sudo mkfs -t ext4 /dev/mmcblk0
   sudo xz -dkc bone-debian-7.5-2014-05-14-2gb.img.xz > /dev/mmcblk0
+```
 
 * 把dtb file (or dts) and zImage 換掉，把 zImage 放入到 SD card 內
 就可以成功開機了!
 
 * 然後去下載 Xenomai3.git
   - 參考資料 :http://git.xenomai.org/xenomai-3.git
-
-.. code-block:: c
-
+```
   wget http://git.xenomai.org/xenomai-3.git/snapshot/xenomai-3-3.0-rc4.tar.bz2
   tar jxvf xenomai-3-3.0-rc4.tar.bz2
   wget http://download.gna.org/adeos/patches/v3.x/arm/ipipe-core-3.18.12-arm-1.patch //載 ipipe patch
   cd bb-kernel/KERNEL
   patch -p1 < ../../ipipe-core-3.18.12-arm-1.patch
+```
 
 * Compile Xenomai 3
 
-.. code-block:: c
-
+```
   cd xenomai-3-3.0-rc4
   mkdir dist
   export PATH=/home/neal/Xenomai/tool-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/:$PATH
   ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
   ./configure  CFLAGS="-march=armv7-a -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -ffast-math" --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf
   mkdir -p dist; make DESTDIR=`pwd`/dist install
+```
 
 * dist中會出現usr/xenomai, 將這個資料夾移到sd卡中 /usr/
 
 * Install module : 
-
-.. code-block:: c
-
+```
   cd bb-kernel/KERNEL
   mkdir dist
   sudo make ARCH=arm INSTALL_MOD_PATH=dist modules_install
+```
 
 * 把 modules 移到 SD card /lib/modules 內
-
-.. code-block:: c
-
+```
   sudo cp -rp dist/lib/modules/3.18.0-rc7+/ /media/neal/rootfs/lib/modules/
+```
 
 * 即可成功 run xenomai 3 的 內建執行檔. 
   - ex : sudo /usr/xenomai/bin/arm-linux-gnueabihf-latency
