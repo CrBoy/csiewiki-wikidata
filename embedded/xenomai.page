@@ -942,7 +942,10 @@ Cyclictest 原理
 
 * [Cyclictest](https://rt.wiki.kernel.org/index.php/Cyclictest)
 * Test case: POSIX interval timer, Interval 500 micro seconds,. 100000 loops, 100% load.
-  - Commandline: cyclictest -t1 -p 80 -i 500 -l 100000
+  - Commandline:
+```
+    cyclictest -t1 -p 80 -i 500 -l 100000
+```
 
 * 使用 PREEMPT LINUX
 ```
