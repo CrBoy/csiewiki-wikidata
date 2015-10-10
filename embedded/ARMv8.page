@@ -62,7 +62,7 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 - 根據目前架構，由下層系統的Execution State決定上層系統所在模式
 - 若下層系統為32bits則上層只能為32bits，反之若為64bits則上層可為32bits or 64bits
 
-![](/embedded/armv8)arch.png
+![](/embedded/armv8 arch.png)
 
 安全性狀態 (Security state)
 ---------------------------------------------------------------------------
