@@ -9,8 +9,13 @@ toc: no
 
 作業要求
 ------------
-* 實做 [Week #2 程式題目](http://people.debian.org.tw/~jserv/ncku/2015q3.pdf)，解釋其運作原理 (至少 4 題，限定 [C99](https://en.wikipedia.org/wiki/C99) 或以上的規格)
+* 實做 [Week #2 程式題目](http://people.debian.org.tw/~jserv/ncku/2015q3.pdf)，解釋其運作原理 (至少 3 題，限定 [C99](https://en.wikipedia.org/wiki/C99) 或以上的規格)
     - Question #2, #3, #4, #5, #6, #27
+* 在 GitHub 上 fork [quiz](https://github.com/embedded2015/quiz)，然後逐一修改每個目錄裡面的檔案
+    - 對於 Question #2, #3, ... #6 都需要實做遞迴和非遞迴的版本
+    - 要一併準備測試資料
+* 除了修改程式，也要編輯 Hackpad 下方「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-3-nwUEJganVqb)」，增添開發紀錄和 GitHub 連結
+    - 額外要求觀賞電影《[進擊的鼓手](https://zh.wikipedia.org/zh-tw/%E7%88%86%E8%A3%82%E9%BC%93%E6%89%8B)》，思考這 4 週以來，課程給你的衝擊 (若你沒衝擊的話，可以退選了)，在自己的 Hackpad 紀錄心得，特別是對於追求卓越這件事
 * 應該要有完整的測試程式，並測試各項邊界狀況
     - 執行時間分析
     - 記憶體需求分析
@@ -18,6 +23,7 @@ toc: no
     - 時間複雜度分析
 * 善用 `assert`
 * 提供遞迴與非遞迴的版本
+* 在 GitHub 上 fork 
 
 * 截止日期：
      - Oct 17, 2015 (含) 之前
