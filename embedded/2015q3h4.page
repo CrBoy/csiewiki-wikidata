@@ -36,7 +36,8 @@ toc: no
 -----------------
 * 難度：中
 * 將 [Rubi](https://github.com/embedded2015/rubi) 實做切換到 DynASM，並且設計效能評估機制，從而改善
-    - 原本 x86 code generator 換成 DynASM 語法
+    - 原本 x86 code generator 換成 [DynASM 語法](http://luajit.org/dynasm.html)
+    - [The Unofficial DynASM Documentation](https://corsix.github.io/dynasm-doc/)
 * 在 GitHub 上 fork [rubi](https://github.com/embedded2015/rubi)
     - 紀錄修改和效能分析
 * 建立新的 Hackpad，列在「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-4-8AvSmXDYC38)」
