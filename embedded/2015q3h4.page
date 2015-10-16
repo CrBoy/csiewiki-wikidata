@@ -11,14 +11,33 @@ toc: no
 - 研究軟體最佳化
 
 作業要求 (A)
------------------
-* 研究其他同學在 Homework #2 的表現，選出對自己有啟發 (正面) 的兩份作業成果，以及認為應該改善的三份作業
+----------------
+* 難度：低 (適合之前 Homework #2 自認作不好的學生)
+* 研究其他同學在 [Homework #2](/embedded/2015q3h2) 的[程式成果](https://embedded2015.hackpad.com/2015q3-Homework-2-y6EF1Im4GEr)，選出對自己有啟發 (正面) 的兩份作業成果，以及認為應該改善 (負面 ） 的三份作業，需要評註與解說
+    - 就事論事，不要怕得罪人，重點是提昇彼此的能力和視野
+    - 一定要有出處
 * 將成果整合到自己的實做中
+    - 指出自己獲得的啟發、程式效能的改善
+    - 說明自己為何兩週前進度落後
+* 建立新的 Hackpad，列在「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-4-8AvSmXDYC38)」
+    - 標注「開發紀錄(A)」
 
 作業要求 (B)
 ----------------
-* 改善 Brainf*ck 執行效能
+* 難度：中
+* 詳讀 [Virtual Machine Constructions for Dummies](http://www.slideshare.net/jserv/vm-construct)，改善 Brainf*ck 執行效能
+    - 改善 JIT compiler，加入若干 optimization techniques
+* 在 GitHub 上 fork [jit-construct](https://github.com/embedded2015/jit-construct)
+    - 紀錄若干效能最佳化技巧帶來的提昇
+* 建立新的 Hackpad，列在「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-4-8AvSmXDYC38)」
+    - 標注「開發紀錄(B)」
 
 作業要求 (C)
 -----------------
-* 將 Rubi 實做切換到 DynASM，並且設計效能評估機制，從而改善
+* 難度：中
+* 將 [Rubi](https://github.com/embedded2015/rubi) 實做切換到 DynASM，並且設計效能評估機制，從而改善
+    - 原本 x86 code generator 換成 DynASM 語法
+* 在 GitHub 上 fork [rubi](https://github.com/embedded2015/rubi)
+    - 紀錄修改和效能分析
+* 建立新的 Hackpad，列在「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-4-8AvSmXDYC38)」
+    - 標注「開發紀錄(C)」
