@@ -230,6 +230,8 @@ init_task
 POSIX thread
 =============
 
+pthread -> task -> kernel
+
 - ``void task_create(int priority, void *func, void *arg)``
 
 - ``void task_exit(void* ptr)``
