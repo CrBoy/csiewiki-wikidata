@@ -76,7 +76,7 @@ SSH key 產生的方法
 
 6. 到 Github 網站加入你的 SSH key
 
-將 SSH key 複製到你的剪貼簿，如果你的 key 檔案名稱為 ``id_dsa.pub``，請自行將以下程式碼中 ``id_rsa.pub`` 修改成你的檔案名稱。
+將 SSH key 複製到你的剪貼簿，如果你的 key 檔案名稱不為 ``id_dsa.pub``，請自行將以下程式碼中 ``id_rsa.pub`` 修改成你的檔案名稱。
 
 ![](/use-git-11.jpg)
 
