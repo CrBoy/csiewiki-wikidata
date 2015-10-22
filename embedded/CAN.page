@@ -307,8 +307,7 @@ Video : https://www.youtube.com/watch?v=4fYoXGiIdDs&feature=youtu.be
 
 Initialization:
 
-.. code-block:: c
-
+```c
   CAN_InitTypeDef CAN_InitStructure;
   CAN_FilterInitTypeDef CAN_FilterInitStructure;
   GPIO_InitTypeDef GPIO_InitStructure;
@@ -359,11 +358,9 @@ Initialization:
   CAN_FilterInit(&CAN_FilterInitStructure);
   /* Enable FIFO 0 message pending Interrupt */
   CAN_ITConfig(CAN2, CAN_IT_FMP0, ENABLE);
-
+```
 Transmition package:
-
-.. code-block:: c
-
+```
   /* Transmit Structure preparation */
   TxMessage.ExtId = (uint32_t)ID | 0x1FFF0000;
   TxMessage.RTR = CAN_RTR_DATA;
@@ -374,11 +371,10 @@ Transmition package:
   TxMessage.Data[2] = p[2];
   TxMessage.Data[3] = p[3];
   CAN_Transmit(CAN2, &TxMessage);
+```
 
 Receive package handler
-
-.. code-block:: c
-
+```
   void CAN2_RX0_IRQHandler(void)
   {
     if(CAN_GetITStatus(CAN2,CAN_IT_FMP0)==SET){
@@ -386,11 +382,10 @@ Receive package handler
     CAN_ClearITPendingBit(CAN2,CAN_IT_FMP0);
     }
   }
+```
 
 Interrupt Setting:
-
-.. code-block:: c
-
+```
   void CAN2_NVIC_Config(void)
   {
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -400,19 +395,14 @@ Interrupt Setting:
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
   }
-
+```
 source code : https://github.com/ming6842/STMF429_Learning/tree/master/stm32f429_Demo_CAN  
 
 Tables
 ==================
-
-![]()/embedded/CAN_falut_confinment_table.png
+![](/embedded/CAN_falut_confinment_table.png)
 
 References
 ==================
 - [CAN Specification 2.0 - Bosch Semiconductors and Sensors ](http://www.bosch-semiconductors.de/media/pdf_1/canliteratur/can2spec.pdf)
 - [車載網路系統 ](http://www.vr.ncue.edu.tw/esa/a1014/CAN.pdf)
-
-
-
-
