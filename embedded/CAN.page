@@ -27,7 +27,7 @@ MESSAGE TRANSFER(CAN通訊的資料格式)
 CAN2.0有兩種版本，CAN2.0A(Standard),CAN2.0B(Extended)。
 
 1.DATA FRAME(資料通訊格式)：
-''''''''''''''''''''''''''''''''''''''''
+========================
 資料通訊格式主要用於傳送資料，主要分成5個部分。
 
 ![](/embedded/CAN_dataframe1.png)
