@@ -861,7 +861,7 @@ Arm提供兩個除錯模式：
 
 此外，ARM也提供debug registers
 
-   ![](/embedded/f9-kernel/debugreg.jpg)
+![](/embedded/f9-kernel/debugreg.jpg)
 
 F9使用的是 Debug monitor mode。
 ```c
@@ -906,7 +906,7 @@ MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位�
 * 當overlap發生時，存取權限會以編號較高的區域屬性為準。例如區域7與任何其他的區域發生重疊時，都會以區域7的屬性為主
     重疊的區域在賦予存取權限時可以有比較大的彈性，例如有一個小型的嵌入式系統，總共有256KB的記憶體，而起始位置在0x00000000，其中有一塊是privileged的系統區域32KB，不能被使用者存取，並且從0x00000000開始放起，剩下的記憶體則是給使用者。這個系統使用兩個區域：256KB的user區域跟32KB的privileged區域，因為privileged區域的優先度比較大，所以privileged區域使用編號1，user區域使用編號0。
 
-    ![](/embedded/f9-kernel/overlapping.png)
+![](/embedded/f9-kernel/overlapping.png)
 
 * 背景區域與預設的memory map有相同的屬性，但是只能被privileged的軟體存取
     重疊區域的另一個用處在背景區域－用來替一大塊記憶體空間分配相同屬性的低優先度區域，其他較高優先度的區域就能改變背景區域中的某一塊屬性。背景區域可以用來保護一些睡眠狀態的記憶體，使其不會被非法存取，而此時由另一個處於活躍狀態的記憶體就能被使用。
@@ -914,8 +914,7 @@ MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位�
     例如有一個嵌入式系統定義了一個較大的privileged區域，接著讓一些較小的unprivileged區域與這個privileged區域的部份重疊，這個較小區域可以在背景區域的不同位置，代表不同的用戶空間(user space)，當系統將這個較小的區域從一個位置移到另一個位置時，之前被覆蓋的空間就會在由背景區域進行保護。這個使用者區域(user region)就像一個window，允許存取背景區域的不同部份，但只有用戶等級(user-level)的屬性。
 
     下圖是一個簡單的3-task保護架構，區域3定義了active task的保護屬性，而背景區域0則負責保護其他睡眠狀態的任務資源。
-
-    ![](/embedded/f9-kernel/background_region.png)
+[](/embedded/f9-kernel/background_region.png)
     
 * 指令存取(instruction access)與資料存取(data access)是使用相同的區域設定
 * 當程式要存取受到MPU保護的區域時，會產生``MemManage fault(fault exception)``。在作業系統的環境中，kernel可以在程式執行時動態更新MPU區域。通常一個嵌入式OS會使用MPU作為memory protection
@@ -937,7 +936,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 這邊先定義好mpu暫存器的位置，這些位置可以從arm的手冊中找到。至於``MPU_REGION_MASK``是用來取得區域用的遮罩值。
 
 * MPU_BASE([MPU Region Base Address Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html))
-    - ![](/embedded/f9-kernel/mpu_base.png)
+![](/embedded/f9-kernel/mpu_base.png)
     - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
     - ADDR - 區域的base位置
     - VALID
@@ -946,7 +945,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
         + 也就是說，設定0的話會更新原來的MPU_RNR區域的base，1的話就是先切換MPU_RNR區域在更新base
     - REGION - 區域的index
 * MPU_ATTR([MPU Region Attribute and Size Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html)) 
-    - ![](/embedded/f9-kernel/mpu_attr.png)
+![](/embedded/f9-kernel/mpu_attr.png)
     - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
     - XN
         + 0 - enable instruction fetch
@@ -961,7 +960,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
    - SIZE - MPU區域的大小
    - ENABLE - 區域enable
 * MPU_CTRL([MPU Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html))
-    - ![](/embedded/f9-kernel/mpu_ctrl.png)
+![](/embedded/f9-kernel/mpu_ctrl.png)
     - PRIVDEFENA
         + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
         + 1 - enable預設的memory map，background區域給priviledged軟體使用
@@ -1229,8 +1228,7 @@ Typed Word
    位置在MR[u+1～u+t]，t表示Typed word的數量。
 
 Message Tag的作用是描述本次message的内容。
-
-    ![](/embedded/f9-kernel/MR0.jpg)
+![](/embedded/f9-kernel/MR0.jpg)
 
     * u : untyped words的數量
     * t : words裡面有typed item的數量
@@ -1239,8 +1237,7 @@ Message Tag的作用是描述本次message的内容。
     * p : 擴展性
 
 此外，Message Tag也是接收内容的描述。
-
-    ![](/embedded/f9-kernel/resultmr0.jpg)
+![](/embedded/f9-kernel/resultmr0.jpg)
 
     * u : 收到的Untyped words數量
     * t : 收到的Typed items數量
@@ -1268,8 +1265,7 @@ MapItem
 ========
 Map的動作是透過將要map的fpage組成部分message傳送給Mappee。
 Fpage細節由兩個words來組成：
-
-    ![](/embedded/f9-kernel/MapItemMR.jpg)
+![](/embedded/f9-kernel/MapItemMR.jpg)
 
     * r w x : 權限
     * snd base ： 在L4的文件中，snd base在snd fpage大於/小於接收者能接收的窗口中扮演不同的角色。而在F9的程式碼看起来，snd base是要map的目標位置，而snd fpage是size。
@@ -1295,8 +1291,7 @@ StringItem又可以分為連續和不連續的string：
 * Simple String
 
 連續性的bytes。由两個words組成：
-
-    ![](/embedded/f9-kernel/SimpleStringMR.jpg)
+![](/embedded/f9-kernel/SimpleStringMR.jpg)
 
     * string ptr :要發送的字串起始位置或者是接收到字串的buffer起始位置。字串和buffer需要完全符合使用者空間可用位置。
     * string length :要發送的string長度或者是接收的buffer長度。
@@ -1305,16 +1300,14 @@ StringItem又可以分為連續和不連續的string：
 * Compound String
 
 一個不連續/鄰近的字串，由落在使用者空間中多個連續性的子字串組成，子字串之間不可以重疊。
-
-    ![](/embedded/f9-kernel/CompoundSTRMR.jpg)
+![](/embedded/f9-kernel/CompoundSTRMR.jpg)
 
     * 0hhC在第一個string descriptor word才需要，後面會被忽略。
     * j :接下來連續的str-ptr word的數量。
     * c :如果是0，則這compound string descriptor word只有j 個word的string之後就結束。如果是1 ，j個word以後會有新的string descriptor word。
 
 * String Examples
-
-    ![](/embedded/f9-kernel/StringMRExample.jpg)
+![](/embedded/f9-kernel/StringMRExample.jpg)
 
 Buffer Register
 ================
@@ -1681,8 +1674,7 @@ TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存�
 
 context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, xpsr 設在sp當中。
 其中ctl是arm 中的control register, 有三個控制項
-
-    ![](/embedded/f9-kernel/controlreg.jpg)
+![](/embedded/f9-kernel/controlreg.jpg)
 
 User-level Thread Control Block
 ================================
