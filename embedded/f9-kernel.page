@@ -940,11 +940,10 @@ MPU會將memory map切成幾塊區域，並定義每一個區域(region)的位�
 * 當程式要存取受到MPU保護的區域時，會產生``MemManage fault(fault exception)``。在作業系統的環境中，kernel可以在程式執行時動態更新MPU區域。通常一個嵌入式OS會使用MPU作為memory protection
 
 Implementation
-###############
+---------------
 mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 
-.. code-block:: prettyprint linenums
-
+```c
    /* include/platform/mpu.h */
    #define MPU_BASE_ADDR                0xE000ED9C
    #define MPU_ATTR_ADDR                0xE000EDA0
@@ -952,47 +951,47 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
    #define MPU_RNR_ADDR                 0xE000ED98
 
    #define MPU_REGION_MASK              0xFFFFFFE0
+```
 
 這邊先定義好mpu暫存器的位置，這些位置可以從arm的手冊中找到。至於``MPU_REGION_MASK``是用來取得區域用的遮罩值。
 
 * MPU_BASE([MPU Region Base Address Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihigffb.html))
-   - ![](/embedded/f9-kernel/mpu_base.png)
-   - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
-   - ADDR - 區域的base位置
-   - VALID
+    - ![](/embedded/f9-kernel/mpu_base.png)
+    - 定義由MPU_RNR指定的MPU區域的base位置，並且更新MPU_RNR中的值，N值是在MPU_RASR中設定的size大小。
+    - ADDR - 區域的base位置
+    - VALID
         + 0 - MPU_RNR不會改變，處理器會更新由MPU_RNR指定的MPU區域的base位置
         + 1 - 將MPU_RNR更新成REGION，更新由MPU_RNR指定的MPU區域的base位置
         + 也就是說，設定0的話會更新原來的MPU_RNR區域的base，1的話就是先切換MPU_RNR區域在更新base
-   - REGION - 區域的index
+    - REGION - 區域的index
 * MPU_ATTR([MPU Region Attribute and Size Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihegaib.html)) 
-   - ![](/embedded/f9-kernel/mpu_attr.png)
-   - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
-   - XN
-      + 0 - enable instruction fetch
-      + 1 - disable instruction fetch
-   - AP - 存取權限
-   - TEX, C, B - 記憶體存取屬性
-   - S - shareable
-   - SRD
-      + 0 - 對應子區域enable
-      + 1 - 對應子區域disable
-      + 區域在大小在128byte以下不能使用子區域
+    - ![](/embedded/f9-kernel/mpu_attr.png)
+    - 定義由MPU_RNR指定的MPU區域的屬性還有大小，並且enable區域與子區域
+    - XN
+        + 0 - enable instruction fetch
+        + 1 - disable instruction fetch
+    - AP - 存取權限
+    - TEX, C, B - 記憶體存取屬性
+    - S - shareable
+    - SRD
+        + 0 - 對應子區域enable
+        + 1 - 對應子區域disable
+        + 區域在大小在128byte以下不能使用子區域
    - SIZE - MPU區域的大小
    - ENABLE - 區域enable
 * MPU_CTRL([MPU Control Register](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/Cihjddef.html))
-   - ![](/embedded/f9-kernel/mpu_ctrl.png)
-   - PRIVDEFENA
-      + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
-      + 1 - enable預設的memory map，background區域給priviledged軟體使用
-   - HFNMIENA - 在hard fault、NMI、FAULTMASK handler時要不要啟動MPU
-      + 0 - disable
-      + 1 - enable
-   - ENABLE
-      + 0 - disable mpu
-      + 1 - enable mpu
+    - ![](/embedded/f9-kernel/mpu_ctrl.png)
+    - PRIVDEFENA
+        + 0 - disable預設的memory map，如果有存取到沒有被enable的區域，會造成錯誤
+        + 1 - enable預設的memory map，background區域給priviledged軟體使用
+    - HFNMIENA - 在hard fault、NMI、FAULTMASK handler時要不要啟動MPU
+       + 0 - disable
+       + 1 - enable
+    - ENABLE
+       + 0 - disable mpu
+       + 1 - enable mpu
 
-.. code-block:: prettyprint linenums
-   
+```c
    /* platform/stm32f4/mpu.c */
    void mpu_setup_region(int n, fpage_t *fp)
    {
@@ -1013,16 +1012,16 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
                    *mpu_attr = 0;
            }
    }
+```
 
 * ``*mpu_base = (FPAGE_BASE(fp) & MPU_REGION_MASK) | 0x10 | (n & 0xF)``，先取得fpage base再遮罩下去取得前27位，接著設定``VALID``跟``REGION``
 * MPU_ATTR設定：
-   - MP_UX(userspace execute)
-   - 權限(all)
-   - 區域大小
-   - enable
+    - MP_UX(userspace execute)
+    - 權限(all)
+    - 區域大小
+    - enable
 
-.. code-block:: prettyprint linenums
-
+```c
    /* platform/stm32f4/mpu.c */
    void mpu_enable(mpu_state_t i)
    {
@@ -1030,11 +1029,10 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
    
            *mpu_ctrl = i | MPU_PRIVDEFENA;
    }
+```
 
 依據參數設定``MPU_CTRL``狀態，並且開啟``PRIVDEFENA``
-
-.. code-block:: prettyprint linenums
-
+```c
    /* platform/stm32f4/mpu.c */
    int addr_in_mpu(uint32_t addr)
    {
@@ -1055,6 +1053,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
            
            return 0;
    }
+```
 
 掃過全部的mpu區域，並檢查給予的地址是不是在enable的區域內。
 
@@ -1063,31 +1062,30 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
 ![](/embedded/f9-kernel/MMFSR.png)
 
 * MMARVALID
-   - 0 - MMAR中的位置是無效的
-   - 1 - MMAR中存了有效的fault address
+    - 0 - MMAR中的位置是無效的
+    - 1 - MMAR中存了有效的fault address
 
 * MLSPERR
-   - 0 - 在浮點數的lazy state preservation沒有發生MemManage fault
-   - 1 - 在浮點數的lazy state preservation發生MemManage fault
+    - 0 - 在浮點數的lazy state preservation沒有發生MemManage fault
+    - 1 - 在浮點數的lazy state preservation發生MemManage fault
 
 * MSTKERR
-   - 0 - 沒有堆疊錯誤
-   - 1 - 在堆疊exception entry時造成了非法存取
+    - 0 - 沒有堆疊錯誤
+    - 1 - 在堆疊exception entry時造成了非法存取
 
 * MUNSTKERR
-   - 0 - 沒有unstacking錯誤
-   - 1 - 在unstacking exception return時造成了非法存取
+    - 0 - 沒有unstacking錯誤
+    - 1 - 在unstacking exception return時造成了非法存取
 
 * DACCVIOL
-   - 0 - 沒有data的存取錯誤
-   - 1 - processor試圖讀取或儲存一個禁止該操作的位置
+    - 0 - 沒有data的存取錯誤
+    - 1 - processor試圖讀取或儲存一個禁止該操作的位置
 
 * IACCVIOL
-   - 0 - 沒有instruction的存取錯誤
-   - 1 - processor試圖在一個禁止instruction fetch的位置進行該操作
+    - 0 - 沒有instruction的存取錯誤
+    - 1 - processor試圖在一個禁止instruction fetch的位置進行該操作
 
-.. code-block:: prettyprint linenums
-    
+```c
     /* include/platform/mpu.h */
     #define MPU_FAULT_STATUS_ADDR	0xE000ED28
     #define MPU_FAULT_ADDRESS_ADDR	0xE000ED34
@@ -1184,6 +1182,7 @@ mpu的實作是依賴於硬體的，所以程式碼會放在``platform``底下
     	}
     	return 1;
     }
+```
 
 ``mpu_select_lru``會找尋目標位址有沒有存在當前的AS中，如果有的話就更新fpage至MPU，更新的方法是先略過前面留給stack的MPU，接著更新目前的fpage，最後接著將之前的fpage依據順序補上。範例如下：
 
