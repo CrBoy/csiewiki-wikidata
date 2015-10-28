@@ -93,8 +93,7 @@ Memory pool
 ===========
 Memory pool定義出每個記憶體區段的起始位置以及結束位置，並且設定每個區段的屬性（存取權限等等），之後在使用這些記憶體時就要依照每個區段所設定的屬性做出對應的動作。
 
-.. code-block:: prettyprint linenums
-
+```c
    /* include/memory.h */
    typedef struct {
            memptr_t start;
@@ -147,11 +146,10 @@ Memory pool定義出每個記憶體區段的起始位置以及結束位置，並
    
    #define DECLARE_MEMPOOL_2(name, prefix, flags, tag) \
            DECLARE_MEMPOOL(name, &(prefix ## _start), &(prefix ## _end), flags, tag)
+```
    
 ``mempool_t``定義出memory pool的結構，也就是PAS中的一個區域，因此此結構中包含：起始與結束位置、kernel與user的使用權限，還有fpage的creation rule。``DECLARE_MEMPOOL``與``DECLARE_MEMPOOL_2``用來宣告memory pool，兩者的差異在於定義start與end的位置，一個是直接賦值，一個是透過變數取值
-
-.. code-block:: prettyprint linenums
-
+```c
    /* kernel/memory.c */
    /**
     * Memory map of MPU.
@@ -222,15 +220,14 @@ Memory pool定義出每個記憶體區段的起始位置以及結束位置，並
    }   
    
    INIT_HOOK(memory_init, INIT_LEVEL_KERNEL_EARLY);
+```
 
 ``memory_init``先初始化``fpages``以及``as_table``，接著將``mempool table``的填入KIP中。``0xE000ED24``在ARM Cortex-M4中是System Handler Control and State Register(SHCSR)，最後enable memfault exception。
 
 Flexible pages(fpage)
 ======================
 在F9中，每一個fpage都是可以直接被mpu使用的分頁，而AS就是由fpage所組成。
-
-.. code-block:: prettyprint linenums
-
+```c
    /* include/fpage.h */
    struct fpage {
    	struct fpage *as_next;
@@ -250,11 +247,10 @@ Flexible pages(fpage)
    };
 
    typedef struct fpage fpage_t;
+```
 
 一個fpage包含：base address、memory pool id、flags、size、permission，
-
-.. code-block:: prettyprint linenums
-
+```c
    /* kernel/fpage.c */
    static int fp_addr_log2(memptr_t addr)
    {
@@ -287,11 +283,10 @@ Flexible pages(fpage)
    
    	return fpage;
    }
+```
 
 ``create_fpage``用來建立並初始化一個新的fpage，首先先在``fpage_table``中要一塊新的空間，接著依據給予的參數(mpid、size、flags)進行設定。
-
-.. code-block:: prettyprint linenums
-
+```c
    static void create_fpage_chain(memptr_t base, size_t size, int mpid, fpage_t **pfirst, fpage_t **plast)
    {
    	int shift, sshift, bshift;
@@ -343,15 +338,11 @@ Flexible pages(fpage)
     Size 0x20000000 0010 0000 0000 0000 0000 0000 0000 0000
     2^Log2(Base) < Size => Create a fpage with 2^Log2(Base)
     Base = 0x80001000 + 0x00001000 = 0x80010000
-    .
-    .
-    .
     *******************************************************/
+```
 
 ``create_fpage_chain``會根據base位置以及大小，建立一條鍊結，如果原來已經有鍊結存在，則會將新產生的fpage鍊接在元有的鍊結上；如果沒有就新建一條鍊結。因為MPU的區域大小必須是2的次方，所以在建立fpage的大小時會先計算出適合的大小，一個一個的將fpage連接起來。
-
-.. code-block:: prettyprint linenums
-
+```c
    int assign_fpages_ext(int mpid, as_t *as, memptr_t base, size_t size, fpage_t **pfirst, fpage_t **plast)
    {
    	fpage_t **fp;
@@ -430,14 +421,13 @@ Flexible pages(fpage)
    	fpage_t *first = NULL, *last = NULL;
    	return assign_fpages_ext(-1, as, base, size, &first, &last);
    }
+```
 
 最後就是利用``assign_fpages``將fpage放到AS中
 
 Address space(AS)
 ==================
-
-.. code-block:: prettyprint linenums
-
+```c
    /* include/memory.h */
    typedef struct {
    	uint32_t as_spaceid;	/*! Space Identifier */
@@ -447,9 +437,9 @@ Address space(AS)
    	struct fpage *mpu_stack_first;	/*! head of MPU stack fpage list */
    	uint32_t shared;	/*! shared user number */
    } as_t;
+```
 
-.. code-block:: prettyprint linenums
-
+```c
    /* kernel/memory.c */
    void as_map_user(as_t *as)
    {
@@ -464,11 +454,10 @@ Address space(AS)
    		}
    	}
    }
+```
 
 替``user text``以及``user data``建立fpage，並且映射到``as``。
-
-.. code-block:: prettyprint linenums
-    
+```c    
     int map_area(as_t *src, as_t *dst, memptr_t base, size_t size, map_action_t action, int is_priviliged)
     {
     	memptr_t end = base + size, probe = base;
@@ -563,13 +552,12 @@ Address space(AS)
     
     	return 0;
     }
+```
 
 ``map_area``將指定的base位置以及大小，從來源的AS中找出符合的fpage映射到目的AS
 
 ![](/embedded/f9-kernel/map_area.png)
-
-.. code-block:: prettyprint linenums
-    
+```c
     /* kernel/memory.c */
     void as_setup_mpu(as_t *as, memptr_t sp, memptr_t pc, memptr_t stack_base, size_t stack_size)
     {
@@ -683,6 +671,7 @@ Address space(AS)
     		mpu_setup_region(j, NULL);
     	}
     }
+```
 
 這個函式會在``thread_switch()``中用到，使用概念可以參考後面的MPU段落，有詳細介紹MPU在context switch上的應用。
 
@@ -691,17 +680,14 @@ Interrupt Request(IRQ)
 Context Switch
 ===============
 在大部分搶佔式的 RTOS(ARM Cortex) 中，都會使用 PendSV 實作上下文切換。PendSV 是 ARM Cortex 中一個特別的 exception ，可以從軟體驅動產生中斷。要觸發 PendSV 的方法很簡單，透過設定 ICSR(Interrupt Control and State Register) 暫存器中的``PENDSVSET``為1，就可以將 PendSV 的狀態切換至pending。
-
-.. code-block:: prettyprint linenums
-    
+```c
     /* include/platform/irq.h */
     #define request_schedule()						\
     	do { *SCB_ICSR |= SCB_ICSR_PENDSVSET; } while (0)
+```
 
 在 F9-kernel 中，會使用這個巨集觸發 PendSV，接著透過 PendSV Handler 處理上下文切換。
-
-.. code-block:: prettyprint linenums
-    
+```c
     /* include/platform/irq.h */
     // 這邊為了簡化觀察，省略了 FPU 的部份
     #define irq_save(ctx)                                                 \
@@ -729,11 +715,10 @@ Context Switch
     	__asm__ __volatile__ ("ldm r0, {r4-r11}");                       \
     	__asm__ __volatile__ ("msr control, r2");                        \
     	__asm__ __volatile__ ("cpsie i");
+```
 
 ``irq_save()``跟``irq_restore()``分別用來儲存與取出 context，在存取 context 的過程中是不能被中斷的，所以前後要分別加上``cpsid i``以及``cpsie i``。需要保存的資料包括：``r4-r11``、``link register``、``stack pointer``。
-
-.. code-block:: prettyprint linenums
-    
+```c
     /* platform/irq.c */
     // 這邊我直接將巨集展開，方便觀察
     extern volatile tcb_t *current;
@@ -768,6 +753,7 @@ Context Switch
     	if (current->as)
     		as_setup_mpu(current->as, current->ctx.sp, ((uint32_t*)current->ctx.sp)[REG_PC], current->stack_base, current->stack_size);
     }
+```
 
 實作 pendsv_handler 時是宣告成[]_NAKED``的，所以必須自己處理函式呼叫的prologue、epilogue，因為沒有對 stack 進行處理，在使用 local 變數的時候加上``register``修飾，強制將變數存放在暫存器中(編譯器判斷有空閒的暫存器的話)，接著呼叫``schedule_select()``取得排程的下一個任務進行切換。切換的方法是先將目前任務的 ctx(包含lr) 儲存，接著將``current``切換成下一個任務，最後取出新任務的 ctx，這時 lr 會是新任務的返回地址，因此就可以使用``bx lr``恢復任務。但如果排程器選出的任務與當前任務是一樣的，代表不需要切換，也就不需要進行 ctx 的儲存，可以直接在將 lr 從堆疊中取出，並且返回。
 
@@ -802,9 +788,7 @@ Context Switch
 IRQ Handler
 ============
 F9-kernel 提供一個用來定義 IRQ Handler 的巨集
-
-.. code-block:: prettyprint linenums
-    
+```c    
     /* include/platform/irq.h */
     // 為了觀察方便，將內部的巨集展開
     #define IRQ_HANDLER(name, sub)                                      \
@@ -817,16 +801,16 @@ F9-kernel 提供一個用來定義 IRQ Handler 的巨集
     		__asm__ __volatile__ ("pop {lr}");                      \
     		__asm__ __volatile__ ("bx lr");                         \
     	}
+```
 
 使用這個巨集定義的 IRQ Handler，在處理完自己本身的服務後，會拉起 PendSV 進行上下文切換。目前 F9 當中有下列這些 IRQ Handler 都是使用這個巨集定義的：
-
-.. code-block:: prettyprint linenums
-    
+```c
     $ grep IRQ_HANDLER kernel/* platform/* platform/stm32f4/*
     kernel/ktimer.c:IRQ_HANDLER(ktimer_handler, __ktimer_handler);
     kernel/syscall.c:IRQ_HANDLER(svc_handler, __svc_handler);
     platform/debug_uart.c:IRQ_HANDLER(BOARD_UART_HANDLER, __uart_irq_handler);
     platform/stm32f4/mpu.c:IRQ_HANDLER(memmanage_handler, __memmanage_handler);
+```
 
 下圖是 SysTick 中斷的處理過程：
 
@@ -843,24 +827,22 @@ Flash Patch and Breakpoint Unit (FPB), ARMv7-M Debug Architecture
 FPB unit 包含了六個指令比較單位，兩個資料比較單位。指令比較單位可以把code重新映射到system space，也可以做為硬體中斷點，負責將中斷指令傳送給processor；而資料比較單位負責配對從code space讀取的資料，並將它們重新映射到system space。
 
 FPB register的起始位置在cortex-M 中為0xe0002000
-
-.. code-block:: prettyprint linenums
-
+```c
    /* FPB Flash Patch and Breakpoint unit Registers */
    #define FPB_MAX_COMP        6
    #define FPB_BASE        (uint32_t) (0xE0002000)
    #define FPB_CTRL        (volatile uint32_t *) (FPB_BASE)
    #define FPB_REMAP       (volatile uint32_t *) (FPB_BASE + 0x04)
    #define FPB_COMP        (volatile uint32_t *) (FPB_BASE + 0x08)
+```
 
 BKPT
 #####
 
 BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具在特定的address檢查系統狀態。其用法為
-
-.. code-block:: prettyprint linenums
-
+```c
    BKPT #imm
+```
 
 其中處理器會忽略imm，imm可以讓除錯者傳送一些訊息。 BKPT也可以放在條件指令中來檢查是否進入異常狀態。
 
@@ -882,9 +864,7 @@ Arm提供兩個除錯模式：
    ![](/embedded/f9-kernel/debugreg.jpg)
 
 F9使用的是 Debug monitor mode。
-
-.. code-block:: prettyprint linenums
-
+```c
    //platform/breakpoint-hard.c
    void hard_breakpoint_pool_init(void)
    {
@@ -893,6 +873,7 @@ F9使用的是 Debug monitor mode。
       *DCB_DEMCR |= DCB_DEMCR_TRCENA | DCB_DEMCR_MON_EN;
       ...
    }
+```
 
 MPU (Memory Protection Unit)
 =============================
@@ -1204,9 +1185,7 @@ IPC register有兩種- message register & buffer register
 Message Register
 =================
 共有 16 個，其中 0 ～ 7 是 R4 ～ R11，其他的為虛擬Registers是 UTCB中的 MR[0～8]。
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/include/l4/platform/vregs.h
    register L4_Word32_t __L4_MR0 asm ("r4");
    register L4_Word32_t __L4_MR1 asm ("r5");
@@ -1225,6 +1204,7 @@ Message Register
          return from->utcb->mr[i - 8];
       return from->ctx.regs[i];
    }
+```
 
 每個MR的值只能被使用一次，一次之後讀取的話會出現undefined結果。
 
@@ -1269,8 +1249,7 @@ Message Tag的作用是描述本次message的内容。
     * r : message是否有被重新導向
     * p : 發送者使用propagation,可以從UTCB中找出真正的發送者
 
-.. code-block:: prettyprint linenums
-
+```c
    //include/l4/ipc.h
    typedef union {
       struct {
@@ -1283,6 +1262,7 @@ Message Tag的作用是描述本次message的内容。
       } s;
       uint32_t raw;
    } ipc_msg_tag_t;
+```
 
 MapItem
 ========
@@ -1353,9 +1333,7 @@ IPC 過程
 - Open wait:任何thread
 
 從pingpong開始trace整個IPC流程
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/apps/pingpong/main.c
    void __USER_TEXT pong_thread(void)
    {
@@ -1365,11 +1343,10 @@ IPC 過程
          L4_MsgStore(msgtag, &msg);
         }
     }
+```
 
 一開始pong會從ping中接收到message tag.
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/include/l4/ipc.h
    L4_INLINE L4_MsgTag_t L4_Receive(L4_ThreadId_t from)
    {
@@ -1404,13 +1381,12 @@ IPC 過程
          *from = from_ret;
       return result;
    }
+```
 
 | 在L4_Ipc中，呼叫svc時候，其中變數儲存位置to在R0，FromSpecifier在R1，Timeouts在R2。
 | 所以從pong的接收呼叫來看，則是R0 = L4_nilthread，R1 = ping threads，R2 = L4_NEVER。
 | 接下來在syscall_handler中，發現是SYS_IPC的呼叫，會將caller->sp當成參數呼叫sys_ipc。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ipc.c
    void sys_ipc(uint32_t *param1)
    {
@@ -1483,6 +1459,7 @@ IPC 過程
 
       caller->state = T_SEND_BLOCKED;
    }
+```
 
 | sys_ipc當中包含了發送和接收的階段，可以透過to_tid和from_tid的值知道是否要發送或接收。
 | 從 L4_Receive_Timeout 中可以發現本次 to_tid 的值被設為 L4_NILTHREAD，因此知道這次的呼叫只是接收。
@@ -1490,9 +1467,7 @@ IPC 過程
 
 | 當send 的目標已經處在T_RECV_BLOCKED 的狀態時候，則用do_ipc 把from 的message傳送給目標。
 | 在do_ipc() 當中，一開始會先讀取tag，然後寫到目的thread的mr[0]當中。之後透過tag的內容先讀取untyped word 然後才是typed item，typed item 目前只有MapItem和GrantItem。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ipc.c
    static void do_ipc(tcb_t *from, tcb_t *to)
    {
@@ -1559,18 +1534,17 @@ IPC 過程
      }
        ...
    }
+```
 
 T_SEND_BLOCKED & T_RECV_BLOCKED
 ================================
-
 當from在發送時發現to還沒有進入T_RECV_BLOCKED狀態時，from會把自己的狀態更改為T_SEND_BLOCKED。同理，當要等待message時會把自己狀態改為T_RECV_BLOCKED，因此，就會有專門的schedule來處理它們。
 
 在kernel開始跑起來的時候，有這麼一段：
-
-.. code-block:: prettyprint linenums
-
+```c
    // kernel/start.c : main()
    ktimer_event_create(64, ipc_deliver, NULL);
+```
 
 這邊是宣告一個event，每64 ticks就執行ipc_deliver。
 
@@ -1581,22 +1555,19 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 
 | 從程式碼中看到几個關鍵字，比如說 L4_MsgClear, L4_MsgAppendWord, L4_Send等等，都是從 L4繼承而来的。
 | 所以首先看看 L4_Msg_t類别是什么
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/include/l4/message.h
    typedef union {
       L4_Word_t raw[__L4_NUM_MRS];
       L4_Word_t msg[__L4_NUM_MRS];
       L4_MsgTag_t tag;
    } L4_Msg_t;
+```
 
 這邊看到一個很特別的程式碼，為了增加可讀性，所以重複宣告raw & msg 這兩個同樣的變數，這樣以後使用它們的話才不會混淆使用目的。
 
 從start_thread 中看到一些L4 IPC 的函式使用
-
-.. code-block:: prettyprint linenums
-
+```c
    static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
    {
       L4_Msg_t msg;
@@ -1607,6 +1578,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
       L4_MsgLoad(&msg);
       L4_Send(t);
    }
+```
 
 一開始宣告要傳送的message，然後進行初始化(L4_MsgClear)，之後把要傳送的ITEM利用函式呼叫放進msg當中，不同的ITEM用不同的方式放入，其中包括了：
 
@@ -1621,9 +1593,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
 利用這些函式呼叫讓處理Message格式時候可以更加輕鬆。
 
 當所有要傳送的資訊都被append進msg之後，會呼叫L4_MsgLoad(&msg)
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/include/l4/message.h
    L4_INLINE void L4_MsgLoad (L4_Msg_t *msg)
    {
@@ -1653,6 +1623,7 @@ ipc_deliver做的工作就是從thread map中找是否有T_SEND_BLOCKED或者T_R
          }
       }
    }
+```
 
 這邊利用 switch 的原因是無法用 subscript operator存取。
 
@@ -1662,9 +1633,7 @@ Thread
 -------
 
 Thread Control Block
-
-.. code-block:: prettyprint linenums
-
+```c
    //include/thread.h
    struct tcb {
       //global id 是唯一的
@@ -1688,17 +1657,15 @@ Thread Control Block
       struct tcb *t_parent;
       struct tcb *t_child;
    };
+```
 
 global id 的作用在於分辨thread所使用的AS。
 每個thread都有自己的AS(Address Space),而AS當中則儲存了thread所擁有的Fpage。
 
 Context
 ========
-
 TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存起來，以方便之後switch回來。
-
-.. code-block:: prettyprint linenums
-
+```c
    //include/thread.h
    typedef struct {
       uint32_t sp; // stack pointer
@@ -1710,6 +1677,7 @@ TCB中ctx的存在是為了context switch 的時候將當下一些資訊儲存�
       uint32_t fp_flag;
       #endif
    } context_t;
+```
 
 context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, xpsr 設在sp當中。
 其中ctl是arm 中的control register, 有三個控制項
@@ -1718,9 +1686,7 @@ context_t 中的regs只有8個，分別是r4 - r11，至於r0..r3, r12, lr, pc, 
 
 User-level Thread Control Block
 ================================
-
-.. code-block:: prettyprint linenums
-
+```c
    //include/l4/utcb.h
    struct utcb {
       /* +0w */
@@ -1750,6 +1716,7 @@ User-level Thread Control Block
       uint32_t    reserved[4];
       /* +32w */
    };
+```
 
 * error_code 是在thread發生錯誤時候的錯誤代碼
 * intended_receiver 是在進入SEND_BLOCKED 時候說明在等待發送訊息的對象
@@ -1761,11 +1728,8 @@ User-level Thread Control Block
 
 Thread Create
 ==============
-
 thread_create 是kernel在syscall中接到要求create thread用來新增thread的。
-
-.. code-block:: prettyprint linenums
-
+```c
    tcb_t *thread_create(l4_thread_t globalid, utcb_t *utcb)
    {
        ...
@@ -1792,13 +1756,12 @@ thread_create 是kernel在syscall中接到要求create thread用來新增thread�
       }
    return thr;
    }
+```
 
 最後會回傳tcb，要注意的是這邊的utcb是已經配好的空間，thread_create不會幫忙配置空間，global id也是要預先獲得。
 
 Global id獲得方式
-
-.. code-block:: prettyprint linenums
-
+```c
    //user/include/l4/types.h
    L4_INLINE L4_ThreadId_t L4_GlobalId(L4_Word_t threadno, L4_Word_t version)
    {
@@ -1807,6 +1770,7 @@ Global id獲得方式
       t.global.X.version = version;
       return t;
    }
+```
 
 所以是根據version和thread parent目前擁有的子thread數量決定的。
 
@@ -1814,9 +1778,7 @@ Global id獲得方式
 
 Thread Initialization
 ======================
-
-.. code-block:: prettyprint linenums
-
+```c
    tcb_t *thread_init(l4_thread_t globalid, utcb_t *utcb)
    {
       tcb_t *thr;
@@ -1841,13 +1803,12 @@ Thread Initialization
       dbg_printf(DL_THREAD, "T: New thread: %t @[%p] \n", globalid, thr);
       return thr;
    }
+```
 
 | 首先從thread table中獲得tcb所需的記憶體，不包含utcb，之後把thr放進thread map中，thread map是整理好的數序陣列。
 | 目前只看到thread map在ipc_deliver中會被逐個檢查是否有recv_block & send_block 的情況。
 | thread的address space會在thread_space 中配置，而在 syscall 處理 create thread 的時候會在 thread_create 以後呼叫 thread_space。
-
-.. code-block:: prettyprint linenums
-
+```c
    void thread_space(tcb_t *thr, l4_thread_t spaceid, utcb_t *utcb)
    {
      /* If spaceid == dest than create new address space
@@ -1875,6 +1836,7 @@ Thread Initialization
       else
         map_area(thr->as, thr->as, (memptr_t) utcb, sizeof(utcb_t), GRANT, 1);
    }
+```
 
 | 首先會檢查是否共享address space，是的話則配置共享後記錄起來。
 | 不是的話則用as_create從as_table (ktable)中配置一記憶體空間給thread，並且先把基本fpage（kip & kip_extra）m​​ap 給新的as。
@@ -1884,9 +1846,7 @@ Thread start過程
 ================
 
 F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例子
-
-.. code-block:: prettyprint linenums
-
+```c
    static void __USER_TEXT start_thread(L4_ThreadId_t t, L4_Word_t ip, L4_Word_t sp, L4_Word_t stack_size)
    {
       L4_Msg_t msg;
@@ -1897,11 +1857,10 @@ F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例
       L4_MsgLoad(&msg);
       L4_Send(t);
    }
+```
 
 只要把ip, sp, stack_size透過IPC傳送給想要啟動的thread, IPC在偵測到目標thread為T_INACTIVE時候，首先會init thread 的context， 接著就把該thread的狀態改為T_RUNNABLE。
-
-.. code-block:: prettyprint linenums
-
+```c
    // kernel/ipc
    void sys_ipc()
    {
@@ -1926,6 +1885,7 @@ F9利用IPC來啟動一個thread，以user/root_thread.c中的start_thread為例
       }
         ...
    }
+```
 
 當thread狀態更改為T_RUNNABLE之後，就會被scheduler考慮進排程裡頭了。
 
@@ -1933,9 +1893,7 @@ Root Thread
 ============
 
 ROOT THREAD是F9定義好的THREAD之一，目的在於執行user thread。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/systhread.c
    void create_root_thread(void)
    {
@@ -1948,6 +1906,7 @@ ROOT THREAD是F9定義好的THREAD之一，目的在於執行user thread。
       sched_slot_dispatch(SSI_ROOT_THREAD, root);
       root->state = T_RUNNABLE;
    }
+```
 
 ROOT THREAD的GLOBAL ID是固定的，root_utcb是一開始就被預設放在kip section當中。 thread_space建立thread所需要用的記憶體空間
 as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_bss的記憶體空間包成fpage,其中user_text有三個fpage,user_data三個, user_bss一個，到這步驟，屬於root thread的fpage如下
@@ -1968,9 +1927,7 @@ as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_b
 接下來是thread_init_ctx，這邊看到root_stack_end，從f9.map中找到它對應0x2001a000的位置，root_thread是root thread的entry。 thread_init_ctx一開始把sp減去256，是RESERVED給r0,r1,r2,r3,r12,lr,pc,xspr這些register。
 
 使用sp中fake context方法：sp[REG_R0]，其中REG_R0 等在armv7m.h中定義。
-
-.. code-block:: prettyprint linenums
-
+```c
    //include/platform/armv7m.h
    enum register_stack_t {
      /* Saved by hardware */
@@ -1983,14 +1940,13 @@ as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_b
       REG_PC,
       REG_xPSR
    };
+```
 
 | 最後把root的狀態設定成T_RUNNABLE後將它加入到schedule slot中。
 | Root thread的工作是把user的thread啟動，之後就進入休眠狀態。
 
 在`platform/stm32f4/f9_flash.ld`中有一塊`user_runtime`，並且有紀錄開頭跟結尾的變數`user_runtime_start`跟`user_runtime_end`，這邊的作法跟`Init Hook`很像。會掃過一遍user_runtime中的struct，然後開始執行user thread。
-
-.. code-block:: prettyprint linenums
-
+```c
    // user/root_thread.c
    extern user_struct user_runtime_start[];
    extern user_struct user_runtime_end[];
@@ -2035,6 +1991,7 @@ as_map_user(root->as)這部分把原本就預留的user_text, user_data和user_b
       while (1)
          L4_Sleep(L4_Never);
    }
+```
 
 這邊使用L4_Map將root自己的記憶體配置給user使用，而每個user在DECLARE的時候就會告知自己所需要的FPAGE位置和大小。
 
@@ -2045,11 +2002,8 @@ Kprobes是一個kernel內建的動態狀態顯示機製，可讓開發人員不�
 
 KProbe
 =======
-
 Kprobe利用list儲存和管理所有被register的address，其中struct kprobe如下
-
-.. code-block:: prettyprint linenums
-
+```c
    struct kprobe {
       void *addr; /*中斷地址*/
       kprobe_pre_handler_t pre_handler; /*前處理*/
@@ -2058,11 +2012,10 @@ Kprobe利用list儲存和管理所有被register的address，其中struct kprobe
       void *step_addr; /* 儲存下一個指令地址，arm cortex M 在debug mode支援single step */
       struct kprobe *next; /*下一個*/
    };
+```
 
 硬體中斷資料結構儲存的內容為
-
-.. code-block:: prettyprint linenums
-
+```c
    struct breakpoint{
       uint16_t type; /*種類分成三種NONE, SOFT, HARD */
       union{
@@ -2081,9 +2034,7 @@ How-to-use
 
 | Kprobes 可以透過 kprobe_register & kprobe_unregister 登記和取消登記，成功時候會回傳0，反之負數。
 | Kprobes 將所有 register 的 kp 儲存在 kplist 當中，並且設定相關硬體 register
-
-.. code-block:: prettyprint linenums
-
+```c
    int kprobe_register(struct kprobe *kp)
    {
       int ret;
@@ -2101,11 +2052,10 @@ How-to-use
       kplist_add(kp); /* 加入到 kplist中 */
       return 0;
    }
+```
 
 register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
-
-.. code-block:: prettyprint linenums
-
+```c
    //platform/kprobe_arc.c
    int kprobe_arch_add(struct kprobe *kp)
    {
@@ -2132,12 +2082,11 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
    arch_add_error:
       return -1;
    }
+```
 
 | 這邊首先先找出是否有同樣地址的kprobe，如果有的話就共享該斷點，沒有的話就設定一個新的斷點。
 | 斷點設定方法為breakpoint_install，而breakpoint_install會呼叫 get_avail_breakpoint
-
-.. code-block:: prettyprint linenums
-
+```c
    //platform/breakpoint.c
    static struct breakpoint *get_avail_breakpoint(uint32_t addr)
    {
@@ -2148,18 +2097,16 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
       }
       return NULL;
    }
+```
 
 在 breakpoint_config中，會透過 addr判斷是否breakpoint属性
-
-.. code-block:: prettyprint linenums
-
+```c
    #define breakpoint_type_by_addr(addr) ((addr) < 0x20000000 ? BKPT_HARD : BKPT_SOFT)
+```
 
 透過記憶體位置圖0x20000000 以下的地址屬於程式碼區塊，其他的是外接口等，所以得知只有程式碼屬於hard breakpoint,其他的都由軟體虛擬出來的斷點處理。
 這邊只觀察hard breakpoint,所以是hard_breakpoint_config
-
-.. code-block:: prettyprint linenums
-
+```c
    //platform/breakpoint-hard.c
    struct breakpoint *hard_breakpoint_config(uint32_t addr, struct breakpoint *b)
    {
@@ -2179,11 +2126,10 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
       }
       return NULL;
    }
+```
 
 將所有的值儲存好之後，透過這邊儲存的enable function去啟動該kprobe。
-
-.. code-block:: prettyprint linenums
-
+```c
    #define FPB_COMP_ENABLE     (uint32_t) (1 << 0)
    #define FPB_COMP_REPLACE_LOWER  (uint32_t) (1 << 30)
    #define FPB_COMP_REPLACE_UPPER  (uint32_t) (2 << 30)
@@ -2200,16 +2146,14 @@ register過程中會把kp對應的地址設定到FPB單位中並且啟動FPB。
          *(FPB_COMP + b->hard_breakpoint_id) = FPB_COMP_REPLACE_LOWER | (addr & FPB_COMP_ADDR_MASK) | FPB_COMP_ENABLE;
       }
    }
+```
 
 這邊addr會被去掉前面 3 個bit 和後面 2 個bit，最後一個bit 為enable。
 
 Debug Handler
 ==============
-
 當FPB比對addr相同時候，會傳送bkpt指令給處理器，然後處理器會進入debug_handler，F9的debug_handler為debugmon_handler
-
-.. code-block:: prettyprint linenums
-
+```c
    //platform/hw_debug.c
    void debugmon_handler(void)
    {
@@ -2281,6 +2225,7 @@ Debug Handler
           */
       }
    }
+```
 
 所以整個流程為
 
@@ -2296,9 +2241,7 @@ Example -- sampling
 
 | kdb當中輸入指令'p'會呼叫kdb_show_sampling，這是一個在ktimer_handler中加入kprobe的kprobe使用範例。
 | 第一次給於指令'p'的時候，會在ktimer_handler中register kprobe，當每次ktimer_handler被呼叫時候，sampling會記錄kernel的一些相關訊息，在下次收到'p' 指令時將它們輸出。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/sampling-kdb.c
    extern void ktimer_handler(void);
    void kdb_show_sampling(void)
@@ -2321,10 +2264,10 @@ Example -- sampling
       }
       ...
    }
+```
 
 KTimer
 -------
-
 L4將硬體中斷當成IPC message轉交給user-level thread處理，該thread需要跟kernel register成為特定硬體中斷的handler。每個硬體中斷只轉交給一個Handler，但是一個thread可以成為多個中斷的handler。
 
 在L4中，timer ticks interrupt是唯一一個被內部處理的中斷，但在F9中，此中斷依然是繼續使用L4 中其它中斷處理方法。而Ktimer 就是F9轉交timer ticks interrupt的handler。
@@ -2336,9 +2279,7 @@ KTIMER相關設定
 * CONFIG_KTIMER_TICKLESS：tickless啟用
 
 一開始的 systick handler 是 __ktimer_handler
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ktimer.c
    void __ktimer_handler(void)
    {
@@ -2355,13 +2296,12 @@ KTIMER相關設定
          }
       }
    }
+```
 
 | 除了每次增加ktimer_now 之外， __ktimer_handler 也會查看ktimer是否啟動以及ktimer_delta。
 | ktimer_delta是下一個event發生的倒數時間，倒數完畢後會排程softirq。
 | 在ktimer初始化時候，宣告了KTE_SOFTIRQ的handler。
-
-.. code-block:: prettyprint linenums
-
+```c
    void ktimer_event_init()
    {
       ktable_init(&ktimer_event_table);
@@ -2372,11 +2312,10 @@ KTIMER相關設定
    ...
    // INIT HOOK
    INIT_HOOK(ktimer_event_init, INIT_LEVEL_KERNEL);
+```
 
 ktimer的event list是根據時間排序，從最近到最遠，所以在event_handler當中只需要從前面開始找出delta = 0的event。
-
-.. code-block:: prettyprint linenums
-
+```c
    void ktimer_event_handler()
    {
       ktimer_event_t *event = event_queue;
@@ -2434,12 +2373,11 @@ ktimer的event list是根據時間排序，從最近到最遠，所以在event_h
          ktimer_enable(event_queue->delta);
       }
    }
+```
 
 | ktimer中的event queue是根據最近時間（delta)去排序的，所以在尋找的時候只需要找出最後一個delta = 0的event。
 | 特別的一點是透過next_event先儲存下一個event,避免在ktimer重新排程的時候選擇到新排程next的event。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ktimer.c
    static void ktimer_enable(uint32_t delta)
    {
@@ -2449,12 +2387,10 @@ ktimer的event list是根據時間排序，從最近到最遠，所以在event_h
          ktimer_enabled = 1;
       }
    }
+```
 
 | enable就是設定ktimer_delta，ktimer_delta倒數到0的時候就啟動event。
-
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ktimer.c
    int ktimer_event_schedule(uint32_t ticks, ktimer_event_t *kte)
    {
@@ -2512,16 +2448,14 @@ ktimer的event list是根據時間排序，從最近到最遠，所以在event_h
          }
       return 0;
    }
+```
 
 這邊看到最後會呼叫ktimer_event_recalc(next_event, delta)，next_event是指向kte之後一個event，delta是kte的delta，所以看得出這功能是重新計算kte之後的event->delta。
 
 How-to Use KTimer
 =================
-
 使用方法很簡單，只是create ktimer event就可以了。
-
-.. code-block:: prettyprint linenums
-
+```c
    //kernel/ktimer.c
    int ktimer_event_create(uint32_t ticks, ktimer_event_handler_t handler, void *data)
    {
@@ -2540,6 +2474,7 @@ How-to Use KTimer
       kte->data = data;
       return ktimer_event_schedule(ticks, kte);
    }
+```
 
 ticks是指距離上次ktimer_handler多少個ticks後要發生，handler是發生時候處理的function，data是傳遞給handler的參數。 create event從ktimer_event_table中獲得記憶體之後把資料儲存起來然後開始排程。
 
@@ -2553,9 +2488,7 @@ Kernel Interface Page
 在L4中，KIP包含了API、kernel版本資訊、system descriptor including memory descriptor、system call link，剩下的部份還未定義。這個page是一個mircokernel object，在AS建立時會直接映射到每個AS。他不是被pager映射，而且不能被map或grant到其他的AS，也不能被unmap。新AS的創建者可以決定要讓KIP被映射到哪些位置，而這些位置在AS的生命週期中會一直存在，任意的thread都能透過KERNELINTERFACE這個system call取得這些位置。
 
 至於F9中實作KIP中的一部分，以下是KIP在F9中的結構：
-
-.. code-block:: prettyprint linenums
-    
+```c
     /* include/l4/kip_types.h */
     // 我將F9中沒有用到或沒有實作的部份先拿掉
     typedef struct {
@@ -2607,6 +2540,7 @@ Kernel Interface Page
     
             kip_threadinfo_t thread_info;
     };
+```
 
 * memory_info - 紀錄memory pool的位置以及數量
 * thread_info - 紀錄可以用在system thread以及user thread上最小的thread number
@@ -2614,19 +2548,17 @@ Kernel Interface Page
 Init Hook
 ==========
 F9-kernel用了一個global initialization hook的技巧，這個技巧可以在任意地方定義一段要在系統初始化時執行的code。一個``init hook``會在特定的run level被呼叫，hook可以保證依據level順序呼叫，但不能保證在同一個level中呼叫的順序，下面是一個``init hook``的結構：
-
-.. code-block:: prettyprint linenums
-
+```c
    /* include/init_hook.h */
    typedef struct {
            unsigned int level;
            init_hook_t hook;
            const char *hook_name;
    } init_struct;
+```
+
 其中包含要在哪個level呼叫、要執行的code位置、名稱，宣告這個結構的方法如下：
-
-.. code-block:: prettyprint linenums
-
+```c
    /* include/init_hook.h */
    #define INIT_HOOK(_hook, _level)                                        \
            const init_struct _init_struct_##_hook __attribute__((section(".init_hook"))) = {        \
@@ -2634,11 +2566,10 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
                    .hook = _hook,                                                \
                    .hook_name = #_hook,                                        \
            };
+```
 
 使用``INIT_HOOK``這個macro可以宣告一個``init_struct``，並且將這個結構放到``.init_hook`` section中，接著觀察linker script：
-
-.. code-block:: prettyprint linenums
-
+```c
    /* loader/loader.ld */
    SECTIONS {
            .text 0x08000000:
@@ -2655,13 +2586,12 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
            } > MFlash
            ...
    }
+```
 
 在``KEEP(*(.init_hook))``前後各紀錄了一個位置，``init_hook_start``會是section ``.init_hook``的開始，``init_hook_end``會是section ``.init_hook``的結束。
 
 在F9-kernel中已經有一些地方使用到``INIT_HOOK``：
-
-.. code-block:: prettyprint linenums
-
+```c
    $ grep INIT_HOOK kernel/* platform/*
    kernel/kdb.c:INIT_HOOK(kdb_init, INIT_LEVEL_KERNEL);
    kernel/kprobes.c:INIT_HOOK(kprobe_init, INIT_LEVEL_KERNEL);
@@ -2672,11 +2602,10 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
    kernel/syscall.c:INIT_HOOK(syscall_init, INIT_LEVEL_KERNEL);
    kernel/thread.c:INIT_HOOK(thread_init_subsys, INIT_LEVEL_KERNEL);
    platform/debug_device.c:INIT_HOOK(dbg_device_init_hook, INIT_LEVEL_PLATFORM);
+```
 
 接著看一下``init_hook_start``跟``init_hook_end``的值，並觀察剛剛定義的``init_struct``是放在哪邊：
-
-.. code-block:: prettyprint linenums
-
+```c
    $ arm-none-eabi-readelf -s f9.elf | grep "init_hook_start|init_hook_end" -E
       765: 08005924     0 NOTYPE  GLOBAL DEFAULT    1 init_hook_end
       934: 080058b8     0 NOTYPE  GLOBAL DEFAULT    1 init_hook_start
@@ -2691,11 +2620,10 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
    08005900 <_init_struct_kdb_init>:
    0800590c <_init_struct_kprobe_init>:
    08005918 <_init_struct_ksym_init>:
+```
 
 可以發現``0x080058b8~0x08005924``剛好就是剛剛定義的``init_struct``內容(一個init_struct的大小是12byte，所以最後一個是0x8005918+12=0x8005924)，而且這些結構會是連續的存放在一起。剩下的就是如何執行這些code：
-
-.. code-block:: prettyprint linenums
-
+```c
    /* kernel/init.c */
    extern const init_struct init_hook_start[];
    extern const init_struct init_hook_end[];
@@ -2715,15 +2643,14 @@ F9-kernel用了一個global initialization hook的技巧，這個技巧可以在
    
            return last_level;
    }
+```
 
 這段程式會從``init_hook_start``開始掃過一遍，當發現一個hook的level是大於上次呼叫``run_init_hook``而且小於等於這次要run的level時，就執行對應的hook function，並且更新最大呼叫過的level。
 
 KTable
 =========================================
 ktable是一套快速的物件管理機制，結構如下：
-
-.. code-block:: prettyprint linenums
-
+```c
     struct ktable {
         char *tname;
         bitmap_ptr_t bitmap;
@@ -2733,6 +2660,8 @@ ktable是一套快速的物件管理機制，結構如下：
     };
 
     typedef struct ktable ktable_t;
+```
+
 * tname ： table名稱
 * [bitmap](#bitmap) ： 紀錄table的使用情況
 * data ： 實際存放資料的區域
@@ -2740,9 +2669,7 @@ ktable是一套快速的物件管理機制，結構如下：
 * size ： 每個區塊的大小
 
 接著是宣告ktable的方法，給予要存放在ktable中的型態、ktable的名字、以及需要的大小：
-
-.. code-block:: prettyprint linenums
-
+```c
    // 宣告一個ktable
    // $ arm-none-eabi-readelf f9.elf -s | grep fpage_table
    //    263: 10000000    32 OBJECT  LOCAL  DEFAULT    8 kt_fpage_table_bitmap
@@ -2756,11 +2683,10 @@ ktable是一套快速的物件管理機制，結構如下：
    			.data = (ptr_t) kt_ ## name ## _data,	\
    			.num = num_, .size = sizeof(type)	\
    	}
+```
 
 ktable有提供下列的API可供使用：
-
-.. code-block:: prettyprint linenums
-
+```c
    // 將kt中的bitmap全部設為0
    void ktable_init(ktable_t *kt);
    // 檢查第i個元素是否已經被配置
@@ -2773,6 +2699,7 @@ ktable有提供下列的API可供使用：
    void  ktable_free(ktable_t *kt, void *element);
    // 取得該元素位在ktable內的id
    uint32_t ktable_getid(ktable_t *kt, void *element);
+```
 
 ![](/embedded/f9-kernel/ktable.png)
 
@@ -2795,18 +2722,16 @@ bitmap會從某一個domain mapping到一個集合{0, 1}，這個值可以代表
 * NOT用來invert：NOT 11101010 = 00010101
 
 只要n/w個bitwise operation用來算出兩個相同大小bitmap的union、intersection、difference、complement
-
-.. code-block:: prettyprint linenums
-
+```c
    for i from 0 to n/w-1
        complement[i] := not a[i]
        union[i]        := a[i] or b[i]
        intersection[i] := a[i] and b[i]
        difference[i]   := a[i] and (not b[i])
+```
+
 如果要iterate bitmap中的所有bit，只要用一個雙層的迴圈就能有效率的掃完，只需要n/w次的memory access
-
-.. code-block:: prettyprint linenums
-
+```c
    for i from 0 to n/w-1
         index := 0    // if needed
         word := a[i]
@@ -2815,6 +2740,7 @@ bitmap會從某一個domain mapping到一個集合{0, 1}，這個值可以代表
             word := word shift right 1
             // do something with value
             index := index + 1   // if needed
+```
 
 **Bit-banding**
 
@@ -2836,11 +2762,10 @@ System bus interface包含了一個bit-band的存取邏輯：
 * 32MB可存取的peripheral alias區域對應到1MB的bit-band peripheral區域
 
 有一個mapping公式可以將alias轉換成對應的bit-band位置
-
-.. code-block:: prettyprint linenums
-
+```c
    bit_word_offset = (byte_offset x 32) + (bit_number × 4)
    bit_word_addr = bit_band_base + bit_word_offset
+```
 
 * bit_word_offset是target bit在bit-band區域中的位置
 * bit_word_addr是target bit在alias中對應的地址
@@ -2869,9 +2794,7 @@ System bus interface包含了一個bit-band的存取邏輯：
 **F9-kernel(Bitmap)**
 
 Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitmap cursor(type bitmap_cusor_t)iterate bitmap。
-
-.. code-block:: prettyprint linenums
-
+```c
    /* include/lib/bitmap.h */
    // 宣告一塊bitmap
    #define DECLARE_BITMAP(name, size) \
@@ -2902,6 +2825,7 @@ Bit-band bitmap被放在AHB SRAM中，使用BitBang地址存取bit，使用bitma
            for (cursor = bitmap_cursor(bitmap, start); \
                 bitmap_cursor_id(cursor) < size;        \
                 bitmap_cursor_goto_next(cursor))
+```
 
 * bitmap_set_bit(bitmap_cursor_t cursor) - 將cursor設為1
 * bitmap_clear_bit(bitmap_cursor_t cursor) - 將cursor設為0
