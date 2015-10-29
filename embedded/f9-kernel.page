@@ -842,8 +842,8 @@ FPB register的起始位置在cortex-M 中為0xe0002000
    #define FPB_COMP        (volatile uint32_t *) (FPB_BASE + 0x08)
 ```
 
-BKPT
-#####
+* BKPT
+
 
 BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具在特定的address檢查系統狀態。其用法為
 ```c
@@ -852,16 +852,16 @@ BKPT是ARM的指令，它會讓處理器進入Debug State,可以讓除錯工具�
 
 其中處理器會忽略imm，imm可以讓除錯者傳送一些訊息。 BKPT也可以放在條件指令中來檢查是否進入異常狀態。
 
-Debug
-######
+* Debug
+
 
 Arm提供兩個除錯模式：
 
-* Halt mode
-  - 處理器將程式完全停下，然後可以進行single step，所有interrupt都可被pended，將在single step中處理，也可masked interrupt。
+    * Halt mode
+      - 處理器將程式完全停下，然後可以進行single step，所有interrupt都可被pended，將在single step中處理，也可masked interrupt。
 
-* Debug monitor mode
-  - 處理器用exception_handler來呼叫debug任務，同時依然讓更高權限的exception執行，同樣支援single step。
+    * Debug monitor mode
+      - 處理器用exception_handler來呼叫debug任務，同時依然讓更高權限的exception執行，同樣支援single step。
 
 在 single step 時候，每一個step之後都會進入 exception_handler，F9也用這方法來進行 prehandler 和 posthandler。
 
@@ -883,8 +883,8 @@ F9使用的是 Debug monitor mode。
 
 MPU (Memory Protection Unit)
 =============================
-Overview
-#########
+* Overview
+
 在multitasking的系統中，必須確保不同task的操作不會互相干擾，而避免系統資源或是其他任務的資料被非法存取的機制就叫做保護(protection)。控制存取系統資源的方法有兩種：無硬體保護與有硬體保護，無硬體保護的系統就單純依靠軟體保護系統資源；有硬體保護的則是會由硬體與軟體一起進行保護。至於實際上的控制系統要使用哪種方法，取決於處理器的性能以及控制系統的需求。
 
 在無保護的系統中，沒有專門處理週邊設備以及記憶體的硬體，在這類的系統中，為了避免不同的task有互相干擾的情況，必須有協調的機制，但如果其中有任務沒有遵守存取限制，則這個機制就可能失敗。下面是一個失敗的例子：當讀寫一個通訊用的序列阜(serial port)暫存器時，如果有一個任務正在使用序列阜，但他沒辦法阻止其他任務也使用相同的序列阜。所以，要順利的使用序列阜，就必須設計一個存取該序列阜的系統呼叫。但這些未經授權的任務在使用系統呼叫時，很容易就會破壞序列阜的通訊。
