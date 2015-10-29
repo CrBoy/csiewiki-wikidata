@@ -2701,9 +2701,9 @@ ktable有提供下列的API可供使用：
 
 ![](/embedded/f9-kernel/ktable.png)
 
-Bitmap
-#######
-bit array(bitmap, bitset, bit string, bit vector)是一種緊湊儲存位元的陣列結構，可以用來實作簡單的set結構。在硬體上操作bit-level時，bitmap是一種很有效的方法，一個典型的bitmap會儲存kw個位元，w代表一個單位需要w個位元(byte、word)，k則是一個非負的整數，如果w無法被要儲存的位元整除，則有些空間會因為內部片段被浪費。
+* Bitmap
+
+    * bit array(bitmap, bitset, bit string, bit vector)是一種緊湊儲存位元的陣列結構，可以用來實作簡單的set結構。在硬體上操作bit-level時，bitmap是一種很有效的方法，一個典型的bitmap會儲存kw個位元，w代表一個單位需要w個位元(byte、word)，k則是一個非負的整數，如果w無法被要儲存的位元整除，則有些空間會因為內部片段被浪費。
 
 **定義**
 
