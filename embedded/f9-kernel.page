@@ -18,29 +18,35 @@ About Microkernel
 ==================
 在計算科學領域中，microkernel(μ-kernel)指的就是集合一些精簡的軟體，而這些軟體可以提供實作作業系統的機制，例如：地址空間(Address Space, AS)管理、執行緒(thread)管理、行程間通訊(Inter-Process Communication, IPC)。如果硬體或是CPU有提供不同的執行模式，則μ-kernel就是執行在權限最高的部份，例如ARM的handle mode。
 
-Basic Idea
-+++++++++++
+*************
+
+* Basic Idea
+
 傳統的作業系統核心(monolithic)會提供大部分的服務，像是UNIX-like的系統都有一些典型的階層架構，示意圖如下：
 
 ![](/embedded/f9-kernel/os_structure.png)
 
 一個μ-kernel的概念則是盡可能的縮小核心，並將系統服務移到kernel外，而在這種系統中會使用IPC去呼叫服務。
 
-優點
-++++
-* 會有比傳統核心要小的Trusted Computing Base(TCB)。Trusted Computing Base，系統中的一部分，可以通過他自己的安全方針，因此一個安全的系統操作依賴正確的TCB架構。
-* 只要增加一些服務就能簡單的擴充
-* 可以被高度的調整，針對不同的server實作不同的服務，不需要就移除
-* 支援軟體工程技術，user-mode的程式會執行在自己的address space下，只能透過定義好的IPC界面被使用，實現軟體封裝
-* 提供fault isolation，一個發生錯誤的元件只會造成他自己的AS錯誤，不會影響其他的元件
+***********
 
-挑戰
-++++
-因為所有的系統服務都是透過IPC呼叫，所以IPC是整個系統的效能關鍵之一，事實上μ-kernel-based的系統在呼叫系統服務上的overhead會大於傳統系統，μ-kernel based的系統需要四個mode的切換以及兩次完整的context switch；傳統系統只需要兩個mode切換且不需要context switch。設計並且實作μ-kernel的挑戰就在盡力降低IPC的overhead上。
+* 優點
 
-歷史
-++++
-μ-kernel的基礎概念是由Per Brinch Hansen提出的(Brinch Hansen, Communications of the ACM, 13, 1970)。1980年代在CMU有一個Mach Project，這就是第一代的μ-kernel，而且有很多類似的計畫都在1990左右誕生，但這些第一代的微內核因為效能表現不佳而無法存活下來，而效能不佳的原因有很大的部份就是IPC耗費太多資源。
+    * 會有比傳統核心要小的Trusted Computing Base(TCB)。Trusted Computing Base，系統中的一部分，可以通過他自己的安全方針，因此一個安全的系統操作依賴正確的TCB架構。
+    * 只要增加一些服務就能簡單的擴充
+    * 可以被高度的調整，針對不同的server實作不同的服務，不需要就移除
+    * 支援軟體工程技術，user-mode的程式會執行在自己的address space下，只能透過定義好的IPC界面被使用，實現軟體封裝
+    * 提供fault isolation，一個發生錯誤的元件只會造成他自己的AS錯誤，不會影響其他的元件
+
+*************
+
+* 挑戰
+    * 因為所有的系統服務都是透過IPC呼叫，所以IPC是整個系統的效能關鍵之一，事實上μ-kernel-based的系統在呼叫系統服務上的overhead會大於傳統系統，μ-kernel based的系統需要四個mode的切換以及兩次完整的context switch；傳統系統只需要兩個mode切換且不需要context switch。設計並且實作μ-kernel的挑戰就在盡力降低IPC的overhead上。
+
+************
+
+* 歷史
+    * μ-kernel的基礎概念是由Per Brinch Hansen提出的(Brinch Hansen, Communications of the ACM, 13, 1970)。1980年代在CMU有一個Mach Project，這就是第一代的μ-kernel，而且有很多類似的計畫都在1990左右誕生，但這些第一代的微內核因為效能表現不佳而無法存活下來，而效能不佳的原因有很大的部份就是IPC耗費太多資源。
 接著Jochen Liedtke證明了IPC是可以被大幅度改善的，他展示了原來Mach Project低落的效能是因為糟糕的設計與實作，造成大量的cache miss。L4與其他這種類型的系統被稱作第二代的μ-kernel。
 
 L4 microkernel
