@@ -13,17 +13,13 @@ toc: no
 Mini ARM OS
 ------------------
 * 設定 qemu 的路徑，假設 ``qemu_stm32`` 目錄位於 ``$HOME/workspace`` 裡面
-
-.. code-block:: prettyprint
-
+```
     export PATH=~/workspace/qemu_stm32/arm-softmmu:$PATH
-
+```
 * 取得 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 程式碼
-
-.. code-block:: prettyprint
-
+```
     git clone https://github.com/embedded2015/mini-arm-os.git || git clone git@github.com:embedded2015/mini-arm-os.git
-
+```
 * 依據 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 指示
 
 實驗和觀察
@@ -33,38 +29,30 @@ Mini ARM OS
 ![](/embedded/Lab42/00.png)
 
   - 輸入``arm-none-eabi-objdump -D hello.elf``後，會看到以下：
-
-.. code-block:: prettyprint
-
+```
     00000000 <isr_vectors>:
        0:        00000000         andeq        r0, r0, r0
        4:        000000ad         andeq        r0, r0, sp, lsr #1
-
+```
   以及
-
-.. code-block:: prettyprint
-
+```
     000000ad <reset_handler>:
     ac:    b580          push    {r7, lr}
     ae:    af00          add    r7, sp, #0
     b0:    f7ff ffcc     bl    4c <main>
-
+```
   - 發現 PC 會去抓 0x4 值 ``0x000000ad`` (LSB一定要1)，所以會去執行 ``000000ad`` 也就是 reset_handler，之後才會去執行 ``main()``
   - ``reset_handler`` 定義在 startup.c 中：
-
-.. code-block:: prettyprint
-
+```c
     __attribute((section(".isr_vector")))
-
+```
   會把以下部份
-
-.. code-block:: prettyprint
-
+```c
     uint32_t *isr_vectors[] = {
         0,
         (uint32_t *) reset_handler,    /* code entry point */
     };
-
+```
   放入 ``.isr_vector`` 中，linker 會把 ``0`` 重新定位於 ``0x0``，``reset_handler`` 重新定位在 ``0x4``，如此一來，PC 一開始就會去執行 ``reset_handler()``
 
 參考作業要求
