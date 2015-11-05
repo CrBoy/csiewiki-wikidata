@@ -23,9 +23,9 @@ toc: no
 |#4    |Oct 9  | 國定假日           |        - |
 |#5    |Oct 16  | [Compilers + Calling Convention](https://embedded2015.hackpad.com/ep/pad/static/83hsxgJZcZd) | = [2015q3: Homework4] = |
 |#6    |Oct 23  | [專題演說](https://embedded2015.hackpad.com/ep/pad/static/jIMTMzNA9k3)               | = [2015q3: Homework5] = |
-|#7    |Oct 30   | [Code Review + ARM](https://embedded2015.hackpad.com/ep/pad/static/xDmCCv0k00K)               |        - |
-|#8    |Nov 6  |  From Hello to Preemptive Scheduler  |        - |
-|#9    |Nov 13  | Kernel Concepts and Threading       |        - |
+|#7    |Oct 30   | [Code Review](https://embedded2015.hackpad.com/ep/pad/static/xDmCCv0k00K)               | = [2015q3: Homework6] = |
+|#8    |Nov 6  |  [C Programming + ARM](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw)  | = [2015q3: Homework7] = |
+|#9    |Nov 13  | From Hello to Preemptive Scheduler       |        - |
 |#10   |Nov 20  | Peripherals |        * |
 |#11   |Nov 27  |Peripherals: [GPIO](/embedded/GPIO)  |        * |
 |#12   |Dec 4  | Peripherals: [ADC](/embedded/ADC)       |        * |
@@ -42,7 +42,8 @@ toc: no
 [2015q3: Homework3]: 2015q3h3
 [2015q3: Homework4]: 2015q3h4
 [2015q3: Homework5]: 2015q3h5
-
+[2015q3: Homework6]: 2015q3h6
+[2015q3: Homework7]: 2015q3h7
 
 嵌入式作業系統設計與實作 (Spring 2015)
 ------------------------------------------------------
