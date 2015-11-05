@@ -362,18 +362,15 @@ Code section
 - Demo影片:  http://youtu.be/GaduZ8z-KqE
 
 完整程式碼：
-
-.. code-block:: c
-
+```
     git clone https://github.com/Jakgn/stm32F429_SPI_demo
     cd stm32F429_SPI_demo
+```
 
 初始化 SPI：
 
 - Master:
-
-.. code-block:: c
-
+```c
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
         // enable SPI1 peripheral clock
@@ -410,11 +407,10 @@ Code section
         SPI_InitStruct.SPI_FirstBit = SPI_FirstBit_MSB;// data is transmitted MSB first
         SPI_Init(SPI1, &SPI_InitStruct);
         SPI_Cmd(SPI1, ENABLE); // enable SPI1	
+```
 
 - Slave:
-
-.. code-block:: c
-
+```c
         // enable clock for used IO pins
         RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
         // enable SPI1 peripheral clock
@@ -461,11 +457,10 @@ Code section
         NVIC_Init(&NVIC_InitStructure);
 
         SPI_Cmd(SPI1, ENABLE); // enable SPI1	
+```
 
 初始化 LED:
-
-.. code-block:: c
-
+```c
    void init_LED()
    {
     STM_EVAL_LEDInit(LED4);
@@ -473,11 +468,10 @@ Code section
     STM_EVAL_LEDOff(LED4);
     STM_EVAL_LEDOff(LED3);
    }
+```
 
 初始化按鍵:
-
-.. code-block:: c
-
+```c
    void init_PB()
    {
         GPIO_InitTypeDef GPIO_InitStruct;
@@ -496,13 +490,12 @@ Code section
         GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN; // this enables the pulldown resistor --> we want to detect a high level
         GPIO_Init(GPIOA, &GPIO_InitStruct);	// this passes the configuration to the Init function which takes care of the low level stuff
    }
+```
 
 Master 設定
 
 - 傳送訊號
-
-.. code-block:: c
-
+```c
    uint8_t RemoteLED_OnOff(uint8_t action)
    {
     while(SPI_I2S_GetFlagStatus(SPI1,SPI_FLAG_TXE) == RESET);
@@ -512,13 +505,12 @@ Master 設定
             SPI_I2S_SendData(SPI1,LED_OFF);
     return 1;
    }
+```
 
 Master 設定
 
 - task:
-
-.. code-block:: c
-
+```c
     void pb_task(void *pvParameters)
     {
         uint8_t LedOnOff = 0;
@@ -543,13 +535,12 @@ Master 設定
         }
 
     }
+```
 
 Slave  設定：
 
 - 接收訊息 (use SPI1 interrupt)
-
-.. code-block:: c
-
+```c
     void SPI1_IRQHandler(void)
     {
         uint8_t rcv_tmp = 0;
@@ -569,11 +560,10 @@ Slave  設定：
                 }
          }
     }   
+```
 
 main
-
-.. code-block:: c
-
+```c
     int main(void)
     {
             init_SPI();
@@ -591,6 +581,7 @@ main
             vTaskStartScheduler();
             return 0;
     }
+```
 
 示波器圖解
 ============
