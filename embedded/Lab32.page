@@ -13,32 +13,25 @@ toc: no
 -------
 - 安裝 Ubuntu Linux，建議版本為 14.04
 - 安裝必要的套件
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install git zlib1g-dev libsdl1.2-dev automake* autoconf* libtool libpixman-1-dev
-
+```
 - 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install lib32gcc1 lib32ncurses5
-
+```
 - 取得 GNU Toolchain: [toolchain-2014_05.tar.bz2](http://hrv.acomotech.com/ecg/static/toolchain-2014_05.tar.bz2) 、保存到 /tmp 目錄，並且解開到系統中，操作如下
-
-.. code-block:: prettyprint
-
+```
     cd  /
     sudo tar jxvf /tmp/toolchain-2014_05.tar.bz2
-
+```
 - 檢查 Toolchain 是否正確安裝：``ls /usr/local/csl/arm-2014.05/``
 
 設定 Toolchain 執行檔路徑
 ------------------------------------
-.. code-block:: prettyprint
-
+```
     export PATH=/usr/local/csl/arm-2014.05/bin:$PATH
-
+```
 * 提示: 可更新到 ~/.bashrc
 
 STM32 Overview
@@ -57,9 +50,7 @@ STM32 Overview
 
 STM32 on QEMU 環境建立與測試
 --------------------------
-
-.. code-block:: prettyprint
-
+```
     mkdir -p workspace
     cd workspace
     git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
@@ -81,7 +72,7 @@ STM32 on QEMU 環境建立與測試
     make blink_flash_QEMURUN
     make button_QEMURUN
     make uart_echo_QEMURUN
-
+```
 --------------------------------
 
 FreeRTOS
