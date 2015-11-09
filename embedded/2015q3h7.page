@@ -11,8 +11,15 @@ toc: no
 截止日期
 -------------
 * Nov 18, 2015 (含) 之前
+    - 只要完成作業要求 (A) 或 (B) 其中一者即可
 * 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 作業要求 (A)
 -------------
-* 閱讀 [Build minimal ARM Kernel from Scratch](https://embedded2015.hackpad.com/Build-minimal-ARM-Kernel-from-Scratch-uudMy6PqXcj)
+* 閱讀 [Build minimal ARM Kernel from Scratch](https://embedded2015.hackpad.com/Build-minimal-ARM-Kernel-from-Scratch-uudMy6PqXcj) 和 [STM32 程式開發：以 GNU Toolchain 為例](https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit)
+    - 安裝和設定 [QEMU](https://github.com/beckus/qemu_stm32)
+    - 編譯和執行 [mini-arm-os](https://github.com/embedded2015/mini-arm-os)
+    - 依據指示，將 00-Semihosting, 00-HelloWorld, ..., 07-Threads 均實際測試並研讀程式碼
+* 在 github 上 fork [mini-arm-os](https://github.com/embedded2015/mini-arm-os)，並修改 `07-Threads` (不要增加新的目錄！)，提供基本的 shell，然後能夠用新建立的 thread 計算 fibonacci 數列
+    - fibonacci 程式碼要用 [2015q3 Homework #1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) 裡面實做的組合語言版本
+    - shell 程式碼可參照 [rtenv+](/embedded/rtenv) 的 `main.c`，裡頭提供 shell 實做
