@@ -13,22 +13,17 @@ toc: no
 -------
 - 安裝 Ubuntu Linux，建議版本為 14.10
 - 安裝必要的套件，如下：
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
-
+```
 - 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install lib32gcc1 lib32ncurses5
-
+```
 - 取得 GNU Toolchain: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded) ，或用 apt-get 取得，操作如下
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi
+```
 
 STM32 Overview
 --------------
