@@ -23,3 +23,9 @@ toc: no
 * 在 github 上 fork [mini-arm-os](https://github.com/embedded2015/mini-arm-os)，並修改 `07-Threads` (不要增加新的目錄！)，提供基本的 shell，然後能夠用新建立的 thread 計算 fibonacci 數列
     - fibonacci 程式碼要用 [2015q3 Homework #1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) 裡面實做的組合語言版本
     - shell 程式碼可參照 [rtenv+](/embedded/rtenv) 的 `main.c`，裡頭提供 shell 實做
+
+作業要求 (B)
+------------------
+* 閱讀 Week #8 [效能分析: Prefetching](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw) 提到的論文: “[When Prefetching Works, When It Doesn’t, and Why](http://www.cc.gatech.edu/~hyesoon/lee_taco12.pdf)”，在 Linux/x86_64 (注意，要用 64-bit 系統，不能透過虛擬機器執行) 上編譯並執行 [prefetcher](https://github.com/embedded2015/prefetcher)
+    - 說明 `naive_transpose`, `sse_transpose`, `sse_prefetch_transpose` 之間的效能差異，以及 prefetcher 對 cache 的影響
+* 在 github 上 fork [prefetcher](https://github.com/embedded2015/prefetcher)，嘗試用 AVX 進一步提昇效能
