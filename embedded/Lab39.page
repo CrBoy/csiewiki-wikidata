@@ -41,9 +41,7 @@ STM32 Overview
 
 STM32 on QEMU 環境建立與測試
 --------------------------
-
-.. code-block:: prettyprint
-
+```
     mkdir -p workspace
     cd workspace
     git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
@@ -62,16 +60,16 @@ STM32 on QEMU 環境建立與測試
     make blink_flash_QEMURUN
     make button_QEMURUN
     make uart_echo_QEMURUN
+```
 
 小提醒
 -----
 - 若 Linux 環境中預設的 python 版本是 python3，可能會無法configure，這時就可用python virtualenv 解決：
   * 先安裝 python-virtualenv, python2-virtualenv
-
-.. code-block:: prettyprint
-
+```
     $ virtualenv2.7 env
     $ source env/bin/activate
+```
 
 - QEMU monitor 中按下 Ctrl-Alt-2 可切換到 serial0，即可作 UART 輸出/輸入測試，而按下 Ctrl-Alt-1 可切回 QEMU monitor
 - 詳情可參閱 [stm32_p103_demos](http://github.com/beckus/stm32_p103_demos) 目錄的 README 檔案
