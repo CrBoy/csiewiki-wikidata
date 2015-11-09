@@ -15,7 +15,7 @@ toc: no
 * 越早在 GitHub 上有動態、越早接受 code review，評分越高
 
 作業要求 (A)
--------------
+-----------
 * 閱讀 [Build minimal ARM Kernel from Scratch](https://embedded2015.hackpad.com/Build-minimal-ARM-Kernel-from-Scratch-uudMy6PqXcj) 和 [STM32 程式開發：以 GNU Toolchain 為例](https://docs.google.com/document/d/1Ygl6cEGPXUffhTJE0K6B8zEtGmIuIdCjlZBkFlijUaE/edit)
     - 安裝和設定 [QEMU](https://github.com/beckus/qemu_stm32)
     - 編譯和執行 [mini-arm-os](https://github.com/embedded2015/mini-arm-os)
@@ -25,7 +25,11 @@ toc: no
     - shell 程式碼可參照 [rtenv+](/embedded/rtenv) 的 `main.c`，裡頭提供 shell 實做
 
 作業要求 (B)
-------------------
+-----------
 * 閱讀 Week #8 [效能分析: Prefetching](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw) 提到的論文: “[When Prefetching Works, When It Doesn’t, and Why](http://www.cc.gatech.edu/~hyesoon/lee_taco12.pdf)”，在 Linux/x86_64 (注意，要用 64-bit 系統，不能透過虛擬機器執行) 上編譯並執行 [prefetcher](https://github.com/embedded2015/prefetcher)
     - 說明 `naive_transpose`, `sse_transpose`, `sse_prefetch_transpose` 之間的效能差異，以及 prefetcher 對 cache 的影響
 * 在 github 上 fork [prefetcher](https://github.com/embedded2015/prefetcher)，嘗試用 AVX 進一步提昇效能
+    - 修改 `Makefile`，產生新的執行檔，分別對應於 `naive_transpose`, `sse_transpose`, `sse_prefetch_transpose` (學習 Homework #2 的做法)
+    - 用 perf 分析 cache miss/hit
+    - 參考 [Performance of SSE and AVX Instruction Sets](http://arxiv.org/pdf/1211.0820.pdf)，用 SSE/AVX intrinsic 來改寫程式碼
+    - 詳細描述實驗設計，以及你的觀察
