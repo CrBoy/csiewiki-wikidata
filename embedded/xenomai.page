@@ -69,8 +69,7 @@ ipipe_XXX -> rthal_XXX -> xnXXX
 高優先度的domain會先接收到interrupt
 高優先度的domain的thread 可以preempt低優先度domain的thread
 
-Xenomai 3
-+++++++++++
+## Xenomai 3
 
 xenomai3有兩種configuration：
 
@@ -90,8 +89,8 @@ xenomai3有兩種configuration：
 
 運用本機的 linux core 在 PREEMPT_RT之上達到 real-time 的事情，這裡不是強制的，看 applications 對反應時間和 maximum jitter 的要求，有些甚至會作到某種程度 deadline 的忽略。
 
-Adeos / iPipe
-++++++++++++++
+## Adeos / iPipe
+
 
 主要負責處理irq 與 high resolution timer, ipipe的工作很簡單 就是設定timer並將interrupt往上丟
 
@@ -173,23 +172,19 @@ GIC大約是上圖的distributor的位置
 
 但raspberry pi只有一顆CPU所以不會有SMP與 CPU affinity設定的問題
 
-
-HAL
-++++++++++++
+## HAL
 
 檔案位置在 : xenomai-head/ksrc/arch/arm/hal.c (xenomai 2.6)
 
 Hardware Abstract Layer:process  透過HAL呼叫ipipe的服務。這一層主要是包裝ipipe 與底層資訊 讓nucleus可以不用看到硬體資訊。
 
-Nucleus / Cobalt
-++++++++++++++++
+## Nucleus / Cobalt
 
 檔案位置在 : xenomai-head/ksrc/nucleus (xenomai 2.6) ; xenomai-head/kernel/cobalt (xenomai 3)
 
 Xenomai的kernel, 包含schedule、timer、synch、thread、lock等等一般該有的RTOS功能，負責real-time tasks的執行。
 
-Scheduler
-++++++++++++
+## Scheduler
 
 優先處理realtime task ,linux也被視為其中一個thread,本身也有scheduler,但須等到沒有real-time task時(idle state),才會執行linux thread
 
@@ -208,8 +203,7 @@ sched-tp.c : Temporal partitioning (typical of IMA systems)
 sched.c : 應該是負責四個schedule方式的檔案
 
 
-Skins
-++++++++++++
+## Skins
 
 檔案位置在xenomai-head/ksrc/skins (xenomai 2.6)
 
@@ -263,8 +257,7 @@ Skins
 硬體規格
 ==============================
 
-Raspberry pi (Model B+) & Beaglebone 
-++++++++++++++++++++++++++++++++++++++
+# Raspberry pi (Model B+) & Beaglebone 
 
 * Raspberry pi
 
@@ -281,8 +274,7 @@ Raspberry pi (Model B+) & Beaglebone
 建立 Xenomai 環境
 ==============================
 
-Xenomai 2.6 on raspberry pi
-++++++++++++++++++++++++++++
+## Xenomai 2.6 on raspberry pi
 
 * 下載 Raspbian: http://www.raspberrypi.org/downloads/
   - 將raspbian的img檔燒進sd card上
@@ -389,8 +381,7 @@ Xenomai 2.6 on raspberry pi
   sudo modprobe xeno_posix
 ```
 
-Xenomai 3 on raspberry pi
-++++++++++++++++++++++++++
+## Xenomai 3 on raspberry pi
 
 * 取得 xenomai 3.0-rc、rpi-linux 3.18.y、ipipe 3.18.12 arm patch、toolchain
 ```
@@ -482,8 +473,7 @@ Xenomai 3 on raspberry pi
   sudo cp -r xenomai-3/dist/usr/xenomai $(sdcard)/usr
 ```
 
-Beaglebone Black 環境設置
-++++++++++++++++++++++++++++
+## Beaglebone Black 環境設置
 
 使用舊版linux(Angstrom)來做測試，核心編譯步驟參考上面步驟 或 http://elinux.org/EBC_Installing_Kernel_Source
 
@@ -522,8 +512,7 @@ Beaglebone Black 環境設置
   uname -a
 ```
 
-Xenomai 2.6 on Beaglebone
-++++++++++++++++++++++++++++
+## Xenomai 2.6 on Beaglebone
 
 Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 
@@ -628,8 +617,7 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
   /usr/xenomai/bin/cyclictest -p 90
 ```
 
-Xenomai 3 on Beaglebone Black 
-++++++++++++++++++++++++++++++++
+## Xenomai 3 on Beaglebone Black 
 
 * 先下載 linux kernel:
   - 參考資料 : http://elinux.org/EBC_Installing_Kernel_Source
