@@ -11,53 +11,48 @@ toc: no
 ARM Semihost
 ------------
 * 使用 ARM 所開發的目標系統 (target system)，不一定會提供所有的輸入/輸出設備。因此 ARM 設計了 semihost 這種機制，讓運行 ARM debugger 的主機可以與目標系統進行 I/O 溝通，以利產品開發
-  - http://albert-oma.blogspot.tw/2012/04/semihosting.html
+    - [Semihosting (半主機)](http://albert-oma.blogspot.tw/2012/04/semihosting.html)
 
 * Semihost 的實作是透過使用定義好的軟體中斷 (SVCs)，使程式在執行過程中產生中斷。一旦目標系統上的程式呼叫到對應的指令 (semihosting call)，便產生軟體中斷，接著 Debug Agent 就會負責處理此中斷，進行與主機的溝通
-  - http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html
+    - [The semihosting interface](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html)
 
-* FreeRTOS extensions: https://github.com/hugovincent/mbed-freertos
+* [FreeRTOS extensions](https://github.com/hugovincent/mbed-freertos)
   - lib/semifs.c
   - mbed (mbed.org) target supports semihosted local filesystem, accessible via the mbed USB interface. Should also work with semihosting-compatible debuggers.
 
-* QEMU ARM semihosting
-  - http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/
+* [QEMU ARM semihosting](http://balau82.wordpress.com/2010/11/04/qemu-arm-semihosting/)
 
 
 User-mode Emulation
 --------------------
 * 透過模擬器執行 printf() 一類需要系統呼叫的 ARM 程式
-
-.. code-block:: prettyprint
-
+```
     sudo apt-get install qemu-user-static
     cd Labs/Lab7
     make factorial
     ./factorial
+```
 
 OpenOCD + STM32F4
 ------------------
 * OpenOCD 的安裝請見 [Lab-6](/embedded/Lab6)
-* ARM On-Chip Debugging demonstration: http://www.youtube.com/watch?v=NSVOuHToJ6c
-* Beginner’s look at On-Chip Debugging: http://hackaday.com/2012/09/27/beginners-look-at-on-chip-debugging/
-* Architecture and Core Commands of OpenOCD
-  - http://openocd.sourceforge.net/doc/html/Architecture-and-Core-Commands.html
-  - Command: arm semihosting
-    + Display status of semihosting, after optionally changing that status.
-    + "Semihosting allows for code executing on an ARM target to use the I/O facilities on the host computer i.e. the system where OpenOCD is running. The target application must be linked against a library implementing the ARM semihosting convention that forwards operation requests by using a special SVC instruction that is trapped at the Supervisor Call vector by OpenOCD."
+* [ARM On-Chip Debugging demonstration](http://www.youtube.com/watch?v=NSVOuHToJ6c)
+* [Beginner’s look at On-Chip Debugging](http://hackaday.com/2012/09/27/beginners-look-at-on-chip-debugging/)
+* [Architecture and Core Commands of OpenOCD](http://openocd.sourceforge.net/doc/html/Architecture-and-Core-Commands.html)
+    - Command: arm semihosting
+        + Display status of semihosting, after optionally changing that status.
+        + "Semihosting allows for code executing on an ARM target to use the I/O facilities on the host computer i.e. the system where OpenOCD is running. The target application must be linked against a library implementing the ARM semihosting convention that forwards operation requests by using a special SVC instruction that is trapped at the Supervisor Call vector by OpenOCD."
 
 作業
 ----
 * 適度修改 Makefile 與 OpenOCD 設定檔，使 Host 端可以自動下載 ELF image 到 STM32F4-Discovery 環境中，並且執行程式，預期將輸出以下：
-
-.. code-block:: prettyprint
-
+```
     factorial(0) = 1
     factorial(1) = 1
     factorial(2) = 2
     ...
     factorial(9) = 362880
-
+```
 * ``factorial.c`` 的 printf() 呼叫，將改以 semihost 方式執行
 * 評分測試方法：
   - ``cd Labs/Lab7 && make all auto``
