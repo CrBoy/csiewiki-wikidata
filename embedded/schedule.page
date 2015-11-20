@@ -26,7 +26,7 @@ toc: no
 |#7    |Oct 30   | [Code Review](https://embedded2015.hackpad.com/ep/pad/static/xDmCCv0k00K)               | = [2015q3: Homework6] = |
 |#8    |Nov 6  |  [C Programming + ARM](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw)  | = [2015q3: Homework7] = |
 |#9    |Nov 13  | [From Hello to Preemptive Scheduler](https://embedded2015.hackpad.com/ep/pad/static/RjDVuOb23bM)       |  = [2015q3: Homework8] = |
-|#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) |        * |
+|#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) |        = [2015q3: Homework9] = |
 |#11   |Nov 27  |Peripherals:           * |
 |#12   |Dec 4  | Peripherals: [GPIO](/embedded/GPIO) [ADC](/embedded/ADC)       |        * |
 |#13   |Dec 11  |Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI), [Flash](/embedded/Flash)      |        * |
@@ -45,6 +45,7 @@ toc: no
 [2015q3: Homework6]: 2015q3h6
 [2015q3: Homework7]: 2015q3h7
 [2015q3: Homework8]: 2015q3h8
+[2015q3: Homework9]: 2015q3h9
 
 嵌入式作業系統設計與實作 (Spring 2015)
 ------------------------------------------------------
