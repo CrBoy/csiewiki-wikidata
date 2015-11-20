@@ -13,7 +13,12 @@ toc: no
     - 紀錄問題: [QA: GPIO](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
     - 紀錄問題: [QA: ADC](https://embedded2015.hackpad.com/Peripheral-ADC-6Je0oGuYmLy)
 * 第二階段: Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI), [Flash](/embedded/Flash)
+    - 紀錄問題: [QA: USART](https://embedded2015.hackpad.com/Peripheral-USART-5c1m7nktyMN)
+    - 紀錄問題: [QA: SPI](https://embedded2015.hackpad.com/Peripheral-SPI-yWQ8AZuqfi7)
+    - 紀錄問題: [QA: Flash](https://embedded2015.hackpad.com/Peripheral-Flash-PlDo5CQ60ev)
 * 第三階段: Peripherals: [I2C](/embedded/I2C), [USB](/embedded/USB)
+    - 紀錄問題: [QA: I2C](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
+    - 紀錄問題: [QA: USB](https://embedded2015.hackpad.com/Peripheral-USB-mdOjvkUd5Xd)
 
 # 繳交作業
 * 第一階段截止日期: Dec 2, 2015 (含) 之前 (GPIO, ADC)
