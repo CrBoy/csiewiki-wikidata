@@ -27,9 +27,9 @@ toc: no
 |#8    |Nov 6  |  [C Programming + ARM](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw)  | = [2015q3: Homework7] = |
 |#9    |Nov 13  | [From Hello to Preemptive Scheduler](https://embedded2015.hackpad.com/ep/pad/static/RjDVuOb23bM)       |  = [2015q3: Homework8] = |
 |#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) |        * |
-|#11   |Nov 27  |Peripherals: [GPIO](/embedded/GPIO)  |        * |
-|#12   |Dec 4  | Peripherals: [ADC](/embedded/ADC)       |        * |
-|#13   |Dec 11  |Peripherals: [SPI](/embedded/SPI)      |        * |
+|#11   |Nov 27  |Peripherals:           * |
+|#12   |Dec 4  | Peripherals: [GPIO](/embedded/GPIO) [ADC](/embedded/ADC)       |        * |
+|#13   |Dec 11  |Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI)      |        * |
 |#14   |Dec 18  |Peripherals: [USB](/embedded/USB)        |        * |
 |#15   |Dec 25   | OS: [FreeRTOS](/embedded/freertos)       |        * |
 |#16   |Jan 1  | Happy New Year!        |        * |
