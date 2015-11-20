@@ -8,9 +8,14 @@ toc: no
 - 補強基礎觀念
 - 你問同學答：請利用共筆提問
 
+# 閱讀資料、提出問題
+* 第一階段: Peripherals: [GPIO](/embedded/GPIO) [ADC](/embedded/ADC)
+    - 紀錄問題: [QA: GPIO](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
+    - 紀錄問題: [QA: ADC](https://embedded2015.hackpad.com/Peripheral-ADC-6Je0oGuYmLy)
+* 第二階段: Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI), [Flash](/embedded/Flash)
+* 第三階段: Peripherals: [I2C](/embedded/I2C), [USB](/embedded/USB)
 
-繳交作業
-------------
+# 繳交作業
 * 第一階段截止日期: Dec 2, 2015 (含) 之前 (GPIO, ADC)
 * 第二階段截止日期: Dec 9, 2015 (含) 之前 (USART, SPI, Flash)
 * 第三階段截止日期: Dec 18, 2015 (含) 之前 (I2C, USB)
