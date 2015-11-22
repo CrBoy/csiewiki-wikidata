@@ -17,7 +17,8 @@ toc: no
 
 # 作業要求 (A)
 * 修改 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 的 `07-Threads` (不要增加新的目錄！)，在 Homework #7 的基礎上，實做 priority scheduling
-* 持續更新在 Homework #7 的共筆中
+* GitHub 和 Hackpad 都沿用 [Homework #7](/embedded/2015q3h7) 的[共筆](https://embedded2015.hackpad.com/2015q3-Homework-7-Go3srz9oPgc)
 
 # 作業要求 (B)
 * 參考在 FreeRTOS [實做檔案系統的方式](/embedded/Lab39)，對 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 提出唯讀檔案系統的實做，一樣在 Homework #7 的基礎上改進。
+* GitHub 和 Hackpad 都沿用 [Homework #7](/embedded/2015q3h7) 的[共筆](https://embedded2015.hackpad.com/2015q3-Homework-7-Go3srz9oPgc)
