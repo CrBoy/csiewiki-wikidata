@@ -96,7 +96,7 @@ Configuration - 配置圖
 =======================
 Input configuration (P.273, **8.3.9 Input configuration** in Reference manual)
 ------------------------------------------------------------------------------
-![](/GPIO_)Input_configurations.png
+![](http://wiki.csie.ncku.edu.tw/gpio_input_configuration.png)
 When the I/O port is programmed as Input:
 
 - the output buffer is disabled
@@ -114,7 +114,7 @@ When the I/O port is programmed as Input:
 
 Output configuration (P.274, **8.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
-![](/GPIO_)Output_configurations.png
+![](http://wiki.csie.ncku.edu.tw/gpio_output_configuration.png)
 When the I/O port is programmed as output:
 
 .. TODO: Output Control
