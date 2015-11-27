@@ -26,8 +26,8 @@ toc: no
 |#7    |Oct 30   | [Code Review](https://embedded2015.hackpad.com/ep/pad/static/xDmCCv0k00K)               | = [2015q3: Homework6] = |
 |#8    |Nov 6  |  [C Programming + ARM](https://embedded2015.hackpad.com/ep/pad/static/7ZSsa98cSKw)  | = [2015q3: Homework7] = |
 |#9    |Nov 13  | [From Hello to Preemptive Scheduler](https://embedded2015.hackpad.com/ep/pad/static/RjDVuOb23bM)       |  = [2015q3: Homework8] = |
-|#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) |        = [2015q3: Homework9] = |
-|#11   |Nov 27  |Peripherals:           * |
+|#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) | = [2015q3: Homework9] = |
+|#11   |Nov 27  |[STM32 + Peripherals](https://embedded2015.hackpad.com/ep/pad/static/e3IjL7Kq3Lr) | = [2015q3: Homework10] = 
 |#12   |Dec 4  | Peripherals: [GPIO](/embedded/GPIO) [ADC](/embedded/ADC)       |        * |
 |#13   |Dec 11  |Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI), [Flash](/embedded/Flash)      |        * |
 |#14   |Dec 18  |Peripherals: [I2C](/embedded/I2C), [USB](/embedded/USB)        |        * |
@@ -46,6 +46,7 @@ toc: no
 [2015q3: Homework7]: 2015q3h7
 [2015q3: Homework8]: 2015q3h8
 [2015q3: Homework9]: 2015q3h9
+[2015q3: Homework10]: 2015q3h10
 
 嵌入式作業系統設計與實作 (Spring 2015)
 ------------------------------------------------------
