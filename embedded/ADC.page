@@ -553,7 +553,7 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 
 - ADC 可設 ADON 打開電源，重設來關掉電源
 
-![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
+![](http://bbs.21ic.com/upfiles/img/20097/200971165212287.gif)
 
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
 
