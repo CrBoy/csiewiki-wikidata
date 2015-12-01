@@ -130,7 +130,7 @@ Successive approximation ADC
  - 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
  - 由這一個狀態迭代至LSB為止
 
-![](http://upload.wikimedia.org/wikipedia/en/thumb/6/61/SA_ADC_block_diagram.png/1024px-SA_ADC_block_diagram.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/SA_ADC_block_diagram.png/300px-SA_ADC_block_diagram.png)
 
 ADC Block Diagram
 ------------------
