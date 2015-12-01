@@ -556,11 +556,6 @@ STM32F4xx Reference Manual 在 10.10 Temperature sensor 中提到
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1384161281907_adcon.jpeg)
 
 - 版子上共有 **3 組ADC**, 可測量 **16 個外部訊號源**和 **2 個內部訊號源**。每個外部訊號源對應一個通道。
-
-
-![](http://bbs.21ic.com/upfiles/img/20097/200971165212287.gif)on STM32F4
-
-
 - 每個通道能自己設置不同的採樣時間，可根據不同的應用改變採樣時間。
 - 總轉換時間即採樣時間加上 ADC core 等其他元件(ex:溫度感測器的讀取)所需時間。
 - ADC 正式運作前必需做 calibration 以避免電容的狀態不是預期而造成誤差。
