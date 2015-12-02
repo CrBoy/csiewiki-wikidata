@@ -2,18 +2,53 @@ JaredCJR(張家榮)
 ------------------
 **簡介:**
 
-- 成功大學工程科學系105級
+- 成功大學 工程科學系105級
+- 交通大學 資訊科學與工程研究所 系統設計組 正取生
 
-作業及筆記
-============
+- [北京清華大學 第三屆開源操作系統技術年會 講者](http://soft.cs.tsinghua.edu.cn/os2atc2015/rc.html)
+
+**歷年重要作品:**
+
+- 比賽及計畫
+
+    - Shopping Elf / 瑞昱半導體-阿米巴物聯網創意設計大賽-冠軍 
+
+    - 穿戴式室內定位暨安全家庭系統整合 / 科技部-大專學生研究計畫
+
+    - 醫生醫事 /全國校園雲端創新應用大賽-佳作
+
+- 研究
+
+    - ARM-Linux 效能及排程行為分析/Google 搜尋:“arm linux”第一筆結果(2015/10/12) 
+
+    - 基於 ARM Cortex-A8 之程式碼最佳化探討/進階嵌入式系統課程(成大資工)教材之一
+
+[上述五項作品可見這裡](https://drive.google.com/drive/folders/0B8s3r01ACtQGZ0FlSGhaSWxpZ2s)
+
+- 開放原始碼專案貢獻(正在進行中)
+    - uVisor
+        - CrashDebug
+            - CrashCatcher
+            - MRI
+    - [可見OS2ATC2015簡報內容p.28 , p.29](http://soft.cs.tsinghua.edu.cn/os2atc2015/ppt/hjq.pdf)
+
+聯絡資訊:
+=====================
+- email: ``jaredcjr.tw@gmail.com``
+
+2015春季班 個人評量
+=======================
+
+(2015春季班)作業及筆記
+--------------------------
 - week1&2 : [GitHub](https://github.com/JaredCJR/arm-lecture), [Hackpad](https://embedded2014.hackpad.com/Embedded-System-2015-Week-12-sf6Jmps07Gr)
 - week3 : [GitHub](https://github.com/JaredCJR/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/Embeded-System-2015-Week3-m1jrag8Cyfn)
 - week4 : [GitHub](https://github.com/JaredCJR/visualizer), [Hackpad](https://embedded2015.hackpad.com/2015q1-Week4-Lab40-LhLVBnrOSpN)
 - week7&8 : [GitHub](https://github.com/JaredCJR/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/Week7Week-8-eifNIs0bjEF)
 - week9 : [Hackpad](https://embedded2015.hackpad.com/Lab43-waG48D3Jofi)
 
-報告筆記
-=========
+(2015春季班)報告筆記
+--------------------------
 - 整體 : [Hackpad](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
 - Arm v7-A VMSA : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-v7-A-VMSA-6dMVuS4kALA)
 - lmbench3簡介 : [Hackpad](https://embedded2015.hackpad.com/Team6Linux-on-ARMlmbench-sUl64jzsBv2)
@@ -21,13 +56,13 @@ JaredCJR(張家榮)
 - lmbench3 - lat_ctx實驗過程(較新的部分都直接更新在wiki上，以wiki為主) : [Hackpad](https://embedded2015.hackpad.com/lmbench-lat_ctx-on-BBB-linux-x2YKz26rtxX)
 - gnuplot使用分析 : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL)
 
-報告
-=========
+(2015春季班)報告
+--------------------------
 - CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
 - 主要負責context switch理論分析以及實驗暨結果探討
 
-所見所聞心得
-=============
+(2015春季班)所見所聞心得
+--------------------------
 - 第一次上這麼具有挑戰性的課程，涵蓋了過去的所學，像是機率與統計、計算機組織、作業系統、資料結構以及邏輯設計，而且也從中發現了自己是多麼的渺小，自己的程式設計能力相當的不足，像是C語言的callback和function pointer都還不是很熟悉，還有很多特別的方法像是Concatenation,inline assembly等等。
 - 除此之外，終於了解MCU上時間的計算方式，是透過systick的方式去記錄；作業系統教的TCB，原先不是很了解實做方式，直到寫作業時，當時純粹只是為了幫task弄的比較像物件導向，然後比較早交作業，老師在FB提到我修改了TCB，我才發現原來我做的這件事情就是修改TCB...發現以前真的不是很懂到底在學什麼，還有這個作業也讓我更了解scheduler到底是什麼，不然教科書上也都只是畫個框框，裡面填上scheduler，也不懂實際運作的方式，而且有很多強者同學，可以去學習別人的長處，互相討論，我覺得這是很好的方式，讓不認識的同學一起努力；mini-arm-os讓我知道什麼叫作"寫出別人寫不出來的code"，即使數量不多，因為基礎不佳，只好"舉燭"了一整周，這個規模很小的作業系統卻對我有著不一樣的啟示。
 - 由於對於這個領域可以說是完全不懂，過程中也啃了很多的英文教材，這時候才領悟到英文的重要性，因為平時也不會自己大量的啃原文書，發現以前有好好學英文並沒有做錯，很多長輩的叮嚀總是時間到了才會印證，這個時代快速閱讀抓重點的能力真的很重要。
@@ -35,15 +70,13 @@ JaredCJR(張家榮)
 - lmbench讓我了解benchmark的基本原理，而且讓我讀了這輩子第一篇論文(其實總共讀了5篇)，終於了解什麼是cache，再這過程中也學會很多工具，如gnuplot，而且也發現了時代的進步，像是以前cache是一個byte一個byte讀取(lmbench2的年代)，現在就是一次讀取一個cache line大小的data，這些過程中，也和組員討論的非常熱烈，互相學習。
 - 這堂課最特別的地方在於，遇到問題就要自己想辦法解決，這種能力的培養再其他課很少有機會培養，而且也很少課會需要如此的大量討論、看論文、看開放式課程、回憶過去所學是否正確(像我就發現以前上的OS老師教錯，說semaphore就是mutex...)，經過這些過程而學到的東西，真的是想忘都忘不掉。這是一堂要有毅力你才學的到東西，而且毅力越強學的越多的課程，不然大概只會充滿失落感，因為周遭充滿著強者同學，很適合對資訊科學充滿熱情的人來學習。
 
-自我評量分數 (1 到 10 級分)
-============================
+(2015春季班)自我評量分數 (1 到 10 級分)
+----------------------------------------------
 - 我給自己10級分。
 - 原因:上面的心得已經大致描述了這一個學期的學習歷程，這是一門有心就很花時間的課，雖然我沒有什麼太特殊的成果，但是每周至少都花了20個小時以上在摸索、了解以及撰寫作業(剛開學的前8週幾乎是所有時間都投入在這堂課程，因為基礎不好)，以及老師給的推薦教材大部分(頁數少於300頁的部分，我都會看，訓練自己的英文能力以及快速閱讀重點的習慣，即使看的不是很懂也會以快速檢閱的方式先幫自己建立個概念)，這個學習的過程我很珍惜，我覺得給予自己這樣的分數當之無愧，我認為自己進步的幅度才是最重要的，即使現在比他人弱，持續的進步的速度只要比其他人還快，就有一天可以成為佼佼者。
 
 
-聯絡資訊:
-=========
-- email: ``empire89090@gmail.com``
+
 
 
 
