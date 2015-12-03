@@ -35,8 +35,28 @@ categories: User
 ========
 作業
 ----
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://hackpad.com/Homework-1-wwRA8AC1WcC), [github](https://github.com/zeroplusone/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-2-ZFMBm6jTeIr), [github](https://github.com/zeroplusone/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-3-a7k9hmxdHAg), [github](https://github.com/zeroplusone/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-4-B-6MxBphFw4QD), [github](https://github.com/zeroplusone/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-5-cXvYSKovgTk), 補充homework3內容
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-7-4CN12JZGASH), [github](https://github.com/zeroplusone/mini-arm-os)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * (未完成)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * GPIO:[hackpad](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
+    * ADC:(未完成)
 
 分組報告
 ------
+- USART
 
 
