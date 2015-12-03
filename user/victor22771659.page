@@ -14,23 +14,33 @@ Cheney YE(葉宥成)
 
     - 2015全國大學校院智慧電子系統(IE)設計競賽 - 智慧方塊Intelligent Block
     - [簡報可參考](https://docs.google.com/document/d/1lyndpM31AbVSTq-KgXHWaAXkX9AYyewCi-VU8bP998g/edit?usp=sharing)
+    - [Source Code(Master)](https://github.com/victor22771659/intelligentBlock)
+    - [Source Code(Control Block)](https://github.com/victor22771659/IntelligentBlock-control_block-)
 
 - 碩論題目:Active Safety Devices of Car based on Image Identification(進行中)
+          (應用技術:Haar-Like cascade classifier、MCMC Edge Detection、Template Matching)
 
 
-- 研究所修課方向
+- 研究方向
 
     - Embedded System(嵌入式系統)、Computer Vision(電腦視覺)、Pattern Recognition(模版識別)、Image Processing(影像處理) 
 
 - 常用工具
 
     - 常用開發環境:Lubuntu
-    - 常用軟體工具:Makefile、GDB、GCC、Sublime、Vim、Visual Studio
+    - 常用軟體工具:Makefile、GDB、GCC、Sublime、Vim、Visual Studio、Matlab
     - 常用硬體工具:示波器、邏輯分析儀、信號產生器、電源供應器、三用電表、電烙鐵
     - 常用函式庫:openCV
     - 常用程式語言:C、C++、ARM Assembly
-
+    - 使用過的開發版:Arduino、Raspberry Pi2、STM32F4 Discovery(ARM Cortex-M3)、89S51
 
 聯絡資訊:
 =====================
 - email: ``victor22771659@hotmail.com``
+- [Facebook](https://www.facebook.com/profile.php?id=100001220726993)
+- [Linkedin](https://tw.linkedin.com/in/宥成-葉-a0b522a7)
+- [個人網站](https://about.me/ye_cheney#)
+
+Source Code Contribution:
+=====================
+- [Github](https://github.com/victor22771659)
