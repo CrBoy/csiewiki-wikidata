@@ -144,7 +144,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 
 Data clock timing diagram
 
-[STM32F407xx Reference Manual p.664](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) 
+[STM32F407xx Reference Manual p.664](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf) 
 
 Data frame format
 ------------------
@@ -174,17 +174,21 @@ CRC calculation
 ---------------------------
 
 Status flag
------------
-寫程式時必須要持續監視的三個 status flag:
-
-Tx buffer empty  flag(TXE)
-Rx buffer not empty(RXNE)
-
-BUSY flag：用以指示SPI 正忙於傳輸的 flag
+--------------
+- 寫程式時必須要持續監視的三個 status flag:
+    - Tx buffer empty  flag(TXE)
+    - Rx buffer not empty(RXNE)
+    - BUSY flag：用以指示SPI 正忙於傳輸的 flag
 
 SPI 通訊過程
-------------
-![](/TXE_RXNE_BSY)behavior in Master _full-duplex mode(P.672).png
+--------------
+
+![](/embeded/SPI/TXE_RXNE_BSY behavior in Master full_duplex mode.png)
+
+TXE/RXNE/BSY behavior in Master / full-duplex mode (BIDIMODE=0 and RXONLY=0)
+in the case of continuous transfers
+
+[STM32F407xx Reference Manual p.672](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf) 
 
 - 傳送步驟：
   * 將第一筆資料寫入SPI_DR register裡(清除TXE bit、BSY flag設為1)
@@ -206,7 +210,7 @@ SPI 通訊過程
   * 依序重複步驟...
 
 SPI communication using DMA 
----------------------------
+-------------------------------
 
 - 為了能達到最大傳輸速率，cpu必須在TXE flag被升起時，及時將資料寫入SPI_DR regsister，同時接收端也必須在RXNE flag被升起時，及時將資料讀取出來，以避免有Overrun Condition的狀況發生，所以為了能減少cpu負荷並加快傳輸速度，SPI也實做了一種請求/應答的DMA機制
 
