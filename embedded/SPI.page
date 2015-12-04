@@ -339,7 +339,7 @@ PCM standard
 - 不需用到Left channel和Right channel
 - 分成兩種PCM modes(short frame、long frame)，可利用PCMSYNC bit(in SPI_I2SCFGR)來作設定
 
-![](/embedded/PCM)standard waveforms (16-bit).PNG
+![](/embedded/PCM standard waveforms (16-bit).PNG)
 
 - 在long frame mode時，WS訊號在前13個bits(MSB)都處於升起的狀態
 - 在short frame mode時，WS訊號升起的時間只有一個cycle
