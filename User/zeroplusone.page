@@ -28,8 +28,19 @@ categories: User
 
 得獎紀錄
 -------
+- 100、101、102學年度書卷獎
 - 2014 全國大專電腦軟體設計競賽 程式設計組 佳作
+- 2013 ACM-ICPC Asia Chiayi Regional 第23名
+- 2014 ACM-ICPC Asia Taichung Regional 第22名
 - 104年度 中國工程師學會 優秀工程學生獎學金
+
+作品
+-------
+- 大學專題：基於視訊行車紀錄之停車格引導服務
+    * 開發Android應用程式，使用無線通訊蒐集鄰近車輛的行車紀錄影像。伺服器端使用OpenCV工具、設計演算法自動分析路邊停車格資訊，提供用路人即時的車位位置。
+
+- Alpha Hackthon：Eat or Die ([github](https://github.com/WemyJu/HackathonTaiwan2015))
+    * 一款Android Application，提供使用者鄰近的餐廳清單。利用限時二選一的遊戲方式，讓使用者做出最直覺的選擇，再將結果當關鍵字，向google map/location api抓取推荐的餐廳清單。
 
 聯絡資訊
 ------
