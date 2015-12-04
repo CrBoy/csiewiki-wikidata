@@ -120,15 +120,12 @@ SPI single master/single slave application
 
 [STM32F407xx Reference Manual  p.662](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)
 
-.. baud rate ref menual p.834
-
-..
-    Slave select(NSS) pin management
-    ''''''''''''''''''''''''''''''''
-
+    - baud rate ref menual p.834
+    - Slave select(NSS) pin management
 
 Clock phase and clock polarity
-''''''''''''''''''''''''''''''
+----------------------------------
+
 SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4種組合。
 
 - CPOL(clock polarity) 決定閒置時 clock 的電位。
@@ -141,7 +138,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 
   * CPHA = 0 表示在第一個 edge (Rising,when CPOL=0.Falling,when CPOL=1.)取值。
 
-  * CPHA = 1 表示在第二個 edge (Rising,when CPOL=1.Falling,when CPOL=0.)取值。
+  * CPHA = 1 表示在第二個 edge (Falling,when CPOL=1.Rising,when CPOL=0.)取值。
 
 ![](/embedded/SPI/SPI)Dota clock timing diagram.png
 Data clock timing diagram[#]_
