@@ -664,13 +664,14 @@ Error flags
 
 
 怎麼知道要使用哪些腳位？
----------------------
+------------------------
 
-![](/alternate)function mapping.png
-Alternate function mapping[#]_
-.. [#] [Datasheet ](http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf) p.61
+![](/alternate function mapping.png)
+Alternate function mapping
 
-![](/Alternate)function mapping continued.png
+[Datasheet .61](http://www.st.com/web/en/resource/technical/document/datasheet/DM00037051.pdf)
+
+![](/Alternate function mapping continued.png)
 由於GPIOE的AF最少，功能最為乾淨(不易佔用其他功能所需之腳位)，適合作為IO port 腳。
 STM32F407xx Datasheet p.64
 
