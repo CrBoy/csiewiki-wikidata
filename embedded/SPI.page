@@ -141,6 +141,7 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
   * CPHA = 1 表示在第二個 edge (Falling,when CPOL=1.Rising,when CPOL=0.)取值。
 
 ![](/embedded/SPI/SPI Dota clock timing diagram.png)
+
 Data clock timing diagram
 
 [STM32F407xx Reference Manual p.664](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) 
@@ -150,14 +151,8 @@ Data frame format
 
 - LSB-first or MSB first
 - 一次傳送的資料量為 8-bit 或 16-bit，可由SPI_CR1 register裡的DFF bit來作設定
-
-..
-    confiurataion in master mode
-    -------------------------------
-
-..
-    confiurataion in slave mode
-    -------------------------------
+    - confiurataion in master mode
+    - confiurataion in slave mode
 
 half-duplex communication
 --------------------------
@@ -167,21 +162,16 @@ half-duplex communication
 
 SPI 可以只做半雙工，在半雙工時，沒用到的另一隻 pin 可作為一般的 GPIO 使用。
 
-.. RXONLY 在 BIDMODE 時有作用否？
+ - RXONLY 在 BIDMODE 時有作用否？
+    - data transmission and reception procedures
+        - Start sequence in master mode
+            - In full-duplex (BIDIMODE=0 and RXONLY=0)
+                - begins when data are written into the SPI_DR register (Tx buffer)
+            - In unidirectional receive-only mode (BIDIMODE=0 and RXONLY=1)
+                - begins as soon as SPE=1
 
-..
-    data transmission and reception procedures
-    ------------------------------------------
-    Start sequence in master mode
-    - In full-duplex (BIDIMODE=0 and RXONLY=0)::
-        begins when data are written into the SPI_DR register (Tx buffer)
-    - In unidirectional receive-only mode (BIDIMODE=0 and RXONLY=1)::
-        begins as soon as SPE=1
-    TODO: not finished
-
-..
-    CRC calculation
-    ---------------
+CRC calculation
+---------------------------
 
 Status flag
 -----------
