@@ -140,13 +140,13 @@ SPI_CR1 中有兩個 bits CPOL 和 CPHA 控制取值的時間關係，總共有4
 
   * CPHA = 1 表示在第二個 edge (Falling,when CPOL=1.Rising,when CPOL=0.)取值。
 
-![](/embedded/SPI/SPI)Dota clock timing diagram.png
-Data clock timing diagram[#]_
+![](/embedded/SPI/SPI Dota clock timing diagram.png)
+Data clock timing diagram
 
-.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.664
+[STM32F407xx Reference Manual p.664](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) 
 
 Data frame format
-'''''''''''''''''
+------------------
 
 - LSB-first or MSB first
 - 一次傳送的資料量為 8-bit 或 16-bit，可由SPI_CR1 register裡的DFF bit來作設定
