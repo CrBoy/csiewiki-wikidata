@@ -170,9 +170,6 @@ SPI 可以只做半雙工，在半雙工時，沒用到的另一隻 pin 可作�
             - In unidirectional receive-only mode (BIDIMODE=0 and RXONLY=1)
                 - begins as soon as SPE=1
 
-CRC calculation
----------------------------
-
 Status flag
 --------------
 - 寫程式時必須要持續監視的三個 status flag:
@@ -191,31 +188,31 @@ in the case of continuous transfers
 [STM32F407xx Reference Manual p.672](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf) 
 
 - 傳送步驟：
-  * 將第一筆資料寫入SPI_DR register裡(清除TXE bit、BSY flag設為1)
-  * 當傳送第一個bit時，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
-  * 接著將第二筆資料寫入SPI_DR register裡(清除TXE bit)
-  * 等待第一筆資料的bit傳送完
-  * 傳送第二筆資料的第一個bit，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
-  * 接著將第三筆資料寫入SPI_DR register裡(清除TXE bit)
-  * 等待第二筆資料的bit傳送完
-  * 傳送第三筆資料的第一個bit，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
-  * 等待第三筆資料的bit傳送完
-  * 傳輸結束後，清除BSY flag
+    - 將第一筆資料寫入SPI_DR register裡(清除TXE bit、BSY flag設為1)
+    - 當傳送第一個bit時，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
+    - 接著將第二筆資料寫入SPI_DR register裡(清除TXE bit)
+    - 等待第一筆資料的bit傳送完
+    - 傳送第二筆資料的第一個bit，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
+    - 接著將第三筆資料寫入SPI_DR register裡(清除TXE bit)
+    - 等待第二筆資料的bit傳送完
+    - 傳送第三筆資料的第一個bit，同時將剩下的7個bit並行load到shift register，之後hardware將TXE bit設為1
+    - 等待第三筆資料的bit傳送完
+    - 傳輸結束後，清除BSY flag
 
 - 接收步驟：
-  * 第一筆資料的8 bits依序由MISO接收進來，並且存到shift register
-  * 將第一筆資料的8 bits並行load到SPI_DR register(此時hardware將RXNE bit設為1)
-  * 由software讀資料，並清除RXNE bit
-  * 第二筆資料的8 bits依序由MISO接收進來，並且存到shift register
-  * 依序重複步驟...
+    - 第一筆資料的8 bits依序由MISO接收進來，並且存到shift register
+    - 將第一筆資料的8 bits並行load到SPI_DR register(此時hardware將RXNE bit設為1)
+    - 由software讀資料，並清除RXNE bit
+    - 第二筆資料的8 bits依序由MISO接收進來，並且存到shift register
+    - 依序重複步驟...
 
 SPI communication using DMA 
 -------------------------------
 
 - 為了能達到最大傳輸速率，cpu必須在TXE flag被升起時，及時將資料寫入SPI_DR regsister，同時接收端也必須在RXNE flag被升起時，及時將資料讀取出來，以避免有Overrun Condition的狀況發生，所以為了能減少cpu負荷並加快傳輸速度，SPI也實做了一種請求/應答的DMA機制
 
-  * 在每次TXE flag被設為1時，發送DMA請求，DMA則將資料寫入SPI_DR register裡，TXE flag因此被清除
-  * 在每次RXNE flag被設為1時，發送DMA請求，DMA則將資料讀出SPI_DR register裡，RXNE flag因此被清除
+    - 在每次TXE flag被設為1時，發送DMA請求，DMA則將資料寫入SPI_DR register裡，TXE flag因此被清除
+    - 在每次RXNE flag被設為1時，發送DMA請求，DMA則將資料讀出SPI_DR register裡，RXNE flag因此被清除
 
 - 要開啟此DMA request必須將SPI_CR2 register裡的TXDMAEN跟RXDMAEN bit設置為1
 
@@ -226,27 +223,28 @@ CRC calculation (Cyclic redundancy check)
 
 - 用途：主要是用來驗證資料傳輸的可靠性，避免在傳輸時，因為外在因素導致接收端接收到錯誤的資料，所以有此機制來預防。
 - 運作：
-  * 有兩種計算的標準，是根據data frame format來決定，如果是8-bit的資料，則用CR8，如果是16-bit的資料，則用CRC16
-  * 當將SPI_CR1 register裡的CRCEN bit設為1，將會啟動CRC calculation，並且會將SPI_RXCRCR和SPI_TXCRCR清空，傳輸端會自動在最後一筆資料後面傳輸一個CRC值(SPI_TXCRCR)，然後接收端在接收到此CRC值後，會將之與SPI_RXCRCR比較，如果相同的話，表示資料傳輸正確，如果不同的話代表資料有問題，則CRCERR flag升起
+    - 有兩種計算的標準，是根據data frame format來決定，如果是8-bit的資料，則用CR8，如果是16-bit的資料，則用CRC16
+    - 當將SPI_CR1 register裡的CRCEN bit設為1，將會啟動CRC calculation，並且會將SPI_RXCRCR和SPI_TXCRCR清空，傳輸端會自動在最後一筆資料後面傳輸一個CRC值(SPI_TXCRCR)，然後接收端在接收到此CRC值後，會將之與SPI_RXCRCR比較，如果相同的話，表示資料傳輸正確，如果不同的話代表資料有問題，則CRCERR flag升起
 
 Error flags
 -----------
 
 Master mode fault (MODF)
-''''''''''''''''''''''''
-  * master mode fault 有以下兩種情形會發生
-    * 在NSS hardware mode且SSOE設為0，master的NSS pin電位被拉低
-    * 在NSS software mode下，master的SSI bit設為0
+---------------------------
 
-  * Master mode fault發生時，會將MODF bit設為1，也會清除掉SPE bit，關掉SPI功能，另外當EERIE bit設為1時，將會產生中斷
+- master mode fault 有以下兩種情形會發生
+    - 在NSS hardware mode且SSOE設為0，master的NSS pin電位被拉低(master會被設為slave)
+    - 在NSS software mode下，master的SSI bit設為0(進入slave mode)
+
+- Master mode fault發生時，會將MODF bit設為1，也會清除掉SPE bit，關掉SPI功能，另外當EERIE bit設為1時，將會產生中斷
 
 Overrun condition
-'''''''''''''''''
-  * 在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，在RXNE沒有被清除時，接收的資料無法從shift register寫入Rx buffer，導致從Rx buffer讀出來的資料是不正確的。
-  * OVR flag升起
+------------------
+- 在RXNE沒有重設為0的情況下，此時又接收到一筆新資料，則會發生溢出錯誤，在RXNE沒有被清除時，接收的資料無法從shift register寫入Rx buffer，導致從Rx buffer讀出來的資料是不正確的。
+- OVR flag升起
 
 CRC error
-'''''''''
+------------
   * 當CRCEN bit設為1時，CRCERR flag是用來檢驗資料的正確性，當此flag升起，代表接收過來的CRC值跟SPI_RXCRCR的值不符合，表示接收的資料不正確
 
 SPI interrupts
