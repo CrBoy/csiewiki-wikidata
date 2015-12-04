@@ -26,7 +26,7 @@ System Overview
 ![](/three_slaves.png)
 
 同步非同步之定義:
-============
+===================
 
 - 非同步串列傳輸
 
@@ -87,7 +87,7 @@ SPI block diagram
 [STM32F407xx Reference Manual p.661](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)
 
 general
--------
+=============
 **介紹 pin**
 
 - MISO: SPI設為master，此腳接收從slave傳來的資料。SPI設為slave，此腳傳送資料到master。
@@ -227,7 +227,7 @@ CRC calculation (Cyclic redundancy check)
     - 當將SPI_CR1 register裡的CRCEN bit設為1，將會啟動CRC calculation，並且會將SPI_RXCRCR和SPI_TXCRCR清空，傳輸端會自動在最後一筆資料後面傳輸一個CRC值(SPI_TXCRCR)，然後接收端在接收到此CRC值後，會將之與SPI_RXCRCR比較，如果相同的話，表示資料傳輸正確，如果不同的話代表資料有問題，則CRCERR flag升起
 
 Error flags
------------
+==============
 
 Master mode fault (MODF)
 ---------------------------
@@ -248,15 +248,15 @@ CRC error
   * 當CRCEN bit設為1時，CRCERR flag是用來檢驗資料的正確性，當此flag升起，代表接收過來的CRC值跟SPI_RXCRCR的值不符合，表示接收的資料不正確
 
 SPI interrupts
---------------
+-----------------
 ![](/embedded/SPI_interrupt.png)
 
 I²S functional description
-==========================
+=============================
 ![](/embedded/I2S_block_diagram.png)
 
 general
--------
+============
 - I²S或I2S（Inter-IC Sound或Integrated Interchip Sound）是IC間傳輸數位音訊資料的一種介面標準，採用序列的方式傳輸2組（左右聲道）資料，I²S常被使用在傳送CD的PCM音訊資料到CD播放器的DAC中
 - 在SPI裡可藉由SPI_I2SCFGR register裡的I2SMOD bit轉換成I²S模式，I²S使用的pins、flags和interrupts幾乎都跟SPI模式相同
 - 有三個主要的pin腳(SD、WS、CK) :
@@ -270,7 +270,7 @@ general
 - I²S mode下沒有使用到SPI_CR1、跟CRC有關的registers、SSOE bit in SPI_CR2、MODF和CRCERR bits in SPI_SR
 
 Supported audio protocols
--------------------------
+==============================
 - 藉由查看CHSIDE bit(in SPI_SR)得知目前對應傳輸的頻道是right或left channel
 - 通常都是先傳輸left channel的資料後，再傳輸right channel的資料
 - 傳輸資料時，以MSB first為主
@@ -284,11 +284,11 @@ Supported audio protocols
 - 當使用的是16-bit data packed in 32-bit frame，剩下的16 bits LSB會被硬體強制設為0，而不用再做第二次讀取
 
 Audio standards
----------------
+======================
 I²S支援4種音頻標準，可藉由I2SSTD[1:0]跟PCMSYNC bits(in SPI_I2SCFGR)來做設定
 
 I²S Philips standard
-''''''''''''''''''''
+------------------------
 WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS訊號會在傳輸第一個bits(MSB)前的一個CK clock cycle作切換
 
 ![](/embedded/I2S_Philips_protocol_waveforms_16/32-bit_full_accuracy_CPOL=0.PNG)
@@ -307,7 +307,7 @@ WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS
 ![](/embedded/I2S)Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
 
 MSB justified standard
-''''''''''''''''''''''
+---------------------------
 在傳輸第一個bits(MSB)時，WS訊號同時作切換，如下圖
 
 ![](/embedded/MSB)Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
@@ -317,7 +317,7 @@ MSB justified standard
 ![](/embedded/MSB)Justified 24-bit frame length with CPOL = 0_fix.PNG
 
 LSB justified standard
-''''''''''''''''''''''
+--------------------------
 - 跟MSB justified standard很相似
 - 對於16-bit、32-bit full-accuracy frame formats來說，與MSB justified standard相同
 - 與MSB justified standard的差別在於24-bit frame length與16-bit extended to 32-bit packet frame
@@ -335,7 +335,7 @@ LSB justified standard
 - 在接收端，RXNE flag只會在接收到0x76A3時升起
 
 PCM standard
-''''''''''''
+------------------
 - 不需用到Left channel和Right channel
 - 分成兩種PCM modes(short frame、long frame)，可利用PCMSYNC bit(in SPI_I2SCFGR)來作設定
 
@@ -345,7 +345,7 @@ PCM standard
 - 在short frame mode時，WS訊號升起的時間只有一個cycle
 
 Code section
-============
+====================
 ![](/embedded/spi_demo_stm32.jpg)
 
 - 左板為slave 右板為master
@@ -648,14 +648,14 @@ master和slave在設定上有什麼不同?
   * hardware 模式下 NSS pin 要保持低電位,software  模式下 ssi=0
 
 Error flags
------------
+-----------------------
 
 - Master mode fault (MODF)
-  * when the master device has its NSS pin pulled low (in NSShardware mode) or SSI bit low (in NSS software mode), this automatically sets the MODF bit.
+    - when the master device has its NSS pin pulled low (in NSShardware mode) or SSI bit low (in NSS software mode), this automatically sets the MODF bit.
 
 
 - Overrun condition
-  * An overrun condition occurs when the master device has sent data bytes and the slave device has not cleared the RXNE bit resulting from the previous data byte transmitted.
+    - An overrun condition occurs when the master device has sent data bytes and the slave device has not cleared the RXNE bit resulting from the previous data byte transmitted.
 
 
 - CRC error
