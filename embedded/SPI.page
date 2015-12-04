@@ -88,12 +88,12 @@ SPI block diagram
 
 general
 -------
-.. 介紹 pin
+**介紹 pin**
 
 - MISO: SPI設為master，此腳接收從slave傳來的資料。SPI設為slave，此腳傳送資料到master。
 - MOSI: SPI設為master，此腳傳送資料到slave。SPI設為slave，此腳接收從master傳來的資料。
 - SCK: 由master提供clock輸出給slave當成通訊clock
-- NSS: Slave select. 該腳可以被master當做要和那個slave做構通
+- NSS: Slave select. 該腳可以被master當作要和哪個slave做溝通
 
   - Software NSS management(SSM=1)
     - 由內部的SPI_CR1 register裡的SSI bit來代表NSS pin電位高低
@@ -114,10 +114,11 @@ general
       * slave mode:
         * 當NSS低電位時，代表被選為要接收資料的slave
 
-![](/embedded/SPI/single)master _ single slave application.png
-SPI single master/single slave application [#]_
+![](/embedded/SPI/single master _ single slave application.png)
 
-.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.662
+SPI single master/single slave application
+
+[STM32F407xx Reference Manual  p.662](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)
 
 .. baud rate ref menual p.834
 
