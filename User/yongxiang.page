@@ -1,0 +1,44 @@
+王勇翔
+
+CV
+------------------
+**Education:**
+
+- 國立成功大學資訊工程研究所( 2014/9 – present)
+- 國立成功大學資訊工程系    ( 2010/9 – 2014/6 )
+- 國立板橋高中             ( 2007/9 – 2010/6 )
+
+
+**Technical Skills and Strength:**
+
+- 熟 C / C++ 與 OpenCV 等機器視覺研究相關之程式撰寫
+- 以 MATLAB 處理影像與其他資料分析
+- 用 Kinect 與 Kinect for Windows SDK 開發互動程式
+- 深度學習框架 caffe
+- 英文 TOEIC 805
+
+**Working Experience:**
+
+- 暑期實習生，iDSBG 系統軟體開法處，鴻海精密工業股份有限公司 ( 2015/7 – 2015/8 )
+
+當時服務的團隊是iDSBG的AI小組，工作內容主要都是資料分析與預測，而我在當時工作的內容是研究caffe這個深度學習框架，並在實習結束的時候向主管們Demo這個框架與其應用在影像物件偵測的效果。
+
+**Publication:**
+
+- Tse-Yu Pan, Yong-Xiang Wong, Ting-Chia Lee, and Min-Chun Hu, A Kinect-based Oral Rehabilitation System, The 2015 International Conference on Orange Technologies (ICOT2015).
+- Yong-Xiang Wang, Li-Yun Lo, and Min-Chun Hu, Eat As Much As You Can: A Kinect-based Facial Rehabilitation Game Based on Mouth and Tongue Movements, The 22th ACM International Conference on Multimedia (MM ‘14), Technical Demos. (November 3-7, 2014, Orlando, Florida, USA) (EI)
+
+**Publication:**
+
+-機器視覺
+
+以機器學習與影像處理的知識為基礎，研究關於物體偵測與辨識的題目。目前研究的題目以街景中的招牌辨識為主，相關研究包括文字偵測、文字辨識與探討不同的視覺特徵(Visual feature)或分類器(Classifier)對於物件辨識的成功率。另外也以caffe嘗試過深度學習( Deep learning )的方式，這是目前影像辨識研究中很熱門的研究，主要是藉由訓練複雜度高的類神經網路去學習有用的辨識特徵。
+
+-人機互動
+
+我大學的畢業專題是以Kinect開發一個新穎的互動遊戲，互動方式是藉由舌頭與嘴巴進行遊戲，目的是希望可以藉由此遊戲達到臉部與口腔肌肉的訓練或是提供舌癌患者有趣的復健方式。此作品發表於2014年ACM Multimedia學術研討會 [DEMO VIDEO](https://www.youtube.com/user/MISLABMM2014)。
+
+
+聯絡資訊:
+=====================
+- email: ``plunger@mislab.csie.ncku.edu.tw``
