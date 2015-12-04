@@ -296,25 +296,25 @@ WS訊號是用來代表現在正在傳輸的channel是哪個(Right or Left)，WS
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 - WS signal在falling edge時作切換
 
-![](/embedded/I2S)Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG
+![](/embedded/I2S Philips standard waveforms_24-bit_frame_with_CPOL=0.PNG)
 
 - 上面的情況需要對SPI_DR作兩次讀寫的動作，舉例如下圖
 
-![](/embedded/I2S)Philips standard waveforms Transmitting 0x8EAA33.PNG
+![](/embedded/I2S Philips standard waveforms Transmitting 0x8EAA33.PNG)
 
 - 下圖只需對SPI_DR作一次讀寫即可，剩餘的16 bits會被hardware強制設為0x0000
 
-![](/embedded/I2S)Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![](/embedded/I2S Philips standard 16-bit extended to 32-bit packet frame with CPOL = 0.PNG)
 
 MSB justified standard
 ---------------------------
 在傳輸第一個bits(MSB)時，WS訊號同時作切換，如下圖
 
-![](/embedded/MSB)Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG
+![](/embedded/MSB Justified 16-bit or 32-bit full-accuracy length with CPOL = 0.PNG)
 
 - 傳輸端在CK的falling edge時寫入，接收端在CK的rising edge時讀取
 
-![](/embedded/MSB)Justified 24-bit frame length with CPOL = 0_fix.PNG
+![](/embedded/MSB Justified 24-bit frame length with CPOL = 0_fix.PNG)
 
 LSB justified standard
 --------------------------
