@@ -270,7 +270,7 @@ general
 - I²S mode下沒有使用到SPI_CR1、跟CRC有關的registers、SSOE bit in SPI_CR2、MODF和CRCERR bits in SPI_SR
 
 Supported audio protocols
-==============================
+-----------------------------
 - 藉由查看CHSIDE bit(in SPI_SR)得知目前對應傳輸的頻道是right或left channel
 - 通常都是先傳輸left channel的資料後，再傳輸right channel的資料
 - 傳輸資料時，以MSB first為主
@@ -284,7 +284,7 @@ Supported audio protocols
 - 當使用的是16-bit data packed in 32-bit frame，剩下的16 bits LSB會被硬體強制設為0，而不用再做第二次讀取
 
 Audio standards
-======================
+-------------------
 I²S支援4種音頻標準，可藉由I2SSTD[1:0]跟PCMSYNC bits(in SPI_I2SCFGR)來做設定
 
 I²S Philips standard
