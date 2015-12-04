@@ -322,13 +322,13 @@ LSB justified standard
 - 對於16-bit、32-bit full-accuracy frame formats來說，與MSB justified standard相同
 - 與MSB justified standard的差別在於24-bit frame length與16-bit extended to 32-bit packet frame
 
-![](/embedded/LSB)Justified 24-bit frame length with CPOL = 0.PNG
+![](/embedded/LSB Justified 24-bit frame length with CPOL = 0.PNG)
 
-![](/embedded/LSB)Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG
+![](/embedded/LSB Justified 24-bit frame length with CPOL = 0 transmit 0x3478AE.PNG)
 
 - 上圖，在接收或傳送時，需由software或DMA對SPI_DR作兩次讀寫
 
-![](/embedded/LSB)justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG
+![](/embedded/LSB justified 16-bit extended to 32-bit packet frame with CPOL = 0.PNG)
 
 - 舉例如果要傳輸的資料是0x76A3(0x0000 76A3 extended to 32-bit)，那只需要對SPI_DR作一次讀寫即可
 - 在傳送端，當TXE flag升起，hardware會先將0x0000傳輸過去，再來當TXE flag又升起，由software對SPI_DR寫入0x76A3
