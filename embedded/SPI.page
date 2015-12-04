@@ -80,10 +80,11 @@ STM32F40x block diagram (STM32F407xx datasheet p.18)
 SPI functional description
 ==========================
 
-![](/embedded/SPI/SPI)block diagram.png
-SPI block diagram [#]_
+![](/embedded/SPI/SPI block diagram.png)
 
-.. [#] [STM32F407xx Reference Manual ](https://www.google.com.tw/url?sa=t&rct=j&q&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fmeasure.feld.cvut.cz%2Fsystem%2Ffiles%2Ffiles%2Fcs%2Fvyuka%2Fpredmety%2FA4M38KRP%2FDM00031020.pdf&ei=Yd4tUrCbFIyZlQWy5IDAAw&usg=AFQjCNG98i1xkmhMAT5oY4owZfumzgq-3Q&sig2=BW3iz-5aJmyGhiu6HR32tA) p.661
+SPI block diagram
+
+[STM32F407xx Reference Manual p.661](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)
 
 general
 -------
