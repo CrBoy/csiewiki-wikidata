@@ -599,6 +599,7 @@ Question question
 I2S
 ---
 ![](/2013-12-17_151324.png)
+
 - SD(Serial Data) 與 SPI 的 MOSI 共用腳位
 - ext_SD  與 SPI 的 MISO 共用腳位
 - WS(Word Select) 與 SPI 的NSS 共用腳位 
