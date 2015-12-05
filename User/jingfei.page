@@ -1,0 +1,118 @@
+---
+title: jingfei
+categories: User
+...
+
+**Brief Introduction**
+====
+- Jingfei
+- from Tainan, Taiwan
+
+Contact Information
+------
+- email: ``e84016184@mail.ncku.edu.tw``
+- github: [https://github.com/jingfei](https://github.com/jingfei)
+
+Education
+------
+- National Tainan Girls' Senior High School (2009.09 - 2012.06)
+- National Cheng Kung University (2012.09 - now)
+    * Bachelor of Computer Science & Information Engineering, Graduation: June 2016
+    * GPA: 3.61
+    * [蔡孟勳教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/34)專題生
+
+Relevant Experience
+-------
+- Network engineer internship in iwNetworks, Fremont, CA
+    * August 2015 – October 2015
+    * My work is to figure out network problems with their projects, learn about cloud service, OpenStack and SDN, and set up some routers and SDN switches.
+- Websites and systems maintenance in CSIE, NCKU
+    * February 2014 – present
+    * Being a teaching assistant for websites & systems in my department, I have to make sure all the websites work well, and to build new systems.
+- Microsoft Student Partners in Taiwan
+    * July 2014 – July 2015
+    * I am in the technology group. Here we learn the Microsoft technology, and develop Windows Phone Apps. In addition, we learn about marketing and sales in Taiwan.
+- Internship in Farhit Incorporated Company
+    * July 2014 – August 2014
+    * I had an internship in the summer vacation of 2014. This is a start-up company, and my work is to develop a back-end system for our video iOS application. We use Amazon Web Service and nodejs to build up all applications.
+- Part-time worker in Computer & Network Center, NCKU
+    * May 2012 – August 2012
+    * Before entering the university, I had a part-time job about web design and network in the Computer & Network Center.
+
+Technical Skills
+-------
+- C / C++,
+    * Achieved second place in 2011 Taiwan South Area Programming Contest
+    * Gained fourth place in 2014 Taiwan Center Area Programming Contest
+    * Received Award for Excellence three times in Taiwan National Collegiate Programming Contest
+ (2013, 2014, 2015)
+    * Won first place in our department’s Programming Contest (2015)
+    * Participated in many global contests like Facebook Hacker Cup, Google Code Jam, and ACM ICPC
+- HTML / CSS / PHP / JavaScript
+    * Take the prize of UI/UX in Mei-Chu Hackathon
+    * Built an online judge, self-play game system for freshman’s course
+    * Took in charge of Microsoft Student Partners in Taiwan recruitment’s website
+    * Maintained all the websites and systems in our department
+- Verily
+    * Won the prize of Design Accomplished Award in 2014 IC Design Contest (group of FPGA)
+    * Took first place in 2015 IC Design Contest (group of FPGA)
+
+Activities
+-------
+- September 2015 – present
+    * Join the team of iGem, and I am in the IT group. iGem is a highest level international competition of synthetic biology, it combines the knowledge of biology, engineering, computer science and others interdisciplinary subject. In addition to the biology, I am taking responsibility for our team’s website.
+- September 2014 – August 2015
+    * Became a member of Future Elites class (College of Engineering), we had leadership and English training course. Besides, I was the organizer of our social care activity, Care Week.
+    * During summer vacation, we joined leadership workshop in Indiana University Purdue University Fort Wayne, and visiting the companies, schools in Chicago, Boston and New York.
+- February 2014 – August 2015
+    * Taught C language in high school’s club
+- November 2012 – present
+    * Leader of the Titans girl’s baseball team in Kaohsiung
+- October 2012 – present
+    * Joined ACM training team to participate in competitive contests
+- May 2014
+    * Organized 1th EDiT workshop activity, our website http://edit.flipedu.tw/
+- September 2012 – June 2014
+    * Joined CCNS Club (Campus Computer & Network Society) and have served as President and also have taught.
+- July 2010 – June 2011
+    * President of high school’s club (Information Research Club)
+
+Works
+-------
+- ([Sudoku Online Judge System](http://judge.imslab.org))
+    * Check the correctness of the program online, and offer the battle mode for competition.
+- ([NCKU CSIE Class Borrowing System](http://www.csie.ncku.edu.tw/Class2014)) ([github](http://github.com/jingfei/csie_Class))
+    * The interface for students' ID card, class and equipment borrowing for NCKU CSIE.
+- ([Microsoft Student Partners admission website](http://jingfei.github.io/msp9th)) ([github](http://github.com/jingfei/msp9th))
+    * The admission website for 9th Microsoft Student Partners, and it is cooperated with the group of design.
+- Girls in Tech Taiwan x Facebook Hack for a Cause: Opinionoted ([github](https://github.com/maxis1718/fb6likes))
+    * An application for analysing the distance from you and your friends for the specific topic.
+    * Cooperated with Yahoo engineer.
+- Iisigroup (資拓宏宇) Hackathon: FirstTry ([github](https://github.com/jingfei/FirstTry))
+    * An application for Android, it is to help people realise their traveling dream.
+- Mei-Chu Hackathon: Food Sharing Platform ([github](https://github.com/jingfei/FoodShare))
+    * The web shared platform for people to share food with others.
+    * Take the prize of UI/UX.
+
+**2015秋季班 個人評量**
+========
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/note-Lab-1-Fibonacci-TsJAQwvOQvo), [github](https://github.com/jingfei/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/note-hw2-phonebook-3mUOSk5J9cu), [github](https://github.com/jingfei/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/note-hw3-quiz-zeQB0amDioF), [github](https://github.com/jingfei/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/note-JIT-construct-VDzj2ic5Bbf), [github](https://github.com/jingfei/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * (未完成)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7/8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/hw7-A-e9P7iYfFlR4), [github](https://github.com/jingfei/mini-arm-os)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * (未完成)
+- [homework 10](http://wiki.csie.ncku.edu.tw/embedded/2015q3h10)
+    * ([這一頁](http://wiki.csie.ncku.edu.tw/User/jingfei))
+- 分組報告: USART
+
