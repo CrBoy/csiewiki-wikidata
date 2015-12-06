@@ -1,0 +1,58 @@
+---
+title: pandaning
+categories: User
+...
+
+簡介
+=====
+- 林郁寧
+- 台灣台南人
+- 台南市私立聖功女中 (2004/9~2010/6)
+- 國立中央大學資訊工程系 (2010/9~2014/6)
+    - [陳慶瀚教授](https://ccy.dd.ncu.edu.tw/~chen/)專題生
+- 國立成功大學資訊工程所 (2014/9~)
+    - [陳培殷教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/23)研究生
+
+開發經驗
+=====
+- 專題
+    - 仿生視覺防撞系統設計與實作 (以[這篇論文](http://www.sciencedirect.com/science/article/pii/S0303264706001626)為主要方法)
+- 產學計畫
+    - 大四 凌華電腦EtherCAT研究
+    - 碩一 南華電子Pattern Generator開發 (負責MicroZed開發版)
+    - 碩二 聯詠科技HEVC研究 (進行中)
+
+其他經驗
+=====
+- 103學年度書卷獎
+- IBM大型主機校園競賽參賽
+- 旺宏金矽獎參賽
+- 吉他社文書
+- 全國不插電大賽財務
+- 中央大學科學教育中心影片剪輯工讀生
+- 2015IC設計競賽成績達決賽錄取標準
+- CIC國家晶片系統設計中心 教育訓練
+    - Cell-based IC Implementation and Verification
+    - Logic Synthesis with Design Compiler
+    - Cell-based IC Physical Design and Verification with IC Compiler
+    - Post-Layout Simulation Verification with Nanosim
+    - UMC 0.18um 製程實務訓練課程
+    - Circuit Simulation and Analysis with HSPICE
+
+2015秋季班 個人評量
+=====
+- Week1：[Homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) / [共筆](https://embedded2015.hackpad.com/-Week1-YBtOLeJzjo0) / [Github](https://github.com/pandaning/arm-lecture)
+- Week2：[Homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) / [共筆](https://embedded2015.hackpad.com/-Homework2-7UYo4wcPhd7) / [Github](https://github.com/pandaning/phonebook)
+- Week3：[Homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) / [共筆](https://embedded2015.hackpad.com/-Homework3-ILmUj26FSrH#:h=效能分析) / [Github](https://github.com/pandaning/quiz)
+- Week4：[Homework4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) / [共筆](https://embedded2015.hackpad.com/-Homework4-B-h5FfVE6RTeu) / [Github](https://github.com/pandaning/jit-construct)
+- Week5：[Homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5) / [共筆](https://embedded2015.hackpad.com/-Homework5-pQ49k44CzXh) / [Github](https://github.com/pandaning/phonebook)
+- Week6：[Homework6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) / [共筆](https://embedded2015.hackpad.com/-Homework6-817IklCOYqF) 
+- Week7：[Homework7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7) / [共筆](https://embedded2015.hackpad.com/-Homework7-K7sJGNv5HWc#:h=00-HelloWorld) / [Github](https://github.com/pandaning/mini-arm-os)
+- Week8：[Homework8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8) / [共筆](https://embedded2015.hackpad.com/-Homework7-K7sJGNv5HWc#:h=00-HelloWorld) / [Github](https://github.com/pandaning/mini-arm-os)
+- Week9：[Homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9) / [共筆](https://embedded2015.hackpad.com/Peripheral-USB-mdOjvkUd5Xd) 
+- Week10：[Homework10](http://wiki.csie.ncku.edu.tw/embedded/2015q3h10) 
+
+聯絡資訊
+=====
+- Github:``https://github.com/pandaning``
+- Email:``https://pandaning9112@gmail.com``
