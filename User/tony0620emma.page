@@ -11,3 +11,30 @@ categories: User
 - 台南人
 - tonyyanxuan
 
+技能
+====
+- C, Verilog
+- Wireless Communication
+
+興趣
+====
+- Computer Architecture
+- Compiler
+- Assembly Language
+- Software-Defined Networking
+
+研究論文
+====
+- Wireless Cooperative Beamforming
+- OpenFlow Switch Networking Coding Implementation
+
+專案
+====
+- [uVisor] (https://github.com/tony0620emma/uvisor) Security for ARM mbed
+- [mini-arm-os] (https://github.com/tony0620emma/mini-arm-os-1)
+- [jit-construct] (https://github.com/tony0620emma/jit-construct-1) Just-in-time Compiler
+
+其他資訊
+====
+- email: ``tony0620emma@yahoo.com.tw``
+- GitHub: [tony0620emma] (https://github.com/tony0620emma)
