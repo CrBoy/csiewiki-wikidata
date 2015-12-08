@@ -1,0 +1,83 @@
+---
+title: giranntu（沈昇廷）
+categories: User
+...
+
+**簡介**
+====
+- 沈昇廷
+- 台灣彰化人
+
+學歷
+------
+- 國立彰化高級中學(2008年9月~2011年6月)
+- 高雄師範大學 軟體工程系104級(2011年9月~2015年6月)
+    * [鄭伯壎教授](http://apacph.weebly.com/201109-201506-104.html)專題生
+- 成功大學 電腦與通訊工程研究所 碩士生(2015年9月~)
+    * [詹寶珠 特聘教授](http://office.ee.ncku.edu.tw/nckueechinese/professor/T204-pcchung/T8008039c.htm)研究生
+
+工作經歷
+-------
+- 201309-201505: Part-time Research Assistant: 2013-2014 NSC Project [PI: Prof., Po-Hsun Cheng]
+- 201403-201407: Programmer, OpenNeeds v1 [Open Source]
+- 201507-201509 UMC聯華電子 Summer Intern IT部門(AMSD先進技術研發)
+    * Big Data Analysis
+    * To develop the required functions/modules/software depending on the projects 
+
+得獎紀錄
+-------
+- 100學年度書卷獎
+- 2012 南區大專院校程式設計競賽 程式設計 一般組 佳作
+- 2013 南區大專院校程式設計競賽 程式設計 進階組 佳作
+
+作品
+-------
+- 大學專題：盲胞電子輔具：Arduino超音波導盲帽(Ultrasound Guidance Cap Device for Blind)
+    * 開發Arduino嵌入式系統與Android應用程式，透過超音波感測裝置與提示音讓盲胞往目的地前進並保護盲胞腰部以上的安全，使用Bluetooth通訊傳輸超音波感測數據傳至手持裝置端記錄並雲端儲存。使用C語言開發Embedded system與Java開發Android裝置，設計演算法自動分析周邊資訊，提供用盲胞即時的前進位置與障礙資訊。
+
+
+聯絡資訊
+------
+- email: ``giranntu@gmail.com``
+- github: [https://github.com/giranntu](https://github.com/giranntu)
+
+
+**2015秋季班 個人評量**
+========
+作業
+----
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/2015F-Fakers-Note-mo8akfRbFAv), [github](https://github.com/giranntu/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/HW2-Fakers-Note-qClIZrBMRCo), [github](https://github.com/giranntu/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/2015F-Fakers-Note-HW3-egRVCUjVfq7), [github](https://github.com/giranntu/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/Homework-4-B-LmiIQrnDKeA), [github](https://github.com/giranntu/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)  
+    * [hackpad](https://embedded2015.hackpad.com/-HW5-j2cJFKXyeZl), [hw ext-1 github](https://github.com/giranntu/hw1Ext)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/A-OjpUj2tfcX9), [github](https://github.com/giranntu/mini-arm-os)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * (未完成)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+
+
+分組報告
+------
+- USB
+
+**Publication**
+====
+- C. H. Lin, P. H. Cheng, and S. T. Shen*, "A Preliminary Design of Mobile Headset Assistive Device for Visual Impaired," the 36th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC-2014), Chicago, IL, USA, August 26-30, 2014, paper 1520.
+
+**研究**
+====
+- 利用深度學習(Deep Neural Network)做嬰兒哭聲與情緒辨識
+
+**證照認證**
+====
+- Oracle Sun Certified Java Programmer (SCJP 5.0)
+- TOEIC  812分
