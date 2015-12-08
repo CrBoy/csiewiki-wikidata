@@ -1,0 +1,74 @@
+---
+title: da255270（魏騰昱）
+categories: User
+...
+
+**簡介**
+====
+- 魏騰昱
+- 台灣新北人
+
+學歷
+------
+- 國立中和高中
+- 中正大學 資訊管理系
+- 成功大學 電腦與通訊研究所-計算機組 碩士班
+    
+
+研究領域
+-------
+- Embedded System
+    * 熟悉基於Renesas RX210、新華Creator-PXA270、STM32F429I-DISCO、STM32F407-EVB等開發板之軟體程式開發
+
+- Real-Time Operating System
+    * 了解EDF、RM、DM等即時排程策略分析以及即時資源分配等議題
+
+
+作品
+-------
+- 永信皮膚科診所App( https://play.google.com/store/apps/details?id=tw.com.hostingservice24.ysskin )
+    * 接由海納川數位科技公司的外包案所實作的Android App，內有即時掛號、線上看診、醫療諮詢等功能，讓診所能夠提供更多方便的服務。
+
+- 可攜式手語辨識溝通系統 / 2015 ARM Design Contest - 佳作
+    * 由基於感測器可感測手部變化的手語辨識手套，經由藍芽無線傳輸到主控板進行手語辨識並且翻譯成對應的語音輸出，可讓聾啞人士能夠隨時隨地在一般人不懂手語的情況下也能與其進行溝通。
+
+
+其他經歷
+--------
+- 中正資管102級系學會-活動部長
+- 新工消防隊-替代役
+
+
+聯絡資訊
+------
+- email: ``da255270@hotmail.com``
+- github: [https://github.com/da255270](https://github.com/da255270)
+
+
+**2015秋季班 個人評量**
+========
+作業
+----
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/HW1--TuFcNxtjZyv), [github](https://github.com/da255270/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/HW2-3j3jqLxhTr9), [github](https://github.com/da255270/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/HW3-EHdU6lK2O0T), [github](https://github.com/da255270/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/HW4-dRshbYsthPA), [github](https://github.com/da255270/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * (未完成)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/HW7A-rLcEsuyvRJr), [github](https://github.com/da255270/mini-arm-os)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * (未完成)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * (未完成)
+
+期末專題
+------
+- 
+
