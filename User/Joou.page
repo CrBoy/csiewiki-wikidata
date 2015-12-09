@@ -22,8 +22,21 @@ categories: User
 - 2013 全國大學生電子設計競賽 山東賽區 一等獎
 - 2015 TIC100智能城市與物聯網創新競賽 研華科技組 第二名
 
+參與專案
+========
+- Embedded Graphics(進行中)
+    * [Hackpad](https://embedded2015.hackpad.com/Embedded-Graphics-XMZ3BTYFM1J)
+- [iLecture](merry.ee.ncku.edu.tw/ilecture/)
+    * 教學即時反饋服務，[介紹和使用說明](https://mbi.hackpad.com/iLecture-hMIYn94TvCm)
+    * 現任維護者、主要貢獻者
+    * **歡迎使用！**
+- 大學畢業設計：基于STM32的室内语音识别求救系统的研制
+    * 針對獨居人群(老人、殘障人士等)設計的求救系統
+    * 利用STM32F103作為控制晶片，LD3320識別非特定人的語音信號，SIM300發生求救簡訊和電話
 
-
+Embedded筆記
+========
+- 目錄入口：[Hackpad](https://hackpad.com/Hackpad-of-John-Chou-uddNF5lCdab)
 
 更多資訊
 =======
