@@ -5,7 +5,7 @@ categories: ARM, USART, UART, STM32, STM32F4, STM32F429
 
 USART簡介與特性
 ...................
-串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NZR工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
+串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NZR工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
 
 此外，亦支援同步傳輸、單線半雙工傳輸、LIN(local connection network)、Smartcard protocol、IrDA(Infrared data association) SIR ENDEC標準。
 
@@ -72,6 +72,7 @@ RS232 介面標準
 RS-232電器與機械特性
 -------------
 RS-232電器特性
+
  - 最大電壓範圍為±25V;
  - -3V至-25V定義為邏輯“1”(負邏輯)，稱為marking，功能意義為OFF；
  - +3V至+25V定義為邏輯“0” (負邏輯)，稱為spacing，功能意義為ON；
@@ -81,6 +82,7 @@ RS-232電器特性
  - 發送信號的一端輸出阻抗必須大於300Ω。
 
 RS-232的機械特性
+
  - 連接器有25pin及9pin，現多用9pin，因較節省空間及成本。
  - 最大傳輸線長度為50呎（15公尺），且資料傳輸速率在20Kbps以下。
  - Data terminal equipment，數位資料的接收或輸出端，並用傳輸協定對資料傳收流程做控制的機器。常見的機器為電腦。
@@ -117,6 +119,7 @@ null modem
 ![](/embedded/USART_NullModem.jpg)
 
 RS-232阻礙
+
   - 過大的電壓擺幅，造成耗電量的增加
   - 單端訊號對於雜訊抑制的能力並不佳
   - DB25的接頭過大
