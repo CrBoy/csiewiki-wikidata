@@ -7,8 +7,13 @@ categories: User
 ====
 - 中國石油大學(華東) 光電工程系     103級
 - 國立成功大學       電機工程研究所 在讀中
-- 中國武漢人，現居台南市
-- 喜歡音樂、足球和攝影
+- 喜愛音樂、足球和攝影
+> 國中、高中、大學都是班長
+
+得獎記錄
+========
+- 2013 全國大學生電子設計競賽 山東賽區 一等獎
+- 2015 TIC100智能城市與物聯網創新競賽 研華科技組 第二名
 
 工作經歷
 ========
@@ -17,16 +22,11 @@ categories: User
     * General-purpose software team
     * Taking charge of the implementation of features of new product.
 
-得獎紀錄
-========
-- 2013 全國大學生電子設計競賽 山東賽區 一等獎
-- 2015 TIC100智能城市與物聯網創新競賽 研華科技組 第二名
-
 參與專案
 ========
 - Embedded Graphics(進行中)
     * [Hackpad](https://embedded2015.hackpad.com/Embedded-Graphics-XMZ3BTYFM1J)
-- [iLecture](https://merry.ee.ncku.edu.tw/ilecture/)
+- [iLecture](http://merry.ee.ncku.edu.tw/ilecture/)
     * 教學即時反饋服務，[介紹和使用說明](https://mbi.hackpad.com/iLecture-hMIYn94TvCm)
     * 現任維護者、主要貢獻者
     * **歡迎使用！**
