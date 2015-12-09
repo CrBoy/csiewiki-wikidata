@@ -49,7 +49,7 @@ Technical Skills
     * Won first place in our department’s Programming Contest (2015)
     * Participated in many global contests like Facebook Hacker Cup, Google Code Jam, and ACM ICPC
 - HTML / CSS / PHP / JavaScript
-    * Take the prize of UI/UX in Mei-Chu Hackathon
+    * Took the prize of UI/UX in Mei-Chu Hackathon
     * Built an online judge, self-play game system for freshman’s course
     * Took in charge of Microsoft Student Partners in Taiwan recruitment’s website
     * Maintained all the websites and systems in our department
@@ -85,6 +85,8 @@ Works
     * The interface for students' ID card, class and equipment borrowing for NCKU CSIE.
 - [Microsoft Student Partners admission website](http://jingfei.github.io/msp9th) ([github](http://github.com/jingfei/msp9th))
     * The admission website for 9th Microsoft Student Partners, and it is cooperated with the group of design.
+- [Website for Taiwan's College Admission reviewed meeting](http://jingfei.github.io/104-admission/) ([github](http://github.com/jingfei/104-admission))
+    * A simple website for Taiwan's College Admission reviewed meeting, the structure is using semantic-ui.
 - Girls in Tech Taiwan x Facebook Hack for a Cause: Opinionoted ([github](https://github.com/maxis1718/fb6likes))
     * An application for analysing the distance from you and your friends for the specific topic.
     * Cooperated with Yahoo engineer.
