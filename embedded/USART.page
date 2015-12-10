@@ -267,34 +267,22 @@ USART data frame & M bit
 
 10種中斷
 -------
- – CTS改變(CTSIE, CTS interrupt enable)
-
- – LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
-
- – 傳送緩衝區空(TXEIE, Data buffer empty interrupt enable)
-
- – 傳送完成(TCIE, Transmission complete interrupt enable)
-
- – 接收緩衝區滿(RXNEIE, Data buffer not empty interrupt enable)
-
- – 空閒線路檢測(IDLEIE, Idle interrupt enable)
-
- – 溢出錯誤(Overrun error)
-
- – Frame錯誤(Framing error)
-
- – 噪音錯誤(Noise error)
-
- – 檢驗錯誤(Parity error, PEIE)
+ - CTS改變(CTSIE, CTS interrupt enable)
+ - LIN中斷檢測(LBDIE, LIN break detection interrupt enable)
+ - 傳送緩衝區空(TXEIE, Data buffer empty interrupt enable)
+ - 傳送完成(TCIE, Transmission complete interrupt enable)
+ - 接收緩衝區滿(RXNEIE, Data buffer not empty interrupt enable)
+ - 空閒線路檢測(IDLEIE, Idle interrupt enable)
+ - 溢出錯誤(Overrun error)
+ - Frame錯誤(Framing error)
+ - 噪音錯誤(Noise error)
+ - 檢驗錯誤(Parity error, PEIE)
 
 3個傳輸檢測標誌
 ------------
-
- – 接收緩衝區滿(RXNE,Data buffer not empty)
-
- – 傳送緩衝區空(TXE,  Data buffer empty)
-
- – 傳輸結束(TC,  Transmission complete)
+ - 接收緩衝區滿(RXNE,Data buffer not empty)
+ - 傳送緩衝區空(TXE,  Data buffer empty)
+ - 傳輸結束(TC,  Transmission complete)
 
 
 
@@ -316,6 +304,7 @@ Tx傳送器
 TE被開啟時，會立即送出一個idle frame。
 
 停止位元的數目可由使用者決定為0.5, 1, 1.5或2 bits:
+
    - 1 bit的stop bit: 預設的停止位位元數
    - 2 bits的stop bit: 一般USART模式、單線傳輸模式和modem modes
    - 0.5 bits的stop bit: Smartcard mode接收數據用
@@ -341,6 +330,7 @@ Ref: [RM0090 Reference Manual P.952](http://www.st.com/web/en/resource/technical
 ![](/usart_transmiter.png)
 
 設定流程如下:
+
    1. 設定USART_CR1的UE為1來啟動傳輸，如圖中的(a)
    2. 設定USART_CR1的M決定資料長度，如圖中的(b)
    3. 設定USART_CR2中的STOP位來決定停止位元的長度，如圖中的(c)
@@ -353,14 +343,15 @@ Ref: [RM0090 Reference Manual P.952](http://www.st.com/web/en/resource/technical
 
 
 當資料放入USART_DR會由硬體清除TXE位，如圖中的(h)，則表示:
+
    1. 資料已從TDR中放入transmit shift register，而且資料已開始傳送
    2. TDR暫存器無資料
    3. 下一筆資料可放入USART_DR中，並且不會覆蓋前一筆資料
 
 
 若設定TXEIE為1，則會產生一個中斷，如圖中的(i):
+
    - 如果USART正在發送資料，對USART_DR的寫入會把資料移到TDR暫存器中，並在目前的資料傳送結束後，把TDR的資料移進transmit shift register中
-   
    - 如果USART沒有在發送資料，則對USART_DR寫入資料時，會直接把該筆資料放入transmit shift register中，並啟動傳送，當傳送開始時，硬體會立即設定TXE位。
 
 當一個frame的資料發送完畢(送出stop bits後)，TC位會被設定為高電位，如圖中的(j)，如果USART_CR1中的TCIE有被設定，則會產生一個中斷，如圖中的(k)。
@@ -428,6 +419,7 @@ Oversampling
 -----------------------------------------------------
 
 Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 or 2，在smartcard模式則可選擇0.5 or 1.5。
+
    1. 0.5 stop bit(用於smartcard模式的接收器): 不進行採樣，所以沒辦法偵測到framing錯誤，或是偵測出break frame。
    2. 1 stop bit: 在第8, 9, 10個採樣點進行採樣
    3. 1.5 stop bit(用於smartcard模式，包含接收器和傳送器): 1.5 stop bit的採樣是在第16, 17, 18個採樣點進行(在stop bit開始後1個baud clock之後才開始採樣)。而1.5 stop bit可以分成前0.5和後1 stop bit。在前0.5 stop bit甚麼事都不做，在後1 stop bit的中間(16, 17, 18)才開始採樣。在smartcard模式傳輸資料時，必須要確保每筆資料都有正確地送出去。所以接收器一定要把USART_CR1的RE設定為1，然後stop bit會被拿來偵測是否有parity error產生。如果發生了parity error，smartcard會在採樣時強制把資料訊號拉至低電位(此為NACK訊號，這種訊號會被另一端標記成framing error)。在1.5 stop bit結束時，FE和RXNE會同時被設定為1。其餘請參考smartcard章節。
@@ -495,6 +487,7 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
  - 在一般情況下，本身不產生中斷，在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的ORE可得知溢出錯誤
 
 當溢出錯誤產生時:
+
    1. USART_SR中的ORE將被設定為1，如圖中的(j)
    2. RDR中的內容不會被清除，因此讀取USART_DR仍可以得到之前的資料
    3. Received shift register中的資料將被覆蓋。覆蓋完之後，在接下來overrun錯誤發生的過程中，所有接收到的資料都會遺失。
@@ -502,6 +495,7 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
    5. 依序讀取USART_SR和USART_DT暫存器，可清除ORE
 
 **當ORE位被設置時，表示至少有一個資料已遺失，有以下兩種可能性: **
+
    1. 如果RXNE=1，表示之前的資料還在RDR中，且可被讀出
    2. 如果RXNE=0，表示之前的資料已被讀走，RDR已無資料可被讀取。若正在讀取RDR中的上一筆資料，而讀取時又接收到新的資料(這筆新的資料會遺失)，就會發生這種情況。另一種情況是正在讀取USART_SR以及USART_DR的過程中，有新的資料被讀進來(但這筆資料會遺失)，這也會導致相同結果。
 
@@ -544,6 +538,7 @@ Frame錯誤(Frame error)
 
 
 當Frame錯誤被檢測出時:
+
    1. FE位被硬體設定為1，如圖中的(l)
    2. 無效的資料從received shift register移入USART_DR中
    3. 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷，如圖中的(k)
