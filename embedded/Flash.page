@@ -506,7 +506,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x0C
 - Reset value: 0x0000 0000
 
-![](/embedded/Flash)status register (FLASH_SR).png
+![alt text](/flash_cr.png)
 
 - Bits 31:17 Reserved, must be kept cleared.
 - Bit 16 BSY : Busy. 0: 無其他記憶體操作; 1: 其他記憶體操作進行中。(若無任何操作時會自動清除)
@@ -527,7 +527,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x10
 - Reset value: 0x8000 0000
 
-![](/Flash)control register(FLASH_CR).png
+![alt text](/flash_cr2.png)
 
 - Bit 31 LOCK : Lock. 只能寫為1，當值為1時，FLASH_CR將鎖住不可更改，唯有偵測到解鎖序列才會清除。
 - Bits 30:26 保留位置，必須保持淨空。
@@ -570,7 +570,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x14
 - Reset value: 0x0FFF AAED.
 
-![](/embedded/Flash)option control register (FLASH_OPTCR).png
+![alt text](/flash_cr3.png)
 
 - Bits 31 SPRMOD: Selection of protection mode for nWPRi bits
   - 0: PCROP disabled. nWPRi bits used for Write protection on sector i.
@@ -598,7 +598,7 @@ Flash memory erase的操作以sector，bank，Mass(整個flash memory)為單位�
 - Address offset: 0x18
 - Reset value: 0x0FFF 0000. 
 
-![](/embedded/Flash)option control register (FLASH_OPTCR1).png
+![alt text](/flash_cr5.png)
 
 - Bits 31:28 Reserved, must be kept cleared.
 - Bits 27:16 nWRP: Not write protect. 0: write protection active; 1: write protection not active.
