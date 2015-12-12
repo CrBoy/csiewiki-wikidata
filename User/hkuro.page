@@ -6,6 +6,7 @@ categories: User
 簡介
 ====
 - 成功大學工程科學所 105 級，[黃悅民教授](https://sites.google.com/site/huangpage/home)的學生
+- 臺南大學數位學習科技學系 103 級
 - 台灣嘉義人，現居台南市
 - 英文名: Kuro Hung
 
@@ -15,7 +16,7 @@ categories: User
 - 世一文化 資訊專員
 - 國立成功大學 嵌入式異質多核心 助教
 - 國立成功大學 網路嵌入式系統應用 助教
-- 國立臺南大學 計畫兼任助理
+- 國立臺南大學 高互動實驗室 計畫兼任助理
 
 專案經驗
 ===============
@@ -25,6 +26,42 @@ categories: User
 - 手語辨識系統
 - 智慧購物車
 
+競賽得獎
+===============
+- Shopping Elf / 2015瑞昱半導體-阿米巴物聯網創意設計大賽-冠軍
+- 這些年，手勢告訴我們的事 / 2014年經濟部搶鮮大賽-系統整合實作類-亞軍
+- 助你一臂之力 / 2014通訊大賽 聯發科技物聯網/穿戴式創客競賽-優等獎
+- 助你一臂之力 / 2014年全國微電腦應用系統設計創作競賽-智慧生活類-入圍
+- 在考試的前一天爆炸 / 2013第18屆全國大專校院資訊應用服務創新競賽-佳作
+
+學術論文
+===============
+- 智慧購物車與商場行銷物聯網之整合應用 / 2015 National Computer Symposium (NCS 2015)
+- 互動式建築投影結合古蹟數位學習之創作研究--以台南市古蹟建築「紅樓」為例 / 102學年度國科會大專學生研究計畫
+- 華語文影片字幕斷詞分析處理工具開發與評估 / 101學年度國科會大專學生研究計畫
+- 影片中文字幕高頻詞標示輔助學習工具開發與評估 / GCCCE2012
+- 中文斷詞系統輔助新移民理解華語文影片字幕之可行性研究 / TANET2012
+- 將模擬系統移轉至視覺化程式語言環境之建置對照─以StarLogo TNG為建置工具 / TANET2013
+- The Interactive Building Projection on Heritage Based on Game-Based Learning—A Case of“Red Building in National University of Tainan” / ICCE2013- W09 Enhancing Learning through Digital Games & Intelligent Sensor Toys
+- The Interactive Building Projection on Heritage based on Game-based learning / JTEL  - Technology for Education and Learning
+- 互動式建築投影之數位互動藝術創作研究—考試的前一天爆炸 / TAAI2013::智慧設計展
+
+進階嵌入式系統開發與實作 (2015 Fall)
+===================================
+學習成果
+-------
+- 作業 [GitHub](https://github.com/hkuro)
+    - Homework1_ext : [GitHub](https://github.com/hkuro/embedded-fall2015/tree/master/hw1_ext_pi_calc), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-1-7Fwpo7BPrbq)
+    - Homework2 : [GitHub](https://github.com/hkuro/phonebook), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-2-DqkStg9qomJ)
+    - Homework3 : [GitHub](https://github.com/hkuro/quiz), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-3-9IapPPkOuhD)
+    - Homework4 : [GitHub](https://github.com/hkuro/jit-construct-1), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-4-gM9rSwp4Ap6)
+    - Homework6 : [基礎觀念學習](https://embedded2015.hackpad.com/-2015q3-Homework-6-bgmdh2N9jZB)
+    - Homework7 : [GitHub](https://github.com/hkuro/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-7-rUzc930hP4z)
+    - Homework8 : [GitHub](https://github.com/hkuro/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-8-lrRIQRVfkVz)
+
+- 參與協作的 Hackpad 
+    - [上課筆記](https://embedded2015.hackpad.com/-2015-Fall-by-Kuro-Qwg54UEOvaq)
+    - [報告筆記](https://embedded2015.hackpad.com/Team6--FAqZL1rZbA3)
 
 嵌入式作業系統設計與實作 (2015 Spring)
 ===================================
@@ -37,16 +74,7 @@ categories: User
     - Lab41 : [學習紀錄](https://embedded2015.hackpad.com/B5tCwI9rCTM)
 
 - 參與協作的 Hackpad 
-    - [個人筆記](https://embedded2015.hackpad.com/hkuro-drE19cLLkxl)
-        - [Week#3 Note](https://embedded2015.hackpad.com/Week3-Note-z3ngFQODIqC)
-        - [Week#4 Note](https://embedded2015.hackpad.com/Week4-Note-lm2Q9FCgDnq)
-        - [Week#5 GitHub Note](https://embedded2015.hackpad.com/Week5-Note-JT5k4JNItXY)
-        - [Week#6 Note](https://embedded2015.hackpad.com/Week6-Note-vz3TBYMf6DE)
-        - [Week#7 Note](https://embedded2015.hackpad.com/Week7-Note-s6gD3WnM1kI)
-        - [Week#8 Note](https://embedded2015.hackpad.com/Week8-Note-ukXdv8pmyXc)
-        - [Week#9 Note](https://embedded2015.hackpad.com/Week9-Note-ra2QdJ7yPvG)
-        - [Week#10 Note](https://embedded2015.hackpad.com/Week10-Note-rXiAuENFJZP)
-        - [Week#11 Note](https://embedded2015.hackpad.com/Week11-Note-Ta33xiV7Pdt)
+    - [上課筆記](https://embedded2015.hackpad.com/hkuro-drE19cLLkxl)
     - [報告筆記](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
         - [Linux Kernel 行為分析(理論): Scheduling + Timer Interrupt](https://embedded2015.hackpad.com/Linux-Kernel-Scheduling-Timer-Interrupt-Y1yFStkKVyr)
         - [Linux Kernel 行為分析(工具): Ftrace + KernelShark](https://embedded2015.hackpad.com/Linux-Kernel-Ftrace-KernelShark-QdfD65akDu7#:h=KernelShark)
@@ -57,6 +85,7 @@ categories: User
 - 學期報告的 wiki
     - CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
     - 主要負責Linux Scheduling 理論探討、研究工具、實驗分析
+    - Google 搜尋:“arm linux”第三筆結果(2015/12/12)
 
 - 所見所聞心得
     - 從老師還沒正式上課之前的 [給自己更好未來的3個練習：嵌入式作業系統設計、實做，與移植 (2015 年春季 ) 課程說明](http://www.slideshare.net/jserv/embedded-os2015)，就覺得為了讓自己變強一定要來修這門課，讓自己變強者。但從第一次的考試開始，就知道自己是多麼的弱小，即使Open Book也看不懂許多專業知識，這門課需要的基礎如數位邏輯、計算機組織、作業系統甚至C語言程式設計都非常的不足，讓我感到無力。在上課的過程中，大部分的東西都無法直接聽懂，只能盡量把關鍵詞記下來，問問強者同學或翻書上網查詢；作業因為基礎過於薄弱，常常不知如何下手，也好在這堂課是以共筆和GitHub進行，可以參考強者同學的筆記，但一路上一直都似懂非懂，強者之路不好走...
