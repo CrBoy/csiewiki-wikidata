@@ -255,36 +255,37 @@ status register
 
 ![](/embedded/i2c_status_register(2).png)
 
-  .. code-block:: c
 
-   /** 
-    * @brief  SR1 register flags  
-    */
-   #define I2C_FLAG_SMBALERT              //SMBus alert
-   #define I2C_FLAG_TIMEOUT              //Timeout or Tlow error
-   #define I2C_FLAG_PECERR              //PEC Error in reception
-   #define I2C_FLAG_OVR                 //Overrun/Underrun
-   #define I2C_FLAG_AF                 //Acknowledge failure
-   #define I2C_FLAG_ARLO            //Arbitration lost (master mode)
-   #define I2C_FLAG_BERR           //Bus error 傳輸時，在SCL為HIGH時，SDA產生 rising or falling edge
-   #define I2C_FLAG_TXE             //Data register empty (transmitters)
-   #define I2C_FLAG_RXNE           //RxNE: Data register not empty (receivers)
-   #define I2C_FLAG_STOPF         //Stop detection (slave mode)
-   #define I2C_FLAG_ADD10       //10-bit header sent (Master mode)
-   #define I2C_FLAG_BTF             //Byte transfer finished
-   #define I2C_FLAG_ADDR          //Address sent (master mode)/matched (slave mode)
-   #define I2C_FLAG_SB                //Start bit (Master mode)
+.. code-block:: c
 
-   /** 
+    /** 
+     * @brief  SR1 register flags  
+     */
+    #define I2C_FLAG_SMBALERT        //SMBus alert
+    #define I2C_FLAG_TIMEOUT         //Timeout or Tlow error
+    #define I2C_FLAG_PECERR          //PEC Error in reception
+    #define I2C_FLAG_OVR             //Overrun/Underrun
+    #define I2C_FLAG_AF              //Acknowledge failure
+    #define I2C_FLAG_ARLO            //Arbitration lost (master mode)
+    #define I2C_FLAG_BERR            //Bus error 傳輸時，在SCL為HIGH時，SDA產生 rising or falling edge
+    #define I2C_FLAG_TXE             //Data register empty (transmitters)
+    #define I2C_FLAG_RXNE            //RxNE: Data register not empty (receivers)
+    #define I2C_FLAG_STOPF           //Stop detection (slave mode)
+    #define I2C_FLAG_ADD10           //10-bit header sent (Master mode)
+    #define I2C_FLAG_BTF             //Byte transfer finished
+    #define I2C_FLAG_ADDR            //Address sent (master mode)/matched (slave mode)
+    #define I2C_FLAG_SB              //Start bit (Master mode)
+ 
+    /** 
     * @brief  SR2 register flags  
     */
-   #define I2C_FLAG_DUALF             //Dual flag (Slave mode)
-   #define I2C_FLAG_SMBHOST        //SMBus host header (Slave mode)
-   #define I2C_FLAG_SMBDEFAULT          //SMBus device default address (Slave mode)
-   #define I2C_FLAG_GENCALL           //General call address (Slave mode)
-   #define I2C_FLAG_TRA                //Transmitter/receiver
-   #define I2C_FLAG_BUSY              //Bus busy
-   #define I2C_FLAG_MSL              //Master/slave
+    #define I2C_FLAG_DUALF           //Dual flag (Slave mode)
+    #define I2C_FLAG_SMBHOST         //SMBus host header (Slave mode)
+    #define I2C_FLAG_SMBDEFAULT      //SMBus device default address (Slave mode)
+    #define I2C_FLAG_GENCALL         //General call address (Slave mode)
+    #define I2C_FLAG_TRA             //Transmitter/receiver
+    #define I2C_FLAG_BUSY            //Bus busy
+    #define I2C_FLAG_MSL             //Master/slave
 
   (暫存器可參考 http://www.eng.auburn.edu/~nelson/courses/elec5260_6260/STM32F4%20I2C.pdf)
 
