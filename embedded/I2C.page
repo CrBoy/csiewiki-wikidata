@@ -296,22 +296,24 @@ I2C bus “events” from flags
 
   .. code-block:: c
 
-   /* --EV5 */
-   #define  I2C_EVENT_MASTER_MODE_SELECT                      ((uint32_t)0x00030001)  /* BUSY, MSL and SB flag */
-   /* --EV6 */
-   #define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED        ((uint32_t)0x00070082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
-   #define  I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED           ((uint32_t)0x00030002)  /* BUSY, MSL and ADDR flags */
-   /* --EV9 */
-   #define  I2C_EVENT_MASTER_MODE_ADDRESS10                   ((uint32_t)0x00030008)  /* BUSY, MSL and ADD10 flags */
-   /* Master RECEIVER mode -----------------------------*/ 
-   /* --EV7 */
-   #define  I2C_EVENT_MASTER_BYTE_RECEIVED                    ((uint32_t)0x00030040)  /* BUSY, MSL and RXNE flags */  
-
-   /* Master TRANSMITTER mode --------------------------*/
-   /* --EV8 */
-   #define I2C_EVENT_MASTER_BYTE_TRANSMITTING                 ((uint32_t)0x00070080) /* TRA, BUSY, MSL, TXE flags */
-   /* --EV8_2 */
-   #define  I2C_EVENT_MASTER_BYTE_TRANSMITTED                 ((uint32_t)0x00070084)  /* TRA, BUSY, MSL, TXE and BTF flags */
+    /* --EV5--- BUSY, MSL and SB flag */
+    #define  I2C_EVENT_MASTER_MODE_SELECT                 ((uint32_t)0x00030001)
+    /* --EV6--- BUSY, MSL, ADDR, TXE and TRA flags */
+    #define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED   ((uint32_t)0x00070082)
+    /* BUSY, MSL and ADDR flags */
+    #define  I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED      ((uint32_t)0x00030002)
+    /* --EV9--- BUSY, MSL and ADD10 flags */
+    #define  I2C_EVENT_MASTER_MODE_ADDRESS10              ((uint32_t)0x00030008)
+ 
+    /* Master RECEIVER mode -----------------------------*/ 
+    /* --EV7--- BUSY, MSL and RXNE flags */
+    #define  I2C_EVENT_MASTER_BYTE_RECEIVED               ((uint32_t)0x00030040) 
+  
+    /* Master TRANSMITTER mode --------------------------*/
+    /* --EV8--- TRA, BUSY, MSL, TXE flags */
+    #define I2C_EVENT_MASTER_BYTE_TRANSMITTING            ((uint32_t)0x00070080)
+    /* --EV8_2--- TRA, BUSY, MSL, TXE and BTF flags */
+    #define  I2C_EVENT_MASTER_BYTE_TRANSMITTED            ((uint32_t)0x00070084)
 
 
 
@@ -319,22 +321,23 @@ I2C bus “events” from flags
 
   .. code-block:: c
 
-   /* --EV1 */
-   #define  I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED          ((uint32_t)0x00020002) /* BUSY and ADDR flags */
-   #define  I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED       ((uint32_t)0x00060082) /* TRA, BUSY, TXE and ADDR flags */
-   /* Slave RECEIVER mode --------------------------*/ 
-   /* --EV2 */
-   #define  I2C_EVENT_SLAVE_BYTE_RECEIVED                     ((uint32_t)0x00020040)  /* BUSY and RXNE flags */
-   /* --EV4  */
-   #define  I2C_EVENT_SLAVE_STOP_DETECTED                     ((uint32_t)0x00000010)  /* STOPF flag */
-
-   /* Slave TRANSMITTER mode -----------------------*/
-   /* --EV3 */
-   #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTED                  ((uint32_t)0x00060084)  /* TRA, BUSY, TXE and BTF flags */
-   #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTING                 ((uint32_t)0x00060080)  /* TRA, BUSY and TXE flags */
-   /* --EV3_2 */
-   #define  I2C_EVENT_SLAVE_ACK_FAILURE                       ((uint32_t)0x00000400)  /* AF flag */
-
+    /* --EV1--- BUSY and ADDR flags */
+    #define  I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED          ((uint32_t)0x00020002)
+    /* TRA, BUSY, TXE and ADDR flags */
+    #define  I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED       ((uint32_t)0x00060082)
+    /* Slave RECEIVER mode --------------------------*/ 
+    /* --EV2--- BUSY and RXNE flags */
+    #define  I2C_EVENT_SLAVE_BYTE_RECEIVED                     ((uint32_t)0x00020040)
+    /* --EV4--- STOPF flag  */
+    #define  I2C_EVENT_SLAVE_STOP_DETECTED                     ((uint32_t)0x00000010)
+ 
+    /* Slave TRANSMITTER mode -----------------------*/
+    /* --EV3--- TRA, BUSY, TXE and BTF flags */
+    #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTED                  ((uint32_t)0x00060084)
+    /* TRA, BUSY and TXE flags */
+    #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTING                 ((uint32_t)0x00060080)
+    /* --EV3_2-- AF flag */
+    #define  I2C_EVENT_SLAVE_ACK_FAILURE                       ((uint32_t)0x00000400)
 
 
 four I²C modes
