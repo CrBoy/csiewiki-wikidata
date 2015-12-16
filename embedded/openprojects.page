@@ -14,24 +14,32 @@ toc: no
 
 進行中專案
 ---------------
+
+* [uVisor](https://github.com/ARMmbed/uvisor): device security layer for ARMv7M microcontrollers
+    - 2015 年發表於開源操作系統技術年會 (北京清華大學)
+
+* [Xenomai](/embedded/xenomai): Real-time framework for Linux
+    - 2015 年發表於 Real-time Linux Workshops
+
 * [uClinux](https://github.com/uclinux-cortexm):  Linux kernel for ARM Cortex-M based microcontrollers  without a memory management unit (MMU).
-  - 2015 年發表於 Embedded Linux Conference, Linux Foundation
+    - [uClinux for ARM Cortex-M4](https://github.com/uclinux-cortexm): 以 STM32F429 Discovery Kit 為開發平台，提供完整的 uClinux 移植和開發環境 (GPL)
+    - 2015 年發表於 Embedded Linux Conference, Linux Foundation
 
 * [RTMux](https://github.com/rtmux): Lightweight Temporal and Spatial Partitioning of Real-Time Linux (GPL)
-  - 2014 年發表於 Embedded Linux Conference Europe, Linux Foundation
+    - 2014 年發表於 Embedded Linux Conference Europe, Linux Foundation
 
 * [olibc](http://olibc.so) : 針對嵌入式系統開發的高度最佳化、高客製化的 C runtime (libc; BSD License)
-  -  2013 年發表於 Embedded Linux Conference, Linux Foundation
+    -  2013 年發表於 Embedded Linux Conference, Linux Foundation
 
 * [TuxOnIce](http://tuxonice.nigelcunningham.com.au/): Snapshot boot for ARM，用 6 秒啟動 Android 裝置 (GPL/LGPL)
-  - 2013 年發表於 Automotive Linux Summit, Linux Foundation
+    - 2013 年發表於 Automotive Linux Summit, Linux Foundation
 
 * [DMTCP](http://dmtcp.sourceforge.net/): Distributed MultiThreaded CheckPointing for Android (LGPL)
-  - 2012 年發表於 Embedded Linux Conference Europe, Linux Foundation
+    - 2012 年發表於 Embedded Linux Conference Europe, Linux Foundation
 
 * [ UrsusPilot](https://github.com/UrsusPilot/): An open-source multi-copter autopilot (MIT/BSD License)
 * [F9 Microkernel](https://github.com/f9micro) : 針對 ARM Cortex-M4 特性並基於 L4 微核心架構，重新打造的嵌入式作業系統 (BSD License)
-* [uClinux for ARM Cortex-M4](https://github.com/uclinux-cortexm): 以 STM32F429 Discovery Kit 為開發平台，提供完整的 uClinux 移植和開發環境 (GPL)
+    - 2015 年發表於 CTHPC
 
 參與方式
 ------------
