@@ -33,8 +33,8 @@ toc: no
 |#14   |Dec 18  |Peripherals: [USART](/embedded/USART), [Flash](/embedded/Flash), [I2C](/embedded/I2C)        |        * |
 |#15   |Dec 25   | 專題演說; Peripherals: [USB](/embedded/USB)        |        * |
 |#16   |Jan 1  | Happy New Year!        |        * |
-|#17   |Jan 8  | Software Quality        |        * |
-|#18   |Jun 15  | Security Issues         |       * |
+|#17   |Jan 8  | Code Review / 作業回顧        |        * |
+|#18   |Jun 15  | Software Quality + Security Issues         |       * |
 
 [2015q3:基本能力鑑定測驗]: 2015q3w2
 [2015q3: Homework1]: 2015q3h1
