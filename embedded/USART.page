@@ -1217,7 +1217,7 @@ Download sample code :
 
 .. code-block:: c
 
-    如果是使用圖中轉接板，要將紅色板子的TX接到stm32f429的PA9（RX）、RX接到PA10(TX)。
+    如果是使用圖中轉接板，要將紅色板子的TX接到stm32f429的PA10（RX）、RX接到PA9(TX)。
     若是使用USB-TTL轉接線，要將綠色線(TX)接到PA9、白色線（RX）接到PA10
     接地線要記得插上板子
 
