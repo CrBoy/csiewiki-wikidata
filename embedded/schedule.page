@@ -29,9 +29,9 @@ toc: no
 |#10   |Nov 20  | [From ARM core to Peripherals](https://embedded2015.hackpad.com/ep/pad/static/epwUzCt8QBD) | = [2015q3: Homework9] = |
 |#11   |Nov 27  |[STM32 + Peripherals](https://embedded2015.hackpad.com/ep/pad/static/e3IjL7Kq3Lr) | = [2015q3: Homework10] = 
 |#12   |Dec 4  | Peripherals: [GPIO](/embedded/GPIO) [ADC](/embedded/ADC)       |        * |
-|#13   |Dec 11  |Peripherals: [USART](/embedded/USART), [SPI](/embedded/SPI), [Flash](/embedded/Flash)      |        * |
-|#14   |Dec 18  |Peripherals: [I2C](/embedded/I2C), [USB](/embedded/USB)        |        * |
-|#15   |Dec 25   | OS: [FreeRTOS](/embedded/freertos)       |        * |
+|#13   |Dec 11  |Peripherals: [SPI](/embedded/SPI); [uVisor](http://soft.cs.tsinghua.edu.cn/os2atc2015/ppt/hjq.pdf)      |        * |
+|#14   |Dec 18  |Peripherals: [USART](/embedded/USART), [Flash](/embedded/Flash), [I2C](/embedded/I2C)        |        * |
+|#15   |Dec 25   | 專題演說; Peripherals: [USB](/embedded/USB)        |        * |
 |#16   |Jan 1  | Happy New Year!        |        * |
 |#17   |Jan 8  | Software Quality        |        * |
 |#18   |Jun 15  | Security Issues         |       * |
