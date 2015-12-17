@@ -78,16 +78,14 @@ I²C 的仲裁
 
 一開始的I2C bus 操作的速度被限制在100kbit/s，不過隨著時代的演進，新增了一些模式，所以現在的規範分成五種操作速度:
 
-* 雙向
+- 雙向
+    - 標準模式 (Standard-mode), 速率可高達 100 kbit/s
+    - 快速模式 (Fast-mode), 速率可高達 400 kbit/s
+    - 快速模式PLUS (Fast-mode Plus), 速率可高達 1 Mbit/s
+    - 高速模式 (High-speed mode), 速率可高達 3.4 Mbit/s.
 
- - 標準模式 (Standard-mode), 速率可高達 100 kbit/s
- - 快速模式 (Fast-mode), 速率可高達 400 kbit/s
- - 快速模式PLUS (Fast-mode Plus), 速率可高達 1 Mbit/s
- - 高速模式 (High-speed mode), 速率可高達 3.4 Mbit/s.
-
-* 單向
-
- - 超快速模式(Ultra Fast-mode), 速率可高達 5 Mbit/s
+- 單向
+    - 超快速模式(Ultra Fast-mode), 速率可高達 5 Mbit/s
 
 快速模式的設備可以在400kbit/s 下做接收和傳送。並且向下相容，可以和標準模式的設備在0~100kbit/s 的I2C bus 通訊。快速模式與標準模式的比較如下:
 
@@ -120,45 +118,27 @@ pin 96 , I2S2_MCK | pin 74 , I2S2_CK/SPI2_SC | pin 76 , I2S2_SD/ SPI2_MOS
 # I²C 特性
 
 - I²C 串列傳輸包括四個部分：起始信號、設備位址發送、數據傳送和停止信號。
-
- - 只能Master<->Slave,無法Slave<->Slave,每個slave都要有一個特定且唯一的位址。
-
-
-
- - START condition: SCL=High 且 SDA為負緣
-
- - STOP condition: SCL=High 且 SDA=為正緣
+    - 只能Master<->Slave,無法Slave<->Slave,每個slave都要有一個特定且唯一的位址。
+    - START condition: SCL=High 且 SDA為負緣
+    - STOP condition: SCL=High 且 SDA=為正緣
 
   ![](/embedded/i2c_condition.png)
 
- - 由Master發送起始信號來開起通訊，所有的slave device接收到起始信號後會進入接收數據模式。接著Master需要發送通訊目標設備的address及R/W資訊。
+- 由Master發送起始信號來開起通訊，所有的slave device接收到起始信號後會進入接收數據模式。接著Master需要發送通訊目標設備的address及R/W資訊。
+   - STM32F429提供兩種 address mode - 7bit and 10bit
+      - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R(1)/W(0)後，該 address 的slave端會發送一個bit的 Ack(acknowledge) bit，ACK=0表設定成功(Slave把SDA拉到LOW)，開始數據傳送。 
 
-  - STM32F429提供兩種 address mode - 7bit and 10bit
+    ![7bit mode](/embedded/i2c_com.png)
 
-   - 7bit mode: 發送 7bit 的address (MSB) 及一位元的 R(1)/W(0)後，該 address 的slave端會發送一個bit的 Ack(acknowledge) bit，ACK=0表設定成功(Slave把SDA拉到LOW)，開始數據傳送。 
+      - 10bit mode: 總共用兩個byte來傳送 address資訊。第一個byte的前五個位元需為 "11110" 來表示要使用 10-bit addressing。
 
-    ![](/embedded/i2c_com.png)
+    ![10bit mode](/embedded/i2c_10bit.gif)
 
-    (7bit mode)
-
-   - 10bit mode: 總共用兩個byte來傳送 address資訊。第一個byte的前五個位元需為 "11110" 來表示要使用 10-bit addressing。
-   
-
-
-    ![](/embedded/i2c_10bit.gif)
-    
-
-    (10bit mode)
-
- - 資料傳輸
-
-  - 在 SCL 為 HIGH 時，SDA 必須是 stable 的。
-
-  - SDA 只能在 SCL 為 LOW 時改變。
-
-  - 一次傳一個 byte，每個byte都跟著一個 ACK bit ，在 ACK bit 時 Master 會釋放bus，此時 Slave 端需把 SDA 拉 LOW，否則 Master 需要發出 STOP訊號 或是重新發送 START 訊號。
-
- - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
+- 資料傳輸
+    - 在 SCL 為 HIGH 時，SDA 必須是 stable 的。
+    - SDA 只能在 SCL 為 LOW 時改變。
+    - 一次傳一個 byte，每個byte都跟著一個 ACK bit ，在 ACK bit 時 Master 會釋放bus，此時 Slave 端需把 SDA 拉 LOW，否則 Master 需要發出 STOP訊號 或是重新發送 START 訊號。
+    - 在每個 byte 之間 Slave 端可以把 SCL 拉 LOW  來強制讓傳輸暫停。
 
 
 
