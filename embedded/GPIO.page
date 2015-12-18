@@ -213,7 +213,7 @@ OSPEEDRy[1:0]決定output的速度。在不同的電容與電壓(VDD)下，輸�
     在電阻性的材料中，由於熱擾動的影響，造成材料內電子或電
     洞等電荷載體產生隨機的速度擾動，這種類似布朗運動
   - Shot noise
-    散粒雜訊通常存在于真空管中或半導體內，這種電子由負極到正極經外部電路的隨機運動
+    散粒雜訊通常存在于真空管中或半導體內，這種電子由負極到正極經外部電路的隨機運動
     當電壓超過一定的臨界值而電流流出呈現散亂的形狀
 
 P.280, **GPIO port pull-up/pull-down register (GPIOx_PUPDR)** in Reference manual
@@ -318,7 +318,7 @@ Demo - 測試實驗
   - demo3, demo4
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
-![](/embedded/starting_)state.jpg
+![](/embedded/starting_%20state.jpg)
 * 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
   - demo3, demo4
