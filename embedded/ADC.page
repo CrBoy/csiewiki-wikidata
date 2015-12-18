@@ -322,10 +322,7 @@ ADC Clock 最大可容忍頻率
 
 Refer from: STM32F4xx Datasheet P124
 
-
-
-
-    - 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
+- 舉例來說，下面的初始化即為把SMP10[2:0]這三個bit設為001
 
 ```c
 ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
@@ -334,11 +331,11 @@ ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_15Cycles);
 ADC mode
 ========
 
-**Independent-mode** 和 **Multi-mode (Dual-mode or Triple-mode)**
+* **Independent-mode** 和 **Multi-mode (Dual-mode or Triple-mode)**
 
-    **Independent mode** 表示此 ADC 獨立運作。
+    * **Independent mode** 表示此 ADC 獨立運作。
 
-    **multi-mode** 表示ADC同時合作執行。
+    * **multi-mode** 表示ADC同時合作執行。
 
 Independent mode 
 ----------------
