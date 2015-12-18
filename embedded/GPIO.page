@@ -318,81 +318,96 @@ Demo - 測試實驗
   - demo3, demo4
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
-![](/embedded/starting_%20state.jpg)
+--------
+
 * 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
   - demo3, demo4
 
+![](/embedded/starting_%20state.jpg)
+
 --------
 
-![](/embedded/schmitt_sin.jpg)
 * 90.9Hz ,sin波
 
+![](/embedded/schmitt_sin.jpg) 
+
 --------
 
-![](/embedded/schmitt_tri.jpg)
 * 90.9Hz ,三角波
 
+![](/embedded/schmitt_tri.jpg)
+
 --------
 
-![](/embedded/interrupt_func_delay.jpg)
 * 87000HZ ,interrupt with function call
 * visible interrupt delay ,about 2000ns
   - demo4 使用 GPIO_ToggleBits 切換
 
+![](/embedded/interrupt_func_delay.jpg)
+
 --------
 
-![](/embedded/interrupt_func_1M.jpg)
 * 833000Hz ,interrupt with function call
 * 頻率再增加, 會造成無法正常的解析波形
 
+![](/embedded/interrupt_func_1M.jpg)
+
 --------
 
-![](/embedded/polling_func_delay.jpg)
 * polling with function call
 * 使用polling的結果，delay大約750ns
   - demo3 使用 GPIO_ToggleBits 切換
   - 與 demo4 相比會波型會抖動
 
+![](/embedded/polling_func_delay.jpg)
+
 --------
 
-![](/embedded/interrupt_dir_delay.jpg)
 * 88500Hz ,interrupt without function call
 * interrupt不用function call，delay大約1500ns
   - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
+![](/embedded/interrupt_dir_delay.jpg)
+
 --------
 
-![](/embedded/pulling_dir_delay.jpg)
 * polling without function call
 * 不用function call，delay大約250ns
   - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
+![](/embedded/pulling_dir_delay.jpg)
+
 --------
 
-![](/embedded/interrupt_func_frqup.jpg)
 * 260000Hz ,interrupt without function call
 * 頻率加快的結果
   - demo4
   - 波型呈現連續都是高電位
 
+![](/embedded/interrupt_func_frqup.jpg)
+
 --------
 
-![](/embedded/interrupt_func_frqup2.jpg)
 * 1111000Hz ,interrupt without function call
 * 頻率再增加的結果
   - demo4
   - 波型開始呈現交錯, 主要是因為偵測時會有交錯
 
+![](/embedded/interrupt_func_frqup2.jpg)
+
 --------
 
-![](/embedded/pull_down_res.jpg)
 * 一般的下拉電阻
 
+![](/embedded/pull_down_res.jpg)
+
 --------
 
-![](/embedded/pull_down_resl.jpg)
 * PA10 /PB12 的例外電阻
+
+![](/embedded/pull_down_resl.jpg)
+
 
 Code Section - 程式碼
 ---------------------
