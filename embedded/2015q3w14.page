@@ -8,7 +8,8 @@ toc: no
     - Dec 25: 專題演說 (邀請聯發科, Google, Facebook, Dropbox 任職的講者) + 分組報告 
     - Jan 1: 元旦停課
     - Jan 8: Code Review / 作業回顧 (檢視 Homework #4 to #9)
-    - Jun 15: Software Quality + Security Issues (這天依然有課，請注意！)
+    - Jan 15: Software Quality + Security Issues (這天依然有課，請注意！)
+   - Jan 24: 期末專題展示 + 評分
 * 各組應該在 Dec 25 的 09:10AM 前，將期末專題的題目、規格、系統架構描述，還有預計達成的目標[紀錄在 wiki](http://wiki.csie.ncku.edu.tw/embedded/team2015)
     - [期末專題想法清單](https://embedded2015.hackpad.com/cYrHbSjMOY7)
 * 各組請在 Dec 26 前，將同學在 hackpad 的提問、課堂討論的材料，整合回各自的 wiki，並且「修正格式」(Markdown 風格)
