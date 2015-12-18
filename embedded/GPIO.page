@@ -160,9 +160,7 @@ When the I/O port is programmed as analog configuration:
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
     - analog operating voltage (VDDA) max at 3.6V
 
-**Note2: Sampling jitter**
-
-http://en.wikipedia.org/wiki/Jitter
+[**Note2: Sampling jitter**](http://en.wikipedia.org/wiki/Jitter)
 
 In analog to digital and digital to analog conversion of signals, the sampling is normally assumed to be periodic with a fixed period—the time between every two samples is the same. If there is jitter present on the clock signal to the analog-to-digital converter or a digital-to-analog converter, the time between samples varies and instantaneous signal error arises.
 
@@ -171,8 +169,9 @@ Registers - 暫存器
 ==================
 Overview
 ---------
-![](/GPIO_img01)
 - Mode, Speed, Type, PuPd 對應表
+
+![](/GPIO_img01)
 
 P.278, **GPIO port mode register (GPIOx_MODER)** in Reference manual
 --------------------------------------------------------------------------
@@ -280,7 +279,7 @@ RD LCKR
 RD LCKR[16] = ‘1’ (optional, confirm only)
 ```
 
-- Lock sequences in c lib ( *STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c* : void GPIO_PinLockConfig() )
+- Lock sequences in c lib ( `STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c` : `void GPIO_PinLockConfig()` )
 
 ```c
 tmp |= GPIO_Pin;
@@ -421,8 +420,8 @@ cd stm32F4_GPIO_demo/
 
 Demo 範例選擇 :
 
-* 共有demo1.c, demo2.c, demo3.c, demo4.c
-* 請在 main.c 修改需要執行的 demo 範例 (同時間只能選擇其中一個範例)
+* 共有 `demo1.c`, `demo2.c`, `demo3.c`, `demo4.c`
+* 請在 `main.c` 修改需要執行的 demo 範例 (同時間只能選擇其中一個範例)
 
 ```bash
 make
@@ -431,7 +430,7 @@ make flash
 
 配置說明 : 
 
-* STM32F429I-Discovery Library 的預先定義(in STM32F429I-Discovery/stm32f429i_discovery.h) :
+* STM32F429I-Discovery Library 的預先定義(in `STM32F429I-Discovery/stm32f429i_discovery.h`) :
 
 ```c
 #define LED4_PIN                         GPIO_Pin_13
@@ -476,7 +475,7 @@ RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
 * GPIO 參數設置, 設定 Pin, Mode, Type, Pull-Up/Pull-Down, Speed
     - 根據不同的 Mode, 設置不同對應的參數, 並非所有的資料都需要設置
     - 以下範例為初始化 LED3 與 LED4, GPIO Port: G; Pins: 13, 14; Mode: Output; Type: Push-Pull; Pull-Up/Pull-Down: No Pull; Speed: 2MHz
-    - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h
+    - 詳細參數名稱可參考 `STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h`
 
 ```c
 // GPIO Configuration
@@ -495,7 +494,7 @@ GPIO_Init(GPIOG, &GPIO_InitStructure);
         - 使用 external interrupt 必須設置為 input
         * 以下範例設置 GPIO Port: A; Pin: 0
             - 根據設置我們可以得知此 GPIO 對應的是 User Button
-    - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h
+    - 詳細參數名稱可參考 `STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h`
 
 ```c
 EXTI_InitTypeDef EXTI_InitStructure;
@@ -540,31 +539,12 @@ void EXTI0_IRQHandler(void)
 
 * Demo1
     - 兩個 LED 燈交互閃爍
-    - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
-        * 此部份需要注意 delay 時間, 若設置太短則不易辨識
-
-```c
-GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
- 
-while(1)
-{   
-    GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
-    GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
-
-    // Delay
-    for(int i=0; i<1000000; i++);
-} 
-```
-
-* 由於預設的 HCLK 速度則是 48Mhz
-    - for(int i=0; i<1000000; i++)　總共是 10 cycle
-    - 因此延遲時間約 0.27 秒
-
-* Demo1
-    - 兩個 LED 燈交互閃爍
         * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
-    - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
+    - 可以使用 GPIO_ToggleBits (in `STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c`)
         * 此部份需要注意 delay 時間, 若設置太短則不易辨識
+    * 由於預設的 HCLK 速度則是 48Mhz
+        - for(int i=0; i<1000000; i++)　總共是 10 cycle
+        - 因此延遲時間約 0.27 秒
 
 ```c
 void demo1()
@@ -735,7 +715,7 @@ ble.n: 1 or 1+P(pipeline refill)
 經過實測時間為0.16秒，換算指令的執行頻率 = HCLK速度: 48Mhz (clock的速率請看下一節)
 
 指令執行時間：Cortex-M4 instructions
-http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.html
+[http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.html](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0439b/CHDDIGAC.html)
 
 * 關於STR, LDR系列指令，有cache機制可以在鄰近存取時減少執行時間
 * Neighboring load and store single instructions can pipeline their address and data phases. This enables these instructions to complete in a single execution cycle.
@@ -754,7 +734,7 @@ PLL會在Stop Standby Modes時被停用，HSE(or PLL)失效時會將System Clock
 
 主PLL -> HCLK -> Core,AHB,DMA,Memory (p.150還有其他的PLL供其他裝置使用)
 
-專案預設設定：8Mhz / 25 * 300 / 2=48Mhz (system_stm32f4xx.c)
+專案預設設定：8Mhz / 25 * 300 / 2=48Mhz (`system_stm32f4xx.c`)
 
 + PLL_M [預設25]    [可調範圍2~63]
 + PLL_N [預設300]  [可調範圍192~432]
