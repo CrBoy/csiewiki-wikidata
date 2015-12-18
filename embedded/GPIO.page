@@ -10,11 +10,11 @@ Introduction - 簡介
 
 * GPIO 是種具有彈性且可以藉由軟體控制 (software-controlled) 的數位訊號
 * 常見於開發版邊緣, 以針腳 (Pin) 的形式呈現
-  - 這些針腳即是開發版與外界溝通的重要橋樑
-  - 簡單例子, 想像成是開關, 使用者可以打開或關閉 (input), 或由開發版來打開或關閉 (output)
+    - 這些針腳即是開發版與外界溝通的重要橋樑
+    - 簡單例子, 想像成是開關, 使用者可以打開或關閉 (input), 或由開發版來打開或關閉 (output)
 
 * 每個 GPIO 可以被當成 input, output, analog 或 alternate function
-  - alternate function 是指其他的的功能, 如 I2C, SPI, USART, CCP, PWM, Clock 等。如何控制則取決於外部設備 (peripheral)
+    - alternate function 是指其他的的功能, 如 I2C, SPI, USART, CCP, PWM, Clock 等。如何控制則取決於外部設備 (peripheral)
 
 STM32F4xx GPIO特性
 =====================================
@@ -22,11 +22,11 @@ STM32F4xx GPIO特性
 * 所有 GPIO 具有容許較高的電流能力與四種速度選擇，根據不同設定管理雜訊、電耗與電磁波
 * 最大 I/O 切換速度可以支援到 90 MHz
 * STM32F4xx 每個 GPIO Port 有 10 個 32-bit 暫存器 (Register)
-  - Configuration Register: GPIOx_MODER, PIOx_OTYPER, GPIOx_OSPEEDR 與 GPIOx_PUPDR
-  - Data Register: GPIOx_IDR and GPIOx_ODR
-  - Set/Reset Register: GPIOx_BSRR
-  - Locking Register: GPIOx_LCKR 【防止因錯誤而改變GPIO的用途(accidental repurposing)】
-  - Alternate Function Selection Register: GPIOx_AFRH 與 GPIOx_AFRL
+    - Configuration Register: GPIOx_MODER, PIOx_OTYPER, GPIOx_OSPEEDR 與 GPIOx_PUPDR
+    - Data Register: GPIOx_IDR and GPIOx_ODR
+    - Set/Reset Register: GPIOx_BSRR
+    - Locking Register: GPIOx_LCKR 【防止因錯誤而改變GPIO的用途(accidental repurposing)】
+    - Alternate Function Selection Register: GPIOx_AFRH 與 GPIOx_AFRL
 
 一個pin通常可被設定成input、output、alternate function或analog，  (alternate function和analog只有在特定腳位)
 
@@ -101,16 +101,16 @@ When the I/O port is programmed as Input:
 
 - the output buffer is disabled
 - the Schmitt trigger input is activated
-  - 這種模式處理的數位訊號只在意高低電位的差別(開關控制)。
+    - 這種模式處理的數位訊號只在意高低電位的差別(開關控制)。
 
 - the pull-up and pull-down resistors are activated depending on the value in the GPIOx_PUPDR register 
-  - 想要讓pin的state變成一個確定的狀態，可以設定pull-up/pull-down的使用。
+    - 想要讓pin的state變成一個確定的狀態，可以設定pull-up/pull-down的使用。
 
 - The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
-  - input data的更新主要就是以AHB1本身的更新週期做決定，每一個cycle抵達時，data register就會根據當時Schmitt trigger整流完的狀態做更新。
+    - input data的更新主要就是以AHB1本身的更新週期做決定，每一個cycle抵達時，data register就會根據當時Schmitt trigger整流完的狀態做更新。
 
 - A read access to the input data register provides the I/O State
-  - 對data register的理解，我覺得用'狀態'比'數值'的敘述來的更好(大部分都是開關，就是外部訊號源是否有狀態改變，如 : button的按下與放開)，而此處寫I/O state的意思是，即使我們現在是設成output(如 : LED控制)，但我們仍然可用input data register來檢查LED現在的狀態。
+    - 對data register的理解，我覺得用'狀態'比'數值'的敘述來的更好(大部分都是開關，就是外部訊號源是否有狀態改變，如 : button的按下與放開)，而此處寫I/O state的意思是，即使我們現在是設成output(如 : LED控制)，但我們仍然可用input data register來檢查LED現在的狀態。
 
 Output configuration (P.274, **8.3.10 Output configuration** in Reference manual)
 ---------------------------------------------------------------------------------
@@ -120,15 +120,15 @@ When the I/O port is programmed as output:
 .. TODO: Output Control
 
 - The output buffer is enabled:
-   - Open drain mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register leaves the port in Hi-Z (the P-MOS is never activated)
-   - Push-pull mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register activates the P-MOS
-   - 如前所述，設定Open drain / Push-pull的使用。
+    - Open drain mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register leaves the port in Hi-Z (the P-MOS is never activated)
+    - Push-pull mode: A “0” in the Output register activates the N-MOS whereas a “1” in the Output register activates the P-MOS
+    - 如前所述，設定Open drain / Push-pull的使用。
 - The Schmitt trigger input is activated
 - The weak pull-up and pull-down resistors are activated or not depending on the value in the GPIOx_PUPDR register
 - The data present on the I/O pin are sampled into the input data register every AHB1 clock cycle
 - A read access to the input data register gets the I/O state
 - A read access to the output data register gets the last written value
-  - 不一定與當下pin的狀態相同
+    - 不一定與當下pin的狀態相同
 
 Alternate function configuration (P.275, **8.3.11 Alternate function configuration** in Reference manual)
 ---------------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ When the I/O port is programmed as analog configuration:
 - Read access to the input data register gets the value “0”
 
 Note: In the analog configuration, the I/O pins cannot be 5 Volt tolerant.
-  - analog operating voltage (VDDA) max at 3.6V
+    - analog operating voltage (VDDA) max at 3.6V
 
 **Note2: Sampling jitter**
 
@@ -209,12 +209,12 @@ OSPEEDRy[1:0]決定output的速度。在不同的電容與電壓(VDD)下，輸�
 - 在其他狀態下的速度，可以參考 datasheet p134 table 58. I/O AC Characteristics
 
 * 雜訊的來源
-  - Thermal noise
-    在電阻性的材料中，由於熱擾動的影響，造成材料內電子或電
-    洞等電荷載體產生隨機的速度擾動，這種類似布朗運動
-  - Shot noise
-    散粒雜訊通常存在于真空管中或半導體內，這種電子由負極到正極經外部電路的隨機運動
-    當電壓超過一定的臨界值而電流流出呈現散亂的形狀
+    - Thermal noise
+      在電阻性的材料中，由於熱擾動的影響，造成材料內電子或電
+      洞等電荷載體產生隨機的速度擾動，這種類似布朗運動
+    - Shot noise
+      散粒雜訊通常存在于真空管中或半導體內，這種電子由負極到正極經外部電路的隨機運動
+      當電壓超過一定的臨界值而電流流出呈現散亂的形狀
 
 P.280, **GPIO port pull-up/pull-down register (GPIOx_PUPDR)** in Reference manual
 ---------------------------------------------------------------------------------
@@ -264,37 +264,37 @@ P.281, **GPIO port configuration lock register (GPIOx_LCKR)** in Reference manua
 當lock sequence正確執行之後，GPIOx_LCKR在下次reset之前無法修改。
 
 - Bit 16 LCKK[16]: Lock key
-   - 0: Port configuration lock key not active
-   - 1: Port configuration lock key active
-   - 只能在lock sequence時寫入
+    - 0: Port configuration lock key not active
+    - 1: Port configuration lock key active
+    - 只能在lock sequence時寫入
 - Bits 15:0 LCKy: lock bit y
-   - 0: Port configuration not locked
-   - 1: Port configuration locked
+    - 0: Port configuration not locked
+    - 1: Port configuration locked
 - Lock sequences pseudocode
 
-.. code-block:: c
-
-    WR LCKR[16] = ‘1’ + LCKR[15:0]
-    WR LCKR[16] = ‘0’ + LCKR[15:0]
-    WR LCKR[16] = ‘1’ + LCKR[15:0]
-    RD LCKR
-    RD LCKR[16] = ‘1’ (optional, confirm only)
+```c
+WR LCKR[16] = ‘1’ + LCKR[15:0]
+WR LCKR[16] = ‘0’ + LCKR[15:0]
+WR LCKR[16] = ‘1’ + LCKR[15:0]
+RD LCKR
+RD LCKR[16] = ‘1’ (optional, confirm only)
+```
 
 - Lock sequences in c lib ( *STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c* : void GPIO_PinLockConfig() )
 
-.. code-block:: c
-
-    tmp |= GPIO_Pin;
-    /* Set LCKK bit */
-    GPIOx->LCKR = tmp;
-    /* Reset LCKK bit */
-    GPIOx->LCKR =  GPIO_Pin;
-    /* Set LCKK bit */
-    GPIOx->LCKR = tmp;
-    /* Read LCKK bit*/
-    tmp = GPIOx->LCKR;
-    /* Read LCKK bit*/
-    tmp = GPIOx->LCKR;
+```c
+tmp |= GPIO_Pin;
+/* Set LCKK bit */
+GPIOx->LCKR = tmp;
+/* Reset LCKK bit */
+GPIOx->LCKR =  GPIO_Pin;
+/* Set LCKK bit */
+GPIOx->LCKR = tmp;
+/* Read LCKK bit*/
+tmp = GPIOx->LCKR;
+/* Read LCKK bit*/
+tmp = GPIOx->LCKR;
+```
 
 在執行中，LCK[15:0]的值不可改變，否則lock失敗。
 
@@ -315,14 +315,14 @@ Demo - 測試實驗
 --------
 * 除了STM32本身外，我們使用一台訊號產生器與一台示波器。
 * 將訊號產生器輸出(+)接到示波器的channel 1(黃色)與 PG9，STM32的輸出PG13接示波器的channel 2(藍色)
-  - demo3, demo4
+    - demo3, demo4
 * 訊號產生器的接地(-)接到STM32的GND與示波器channel 1/2的負極。
 
 --------
 
 * 90.9Hz ,方波
 * 起始狀態，程式將 PG9 的輸入 GPIOA_IDR shift 後送到 GPIOG_ODR，由 PG13 輸出。
-  - demo3, demo4
+    - demo3, demo4
 
 ![](/embedded/starting_%20state.jpg)
 
@@ -342,7 +342,7 @@ Demo - 測試實驗
 
 * 87000HZ ,interrupt with function call
 * visible interrupt delay ,about 2000ns
-  - demo4 使用 GPIO_ToggleBits 切換
+    - demo4 使用 GPIO_ToggleBits 切換
 
 ![](/embedded/interrupt_func_delay.jpg)
 
@@ -357,8 +357,8 @@ Demo - 測試實驗
 
 * polling with function call
 * 使用polling的結果，delay大約750ns
-  - demo3 使用 GPIO_ToggleBits 切換
-  - 與 demo4 相比會波型會抖動
+    - demo3 使用 GPIO_ToggleBits 切換
+    - 與 demo4 相比會波型會抖動
 
 ![](/embedded/polling_func_delay.jpg)
 
@@ -366,7 +366,7 @@ Demo - 測試實驗
 
 * 88500Hz ,interrupt without function call
 * interrupt不用function call，delay大約1500ns
-  - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
+    - demo4 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 ![](/embedded/interrupt_dir_delay.jpg)
 
@@ -374,7 +374,7 @@ Demo - 測試實驗
 
 * polling without function call
 * 不用function call，delay大約250ns
-  - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
+    - demo3 使用 GPIOG->ODR = GPIOA->IDR << 13; 切換
 
 ![](/embedded/pulling_dir_delay.jpg)
 
@@ -382,8 +382,8 @@ Demo - 測試實驗
 
 * 260000Hz ,interrupt without function call
 * 頻率加快的結果
-  - demo4
-  - 波型呈現連續都是高電位
+    - demo4
+    - 波型呈現連續都是高電位
 
 ![](/embedded/interrupt_func_frqup.jpg)
 
@@ -391,8 +391,8 @@ Demo - 測試實驗
 
 * 1111000Hz ,interrupt without function call
 * 頻率再增加的結果
-  - demo4
-  - 波型開始呈現交錯, 主要是因為偵測時會有交錯
+    - demo4
+    - 波型開始呈現交錯, 主要是因為偵測時會有交錯
 
 ![](/embedded/interrupt_func_frqup2.jpg)
 
@@ -414,314 +414,320 @@ Code Section - 程式碼
 
 sample code download : 
 
-.. code-block:: c
-
-    git clone https://github.com/chunikuo/stm32F4_GPIO_Demo.git
-    cd stm32F4_GPIO_demo/
+```bash
+git clone https://github.com/chunikuo/stm32F4_GPIO_Demo.git
+cd stm32F4_GPIO_demo/
+```
 
 Demo 範例選擇 :
 
 * 共有demo1.c, demo2.c, demo3.c, demo4.c
 * 請在 main.c 修改需要執行的 demo 範例 (同時間只能選擇其中一個範例)
 
-.. code-block:: c
-
-    make
-    make flash
+```bash
+make
+make flash
+```
 
 配置說明 : 
 
 * STM32F429I-Discovery Library 的預先定義(in STM32F429I-Discovery/stm32f429i_discovery.h) :
 
-.. code-block:: c
-
-    #define LED4_PIN                         GPIO_Pin_13
-    #define LED4_GPIO_PORT                   GPIOG
-    #define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOG
+```c
+#define LED4_PIN                         GPIO_Pin_13
+#define LED4_GPIO_PORT                   GPIOG
+#define LED4_GPIO_CLK                    RCC_AHB1Periph_GPIOG
   
-    #define LED3_PIN                         GPIO_Pin_14
-    #define LED3_GPIO_PORT                   GPIOG
-    #define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOG
+#define LED3_PIN                         GPIO_Pin_14
+#define LED3_GPIO_PORT                   GPIOG
+#define LED3_GPIO_CLK                    RCC_AHB1Periph_GPIOG
   
-    #define USER_BUTTON_PIN                GPIO_Pin_0
-    #define USER_BUTTON_GPIO_PORT          GPIOA
-    #define USER_BUTTON_GPIO_CLK           RCC_AHB1Periph_GPIOA
-    #define USER_BUTTON_EXTI_LINE          EXTI_Line0
-    #define USER_BUTTON_EXTI_PORT_SOURCE   EXTI_PortSourceGPIOA
-    #define USER_BUTTON_EXTI_PIN_SOURCE    EXTI_PinSource0
-    #define USER_BUTTON_EXTI_IRQn          EXTI0_IRQn 
+#define USER_BUTTON_PIN                GPIO_Pin_0
+#define USER_BUTTON_GPIO_PORT          GPIOA
+#define USER_BUTTON_GPIO_CLK           RCC_AHB1Periph_GPIOA
+#define USER_BUTTON_EXTI_LINE          EXTI_Line0
+#define USER_BUTTON_EXTI_PORT_SOURCE   EXTI_PortSourceGPIOA
+#define USER_BUTTON_EXTI_PIN_SOURCE    EXTI_PinSource0
+#define USER_BUTTON_EXTI_IRQn          EXTI0_IRQn 
+```
 
 * LED 配置 
-  - Port: G
-  - Pin: 13、14。
-  - CLK: RCC_AHB1Periph_GPIOG
+    - Port: G
+    - Pin: 13、14。
+    - CLK: RCC_AHB1Periph_GPIOG
 
 * Button 配置
-  - Port: A
-  - Pin: 0
-  - CLK: RCC_AHB1Periph_GPIOA
+    - Port: A
+    - Pin: 0
+    - CLK: RCC_AHB1Periph_GPIOA
 
 * 以上資訊也可以從架構圖, Pin Mapping 與開發版上的標示得知
 
 初始化設定 :
 
 * RCC 參數設置, 根據需要使用到的 GPIO Port 與 Bus 來初始化對應的 CLK
-  - 以下範例為初始化 GPIO Port: G; GPIO Bus: AHB1
-    * 此對應的 CLK 的相對名稱為 RCC_AHB1Periph_GPIOG
+    - 以下範例為初始化 GPIO Port: G; GPIO Bus: AHB1
+        * 此對應的 CLK 的相對名稱為 RCC_AHB1Periph_GPIOG
 
-.. code-block:: c
-
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
+```c
+RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
+```
 
 * GPIO 參數設置, 設定 Pin, Mode, Type, Pull-Up/Pull-Down, Speed
-  - 根據不同的 Mode, 設置不同對應的參數, 並非所有的資料都需要設置
-  - 以下範例為初始化 LED3 與 LED4, GPIO Port: G; Pins: 13, 14; Mode: Output; Type: Push-Pull; Pull-Up/Pull-Down: No Pull; Speed: 2MHz
-  - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h
+    - 根據不同的 Mode, 設置不同對應的參數, 並非所有的資料都需要設置
+    - 以下範例為初始化 LED3 與 LED4, GPIO Port: G; Pins: 13, 14; Mode: Output; Type: Push-Pull; Pull-Up/Pull-Down: No Pull; Speed: 2MHz
+    - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h
 
-.. code-block:: c
-
-    // GPIO Configuration
-    // LED3 (Green): GPIO_Pin_13, LED4 (Red): GPIO_Pin_14
-    GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_Init(GPIOG, &GPIO_InitStructure);
+```c
+// GPIO Configuration
+// LED3 (Green): GPIO_Pin_13, LED4 (Red): GPIO_Pin_14
+GPIO_InitTypeDef GPIO_InitStructure;
+GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
+GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+GPIO_Init(GPIOG, &GPIO_InitStructure);
+```
 
 * Interrupt 參數設置
-  - 所有的 Port 都可以有 external interrupt 
-  - 使用 external interrupt 必須設置為 input
-    * 以下範例設置 GPIO Port: A; Pin: 0
-      - 根據設置我們可以得知此 GPIO 對應的是 User Button
-  - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h
+    - 所有的 Port 都可以有 external interrupt 
+        - 使用 external interrupt 必須設置為 input
+        * 以下範例設置 GPIO Port: A; Pin: 0
+            - 根據設置我們可以得知此 GPIO 對應的是 User Button
+    - 詳細參數名稱可參考 STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_syscfg.h
 
-.. code-block:: c
+```c
+EXTI_InitTypeDef EXTI_InitStructure;
+NVIC_InitTypeDef NVIC_InitStructure;
 
-    EXTI_InitTypeDef EXTI_InitStructure;
-    NVIC_InitTypeDef NVIC_InitStructure;
+/* Connect EXTI Line 0 to the button GPIO Pin */
+SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, GPIO_PinSource0);
 
-    /* Connect EXTI Line 0 to the button GPIO Pin */
-    SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, GPIO_PinSource0);
-
-    /* Configure the EXTI line to generate an interrupt when the button is
-     * pressed. The button pin is high when pressed, so it needs to trigger
-     * when rising from low to high. */
-    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
-    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-    EXTI_Init(&EXTI_InitStructure);
+/* Configure the EXTI line to generate an interrupt when the button is
+ * pressed. The button pin is high when pressed, so it needs to trigger
+ * when rising from low to high. */
+EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
+EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+EXTI_Init(&EXTI_InitStructure);
  
-    /* Enable and set Button EXTI Interrupt to the lowest priority */
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-    NVIC_Init(&NVIC_InitStructure);
+/* Enable and set Button EXTI Interrupt to the lowest priority */
+NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+NVIC_Init(&NVIC_InitStructure);
+```
 
 * Interrupt Handler 設置
-  - 根據上述設定, 對應的 Interrupt Handler 為 EXTI0_IRQHandler
-    * 可在對應的 Handler 實作
+    - 根據上述設定, 對應的 Interrupt Handler 為 EXTI0_IRQHandler
+        * 可在對應的 Handler 實作
 
-.. code-block:: c
+```c
+void EXTI0_IRQHandler(void) 
+{
+    if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
+    {   
+        // To do something in here
 
-    void EXTI0_IRQHandler(void) 
-    {
-        if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
-        {
-            // To do something in here
-
-            /* Clear the EXTI line pending bit */
-            EXTI_ClearITPendingBit(EXTI_Line0);
-        }
-    }
+        /* Clear the EXTI line pending bit */
+        EXTI_ClearITPendingBit(EXTI_Line0);
+    }   
+}
+```
 
 * Demo1
-  - 兩個 LED 燈交互閃爍
-  - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
-    * 此部份需要注意 delay 時間, 若設置太短則不易辨識
+    - 兩個 LED 燈交互閃爍
+    - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
+        * 此部份需要注意 delay 時間, 若設置太短則不易辨識
 
-.. code-block:: c
+```c
+GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
+ 
+while(1)
+{   
+    GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
+    GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
+
+    // Delay
+    for(int i=0; i<1000000; i++);
+} 
+```
+
+* 由於預設的 HCLK 速度則是 48Mhz
+    - for(int i=0; i<1000000; i++)　總共是 10 cycle
+    - 因此延遲時間約 0.27 秒
+
+* Demo1
+    - 兩個 LED 燈交互閃爍
+        * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
+    - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
+        * 此部份需要注意 delay 時間, 若設置太短則不易辨識
+
+```c
+void demo1()
+{   
+    RCC_Configuration_Demo1();
+    GPIO_Configuration_Demo1();
 
     GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
  
     while(1)
-    {
+    {   
         GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
         GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
 
         // Delay
         for(int i=0; i<1000000; i++);
-    }
-
-* 由於預設的 HCLK 速度則是 48Mhz
-  - for(int i=0; i<1000000; i++)　總共是 10 cycle
-  - 因此延遲時間約 0.27 秒
-
-* Demo1
-  - 兩個 LED 燈交互閃爍
-    * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
-  - 可以使用 GPIO_ToggleBits (in STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.c)
-    * 此部份需要注意 delay 時間, 若設置太短則不易辨識
-
-.. code-block:: c
-
-    void demo1()
-    {
-        RCC_Configuration_Demo1();
-        GPIO_Configuration_Demo1();
-
-        GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
- 
-        while(1)
-        {
-            GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
-            GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
-
-            // Delay
-            for(int i=0; i<1000000; i++);
-        }
-    }
+    }   
+} 
+```
 
 * Demo2
-  - LED3 由 User Button 控制閃爍, LED4 持續閃爍
-    * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
-    * 初始化 external interrupt 為 PA0
+    - LED3 由 User Button 控制閃爍, LED4 持續閃爍
+        * 初始化 PG13 (GPIO Port: G; Pin: 13), PG14 為 Output
+        * 初始化 external interrupt 為 PA0
 
-.. code-block:: c
-
-    void EXTI0_IRQHandler(void)
+```c
+void EXTI0_IRQHandler(void)
+{
+    if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
     {
-        if(EXTI_GetFlagStatus(EXTI_Line0) != RESET)
-        {
-            GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
-            EXTI_ClearITPendingBit(EXTI_Line0);
-        }
+        GPIO_ToggleBits(GPIOG, GPIO_Pin_13);
+        EXTI_ClearITPendingBit(EXTI_Line0);
     }
+}
 
-    void demo2()
+void demo2()
+{
+    RCC_Configuration_Demo2();
+    GPIO_Configuration_Demo2();
+    Interrupts_Configuration_Demo2();
+
+    while(1)
     {
-        RCC_Configuration_Demo2();
-        GPIO_Configuration_Demo2();
-        Interrupts_Configuration_Demo2();
+        GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
 
-        while(1)
-        {
-            GPIO_ToggleBits(GPIOG, GPIO_Pin_14);
-
-            // Delay
-            for(int i=0; i<1000000; i++);
-        }
+        // Delay
+        for(int i=0; i<1000000; i++);
     }
+}
+```
 
 * Demo3
-  - LED3 利用 Polling 方式來探測外部訊號改變閃爍
-  - 閃爍部份則直接將 IDR 配置到 ODR
-    * 初始化 PG13 為 Output, PG9 為 Input
+    - LED3 利用 Polling 方式來探測外部訊號改變閃爍
+    - 閃爍部份則直接將 IDR 配置到 ODR
+        * 初始化 PG13 為 Output, PG9 為 Input
 
-.. code-block:: c
+```c
+void demo3()
+{   
+    RCC_Configuration_Demo3();
+    GPIO_Configuration_Demo3();
 
-    void demo3()
-    {
-        RCC_Configuration_Demo3();
-        GPIO_Configuration_Demo3();
-
-        while(1)
-        {
-            // GPIO read IDR and assign to ODR
-            GPIOG->ODR = GPIOA->IDR << 13;     
+    while(1)
+    {   
+        // GPIO read IDR and assign to ODR 
+        GPIOG->ODR = GPIOA->IDR << 13;         
     }
+}
+```
 
 * Demo4
-  - LED3 利用 external interrupt 方式來探測外部訊號改變閃爍
-  - 閃爍部份則直接將 IDR 配置到 ODR
-    * 初始化 PG13 為 Output, PG9 為 Input
+    - LED3 利用 external interrupt 方式來探測外部訊號改變閃爍
+    - 閃爍部份則直接將 IDR 配置到 ODR
+        * 初始化 PG13 為 Output, PG9 為 Input
 
-.. code-block:: c
+```c
+void EXTI0_IRQHandler(void)
+{   
+    if(EXTI_GetFlagStatus(EXTI_Line1) != RESET)
+    {   
+        GPIOG->ODR = GPIOG->IDR << 13; 
+        EXTI_ClearITPendingBit(EXTI_Line1);
+    }   
+}   
 
-    void EXTI0_IRQHandler(void)
-    {
-        if(EXTI_GetFlagStatus(EXTI_Line1) != RESET)
-        {
-            GPIOG->ODR = GPIOG->IDR << 13;
-            EXTI_ClearITPendingBit(EXTI_Line1);
-        }
-    }
+void demo4()
+{   
+    RCC_Configuration_Demo4();
+    GPIO_Configuration_Demo4();
+    Interrupts_Configuration_Demo4();
 
-    void demo4()
-    {
-        RCC_Configuration_Demo4();
-        GPIO_Configuration_Demo4();
-        Interrupts_Configuration_Demo4();
-
-        while(1);
-    }
+    while(1);
+}
+```
 
 * Demo5: 量測 Interrupt Latency 
-  - 使用 __attribute__( (naked) ) 去除 function stacking
-  - 有function stacking的延遲是560ns, 沒有的則是420ns，
-  - 因此function stacking: 560ns - 420ns = 140ns
+    * 使用 __attribute__( (naked) ) 去除 function stacking
+    - 有function stacking的延遲是560ns, 沒有的則是420ns，
+    - 因此function stacking: 560ns - 420ns = 140ns
+```c
+push {r7, lr}
+add r7, sp, #0
+pop {r7, pc} 
+```
 
-.. code-block:: c
+    - 再扣掉Toggle的反應時間
+    - Latency: 420ns - 80ns = 340ns
+    - 根據ARM Cortex-M4的文件，ISR stacking需12個cycle => 250ns
+    - pre-stacking delay = 340-250 = 90ns
 
-    push {r7, lr}
-    add r7, sp, #0
-    pop {r7, pc} 
-
-  - 再扣掉Toggle的反應時間
-  - Latency: 420ns - 80ns = 340ns
-  - 根據ARM Cortex-M4的文件，ISR stacking需12個cycle => 250ns
-  - pre-stacking delay = 340-250 = 90ns
+-------
 
 ![](/embedded/6.JPG)
 
 * interrupt latency = pre-stacking latency + 250ns + function stacking latency + toggle latency
-  - 560ns
+    - 560ns
+
+-------
 
 ![](/embedded/8.JPG)
 
 * interrupt latency without function stacking = pre-stacking latency + 250ns + toggle latency
-  - 420ns
+    - 420ns
+
+-------
 
 ![](/embedded/9.JPG)
 
 * Toggle latency = 80ns
-  - 0->1 的時間
+    - 0->1 的時間
 
 Supplement
 ==========
 - 一些有預設控制元件的腳位
-  - LD3：綠色，連接到PG13
-  - LD4：紅色，連接到PG14
-  - B1(USER)：連接到PA0
-  - B2(RESET)：連接到NRST，用於重置
+    - LD3：綠色，連接到PG13
+    - LD4：紅色，連接到PG14
+    - B1(USER)：連接到PA0
+    - B2(RESET)：連接到NRST，用於重置
 
 Q & A
 =========
 **1. Busy loop延遲的時間計算**
 
-.. code-block:: c
-
-    int i=1000000;
-    while(i--);
+```c
+int i=1000000;
+while(i--);
+```
 
 編譯結果：(略去只執行一次的mov)
 
-.. code-block:: c
+```c
+80002d4:       687b            ldr     r3, [r7, #4]
+80002d6:       1e5a            subs    r2, r3, #1
+80002d8:       607a            str     r2, [r7, #4] 
+80002da:       2b00            cmp     r3, #0
+80002dc:       d1fa            bne.n   80002d4 <demo+0x34>
 
-    80002d4:       687b            ldr     r3, [r7, #4]
-    80002d6:       1e5a            subs    r2, r3, #1
-    80002d8:       607a            str     r2, [r7, #4]
-    80002da:       2b00            cmp     r3, #0
-    80002dc:       d1fa            bne.n   80002d4 <demo+0x34>
-
-    ldr  : 2
-    subs : 1
-    str  : 2
-    cmp  : 1
-    ble.n: 1 or 1+P(pipeline refill)
+ldr  : 2 
+subs : 1 
+str  : 2
+cmp  : 1
+ble.n: 1 or 1+P(pipeline refill)
+```
 
 若沒有branch，總共是2+1+2+1+1 = 7 cycle，
 若有branch則是 2+1+2+1+2 = 8 cycle，(pipeline refill需要1~3 cycle，因alignment和instruction width而不同)
