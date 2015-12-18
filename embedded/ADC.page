@@ -54,8 +54,9 @@ ConvertedVoltage = ConvertedValue * Vref / (2 ^ n - 1);
 欲轉換的訊號電壓不可以高過Vref。
 
 如果不再0 ~ Vref 的範圍內
- - 1. 可以考慮使用分壓器來處理，但必須注意輸入阻抗與輸出阻抗之匹配問題。
- - 2. 使用交流變壓器，使用條件為交流訊號。
+
+1. 可以考慮使用分壓器來處理，但必須注意輸入阻抗與輸出阻抗之匹配問題。
+2. 使用交流變壓器，使用條件為交流訊號。
 
 
 如果要轉換的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
@@ -123,10 +124,11 @@ Successive approximation ADC
 轉換時會由邏輯電路迭代，依序由MSB往LSB更改DAC的輸出電壓。
 
 流程：
- - 由MSB開始
- - 啟動DAC的第n bit
- - 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
- - 由這一個狀態迭代至LSB為止
+
+* 由MSB開始
+* 啟動DAC的第n bit
+* 將輸入的訊號與DAC的輸出做比較，若輸入訊號較大，則設定輸出的第n bit為HIGH，並保留DAC上面的設定，反之若較小，清除DAC的第n bit，ADC輸出的第n bit設為LOW
+* 由這一個狀態迭代至LSB為止
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/SA_ADC_block_diagram.png/300px-SA_ADC_block_diagram.png)
 
