@@ -353,11 +353,12 @@ Independent mode
 
 - 有二種控制條件，組合出四種模式：
 
+    * ADC_InitStruct->ADC_ScanConvMode = ENABLE or DISABLE ;
+
+    * ADC_InitStruct->ADC_ContinuousConvMode = ENABLE or DISABLE;
+
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383626797723_jus2.jpeg)
 
-    - ADC_InitStruct->ADC_ScanConvMode = ENABLE or DISABLE ;
-
-    - ADC_InitStruct->ADC_ContinuousConvMode = ENABLE or DISABLE;
 
 1.Single Channel Single conversion mode: 單一通道進行一次轉換。
 
@@ -681,8 +682,8 @@ Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高
         - ADC之內部參考電壓
 
     - TIM1_TRGO:
-        -
- 
+        - &nbsp;
+
 4. 說明 ADC 之 calibration。
     - 由於ADC上面的電容可能並不是理論上的理想值，因此每次使用時必須量測現在ADC之電容之實際值，可以把這個實際值視為誤差，因此未來所量測的結果都必須使用這個誤差值作為基準點去比較，因此可以量到更加精確的轉換結果。
 
@@ -864,7 +865,7 @@ int main()
 Sample Code
 ===========
 
-https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c
+[https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c](https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c)
 
 ```c
 void ADC_Config(void)
@@ -970,23 +971,22 @@ GPIO_PinSource3|GPIO_PinSource4|GPIO_PinSource5|GPIO_PinSource6|GPIO_PinSource7|
 }
 ```
 
-.. code-block:: prettyprint linenums
+```c
+void GPIO_Input_Config(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
 
-  void GPIO_Input_Config(void)
-  {
-  GPIO_InitTypeDef GPIO_InitStructure;
+    // Set GPIO clock
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
+    GPIO_StructInit(&GPIO_InitStructure);
 
-  // Set GPIO clock
-  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-  GPIO_StructInit(&GPIO_InitStructure);
-
-  //Analog input pin configuration
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;//The channel 10 is connected to PC0
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN; //The PC0 pin is configured in analog mode
-  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; //We don't need any pull up or pull down
-  GPIO_Init(GPIOC, &GPIO_InitStructure);
-  }
-
+    //Analog input pin configuration
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;//The channel 10 is connected to PC0
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN; //The PC0 pin is configured in analog mode
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL; //We don't need any pull up or pull down
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+}
+```
 
 
     
