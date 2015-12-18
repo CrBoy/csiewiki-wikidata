@@ -4,7 +4,7 @@ categories: ARM, USART, UART, STM32, STM32F4, STM32F429
 ...
 
 USART簡介與特性
-...................
+==========================
 串列傳輸為CPU與周邊裝置或CPU與CPU間的資料傳輸方法之一，而USART(universal synchronous asynchronous receiver transmitter)，通用同步/非同步收發傳輸器，則常被用於一般的串列傳輸應用中。可依照NRZ工業非同步資料傳輸格式，與其他設備進行資料交換。並且此種裝置使用fractional baud rate產生器，提供大範圍的baud rate供使用者選擇。
 
 此外，亦支援同步傳輸、單線半雙工傳輸、LIN(local connection network)、Smartcard protocol、IrDA(Infrared data association) SIR ENDEC標準。
@@ -144,7 +144,7 @@ RS-232阻礙
 
 差分信號傳輸
 
-![](/embedded/Differential)Signal.png
+![](/embedded/Differential Signal.png)
 
  - 使用兩根信號線，這兩個信號的振幅相同，相位相反，電流在彼此間逆向流動，信號接收端比較這兩個電壓的差值來判斷發送端發送的是邏輯0還是邏輯1。在電路板上，差分走線必須是等長、等寬、緊密靠近、且在同一層面的兩根線，USB3.0就是高速差分傳輸的一種。
 
@@ -157,7 +157,7 @@ RS-232阻礙
 但若電路板的面積非常吃緊，單端信號可以只有一根信號線，地線走地平面，而差分信號一定要走兩根等長、等寬、緊密靠近、且在同一層面的線。這常常發生在晶片的pin腳間距很小，以至於只能穿過一根走線的情況下。
 
 STM32 USART介紹與特性
-.................................
+==========================
 
  - 可調整oversampling長度(8 or 16)，藉此在速度以及時脈之間做取捨。
 
@@ -196,72 +196,63 @@ STM32 USART介紹與特性
 USART Block Diagram
 ======================================
 ![](/embedded/USART_pic296.jpg)
+
 Ref: [RM0090 Reference Manual P.949](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
-此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
-   - RX: 接收資料輸入。藉由Oversampling技術判斷有效資料及噪音
-   - TX: 發送資料。若發送器沒有被啟用，則此腳位會回到I/O port設定狀態。當發送器被啟動時，如果沒有傳送數據，則TX保持高電位。在單線半雙工模式或Smartcard 模式時，此I/O同時被用於資料的傳送和接收(以USART角度來看此情況，TX負責傳輸資料，但接收資料由SW_RX負責)。
+* 此通訊界面以三個腳位與其他設備連接。任何USART雙向通信至少需要兩個腳位：接收資料輸入(RX)和發送資料輸出(TX)
+    - RX: 接收資料輸入。藉由Oversampling技術判斷有效資料及噪音
+    - TX: 發送資料。若發送器沒有被啟用，則此腳位會回到I/O port設定狀態。當發送器被啟動時，如果沒有傳送數據，則TX保持高電位。在單線半雙工模式或Smartcard 模式時，此I/O同時被用於資料的傳送和接收(以USART角度來看此情況，TX負責傳輸資料，但接收資料由SW_RX負責)。
 
-以USART傳輸資料時，串列資料由下列frames組成:  
-   - 傳輸或接收資料之前，由Idle Line表示。
-   - 一個start bit
-   - 一個資料word，可為8/9 bits，用least significant bit做資料排序。根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度。
-   - 一組0.5, 1, 1.5, 2 stop bits，用以表示該次frame傳輸完畢。
+* 以USART傳輸資料時，串列資料由下列frames組成:  
+    - 傳輸或接收資料之前，由Idle Line表示。
+    - 一個start bit
+    - 一個資料word，可為8/9 bits，用least significant bit做資料排序。根據USART_CR1暫存器中的M位選擇8或9位元決定資料長度。
+    - 一組0.5, 1, 1.5, 2 stop bits，用以表示該次frame傳輸完畢。
 
-另外包含以下數種register: 
-   - 狀態暫存器(USART_SR)
-   - 資料暫存器(USART_DR)
-   - baud rate暫存器(USART_BRR)。儲存由fractional baud rate generator產生的傳輸速率，以12位整數和4位小數表示
-   - Guardtime暫存器(USART_GTPR)，供Smartcard模式使用
+* 另外包含以下數種register: 
+    - 狀態暫存器(USART_SR)
+    - 資料暫存器(USART_DR)
+    - baud rate暫存器(USART_BRR)。儲存由fractional baud rate generator產生的傳輸速率，以12位整數和4位小數表示
+    - Guardtime暫存器(USART_GTPR)，供Smartcard模式使用
 
-另外在同步模式中，需要此一腳位:
-  
-   - SCLK: 在同步模式下，送出傳送器目前的時脈數值。可對應至SPI master mode(在start bit和stop bit不送出clock訊號，另外可用軟體選擇是否在最後一個data bit送出clock訊號)。送出時脈數值的同時，資料可以在RX端被接收。這種特性可用於控制擁有shift暫存器的周邊設備(例: LCD驅動)。時脈的相位以及訊號極性可用軟體設定。在Smartcard模式下，SCLK可對Smartcard提供本身的時脈。
+* 另外在同步模式中，需要此一腳位:
+    - SCLK: 在同步模式下，送出傳送器目前的時脈數值。可對應至SPI master mode(在start bit和stop bit不送出clock訊號，另外可用軟體選擇是否在最後一個data bit送出clock訊號)。送出時脈數值的同時，資料可以在RX端被接收。這種特性可用於控制擁有shift暫存器的周邊設備(例: LCD驅動)。時脈的相位以及訊號極性可用軟體設定。在Smartcard模式下，SCLK可對Smartcard提供本身的時脈。
    
-在Hardware flow control中，則另外需要下列兩個腳位:
-   
-   - nCTS: 阻擋發送資料。若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送
-   
-   - nRTS: 請求發送資料。若在低電位，則表示USART已經準備好接收資料
+* 在Hardware flow control中，則另外需要下列兩個腳位:
+    - nCTS: 阻擋發送資料。若在高電位，則當目前資料傳送結束後，中斷下一次的資料傳送  
+    - nRTS: 請求發送資料。若在低電位，則表示USART已經準備好接收資料
 
 USART data frame & M bit
 -------------------------
 
 每次傳輸資料時，USART會以一個frame作為一次傳輸的單元。
 
-
-
 ![](/embedded/USART_DataFrame.jpg)
 
 
-.. code-block:: c
-
-
-    在起始位(start bit)期間，資料發送端(TX)處於低電位；在停止位(stop bit)期間，資料發送端(TX)處於高電位。
-
-
+```
+在起始位(start bit)期間，資料發送端(TX)處於低電位；在停止位(stop bit)期間，資料發送端(TX)處於高電位。
+```
 
 ![](/embedded/USART_8bit_length.jpg)
 
 
-.. code-block:: c
+```
+若將USART_CR1_M 設定為0，則發送的data frame會變成這樣。
 
-    若將USART_CR1_M 設定為0，則發送的data frame會變成這樣。
+Idle & break frame的長度也會與data frame的長度一樣。Idle 會發送一個frame的高電位、break則是發送一個frame的低電位。
 
-    Idle & break frame的長度也會與data frame的長度一樣。Idle 會發送一個frame的高電位、break則是發送一個frame的低電位。
-
-    發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
-
+發送break frame之後，會另外插入1~2 stop bit，藉此區分下一次的data frame(因為data frame的開頭也是低電位)。
+```
 
 ![](/embedded/USART_9bit_length.jpg)
 
 
-.. code-block:: c
+```
+若將USART_CR1_M 設定為1，則發送的data frame會比上一張圖多一個bit。
 
-    若將USART_CR1_M 設定為1，則發送的data frame會比上一張圖多一個bit。
-
-    Idle & break frame的長度也會變長1 bit。
-
+Idle & break frame的長度也會變長1 bit。
+```
 
 
 
@@ -444,12 +435,12 @@ Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 
    5. 利用USART_BRR設定baud rate，如圖中的(e)
    6. 設定USART_CR1暫存器中的RE，此動作會啟動接收器並開始偵測起始位，如圖中的(f)
 
-當資料被接收到後:
-   1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出(也包含了已經偵測到的錯誤)，如圖中的(g)
-   2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷，如圖中的(h)
-   3. 資料接收期間如檢測到frame錯誤或是噪音、溢出錯誤等問題，相關的標誌將被設定(FE、NF、ORE)
-   4. 若使用多重緩衝區模式，RXNE在每個字元接收後會被設置，並在DMA讀取RDR之後被清除
-   5. 在一般模式(單緩衝區)下，藉由軟體讀取USART_DR可清除RXNE，也可以直接對RXNE寫入0。RXNE一定要在"接收下一筆資料"這個動作結束前被清除，以免產生溢出錯誤
+* 當資料被接收到後:
+    1. 硬體會設定RXNE位，表示received shift register中的資料已移入RDR中，亦即資料已被接收並可被讀出(也包含了已經偵測到的錯誤)，如圖中的(g)
+    2. 若USART_CR1中的RXNEIE被設定時，會產生一個中斷，如圖中的(h)
+    3. 資料接收期間如檢測到frame錯誤或是噪音、溢出錯誤等問題，相關的標誌將被設定(FE、NF、ORE)
+    4. 若使用多重緩衝區模式，RXNE在每個字元接收後會被設置，並在DMA讀取RDR之後被清除
+    5. 在一般模式(單緩衝區)下，藉由軟體讀取USART_DR可清除RXNE，也可以直接對RXNE寫入0。RXNE一定要在"接收下一筆資料"這個動作結束前被清除，以免產生溢出錯誤
 
 
 接收斷開符號
@@ -464,19 +455,19 @@ Stop bits的接收數目可以由USART_CR2去設定，在一般模式可選擇1 
 接收器對時鐘誤差容忍度
 -------------------
 
-必須要使整個時脈系統的時鐘誤差處於USART接收器的容許範圍內，USART接收器才能夠正常運作。時脈系統的誤差來源有以下幾種: 
-   - DTRA: 傳送器的誤差(Deviation due to TRAnsmitter error)。這誤差也包含了傳送器本身的時脈誤差。
-   - DQUANT: 接收器的baud rate量化出錯(Devation due to baud rate QUANtization of the receiver)
-   - DREC: 接收器的時脈誤差(Deviation due to RECeiver's local oscillator)
-   - DTCL: 資料傳輸線的錯誤(Deviation due to Transmission Line)。通常起因於傳輸器，在傳輸資料時，從高電位轉至低電位、或從低電位轉至高電位，在電位轉換期間出現時間誤差。
+* 必須要使整個時脈系統的時鐘誤差處於USART接收器的容許範圍內，USART接收器才能夠正常運作。時脈系統的誤差來源有以下幾種: 
+    - DTRA: 傳送器的誤差(Deviation due to TRAnsmitter error)。這誤差也包含了傳送器本身的時脈誤差。
+    - DQUANT: 接收器的baud rate量化出錯(Devation due to baud rate QUANtization of the receiver)
+    - DREC: 接收器的時脈誤差(Deviation due to RECeiver's local oscillator)
+    - DTCL: 資料傳輸線的錯誤(Deviation due to Transmission Line)。通常起因於傳輸器，在傳輸資料時，從高電位轉至低電位、或從低電位轉至高電位，在電位轉換期間出現時間誤差。
 
-總體而言: DTRA + DQUANT + DREC + DTCL < USART接收器的容許上限
+* 總體而言: DTRA + DQUANT + DREC + DTCL < USART接收器的容許上限
 
-USART接收器的對於時脈誤差的容許上限，取決於下列選項: 
-   - USART_CR1的M，可決定使用10/11資料位元。
-   - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
-   - 是否有使用fractional baud rate
-   - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
+* USART接收器的對於時脈誤差的容許上限，取決於下列選項: 
+    - USART_CR1的M，可決定使用10/11資料位元。
+    - USART_CR1的OVER8，可決定使用8/16 oversampling方法。
+    - 是否有使用fractional baud rate
+    - USART_CR3的ONEBIT，可決定使用單一採樣點或是三個採樣點。
 
 4種錯誤檢測
 ==========
@@ -507,18 +498,18 @@ USART接收器的對於時脈誤差的容許上限，取決於下列選項:
  - 在一般情況下，本身不產生中斷，而由RXNE產生中斷，經檢驗USART_SR的NF得知錯誤
  - 在DMA情況下，則由EIE產生中斷，經檢驗USART_SR的NF得知錯誤
 
-設定USART_CR1中的OVER8，即可選擇16個或8個baud clock的採樣，見Fig. 250和Fig. 251:
-   - OVER8 = 1: 使用8次採樣可以達到更高速的資料傳輸(最高速為fPCLK/8)，相對地接收器會沒辦法容許太多的時脈誤差。
-   - OVER8 = 0: 使用16次採樣，則接收器可容許較多的時脈誤差，但傳輸速率會被限制於fPCLK/16
+ - 設定USART_CR1中的OVER8，即可選擇16個或8個baud clock的採樣，見Fig. 250和Fig. 251:
+    - OVER8 = 1: 使用8次採樣可以達到更高速的資料傳輸(最高速為fPCLK/8)，相對地接收器會沒辦法容許太多的時脈誤差。
+    - OVER8 = 0: 使用16次採樣，則接收器可容許較多的時脈誤差，但傳輸速率會被限制於fPCLK/16
 
-設定USART_CR3中的ONEBIT，可選擇不同的噪音評估法:
-   - ONEBIT = 0: 採樣資料中心的3個bits，若此3 bits不完全相等，則NF會被設定為1。適合用於容易產生噪音訊號的環境，如果偵測到有噪音(NF=1)，會把該次收到的資料拋棄，因為NF=1代表採樣過程中可能有產生突波、干擾訊號等。
-   - ONEBIT = 1: 只採樣資料中心的單一bit，此時NF就絕對不會被設定。適合用於沒有噪音訊號的環境，並且讓接收器容許更多的時脈誤差。
+ - 設定USART_CR3中的ONEBIT，可選擇不同的噪音評估法:
+    - ONEBIT = 0: 採樣資料中心的3個bits，若此3 bits不完全相等，則NF會被設定為1。適合用於容易產生噪音訊號的環境，如果偵測到有噪音(NF=1)，會把該次收到的資料拋棄，因為NF=1代表採樣過程中可能有產生突波、干擾訊號等。
+    - ONEBIT = 1: 只採樣資料中心的單一bit，此時NF就絕對不會被設定。適合用於沒有噪音訊號的環境，並且讓接收器容許更多的時脈誤差。
 
-若在資料接收過程中檢測到噪音時:
-   - NF會在RXNE升緣時被設定
-   - 該次無效資料會從received shift register移入USART_DR
-   - 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
+ - 若在資料接收過程中檢測到噪音時:
+    - NF會在RXNE升緣時被設定
+    - 該次無效資料會從received shift register移入USART_DR
+    - 在單一byte通訊模式不會直接產生中斷，而是在NF被設定為1時(此時RXNE會一併設定為1)，由RXNE來產生中斷；使用多重緩衝器模式時，如果USART_CR3暫存器中的EIE被設定為1，則會產生一個中斷
 
 ![](/oversampling16.png)
 
@@ -574,14 +565,13 @@ parity依算方式的不同分成兩種方式，even parity和odd parity
 
 
  - 傳送前會做 parity generation
-
     – 發送檢測位(Transmits parity bit)
 
     - 如果USART_CR1的PCE bit被設立，那麼MSB會被改成parity bit（PS=0 是even parity, PS=1 是odd parity）
 
-       - MSB: Most Significant Bit，代表位數最大的那個bit
+        - MSB: Most Significant Bit，代表位數最大的那個bit
 
-       - LSB: Least Significant Bit，代表位數最小的那個bit
+        - LSB: Least Significant Bit，代表位數最小的那個bit
 
 鮑率的設定
 =========
@@ -625,16 +615,16 @@ APB時脈要透過RCC和PLL設定去看clock tree。.
  - USART的地址放在USART_CR2_ADD，因為只有4位元，所以最多支援到16個節點。
 
 
-在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
+ - 在多處理機通訊模式下，我們會希望只把訊息傳給該知道的機器就好，如此一來能夠減少不必要的傳輸動作(把資料也傳給其他機器)。
 
-沒接收到資料的機器，可以用mute功能使該機器進入mute模式，在mute模式下的機器行為: 
-   - 無法變更接收器的任一個status bit
-   - 與接收器相關的interrupt會停用
-   - USART_CR1的RWU會被設定為1。RWU可被硬體自動控制，或是在某些限制條件下用軟體變更。
+ - 沒接收到資料的機器，可以用mute功能使該機器進入mute模式，在mute模式下的機器行為: 
+    - 無法變更接收器的任一個status bit
+    - 與接收器相關的interrupt會停用
+    - USART_CR1的RWU會被設定為1。RWU可被硬體自動控制，或是在某些限制條件下用軟體變更。
 
-若要使機器離開mute模式，可以用下列兩種方式的其中一種，端看使用者如何設定USART_CR1的WAKE
-   - 若WAKE被設定為0，機器進入idle line偵測
-   - 若WAKE被設定為1，機器進入address mark偵測
+ - 若要使機器離開mute模式，可以用下列兩種方式的其中一種，端看使用者如何設定USART_CR1的WAKE
+    - 若WAKE被設定為0，機器進入idle line偵測
+    - 若WAKE被設定為1，機器進入address mark偵測
 
 Idle line detection(WAKE=0)
 ---------------------------
@@ -689,15 +679,16 @@ USART 與 SPI之關係
 
 
 STM32 USART的MODE
-.................
+==========================
 
 
 Synchronous mode
 ===================
 
 若要使用此模式，要把USART_CR2的CLKEN設定為1。下列設定必須要設為0: 
-   - USART_CR2的LINEN
-   - USART_CR3的SCEN、HDSEL、IREN
+ 
+ - USART_CR2的LINEN
+ - USART_CR3的SCEN、HDSEL、IREN
 
 USART允許使用者以master mode控制雙向同步串列傳輸。SCLK腳位會輸出傳送器的時脈，而在送出start bit以及stop bit時，SCLK不會輸出時脈。根據USART_CR2的LBCL設定，可以決定是否在最後一個資料bit(該bit代表位址)於SCLK輸出時脈。USART_CR2的CPOL允許使用者選擇時脈極性，而USART_CR2的CPHA允許使用者選擇外部時脈的相位。
 
@@ -724,16 +715,16 @@ LIN(local interconnection network) mode
 
  - 在USART被硬體設定為LIN模式時，提供13bit break產生器以及10/11bit break偵測器。
   
-若要啟用此模式，須設定USART_CR2的LINEN為1，而下列設定必須要設定為0: 
-   - USART_CR2的STOP[1:0](有兩個位元)以及CLKEN
-   - USART_CR3的SCEN、HDSEL、IREN
+ - 若要啟用此模式，須設定USART_CR2的LINEN為1，而下列設定必須要設定為0: 
+    - USART_CR2的STOP[1:0] (有兩個位元)以及CLKEN
+    - USART_CR3的SCEN、HDSEL、IREN
 
 LIN傳送器
 ----------
 
-以master來說，與一般USART傳送器具有相同的流程(請參閱傳輸器章節)。只是要按照下列方法做設定:
-   - USART_CR1的M要設定為8 bit資料長度
-   - USART_CR3的LINEN要設為1。而USART_CR3的SBK要設定為13 bit。送出break之後要再送出一個1，才能讓接收器開始偵測start bit。
+ - 以master來說，與一般USART傳送器具有相同的流程(請參閱傳輸器章節)。只是要按照下列方法做設定:
+    - USART_CR1的M要設定為8 bit資料長度
+    - USART_CR3的LINEN要設為1。而USART_CR3的SBK要設定為13 bit。送出break之後要再送出一個1，才能讓接收器開始偵測start bit。
 
 LIN接收器
 ----------
@@ -755,15 +746,17 @@ LIN接收器
 ==============
 
 若要啟用單線半雙工模式(Single-wire half-duplex communication)，可以設定USART_CR3的HDSEL為1。而下列設定必須要設定為0:
-   - USART_CR2的LINEN、CLKEN
-   - USART_CR3的SCEN、IREN
+
+ - USART_CR2的LINEN、CLKEN
+ - USART_CR3的SCEN、IREN
 
 USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來看是相連在一起的。USART_CR3的HDSEL可以選擇是要全雙工還是半雙工。
 
 當HDSEL被設定為1的那刻起:
-   - TX和RX在內部結構會變成相連的
-   - RX腳位不會被使用
-   - 只要沒有資料傳送，TX腳位都是處於釋放狀態，所以會變成一般的標準I/O腳位，處於Idle狀態或是等待接收。當TX腳位沒有被USART使用時，此腳位應該要設定為I/O使得TX成為floating input，或是成為高電位輸出的open-drain。
+
+ - TX和RX在內部結構會變成相連的
+ - RX腳位不會被使用
+ - 只要沒有資料傳送，TX腳位都是處於釋放狀態，所以會變成一般的標準I/O腳位，處於Idle狀態或是等待接收。當TX腳位沒有被USART使用時，此腳位應該要設定為I/O使得TX成為floating input，或是成為高電位輸出的open-drain。
 
 除了以上的敘述之外，此模式的通訊過程都與一般的USART沒甚麼不同，只是這條線的使用權必須要由軟體決定(mutex之類的)。
 另外，傳輸的觸發絕對不會被硬體擋住，而且只要有資料被寫入data register(USART_DR)且TE=1時，就會立刻觸發傳輸，並將資料送出。
@@ -779,34 +772,35 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 
 ![](/embedded/USART_SmartCardPin.jpg)
 
-若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
-   - USART_CR2的LINEN
-   - USART_CR3的HDSEL以及IREN
+ - 若要啟用，須設定USART_CR3的SCEN。另外，下列暫存器一定要清空: 
+    - USART_CR2的LINEN
+    - USART_CR3的HDSEL以及IREN
 
-使用此模式時，也可考慮設定CLKEN以提供時脈給smartcard。
+ - 使用此模式時，也可考慮設定CLKEN以提供時脈給smartcard。
 
-若要使用Smartcard模式，USART應設定為: 
-   - 8 bit以上檢測位元: 在USART_CR1中，M以及PCE應設定為1。
-   - 1.5 stop bits: 傳輸/接收時會需要。在USART_CR2中，STOP應設為11。
+ - 若要使用Smartcard模式，USART應設定為: 
+    - 8 bit以上檢測位元: 在USART_CR1中，M以及PCE應設定為1。
+    - 1.5 stop bits: 傳輸/接收時會需要。在USART_CR2中，STOP應設為11。
 
-不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
+ - 不過，也可以設定為0.5 stop bit，但建議是1.5，避免在使用smartcard模式時，額外對此設定做轉換。
 
 ![](/parity_smartcard.png)
 
-當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
+ - 當連接到Smartcard時，USART的TX被使用為雙向溝通，並與Smartcard共用。TX腳位一定要設定為open-drain。
 
- - Smartcard是單線半雙工的通訊協定: 
+    - Smartcard是單線半雙工的通訊協定: 
 
-    - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
+        - 從transmit shift暫存器傳輸資料時，會被延遲至少1/2 baud clock。在一般模式(USART)，一個裝滿資料的transmit shift暫存器，會在遇到下一個baud clock邊緣時開始動作(shift)。但是在Smartcard模式，遇到baud clock邊緣時，還會再延遲一些時間(1/2 baud clock)才開始傳送。
 
-    - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
+        - 使用0.5或1.5 stop bits時，若在接收資料frame時遇到檢測錯誤(parity error)，接收端RX完成接收時，TX那條線會拉低電位長達一個baud clock，然後才開始下一次的資料傳送。這個動作是為了告知Smartcard資料在傳送給USART的過程中，資料沒有正確地被接收。這種訊號稱作NACK，並且產生此訊號時會讓TX端產生framing error(使用1.5 stop bits時)。此種應用可以依據通訊協定的規則進行資料重送。另外，當NACK control bit被設定為1時，RX端偵測出檢測錯誤時會送出NACK訊號，否則就不傳送。
 
-    - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位，而TC旗標的取消動作與一般模式相同。
+        - TC旗標的設立，可藉由設定Guard Time暫存器來延遲設立的時間。在一般模式(USART)下，若transmit shift暫存器是空的，而且沒有額外的傳送要求時，TC旗標會立即被設立。但在Smartcard模式，在transmit shift暫存器是空的時候，此暫存器會先觸發Guard time counter，並且在Guard time暫存器中計數到一定數值後(由使用者設定)，TC旗標才會被設立。在計數的過程中，TC旗標維持低電位，而TC旗標的取消動作與一般模式相同。
 
-    - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
-    - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+        - 若在TX端偵測到framing error(因RX傳送NACK)，此NACK訊號不會被TX端的接收區偵測為start bit。依據ISO協定，此NACK訊號長度可為1 or 2個baud clock。
 
-    - break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
+        - 如果在RX端偵測到檢測錯誤(parity error)並且NACK訊號已經送出，則NACK的接收者(TX)不會把此訊號當成start bit。
+
+        - break符號在Smartcard模式中其實不重要。一個0x00相連一個framing error，會被當作一個資料而不是一個break。在觸發TE bit時，不會傳輸Idle frame。雖然Idle frame在其他種設定中有被定義、使用，但在ISO協定中沒有被定義。
 
 
 紅外線編碼模式
@@ -815,8 +809,9 @@ USART可以設定成遵循單線半雙工協定，而TX和RX在內部結構來�
 Ref: [RM0090 Reference Manual P.979](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
 
 若要使用此模式，則必須設定USART_CR3的IREN為1，而下列設定必須要設定為0: 
-   - USART_CR2的LINEN、STOP、CLKEN
-   - USART_CR3的SCEN、HDSEL
+   
+ - USART_CR2的LINEN、STOP、CLKEN
+ - USART_CR3的SCEN、HDSEL
 
 IrDA SIR實體層使用Return to Zero, Inverted調變法(RZI modulation)，將邏輯0表示成紅外線脈衝訊號。
 
@@ -842,13 +837,13 @@ SIR解碼器(接收端)會從紅外線接收器收取return to zero訊號，並�
 IrDA 低功率模式
 ----------------
 
-傳送器:
-   - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
+ - 傳送器:
+    - 使用低功率模式時，脈衝的發送並非在3/16 bit period，而是低功率baud rate*3，至少為1.42MHz。通常此值為1.8432MHz(1.42MHz < PSC < 2.12MHz)。為了要達到此值，低功率模式下的除法器會把系統時脈強制降到這個值or區間。
 
-接收器:
-   - 低功率模式的接收與一般模式相去不遠。此模式的glitch detection會把小於1個PSC的脈衝過濾掉。有效脈衝的判別，是當脈衝週期大於2個PSC時才會被接收(2 * IrDA低功率baud clock，USART_GTPR的PSC)
+ - 接收器:
+    - 低功率模式的接收與一般模式相去不遠。此模式的glitch detection會把小於1個PSC的脈衝過濾掉。有效脈衝的判別，是當脈衝週期大於2個PSC時才會被接收(2 * IrDA低功率baud clock，USART_GTPR的PSC)
 
-接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
+ - 接收器的開機時間應該由軟體決定。另外，在接收與傳輸的動作之間，應該要加入至少10ms的延遲，因為IrDA是半雙工協定。
 
 
 直接記憶體存取(DMA)模式
@@ -936,7 +931,7 @@ CTS Flow Control
 
 
 RS-232收發器-MAX232
-...................
+==========================
  - MAX232晶片是美信（MAXIM）公司專為RS-232標準串口設計的介面電路，屬於+3.0V to +5.5V RS-232 收發器，收發器採用專有的低壓差發送器輸出級，利用雙電荷泵在3.0至5.5V單電源供電時能夠實現真正的RS-232功能，MAX232是一個雙RS-232驅動器/接收器且可以從單一的+5V電源產生RS-232電位(voltage level)(充電泵可轉換+5V為 ±10V)，假設我們要用RS232來進行PC(serial port) 與微處理器間的溝通，就要用MAX232來處理訊號電位轉換的功能，方便微處理器處理轉換後的訊號。
  - 其包含兩個驅動器和兩個接收器，功耗僅40mW 且傳輸速率可以達120Kbps。
 
@@ -946,13 +941,13 @@ MAX232 內部結構
 ===============
 雙電荷泵轉換器電路 (DUAL CHARGE PUMP CONVERTERS)
 
-    - 由1、2、3、4、5、6腳和4個電容構成。功能是產生+10V和-10V兩個電源，提供給RS-232串口電位。
+ - 由1、2、3、4、5、6腳和4個電容構成。功能是產生+10V和-10V兩個電源，提供給RS-232串口電位。
 
-    - 第一階段，電容 C1的電壓提昇兩倍到 +10V並儲存在電容器 C3和V+ output。
+ - 第一階段，電容 C1的電壓提昇兩倍到 +10V並儲存在電容器 C3和V+ output。
 
-    - 第二階段，電容 C2將 +10 V的反向變成 -10V並儲存在電容器 C4和V- output。
+ - 第二階段，電容 C2將 +10 V的反向變成 -10V並儲存在電容器 C4和V- output。
 
-    - MAX232運作與的電荷泵電容可低至 0.1μF，若使用更大的電容（最多10μF）可以用來降低電源紋波(voltage ripple)。
+ - MAX232運作與的電荷泵電容可低至 0.1μF，若使用更大的電容（最多10μF）可以用來降低電源紋波(voltage ripple)。
 
 電源紋波(voltage ripple)
 
@@ -974,39 +969,39 @@ MAX232工作原理
 
  - 內有的兩組RS232驅動器/接收器和電荷泵可以產生RS232電位，內部各有一個400 KΩ的pull up電阻，可以將未使用的驅動器拉至高電位，因有雙極性的特點，所以輸出邏輯電位會是low，若是在shutdown/power-off模式下驅動器/接收器無法上拉電壓，但是會進入高阻抗狀態，如此可以降低漏電流(最大25μA)，避免過載(overload)情形發生。
 
-上拉電阻(Pull-up resistors):在驅動電路時，當輸入過低，可以用一個上拉電阻透過接到較高的電位將電壓訊號拉至高電位，對輸入端而言，看起來就是高阻抗，如果成功驅動，則取消上拉電阻的使用。通過這樣，上拉電阻可以使pin腳在未連接外部組件時也能保持正確的邏輯電位。
+ - 上拉電阻(Pull-up resistors):在驅動電路時，當輸入過低，可以用一個上拉電阻透過接到較高的電位將電壓訊號拉至高電位，對輸入端而言，看起來就是高阻抗，如果成功驅動，則取消上拉電阻的使用。通過這樣，上拉電阻可以使pin腳在未連接外部組件時也能保持正確的邏輯電位。
 
-舉例來說:當TTL電路驅動CMOS電路時，如果TTL電路輸出的高電平低於CMOS電路的最低高電平（一般為3.5V），這時就需要在TTL的輸出端接上拉電阻，以提高輸出高電位的值。
+ - 舉例來說:當TTL電路驅動CMOS電路時，如果TTL電路輸出的高電平低於CMOS電路的最低高電平（一般為3.5V），這時就需要在TTL的輸出端接上拉電阻，以提高輸出高電位的值。
 
-下拉電阻(Pull-down resistors):原理相同於上拉電阻，但其是與GND連接，故可以使邏輯訊號保持在接近0V的狀態。
+ - 下拉電阻(Pull-down resistors):原理相同於上拉電阻，但其是與GND連接，故可以使邏輯訊號保持在接近0V的狀態。
 
 ![](/MAX232_waveform2.png)
 
-供電
- - 15腳GND、16腳VCC（+5V）。
+ - 供電
+    - 15腳GND、16腳VCC（+5V）。
 
-等校電路說明
+ - 等效電路說明
 
 ![](/embedded/MAX232_circuit.jpg)
 
-TXD為TTL輸入端，RXD為TTL輸出端，由於二極體與電容的作用使二極體D1與電容C7交接處的電壓保持在-3V~-15V。
+ - TXD為TTL輸入端，RXD為TTL輸出端，由於二極體與電容的作用使二極體D1與電容C7交接處的電壓保持在-3V~-15V。
 
-TTL轉RS232:
+ - TTL轉RS232:
 
- - 當TXD為"邏輯1"時(TTL)，Q3(PNP電晶體)為截止狀態，PCRXD上電壓與PCTXD電壓相等，也是-3~-15V,為"邏輯1"(RS232)
+    - 當TXD為"邏輯1"時(TTL)，Q3(PNP電晶體)為截止狀態，PCRXD上電壓與PCTXD電壓相等，也是-3~-15V,為"邏輯1"(RS232)
 
- - 當TXD為"邏輯0"時(TTL)，Q3(PNP電晶體)為導通狀態，PCRXD上電壓約為+5V，此電壓位於+3~+15V之間，也就是"邏輯0"(RS232)
+    - 當TXD為"邏輯0"時(TTL)，Q3(PNP電晶體)為導通狀態，PCRXD上電壓約為+5V，此電壓位於+3~+15V之間，也就是"邏輯0"(RS232)
 
-RS232轉TTL:
+ - RS232轉TTL:
 
- - 當PCTXD為"邏輯1"時(RS232)，Q4(NPN電晶體)為截止狀態，RXD電壓約為+5V,為"邏輯1"(TTL)
+    - 當PCTXD為"邏輯1"時(RS232)，Q4(NPN電晶體)為截止狀態，RXD電壓約為+5V,為"邏輯1"(TTL)
 
- - 當PCTXD為"邏輯0"時(TS232)，Q4(NPN電晶體)為導通狀態，RXD電壓為0V，為"邏輯0"(TTL)
+    - 當PCTXD為"邏輯0"時(TS232)，Q4(NPN電晶體)為導通狀態，RXD電壓為0V，為"邏輯0"(TTL)
 
-其中D2二極體的功能是為了防止Q4的逆向偏壓過高而導致的崩潰現象發生。 
+ - 其中D2二極體的功能是為了防止Q4的逆向偏壓過高而導致的崩潰現象發生。 
 
 USB to UART 橋接器-CP2102 
-.........................
+==========================
 
 CP2102是一個十分完整的USB轉UART橋接器，運用了最小化元件和最少的PCB空間，其中包含了USB2.0的全速電路、USB收發器、振盪器、EEPROM(電子抹除式可複寫唯讀記憶體)、非同步串列資料匯流排。
 
@@ -1072,7 +1067,7 @@ USB功能控制器負責管理所有UART及USB間的資料傳輸，和處理來�
  - 大多時候CP2102會搭配MAX232作使用，在RS232與CP2102之間還會接一個Max232來達到穩壓的效果及轉換訊號的功能，資料從RS232的pin2傳出去，MAX232的R2IN收到，接著從R2OUT輸出一個TTL/CMOS訊號到CP2102裡面，因為CP2102裡面有兩條數據傳輸通道以及緩衝區，振盪器和USB function controller會去控制資料的緩衝和傳遞​，由USB傳送端從usb port傳出去。
 
 STM32 USART Register 總表
-................................
+==========================
 
 Status register(USART_SR)
 
@@ -1100,148 +1095,145 @@ Guard time and prescaler register(USART_GTPR)
 
 
 STM32F429-USART程式碼 & 示波器圖解
-..................................
+==========================
 
 
 Download sample code : 
 
 
- - 測試用code： http://wiki.csie.ncku.edu.tw/embedded/stm32F429-usart.zip
- - 從PC端接收stm32f429-USART的資料，並紀錄到檔案。 http://codepad.org/0yvz8jk4
- - 環境設定: https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR
+ - 測試用code： [http://wiki.csie.ncku.edu.tw/embedded/stm32F429-usart.zip](http://wiki.csie.ncku.edu.tw/embedded/stm32F429-usart.zip)
+ - 從PC端接收stm32f429-USART的資料，並紀錄到檔案。 [http://codepad.org/0yvz8jk4](http://codepad.org/0yvz8jk4)
+ - 環境設定: [https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR](https://stm32f429.hackpad.com/NOTE-WbiooOfkaoR)
  - 本程式碼在ubuntu-12.04測試，並對stm32f429燒錄成功。
 
 
-.. code-block:: c
+```c
+void RCC_Configuration(void)
+{
+    /* --------------------------- System Clocks Configuration -----------------*/
+    /* USART1 clock enable */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+    /* GPIOA clock enable */
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+}
 
-    void RCC_Configuration(void)
-    {
-          /* --------------------------- System Clocks Configuration -----------------*/
-          /* USART1 clock enable */
-          RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-          /* GPIOA clock enable */
-          RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+void GPIO_Configuration(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    /*-------------------------- GPIO Configuration ----------------------------*/
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    /* Connect USART pins to AF */
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_USART1);   // USART1_TX
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1);  // USART1_RX
+}
+
+void USART1_Configuration(void)
+{
+    USART_InitTypeDef USART_InitStructure;
+
+    /* USARTx configuration ------------------------------------------------------*/
+    /* USARTx configured as follow:
+     *  - BaudRate = 9600 baud
+     *  - Word Length = 8 Bits
+     *  - One Stop Bit
+     *  - No parity
+     *  - Hardware flow control disabled (RTS and CTS signals)
+     *  - Receive and transmit enabled
+     */
+    USART_InitStructure.USART_BaudRate = 9600;
+    USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits = USART_StopBits_1;
+    USART_InitStructure.USART_Parity = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+    USART_Init(USART1, &USART_InitStructure);
+
+
+    USART_Cmd(USART1, ENABLE);
+}
+
+void USART1_puts(char* s)
+{
+    while(*s) {
+        while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+        USART_SendData(USART1, *s);
+        s++;
     }
+}
+```
 
-    void GPIO_Configuration(void)
-    {
-        GPIO_InitTypeDef GPIO_InitStructure;
+```c
+int main(void)
+{   
+    RCC_Configuration();
+    GPIO_Configuration();
+    USART1_Configuration();
 
-        /*-------------------------- GPIO Configuration ----------------------------*/
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
-        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-        GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-        GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-        GPIO_Init(GPIOA, &GPIO_InitStructure);
+    USART1_puts("USART");
+    char t = 'a';
+    char rs[50] = {'\0'};
+    char* prs = rs; 
 
-        /* Connect USART pins to AF */
-        GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_USART1);   // USART1_TX
-        GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1);  // USART1_RX
-    }
-
-    void USART1_Configuration(void)
-    {
-        USART_InitTypeDef USART_InitStructure;
-
-        /* USARTx configuration ------------------------------------------------------*/
-        /* USARTx configured as follow:
-         *  - BaudRate = 9600 baud
-         *  - Word Length = 8 Bits
-         *  - One Stop Bit
-         *  - No parity
-         *  - Hardware flow control disabled (RTS and CTS signals)
-         *  - Receive and transmit enabled
-         */
-        USART_InitStructure.USART_BaudRate = 9600;
-        USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-        USART_InitStructure.USART_StopBits = USART_StopBits_1;
-        USART_InitStructure.USART_Parity = USART_Parity_No;
-        USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-        USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
-        USART_Init(USART1, &USART_InitStructure);
-
-
-        USART_Cmd(USART1, ENABLE);
-    }
-
-    void USART1_puts(char* s)
-    {
-        while(*s) {
-            while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-            USART_SendData(USART1, *s);
-            s++;
-        }
-    }
-
-.. code-block:: c
-
-    int main(void)
-    {
-        RCC_Configuration();
-        GPIO_Configuration();
-        USART1_Configuration();
-
-        USART1_puts("USART");
-        char t = 'a';
-        char rs[50] = {'\0'};
-        char* prs = rs;
-
-        while(t != 'b')
-    	{
-    		while(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
-    		t = USART_ReceiveData(USART1);
-    		*prs++ = t;
-    	}
-    	USART1_puts("\r\nThis is the string typed by user:\r\n");
-    	USART1_puts(rs);
-
-        while(1)
-        {
-            while(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
-            t = USART_ReceiveData(USART1);
-            if ((t == '\r')) {
-                while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-                USART_SendData(USART1, t);
-                t = '\n';
-         	}
-            while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-            USART_SendData(USART1, t);
-        }
-
-        while(1);	// Don't want to exit
+    while(t != 'b')
+    {   
+        while(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
+        t = USART_ReceiveData(USART1);
+        *prs++ = t;
     }   
+    USART1_puts("\r\nThis is the string typed by user:\r\n");
+    USART1_puts(rs);
+
+    while(1)
+    {   
+        while(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET);
+        t = USART_ReceiveData(USART1);
+        if ((t == '\r')) {
+            while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+            USART_SendData(USART1, t); 
+            t = '\n';
+        }   
+        while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+        USART_SendData(USART1, t); 
+    }   
+
+    while(1);   // Don't want to exit
+}   
+```
 
 ![](/embedded/USART_pin.jpg)
 
 
-.. code-block:: c
-
-    如果是使用圖中轉接板，要將紅色板子的TX接到stm32f429的PA10（RX）、RX接到PA9(TX)。
-    若是使用USB-TTL轉接線，要將綠色線(TX)接到PA9、白色線（RX）接到PA10
-    接地線要記得插上板子
-
+```
+如果是使用圖中轉接板，要將紅色板子的TX接到stm32f429的PA10（RX）、RX接到PA9(TX)。
+若是使用USB-TTL轉接線，要將綠色線(TX)接到PA9、白色線（RX）接到PA10
+接地線要記得插上板子
+```
 
 
 ![](/embedded/USART_Osc_PC.jpg)
 
 
-.. code-block:: c
-
-    使用putty連線，設定如圖中所示。
-    開始連線後，板子會傳送USART字串。一直按板子的reset，會如圖中下方所示。
-
+```
+使用putty連線，設定如圖中所示。
+開始連線後，板子會傳送USART字串。一直按板子的reset，會如圖中下方所示。
+```
 
 ![](/embedded/USART_Osc_brief.jpg)
 
 
-.. code-block:: c
-
-    使用示波器量測stm32f429的RX收到的訊號，從PC對其送出字元b。。
-    先按autoset，再調整紅色圈圈的兩個設定。建議將時間區間（x軸）調成4ms、電壓區間（y軸）調成1V，不然會抓到不完整的訊號。
-    注意綠色圈圈，要把量測棒的夾到板子上（接地），否則會出現雜訊。
-    **時間區間沒調好，波形會變成下圖這樣**
-
+```
+使用示波器量測stm32f429的RX收到的訊號，從PC對其送出字元b。。
+先按autoset，再調整紅色圈圈的兩個設定。建議將時間區間（x軸）調成4ms、電壓區間（y軸）調成1V，不然會抓到不完整的訊號。
+注意綠色圈圈，要把量測棒的夾到板子上（接地），否則會出現雜訊。
+**時間區間沒調好，波形會變成下圖這樣**
+```
 
 ![](/embedded/USART_Oscilloscope.jpg)
 
@@ -1249,30 +1241,27 @@ Download sample code :
 ![](/embedded/USART_Oscilloscope_char_b.jpg)
 
 
-.. code-block:: c
-
-    在沒接地時，量測STM32F429從PC接收字元b。    
-
-    整體波形變得不平整，但還是看得到USART輸出的波形。
-
+```
+在沒接地時，量測STM32F429從PC接收字元b。    
+整體波形變得不平整，但還是看得到USART輸出的波形。
+```
 
 ![](/embedded/USART_Osc_IDLE_USART.jpg)
 
 
-.. code-block:: c
-
-    使用測試程式燒錄到板子上，並透過示波器量測stm32f429的TX送出的訊號。
-    綠色圈圈代表板子正在開機，USART並未開啟。
-    IDLE在圖中已標示成紅色字體。
-    紫色點代表start bit，橘色點代表stop bit，並依序在圖上標示USART字樣。
-    注意字元的傳送都是從LSB開始。U的二進位表示為：01010101，但是在傳送時會送出此序列：10101010
-
+```
+使用測試程式燒錄到板子上，並透過示波器量測stm32f429的TX送出的訊號。
+綠色圈圈代表板子正在開機，USART並未開啟。
+IDLE在圖中已標示成紅色字體。
+紫色點代表start bit，橘色點代表stop bit，並依序在圖上標示USART字樣。
+注意字元的傳送都是從LSB開始。U的二進位表示為：01010101，但是在傳送時會送出此序列：10101010
+```
 
 
 
    
 REFERENCE
-..................
+==========================
 - [[1]Universal asynchronous receiver/transmitter wikipedia.](http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter#Special_receiver_conditions)
 
 - [[2]STM32F407xx Reference Manual P.946 ~ P.997](http://www.st.com/web/en/resource/technical/document/reference_manual/DM00031020.pdf)
@@ -1285,7 +1274,7 @@ REFERENCE
 - [[5]ISO 7816-3](http://www.cardwerk.com/smartcards/smartcard_standard_ISO7816-3.aspx)
 
 Q&A
-...................
+==========================
 
 ***1.baud rate為何不是2的倍數？幾個baud rate數字的關聯？為何設定會有小數點？***
 
@@ -1341,6 +1330,6 @@ stop bit有0.5, 1, 1.5, 2bits，共四種
 
 如果我們在中間取樣，可以容許一定程度的取樣頻率誤差
 
-![](/unmatched)clocks.png
+![](/unmatched clocks.png)
 
 [圖片來源](http://electronics.stackexchange.com/questions/42236/uart-receiver-clock-speed)
