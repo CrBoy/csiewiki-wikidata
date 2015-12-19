@@ -10,56 +10,58 @@ categories: STM32, STM32F4, STM32F429
 -------------
 
 - 記憶體RAM?ROM?
-  - RAM: 隨機存取記憶體(Random Access Memory)
-    - 屬於volatile memory(揮發性記憶體)，需要保持通電才能儲存資料
-    - 內部資料可以任意讀寫，用來存放由硬碟載入的程式或資料供CPU處理運算
-    - EX:main memory
-    - 分成DRAM、SRAM
-    - DRAM(Dynamic Random Access Memory)：所儲存的數據需要週期性地更新
-    - SRAM(Static Random Access Memory)：只要保持通電，裡面儲存的資料就可以恆常保持
+    - RAM: 隨機存取記憶體(Random Access Memory)
+        - 屬於volatile memory(揮發性記憶體)，需要保持通電才能儲存資料
+        - 內部資料可以任意讀寫，用來存放由硬碟載入的程式或資料供CPU處理運算
+        - EX:main memory
+        - 分成DRAM、SRAM
+        - DRAM(Dynamic Random Access Memory)：所儲存的數據需要週期性地更新
+        - SRAM(Static Random Access Memory)：只要保持通電，裡面儲存的資料就可以恆常保持
 
-  - ROM: 唯讀記憶體(Read Only Memory)
-    - 屬於非揮發性記憶體（non-volatile memory，縮寫NVRAM)，不須保持通電就能儲存資料
-    - 但資料一但寫入就無法修改，除非透過特殊的方式(例如EPROM用紫外光照射)才能達成
-    - 適合放重要且不能被刪除的資料
-    - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
-    - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
+    - ROM: 唯讀記憶體(Read Only Memory)
+        - 屬於非揮發性記憶體（non-volatile memory，縮寫NVRAM)，不須保持通電就能儲存資料
+        - 但資料一但寫入就無法修改，除非透過特殊的方式(例如EPROM用紫外光照射)才能達成
+        - 適合放重要且不能被刪除的資料
+        - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
+        - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
 
-![](/EPROM.jpg)
-- EPROM: 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
-  - 利用高電壓將資料編程寫入，但抹除時需將線路曝光於紫外線下一段時間，資料始可被清空。
-  - 封裝外殼上會留一個石英玻璃所製的透明窗以便進行紫外線曝光。
-  - 寫入程式後通常會用貼紙遮蓋透明窗，以防日久不慎曝光過量影響資料。
+    - EPROM: 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
+        - ![](/EPROM.jpg)
+        - 利用高電壓將資料編程寫入，但抹除時需將線路曝光於紫外線下一段時間，資料始可被清空。
+        - 封裝外殼上會留一個石英玻璃所製的透明窗以便進行紫外線曝光。
+        - 寫入程式後通常會用貼紙遮蓋透明窗，以防日久不慎曝光過量影響資料。
 
-![](/EEPROM.jpg)
-- EEPROM: 電子抹除式可複寫唯讀記憶體(Electrically-Erasable Programmable Read-Only Memory)
-  - 是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
-  - EEPROM有兩種種類：序列式(serial)、並列式(parallel)，其中並列式通常會以Flash來稱呼。
-  - 除電源線外，串列式通訊口只使用1~4隻接線來傳遞訊號，所需接腳較並列式少
-  - 1線：1-Wire(型號以93為開頭) 、UNI/O(型號以11為開頭) 
-  - 2線：I2C(型號以24為開頭) 
-  - 3線：Microwire(型號以93為開頭) 、SPI(型號以25為開頭) 
-  - 資料更新方式:以位元組為單位
+    - EEPROM: 電子抹除式可複寫唯讀記憶體(Electrically-Erasable Programmable Read-Only Memory)
+        - ![](/EEPROM.jpg)
+        - 是一種可以通過電子方式多次複寫的半導體存儲設備。相比EPROM，EEPROM不需要用紫外線照射，也不需取下，就可以用特定的電壓，來抹除晶片上的訊息，以便寫入新的資料。
+        - EEPROM有兩種種類：序列式(serial)、並列式(parallel)，其中並列式通常會以Flash來稱呼。
+        - 除電源線外，串列式通訊口只使用1~4隻接線來傳遞訊號，所需接腳較並列式少
+            - 1線：1-Wire(型號以93為開頭) 、UNI/O(型號以11為開頭) 
+            - 2線：I2C(型號以24為開頭) 
+            - 3線：Microwire(型號以93為開頭) 、SPI(型號以25為開頭) 
+        - 資料更新方式:以位元組為單位
 
-![](/FLASH.png)
-- Flash Memory:
-  - 於1984年發表，Intel之後於1988年發表第一款商業型的NOR Flash晶片
-  - 以價格便宜、位元密度接手EEPROM的市場位置
-  - 主要用於一般性資料儲存，以及在電腦及其他數位產品間交換傳輸資料
-  - EX:記憶卡、隨身碟的儲存媒介
-  - 快閃記憶體是一種特殊的、以大區塊(blocks)抹寫的EEPROM，寫入大小取決於記憶體控制器本身，介於256KB~20MB不等
-  - EEPROM只允許單執行緒重寫資料，但快閃記憶體卻可支援多執行緒同時在多個地方寫資料
-  - 目前主機板的BIOS幾乎都是透過Flash memory儲存
+    - Flash Memory:
+        - ![](/FLASH.png)
+        - 於1984年發表，Intel之後於1988年發表第一款商業型的NOR Flash晶片
+        - 以價格便宜、位元密度接手EEPROM的市場位置
+        - 主要用於一般性資料儲存，以及在電腦及其他數位產品間交換傳輸資料
+        - EX:記憶卡、隨身碟的儲存媒介
+        - 快閃記憶體是一種特殊的、以大區塊(blocks)抹寫的EEPROM，寫入大小取決於記憶體控制器本身，介於256KB~20MB不等
+        - EEPROM只允許單執行緒重寫資料，但快閃記憶體卻可支援多執行緒同時在多個地方寫資料
+        - 目前主機板的BIOS幾乎都是透過Flash memory儲存
 
 1.2 Flash原理介紹
 -------------
 ![](/Flash_Construction_1.jpg)
+
   - 當給予電晶體(MOSFET)的Gate端正電壓後，通道會呈現導通狀態，意即電流會從Source端流到Drain端
   - Flash的基本架構則是在原本電晶體的Gate端上加入一層特殊氧化層，使得電子可以在沒電壓供應的情況下，持續儲存在Floating Gate
   - 清除(Erase)的方式是在Control Gate給予大約-9~-12V的電壓，並且Source給予大約6V的電壓，清除後的Cell的狀態為bit 1
   - 寫入(Write) bit 0的方式是在Control Gate給予大約12V的電壓，並且Drain給予大約7V的電壓
   - 讀取(Read)的方式是在Control Gate給予大約5V的電壓，如此一來通道會依據Floating Gate的狀態，出現電流，之後再依據電流大小來判斷是1還是0
 ![](/Flash_Construction_2.jpg)
+
   - Bit Line: Drain
   - Word Line: Gate
   - Source Line: Source
@@ -69,24 +71,24 @@ categories: STM32, STM32F4, STM32F429
 ![](/NORNAND.png)
 
 - **NOR Flash**
-  - Intel於1988年發表
-  - 支援**隨機存取**，讀資料的方式跟RAM接近，給address，data就能讀出
-  - NOR的特點是**原地執行**(XIP, eXecute In Place)，這樣應用程序可以直接在flash memory內運行，不必再把資料讀到系統RAM中
-  - 每次寫入/擦除都是以1 block為單位;1 block = 16~128 KBytes
-  - **小容量**(1~4MB)時具有很高的成本效益，但是很低的寫入和擦除速度大大影響了它的性能
-  - NOR flash佔據了容量為1～16MB閃存市場的大部分，因隨機存取快，應用在手機中
-  - NOR的擦寫週期壽命是一萬~十萬次
-  - 適合用於**儲存不需經常更新的程式**，例如BIOS或韌體
+    - Intel於1988年發表
+    - 支援**隨機存取**，讀資料的方式跟RAM接近，給address，data就能讀出
+    - NOR的特點是**原地執行**(XIP, eXecute In Place)，這樣應用程序可以直接在flash memory內運行，不必再把資料讀到系統RAM中
+    - 每次寫入/擦除都是以1 block為單位;1 block = 16~128 KBytes
+    - **小容量**(1~4MB)時具有很高的成本效益，但是很低的寫入和擦除速度大大影響了它的性能
+    - NOR flash佔據了容量為1～16MB閃存市場的大部分，因隨機存取快，應用在手機中
+    - NOR的擦寫週期壽命是一萬~十萬次
+    - 適合用於**儲存不需經常更新的程式**，例如BIOS或韌體
 - **NAND Flash**
-  - Toshiba於1989年發表
-  - 適用於**大容量**，更低的寫入和擦除時間，高密度(單元尺寸是NOR Flash的一半)，高壽命(10倍左右)，低製造成本
-  - I/O pin只有8個，**只允許連續讀取**，所以不適合用於電腦主記憶體(不支援隨機存取)
-  - 讀寫操作以1 page為單位，擦除(Erase)以1 block為單位
-  - 1 block = 32 pages;每個block的單位依照廠商製造的不同有區別，介於8~32 KBytes之間
-  - NAND擦除單元更小，因此**擦除速度**(4ms)比NOR的(5s)**快**
-  - 適合於**資料儲存**，例如:MMC、固態硬碟(SSD)、USB 3.0隨身碟、手機、數位相機
-  - 甚至手機、MP3撥放器用NAND Flash當作存放多媒體檔案的媒介，原因在於成本、空間、還有寫入資料的速度
-  - NAND閃存中每個區塊的最大擦寫次數是一百萬次
+    - Toshiba於1989年發表
+    - 適用於**大容量**，更低的寫入和擦除時間，高密度(單元尺寸是NOR Flash的一半)，高壽命(10倍左右)，低製造成本
+    - I/O pin只有8個，**只允許連續讀取**，所以不適合用於電腦主記憶體(不支援隨機存取)
+    - 讀寫操作以1 page為單位，擦除(Erase)以1 block為單位
+    - 1 block = 32 pages;每個block的單位依照廠商製造的不同有區別，介於8~32 KBytes之間
+    - NAND擦除單元更小，因此**擦除速度**(4ms)比NOR的(5s)**快**
+    - 適合於**資料儲存**，例如:MMC、固態硬碟(SSD)、USB 3.0隨身碟、手機、數位相機
+    - 甚至手機、MP3撥放器用NAND Flash當作存放多媒體檔案的媒介，原因在於成本、空間、還有寫入資料的速度
+    - NAND閃存中每個區塊的最大擦寫次數是一百萬次
 
 1.4 NOR/NAND比較 
 ------------------
@@ -94,12 +96,12 @@ categories: STM32, STM32F4, STM32F429
 +-------------+--------+--------+--------+--------+--------+----------------+
 |             |讀取速度|寫入速度|擦除速度|  容量  |  成本  |  市佔率  |
 +=============+========+========+========+========+========+================+
-|  NOR Flash  |   快   |   慢   |   慢   |   小   |   高   |       減少       |
+|  NOR Flash  |   快   |   慢   |   慢   |   小   |   高   |  減少  |
 +-------------+--------+--------+--------+--------+--------+----------------+----------------+
 |  NAND Flash |   中   |   快   |   快   |   大   |   低   |  上升  |
 +-------------+--------+--------+--------+--------+--------+----------------+
 
-- **關於NAND Flash 與 NOR Flash的比較可參考** http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF
+- **關於NAND Flash 與 NOR Flash的比較可參考** [http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF](http://www.8051faq.com.cn/manager/download/20077633203664115781250.PDF)
 
 2.Flash 記憶體架構介紹
 ======================
@@ -126,14 +128,9 @@ Bus Matrix:(利用round-robin演算法來仲裁)
 - **CCM(Core Coupled Memory)**：是給CPU專用的64KB RAM，不會經過上圖的Bus Matrix，而是透過D-Bus直接與CPU相連，當SRAM被其他硬體使用時，CPU可以使用CCM以達到零等待。記憶體位址在 0x1000 0000 - 0x1000FFFF，與一般的SRAM不連續，而且DMA和周邊也無法直接使用他們，所以一般user的程式完全無法感覺有這64KB的CCM，可用於stack, heap, global variables, critical OS data或做高速運算緩衝(例如JPEG编解碼等)；此外也可以直接拿來當做額外的記憶體使用。
 - **Flash memory**: CPU透過AHB I-Code及D-Code來存取Flash，另外可透過ACCEL加速程式執行。
 - **ACCEL** : Adaptive real-time memory accelerator (ART Accelerator)，可以執行Instruction Prefetch, Instruction cache memory和Data management來加速執行指令的速度。
-
-  - **Instruction Prefetch**: 因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate，每個flash memory的讀取動作可以讀取128-bits的指令(4個32bits指令或8個16bits指令)，所以在循序讀取code的時候，至少需要四個CPU cycles來執行上一串指令。而Instruction Prefetch可以事先讀取下一串指令，不需要Wait State。設定**FLASH_ACR register**裡的**PRFTEN bit**可以開啟Prefetch功能。
-
-![](/ACCEL.png)
-
-  - **Instruction cache memory**: 為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory，只要開啟**FLASH_ACR register**的**ICEN bit**就可以開啟這個功能。每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
-
-  - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。(LDR r0, =0 的 =0就是一個literal，編譯器會在記憶體放一個0，放0的位址則會用一個literal來代表，因此當取得這個literal時需要到literal pool找尋它代表的位址)
+    - **Instruction Prefetch**: 因為Flash的存取速度比起Cortex-M4(180MHz)要慢取多，因此需要一塊記憶體來做Instruction Prefetch來達到0 Wait Sate，每個flash memory的讀取動作可以讀取128-bits的指令(4個32bits指令或8個16bits指令)，所以在循序讀取code的時候，至少需要四個CPU cycles來執行上一串指令。而Instruction Prefetch可以事先讀取下一串指令，不需要Wait State。設定**FLASH_ACR register**裡的**PRFTEN bit**可以開啟Prefetch功能。 ![](/ACCEL.png)
+    - **Instruction cache memory**: 為了減少Jump指令的執行時間，有必有保留一塊64條128-bit的Cache Memory，只要開啟**FLASH_ACR register**的**ICEN bit**就可以開啟這個功能。每次要求的資料假使不在Cache裡，就會將它放進Cache，若有，CPU就可以直接從Cache讀取，避免延遲的時間。當Cache滿時，則根據LRU(least recently used)原則，將最近最少用的資料清掉。
+    - **Data management**: 在CPU Pipeline執行階段時，需要從定字池(Literal pools)透過D-Bus取得定字(Literal)，而這個動作會使CPU暫時陷入停頓的狀態，為了減少浪費的時間，必須將存取D-code的優先權調高過I-code的，如果有些特定定字池是很常用的，可以透過設定**FLASH_ACR register**的**DCEN bit**，這個功能有些類似instruction cache memory，但它的大小只有8條128-bit。(LDR r0, =0 的 =0就是一個literal，編譯器會在記憶體放一個0，放0的位址則會用一個literal來代表，因此當取得這個literal時需要到literal pool找尋它代表的位址)
 
 2.2 Flash interface in system architecture
 ---------------------------------------------
