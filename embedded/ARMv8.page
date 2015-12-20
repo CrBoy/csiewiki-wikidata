@@ -2,14 +2,12 @@
 title: ARMv8
 categories: arm, armv8, arm64, embedded
 ...
-ARMv8架構介紹
-=====================================
+# ARMv8架構介紹
 ![](http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg)
 ![](/embedded/evolution_arm_arch.png)
 ARMv8架構有一個重要的特點是他與其之前的架構相容。
 
-Execution state
-----------------------------
+## Execution state
 * AArch64 : 64-bit Execution state
     - 提供 31組 64-bit 的通用暫存器
     - 提供 64-bit Program Counter(PC), Stack-Poiner (SP )與 Exception-Link-Register (ELR)
@@ -32,16 +30,13 @@ Execution state
 
 (圖片來自loda大大的blog)
 
-AArch64 指令集 (instruction set) 介紹
-=====================================
+# AArch64 指令集 (instruction set) 介紹
 ARMv8-A_Architecture_Reference_Manual P.111
 
-系統層級架構 (System Level Architecture)
-=====================================
+# 系統層級架構 (System Level Architecture)
 ARMv8-A_Architecture_Reference_Manual P.1405
 
-例外層級 (Exception levels)
-----------------------------
+## 例外層級 (Exception levels)
 ARMv8-A_Architecture_Reference_Manual P.1408
 
 - ARMv8-A架構定義了四個例外層級，分別為EL0到EL3，其中數字越大代表特權(privilege)越大。
@@ -64,8 +59,7 @@ ARMv8-A_Architecture_Reference_Manual P.1408
 
 ![](/embedded/armv8 arch.png)
 
-安全性狀態 (Security state)
----------------------------------------------------------------------------
+## 安全性狀態 (Security state)
 
 ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定址空間(Secure physical address space)。
 
@@ -76,8 +70,7 @@ ARMv8-A架構提供兩種安全性狀態，他們有個別的實體記憶體定�
 ![](/embedded/Security)Extension.png
 (from: Hardware Support Virtualization (國立清華大學))
 
-虛擬化 (Virtualization)
-------------------------------------------------------------------------------------
+## 虛擬化 (Virtualization)
 
 這邊提到的虛擬化為**有實現EL2架構**的系統。以下為其基礎模型: (manual D1.5 Virtualization)
 
@@ -113,17 +106,12 @@ EL2只會實現在 Non-secure state，並負責:
     - 每個虛擬中斷都會有其對應的實體中斷
     - 當一個虛擬中斷被啟用時，其對應的實體中斷會由EL2處理(除非EL3指定他要處理)
 
-指令與例外處理暫存器 (Registers for instruction processing and exception handling)
-------------------------------------------------------------------------------------
+## 指令與例外處理暫存器 (Registers for instruction processing and exception handling)
 
-通用暫存器
-......................................
+### 通用暫存器
 31 個通用暫存器R0-R30。可以作為64-bit暫存器X0-X30或是 31個 32-bit暫存器W0-W30來被存取。
 
-
-
-CPSR
-......................................
+### CPSR
 
 ![](/embedded/CPSR.png)
 
@@ -142,12 +130,10 @@ CPSR
 
         - IT[7:2], bits [15:10] 與 IT[1:0] (AArch32), bits [26:25]: T32 IT (If-Then) instruction
 
-Process state PSTATE
-......................................
+### Process state PSTATE
 ![](/embedded/pstate.png)
 
-SP暫存器 (stack pointer registers)
-......................................
+### SP暫存器 (stack pointer registers)
 
 - 每個例外層級都有專用的SP: SP_EL0 ~ SP_EL3 (SP_EL2、SP_EL3只有在有實現該層的架構時才會存在)
 - 例外(exception)發生時，預設會使用例外目標層級的SP_ELx (例如例外目標為EL1就會選用SP_EL1)
@@ -168,8 +154,7 @@ SP暫存器 (stack pointer registers)
 ![](/embedded/spsel.png)
 
 
-SIMD 與浮點暫存器
-......................................
+### SIMD 與浮點暫存器
 - 共用32個128位暫存器V0-V31
 - 可作為以下來存取
     - 32 doubleword (64-bit) registers, D0-D31.
@@ -177,8 +162,7 @@ SIMD 與浮點暫存器
     - 32 halfword (16-bit) registers, H0-H31.
     - 32 byte (8-bit) registers, B0-B31.
 
-程式狀態儲存暫存器SPSRs (Saved Program Status Registers)
-............................................................................
+### 程式狀態儲存暫存器SPSRs (Saved Program Status Registers)
 - 在例外發生時用來儲存PE的狀態
 - 在AArch64中，每個例外層級都有一個SPSR: SPSR_EL1 ~ SPSR_EL3
 - 在例外發生時，會把PE的狀態存在目標層級的SPSR中
@@ -187,16 +171,14 @@ SIMD 與浮點暫存器
 ![](/embedded/SPSR.png)
 (請對照 P.1418)
 
-例外連結暫存器ELRs (Exception Link Registers)
-.............................................
+### 例外連結暫存器ELRs (Exception Link Registers)
 
 - 保存例外返回的位置
 - 例如: 當例外目標為EL1時，返回的位置會存在ELR_EL1中
 - 從例外返回時，會載入ELR的位只到PC中
 - 當例外是從 AArch32 到AArch64 時 ELR bits[63:32]被設為0。
 
-Syndrome Register
-.............................................
+### Syndrome Register
 
 - 保存觸發exection的原因(可用來作instruction emulation，請對照 [xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate)服用)
 
@@ -210,12 +192,10 @@ Syndrome Register
         ![](/embedded/esr_ec.png)
 
 
-虛擬記憶體系統架構 (Virtual Memory System Architecture)
-------------------------------------------------------------------------------------
+# 虛擬記憶體系統架構 (Virtual Memory System Architecture)
 ARMv8-A_Architecture_Reference_Manual P.1707
 
-概述
-......................................
+## 概述
 
 Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU)來負責控制地址轉換(address translation)。
 
@@ -248,8 +228,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
     - [stackoverflow](http://stackoverflow.com/questions/14460752/linux-kernel-arm-translation-table-base-ttb0-and-ttb1)
     - TLB 可以cache Translation table entries
 
-地址轉換階級控制 (Controlling address translation stages)
-............................................................................
+## 地址轉換階級控制 (Controlling address translation stages)
 
 - 不同的implementation，translation stages的實作也會不同
 
@@ -269,7 +248,6 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 ![](/embedded/CR.jpg)
 
 
-
 - stage 2 translation 是ARM 對記憶體虛擬化的擴展。 虛擬化必須讓Guest OS不能存取hypervisor的記憶體空間。在沒有虛擬化擴展的情況下，是透過"shadow page tables"來完成這個要求。
 
     - Shadow page tables: hypervisor 建立屬於自己的page table，當他發現有page fault時，會讀取OS所建立的page table及OS map的地址，再實際map到MMU使用的page table，因此只有hypervisor實際能把VA轉換成PA。缺點是複雜及耗能。
@@ -280,8 +258,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 (圖片來自http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html)
 
-記憶體轉換顆粒大小(Memory translation granule size) (暫譯)
-............................................................................
+## 記憶體轉換顆粒大小(Memory translation granule size) (暫譯)
 
 - 定義了:
     - 單一轉換表的最大大小
@@ -299,8 +276,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 ![](/embedded/64KB.jpg)
 
-Translation table walks
-.................................................................
+## Translation table walks
 - 從讀取轉換表開始，TTBR會保存該階級的base address
 - 每次查找會返回一個descriptor標明以下其中一個情況:
     - 該entry是walk的最後一個entry。此entry包含該次存取的OA、權限及屬性。
@@ -317,8 +293,7 @@ Translation table walks
 
 ![](/embedded/4KBtranslation.bmp)
 
-通用計時器 (The Generic Timer)
-------------------------------------------------------------------------------------
+# 通用計時器 (The Generic Timer)
 ARMv8-A_Architecture_Reference_Manual P.1855
 
 ![](/embedded/generic_timer.png)
@@ -329,8 +304,7 @@ ARMv8-A_Architecture_Reference_Manual P.1855
     - 可用來當count-up或者 count-down timers
     - 可在real-time或者virtual-time上做操作
 
-系統計數器 (System counter)
-..................................
+## 系統計數器 (System counter)
 
 - Width: 至少56-bits
 - Frequency: 1-50MHz，支援多個可選擇的運作模式，如在低頻率下一次增加較多的數量，通常用來省電(power-saving)。
@@ -340,8 +314,7 @@ ARMv8-A_Architecture_Reference_Manual P.1855
 - 它必須被實作在一個always-on power domain
 - 初始化: 必須在系統booting時設定其頻率，可以寫入CNTFRQ 暫存器來做設定。
 
-實體計數器 (physical counter)
-..................................
+## 實體計數器 (physical counter)
 
 PE有一個實體計數器包含系統計數器的count. (保存在CNTPCT暫存器中)
 
@@ -351,20 +324,17 @@ PE有一個實體計數器包含系統計數器的count. (保存在CNTPCT暫存�
     - 另外，當CNTKCTL.EL0PCTEN 被設為1時，在當下的安全性狀態的EL0、EL1就可以存取
     - CNTKCTL 比 CNTHCTL有較高的優先權
 
-虛擬計數器 (virtual counter)
-..................................
+## 虛擬計數器 (virtual counter)
 
 - CNTVCT 暫存器保存現在的虛擬計數器count
 - virtual counter = physical counter - 64-bit virtual offset. 
 - 當執行在Non-secure EL1 or EL0時, virtual offset值相對目前的virtual machine
 
-
-reference
-=====================================
+# Reference
 * [ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html)
-* [loda armv8-與-linux的新手筆記](http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/)
-* http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
-* [Principles of ARM® Memory Maps ](http://infocenter.arm.com/help/topic/com.arm.doc.den0001c/DEN0001C_principles_of_arm_memory_maps.pdf)
-* http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html
-* http://community.arm.com/servlet/JiveServlet/previewBody/8453-102-5-16300/Porting%20to%20ARM%2064-bit.pdf
+* [ARMv8 與 Linux 的新手筆記](http://loda.hala01.com/2014/12/armv8-%E8%88%87-linux%E7%9A%84%E6%96%B0%E6%89%8B%E7%AD%86%E8%A8%98/)
+* [Linux on ARM 64-bit Architecture](http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture)
+* [Principles of ARM® Memory Maps](http://infocenter.arm.com/help/topic/com.arm.doc.den0001c/DEN0001C_principles_of_arm_memory_maps.pdf)
+* [ARM Virtualization Extensions – Memory and Interrupts](http://www.futurechips.org/understanding-chips/arm-virtualization-part-2-memory-interrupts.html)
+* [Porting to 64-bit ARM](http://community.arm.com/servlet/JiveServlet/previewBody/8453-102-5-16300/Porting%20to%20ARM%2064-bit.pdf)
 * [Hardware Support Virtualization (國立清華大學)](http://www.google.com.tw/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=0CEcQFjAF&url=http%3A%2F%2Fwww.cs.nthu.edu.tw%2F~ychung%2Fslides%2FVirtualization%2FVM-Lecture-7-2-Hardware%2520support-ARM.pptx&ei=IV9EVb7BMcX6mQXtqIHoAw&usg=AFQjCNGHnO4BuuVHMSKBVCmZJTVJuzclEg&sig2=3_yUFkFNMRKwXlEGAY481Q)
