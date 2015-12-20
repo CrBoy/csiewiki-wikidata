@@ -14,6 +14,22 @@ toc: no
 * 研究 Linux virtual memory、核心客製化，還有 cache 管理等機制。
 
 系統架構
+-------
+
+硬體規格
+-------
+* [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/)
+    - [BCM2836](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2836/README.md)
+        - The Broadcom processor used in Raspberry Pi 2
+    - A 900MHz quad-core ARM Cortex-A7 CPU
+    - 1GB RAM
+    - Full HDMI port
+* [RASPBERRY PI 1 MODEL B+](https://www.raspberrypi.org/products/model-b-plus/)
+    - [BCM2835](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/README.md)
+        - The Broadcom processor used in Raspberry Pi 1
+    - 700 MHz single-core ARM1176JZF-S
+    - 512 MB RAM (Older boards had 256 MB)
+    - Full HDMI port
 
 組員
 ---------
@@ -25,10 +41,10 @@ toc: no
 
 預算
 -----------
- * Raspberry Pi
-    * Raspberry Pi 2 Model B
-    * RASPBERRY PI 1 MODEL B+
- * 周邊耗材/線材
+* Raspberry Pi
+    - Raspberry Pi 2 Model B US$35
+    - RASPBERRY PI 1 MODEL B+ US$25
+* 周邊耗材/線材
   
 討論和程式
 -------
@@ -42,4 +58,4 @@ toc: no
 目前進度:
 
 * Build rpi-4.1.y branch supports ARM hibernation in Raspberry Pi 1 MODEL B+
-* 研究 ARM Hibernation 流程
+* 研究 ARM Hibernation
