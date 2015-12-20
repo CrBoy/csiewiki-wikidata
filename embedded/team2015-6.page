@@ -1,0 +1,45 @@
+---
+title: 期末專題: Team #6
+categories: embedded2015
+toc: no
+...
+
+題目
+---
+* ARM Hibernation on Raspberry Pi
+
+預期目標
+-------
+* 實作 Suspend to RAM / Suspend to Disk 在 Raspberry Pi 上
+* 研究 Linux virtual memory、核心客製化，還有 cache 管理等機制。
+
+系統架構
+
+組員
+---------
+* 洪文麟 , e-mail: kuro2357509@gmail.com
+* 蔣亞翰 , e-mail: sunnyboyr930709@gmail.com
+* 邱酩仁 , e-mail: brandedwolf@gmail.com
+* 鄭仲庭 , e-mail: ssa35214@gmail.com
+* 陳柏皓 , e-mail: n96041119@ncku.edu.tw
+
+預算
+-----------
+ * Raspberry Pi
+    * Raspberry Pi 2 Model B
+    * RASPBERRY PI 1 MODEL B+
+ * 周邊耗材/線材
+  
+討論和程式
+-------
+歡迎大家來交流討論！
+
+程式碼和討論
+
+* [github](https://github.com/raspberrypi/linux/tree/rpi-4.1.y)
+* [hackpad](https://embedded2015.hackpad.com/Team6-Final-ARM-Hibernation-on-Raspberry-Pi-FAqZL1rZbA3#:h=ARM-Hibernation-on-Raspberry-P)
+
+目前進度:
+
+* Build rpi-4.1.y branch supports ARM hibernation in Raspberry Pi 1 MODEL B+
+* 研究 ARM Hibernation 流程
