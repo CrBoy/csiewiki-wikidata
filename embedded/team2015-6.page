@@ -15,6 +15,12 @@ toc: no
 
 系統架構
 -------
+Ref: [Extending the swsusp Hibernation Framework to ARM](https://docs.google.com/file/d/0B-JeSjLTabpdOFdwVlhVRjNTUUU/edit)
+
+![](/embedded/team2015-6/swsusp_01.png)
+
+
+![](/embedded/team2015-6/swsusp_02.png)
 
 硬體規格
 -------
