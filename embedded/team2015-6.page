@@ -6,11 +6,11 @@ toc: no
 
 題目
 ---
-* ARM Hibernation on Raspberry Pi
+* ARM Hibernation on Beaglebone Black or Raspberry Pi
 
 預期目標
 -------
-* 實作 Suspend to RAM / Suspend to Disk 在 Raspberry Pi 上
+* 建置 Suspend to RAM / Suspend to Disk 在 Beaglebone Black 或 Raspberry Pi上
 * 研究 Linux virtual memory、核心客製化，還有 cache 管理等機制。
 
 系統架構
@@ -18,6 +18,10 @@ toc: no
 
 硬體規格
 -------
+* [Beaglebone Black Rev C](http://beagleboard.org/BLACK)
+    - [AM335x 1GHz ARM® Cortex-A8](http://www.ti.com/product/am3358)
+    - 512MB DDR3 RAM
+    - 4GB 8-bit eMMC on-board flash storage
 * [Raspberry Pi 2 Model B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b/)
     - [BCM2836](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2836/README.md)
         - The Broadcom processor used in Raspberry Pi 2
@@ -41,7 +45,8 @@ toc: no
 
 預算
 -----------
-* Raspberry Pi
+* 實驗平台
+    - Beaglebone Black Rev C USD$55
     - Raspberry Pi 2 Model B US$35
     - RASPBERRY PI 1 MODEL B+ US$25
 * 周邊耗材/線材
@@ -57,5 +62,6 @@ toc: no
 
 目前進度:
 
-* Build rpi-4.1.y branch supports ARM hibernation in Raspberry Pi 1 MODEL B+
 * 研究 ARM Hibernation
+* Try to build rpi-4.1.y branch supports ARM hibernation on Raspberry Pi 1 MODEL B+
+* Try to build am335x hibernation on Beaglebone Black Rev C
