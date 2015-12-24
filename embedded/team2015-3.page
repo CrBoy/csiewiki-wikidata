@@ -1,0 +1,34 @@
+---
+title: 期末專題: Team #3
+categories: embedded2015 秋季
+toc: no
+...
+
+題目
+---
+
+  * [uClinux](http://wiki.csie.ncku.edu.tw/embedded/uclinux)
+
+預期目標
+-------
+
+  * 在STM32F429的LCD上顯示console
+  * 自動掛載keyboard並支援輸入
+
+組員
+---------
+* 許士杰, e-mail: opudding7654321@gmail.com
+* 張瑞元, e-mail: ray.chang925@gmail.com 
+* 蔡森至, e-mail: a2215689@gmail.com
+* 邱健鳴, e-mail: arnoishandsome@gmail.com 
+* 曾柏翔, e-mail: an4001022@gmail.com
+  
+討論和程式
+-------
+歡迎大家來交流討論！
+
+程式碼和討論
+
+* [github](https://github.com/jserv/stm32f429-linux-builder)
+* [hackpad](https://uclinux2015.hackpad.com/uClinux-gHOyduF1HpK)
+
