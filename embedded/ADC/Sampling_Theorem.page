@@ -39,31 +39,32 @@ Sampling Theorem 證明
 
 ![](/embedded/ADC/Sampling_Theorem/03.png)
 
-    - EX: 100Hz 用 1000 Hz 取樣
-        - 可以劃出頻譜
-            - cos 裡面住著兩個 exponential，一個在正，一個在負
-            - 0.2 pi 有一個 pick， -0.2 pi 也會有一個 pick
-            - 強度就是 Aejφ /2 、 -Aejφ /2
+ - EX: 100Hz 用 1000 Hz 取樣
+ - 可以劃出頻譜
+     - cos 裡面住著兩個 exponential，一個在正，一個在負
+     - 0.2 pi 有一個 pick， -0.2 pi 也會有一個 pick
+     - 強度就是 Aejφ /2 、 -Aejφ /2
 
 ![](/embedded/ADC/Sampling_Theorem/04.png)
 
-    - EX: 100Hz 用 100Hz 取樣
-        - 中間有一段是透過Euler's formula做轉換
+- EX: 100Hz 用 100Hz 取樣
+    - 中間有一段是透過Euler's formula做轉換
 
 ![](/embedded/ADC/Sampling_Theorem/formula_01.png)
 
+
 ![](/embedded/ADC/Sampling_Theorem/05.png)   
 
-        - 產生 aliasing，無法辨認
-        - 數位的頻譜和類比的頻譜就是有很多 alias
-            - 每個 2 pi 都會有一個alias
-            - 強度一樣是 Aejφ /2 、 -Aejφ /2
+- 產生 aliasing，無法辨認
+- 數位的頻譜和類比的頻譜就是有很多 alias
+    - 每個 2 pi 都會有一個alias
+    - 強度一樣是 Aejφ /2 、 -Aejφ /2
 
 * 電腦會重建最低的頻率，王力宏(男聲) v.s. 張惠妹(女聲)
 
 ![](/embedded/ADC/Sampling_Theorem/06.png)
 
-    - 舉例下圖中，紅色的線是男聲、黑色的線是女聲
+- 舉例下圖中，紅色的線是男聲、黑色的線是女聲
 
 ![](/embedded/ADC/Sampling_Theorem/07.png)
 
@@ -73,16 +74,16 @@ Sampling Theorem 證明
 
 ![](/embedded/ADC/Sampling_Theorem/08.png)
 
-    - 要取的頻譜要是alias中頻率最低的
-    - 100 取 1000
+- 要取的頻譜要是alias中頻率最低的
+- 100 取 1000
 
 ![](/embedded/ADC/Sampling_Theorem/09.png)
 
-    - 100 取 80
+- 100 取 80
 
 ![](/embedded/ADC/Sampling_Theorem/10.png)
 
-    - 最後證明
+- 最後證明
 
 ![](/embedded/ADC/Sampling_Theorem/11.png)
 
