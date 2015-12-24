@@ -8,6 +8,9 @@ Sampling Theorem 證明
 * 訊號轉換公式
     - 類比訊號如何用數位的形式放到電腦記憶體中?
     - 公式: X[n]=X(nTs)
+
+![](/embedded/ADC/Sampling_Theorem/01.png)
+
 * 連續弦波的表示式
     - X(t) = Acos(ωt+φ) 
         - A: 振幅
@@ -20,6 +23,9 @@ Sampling Theorem 證明
     - alias: 別名(n)、取代(v)
     - 取樣頻率低於2倍最高訊號頻率而導致失真、原先的弦波被錯誤的取樣弦波取代，這個現象稱為aliasing
     - 以下圖為例，原先的弦波被紅色的弦波給取代掉(EX:歌聲男聲女聲)
+
+![](/embedded/ADC/Sampling_Theorem/02.png)
+
 * Sampling Theorem(Shannon sampling theorem)
     - 取樣頻率多少才夠? 兩倍以上才不會失真、才不會被取代掉
         - Depends on frequency of Sinusoid(弦波)
@@ -30,14 +36,23 @@ Sampling Theorem 證明
                 - 當取樣頻率為原訊號之最高頻率之兩倍以上時，才可以正確的重建原始訊號
 * 用 Discrete-Time Sinusoid
     - 主要講 ω hat: digital frequency的概念
+
+![](/embedded/ADC/Sampling_Theorem/03.png)
+
     - EX: 100Hz 用 1000 Hz 取樣
         - 可以劃出頻譜
             - cos 裡面住著兩個 exponential，一個在正，一個在負
             - 0.2 pi 有一個 pick， -0.2 pi 也會有一個 pick
             - 強度就是 Aejφ /2 、 -Aejφ /2
+
+![](/embedded/ADC/Sampling_Theorem/04.png)
+
     - EX: 100Hz 用 100Hz 取樣
         - 中間有一段是透過Euler's formula做轉換
-        
+
+![](/embedded/ADC/Sampling_Theorem/formula_01.png)
+
+![](/embedded/ADC/Sampling_Theorem/05.png)   
 
         - 產生 aliasing，無法辨認
         - 數位的頻譜和類比的頻譜就是有很多 alias
@@ -45,15 +60,31 @@ Sampling Theorem 證明
             - 強度一樣是 Aejφ /2 、 -Aejφ /2
 
 * 電腦會重建最低的頻率，王力宏(男聲) v.s. 張惠妹(女聲)
+
+![](/embedded/ADC/Sampling_Theorem/06.png)
+
     - 舉例下圖中，紅色的線是男聲、黑色的線是女聲
+
+![](/embedded/ADC/Sampling_Theorem/07.png)
 
 * 推導 aliasing之間的關係
     - 可以代入數字看看
     - 頻率加上取樣頻率
+
+![](/embedded/ADC/Sampling_Theorem/08.png)
+
     - 要取的頻譜要是alias中頻率最低的
     - 100 取 1000
+
+![](/embedded/ADC/Sampling_Theorem/09.png)
+
     - 100 取 80
+
+![](/embedded/ADC/Sampling_Theorem/10.png)
+
     - 最後證明
+
+![](/embedded/ADC/Sampling_Theorem/11.png)
 
 參考資料來源
 ===============
