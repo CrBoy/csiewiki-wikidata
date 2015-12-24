@@ -82,6 +82,8 @@ Sampling Theorem
 Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高頻率之兩倍時，才可以正確的重建原始訊號
 ```
 
+2015-embedded-Team6 解說證明:[ADC - Sampling Theorem](http://wiki.csie.ncku.edu.tw/embedded/ADC/Sampling_Theorem)
+
 - 證明：
 
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1386001249929_%E6%96%B0%E5%BB%BA%E6%AA%94%E6%A1%88%209_1.jpg)
