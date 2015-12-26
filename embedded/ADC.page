@@ -567,7 +567,66 @@ ADC_ResetCalibration(ADC1);
 
 - 由於有多個ADC與多個通道，因此可以排列組合出非常多變化的運作模式。
 
-- 可搭配以下Sample Code觀察設定過程
+## Sample Code
+- 以下Sample Code為使用ADC最基本之設定
+
+```c
+void config_GPIO(){
+ 
+    /* --------------------------- System Clocks Configuration -----------------*/
+    RCC_ClocksTypeDef RCC_Clocks;
+    RCC_GetClocksFreq(&RCC_Clocks);
+    /* SysTick end of count event each 10ms */
+    SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
+    /* GPIOA clock enable */
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+    /* USART1 clock enable */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);//USART for print
+    //Clock configuration for ADC 
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);//ADC1 is connected to APB2 peripheral bus
+    
+    /* --------------------------- GPIO input for ADC --------------------------- */
+    GPIO_InitTypeDef GPIO_initStructre; //Structure for analog input pin
+    RCC_AHB1PeriphClockCmd(RCC_AHB1ENR_GPIOCEN, ENABLE);//Clock for the ADC port!! Do not forget about this one ;) GPIOC pin10 for channel 10
+    //Analog input pin configuration
+    GPIO_initStructre.GPIO_Pin = GPIO_Pin_0;//The channel 10 is connected to PC0
+    GPIO_initStructre.GPIO_Mode = GPIO_Mode_AN; //The PC0 pin is configured in analog mode
+    GPIO_initStructre.GPIO_PuPd = GPIO_PuPd_NOPULL; //We don't need any pull up or pull down
+    GPIO_Init(GPIOC, &GPIO_initStructre);
+}
+```
+```c
+/* --------------------------- ADC Configuration --------------------------- */
+void config_ADC(){
+ 
+    ADC_InitTypeDef ADC_init_structure; //Structure for adc confguration
+ 
+    //ADC structure configuration
+    ADC_DeInit(); //reset all parameters to their default values
+    ADC_init_structure.ADC_DataAlign = ADC_DataAlign_Right; //converted data will be shifted to right
+    ADC_init_structure.ADC_Resolution = ADC_Resolution_12b; //Input voltage is converted into a 12-bit number whose maximum value is 4095
+    ADC_init_structure.ADC_ContinuousConvMode = ENABLE; //the conversion is continuous, the input data is converted more than once
+    ADC_init_structure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1; //use timer 1 capture/compare channel 1 for external trigger
+    ADC_init_structure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None; //no trigger for conversion
+    ADC_init_structure.ADC_NbrOfConversion = 1; //Number of used ADC channels
+    ADC_init_structure.ADC_ScanConvMode = DISABLE; //No scan (only one channel)
+    ADC_Init(ADC1, &ADC_init_structure);
+ 
+    // use channel 10 from ADC1, with sample time 144 cycles
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_144Cycles);
+ 
+    ADC_Cmd(ADC1, ENABLE);
+}
+```
+```c
+int adc_convert()
+{
+    ADC_SoftwareStartConv(ADC1);//Start the conversion
+    while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));//Processing the conversion
+    return ADC_GetConversionValue(ADC1); //Return the converted data
+}
+```
+- 以下Sample Code為使用DMA之ADC設定
 
 - [github](https://github.com/tim37021/STM32_ADC_Example/blob/demo_tim/discoveryF4/discovery_demo/main.c)
 
