@@ -350,7 +350,7 @@ Independent mode
 
 **Regular group**
 
-- 會依序被轉換，但順序可自由配置，最多 16 個。
+- 會依序被轉換，但順序可自由配置，最多 16 個 (由ADC_SQRx 暫存器來控制順序)。
 
 - 可以選擇 ADC 開始運作時就進行轉換或等待外來觸發轉換。
 
@@ -370,8 +370,6 @@ Independent mode
 3&4.Scan mode: 也分為轉換一次與連續轉換，但因為 data register 只有一個，所以要用 **DMA ** 避免資料遺失。
 
 - DMA: 每個通道轉換完成都發出一個 DMA request, 可設定為每當 DMA 發生就觸發一次中斷，即可讀出每個通道所轉換的值，也可以全部轉換後一次讀取全部通道的值。
-
-- 最多16個通道 (由ADC_SQRx 暫存器來控制順序)。
 
 - 好處是可以節省CPU的負擔，不用在轉換過程中中斷ADC而去使用不同的取樣時間對下一個通道做轉換(透過ADC_SMPRx 暫存器設定)。
 
@@ -423,67 +421,96 @@ Multi Mode
 
 - ADC1, ADC2 ADC3分別擔任 master & 兩個slave.
 
+- 可分為四種基本模式模式與Combined模式，每種又都有dual & triple mode
 
 **1.Injected simultaneous mode**
+- 使用JEXTSEL[3:0] bits 選擇外部觸發源
 
 Dual Mode:
+
+- 兩個 ADCs 同時觸發而轉換 injected groups.
 
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621324167_1.jpeg)
 
-兩個 ADCs 同時觸發而轉換 injected groups.
-
 Triple Mode:
+
+- 三個 ADCs 同時觸發而轉換 injected groups.
 
 ![](http://i.imgur.com/UkbQN4t.png)
 
-三個 ADCs 同時觸發而轉換 injected groups.
-
 **2.Regular simultaneous mode**
 
-Dual Mode:
+- 使用EXTSEL[3:0] bits 選擇外部觸發源
 
-![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg)
+Dual Mode:
 
 - 2 ADCs 外部訊號同時觸發，一起對所負責通道依序轉換，結果存在 ADC1 DR.
 
 - 禁止二個 ADCs 同時對同一通道轉換以免誤差。
 
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621427303_2.jpeg)
+
 Triple Mode:
 
 ![](http://i.imgur.com/UcUn2il.png)
 
-- 以上兩者的差別在於不同的group
-
+- 以上兩者的差別在於不同的group (Injected 、 Regular)
 
 **3.Interleaved mode**
-
-Dual Mode:
-
-![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg)
 
 - 透過兩個以上的ADC交互轉換同一個通道可以達到更高的取樣頻率
 
 - 由於同使只能有一個ADC對同一個通道做採樣，因此必須要增加兩個cycle的Delay time以免 phase overlap.
 
+- 只能用在 regular groups，通常針對一個通道使用。
+
+Dual Mode:
+
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383621695343_3.jpeg)
+
 Triple Mode:
 
 ![](http://i.imgur.com/vDDkT9j.png)
 
+- 又分為 fast / slow interleaved mode
+
+    - fast：藉由兩個以上的ADC交互對同一個通道取樣，可以縮減到7 個cycle就取樣一次
+
+    - slow：假設在訊號頻率的限制下，為了使R~AIN~ (External input impedance)符合要求，特別延長了取樣的週期間隔。又依照datasheet 上R~AIN~的公式算法，可以知道可容忍的R~AIN~會變大。
 
 **4.Alternate trigger mode**
-
-Dual Mode:
-
-![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg)
 
 - 只能用在雙方的 injected groups, 用同樣外部訊號輪流接受觸發。
 
 - 如單數次觸發到 ADC1 injected group; 雙數次觸發到 ADC2 injected group.
 
+- 在fast interleaved mode 最快同一個通道要7 個cycle就取樣一次，而在這個模式下"不同通道"可以在1.5個ADC cycle的間隔就取樣一次
+
+- 應用在馬達的控制上，PWM的duty cycle可以最大化，在最短時間內再次驅動馬達
+
+Dual Mode:
+
+![](https://dchtm6r471mui.cloudfront.net/hackpad.com_zDGlbVKfA1D_p.84729_1383624981460_6.jpeg)
+
 Triple Mode:
 
 ![](http://i.imgur.com/lKt5MAG.png)
 
+**Combined mode**
+
+- Injected simultaneous mode + Regular simultaneous mode
+    - 在執行regular group轉換時可被injected group中斷
+
+- Regular simultaneous mode + Alternate trigger mode
+    - injected 事件會在每次trigger 後馬上執行
+    - 若有regular 正在轉換，為了同步性，所有(master/slave) ADC都會停下來等injected 事件做完才重新開始
+
+- Injected simultaneous + Interleaved mode
+    - 2個 ADC對同一個通道做 interleaved 轉換，而在事件觸發後，2個ADC可以針對各自設定的通道做取樣
+    - 用在 UPS system
+        - 2個ADC對ADC watchdog作轉換監控，並且定時對power consumption作測量(一個量電壓、一個量電流)
+
+詳細可參考[STM32's ADC modesand their applications](http://www.st.com/web/en/resource/technical/document/application_note/CD00258017.pdf)、[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)
 
 STM32F4xx Internal Temperature Sensor
 ======================================
