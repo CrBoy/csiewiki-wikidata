@@ -140,11 +140,11 @@ ADC Block Diagram
 
 **1.  Analog MUX 類比多工器：**
 
-將多個訊號源連接至 ADC, 可在上圖中的左側看到有 16 組外部輸入 (ADCx_IN0~15)與兩組內部輸入, 經過類比多工器來做訊號源的選擇。
+將多個訊號源連接至 ADC(也就是ADC上的channel), 可在上圖中的左側看到有 16 組外部輸入 (ADCx_IN0~15)與兩組內部輸入, 經過類比多工器來做訊號源的選擇。
 
 **2.  Injected/Regular data register：**
 
-每個 channel 都能配置成 injected or regular, regular 在啟動後 scan 時會依序進行轉換，而 injected 表示會等待外部訊號觸發轉換，觸發後以 injected 的轉換為優先處理。
+每個 channel 都能配置成 injected or regular group, regular 在啟動後 scan 時會依序進行轉換，而 injected 表示會等待外部訊號觸發轉換，觸發後以 injected 的轉換為優先處理。(可往下參考 [ ADC mode](#ADC mode))
 
 **3.  External/Internal Reference Voltage：**
 
