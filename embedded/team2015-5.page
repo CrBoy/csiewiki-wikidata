@@ -1,11 +1,10 @@
 ---
-title: Team #5 期末專題: Docker Based Embedded ARM Computing Cloud
+title: Team #5 期末專題: Embedded ARM Computing Cloud Based On Docker
 categories: embedded2015
-toc: no
 ...
 
 題目
--------
+=======
 - 提供以 ARM 嵌入式開發版為主的雲端運算平台
     - 即使沒有 ARM 開發版，也能具有原生 ARM 環境
     - 透過 Docker Container 技術進行 OS 層的虛擬化
@@ -20,7 +19,7 @@ toc: no
 
 
 預期目標
--------
+=======
 - 在 ARM 嵌入式平台上成功執行 Docker Container
 - 透過 Docker Swarm 技術將多塊板子叢集起來
 - 提供方便的網頁界面來管理 Image 和 Container 
@@ -34,14 +33,16 @@ toc: no
 規格
 -------
 
-
-組員
--------
-
-
 預算
 -------
 
+組員
+=======
+- 沈昇廷
+- 陳周利
+- 蔣佳紋
+- 謝永勁
 
 進度、討論與程式
--------
+=======
+- [hackpad](https://embedded2015.hackpad.com/Team5-Docker-on-Raspberry-PI-2-qkEEy3Z5lqB)
