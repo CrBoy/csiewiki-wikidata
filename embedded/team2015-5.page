@@ -1,5 +1,5 @@
 ---
-title: Team #5 期末專題: ARM Cloud
+title: Team #5 期末專題: Docker Based Embedded ARM Computing Cloud
 categories: embedded2015
 toc: no
 ...
@@ -8,14 +8,23 @@ toc: no
 -------
 - 提供以 ARM 嵌入式開發版為主的雲端運算平台
     - 即使沒有 ARM 開發版，也能具有原生 ARM 環境
-- 為何選擇 ARM 開發版？
-    - 價格
-    - 核心數
+    - 透過 Docker Container 技術進行 OS 層的虛擬化
+        - Image(包含程式、函式庫與環境) 打包方便、已標準化且具有版本控制
+        - 從 Image 產生 Container 速度為秒級
+        - Container 為沙河環境，之間不相互影響，可直接存取系統運算資源
+- 為何選擇 ARM 嵌入式開發版？
+    - 價格低
+    - 核心數多
     - 低耗能
     - ARM 架構
 
+
 預期目標
 -------
+- 在 ARM 嵌入式平台上成功執行 Docker Container
+- 透過 Docker Swarm 技術將多塊板子叢集起來
+- 提供方便的網頁界面來管理 Image 和 Container 
+
 
 
 系統架構
