@@ -23,6 +23,8 @@ ADC具備一些特性，包括：
 
 5. 數位輸出，ADC可以提供平行或串列的數位輸出
 
+![](http://imgur.com/afKLMDs)
+
 基本概念
 -------
 **數位類比轉換器(Analog-to-digital coverter)**
@@ -78,21 +80,37 @@ ConvertedVoltage = ConvertedValue * Vref / (2 ^ n - 1);
 
 
 如果要轉換的電壓變化太小欲放大，則可以使用 OP Amplifier 之電路來做放大。
-
-![](https://hackpad-attachments.imgix.net/hackpad.com_J5FH6Vf4S5P_p.466384_1448886048457_undefined?fit=max&w=882)
-
 ```
+運算放大器,為一種具有高增益,利用電壓回授來穩定電壓增益。
+所謂“運算”,意謂放大器可應用來操作許多數學運算,如加、滅、乘、除、反相、微積分等。
 其使用原理為利用 OPA 虛短路之特性來調整輸出電壓與輸入電壓之關係。
 ```
 
 1.反相放大電路(Vo = - A * Vin)
 
+此電路的放大倍率為-R2/R1。其中負號代表輸出電壓與輸入電壓的相位相反：當 VIN為正時，VOUT為負值
+
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972297699_OPA1.jpg)
+
+放大倍率計算方式：
+
+![](http://i.imgur.com/w6xdcuE.png?1)
+
 
 2.正相放大電路(Vo = A * Vin)
 
+此電路的放大倍率為1+R2/R1。輸入電壓為正時，輸出訊號亦為正值；輸入值為負時，輸出值亦為負
+
 ![](https://dchtm6r471mui.cloudfront.net/hackpad.com_FoYwIS8lBIN_p.84729_1385972307523_OPA2.jpg)
 
+放大倍率計算方式：
+
+![](http://i.imgur.com/O0xB3A9.png?1)
+
+
+[運算放大器詳細](http://memo.cgu.edu.tw/shin-yan/0909_Electronics(I)/2_OP.pdf)
+
+[運算放大器投影片](http://140.116.155.39/OP%20AMP%20Yuntech.pdf)
 
 Sampling Theorem
 -----------------
@@ -112,6 +130,7 @@ Nyquist–Shannon sampling theorem 說明了當取樣頻率為原訊號之最高
 但是通常會使用OverSampling，用遠高於 2f 的頻率來取樣，提升訊號的品質。
 
 Youtube 解說：
+
 [https://www.youtube.com/watch?v=vbjC-aCmMUM](https://www.youtube.com/watch?v=vbjC-aCmMUM)
 
 [https://www.youtube.com/watch?v=saFTvnIVeEY](https://www.youtube.com/watch?v=saFTvnIVeEY)
