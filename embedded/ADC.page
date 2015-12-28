@@ -23,7 +23,7 @@ ADC具備一些特性，包括：
 
 5. 數位輸出，ADC可以提供平行或串列的數位輸出
 
-![](http://imgur.com/afKLMDs)
+![](/embedded/ADC/introduction)
 
 基本概念
 -------
@@ -94,7 +94,7 @@ ConvertedVoltage = ConvertedValue * Vref / (2 ^ n - 1);
 
 放大倍率計算方式：
 
-![](http://i.imgur.com/w6xdcuE.png?1)
+![](/embedded/ADC/OPA_Inverting)
 
 
 2.正相放大電路(Vo = A * Vin)
@@ -105,7 +105,7 @@ ConvertedVoltage = ConvertedValue * Vref / (2 ^ n - 1);
 
 放大倍率計算方式：
 
-![](http://i.imgur.com/O0xB3A9.png?1)
+![](/embedded/ADC/OPA_pos)
 
 
 [運算放大器詳細](http://memo.cgu.edu.tw/shin-yan/0909_Electronics(I)/2_OP.pdf)
