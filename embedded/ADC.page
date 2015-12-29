@@ -883,6 +883,98 @@ Lissajous曲線可以看出兩個訊號的頻率、相位、強度差異。
 
 如果a/b是有理數，則圖形會有一定的形式。若有示波器的圖，可以透過查表可以知道兩個訊號的的比例。
 
+Questions 2015
+==============
+
+1. [Discontinuous mode] 這部分"以每批三個 (n=3), 通道為 {1, 2, 3, 4, 5, 6, 7, 8} 舉例"，這個例子是說，在三個channel上各有不同的analog input嗎？還是他的意思是說有8個通道被使用？
+
+- 沒錯，三個通道上各有不同輸入。
+
+2. 因為只有三個ADC，不同觸發順序就會去轉換哪個channel，可是那這樣假如今天是2nd觸發，可是需要轉換的是channel 7 ，那這樣就出現問題了？
+
+- 在2nd的觸發絕對不會去轉換channel 7 ，因為有暫存器去控制每一輪要轉換的通道(ADC_SQRx 或者 ADC_JSQR)，所以甚至通道序列可以亂排不用由通道小到大。
+```
+首先定義`channel`：通道數量代表ADC 有幾個多工器，每次藉由多工器去選擇要對哪個通道去做ADC 轉換
+再定義`scan mode`：一次可以對一群的通道做轉換
+最後`discontinuous mode`：他是scan 模式的變形，允許 scan 時不是全部掃完所有通道，可以「分批」進行
+每個通道對應著不同的輸入源，ex. 溫度訊號、慣性感測值等，每種輸入源的取樣時間可能不同。連續模式好處是可以節省CPU的負擔，不用在轉換過程中中斷ADC而去使用不同的取樣時間對下一個通道做轉換(透過ADC_SMPRx 暫存器設定)
+```
+
+3. [Injected group]  因為不懂這個東西何時會需要用到，所以自己找了些資料，
+發現在 STM32™’s ADC modes and their applications 中的 1.5.2 提到 
+Using a timer, the injected conversion mode can thus be implemented to delay the ADC measurements to after the transistor switching.
+可是我覺得delay不需要另外多取樣一次來完成，不曉得為何硬體需要這樣設計。
+![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.427072_1448986682426_undefined?fit=max&w=882)
+
+- 從馬達的控制來看，PWM上的電晶體開開關關會產生雜訊，所以要讓ADC重新取樣確保值正確。而PWM示意圖如下
+![](https://hackpad-attachments.imgix.net/hackpad.com_IVh4WmkEAIh_p.335786_1449762094592_undefined?fit=max&w=882)
+- 要計算PWM的時間要多長是藉由timer來控制，上圖的timer為5階。當timer數到我們所設定的值後就會將訊號往下拉直到一個週期結束。在這同時也會將這個timer做為觸發事件去告知ADC，這樣就可以同時計算完成也順便告知ADC這次的轉換可能是有問題的，重新再取樣一次。而不用關閉ADC，再重新啟動(這過程可能是非常耗時的)
+從這裡看到PWM timer會更新trigger。
+![](https://hackpad-attachments.imgix.net/hackpad.com_IVh4WmkEAIh_p.335786_1449761003350_undefined?fit=max&w=882)
+
+4. [STM32F4xx OnChip ADC 介紹] 共有3個12-bit ADC 在開發板上，且可量測16個外部訊號源及2個內部訊號源。請問外部訊號源是例如溫度、壓力，那內部訊號源有什麼例子？
+
+- 在STM32F4xx 上有一個內部的溫度senor，[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf) 中230頁有提到，兩個內部訊號源一個就是溫度訊號，一個是參考電壓
+![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.334595_1449045221935_undefined?fit=max&w=882)
+
+5. [Multi Mode] 請問 這四種mode (1)Injected simultaneous mode, (2)Regular simultaneous mode, (3)Interleaved mode, (4)Alternate trigger mode 會分別在什麼樣的情況下使用呢？
+
+- 以下回答參考自[STM32™’s ADC modes and their applications](http://www.st.com/web/en/resource/technical/document/application_note/CD00258017.pdf)，不過在這裡面沒有提到Injected simultaneous mode (這是在[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)有提到)。
+    - Regular simultaneous mode 
+        - measure the single-phase instantaneous electrical power
+        - 因為要同時測量電流與電壓來計算瞬時的功率，所以用2個ADC對不同通道做測量轉換
+    - Interleaved mode
+        - 其中又分為fast/slow interleaved mode
+        - Dual fast interleaved mode
+            - 藉由兩個以上的ADC交互對同一個通道取樣，可以縮減到7 個cycle就取樣一次，加速取樣頻率
+        - Dual slow interleaved mode 
+            - 假設在訊號頻率的限制下，為了使RAIN (External input impedance)符合要求，特別延長了取樣的週期間隔。又依照RAIN的公式算法，可以知道可容忍的RAIN會變大。
+![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_d3IVeuOQe5e_p.334595_1449159862712_undefined?fit=max&w=882)
+    - Alternate trigger mode
+        - 每一次的外部觸發後，某個ADC就會將設定的 injected group都轉換完
+        - 在fast interleaved mode 最快同一個通道要7 個cycle就取樣一次，而在這個模式下"不同通道"可以在1.5個ADC cycle的間隔就取樣一次
+        - 應用在馬達的控制上，PWM的duty cycle可以最大化，在最短時間內再次驅動馬達
+
+6. alignment的時候要補SEXT，但不知道為甚麼只有injected group需要，regular group卻不用?
+![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.474217_1449153349985_Selection_007.png?fit=max&w=882)
+
+- 參考自[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)，在Data alignment章節提到
+```
+The converted data value from the injected group of channels is decreased by the userdefined offset written in the ADC_JOFRx registers so the result can be a negative value. The SEXT bit represents the extended sign value. 
+For channels in a regular group, no offset is subtracted so only twelve bits are significant.
+```
+- 在injected group可能會被設定要被減去某個值，所以要考慮負號的產生
+
+7. 在 Multi Mode 的 Interleaved mode 時，透過多個 ADC 以固定間隔對同一個通道取樣以達到取樣頻率的提升。請問 Simultaneous mode 和 Alternate trigger mode 的用途又是什麼呢？
+Simultaneous mode：應該不能夠像 Interleaved mode 提升取樣頻率，因為取樣間隔不同，但是否能夠用來提升準確度？
+Alternate trigger mode：為了同時處理多的 injected group 的轉換？
+
+- 如同上面第5題的回答，Interleaved mode 其中又分為fast/slow interleaved mode，fast 模式可以達到取樣頻率提升，slow 模式則是能讓可容忍的RAIN變大。
+- simultaneous mode 則主要是為了同時取得兩個以上的類比訊號值來做計算(ex.同時測量電流與電壓來計算瞬時的功率)。而減少轉換的誤差切入點有很多，可以參考[How to get the best ADC accuracy in STM32Fx Series and STM32L1 Series devices](http://www.st.com/web/en/resource/technical/document/application_note/CD00211314.pdf)
+- Alternate trigger mode ，在fast interleaved mode 最快同一個通道要7 個cycle就取樣一次，而在這個模式下"不同通道"可以在1.5個ADC cycle的間隔就取樣一次
+
+8. [ADC的規格] "因為訊號以二進位方式儲存，所以通常解析度會以位元作為單位。
+例如 8 位元解析度（假設電壓上限為 0~5V）
+則我們的訊號在接收時每個單位為（5V-0V）/ (2^8-1)=0.0196V
+若所得到的值為100則其實際上的電壓為 100 × 0.0196 = 1.96V"
+這邊在算甚麼?
+
+- Vref = Vcc-Vee即參考電壓為5
+- 8bit解析度=>數位訊號用8個位址空間來表示類比訊號的大小
+- 即用5/2^8(wiki上沒有-1?)以電壓來說，可得知上升一個bit需要0.0196V
+- 所以當接收到的值為100(dec)即解析度為01100100，電壓為1.96V
+
+9. [ADC 轉換公式] "其中Vref為參考電壓，通常介於VDD與VSS之間。" 請問VDD與VSS代表?
+
+- VCC:電源電壓（雙極器件）；電源電壓（74系列數字電路）；聲控載波（Voice Controlled Carrier) 
+- C=circuit 表示電路的意思, 即接入電路的電壓 
+- VDD:電源電壓（單極器件）；電源電壓（4000系列數字電 路）；漏極電壓（場效應管） 
+- D=device 表示器件的意思, 即器件內部的工作電壓，在普通的電子電路中，一般Vcc>Vdd ! 
+- VSS:地或電源負極 
+- S=series 表示公共連接的意思，也就是負極。 
+- VEE：負電壓供電；場效應管的源極（S） 
+- VPP：編程/擦除電壓。 
+
 Questions 2013
 ==============
 
