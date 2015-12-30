@@ -904,18 +904,24 @@ Questions 2015
 發現在 STM32™’s ADC modes and their applications 中的 1.5.2 提到 
 Using a timer, the injected conversion mode can thus be implemented to delay the ADC measurements to after the transistor switching.
 可是我覺得delay不需要另外多取樣一次來完成，不曉得為何硬體需要這樣設計。
-![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.427072_1448986682426_undefined?fit=max&w=882)
+
+![](/embedded/ADC/embedded2015.hackpad.com_6Je0oGuYmLy_p.png)
 
 - 從馬達的控制來看，PWM上的電晶體開開關關會產生雜訊，所以要讓ADC重新取樣確保值正確。而PWM示意圖如下
-![](https://hackpad-attachments.imgix.net/hackpad.com_IVh4WmkEAIh_p.335786_1449762094592_undefined?fit=max&w=882)
+
+![](/embedded/ADC/hackpad.com_IVh4WmkEAIh_p.png)
+![](/embedded/ADC/hackpad.com_IVh4WmkEAIh_p (1).png)
+
 - 要計算PWM的時間要多長是藉由timer來控制，上圖的timer為5階。當timer數到我們所設定的值後就會將訊號往下拉直到一個週期結束。在這同時也會將這個timer做為觸發事件去告知ADC，這樣就可以同時計算完成也順便告知ADC這次的轉換可能是有問題的，重新再取樣一次。而不用關閉ADC，再重新啟動(這過程可能是非常耗時的)
 從這裡看到PWM timer會更新trigger。
-![](https://hackpad-attachments.imgix.net/hackpad.com_IVh4WmkEAIh_p.335786_1449761003350_undefined?fit=max&w=882)
+
+![](/embedded/ADC/hackpad.com_IVh4WmkEAIh_p (2).png)
 
 4. [STM32F4xx OnChip ADC 介紹] 共有3個12-bit ADC 在開發板上，且可量測16個外部訊號源及2個內部訊號源。請問外部訊號源是例如溫度、壓力，那內部訊號源有什麼例子？
 
 - 在STM32F4xx 上有一個內部的溫度senor，[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf) 中230頁有提到，兩個內部訊號源一個就是溫度訊號，一個是參考電壓
-![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.334595_1449045221935_undefined?fit=max&w=882)
+
+![](/embedded/ADC/embedded2015.hackpad.com_6Je0oGuYmLy_p (1).png)
 
 5. [Multi Mode] 請問 這四種mode (1)Injected simultaneous mode, (2)Regular simultaneous mode, (3)Interleaved mode, (4)Alternate trigger mode 會分別在什麼樣的情況下使用呢？
 
@@ -929,14 +935,17 @@ Using a timer, the injected conversion mode can thus be implemented to delay the
             - 藉由兩個以上的ADC交互對同一個通道取樣，可以縮減到7 個cycle就取樣一次，加速取樣頻率
         - Dual slow interleaved mode 
             - 假設在訊號頻率的限制下，為了使RAIN (External input impedance)符合要求，特別延長了取樣的週期間隔。又依照RAIN的公式算法，可以知道可容忍的RAIN會變大。
-![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_d3IVeuOQe5e_p.334595_1449159862712_undefined?fit=max&w=882)
+
+![](/embedded/ADC/embedded2015.hackpad.com_d3IVeuOQe5e_p.png)
+
     - Alternate trigger mode
         - 每一次的外部觸發後，某個ADC就會將設定的 injected group都轉換完
         - 在fast interleaved mode 最快同一個通道要7 個cycle就取樣一次，而在這個模式下"不同通道"可以在1.5個ADC cycle的間隔就取樣一次
         - 應用在馬達的控制上，PWM的duty cycle可以最大化，在最短時間內再次驅動馬達
 
 6. alignment的時候要補SEXT，但不知道為甚麼只有injected group需要，regular group卻不用?
-![](https://hackpad-attachments.imgix.net/embedded2015.hackpad.com_6Je0oGuYmLy_p.474217_1449153349985_Selection_007.png?fit=max&w=882)
+
+![](/embedded/ADC/embedded2015.hackpad.com_6Je0oGuYmLy_p.474217_1449153349985_Selection_007.png)
 
 - 參考自[STM32F407xx Reference Manual](http://measure.feld.cvut.cz/system/files/files/cs/vyuka/predmety/A4M38KRP/DM00031020.pdf)，在Data alignment章節提到
 ```
