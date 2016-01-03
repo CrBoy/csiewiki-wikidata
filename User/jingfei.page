@@ -20,64 +20,84 @@ Education
 - National Tainan Girls' Senior High School (2009.09 - 2012.06)
 - National Cheng Kung University (2012.09 - now)
     * Bachelor of Computer Science & Information Engineering, Graduation: June 2016
-    * GPA: 3.61
-    * [蔡孟勳教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/34)專題生
+    * GPA: 3.61; Rank: 7/120
+        * [蔡孟勳教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/34)專題生
+        * Teaching Assistant of the course, Program Design II (C++)
+        * Academic Excellence Award (top 5 in a class of 60)
+        * North-California Alumi’s Scholar (for students who has special skills)
+- Indiana University-Purdue University Fort Wayne
+    * Completed the program of leadership workshop.
+    * Visiting 13 different companies and academies in Chicago, Boston and New York.
 
 Relevant Experience
 -------
 - Network engineer internship in iwNetworks, Fremont, CA
     * August 2015 – October 2015
-    * My work is to figure out network problems with their projects, learn about cloud service, OpenStack and SDN, and set up some routers and SDN switches.
-- Websites and systems maintenance in CSIE, NCKU
-    * February 2014 – present
-    * Being a teaching assistant for websites & systems in my department, I have to make sure all the websites work well, and to build new systems.
+    * Learned about cloud service, OpenStack and SDN.
+    * Managed and redistributed IPs in the company by setting up routers and SDN switches.
+
 - Microsoft Student Partners in Taiwan
     * July 2014 – July 2015
-    * I am in the technology group. Here we learn the Microsoft technology, and develop Windows Phone Apps. In addition, we learn about marketing and sales in Taiwan.
+    * Cooperated with the group of design, and built the admission website.
+    * Being one of the speakers of teaching Windows Universal App.
+
+- Websites and systems maintenance in CSIE, NCKU
+    * February 2014 – present
+    * Familiar with php Laravel, Yii framework and nodejs Actionhero framework.
+    * Built the system of classrooms reservation.
+    * Designed the web shared platform for sharing food in Mei-Chu Hackathon, 
+and took the prize of UI/UX
+    * Built an online judge, self-play game system for freshman’s course, it has about 120 users
+
 - Internship in Farhit Incorporated Company
     * July 2014 – August 2014
-    * I had an internship in the summer vacation of 2014. This is a start-up company, and my work is to develop a back-end system for our video iOS application. We use Amazon Web Service and nodejs to build up all applications.
+    * A start-up company, using Amazon Web Service to build up a video iOS application.
+    * Used nodejs to develop a back-end system for our application.
+
 - Part-time worker in Computer & Network Center, NCKU
     * May 2012 – August 2012
     * Before entering the university, I had a part-time job about web design and network in the Computer & Network Center.
 
-Technical Skills
+Skills and Awards
 -------
-- C / C++
-    * Achieved second place in 2011 Taiwan South Area Programming Contest
-    * Gained fourth place in 2014 Taiwan Center Area Programming Contest
-    * Received Award for Excellence three times in Taiwan National Collegiate Programming Contest
- (2013, 2014, 2015)
-    * Won first place in our department’s Programming Contest (2015)
-    * Participated in many global contests like Facebook Hacker Cup, Google Code Jam, and ACM ICPC
-- HTML / CSS / PHP / JavaScript
-    * Took the prize of UI/UX in Mei-Chu Hackathon
-    * Built an online judge, self-play game system for freshman’s course
-    * Took in charge of Microsoft Student Partners in Taiwan recruitment’s website
-    * Maintained all the websites and systems in our department
-- Verilog
-    * Won the prize of Design Accomplished Award in 2014 IC Design Contest (group of FPGA)
-    * Took first place in 2015 IC Design Contest (group of FPGA)
+- ACM-ICPC Training Team (using C / C++ for algorithm)
+    * Achieved second place in 2011 Taiwan South Area Programming Contest.
+    * Gained fourth place in 2014 Taiwan Center Area Programming Contest.
+    * Received Award for Excellence in Taiwan National Collegiate Programming Contest (2013, 2014, 2015)
+    * Won first place in 2015 our department’s Programming Contest. 
+    * Participated in global contests like Facebook Hacker Cup, Google Code Jam, ACM ICPC…
+    * Took in charge of the team in 2016, and being one of the speakers.
+
+- IC Contest (FPGA) Training Team (using Verilog)
+    * Won the prize of Design Accomplished Award in 2014 IC Design Contest (FPGA group).
+    * Took first place in 2015 IC Design Contest (FPGA group).
+
 
 Activities
 -------
-- September 2015 – present
-    * Join the team of iGem, and I am in the IT group. iGem is a highest level international competition of synthetic biology, it combines the knowledge of biology, engineering, computer science and others interdisciplinary subject. In addition to the biology, I am taking responsibility for our team’s website.
-- September 2014 – August 2015
-    * Became a member of Future Elites class (College of Engineering), we had leadership and English training course. Besides, I was the organizer of our social care activity, Care Week.
-    * During summer vacation, we joined leadership workshop in Indiana University Purdue University Fort Wayne, and visiting the companies, schools in Chicago, Boston and New York.
-- February 2014 – August 2015
-    * Taught C language in high school’s club
-- November 2012 – present
-    * Leader of the Titans girl’s baseball team in Kaohsiung
-- October 2012 – present
-    * Joined ACM training team to participate in competitive contests
-- May 2014
-    * Organized 1th EDiT workshop activity, our website http://edit.flipedu.tw/
-- September 2012 – June 2014
-    * Joined CCNS Club (Campus Computer & Network Society) and have served as President and also have taught.
-- July 2010 – June 2011
-    * President of high school’s club (Information Research Club)
+- iGem NCKU (a highest level international competition of synthetic biology)
+    * Manager of IT group
+    * September 2015 – present
+    * Cooperating with people who major in biology, engineering and other relative fields.
+    * Taking responsibility for our team’s website in IT group.
+
+- Future Elites Program, College of Engineering
+    * Member, Organizer
+    * September 2014 – August 2015
+    * Finished leadership and English courses for 90 hours.
+    * Organizer of the activity, Care Week. I mobilized all of thirty members to be volunteers for Barrier Free Environment. Besides taking care of disabilities directly, we explored whole the campus by using wheelchair ourselves and finished an Accessibility Map.
+
+- CCNS (Campus Computer & Network Society)
+    * Director
+    * September 2012 – June 2014
+    * Rearranged the courses for club.
+    * Increased members of the club from 4 members to 20.
+    * Supported 1st EDiT technical conference for about 200 students in NCKU, the main purpose is to provide a stage and encourage students to share their projects.
+
+- Titans Women’s Baseball Team
+    * Team leader
+    * November 2012 – present
+    * 	Took the second prize in National Taiwan’s women baseball cup.
 
 Works
 -------
