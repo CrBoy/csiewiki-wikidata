@@ -1,0 +1,43 @@
+---
+title: Team #10 期末專題: uVisor with uGUI and CrashDebug
+categories: embedded2015
+toc: no
+...
+
+題目
+---
+
+  * uVisor with uGUI and CrashDebug
+
+預期目標
+-------
+
+  * uGUI預計功能
+    * 可以透過事件(按鈕，USART收到特定訊息，etc)觸發uGUI顯示，平常不顯示
+    * uGUI於發現BOX操作異常時，顯示uGUI
+  * uGUI管理介面
+    * 列出所有BOX，對選擇到的BOX進行操作
+    * 手動啟用CrashCatcher輸出
+  * 整合CrashCatcher
+    * Hard_Fault時自動啟用
+    * uGUI可以手動啟用
+  * 整合MRI
+    * 選擇使用哪個USART作為接口
+
+組員
+---------
+* 張家榮: [Github](https://github.com/JaredCJR), [E-mail](jaredcjr.tw@gmail.com)
+* 周曠宇: [Github](https://github.com/Joouis), [E-mail](luckyjoou@gmail.com)
+* 徐朝逸: Github, E-mail
+* 瞿旭民: [Github](https://github.com/kevinbird61), [E-mail](kevinbird61@gmail.com) 
+* 吳念祖: [Github](https://github.com/nienzu), E-mail
+  
+討論和程式
+-------
+歡迎大家來交流討論！
+
+程式碼和討論
+
+* [Github]()
+* [Hackpad](https://embedded2015.hackpad.com/Team10-TWzjlDT2UbM)
+
