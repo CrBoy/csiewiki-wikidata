@@ -12,17 +12,19 @@ toc: no
 預期目標
 -------
 
-  * uGUI預計功能
-    * 可以透過事件(按鈕，USART收到特定訊息，etc)觸發uGUI顯示，平常不顯示
-    * uGUI於發現BOX操作異常時，顯示uGUI
-  * uGUI管理介面
-    * 列出所有BOX，對選擇到的BOX進行操作
-    * 手動啟用CrashCatcher輸出
-  * 整合CrashCatcher
+  * 整合CrashCatcher(優先)
     * Hard_Fault時自動啟用
     * uGUI可以手動啟用
-  * 整合MRI
+  * 整合MRI(優先)
     * 選擇使用哪個USART作為接口
+  * 整合CrashDebug到GDB(優先)
+  * uGUI預計功能(次要)
+    * 可以透過事件(按鈕，USART收到特定訊息，etc)觸發uGUI顯示，平常不顯示
+    * uGUI於發現BOX操作異常時，顯示uGUI
+  * uGUI管理介面(次要)
+    * 列出所有BOX，對選擇到的BOX進行操作
+    * 手動啟用CrashCatcher輸出
+
 
 組員
 ---------
