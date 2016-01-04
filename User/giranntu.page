@@ -35,6 +35,7 @@ categories: User
 - 大學專題：盲胞電子輔具：Arduino超音波導盲帽(Ultrasound Guidance Cap Device for Blind)
     * 開發Arduino嵌入式系統與Android應用程式，透過超音波感測裝置與提示音讓盲胞往目的地前進並保護盲胞腰部以上的安全，使用Bluetooth通訊傳輸超音波感測數據傳至手持裝置端記錄並雲端儲存。使用C語言開發Embedded system與Java開發Android裝置，設計演算法自動分析周邊資訊，提供用盲胞即時的前進位置與障礙資訊。
 
+[IEEE論文](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6944927)
 
 聯絡資訊
 ------
