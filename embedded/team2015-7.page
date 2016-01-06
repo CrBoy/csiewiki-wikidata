@@ -9,6 +9,9 @@ toc: no
 * 音樂播放器
 
 預期目標
+-------
+ - Depend on 去年的做音樂播放器的組別，再加上USB DAC
+=======
 ------
 運用USB DAC with STM32 來實做音樂播放器
 
@@ -18,25 +21,25 @@ toc: no
 
 硬體規格
 -------
-STM32F429i-Discovery (Cortex-M4)
-PCM2704
+ - STM32F429i-Discovery (Cortex-M4)
+ - PCM2704
 
 組員
 ---------
-王勇翔 p19920310@gmail.com
-紀冬音 mimihalo@miko.tw
-鄭文達 alexcheng1005@outlook.com
-林揚盛 robin60207@gmail.com
+ - 王勇翔 p19920310@gmail.com
+ - 紀冬音 mimihalo@miko.tw
+ - 鄭文達 alexcheng1005@outlook.com
+ - 林揚盛 robin60207@gmail.com
 
 預算
 -----------
-PCM2704 USB DAC 
-SPI SD卡模組
-40pin線材
-NT.1029
+- PCM2704 USB DAC 
+- SPI SD卡模組
+ - 40pin線材
+ - NT.1029
 
-USB type B連接線
-NT.310
+ - USB type B連接線
+ - NT.310
 
 討論和程式
 -------
