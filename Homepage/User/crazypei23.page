@@ -1,0 +1,52 @@
+---
+title: crazypei23(陳珮妤)
+categories: User
+...
+
+
+簡介
+====
+- 國立基隆女中
+- 私立淡江大學 資訊工程學系
+- 國立成功大學 音樂多媒體系統實驗室
+
+
+研究方向
+====
+- 電腦視覺、影像處理
+
+- 訊號分析
+
+
+作品
+====
+- 大三作業
+    * 簡易編譯器
+
+- 大四專題
+    * 媚眼紅唇播fun器 - 實作一個播放器，利用臉部肢體語言“眨眼”以及“微笑”來控制播放器的功能。
+
+- 2014 CVGIP
+    * 論文 - 「EYE-BASED HUMAN-COMPUTER INTERACTION SYSTEM」
+
+- 2015 Maker Faire
+    * 安娜貝爾的眼睛們 - 一個有趣的動態裝置藝術，當人走過去時，眼睛們會看著你。使用Arduino來控制馬達及PIR感測器。
+
+
+常用工具
+====
+- 影像處理:OpenCV
+
+- 訊號研究:Matlab
+
+- 常用硬體工具:電烙鐵、示波器、三用電錶
+
+- 常用程式語言:C、C++、Matlab
+
+- 使用過的開發版:Arduino、STM32F4 Discovery(ARM Cortex-M3)
+
+
+聯絡資訊
+====
+- email: crazypei23@yahoo.com.tw
+
