@@ -64,7 +64,8 @@ Ref: [Extending the swsusp Hibernation Framework to ARM](https://docs.google.com
 程式碼和討論
 
 * [github](https://github.com/raspberrypi/linux/tree/rpi-4.1.y)
-* [hackpad](https://embedded2015.hackpad.com/Team6-Final-ARM-Hibernation-on-Raspberry-Pi-FAqZL1rZbA3#:h=ARM-Hibernation-on-Raspberry-P)
+* [hackpad](https://embedded2015.hackpad.com/Team6-Final-ARM-Hibernation-on-Raspberry-Pi-FAqZL1rZbA3#:h=ARM-Hibernation-on-Raspberry-P) (Raspberry Pi)
+* [hackpad](https://embedded2015.hackpad.com/Build-BBB-kernel-supports-ARM-hibernation-1JYTCaAQoH3) (Beaglebone Black)
 
 目前進度:
 
