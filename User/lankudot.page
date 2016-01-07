@@ -36,3 +36,22 @@ categories: User
 # 參賽經驗
 - 2014 梅竹黑客松 微軟 Azure 組 - GKZMain
 - 2013 交大黑客松 博晶醫電+杏昕科技 組 - GGZMain - 第三名
+
+# 2015 秋季班
+## 作業
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    - [hackpad](https://embedded2015.hackpad.com/Hw1--RtRkBNy0xbQ), [github](https://github.com/LanKuDot/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    - [hackpad](https://embedded2015.hackpad.com/Hw2--SZVH8ToH81J), [github](https://github.com/LanKuDot/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    - [hackpad](https://embedded2015.hackpad.com/Hw3--7eYww1YVfCg), [github](https://github.com/LanKuDot/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    - [hackpad](https://embedded2015.hackpad.com/Hw4-B-SdxbtNXZ5qH), [github](https://github.com/LanKuDot/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    - [hackpad](https://embedded2015.hackpad.com/Hw3--7eYww1YVfCg), [github](https://github.com/LanKuDot/quiz)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    - [hackpad](https://embedded2015.hackpad.com/Hw6--X3wz6Q2Cptb)
+- [homework 7/8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    - [hackpad](https://embedded2015.hackpad.com/Hw7--HczHIHGBq8u), [github](https://github.com/LanKuDot/mini-arm-os)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    - [hackpad](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
