@@ -7,11 +7,16 @@ categories: User
 - 台南人
 - 國立成功大學資訊所 Scream Lab 研究生
 - 目前往 Maker 與遊戲製作方向發展
+- [Github](https://github.com/lankudot)
+
+## wiki 貢獻頁面
+- 本 Wiki 使用 ID：nonlogic
+- [rtenv+](http://wiki.csie.ncku.edu.tw/embedded/rtenv)、[vimrc教學](http://wiki.csie.ncku.edu.tw/vim/vimrc)、[git教學](http://wiki.csie.ncku.edu.tw/git)
 
 # 專長
 - 很難稱的上專長 Orz，到底可不可以稱為專長自己也不知道
 
-# 作品
+# 開發經驗
 - 對戰節奏遊戲 Counter Rhythm
     - 獨立開發，使用 Unity3D 作為開發平台的手機遊戲
     - 104 學年度專題展優等
@@ -26,4 +31,3 @@ categories: User
     - 機構雛型在 2015 Maker Fair Tainan 亮相
 - OpenRISC Visualization Tool (OVT)
     - UI 介面與 Central service 後續維護與開發
-
