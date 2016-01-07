@@ -15,7 +15,15 @@ categories: User
 - 對戰節奏遊戲 Counter Rhythm
     - 獨立開發，使用 Unity3D 作為開發平台的手機遊戲
     - 104 學年度專題展優等
-    - 還在開發中
+    - 以分支版本 Windows 版參加 2014 Maker Fair Tainan
+    - 後續版本還在開發中
 - [電吉他調音器](http://wiki.csie.ncku.edu.tw/embedded/os-team2014-2)
     - [Hackpad](https://hackpad.com/0GIVORPnBX2)，[Github](https://github.com/rtenv-plus-stm32f4)
     - 使用修課學長開發的作業系統 [rtenv+](http://wiki.csie.ncku.edu.tw/embedded/rtenv) 作為基礎系統
+- 大型木工 CNC
+    - [Hackpad](https://hackpad.com/CNC-oAB5QQhr5yV)，[Github](https://github.com/LanKuDot/woodworkingCNC)
+    - 加工面積 1 平方米，以 Arduino Mega 作為控制版
+    - 機構雛型在 2015 Maker Fair Tainan 亮相
+- OpenRISC Visualization Tool (OVT)
+    - UI 介面與 Central service 後續維護與開發
+
