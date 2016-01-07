@@ -1,5 +1,21 @@
+---
+title: 李昆憶 ( lankudot )
+categories: User
+...
+
 # 簡介
-- 李昆憶
 - 台南人
 - 國立成功大學資訊所 Scream Lab 研究生
-- 目前正在往 Maker 與遊戲製作方向發展
+- 目前往 Maker 與遊戲製作方向發展
+
+# 專長
+- 很難稱的上專長 Orz，到底可不可以稱為專長自己也不知道
+
+# 作品
+- 對戰節奏遊戲 Counter Rhythm
+    - 獨立開發，使用 Unity3D 作為開發平台的手機遊戲
+    - 104 學年度專題展優等
+    - 還在開發中
+- [電吉他調音器](http://wiki.csie.ncku.edu.tw/embedded/os-team2014-2)
+    - [Hackpad](https://hackpad.com/0GIVORPnBX2)，[Github](https://github.com/rtenv-plus-stm32f4)
+    - 使用修課學長開發的作業系統 [rtenv+](http://wiki.csie.ncku.edu.tw/embedded/rtenv) 作為基礎系統
