@@ -32,11 +32,14 @@ toc: no
 -----------
 - PCM2704 USB DAC 
 - SPI SD卡模組
- - 40pin線材
- - NT.1029
+- 40pin線材
+- NT.1029
 
  - USB type B連接線
  - NT.310
+
+- I2S DAC
+NT.1507
 
 討論和程式
 -------
