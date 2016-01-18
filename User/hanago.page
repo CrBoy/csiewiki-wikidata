@@ -10,17 +10,17 @@ categories: User
 
 2015嵌入式秋季班作業
 ====
-- week1 : [GitHub](https://github.com/hanago/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/WSuljxbB5QZ)
-- week2 : [GitHub](https://github.com/hanago/phonebook), [Hackpad]()
-- week3 : [GitHub](https://github.com/hanago/quiz), [Hackpad]()
-- week4 : [GitHub](), [Hackpad]()
-- week5 : [GitHub](), [Hackpad]()
-- week6 : [Hackpad]()
-- week7 : [GitHub](), [Hackpad]()
-- week8 : [GitHub](https://github.com/hanago/mini-arm-os), [Hackpad]()
-- week9 : [Hackpad]()
-- week10 : [wiki]()
-- 期末報告 : [Hackpad]()
+- week1 斐波那契数列: [GitHub](https://github.com/hanago/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/WSuljxbB5QZ)
+- week2 PhoneBook: [GitHub](https://github.com/hanago/phonebook), [Hackpad](https://embedded2015.hackpad.com/Homework-2-0xXvCvr8GQ2)
+- week3 程式題目: [GitHub](https://github.com/hanago/quiz), [Hackpad](https://embedded2015.hackpad.com/Homework3-DqLhYaZMlDk)
+- week4 Rubi on dynASM: [GitHub](https://github.com/hanago/rubi/tree/dynASM), [Hackpad](https://embedded2015.hackpad.com/Homework-4-yzACiiEAMuW)
+- week5 Revise & 電影心得: [GitHub](https://github.com/hanago/quiz), [Hackpad](https://embedded2015.hackpad.com/Homework3-DqLhYaZMlDk#:h=Homework-5)
+- week6 Resource Study: [Hackpad](https://embedded2015.hackpad.com/Homework6-JpQrPV7d7Hw)
+- week7 Simple Shell: [GitHub](https://embedded2015.hackpad.com/Homework-7-VTBoAF2fU3M), [Hackpad](https://github.com/hanago/mini-arm-os/tree/bc27ff44ae90190dc39bf73def316b8395e17fc7/07-Threads)
+- week8 RMFS(ROM File System): [GitHub](https://github.com/hanago/mini-arm-os/tree/master/07-Threads), [Hackpad](https://embedded2015.hackpad.com/Homework-7-VTBoAF2fU3M#:h=Homwork-8(B))
+- week9 Flash: [Hackpad](https://embedded2015.hackpad.com/Peripheral-Flash-PlDo5CQ60ev)
+- week10 自我介紹: [wiki](http://wiki.csie.ncku.edu.tw/User/hanago)
+- 期末報告 uRock-Lite: [wiki](http://wiki.csie.ncku.edu.tw/embedded/team2015-2)[工作紀錄](https://2015embedded2.hackpad.com/Work-Record-upHjz1fcWD6)
 
 自我評量分數(1~10級分)
 =================
