@@ -52,8 +52,7 @@ $ perf top
 ![](/embedded/perf/perf_top_error.png)
 
 
-### kernel.perf_event_paranoid
-是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 1 ，你可以輸入
+kernel.perf_event_paranoid 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 1 ，你可以輸入
 ```
 $ cat /proc/sys/kernel/perf_event_paranoid
 ```
