@@ -1,17 +1,16 @@
 ---
 title: Linux 效能分析工具: Perf
+categories: performance
 ...
 
-**簡介**
-====
+## 簡介
 [Perf](https://perf.wiki.kernel.org/index.php/Main_Page) 全名是 Performance Event，是在 Linux 2.6.31 以後內建的系統效能分析工具，它隨著核心一併釋出。藉由 perf，應用程式可以利用 PMU (Performance Monitoring Unit), tracepoint 和核心內部的特殊計數器 (counter) 來進行統計，另外還能同時分析運行中的核心程式碼，從而更全面了解應用程式中的效能瓶頸。
 
 相較於 [OProfile](https://en.wikipedia.org/wiki/OProfile) 和 [GProf](https://sourceware.org/binutils/docs/gprof/) ，perf 的優勢在於與 Linux Kernel 緊密結合，並可受益於最先納入核心的新特徵。perf 基本原理是對目標進行取樣，紀錄特定的條件下所偵測的事件是否發生以及發生的次數。例如根據 tick 中斷進行取樣，即在 tick 中斷內觸發取樣點，在取樣點裡判斷行程 (process) 當時的 context。假如一個行程 90% 的時間都花費在函式 foo() 上，那麼 90% 的取樣點都應該落在函式 foo() 的上下文中。
 
-Perf 可取樣的事件非常多，可以分析 Hardware event，如 cpu-cycles、instructions 、cache-misses、branch-misses ...等等。可以分析 Software event，如 page-faults、context-switches ...等等，另外一種就是 Tracepoint event。知道了 cpu-cycles、instructions 我們可以了解 Instruction per cycle 是多少，進而判斷程式碼有沒有好好利用 CPU，cache-misses 可以曉得是否有善用 Locality of reference ，branch-misses 多了是否導致嚴重的 pipeline hazard ？另外 Perf 還可以對函式進行採樣，了解效能卡在哪邊。
+Perf 可取樣的事件非常多，可以分析 Hardware event，如 cpu-cycles、instructions 、cache-misses、branch-misses ...等等。可以分析 Software event，如 page-faults、context-switches ...等等，另外一種就是 Tracepoint event。知道了 cpu-cycles、instructions 我們可以了解 Instruction per cycle 是多少，進而判斷程式碼有沒有好好利用 CPU，cache-misses 可以曉得是否有善用 Locality of reference ，branch-misses 多了是否導致嚴重的 pipeline hazard？另外 Perf 還可以對函式進行採樣，了解效能卡在哪邊。
 
-**安裝**
-====
+## 安裝
 首先利用以下指令查看目前的 Kernel config 有沒有啟用 Perf。如果 PC 上是裝一般 Linux distro，預設值應該都有開啟。
 ```
 ＄ cat "/boot/config-`uname -r`" | grep "PERF_EVENT"
@@ -21,7 +20,7 @@ Perf 可取樣的事件非常多，可以分析 Hardware event，如 cpu-cycles�
 
 參考的環境是 Ubuntu 14.04，kernel 版本 3.16.0。有兩種方法可以安裝
 
-1.  前面講到，perf 是 Linux 內建支持的效能優化工具，在 2.6.31 版本之後，我們可以直接進到 `/usr/src/<kernel version>/tools/perf` ，然後 $ make和 $ make install來安裝 。
+1.  前面講到，perf 是 Linux 內建支持的效能優化工具，在 2.6.31 版本之後，我們可以直接進到 `/usr/src/<kernel version>/tools/perf` ，然後 `make` 和 `make install` 來安裝 。
 我沒試過，但應該沒什麼問題，我採用的是第二種方法。
 
 
@@ -50,12 +49,10 @@ $ perf top
 ```
 其實會出現以下錯誤畫面。
 
-
 ![](/embedded/perf/perf_top_error.png)
 
 
-
-**kernel.perf_event_paranoid** 
+### kernel.perf_event_paranoid
 是用來決定你在沒有 root 權限下 (Normal User) 使用 perf 時，你可以取得哪些 event data。預設值是 1 ，你可以輸入
 ```
 $ cat /proc/sys/kernel/perf_event_paranoid
@@ -76,8 +73,7 @@ $ cat /proc/sys/kernel/perf_event_paranoid
 $ sudo sh -c " echo 0 > /proc/sys/kernel/kptr_restrict"
 ```
 
-**先來個範例暖身吧！**
-====
+## 先來個範例暖身吧！
 一開始，我們先使用第一次作業 「計算圓周率」 的程式來體會一下 perf 使用。
 [perf_top_example.c]
 ```c
@@ -108,11 +104,9 @@ perf top -p $pid
 
 ![](/embedded/perf/perf_computepi_example.png)
 
-
 預設的 performance event 是 「cycles」，所以這條指令可以分析出消耗 CPU 週期最多的部份，結果顯示函式 compute_pi_baseline() 佔了近 99.9％，跟預期一樣，此函式是程式中的「熱點」！有了一些感覺後，後面會詳細一點介紹 perf 用法。
 
-**背景知識**
-====
+## 背景知識
 以下節錄上海交大通信與電子工程系的劉明寫的文章： 
 
 [Perf -- Linux下的系統性能調優工具](https://www.ibm.com/developerworks/cn/linux/l-cn-perf1/)
@@ -184,8 +178,7 @@ Tracepoint 是散落在核心原始程式碼的一些 hook，一旦使能，在�
 Perf 將 tracepoint 產生的事件記錄下來，生成報告，通過分析這些報告，效能分析調校的工程人員便可瞭解程式執行時期的核心種種細節，也能做出針對效能更準確的診斷。
 
 
-**Perf 基本使用**
-====
+## Perf 基本使用
 前面有提到，Perf 能觸發的事件分為三類：
 
 - **hardware** : 由 PMU 產生的事件，比如 cache-misses、cpu-cycles、instructions、branch-misses ...等等，通常是當需要瞭解程序對硬體特性的使用情況時會使用。
@@ -209,7 +202,7 @@ $ perf list
 ![](/embedded/perf/perf_list.png)
 
 
-###perf top
+### perf top
 perf top 其實跟平常 Linux  內建的 top 指令很相似。它能夠「即時」的分析各個函式在某個 event 上的熱點，找出拖慢系統的兇手，就如同上面那個範例一樣。甚至，即使沒有特定的程序要觀察，你也可以直接下達 `$ perf top` 指令來觀察是什麼程序吃掉系統效能，導致系統異常變慢。譬如我執行一個無窮迴圈：
 ```c
 int main() {
@@ -239,7 +232,7 @@ int main() {
 $ perf top -e cache-misses -c 5000
 ```
 
-###perf stat
+### perf stat
 相較於 top，使用 perf stat 往往是你已經有個要優化的目標，對這個目標進行特定或一系列的 event 檢查，進而了解該程序的效能概況。（event 沒有指定的話，預設會有十種常用 event。）
 我們來對以下程式使用 perf stat 工具 分析 cache miss 情形
 
@@ -321,9 +314,7 @@ $ perf report
 $ cat /proc/sys/kernel/perf_event_max_sample_rate
 ```
 
-
-**參考資料**
-====
+## 參考資料
 - [Linux Performance](http://www.brendangregg.com/linuxperf.html)
 - [Tutorial - Linux kernel profiling with perf](https://perf.wiki.kernel.org/index.php/Tutorial#Sample_analysis_with_perf_report) [Perf wiki]
 - Perf - Linux下的系統性能調優工具 / 劉明  [IBM developerWorks]
@@ -336,6 +327,5 @@ $ cat /proc/sys/kernel/perf_event_max_sample_rate
 - [perf 性能分析實例——使用perf優化cache利用率](https://perf%20%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%AF%A6%E4%BE%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8perf%E5%84%AA%E5%8C%96cache%E5%88%A9%E7%94%A8%E7%8E%87/) [CSDN]
 
 
-**資料整理**
-====
+## 資料整理
 李詔遠(2015.10)
