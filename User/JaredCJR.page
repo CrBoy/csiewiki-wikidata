@@ -6,6 +6,7 @@ JaredCJR(張家榮)
 - 交通大學 資訊科學與工程研究所 系統設計組 正取生
 
 - [北京清華大學 第三屆開源操作系統技術年會 講者](http://soft.cs.tsinghua.edu.cn/os2atc2015/rc.html)
+- SITCON 2016 Speaker(ARM uVisor debug Refinement Project)
 
 **歷年重要作品:**
 
@@ -42,10 +43,16 @@ JaredCJR(張家榮)
 =====================
 - email: ``jaredcjr.tw@gmail.com``
 
+2015秋季班 個人評量
+=======================
+
+
+
+
 2015春季班 個人評量
 =======================
 
-(2015春季班)作業及筆記
+作業及筆記
 --------------------------
 - week1&2 : [GitHub](https://github.com/JaredCJR/arm-lecture), [Hackpad](https://embedded2014.hackpad.com/Embedded-System-2015-Week-12-sf6Jmps07Gr)
 - week3 : [GitHub](https://github.com/JaredCJR/freertos-basic), [Hackpad](https://embedded2015.hackpad.com/Embeded-System-2015-Week3-m1jrag8Cyfn)
@@ -53,7 +60,7 @@ JaredCJR(張家榮)
 - week7&8 : [GitHub](https://github.com/JaredCJR/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/Week7Week-8-eifNIs0bjEF)
 - week9 : [Hackpad](https://embedded2015.hackpad.com/Lab43-waG48D3Jofi)
 
-(2015春季班)報告筆記
+報告筆記
 --------------------------
 - 整體 : [Hackpad](https://embedded2015.hackpad.com/Team6--D3q9lvQUPDH)
 - Arm v7-A VMSA : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-v7-A-VMSA-6dMVuS4kALA)
@@ -62,12 +69,12 @@ JaredCJR(張家榮)
 - lmbench3 - lat_ctx實驗過程(較新的部分都直接更新在wiki上，以wiki為主) : [Hackpad](https://embedded2015.hackpad.com/lmbench-lat_ctx-on-BBB-linux-x2YKz26rtxX)
 - gnuplot使用分析 : [Hackpad](https://embedded2015.hackpad.com/Team6-Linux-on-ARM-gnuplot-3rhmC1Ts6lL)
 
-(2015春季班)報告
+報告
 --------------------------
 - CSIE Wiki:[ARM-Linux](/embedded/arm-linux)
 - 主要負責context switch理論分析以及實驗暨結果探討
 
-(2015春季班)所見所聞心得
+所見所聞心得
 --------------------------
 - 第一次上這麼具有挑戰性的課程，涵蓋了過去的所學，像是機率與統計、計算機組織、作業系統、資料結構以及邏輯設計，而且也從中發現了自己是多麼的渺小，自己的程式設計能力相當的不足，像是C語言的callback和function pointer都還不是很熟悉，還有很多特別的方法像是Concatenation,inline assembly等等。
 - 除此之外，終於了解MCU上時間的計算方式，是透過systick的方式去記錄；作業系統教的TCB，原先不是很了解實做方式，直到寫作業時，當時純粹只是為了幫task弄的比較像物件導向，然後比較早交作業，老師在FB提到我修改了TCB，我才發現原來我做的這件事情就是修改TCB...發現以前真的不是很懂到底在學什麼，還有這個作業也讓我更了解scheduler到底是什麼，不然教科書上也都只是畫個框框，裡面填上scheduler，也不懂實際運作的方式，而且有很多強者同學，可以去學習別人的長處，互相討論，我覺得這是很好的方式，讓不認識的同學一起努力；mini-arm-os讓我知道什麼叫作"寫出別人寫不出來的code"，即使數量不多，因為基礎不佳，只好"舉燭"了一整周，這個規模很小的作業系統卻對我有著不一樣的啟示。
