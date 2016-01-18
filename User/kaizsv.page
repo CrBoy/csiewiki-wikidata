@@ -15,9 +15,24 @@ categories: User
 - [期未專題](https://hgqnckuembedded2015.hackpad.com/Team-13-Mv2lFR3g7Kv) : 手勢控制的四軸飛行器
 - [作業4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) / [hackpad](https://embedded2015.hackpad.com/Homework-4-B-Jm6jxbaiz3z) / [github](https://github.com/kaizsv/jit-construct)
     - 作業四要求改善 Brainfuck JIT compiler 效能，我嘗試了5種方法並結合其中3種得到進一步的效能提升，其中 hanoi.b 效能提升了160倍。
--[作業5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5) / [hackpad](https://embedded2015.hackpad.com/HW-5-rnnoTmsgZqr) / [github](https://github.com/kaizsv/phonebook)
+- [作業5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5) / [hackpad](https://embedded2015.hackpad.com/HW-5-rnnoTmsgZqr) / [github](https://github.com/kaizsv/phonebook)
     - 研究 metaphone 語音演算法，用來實作模糊搜尋。
--[作業7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7) / [hackpad](https://embedded2015.hackpad.com/HW7-A-JksZixbXewj) / [github](https://github.com/kaizsv/mini-arm-os)
-    - 藉由課程教材 mini-arm-os 了解 interrupt, reset, linker, 及在程式碼後各式各樣的機制，說了解口氣好像太狂了，但老師給的教材都有花時間看過。
+- [作業7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7) [作業8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8) / [hackpad](https://embedded2015.hackpad.com/HW7-A-JksZixbXewj) / [github](https://github.com/kaizsv/mini-arm-os)
+    - 藉由課程教材 mini-arm-os 了解 interrupt, reset, linker, 及在程式碼後各式各樣的機制，對期末專題有很大的幫助。說了解口氣好像太狂了，但老師給的教材都有花時間看過。
+
+-------------
+
+- 以上是我認為這學期稍為有成果的作業，其它作業表現得較普通，沒有特別突出。
+- [作業1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) / [hackpad](https://embedded2015.hackpad.com/2015q3-Homework-1-aTgiHvzHF1U) / [github](https://github.com/kaizsv/arm-lecture)
+    - 用簡單的 fibonacci 了解 arm 組語。
+- [作業2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) / [hackpad](https://embedded2015.hackpad.com/Homework-2-RB9dqLyHq5h) / [github](https://github.com/kaizsv/phonebook)
+    - 改變電話薄的資料結構以改進效能。
+- [作業3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) / [hackpad](https://embedded2015.hackpad.com/Homework-3-kOhqpE0ZUpf) / [github](https://github.com/kaizsv/quiz)
+    - 實作期初測驗的程式題目。
+- [作業6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) / [hackpad](https://kaizsv.hackpad.com/HW6-fueOx1PvVzc)
+    - 大量閱讀教材，包含C語言、計組、OS、compiler、自由軟體及UNIX歷史等資訊議題，這份作業我有偷懶。
+- [作業9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    - 大量閱讀 STM32 開發板的硬體週邊，GPIO、USART、I2C 等，詳細可參考 作業9 的連結。
 
 # 自我評量
+滿分十分的話我給自己六分及格邊緣(我知道研究所70分及格)，我有作業沒寫好，像作業6根本是自己偷懶，作業2則是沒有寫得很漂亮，扣1分，
