@@ -1,0 +1,56 @@
+---
+title: 楊富仲 (kyo0623)
+categories: User
+...
+
+# 簡介
+- 高雄人
+- 國立成功大學資訊所 DIC Lab [陳培殷教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/23) 博士生
+
+# 研究
+- 數位IC設計
+- 影像處理
+- 資料壓縮
+
+# 論文發表
+- Chih-Yuan Lien, Fu-Jhong Yang, and Chien-Chuan Huang, "An Efficient Image Dehazing Method", IEEE Sixth International Conference on Genetic and Evolutionary Computing, Aug. 2012.
+- Fu-Jhong Yang, Chih-Yuan Lien, Pei-Yin Chen, and Chih-Ling Hsu, "An Efficient Quadtree-based Block Truncation Coding for Digital Image Compression" The 30-th IEEE International Conference on Advanced Information Networking and Applications, 2016.
+
+# 參賽經驗
+- 九十九年度數位訊號處理創思設計競賽-參賽
+- 九十九年度全國微電腦應用系統設計製作競賽 研究所組 - 佳作
+- 104學年教育部大學校院IC競賽 標準元件數位電路設計組 - 設計完成獎
+
+# 參與訓練課程
+- 國家晶片系統設計中心
+    - Cell-based IC Implementation and Verification
+    - Logic Synthesis with Design Compiler
+    - Cell-based IC Physical Design and Verification with IC Compiler
+
+#2015秋季班
+#自我評量
+
+
+#作業
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/Week1-QdIut8MShP1), [github](https://github.com/kyo0623/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/Week3-KDEXmsPBcpy), [github](https://github.com/kyo0623/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/HW3-uTLL8J4ViIN#:h=Question4), [github](https://github.com/kyo0623/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/WEEK4-hk4zXysVh7K#:h=4.Multiplication-Loops), [github](https://github.com/kyo0623/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [hackpad](https://embedded2015.hackpad.com/HW5-zfF8Nt8xxec), [github](https://github.com/kyo0623/phonebook)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/Week7A-pPY6AkOAbiR#:h=01-HelloWorld), [github](https://github.com/kyo0623/mini-arm-os)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * (未完成)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * (未完成)
+
+# 聯絡資訊
+- Github：``https://github.com/kyo0623``
+- Email：``kyo0623@hotmail.com``
