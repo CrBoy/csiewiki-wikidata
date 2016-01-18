@@ -17,6 +17,10 @@ categories: User
 - 論文
     *整合肌肉電位訊號與慣性測量裝置實作智慧家庭系統-作者 / 2015全國計算機會議
 
+經歷
+-------
+- 104學年度成功大學工程科學系網路嵌入式系統應用 / 課程助教
+
 **(2015秋季班)作業及筆記**
 ===================
 - [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
@@ -35,16 +39,16 @@ categories: User
     * [hackpad](https://embedded2015.hackpad.com/embedded2015-7-ImCcbkz6iCD), [github](https://github.com/leila852031/mini-arm-os)
 - [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
     * (未完成)
-- [homework 9]分組報告 - USART (http://wiki.csie.ncku.edu.tw/embedded/USART)
+- [分組報告 - USART] (http://wiki.csie.ncku.edu.tw/embedded/USART)
     * 分組報告 - USART提問   [hackpad](https://embedded2015.hackpad.com/Peripheral-USART-5c1m7nktyMN)
 
 (2015秋季班)心得
 --------------------------
-
+這門課真的讓這一學期過的很充實，每個禮拜都花了大量時間在閱讀資料以及做筆記，相較之下動手寫的時間反而不多。寫作業的時候都會覺得自己會的東西太少，不會的太多，看越多東西，也發現自己懂得越少。不過我相信只要持續努力，我也可以逐漸將基礎的東西補上，再往進階前進。
 
 自我評量分數 (1 到 10 級分)
 --------------------------
-
+7級分。雖然利用了大量時間閱讀資料，也花了很多時間寫作業，但是我覺得我的筆記跟程式可以再做得更好。
 
 **聯絡資訊**
 ============
