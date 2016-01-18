@@ -1,0 +1,88 @@
+---
+title: charles620016 (李詔遠)
+categories: User
+...
+
+**聯絡資訊**
+====
+- Email: ``charles620016@gmail.com``
+- GitHub: [charles620016](https://github.com/charles620016)
+
+**簡介**
+====
+學歷
+----
+- 成功大學 電腦與通訊工程研究所 通訊與網路組 
+
+    雲端與網路安全實驗室 李忠憲 教授
+
+- 成功大學 工程科學系 103 級
+
+研究領域與興趣
+----
+- Cryptography, Deduplication, Data Sharing, 
+- Embedded system, Bare-metal Hypervisor
+
+論文
+----
+- A Secure Deduplication Cloud Storage System Supporting Attribute-based Data Sharing
+
+技能
+----
+- C, Java, Python
+
+其他經歷
+----
+- 網站維護 - 教育機構網站應用程式弱點監測平台、個資掃描平台
+- 專題生 - 基於混合式模型之室內外無縫定位系統
+- 社長 - 成大 LabVIEW Club
+
+
+**修課專案與筆記**
+====
+
+2015 秋季班個人評量
+----
+- [Jailhouse Hypervisor for ARMv8](https://embedded2015.hackpad.com/Jailhouse-Hypervisor-for-Hikey-P8aM30iQ3hm) : A partitioning Hypervisor based on Linux (期末專題)
+
+- HW1 - [Compute Pi](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-1-kBMD0GhbC7d), [GitHub](https://github.com/charles620016/embedded-fall2015/tree/master/hw1-computePi)
+
+- HW2 - [Phonebook](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-23-HW2-lifHi7P9FAL), [GitHub](https://github.com/charles620016/embedded-fall2015/tree/master/hw2-phonebook)
+
+- HW3 - [Quiz](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-4-HW3-HetejKbrFPJ), [GitHub](https://github.com/charles620016/embedded-fall2015/tree/master/hw3-quiz)
+
+- HW4 - [jit-construct](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-5-HW4-B-CzjehRA1CGs), [GitHub](https://github.com/charles620016/jit-construct)
+
+- HW5 - [FuzzySearch](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-6-HW5-Japi4qFyAzt), [GitHub](https://github.com/charles620016/embedded-fall2015/tree/master/hw5-fuzzysearch)
+
+- HW6 - [Study](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * Hackpad
+
+- HW7 - [Mini-arm-os](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [Hackpad](https://charles620016.hackpad.com/Charles-Week-8-HW7A-NCAks75XpAb)
+
+- HW8 - [Priority scheduling/Read-only file system](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * Hackpad
+
+- HW9 - [GPIO](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * [Hackpad](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
+
+2015 暑期班個人評量
+----
+- [Charles / 2015 暑期嵌入式系統筆記](https://embedded2015.hackpad.com/Charles-2015--7sVmkgm4Hre) : 包含先修教材研讀筆記，上課紀錄，開發紀錄
+- 作業＆課堂練習
+    * RGB to BW : [Hackpad](https://embedded2015.hackpad.com/Charles-2015--7sVmkgm4Hre#:h=課堂測驗---RGBA-to-BW), [GitHub](https://github.com/charles620016/embedded-summer2015/tree/master/RGBAtoBW)
+    * Phonebook : [Hackpad](https://embedded2015.hackpad.com/Charles-2015--7sVmkgm4Hre#:h=課後作業---phonebook), [GitHub](https://github.com/charles620016/embedded-summer2015/tree/master/phonebook)
+    * findmax : [Hackpad](https://embedded2015.hackpad.com/Charles-2015--7sVmkgm4Hre#:h=課堂測驗), [GitHub](https://github.com/charles620016/embedded-summer2015/tree/master/findMax)
+    * strtok : [Hackpad](https://embedded2015.hackpad.com/Charles-2015--7sVmkgm4Hre#:h=課堂測驗---strtok()), [GitHub](https://github.com/charles620016/embedded-summer2015/tree/master/strtok) 
+
+其他
+----
+- [Linux 效能分析工具 Perf](http://wiki.csie.ncku.edu.tw/embedded/perf/tutoriol) : 成大資工Wiki頁面
+- [BTMusicBox](https://github.com/charles620016/BTMusicBox) : Make Raspberry Pi become a music player and remote control by a smartphone.
+- [Fruitpedia](https://github.com/charles620016/Fruitpedia) : A kind of Android app which provides fruit information like fruit nutrition, uses of fruits and how to storage, etc. 
