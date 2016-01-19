@@ -1,0 +1,44 @@
+---
+title: 張瑞元 (RC925)
+categories: User
+...
+
+# 簡介
+- 張瑞元
+- 台南人
+
+# 學歷
+- 南台科技大學 電子工程科(五專)/90年畢
+- 台灣科技大學 電子工程系(二技)/92年畢
+- 國立成功大學電通所 CASLAB 碩一生/105年
+
+# 聯絡資訊
+- Email：``ray.chang925@gmail.com``
+
+# 工作經驗
+- 廣達電腦 - 硬體工程師 (95~97年)
+- 瀚捷機械 - 業務經理 (97~104年)
+
+# 2015秋季班-心得與自我評量 (1到10級分)
+修這門課, 使我見識到嵌入式系統的博大精深, 需要相當多的相關背景知識, 也初步了解這行, 所需的相關技能, 老師所提供的課程教材相當豐富, 感覺得出用心程度, 但對於重新歸零的我, 目前只能說...弱到爆, 自認還須相當多的時間, 才能有效一步一步的吸收, 學期雖結束了, 但此課程內的相關教材內容, 值得後續再繼續細細研讀, 對這學期的自我評量給自己6分, 雖說自身技術上沒能多大提升, 但態度上, 自己盡力去完成了所能完成的作業.
+
+#作業
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/J4wiX0o59cS), [github](https://github.com/RC925/arm-lecture.git)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/1YipQzKm2lR#開發紀錄), [github](https://github.com/RC925/phonebook.git)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/2cZuX5RufJ6), [github](https://github.com/RC925/quiz.git)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/KxzfXJWfiIL#開發紀錄(B)), [github](https://github.com/RC925/jit-construct.git)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * (未完成)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * [hackpad](https://embedded2015.hackpad.com/NhIx0FRqHtK#Ray)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/iLMW3EUNfgv#開發紀錄(A)), [github](https://github.com/RC925/mini-arm-os.git)
+    * (未完成)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * (未完成)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * (未完成)
