@@ -1,0 +1,50 @@
+GreenYo(游玉青)
+------------------
+**簡介:**
+
+- 東華大學 資訊工程系100級
+- 成功大學 資訊所104級
+
+**歷年重要作品:**
+
+- 比賽及計畫
+
+    - 監督學習之互動式智慧系統 / 科技部-大專學生研究計畫
+
+**其他經驗:**
+
+- 東華大學系學會幹部
+
+- 志工服務
+    - 校園募款幫助柚農以及其他行政工作
+    - 第22屆飢餓30大會師
+
+聯絡資訊:
+=====================
+- email: ``f0246810@gmail.com``
+- email: ``p76041085@mail.ncku.edu.tw``
+
+2015秋季班 個人評量
+=======================
+
+(秋季班)作業及筆記
+------------------------
+
+-HW1 [Github](https://github.com/GreenYo0413/arm-lecture),[Hackpad](https://hackpad.com/13rXoDxQKTE)
+-HW2 [Github](https://github.com/GreenYo0413/phonebook),[Hackpad](https://hackpad.com/Phonebook-9PAPoCqT7rZ)
+-HW3 [Github](https://github.com/GreenYo0413/quiz),[Hackpad](https://hackpad.com/2015-Fall-Q3-1F3RBZSzB5l)
+-HW4 [Github](https://github.com/GreenYo0413/jit-construct),[Hackpad](https://embedded2015.hackpad.com/HW4-B-YfOO2EUCdPF)
+-HW5 [Github](https://github.com/GreenYo0413/Homework-1-Ext),[Hackpad](https://hackpad.com/TYHxh3WNplr)
+-HW6 [Hackpad](https://hackpad.com/Homework6-0YpGx2lzbPw)
+-HW7 [Github](https://github.com/GreenYo0413/prefetcher),[Hackpad](https://hackpad.com/M9LD5fuYH4U)
+
+(秋季班)所見所聞心得
+------------------------
+- 從學期初到現在讓我對linux環境了解了很多，從一開始慢慢看懂makefile，以及使用GDB、gnuplot。還有一個特殊的工具perf讓我體會到實際程式運行的時間比純粹計算時間複雜度來的重要得多，像是要降低catch miss的寫法寫法。
+- 除此之外對於一些電腦的運作方式跟編譯器運作的方式也有了更深的了解，像是去觀察程式碼利用不同的指令架構編譯過後產生的ARM的組合語言，還有模擬器的使用，以及到後期使用SIMD改寫程式也讓我學到了很多
+- 最後是學期末的分組報告，讓我知道一塊開發版上，會用跟真的懂那些元件的運作方式是有很大的一段距離的，也讓我學到如何去看spec。
+
+(秋季班)自我評量分數 (1 到 10 級分)
+---------------------------
+7級分
+給7級分是因為我覺得從期初到期末我自己有感受到自己的進步，但跟完美還有一段差距。
