@@ -63,17 +63,24 @@ categories: User
 - [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
     * [hackpad](https://embeddedhomework.hackpad.com/Homework-5-cXvYSKovgTk), 補充homework3內容
 - [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
-    * (未完成)
+    * [hackpad](https://embeddedhomework.hackpad.com/Homework-6-UUBFdj1uU3V)
 - [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
     * [hackpad](https://embeddedhomework.hackpad.com/Homework-7-4CN12JZGASH), [github](https://github.com/zeroplusone/mini-arm-os)
 - [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
     * (未完成)
 - [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
     * GPIO:[hackpad](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
-    * ADC:(未完成)
+    * USART:[hackpad](https://embedded2015.hackpad.com/Peripheral-USART-5c1m7nktyMN)
+    * USB:[hackpad](https://embedded2015.hackpad.com/Peripheral-USB-mdOjvkUd5Xd)
 
 分組報告
 ------
 - USART
+    * [成大資工wiki](http://wiki.csie.ncku.edu.tw/embedded/USART)
+
+期末Project
+------
+- 題目：簡易手機
+- 開發記錄：[hackpad](https://hackpad.com/ETZV2HwF6kr)
 
 
