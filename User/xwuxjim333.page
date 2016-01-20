@@ -32,12 +32,12 @@ categories: User
      * [hackpad](https://embedded2015.hackpad.com/hWdYM4tnbSB), [github](https://github.com/xwuxjim333/pi)
 - [Homework6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) : 補強基礎觀念 [Insecure coding in C/C++](http://www.slideshare.net/olvemaudal/insecure-coding-in-c-and-c)
      * [hackpad](https://embedded2015.hackpad.com/Jw2X4jiLvTI)
-- [Homework7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+- [Homework7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7) : 說明 naive_transpose, sse_transpose, sse_prefetch_transpose 之間的效能差異，以及 prefetcher 對 cache 的影響
+     * [hackpad](https://embedded2015.hackpad.com/B-hokDMWbUvwr), [github](https://github.com/xwuxjim333/prefetcher)
+- [Homework8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8) : 設計排程器，實做 priority scheduling
      * [hackpad], [github]
-- [Homework8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
-     * [hackpad], [github]
-- [Homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
-     * [hackpad], [github]
+- [Homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9) : 補強基礎觀念 [GPIO](http://wiki.csie.ncku.edu.tw/embedded/GPIO)
+     * [hackpad](https://embedded2015.hackpad.com/Peripheral-GPIO-ZKuqhg7lhrn)
 
 自我評量與修課心得
 ----------------------------
