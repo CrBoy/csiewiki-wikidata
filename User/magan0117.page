@@ -44,6 +44,47 @@ categories: User
 
 - 使用過的開發版:Arduino、STM32F4 Discovery(ARM Cortex-M3)
 
+2015秋季班-心得與自我評量 (1到10級分)
+====
+- 我給自己打8分，因為我全勤！(嗯？)
+- 本身能力好像沒進步多少，但會寫的作業都盡量寫，只是有遲交的狀況就是了...
+- HW9--I2C的報告也有和同學認真的討論，提出彼此的看法，互相驗證及提問，在實驗室討論到眼神都放空了
+- HW4--選擇將沒寫完的作業重新補完，發現不少錯誤點，認知到程式驗證的重要性
+- 本身能力...好像真的沒進步多少，但我認為自己的態度是認真的，因此給自己8分！
+
+作業
+====
+- [Homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://hackpad.com/arm-lecture-HW1-Fibonacci-EyGQoZSLjJF)
+    * [github](https://github.com/magan0117/arm-lecture)
+
+- [Homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://hackpad.com/arm-lectureHW2-phonebook-performance-2oTicMP3Mgt)
+    * [github](https://github.com/magan0117/phonebook)
+
+- [Homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://hackpad.com/arm-lecture-HW3-Week2-code-implement-eHXKt2fFVm9)
+    * [github](https://github.com/magan0117/quiz)
+ 
+- [Homework4-(A)](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://hackpad.com/arm-lecture-HW4-study-classmates-implement-seASfU9J26J)
+    * [github](https://github.com/magan0117/phonebook)
+
+- [Homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [hackpad](https://hackpad.com/arm-lectureHW5-Week2_q6-1jg8lsB9ceo)
+    * [github](https://github.com/magan0117/quiz/tree/master/q6)
+
+- [Homework7/8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://hackpad.com/arm-lectureHW78-EDgsMwBwVtX)
+    * [github](https://github.com/magan0117/mini-arm-os)
+
+- [Homework9-team #15](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
+    * [github](https://github.com/magan0117/mini-arm-os)
+
+期末專題
+====
+- [寫字機](https://embedded2015.hackpad.com/Team-15--COdDgTCUNKy)
 
 聯絡資訊
 ====
