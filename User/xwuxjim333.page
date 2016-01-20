@@ -21,7 +21,7 @@ categories: User
 ------
 - [homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) : 實作 Fibonacci 數列，並學習使用gnuplot 繪製效能分析圖表
      * [hackpad](https://embedded2015.hackpad.com/QlhXiwGtSyu), [github](https://github.com/xwuxjim333/arm-lecture)
-- [homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) : 詳細閱讀 Week #3 課程的 案例分析: Phone Book(https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法，學習效能分析工具perf
+- [homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) : 詳細閱讀 Week #3 課程的 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法，學習效能分析工具perf
      * [hackpad](https://embedded2015.hackpad.com/nVnU1tS4EGd), [github](https://github.com/xwuxjim333/phonebook)
 - [homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
      * [hackpad], [github]
