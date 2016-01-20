@@ -19,7 +19,8 @@ categories: User
 =====================
 作業
 ------
-- [homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+- [homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) : 實作 Fibonacci 數列，並學習使用gnuplot 繪製效能分析圖表
+     * [hackpad], [github]
 - [homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
 - [homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
 - [homework4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
