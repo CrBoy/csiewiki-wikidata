@@ -29,11 +29,25 @@ categories: User
 
 專案
 ====
-- [uVisor](https://github.com/tony0620emma/uvisor) Security for ARM mbed
+- [uVisor](https://github.com/tony0620emma/uvisor) -> Security for ARM mbed
 - [mini-arm-os](https://github.com/tony0620emma/mini-arm-os-1)
-- [jit-construct](https://github.com/tony0620emma/jit-construct-1) Just-in-time Compiler
+- [jit-construct](https://github.com/tony0620emma/jit-construct-1) -> Just-in-time Compiler
 
 其他資訊
 ====
 - email: ``tony0620emma@yahoo.com.tw``
 - GitHub: [tony0620emma](https://github.com/tony0620emma)
+
+自我評量
+====
+這學期第一次修 jserv 的課，花了許多時間在寫作業，也的確有所成長，只要肯花時間唸書學習，一定都有不少的收穫
+
+ - Homework 1: 計算圓周率，利用 Intel AVX SIMD 技術，提高資料的計算量，為此也特別去翻閱計算機組織，學習到了不少有關如何設計 co-processor 的方法
+ - Homework 2: 利用 perf 工具觀測電腦的效能，包含 timer, cache miss/hit, context switch 等等，第一次知道有這麼強大的量測工具
+ - Homework 3: 實做考試的演算法，還因此迷上了 LeetCode 一小段時間，雖然還是沒辦法把網站上的題目做完
+ - Homework 4: 感受 compiler 最佳化是怎麼運作，使用哪些策略，也同時學習了 Lex & YACC
+ - Homework 5: 選擇了實做 rubi JIT，本來想要整個砍掉重寫，最後以悲慘的失敗收場
+ - Homework 6: 問老師問題(結果是去辦公室打擾老師)
+ - Homework 7&8: mini-arm-os ，我非常喜歡的作業，也因此去研究作業系統，計算機組織的相關知識，還有翻閱手冊的能力也同時大幅提昇！
+
+總結這次修課如果滿分十分，我給自己九分的成績，因為還是有許多地方可以改進，也還有很多技術要持續研究下去
