@@ -19,23 +19,24 @@ categories: User
 =====================
 作業
 ------
-- [homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) : 實作 Fibonacci 數列，並學習使用gnuplot 繪製效能分析圖表
+- [Homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) : 實作 Fibonacci 數列，並學習使用gnuplot 繪製效能分析圖表
      * [hackpad](https://embedded2015.hackpad.com/QlhXiwGtSyu), [github](https://github.com/xwuxjim333/arm-lecture)
-- [homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) : 詳細閱讀 Week #3 課程的 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法，學習效能分析工具perf
+- [Homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) : 詳細閱讀 Week #3 課程的 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法，學習效能分析工具perf
      * [hackpad](https://embedded2015.hackpad.com/nVnU1tS4EGd), [github](https://github.com/xwuxjim333/phonebook)
-- [homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+- [Homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) : 實做並驗證 [Week #2](http://people.debian.org.tw/~jserv/ncku/2015q3.pdf) 程式題目
+都需要實做遞迴和非遞迴的版本，要一併準備測試資料
+     * [hackpad](https://embedded2015.hackpad.com/kXNQ2W6e8xa), [github](https://github.com/xwuxjim333/quiz)
+- [Homework4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) : 詳讀 [Virtual Machine Constructions for Dummies](http://www.slideshare.net/jserv/vm-construct)，改善 Brainf*ck 執行效能，改善 JIT compiler，加入若干 optimization techniques
+     * [hackpad](https://embedded2015.hackpad.com/B-c9h7E9i6INz), [github](https://github.com/xwuxjim333/jit-construct)
+- [Homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5) : [Homework1 Ext](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1ext)採用離散積分的方法求圓周率，並著手透過 SIMD 指令作效能最佳化
+     * [hackpad](https://embedded2015.hackpad.com/hWdYM4tnbSB), [github](https://github.com/xwuxjim333/pi)
+- [Homework6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) : 補強基礎觀念 [Insecure coding in C/C++](http://www.slideshare.net/olvemaudal/insecure-coding-in-c-and-c)
+     * [hackpad](https://embedded2015.hackpad.com/Jw2X4jiLvTI)
+- [Homework7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
      * [hackpad], [github]
-- [homework4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+- [Homework8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
      * [hackpad], [github]
-- [homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
-     * [hackpad], [github]
-- [homework6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
-     * [hackpad], [github]
-- [homework7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
-     * [hackpad], [github]
-- [homework8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
-     * [hackpad], [github]
-- [homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+- [Homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
      * [hackpad], [github]
 
 自我評量與修課心得
