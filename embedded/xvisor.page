@@ -190,8 +190,7 @@ Source: http://en.wikipedia.org/wiki/Popek_and_Goldberg_virtualization_requireme
 
 補充：[Five Generation Computer](http://www.webopedia.com/DidYouKnow/Hardware_Software/FiveGenerations.asp)
 
-實現虛擬化的方式
-....................................
+### 實現虛擬化的方式
 
 ![](/embedded/virtualization_method_all.png)
 
@@ -241,8 +240,7 @@ Source: http://www.csie.ntu.edu.tw/~wcchen/asm98/asm/proj/b85506061/chap3/privil
 虛擬化指令(ARM)
 --------------------------------------------
 
-問題指令(Problematic Instructions)
-....................................
+### 問題指令(Problematic Instructions)
 - Type I: 在user mode執行會產生未定義的指令異常
     - MCR、MRC: 需要依賴協處理器(coprocessor)
 
@@ -261,9 +259,7 @@ Source: http://www.csie.ntu.edu.tw/~wcchen/asm98/asm/proj/b85506061/chap3/privil
     - 間接存取CPSR:  LDRT / STRT – Load/Store Unprivileged (“As User”)
     - 存取Banked Register: LDM / STM
 
-Solutions
-....................................
-
+### Solutions
 - 軟體技術: trap and emulate
     - Dynamic Binary Translation
         - 把問題指令取代為hypercall以進行trap 及emulate
@@ -276,8 +272,7 @@ Solutions
     - MMU強制執行trap
     - 虛擬化擴充
 
-記憶體虛擬化(without hardware support)
-.............................................
+### 記憶體虛擬化(without hardware support)
 - Shadow page tables:
     - Map guest virtual address to host physical address
     - Guest OS maintain自己的page table到 guest實體記憶體框架
@@ -297,9 +292,7 @@ ARM Virtualization Extensions
 --------------------------------------------
 可參考:[ARMv8#虛擬化](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E5%8C%96-virtualization) (暫存器待補)
 
-CPU virtualization
-...................................
-
+### CPU virtualization
 - ARM 增加運行在Non-secure privilege level 2 的 Hypervisor mode
 
 - CPU 虛擬化擴充
@@ -330,8 +323,7 @@ CPU virtualization
 
 將EL1的敏感指令(MCR、MRC、SMC、WFE、WFI)及中斷(irq、fiq)trap到EL2，並啟動stage 2 address translation
 
-Xvisor instruction emulate
-............................................................
+### Xvisor instruction emulate
 
 (armv8)
 cpu_entry.S 內初始化Hyp vector base
@@ -454,8 +446,7 @@ cpu_interrupt.c
 最後呼叫cpu_vcpu_emulate.c內相對應的函式做指令模擬。
 需要注意到的是再hypervisor上層跑的可能是aarch64也可能是aarch32，因此需要分開處理。
 
-Memory virtualization
-...................................
+### Memory virtualization
 請參考: [armv8 virtual-memory-system-architecture ](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#%E8%99%9B%E6%93%AC%E8%A8%98%E6%86%B6%E9%AB%94%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B-virtual-memory-system-architecture)
 
 - ARM 增加 Intermediate Physical Address，使得Guest OS不能直接存取實體位址(physical address)    
@@ -466,9 +457,7 @@ Memory virtualization
     - 第二階段: 中間實體位址(Intermediate physical address) => 實體位址(physical address)
         - 由hypervisor控制
 
-interrupt virtualization
-........................................
-
+### interrupt virtualization
 * [GICv2 Architecture Specification CH5: GIC Support for Virtualization ](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf)
 
 ![](/embedded/gic_arch.png)
@@ -497,8 +486,7 @@ I/O device virtualization
 - ARM 增加 Virtual Generic Interrupt Controller 介面去執行interrupt
 
 
-virtio
-.............................
+### virtio
 VirtIO 是一些常見的虛擬裝置在paravirtualized hypervisor裡的具象化。一個VirtIO device是依循VirtIO abstraction的paravirtualized device。一般來說，VirtIO device會被guest視為[PCI](http://zh.wikipedia.org/wiki/PCI) device或[MMIO](http://en.wikipedia.org/wiki/Memory-mapped_I/O) device。
 
 VirtIO specification和hypervisor與architecture是獨立的。VirtIO specification描述不同類型的VirtIO devices之細節和功能。
@@ -1264,12 +1252,8 @@ TCR_EL2, Translation Control Register (EL2)
 scheduler
 ------------------------
 
-context switch
-................
-
-
-.. code-block:: c
-
+### context switch
+```c
     void arch_vcpu_switch(struct vmm_vcpu *tvcpu,
                           struct vmm_vcpu *vcpu,
                           arch_regs_t *regs)
@@ -1346,23 +1330,20 @@ context switch
         /* Clear exclusive monitor */
         clrex();
     }
-
+```
 - tlb: inv_tlb_guest_allis(); 若下個排到的vcpu 其之前的host cpu與現在的不同，那他所保有的TLB enteries就可能是舊的，因此就要invalidate tlb entries。
     - tlbi alle1is: Invalidate all EL1&0 regime stage 1 and 2 TLB entries on all PEs in the same Inner Shareable domain.
 
-.. code-block:: c
-
+```c
     #define inv_tlb_guest_allis()	asm volatile("tlbi alle1is\n\t" \
     					     "dsb sy\n\t" \
     					     "isb\n\t" \
     					     ::: "memory", "cc") 
-初始化流程
-....................................................
+```
 
+### 初始化流程
 首先vmm_main.c呼叫  int __cpuinit vmm_scheduler_init(void),並初始化timer event
-
-.. code-block:: c
-
+```c
     int __cpuinit vmm_scheduler_init(void){
     ....
     /* Initialize timer events (Per Host CPU) */
@@ -1374,10 +1355,10 @@ context switch
             vmm_timer_event_start(&schedp->ev, 0);
             vmm_timer_event_start(&schedp->sample_ev, SAMPLE_EVENT_PERIOD);
     ....
+```
+
 INIT_TIMER_EVENT會呼叫下列函式將(&schedp->ev) handler設成下列函式
-
-.. code-block:: c
-
+```c
     static void scheduler_timer_event(struct vmm_timer_event *ev)
     {
         struct vmm_scheduler_ctrl *schedp = &this_cpu(sched);
@@ -1386,14 +1367,11 @@ INIT_TIMER_EVENT會呼叫下列函式將(&schedp->ev) handler設成下列函式
             vmm_scheduler_switch(schedp, schedp->irq_regs);
         }
     }
-
-
+```
 
 執行 vmm_scheduler_switch,schedp->current_vcpu 為正在執行的vcpu
 vcpu->preempt_count   //不斷選擇下一個event進行排程
-
-.. code-block:: c
-
+```c
     static void vmm_scheduler_switch(struct vmm_scheduler_ctrl *schedp,
                                      arch_regs_t *regs)   // arch_reg 只有在user mode 被更新                                 
     {
@@ -1413,12 +1391,11 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
                     vmm_scheduler_next(schedp, &schedp->ev, regs);
             }
     }
+```
 
 進入 vmm_scheduler_next(schedp, &schedp->ev, regs),分為first cheduling & normail scheduling
 這裡會處理完目前行程並再次呼叫  vmm_timer_event_start(ev, next_time_slice)進入下一個timer_event
-
-.. code-block:: c
-
+```c
     static void vmm_scheduler_next(struct vmm_scheduler_ctrl *schedp,
                                    struct vmm_timer_event *ev,
                                    arch_regs_t *regs)
@@ -1447,6 +1424,7 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
                     vmm_write_unlock_irqrestore_lite(&next->sched_lock, nf);
                     return;
             }
+```
 
 ![](/embedded/sche_flow.png)
 
@@ -1454,11 +1432,9 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
 在不同Arm架構下的虛擬化機制
 =====================================
 
-without virtualization extension
--------------------------------------------------------------
+### without virtualization extension
 
-arm32 指令虛擬化
-....................................
+### arm32 指令虛擬化
 
 - [elf2cpatch.py](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/elf2cpatch.py)
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
@@ -1620,16 +1596,13 @@ with virtualization extension
 -------------------------------------------------------------
 
 
-armv7ve
-........................
+### armv7ve
 - 有安全性擴展、LPAE及虛擬化擴展
 - Cortex-A15 / Cortex-A7 (with big-LITTLE support)
 - 原理與上方[xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate) 相同，只是需要透過mrc來讀取[hsr](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0438c/CIHJEDFE.html)的內容。
     - mrc     p15, 4, %0, c5, c2, 0
 
-armv8
-.................
-
+### armv8
 請見[xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate)
 
 設計文件整理
