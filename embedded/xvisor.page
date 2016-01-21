@@ -304,9 +304,7 @@ ARM Virtualization Extensions
         - Hypervisor Syndrome Register(HSR) 會保存被trapped的指令的資訊，因此hypervisor就能emulate它
 
 * [Xvisor- cpu_vcpu_helper.c](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_vcpu_helper.c):
-
-.. code-block:: c
-
+```c
     /* Initialize Hypervisor Configuration */
     INIT_SPIN_LOCK(&arm_priv(vcpu)->hcr_lock);
     arm_priv(vcpu)->hcr =  (HCR_TSW_MASK |
@@ -320,6 +318,7 @@ ARM Virtualization Extensions
         HCR_FMO_MASK |
         HCR_SWIO_MASK |
         HCR_VM_MASK);
+```
 
 將EL1的敏感指令(MCR、MRC、SMC、WFE、WFI)及中斷(irq、fiq)trap到EL2，並啟動stage 2 address translation
 
@@ -329,9 +328,7 @@ ARM Virtualization Extensions
 cpu_entry.S 內初始化Hyp vector base
 
 ![](/embedded/vtb_off.png)
-
-.. code-block:: c
-
+```c
     /*
      * Exception vectors.
      */
@@ -381,14 +378,13 @@ cpu_entry.S 內初始化Hyp vector base
      *      bl	\cfunc
      *  .endm
      */
+```
 
 - ESR_EL2, Exception Syndrome Register: 保存跳到EL2的exception的syndrome 資訊(請對照 [armv8 syndrome-registe](http://wiki.csie.ncku.edu.tw/embedded/ARMv8#syndrome-register) 服用)
 
 
 cpu_interrupt.c
-
-.. code-block:: c
-
+```c
     void do_sync(arch_regs_t *regs, unsigned long mode)
     {
 
@@ -442,6 +438,7 @@ cpu_interrupt.c
             fipa = fipa | (mrs(far_el2) & HPFAR_FIPA_PAGE_MASK);
             rc = cpu_vcpu_data_abort(vcpu, regs, il, iss, fipa);
             break;
+```
 
 最後呼叫cpu_vcpu_emulate.c內相對應的函式做指令模擬。
 需要注意到的是再hypervisor上層跑的可能是aarch64也可能是aarch32，因此需要分開處理。
@@ -481,8 +478,7 @@ ARM新增了一個硬體元件Virtual CPU Interface，並透過他提供Virtual 
 (可參考下方gic配置及vgic)
 
 
-I/O device virtualization
---------------------------------------------
+### I/O device virtualization
 - ARM 增加 Virtual Generic Interrupt Controller 介面去執行interrupt
 
 
@@ -590,9 +586,7 @@ GIC 配置
 (from [GICv2 Architecture Specification P.75](http://www.cl.cam.ac.uk/research/srg/han/ACS-P35/zynq/arm_gic_architecture_specification.pdf))
 
 - booting前的設定
-
-.. code-block:: c
-
+```c
     /* GIC Distributor Interface Init */
         mrs	x4, mpidr_el1
         ldr	x5, __mpidr_mask
@@ -604,13 +598,12 @@ GIC 配置
         bne	1f
         mov	x1, #3				/* Enable group0 & group1 */
         str	w1, [x0, #0x00]			/* Ctrl Register */
+```
 
 ![](/embedded/gic1.png)
 
 (from GICv2 Architecture Specification)
-
-.. code-block:: c
-
+```c
     ldr	w1, [x0, #0x04]			/* Type Register */
     1:  and	x1, x1, #0x1f			/* No. of IGROUPn registers */
         add	x2, x0, #0x080			/* IGROUP0 Register */
@@ -618,6 +611,7 @@ GIC 配置
     2:  str	w3, [x2], #4
         subs	x1, x1, #1
         bge	2b
+```
 
 ![](/embedded/gic_type.png)
 
@@ -636,9 +630,7 @@ If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
 - GICC_PMR
 
 ![](/embedded/gicc_pmr.png)
-
-.. code-block:: c
-
+```c
     __gic_cpu_init:
         /* GIC Secured CPU Interface Init */
         ldr	x0, __gic_cpu_base		/* GIC CPU base */
@@ -646,12 +638,10 @@ If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
         str	w1, [x0, #0x4]			/* GIC CPU Priority Mask */
         mov	x1, #0x3			/* Enable group0 & group1 */
         str	w1, [x0]			/* GIC CPU Control */
-
+```
 
 - host irq 初始化
-
-.. code-block:: c
-
+```c
     struct vmm_host_irqs_ctrl {
     	vmm_spinlock_t lock;
     	struct vmm_host_irq *irq;
@@ -660,18 +650,17 @@ If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
     };
 
     static struct vmm_host_irqs_ctrl hirqctrl;
+```
 
 [drivers/irqchip/irq-gic.c](https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c)
-
-.. code-block:: c
+```c
     VMM_HOST_IRQ_INIT_DECLARE(ca15gic, "arm,cortex-a15-gic", gic_eoimode_init);
+```
 
 (arm,cortex-a15-gic 為 [foundation-v8.dtsi](https://github.com/xvisor/xvisor/blob/master/arch/arm/board/generic/dts/foundation-v8/foundation-v8.dtsi) 設定的 gic compatible)
 
 會展開成
-
-.. code-block:: c
-
+```c
     __nidtbl struct vmm_devtree_nidtbl_entry __ca15gic = {
         .signature = VMM_DEVTREE_NIDTBL_SIGNATURE,
         .subsys = "host_irq",
@@ -680,17 +669,16 @@ If ITLinesNumber=N, the maximum number of interrupts is 32(N+1).
         .nodeid.compatible ="arm,cortex-a15-gic",
         .nodeid.data = gic_eoimode_init,
     }
+```
 
 vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
-
-.. code-block:: c
-
+```c
  if (vmm_smp_is_bootcpu()) {
         rc = gic_devtree_init(node, NULL, TRUE);
     }
+```
 
-.. code-block:: c
-
+```c
     static int __init gic_devtree_init(struct vmm_devtree_node *node,
                                        struct vmm_devtree_node *parent,
                                        bool eoimode)
@@ -709,9 +697,9 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
            vmm_host_irq_set_active_callback(gic_active_irq);
        }
     }
+```
 
-.. code-block:: c
-
+```c
     static u32 gic_active_irq(u32 cpu_irq_nr)
     {
         u32 ret;
@@ -720,12 +708,11 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
         ....
         return ret;
     }
+```
 
 - 對應到gic cpu interface的 Interrupt Acknowledge Register GICC_IAR
     - Purpose: The processor reads this register to obtain the interrupt ID of the signaled interrupt. This read acts as an acknowledge for the interrupt.
-
-.. code-block:: c
-
+```c
     static int __init gic_init_bases(u32 gic_nr,
                                      bool eoimode,
                                      u32 irq_start,
@@ -772,11 +759,10 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
         /* Enable IRQ distribution */
         gic_write(1, base + GIC_DIST_CTRL);
     }
+```
 
 設定hirqctrl裡的irq們(for 的 i 即為host irq number) ，並set handelr。
-
-.. code-block:: c
-
+```c
     void vmm_handle_fast_eoi(struct vmm_host_irq *irq, u32 cpu, void *data)
     {
         irq_flags_t flags;
@@ -791,20 +777,18 @@ vmm_host_irq 初始化時就會去抓這個node執行gic_eoimode_init:
             irq->chip->irq_eoi(irq);
         }
     }
+```
 
 - 執行action_list裡的action
 
 詳見: [drivers/irqchip/irq-gic.c](https://github.com/xvisor/xvisor/blob/master/drivers/irqchip/irq-gic.c)
 
 
-
 Virtual gic (vgic)
 ------------------------
 
 [vgic.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/vgic.c) 提供vgic的實作(其中使用module及devtree):
-
-.. code-block:: c
-
+```c
     static struct vmm_emulator vgic_dist_emulator = {
         .name = "vgic-dist",
         .match_table = vgic_dist_emuid_table,
@@ -848,13 +832,11 @@ Virtual gic (vgic)
                    MODULE_IPRIORITY,
                    MODULE_INIT,
                    MODULE_EXIT);
-
+```
 
 在create guest OS，初始化其address space時，就會使用之前註冊的probe來設定distributor及cpu interface。
 其中 vgic_dist_emulator_probe會讀guest device tree的內容來設定vgic_state:
-
-.. code-block:: c
-
+```c
     static int vgic_dist_emulator_probe(struct vmm_guest *guest,
                                         struct vmm_emudev *edev,
                                         const struct vmm_devtree_nodeid *eid)
@@ -890,11 +872,9 @@ Virtual gic (vgic)
                                    vgic_routed_irq, s);
                 ......
         }
+```
 
-
-
-.. code-block:: c
-
+```c
     static struct vgic_guest_state *vgic_state_alloc(const char *name,
                                         struct vmm_guest *guest,
                                         u32 num_cpu,
@@ -948,9 +928,9 @@ Virtual gic (vgic)
         
         return s;
     }
+```
 
-.. code-block:: c
-
+```c
     /* Handle host-to-guest routed IRQ generated by device */
     static vmm_irq_return_t vgic_routed_irq(int irq_no, void *dev)
     {
@@ -974,9 +954,9 @@ Virtual gic (vgic)
     done:
         return VMM_IRQ_HANDLED;
     }
+```
 
-.. code-block:: c
-
+```c
     /* Process IRQ asserted by device emulation framework */
     static void vgic_irq_handle(u32 irq, int cpu, int level, void *opaque)
     {
@@ -1039,7 +1019,7 @@ Virtual gic (vgic)
             vmm_vcpu_irq_wait_resume(vs->vcpu);
         }
     }
-
+```
 
 ![](/embedded/vgic_flow.png)
 
@@ -1073,18 +1053,16 @@ MMU
 ![](/embedded/xvisor_memory.png)
 
 * [cpu_entry.S](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/arm64/cpu_entry.S)
-
-.. code-block:: c
-
+```c
         /*
          * x4 -> load start
          * x5 -> load end
          * x6 -> execution start
          * x7 -> execution end
          */
+```
 
-.. code-block:: c
-
+```c
     _start_mmu_init:
 
         /* Setup SP as-per load address */
@@ -1096,18 +1074,16 @@ MMU
         .........
 
         bl	_setup_initial_ttbl
+```
 
 * [mmu_lpae.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/common/mmu_lpae.c)
-
-.. code-block:: c
-
+```c
     u8 __attribute__ ((aligned(TTBL_TABLE_SIZE))) def_ttbl[TTBL_INITIAL_TABLE_SIZE] = { 0 };
+```
 
 初始化translation table
 * [mmu_lpae_entry_ttbl.c](https://github.com/xvisor/xvisor/blob/master/arch/arm/cpu/common/mmu_lpae_entry_ttbl.c)
-
-.. code-block:: c
-
+```c
     void __attribute__ ((section(".entry")))
         _setup_initial_ttbl(virtual_addr_t load_start, virtual_addr_t load_end,
                     virtual_addr_t exec_start, virtual_addr_t exec_end)
@@ -1210,9 +1186,9 @@ MMU
                 page_addr += TTBL_L3_BLOCK_SIZE;
         }
     }
+```
 
-.. code-block:: c
-
+```c
     /* Update the httbr value */
     ldr	x1, __httbr_set_addr
     sub	x1, x1, x6
@@ -1221,14 +1197,12 @@ MMU
     sub	x0, x0, x6
     add	x0, x0, x4
     str	x0, [x1]
+```
 
 TCR_EL2, Translation Control Register (EL2)
 
 ![](/embedded/vtcr.png)
-
-
-.. code-block:: c
-
+```c
 	/* Setup Hypervisor Translation Control Register */
 	ldr	x0, __htcr_set  
 	msr     tcr_el2, x0
@@ -1242,12 +1216,13 @@ TCR_EL2, Translation Control Register (EL2)
     - TCR_ORGN0_SHIFT = 10; 0x1: Outer cacheability attribute for memory associated: Write-Back Write-Allocate Cacheable
     - TCR_IRGN0_SHIFT = 8; 0x1: Inner cacheability attribute for memory associated:  Write-Back Write-Allocate Cacheable
     - [Write-Back Write-Allocate](http://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg)
+```
 
-.. code-block:: c
-
+```c
 	/* Setup Hypervisor Translation Base Register */
 	ldr	x0, __httbr_set  /* def_ttbl 的位置 */
 	msr	ttbr0_el2, x0
+```
 
 scheduler
 ------------------------
@@ -1440,9 +1415,7 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
     - 將敏感的非特權指令編碼成SVC 指令，並給每一個被編碼的指令一個獨特的inst_id
     - 以mrs為例
 
-
-.. code-block:: python
-
+```python
     # MSR (immediate)
     #	Syntax:
     # 		msr<c> <spec_reg>, #<const>
@@ -1460,7 +1433,6 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
     #		inst_fields[12:1] = imm12
     #		inst_fields[0:0] = R
     
-    
     def convert_msr_i_inst(hxstr):
     	hx = int(hxstr, 16)
     	inst_id = 0
@@ -1477,13 +1449,12 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
     	rethx = rethx | (imm12 << 1)
     	rethx = rethx | (R << 0)
     	return rethx
+```
 
 - instruction emulation
 
 [cpu_entry.S](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_entry.S)中註冊Exception vector
-
-.. code-block:: c
-
+```c
     _start_vect:
     	ldr	pc, __reset
     	ldr	pc, __undefined_instruction
@@ -1494,12 +1465,10 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
          *PULL_REGS
          */ 
     	......
+```
 
 [cpu_interrupts.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_interrupts.c)
-
-
-.. code-block:: c
-
+```c
     void do_soft_irq(arch_regs_t *regs)
     {
         ........
@@ -1519,11 +1488,10 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
             }
         ........
     }
+```
 
 以arm emulation為例， in [cpu_vcpu_hypercall_arm.c](https://github.com/xvisor/xvisor/blob/6807a137dbcbef5b182c78b95986079a610af81d/arch/arm/cpu/arm32/cpu_vcpu_hypercall_arm.c):
-
-.. code-block:: c
-
+```c
     int cpu_vcpu_hypercall_arm(struct vmm_vcpu *vcpu,
                                arch_regs_t *regs, u32 inst)
     {
@@ -1533,11 +1501,10 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
 
         return hcall_funcs[id](id, inst, regs, vcpu);
     }
+```
 
 將之前編碼後的指令解碼
-
-.. code-block:: c
-
+```c
     static int (* const hcall_funcs[])(u32 id, u32 inst,
                                        arch_regs_t *regs, struct vmm_vcpu *vcpu) = {
         arm_hypercall_cps_and_co,	/* ARM_HYPERCALL_CPS_ID */
@@ -1546,11 +1513,10 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
         arm_hypercall_ldm_ue,		/* ARM_HYPERCALL_LDM_UE_ID2 */
         .......
     };
+```
 
 若id 為 0，則要再做一次decode，呼叫模擬該指令的function
-
-.. code-block:: c
-
+```c
     static int (* const cps_and_co_funcs[])(u32 inst,
                                             arch_regs_t *regs, struct vmm_vcpu *vcpu) = {
         arm_hypercall_cps,	/* ARM_HYPERCALL_CPS_SUBID */
@@ -1562,11 +1528,10 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
         arm_hypercall_wfx,	/* ARM_HYPERCALL_WFI_SUBID */
         arm_hypercall_smc	/* ARM_HYPERCALL_SMC_SUBID */
     };
+```
 
 以mrs為例：
-
-.. code-block:: c
-
+```c
     /* Emulate 'mrs' hypercall */
     static int arm_hypercall_mrs(u32 inst,
                                  arch_regs_t *regs, struct vmm_vcpu *vcpu)
@@ -1589,6 +1554,7 @@ vcpu->preempt_count   //不斷選擇下一個event進行排程
         regs->pc += 4;
         return VMM_OK;
     }
+```
 
 ![](/embedded/hypercall.png)
 
@@ -1702,8 +1668,7 @@ Chapter3: Hypervisor Timer
     ![](/embedded/tickless.png)
 (圖片來源:https://arm4fun.hackpad.com/Xvisor-ARMv8-Timer-BVc6RIuDGcD)
 
-Chapter4: Hypervisor Manager
---------------------------------------------
+### Chapter4: Hypervisor Manager
 
 Hypervisor Manager 創造和管理 VCPU & Guest instances，也同時提供觸發VCPU state changes的例行工作同時也會在 VCPU state改變時告知hypervisor scheduler。
 
@@ -1808,8 +1773,7 @@ VCPU context 交換預期會有以下high-level steps :
 
 Xvisor預設使用PRR
 
-Chapter7: Hypervisor Threads
---------------------------------------------
+### Chapter7: Hypervisor Threads
 
 在Xvisor裡，管理背景threads的threading framework稱為Hypervisor Threads。Threads其實是Orphan VCPUs的包裝。
 
