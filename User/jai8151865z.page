@@ -48,12 +48,45 @@ categories: User
 
 - 使用過的開發版:Arduino、STM32F4 Discovery(ARM Cortex-M3)
 
+2015 秋季班
+====
+- 自我評量(1到10級分)
+    * 嵌入式這堂課有很多上課內容都是以前很少接觸的東西，而對於我來說它是比較困難的，所以學習步伐很慢，雖然一開始有想認真的學習，但因為在學期一開始我投入了很大的時間在Maker Fair的作品上，所以導致我這門課從一開始原本就不足別人，到最後差距越來越大。而到了現在學期的後半，為了能補上進度，我正在努力找時間消化老師給的資料及盡力的去補齊之前遲交的作業，希望能以我的步調慢慢追上所落後的進度。
+    * 對於這學期的表現，我給我自己6級分，雖然一開始因為別的事情有點疏忽這門課，但後期有認真的想趕上大家的進度，因此我給自己6級分。
+
+作業
+====
+- [Homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/e9FVaNK4FuO)
+    * [github](https://github.com/jai8151865z/arm-lecture)
+
+- [Homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/2015q3-Homework-2--iMjcshKCVbv)
+    * [github](https://github.com/jai8151865z/phonebook)
+
+- [Homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/Homework-3-zk5OUFiM0HU)
+    * [github](https://github.com/jai8151865z/quiz)
+ 
+- [Homework4-(A)](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/2015q3-Homework-4-VEa20kkAiM3)
+    * [github](https://github.com/jai8151865z/phonebook)
+
+- [Homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [hackpad](https://hackpad.com/Homework5-ZEhApNNSuK2)
+    * [github](https://github.com/jai8151865z/quiz/tree/master/q5)
+
+- [Homework7/8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://hackpad.com/HW78-IpzWVKFKJDe)
+    * [github](https://github.com/jai8151865z/mini-arm-os)
+
+- [Homework9-team #15](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
+
+期末專題
+====
+- [寫字機](https://embedded2015.hackpad.com/Team-15--COdDgTCUNKy)
 
 聯絡資訊
 ====
 - email: jai8151865z@gmail.com
-
-2015 秋季班
-====
-- 自我評量
-    * 嵌入式這堂課有很多上課內容都是以前很少接觸的東西，而對於我來說它是比較困難的，所以學習步伐很慢，雖然一開始有想認真的學習，但因為在學期一開始我投入了很大的時間在Maker Fair的作品上，所以導致我這門課從一開始原本就不足別人，到最後差距越來越大。而到了現在學期的後半，為了能補上進度，我正在努力找時間消化老師給的資料及盡力的去補齊之前遲交的作業，希望能以我的步調慢慢追上所落後的進度。
