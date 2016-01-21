@@ -1908,10 +1908,10 @@ Orphan VCPU state可以被直接設成上列其中一種，所以想知道目前
 
 reference
 =====================================
-* http://www.slideshare.net/jserv/xvisor
+* [Xvisor: embedded and lightweight hypervisor](http://www.slideshare.net/jserv/xvisor)
 * https://github.com/xvisor/xvisor/blob/master/docs/DesignDoc
 * https://samlin.hackpad.com/Xvisor--chtGSqPYWG8
-* http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture?related=1
+* [Linux on ARM 64-bit Architecture](http://www.slideshare.net/badaindonesia/linux-on-arm-64bit-architecture)
 * [ARMv8-A_Architecture_Reference_Manual_(Issue_A.a) (需登入)](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0487a.e/index.html)
 * [A Virtualization Infrastructure that Supports Pervasive Computing.](http://165.193.233.120/files/pdf/partners/academic/vmware-pervasive-computing_LRudolph-en.pdf)
 * [A Choices Hypervisor on the ARM architecture](http://www.russellgreenspan.com/software/A%20Choices%20Hypervisor%20on%20the%20ARM%20Architecture.pdf)
