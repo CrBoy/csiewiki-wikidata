@@ -26,9 +26,9 @@ categories: User
 - [作業1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) / [hackpad](https://embedded2015.hackpad.com/2015q3-Homework-1-aTgiHvzHF1U) / [github](https://github.com/kaizsv/arm-lecture)
     - 用簡單的 fibonacci 了解 arm 組語。
 - [作業2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) / [hackpad](https://embedded2015.hackpad.com/Homework-2-RB9dqLyHq5h) / [github](https://github.com/kaizsv/phonebook)
-    - 改變電話薄的資料結構以改進效能。
+    - 改變電話薄的資料結構以改進效能，並學習使用perf, gnuplot等工具。
 - [作業3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) / [hackpad](https://embedded2015.hackpad.com/Homework-3-kOhqpE0ZUpf) / [github](https://github.com/kaizsv/quiz)
-    - 實作期初測驗的程式題目。
+    - 實作期初測驗的程式題目，熟悉C語言指標的運用，並思考迴圈及遞迴間的轉換。
 - [作業6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) / [hackpad](https://kaizsv.hackpad.com/HW6-fueOx1PvVzc)
     - 大量閱讀教材，包含C語言、計組、OS、compiler、自由軟體及UNIX歷史等資訊議題，這份作業我有偷懶。
 - [作業9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
