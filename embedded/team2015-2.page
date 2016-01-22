@@ -1,5 +1,5 @@
 ---
-title: Team #2期末專題: uRock電吉他效果器
+title: Team #2期末專題: uRock-Lite電吉他效果器
 categories: embedded2015 秋季
 toc: yes
 ...
@@ -14,6 +14,8 @@ toc: yes
 * 製作單一效果uRock Lite版
 * 修正原0.1版某些效果聲音會有delay的問題
 * 優化效果器DSP演算法
+* STM32F429 Discovery觸控GUI Interface更改為Bluetooth與手機作溝通，User Interface將會寫成APP
+* uRock-Lite版本提供User使用Matlab開發音訊DSP演算法(詳見Work Record)並嵌入板子中，實作自己想要的效果
 
 組員
 ---------
