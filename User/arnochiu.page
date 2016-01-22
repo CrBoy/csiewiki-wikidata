@@ -1,0 +1,43 @@
+---
+title: 邱健鳴 (arnochiu)
+categories: User
+...
+
+# 簡介
+- 邱健鳴
+
+# 學歷
+- 國立成功大學電通所 CASLAB 碩一生/104年
+
+# 聯絡資訊
+- Email：``b5762b@yahoo.com.tw``
+
+# 工作經驗
+- 工研院資通所 - 實習生
+
+# 2015秋季班-心得與自我評量 (1到10級分)
+因為自己主要的研究方向是硬體架構設計，這門課對我來說完全是新的領域。以前總是用硬體的角度在看事情，修了這門課之後我開始比較能夠瞭解軟體是如何操作硬體並且不同的軟體寫法對於同樣的硬體會有非常大的差異。這學期的自我評量我給自己9分，在非常有限的時間裡，我盡量去看資料、盡量去完成作業，真的學到很多新的知識和經驗。
+
+#作業
+- [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    * [hackpad](https://embedded2015.hackpad.com/HW1-JljShrYNVVF), [github](https://github.com/arnochiu/arm-lecture)
+- [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    * [hackpad](https://embedded2015.hackpad.com/HW2-4RwMCAsBSMW), [github](https://github.com/arnochiu/phonebook)
+- [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+    * [hackpad](https://embedded2015.hackpad.com/HW3-P7l0LRsnIK5), [github](https://github.com/arnochiu/quiz)
+- [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
+    * [hackpad](https://embedded2015.hackpad.com/HW4-Hsy8ZlOYqdN), [github](https://github.com/arnochiu/jit-construct)
+- [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+    * [hackpad](https://embedded2015.hackpad.com/HW5-F1cOhe4w5te), [github](https://github.com/arnochiu/jit-construct)
+- [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
+    * (未完成)
+- [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
+    * [hackpad](https://embedded2015.hackpad.com/HW7-XGWDkXBEjeO), [github](https://github.com/arnochiu/mini-arm-os)
+- [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * [hackpad](https://embedded2015.hackpad.com/HW7-XGWDkXBEjeO), [github](https://github.com/arnochiu/mini-arm-os)
+- [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+    * [hackpad](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
+- [期中](http://wiki.csie.ncku.edu.tw/embedded/I2C)
+    * [hackpad](https://embedded2015.hackpad.com/Peripheral-I2C-Y0EhgBi5myw)
+- [期末](http://wiki.csie.ncku.edu.tw/embedded/team2015-3)
+    * [hackpad](https://uclinux2015.hackpad.com/uClinux-gHOyduF1HpK)
