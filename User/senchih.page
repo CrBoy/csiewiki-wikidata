@@ -23,3 +23,13 @@ categories: User
 - 10分 雖然我沒有認真去寫Hackpad筆記記錄，但是我再這堂課學了很多小tool技巧，像perf, 也學到很多奇怪小東西，像brainf*ck。也有很多peripheral的溝通協定方式(UART, I2C 等等)。也試著使用示波器去偵測STM32的腳位，很多嘗試對我都是一些突破。算是很滿意自己的進步幅度
 
 #作業
+- Hw1 [github](https://github.com/senchih/compute_pi) / [hackpad](https://embedded2015.hackpad.com/Q7XzMjjXeVd)
+- Hw2 [github](https://github.com/senchih/phonebook) / [hackpad](https://embedded2015.hackpad.com/r9pHUxHNoMr)
+- Hw3 [github](https://github.com/senchih/quiz) / [hackpad](https://embedded2015.hackpad.com/HW3-VaQ75Yphn7i)
+- Hw4 [github](https://github.com/senchih/jit-construct) / [hackpad](https://embedded2015.hackpad.com/HW4-B-mBbTChhqvgy)
+- Hw5 [github](https://github.com/senchih/compute_pi) / [hackpad](https://embedded2015.hackpad.com/fH3H7Lzpq66)
+- Hw6 None
+- Hw7 [github]() / [hackpad](https://embedded2015.hackpad.com/A-4oLkasu38nQ)
+- Hw8 None
+- Hw9 已發問
+- Hw10 
