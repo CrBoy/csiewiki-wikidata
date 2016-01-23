@@ -7,11 +7,13 @@ toc: no
 題目
 ---
 
-  * 簡易手機
+* 簡易手機
 
 預期目標
 -------
 * 能夠語音通話
+* 傳送SMS簡訊
+* 上網
 
 組員
 ---------
@@ -19,15 +21,22 @@ toc: no
 * 林佳瑩, e-mail: a711186@gmail.com
 * 賀祐農, e-mail: ycess87009@gmail.com
 * 陳亭宇, e-mail: chenstine@gmail.com
-* 楊靜妃, e-mail: e84016184 @ mail.ncku.edu.tw
+* 楊靜妃, e-mail: e84016184@mail.ncku.edu.tw
 
 預算
 -----------
-
+* STM32F429I-Discovery
+* ZTK-SIM5320E
+* 預付卡
+* 杜邦線
+* 蜂鳴器
+* RS232 NULL MODEM
   
 討論和程式
 -------
-歡迎大家來交流討論！
+* 歡迎大家來交流討論！
+* [hackpad](https://hackpad.com/ETZV2HwF6kr)
+* [github](https://github.com/ycess87009/STM32F429I-DiscoLCD/blob/master/FreeRTOS/Makefile)
 
 報告
 -------
