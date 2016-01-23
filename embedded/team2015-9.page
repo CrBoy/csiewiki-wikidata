@@ -12,6 +12,7 @@ toc: no
 預期目標
 -------
 * 能夠語音通話
+* 能響鈴
 * 傳送SMS簡訊
 * 上網
 
@@ -36,7 +37,7 @@ toc: no
 -------
 * 歡迎大家來交流討論！
 * [hackpad](https://hackpad.com/ETZV2HwF6kr)
-* [github](https://github.com/ycess87009/STM32F429I-DiscoLCD/blob/master/FreeRTOS/Makefile)
+* [github](https://github.com/ycess87009/STM32F429I-DiscoLCD)
 
 報告
 -------
