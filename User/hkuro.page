@@ -61,7 +61,16 @@ categories: User
 
 - 參與協作的 Hackpad 
     - [上課筆記](https://embedded2015.hackpad.com/-2015-Fall-by-Kuro-Qwg54UEOvaq)
-    - [報告筆記](https://embedded2015.hackpad.com/Team6--FAqZL1rZbA3)
+    - [期末報告 wiki](http://wiki.csie.ncku.edu.tw/embedded/arm-hibernation)
+        - [hackpad](https://embedded2015.hackpad.com/Team6-Final-ARM-Hibernation-on-Raspberry-Pi-FAqZL1rZbA3#:h=ARM-Hibernation-on-Raspberry-P) (Raspberry Pi)
+        - [hackpad](https://embedded2015.hackpad.com/Build-BBB-kernel-supports-ARM-hibernation-1JYTCaAQoH3) (Beaglebone Black)
+
+- 所見所聞心得
+    - 這是第二次修Jserv老師的課，學習的難度以及深度也漸漸加深。除了系統軟體的知識以外，也漸漸地去瞭解硬體和軟體的關係，知道計算機到底是如何運作的，獲益良多。在期末專題的部分由於本身的能力不足，進展十分緩慢，光是工具環境的了解與使用就花去了許多時間，但也了解到許多基礎知識，更學著如何去表達問題、理解問題、分析問題等等一個研究生該有的訓練。就未來工作而言，需要去釐清Linux kernel許多知識並瞭解如何去實作各個功能，還有很長一段路要走，希望能透過這堂課的所見所聞，讓自己在工程師這條路走得更遠。
+
+自我評量分數(1 到 10 級分)
+------------------------
+8級分。相比於上學期來講又進步了一些，雖然過程並不容易，但能看見自己有在向前進步真的是非常開心的！感謝Jserv老師給我不管是在學業上的指導或工作上的建議。
 
 嵌入式作業系統設計與實作 (2015 Spring)
 ===================================
