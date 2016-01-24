@@ -10,7 +10,7 @@ toc: no
 
 預期目標
 -------
-運用USB DAC with STM32 來實做音樂播放器
+運用I2S DAC with STM32 來實做音樂播放器
 
 系統架構
 -------
