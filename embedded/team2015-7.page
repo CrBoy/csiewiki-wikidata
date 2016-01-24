@@ -17,7 +17,7 @@ toc: no
 硬體規格
 -------
  - STM32F429i-Discovery (Cortex-M4)
- - PCM2704
+ - PCM5102A
 
 組員
 ---------
