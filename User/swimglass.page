@@ -18,7 +18,7 @@ categories: User
 
 專案經驗
 ===============
-- Dozen Cloud Project 
+- Dozen Cloud Project (期末報告)
 - 手勢控制電氣系統
 - HSA runtime benchmark
 
@@ -29,21 +29,11 @@ categories: User
 -------
 - 作業 [GitHub](https://github.com/SwimGlass)
     - Homework1_ext : [GitHub](https://github.com/SwimGlass/arm-lecture), [Hackpad](https://embedded2015.hackpad.com/lnrjMjBBvbQ)
-    - Homework2 : [GitHub](https://github.com/hkuro/phonebook), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-2-DqkStg9qomJ)
-    - Homework3 : [GitHub](https://github.com/hkuro/quiz), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-3-9IapPPkOuhD)
-    - Homework4 : [GitHub](https://github.com/hkuro/jit-construct-1), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-4-gM9rSwp4Ap6)
-    - Homework6 : [基礎觀念學習](https://embedded2015.hackpad.com/-2015q3-Homework-6-bgmdh2N9jZB)
-    - Homework7 : [GitHub](https://github.com/hkuro/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-7-rUzc930hP4z)
-    - Homework8 : [GitHub](https://github.com/hkuro/mini-arm-os), [Hackpad](https://embedded2015.hackpad.com/-2015q3-Homework-8-lrRIQRVfkVz)
-
-- 參與協作的 Hackpad 
-    - [上課筆記](https://embedded2015.hackpad.com/-2015-Fall-by-Kuro-Qwg54UEOvaq)
-    - [分組報告 ADC](http://wiki.csie.ncku.edu.tw/embedded/ADC)
-        - [Peripheral: ADC Q&A](https://embedded2015.hackpad.com/Peripheral-ADC-6Je0oGuYmLy)
-        - [Team #6 ADC hackpad](https://embedded2015.hackpad.com/Team-6-ADC-d3IVeuOQe5e)
-    - [期末報告 wiki](http://wiki.csie.ncku.edu.tw/embedded/arm-hibernation)
-        - [hackpad](https://embedded2015.hackpad.com/Team6-Final-ARM-Hibernation-on-Raspberry-Pi-FAqZL1rZbA3#:h=ARM-Hibernation-on-Raspberry-P) (Raspberry Pi)
-        - [hackpad](https://embedded2015.hackpad.com/Build-BBB-kernel-supports-ARM-hibernation-1JYTCaAQoH3) (Beaglebone Black)
+    - Homework2 : [GitHub](https://github.com/SwimGlass/phone-book), [Hackpad](https://embedded2015.hackpad.com/Qtd7xLA4kel)
+    - Homework3 : [GitHub](https://embedded2015.hackpad.com/7oDxjfrmY2T), [Hackpad](https://github.com/SwimGlass/quiz)
+    - Homework4 : [GitHub](https://embedded2015.hackpad.com/HW4B-owdxt6nLoQy), [Hackpad](https://github.com/SwimGlass/jit)
+    - Homework6 : [基礎觀念學習](https://embedded2015.hackpad.com/Homework6-FzAVYRmZYkl)
+    - Homework7 & Homework8: [GitHub](https://github.com/SwimGlass/armMimiOs), [Hackpad](https://embedded2015.hackpad.com/A-vQkQTkTpUc0)
 
 - 心得
     - 第一次修這堂課，慢慢發現這世界非常的大神人非常的多，其中有很多工具是我平常都沒有想過會用到的，在這堂課之中特別體會到了工具之強大，並且算了很多數學跟演算法，為了解某寫特定的問題又會去學很多不同東西，在這堂課中學到的東西遠遠的超乎我的想像。
