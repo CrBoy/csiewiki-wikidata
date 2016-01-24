@@ -35,13 +35,15 @@ categories: User
 
 作業
 ====
-- Homework1
-
-- Homework2
-- Homework3
-- Homework4
-- Homework5
-- Homework6
-- Homework7
-- Homework8
-- Homework9
+- [Homework1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+     * [Github](https://github.com/fantasticxx/arm-lecture-1),[Hackpad](https://embedded2015.hackpad.com/Homework1-zjrylstQVWm)
+- [Homework2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+     * [Github](https://github.com/fantasticxx/phonebook),[Hackpad](https://embedded2015.hackpad.com/Homework2-YEJFSp7qDrn)
+- [Homework3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
+     * [Github](https://github.com/fantasticxx/quiz),[Hackpad](https://embedded2015.hackpad.com/Homework3-7vv2oDcnO2Z)
+- [Homework5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)
+     * [Github](https://github.com/fantasticxx/quiz/tree/master/q27),[Hackpad](https://embedded2015.hackpad.com/Homework5-yIjhZ024Zws)
+- [Homework9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
+     * [Hackpad](https://embedded2015.hackpad.com/Peripheral-SPI-yWQ8AZuqfi7)
+- [期末](http://wiki.csie.ncku.edu.tw/embedded/team2015-13)
+     * [Github](https://github.com/handGestureQuadcopter/freertos-stm32),[Hackpad](https://hgqnckuembedded2015.hackpad.com/Team-13-Mv2lFR3g7Kv)
