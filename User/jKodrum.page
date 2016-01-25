@@ -5,8 +5,21 @@ categories: User
 
 # 簡介
 - 林賢哲
+- 台灣台中人
 - 成功大學 資訊所 106級
 - email : ``jkodrum@gmail.com``
+- 擅長技能：C/C++
+
+# 作品
+* 大四專題：志工銀行 [github](https://dawnbank.herokuapp.com/jobs/distance?utf8=%E2%9C%93&location=%E8%B1%90%E5%8E%9F) <br>
+用Ruby on Rails開發提供志工服務相關資訊的網頁，相關資料爬自其它現有的志工網站。<br>
+此網站可搜尋目標地點附近的志工服務，讓有興趣的志工可以參與。
+- 本課程的[期末專題：簡易手機](https://hackpad.com/ETZV2HwF6kr)
+
+# 工作經歷
+- 2015/07 ~ 2015/08 工研院資通所實習 <br>
+修改Android frameworks層input touch的原始碼，使得觸控事件可以被錄製，並播放， <br>
+最後為application層提供API，寫成App。
 
 # 2015嵌入式秋季班作業
 - [期末專題：簡易手機](https://hackpad.com/ETZV2HwF6kr)
@@ -20,6 +33,6 @@ categories: User
 - [hw9: 週邊問答](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
 
 #自我評量分數(1到10分)
-- 我給自己的評分是 7 分
-
+- 我給自己的評分是 7 分 <br>
+修課前，對這門課的風格和內容有所耳聞，一定要來挑戰一下。很快的發現自己的基礎不夠穩，第一堂課就說了要誠實面對自己，忘掉的就花時間補回來，不會的就弄到會。印象較深的作業是六和七。為了讀懂作業的材料，查了許多相關資料。作業七則幫助我複習了作業系統中一些重要的概念。雖然覺得自己作業寫得不算好，但的確花了不少時間。
 
