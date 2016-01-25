@@ -1,21 +1,25 @@
 ---
-title: jKodrum簡歷
+title: 林賢哲(jKodrum)
 categories: User
 ...
 
-簡介
-====
+# 簡介
 - 林賢哲
 - 成功大學 資訊所 106級
+- email : ``jkodrum@gmail.com``
 
-2015嵌入式秋季班作業
-====
+# 2015嵌入式秋季班作業
+- [期末專題：簡易手機](https://hackpad.com/ETZV2HwF6kr)
+- [hw1: Fibonacci/ARM](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1) / [hackpad](https://hackpad.com/Hw1-ARM--zk4XODOmQdH) / [github](https://github.com/jKodrum/arm-lecture)
+- [hw2: 改進phonebook](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2) / [hackpad](https://hackpad.com/Hw2-Phonebook--Mto57CYRsuc) / [github](https://github.com/jKodrum/phonebook/tree/hash)
+- [hw3: 實作程式題目解釋原理](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) / [hackpad](https://hackpad.com/Hw3--IaBnNSnPQfZ) / [github](https://github.com/jKodrum/quiz)
+- [hw4(B): 改善brainf*ck效能](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) / [hackpad](https://hackpad.com/Hw4-B-JIT-compiler-sW28UeTqIkk) / [github](https://github.com/jKodrum/jit-construct)
+- [hw5](挑戰未嚐試的題目)
+- [hw6: 閱讀資料並提問](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6) / [hackpad](https://hackpad.com/Hw6-FjpxvRHuX1c)
+- [hw7(A): 提供基本shell]()/[hw8(A): priority scheduling](https://hackpad.com/Hw7-A-9Hp6Y7kW0Mc) / [hackpad](https://hackpad.com/Hw7-A-9Hp6Y7kW0Mc) / [github](https://github.com/jKodrum/mini-arm-os)
+- [hw9: 週邊問答](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
 
-
-自我評量分數
-=================
+#自我評量分數(1到10分)
 - 我給自己的評分是 7 分
 
-聯絡資訊
-====
-- email : ``jkodrum@gmail.com``
+
