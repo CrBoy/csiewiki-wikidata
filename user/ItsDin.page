@@ -11,44 +11,65 @@ categories: User
 
 得獎紀錄
 -------
-- 大學專題 - 基於PandaBoard開發板及智慧行動裝置實線倉儲購買系統
-    - 結合PandaBoard嵌入式裝置及手機，運用Java、Bluetooth、Android、Socket、GTK等工具，讓消費者以智慧型手機與藍牙感應扣款購買商品的系統，另外還增加會員機制及預購機制，使消費者能提前預訂商品，避免買不到的情況發生。
-- 
+大學
+- 大學專題 - 基於PandaBoard開發板及智慧行動裝置實現倉儲購買系統
+    - 結合PandaBoard嵌入式裝置及手機，運用Android、Socket、GTK、PandaBoard嵌入式板、藍牙技術，使嵌入式板與Android手機可達成倉儲購買系統之實現，另外還增加會員機制及預購機制，使消費者能提前預訂商品，避免買不到的情況發生。
+- 100(1) 獲頒學業成績優異獎
+- 100(2) 獲頒學業成績優異獎
+- 100學年度獲頒淡江大學工學院大禹獎
+- 101學年度獲頒淡江大學工學院大禹獎
+- 連續3學期獲頒校內驚聲獎學金
+
+研究所
+- 104(1) 獲頒財團法人成電文教基金會 孔令洋教授紀念獎助學金
 
 經歷
 -------
-- 
+- 大二(2012.09~)
+  - 任電機系電子資訊組-副班代(兩年)
+  - 任淡大新莊高中校友會-副會長(一年) 
+  - 「KACAWAN」台東縣三間國小海蛞蝓文化營服務隊-服務員
+- 大三(2013.09~)
+  - 任社團學習與實作課程TA(一年)
+  - 「遇稻愛，從香啟程」花蓮縣稻香國小樂活健康體驗營-服務員
 
 **(2015秋季班)作業及筆記**
 ===================
 - [homework 1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
-    * [hackpad](), [github](https://github.com/ItsDin/arm-lecture)
+    * [hackpad](https://hackpad.com/-1-vYioUTSO9Gk), [github](https://github.com/ItsDin/arm-lecture)
 - [homework 2](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
-    * [hackpad](), [github]()
+    * [hackpad](https://hackpad.com/-2-C2JNvrDCh46), [github](https://github.com/ItsDin/phonebook)
 - [homework 3](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3)
-    * [hackpad](), [github]()
+    * [hackpad](https://hackpad.com/-3-GswQnBi1riN), [github](https://github.com/ItsDin/quiz)
 - [homework 4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4)
-    * [hackpad](), [github]()
+    * [hackpad](https://hackpad.com/-4-fAogRBNxe54), [github](https://github.com/ItsDin/jit-construct)
 - [homework 5](http://wiki.csie.ncku.edu.tw/embedded/2015q3h5)  
-    * [hackpad](), [hw ext-1 github]()
+    * [hackpad](https://hackpad.com/5-ZfoHbVyQPcC), [hw ext-1 github](https://github.com/ItsDin/pi-compute)
 - [homework 6](http://wiki.csie.ncku.edu.tw/embedded/2015q3h6)
-    * [hackpad]()
+    * [hackpad](https://hackpad.com/HW6--6ZKjVa6J0HV)
 - [homework 7](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7)
-    * [hackpad](), [github]()
+    * [hackpad](https://hackpad.com/7-8-JuKY7xU4gAR), [github](https://github.com/ItsDin/mini-arm-os)
 - [homework 8](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8)
+    * [hackpad](https://hackpad.com/7-8-JuKY7xU4gAR)
     * (未完成)
 - [分組報告 - USART] (http://wiki.csie.ncku.edu.tw/embedded/USART)
     * 分組報告 - USART提問   [hackpad](https://embedded2015.hackpad.com/Peripheral-USART-5c1m7nktyMN)
-- [期末專題 - 自走船] ()
+- [期末專題 - 自走船] (http://wiki.csie.ncku.edu.tw/embedded/team2015-12)
     * Team12 - 自走船   [hackpad](https://embedded2015.hackpad.com/Team12--LVaWaG0u2uB)
 
 (2015秋季班)心得
 --------------------------
-
+在修這堂課的過程中，發現了許多自己的不足，也認識了許多對程式對硬體非常熟悉的強者，站在巨人的肩膀上我們能看得更高更遠，從第一堂課開始，因為老師而接觸了許多新的知識與工具，開始因為要交作業而開始使用GitHub與共筆HackPad，了解到自己無論是英文.程式.大學學過的學科知識，都有很大的不足，這堂課就從認識自己的不足開始，忘了什麼就從頭開始念起，回頭看一下也發現自己複習了許多遺忘的書本記憶，並且習得許多新知。
+不僅專業知識，老師更讓我們從多方面的資源去學習，電影.Youtube.國內外大學教授的授課影片等，更能加深印象，使自己更能融入其中。
+其實我不太喜歡寫程式，但是寫程式卻能改變很多事，這樣的矛盾情緒一直存在我的心中。從期初考試開始，一連串的挫敗感排山倒海的朝我而來，每週的作業讓我不得不花時間鑽研其中，漸漸的我發現自己其實不是不喜歡寫程式，而是想要太快得到成就感，老師的作業有些能夠很容易地完成，但老師都會再繼續地問你「還有沒有可以改進的地方？」
+老師帶給我的衝擊：「沒有最好，只有更好！」
 
 自我評量分數 (1 到 10 級分)
 --------------------------
-
+我給自己9級分
+雖然自己沒有班上的強者中厲害，但我在期末考爆炸前幾乎每週都花了一些時間在作業的鑽研上，雖然付出很多時間不一定能得到比別人更好的結果，但我發現自己在寫作業.交作業的過程中，複習了不少科目也學習了很多新知，但第8次作業依然在看了很多資料後沒有完成。
+期末分組的專題實作 - 自走船，我們花了將近一個月的時間討論題目.訂購材料，其中種種的困難克服，燒壞IC.晶片的悲劇體驗，熬了幾個夜晚終於達到我們原本設定的目標，之中的感動只有做過才知道！
+雖然作業花了很多時間，期末專題有達到目標，但我覺得自己仍然有很大的空間可以進步！GitHub的commit語句.更多等著我去看的資料.期末自走船的路線規劃是否能夠利用STM32F429本身的感測器使船的行駛自動化等，都是我可以改進的地方。
 
 **聯絡資訊**
 ============
