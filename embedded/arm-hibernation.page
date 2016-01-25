@@ -12,3 +12,125 @@ categories: embedded, arm, cortex-a, cortex-a8, linux, arm-hibernation, suspend-
 共筆
 ----
 * 2015 年秋季: [hackpad ](https://embedded2015.hackpad.com/Build-BBB-kernel-supports-ARM-hibernation-1JYTCaAQoH3)
+
+
+硬體及測試平台
+------------------------------------------------
+- 測試硬體:
+   - BeagleBone Black:
+       - AM335x 1GHz ARM® Cortex-A8
+       - 512MB DDR3 RAM
+       - 4GB 8-bit eMMC on-board flash storage
+       - 3D graphics accelerator
+       - NEON floating-point accelerator
+       - 2x PRU 32-bit microcontrollers
+       - Connectivity：
+          - USB client for power & communications
+          - USB host
+          - Ethernet
+          - HDMI
+          - 2x 46 pin headers
+
+測試結果及分析
+------------------------------------------------
+**開機時間分析:**
+
+- BBB+kernel(4.1)+u-boot(2013)+Angstrom
+
+![](/embedded/arm-hibernation/boottime_compare.png)
+
+紅線的部份是一般開機所花費的時間，藍線則是Hibernation開機的時間
+
+分析：
+
+- 可以看到 Hibernation boot 降低了 loading user space 的時間
+      - 這是由於 Angstrom 需要初始化的東西較多，所以一般開機時所花費的 loading user space 時間較長
+- 因為前面開機的流程都一樣，一樣要載入U-boot, Kernel, 初始化 device driver...
+      - 看起來Hibernation 僅有 Suspend userspace 的作用(也就是多了恢復原本狀態的功能) 
+
+
+
+**Cache測試結果比較：**
+
+- 下面情況分別代表
+1. 剛開機  
+2. 開機後使用drop cache的指令  
+3. 播放640x268的影片  
+4. 播放1920x1080的影片  
+5. 將640x268的影片拆成圖片 
+6. 將1920x1080的影片拆成圖片 
+7. 將640x268的影片拆成圖片後drop cache
+
+![](/embedded/arm-hibernation/memcompare.png)
+
+![](/embedded/arm-hibernation/timecompare.png)
+
+分析：
+
+- 從上面第一個圖我們可以明顯發現，隨著 Memory和 Cache的使用，Hibernation image size(page) 也會隨之上升
+- 而如果將播放影片的方式，從正常播放變成將影片拆成圖片的方式，由於會經常開、讀、寫檔，造成大量的I/O，也因此造成了 Memory 和 Cache的用量大增
+- 再來，針對影片畫質的部份，會發現：
+      - 假如只是單純播放影片，640x268跟1920x1080的 Memory 和 Cache 的使用量並沒有太大的差異，測出來甚至發現1920x1080的使用量更少了一點點
+      - 如果是將影片拆成圖片的方式，則看的出來畫質之間是有所差距的，1920x1080的 Memory 及 Cache 使用量都明顯高過640x268
+- 第2張圖的部份，Hibernation表示的是從執行 Hibernation到他完成時所需要花費的時間，Loadtime則表示重新開機時，載入解壓縮 image所需的時間
+- 而比較第1跟第2張圖，我們也能看出不論是 Hibernation time還是 Loadtime都會隨著 hibernation image size 的上升而增加
+
+
+
+**Memory和Cache在將影片輸出成jpeg時的使用量變化：**
+
+![](/embedded/arm-hibernation/memory&cache_variation.PNG)
+
+分析：
+
+- 由之前的討論可得知，Memory的使用量會造成Hibernation&Wakeup的時間上升，所以我們利用Mplayer將不同解析度影片輸出成jpeg，來測試Memory與Cache使用量的變化
+- 可以發現因將影片輸出成數張jpeg圖檔到sd card中，會經常開、讀、寫檔，造成大量的I/O，為了cpu使用效率，會發現Memory與Cache會有顯著的上升，而且是正相關的
+- 上圖的play_same_640x268.mp4_jpeg，表示的是將相同的影片再次輸出成jpeg一次，可以發現因為Cache hit的關係，所以使用量並沒有顯著的變化
+- 最後一項數據則是將一部1920x1080的影片輸出成jpeg，因為Cache miss的關係，又造成了Cache明顯的上升
+
+**再來探討在播放不同解析度影片的過程中Memory 與 Cache Used的變化數據：**
+
+- 首先使用Mplayer播放影片在背景，由`#top`  可看到mplayer的STAT在RUN的狀態，%VSZ:7% %CPU:22%
+
+![](/embedded/arm-hibernation/top.jpg)
+
+![](/embedded/arm-hibernation/memory&cache_change_play.PNG)
+
+分析：
+
+- 依播放時間每1分鐘紀錄的Memory與Cache變化，可看出在影片播放期間Memory是上升再下降而Cache則是不斷微小上升但幅度不大，可推測這是在播放期間系統配置給mplayer的使用記憶體的量，播放結束就回收，因為不是像上個例子，將影片輸出成jpeg，有大量的檔案讀寫，所以cache變化不大
+
+下圖為將上述兩個例子進行hibernate後所得不同大小的hibernate snapshot image，然後進行開機到console畫面的時間記錄。以下來看mplayer將影片輸出成jpeg，比播放兩部影片在背景執行的Memory使用量較高，所以造成Wakeup time【解壓縮image(loading_hiberImage)】花費較多的時間。
+![alt text](/embedded/arm-hibernation/Boottime_movie.PNG)
+
+
+
+**Kernel 客製化影響：**
+
+![](/embedded/arm-hibernation/kernel_boot.png)
+
+- 圖中看到七個數值，分別表示不同組態下的kernel開機速度。
+- 由開機時看到的`Starting kernel`做為計時起始點，進到`shell`做為終點。
+- 使用grabserial 軟體觀察timestamp，並且每種組態測量100次取平均值。圖中柱狀圖上方為平均值；格子內是標準差。
+- 七個組態分別為：(由左而右)
+1. ㄧ般正常組態、
+2. 使用quiet關掉console訊息、
+3. 預設定lpj數值(與quiet並用)、
+4. kernel compression mode改成gzip(與quiet、lpj並用)、
+5. 使用CONFIG_CC_OPTIMIZE_FOR_SIZE優化檔案大小(使用預設lzo壓縮、quiet、lpj)、
+6. 使用OPTIMIZE_FOR_SIZE並拿掉許多用不到的組態(與quiet、lpj並用)、
+7. 單純拿掉用不到的組態(與quiet、lpj並用)
+
+組態比較表格版-- (X：組別、Y：優化種類)
+
+![](/embedded/arm-hibernation/kernel_form.png)
+
+分析：
+
+- 一般組態與關掉開機資訊比較，減少了2.4322秒，幅度最大，看到usart輸出的影響。
+- 由於在同一個平台、使用相同時脈的情況下可以得到相同的lpj值，因此只要經過一次開機後找到該數值就能透過預設的方式來減少開機時間，差距有0.1811秒。
+- 看到有文獻在比較kernel compresssion mode，因此這裡也拿預設的lzo與gzip來做比較。這組數據要跟第三組比較，兩者僅有壓縮方式不同，看到gzip方式慢了0.1832秒。而拿image檔案大小來觀察，以lzo的演算法做出的kernel image 是8.1MB，而gzip的則是7.2MB(這裡用$du -sh來觀察)，gzip方式小的許多。
+- 接著再使用CONFIG_CC_OPTIMIZE_FOR_SIZE的設定來編譯kernel，這裡回復預設的lzo方式，壓縮出來的檔案是7.5MB。沒有比單純用gzip方式來的小，且執行時間是第二慢的。
+- 延續上一個組態，將kernel內許多沒用到的組態拿掉(詳細如下：Mice & Mouse interface & keyboard & Joystick & Tablets & Touchscreen、android drvier、KALLSYMS、CONFIG_DEBUG_FS、CONFIG_BUG、slub debugging support、NFS & CD-ROM FS、PCI support)，檔案大小為6.8MB。速度有比較快，但卻比第三組還慢。
+- 能發現有時候kernel image能壓縮到比較小，但是因為還需要解壓縮，所以不代表boot time就會比較快，有可能會比kernel image 較大的來的更慢。
+- 因此做了最後一組，將CONFIG_CC_OPTIMIZE_FOR_SIZE給取消，檔案大小為7.2MB，比第三組少了約0.9MB，而時間快了0.1018秒。
