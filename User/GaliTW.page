@@ -1,0 +1,51 @@
+---
+title: 陳周利(GaliTW, 嘎利)
+categories: User
+...
+
+簡介
+============
+- 陳周利, 嘎利, Gali
+- 我是中壢人
+    - [中壢人不會說自己是桃園人](https://www.youtube.com/watch?v=lZhYpBfEZzo)
+- 學歷
+    - 中原資工系
+    - 成大資工所(現
+- 今天是我生日
+- 萬年信箱: ``w2812451@gmail.com``
+
+
+2015秋季班
+============
+
+心得與自評
+------------
+從小就看著 Jserv 和這門課長大阿，尤其是大三左右耳聞了這門課程。之後不管是課堂作業還是專題實作，資料收集時，總是會在 google 上搜到這門課的 hackpad 或 wiki，也讓我對這門課充滿好奇。「來成大研究所就是要修進階嵌入式呦！」大概是加選課程時的想法吧！？應該是誤入歧途吧！？這課也太硬了吧！？到底有沒有在睡覺啊！?
+……。
+
+第一次上課真是盛況空前，第一次（也是最後一次）在這間教室看到這麼多人。老師上課也是超級有趣，除了課堂材料都是精心準備之外，那些鄉民還是它它才懂的梗竟然可以不假思索的蹦出來，攙雜在這些艱深的課程中。真的學到了許多，我不是指深度鄉民梗，是這些技術和研究以前教授談都不談阿！我也不知道該怎麼解釋，學到的東西真的超乎想像就是了。
+
+寫作業大概是這門課最惡夢的回憶吧！隨著學期的開始，各種雜事把行事曆都堆滿了，還要挖時間來寫作業。為了寫作業，假日都默默的跑來 lab 寫作業，害我漸漸習慣週末都會出現在 lab。雖然作業幾乎都最晚交，連這篇簡歷也不意外，但覺得自己還是很用心在寫的！晚寫的缺點大概是同學都在寫下一支了，沒人可以跟你討論阿！不過也因為大部分的同學都寫完了，常常會不小心幫別人除錯阿！趕 final 的時候也是，大家都在賞雪呢，台灣平地會下雪你相信嘛？海水都退潮了，我還在 lab 裡找褲子！實在真的太冷啦！
+
+如果滿分是十分的話，我願意給自己十一分阿！（這樣會被鞭嘛？你怎麼知道自己是不是無可限量的？）
+
+
+作業
+------------
+- HW1 [ARM ver. Fibonacci](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-1-8JJzIXtRLGR) | [github](https://github.com/GaliTW/arm-lecture)
+- HW2 [Phonebook](http://wiki.csie.ncku.edu.tw/embedded/2015q3h2)
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-2-BcviLIydq9w) | [github](https://github.com/GaliTW/phonebook)
+- HW3 [程式題目實作](http://wiki.csie.ncku.edu.tw/embedded/2015q3h3) 
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-3-wijFtGUcXIE) | [github](https://github.com/GaliTW/quiz)
+- HW4 [(B) Brainf*ck效能改善](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) 
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-4-V2L4wbXeDtY) | [github](https://github.com/GaliTW/jit-construct)
+- HW7 [(A) mini-arm-os shell 實作](http://wiki.csie.ncku.edu.tw/embedded/2015q3h7) 
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-7A-S82aETKXwzU) | [github](https://github.com/GaliTW/mini-arm-os)
+- HW8 [(B) mini-arm-os rootfs 實作](http://wiki.csie.ncku.edu.tw/embedded/2015q3h8) 
+    - [hackpad](https://embedded2015.hackpad.com/-Homework-7A-S82aETKXwzU) | [github](https://github.com/GaliTW/mini-arm-os)
+- HW9 [週邊 Q&A](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9) 
+    - [hackpad](https://embedded2015.hackpad.com/Peripheral-USB-mdOjvkUd5Xd) | [wiki](http://wiki.csie.ncku.edu.tw/embedded/USB)
+- Final Project [Docker ARM Cloud](http://wiki.csie.ncku.edu.tw/embedded/team2015-5) 
+    - [hackpad](https://embedded2015.hackpad.com/Team5-Docker-based-ARM-Cloud-qkEEy3Z5lqB)
+
