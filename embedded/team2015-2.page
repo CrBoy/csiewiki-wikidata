@@ -8,14 +8,19 @@ toc: yes
 ---
 
   * [uRock](http://wiki.csie.ncku.edu.tw/embedded/team2014-2)
+  * 利用Matlab來驗證與實踐音訊效果，來簡化設計新效果的步驟。
+  * 透過藍芽來控制校果器的參數，以便完全自動化效果器控制介面的設計，同時也減少硬體的負荷。
+  * 建構對應的c程式碼來達成以上的目標。
 
 預期目標
 -------
 * 製作單一效果uRock Lite版
 * 修正原0.1版某些效果聲音會有delay的問題
-* 優化效果器DSP演算法
+* 利用Matlab優化效果器DSP演算法
 * STM32F429 Discovery觸控GUI Interface更改為Bluetooth與手機作溝通，User Interface將會寫成APP
 * uRock-Lite版本提供User使用Matlab開發音訊DSP演算法(詳見Work Record)並嵌入板子中，實作自己想要的效果
+* 建構新效果開發流程與環境
+* 撰寫文件
 
 組員
 ---------
@@ -31,4 +36,8 @@ toc: yes
 程式碼和討論
 
 * [github](https://github.com/uRock-Lite)
+     * [uRock-lite](https://github.com/uRock-Lite/uRock-Lite)
+     * [uRock-Lite_Controller_v5.0](https://github.com/uRock-Lite/uRock-Lite_Controller_v5.0)
+     * [Matlab-code-generation-example](https://github.com/uRock-Lite/Matlab-code-generation-example)
 * [hackpad](https://2015embedded2.hackpad.com/Work-Record-upHjz1fcWD6)
+* [document](https://docs.google.com/document/d/1sc4C5khjE6RsQxk8Grw73ENYcpimhQgjT88qbRWdhjI/edit?usp=drive_web)
