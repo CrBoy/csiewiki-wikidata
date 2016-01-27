@@ -17,15 +17,23 @@ categories: User
 - week5 Revise & 電影心得: [GitHub](https://github.com/hanago/quiz), [Hackpad](https://embedded2015.hackpad.com/Homework3-DqLhYaZMlDk#:h=Homework-5)
 - week6 Resource Study: [Hackpad](https://embedded2015.hackpad.com/Homework6-JpQrPV7d7Hw)
 - week7 Simple Shell: [GitHub](https://embedded2015.hackpad.com/Homework-7-VTBoAF2fU3M), [Hackpad](https://github.com/hanago/mini-arm-os/tree/bc27ff44ae90190dc39bf73def316b8395e17fc7/07-Threads)
-- week8 RMFS(ROM File System): [GitHub](https://github.com/hanago/mini-arm-os/tree/master/07-Threads), [Hackpad](https://embedded2015.hackpad.com/Homework-7-VTBoAF2fU3M#:h=Homwork-8(B))
+- week8 ROMFS(ROM File System): [GitHub](https://github.com/hanago/mini-arm-os/tree/master/07-Threads), [Hackpad](https://embedded2015.hackpad.com/Homework-7-VTBoAF2fU3M#:h=Homwork-8(B))
 - week9 Flash: [Hackpad](https://embedded2015.hackpad.com/Peripheral-Flash-PlDo5CQ60ev)
 - week10 自我介紹: [wiki](http://wiki.csie.ncku.edu.tw/User/hanago)
-- 期末報告 uRock-Lite: [wiki](http://wiki.csie.ncku.edu.tw/embedded/team2015-2)[工作紀錄](https://2015embedded2.hackpad.com/Work-Record-upHjz1fcWD6)
+- 期末報告 uRock-Lite: [Github](https://github.com/uRock-Lite/uRock-Lite),[wiki](http://wiki.csie.ncku.edu.tw/embedded/team2015-2),[工作紀錄](https://2015embedded2.hackpad.com/Work-Record-upHjz1fcWD6)
 
 自我評量分數(1~10級分)
 =================
-- 我給自己的評分是  分
-- 心得
+- 我給自己的評分是 9 分
+- 心得 
+
+   這堂課中充滿著挑戰，從第二週的考試開始就可以感受到不尋常的壓力。而之後除了第一週，每一次的作業都寫得頭破血流，一開始是WEEK2寫個簡單的搜尋演算法，因為Hash的做法已經有別人做過，所以想嘗試別種做法，雖然做完後效能有改善，但需要預排序，牽扯到系統層級上的安排而無法做到完善。
+   
+   到Week4的作業時，原本以為讀完官方的資料，再了解原程式碼後，應該就能改寫完畢，但實際是除非你是原作者不然根本就不可能做到完善，所以只好去徹底地"觀摩"別人寫好的程式碼，然後整理成一份便於閱讀的文件。
+
+   Week8是我寫最久一次作業，首先花了兩週了解檔案系統的架構與概念，並且找到ROMFS這個檔案類型，再花一週左右的時間把整個系統規劃好並且把ENCODE到DECODE的過程一步一步地實踐出來。完成之後檔案系統可以掛載IMAGE檔案，並且檢視裡面的資料，而這個IMAGE檔也可以掛載到Linux上，做完這份作業後，像是打通了一條漫長的道路，非常有成就感。
+
+   最後的期末專題也比我想像中的有趣許多，一開始打算直接使用宗凡的程式碼，但之後在網路上搜尋資料，嘗試用不同的開發方式，了解了相關開發工具的使用方式後，就從頭到尾都是自己寫出來的了。開發的過程中遇到許許多多數也數不清的bug，無論是在c語言、android、matlab甚至是IDE本身的問題，每遇到一個bug進度就會受到延遲，好在最後些bug都解決或是繞過的方式，才能讓我們有一次成功的demo經驗。
 
 聯絡資訊
 ====
