@@ -15,7 +15,7 @@ toc: yes
 
 預期目標
 -------
-* 製作單一效果uRock Lite版
+* 製作多效果、多階級的uRock Lite版
 * 修正原0.1版某些效果聲音會有delay的問題
 * 利用Matlab優化效果器DSP演算法
 * STM32F429 Discovery觸控GUI Interface更改為Bluetooth與手機作溝通，User Interface將會寫成APP
