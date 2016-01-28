@@ -81,5 +81,8 @@ categories: vim
         - ``:inoremap [ []<Esc>i``
 
 - ```:inoremap {<CR> {<CR>}<Esc>ko```
-    - 在coding的過程中```{}```的使用量很大，所以這個 key mapping 對於 coding 相當有幫助!
+    - 在 coding 的過程中```{}```的使用量很大，所以這個 key mapping 對於 coding 相當有幫助!
     - 在 insert-mode 時，當輸入'{'，vim會輸入``{`` → ``<CR>``換行 → 輸入``}`` → 進入command-mode → ``k``光標上移 → ``o``插入新的一行 → 自動增加縮排
+
+- ```:inoremap {{ {}<ESC>i```
+    - 另外一個用到 ```{}``` 的時機為陣列的宣告，為了避免跟用於函式宣告之類的大括號混淆，所以故意設成兩個連續鍵。也就是，如果輸入```{```後按```Enter```會執行```:inoremap {<CR> {<CR>}<Esc>ko```，而如果是按```{{```就會執行```:inoremap {{ {}<ESC>i```。如果在```{```後按其他未設定的組合鍵，則視為一般輸入。
