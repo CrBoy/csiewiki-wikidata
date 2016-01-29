@@ -134,3 +134,29 @@ categories: vim
 - ```:hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE```
     - **設定游標所在的行號為：粗體，前景色為綠色，沒有背景色**
     - 配合 ```:hi LineCr``` 就可以很清楚的知道現在游標所在的位置
+
+# **例子** #
+
+## 微 Sublime 風 ##
+
+- Screenshot
+
+![](/vimrc/highlight_ex1.PNG)
+
+- 額外設定
+    - [Additional vim c++ syntax-highlighting](https://github.com/octol/vim-cpp-enhanced-highlight)
+    - terminal 背景色設為 #002B36 ( solarized dark，很棒的配色，google 圖片可以找到很多漂亮的上色 )
+- .vimrc
+
+~~~ { .vimrc }
+:set nu
+:set cursorline
+:set tabstop=4
+:set shiftwidth=4
+
+" Color configuration
+:set bg=dark
+:color evening  " Same as :colorscheme evening
+:hi LineNr cterm=bold ctermbg=DarkGrey ctermfg=NONE
+:hi CursorLineNr cterm=bold ctermbg=Green ctermfg=NONE
+~~~
