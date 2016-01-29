@@ -93,3 +93,44 @@ categories: vim
     - 輸入 ```tab``` 都會被轉換成 space，而對應的 space 數量由 ```:set tabstop=x``` 決定
     - 但是文件中已經存在的 ```tab``` 鍵不會受到影響，必須在 command mode 下輸入 ```:retab``` ，才會被替換掉
     - 如果只有當下那一行的 tab 要被替換成 space，則輸入 ```:.retab```
+
+# **更多設定** #
+
+## 輸入優化 ##
+
+- ```filetype indent on``` ( 好用! )
+    - **啟用依照檔案類型，決定自動縮排樣式的功能**
+    - 例如：如果正在編輯的檔案是 ```.c``` 或 ```.cpp``` 檔，遇到 ```{``` 按下 ```enter``` ，會自動往右一縮排。如果是 ```Makefile```，輸入完 target 按下 ```enter``` ，為了 rule 而自動往右一縮排。
+
+## 行號顏色 ##
+
+- ```:hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE```
+    - **設定行號為：粗體，前景色為深灰色，沒有背景色**
+    - ```hi``` 為 ```highlight``` 指令的所寫，擁有同樣的效果
+    - ```LineNr``` 指定為 line number 的顏色設定
+    - ```cterm``` 指的是爲 color terminal 的環境 ( 在 linux 桌面環境所開的 terminal ) 做設定，其他還有 ```term``` ( 一般 terminal，例如透過 putty 連上的工作環境 )、```gui```。
+    - ```cterm``` 支援的顏色列表，[一共有 16 色](http://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-cterm)
+
+~~~ {}
+  NR-16   NR-8    COLOR NAME 
+   0	    0	    Black
+   1	    4	    DarkBlue
+   2	    2	    DarkGreen
+   3	    6	    DarkCyan
+   4	    1	    DarkRed
+   5	    5	    DarkMagenta
+   6	    3	    Brown, DarkYellow
+   7	    7	    LightGray, LightGrey, Gray, Grey
+   8	    0*	    DarkGray, DarkGrey
+   9	    4*	    Blue, LightBlue
+   10	    2*	    Green, LightGreen
+   11	    6*	    Cyan, LightCyan
+   12	    1*	    Red, LightRed
+   13	    5*	    Magenta, LightMagenta
+   14	    3*	    Yellow, LightYellow
+   15	    7*	    White
+~~~
+
+- ```:hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE```
+    - **設定游標所在的行號為：粗體，前景色為綠色，沒有背景色**
+    - 配合 ```:hi LineCr``` 就可以很清楚的知道現在游標所在的位置
