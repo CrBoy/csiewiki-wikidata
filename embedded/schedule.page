@@ -11,6 +11,31 @@ toc: no
 - 課程信箱: `<embedded.master2015@gmail.com>`
 - 參考硬體平台: [STM32](/embedded/STM32F429), STMicroelectronics
 
+嵌入式作業系統設計與實作 (Spring 2016)
+------------------------------------------------------
+![](/embedded-os.png)
+
+|Week  |Date     |Subject                                 |Assignment|
+|:----|:----|:----|:----|
+|#1   | Feb 23   | [2016q1 Overview]      | = [2016q1: Homework1] = |
+|#2   | Mar  1   | [2016q1:基本能力鑑定測驗]   |                     - |
+|#3   | Mar  8   |                          |
+|#4   | Mar 15   |                          |
+|#5   | Mar 22   |                          |
+|#6   | Mar 29   |                          |
+|#7   | Apr  5   |                          |
+|#8   | Apr 12   |                          |
+|#9   | Apr 19   |                          |
+|#10  | Apr 26   |                          |
+|#11  | May  3   |                          |
+|#12  | May 10   |                          |
+|#13  | May 17   |                          |
+|#14  | May 24   |                          |
+|#15  | May 31   |                          |
+|#16  | Jun  7   |                          |
+|#17  | Jun 14   |                          |
+|#18  | Jun 21   |                          |
+
 進階嵌入式系統設計與實作 (Fall 2015)
 ------------------------------------------------------
 ![](/embedded/logo-2012-small.png)
