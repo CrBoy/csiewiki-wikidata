@@ -44,9 +44,7 @@ categories: 版本控制
 
 
 在一個新的版本庫中新增一個檔案，並使用 ``git status`` 查看版本庫狀態。Git 會提示發現新的檔案，但是不會自動列入追蹤。
-
-.. code-block:: prettyprint
-
+```
     $ echo "Hellow World" > new.txt
     $ git status
     # On branch master
@@ -58,12 +56,9 @@ categories: 版本控制
     #
     #       new.txt
     nothing added to commit but untracked files present (use "git add" to track)
----------------------------
-
+```
 使用 ``git add`` 將檔案列入追蹤後，git 會顯示檔案預計在下一次提交時送出。
-
-.. code-block:: prettyprint
-
+```
     $ git status
     # On branch master
     #
@@ -74,8 +69,7 @@ categories: 版本控制
     #
     #       new file:   new.txt
     #
---------------------------
-
+```
 
 ``git add`` 指令後方除了檔名之外，也可以使用目錄名稱或是萬用字元當作輸入：
 
@@ -119,9 +113,7 @@ git提供一個檔案幫助管理哪些檔案不需被追蹤，為``.gitignore``
 ----------------
 
 ``git rm <filename>``直接取消追縱後，可以看到檔案已經被刪除了。
-
-.. code-block:: prettyprint
-
+```
 	$ cat first.dat 
 	first caca
 	$ git rm first.dat
@@ -135,7 +127,7 @@ git提供一個檔案幫助管理哪些檔案不需被追蹤，為``.gitignore``
 	#
 	$ ls
 	$
-----------------------------------
+```
 
 如果刪錯要救援也沒有問題!!!
 
