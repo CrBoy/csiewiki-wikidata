@@ -157,6 +157,6 @@ categories: vim
 " Color configuration
 :set bg=dark
 :color evening  " Same as :colorscheme evening
-:hi LineNr cterm=bold ctermbg=DarkGrey ctermfg=NONE
-:hi CursorLineNr cterm=bold ctermbg=Green ctermfg=NONE
+:hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
+:hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 ~~~
