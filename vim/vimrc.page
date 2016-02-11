@@ -89,7 +89,7 @@ categories: vim
 
 ## tab 與 space ##
 
-- ```:set expendtab```
+- ```:set expandtab```
     - 輸入 ```tab``` 都會被轉換成 space，而對應的 space 數量由 ```:set tabstop=x``` 決定
     - 但是文件中已經存在的 ```tab``` 鍵不會受到影響，必須在 command mode 下輸入 ```:retab``` ，才會被替換掉
     - 如果只有當下那一行的 tab 要被替換成 space，則輸入 ```:.retab```
