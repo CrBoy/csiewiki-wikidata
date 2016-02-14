@@ -17,14 +17,14 @@ toc: no
 
 |Week  |Date     |Subject                                 |Assignment|
 |:----|:----|:----|:----|
-|#1   | Feb 23   | [2016q1 Overview](https://embedded2016.hackpad.com/ep/pad/static/0cCQaaQEOoy)      | = [2016q1: Homework1] = |
-|#2   | Mar  1   | [2016q1:基本能力鑑定測驗]   |                     - |
-|#3   | Mar  8   |                          |
-|#4   | Mar 15   |                          |
-|#5   | Mar 22   |                          |
-|#6   | Mar 29   |                          |
-|#7   | Apr  5   |                          |
-|#8   | Apr 12   |                          |
+|#1   | Feb 23   | [2016q1 Overview](https://embedded2016.hackpad.com/ep/pad/static/0cCQaaQEOoy)      | = 2016q1: Homework1 = |
+|#2   | Mar  1   | 2016q1:基本能力鑑定測驗   |                     - |
+|#3   | Mar  8   | ARM Architecture and Optimization Concepts     |
+|#4   | Mar 15   | Compilers + Calling Convention                 |
+|#5   | Mar 22   | C Programming + ARM                            |
+|#6   | Mar 29   | From Hello to Preemptive Scheduler             |
+|#7   | Apr  5   | Embedded Linux Conference                      |
+|#8   | Apr 12   | OS Scheduling                                  |
 |#9   | Apr 19   |                          |
 |#10  | Apr 26   |                          |
 |#11  | May  3   |                          |
