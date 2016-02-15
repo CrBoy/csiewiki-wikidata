@@ -106,7 +106,7 @@ categories: vim
 
 - ```:hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE```
     - **設定行號為：粗體，前景色為深灰色，沒有背景色**
-    - ```hi``` 為 ```highlight``` 指令的所寫，擁有同樣的效果
+    - ```hi``` 為 ```highlight``` 指令的縮寫，擁有同樣的效果
     - ```LineNr``` 指定為 line number 的顏色設定
     - ```cterm``` 指的是爲 color terminal 的環境 ( 在 linux 桌面環境所開的 terminal ) 做設定，其他還有 ```term``` ( 一般 terminal，例如透過 putty 連上的工作環境 )、```gui```。
     - ```cterm``` 支援的顏色列表，[一共有 16 色](http://vimdoc.sourceforge.net/htmldoc/syntax.html#highlight-cterm)
