@@ -182,14 +182,14 @@ EL2只會實現在 Non-secure state，並負責:
 
 - 保存觸發exection的原因(可用來作instruction emulation，請對照 [xvisor-instruction-emulate](http://wiki.csie.ncku.edu.tw/embedded/xvisor#xvisor-instruction-emulate)服用)
 
-- ex: 
-        - esr_el2
+- e.g. 
+    - esr_el2
 
-        ![](/embedded/esr.png)
+![](/embedded/esr.png)
 
-        - ec 編碼(節錄，請對照manual D8.2.25 ESR_EL2, Exception Syndrome Register (EL2) 章節):
+    - ec 編碼(節錄，請對照manual D8.2.25 ESR_EL2, Exception Syndrome Register (EL2) 章節):
 
-        ![](/embedded/esr_ec.png)
+![](/embedded/esr_ec.png)
 
 
 # 虛擬記憶體系統架構 (Virtual Memory System Architecture)
