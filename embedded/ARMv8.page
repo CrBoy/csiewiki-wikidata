@@ -284,7 +284,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
         - descriptor提供final translation的 hierarchical attributes
     - invalid: Translation fault
 
-![](/embedded/stage)of address translation.jpg
+![](/embedded/stage%20of%20address%20translation.jpg)
 
 
 地址轉換流程:
