@@ -3,7 +3,7 @@ title: ARMv8
 categories: arm, armv8, arm64, embedded, cortex-a35, cortex-a53, cortex-a57, cortex-a72
 ...
 # ARMv8架構介紹
-![](http://www.arm.com/zh/images/roadmap/V5_to_V8_Architecture.jpg)
+![](http://www.myir-tech.com/attached/image/arm/procesor/V5_to_V8_Architecture.jpg)
 ![](/embedded/evolution_arm_arch.png)
 ARMv8架構有一個重要的特點是他與其之前的架構相容。
 
