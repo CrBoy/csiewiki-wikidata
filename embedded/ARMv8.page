@@ -266,7 +266,7 @@ Virtual Memory System Architecture簡稱VMSA。 VMSA有記憶體管理單元(MMU
 
 - VMSAv8-64支援4KB, 16KB, and 64KB的translation granule sizes
 
-![](//embedded/granule%20size.jpg)
+![](/embedded/granule%20size.jpg)
 
 - granule size決定了page及一次查找可以轉換的bit數
 
