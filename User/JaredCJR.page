@@ -6,7 +6,7 @@ JaredCJR(張家榮)
 - 交通大學 資訊科學與工程研究所 系統設計組 正取生
 
 - [北京清華大學 第三屆開源操作系統技術年會 講者](http://soft.cs.tsinghua.edu.cn/os2atc2015/rc.html)
-- SITCON(學生計算機年會) 2016 Speaker(ARM uVisor debug Refinement Project)
+- [SITCON(學生計算機年會) 2016 Speaker(ARM uVisor debug Refinement Project)](http://www.slideshare.net/ssuser803c6e/arm-uvisor-debug-refinement-project)
 
 
 **歷年重要作品:**
@@ -30,8 +30,12 @@ JaredCJR(張家榮)
 - 開放原始碼專案貢獻(正在進行中)
     - uVisor
         - CrashDebug
-            - CrashCatcher
-            - MRI
+        - CrashCatcher
+        - MRI
+        - gcc4mbed
+        - uvisor
+        - uvisor-helloworld
+        - uvisor-lib
     - [可見OS2ATC2015簡報內容p.28 , p.29](http://soft.cs.tsinghua.edu.cn/os2atc2015/ppt/hjq.pdf)
 
 **其他經驗:**
