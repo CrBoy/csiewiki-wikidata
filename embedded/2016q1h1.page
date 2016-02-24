@@ -108,7 +108,7 @@ $ echo 1 | sudo tee /proc/sys/vm/drop_caches
         - GitHub 帳號, wiki 帳號 (註冊本站)
         - 關於 fork 出來的 repository 修改描述
         - 附上一份自我介紹和對課程的期許
-* 務必使用 astyle 排版，詳細使用方式見 [README.md](https://github.com/embedded2016/phonebook/blob/master/README.md)
+* 務必使用 astyle 來對程式碼進行排版，詳細使用方式見 [README.md](https://github.com/embedded2016/phonebook/blob/master/README.md)
 * 可能的效能改進方向：
     - 改寫 `struct __PHONE_BOOK_ENTRY` 的成員，搬動到新的結構中
     - 使用 hash function 來加速查詢
