@@ -25,10 +25,17 @@ $ sudo apt-get install build-essential
 $ sudo apt-get install linux-tools-common linux-tools-generic
 $ sudo apt-get install astyle colordiff
 ```
+* 關於 GNU/Linux 指令，請參閱 [鳥哥的 Linux 私房菜](http://linux.vbird.org/)
+    - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
+* [熟悉 Git 和 GitHub 操作](/github)
+    - [30 天精通 Git 版本控管](https://github.com/doggy8088/Learn-Git-in-30-days)
+
+
 
 Linux 效能分析工具: Perf
 -----------------------
-Perf 全名是 Performance Event，是在 Linux 2.6.31 以後內建的系統效能分析工具，它隨著核心一併釋出。藉由 perf，應用程式可以利用 PMU (Performance Monitoring Unit), tracepoint 和核心內部的特殊計數器 (counter) 來進行統計，另外還能同時分析運行中的核心程式碼，從而更全面了解應用程式中的效能瓶頸。
+* Perf 全名是 Performance Event，是在 Linux 2.6.31 以後內建的系統效能分析工具，它隨著核心一併釋出。藉由 perf，應用程式可以利用 PMU (Performance Monitoring Unit), tracepoint 和核心內部的特殊計數器 (counter) 來進行統計，另外還能同時分析運行中的核心程式碼，從而更全面了解應用程式中的效能瓶頸
+* 詳細閱讀 [Linux 效能分析工具: Perf](/embedded/perf-tutorial) 並在自己的 Linux 開發環境實驗
 
 
 作業要求
@@ -64,3 +71,9 @@ $ echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
 * 支援 [fuzzy search](http://www.informit.com/articles/article.aspx?p=1848528)，允許搜尋 lastName 時，不用精準打出正確的寫法
     - 比方說電話簿有一筆資料是 `McDonald`，但若使用者輸入 `MacDonald` 或 `McDonalds`，也一併檢索出來
 * 改善電話簿的效能分析，透過大量的重複執行，找出 95% 信賴區間，而且允許動態新增資料 (較符合現實) 和查詢
+* 以 [gnuplot](http://www.gnuplot.info/) 繪製效能分析圖表，藉此得知 Fibonacci 數列對於效能的影響
+
+參考資料
+-------
+* [Makefile 語法簡介](http://tetralet.luna.com.tw/?op=ViewArticle&articleId=185)
+* [Gnuplot 純畫圖](http://user.frdm.info/ckhung/b/ma/gnuplot.php)
