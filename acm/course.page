@@ -4,16 +4,23 @@ categories: acm, icpc, ncpc, algorithm
 toc: no
 ...
 
-* Math
-* Solving Strategy 1
-* Solving Strategy 2
-* Solving Strategy 3
-* Data Structure - Sequence(Range Query)
+* DFS
+* BFS
+* vector
+* map
+* Binary Search
+* STL (lower_bound, upper, tuple, priority_queue, struct, pair)
+* Backtracking
+* DP
+* LCS
+* LIS
+* Binary Indexed Tree
+* Segment Tree
 * String Matching
-* Graph 1
-* Graph 2
-* Graph 3
-* Graph 4
-* Graph 5
-* Computational Geometry 1
-* Computational Geometry 2
+* Shortest Path
+* SCC
+* MST
+* Max flow
+* MCMF
+* Matching
+* LINE Intersection
