@@ -103,7 +103,7 @@ $ echo 1 | sudo tee /proc/sys/vm/drop_caches
     - 至少要列出效能分析，以及充份說明你如何改善效能
 * 更新 Hackpad 後，**還要寄信通知授課教師和助教**
     - 寄件到 <embedded.master2015@gmail.com>
-    - 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
+    - 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名 (`[NCKU/embedded]`, 學號, 姓名之間要有空白)
     - 內容：(回答以下問題)
         - GitHub 帳號, wiki 帳號 (註冊本站)
         - 關於 fork 出來的 repository 修改描述
