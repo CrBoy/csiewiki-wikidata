@@ -39,8 +39,8 @@ Linux 效能分析工具: Perf
 
 案例探討：電話簿搜尋
 -----------------
-* 詳細閱讀 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法
-* 雖然要同學探討 cache miss 和效能議題，其實就是帶著同學重新複習 C 語言和資料結構，以前大家只是「背誦心法」，從來就不會去理解個別資料結構對整體的衝擊。
+* 詳細閱讀 [案例分析: Phone Book](https://embedded2016.hackpad.com/ep/pad/static/1vvUk25C0fI)，研究降低 cache miss 的方法
+* 雖然這是探討 cache miss 和效能議題，其實是帶著同學重新複習 C 語言和資料結構。以前大家只是「背誦心法」，從來就不會去理解個別資料結構對整體的衝擊。
 
 看到 `[sudo] password for ` 字樣時，輸入自己的 Linux 使用帳號密碼
 
