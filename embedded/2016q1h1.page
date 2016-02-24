@@ -23,7 +23,7 @@ toc: no
 $ sudo apt-get update
 $ sudo apt-get install build-essential
 $ sudo apt-get install linux-tools-common linux-tools-generic
-$ sudo apt-get install astyle colordiff
+$ sudo apt-get install astyle colordiff gnuplot
 ```
 * 關於 GNU/Linux 指令，請參閱 [鳥哥的 Linux 私房菜](http://linux.vbird.org/)
     - 本系列課程全程使用 GNU/Linux，全世界有十幾億台裝置內建 Linux 系統，學習 Linux 是相當划算的投資！
@@ -41,8 +41,31 @@ Linux 效能分析工具: Perf
 -----------------
 * 詳細閱讀 [案例分析: Phone Book](https://embedded2016.hackpad.com/ep/pad/static/1vvUk25C0fI)，研究降低 cache miss 的方法
 * 雖然這是探討 cache miss 和效能議題，其實是帶著同學重新複習 C 語言和資料結構。以前大家只是「背誦心法」，從來就不會去理解個別資料結構對整體的衝擊。
-
-看到 `[sudo] password for ` 字樣時，輸入自己的 Linux 使用帳號密碼
+* 抓取和測試程式
+    - 自 GitHub 取得作業程式碼 (基礎)
+```
+$ git clone https://github.com/embedded2016/phonebook
+$ cd phonebook
+```
+    - 編譯
+```
+$ make
+```
+    - 測試。當看到 `[sudo] password for ` 字樣時，輸入自己的 Linux 使用帳號密碼
+```
+$ make run
+```
+    - 參考輸出： (按下 `Ctrl`-`C` 可以離開畫面)
+```
+size of entry : 136 bytes
+execution time of append() : 0.043859 sec
+execution time of findName() : 0.004776 sec
+```
+* 透過 gnuplot 建立執行時間的圖表 (保持耐心等待，中間過程不要切換視窗)
+```
+$ make plot
+```
+    - 正確執行後，目錄裡頭會有個名為 `runtime.png`，可用 `eog runtime.png` 命令來觀看
 
 作業要求
 -------
