@@ -88,6 +88,24 @@ $ gnuplot
 ![](/embedded/2016q1h1/gnuplot.png)
 
 
+使用 astyle + Git 實做自動程式碼排版檢查
+------------------------------------
+* 使用一致的 coding style 很重要，我們可透過 astyle 這個工具來協助。調整作業程式要求的風格為以下:
+```
+$ astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
+```
+    - 你可以想像 Apple 和 Google 的工程師隨便安置程式碼，然後不用管合作的議題嗎？
+    - 即便一個人寫作業，其實是三人的參與：過去的你、現在的你，以及未來的你
+* 安裝 Git pre-commit hook 可在每次 `git commit` 時，檢查 C/C++ 原始程式碼的風格是否一致:
+```
+ln -sf ../../scripts/pre-commit.hook .git/hooks/pre-commit
+```
+    - 我們介紹 [Git hooks](https://goo.gl/CNMHZJ) 是為了日後銜接 Continuous integration (CI)，專業程式設計必備的準備工作
+    - 任何人都可以寫出機器看得懂的程式碼 (在檔案總管裡面對 EXE 檔複製貼上即可)，但我們之所以到資訊工程系接受訓練，為了寫出人看得懂、可持續維護和改進的程式
+* 下圖展示 Git pre-commit hook 偵測到開發者的修改並未遵守一致的 coding style，主動回報並提醒開發者:
+![](/embedded/2016q1h1/git-hook.jpg)
+
+
 作業要求
 -------
 * 在 GitHub 上 fork [phonebook](https://github.com/embedded2016/phonebook)，然後適度修改 `phonebook_opt.c` 和 `phonebook_opt.h` 兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
