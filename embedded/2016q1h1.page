@@ -98,7 +98,7 @@ $ astyle --style=kr --indent=spaces=4 --indent-switches --suffix=none *.[ch]
     - 即便一個人寫作業，其實是三人的參與：過去的你、現在的你，以及未來的你
 * 安裝 Git pre-commit hook 可在每次 `git commit` 時，檢查 C/C++ 原始程式碼的風格是否一致:
 ```
-ln -sf ../../scripts/pre-commit.hook .git/hooks/pre-commit
+$ ln -sf ../../scripts/pre-commit.hook .git/hooks/pre-commit
 ```
     - 我們介紹 [Git hooks](https://goo.gl/CNMHZJ) 是為了日後銜接 Continuous integration (CI)，專業程式設計必備的準備工作
     - 任何人都可以寫出機器看得懂的程式碼 (在檔案總管裡面對 EXE 檔複製貼上即可)，但我們之所以到資訊工程系接受訓練，為了寫出人看得懂、可持續維護和改進的程式
