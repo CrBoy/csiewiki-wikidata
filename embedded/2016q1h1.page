@@ -80,6 +80,13 @@ $ echo 1 | sudo tee /proc/sys/vm/drop_caches
 ```
 * 除了修改程式，也要編輯 Hackpad 下方「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-1-tiduo3FfIQD)」，增添開發紀錄和 GitHub 連結
     - 至少要列出效能分析，以及充份說明你如何改善效能
+* 更新 Hackpad 後，**還要寄信通知授課教師和助教**
+    - 寄件到 <embedded.master2015@gmail.com>
+    - 標題: “[NCKU/embedded]” 開頭，後面加學號與姓名
+    - 內容：(回答以下問題)
+        - GitHub 帳號, wiki 帳號 (註冊本站)
+        - 關於 fork 出來的 repository 修改描述
+        - 附上一份自我介紹和對課程的期許
 * 務必使用 astyle 排版，詳細使用方式見 [README.md](https://github.com/embedded2016/phonebook/blob/master/README.md)
 * 可能的效能改進方向：
     - 改寫 `struct __PHONE_BOOK_ENTRY` 的成員，搬動到新的結構中
