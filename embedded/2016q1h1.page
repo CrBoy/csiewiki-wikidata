@@ -67,6 +67,25 @@ $ make plot
 ```
     - 正確執行後，目錄裡頭會有個名為 `runtime.png`，可用 `eog runtime.png` 命令來觀看
 
+善用 gnuplot 來製圖
+==================
+* 忘記 Microsoft Excel，gnuplot 可以給你更專業的圖表，而且能夠批次產生
+* 先啟動 gnuplot:
+```
+$ gnuplot
+```
+* gnuplot 啟動後，需要做一些必要設定，例如設定圖片名稱，XY軸的資訊等等:
+```
+> set title 'my plot'           ＠設定圖片名稱
+> set xlabel 'x axis'           ＠設定XY軸座標名稱
+> set ylabel 'y axis'
+> set terminal png              ＠設定輸出格式為 .png
+> set output 'output_plot.png'  ＠設定輸出檔名
+> plot [1:10][0:1] sin(x)       ＠畫出 sin(x) 函式，x軸座標範圍1 ~ 10, y軸座標範圍0 ~ 1
+```
+* 可以將這些設定另外存成一個檔案，作為 gnuplot 的腳本。假設上述指令存在一個名為 plot 的檔案裡面，以後只要輸入 `gnuplot plot` 即可畫出我們想要的圖表。
+
+
 作業要求
 -------
 * 在 GitHub 上 fork [phonebook](https://github.com/embedded2016/phonebook)，然後適度修改 `phonebook_opt.c` 和 `phonebook_opt.h` 兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
