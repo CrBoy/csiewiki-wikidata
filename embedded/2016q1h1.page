@@ -48,7 +48,7 @@ Linux 效能分析工具: Perf
     - `main.c` 應該只有一份，不要建立新的 `main()`，善用 Makefile 定義對應的 `CFLAGS`
     - 在執行程式(`phonebook_orig` 和 `phonebook_opt`) 前，先清空 cache:
 ```sh
-$ echo "echo 1 > /proc/sys/vm/drop_caches" | sudo sh
+$ echo 1 | sudo tee /proc/sys/vm/drop_caches
 ```
 * 除了修改程式，也要編輯 Hackpad 下方「[作業區](https://embedded2015.hackpad.com/2015q3-Homework-2-y6EF1Im4GEr)」，增添開發紀錄和 GitHub 連結
     - 至少要列出效能分析，以及充份說明你如何改善效能。請使用 gnuplot 建立圖表
