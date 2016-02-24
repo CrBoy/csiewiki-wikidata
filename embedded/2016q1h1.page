@@ -31,16 +31,21 @@ $ sudo apt-get install astyle colordiff
     - [30 天精通 Git 版本控管](https://github.com/doggy8088/Learn-Git-in-30-days)
 
 
-
 Linux 效能分析工具: Perf
 -----------------------
 * Perf 全名是 Performance Event，是在 Linux 2.6.31 以後內建的系統效能分析工具，它隨著核心一併釋出。藉由 perf，應用程式可以利用 PMU (Performance Monitoring Unit), tracepoint 和核心內部的特殊計數器 (counter) 來進行統計，另外還能同時分析運行中的核心程式碼，從而更全面了解應用程式中的效能瓶頸
 * 詳細閱讀 [Linux 效能分析工具: Perf](/embedded/perf-tutorial) 並在自己的 Linux 開發環境實驗
 
 
+案例探討：電話簿搜尋
+-----------------
+* 詳細閱讀 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法
+* 雖然要同學探討 cache miss 和效能議題，其實就是帶著同學重新複習 C 語言和資料結構，以前大家只是「背誦心法」，從來就不會去理解個別資料結構對整體的衝擊。
+
+看到 `[sudo] password for ` 字樣時，輸入自己的 Linux 使用帳號密碼
+
 作業要求
 -------
-* 詳細閱讀 Week #3 課程的 [案例分析: Phone Book](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY)，研究降低 cache miss 的方法
 * 在 GitHub 上 fork [phonebook](https://github.com/embedded2015/phonebook)，然後適度修改 `phonebook_opt.c` 和 `phonebook_opt.h` 兩個檔案，使得這兩者執行時期的 cache miss 降低。請用 perf 驗證，而且改進的過程中，不能有功能方面的減損。
     - `phonebook_orig.[ch]` 不需要修改，我們關注的是 `phonebook_opt.[ch]`，當然要修改 `main.c` 也是允許的
     - `findName()` 的時間必須比 [Week #3 課程](https://embedded2015.hackpad.com/ep/pad/static/vq55AYjcDYY) 列出的數據，來得更快
