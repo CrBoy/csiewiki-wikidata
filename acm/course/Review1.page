@@ -191,14 +191,148 @@ Time complexity and Sorting
 
 時間複雜度為 𝑂(𝑛^2)，且為不穩定排序。
 
-![figure1](/selection_sort01.png)
+![\ \ \ \ \ \    figure1  (\ \ \ 底線：已排序好的資料  \ \ \ \ 灰底底線：上一個被排序好的資料  \ \ \ \ \ 綠色斜體：被交換的資料。   )
+](/selection_sort01.png)
 
 ####Bubble Sort
 
 「氣泡排序法」( or 泡沫排序法, 冒泡排序法…)
+
 重複地走訪過要排序的數列，一次比較相鄰兩個元素，如果他們的順序錯誤就把他們交換過來。
+
 時間複雜度 O(n^2)，氣泡排序法為穩定排序。
+
+1.從第一個元素開始，比較相鄰的兩個元素大小
+
+2.若第一元素大於第二元素，則交換位置
+
+3.每回合遞減需要比較的元素個數
+
+![figure\ 2\ Bubble Sort](/bubble.png)
+
+####Insertion Sort
+
+「插入排序法」
+
+每次都只為一個元素找到目前(已排序的數列中)的最佳位置
+
+時間複雜度為 𝑂(𝑛2)，為穩定排序。
+
+1.從第一個元素開始，該元素可以認為已經被排序
+
+2.取出下一個元素，在已經排序的元素序列中從後向前	掃描
+
+3.如果該元素（已排序）大於新元素，將該元素移到下	一位置
+
+4.重複步驟3，直到找到已排序的元素小於或者等於新	元素的位置
+
+5.將新元素插入到該位置後
+
+6.重複步驟2~5
+
+####Merge Sort
+
+「合併排序法」
+
+利用分治法（Divide and Conquer）將要排序的資料均分成兩組，分別對兩邊做排序，然後再將兩邊「已排序的資料」再做合併，即完成排序。
+
+時間複雜度 𝑂(𝑛 lg⁡𝑛 )，還需要額外的記憶體做合併，空間複雜度𝑂(𝑛)，為穩定排序。
+
+1.先將a 分割成兩半a[0]~a[n/2]和a[n/2+1]~a[n-1]，然後分別對它們做Merge Sort，如此遞迴下去。
+
+2.如果遞迴到陣列元素只有一個的時候，則要return，不必再分割。
+
+3.兩邊分別都做完Merge Sort 之後，便對兩組資料進行「合併」動作。
+
+![Merge Sort(divide)](/Merge_divide.png)
+
+![Merge Sort(conquer)](/Merge_conquer.png)
+
+####Quick Sort
+
+1.挑選資料中的一個元素做為「基準」（以下皆以序列末端元素作為基準）
+
+2.然後將比它小的放在前面部分，比它大的放後面部分
+
+3.將「基準」與比它大的序列的第一個元素交換，則「基準」在序列中的位置就確定了。
+
+4.然後對前後兩個序列分別再遞迴做Quick Sort
+
+![Quicksort \ \ 紅色斜體: 基準\ \ \ 粗體:當前被排序好的資料](/Quicksort.png)
+
+####STL
+
+這個 sort 是使用 Quick Sort 加上很繁複的優化完成的。
+
+在非必要的情況下，我們都不會自己寫而使用 STL 的sort。
+
+![STL](/STL.png)
+
 
 
 Stack and Queue 
 ---------------
+####Stack
+
+Stack 是一個有序的串列，資料的插入及刪除只發生在stack的頂端(top)
+
+(Last-In-First-out 也就是後插入的會先被刪除)
+
+![stack示意圖](/stack1.png)
+
+Member function:
+
+push():插入
+
+pop():刪除
+
+top()
+
+empty()
+
+size()
+
+![stack](/stack.png)
+
+####Queue
+
+Queue 是一個有序的串列，資料的插入只發生在queue的尾端(rear)，資料的刪除只發生在queue的前端(front)
+
+(First-In-First-out 也就是先插入的會先被刪除)
+
+![queue示意圖](/queue1.png)
+
+Member function:
+
+push():插入
+
+pop():刪除
+
+front()
+
+back()
+
+empty()
+
+size()
+
+![queue](/queue2.png)
+
+####Priority Queue
+
+Priority queue 有別於一般的 queue，資料保持排序，可以隨時得到最大值。
+
+Member function:
+
+push():插入
+
+pop():刪除
+
+top()
+
+empty()
+
+size()
+
+![priority queue](/priority queue2.png)
+
