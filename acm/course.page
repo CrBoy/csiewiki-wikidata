@@ -4,7 +4,7 @@ categories: acm, icpc, ncpc, algorithm
 toc: no
 ...
 
-* [Review1](acm/course/Review1)
+* [Review1](course/Review1)
 * DFS
 * BFS
 * vector
