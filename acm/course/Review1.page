@@ -272,7 +272,7 @@ Time complexity and Sorting
 
 Stack and Queue 
 ---------------
-####Stack
+###Stack
 
 Stack 是一個有序的串列，資料的插入及刪除只發生在stack的頂端(top)
 
@@ -294,7 +294,7 @@ size()
 
 ![stack](/stack.png)
 
-####Queue
+###Queue
 
 Queue 是一個有序的串列，資料的插入只發生在queue的尾端(rear)，資料的刪除只發生在queue的前端(front)
 
@@ -318,7 +318,7 @@ size()
 
 ![queue](/queue2.png)
 
-####Priority Queue
+###Priority Queue
 
 Priority queue 有別於一般的 queue，資料保持排序，可以隨時得到最大值。
 
