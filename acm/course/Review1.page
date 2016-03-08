@@ -220,15 +220,42 @@ Time complexity and Sorting
 
 1.從第一個元素開始，該元素可以認為已經被排序
 
+![](/insertionsort1.png)
+
 2.取出下一個元素，在已經排序的元素序列中從後向前	掃描
+
+![](/insertionsort2.png)
+
+![](/insertionsort3.png)
 
 3.如果該元素（已排序）大於新元素，將該元素移到下	一位置
 
+
+![](/insertionsort4.png)
+
+
 4.重複步驟3，直到找到已排序的元素小於或者等於新	元素的位置
+
+![](/insertionsort5.png)
 
 5.將新元素插入到該位置後
 
+![](/insertionsort6.png)
+
 6.重複步驟2~5
+
+![](/insertionsort7.png)
+
+![](/insertionsort8.png)
+
+![](/insertionsort9.png)
+
+![](/insertionsort10.png)
+
+![](/insertionsort11.png)
+
+
+![insertionsort_code](/insertionsort_code.png)
 
 ####Merge Sort
 
@@ -243,6 +270,38 @@ Time complexity and Sorting
 2.如果遞迴到陣列元素只有一個的時候，則要return，不必再分割。
 
 3.兩邊分別都做完Merge Sort 之後，便對兩組資料進行「合併」動作。
+
+![](/mergesort1.png)
+
+![](/mergesort2.png)
+
+![](/mergesort3.png)
+
+![](/mergesort4.png)
+
+![](/mergesort5.png)
+
+![](/mergesort6.png)
+
+![](/mergesort7.png)
+
+![](/mergesort8.png)
+
+![](/mergesort9.png)
+
+![](/mergesort10.png)
+
+![](/mergesort11.png)
+
+![](/mergesort12.png)
+
+![](/mergesort13.png)
+
+![](/mergesort14.png)
+
+![](/mergesort15.png)
+
+![](/mergesort16.png)
 
 ![Merge Sort(divide)](/Merge_divide.png)
 
