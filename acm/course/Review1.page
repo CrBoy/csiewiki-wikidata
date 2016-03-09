@@ -23,109 +23,103 @@ I/O
 Ex:
 
 A+B problem
-
-    int tc,a,b;
-    scanf("%d",&tc);
-    while(tc--) {
+```c
+int tc, a, b;
+scanf("%d",&tc);
+while (tc--) {
     scanf("%d%d",&a,&b);
     printf("%d\n",a+b);
-    }
-
+}
+```
 2.以特定值(通常為 0)為中止條件
 
 Ex:
 
 Hi, input #
+```c
+/* Until zero */
 
-    /* Until zero */
-
-    int n;
-    while(scanf("%d",&n)==1 && n) {
+int n;
+while (scanf("%d",&n) == 1 && n) {
     printf("Hi, %d.\n",n);
-    }
+}
+```
 
 3.以EOF(End of file)為中止條件
 
 Ex:
 
 Hi, input #
-
-    /* Until EOF */
-
-    int n;
-    while(scanf("%d",&n)!=EOF) {
+```c
+/* Until EOF */
+int n;
+while (scanf("%d",&n) != EOF) {
     printf("Hi, %d.\n",n);
-    }
-
+}
+```
 若題目為指定測資終止條件，則以EOF作為終止條件
 
 Ex:
 
-scanf
+* scanf
+```c
+while (scanf() != EOF) {
+    ...
+}
 
-    while(scanf()!=EOF)
-    {
-         ...
-    }
-
-fgets
-
-    while(gets()!=0)
-    {
-         ...
-    }
-
-cin
-
-    while(cin >> x)
-    {
-         ...
-    }
-
+* fgets
+```c
+while (gets() != 0) {
+   ...
+}
+```
+* cin
+```c
+while (cin >> x) {
+    ...
+}
+```
 1.在每個輸出後面加一個空白行
 
 Ex:
-
-
-A+B Problem
-
-    /*\n\n */
+* A+B Problem
+```c
+/*\n\n */
     
-    int a,b,cs=1;
-    while(scanf("%d%d",&a,&b)!=EOF){
-    printf("Case %d: %d\n\n",cs++,a+b);
-    }
+int a,b,cs=1;
+while (scanf("%d%d", &a, &b) != EOF) {
+    printf("Case %d: %d\n\n", cs++, a + b);
+}
+```
 2.每個輸出被空行隔開(最後一個輸出後面不會有空行)
 
-
 Ex:
-
-        /* Separated */
+```c
+/* Separated */
              
-        ...
-        int a,b,cs=1;
-        while(
-        scanf("%d%d",&a,&b)!=EOF){
-        if(cs>1)putchar("\n");
-        printf("Case%d: %d\n",cs++,a+b);
-        }
-        ...
+int a,b,cs=1;
+while (scanf("%d%d", &a, &b) != EOF) {
+    if (cs > 1) putchar("\n");
+    printf("Case%d: %d\n",cs++,a+b);
+}
+```
 
 string token:
-   
-    /*
-    char strtok(char *str,const char *delimiters);
-    str: 欲切割字串
-    delimiters: 分隔字符字串
-    return value: 指向當前切割字串之指標，若切割完畢則回傳NULL
-    */
+```c   
+/*
+ * char strtok(char *str,const char *delimiters);
+ *   str: 欲切割字串
+ *   delimiters: 分隔字符字串
+ * return value: 指向當前切割字串之指標，若切割完畢則回傳NULL
+ */
     
-    #include<cstring>
+#include <cstring>
     ...
-    char str="Welcome to NCKU CSIE. 1*2(3456)78\9";
-    for( char *token =  strtok( str," \"().*");token!=NULL;token=strtok(NULL," \"().")){
-    puts( token );
-    }
+char str = "Welcome to NCKU CSIE. 1*2(3456)78\9";
+for (char *token = strtok( str," \"().*"); token != NULL; token = strtok(NULL," \"().")) {
+    puts(token);
+}
+```
 
 +--------+-------+-------+ 
 |          Output        |
