@@ -132,18 +132,14 @@ for (char *token = strtok( str," \"().*"); token != NULL; token = strtok(NULL," 
 +--------+-------+-------+
 
 freopen:
-
-    /*freopen*/
-    ...
-    freopen("f1.in","r",stdin);
-    freopen("f1.out", "w",stdout);
-    while(scanf(...)!=EOF){
-        printf(...);
-    }
-    ...
-
-
-
+```c
+...
+freopen("f1.in","r",stdin);
+freopen("f1.out", "w",stdout);
+while (scanf(...) != EOF) {
+    printf(...);
+}
+```
 
 Time complexity and Sorting 
 ----------------------------
@@ -152,25 +148,26 @@ Time complexity and Sorting
 由於競賽題目多有時間限制，我們必須分析程式碼的時間複雜度，根據測資的數量判斷程式大概的執行時間，以避免超過題目的時間限制
 
 𝑶(𝒏):
-
-    for(i=0; i<n; i++){
-    ...
-    }
+```c
+for (i = 0; i < n; i++){
+   ...
+}
+```
 𝑶(𝒏^2):
-
-    for(i=0; i<n ;i++)
-        for(j=0; j<n; j++){
-         ...
-     }
-
-𝑶(𝟐^M):
-
-    int two(int n){
-        if(n < 2) return 1 << n;
-	 return two(n - 1)+ two(n - 1);
+```c
+for (i = 0; i < n ;i++)
+    for(j = 0; j < n; j++) {
+        ...
     }
-    /* maximum n=M */
-
+```
+𝑶(𝟐^M):
+```c
+int two(int n){
+    if (n < 2) return (1 << n);
+        return two(n - 1) + two(n - 1);
+}
+/* maximum n=M */
+```
 **𝑂(1,000,000) 近似於 1 sec**
 
 ###Sorting
