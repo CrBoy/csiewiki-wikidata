@@ -8,7 +8,7 @@ toc: no
 * DFS
 * BFS
 * vector
-* map
+* Map
 * Binary Search
 * STL (lower_bound, upper, tuple, priority_queue, struct, pair)
 * Backtracking
