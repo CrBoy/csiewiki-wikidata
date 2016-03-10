@@ -13,31 +13,24 @@ toc: no
 QEMU + GDB操作
 ----------------------------
 - 假設 [Lab-19](/embedded/Lab19) 所使用 QEMU 的目錄已放在 workspace 目錄
-
-.. code-block:: prettyprint
-
+```
   cd workspace
   file qemu_stm32
-
+```
 - 取得 GDB Automation
-
-.. code-block:: prettyprint
-
+```
   git clone git://github.com/embedded2013/gdb-automation.git
   git clone git@github.com:embedded2013/gdb-automation.git # 如果上一行失敗
   cd gdb-automation
-
+```
 - 開啟一個終端機，作以下輸入
-
-.. code-block:: prettyprint
-
+```
     make qemudbg
-
+```
 - 開啟另一個終端機，準備透過 gdb 來追蹤程式。下列 (gdb) 開頭的指令表示在 GDB 內部操作
 - 使用 Ubuntu 64-bit 版本時，需要另外安裝 lib32ncurses5
-  - sudo apt-get install lib32ncurses5
-
-.. code-block:: prettyprint
+```
+    sudo apt-get install lib32ncurses5
 
     cd gdb-automation
     arm-none-eabi-gdb
@@ -88,33 +81,27 @@ QEMU + GDB操作
     Hardware watchpoint 3: GPIOC->ODR
     (gdb) c
     Continuing.
-
+```
 - 在 QEMU monitor 內作以下輸入，試圖模擬按鈕的動作
-
-.. code-block:: prettyprint
-
+```
     sendkey b
-
+```
 - 隨後可發現 GDB 畫面出現變化：
- 
-.. code-block:: prettyprint
-
+```
     Hardware watchpoint 3: GPIOC->ODR
 
     Old value = 4096
     New value = 0
     main () at main.c:29
     29			last_button_state = new_button_state;
-
+```
 - 事實上 GPIOC 是個 macro，可透過 GDB 驗證
-
-.. code-block:: prettyprint
-
+```
     (gdb) info macro GPIOC
     Defined at libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h:1410
       included at Lab-2/demo/main.c:2
     #define GPIOC ((GPIO_TypeDef *) GPIOC_BASE)
-
+```
 GDB Automation
 ----------------------------
 - 撰寫特別的 GDB script，使得 QEMU 能自動在 UART 畫面印出 "Hello!" 字樣。main.c 檔案的行數應該越少越好，處理動作最好全權交給 GDB
