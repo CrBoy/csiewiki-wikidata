@@ -68,6 +68,14 @@ $ make check
     - 第 1 行指定 List 的長度，如 `3`，GDB 會透過程式去建立一個有 3 個 node 的 linked list
     - 第 2 行為 linked list 每個 node 的初始值，如 `12 4 5` 就表示 `list = {12, 4, 5}`
 
+作業要求 (A)
+-----------
+* 在 GitHub 上 fork [raytracing](https://github.com/embedded2016/raytracing)，並思考如何改善程式效能
+* 以 `make PROFILE=1` 重新編譯程式碼，並且學習 [gprof](https://sourceware.org/binutils/docs/gprof/)
+    - 參考 [使用 GNU gprof 進行 Linux 平台的程式分析](http://os.51cto.com/art/200703/41426.htm)
+* 以 [gprof](https://sourceware.org/binutils/docs/gprof/) 指出效能瓶頸，並且著手改寫檔案 `math-toolkit.h` 在內的函式實做，充分紀錄效能差異在共筆
+
+
 參考資料
 -------
 * [Ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))
