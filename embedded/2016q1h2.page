@@ -89,6 +89,11 @@ $ make check
 * 將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式，以及在實做 merge sort 的各項啟發，紀錄於 [作業區](https://embedded2016.hackpad.com/2016q1-Homework-2-v37rXPJjRlW)，記得標注「開發紀錄(B)」
 
 
+截止日期
+--------
+* Mar 21, 2016 (含) 之前
+* 越早在 GitHub 上有動態、越早接受 code review，評分越高
+
 參考資料
 -------
 * [Ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))
