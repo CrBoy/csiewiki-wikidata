@@ -97,3 +97,5 @@ $ make check
 參考資料
 -------
 * [Ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))
+* [認識與學習 Bash](http://linux.vbird.org/linux_basic/0320bash.php)
+* [學習 Shell Scripts](http://linux.vbird.org/linux_basic/0340bashshell-scripts.php)
