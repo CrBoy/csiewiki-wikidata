@@ -5,11 +5,11 @@ toc: no
 ...
 
 * [Review1](course/Review1)
-* DFS
-* BFS
-* Vector
-* Map
-* Disjoint set
+* [DFS](course/DFS)
+* [BFS](course/BFS)
+* [Vector](course/Vector)
+* [Map](course/Map)
+* [Disjoint set](course/Disjoint_set)
 * Binary Search
 * STL (lower_bound, upper, tuple, priority_queue, struct, pair)
 * Backtracking
