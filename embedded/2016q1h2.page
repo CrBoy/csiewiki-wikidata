@@ -7,7 +7,6 @@ toc: no
 ------------
 - 學習效能分析工具
 - 學習 GNU Toolchain
-- 透過視覺化找出
 
 標注須知
 -------
@@ -55,7 +54,19 @@ GDB (GNU Debugger)
 * [GDB 筆記](http://loda.hala01.com/2012/04/gdb%E7%AD%86%E8%A8%98/)
 * [以 GDB 重新學習 C 語言程式設計](http://www.slideshare.net/jserv/clang-usinggdb)
 * [GDB Manual](http://sourceware.org/gdb/current/onlinedocs/gdb/)
-
+* 透過 GDB 進行 [unit testing](https://en.wikipedia.org/wiki/Unit_testing)，可參見[張晏誠同學的共筆](https://hackpad.com/2016-enLVN713lvM)
+* 取得預先準備好的 [unit-tests](https://github.com/embedded2016/unit-tests)，來驗證我們開發的 singly-linked list:
+```
+$ git clone https://github.com/embedded2016/unit-tests.git && cd unit-tests
+$ make
+$ make check
+```
+* 檔案 `data-swap.in` 為輸入，格式為:
+    - 第 1 行是用來給 list 的長度，如 `4`，GDB 會透過程式去建立一個有 4 個 node 的 linked list
+    - 第 2 行與第 3 行是預計要的 node，從 head 開始算 (包含自己) 的第 N 個 node
+* 檔案 `data-bubble.in` 為輸入，格式為:
+    - 第 1 行指定 List 的長度，如 `3`，GDB 會透過程式去建立一個有 3 個 node 的 linked list
+    - 第 2 行為 linked list 每個 node 的初始值，如 `12 4 5` 就表示 `list = {12, 4, 5}`
 
 參考資料
 -------
