@@ -40,7 +40,8 @@ $ ./raytracing
 ```
 Execution time of raytracing() : 2.994175 sec
 ```
-
+* [raytracing](https://github.com/embedded2016/raytracing) 程式執行完畢，將輸出名為 `out.ppm` 的檔案，可透過 `eog` 或在圖形界面點擊開啟。參考輸出:
+![alt text](/embedded/2016q1h2/raytracing.png)
 
 參考資料
 -------
