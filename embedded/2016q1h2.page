@@ -49,6 +49,14 @@ convert out.ppm out.png
 ```
     - `make check` 會檢驗程式碼輸出的圖片是否符合預期，符合的話會得到綠色的 "OK!" 字樣
 
+GDB (GNU Debugger)
+-------------------
+* [GDB Rocks!](http://www.slideshare.net/chenkaie/gdb-rocks-16951548)
+* [GDB 筆記](http://loda.hala01.com/2012/04/gdb%E7%AD%86%E8%A8%98/)
+* [以 GDB 重新學習 C 語言程式設計](http://www.slideshare.net/jserv/clang-usinggdb)
+* [GDB Manual](http://sourceware.org/gdb/current/onlinedocs/gdb/)
+
+
 參考資料
 -------
 * [Ray tracing](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))
