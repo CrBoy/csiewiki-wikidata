@@ -1,0 +1,24 @@
+---
+title: 2016q1 Homework #2
+toc: no
+...
+
+預期目標
+------------
+- 學習效能分析工具
+- 研究軟體最佳化
+
+標注須知
+-------
+下方只要是 `$ ` 開頭，就表示在 GNU/Linux 的終端機裡面輸入的指令，比方說 `$ sudo apt-get update`，就表示要輸入 `sudo apt-get update`。
+
+預先準備動作
+-------------------
+* 參照 [2016q1: Homework1](/embedded/2016q1h1) 的指示，在實體機器安裝 GNU/Linux 和相關的開發套件
+    - 注意: 不得透過虛擬機器，因為我們在意實際機器上的效能
+* 安裝以下開發工具
+```
+$ sudo apt-get update
+$ sudo apt-get install graphviz
+$ sudo apt-get install imagemagick
+```
