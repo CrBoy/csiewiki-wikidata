@@ -76,7 +76,7 @@ $ make check
 * 以 [gprof](https://sourceware.org/binutils/docs/gprof/) 指出效能瓶頸，並且著手改寫檔案 `math-toolkit.h` 在內的函式實做，充分紀錄效能差異在共筆
     - 注意: 請勿更動編譯器最佳化選項 `-O0` (關閉最佳化)
     - 檔案 `math-toolkit.h` 定義的若干數學操作函式很重要，可參考 [SIMD optimized dot and cross product functions](http://tomjbward.co.uk/simd-optimized-dot-and-cross/) 和 [2015q3 Homework #1 Ext](/embedded/2015q3h1ext)
-* 將你的觀察、分析，以及各式效能改善過程，並善用 gnuplot 製圖，紀錄於 [作業區](https://embedded2016.hackpad.com/2016q1-Homework-2-v37rXPJjRlW)，記得標注「開發紀錄(A)」
+* 將你的觀察、分析，以及各式效能改善過程，並善用 gnuplot 製圖，紀錄於「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-2-v37rXPJjRlW)」，記得標注「開發紀錄(A)」
 
 作業要求 (B)
 -----------
@@ -86,7 +86,7 @@ $ make check
     - `merge.c`: `merge_sort()` 函式的實做
     - `test-merge.sh`: 測試 `merge_sort()` 函式的 GDB script
     - `data-merge.in`: 用來測試的輸入資料，原則上與 `data-bubble.in` 相仿
-* 將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式，以及在實做 merge sort 的各項啟發，紀錄於 [作業區](https://embedded2016.hackpad.com/2016q1-Homework-2-v37rXPJjRlW)，記得標注「開發紀錄(B)」
+* 將你學習 GDB 的過程、指出原本程式不足之處 (程式碼寫出來就是給你改進的，可不是給你背誦用！)、如何修正和強化程式，以及在實做 merge sort 的各項啟發，紀錄於 「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-2-v37rXPJjRlW)」，記得標注「開發紀錄(B)」
 
 
 截止日期
