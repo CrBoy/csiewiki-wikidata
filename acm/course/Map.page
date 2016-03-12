@@ -1,0 +1,99 @@
+Map
+========
+Introduce
+--------
+欲使用map需先於程式開頭加上
+
+```c
+#include <map>
+```
+
+Map通常用於將資料整合成一對一關係
+
+例如常用的是用 int 將 string 做編號 ：
+
+```c
+map<int, string> m;
+int n;
+string s;
+cin >> n >> s;
+m[n] = s;
+//Beware of the input order must suit the format of map
+```
+
+而欲讀取資料的話需給予他iterator
+
+注意：如果使用iterator時要符合格式.如果有格式不同的map則需另建一個新的iterator不可共用
+
+```c
+map <int, string>::iterator it;
+```
+
+map在資料存取中.逗號前方的為.first 後方的為.second
+
+例如要讀取所有的map的資料
+
+```c
+cout << "The datas stored in the map are: ";
+for(mit = m.begin(); mit!= m.end(); mit++)
+{
+    cout << (*mit).first << " " << (*mit).second.first << " " << (*mit).second.second << endl;
+}
+//.begin() stands for the first data stored in the map
+```
+
+或是如果只有要讀取"被你編號的"某個 string
+
+```c
+    int search;
+    cout << "Input the number ID of the string you are looking for : ";
+    cin >> search;
+    cout << m[search] << endl;
+```
+
+An fully executable program example :
+
+```c
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    map<int, string> m;
+    map<int, string>::iterator it;
+    int n;
+    string s;
+    int search;
+    cout << "Please insert the datas you want to save into the map :" << endl;
+    cout << "(0 0 to quit)" << endl;
+    while(1)
+    {
+        cin >> n >> s;
+        if(n == 0 && s == "0")
+            break;
+        m[n] = s;
+    }
+    cout << "The datas stored in the map are : " << endl;
+    for(it = m.begin(); it!= m.end(); it++)
+    {
+	cout << (*it).first << " " << (*it).second << endl;
+    }
+    cout << "Input the number ID of the string you are looking for : ";
+    cin >> search;
+    cout << m[search] << endl;
+}
+```
+
+Output:
+
+![](/map1.png)
+
+Member functions
+----------------------------
+
+### .size()
+
+123
