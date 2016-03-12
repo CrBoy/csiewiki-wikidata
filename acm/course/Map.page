@@ -27,6 +27,7 @@ m[n] = s;
 
 ```c
 map <int, string>::iterator it;
+map <int, char>::iterator it2;
 ```
 
 map在資料存取中.逗號前方的為.first 後方的為.second
@@ -42,7 +43,7 @@ for(it = m.begin(); it!= m.end(); it++)
 //.begin() stands for the first data stored in the map
 ```
 
-或是如果只有要讀取"被你編號的"某個 string
+或是如果只有要讀取"被你編號的某個" string
 
 ```c
     int search;
@@ -96,4 +97,4 @@ Member functions
 
 ### .size()
 
-123
+not editted yet
