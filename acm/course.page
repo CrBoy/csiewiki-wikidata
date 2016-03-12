@@ -8,7 +8,7 @@ toc: no
 * DFS
 * BFS
 * Vector
-* Map
+* [Map](course/Map)
 * Disjoint set
 * Binary Search
 * STL (lower_bound, upper, tuple, priority_queue, struct, pair)
