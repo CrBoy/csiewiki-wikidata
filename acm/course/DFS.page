@@ -1,0 +1,84 @@
+DFS 
+========
+* (D)epth (F)irst (S)earch 深度優先搜索法
+
+* 由root開始進行可以走過tree的每一個node
+
+stack概念
+--------
+1.當現在所在node的children node尚未被造訪時將其加入stack 並把它作為parent node繼續往下找到leaf為止
+
+2.若stack.top()沒有其他未造訪的child node時標記為已造訪
+
+3.若有未造訪的child node則重複步驟1到leaf
+
+4.當root標記為visited時即代表已走過整顆tree
+
+以recursive實作
+--------
+DFS通常用遞迴實作
+
+例：UVA-352中所用到的DFS部份
+
+```c
+const int dir[8][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}};
+char map[25][25];
+bool vis[25][25];
+
+void DFS(int x, int y, int n)
+{
+	vis[x][y] = true;
+	int i, nx, ny;
+	for(i = 0;i < 8;++i) {
+		nx = dir[i][0] + x;
+		ny = dir[i][1] + y;
+		if((nx >= n || nx < 0) || (ny >= n || ny < 0)) continue;
+		if(!vis[nx][ny] && map[nx][ny] == '1') {
+			DFS(nx, ny, n);
+		}
+	}
+}
+```
+
+技巧
+--------
+###宣告const陣列作為方向移動用
+使用for loop即可走過所有方向
+
+平面八方向：
+```c
+const int dir[8][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}};
+```
+
+立體六方向：
+```c
+const int dir[6][3] = {{1,0,0}, {0,1,0}, {0,0,1}, {-1,0,0}, {0,-1,0}, {0,0,-1}};
+```
+
+###減少所需判斷式
+若為陣列型資料 可將宣告尺寸加大
+
+並設定為已造訪作為「外殼」，可以減少資料到達邊界時所需的判斷式
+
+注意此時資料儲存不可從array[0] 須改由array[1]開始
+
+範例程式碼修改如下
+
+```c
+const int dir[8][2] = {{-1,-1}, {-1,0}, {-1,1}, {0,-1}, {0,1}, {1,-1}, {1,0}, {1,1}};
+char map[27][27];
+bool vis[27][27];
+
+void DFS(int x, int y, int n)
+{
+	vis[x][y] = true;
+	int i, nx, ny;
+	for(i = 0;i < 8;++i) {
+		nx = dir[i][0] + x;
+		ny = dir[i][1] + y;
+		if(!vis[nx][ny] && map[nx][ny] == '1') {
+			DFS(nx, ny, n);
+		}
+	}
+}
+```
