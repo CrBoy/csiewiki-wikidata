@@ -35,9 +35,9 @@ map在資料存取中.逗號前方的為.first 後方的為.second
 
 ```c
 cout << "The datas stored in the map are: ";
-for(mit = m.begin(); mit!= m.end(); mit++)
+for(it = m.begin(); it!= m.end(); it++)
 {
-    cout << (*mit).first << " " << (*mit).second.first << " " << (*mit).second.second << endl;
+    cout << (*it).first << " " << (*it).second << endl;
 }
 //.begin() stands for the first data stored in the map
 ```
