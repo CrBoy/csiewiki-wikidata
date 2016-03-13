@@ -261,3 +261,113 @@ int main()
 ```
 
 ![](/map5.png)
+
+A long code for you to look and execute for review(?)
+--------
+
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+map<int, string> m;
+map<int, string>::iterator it;
+
+void action_list()
+{
+    cout << "Action List : (Input the number ID for the action)" << endl;
+    cout << "1. insert" << endl;
+    cout << "2. find" << endl;
+    cout << "3. size?" << endl;
+    cout << "4. erase" << endl;
+    cout << "5. clear" << endl;
+    cout << "6. emptied?" << endl;
+    cout << "7. print_map" << endl;
+}
+
+int main()
+{
+    int n;
+    string s;
+    int action;
+    int search;
+    cout << "\033c";
+    cout << "Hi, this is a new map, you can now do several things to it" <<endl;
+    cout << "What do you want to do? " << endl;
+
+    action_list();
+    while(1)
+    {
+    	cout << "Input action ID : ";
+    	cin >> action;
+    	if(action == 100)
+    	{
+    	    cout << endl;
+    	    cout << "Program stopped" << endl;
+    	    break;
+    	}
+        switch(action)
+        {
+    	    case 0:
+                cout << "\033c";
+                action_list();
+                break;
+            case 1:
+                cout << "\033c";
+                cout << "Please insert the datas you want to save into the map : (0 0 to quit)" << endl;
+                while(1)
+                {
+                    cin >> n >> s;
+                    if(n == 0 && s == "0")
+                        break;
+                    m[n] = s;
+                }
+                break;
+            case 2:
+                cout << "\033c";
+                cout << "Input the number ID of the string you are looking for : ";
+                cin >> search;
+                cout << m[search] << endl;
+                break;
+            case 3:
+                cout << "\033c";
+                cout << "There are " << m.size() << " datas now stored in the map" << endl;
+				break;
+            case 4:
+                cout << "\033c";
+                cout << "Please insert the key of the value you want to erase : ";
+                cin >> search;
+                m.erase(search);
+                break;
+            case 5:
+                cout << "\033c";
+                cout << "Map cleared to empty" << endl;
+                m.clear();
+                break;
+            case 6:
+                cout << "\033c";
+                if(m.empty())
+                    cout << "Yeah ~ it's empty now..." << endl;
+                else
+                    cout << "No ~ not empty yet ~" << endl;
+                break;
+            case 7:
+                cout << "\033c";
+                cout << "The datas now stored in the map are : " << endl;
+                for(it = m.begin(); it!= m.end(); it++)
+                {
+                    cout << (*it).first << " " << (*it).second << endl;
+                }
+                break;
+            default:
+                cout << "\033c";
+                cout << "Error action input, type 0 to look at the action list" << endl;
+                break;
+    	}
+        cout << endl;
+        cout << "Anything you also want to do ?" << endl;
+        cout << "(To end the program, you can type 100 now)" << endl;
+    	cout << "(To review the action list please type 0)" << endl;
+    }
+}
