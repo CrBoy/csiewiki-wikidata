@@ -40,7 +40,9 @@ map在資料存取中.key的為.first, value的為.second
 
 例如要讀取所有的map的資料
 
-(.begin
+>.begin()是map第一筆資料的iterator
+
+>.end()是最後一筆資料的iterator
 
 ```c
 cout << "The datas stored in the map are: ";
@@ -102,6 +104,12 @@ Output:
 
 Member functions
 ----------------------------
+
+### .begin() / .end()
+
+>.begin()是map第一筆資料的iterator
+
+>.end()是最後一筆資料的iterator
 
 ### .size()
 
