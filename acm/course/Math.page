@@ -1,0 +1,80 @@
+Week 3: Math
+===========
+大數(Big Number)
+-------------------------
+說明：
+基於記憶體的有效運用，程式語言中規定了各種不同的資料型態，也因此變數所可以表達的最大整數受到限制，例如123456789123456789這樣的 整數就不可能儲存在long變數中（例如C/C++、Java等），我們稱這種數為大數運算。
+
+##方法：
+要讓電腦儲存大數，最好的方法就是使用陣列。一個格子存一個數字，只要宣告 1000 格大小的 int 陣列，就可以存 1000 位數了！
+我們習慣講低位數放在索引值（ index ）比較小的位置，這樣的儲存方式有利於進位時的運算。
+
+##實作：
+###加法運算：
+```c++
+void add(int a[100], int b[100], int c[100])
+{
+        int i = 0,carry = 0;
+        for(i = 0; i < 100; ++i){
+                c[i] = a[i] + b[i] + carry;
+                carry = c[i] / 10;
+                c[i] %= 10;
+        }
+}
+```
+###減法運算
+```c++
+void sub(int a[100], int b[100], int c[100])
+{
+        int i = 0,borrow = 0;
+        for(i = 0; i < 100; ++i){
+                c[i] = a[i] - b[i] - borrow;
+                if(c[i] < 0){
+                        borrow = 1;
+                        c[i] += 10;
+                }
+                else
+                        borrow = 0;
+        }
+}
+```
+
+###乘法運算
+```c++
+void mul(int a[100], int b[100], int c[100])
+{
+        int i = 0, j = 0， carry = 0;
+        for(i = 0; i < 100; ++i ){
+                if(a[i]==0) continue;
+                for(j = 0; j < MAX; ++j)
+                        c[i+j] += a[i] * b[i];
+        }
+
+        for(i = 0; i < MAX; ++i){
+                carry = c[i] / 10;
+                c[i] %= 10;
+        }
+}
+```
+
+###除法運算
+```c++
+void div(int a[100], int b[100], int c[100])
+{
+        int t[100];
+        
+        for (i = 100-1; i >= 0; i--){
+            for (int k=9; k>0; k--) // 嘗試商數
+            {
+                mul(b+i, k, t);
+                if (largerthan(a+i, t))
+                {
+                    sub(a+i, t, c+i);
+                    break;
+                }
+            }
+        } 
+}
+```
+
+
