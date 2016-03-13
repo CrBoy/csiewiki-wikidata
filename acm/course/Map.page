@@ -10,6 +10,12 @@ Introduce
 
 Map通常用於將資料整合成一對一關係
 
+其對關係為map<key, value>
+
+其中一個value可以對應多個key
+
+但是一個key只能對應一個value
+
 例如常用的是用 int 將 string 做編號 ：
 
 ```c
@@ -30,7 +36,7 @@ map <int, string>::iterator it;
 map <int, char>::iterator it2;
 ```
 
-map在資料存取中.逗號前方的為.first 後方的為.second
+map在資料存取中.key的為.first, value的為.second
 
 例如要讀取所有的map的資料
 
@@ -97,4 +103,22 @@ Member functions
 
 ### .size()
 
-not editted yet
+可以用來檢測當前map裡有幾筆資料
+
+例如
+
+```c
+map<int, string> m;
+int n;
+string s;
+while(1)
+    {
+        cin >> n >> s;
+        if(n == 0 && s == "0")
+            break;
+        m[n] = s;
+        cout << "SIZE: " << m.size() << endl;
+    }
+```
+
+![](/map2.png)
