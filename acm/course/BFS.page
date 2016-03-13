@@ -1,0 +1,69 @@
+BFS 
+========
+* (B)readth (F)irst (S)earch 廣度優先搜索法
+
+* 通常用以尋找最短路徑
+
+queue概念
+--------
+1.將現在所在node的所有未被造訪的children node加入queue，並標記為已造訪
+
+2.將當前node改為queue.front()，並重複步驟1
+
+3.若直到queue.empty()仍未到達目標node即表示無法到達目標node
+
+4.若中途已到達目標node即可結束
+
+實作
+--------
+
+例：UVA-532中所用到的BFS部份(已運用[DFS中提及的技巧](/acm/course/DFS#技巧))
+
+```c
+struct pos {
+	int i;
+	int j;
+	int k;
+};
+
+char dun[32][32][32];
+int len[32][32][32];
+const int dir[6][3] = {{1,0,0}, {0,1,0}, {0,0,1}, {-1,0,0}, {0,-1,0}, {0,0,-1}};
+pos start, now, nxt;
+
+int BFS(int i, int j, int k)
+{
+	int c;
+	queue<pos> que;
+
+	que.push(pos{i, j, k});
+	dun[i][j][k] = '#';
+	while(!que.empty()) {
+		now = que.front();
+		que.pop();
+		for(c = 0;c < 6;++c) {
+			nxt.i = now.i + dir[c][0];
+			nxt.j = now.j + dir[c][1];
+			nxt.k = now.k + dir[c][2];
+			
+			if(dun[nxt.i][nxt.j][nxt.k] != '#') {
+				len[nxt.i][nxt.j][nxt.k] = len[now.i][now.j][now.k] + 1;
+				if(dun[nxt.i][nxt.j][nxt.k] == 'E') {
+					return len[nxt.i][nxt.j][nxt.k];
+				}
+				dun[nxt.i][nxt.j][nxt.k] = '#';
+				que.push(nxt);
+			}
+		}
+	}
+	return 0;
+}
+```
+
+通常實作BFS時會多宣告其他陣列作為紀錄距離/次數用
+
+例：範例程式中
+
+```c
+int len[32][32][32];
+```
