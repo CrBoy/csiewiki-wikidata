@@ -1,0 +1,60 @@
+Disjoint set 
+========
+* 用於整理多個屬於同一類別的element
+
+* 當一個element的root等於自身時，代表一顆tree
+
+* 透過計算有幾顆tree即可得知有幾種資料分組
+
+* set[element] = root
+
+所需函式
+--------
+* INIT(x)
+
+準備總element數量(x)的陣列空間，並將其root設為自身
+
+* UNION(x,y)
+
+將x、y的root設為同一個
+
+* FIND(x)
+
+回傳x的root值
+
+實作
+--------
+UVA-10583 部份code
+```c
+int stu[50000];
+
+void Init(int n)
+{
+	int i;
+	for(i = 0;i < n;i++) {
+		stu[i] = i;
+	}
+}
+
+int Find(int x)
+{
+	if(stu[x] == x) return x;
+	else {
+		stu[x] = Find(stu[x]);
+		return stu[x];
+	}
+}
+
+void Union(int a, int b)
+{
+	stu[Find(a)] = Find(b);
+}
+```
+
+其中為了防止Find函式在element數量大時須做多次recursive減低效率
+
+(在tree最大level過大時會發生此狀況)
+
+在Find()中做了對tree「修剪」的動作(else部份)
+
+![修剪](/disjoint_set.png)
