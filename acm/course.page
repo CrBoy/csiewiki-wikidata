@@ -10,6 +10,7 @@ toc: no
 * Vector
 * [Map](course/Map)
 * Disjoint set
+* [Math](course/Math)
 * Binary Search
 * STL (lower_bound, upper, tuple, priority_queue, struct, pair)
 * Backtracking
