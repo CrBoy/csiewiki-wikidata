@@ -9,7 +9,7 @@ toc: no
 * [BFS](course/BFS)
 * Vector
 * [Map](course/Map)
-* Disjoint set
+* [Disjoint set](course/Disjoint_set)
 * [Math](course/Math)
 * Binary Search
 * STL (lower_bound, upper, tuple, priority_queue, struct, pair)
