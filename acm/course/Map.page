@@ -264,7 +264,7 @@ int main()
 
 A long code for you to look and execute for review(?)
 --------
-
+```c
 #include <iostream>
 #include <map>
 #include <string>
@@ -371,3 +371,4 @@ int main()
     	cout << "(To review the action list please type 0)" << endl;
     }
 }
+```
