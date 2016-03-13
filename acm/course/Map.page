@@ -29,7 +29,7 @@ m[n] = s;
 
 而欲讀取資料的話需給予他iterator
 
-注意：如果使用iterator時要符合格式.如果有格式不同的map則需另建一個新的iterator不可共用
+>注意：如果使用iterator時要符合格式.如果有格式不同的map則需另建一個新的iterator不可共用
 
 ```c
 map <int, string>::iterator it;
@@ -105,7 +105,7 @@ Member functions
 
 ### .size()
 
-可以用來檢測當前map裡有幾筆資料
+>可以用來檢測當前map裡有幾筆資料
 
 例如
 
@@ -127,9 +127,9 @@ while(1)
 
 ### .clear() / .empty()
 
-.clear()是用來清空map裡所有資料的一個member function
+>.clear()是用來清空map裡所有資料的一個member function
 
-.empty()是用來察看map裡的資料是否是空的的member function (returns boolean)
+>.empty()是用來察看map裡的資料是否是空的的member function (returns boolean)
 
 ```c
 cout << "Is it empty ?" << endl;
@@ -147,3 +147,109 @@ else
 
 ![](/map3.png)
 
+### .find()
+
+.find()是用來搜尋某筆map資料的iterator
+
+在取得該筆map資料的iterator後可對其進行修改value
+
+但是key因為是read-only所以無法對齊進行修改 
+
+>格式： it = map.find(key);
+
+Code example:
+
+```c
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    map<int, string> m;
+    map<int, string>::iterator it;
+    int n;
+    string s;
+    int search;
+    m[1] = "apple";
+    m[2] = "banana";
+    m[3] = "water";
+    cout << "The datas stored in the map are : " << endl;
+    for(it = m.begin(); it!= m.end(); it++)
+    {
+        cout << (*it).first << " " << (*it).second << endl;
+    }
+    cout << "Please insert the key of the value you want to change : ";
+    cin >> search;
+    it = m.find(search);
+    cout << "What do you want to change it into ?" << endl;
+    cin >> (*it).second;
+    cout << "Now the datas stored in the map are : " << endl;
+	for(it = m.begin(); it!= m.end(); it++)
+    {
+        cout << (*it).first << " " << (*it).second << endl;
+    }
+}
+```
+
+Output:
+
+![](/map4.png)
+
+### .erase()
+
+.erase()是用來清除特定iterator所存的map的資料
+
+格式(有兩種)：
+
+Erase by iterator
+
+>配合上述的.find()使用
+
+>it = map.find(key);
+
+>map.erase(it);
+
+Erase by key
+
+>map.erase(key);
+
+>Code example:
+
+```c
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    map<int, string> m;
+    map<int, string>::iterator it;
+    int n;
+    string s;
+    int search;
+    m[1] = "apple";
+    m[2] = "banana";
+    m[3] = "water";
+    cout << "The datas stored in the map are : " << endl;
+    for(it = m.begin(); it!= m.end(); it++)
+    {
+        cout << (*it).first << " " << (*it).second << endl;
+    }
+    cout << "Please insert the key of the value "<< endl;
+    cout << "you want to erase : ";
+    cin >> search;
+    m.erase(search);
+    cout << "Now the datas stored in the map are : " << endl;
+	for(it = m.begin(); it!= m.end(); it++)
+    {
+        cout << (*it).first << " " << (*it).second << endl;
+    }
+}
+```
+
+![](/map5.png)
