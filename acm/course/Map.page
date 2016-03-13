@@ -40,6 +40,8 @@ map在資料存取中.key的為.first, value的為.second
 
 例如要讀取所有的map的資料
 
+(.begin
+
 ```c
 cout << "The datas stored in the map are: ";
 for(it = m.begin(); it!= m.end(); it++)
@@ -122,3 +124,26 @@ while(1)
 ```
 
 ![](/map2.png)
+
+### .clear() / .empty()
+
+.clear()是用來清空map裡所有資料的一個member function
+
+.empty()是用來察看map裡的資料是否是空的的member function (returns boolean)
+
+```c
+cout << "Is it empty ?" << endl;
+if(m.empty())
+    cout << "Yes~" << endl;
+else
+    cout << "No~~~~~" << endl;
+cout << "Is it empty now?" << endl;
+m.clear();
+if(m.empty())
+    cout << "EMPTY!" << endl;
+else
+    cout << "Nope" << endl;
+```
+
+![](/map3.png)
+
