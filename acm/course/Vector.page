@@ -64,13 +64,13 @@ output:
 ### .pop_back()
 ### .begin() / .end()
 
->.begin()會將iterator指向第一筆資料
+.begin()會將iterator指向第一筆資料
 
->.end()會將iterator指向最後一筆資料
+.end()會將iterator指向最後一筆資料
 
 ### .size()
 
->.size會回傳vector大小
+.size會回傳vector大小
 ### .clear() / .empty()
 
 ### .erase() / .insert()
