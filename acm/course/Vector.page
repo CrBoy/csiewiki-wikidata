@@ -15,12 +15,12 @@ ex:
 ```
 建立新vector的語法
 
-vector<type> vector_name(amount,element);
+vector<變數型態> vector_name(amount,element);
 
 ex:
 ```c
 vector<int> acm(3,4);
-vector<float> csie(5);
+vector<float> csie(5);//未指定數字會補0
 ```
 嘗試印出兩vector內容
 
@@ -35,50 +35,31 @@ ex:
 ```c
 vector<int> acm;
 ```
+此外也可以使用陣列為基礎來建構vector，將陣列原有的資料放入vector中
 
-若要讀取資料的話需要先定義iterator（迭代器）以進行進一步的操作
-```c
-vactor <int>::iterator it;
-vactor <float>::iterator it2;
-```
-完整程式碼範例
+如此的指定方式，需要提供的參數為起始位址與結束位址
 
 ex:
 ```c
-#include <iostream>
-#include <vector>
-using namespace std;
-
-vector<int> acm(3,4);
-vector<int>::iterator it;
-
-void vector_print(){
-
-	cout << "The vector contains these elements : " << endl;
-	for(it = acm.begin(); it != acm.end(); it++){
-		cout << *it << " ";
-	}//prints the vector from the first element to the last element
-	cout << endl;
-}
-
-int main(){
-    int n;
-    vector_print();
-    return 0;
-}
-```
-Output:
-```c
-The vector contains these elements :
-4 4 4
-
+int array[5]={1,2,3,4,5};
+vector<int> ncku(array,array+5);//1 2 3 4 5 
+vector<int> csie(array+1,array+4);//2 3 4
 ```
 
 Member functions
 ----------------------------
 
 ### operator[]
->
+中括號[]的用法與array相同，指的是vector中的指定項元素
+```c
+int array[5]={1,2,3,4,5};
+vector<int> ncku(array,array+5);
+cout << ncku[2] << endl; 
+```
+output:
+```c
+3
+```
 ### .push_back()
 ### .pop_back()
 ### .begin() / .end()
