@@ -8,6 +8,7 @@ Vector可以任意增加陣列長度及資料的數量，也可任意插入或�
 基礎運用
 --------
 使用vector需要加入標頭檔<vector>
+
 ex:
 ```c
 #include <vector>
@@ -15,6 +16,7 @@ ex:
 建立新vector的語法
 
 vector<type> vector_name(amount,element);
+
 ex:
 ```c
 vector<int> acm(3,4);
@@ -26,6 +28,7 @@ output:
 4
 ```
 也可以直接建立空白的vector
+
 ex:
 ```c
 vector<int> acm;
