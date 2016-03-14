@@ -16,6 +16,18 @@ categories: 系統頁面
 
     這個問題是關於錯誤描述
 
+1. 刪除資料夾下的檔案會錯誤 (以下為舉例)
+  - 發生位置
+    
+    在任何資料夾裡面的檔案都會發生，以下舉 [`acm/test.jpg`](/acm/test.jpg) 為例 <br/>
+    [acm 資料夾下  ](/acm/)\ ，按下 [delete](/acm/_delete/acm/test.jpg) 就會發生
+
+  - 錯誤描述
+
+    當按下刪除後，會導至此網址: http://wiki.csie.ncku.edu.tw/acm/_delete/acm/test.jpg <br/>
+    但這樣多一個 acm directory 了，正確的應該為: http://wiki.csie.ncku.edu.tw/_delete/acm/test.jpg <br/>
+    猜測 code 的地方應該改為 `/_delete/$FILE_PATH`，假設原始的 code 為 `./_delete/$FILE_PATH`，之類的
+
 使用上的不便
 ----------
 
