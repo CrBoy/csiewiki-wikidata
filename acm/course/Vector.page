@@ -36,52 +36,44 @@ ex:
 vector<int> acm;
 ```
 
-若要讀取資料的話需要先定義iterator
+若要讀取資料的話需要先定義iterator以進行進一步的操作
 ```c
 vactor <int>::iterator it;
 vactor <float>::iterator it2;
 ```
+完整程式碼範例
 
-An fully executable program example :
-
+ex:
 ```c
 #include <iostream>
-#include <map>
-#include <string>
-
+#include <vector>
 using namespace std;
 
-int main()
-{
-    map<int, string> m;
-    map<int, string>::iterator it;
+vector<int> acm(3,4);
+vector<int>::iterator it;
+
+void vector_print(){
+
+	cout << "The vector contains these elements : " << endl;
+	for(it = acm.begin(); it != acm.end(); it++){
+		cout << *it << " ";
+	}//prints the vector from the first element to the last element
+	cout << endl;
+	cout << endl;
+}
+
+int main(){
     int n;
-    string s;
-    int search;
-    cout << "Please insert the datas you want to save into the map :" << endl;
-    cout << "(0 0 to quit)" << endl;
-    while(1)
-    {
-        cin >> n >> s;
-        if(n == 0 && s == "0")
-            break;
-        m[n] = s;
-    }
-    cout << "The datas stored in the map are : " << endl;
-    for(it = m.begin(); it!= m.end(); it++)
-    {
-	cout << (*it).first << " " << (*it).second << endl;
-    }
-    cout << "Input the number ID of the string you are looking for : ";
-    cin >> search;
-    cout << m[search] << endl;
+    vector_print();
+    return 0;
 }
 ```
-
 Output:
+```c
+The vector contains these elements :
+4 4 4
 
-![](/map1.png)
-
+```
 Member functions
 ----------------------------
 
