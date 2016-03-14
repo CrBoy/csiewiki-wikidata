@@ -13,6 +13,7 @@ ex:
 #include <vector>
 ```
 建立新vector的語法
+
 vector<type> vector_name(amount,element);
 ex:
 ```c
