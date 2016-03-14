@@ -7,17 +7,13 @@ toc: no
 ----------
 * [Introduction to ARM Architecture](https://docs.google.com/presentation/d/1cFBRICktpVQAOLzE5eDKD-OM4ckJuncFsn39Wg8aLZI/edit#slide=id.p14)
   - [ARM Conditional Execution](http://www.davespace.co.uk/arm/introduction-to-arm/conditional.html)，以 C 程式來說:
-
-.. code-block:: prettyprint
-
+```c
     if (z == 1) R1 = R2 + (R3 * 4) 
-
+```
 對應的 ARM 組合語言為
-
-.. code-block:: prettyprint
-
+```c
     addeqs r1, r2, r3, lsl #2
-
+```
 Object-Oriented Programming in Kernel
 ------------------------------------------------------
 * [Object-oriented design patterns in the kernel (1)](http://lwn.net/Articles/444910/)
