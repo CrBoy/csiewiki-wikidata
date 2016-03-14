@@ -20,12 +20,14 @@ vector<type> vector_name(amount,element);
 ex:
 ```c
 vector<int> acm(3,4);
+vector<float> csie(5);
 ```
+嘗試印出兩vector內容
+
 output:
 ```c
-4
-4
-4
+acm : 4 4 4
+csie : 0 0 0 0 0 
 ```
 也可以直接建立空白的vector
 
@@ -34,14 +36,10 @@ ex:
 vector<int> acm;
 ```
 
-
-而欲讀取資料的話需給予他iterator
-
->注意：如果使用iterator時要符合格式.如果有格式不同的map則需另建一個新的iterator不可共用
-
+若要讀取資料的話需要先定義iterator
 ```c
-map <int, string>::iterator it;
-map <int, char>::iterator it2;
+vactor <int>::iterator it;
+vactor <float>::iterator it2;
 ```
 
 map在資料存取中.key的為.first, value的為.second
