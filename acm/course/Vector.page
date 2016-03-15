@@ -148,8 +148,38 @@ output:
 ```c
 5
 ```
-
 ### .clear() / .empty()
+.clear()會刪除vector內的所有元素，clear後的vector大小會為0
 
+而.empty()則會測試vector是否為空的，是則回傳ture，否則回傳false
+
+注意：empty只會測試是否為空，並不會清空vector內資料
+```c
+vector<int> acm;
+
+acm.push_back(100);
+acm.push_back(200);
+acm.push_back(300);
+cout << "the original size is : " 
+     << acm.size() 
+     << endl;
+
+acm.clear();	
+cout << "after cleaning, the size is : "
+     << acm.size() 
+     << endl;
+
+if(acm.empty()==true){
+    cout << "the vector is empty!"
+	 << endl;
+}
+
+```
+output:
+```c
+the original size is : 3
+after cleaning, the size is : 0
+the vector is empty!
+```
 ### .erase() / .insert()
 ### .assign()
