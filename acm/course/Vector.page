@@ -181,5 +181,69 @@ the original size is : 3
 after cleaning, the size is : 0
 the vector is empty!
 ```
-### .erase() / .insert()
+### .insert()
+.insert()可以指定元素插入vector的位置與數量
+
+有三種常見的插入方式
+
+1.插入單個數字
+```c
+vector.insert(position,element);
+```
+2.填入多個相同數字
+```c
+vector.insert(position,amount,element);
+```
+3.將另一獨立vector或陣列插入舊有vector
+```c
+vector.insert(position,input start,input end);
+```
+完整程式碼範例
+
+ex:
+```c
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int>::iterator it;
+
+void vector_print(vector<int> v){
+
+    for(it = v.begin(); it != v.end(); it++){
+	cout << *it << " ";
+    }
+    cout << endl;
+}
+int main(){
+    vector<int> ncku;
+        
+    ncku.push_back(108);
+    it=ncku.begin();
+    ncku.insert(it,107);
+    vector_print(ncku);
+
+    ncku.insert(ncku.begin(),2,106);
+    vector_print(ncku);
+
+    vector<int> csie(3,105);
+    ncku.insert(ncku.begin(),csie.begin()+1,csie.end());
+    vector_print(ncku);
+
+    int array[]={108,109,120};
+    it=ncku.end();
+    ncku.insert(it,array,array+3);
+    vector_print(ncku);
+
+    return 0;
+}
+```
+output:
+```c
+107 108 
+106 106 107 108 
+105 105 106 106 107 108 
+105 105 106 106 107 108 108 109 120
+```
+###.erase()
 ### .assign()
