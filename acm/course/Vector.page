@@ -14,9 +14,9 @@ ex:
 #include <vector>
 ```
 建立新vector的語法
-
-vector<變數型態> vector_name(amount,element);
-
+```c
+vector<type> vector_name(amount,element);
+```
 ex:
 ```c
 vector<int> acm(3,4);
@@ -60,13 +60,82 @@ output:
 ```c
 3
 ```
-### .push_back()
-### .pop_back()
-### .begin() / .end()
-
+### iterator迭代器/.begin() / .end()
+若要讀取資料的話也可以定義iterator來進行進一步的操作
+```c
+vactor <int>::iterator it;
+vactor <float>::iterator it2;
+```
 .begin()會將iterator指向第一筆資料
 
 .end()會將iterator指向最後一筆資料
+
+完整程式碼範例
+
+ex:
+```c
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> acm(3,4);
+vector<int>::iterator it;
+
+void vector_print(){
+
+	cout << "The vector contains these elements : " << endl;
+	for(it = acm.begin(); it != acm.end(); it++){
+		cout << *it << " ";
+	}//prints the vector from the first element to the last element
+	cout << endl;
+}
+
+int main(){
+    int n;
+    vector_print();
+    return 0;
+}
+```
+Output:
+```c
+The vector contains these elements :
+4 4 4
+
+```
+
+### .push_back()/.pop_back()
+.push_back()會將小括號內的資料加入vector尾端
+
+而.pop_back則會刪去最後面的資料
+
+ex:
+```c
+char ar[5]={'a','b','c','d','e'};
+vector<char> csie(ar,ar+5);
+vector<char>::iterator it;
+vector_print_c(csie);
+
+csie.push_back('f');
+vector_print_c(csie);
+
+csie.push_back('g');
+vector_print_c(csie);
+
+csie.pop_back();
+vector_print_c(csie);
+
+csie.pop_back();
+vector_print_c(csie);
+```
+
+output:
+```c
+a b c d e
+a b c d e f
+a b c d e f g
+a b c d e f 
+a b c d e
+```
 
 ### .size()
 
