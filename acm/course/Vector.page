@@ -266,3 +266,17 @@ csie.erase(csie.begin()+6);//0 1 2 3 4 5 7 8 9 10
 csie.erase(csie.begin()+6,csie.end());//0 1 2 3 4 5
 ```
 ### .assign()
+使用assign對vector賦值的話會將vector內原有的所有資料覆蓋
+
+assign的用法與宣告時類似，但沒有只給一個參數(amount)的用法
+```c
+vector.assign(amount,element);
+vector.assign(input array start,input array end);
+```
+ex:
+```c
+vector<int> ncku(3,2016);//2016 2016 2016
+ncku.assign(5,100);//100 100 100 100 100
+int array[5]={1,2,3,4,5};
+ncku.assign(array,array+5);//1 2 3 4 5
+```
