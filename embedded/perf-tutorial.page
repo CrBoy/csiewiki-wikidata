@@ -95,7 +95,13 @@ int main() {
     return 0;
 }
 ```
-執行上述程式後，根據 pid 輸入 
+將上述程式存檔為 perf_top_example.c，並執行：
+```
+g++ -c perf_top_example.c
+g++ perf_top_example.o -o example
+./example
+```
+執行上述程式後，可以取得一個 pid 值，再根據 pid 輸入 
 ```
 perf top -p $pid
 ```
