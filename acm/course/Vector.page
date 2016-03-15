@@ -113,6 +113,21 @@ ex:
 char ar[5]={'a','b','c','d','e'};
 vector<char> csie(ar,ar+5);
 vector<char>::iterator it;
+<<<<<<< edited
+vector_print(csie);
+
+csie.push_back('f');
+vector_print(csie);
+
+csie.push_back('g');
+vector_print(csie);
+
+csie.pop_back();
+vector_print(csie);
+
+csie.pop_back();
+vector_print(csie);
+=======
 vector_print_c(csie);
 
 csie.push_back('f');
@@ -126,6 +141,7 @@ vector_print_c(csie);
 
 csie.pop_back();
 vector_print_c(csie);
+>>>>>>> 91819319312fd311a826bc01452f9cc391fcc945
 ```
 
 output:
