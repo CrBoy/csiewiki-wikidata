@@ -245,5 +245,24 @@ output:
 105 105 106 106 107 108 
 105 105 106 106 107 108 108 109 120
 ```
-###.erase()
+
+### .erase()
+.earse()可以刪除單個元素，也可以刪除給定範圍內的所有資料
+
+用法分別為
+```c
+vector.erase(position);
+```
+以及
+```c
+vector.erase(erase start,erase end);
+```
+ex:
+```c
+int array[]={0,1,2,3,4,5,6,7,8,9,10};
+vector<int> csie(array,array+11);
+
+csie.erase(csie.begin()+6);//0 1 2 3 4 5 7 8 9 10
+csie.erase(csie.begin()+6,csie.end());//0 1 2 3 4 5
+```
 ### .assign()
