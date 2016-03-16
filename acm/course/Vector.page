@@ -63,8 +63,8 @@ output:
 ### iterator迭代器/.begin() /.end()
 若要讀取資料的話也可以定義iterator來進行進一步的操作
 ```c
-vactor <int>::iterator it;
-vactor <float>::iterator it2;
+vector <int>::iterator it;
+vector <float>::iterator it2;
 ```
 .begin()會將iterator指向第一筆資料
 
