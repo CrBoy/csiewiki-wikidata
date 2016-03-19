@@ -136,18 +136,18 @@ categories: vim
     - 配合 ```:hi LineCr``` 就可以很清楚的知道現在游標所在的位置
 
 # **例子** #
-
-## 微 Sublime 風 ##
-
+## vim sublime Theme ##
+- [vim-monokai](https://github.com/sickill/vim-monokai)
 - Screenshot
-
+![](https://camo.githubusercontent.com/66d46739895bdea648a10e286a6381943f876d04/68747470733a2f2f636c6f75642e6769746875622e636f6d2f646f776e6c6f6164732f7369636b696c6c2f76696d2d6d6f6e6f6b61692f76696d2d6d6f6e6f6b61692e706e67)
+-
+## 微 Sublime 風 ##
+- Screenshot
 ![](/vimrc/highlight_ex1.PNG)
-
 - 額外設定
     - [Additional vim c++ syntax-highlighting](https://github.com/octol/vim-cpp-enhanced-highlight)
     - terminal 背景色設為 #002B36 ( solarized dark，很棒的配色，google 圖片可以找到很多漂亮的上色 )
 - .vimrc
-
 ~~~ { .vimrc }
 :set nu
 :set cursorline
