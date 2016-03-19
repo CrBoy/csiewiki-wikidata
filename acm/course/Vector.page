@@ -68,7 +68,7 @@ vector <float>::iterator it2;
 ```
 .begin()會將iterator指向第一筆資料
 
-.end()會將iterator指向最後一筆資料
+.end()會將iterator指向最後一筆資料的下一個位子
 
 完整程式碼範例
 
