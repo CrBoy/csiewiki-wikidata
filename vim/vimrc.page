@@ -1,7 +1,7 @@
 ---
 title: vimrc設定教學
 toc: yes
-categories: vim
+categories: vim, editor
 ...
 
 
@@ -148,15 +148,16 @@ categories: vim
     - [Additional vim c++ syntax-highlighting](https://github.com/octol/vim-cpp-enhanced-highlight)
     - terminal 背景色設為 #002B36 ( solarized dark，很棒的配色，google 圖片可以找到很多漂亮的上色 )
 - .vimrc
-~~~ { .vimrc }
-:set nu
-:set cursorline
-:set tabstop=4
-:set shiftwidth=4
+
+```
+set nu
+set cursorline
+set tabstop=4
+set shiftwidth=4
 
 " Color configuration
-:set bg=dark
-:color evening  " Same as :colorscheme evening
-:hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
-:hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
-~~~
+set bg=dark
+color evening  " Same as :colorscheme evening
+hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
+hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
+```
