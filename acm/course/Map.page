@@ -44,7 +44,7 @@ map在資料存取中.key的為.first, value的為.second
 
 >.begin()是map第一筆資料的iterator
 
->.end()是最後一筆資料的iterator
+>.end()是最後一筆資料的iterator的下一個位子
 
 ```c
 cout << "The datas stored in the map are: ";
