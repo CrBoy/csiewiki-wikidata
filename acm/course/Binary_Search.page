@@ -9,9 +9,9 @@ Binary Search(二元搜尋法)
 1. 資料需依大小先排序好
 2. Middle = ⌊(Left + Right)/2⌋
 3. 將鍵值key與搜尋範圍的中間資料data[Middle]作比對  
-key = data[Middle]：找到  
-key < data[Middle]：縮小搜尋範圍 ⇒ Right = Middle-1  
-key > data[Middle]：縮小搜尋範圍 ⇒ Left = Middle+1
+    + key = data[Middle]：找到   
+    + key < data[Middle]：縮小搜尋範圍 ⇒ Right = Middle-1  
+    + key > data[Middle]：縮小搜尋範圍 ⇒ Left = Middle+1
 4. 重複上步驟，直到找到資料或搜尋範圍交叉(找不到)
 
 ##舉例
