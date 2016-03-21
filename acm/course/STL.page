@@ -56,11 +56,12 @@ Max-Heap: 父節點的值總是大於或等於任何一個子節點的值
     + 宣告：
         + 實作Max-Heap： `priority_queue<int> prique`
         + 實作Min-Heap： `priority_queue<int, vector<int>, greater<int> > prique`
-    + 用法：與queue相似
+    + 原型：`template <class T, class Container = vector<T>,  class Compare = less<typename Container::value_type> > class priority_queue;`
+    + 用法：常用operator有 **`empty()、size()、front()、push_back()、pop_back()`** ，呼叫方式與queue相似
 
-* struct比較：
-    * 原理：使用運算子重載
-    * 應用於 sort, priority_queue, lower/upper_bound
+##struct比較
+* 原理：使用運算子重載
+* 應用於 sort, priority_queue, lower/upper_bound
 
 ```c++
 /*寫法一*/
