@@ -12,7 +12,7 @@ toc: no
 * [Disjoint set](course/Disjoint_set)
 * [Math](course/Math)
 * [Binary Search](course/Binary_Search)
-* STL (lower_bound, upper, tuple, priority_queue, struct, pair)
+* [STL (lower_bound, upper, tuple, priority_queue, struct, pair)](course/STL)
 * Backtracking
 * DP
 * LCS
