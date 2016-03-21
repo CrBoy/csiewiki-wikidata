@@ -1,0 +1,86 @@
+Week 4: STL
+===========
+STL(Standard Template Library, 標準函式庫)
+-------------------------
+說明：
+是一個C++軟體庫，也是C++標準程式庫的一部分，其中包含4個元件，分別為演算法、容器、函式、迭代器。
+
+##lower/upper_bound
+* 利用STL完成Binary Search  
+* 需引入 algorithm 函式庫 
+ 
+```c++
+#include <cstdio>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+	int array[] = {6, 13, 14, 25, 33, 43, 51, 53, 64, 72, 84, 93, 95, 96, 97};
+ 	printf("%d\n", lower_bound(array, array + 15, 34) - array - 1);
+
+	return 0;
+}
+```
+
+
+##pair/tuple
+* pair: (x, y)
+* tuple: (x1, x2, …, xn), **`需在 C++11 環境下使用`**
+* 範例
+
+`pair<string, int> data = make_pair("吳勃興", 0)`  
+`tuple<string, string, string, string, int> = make_tuple("吳勃興", "帥哥", "卷哥", "夯哥", 100)`
+
+##priority_queue
+* 說明：有別於一般的 queue，每一個 element 都額外帶有優先值，愈優先的 (一般來說是優先值愈低的) 放在愈前面。
+* 特性：
+    1. 底層以 Binary Heap 實作
+    2. 是一棵 Complete Binary Tree
+    3. 滿足 Heap 的條件
+* 類別：  
+
+Min-Heap: 父節點的值總是小於或等於任何一個子節點的值 
+  
+:   <br />![](/acm/min_heap_small.png)  
+
+Max-Heap: 父節點的值總是大於或等於任何一個子節點的值 
+  
+:   <br />![](/acm/max_heap_small.png)
+
+* 時間複雜度：
+    + Insertion: O(lgn)
+    + Removal: O(lgn)
+
+* 用法：
+    + 宣告：
+        + 實作Max-Heap： `priority_queue<int> prique`
+        + 實作Min-Heap： `priority_queue<int, vector<int>, greater<int> > prique`
+    + 用法：與queue相似
+
+* struct比較：
+    * 原理：使用運算子重載
+    * 應用於 sort, priority_queue, lower/upper_bound
+
+```c++
+/*寫法一*/
+struct _DATA {
+	int data1, data2;
+	char data3;
+
+	bool operator<(const struct _DATA &rhs) const {
+		return data1 < rhs.data1;
+	}
+};
+```
+```c++
+/*寫法二*/
+struct _DATA {
+	int data1, data2;
+	char data3;
+
+	bool operator<(const int val) const {
+		return data1 < val;
+	}
+};
+```
