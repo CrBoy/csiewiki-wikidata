@@ -83,7 +83,7 @@ double的十進位精準度位數：14~15
 void Equal(double a, double b)
 {
         double eps = 1e-8;
-        if( fabs(a-b) < eps)
+        if( (fabs(a-b)) < eps)
                 printf("Yes\n");
         else printf("No\n");
 }
@@ -93,7 +93,7 @@ void Equal(double a, double b)
 void NEqual(double a, double b)
 {
         double eps = 1e-8;
-        if( fabs(a-b) > eps)
+        if( (fabs(a-b)) > eps)
                 printf("Yes\n");
         else printf("No\n");
 }
@@ -103,7 +103,7 @@ void NEqual(double a, double b)
 void Less(double a, double b)
 {
         double eps = 1e-8;
-        if( a-b < -eps)
+        if( (a-b) < -eps)
                 printf("Yes\n");
         else printf("No\n");
 }
@@ -113,7 +113,7 @@ void Less(double a, double b)
 void Greater(double a, double b)
 {
         double eps = 1e-8;
-        if( a-b > eps)
+        if( (a-b) > eps)
                 printf("Yes\n");
         else printf("No\n");
 }
