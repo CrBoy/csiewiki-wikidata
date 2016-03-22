@@ -12,5 +12,5 @@ toc: no
 預先安裝的套件
 ------------
 ```
-$ sudo apt-get install apache2-utils
+$ sudo apt-get install apache2-utils check
 ```
