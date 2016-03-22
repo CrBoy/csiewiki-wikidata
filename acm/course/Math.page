@@ -1,5 +1,62 @@
 Week 3: Math
 ===========
+輾轉相除法(Euclid's algorithm)
+-------------------------
+說明：
+可以用來尋找最大公因數
+
+```c++
+int gcd(int a,inb b)
+{
+        if(a==0) return b;
+        return gcd(b%a , a);      
+}
+```
+
+質數(Prime Number)
+-------------------------
+說明：又稱素數，指某自然數除了1和該數自身外，無法被其它自然數整除。
+
+##方法：
+利用建立質數表有很多種方法，對於某自然數，利用每個小於它的自然數來對它做除法，看能不能整除。以下有兩種方法，方法一是把每個數的倍數給刪除掉，方法二則是利用質數的規律性建立。方法二需要確認該數是不是質數，所以建立時間上較慢。而方法一建立時間較快，但是記憶體用較多。
+
+###方法一：
+```c++
+#define MAX 1000000
+bool isprime[MAX];
+void Sieve()
+{
+        memset(isprime,true,sizeof(isprime));
+        isprime[0] = isprime[1] = false;
+        for(int i = 2; i <= sqrt(MAX); i++)
+                if(isprime[i])
+                        for(int j = i+=; j<MAX; j+=i)
+                                isprime[j] = false;
+}
+```
+
+###方法二：
+```c++
+#define MAX 1000000
+vector<int> prime;
+bool isPrime(int n)
+{
+        for(int i=0; prime[i] * prime[i] <= n; i++)
+                if(n%prime[i] == 0)
+                        return false;
+        return true;
+}
+
+void MakePrime()
+{
+        prime.push_back(2);
+        prime.push_back(3);
+        for(int i=5,gap=2 ; i<MAX ; i+=gap, gap=6-gap)
+                if(isPrime(i)) 
+                        prime.push_back(i);
+}
+```
+
 大數(Big Number)
 -------------------------
 說明：
