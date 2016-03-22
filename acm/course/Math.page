@@ -80,9 +80,9 @@ double的十進位精準度位數：14~15
 
 ###判斷相等
 ```c++
-void Equal(double a, double b)
+void Equal(float a, float b)
 {
-        double eps = 1e-8;
+        float eps = 1e-8;
         if( (fabs(a-b)) < eps)
                 printf("Yes\n");
         else printf("No\n");
@@ -90,9 +90,9 @@ void Equal(double a, double b)
 ```
 ###判斷不相等
 ```c++
-void NEqual(double a, double b)
+void NEqual(float a, float b)
 {
-        double eps = 1e-8;
+        float eps = 1e-8;
         if( (fabs(a-b)) > eps)
                 printf("Yes\n");
         else printf("No\n");
@@ -100,9 +100,9 @@ void NEqual(double a, double b)
 ```
 ###判斷小於
 ```c++
-void Less(double a, double b)
+void Less(float a, float b)
 {
-        double eps = 1e-8;
+        float eps = 1e-8;
         if( (a-b) < -eps)
                 printf("Yes\n");
         else printf("No\n");
@@ -110,9 +110,9 @@ void Less(double a, double b)
 ```
 ###判斷大於
 ```c++
-void Greater(double a, double b)
+void Greater(float a, float b)
 {
-        double eps = 1e-8;
+        float eps = 1e-8;
         if( (a-b) > eps)
                 printf("Yes\n");
         else printf("No\n");
