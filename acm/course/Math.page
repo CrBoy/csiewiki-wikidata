@@ -62,6 +62,63 @@ void MakePrime()
 }
 ```
 
+精度度(Epsilon)
+-------------------------
+說明：
+電腦的float跟double精準讀位數有限，因此要對比兩個不同的浮點數，需要用到eps來判斷。
+float的數值範圍：-3.4e-38 ~ 3.4e38
+float的十進位精準度位數：6~7
+double的數值範圍：-1.7e-308 ~ 1.7e308
+double的十進位精準度位數：14~15
+
+方法：
+設 eps = 1e-8（0.00000001）
+判斷相等 (a==b)：|a - b| < eps 
+判斷不相等 (a!=b)：|a - b| > eps
+判斷小於 (a<b)：a - b < -eps
+判斷大於 (a>b)：a - b > eps
+
+###判斷相等
+```c++
+void Equal(double a, double b)
+{
+        double eps = 1e-8;
+        if( fabs(a-b) < eps)
+                printf("Yes\n");
+        else printf("No\n");
+}
+```
+###判斷不相等
+```c++
+void NEqual(double a, double b)
+{
+        double eps = 1e-8;
+        if( fabs(a-b) > eps)
+                printf("Yes\n");
+        else printf("No\n");
+}
+```
+###判斷小於
+```c++
+void Less(double a, double b)
+{
+        double eps = 1e-8;
+        if( a-b < -eps)
+                printf("Yes\n");
+        else printf("No\n");
+}
+```
+###判斷大於
+```c++
+void Greater(double a, double b)
+{
+        double eps = 1e-8;
+        if( a-b > eps)
+                printf("Yes\n");
+        else printf("No\n");
+}
+```
+
 大數(Big Number)
 -------------------------
 說明：
