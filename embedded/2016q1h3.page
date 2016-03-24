@@ -75,7 +75,7 @@ Socket #8 is now disconnected.
 -----------------
 * 確保之前的測試程式均已關閉，而且 port 8080 沒被佔用
     - 可透過 `$ pkill -9 httpd` 來強制關閉伺服器
-* 執行 ``$ ./httpd``，預期將看到類似以下輸出:
+* 執行 `$ ./httpd`，預期將看到類似以下輸出:
 ```
 (pid 4223 : 1 threads) Listening on port 8080 (max sockets: 65536, ~5 used)
 Clients: 0
@@ -116,11 +116,10 @@ Total:       3621 3879 177.2   3998    4001
 ```
 
 * 當對伺服器按下 `Ctrl-C` 時，預期將看到類似以下輸出:
-
 ```
-server done
-
-(4223) Stopped listening for port 8080
+    server done
+    
+    (4223) Stopped listening for port 8080
 ```
 
 使用 Doxygen 自動產生文件
