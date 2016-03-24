@@ -20,3 +20,37 @@ $ sudo apt-get install doxygen graphviz
 Server Framework in modern C
 -----------------------------
 * [server-framework](https://github.com/embedded2016/server-framework): 用 C99 撰寫、具備物件導向程式設計風格的伺服器開發框架
+* 由三部份組成:
+    - [async](https://github.com/embedded2016/server-framework/blob/master/async.h)
+    - [reactor](https://github.com/embedded2016/server-framework/blob/master/reactor.h)
+    - [protocol-server](https://github.com/embedded2016/server-framework/blob/master/protocol-server.h)
+* 取得原始碼並編譯:
+```
+$ git clone https://github.com/embedded2016/server-framework.git
+$ cd server-framework
+$ make
+```
+* 測試 [async](https://github.com/embedded2016/server-framework/blob/master/async.h)
+```
+$ ./test-async
+```
+    - 預期將看到類似以下輸出:
+```
+wrote task 8190
+wrote task 8191
+Hi! 16377
+Hi! 16378
+# signal finish at (711.426132) ms
+# elapsed time: (711.728594) ms
+```
+* 測試 [reactor](https://github.com/embedded2016/server-framework/blob/master/reactor.h)
+```
+./test-reactor
+```
+    - 預期將看到以下訊息:
+```
+Serving HTTP on 127.0.0.1 port 8080
+now open up the URL http://localhost:8080 on your browser
+```
+    - 依據指示，在網頁瀏覽器裡頭打開網址 `http://localhost:8080`，將會看到 "Hello World!" 字樣
+    - 回到原本執行 `./test-reactor` 的終端機視窗，按下 `Ctrl-C` 以結束程式
