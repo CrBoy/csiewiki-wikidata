@@ -128,7 +128,11 @@ Total:       3621 3879 177.2   3998    4001
 -----------------------
 * Doxygen 可掃描給定原始程式碼內容、註解，之後將自動產生程式文件，其中一種輸出就是 HTML，可透過瀏覽器來閱讀文件和程式碼
 * 執行 `make doc`，之後會產生新的目錄 `html`，可用 Firefox 或 Chrome browser 開啟該目錄底下的 `index.html` 檔案
-    - 按下 "Data Structure"
+* 類似以下網頁畫面，注意右邊有搜尋功能:
+
+![](/embedded/2016q1h3/html.png)
+
+* 按下 "Data Structure" 頁面可探究物件階層:
 
 ![](/embedded/2016q1h3/graph.png)
 
