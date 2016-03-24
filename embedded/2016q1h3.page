@@ -113,3 +113,19 @@ Processing:  3619 3877 177.2   3996    4001
 Waiting:        0    1   0.5      0       3
 Total:       3621 3879 177.2   3998    4001
 ```
+
+作業要求
+-------
+* 在 GitHub 上 fork [server-framework](https://github.com/embedded2016/server-framework)
+* 在「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso) 紀錄你閱讀程式碼過程中的疑惑，像是語法、物件導向設計方法、系統呼叫的使用，需要具體指出程式碼片段，以及自己探索過程中閱讀的材料
+* 研讀[第 5 週課程](https://embedded2016.hackpad.com/ep/pad/static/CH64GFFiviW)的物件導向程式設計參考資料，也一併紀錄問題於共筆上
+* 分析 `httpd` 程式執行效能，指出效能低落的原因，並且提出改進方案
+    - 需要實際去改寫程式碼！
+* 加分題
+    - 補完 `tests/test-buffer.c` 的測試項目
+    - 實做基本的 HTTP parser
+
+截止日期
+-------
+* Apr 3, 2016 (含) 之前
+* 越早在 GitHub 上有動態、越早接受 code review，評分越高
