@@ -128,6 +128,15 @@ Total:       3621 3879 177.2   3998    4001
 -------
 * 在 GitHub 上 fork [server-framework](https://github.com/embedded2016/server-framework)
 * 在「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso) 紀錄你閱讀程式碼過程中的疑惑，像是語法、物件導向設計方法、系統呼叫的使用，需要具體指出程式碼片段，以及自己探索過程中閱讀的材料
+* 搭配閱讀以下材料:
+    - [How to use epoll? A complete example in C](https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/)
+    - [The Event Poll Interface](https://www.safaribooksonline.com/library/view/linux-system-programming/0596009585/ch04s02.html)
+    - [Understanding “volatile” qualifier in C](http://www.geeksforgeeks.org/understanding-volatile-qualifier-in-c/)
+    - [Unix Signals](http://cis-linux1.temple.edu/~giorgio/cis307/readings/signals.html)
+    - [信號量測](http://www.intra.idv.tw/data/tech/hw/travellogic.htm)
+    - [Reactor Pattern](https://en.wikipedia.org/wiki/Reactor_pattern)
+    - [pipe system call](http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/pipes/pipes.html)
+    - [Sockets Tutorial](http://www.linuxhowtos.org/C_C++/socket.htm)
 * 研讀[第 5 週課程](https://embedded2016.hackpad.com/ep/pad/static/CH64GFFiviW)的物件導向程式設計參考資料，也一併紀錄問題於共筆上
 * 分析 `httpd` 程式執行效能，指出效能低落的原因，並且提出改進方案
     - 需要實際去改寫程式碼！
