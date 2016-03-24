@@ -115,6 +115,11 @@ Waiting:        0    1   0.5      0       3
 Total:       3621 3879 177.2   3998    4001
 ```
 
+使用 Doxygen 自動產生文件
+-----------------------
+* Doxygen 可掃描給定原始程式碼內容、註解，之後將自動產生程式文件，其中一種輸出就是 HTML，可透過瀏覽器來閱讀文件和程式碼
+* 執行 `make doc`
+
 作業要求
 -------
 * 在 GitHub 上 fork [server-framework](https://github.com/embedded2016/server-framework)
