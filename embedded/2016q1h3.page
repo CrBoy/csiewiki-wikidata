@@ -127,7 +127,7 @@ Total:       3621 3879 177.2   3998    4001
 作業要求
 -------
 * 在 GitHub 上 fork [server-framework](https://github.com/embedded2016/server-framework)
-* 在「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso) 紀錄你閱讀程式碼過程中的疑惑，像是語法、物件導向設計方法、系統呼叫的使用，需要具體指出程式碼片段，以及自己探索過程中閱讀的材料
+* 在「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso)」紀錄你閱讀程式碼過程中的疑惑，像是語法、物件導向設計方法、系統呼叫的使用，需要具體指出程式碼片段，以及自己探索過程中閱讀的材料
 * 搭配閱讀以下材料:
     - [How to use epoll? A complete example in C](https://banu.com/blog/2/how-to-use-epoll-a-complete-example-in-c/)
     - [The Event Poll Interface](https://www.safaribooksonline.com/library/view/linux-system-programming/0596009585/ch04s02.html)
