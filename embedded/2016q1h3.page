@@ -45,7 +45,7 @@ Hi! 16378
 ```
 * 測試 [reactor](https://github.com/embedded2016/server-framework/blob/master/reactor.h)
 ```
-./test-reactor
+$ ./test-reactor
 ```
     - 預期將看到以下訊息:
 ```
@@ -54,3 +54,19 @@ now open up the URL http://localhost:8080 on your browser
 ```
     - 依據指示，在網頁瀏覽器裡頭打開網址 `http://localhost:8080`，將會看到 "Hello World!" 字樣
     - 回到原本執行 `./test-reactor` 的終端機視窗，按下 `Ctrl-C` 以結束程式
+* 測試 [protocol-server](https://github.com/embedded2016/server-framework/blob/master/protocol-server.h)
+```
+$ ./test-protocol-server
+```
+    - 預期將看到類似以下訊息:
+```
+(pid 4130 : 8 threads) Listening on port 8080 (max sockets: 65536, ~5 used)
+```
+    - 這時再次透過網頁瀏覽器開啟網址 `http://localhost:8080`，可以發現原本終端機印出類似以下訊息:
+```
+A connection was accepted on socket #7.
+A connection was accepted on socket #8.
+Socket #7 is now disconnected.
+Socket #8 is now disconnected.
+```
+    - 重複上述動作幾次，又會看到新的訊息，指出 socket 編號的更動
