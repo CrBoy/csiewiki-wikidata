@@ -161,6 +161,8 @@ Total:       3621 3879 177.2   3998    4001
 * 加分題
     - 補完 `tests/test-buffer.c` 的測試項目
     - 實做基本的 HTTP parser
+    - 參考 `tests/test-protocol-server.c`，實做類似 BBS 的 telnet server，可允許使用者登入
+        + BBS 控制碼可參考 [maplebbs](https://github.com/xeonchen/maplebbs-itoc)
 
 截止日期
 -------
