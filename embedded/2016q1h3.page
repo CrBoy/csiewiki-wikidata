@@ -63,19 +63,23 @@ $ ./test-protocol-server
 ```
 (pid 4130 : 8 threads) Listening on port 8080 (max sockets: 65536, ~5 used)
 ```
-    - 這時再次透過網頁瀏覽器開啟網址 `http://localhost:8080`，可以發現原本終端機印出類似以下訊息:
+    - 這時開啟新的終端機，輸入 `telnet localhost 8080`，可以發現原本執行 `test-protocol-server` 的終端機印出以下訊息:
 ```
 A connection was accepted on socket #7.
-A connection was accepted on socket #8.
-Socket #7 is now disconnected.
-Socket #8 is now disconnected.
 ```
-    - 重複上述動作幾次，又會看到新的訊息，指出 socket 編號的更動
+    - 回到執行 `telnet` 的終端機，可發現以下輸出:
+```
+    Trying 127.0.0.1...
+    Connected to localhost.
+    Escape character is '^]'.
+    Simple echo server. Type 'bye' to exit.
+```
+    - 試著打字 (記得按下 `Enter`)，會發現會重複輸出，直到輸入 `bye` 時，才會結束連線
 
 測試網頁伺服器的效能
 -----------------
 * 確保之前的測試程式均已關閉，而且 port 8080 沒被佔用
-    - 可透過 `$ pkill -9 httpd` 來強制關閉伺服器
+    - 可透過 `$ pkill -9 httpd` 和 `$ pkill -9 "test-"` 來強制關閉伺服器
 * 執行 `$ ./httpd`，預期將看到類似以下輸出:
 ```
 (pid 4223 : 1 threads) Listening on port 8080 (max sockets: 65536, ~5 used)
