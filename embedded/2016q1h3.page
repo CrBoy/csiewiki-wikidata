@@ -7,10 +7,16 @@ toc: no
 ------------
 - 學習多執行緒程式開發
 - 應用物件導向程式開發方法
-- 透過 Doxygen 自動建立技術文件和培養專業程式開發風格
+- 透過 Doxygen 自動建立技術文件
+- 培養專業程式開發風格
 
 預先安裝的套件
 ------------
 ```
 $ sudo apt-get install apache2-utils check
+$ sudo apt-get install doxygen graphviz
 ```
+
+Server Framework in modern C
+-----------------------------
+* [server-framework](https://github.com/embedded2016/server-framework): 用 C99 撰寫、具備物件導向程式設計風格的伺服器開發框架
