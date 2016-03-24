@@ -70,3 +70,46 @@ Socket #7 is now disconnected.
 Socket #8 is now disconnected.
 ```
     - 重複上述動作幾次，又會看到新的訊息，指出 socket 編號的更動
+
+測試網頁伺服器的效能
+-----------------
+* 確保之前的測試程式均已關閉，而且 port 8080 沒被佔用
+    - 可透過 `$ pkill -9 httpd` 來強制關閉伺服器
+* 執行 ``$ ./httpd``，預期將看到類似以下輸出:
+```
+(pid 4223 : 1 threads) Listening on port 8080 (max sockets: 65536, ~5 used)
+Clients: 0
+# Total Clients: 0
+```
+* 不要關閉執行 `httpd` 的終端機視窗，為了後續說明方面，我們稱為這個終端機畫面為「伺服器」
+* 開啟新的終端機視窗，並執行以下指令:
+```
+$ ab -c 32 -n 100 http://localhost:8080/
+```
+    - 預期將看到以下輸出，請抱持耐心，等待且不要執行其他程式
+```
+This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+```
+    - 等待一陣子之後，會看到類似以下輸出:
+```
+Concurrency Level:      32
+Time taken for tests:   15.621 seconds
+Complete requests:      100
+Failed requests:        6
+   (Connect: 0, Receive: 0, Length: 6, Exceptions: 0)
+Total transferred:      9900 bytes
+HTML transferred:       1300 bytes
+Requests per second:    6.40 [#/sec] (mean)
+Time per request:       4998.873 [ms] (mean)
+Time per request:       156.215 [ms] (mean, across all concurrent requests)
+Transfer rate:          0.62 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   0.7      2       3
+Processing:  3619 3877 177.2   3996    4001
+Waiting:        0    1   0.5      0       3
+Total:       3621 3879 177.2   3998    4001
+```
