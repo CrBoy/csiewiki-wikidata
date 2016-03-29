@@ -8,6 +8,9 @@ STL(Standard Template Library, 標準函式庫)
 ##lower/upper_bound
 * 利用STL完成Binary Search  
 * 需引入 algorithm 函式庫 
+* 使用對象需是已經 `sort` 的array
+* lower_bound(array, array+N, a)：回傳array中value `>=` a 的index  
+    upper_bound(array, array+N, a)：回傳array中value `>` a 的index
  
 ```c++
 #include <cstdio>
