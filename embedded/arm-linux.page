@@ -343,6 +343,8 @@ Context Switch Latency 測試理論
     - 256byte為k=64的情況
     - 碰到紅色代表會miss
 
+- （Jared補充）：感謝晶心科技的greentime指出：第一次cache miss，重新fetch到的資料開頭，不一定會如圖中對齊（cahce line開頭 v.s.array存取的位置），但實驗方法該如何修改，仍然在思考中
+
 ![](/embedded/arm_linux/line_size_illustrate2.png)
 
 
