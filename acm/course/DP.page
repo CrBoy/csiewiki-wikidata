@@ -40,20 +40,26 @@ Coin Change (錢幣交換)
 
 + 圖示：N = 1，意即每個硬幣有 1 個。
 
-    
+<br>![](/coin_changing_1_1.png)
+<br>![](/coin_changing_1_2.png)
 
-   
 <li> N 個硬幣</li>
 
 + dp 的 index 由大到小 N 次
 
 +  圖示：假設 N = 2，意即每個硬幣有 2 個。
 
+<br>![](/coin_changing_n_1.png)
+<br>![](/coin_changing_n_2.png)
+
 <li>無限硬幣</li>
 
 + dp 的 index 由小到大掃過進行更新。
 
 + 圖示：硬幣有無限多個。
+
+<br>![](/coin_changing_inf_1.png)
+<br>![](/coin_changing_inf_2.png)
 
 </ol>
 
@@ -81,10 +87,13 @@ Coin Change (錢幣交換)
 
 > dp[m] = max( dp[m], dp[m - w[i]] + v[i] ); *
 
+**圖示**
+<br>![](/knapsack_problem_2.png)
+<br>![](/knapsack_problem_1.png)
+
 DP v.s Greedy Algorithm
 ============================
 
 > Greedy 相較 DP 多出一個性質 - Greedy Choice，即每次只要挑選最佳的選擇，最後必定可以得到最佳解。
 > 如果今天一件物品可以任意分割成數份，此問題變成為fractional背包問題，因為沒有最後一個物品塞不下的問題，每次只要挑選最高性價比(CP值)的物品，最終一定可以達到最高價值。
 > 此問題與0/1背包問題差別就在於fractional背包問題有Greedy Choice特性，因此可以用速度更快的Greedy Algorithm來得到解。
-
