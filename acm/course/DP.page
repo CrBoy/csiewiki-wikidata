@@ -6,7 +6,7 @@ dynamic programming (also known as dynamic optimization)  is a method for solvin
 * Reference to https://en.wikipedia.org/wiki/Dynamic_programming
 
 DP全名為 Dynamic Programming (動態規劃) ，將問題切分多個子問題，簡化問題的複雜度，最後將所以子問題合併得到解答。
-=========
+
 特性
 =============
 
