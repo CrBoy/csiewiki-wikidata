@@ -14,7 +14,7 @@ toc: no
 * [Binary Search](course/Binary_Search)
 * [STL (lower_bound, upper, tuple, priority_queue, struct, pair)](course/STL)
 * Backtracking
-* DP
+* DP(course/DP)
 * LCS
 * LIS
 * Binary Indexed Tree
