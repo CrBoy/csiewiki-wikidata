@@ -19,8 +19,6 @@ If the problem also shares an [optimal substructure](https://en.wikipedia.org/wi
 > sol) 
 > without overlapping. 如果沒有重疊的子問題，我們會發現時間複雜度並不會因為使用DP而降低，這是因為每次的子問題並沒有重複得部份！
 
-> Example
-
 Coin Change (錢幣交換)
 -----------
 **想法**
