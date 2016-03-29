@@ -1,45 +1,38 @@
 Week 5: Solving Strategy 2(DP)
 ===========
-Dynamic Programming
-======================
+
+定義
+-------------------------------
 dynamic programming (also known as dynamic optimization)  is a method for solving a complex problem by breaking it down into a  collection of simpler subproblems, solving each of those subproblems  just once, and storing their solutions - ideally, using a memory-based  data structure
 * Reference to https://en.wikipedia.org/wiki/Dynamic_programming
 
 DP全名為 Dynamic Programming (動態規劃) ，將問題切分多個子問題，簡化問題的複雜度，最後將所以子問題合併得到解答。
 
 特性
-=============
-
-If the problem also shares an [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure) property, [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) is a good way to work it out.
+---------------------------------
+If the problem also shares an [optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure) property, [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) is a good way to work it out.<br>
 * Reference to [Overlapping_subproblems](https://en.wikipedia.org/wiki/Overlapping_subproblems)
 
-DP的題目有兩個重要的特性
--------
-1.Optimal Substructure (最佳子問題)
+** DP的題目有兩個重要的特性 **
+1. Optimal Substructure (最佳子問題)
+2. Overlapping Subproblem(子問題重疊)
 
-2.Overlapping Subproblem(子問題重疊)
+> Q. Why memorization is ineffective in speed up a good divide-and-conquer algorithm such as MERGE_SORT ?
+> 
+> sol) 
+> without overlapping. 如果沒有重疊的子問題，我們會發現時間複雜度並不會因為使用DP而降低，這是因為每次的子問題並沒有重複得部份！
 
-Q. Why memorization is ineffective in speed up a good divide-and-conquer algorithm such as 
-MERGE_SORT ?
-
-sol) 
-without overlapping. 如果沒有重疊的子問題，我們會發現時間複雜度並不會因為使用DP而降低，這是因為每次的子問題並沒有重複得部份！
-==================
-
-Example
-================
+> Example
 
 Coin Change (錢幣交換)
 -------
 想法：
 
-dp[i]：i 價位是否可以湊的 (false/true)
-
-v[k]：第k種硬幣
-
-** 如果i-v[k]價位可以湊得，那麼i必定也可以湊得
-
-If (dp[ i – v[k] ] == true) dp[ i ] = true;
+> dp[i]：i 價位是否可以湊的 (false/true)
+> v[k]：第k種硬幣
+> 
+> 如果i-v[k]價位可以湊得，那麼i必定也可以湊得 
+> ** If (dp[ i – v[k] ] == true) dp[ i ] = true; **
 
 每種硬幣數量的差異：
 <ol>
