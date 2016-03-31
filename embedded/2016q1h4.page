@@ -6,7 +6,7 @@ toc: no
 預期目標
 ------------
 - 複習 / 重新學習後續課程所需要的背景知識
-- 延續 [2016q1: Homework3](/embedded/2016q1h3) 和驗證 [2016q1 第 5 週提及的多執行緒設計概念](https://embedded2016.hackpad.com/ep/pad/static/VJmq0R0ILi6)
+- 延續 [2016q1: Homework3](/embedded/2016q1h3) 和驗證 [2016q1 第 6 週提及的多執行緒設計概念](https://embedded2016.hackpad.com/ep/pad/static/VJmq0R0ILi6)
 
 作業要求 (A)
 -----------
@@ -26,7 +26,7 @@ toc: no
     - [共筆和補充](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc)
 
 ## ARM 處理器架構
-* [2016q1 第 5 週列出來的所有連結和材料](https://embedded2016.hackpad.com/ep/pad/static/VJmq0R0ILi6)
+* [2016q1 第 6 週列出來的所有連結和材料](https://embedded2016.hackpad.com/ep/pad/static/VJmq0R0ILi6)
 * [ARM Cortex-M3](http://www.slideshare.net/GauravVerma3/arm-cortex-processor-compatibility-mode)
 * [Assembly language programming: ARM Cortex-M3](http://www.slideshare.net/GonzaloSantiago/assembly-language-programming-arm-cortexm3-vincent-mahout)
 
