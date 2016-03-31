@@ -8,6 +8,8 @@ toc: no
 - 複習 / 重新學習後續課程所需要的背景知識
 - 延續 [2016q1: Homework3](/embedded/2016q1h3) 和驗證 [2016q1 第 6 週提及的多執行緒設計概念](https://embedded2016.hackpad.com/ep/pad/static/VJmq0R0ILi6)
 
+**注意** Homework 4 包含 2 部份，請詳細閱讀
+
 作業要求 (A)
 -----------
 * 在 4 月 17 日前，閱讀指定材料的 2 分之 1 以上，並在「[作業區](https://embedded2016.hackpad.com/2016q1-Homework-4-xqEEEVlynJg)」記錄學習心得和疑惑，涵蓋以下主題：
@@ -42,3 +44,8 @@ toc: no
 
 作業要求 (B)
 -----------
+* 以 lock-free thread pool 改寫 [Homework 3](/embedded/2016q1h3) 裡頭的 server-framework，並且證實效能的改善
+* 指出 server-framework 實做內部對於 semaphore, mutex, condition variables 的調整，並且要指出調整同步處理機制後，對效能的改善
+* 自 server-framework 抽出關鍵程式碼，建立 **新的** Git repository，確保有一致的功能，然後重新測試效能
+* 在 4 月 11 日前完成，並將開發紀錄詳實更新於 [Homework 3 的作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso)
+    - 不需要建立新的 hackpad
