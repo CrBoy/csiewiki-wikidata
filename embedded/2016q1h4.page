@@ -49,3 +49,4 @@ toc: no
 * 自 server-framework 抽出關鍵程式碼，建立 **新的** Git repository，確保有一致的功能，然後重新測試效能
 * 在 4 月 11 日前完成，並將開發紀錄詳實更新於 [Homework 3 的作業區](https://embedded2016.hackpad.com/2016q1-Homework-3-a3Rb2XROJso)
     - 不需要建立新的 hackpad
+    - 直接在 Homework 3 裡頭 fork 出來的 server-framework 中修改程式碼，若建立新的 git repository，則務必在共筆提及
