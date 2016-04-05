@@ -1,4 +1,4 @@
-Week 5L Backtracking
+Week 5: Backtracking
 ================
 介紹
 ------------------------------
@@ -46,7 +46,8 @@ void Backtracking(int dimension)
 
 圖片:  
 :   <br />![](/acm/backtracking_example.jpg)
-code:
+  
+code:  
 ```c++
 #include<cstring>
 #include<cstdio>
