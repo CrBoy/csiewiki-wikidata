@@ -13,7 +13,7 @@ toc: no
 * [Math](course/Math)
 * [Binary Search](course/Binary_Search)
 * [STL (lower_bound, upper, tuple, priority_queue, struct, pair)](course/STL)
-* Backtracking
+* [Backtracking](course/Backtracking)
 * [DP](course/DP)
 * LCS
 * LIS
