@@ -329,7 +329,7 @@ $ cat /proc/sys/kernel/perf_event_max_sample_rate
 - [Perf FAQ](http://kernel.taobao.org/index.php?title=Documents/Perf_FAQ) [kernel.taobao.org]
 - [Do I need root (admin) permissions to run userspace 'perf' tool?](http://unix.stackexchange.com/questions/14227/do-i-need-root-admin-permissions-to-run-userspace-perf-tool-perf-events-ar)
 - [Using the ARM Performance Monitor Unit (PMU) Linux Driver](http://www.carbondesignsystems.com/virtual-prototype-blog/using-the-arm-performance-monitor-unit-pmu-linux-driver)
-- [perf 性能分析實例——使用perf優化cache利用率](https://perf%20%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%AF%A6%E4%BE%8B%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8perf%E5%84%AA%E5%8C%96cache%E5%88%A9%E7%94%A8%E7%8E%87/) [CSDN]
+- [perf 性能分析實例——使用perf優化cache利用率](http://blog.csdn.net/trochiluses/article/details/17346803) [CSDN]
 
 
 ## 資料整理
