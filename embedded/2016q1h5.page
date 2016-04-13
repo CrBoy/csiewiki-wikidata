@@ -58,3 +58,13 @@ toc: no
 - 解釋多執行緒程式設計對光線追蹤的影響，需要比較不同的切割方式、執行緒數量的影響
 - 使用 OpenMP, SIMD 進一步改善程式效率
 - 解讀數據，以及思考如何進一步提昇效能
+
+## 2016q1 Week #2 試題
+- 解答 [2016 年春季班期初基本能力測驗試題](/embedded/2016q1w2) 的以下題目:
+    * 第 9 題 (implementing counting semaphore)
+    * 第 11 題 (bit-wise operator)
+    * 第 13 題 (cache)
+    * 第 15 題 (ARM operation mode)
+    * 第 18 題 (branch predictor)
+- 需要提供合乎 C99 規範的 C 程式，並且提出驗證正確性和對應效能的機制
+- 需要提出必要的解釋
