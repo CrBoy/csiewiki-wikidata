@@ -36,3 +36,8 @@ toc: no
 - 需要透過 gnuplot 建立圖表
 
 ## epoll experiments
+- 研讀 [Benchmarking libevent against libev](http://libev.schmorp.de/bench.html) 和 [Epoll evolving](https://lwn.net/Articles/633422/)
+- 針對 [libevent](http://libevent.org/) 支援的 POSIX select, poll, epoll 設計效能分析的實驗，並且製作效能分析圖表
+    * 類似 [no timeouts, 100 and 1000 active clients](http://libev.schmorp.de/dat1.t0.png)
+    * 涵蓋 no timeouts / idle timeouts, 100 and 1000 active clients
+- 需要解讀數據，以及思考如何進一步提昇效能
