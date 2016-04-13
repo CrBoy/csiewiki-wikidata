@@ -68,3 +68,9 @@ toc: no
     * 第 18 題 (branch predictor)
 - 需要提供合乎 C99 規範的 C 程式，並且提出驗證正確性和對應效能的機制
 - 需要提出必要的解釋
+
+## mini-arm-os
+- 需求如同 [2015q3 Homework #8](/embedded/2015q3h8)，彙整之前學生的成果，整理相關程式碼
+- 在 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 的 07-Threads (不要增加新的目錄！) 基礎上，實做 shell, priority-scheduling, file system
+    * 可參考 tony0620emma (莊彥宣) 的程式碼與共筆
+- 需要解釋為何程式碼得以運作，以及闡述整合過程中遇到的困難
