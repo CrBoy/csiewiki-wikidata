@@ -41,3 +41,14 @@ toc: no
     * 類似 [no timeouts, 100 and 1000 active clients](http://libev.schmorp.de/dat1.t0.png)
     * 涵蓋 no timeouts / idle timeouts, 100 and 1000 active clients
 - 需要解讀數據，以及思考如何進一步提昇效能
+
+## concurrent B+ tree
+- 在 GitHub 上，fork [bplus-tree](https://github.com/embedded2016/bplus-tree)，研究 B+ tree 的實做並解釋其原理
+- 驗證 bplus-tree 在各式條件的效能，包含單一執行緒和多執行緒讀寫
+    * 執行 `./test/bench-multithread-get`
+- 移植 [2016q1 Homework #1](/embedded/2016q1h1) 的電話簿程式到 `test/` 目錄
+    * 將 [phonebook/dictionary](https://github.com/embedded2016/phonebook/tree/master/dictionary) 的字典檔案，事先用 `sort -R` 亂數排列
+    * 設計能夠重複執行的效能分析工具，針對不同的字典排列作為輸入，分析 B+ tree 處理效能
+- 比照 [2016q1 Homework #1](/embedded/2016q1h1) 的要求，研究插入、查詢、刪除的效能表現 (含 cache miss)，並提出解釋
+- 透過 gnuplot 視覺化相關的數據
+- 提出改善效能的方法並且著手實做
