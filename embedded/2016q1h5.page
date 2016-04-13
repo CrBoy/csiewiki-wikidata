@@ -69,6 +69,18 @@ toc: no
 - 需要提供合乎 C99 規範的 C 程式，並且提出驗證正確性和對應效能的機制
 - 需要提出必要的解釋
 
+## web server with CGI
+- 在 GitHub fork [web-server-cgi](https://github.com/embedded2016/web-server-cgi)
+- 編譯和測試 [web-server-cgi](https://github.com/embedded2016/web-server-cgi)
+```
+$ make
+$ cd bin
+$ ./cgi_server_test
+```
+    * 然後用瀏覽器開啟 `http://localhost:8080/`，如果不能正常瀏覽網頁，則重複執行 `./cgi_server_test`
+- 找出 cgi_server_test 發生 Segmentation Fault 的原因並修正
+- 指出 [web-server-cgi](https://github.com/embedded2016/web-server-cgi) 實做上的缺陷、可改進之處
+
 ## mini-arm-os
 - 需求如同 [2015q3 Homework #8](/embedded/2015q3h8)，彙整之前學生的成果，整理相關程式碼
 - 在 [mini-arm-os](https://github.com/embedded2015/mini-arm-os) 的 07-Threads (不要增加新的目錄！) 基礎上，實做 shell, priority-scheduling, file system
