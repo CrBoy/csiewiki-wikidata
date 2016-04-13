@@ -43,7 +43,7 @@ toc: no
 - 需要解讀數據，以及思考如何進一步提昇效能
 
 ## concurrent B+ tree
-- 在 GitHub 上，fork [bplus-tree](https://github.com/embedded2016/bplus-tree)，研究 B+ tree 的實做並解釋其原理
+- 在 GitHub 上，fork [bplus-tree](https://github.com/embedded2016/bplus-tree)，研究 [B+ tree](https://en.wikipedia.org/wiki/B%2B_tree) 的實做並解釋其原理
 - 驗證 bplus-tree 在各式條件的效能，包含單一執行緒和多執行緒讀寫
     * 執行 `./test/bench-multithread-get`
 - 移植 [2016q1 Homework #1](/embedded/2016q1h1) 的電話簿程式到 `test/` 目錄
