@@ -18,7 +18,7 @@ toc: no
 * LCS
 * LIS
 * Binary Indexed Tree
-* Segment Tree
+* [Segment Tree](course/Segment_Tree)
 * String Matching
 * Shortest Path
 * SCC
