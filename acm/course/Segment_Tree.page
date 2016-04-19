@@ -1,1 +1,104 @@
-Segment Tree 分段樹---用於快速查詢一段數列中某區間內的最大最小值、總和....等等。
+Segement Tree
+========
+* 快速且能多次查詢一數列中某區間內最大值、最小值、總和、...等等，並能修改其中的值。
+
+線段樹的基本概念
+--------
+1.基於binary tree，每個節點記載一個[L,R]區間的資訊，且都有左右子節點，左節點記載[L,(L+R)/2]區間的資訊，右節點記載[(L+R)/2,R]區間的資訊。
+
+2.節點的分支不是0就是2，所以若葉節點的數目為N，則線段樹總節點數為2N-1。
+
+3.建立線段樹的時間複雜度為O(N)
+
+4.RMQ(range minimum/maximum query problem),即查詢某區間內的值的時間複雜度為O(log(N))
+
+建立線段樹-Bulid Tree
+--------
+Build Segement Tree 實作
+
+例：找某區間內最大、最小值。
+
+###子節點的資料結構
+每個節點內應存放該區間的左右邊界、要記錄的值(本例為區間內最大最小值)、以及左右子節點的Link。
+```c
+struct Node{
+	int l, r;
+	int min, max;
+	Node *left, *right;
+};
+```
+
+###建立線段樹
+設有MAXN個值的數列已存入陣列num之中，則總節點樹應為2*MAXN-1，初始傳入的l,r值為該數列的左右邊界的值。
+透過遞迴建樹，判斷該節點的左右子節點的最大最小值後，存入該節點。
+當區間的左右邊界相等(l=r)時即為葉節點，則最大最小值是自己，
+
+```c
+Node tree[MAXN << 1];
+int num[MAXN];
+int nNodeCnt = 0;
+void build(Node *rt, int l, int r){
+	rt->l = l;
+	rt->r = r;
+	if(l == r){
+		rt->min = rt->max = num[l];
+		return ;
+	}
+
+	nNodeCnt++;
+	rt->left = tree + nNodeCnt;
+	nNodeCnt++;
+	rt->right = tree + nNodeCnt;
+
+	int m = (l + r) >> 1;
+	build(rt->left, l, m);
+	build(rt->right, m + 1, r);
+	rt->max = max(rt->left->max, rt->right->max);
+	rt->min = min(rt->left->min, rt->right->min);
+
+}
+```
+
+###單點修改update
+傳入的值x為要修改的點，v為所做的修改。
+```c
+void update(Node *rt, int x, int v){
+	if(rt->l == rt->r ){
+		rt->max+=v;
+		rt->min=rt->max;
+                return ;
+	}
+
+	int m = (rt->l + rt->r) >> 1;
+	if(x <= m){
+		update(rt->left, x, v);
+	}else{
+                update(rt->right, x, v);
+	}
+        rt->max = max(rt->left->max, rt->right->max); 
+        rt->min = min(rt->left->min, rt->right->min); 
+}
+```
+
+###查詢query
+由於查詢的區間可能橫跨某節點的左右節點，故用ans_max,ans_min存放並比較最大最小值。
+```c
+int ans_max , ans_min;
+void query(Node *rt, int l, int r){
+	if(rt->l == l && rt->r == r){
+		ans_max = ans_max > rt->max ? ans_max : rt->max;
+		ans_min = ans_min < rt->min ? ans_min : rt->min;
+		return ;
+	}
+
+	int m = (rt->l + rt->r) >> 1;
+	if(r <= m){
+		query(rt->left, l, r);
+	}else if(l > m){
+		query(rt->right, l, r);
+	}else{
+		query(rt->left, l, m);
+		query(rt->right, m + 1, r);
+	}
+}
+```
