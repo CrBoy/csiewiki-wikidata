@@ -32,7 +32,7 @@ categories: User jserv
 * [Xenomai](/embedded/xenomai): Real-time framework for Linux (GPL)
     - 發表於 Real-time Linux Workshops 2015, Open Source Automation Development Lab (OSADL)
 * [RTMux](https://github.com/rtmux): Lightweight Temporal and Spatial Partitioning of Real-Time Linux (GPL)
-    - 2014 年發表於 Embedded Linux Conference Europe, Linux Foundation
+    - 發表於 Embedded Linux Conference Europe 2014, Linux Foundation
 
 ## 嵌入式系統和作業系統
 * [uVisor](https://github.com/ARMmbed/uvisor): device security layer for ARMv7M microcontrollers (Apache License)
