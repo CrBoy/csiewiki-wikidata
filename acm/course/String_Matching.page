@@ -6,7 +6,17 @@ Knuth-Morris-Pratt algorithm
 給定A,B兩字串，尋找B字串是否存在A當中
 當B的字串內容，本身有<b>重複的字串</b>時，可用KMP以減少重複否配的時間
 
-
+ex:
+B : aabaab
+B字串本身重複 "aab"
 
 ![alt text](/acm/KMP_1.gif)
+
+
+方法：先用fail function找出字串B重複的字串
+
+
+
+
+
 ![alt text](/acm/KMP_2.gif)
