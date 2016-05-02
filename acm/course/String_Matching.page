@@ -55,4 +55,29 @@ Z_Box
 如何算出Z_value?
 -----------------------------------------
 在算Z_value時會有3種case
-1.自己沒有被別人的Z_Box包住 就乖乖數
+case 1: 自己沒有被別人的Z_Box包住 就乖乖數
+
+![](/acm/case1.gif)
+
+<br><br>
+L在別人的Z_Box內   i' 為 i 對應到前綴的位置 (像上面表格的aab(i=5)的a 對應到i=1 的a)<br>
+<li>case 2: 若自己的R在剛剛包含自己的Z_Box裏面 ( i'+z[i'] < z[L] => 沒有超過別人Z_Box的右界) 那麼z( i )=z( i' )</li>
+
+![Z_value[5]=Z_value[1]](/acm/case2.gif)
+
+<br>
+<li>case 3: 若i'+z[i'] >= z[L]代表自己的Z_Box的右邊界和包住自己的Z_Box的右邊界重疊或超過 
+<br>這時因為無法判斷在包住自己的Z_Box右邊界之後的element情形 所以Z_value只能算到包住自己的Z_Box的右邊界 之後的element都要去一個一個比對</li>
+
+![for a(i=9)  its Z_value is 2 ,differ from Z_value[1]](/acm/case3.gif)
+
+Code
+----------------------------------
+![由前掃到後 => time complexity: O(N)](/acm/zcode.png)
+
+使用方法
+-----------------------------------
+當要看B字串是不是A的子字串時，用一個沒有出現過的符號放在兩者之間，
+並用Z algorithm，若A字串內的字元有Z_value等於B的長度，即B出現在A裡面
+
+![A = "aabcc"  B="aab" 寫成B $ A => aab $ aabcc](/acm/find.png)
