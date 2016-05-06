@@ -20,7 +20,7 @@ toc: no
 * Binary Indexed Tree
 * [Segment Tree](course/Segment_Tree)
 * [String Matching](course/String_Matching)
-* Shortest Path
+* [Shortest Path](course/Shortest_Path)
 * SCC
 * MST
 * Max flow
