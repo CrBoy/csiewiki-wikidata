@@ -138,6 +138,8 @@ All Pair Shortest Path
 - <big>對所有點(i,j)，枚舉所有點k(點i連到點k，點k連到點j)，做Relax。</big>
 - <big>時間複雜度：O(V^3)</big>
 
+![](/acm/HI_18.gif)
+
 ~~~{.c }
 Floyd(){
     for(i==j)
