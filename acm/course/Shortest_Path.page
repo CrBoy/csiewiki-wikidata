@@ -92,6 +92,39 @@ SPFA(){
 }
 ~~~
 
+- 偵測負環：若一個點進去Queue的次數超過n-1次，則有負環存在。
+
+~~~{.c }
+SPFA(){
+    for(all i){
+        dis[i] = INF;
+        inqueue[i] = false;
+        count[i] = 0;
+    }
+    dis[source]=0;
+    inqueue[source]=true;
+    queue.push(source);
+    while(!queue.empty()){
+        int now = queue.front();
+        inqueue[now]=false;
+        queue.pop();
+        for(each node v adjacent to now){
+            if(dis[now]+w(now,v)<dis[v]){
+                dis[v]=dis[now]+w(now,v);
+                if(!inqueue[v]){
+                    queue.push(v);
+                    inqueue[v]=true;
+                    count[v]++;
+                    if(count[v]>=n)
+                        return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+~~~
+
 All Pair Shortest Path
 ---------
 ###Floyd
