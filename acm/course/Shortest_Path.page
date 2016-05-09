@@ -63,6 +63,33 @@ BellmanFord(){
 
 ###SPFA()
 - <big>相較於BellmanFord做了n-1次Relax，SPFA只對值有改變的點相連的邊做Relax。
+    - 方法：用Queue存有改變的點。
+~~~{.c }
+SPFA(){
+    for(all i){
+        dis[i] = INF;
+        inqueue[i] = false;
+    }
+    dis[source]=0;
+    inqueue[source]=true;
+    queue.push(source);
+    while(!queue.empty()){
+        int now = queue.front();
+        inqueue[now]=false;
+        queue.pop();
+        for(each node v adjacent to now){
+            if(dis[now]+w(now,v)<dis[v]){
+                dis[v]=dis[now]+w(now,v);
+                if(!inqueue[v]){
+                    queue.push(v);
+                    inqueue[v]=true;
+                }
+            }
+        }
+    }
+}
+~~~
+
 All Pair Shortest Path
 ---------
 ###Floyd
