@@ -67,7 +67,7 @@ BellmanFord(){
 - <big>時間複雜度：O(kE)，在k<<V的情況下。
                   O(VE)，最差的情況。</big>
 
-![](acm/cute_spga.gif)
+![](/acm/cutefafa.gif)
 
 ~~~{.c }
 SPFA(){
