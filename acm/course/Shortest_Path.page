@@ -19,7 +19,6 @@ Relex(u,v,w){
 }
 ~~~
 
-
 ###Bellman Ford
 - <big>對所有的邊做n-1次的Relax</big>
 - 時間複雜度：O(VE)
@@ -37,6 +36,8 @@ BellmanFord(){
             Relax(u,v,w);
 }
 ~~~
+
+- <big>若有負的cycle，每做一次Relax，source至cycle上的點，就會持續變小。</big>
 
 ###SPFA()
 
