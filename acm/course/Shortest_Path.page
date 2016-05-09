@@ -24,6 +24,20 @@ Relex(u,v,w){
 - <big>對所有的邊做n-1次的Relax</big>
 - 時間複雜度：O(VE)
 
+~~~{.c }
+//Pseudo Code
+BellmanFord(){
+    //init
+    dis[source]=0;
+    for(all i != source) 
+        dis[i] = INF;
+    //n-1 times
+    for(i=0;i<n-1;i++)
+        for(each edge w(u,v) in G)
+            Relax(u,v,w);
+}
+~~~
+
 ###SPFA()
 
 All Pair Shortest Path
