@@ -126,7 +126,7 @@ SPFA(){
 }
 ~~~
 
-- 負環的比較：BellmanFord偵測到的負環為整個Graph的，SPFA偵測到的負環為從source出發會走的到的。
+- <big>負環的比較：BellmanFord偵測到的負環為整個Graph的，SPFA偵測到的負環為從source出發會走的到的。</big>
 
 All Pair Shortest Path
 ---------
