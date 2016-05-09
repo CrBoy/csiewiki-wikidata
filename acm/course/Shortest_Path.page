@@ -23,6 +23,8 @@ Relex(u,v,w){
 - <big>對所有的邊做n-1次的Relax</big>
 - 時間複雜度：O(VE)
 
+![](/acm/bellman.gif)
+
 ~~~{.c }
 //Pseudo Code
 BellmanFord(){
@@ -60,7 +62,7 @@ BellmanFord(){
 ~~~
 
 ###SPFA()
-
+- <big>相較於BellmanFord做了n-1次Relax，SPFA只對值有改變的點相連的邊做Relax。
 All Pair Shortest Path
 ---------
 ###Floyd
