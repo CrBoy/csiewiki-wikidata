@@ -4,6 +4,8 @@ Single Source Shortest Path
 --------
 - <big>若使用Backtracking演算法，將枚舉所有路徑，必會TLE，因此我們將列舉幾項好用DER演算法!!</big>
 
+![](/acm/13125075_944400135668382_1681010432_n.gif)
+
 
 ###Relaxation
 - <big>若點v離source的距離為8、點u離source的距離為3，現在有一個點k，(u,k)長度為2、(k,v)長度為1，則對(u,v)做Relax。Relax後點v離source距離更改為6。</big>
