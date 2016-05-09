@@ -2,6 +2,7 @@ Shortest Path
 ========
 Single Source Shortest Path
 --------
+- 若使用Backtracking演算法，將枚舉所有路徑，必會TLE，因此我們將列舉幾項好用DER演算法!!
 ![alt text](/acm/course/Shortest_Path/pp.jpg)
 
 
