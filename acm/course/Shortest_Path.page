@@ -64,7 +64,8 @@ BellmanFord(){
 ###SPFA()
 - <big>相較於BellmanFord做了n-1次Relax，SPFA只對值有改變的點相連的邊做Relax。</big>
     - 方法：用Queue存有改變的點。
-- <big>時間複雜度：O(kE)</big>
+- <big>時間複雜度：O(kE)，在k<<V的情況下。
+                  O(VE)，最差的情況。</big>
 
 ~~~{.c }
 SPFA(){
