@@ -39,6 +39,26 @@ BellmanFord(){
 
 - <big>若有負的cycle，每做一次Relax，source至cycle上點的距離，就會持續變小。</big>
     - 偵測辦法：若在第n次做Relax時，若有任何一邊可以被Relax，則有負環存在。
+
+~~~{.c }
+//Pseudo Code
+BellmanFord(){
+    //init
+    dis[source]=0;
+    for(all i != source) 
+        dis[i] = INF;
+    //n-1 times
+    for(i=0;i<n-1;i++)
+        for(each edge w(u,v) in G)
+            Relax(u,v,w);
+    //Negative Cycle
+    for(each edge w(u,v) in G)
+        if(dis[u]+w(u,v)<dis[v])
+            return true;
+    return false;
+}
+~~~
+
 ###SPFA()
 
 All Pair Shortest Path
