@@ -130,4 +130,24 @@ SPFA(){
 
 All Pair Shortest Path
 ---------
+<big>若用BellmanFord做V次，時間複雜度為O(V^2E)。若用SPFA做V次，時間複雜度為O(kVE)。都可能造成TLE。</big>
+
 ###Floyd
+- <big>對所有點(i,j)，枚舉所有點k(點i連到點k，點k連到點j)，做Relax。</big>
+- <big>時間複雜度：O(V^3)</big>
+
+~~~{.c }
+Floyd(){
+    for(i==j)
+        dis[i][j]=0;
+    for(each edge w(i,j))
+        dis[i][j]=w(i,j);
+    for(not each edge w(i,j))
+        dis[i][j]=INF;
+    for(k=0;k<n;k++)
+        for(i=0;i<n;i++)
+            for(j=0;j<n;j++)
+                if(dis[i][k]+dis[k][j]<dis[i][j])
+                    dis[i][j]=dis[i][k]+dis[k][j];
+}
+~~~
