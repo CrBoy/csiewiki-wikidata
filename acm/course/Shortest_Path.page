@@ -18,7 +18,11 @@ Relex(u,v,w){
        dis[v]=dis[u]+w(u,v);
 }
 ~~~
+
+
 ###Bellman Ford
+- <big>對所有的邊做n-1次的Relax</big>
+- 時間複雜度：O(VE)
 ###SPFA()
 
 All Pair Shortest Path
