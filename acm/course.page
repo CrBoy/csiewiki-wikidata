@@ -22,7 +22,7 @@ toc: no
 * [String Matching](course/String_Matching)
 * [Shortest Path](course/Shortest_Path)
 * SCC
-* MST
+* [MST](course/MST)
 * Max flow
 * MCMF
 * Matching
