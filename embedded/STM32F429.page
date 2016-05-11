@@ -38,7 +38,7 @@ STM32F429 Discovery 開發板
 硬體腳位配置
 -------------
 * 請先閱讀 [General-purpose Input/Output (GPIO)](/embedded/GPIO)
-  - [GPIO 腳位定義](http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbelegung_f429_v100.html)
+  - [GPIO 腳位使用案例](http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/)
 
 * 前視圖:
 
