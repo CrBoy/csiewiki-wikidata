@@ -2,8 +2,8 @@ JaredCJR(張家榮)
 ------------------
 **簡介:**
 
-- 成功大學 工程科學系105級
-- 交通大學 資訊科學與工程研究所 系統設計組 正取生
+- 成功大學 工程科學系105級(2012-2016)
+- 交通大學 資訊科學與工程研究所 系統設計組(2016~ )
 
 - [北京清華大學 第三屆開源操作系統技術年會 講者](http://soft.cs.tsinghua.edu.cn/os2atc2015/rc.html)
 - [SITCON(學生計算機年會) 2016 Speaker(ARM uVisor debug Refinement Project)](http://www.slideshare.net/ssuser803c6e/arm-uvisor-debug-refinement-project)
@@ -21,7 +21,7 @@ JaredCJR(張家榮)
 
 - 研究
 
-    - ARM-Linux 效能及排程行為分析/ Google 搜尋:“arm linux”第一筆結果(2015/10/12) 
+    - ARM-Linux 效能及排程行為分析/ Google 搜尋:“arm linux”前三筆結果(2015/10/12) 
 
     - 基於 ARM Cortex-A8 之程式碼最佳化探討/ 2015進階嵌入式系統課程(成大資工)教材之一
 
@@ -36,8 +36,9 @@ JaredCJR(張家榮)
         - uvisor
         - uvisor-helloworld
         - uvisor-lib
-    - [可見OS2ATC2015簡報內容p.28 , p.29](http://soft.cs.tsinghua.edu.cn/os2atc2015/ppt/hjq.pdf)
-    - [SITCON 2016簡報](http://www.slideshare.net/ssuser803c6e/arm-uvisor-debug-refinement-project)
+            - [可見OS2ATC2015簡報內容p.28 , p.29](http://soft.cs.tsinghua.edu.cn/os2atc2015/ppt/hjq.pdf)
+            - [SITCON 2016簡報](http://www.slideshare.net/ssuser803c6e/arm-uvisor-debug-refinement-project)
+    - mini-arm-os portable version contributor
 
 **其他經驗:**
 
