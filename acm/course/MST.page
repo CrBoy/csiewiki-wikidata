@@ -5,7 +5,9 @@
 ##Minimum Spanning Tree
 
 ###Kruskal’s algorithm
+
 *Psuedocode
+
 ###Prim’s algorithm
 
 ```C++
