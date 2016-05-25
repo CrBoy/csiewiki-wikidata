@@ -1,0 +1,17 @@
+#MST(Minimum Spanning Tree, 最小生成樹)
+
+##Spanning Tree
+
+##Minimum Spanning Tree
+###Kruskal’s algorithm
+###Prim’s algorithm
+
+```C++
+#include <cstdio>
+using namespace std;
+int main()
+{
+}
+```
+
+#
