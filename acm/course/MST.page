@@ -6,11 +6,11 @@
 
 ###Kruskal’s algorithm
 
-*Psuedocode
+* Psuedocode
 
 ###Prim’s algorithm
 
-```C++
+```c++
 #include <cstdio>
 using namespace std;
 int main()
