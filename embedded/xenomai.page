@@ -1109,6 +1109,7 @@ Hackpad
 參考資料
 =======
 * [Life with Adeos](https://xenomai.org/2014/06/life-with-adeos/)
+* [Fast Interrupt Priority Management in Operating System Kernel](http://www.dtic.mil/dtic/tr/fulltext/u2/a266638.pdf)
 * https://code.google.com/p/picnc/wiki/RPiXenomaiKernel
 * https://code.google.com/p/picnc/wiki/CreateRaspbianLinuxCNC
 * http://www.camelsoftware.com/firetail/blog/raspberry-pi/real-time-operating-systems/
