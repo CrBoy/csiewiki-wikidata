@@ -26,7 +26,7 @@ toc: no
     * 允許的硬體架構: ARM Cortex-M4F, ARM Cortex-A8/A9, ARM11
 
   - 形式 (2): 不修改硬體，但整合、修改，與分析既有 open source 作業系統，試圖引入新的應用，如虛擬化技術
-    * 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 [ARM Cortex-A15 fast model](http://www.arm.com/products/tools/models/fast-models/)
+    * 硬體架構同上，但可加上 Android 智慧型手機 (root!) 與 [ARM Cortex-A15 fast model](https://developer.arm.com/products/system-design/fast-models)
 
   - Hackpad: [想法和提案](https://embedded2014.hackpad.com/Final-Project-Ideas-fqgGqKUrmpQ)
 
