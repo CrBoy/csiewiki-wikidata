@@ -17,6 +17,10 @@ Struct
 
 程式：
 ```c++
+typedef struct Point{
+　　　double x,y;
+　　　Point(double x=0 ,double y=0) : x(x) ,y(y) {}
+}Point;
 ```
 ###線
 平面中一條線段，可以有許多不同的表示法。
@@ -55,46 +59,89 @@ Ex：加、減、乘、除、內 積、外積、夾角等。
 
 程式：
 ```c++
+typedef Point Vector;
+Vector operator + (Vector A,Vector B) { return Vector(A.x+B.x,A.y+B.y); }
+Vector operator - (Point A,Point B) { return Vector(A.x-B.x,A.y-B.y); }
+Vector operator * (Vector A,double p) { return Vector(A.x*p,A.y*p); }
+Vector operator / (Vector A,double p) { return Vector(A.x/p,A.y/p); }
+bool operator < (const Point &A,const Point &B){
+　　　return A.x < B.x || (A.x == B.x && A.y < B.y); }
+
+int dcmp (double x){
+　　　if (fabs(x)<eps) return 0;
+　　　else return x < 0 ? -1 : 1;
+}
+
+bool operator == (const Point &A, const Point &B){
+　　　return dcmp(A.x-B.x) == 0 && dcmp(A.y-B.y) == 0; }
+
+double Dot(Vector A,Vector B) { return A.x*B.x + A.y*B.y; }
+double Length(Vector A) { return sqrt (Dot(A,A)); }
+double dis_2p(Point A,Point B) {
+　　　return sqrt((double)((A.x-B.x)*(A.x-B.x) + (A.y-B.y)*(A.y-b.y)));
+}
+double  Angle(Vector A,Vector B){
+　　　return acos( Dot(A,B)/Length(A)/Length(B) );
+}
+double Cross(Vector A,Vector B){ return A.x*B.y-A.y*B.x; }
 ```
 ###加法
 相同座標的項相加。
 ```c++
+Vector operator + (Vector A,Vector B) { return Vector(A.x+B.x,A.y+B.y); }
 ```
 ###減法
 相同座標的項相減。
 ```c++
+Vector operator - (Point A,Point B) { return Vector(A.x-B.x,A.y-B.y); }
 ```
 ###乘法
 所有座標的項乘一常數。
 ```c++
+Vector operator * (Vector A,double p) { return Vector(A.x*p,A.y*p); }
 ```
 ###除法
 所有座標的項除一常數。
 ```c++
+Vector operator / (Vector A,double p) { return Vector(A.x/p,A.y/p); }
 ```
 ###小於
 從最左邊的座標開始比，輸出最小的。
 ```c++
+bool operator < (const Point &A,const Point &B){
+　　　return A.x < B.x || (A.x == B.x && A.y < B.y); }
 ```
 ###全等
 所有座標的項都一樣。
 ```c++
+int dcmp (double x){
+　　　if (fabs(x)<eps) return 0;
+　　　else return x < 0 ? -1 : 1;
+}
+
+bool operator == (const Point &A, const Point &B){
+　　　return dcmp(A.x-B.x) == 0 && dcmp(A.y-B.y) == 0; }
 ```
 ###內積
 兩向量內積
 ```c++
+double Dot(Vector A,Vector B) { return A.x*B.x + A.y*B.y; }
 ```
 ###外積
 兩向量外積
 ```c++
+double Cross(Vector A,Vector B){ return A.x*B.y-A.y*B.x; }
 ```
 ###長度
 向量長度
 ```c++
+double Length(Vector A) { return sqrt (Dot(A,A)); }
 ```
 ###角度
 兩向量間的夾角
 ```c++
+double  Angle(Vector A,Vector B){
+　　　return acos( Dot(A,B)/Length(A)/Length(B) );
 ```
 
 Cross
@@ -110,6 +157,12 @@ Cross
 ```
 ###多邊形面積
 ```c++
+double polygon_area(Polygon input){
+　　　double A=0;
+　　　for(int i=0;i<input.num;i++)
+　　　　　　A+=Cross(input.p[i],input.p[i+1]);
+　　　return fabs(A/2);
+}
 ```
 ###點到直線的距離
 
