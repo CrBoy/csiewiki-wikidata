@@ -360,7 +360,7 @@ Initialization:
   CAN_ITConfig(CAN2, CAN_IT_FMP0, ENABLE);
 ```
 Transmition package:
-```
+```C
   /* Transmit Structure preparation */
   TxMessage.ExtId = (uint32_t)ID | 0x1FFF0000;
   TxMessage.RTR = CAN_RTR_DATA;
@@ -374,7 +374,7 @@ Transmition package:
 ```
 
 Receive package handler
-```
+```C
   void CAN2_RX0_IRQHandler(void)
   {
     if(CAN_GetITStatus(CAN2,CAN_IT_FMP0)==SET){
@@ -385,7 +385,7 @@ Receive package handler
 ```
 
 Interrupt Setting:
-```
+```C
   void CAN2_NVIC_Config(void)
   {
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -396,7 +396,7 @@ Interrupt Setting:
     NVIC_Init(&NVIC_InitStructure);
   }
 ```
-source code : https://github.com/ming6842/STMF429_Learning/tree/master/stm32f429_Demo_CAN  
+source code: [stm32f429_Demo_CAN](https://github.com/ming6842/STMF429_Learning/tree/master/stm32f429_Demo_CAN)
 
 Tables
 ==================
