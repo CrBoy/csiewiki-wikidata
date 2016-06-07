@@ -170,6 +170,28 @@ Segment
 ----------------
 用兩點式來判斷線段相交情形
 ```c++
+int in_interval(Point P1,Point P2,Point P3){
+　　　// check if p3 is between p1 p2   return 1 yes 0 no
+　　　Point min,max;
+　　　if(P1.x>P2.x)min.x=P2.x,max.x=P1.x;
+　　　else　　　　　min.x=P1.x,max.x=P2.x;
+　　　if(P1.y>P2.y)min.y=P2.y,max.y=P1.y;
+　　　else　　　　　min.y=P1.y,max.y=P2.y;
+　　　if(min.x<=P3.x&&P3.x<=max.x&&min.y<=P3.y&&P3.y<=max.y)return 1;
+　　　else return 0;
+}
+int segments_intersect(Point A,Point B,Point C,Point D){
+　　　//check if segment AB CD has intersection return 1 yes 0 no
+　　　double d1=Cross( A-C , D-C );
+　　　double d2=Cross( B-C , D-C );
+　　　double d3=Cross( C-A , B-A );
+　　　double d4=Cross( D-A , B-A );
+　　　if(dcmp(d1*d2)<0 && dcmp(d3*d4)<0) return 1;
+　　　if( dcmp(d1)==0 && in_interval(C,D,A)==1 )return 1;
+　　　if( dcmp(d2)==0 && in_interval(C,D,B)==1 )return 1;
+　　　if( dcmp(d3)==0 && in_interval(A,B,C)==1 )return 1;
+　　　if( dcmp(d4)==0 && in_interval(A,B,D)==1 )return 1;
+　　　return 0;
 ```
 ###相交
 >正常情況下
