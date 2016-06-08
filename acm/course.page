@@ -21,7 +21,7 @@ toc: no
 * [Segment Tree](course/Segment_Tree)
 * [String Matching](course/String_Matching)
 * [Shortest Path](course/Shortest_Path)
-* SCC
+* [SCC](course/SCC)
 * [MST](course/MST)
 * Max flow
 * MCMF
