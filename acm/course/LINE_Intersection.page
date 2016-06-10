@@ -196,6 +196,8 @@ int segments_intersect(Point A,Point B,Point C,Point D){
 ###相交
 >正常情況下
 
+![](/intersectionNormal.png)
+
 A和B在異側，C和D也在異側
 
 A和B在異側 : CA Cross CD 和 CB Cross CD 異號
