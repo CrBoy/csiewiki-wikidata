@@ -204,6 +204,8 @@ C和D在異側 : AC Cross AB 和 AD Cross AB 異號
 
 >例外
 
+![](/intersectionException.png)
+
 交點重疊或線段重疊
 
 CB Cross CD = 0 且 B要在CD內
