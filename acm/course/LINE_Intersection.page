@@ -165,6 +165,9 @@ double polygon_area(Polygon input){
 }
 ```
 ###點到直線的距離
+>公式解
+
+![](/formula.png)
 
 Segment
 ----------------
