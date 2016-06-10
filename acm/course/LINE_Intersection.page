@@ -150,7 +150,7 @@ Cross
 ```c++
 ```
 ###兩向量順逆時針的方向
-![](/direction_clockwise.png)
+![](/acm/direction_clockwise.png)
 ```c++
 ```
 ###平行四邊形/三角形面積
@@ -168,7 +168,7 @@ double polygon_area(Polygon input){
 ###點到直線的距離
 >公式解
 
-![](/formula.png)
+![](/acm/formula.png)
 
 Segment
 ----------------
@@ -200,7 +200,7 @@ int segments_intersect(Point A,Point B,Point C,Point D){
 ###相交
 >正常情況下
 
-![](/intersectionNormal.png)
+![](/acm/intersectionNormal.png)
 
 A和B在異側，C和D也在異側
 
@@ -211,7 +211,7 @@ C和D在異側 : AC Cross AB 和 AD Cross AB 異號
 >例外
 
 
-![](/intersectionExceprtion1.png)
+![](/acm/intersectionExceprtion.png)
 
 
 
