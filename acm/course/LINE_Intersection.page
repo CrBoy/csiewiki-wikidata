@@ -29,11 +29,19 @@ typedef struct Point{
 
 
 ```c++
+struct Line{
+　　　double x1,y1;
+　　　double x2,y2;
+}line;
 ```
 >點斜式：紀錄直線上任意一點，以及直線的斜率，即可表一直線。
 
 
 ```c++
+struct Line{
+　　　double m;
+　　　double x,y;
+}line;
 ```
 ###面
 空間中一個平面，可以有許多不同表示法。
@@ -42,11 +50,20 @@ typedef struct Point{
 
 
 ```c++
+struct Surface{
+　　　double x1,y1,z1;
+　　　double x2,y2,z2;
+　　　double x3,y3,z3;
+}surface;
 ```
 >紀錄平面的法向量，以及通過平面上一點，即可表一平面。
 
 
 ```c++
+struct Surface{
+　　　double nx,ny,nz;
+　　　double x,y,z;
+}surface;
 ```
 
 Vector
