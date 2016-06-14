@@ -15,7 +15,7 @@ Struct
 ###點
 平面中一個點(x,y)
 
-程式：
+
 ```c++
 typedef struct Point{
 　　　double x,y;
@@ -27,12 +27,12 @@ typedef struct Point{
 
 >兩點式：紀錄直線上任意兩點，即可表一直線。
 
-程式：
+
 ```c++
 ```
 >點斜式：紀錄直線上任意一點，以及直線的斜率，即可表一直線。
 
-程式：
+
 ```c++
 ```
 ###面
@@ -40,12 +40,12 @@ typedef struct Point{
 
 >紀錄平面上不共線三點，即可表一平面。
 
-程式：
+
 ```c++
 ```
 >紀錄平面的法向量，以及通過平面上一點，即可表一平面。
 
-程式：
+
 ```c++
 ```
 
@@ -146,16 +146,12 @@ double  Angle(Vector A,Vector B){
 
 Cross
 ----------------
-外積的用途
-```c++
-```
+
 ###兩向量順逆時針的方向
 ![](/acm/direction_clockwise.png)
 ```c++
 ```
-###平行四邊形/三角形面積
-```c++
-```
+
 ###多邊形面積
 ```c++
 double polygon_area(Polygon input){
