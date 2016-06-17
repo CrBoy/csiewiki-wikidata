@@ -9,12 +9,17 @@
 
 # 作業及筆記
 -   HW1 [Github](https://github.com/ruby0109/phonebook) [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-1-HVI482VjSAk)
+     藉由Phonebook第一次嘗試改進程式的效能,對於perf和如何思考改良程式碼有更多的了解, 也學到資料結構如Hash Table的implementation
 -   HW2(A) [Github](https://github.com/ruby0109/raytracing)[Hackpad](https://embedded2016.hackpad.com/A-pw21nw4eRdw)
+     raytracing用實作的方式認識thread和OpenMP
+-   HW4(A)筆記 [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-4-xqEEEVlynJg)
+     計算機結構,deep C
 -   分組報告 第二周課堂測驗 [Hackpad](https://embedded2016.hackpad.com/2016q1-Week-2--Sc7AmIvN7EN)
+     cache的運作
 
 # 心得
   原本會修這門課只是因為名稱和我沒有修到的系上課程相同，沒想到強度和深度非常不同。每一次的作業都需要大量的知識、實作能力，和大量的時間研究。基礎不好的我跟不上課程的腳步，也不夠努力，光是在作業上就有相當多的部分未完成。省思這六個月來的種種，我學的很少。看著同學程度間遙遠的距離，對於打好基礎似乎有點手足無措；對於可以幫助自己學習的資源包含人事物找的不夠多，也掌握的不夠好；習於過去學習的背誦模式，理解、思考進而闡述的能力很弱；在沒有概念的情況下不太會問問題；為了畢業花了許多時間在課程外和其他的畢業學分中。除了自己學習的部分，這是一門很棒的課。以前修的課往往很難拼湊出現實的工作內容，系上目前的出路也是以學術研究居多，實際所學的應用對我來說總有點模糊。這門課很清楚的告訴我們這個領域需要怎樣的專業知識，甚至於學習的方法和態度。整體來說，這堂課給的內容豐富，只能看接下來自己可以吸收多少。
 
 # 自我評量分數:
--    5級分
+-    6級分
 -    謝謝組員們的carry,自己需要好好改進而進步
