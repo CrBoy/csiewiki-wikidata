@@ -92,3 +92,105 @@ void trace(int i)
         cout << seq[i] << ' ';
 }
 ~~~~~~
+
+##Robinson-Schensted-Knuth Algorithm
+**概念**
+
+~~~~~~
+採取 Greedy 策略，以 Binary Search 加速，達到 O(NlogL) ， N 是給定序列的長度， L 是 LIS 的長度。
+~~~~~~
+
+**計算LIS長度**
+
+~~~~~~
+int LIS(vector<int>& s)
+{
+    // 不得不判斷的特例
+    if (s.size() == 0) return 0;
+ 
+    // 先放入一個數字，免得稍後 v.back() 出錯。
+    vector<int> v;
+    v.push_back(s[0]);
+ 
+    for (int i = 1; i < s.size(); ++i)
+    {
+        int n = s[i];
+ 
+        if (n > v.back())
+            v.push_back(n);
+        else
+            *lower_bound(v.begin(), v.end(), n) = n;
+    }
+ 
+    return v.size();
+}
+~~~~~~
+
+**找出LIS**
+
+~~~~~~
+sequence : -7 10  9  2  3  8  8  1
+temp LIS :
+position :
+ 
+sequence :(-7)10  9  2  3  8  8  1
+temp LIS : -7
+position :  1       // -7 在 LIS 的第一個位置
+ 
+sequence : -7(10) 9  2  3  8  8  1
+temp LIS : -7 10
+position :  1  2    // 10 在 LIS 的第二個位置，以此類推。
+ 
+sequence : -7 10 (9) 2  3  8  8  1
+temp LIS : -7  9
+position :  1  2  2
+/* 9 成為 LIS 的潛力比 10 大, 所以以 9 代替 10 */
+ 
+sequence : -7 10  9 (2) 3  8  8  1
+temp LIS : -7  2
+position :  1  2  2  2
+/* 2 成為 LIS 的潛力比 9 大, 所以以 2 代替 9 */
+ 
+sequence : -7 10  9  2 (3) 8  8  1
+temp LIS : -7  2  3
+position :  1  2  2  2  3
+ 
+sequence : -7 10  9  2  3 (8) 8  1
+temp LIS : -7  2  3  8
+position :  1  2  2  2  3  4
+ 
+sequence : -7 10  9  2  3  8 (8) 1
+temp LIS : -7  2  3  8
+position :  1  2  2  2  3  4  4
+/* 8 成為 LIS 的潛力比 8 大, 所以以 8 代替 8 */
+ 
+sequence : -7 10  9  2  3  8  8 (1)
+temp LIS : -7  1  3  8
+position :  1  2  2  2  3  4  4  2
+/* 1 成為 LIS 的潛力比 2 大, 所以以 1 代替 2 */
+~~~~~~
+首先找到每個數字在 LIS 當中的合適位置 position[] ，接下來就可以從 position[] 裡面找到真正的 LIS 。從尾巴開始往回找，先找到的就是正確的。因為 LIS 長度為 4 ，所以就先找位置為 4 的。
+~~~~~~
+sequence : -7 10  9  2  3  8 (8) 1
+position :  1  2  2  2  3  4 (4) 2
+LIS      :  -  -  -  8
+/* search 4th, 8 is fourth LIS element */
+ 
+sequence : -7 10  9  2 (3) 8  8  1
+position :  1  2  2  2 (3) 4  4  2
+LIS      :  -  -  3  8
+/* search 3rd, 3 is third LIS element */
+ 
+sequence : -7 10  9 (2) 3  8  8  1
+position :  1  2  2 (2) 3  4  4  2
+LIS      :  -  2  3  8
+/* search 2nd, 2 is second LIS element */
+ 
+sequence :(-7)10  9  2  3  8  8  1
+position : (1) 2  2  2  3  4  4  2
+LIS      : -7  2  3  8
+/* search 1st, -7 is first LIS element */
+~~~~~~
+最後得到 LIS 為 -7 2 3 8 。
+
+LIS 可能不止一個。上述方法會得到最後出現的 LIS 。若是要得到最先出現的 LIS ，該怎麼辦呢？最簡單的方式是：原本序列由右至左的做 Longest Decreasing Subsequence 就行了。
