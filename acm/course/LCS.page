@@ -20,7 +20,7 @@ Define
  </ul>
 </ul>
 <ul>
-ex: 'CBABCABCC' , 'ABCABCBA' => ABCABC<br/>
+ex: 'CBABCABCC' , 'ABCABCBA' => 'ABCABC'<br/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-1.png" height="200" width="200"/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-2.png" height="200" width="200"/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-3.png" height="200" width="200"/>
