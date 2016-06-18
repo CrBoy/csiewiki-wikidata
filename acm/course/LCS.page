@@ -15,8 +15,11 @@ How can we get that?
      LCS[i-1][j-1]+1              , S1[i]=S2[j]
      max(LCS[i-1][j],LCS[i][j-1]) , S1[i]≠S2[j]
  </ul>
-</ul><br/>
+</ul>
+<ul>
+ex: 'CBABCABCC' , 'ABCABCBA' => ABCABC<br/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-1.png" height="200" width="200"/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-2.png" height="200" width="200"/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-3.png" height="200" width="200"/>
  <img src="http://wiki.csie.ncku.edu.tw/acm/LCS-4.png" height="200" width="200"/>
+</ul>
