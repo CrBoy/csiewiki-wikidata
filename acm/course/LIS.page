@@ -204,4 +204,5 @@ LIS 可能不止一個。上述方法會得到最後出現的 LIS 。若是要�
 ##Reference
 
 <http://www.csie.ntnu.edu.tw/~u91029/LongestIncreasingSubsequence.html>
+
 <https://en.wikipedia.org/wiki/Longest_increasing_subsequence>
