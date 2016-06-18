@@ -1,19 +1,22 @@
-Define<br/>
-<ul> Find a sub-sequence of 2 given sequences in which the sub-sequence`s elements are appear in both original sequences.
-     And the sub-sequence is as long as possible. </ul>
+Define
+========
+<ul> Find a **`sub-sequence`** of 2 given sequences in which the sub-sequence's elements are appear in both original sequences
+     and the sub-sequence is **`as long as possible.`** </ul>
 <ul> ex: 'aabbcc', 'abbccc' => 'abc'</ul>
 <br/>
-What do we want to know?
+
+##What do we want to know?
 <ul> – The LCS of S1[1...i] and S2[1...j]. </ul>
 <ul> – i.e. LCS[i][j] </ul><br/>
 
-How can we get that?
+##How can we get that?
 <ul>– Find the previous number with longest LIS. </ul>
 <ul>– LCS[i][j]:
- <ul>
+ <ul>```c++
      0                            , i=0 or j=0
      LCS[i-1][j-1]+1              , S1[i]=S2[j]
      max(LCS[i-1][j],LCS[i][j-1]) , S1[i]≠S2[j]
+```
  </ul>
 </ul>
 <ul>
