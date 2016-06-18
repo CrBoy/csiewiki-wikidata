@@ -7,6 +7,7 @@ Week 6: LIS(Longest Increasing Subsequence )
 
 ##Dynamic Programming
 **概念**
+
 ~~~~~~
 Recurence:
 length(n) =  max  { length(i) + 1 : if s[i] < s[n] }
