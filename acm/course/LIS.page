@@ -14,6 +14,8 @@ length(n) =  max  { length(i) + 1 : if s[i] < s[n] }    ( 0≤i≤n-1)
 n：第0項到第n項的LIS。
 length(n)：第0項到第n項的LIS長度。
 s[n]：第n項數值。
+
+時間複雜度： O(N^2)
 ~~~~~~
 
 **計算LIS長度**
@@ -98,6 +100,8 @@ void trace(int i)
 
 ~~~~~~
 採取 Greedy 策略，以 Binary Search 加速，達到 O(NlogL) ， N 是給定序列的長度， L 是 LIS 的長度。
+
+時間複雜度： O(NlogN)
 ~~~~~~
 
 **計算LIS長度**
@@ -196,3 +200,8 @@ LIS      : -7  2  3  8
 最後得到 LIS 為 -7 2 3 8 。
 
 LIS 可能不止一個。上述方法會得到最後出現的 LIS 。若是要得到最先出現的 LIS ，該怎麼辦呢？最簡單的方式是：原本序列由右至左的做 Longest Decreasing Subsequence 就行了。
+
+##Reference
+
+<http://www.csie.ntnu.edu.tw/~u91029/LongestIncreasingSubsequence.html>
+<https://en.wikipedia.org/wiki/Longest_increasing_subsequence>
