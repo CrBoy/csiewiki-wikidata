@@ -5,7 +5,7 @@ Define<br/>
 <br/>
 What do we want to know?
 <ul> – The LCS of S1[1...i] and S2[1...j]. </ul>
-<ul> – i.e. LCS[i][j] </ul>
+<ul> – i.e. LCS[i][j] </ul><br/>
 
 How can we get that?
 <ul>– Find the previous number with longest LIS. </ul>
