@@ -1,5 +1,6 @@
-Define
+week 6 LCS (Longest Common Sub-sequence)
 ========
+##Define
 <ul> Find a **`sub-sequence`** of 2 given sequences in which the sub-sequence's elements are appear in both original sequences
      and the sub-sequence is **`as long as possible.`** </ul>
 <ul> ex: 'aabbcc', 'abbccc' => 'abc'</ul>
