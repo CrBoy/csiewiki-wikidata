@@ -15,7 +15,7 @@ toc: no
 * [STL (lower_bound, upper, tuple, priority_queue, struct, pair)](course/STL)
 * [Backtracking](course/Backtracking)
 * [DP](course/DP)
-* LCS
+* [LCS](course/LCS)
 * [LIS](course/LIS)
 * Binary Indexed Tree
 * [Segment Tree](course/Segment_Tree)
