@@ -1,0 +1,26 @@
+yuronfu(傅鈺融)
+--------------------
+**簡介：**
+- 成功大學 數學系105級(2012-2016)
+
+聯絡資訊：
+====================
+- github: ``yuronfu``
+- email: ``fuyurolyn@gmail.com``
+
+2016春季班 個人評量
+====================
+作業及筆記
+--------------------
+- [2016q1 Homework #1](http://wiki.csie.ncku.edu.tw/embedded/2016q1h1)：[GITHUB](https://github.com/yuronfu/phonebook), [HACKPAD](https://embedded2016.hackpad.com/2016q1-Homework-1--NcHhQCQ4ijr)
+- [2016q1 Homework #2](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2)：(A) [GITHUB](https://github.com/yuronfu/raytracing), [HACKPAD](https://embedded2016.hackpad.com/2016q1-Homework-2A-IPUKflsRm0W)；(B) [GITHUB](https://github.com/yuronfu/unit-tests), [HACKPAD](https://embedded2016.hackpad.com/2016q1-Homework-2B-p1NQbU9UZqe)
+- [2016q1 Homework #3](http://wiki.csie.ncku.edu.tw/embedded/2016q1h3)([4(B)](http://wiki.csie.ncku.edu.tw/embedded/2016q1h4))：[GITHUB](https://github.com/yuronfu/server-framework), [HACKPAD](https://embedded2016.hackpad.com/GEzPXL3httd)
+- [2016q1 Homework #5](http://wiki.csie.ncku.edu.tw/embedded/2016q1h5)：(server-framework) [GITHUB](https://github.com/yuronfu/server-framework), [HACKPAD](https://embedded2016.hackpad.com/GEzPXL3httd)
+
+所見所聞
+--------------------
+第一次修這種類型的課程，從課程中學到很多c語言的奇技淫巧，課程的內容讓我對作業系統有了更深的了解。過去在修作業系統這門課我對 mutex-lock 並沒有很深刻的了解，但在透過老師出的作業3中，讓我了解到為何 lock 在系統程式的運作（asynchronous）及效能(lock less)中扮演重要的角色。
+
+自我評量（1-10分）
+--------------------
+6分。學期初花了很多時間在作業上，尤其是對linux作業系統的認識、效能評估工具（perf, gprof）和除錯工具(GDB)的使用、c語言的物件導向程式設計方法，但後來被畢業的喜悅沖昏頭，所以後來作業沒有認真的在做。
