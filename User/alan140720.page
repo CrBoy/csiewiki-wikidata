@@ -1,0 +1,32 @@
+alan140720(陳昱齊)
+-------------------
+**簡介:**
+
+- 成功大學 資訊工程學系105級(2012 - )
+
+聯絡資訊:
+=====================
+- email: ``alan140720@gmail.com``
+
+2016春季班 個人評量
+=======================
+(2016春季班)作業及筆記
+--------------------------
+- HW1 : [Github](https://github.com/Yu-Qi/phonebook), [Hackpad](https://hackpad.com/Hw1-phonebook-D7VdwExkMkB#:h=Github)
+- HW2(A) : [Github](https://github.com/Yu-Qi/raytracing), [Hackpad](https://hackpad.com/2016q1-HW-2A-vEkRHYJYmvz)
+- HW2(B) : [Github](https://github.com/Yu-Qi/unit-tests), [Hackpad](https://hackpad.com/2016q1-HW-2B-xghD8Vz3RJX)
+- HW3 : [Github](https://github.com/Yu-Qi/server-framework), [Hackpad](https://hackpad.com/2016q1-HW3-EF458joVl97) 
+- HW5(epoll experiments) : [Hackpad](https://embedded2016.hackpad.com/epoll-experiments-rfwkPEeFZ96)
+
+(2016秋季班)所見所聞心得
+------------------------
+-在這堂課最大的驚喜就是，學習各個領域中最強大的工具，也能讓自己往強大的路前進，我在這堂課有感的工具有：perf , gunplot , gdb , github
+-如何比較不同實作機制的效能，那就是寫出一個實驗來，就能簡易的表現出實際效能情況，過去只能用背誦的方式，去記說哪些比較好，好在哪也說得不清不楚，透過實驗，讓我能知道他們的差異性與適合時機
+-閱讀 man page 等使用手冊，學習一個函式，在過去來說，只懂得看人家的範例，但是當參考資料不足時，就會遇到問題，在這學期的大量學習新的函式中，已開始培養閱讀使用手冊
+-程式就是要不斷的改，以往只懂得將程式寫完後，不斷針對功能做調整，卻不知道應該停下來重整自己的程式碼，一來應該提高可讀性，二來則是最重要的效能阿，很多時候太直覺的寫法，都忽略了計算基組織學到的理論，例如將 branch概念引進 coding，就是將if條件取代掉，這樣就能減少 cycle數，這堂課再次讓我見證理論實作結合之美
+-閱讀英文參考資料的能力，有大幅的提升，不像以前只願意看中文的了
+
+(2016秋季班)自我評量分數 (1 到 10 級分)
+------------------------
+在這堂課的努力與成長，對此我給自己 7 級分。雖然我對於程式碼的改進貢獻度，沒有其他人來的多，但是我覺得我在這堂課中，真的學到了 GUT ，不然我也不會在這了(笑)
+這堂課學到了測試效能最好的方法就是量身打造一個實驗、不斷學習最好的工具、與組員的分配工作溝通與安排、理論實作並行之重要
