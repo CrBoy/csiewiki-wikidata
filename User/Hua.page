@@ -1,0 +1,47 @@
+---
+title: 王紹華 (Hua)
+categories: User
+...
+
+Hua(王紹華)
+==========
+**簡介**
+
+- 成功大學工程科學系 106 級 ( 2013 - 2017 )
+
+**參與計劃**
+
+- 複合式四軸飛行器避障系統之設計與實現 / 2016 科技部-大專學生研究計畫
+- 針對 IoT 的精簡即時多工作業系統 / 2016 軟體創作達人暑期成長營
+
+**開源專案貢獻**
+
+- [Facebooc](https://github.com/jserv/facebooc)
+
+聯絡資訊
+=======
+- Email：oiz5201618@gmail.com
+- GitHub：[oiz5201618](https://github.com/oiz5201618)
+
+2016 春季班心得
+=============
+作業
+---
+- HW1 效能分析工具(Perf)及軟體最佳化 ( 實作案例：[電話簿搜尋](http://wiki.csie.ncku.edu.tw/embedded/2016q1h1) )
+    - [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-1-woL9YRf0coZ) / [GitHub](https://github.com/oiz5201618/phonebook)
+- HW2(A) 效能分析工具(gprof)及軟體最佳化 ( 實作案例：[光線追蹤程式](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2) )
+    - [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-2forA-ZIYzFrLSRDA) / [GitHub](https://github.com/oiz5201618/raytracing)
+- HW2(B) GDB debugger 操作及 merge sort ( 實作案例：[unit-tests](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2) )
+    - [Hackpad](https://hackpad.com/2016q1-Homework-2for-B-zcsIbhXWium) / [GitHub](https://github.com/oiz5201618/unit-tests)
+- HW3 多執行緒及物件導向程式開發 ( 實作案例：[Server Framework in modern C](http://wiki.csie.ncku.edu.tw/embedded/2016q1h3) )
+    - [Hackpad](https://hackpad.com/2016q1-Homework-3-vAsgznE3nZp) / [GitHub](https://github.com/oiz5201618/server-framework)
+- HW4 學習後續課程所需要的背景知識
+    - [Hackpad](https://embedded2016.hackpad.com/Untitled-qZeIM3vYTZ5) / GitHub
+- HW5(A) 分組報告 ( [Server Framework 效能評估及效能改進](http://wiki.csie.ncku.edu.tw/embedded/2016q1h5) )
+    - [Hackpad](https://embedded2016.hackpad.com/server-framework--Vbmxrh9mRPj) / [GitHub](https://github.com/yuronfu/server-framework)
+- HW5(B) 分組報告 ( 透過 RTOS 控制機械手臂 )
+    - [Hackpad](https://embedded2016.hackpad.com/_Real-Time-Linux-5zH4JsNDgO5) / GitHub
+
+2016 春季班自我評量
+-----------------
+我給自己10分！
