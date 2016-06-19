@@ -1,0 +1,31 @@
+---
+title:李俊德
+categories: User
+...
+
+# apple11361(李俊德)
+
+## 簡介：
+成功大學 資訊工程系 107級
+
+## 聯絡資訊:
+email : apple113611361@gmail.com
+
+# 2016春季班 個人評量
+- Homework1
+    * [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework1-eYgjWlndBa6)
+    * [Github](https://github.com/apple11361/homework1)
+- Homework2
+    * Raytracing
+        * [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-2A-gOIUdK76Fuy)
+        * [Github](https://github.com/apple11361/homework2-A)
+- Homework3
+    * [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework3-4xeI7jFIHjN)
+- Homework4
+    * [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-4-Id5tG5q9ah4)
+- Homework5
+    * [Hackpad](https://embedded2016.hackpad.com/mini-arm-os-FydFEfAHLPi)
+
+## 心得
+很高興我能在嵌入式系統最後一次開課修到這門課，這門課讓我真的實際獲得了許多寶貴的知識跟經驗，而不只是空泛的理論。像是第一次作業利用工具程式觀察程式效能和瓶頸，再實際去修改程式碼改善效能。第二次作業學習了多執行緒的程式設計和許多最佳化的技巧。雖然後面的幾週課程以我的能力來說實在是非常吃力，已經落後很多進度了，但我依然盡我所能的去學習吸收。我學會了使用gdb，還懂了ARM的架構。關於ARM架構的理解和小型ARM作業系統的設計，是我在這堂課獲得最珍貴的收穫。
+## 自我評量分數 (1 到 10 級分)
