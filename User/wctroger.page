@@ -4,18 +4,27 @@
 # 聯絡資訊
 - Email : roger89632@gmail.com
 
-# 2016春季班 嵌入式作業系統設計與實作 個人評量
+# 2016春季班 嵌入式作業系統設計與實作 -個人評量
 ## 作業及筆記
--- HW1 [GitHub](https://github.com/wctroger/phonebook), [Hackpad](https://embedded2016.hackpad.com/70yAEuyTxyr#開發紀錄)
+- HW1 電話簿 & Perf工具使用 [GitHub](https://github.com/wctroger/phonebook), [Hackpad](https://embedded2016.hackpad.com/70yAEuyTxyr#開發紀錄).
 
--- HW2 [GitHub](https://github.com/wctroger), [Hackpad(A)](https://embedded2016.hackpad.com/zEppPYc588K#開發紀錄(A)), [Hackpad(B)](https://embedded2016.hackpad.com/c7BZOlgO7qq#開發紀錄(B))
+- HW2 raytracing & unit-tests [GitHub](https://github.com/wctroger), [Hackpad(A)](https://embedded2016.hackpad.com/zEppPYc588K#開發紀錄(A)), [Hackpad(B)](https://embedded2016.hackpad.com/c7BZOlgO7qq#開發紀錄(B)).
 
--- HW3 [GitHub](https://github.com/wctroger), [Hackpad](https://embedded2016.hackpad.com/yaH6in6OEWs#開發紀錄)
+- HW3 Server Framework [GitHub](https://github.com/wctroger), [Hackpad](https://embedded2016.hackpad.com/yaH6in6OEWs#開發紀錄).
 
--- HW4 [Hackpad](https://embedded2016.hackpad.com/QtP12HUkUBg#學習紀錄)
+- HW4 閱讀指定材料 [Hackpad](https://embedded2016.hackpad.com/QtP12HUkUBg#學習紀錄).
 
--- HW5 [Hackpad](https://embedded2016.hackpad.com/Sc7AmIvN7EN#2016q1-Week-#2-試題)
+- HW5 分組報告 Week #2 試題 [Hackpad](https://embedded2016.hackpad.com/2016q1-Week-2--Sc7AmIvN7EN).
+
+
 
 ## 所見所聞心得
 
+- 當初從同學口中聽到這堂課很重，但訓練很扎實，所以就決定反正大學的畢業學分也都夠了，最後一年要修對的起自己的課。
+- 開始上課的時候會看到自己過去3年來對不起自己的痕跡，發現自己的程度跟其他同學有看得出來的落差，在做作業要改程式碼的時候常常會很沒有頭緒，只能很沒效率的一行一行去看它。這堂課最值得修的地方就是雖然我很弱，但我可以看到很多強者同學的共筆，可以去學習強者們都是怎麼去思考程式碼找出效能瓶頸，並且寫出改善的方法，而且如果有還是不懂的地方，這些強者同學們也都很樂意花時間解釋清楚。漸漸修到期末的時候，會看到自己真正弄懂了一些曾經以為學會/從來不會的東西，同時也會看到來上課的同學們慢慢變少，這是我覺得很可惜的地方，因為我能從他們身上學到東西的機會就變少了，但值得慶幸的是還是有不少很強的同學們繼續修到最後。
+- 這是一堂你很弱可以學到很多東西，(聽強者同學說的)你很強可以學到更多東西的課。可以的話我會希望能專注在這堂課，但最後一學期有太多不修會後悔的課(以前太混...)，所以重心被分掉很多，覺得滿可惜的。
+
+
 ## 自我評量分數 (1 到 10 級分)
+- 5級分。
+- 理由：一開始自我評分之前，我本來還在考慮要給自己6分還是7分，因為覺得比起自己過去的學習，這堂課學到的質跟量都更多。但看過這學期Hackpad留下的學習紀錄後...假如滿分有200分的話我會給自己87分，所以就是4級分，多加1分是給自己當作希望的種子，期望自己在這個暑假至少可以把這幾次來不及完成的作業/來不及吃完的資料，都把他補齊，尤其是作業4的計組影片。總結來說，我給自己5分，就是不及格的意思。
