@@ -6,19 +6,23 @@
 
 # 2016春季班 嵌入式作業系統設計與實作 個人評量
 ## 作業及筆記
-- HW1 [GitHub](https://github.com/kevin820930/phonebook), [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-1-r0B9LMeWBJf)
+- HW1 電話簿 & Perf工具使用 [GitHub](https://github.com/kevin820930/phonebook), [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-1-r0B9LMeWBJf)
 
-- HW2 [GitHub](https://github.com/kevin820930/raytracing), [Hackpad(A)](https://embedded2016.hackpad.com/2016q1-Homework-2A-NQmUJM08W7O), [Hackpad(B)](https://embedded2016.hackpad.com/2016q1-Homework-2B-WS1N2BCyYpl)
+- HW2 raytracing & unit-tests [GitHub](https://github.com/kevin820930/raytracing), [Hackpad(A)](https://embedded2016.hackpad.com/2016q1-Homework-2A-NQmUJM08W7O), [Hackpad(B)](https://embedded2016.hackpad.com/2016q1-Homework-2B-WS1N2BCyYpl)
 
-- HW3 [GitHub](https://github.com/kevin820930/server-framework), [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework3-9mN19iDczLb)
+- HW3 Server Framework [GitHub](https://github.com/kevin820930/server-framework), [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework3-9mN19iDczLb)
 
-- HW4 [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-4-Sks3AUNszRd)
+- HW4 閱讀指定材料 [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-4-Sks3AUNszRd)
 
-- HW5 [GitHub](https://github.com/kevin820930/HW5),[Hackpad](https://embedded2016.hackpad.com/2016q1-Week-2--Sc7AmIvN7EN)
+- HW5 分組報告 Week #2 試題 [GitHub](https://github.com/kevin820930/HW5),[Hackpad](https://embedded2016.hackpad.com/2016q1-Week-2--Sc7AmIvN7EN)
 
 ## 所見所聞心得
+- 一開始的考試，就是個核彈，炸碎了自己對自己能力的認知，原以為自己的作業系統、資料結構、程設...等等的，學的還不錯，比起系上其他課。但考完就會發覺自己跟米蟲的等級差不多。開始上課後，也更會發現，自己的大學3年好像真的沒學到什麼...，有種覺得我真的玩(完)了大學3年的領悟。
+- 此後各種的作業，讓我真正的將以前課本所學到的用在實作上。像是phonebook要使用大量指標的資料結構，讓我對指標有較深的了解，不再看到就逃避；用multi-thread在raytracing上的實作，讓我知道在作業系統上一再被強調的東西，要如何自己寫出來，並且使用；自己無聊時看著網路資料寫的threadpool，讓自己很訝異，我竟然寫得出以往我不知道它是啥悔、還有如何真正實作的東西(雖然我自己寫的很陽春)。這些以往在各個課堂上，會一直強調的，但從來不曾去使用過，只是背他的作用、定義。直到在這門課真正實作出來，才真正了解它們在幹嘛，以及對效能的影響有多大。
+- 覺得這堂課真的很神奇吧！讓每個人都能學到東西，不管是像我一樣弱的，或是本身就很強大的同學，都能有很多的收穫。而且這門課也真的實現了一句名言"給學生魚吃，不如教學生如何釣魚"。要學習自己去找資料(還要找正確的)，不管是讀書或是上網甚至是看論文；以及會懂得要從別的同學(不管強/弱)身上學到東西。雖然會自覺自己很弱，但覺得自己弱，就要努力的讓自己變強。
+- 這堂課真的是只要願意學習，不管是誰都能學到很多，老師、強者同學，都很樂意的解釋，在共筆上也樂於跟大家分享知識！可惜的是，大四下真的有的沒有的事接著而來，又要努力讓自己能畢業，漸漸撼動一開始想要拼死命在這門課上學到最多的決心，給了自己太多怠惰的理由。
 
 ## 自我評量分數 (1 到 10 級分)
 - 我給自己 6 級分
-- 我對自己這學期在這堂課的表現，並不是很滿意。常常作業寫不出來時，都會想著先去忙別的眼前的事情好了，導致作業常做不足，最後就是想著暑假有空再慢慢學就好。雖說這半年我自己有太多雜事，心總是很浮，但畢竟都已經那麼老了，不該將那些視為停止學習的理由；充其量的這些都只是讓自己怠惰的藉口。之所以還是給自己及格，是因為我對這堂課比起其他課還要更努力不少，沒事時自己會找前面沒寫好的功課研究，或是找上課有興趣的地方自己寫看看。簡單說，我認為我自己有更加努力在學習上，不再只是應付了事，但還是不夠努力、認真，有時還是會找藉口逃避。
+- 我對自己這學期在這堂課的表現，並不是很滿意。常常作業寫不出來時，都會想著先去忙別的眼前的事情，導致作業常做不足，最後就是想著暑假有空再慢慢學就好。雖說這半年我自己有太多雜事，心總是很浮，但畢竟都已經那麼老了，不該將那些視為停止學習的理由；充其量的這些都只是讓自己怠惰的藉口。之所以還是給自己及格，是因為我對這堂課比起其他課還要更努力不少，沒事時自己會找前面沒寫好的功課研究，或是找上課有興趣的地方自己寫看看。簡單說，我認為我自己有更加努力在學習上，不再只是應付了事，但還是不夠努力、認真，有時還是會找藉口逃避。
 - 「如果討厭現在的自己  一定是曾經有個不努力的自己」，希望暑假真的能讓自己心更穩，腳踏實地把該補的補完
