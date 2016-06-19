@@ -1,0 +1,32 @@
+WilliamLiou(劉宸睿)
+------------------
+**簡介:**
+
+- 成功大學 資訊工程學系105級(2012-2016)
+- 成功大學 智慧型資訊擷取實驗室 (2016~ )
+
+**聯絡資訊:**
+
+- email: ``willy830704@gmail.com``
+
+2016春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1 [Github](https://github.com/willy830704/phonebook),[Hackpad](https://embedded2016.hackpad.com/2016q1-Homework1-REN9Y4b4U4i)
+- HW2(A) [Github](https://github.com/willy830704/raytracing),[Hackpad](https://https://embedded2016.hackpad.com/2016q1-Homework-2A-WfcGD3rJCnY)
+- HW2(B) [Github](https://github.com/willy830704/unit-tests),[Hackpad](https://embedded2016.hackpad.com/2016-homework2B-kHQOia3gBRl)
+- HW5 [Hackpad](https://embedded2016.hackpad.com/mini-arm-os-FydFEfAHLPi)
+
+
+所見所聞心得
+--------------------------
+修了這堂課，學了不少東西，而且是跟其他課程比起來相對重要的東西。從phonebook到mini-arm-os，我看到了以前從沒見過的大規模的程式，對C語言的強大也有更進一步的了解，也見識到什麼叫做好的程式架構 ; 我也學會了許多有用的工具，學習使用github，學習perf以及gprof讓我們能更有效率的改善程式的效能 、學習gdb讓debug有如神助，用在mini-arm-os上更是各種解惑 ; 此外，我也學習到究竟我們之前所學的那些必修是如何實際用在coding上。
+跟著老師學習，也學到各種該有的觀念，像是"程式寫出來是要給你改的，不是給你背誦用的"，或是"要找資料就要找第一手資料"，還有"程式的改進是沒有終點的".....等等，當然最重要的當然還是"誠實面對自己"，我知道自己還有許多不足的地方，一定會繼續努力學習！
+
+自我評量分數 (1 到 10 級分)
+----------------------------------------------
+5級分。
+
+原因:覺得自己還可以再花更多時間在課程上，雖然過了這一學期多少有進步、有學到東西，可是我知道自己還不夠努力，雖然接下來進實驗室之後時間會更少，不過有空閒的話，我會把HW3跟HW4的教材好好研究，也會繼續研究分組作業的mini-arm-os，畢竟沒有做出點東西就放棄太可惜了！
