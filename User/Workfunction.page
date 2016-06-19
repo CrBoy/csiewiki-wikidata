@@ -9,6 +9,10 @@
 - 複合式四軸飛行器避障系統之設計與實現 / 2016科技部-大專學生研究計畫
 - 針對 IoT 的精簡即時多工作業系統 / 2016軟體創作達人暑期成長營
 
+**得獎紀錄**
+
+- 2015台灣學生叢集電腦競賽 入選
+
 **其他經驗:**
 
 - 成功大學工程科學系系學會
@@ -37,9 +41,21 @@
 
 **報告A：作業3 Server Framework之效能強化**
 
-- 共同組員：[王紹華](http://wiki.csie.ncku.edu.tw/User/Hua)、[陳博聖](http://wiki.csie.ncku.edu.tw/User/ponsheng)、[傅鈺融](http://wiki.csie.ncku.edu.tw/User/yuronfu)
+- 共同組員：[王紹華](http://wiki.csie.ncku.edu.tw/User/Hua)、[陳博聖](http://wiki.csie.ncku.edu.tw/User/ponsheng)、[傅鈺融](http://wiki.csie.ncku.edu.tw/User/yuronfu)、[謝永勁](http://wiki.csie.ncku.edu.tw/User/swimglass)、[鄭仲庭](http://wiki.csie.ncku.edu.tw/User/Joe)
 - 筆記內容：[Hackpad](https://embedded2016.hackpad.com/server-framework--Vbmxrh9mRPj)
 
 **報告B：使用Real-Time Linux控制機械手臂**
 
 - 共同組員：[王紹華](http://wiki.csie.ncku.edu.tw/User/Hua)、[陳博聖](http://wiki.csie.ncku.edu.tw/User/ponsheng)
+- 筆記內容：[Hackpad](https://embedded2016.hackpad.com/_Real-Time-Linux-5zH4JsNDgO5)
+
+### 自我評量
+**我給自己 9 分！**  
+當初聽到[張家榮](http://wiki.csie.ncku.edu.tw/User/JaredCJR)學長跟研究室的學長們的推薦選了這堂課，第一堂課就被Jserv的霸氣震懾了。
+跟著學習後發現自己有好多好多地方需要學習，當老師那隻麥克風一伸到嘴我邊總是啞口無言，明明修過了系上的計組、OS卻跟沒學過一樣。
+在第二次作業時研究了pthread的用法，在這隨處可見多核心裝置的時代，我們居然到現在才開始學如何架構多執行序的程式。
+第三次作業是我第一次看到2000行以上並且真正有強度的程式碼，一開始研究時真的處處碰壁，在當時一度想要放棄，還好有一群很棒的隊友一起研究互相扶持，
+最後花了快3個禮拜終於能駕馭這個程式了。
+之後分組討論B時終於越來越進入狀況了，一個禮拜花了大概40小時以上在上面，了解到老師說的`只有不夠強的人才要加班`的道理！
+很信運自己能遇到Jserv讓我有機會認清自己的渺小並且會使用方法來加強自己的能力！
+希望在老師的幫助下能夠加強自己，最後可以開發出對社會有貢獻的成果！
