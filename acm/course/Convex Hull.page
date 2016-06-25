@@ -33,8 +33,40 @@ end
 Graham-Scan
 -------------
 說明：<br>
-1.選定起始點，利用起始點跟其他點連線所構成的角度，去sort各個點
-2.再開始一個一個點連線，假設
+1.選定起始點，利用起始點跟其他點連線所構成的角度，去sort各個點<br><br>
+![alt text](/acm/Graham-Scan-1.png)<br><br>
+Compare Function:<br>
+```c++
+bool compare_angle(Point& a, Point& b)
+{
+// 角度相同時,距離長度的判斷。
+int c = cross(P[0], a, b);
+return c > 0 ||
+(c == 0 && length2(P[0], a) < length2(P[0], b)); 
+}
+```
+<br>2.再開始一個一個點連線，假設有依照順序連到了P3, 就要檢查往前數的第二點P1<br>
+，此點與p2, 和p3的外積，如果外積小於0，p3就要連回p1（如下圖所示），如果大於0，就不變
+<br>![alt text](/Graham-Scan-2.png)
+
+<br>3.完成後的圖形<br><br>
+![alt text](/acm/Graham-Scan-3.png)
+<br>
+<br>4.Pseudo code<br>
+```c++
+Graham-Scan(Q)
+void Graham_scan() {
+//將最左下的點移到起點
+swap(P[0], min_element);
+// 其餘各點依角度排序。O(NlogN) 
+sort(P+1, P+N, compare_angle);
+// 直接把中心點作為起點,開始包覆,逆時針方向。 
+O(N)P[N] = P[0]; // 讓程式方便處理包至最後一點的情況。
+for (int i=0; i<=N; ++i){
+// 掃除凹陷的點
+// 添加新的點 // 扣掉最後一個點
+}
+```
 
 Andrew's Monotone Chain
 ----------------------------
