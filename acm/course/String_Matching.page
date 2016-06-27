@@ -1,5 +1,119 @@
-KMP
+String Basic
 ==========
+<b>string</b> ：有排序的字元集合
+
+<b>substring</b>：一段連續的字串子集合
+
+<b>subsequence</b>：依斷按順序但可不連續的字串子集合
+
+<b>suffix</b>：從後面開始一樣的子字串
+
+<b>prefix</b>：從前面開始一樣的子字串
+
+<b>ex:</b>
+
+String = abcdefg
+
+Substring = "abcd", "efg"... (連續)
+
+Subsequence = "acdf", "dfg".... (不連續)
+
+suffix = "efg", "defg"....
+
+prefix = "abcd", "ab"...
+
+
+Original
+============
+方法：
+
+兩字串A,B，找出所有B出現在A中的位置，
+
+很直覺的不斷從頭比對，若有字母不符合，則整體再往後退一個，繼續從頭比對 
+
+
+
+程式碼：
+```
+for(int i=0; i+lenB<=lenA; ++i)
+{
+    int mat=0;
+    while( mat<lenB && A[i+mat]==B[mat] ) ++mat;
+    if(mat == lenB) print(i);
+}
+```
+
+簡單的字串比對，時間複雜度為O(|A|)，| |表示字串的長度。
+
+過程請見以下：
+
+-  A = "abcdefg"
+-  B = "cde"
+
+<br>![alt text](/acm/String_Match_Ex1.gif)
+
+
+<b>worst case</b>
+
+有可能造成時間複雜度成長為O(|A||B|)
+
+過程請見以下：
+
+-  A =  "aaaaa....aaa"
+
+-  B =  "aaaaa....aab"
+
+<br>![alt text](/acm/String_Match_Ex2.gif)
+
+
+Hashing
+========
+*<b>就是幫字串分類到有限數字裡</b>*
+
+函數f：string -> {0,1,2....}
+
+*  要求：
+
+1.函數f容易取得
+
+2. 字串分佈均勻，意即碰撞次數愈小愈好
+
+*  思考：
+
+1.  f(A) ≠ f(B) ，可以推得 A ≠ B
+
+2.  f(A) = f(B) ，可以推得 A = B or A ≠ B <b>(發生碰撞)</b>
+
+3.  若分n類,碰撞機率為1/n
+
+
+Rabin-Karp rolling hash function
+=============================
+ 
+
+類似p進位制，分成q類(mod q，即對q取餘數)
+
+p,q取不同的質數可讓字串分佈的更加均勻
+
+
+比對：rolling
+-------------------
+以拿A,B兩字串比較為例
+
+1.先計算A所有prefix的hash value,時間複雜度為 O(|A|)
+
+2.可以得出任何子字串的hash value
+
+3.枚舉A長度為 |B| 的子字串,比較hash value,時間複雜度為O(n)
+
+<b>ex:</b>
+
+A = "abcdefg"
+
+B = "cde"
+
+KMP
+=====
 Knuth-Morris-Pratt algorithm
 ---------------------------------------
 使用時機：
