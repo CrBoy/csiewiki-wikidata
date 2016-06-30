@@ -158,8 +158,19 @@ cur_pos ... 目前字串重複的位置
 
 程式碼：
 
-![](/acm/KMP_5.png)
-
+```
+void fail(string B, int *pi)
+{
+        int len = strlen(B);
+        pi[0] = -1;
+        for( int i = 1, cur_pos = -1; i<len; ++i)
+        {
+                while(cur_pos >= 0 && B[i] != B[cur_pos+1])
+                        cur_pos = pi[cur_pos];
+                if(B[i] == B[cur_pos+1])  ++cur_pos;
+                pi[i] = cur_pos;
+        }
+}
 
 Z Algorithm
 ======================
