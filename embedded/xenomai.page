@@ -724,6 +724,113 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 
 ## **Xenomai 3 on Raspberry Pi 3**
 
+### linux 核心部份
+
+1. 下載 raspberrypi linux kernel source
+```
+    $ git clone https://github.com/raspberrypi/linux.git
+    $ git checkout rpi-4.1.y
+```
+    為了配合xenomai最新版本只支援linux kernel 4.1
+
+2. 下載 xenomai3 source
+```
+    $ git clone http://git.xenomai.org/xenomai-3.git/
+    $ git checkout v3.0.2
+```
+    4.1.18的patch檔只有3.0.2之後才有
+
+3. 下載 xenomai3 on bcm2709 patch
+```
+    $ wget http://wiki.csie.ncku.edu.tw/_showraw/patch-xenomai-3-on-bcm-2709.patch
+```
+
+4. Patch Xenomai 到 Linux kernel 中
+```
+    $ cd xenomai-3
+    $ scripts/prepare-kernel.sh --linux=../linux/ --ipipe=kernel/cobalt/arch/arm/patches/ipipe-core-4.1.18-arm-4.patch --arch=arm
+```
+
+5. 打入xenomai3 on bcm2709 patch
+```
+    $ cd linux
+    $ cat ../patch-xenomai-3-on-bcm-2709.patch | patch -p1
+```
+
+6. 修改linux組態
+```
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2709_defconfig
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+```
+    修改下列組態([ ]為不選，[X]為選取)：
+```
+    CPU Power Management  --->
+    CPU Frequency scaling  --->
+        [ ] CPU Frequency scaling
+    CPU idle  --->    
+        [ ] CPU idle PM support
+    Kernel Features  --->
+        [ ] Contiguous Memory Allocator
+        [ ] Allow for memory compaction
+    Kernel Hacking  --->
+        [ ] KGDB: kernel debugger
+    Boot options  --->
+        Kernel command line type --->
+            [X] Extend bootloader kernel arguments
+```
+
+7. 開始編譯核心
+```
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
+```
+    使用 -jx 來建立x個thread平行編譯
+
+8. 輸出編譯完的模組
+```
+    $ mkdir dist
+    $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=dist modules_install
+```
+
+9. 複製 zImage 及 device tree 至 SD 卡上
+```
+    $ cp arch/arm/boot/zImage /media/${USER}/boot
+    $ cp arch/arm/boot/dts/bcm2710-rpi-3-b.dtb /media/${USER}/boot
+    $ rm -rf /media/${USER}/boot/overlays/*
+    $ cp arch/arm/boot/dts/overlays/*.dtb* /media/${USER}/boot/overlays/
+```
+
+10. 複製模組至 SD 卡上
+```
+    # sudo cp -r linux/dist/lib/modules/* /media/${USER}/${ROOT}/lib/modules
+```
+
+11. 修改 /boot/config.txt
+    內文最後加上
+```
+    kernel=${zImage name}
+    device_tree=bcm2710-rpi-3-b.dtb
+```
+
+### Xenomai cobalt 核心部份
+1. cobalt kernel 參數設定
+```
+    $ cd xenomai-3
+    $ ./scripts/bootstrap --with-core=cobalt –enable-debug=partial
+    $ ./configure CFLAGS="-march=armv7-a -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -ffast-math" --host=arm-linux-gnueabihf --target=arm-linux-gnueabihf --enable-smp
+```
+
+2. 編譯
+```
+    $ make  DESTDIR=${PWD}/target  install
+```
+
+3. 放入 SD 卡中
+```
+    $ sudo cp -a target/* /media/${USER}/${ROOTFS}/
+```
+
+    All Done！！
+
 觀察與分析
 =====================================================================
 
