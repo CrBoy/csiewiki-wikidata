@@ -229,8 +229,8 @@ Z_Box
 
 如何算出Z_value?
 -----------------------------------------
-在算Z_value時會有3種case
-case 1: 自己沒有被別人的Z_Box包住 就乖乖數
+在算Z_value時會有3種case<br>
+<li>case 1: 自己沒有被別人的Z_Box包住 就乖乖數</li>
 
 ![](/acm/case1.gif)
 
