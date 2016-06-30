@@ -173,6 +173,46 @@ void fail(string B, int *pi)
 }
 ```
 
+Matching
+------------------------
+
+Fail function: 找出各後綴與前綴一樣的最大值
+
+如果後綴 = 前綴 → 可直接位移
+
+![](/acm/KMP_6.png)
+
+
+
+Matching 與 Fail function 的作法類似，差別只在於比較的對象不同
+
+程式碼：
+```
+void fail(string A, string B, int *pi)
+{
+        int lenA = a.length();
+        int lenB = b.length();
+        for( int i = 0, cur_pos = -1; i<lenA; ++i)
+        {
+                while(cur_pos >= 0 && A[i] != B[cur_pos+1])
+                        cur_pos = pi[cur_pos];
+                if(A[i] == B[cur_pos+1])  ++cur_pos;
+                if(cur_pos+1 == lenB)
+                {
+                        /*Match!!!!!*/
+                        cur_pos = pi[cur_pos];
+                }
+        }
+}
+```
+
+Fail function + Matching
+• Complexity
+    – 關鍵: while-loop
+    – cur_pos 每次只會 +1 或往前
+    – 均攤後 <b>𝒪( A + B )</b>
+
+
 Z Algorithm
 ======================
 Z_value
