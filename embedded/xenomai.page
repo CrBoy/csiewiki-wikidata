@@ -801,7 +801,7 @@ Kernel裝好後,測試可以成功從 SD 卡開機,接著更換換 Kernel
 
 10. 複製模組至 SD 卡上
 ```
-    # sudo cp -r linux/dist/lib/modules/* /media/${USER}/${ROOT}/lib/modules
+    # sudo cp -r linux/dist/lib/modules/* /media/${USER}/${ROOTFS}/lib/modules
 ```
 
 11. 修改 /boot/config.txt
