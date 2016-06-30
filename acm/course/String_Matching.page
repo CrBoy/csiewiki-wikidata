@@ -156,6 +156,10 @@ cur_pos ... 目前字串重複的位置
 
 ![ B[cur_pos+1]!=B[i] pi[i]=cur_pos ](/acm/KMP_4.png)
 
+程式碼：
+
+![](/acm/KMP_5.png)
+
 
 Z Algorithm
 ======================
