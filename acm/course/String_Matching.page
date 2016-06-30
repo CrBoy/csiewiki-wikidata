@@ -171,6 +171,7 @@ void fail(string B, int *pi)
                 pi[i] = cur_pos;
         }
 }
+```
 
 Z Algorithm
 ======================
