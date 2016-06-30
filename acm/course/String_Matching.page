@@ -182,7 +182,9 @@ Fail function: 找出各後綴與前綴一樣的最大值
 
 ![](/acm/KMP_6.png)
 
-![alt text](/acm/KMP_7.gif)
+String Matching process
+
+![示意圖](/acm/KMP_7.gif)
 
 Matching 與 Fail function 的作法類似，差別只在於比較的對象不同
 
