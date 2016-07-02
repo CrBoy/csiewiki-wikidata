@@ -21,21 +21,13 @@
 * Psuedocode
 
         totalcost← 0 
-
         for each v ∈ V
-
             do MAKE-SET (v)
-
         sort the edges into non-decreasing order by weight
-
         for each edge (u, v) ∈ E, taken in non-decreasing order
-
             do if FIND-SET (u) ≠ FIND-SET (v)
-
                 then UNION (u, v) 
-
                     totalcost← totalcost+ w(u, v)
-
         return totalcost
 
 ###Prim’s algorithm(relaxation based)
