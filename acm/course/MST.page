@@ -10,10 +10,14 @@
 
 ##Minimum Spanning Tree
 擁有最小權重的生成樹，稱為最小生成樹
+
 ###Kruskal’s algorithm(greedy based)
 1.依照權重排序
+
 2.選擇較小的邊，並邊檢查是否有迴圈
+
 ![](/acm/MST_Kruskal.gif)
+
 * Psuedocode
 
 ###Prim’s algorithm(relaxation based)
