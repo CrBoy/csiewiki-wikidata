@@ -16,7 +16,7 @@
 
 2. 選擇較小的邊，並邊檢查是否有迴圈
 
-![alt text](/acm/MST_Kruskal.gif)
+![](/acm/MST_Kruskal.gif)
 
 * Psuedocode
 
@@ -40,7 +40,7 @@
 
 4. 找完後要更新未拜訪過的節點距離d[j] ( if(找到的節點i到節點j的距離<d[j])  則更新d[j] )
 
-![alt text](/acm/MST_Prim.gif)
+![](/acm/MST_Prim.gif)
 
 ```c++
 #include <cstdio>
@@ -51,4 +51,5 @@ int main()
 ```
 
 *時間複雜度 O(𝑉")
+
  With Binary-Heap : O( (V+E) lgV)
