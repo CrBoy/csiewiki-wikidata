@@ -1,1 +1,76 @@
-#SCC(Strongly Connected Component)
+SCC(Strongly Connected Component)
+========
+
+Graph
+--------
+
+###互相連接的圖(graph/component)
+- <big>若是在兩圖間存在成對的節點(vertex)，且兩節點存在至少一條連接路徑 & 不可再加進其他節點，則兩圖互相連接。</big>
+
+###關鍵節點(articulation(cut-vertex))
+- <big>移除關鍵節點，則圖一分為二。</big>
+
+###關鍵路徑(bridge(cut-edge))
+- <big>同關鍵節點，移除關鍵路徑，則圖一分為二。</big>
+
+![articulation bridge component 示意圖](/acm/Graph_Vertex_Edge.jpg)
+
+Articulation/Bridge
+--------
+
+###在圖中尋找關鍵節點
+- <big>因為移除關鍵節點後圖會分離，最簡單直接的方式就是每個點都移除看看。</big>
+    - 也就是 V 次 DFS => O(V*(V+E)) 這明顯太慢了。
+- <big>若不是關鍵節點，則可以找到替代路徑。</big>
+    - 那麼只要尋找環，就能達到目的。
+    - 方法也是採用 DFS ，但只要 O(V+E) 的時間複雜度。
+
+###概念
+- <big>若節點 u 是關鍵節點。</big>
+    - 則 u 的子節點不會連接到u之前的節點。
+    ![](/acm/Articulation1.jpg)
+    - 或 u 是 root & 至少有兩個子節點。
+    ![](/acm/Articulation2.jpg)
+- <big>否則僅為節點。</big>
+    ![](/acm/Not_Articulation.jpg)
+- <big>兩關鍵節點間的直接連接路徑，即為關鍵路徑。</big>
+    ![](/acm/bridge.jpg)
+
+###演算法
+- <big>使用變數</big>
+    - dfn[i]-時間標記，DFS時初次訪問此節點的順序
+    - low[i]=min(dfn[i], lowest low[j])-可以理解為此節點隸屬於哪一關鍵節點之下
+- <big>關鍵節點</big>
+    - u 的子節點不會連接到u之前的節點 -> dfn[i]<=low[j] & j 是 i 的子節點
+    - u 是 root & 至少有兩個子節點 -> count child>=2
+- <big>關鍵路徑</big>
+    - 兩關鍵節點 i 、 j -> dfn[u]<low[v] & j 是 i 的子節點
+- <big>Code</big>
+
+~~~{.c }
+void dfs(int pre , int cur){
+    int child = 0;
+    bool cut_vertex = false;
+    low[cur] = dfn[cur] = ++cnt_dfn;
+
+    for(int &i : edge[cur]){
+        if(!dfn[i]){
+            dfs(cur , i);
+            low[cur] = min(low[cur] , low[i]);
+            ++child;
+            if(low[i] >= dfn[cur]) cut_vertex = true;
+        }
+        else if(i != pre) low[cur] = min(low[cur] , dfn[i]);
+    }
+
+    if(cut_vertex && (child > 1 || pre != -1)) ++ans;
+}
+~~~
+
+- <big>運轉示意圖</big>
+![](/acm/Cut_vertex.gif)
+
+Strongly Connected Component(SCC)
+--------
+
+![](/acm/Tarjan.gif)
