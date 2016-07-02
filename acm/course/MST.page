@@ -1,14 +1,18 @@
 #MST(Minimum Spanning Tree, 最小生成樹)
-
-##Spanning Tree
-
+##Spanning Tree(生成樹)
+1.一棵<b>包含圖上所有點<\b>的樹，稱作該圖的生成樹
+2.一張圖的生成樹可能會有很多種
+3.完全連通圖才有生成樹(不連通時，則稱為生成森林)
+4.生成樹的權重為樹上每條邊的權重總和
 ##Minimum Spanning Tree
-
-###Kruskal’s algorithm
-
+擁有最小權重的生成樹，稱為最小生成樹
+###Kruskal’s algorithm(greedy based)
+1.依照權重排序
+2.選擇較小的邊，並邊檢查是否有迴圈
+![](/acm/MST_Kruskal.gif)
 * Psuedocode
 
-###Prim’s algorithm
+###Prim’s algorithm(relaxation based)
 
 ```c++
 #include <cstdio>
