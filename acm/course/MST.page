@@ -29,6 +29,7 @@
                 then UNION (u, v) 
                     totalcost← totalcost+ w(u, v)
         return totalcost
+    * 時間複雜度O(ElgE)
 
 ###Prim’s algorithm(relaxation based)
 
