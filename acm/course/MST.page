@@ -53,3 +53,6 @@ int main()
 *時間複雜度 O(𝑉")
 
  With Binary-Heap : O( (V+E) lgV)
+
+
+參考來源：演算法筆記 http://www.csie.ntnu.edu.tw/~u91029/SpanningTree.html#2
