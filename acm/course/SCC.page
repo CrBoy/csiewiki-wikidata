@@ -1,4 +1,4 @@
-SCC(Strongly Connected Component)
+dSCC(Strongly Connected Component)
 ========
 
 Graph
@@ -67,10 +67,43 @@ void dfs(int pre , int cur){
 }
 ~~~
 
-- <big>運轉示意圖</big>
-![](/acm/Cut_vertex.gif)
+![運轉示意圖](/acm/Cut_vertex.gif)
 
 Strongly Connected Component(SCC)
 --------
 
-![](/acm/Tarjan.gif)
+- <big>因為一張圖上有環，演算法的效率會變差。</big>
+- <big>所以我們要想辦法收縮所有的SCC跟環，這樣圖就變成一顆樹，或有向無環圖（DAG）了。</big>
+
+###Tarjan
+
+- <big>Tarjan就是一種演算法，可以用來找到環的個數</big>
+    - 演算法中會用到前段的概念，請務必先理解
+- <big>Code</big>
+
+~~~{.c }
+void Tarjan(int cur){
+    int top;
+    low[cur] = dfn[cur] = ++cnt_dfn;
+    stack.push_back(cur);
+    in_stack[cur] = true;
+
+    for(int &i : edge[cur]){
+        if(!dfn[i]){
+            dfs(i);
+            low[cur] = min(low[cur] , low[i]);
+        }
+        else if(in_stack[i]) low[cur] = min(low[cur] , dfn[i]);
+    }
+    if(dfn[cur] == low[cur]){
+        do{
+            top = stack.top();
+            stack.pop();
+            in_stack[top] = false;
+        } while(top != cur);
+        ++ans;
+    }
+}
+~~~
+
+![運轉示意圖](/acm/Tarjan.gif)
