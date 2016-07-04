@@ -16,8 +16,6 @@
 
 2. 選擇較小的邊，並檢查是否有環
 
-![](/acm/MST_Kruskal.gif)
-
 * Psuedocode
 ```c++
 KRUSKAL(G):
@@ -29,6 +27,32 @@ KRUSKAL(G):
        A = A ∪ {(u, v)}
        UNION(u, v)
  return A
+```
+
+![](/acm/MST_Kruskal.gif)
+
+```c++
+const int V = 100, E = 1000;	// V = vertice, E = edge
+ 
+struct Edge{int a, b, c;} e[E];    // edge list
+bool operator<(const Edge& e1, const Edge& e2){ return e1.c < e2.c;}
+ 
+// disjoint-sets forest
+int p[V];
+int init(){ for(int i=0; i<V; ++i)	p[i] = i;}
+int find(int x){ return x == p[x] ? x : (p[x] = find(p[x]));}
+void union(int x, int y){ p[find(x)] = find(y);}
+ 
+void Kruskal(){
+    init();
+    sort(edge, edge+E);		// 圖上所有邊，依照權重大小，由小到大排序。O(NlogN)
+ 
+    for(int j = 0; i < V-1 && j < E; j ++){	// 窮舉圖上所有邊，嘗試作為最小生成樹（森林）
+        if(find(e[j].a) == find(e[j].b))	// 產生環，則捨棄。
+		continue;
+        union(e[j].a, e[j].b);	// 產生橋，則以此邊連接兩棵MSS。
+    }
+}
 ```
 * 時間複雜度 O(ElgE)
 
@@ -77,7 +101,7 @@ void prim(){
 }
 ```
 
-*時間複雜度 O(𝑉")
+* 時間複雜度 O(𝑉")
 
  With Binary-Heap : O( (V+E)logV)
 
