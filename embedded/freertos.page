@@ -468,8 +468,9 @@ Task 的 blocked 狀態通常是 task 進入了一個需要等待某事件發生
 
 * Suspended
 
-如果一個 task 會被 block 很久或者是會有一段時間用不到那就會被丟到 suspend 狀態。
-情境：設有一個 taskPrint 這個 task 只做 print 資料，而有好幾個 taskOperator 負責做運算，若運算要很久，則可以把 taskPrint 先丟入 suspend 狀態中，直到所有運算皆完成後，再喚醒 taskPrint 進入 ready 狀態，最後將資料 print 出來。
+如果一個 task 會有一段時間不會執行，那就可以進入 suspend 狀態。
+
+例如有個 task 叫做 taskPrint，只做 print 資料，而有好幾個 operation 負責做運算，若運算要很久，則可以把 taskPrint 先丟入 suspend 狀態中，直到所有運算皆完成後，再喚醒 taskPrint 進入 ready 狀態，最後將資料 print 出來
 
 vTaskSuspend 使用範例：
 
