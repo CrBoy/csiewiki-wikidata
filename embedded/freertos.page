@@ -1332,21 +1332,45 @@ SysTick 最小只能設到 1 / 100000 （十萬分之一）秒
 
     2. git clone https://github.com/Justinsanity/freertos-basic.git
 
-    3. git checkout porting
+    3. cd freertos-basic & git checkout porting
 
     4. make
 
     5. 將 stm32 f4 - discovery 接上電腦
 
-    6. make flash
+    6. make flash  # 燒進板子上並執行
 
     7. done
 
 **Porting 解說**
 
-* 工具：
+工具：
+
   - stlink：用來燒錄或 GDB server 的工具
   - openocd：用來執行 GDB server 與啟用 semihosting 
+
+OS X 上安裝 gcc-arm-none-eabi、stlink、openocd
+
+* stlink: `brew install stlink` (http://macappstore.org/stlink/)
+* OpenOCD: `brew install open-ocd` (http://brewformulas.org/OpenOcd)
+* gcc-arm-none-eabi:
+    
+* [方法一](https://gist.github.com/joegoggins/7763637)
+    
+.. code-block:: c
+
+    1. brew tap PX4/homebrew-px4    
+    2. brew update    
+    3. sudo brew install gcc-arm-none-eabi	(might not the latest version)
+
+
+* [方法二](https://launchpad.net/gcc-arm-embedded/+download)
+
+.. code-block:: c
+
+    1. Download "Mac installation tarball"
+    2. Decompress tar
+    3. set PATH
 
 * FreeRTOS version: 8.2.1
 * Board: STM32F429 Discovery
