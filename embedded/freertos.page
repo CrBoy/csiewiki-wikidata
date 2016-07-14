@@ -52,7 +52,7 @@ FreeRTOS 的程式碼可以分為三個主要區塊：任務、通訊和硬體�
 
 * 硬體界面：有近 9000 行的程式碼組成基本的 FreeRTOS，這部份是與硬體無關的(hardware-independent)，同一份程式碼在不同硬體平台上的 FreeRTOS 都可以運行。大約有 6% 的 FreeRTOS 核心代碼，在與硬體無關的 FreeRTOS 核心和與硬體相關的程式碼間扮演著墊片([shim](http://en.wikipedia.org/wiki/Shim_%28computing%29))的角色。我們將在下個部分討論與硬體相關的程式碼。[#]_
 
-.. [#] 用 [cloc](http://cloc.sourceforge.net/) 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
+用 [cloc](http://cloc.sourceforge.net/) 統計 FreeRTOS 8.0.0 的 include/ *.c portable/GCC/ARM_CM4F/ 等目錄，可得不含註解、空白行的行數為 6566，而統計與平台有關的部份 (portable/GCC/ARM_CM4F/ 目錄)，則是 435 行。計算可得: 435 / 6566 = 0.06625 = 6%，與描述相符，但原本的 9000 行是指含註解的說法 (實際為 8759 行)
 
 
 原始碼
@@ -147,6 +147,13 @@ Task 的狀態
   * Running：正在由 CPU 執行的狀態
   * Blocked：等待中的狀態(通常是在等待某個事件)
   * Suspended：等待中的狀態(透過 API 來要求退出排程)
+
+Blocked  vs  Suspended
+
+* blocked 是說如果有個 task 將要等待某個目前無法取得的資源(被其他 task 佔用中)，則會被設為 blocked 狀態，這是被動的，OS 會呼叫 blocking API 來設定 task 進入 blocked queue
+
+* suspended 與 blocked 的差異在於，suspended 是 task 主動呼叫 API 來要求讓自己進入暫停狀態的
+
 
 每一種狀態 FreeRTOS 都會給予一個 list 儲存（除了 running)
 
