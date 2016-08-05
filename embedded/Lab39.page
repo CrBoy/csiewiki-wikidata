@@ -64,6 +64,8 @@ STM32 on QEMU 環境建立與測試
 
 小提醒
 -----
+- 如果用 git clone qemu_stm32 並且 make 完後，在 uart_echo 這個範例中 serial0 沒有回應的話，請用 [qemu_stm32 release v0.13](https://github.com/beckus/qemu_stm32/releases) 來重新編譯一次。
+
 - 若 Linux 環境中預設的 python 版本是 python3，可能會無法configure，這時就可用python virtualenv 解決：
   * 先安裝 python-virtualenv, python2-virtualenv
 ```
