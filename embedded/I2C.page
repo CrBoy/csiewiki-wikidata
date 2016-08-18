@@ -25,7 +25,7 @@ I2C 使用兩條雙向 open-drain Line：
 
 pullup resistor :
 
- - 要根據bus總電容及rising time來選用pullup resistor的大小[#]_
+ - 要根據bus總電容及rising time來選用pullup resistor的大小 [(ref)](http://www.nxp.com/documents/user_manual/UM10204.pdf#page=55)
 
 Definition of I2C-bus terminology :
 
@@ -37,7 +37,6 @@ Definition of I2C-bus terminology :
  - Arbitration : procedure to ensure that, if more than one master simultaneously tries to control the bus, only one is allowed to do so and the    winning message is not corrupted
  - Synchronization : procedure to synchronize the clock signals of two or more devices.
 
-.. [#] [pullup resistor ](http://www.nxp.com/documents/user_manual/UM10204.pdf) p.55
 
 Master & Slave mode :
 
