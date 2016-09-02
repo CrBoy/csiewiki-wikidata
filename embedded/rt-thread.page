@@ -101,6 +101,10 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 [編譯與執行]
 
 [rt-thread-vmm-builder ](https://github.com/AdrianHuang/rt-thread-vmm-builder)自動地將Linux VMM Kernel Patches、Linux VMM Kernel Module與RT-Thread Binary File編譯，並產生kernel image (zImage)與root file system。參考底下步驟 (同時可參考[rt-thread-vmm-builder README檔 ](https://github.com/AdrianHuang/rt-thread-vmm-builder)建構環境及相關Toolchain):
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     git clone https://github.com/AdrianHuang/rt-thread-vmm-builder.git
     cd rt-thread-vmm-builder/
@@ -110,8 +114,13 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 
 執行'make qemu'後， 會啟動qemu模擬器，Linux console與RT-Thread console切換鍵如下:
 
+<<<<<<< edited
+  * Linux Console -> Ctrl+Alt+F3
+  * RT-Thread Console -> Ctrl+Alt+F4
+=======
   - Linux Console -> Ctrl+Alt+F3
   - RT-Thread Console -> Ctrl+Alt+F4
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 
 [執行畫面]
 
@@ -151,6 +160,10 @@ Running VMM on BeagleBone Black
 其中{reglist}^的"^"，代表該指令執行於ARM state，詳情參考[ARM官網 ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204j/Cihcadda.html)。底下兩個方法避免此編譯錯誤:
 
 [編譯錯誤解決方法 - 加入ARM()巨集]
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
  #if defined(CONFIG_CPU_V6)
         ldr     r0, [sp]
@@ -326,10 +339,9 @@ Heap
 
 較簡單的記憶體管理器，使用 free list 串接可用記憶體，並以 first fit
 策略尋找，為了減輕碎片化的問題，加上了最小區塊的限制。
-
-::
-
-    define RT\_MEMHEAP\_MINIALLOC 12
+```
+    #define RT\_MEMHEAP\_MINIALLOC 12
+```
 
 Slab Allocator
 --------------
@@ -343,34 +355,34 @@ slab
 
 假設原本產生新的動態物件的流程如下:
 
-::
-
+```
        obj = allocate(sizeOfObject);
        construct(obj);
+```
 
 使用完畢後的清理:
 
-::
-
+```
        destruct(obj);
        deallocate(obj);
+```
 
 Slab Allocator 的作法則是這樣:
 
-::
-
+```
        if(there's an object in cache){
            take(); // already constructed
        }else{
            allocate();
            construct();
        }
+```
 
 至於清理則是：
 
-::
-
+```
        return to cache; // not destructed
+```
 
 另外在記憶體不足時可以選擇將 cache 內的物件 destruct 之後釋放
 
@@ -533,12 +545,12 @@ rt\_page\_list (透過 rt\_page\_free)。
 
 *Zone size / Zone limit 計算*
 
-::
-
-    define ZALLOC\_ZONE\_LIMIT (16 \* 1024)
-    define ZALLOC\_MIN\_ZONE\_SIZE (32 \* 1024)
-    define ZALLOC\_MAX\_ZONE\_SIZE (128 \* 1024)
-    define RT\_MM\_PAGE\_SIZE 4096 // include/rtdef.h
+```
+    #define ZALLOC\_ZONE\_LIMIT (16 \* 1024)
+    #define ZALLOC\_MIN\_ZONE\_SIZE (32 \* 1024)
+    #define ZALLOC\_MAX\_ZONE\_SIZE (128 \* 1024)
+    #define RT\_MM\_PAGE\_SIZE 4096 // include/rtdef.h
+```
 
 MIN < zone\_size < MAX or limsize / 1k
 
@@ -557,8 +569,7 @@ zoom\_limit = min( zone\_size / 4 , ZONE\_LIMIT
 -  小於 zone\_limit：
 
 -  request size -> buffer size \| buffer index(\ ``zoneindex``\ 回傳值)
-::
-
+```
        < 128      ->  補到 8    byte 倍數   |         0 ~ 15 (size/8 - 1)
        < 256      ->  補到 16   byte 倍數   |        16 ~ 23 (size/8 - 1 + 8)   <- 128 / 16 = 8
        < 512      ->  補到 32   byte 倍數   |        24 ~ 31
@@ -567,6 +578,7 @@ zoom\_limit = min( zone\_size / 4 , ZONE\_LIMIT
        < 4096     ->  補到 256  byte 倍數   |        48 ~ 55
        < 8192     ->  補到 512  byte 倍數   |        56 ~ 63
        < 16384    ->  補到 1024 byte 倍數   |        64 ~ 72
+```
 
 .. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434740946804_slab.png
    :alt: 
@@ -631,6 +643,10 @@ dfs_posix.c會調用dfs.c,dfs_fs,c,dfs_file.c中的一些函數：
 DFS框架的組成內容
 ------------------
 * filesystem_operation_table：每一個table表示一個FS對應的一套操作函數及相關屬性，不管是什麼FS其操作函數的形式是一致的
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     /* File system operations struct */  
     struct dfs_filesystem_operation  
@@ -662,6 +678,10 @@ DFS框架的組成內容
 ```
 
 * filesystem_table：此table記錄已掛載的FS，每一個table表示掛載的的一个FS
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     /* Mounted file system */  
     struct dfs_filesystem  
@@ -696,6 +716,10 @@ DFS框架的組成內容
 DFS框架的組成內容
 ------------------
 * DFS架構初始化(最頂層)
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     void dfs_init(void)  
     {  
@@ -716,6 +740,10 @@ DFS框架的組成內容
 ```
 
 * 具體的FS初始化(中間層)，以ELMFAT文件系統爲例：
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     int elm_init(void)
     {  
@@ -775,6 +803,10 @@ DFS框架的組成內容
 rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型是rt_err_t的可默認返回RT_EOK)
 
 * 掛載FS(將各層具體關聯起來)
+<<<<<<< edited
+
+=======
+>>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
 ```
     /* mount SPI flash as root directory */  
         if (dfs_mount("flash0", "/", "elm", 0, 0) == 0)  //掛載名爲elm的FS，該FS對應的設備名为flash0，掛載點爲/
