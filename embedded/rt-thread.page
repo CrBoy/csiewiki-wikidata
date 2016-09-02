@@ -97,14 +97,16 @@ VMM模組可同時運行Linux與RT-Thread，如圖五所示。VMM以半虛擬化
 
 Running VMM on QEMU (target machine: realview-pb-a8)
 ----------------------------------------------------
-
 [編譯與執行]
 
 [rt-thread-vmm-builder ](https://github.com/AdrianHuang/rt-thread-vmm-builder)自動地將Linux VMM Kernel Patches、Linux VMM Kernel Module與RT-Thread Binary File編譯，並產生kernel image (zImage)與root file system。參考底下步驟 (同時可參考[rt-thread-vmm-builder README檔 ](https://github.com/AdrianHuang/rt-thread-vmm-builder)建構環境及相關Toolchain):
 <<<<<<< edited
 
+<<<<<<< edited
+=======
 =======
 >>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
+>>>>>>> ac253c721771197ef88dc6de4dacf55ab6af283e
 ```
     git clone https://github.com/AdrianHuang/rt-thread-vmm-builder.git
     cd rt-thread-vmm-builder/
@@ -115,12 +117,17 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 執行'make qemu'後， 會啟動qemu模擬器，Linux console與RT-Thread console切換鍵如下:
 
 <<<<<<< edited
+  - Linux Console -> Ctrl+Alt+F3
+  - RT-Thread Console -> Ctrl+Alt+F4
+=======
+<<<<<<< edited
   * Linux Console -> Ctrl+Alt+F3
   * RT-Thread Console -> Ctrl+Alt+F4
 =======
   - Linux Console -> Ctrl+Alt+F3
   - RT-Thread Console -> Ctrl+Alt+F4
 >>>>>>> 5abe2f7b1dd3e609ac546aec5d2b8557799e12cb
+>>>>>>> ac253c721771197ef88dc6de4dacf55ab6af283e
 
 [執行畫面]
 
