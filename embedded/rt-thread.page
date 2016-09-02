@@ -109,18 +109,22 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 ```
 
 執行'make qemu'後， 會啟動qemu模擬器，Linux console與RT-Thread console切換鍵如下:
-    1. Linux Console -> Ctrl+Alt+F3
-    2. RT-Thread Console -> Ctrl+Alt+F4
+
+  - Linux Console -> Ctrl+Alt+F3
+  - RT-Thread Console -> Ctrl+Alt+F4
 
 [執行畫面]
 
 ![](https://lh6.googleusercontent.com/-rhNG5HsX5bk/VX_IJMNczbI/AAAAAAAAIKU/hM1CFIP0cKM/w790-h569-no/linux-1.png)
+
 圖六、執行'make qemu'並按Ctrl+Alt+F3進入Linux Console
 
 ![](https://lh5.googleusercontent.com/-zM0eIcnkK-U/VX_IJD9ZevI/AAAAAAAAIKM/b_CZuAyN_1o/w1011-h307-no/linux-insmod-rtvmm-driver.png)
+
 圖七、載入rtvmm.ko模組
 
 ![](https://lh3.googleusercontent.com/-NZlzQBrzD1g/VX_IJOegylI/AAAAAAAAIKQ/cE8BBcgPrPY/w1013-h314-no/rt-thread.png)
+
 圖八、Ctrl+Alt+F4進入RT-Thread Console
 
 
@@ -170,9 +174,11 @@ Running VMM on BeagleBone Black
 關閉CONFIG_THUMB2_KERNEL選項，編譯能成功且可以順利開進核心。然而，載入rtvmm.ko模組會發生錯誤，如下圖所示:
 
 ![](https://lh3.googleusercontent.com/-khpnrNqw25M/VZDnyc2x_4I/AAAAAAAAILk/QhfHHGuS-Mo/s615/vmm-no-thumb2-kernel-option.png)
+
 成功開進VMM支援的核心    
 
 ![](https://lh3.googleusercontent.com/-vCmD1QGqsrM/VZDnynjpefI/AAAAAAAAILs/IeOaCy3Nl_U/s800/vmm-no-thumb2-kernel-option-insmod-rtvmm-failed.png)
+
 載入rtvmm.ko出錯畫面
 
 追縱RT-thread程式後，發現沒有支援BeagleBone Black的VMM功能 (詳見: [libcpu/arm/am335x ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/am335x)。目前正在參考[Realview Cortex A8 VMM的支援 ](https://github.com/RT-Thread/rt-thread/tree/master/libcpu/arm/realview-a8-vmm)，以便在BeagleBone Black支援VMM。
