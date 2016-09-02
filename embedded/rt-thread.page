@@ -101,13 +101,12 @@ Running VMM on QEMU (target machine: realview-pb-a8)
 [編譯與執行]
 
 [rt-thread-vmm-builder ](https://github.com/AdrianHuang/rt-thread-vmm-builder)自動地將Linux VMM Kernel Patches、Linux VMM Kernel Module與RT-Thread Binary File編譯，並產生kernel image (zImage)與root file system。參考底下步驟 (同時可參考[rt-thread-vmm-builder README檔 ](https://github.com/AdrianHuang/rt-thread-vmm-builder)建構環境及相關Toolchain):
-
-.. code-block:: prettyprint
-
+```
     git clone https://github.com/AdrianHuang/rt-thread-vmm-builder.git
     cd rt-thread-vmm-builder/
     make
     make qemu
+```
 
 執行'make qemu'後， 會啟動qemu模擬器，Linux console與RT-Thread console切換鍵如下:
     1. Linux Console -> Ctrl+Alt+F3
@@ -131,8 +130,7 @@ Running VMM on BeagleBone Black
 
 **編譯錯誤**: 執行`make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs`命令後，出現底下編譯錯誤:
 
-.. code-block:: prettyprint
-
+```
     $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage dtbs
       ...
       ...
@@ -144,13 +142,12 @@ Running VMM on BeagleBone Black
     arch/arm/kernel/entry-armv.S:257: Error: Thumb load/store multiple does not support {reglist}^ -- `ldmia sp,{r0-pc}^`
     make[1]: *** [arch/arm/kernel/entry-armv.o] Error 1
     make: *** [arch/arm/kernel] Error 2
+```
 
 其中{reglist}^的"^"，代表該指令執行於ARM state，詳情參考[ARM官網 ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0204j/Cihcadda.html)。底下兩個方法避免此編譯錯誤:
 
 [編譯錯誤解決方法 - 加入ARM()巨集]
-
-.. code-block:: prettyprint
-
+```
  #if defined(CONFIG_CPU_V6)
         ldr     r0, [sp]
         strex   r1, r2, [sp]                    @ clear the exclusive monitor
@@ -161,6 +158,7 @@ Running VMM on BeagleBone Black
  #else
         ldmia   sp, {r0 - pc}^                  @ load r0 - pc, cpsr
  #endif
+```
 
 編譯成功後，開進Linux kernel (uImage)，發現OS會一直停在**Uncompressing Linux... done, booting the kernel.**，如下圖所示:
 
@@ -627,9 +625,7 @@ dfs_posix.c會調用dfs.c,dfs_fs,c,dfs_file.c中的一些函數：
 DFS框架的組成內容
 ------------------
 * filesystem_operation_table：每一個table表示一個FS對應的一套操作函數及相關屬性，不管是什麼FS其操作函數的形式是一致的
-
-.. code-block:: c
-
+```
     /* File system operations struct */  
     struct dfs_filesystem_operation  
     {  
@@ -657,11 +653,10 @@ DFS框架的組成內容
         int (*stat)     (struct dfs_filesystem *fs, const char *filename, struct stat *buf);   //獲得文件狀態信息  
         int (*rename)   (struct dfs_filesystem *fs, const char *oldpath, const char *newpath);  //文件重命名  
     };  
+```
 
 * filesystem_table：此table記錄已掛載的FS，每一個table表示掛載的的一个FS
-
-.. code-block:: c
-
+```
     /* Mounted file system */  
     struct dfs_filesystem  
     {  
@@ -690,13 +685,12 @@ DFS框架的組成內容
   
         void *data;                  
     };  
+```
 
 DFS框架的組成內容
 ------------------
 * DFS架構初始化(最頂層)
-
-.. code-block:: c
-
+```
     void dfs_init(void)  
     {  
        //清空filesystem_operation_table、filesystem_table、fd_table
@@ -713,12 +707,10 @@ DFS框架的組成內容
        working_directory[0] = '/';  
      #endif  
      }  
-
+```
 
 * 具體的FS初始化(中間層)，以ELMFAT文件系統爲例：
-
-.. code-block:: c
-
+```
     int elm_init(void)
     {  
         /* register fatfs file system */  
@@ -767,7 +759,7 @@ DFS框架的組成內容
         dfs_unlock();  //釋放FS操作權限
         return result;  
     }  
-
+```
 
 * FS對應的具體設備驅動初始化(底層)
 
@@ -777,9 +769,7 @@ DFS框架的組成內容
 rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型是rt_err_t的可默認返回RT_EOK)
 
 * 掛載FS(將各層具體關聯起來)
-
-.. code-block:: c
-
+```
     /* mount SPI flash as root directory */  
         if (dfs_mount("flash0", "/", "elm", 0, 0) == 0)  //掛載名爲elm的FS，該FS對應的設備名为flash0，掛載點爲/
         {  
@@ -789,7 +779,7 @@ rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型
         {  
              rt_kprintf("flash0 mount to / failed.\n");  
         }  
-
+```
 
 參考資料
 --------------------------------------------
