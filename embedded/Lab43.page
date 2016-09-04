@@ -16,27 +16,23 @@ Part 1
 步驟：
    1. 下載作業[檔案 (bomb.tar.gz)](/embedded/Lab34/bomb.tar.gz)
    2. 解壓縮後閱讀 README 查看執行方式，並且開始 Hacking!!
-.. code-block:: prettyprint
-
+```
     tar -xzvf bomb.tar.gz
     cat README
-
-..
+```
 
 使用 GDB 分析
 ---------------------
 * 假設 [檔案 (bomb.tar.gz)](/embedded/Lab34/bomb.tar.gz) 已經解開在 ``/tmp/bomb`` 目錄，先開啟兩個終端機
 * 在其中一個執行以下命令：
-
-.. code-block:: prettyprint
-
+```
      qemu-arm -g 1234 -L /usr/arm-linux-gnueabihf ./bomb
+```
 
 * 在另一個終端機執行以下命令：
-
-.. code-block:: prettyprint
-
+```
     arm-none-eabi-gdb ./bomb
+```
 
 * 在 gdb 的畫面中依序輸入以下命令：
   - ``target remote :1234``
@@ -87,12 +83,9 @@ Part 2
    make qemu
 
 在 FreeRTOS shell (QEMU 視窗)，輸入以下命令:
-
-.. code-block:: prettyprint
-
+```
    bufbomb
-
-..
+```
 
 程式說明：
    * bufbomb 會利用 [ARM semihosting](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0205g/Bgbjhiea.html) 讀取由 ``make exploit`` 產生的 ``exploit.byte``
