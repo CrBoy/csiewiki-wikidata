@@ -72,15 +72,14 @@ Part 2
 步驟：
 
 * 假設 [Lab-39](/embedded/Lab39) 的  [qemu_stm32](https://github.com/beckus/qemu_stm32) 放在 ``$HOME/workspace`` 目錄下
-
-.. code-block:: prettyprint
-
+```
    cd ~/workspace
    git clone https://github.com/embedded2015/freertos-bufbomb.git || git clone git@github.com:embedded2015/freertos-bufbomb.git
    cd freertos-bufbomb && make
    echo "<Your codes here>" > exploit.str
    make exploit
    make qemu
+```
 
 在 FreeRTOS shell (QEMU 視窗)，輸入以下命令:
 ```
