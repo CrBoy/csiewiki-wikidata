@@ -27,11 +27,9 @@ ACM-ICPC 培訓隊課程
 - [課程進度表](embedded/schedule)
 - [課堂測驗與解答](embedded/quiz)
 - 分組報告
-    - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv)
-    - [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread)
+    - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv), [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread)
     - [Linux](/embedded/arm-linux), [Xenomai](/embedded/xenomai), [uClinux](/embedded/uclinux)
-    - [Xvisor](/embedded/xvisor)  ( [ARMv8](/embedded/ARMv8) )
-    - F9 microkernel](/embedded/f9-kernel)
+    - [Xvisor](/embedded/xvisor)  ( [ARMv8](/embedded/ARMv8) ), [F9 microkernel](/embedded/f9-kernel)
 - 分組報告 (針對 STM32 週邊): [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [I2C](/embedded/I2C), [PWM](/embedded/PWM), [USB](/embedded/USB), [SPI](/embedded/SPI), [Flash](/embedded/Flash), [CAN](/embedded/CAN)
 - [線上資源](embedded/resources)
 - 期末專題
