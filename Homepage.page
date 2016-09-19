@@ -13,87 +13,32 @@ ACM-ICPC 培訓隊課程
 
  - [課程主題重點整理](acm/course)
 
-嵌入式作業系統設計與實作 (2016 Spring)
+嵌入式系統系列課程 (2012-2016)
 ================================
 ![](/embedded/logo-2012-small.png)
 
 - [課程進度表](embedded/schedule)
-
-進階嵌入式系統開發與實作 (2015 年秋季)
-------------------------------------------------
-
-- [課程進度表](embedded/schedule)
 - [課堂測驗與解答](embedded/quiz)
-- [期末專題](/embedded/team2015)
-
-2015 年暑期嵌入式系統課程
-------------------------------------------------
-- [ 課程資訊與進度表](embedded/summer2015)
-
-嵌入式作業系統設計與實作 (2015 Spring)
-================================
-- [課程進度表](embedded/schedule)
-- [課堂測驗與解答](embedded/quiz)
-- 分組報告:
+- 分組報告
     - [FreeRTOS](/embedded/freertos), [rtenv+](/embedded/rtenv)
     - [FreeRTOS (MMU)](/embedded/freertos-mmu), [RT-Thread](/embedded/rt-thread)
     - [Linux](/embedded/arm-linux), [Xenomai](/embedded/xenomai), [uClinux](/embedded/uclinux)
     - [Xvisor](/embedded/xvisor)  ( [ARMv8](/embedded/ARMv8) )
-
-2014 年進階嵌入式系統開發與實作
-------------------------------------------------
-- [課程進度表](embedded/schedule)
+    - F9 microkernel](/embedded/f9-kernel)
 - 分組報告 (針對 STM32 週邊): [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [I2C](/embedded/I2C), [PWM](/embedded/PWM), [USB](/embedded/USB), [SPI](/embedded/SPI), [Flash](/embedded/Flash), [CAN](/embedded/CAN)
-- [期末專題](/embedded/team2014)
-
-2014 年暑期嵌入式系統課程
-------------------------------------------------
-- [ 課程資訊與進度表](embedded/summer2014)
-
-嵌入式作業系統設計與實作 (2014 Spring)
-================================
-- [課程進度表](embedded/schedule)
-- [課程注意事項](embedded/note2014)
-- [分組報告](/embedded/2014-w6) (針對 STM32F429 和 Raspberry Pi): [FreeRTOS](/embedded/freertos), [ChibiOS/RT](/embedded/chibios), [nuttx](/embedded/nuttx), [uClinux](/embedded/uclinux), [Xenomai](/embedded/xenomai), [rtenv-plus](/embedded/rtenv), [F9 microkernel](/embedded/f9-kernel)
-- [期末專題列表](/embedded/os-team2014)
-
-2014 年冬季系統軟體短期課程
-------------------------------
-- [ 課程資訊與進度表](embedded/winter2014)
-
-進階嵌入式系統開發與實作 (2013 Fall)
-================================
-- [課程進度表](embedded/schedule)
-- [參考書目](embedded/books)
 - [線上資源](embedded/resources)
-- [課程注意事項](embedded/note2013)
-- [期末專題列表](embedded/team2013)
-- 分組報告 (針對 STM32 週邊): [GPIO](/embedded/GPIO), [USART](/embedded/USART), [ADC](/embedded/ADC), [RTC](/embedded/RTC), [PWM](/embedded/PWM), [USB](/embedded/USB), [SPI](/embedded/SPI), [Flash](/embedded/Flash), [SDIO](/embedded/SDIO)
-
-嵌入式系統短期訓練 (2013 Summer)
-================================
-- [ 課程資訊與進度表](embedded/summer2013)
-
-嵌入式作業系統設計與實作 (2013 Spring)
-================================
-- [課程進度表](embedded/schedule)
-- [課堂測驗與解答](embedded/quiz)
-- [參考書目](embedded/books)
-- [線上資源](embedded/resources)
-- [課程注意事項](embedded/os-note)
-
-進階嵌入式系統開發與實作 (2012 Fall)
-================================
-- [課程進度表](embedded/schedule)
-- [參考書目](embedded/books)
-- [線上資源](embedded/resources)
-- [課程注意事項](embedded/note)
-- [拾人牙慧](embedded/collections)
-- [期末專題分組列表](embedded/team2012)
+- 期末專題
+    - [2015年秋季](/embedded/team2015)
+    - [2014年秋季](/embedded/team2014) / [2014年春季](/embedded/os-team2014)
+    - [2013年秋季](/embedded/team2013)
+    - [2012年秋季](/embedded/team2012)
+- 冬季和夏季課程
+    - [2015年暑期](embedded/summer2015)
+    - [2014年暑期](/embedded/summer2014) / [2014年冬季](/embedded/winter2014)
+    - [2013年暑期](embedded/summer2013)
 
 --------
 
---------
 
 使用方式
 =======
