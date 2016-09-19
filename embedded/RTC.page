@@ -53,13 +53,13 @@ Clock Source
 SYSCLK為系統的clock有三種來源：
 
 1. **HSI**  (High-Speed Internal) ：16MHz,RC電路
-2. **HSE** (Low-Speed External)：4-26MHz (一般選用8MHz),石英震盪
+2. **HSE** (High-Speed External)：4-26MHz (一般選用8MHz),石英震盪
 3. Main **PLL** clock
 
 Secondary Clock:
 
 1. **LSI**  (Low-Speed Internal)  ：40kHz,RC電路震盪
-2. **LSE** (High-Speed External)：32.768kHz,石英震盪
+2. **LSE** (Low-Speed External)：32.768kHz,石英震盪
 
 ----> RTC 主要是使用 **HSE** , **LSI**  , **LSE** 三種來源 [#]_
 
@@ -70,7 +70,7 @@ Secondary Clock:
 **比較 「HSE」, 「LSI」 , 「LSE」三種輸入來源：** 
 
 
-- HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和和另一個clock穩定同步。
+- HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和另一個clock穩定同步。
 - LSI  -  是一個低功耗的clock，可以在停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
 - LSE  -  它是一個低功耗且精準的clock，適合用在時間的精確計算。
 
