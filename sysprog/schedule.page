@@ -17,7 +17,7 @@ toc: no
     - [你所不知道的 C 語言](http://hackfoldr.org/dykc/): 本週進度為「指標篇」和「物件導向程式設計篇」
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
-    - 本學期作業說明
+    - 本學期作業說明(https://hackmd.io/s/B1DmtJfT)
     - 作業: (截止日: Sep 29)
         * phonebook, raytracing, compute-pi, clz
 
