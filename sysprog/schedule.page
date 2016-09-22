@@ -7,24 +7,62 @@ toc: no
 - Instructor: [Jim Huang](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
     * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這就是專門和學生互動的)
 - 討論區: [https://www.facebook.com/groups/system.software2016/](https://www.facebook.com/groups/system.software2016/)
-- 共筆: 
 - 課程信箱: `<embedded.master2015@gmail.com>`
 
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
 ![](/sysprog-small.png)
 
-|Week  |Date     |Subject                                 |Assignment|
-|:----|:----|:----|:----|
-|#1| Sep 23 | [你所不知道的 C 語言](http://hackfoldr.org/dykc/), 重新理解數值系統,  | phonebook, raytracing, compute-pi, clz |
-|#2| Sep 30 | concurrency, [Algorithm Complexity Analysis](http://discrete.gr/complexity/) | phonebook-concurrent, mergesort-concurrent, producer-consumer |
-|#3 | Oct 7 | [Computer Architecture](/s/ryv1NT3S),  | software pipelining, b+tree |
-|#4 | Oct 14 | Operating System Concepts, Computer Network | thread-package, facebooc |
-|#5 | Oct 21 | How A Proagram Works, Compilers | amacc, brainf`*`ck |
-|#6 | Oct 28 | Virtual Memory, Memory Allocators | malloc-implementation |
-|#7 | Nov 6 | 數學總複習：線性代數, 離散數學, 機率統計, 工程數學 | image-processing |
-|#8 | Nov 13 | Virtual Machines and Secure Coding | rubi, buffer-overflow-attack |
-|#9 | Nov 20 | [nand2tetris](http://www.slideshare.net/ccckmit/nand2tetris) | nand2tetris (強化版) |
+* 第 1 週 (Sep 23): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
+    - [課程簡介和注意須知](https://docs.google.com/presentation/d/15F6sTm9WN6Efc5pjP8HkUVCfNbjqK859-7vYJy81kAc/edit#slide=id.p)
+    - [你所不知道的 C 語言](http://hackfoldr.org/dykc/)
+    - 重新理解數值系統
+    - Programming Small
+    - Concurrency
+    - 作業: (截止日: Sep 29)
+        * phonebook, raytracing, compute-pi, clz
+
+* 第 2 週 (Sep 30): 並行 + 演算法分析
+    - concurrency
+    - [Algorithm Complexity Analysis](http://discrete.gr/complexity/)
+    - 作業: (截止日: Oct 6)
+        * phonebook-concurrent, mergesort-concurrent, producer-consumer
+
+* 第 3 週 (Oct 7): 重新理解電腦結構
+    - [Computer Architecture](http://hackmd.io/s/ryv1NT3S)
+    - 作業: (截止日 Oct 13)
+        * software pipelining, b+tree
+
+* 第 4 週 (Oct 14): 作業系統概念的實踐
+    - Operating System Concepts
+    - Computer Network
+    - 作業: (截止日 Oct 20)
+        * thread-package, facebooc
+
+* 第 5 週 (Oct 21): 編譯器
+    - How A Proagram Works
+    - Compilers
+    - 作業: (截止日 Oct 27)
+        * amacc, brainf`*`ck
+
+* 第 6 週 (Oct 28): 你所不知道的記憶體
+    - Virtual Memory
+    - Memory Allocators
+    - 作業: (截止日 Nov 5)
+        * malloc-implementation
+
+* 第 7 週 (Nov 4) 數學總複習：線性代數, 離散數學, 機率統計, 工程數學
+    - 作業: (截止日 Nov 19)
+        * image-processing
+
+* 第 8 週 (Nov 11): Virtual Machines and Secure Coding
+    - 作業: (截止日 Nov 26) 
+        * rubi, buffer-overflow-attack
+
+* 第 9 週 (Nov 18)
+    - [nand2tetris](http://www.slideshare.net/ccckmit/nand2tetris)
+    - 作業: (截止日 Dec 17)
+        * nand2tetris (強化版)
 
 ## Computer Systems: A Programmer's Perspective
 
