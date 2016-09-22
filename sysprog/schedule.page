@@ -15,10 +15,11 @@ toc: no
 
 * 第 1 週 (Sep 23): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/15F6sTm9WN6Efc5pjP8HkUVCfNbjqK859-7vYJy81kAc/edit#slide=id.p)
+    - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za)
     - [你所不知道的 C 語言](http://hackfoldr.org/dykc/)
-    - 重新理解數值系統
-    - Programming Small
-    - Concurrency
+    - [重新理解數值](https://hackmd.io/s/SkKZBXZT)
+    - Programming Small(https://hackmd.io/s/S1rbwmZ6)
+    - 本學期作業說明
     - 作業: (截止日: Sep 29)
         * phonebook, raytracing, compute-pi, clz
 
@@ -30,38 +31,38 @@ toc: no
 
 * 第 3 週 (Oct 7): 重新理解電腦結構
     - [Computer Architecture](http://hackmd.io/s/ryv1NT3S)
-    - 作業: (截止日 Oct 13)
+    - 作業: (截止日: Oct 13)
         * software pipelining, b+tree
 
 * 第 4 週 (Oct 14): 作業系統概念的實踐
     - Operating System Concepts
     - Computer Network
-    - 作業: (截止日 Oct 20)
+    - 作業: (截止日: Oct 20)
         * thread-package, facebooc
 
 * 第 5 週 (Oct 21): 編譯器
     - How A Proagram Works
     - Compilers
-    - 作業: (截止日 Oct 27)
+    - 作業: (截止日: Oct 27)
         * amacc, brainf`*`ck
 
 * 第 6 週 (Oct 28): 你所不知道的記憶體
     - Virtual Memory
     - Memory Allocators
-    - 作業: (截止日 Nov 5)
+    - 作業: (截止日: Nov 5)
         * malloc-implementation
 
 * 第 7 週 (Nov 4) 數學總複習：線性代數, 離散數學, 機率統計, 工程數學
-    - 作業: (截止日 Nov 19)
+    - 作業: (截止日: Nov 19)
         * image-processing
 
 * 第 8 週 (Nov 11): Virtual Machines and Secure Coding
-    - 作業: (截止日 Nov 26) 
+    - 作業: (截止日: Nov 26) 
         * rubi, buffer-overflow-attack
 
 * 第 9 週 (Nov 18)
     - [nand2tetris](http://www.slideshare.net/ccckmit/nand2tetris)
-    - 作業: (截止日 Dec 17)
+    - 作業: (截止日: Dec 17)
         * nand2tetris (強化版)
 
 ## Computer Systems: A Programmer's Perspective
