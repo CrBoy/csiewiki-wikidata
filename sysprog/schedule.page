@@ -13,7 +13,7 @@ toc: no
 ------------------------------------------------------
 * 第 1 週 (Sep 23): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/15F6sTm9WN6Efc5pjP8HkUVCfNbjqK859-7vYJy81kAc/edit#slide=id.p)
-    - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za)
+    - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
     - [你所不知道的 C 語言](http://hackfoldr.org/dykc/): 本週進度為「指標篇」和「物件導向程式設計篇」
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT)
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6)
