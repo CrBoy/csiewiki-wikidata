@@ -16,7 +16,7 @@ toc: no
     - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
     - [你所不知道的 C 語言](http://hackfoldr.org/dykc/): 本週進度為「指標篇」和「物件導向程式設計篇」
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
-    - [Programming Small](https://hackmd.io/s/S1rbwmZ6)
+    - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
     - 本學期作業說明
     - 作業: (截止日: Sep 29)
         * phonebook, raytracing, compute-pi, clz
