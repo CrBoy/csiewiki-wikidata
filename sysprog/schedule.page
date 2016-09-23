@@ -19,7 +19,7 @@ toc: no
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
     - [本學期作業說明](https://hackmd.io/s/B1DmtJfT)
     - 作業: (截止日: Sep 29)
-        * [phonebook](https://hackmd.io/s/S1RVdgza), raytracing, compute-pi, clz
+        * [phonebook](https://hackmd.io/s/S1RVdgza), [raytracing](https://hackmd.io/s/B1W5AWza), compute-pi, clz
 
 * 第 2 週 (Sep 30): 並行 + 演算法分析
     - concurrency
