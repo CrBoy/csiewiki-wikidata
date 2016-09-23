@@ -18,7 +18,7 @@ toc: no
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
     - [本學期作業說明](https://hackmd.io/s/B1DmtJfT)
-    - 作業: (截止日: Sep 29)
+    - [作業](https://hackmd.io/s/H1B7-hGp) (截止日: Sep 29)
         * [phonebook](https://hackmd.io/s/S1RVdgza), [raytracing](https://hackmd.io/s/B1W5AWza), compute-pi, clz
 
 * 第 2 週 (Sep 30): 並行 + 演算法分析
