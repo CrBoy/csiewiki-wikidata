@@ -255,24 +255,31 @@ int main (void){
 ```
 $ perf stat --repeat 5 -e cache-misses,cache-references,instructions,cycles ./perf_stat_cache_miss
 ```
+
+```
     Performance counter stats for './perf_stat_cache_miss' (5 runs):
     4,416,226        cache-misses        #    3.437 % of all cache refs    ( +-  0.27% )
     128,483,262      cache-references                                      ( +-  0.02% )
     2,123,281,496    instructions        #    0.65  insns per cycle        ( +-  0.02% )
     3,281,498,034    cycles                                                ( +-  0.21% )
         1.299352302 seconds time elapsed                                   ( +-  0.19% )
+```
+
 `--repeat <n>`或是`-r <n>` 可以重複執行 n 次該程序，並顯示每個 event 的變化區間。
 `cache-misses,cache-references`和 `instructions,cycles`類似這種成對的 event，若同時出現 perf 會很貼心幫你計算比例。
 
 根據這次 perf stat 結果可以明顯發現程序有很高的 cache miss，連帶影響 IPC 只有`0.65`。
 
 如果我們善用一下存取的局部性，將 `i，j`對調改成`array[i][j]++`。
+
+```
     Performance counter stats for './perf_stat_cache_miss' (5 runs):
     2,263,131        cache-misses        #   93.742 % of all cache refs    ( +-  0.53% )
     2,414,202        cache-references                                      ( +-  1.82% )
     2,123,275,176    instructions        #    1.98  insns per cycle        ( +-  0.03% )
     1,074,868,730    cycles                                                ( +-  1.96% )
         0.432727146 seconds time elapsed                                   ( +-  1.99% )
+```
 
 cache-references 從 `128,483,262`下降到 `2,414,202`，差了五十幾倍，執行時間也縮短為原來的三分之一！
 
