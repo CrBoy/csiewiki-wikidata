@@ -22,7 +22,7 @@ categories: STM32, STM32F4, STM32F429
         - 屬於非揮發性記憶體（non-volatile memory，縮寫NVRAM)，不須保持通電就能儲存資料
         - 但資料一但寫入就無法修改，除非透過特殊的方式(例如EPROM用紫外光照射)才能達成
         - 適合放重要且不能被刪除的資料
-        - 細分為PROM、EPROM、EEPROM(EPROM的改良版)
+        - ROM 嚴格來講是指在製造時就將資料固定了。廣義上是指一般時候只讀，但仍可用某種方式改寫，細分為PROM (Programmable Read-Only Memory，只能寫一次)、EPROM (Erasable Programmable Read-Only Memory，可用紫外線抹除再寫)、EEPROM (Electrically-Erasable Programmable Read-Only Memory，電子式抹除再寫)
         - EX:BIOS早期放在ROM中，但隨著BIOS大小和複雜程度增加，硬體更新的速度快，以至於BIOS也必須更新以支援新硬體，於是BIOS就改成存在EEPROM或快閃記憶體中讓使用者可以更新
 
     - EPROM: 可抹除可編程唯讀記憶體（Erasable Programmable Read Only Memory，EPROM）
