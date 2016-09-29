@@ -24,7 +24,7 @@ toc: no
         * [W1-QA](https://hackmd.io/s/Hka2UE8a) (只有選修課程的學生需要完成這項)
 
 * 第 2 週 (Sep 30): 並行 + 演算法分析
-    - concurrency
+    - [concurrency](https://hackmd.io/s/H10MXXoT): Concurrency (並行) vs. Parallelism (平行); POSIX Threads; Thread Pool; Lock-free Thread Pool; 對 Linked-List 排序;  Producer-Consumer Problem
     - [Algorithm Complexity Analysis](http://discrete.gr/complexity/)
     - 作業: (截止日: Oct 6)
         * phonebook-concurrent, mergesort-concurrent, producer-consumer
