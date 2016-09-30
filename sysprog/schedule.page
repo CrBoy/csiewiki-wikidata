@@ -27,6 +27,7 @@ toc: no
     - [第 1 週作業回顧](https://hackmd.io/s/HydMPmjT)
     - [concurrency](https://hackmd.io/s/H10MXXoT): Concurrency (並行) vs. Parallelism (平行); POSIX Threads; Thread Pool; Lock-free Thread Pool; 對 Linked-List 排序;  Producer-Consumer Problem
     - [Algorithm Complexity Analysis](http://discrete.gr/complexity/)
+    - [隨堂測驗](https://goo.gl/forms/mGZvzTbCbJfBkgwr1)
     - 作業: (截止日: Oct 6)
         * introspect, phonebook-concurrent, mergesort-concurrent
 
