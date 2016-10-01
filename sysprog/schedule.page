@@ -29,7 +29,7 @@ toc: no
     - [Algorithm Complexity Analysis](http://discrete.gr/complexity/)
     - [隨堂測驗](https://goo.gl/forms/mGZvzTbCbJfBkgwr1): 題目:  將 [Linked List Bubble Sort](http://faculty.salina.k-state.edu/tim/CMST302/study_guide/topic7/bubble.html) 裡頭的排序演算法從 recursive bubble sort 更換為 recursive merge sort
     - [作業](https://hackmd.io/CwNg7AJmIMYKYFowEMAMyHAJwGZgICMRkQFUAOHKGAM2TDwEYg==): (截止日: Oct 6)
-        * introspect, phonebook-concurrent, mergesort-concurrent
+        * [introspect](https://hackmd.io/s/BkhIF92p), phonebook-concurrent, mergesort-concurrent
 
 * 第 3 週 (Oct 7): 重新理解電腦結構
     - [Computer Architecture](http://hackmd.io/s/ryv1NT3S)
