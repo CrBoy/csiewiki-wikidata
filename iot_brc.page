@@ -3,10 +3,28 @@ title: 物聯網實境應用設計
 categories: IoT
 ...
 
-# 2016 課程資源
+# **2016 課程資源**
 * [Week 2 課程說明](https://hackmd.io/s/Bk_EtvC3)
 * [Week 3 Arduino 基礎](https://hackmd.io/s/BJRttPAn)
 
 ## 參考資料
 * [Arduino API reference](https://www.arduino.cc/en/Reference/HomePage)
 * [Arduino Examples](https://www.arduino.cc/en/Tutorial/BuiltInExamples)
+
+# **期中驗收**
+
+## 配分(50%)
+* **在時間內走出迷宮**：40%
+	* 有岔路版本，三次達成目標兩次：得 40%
+	* 無岔路版本，三次達成目標兩次：得 30%
+		* 沒有通過有岔路版本才能參加無岔路版本
+	* 兩種版本都沒有過：得 0%
+* **程式碼**：10%
+	* 需包含解說文件
+	* 繳交方式：Moodle，壓縮檔檔名 `學號.zip`，裡面需包含
+		* 程式碼：主程式檔名 `midterm.ino`，其他程式碼不限
+		* 說明文件：文字檔，檔名 `說明文件.txt`：
+			* 學號
+			* 姓名
+			* 自走車運作：路線判斷、岔路判斷，需說明實作在程式的哪裡
+* ==**禁止抄襲**，抄襲與被抄者期中驗收得 0%==
