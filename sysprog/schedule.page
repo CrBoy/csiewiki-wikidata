@@ -34,6 +34,7 @@ toc: no
 * 第 3 週 (Oct 7): 重新理解電腦結構
     - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc))
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
+    - [在計算機裡頭實踐演算法](https://hackmd.io/s/HyKtIPN0)
     - 作業: (截止日: Oct 13)
         * [mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0), software pipelining
 
