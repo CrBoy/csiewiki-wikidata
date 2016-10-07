@@ -2,7 +2,7 @@
 title: F9 microkernel
 categories: embedded, arm, stm32, stm32f4, microkernel
 toc: yes
-...
+...最後一個delta = 0的event
 
 組員與共筆
 ----------
@@ -2325,7 +2325,7 @@ ktimer的event list是根據時間排序，從最近到最遠，所以在event_h
         /* That is bug if we are here */
          ...
       }
-      /* 尋找最後一個delta = 0的event
+      /* 尋找最後一個delta = 0的event */
       do {
          event = event->next;
       } while (event && event->delta == 0);
