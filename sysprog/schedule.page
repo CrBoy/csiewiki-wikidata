@@ -35,7 +35,7 @@ toc: no
     - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc))
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
     - 作業: (截止日: Oct 13)
-        * [mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0), software pipelining, b+tree
+        * [mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0), software pipelining
 
 * 第 4 週 (Oct 14): 作業系統概念的實踐
     - Operating System Concepts
