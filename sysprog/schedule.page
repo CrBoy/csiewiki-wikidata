@@ -36,8 +36,9 @@ toc: no
     - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc))
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
     - [在計算機裡頭實踐演算法](https://hackmd.io/s/HyKtIPN0)
-    - 作業: (截止日: Oct 13)
+    - 作業: (截止日: 08:00AM Oct 14)
         * [mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0), [software pipelining](https://hackmd.io/s/ry7eqDEC), phonebook (強化版本)
+        * [W2-QA](https://hackmd.io/s/Sk29RMbC) (只有選修課程的學生需要完成這項)
 
 * 第 4 週 (Oct 14): 作業系統概念的實踐
     - Operating System Concepts
