@@ -54,7 +54,8 @@ toc: no
         * server-framework, 回顧既有的作業
 
 * 第 5 週 (Oct 21): 編譯器
-    - How A Proagram Works
+    - [回顧 SIMD 和計算機組織](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
+    - How A Program Works
     - Compilers
     - 作業: (截止日: Oct 27)
         * amacc, brainf`*`ck
