@@ -55,7 +55,7 @@ toc: no
 
 * 第 5 週 (Oct 21): 為什麼你該理解編譯器
     - [淺談 Microkernel 設計和真實世界中的應用](https://embedded2016.hackpad.com/-Microkernel--xeGzRmcbT20)
-    - [回顧 SIMD 和計算機組織](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
+    - [回顧 SIMD 和計算機組織](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===) + [案例分析:轉置矩陣](https://hackmd.io/s/ryTASBCT)
     - [編譯器和最佳化原理](https://embedded2015.hackpad.com/C-DWAUb7NnQF0)
     - [動態連結器](https://embedded2015.hackpad.com/C-VESe3UsncpM)
     - [作業](https://hackmd.io/s/rk7H0Pw1g): (截止日: Oct 27; 下方擇一，並且 Week4 的專題要繼續作)
