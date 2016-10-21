@@ -58,8 +58,8 @@ toc: no
     - [回顧 SIMD 和計算機組織](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
     - [編譯器和最佳化原理](https://embedded2015.hackpad.com/C-DWAUb7NnQF0)
     - [動態連結器](https://embedded2015.hackpad.com/C-VESe3UsncpM)
-    - 作業: (截止日: Oct 27)
-        * amacc, brainf`*`ck
+    - 作業: (截止日: Oct 27; 下方擇一，並且 Week4 的專題要繼續作)
+        * [jit-compiler](https://hackmd.io/s/SJ7AZJv1e), amacc
 
 * 第 6 週 (Oct 28): 你所不知道的記憶體
     - Virtual Memory
