@@ -53,10 +53,11 @@ toc: no
     - [作業](https://hackmd.io/s/Sy_O7uCA): (截止日: Oct 20)
         * server-framework, 回顧既有的作業
 
-* 第 5 週 (Oct 21): 編譯器
+* 第 5 週 (Oct 21): 為什麼你該理解編譯器
+    - [淺談 Microkernel 設計和真實世界中的應用](https://embedded2016.hackpad.com/-Microkernel--xeGzRmcbT20)
     - [回顧 SIMD 和計算機組織](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
-    - How A Program Works
-    - Compilers
+    - [編譯器和最佳化原理](https://embedded2015.hackpad.com/C-DWAUb7NnQF0)
+    - [動態連結器](https://embedded2015.hackpad.com/C-VESe3UsncpM)
     - 作業: (截止日: Oct 27)
         * amacc, brainf`*`ck
 
