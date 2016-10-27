@@ -65,21 +65,16 @@ toc: no
     - [回顧第一次分組成果](https://hackmd.io/s/rkKY7RJex)
     - Virtual Memory
     - Memory Allocators
-    - 作業: (截止日: Nov 5)
-        * malloc-implementation
+    - 稽核日: Nov 4
 
 * 第 7 週 (Nov 4) 數學總複習：線性代數, 離散數學, 機率統計, 工程數學
-    - 作業: (截止日: Nov 19)
+    - 稽核日: Nov 11
         * image-processing
 
 * 第 8 週 (Nov 11): Virtual Machines and Secure Coding
-    - 作業: (截止日: Nov 26) 
-        * amacc, buffer-overflow-attack
+    - 稽核日: Nov 18
 
-* 第 9 週 (Nov 18)
-    - [nand2tetris](http://www.slideshare.net/ccckmit/nand2tetris), [Nand2Tetris 課程社團](https://www.facebook.com/groups/nand2tetris/)
-    - 作業: (截止日: Dec 17)
-        * nand2tetris (強化版)
+* 第 9 週 (Nov 18) 第二次分組成果報告
 
 ## Computer Systems: A Programmer's Perspective
 
