@@ -66,7 +66,7 @@ toc: no
     - [2016 年秋季班分組表(第二次)](https://hackmd.io/s/r1-e1Jgll)
     - [羅輯思維: 怎樣成為一個高手](https://www.youtube.com/watch?v=4JhlfRAzVKY): 從 12:08 開始
     - [Memory Allocation](https://hackmd.io/s/B1SRlfeee)
-    - [How a Rogue Optimization	Breaks C11 Memory Consistency](http://files.iccmedia.com/pdf/161019%20SolidSandsWPaper.pdf)
+    - [How a Rogue Optimization	Breaks C11 Memory Consistency](https://goo.gl/B68s9X)
     - [DTrace for Linux 2016](http://www.brendangregg.com/blog/2016-10-27/dtrace-for-linux-2016.html): BPF tracing 是 Linux 效能分析最後一塊拼圖
     - 稽核日: Nov 4
 
