@@ -68,10 +68,10 @@ toc: no
     - [Memory Allocation](https://hackmd.io/s/B1SRlfeee)
     - [How a Rogue Optimization Breaks C11 Memory Consistency](https://goo.gl/B68s9X)
     - [DTrace for Linux 2016](http://www.brendangregg.com/blog/2016-10-27/dtrace-for-linux-2016.html): BPF tracing 是 Linux 效能分析最後一塊拼圖
-    - 稽核日: Nov 4
 
-* 第 7 週 (Nov 4) 數學總複習：線性代數, 離散數學, 機率統計, 工程數學
-    - 稽核日: Nov 11
+* 第 7 週 (Nov 4) 數學總複習：線性代數, 離散數學, 機率統計
+    - [理解矩陣](http://www.52cs.org/?p=175), [從離散數學到數學文化](http://hkumath.hku.hk/~mks/20DiscrMath.pdf)
+    - [Formal](https://hackmd.io/s/H1xxp3pF0)
 
 * 第 8 週 (Nov 11): 校慶停課
 
