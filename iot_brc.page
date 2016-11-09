@@ -14,7 +14,7 @@ categories: IoT
 * [H-Bridge Theory](http://www.instructables.com/id/H-Bridge-on-a-Breadboard/step2/H-Bridge-Theory/)
 
 # **期中驗收**
-* 日期：11/5 (六)
+* 日期：11/10 (四)、11/12 (六)
 
 ## 配分(50%)
 * **在時間內走出迷宮**：40%
@@ -23,6 +23,7 @@ categories: IoT
 		* 沒有通過有岔路版本才能參加無岔路版本
 	* 兩種版本都沒有過：得 0%
 * **程式碼**：10%
+	* 繳交截止：2016/11/18 (五) 23:55
 	* 有通過迷宮測驗才需要繳交，需包含解說文件
 	* 繳交方式：Moodle，壓縮檔檔名 `學號.zip`，裡面需包含
 		* 程式碼：主程式檔名 `學號.ino`，額外程式碼需要一併包含
