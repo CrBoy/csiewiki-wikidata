@@ -22,7 +22,7 @@ STM32F4xx GPIO特性
 * 所有 GPIO 具有容許較高的電流能力與四種速度選擇，根據不同設定管理雜訊、電耗與電磁波
 * 最大 I/O 切換速度可以支援到 90 MHz
 * STM32F4xx 每個 GPIO Port 有 10 個 32-bit 暫存器 (Register)
-    - Configuration Register: GPIOx_MODER, PIOx_OTYPER, GPIOx_OSPEEDR 與 GPIOx_PUPDR
+    - Configuration Register: GPIOx_MODER, GPIOx_OTYPER, GPIOx_OSPEEDR 與 GPIOx_PUPDR
     - Data Register: GPIOx_IDR and GPIOx_ODR
     - Set/Reset Register: GPIOx_BSRR
     - Locking Register: GPIOx_LCKR 【防止因錯誤而改變GPIO的用途(accidental repurposing)】
