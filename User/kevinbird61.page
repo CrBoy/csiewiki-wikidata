@@ -27,7 +27,8 @@ categories: User
     - [Java]炸彈超人 : [Source on Google Drive](https://drive.google.com/drive/folders/0B7ClBRr0ysKXfmFFbWwxbmVoUjJlOEdwTDMwbGYzQ3cyYkotRkZ0NjBrd0lka1FtM25kcHc)
     - [微算機]LED燈光秀(傳送端) : [Source on Github](https://github.com/kevinbird61/2015-Fall-MSP4305529/tree/master/UART%20CPU%20transmitter)
     - [C++] BBTAN - on Qt(教學用) : [Source on Github] (https://github.com/kevinbird61/BBTAN-on-Qt)
-#2015進階嵌入式開發 — 秋季班
+
+# 2015進階嵌入式開發 — 秋季班
 - [Hw1](http://wiki.csie.ncku.edu.tw/embedded/2015q3h1)
     - [Hackpad](https://hackpad.com/Embedded-System-Hw1-Fibonacci-5vCidKJQBYe) / [GitHub](https://github.com/kevinbird61/arm-lecture)
     - 初步認識assembly language與ARM architecture架構的了解
@@ -51,6 +52,10 @@ categories: User
     - [Hackpad](https://hackpad.com/Embedded-System-Hw7--wNnACbBgd3g) / [GitHub](https://github.com/kevinbird61/mini-arm-os)
 - [Hw9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
     - 討論並做問題與回答（read datasheet）
+
+# 2016 進階電腦系統理論與實作 — 秋季班
+- [phonebook 實作](https://github.com/kevinbird61/phonebook)
+- [Image-Processing](https://github.com/kevinbird61/Image-Processing)
 
 #自我評價（到目前為止）
 - 除了到期中考以外，我在這學期以有別於以往更努力的心態去面對每一件事。忙歸忙，一有時間就翻出手邊有的資料閱讀。雖然最近的進度頗為落後，但是我覺得這學期修的這門課讓我學習到了一種有別於以往兩年的態度。
