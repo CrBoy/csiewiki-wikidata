@@ -1,0 +1,61 @@
+---
+title: yenWu (吳彥寬)
+categories: User
+...
+
+簡介
+====
+- 成功大學數學系104級**倒數第四名**畢業(2012 ~ 2015)
+- 成功大學資訊工程所106級(2016 ~ 2017)
+
+工作經歷
+========
+- VMFive 實習生 - APP Streaming Team/ [成果發表](https://docs.google.com/presentation/d/1a_esASu_JIJclUUtgc-xYWOVn4UzZIskn5vpBHua1WU/edit?usp=sharing)
+
+開放原始碼專案參與
+=================
+- [apitrace](https://github.com/apitrace/apitrace)
+- seL4 microkernel [[p1](https://github.com/SEL4PROJ/sel4-tutorials),[p2](https://github.com/seL4/sel4test-manifest)]
+- [mini-arm-os](https://github.com/jserv/mini-arm-os)
+- [threadpool](https://github.com/mbrossard/threadpool)
+
+競賽成果
+========
+- [2016 NVIDIA Taiwan Embedded Vision Smart Robot Challenge](https://www.nvidia.com.tw/content/apac/event/tw/embedded-robotic-challenge/info.html)
+    * 決賽/ [作品ART(Awesome Robot Team)](https://github.com/AwesomeRobotTeam/ART)/ [開發筆記](https://awesomerobotteam.hackpad.com/Awesome-Robot-Team--O8LqPFZxHhe)
+
+貢獻研討會筆記
+==============
+- 新竹碼農聚會:自幹IoT 專屬OS-HyperC/ [筆記](https://embedded2016.hackpad.com/-IoT-OS-HyperC-j1Y2KKWoTAh)
+- 2016台灣資料科學愛好者年會:視覺訊息處理和深度學習應用/ [筆記](https://my_projects.hackpad.com/5QoHdrP2MJK)
+- 新竹碼農聚會:Meet-cute between eBPF and Kernel Tracing/ [筆記](https://my_projects.hackpad.com/eBPS-and-kernel-tracing-8NGHiyzaXfF)
+
+學術影片分享
+============
+- Paper Study:"The BSD Packet Filter:A New Architecture for User-level Packet Capture"/ [影片](https://youtu.be/hDayCHHA3cc?t=3720)/ [ppt](https://hackmd.io/CYIw7AzArAxiCMBaADAJgqxAWAnGAbIgBwCGJUi+URIy8e88+AZkA===)
+- Paper Study: “L4 microkernels: The lessons from 20 years of research and deployment”/ [影片](https://www.youtube.com/watch?v=oPjwyykO1bI)/ [ppt](https://docs.google.com/presentation/d/1UKXffKIGocUuEPWnqNRGuKZPgmIZXga0m9vL_u_p6iU/edit?usp=sharing)
+- seL4 introduction: Capability--based Access Model/ [影片](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
+
+(春季班)作業及筆記
+------------------------
+那時是旁聽生，而且沒有做期末專題，專心準備 Nvidia比賽
+
+* Homework 1 / 開發紀錄 / 程式碼
+    * 改善phonebook查詢的效能，中間使用了`改變資料結構` `Hash function`，並使用`perf`做效能偵，`gplot`建制清楚的圖片
+ 
+* Homework 2/ 開發紀錄(A) / 程式碼(A)
+    * 改善raytracing程式的效能，使用 `loop unrolling` `inline function` `SIMD` `Mult-threads`，並使用`gprof` 檢查那一個function用最多時間，以及使用`gdb` 抓出breakpoint，並且打敗compiler將最佳效能-O3的效能
+
+* (進行中)Homework 3/開發紀錄/程式碼
+    * 改善server的效能，讓每秒可以 reply 的 request 增加，使用大量的function pointer，還學習到 `signal`的用法，和`pipe`的process之間的溝通，目前最卡關的地方是將 `blocking I/O`改寫成`lock-free`
+
+(秋季班)作業及筆記
+------------------------
+
+聯絡資訊
+========
+e-mail: ``c14006078@gmail.com``
+
+Github: [yenWu](yenWu@github.com)
+
+Linkin: [Yen-Kuan Wu](https://www.linkedin.com/in/yen-kuan-wu-207245111?trk=hp-identity-name)
