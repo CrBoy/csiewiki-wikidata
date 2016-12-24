@@ -26,36 +26,49 @@ categories: User
 
 貢獻研討會筆記
 ==============
-- 新竹碼農聚會:自幹IoT 專屬OS-HyperC/ [筆記](https://embedded2016.hackpad.com/-IoT-OS-HyperC-j1Y2KKWoTAh)
-- 2016台灣資料科學愛好者年會:視覺訊息處理和深度學習應用/ [筆記](https://my_projects.hackpad.com/5QoHdrP2MJK)
-- 新竹碼農聚會:Meet-cute between eBPF and Kernel Tracing/ [筆記](https://my_projects.hackpad.com/eBPS-and-kernel-tracing-8NGHiyzaXfF)
+- 新竹碼農聚會
+    - 自幹IoT 專屬OS-HyperC/ [筆記](https://embedded2016.hackpad.com/-IoT-OS-HyperC-j1Y2KKWoTAh)
+    - Meet-cute between eBPF and Kernel Tracing/ [筆記](https://my_projects.hackpad.com/eBPS-and-kernel-tracing-8NGHiyzaXfF)
+- 2016台灣資料科學愛好者年會
+    - 視覺訊息處理和深度學習應用/ [筆記](https://my_projects.hackpad.com/5QoHdrP2MJK)
 
 學術影片分享
 ============
-- Paper Study:"The BSD Packet Filter:A New Architecture for User-level Packet Capture"/ [影片](https://youtu.be/hDayCHHA3cc?t=3720)/ [ppt](https://hackmd.io/CYIw7AzArAxiCMBaADAJgqxAWAnGAbIgBwCGJUi+URIy8e88+AZkA===)
-- Paper Study: “L4 microkernels: The lessons from 20 years of research and deployment”/ [影片](https://www.youtube.com/watch?v=oPjwyykO1bI)/ [ppt](https://docs.google.com/presentation/d/1UKXffKIGocUuEPWnqNRGuKZPgmIZXga0m9vL_u_p6iU/edit?usp=sharing)
+- Taiwan Linux Kernel Hacker
+    - "Introduction of the BSD Packet Filter"/ [影片](https://youtu.be/hDayCHHA3cc?t=3720)/ [ppt](https://hackmd.io/CYIw7AzArAxiCMBaADAJgqxAWAnGAbIgBwCGJUi+URIy8e88+AZkA===)
+- Paper Study
+    - “L4 microkernels: The lessons from 20 years of research and deployment”/ [影片](https://www.youtube.com/watch?v=oPjwyykO1bI)/ [ppt](https://docs.google.com/presentation/d/1UKXffKIGocUuEPWnqNRGuKZPgmIZXga0m9vL_u_p6iU/edit?usp=sharing)
 - seL4 introduction: Capability--based Access Model/ [影片](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
 
-(春季班)作業及筆記
-------------------------
+(2016_春季班)作業及筆記
+=======================
 那時是旁聽生，而且沒有做期末專題，專心準備 Nvidia比賽
 
-* Homework 1 / 開發紀錄 / 程式碼
+* [HW1](http://wiki.csie.ncku.edu.tw/embedded/2016q1h1) / [開發紀錄(phonebook)](https://embedded2016.hackpad.com/2016q1-Homework-1--qWv3pIKGt12) / [程式碼](https://github.com/c14006078/phonebook)
     * 改善phonebook查詢的效能，中間使用了`改變資料結構` `Hash function`，並使用`perf`做效能偵，`gplot`建制清楚的圖片
  
-* Homework 2/ 開發紀錄(A) / 程式碼(A)
+* [HW2(a)](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2)/ [開發紀錄(A)(raytracing)](https://embedded2016.hackpad.com/2016q1-Homework-2A-wOu40KzMaIP) / [程式碼(A)](https://embedded2016.hackpad.com/2016q1-Homework-2A-wOu40KzMaIP)
     * 改善raytracing程式的效能，使用 `loop unrolling` `inline function` `SIMD` `Mult-threads`，並使用`gprof` 檢查那一個function用最多時間，以及使用`gdb` 抓出breakpoint，並且打敗compiler將最佳效能-O3的效能
 
-* (進行中)Homework 3/開發紀錄/程式碼
+* [HW3_server-framework](http://wiki.csie.ncku.edu.tw/embedded/2016q1h3)/ [開發紀錄(server-framework)](https://embedded2016.hackpad.com/2016q1-Homework-3-hI6do22ag3w)/ [程式碼](https://github.com/c14006078/server-framework/commits/master)
     * 改善server的效能，讓每秒可以 reply 的 request 增加，使用大量的function pointer，還學習到 `signal`的用法，和`pipe`的process之間的溝通，目前最卡關的地方是將 `blocking I/O`改寫成`lock-free`
 
-(秋季班)作業及筆記
-------------------------
+(2016_秋季班)作業及筆記
+======================
+* [HW1(a)](https://hackmd.io/s/S1RVdgza)/ [開發紀錄(phonebook)](https://hackmd.io/MYNgnCDsCsYEwFoAmInQQFngMwQQwCM5dI88BmAU3LnIEYlsAGIA) / [github](https://github.com/yenWu/phonebook-1) / [youtube link(update 2016/10/1)](https://www.youtube.com/watch?v=sWtWslsr4Ac&feature=youtu.be)
+* [HW1(d)](https://hackmd.io/s/B1LHefQ6)/ [開發紀錄(clz)](https://hackmd.io/CwMwxgTA7AplIFoCsAOGATBoBGUEE5UwEYBDABnIDYBmGqkKbJIA) / [github](https://github.com/yenWu/clz-tests) / [youtube link]
+* [HW2](https://hackmd.io/s/rJsgh0na)/ [開發紀錄(phonebook-concurrent)](https://hackmd.io/GYYwhg7AzAnADAJgLRQEYIBxICwYwUyRgBMRikRsIBGEOfMYDAVmKA==) / [github](https://github.com/yenWu/phonebook-concurrent) / [youtube link]
+* [HW3(b)](https://hackmd.io/s/ry7eqDEC)/ [開發紀錄(software-pipelining)](https://hackmd.io/EYMwbAhgDArAnAFgLQmGATEhB2AppiCAZhCQBMBGXGBGXCkCMEIA) / [github](https://github.com/yenWu/prefetcher) / [youtube link](https://www.youtube.com/watch?v=Qp6b2BMVLN4)
+
+* 分組
+    * [HW3(a)](https://hackmd.io/s/rJ-GWtJ0)/ [開發紀錄(mergesort-concurrent)](https://hackmd.io/IwIwHAJgpgTGwFoCGBWAxmBAWGwYIE480EBmMANjSgDM1SB2ABiKA===)/ [github](https://github.com/c14006078/mergesort-concurrent) / [youtube link](https://www.youtube.com/watch?v=zRKgubJHwqM&feature=youtu.be)
+    * [HW4(a)](https://hackmd.io/s/SJ7AZJv1e) / [開發紀錄(jit-compiler)](https://hackmd.io/CwDg7AxghgbDUFoCcBWYSHAhYCoiQEYEBTYAJhHIAZtySoog) / [github](https://github.com/HahaSula/jit-construct/tree/master) / youtube link
+    * Final Project / [開發紀錄(F9 microkernel & ARM hypervisor)](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA)
 
 聯絡資訊
 ========
-e-mail: ``c14006078@gmail.com``
+e-mail: `c14006078@gmail.com`
 
-Github: [yenWu](yenWu@github.com)
+Github: [yenWu](https://github.com/yenWu)
 
 Linkin: [Yen-Kuan Wu](https://www.linkedin.com/in/yen-kuan-wu-207245111?trk=hp-identity-name)
