@@ -18,6 +18,7 @@ categories: User
 - seL4 microkernel [[p1](https://github.com/SEL4PROJ/sel4-tutorials),[p2](https://github.com/seL4/sel4test-manifest)]
 - [mini-arm-os](https://github.com/jserv/mini-arm-os)
 - [threadpool](https://github.com/mbrossard/threadpool)
+- [phonebook-concurrency](https://github.com/sysprog21/phonebook-concurrent)
 
 競賽成果
 ========
@@ -78,6 +79,11 @@ categories: User
     * Final Project / [開發紀錄(F9 microkernel & ARM hypervisor)](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA)
         * 在這個 Project裡，我被分配從 `codezero`->`f9-kernel`->`seL4 microkernel`->`bitsec`->`mini-arm-os`->`pico`->`SST_ARM`->`rtenv-plus`一路研究過來，就為了能夠真正開發一個 OS，途中我已經**被程式面對自己**數次，破英文、闡述能力太爛、效率、學習不夠精實、...，我也體會到什麼叫看 document看到死，這是我覺得進步最多的時刻，也是我覺得最辛苦的時刻，同時也是我覺得我可以實現第一次跟老師相遇時的目標，開發一個 OS。
         * 我也對 sel4 的 capability model 做了一個解說，[seL4 introduction: Capability--based Access Model](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
+
+* [W1-QA](https://hackmd.io/s/Hka2UE8a)/[筆記](https://hackmd.io/BwZgrCAMkIYwtANgMa3gFgEwBNj1MHpgOyYQwCmImAjMcEA=)
+    * 體會到 `recursive`的魅力和 `xor`的妙用，真的很好用，`recursive`就用在我實作`merge-sort`上，`xor`就帶領我遇見`xor linked list`，還有在特別情況下 stack會爆掉的問題。
+* [W2-QA](https://hackmd.io/s/Sk29RMbC)/[github](https://github.com/yenWu/sysprog2016q3/tree/master/W2)
+    * 由於我實在想不到要怎麼將 bubble-sort 轉成 merge-sort，注意這邊使用的是 linklist 而且在交換時要將整個 node做交換，而這會用在 concurrency merge-sort上有非常好的效果，由於我真的不知道該怎麼把改過去，所以我直接重新刻一個，並且用到 W1-QA裡老師說的技巧，讓整段程式碼非常的精簡、優雅，recursive 實在太神啦!
 
 聯絡資訊
 ========
