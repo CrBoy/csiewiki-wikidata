@@ -56,8 +56,12 @@ categories: User
 (2016_秋季班)作業及筆記
 ======================
 * [HW1(a)](https://hackmd.io/s/S1RVdgza)/ [開發紀錄(phonebook)](https://hackmd.io/MYNgnCDsCsYEwFoAmInQQFngMwQQwCM5dI88BmAU3LnIEYlsAGIA) / [github](https://github.com/yenWu/phonebook-1) / [youtube link(update 2016/10/1)](https://www.youtube.com/watch?v=sWtWslsr4Ac&feature=youtu.be)
+    * 這次我挑戰了如何降低 append() time，也就是建立時間，我這次使用到了`mmap`的技術來降低讀取大量資料的時間，很有趣的，做完後發現建立的時間居然可以快過查詢的時間XD，當然，之後又使用了muti-thread來減少搜尋時間，並且意外地開啟了新的課程作業，也就是 phonebook-concurrency。
 * [HW1(d)](https://hackmd.io/s/B1LHefQ6)/ [開發紀錄(clz)](https://hackmd.io/CwMwxgTA7AplIFoCsAOGATBoBGUEE5UwEYBDABnIDYBmGqkKbJIA) / [github](https://github.com/yenWu/clz-tests) / [youtube link]
+    * 這次的作業是 Count Leading Zeros (clz)，我實作了`recursive`, `iterative`, `binary-search`, `byte-shift` and `Harley's` version，而這個作業最有趣的就是 `Harley's algorithm`，他像是一個填空題，我的解題絲路很有趣XD，我先嘗試假設這個演算法是正確的，那就是我代入`0x4`,`0x5`,...,`0x7`出現的答案都應該要是正確的，也就是說這個演算法有辦法，把他們都變成一模一樣，所以那之後再去算答案當然會一樣樓XD，而這個算法在我現在做的 RTOS schedule 設計上也有很大的起發，而 clz 也有使用到，在做之前根本想不到的。
 * [HW2](https://hackmd.io/s/rJsgh0na)/ [開發紀錄(phonebook-concurrent)](https://hackmd.io/GYYwhg7AzAnADAJgLRQEYIBxICwYwUyRgBMRikRsIBGEOfMYDAVmKA==) / [github](https://github.com/yenWu/phonebook-concurrent) / [youtube link]
+    * 這作業的原始範本就是我的 phonebook，而這次作業的主題是`refactor`和`threadpool`，而說到`refactor`就真的非常對不起了...，因為我在寫`phonebook`時很多變數、function 命名都很隨便，幾乎沒什麼註解，連我自己都改得很辛苦...，於是我趕緊在拍另一部影片我把的 flow都講出來[youtube](https://www.youtube.com/watch?v=sWtWslsr4Ac&feature=youtu.be)，而在`threadpool`設計時，也順便貢獻了參考的`mbrossard/threadpool`。
+
 * [HW3(b)](https://hackmd.io/s/ry7eqDEC)/ [開發紀錄(software-pipelining)](https://hackmd.io/EYMwbAhgDArAnAFgLQmGATEhB2AppiCAZhCQBMBGXGBGXCkCMEIA) / [github](https://github.com/yenWu/prefetcher) / [youtube link](https://www.youtube.com/watch?v=Qp6b2BMVLN4)
 
 * 分組
