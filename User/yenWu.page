@@ -31,6 +31,8 @@ categories: User
     - Meet-cute between eBPF and Kernel Tracing/ [筆記](https://my_projects.hackpad.com/eBPS-and-kernel-tracing-8NGHiyzaXfF)
 - 2016台灣資料科學愛好者年會
     - 視覺訊息處理和深度學習應用/ [筆記](https://my_projects.hackpad.com/5QoHdrP2MJK)
+- Mediatek 資深工程師演講
+    - SIMD Programing Introduction/ [筆記](https://hackmd.io/KwEwhiIKbFC0AGAbARgBxwCzgOxzMJsHAMYrIIBGaChJJQA=)
 
 學術影片分享
 ============
@@ -38,7 +40,9 @@ categories: User
     - "Introduction of the BSD Packet Filter"/ [影片](https://youtu.be/hDayCHHA3cc?t=3720)/ [ppt](https://hackmd.io/CYIw7AzArAxiCMBaADAJgqxAWAnGAbIgBwCGJUi+URIy8e88+AZkA===)
 - Paper Study
     - “L4 microkernels: The lessons from 20 years of research and deployment”/ [影片](https://www.youtube.com/watch?v=oPjwyykO1bI)/ [ppt](https://docs.google.com/presentation/d/1UKXffKIGocUuEPWnqNRGuKZPgmIZXga0m9vL_u_p6iU/edit?usp=sharing)
-- seL4 introduction: Capability--based Access Model/ [影片](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
+- 課堂分享
+    - SIMD introduction/ [ppt](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
+    - seL4 introduction: Capability--based Access Model/ [影片](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
 
 (2016_春季班)作業及筆記
 =======================
@@ -63,11 +67,17 @@ categories: User
     * 這作業的原始範本就是我的 phonebook，而這次作業的主題是`refactor`和`threadpool`，而說到`refactor`就真的非常對不起了...，因為我在寫`phonebook`時很多變數、function 命名都很隨便，幾乎沒什麼註解，連我自己都改得很辛苦...，於是我趕緊在拍另一部影片我把的 flow都講出來[youtube](https://www.youtube.com/watch?v=sWtWslsr4Ac&feature=youtu.be)，而在`threadpool`設計時，也順便貢獻了參考的`mbrossard/threadpool`。
 
 * [HW3(b)](https://hackmd.io/s/ry7eqDEC)/ [開發紀錄(software-pipelining)](https://hackmd.io/EYMwbAhgDArAnAFgLQmGATEhB2AppiCAZhCQBMBGXGBGXCkCMEIA) / [github](https://github.com/yenWu/prefetcher) / [youtube link](https://www.youtube.com/watch?v=Qp6b2BMVLN4)
+    * 這個作業的主題是`software-pipeline`和`SIMD`，讓我了解到了原來 software也會有 pipeline，而這個 pipeline的方法別無他法，就是你要非常熟悉硬體設計，而其中的論文選讀是我當時讀過最長的論文(27p，目前看到最長的是 formal verification的論文 83p)，這篇論文從計算機結構來分析`hardware prefetch`,`software prefetch`的使用時機和效率，令人驚呀的是只要做足 pipeline，程式的效能居然還可以再上升 1倍，miracle，再來就是`SIMD`由於他是一次要fetch大量的data，所以他在`software-pipeline`有莫大的效果，另外這個作業最大的收穫就是得到很多大神的幫助，大家給我的方法我都有去 try try看，而讓我真的學到非常非常多，something that `raw counter`, `different perf tools` ...
+    * 這個作業我也將我的很多問題帶去給，`Champ`學長(第一屆)，並統整了一份資訊，並在課堂上以演講的方式分享給同學們，[SIMD introduction](https://hackmd.io/BwFgnATArARgbFAtBOAGAjIkB2AhpsVAZiMXQBMJsJzUIAzIuAYyA===)
 
 * 分組
     * [HW3(a)](https://hackmd.io/s/rJ-GWtJ0)/ [開發紀錄(mergesort-concurrent)](https://hackmd.io/IwIwHAJgpgTGwFoCGBWAxmBAWGwYIE480EBmMANjSgDM1SB2ABiKA===)/ [github](https://github.com/c14006078/mergesort-concurrent) / [youtube link](https://www.youtube.com/watch?v=zRKgubJHwqM&feature=youtu.be)
-    * [HW4(a)](https://hackmd.io/s/SJ7AZJv1e) / [開發紀錄(jit-compiler)](https://hackmd.io/CwDg7AxghgbDUFoCcBWYSHAhYCoiQEYEBTYAJhHIAZtySoog) / [github](https://github.com/HahaSula/jit-construct/tree/master) / youtube link
+        * 這個作業我們被指派要改變`data structure`，使得 `list`的 `element`能夠在 `insert`和 `delete`時能夠更 flexible，這其中我們嘗試建構出之前老師所謂的效能分析，所以從基礎建設跟自動化跑數據，再來是用 `doxygen`來分析 code的組成，最後我們有使用`Atomic`來包裝變數，並達到小部分`lock-free`的實作，來改善 `threadpool`，至於 `data structure`的部分，我們嘗試使用 `binary tree`的架構，但這樣連 mergesort都必須要重新實作，這是尚未完成的部分。
+    * [HW4(a)](https://hackmd.io/s/SJ7AZJv1e) / [開發紀錄(jit-compiler)](https://hackmd.io/CwDg7AxghgbDUFoCcBWYSHAhYCoiQEYEBTYAJhHIAZtySoog) / [github](https://github.com/HahaSula/jit-construct/tree/master) / youtube
+        * 這個作業是要改善`brainf**k`的效能，方法有`interpreter`,`compiler`,`just-in-time compiler`，而這也是我第一次接觸這兩個 optimize的方式，從 `turing machine`的觀點切入 `brainf**k`，並在這途中思考`brainf**k`的開發流程，最後藉由這個點切入優化code的部分。
     * Final Project / [開發紀錄(F9 microkernel & ARM hypervisor)](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA)
+        * 在這個 Project裡，我被分配從 `codezero`->`f9-kernel`->`seL4 microkernel`->`bitsec`->`mini-arm-os`->`pico`->`SST_ARM`->`rtenv-plus`一路研究過來，就為了能夠真正開發一個 OS，途中我已經**被程式面對自己**數次，破英文、闡述能力太爛、效率、學習不夠精實、...，我也體會到什麼叫看 document看到死，這是我覺得進步最多的時刻，也是我覺得最辛苦的時刻，同時也是我覺得我可以實現第一次跟老師相遇時的目標，開發一個 OS。
+        * 我也對 sel4 的 capability model 做了一個解說，[seL4 introduction: Capability--based Access Model](https://www.youtube.com/watch?v=x3P6Y6VO0UI&t=246s)/ [筆記](https://hackmd.io/OwUwLADAJgnMwFoQGYBmBDBYwA4BGCOAjAEwwIl46qq5Qh4BsOQA#sel4-microkernel)
 
 聯絡資訊
 ========
