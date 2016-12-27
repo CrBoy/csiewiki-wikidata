@@ -241,9 +241,9 @@ Prescaler Description
 
 .. [#] [ Clock tree](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 578
 
-.. code-block:: prettyprint linenums
-   
+```c   
    TIM_TimeBaseInitStruct.TIM_Prescaler = PRES_VALUE - 1; 
+```
 
 - 可除頻範圍1 ~ 65536(Set it in TIMx_PSC register)
 
@@ -253,10 +253,9 @@ Prescaler Description
 
 Upcounting mode
 ----------------
-.. code-block:: prettyprint linenums
-
+```c
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up; 
-
+```
 
 - 由0數至TIMx_ARR register之值, 然後再回到0並產生overflow event(update event), 此時auto-reload shadow register將會更新為TIMx_ARR之值.
    
@@ -281,17 +280,17 @@ UEV(clear by hardware) occurs every time an overflow occurs, and UIF is a flag t
 
 Downcounting mode
 ------------------
-.. code-block:: prettyprint linenums
-
+```c
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Down; 
+```
 
 ![](/countdown.png)
 
 Center-aligned mode
 -------------------
-.. code-block:: prettyprint linenums
-
+```c
    TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_CenterAligned1; 
+```
 
 ![](/center_aligned.png)
 
@@ -339,10 +338,10 @@ Forced output mode
 
 .. [#] [Forced output mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 594
 
-.. code-block:: prettyprint linenums
-
+```c
     TIM_OCInitStruct.TIM_OCPolarity = TIM_ForcedAction_InActive
     TIM_OCInitStruct.TIM_OCPolarity = TIM_ForcedAction_Active
+```
 
 - 在輸出模式下，輸出比較信號能夠直接由軟體強制設為有效(active)或是無效(inactive)的狀態，而無視輸出比較暫存器和計數器之間的比較結果。
 
@@ -356,10 +355,10 @@ Forced output mode
     -  CCxP = 1 (TIM_OCPolarity = TIM_OCPolarity_High) -> OCx = !ocxref
     - 對應
 
-.. code-block:: prettyprint linenums
-
+```c
     TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_Low;
     TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_High;
+```
 
 Output compare mode
 -------------------
@@ -367,9 +366,9 @@ Output compare mode
 
 .. [#] [PWM input mode](http://www.st.com/st-web-ui/static/active/en/resource/technical/document/reference_manual/DM00031020.pdf) p. 594
 
-.. code-block:: prettyprint linenums
-
+```c
     TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_Toggle
+```
 
 - 用來控制你想要輸出的訊號或是用來指示一段給定的時間已到。
 
@@ -529,16 +528,15 @@ Code_section
 RCC_Configuration
 --------------------
 
-.. code-block:: prettyprint linenums
-
+```c
     RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOB , ENABLE );//Enalbe AHB for GPIOB
     RCC_APB1PeriphClockCmd( RCC_APB1Periph_TIM4, ENABLE );//Enable APB for TIM4
+```
 
 GPIO_Configuration
 --------------------
 
-.. code-block:: prettyprint linenums
-
+```c
     GPIO_InitTypeDef GPIO_InitStructure;//Create GPIO_InitStructure 
     GPIO_StructInit(&GPIO_InitStructure); // Reset GPIO_structure
  
@@ -550,12 +548,12 @@ GPIO_Configuration
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_Init( GPIOB, &GPIO_InitStructure );  
+```
 
 TIM_Configuration
 --------------------
 
-.. code-block:: prettyprint linenums
-
+```c
     void TIM_Configuration(void)
     {
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
@@ -579,17 +577,16 @@ TIM_Configuration
  
     TIM_OC1Init( TIM4, &TIM_OCInitStruct ); // Channel 1  LED
     
- 
     TIM_Cmd( TIM4, ENABLE );
     }
+```
 
 -----------------------------------------------------------
 
 demo1 PWM_LED
 --------------------
 
-.. code-block:: prettyprint linenums
-
+```c
   RCC_Configuration();
   TIM_Configuration();
   GPIO_Configuration();
@@ -608,6 +605,7 @@ demo1 PWM_LED
     int i;
     for(i=0;i<200000;i++);  // about 1.6M instruction ->0.1sec
   }
+```
 
 -----------------------------------------------------------
  
@@ -616,8 +614,7 @@ demo1 PWM_LED
 demo2 PWM_SERVO
 --------------------
 
-.. code-block:: prettyprint linenums
-
+```c
   void demo2(void)
   {	
   volatile int i; 
@@ -637,6 +634,7 @@ demo2 PWM_SERVO
    for(i=0;i<30000000;i++);  // delay
    }
   }
+```
 
 -----------------------------------------------------------
 
