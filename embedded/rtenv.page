@@ -492,7 +492,7 @@ system call 函數的參數以及原本 user mode push 進去的暫存器之值�
 ``int read(int fd, void *buf, size_t count);``  fd 是對應的 file descriptor，buf 則是要被讀取的地方，count 則是要讀取多少資料
 
 實現行程之間的溝通以及檔案系統的實作。
-根據不同檔案類型，用 ``readable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可寫入，若可以則執行定義好的 ``read(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
+根據不同檔案類型，用 ``readable(struct file*, struct file_request*, struct event_monitor *)`` 確認是否可讀取，若可以則執行定義好的 ``read(struct file*, struct file_request*, struct event_monitor *)`` ( 非system call )
 
 - ``0x5：interrupt_wait``
 
