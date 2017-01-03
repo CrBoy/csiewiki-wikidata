@@ -5,15 +5,18 @@
    * 國立成功大學工程科學系106級 (2013~2017)
    * 國立交通大學 資訊科學與工程研究所 (2017~)
 
+**經驗**
+
+   * ifit愛瘦身網頁開發實習生 (2016~2017)
 
 # 聯絡資訊
 
    * Gmail : snoopy831002@gmail.com
    * Facebook : [facebook.com/snoopy831002](facebook.com/snoopy831002 "facebook.com/snoopy831002")
 
-# 進階電腦系統理論與實作期末自評
+# 進階電腦系統理論與實作
 
-####作業及筆記####
+##作業及筆記##
 
    * 第一週
      * [開發紀錄(phonebook)](https://hackmd.io/KYVgDAbAHALNC0ICcB2AZvGAjKBGeOuGAhjMGmlACYBMEdYQA===) / [Github(phonebook)](https://github.com/snoopy831002/phonebook)
@@ -35,13 +38,25 @@
    * 第九週(第二次分組成果報告)
      * [開發記錄(concurrent B+ tree)](https://hackmd.io/EYTgJiCs4AwLQDZgDNJwCwEYCG24gGMBmYOYAdmQQXWAuDAKA===?view) 
 
-####期末專題####
+##期末專題##
  
-   * 第一週
-     * [開發紀錄(phonebook)](https://hackmd.io/KYVgDAbAHALNC0ICcB2AZvGAjKBGeOuGAhjMGmlACYBMEdYQA===) / [Github(phonebook)](https://github.com/snoopy831002/phonebook)
-     * [開發紀錄(raytracing)](https://hackmd.io/GwIwzALAjAxgZgDgLQFMAMAmGToYIZIhpjICcpGUeCcA7HKWHkA=) / [Github(raytracing)](https://github.com/snoopy831002/raytracing)
-     * [開發紀錄(computing_pi)](https://hackmd.io/AwUwzAJgLDBGC0ECGIAc8qtQRnrMYAnPCIQGxhRhmxIDGATBEA==) / [Github(computing_pi)](https://github.com/snoopy831002/compute-pi)
-     * [開發紀錄(clz)](https://hackmd.io/MYIwzALAhgpgnFAtCArAJgGyIgDgmxKHNAkGFOYFGMAdgDM4BGIA#) / [Github(clz)](https://github.com/snoopy831002/clz-tests)
+
+   * [開發紀錄(concurrent B+ tree)](https://hackmd.io/EYTgJiCs4AwLQDZgDNJwCwEYCG24gGMBmYOYAdmQQXWAuDAKA===?view) / [Github(concurrent B+ tree)](https://github.com/sysprog-Concurrent-BTree/bplus-tree)
+
+##課堂心得##
+
+   * 一開始選這堂課的原因其實是因為在大一跑太多活動沒有學好c/C++程式設計。大二系上在教資料結構時，系上老師根本沒有備課，上課非常free style也常常教到一半就卡住，因此沒有學到很多。大三學計組時老師也就放放投影片，一個學期就過去了。這些課程我都很用心參與，故期末成績都很不錯，但內心非常不踏實。這不是我畢業之後想要的程度，我想要把底子打好，學一些技術，做一些大專案。聽到同學說這學期老師開了兩門課，於是就都來挑戰看看。
+   * 實際到班之後看到大家的作業，我發現自己真的非常的弱。以前寫C的時候沒有好好學，一直到之後寫一些高階語言才有一些寫專案的基礎。這堂課用到很多工具例如makefile 、gnuplot、gprof、assert的用法等我都需要重新學習。
+   * 很多人問我，寫程式需不需要數學好？我以前都跟本沒差，修完這堂課我才發現大型專案內很多地方都用到數學的基礎。數學要好好學啊！數學不好真的無法成為專業的工程師，從clz這個作業還有老師提到的formal verification中感觸非常深。這堂課真的讓我見識到很多以前不會注意的東西。
+   * 這堂課提到的concurrent我也感觸非常深。還記得我第一次碰到thread是在C#寫UI的時候。之後修資工系的多處理機與平行程式設計也有接觸到。大三下寫android app的時候也用到了很多muti thread的地方。上這堂課複習了很多平行化程式的技巧也學會很多優化程式的方法。這些技巧在交大的筆試竟然都有考出來！
+   * 真的很難得可以修到像這堂一樣的課可以一次讀很多論文，先了解別人的技術後在自己自幹一次。雖然這過程中可能很辛苦，但想到可以把之前學校上課講的內容自己實做一次就覺得真的很有成就感。我覺得這才是真正做學問的態度，先充分了解之後，自己還要實做一次。很多人理論聽很多，但實做的時候卻做不出來，這個時候就會差人家很多。
+
+##自評分數##
+
+   * 我給自己9級分
+   * 我給自己9級分的原因是雖然每週作業真的花了我很多時間，但其實我沒有什麼很特別的突破。很多時候真的做不出來，只好參考別人做的進度自己實做一次。前幾週的作業量真的讓我有點負荷不了，但我還是盡量找出時間一個一個看完。很多時候光是看完參考資料跟作業影片就花掉一個禮拜的時間了，但我幾乎都有認真閱讀完也學習做筆記。在現在這個時代，光是只會寫程式是不夠的，很多時候我們需要去理解一個服務的原理還有他怎麼實做才能成為高端工程師啊。在閱讀的過程不但可以增加我們的知識，也可以激發我們的思考。這個學期的前幾週剛好卡到研究所推甄，我花了很多時間做備審資料以及找教授，因此沒有全心全意投入每週的作業，這也是我覺得這學期很可惜的地方。
+
+
 
 
     
