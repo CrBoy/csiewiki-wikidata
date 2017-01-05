@@ -11,8 +11,9 @@ Hua(王紹華)
 
 **參與計劃**
 
-- 複合式四軸飛行器避障系統之設計與實現 / 2016 科技部-大專學生研究計畫
-- 針對 IoT 的精簡即時多工作業系統 / 2016 軟體創作達人暑期成長營
+- 複合式四軸飛行器避障系統之設計與實現 / 2016 科技部-大專學生研究計畫 / 專題競賽-佳作
+- 針對 IoT 的精簡即時多工作業系統 / 2016 軟體創作達人暑期成長營 / 優等
+- 低功耗智慧型運輸系統雛形的開放原始碼實作 / 第十七屆旺宏金矽獎
 
 **開源專案貢獻**
 
@@ -29,24 +30,33 @@ Hua(王紹華)
 - Email：oiz5201618@gmail.com
 - GitHub：[oiz5201618](https://github.com/oiz5201618)
 
-2016 春季班心得
-=============
-作業
-----
+2016 春季班作業
+-------------
 - HW1 效能分析工具(Perf)及軟體最佳化 ( 實作案例：[電話簿搜尋](http://wiki.csie.ncku.edu.tw/embedded/2016q1h1) )
-    - [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-1-woL9YRf0coZ) / [GitHub](https://github.com/oiz5201618/phonebook)
+    - [開發紀錄](https://embedded2016.hackpad.com/2016q1-Homework-1-woL9YRf0coZ) / [GitHub](https://github.com/oiz5201618/phonebook)
 - HW2(A) 效能分析工具(gprof)及軟體最佳化 ( 實作案例：[光線追蹤程式](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2) )
-    - [Hackpad](https://embedded2016.hackpad.com/2016q1-Homework-2forA-ZIYzFrLSRDA) / [GitHub](https://github.com/oiz5201618/raytracing)
+    - [開發紀錄](https://embedded2016.hackpad.com/2016q1-Homework-2forA-ZIYzFrLSRDA) / [GitHub](https://github.com/oiz5201618/raytracing)
 - HW2(B) GDB debugger 操作及 merge sort ( 實作案例：[unit-tests](http://wiki.csie.ncku.edu.tw/embedded/2016q1h2) )
-    - [Hackpad](https://hackpad.com/2016q1-Homework-2for-B-zcsIbhXWium) / [GitHub](https://github.com/oiz5201618/unit-tests)
+    - [開發紀錄](https://hackpad.com/2016q1-Homework-2for-B-zcsIbhXWium) / [GitHub](https://github.com/oiz5201618/unit-tests)
 - HW3 多執行緒及物件導向程式開發 ( 實作案例：[Server Framework in modern C](http://wiki.csie.ncku.edu.tw/embedded/2016q1h3) )
-    - [Hackpad](https://hackpad.com/2016q1-Homework-3-vAsgznE3nZp) / [GitHub](https://github.com/oiz5201618/server-framework)
+    - [開發紀錄](https://hackpad.com/2016q1-Homework-3-vAsgznE3nZp) / [GitHub](https://github.com/oiz5201618/server-framework)
 - HW4 學習後續課程所需要的背景知識
-    - [Hackpad](https://embedded2016.hackpad.com/Untitled-qZeIM3vYTZ5) / GitHub
+    - [開發紀錄](https://embedded2016.hackpad.com/Untitled-qZeIM3vYTZ5) / GitHub
 - HW5(A) 分組報告 ( [Server Framework 效能評估及效能改進](http://wiki.csie.ncku.edu.tw/embedded/2016q1h5) )
-    - [Hackpad](https://embedded2016.hackpad.com/server-framework--Vbmxrh9mRPj) / [GitHub](https://github.com/yuronfu/server-framework)
+    - [開發紀錄](https://embedded2016.hackpad.com/server-framework--Vbmxrh9mRPj) / [GitHub](https://github.com/yuronfu/server-framework)
 - HW5(B) 分組報告 ( 透過 RTOS 控制機械手臂 )
-    - [Hackpad](https://embedded2016.hackpad.com/_Real-Time-Linux-5zH4JsNDgO5) / GitHub
+    - [開發紀錄](https://embedded2016.hackpad.com/_Real-Time-Linux-5zH4JsNDgO5) / GitHub
+
+
+2016 秋季班作業
+-------------
+- HW1 學習透過 AVX SIMD 、 OpenMP 等效能優化策略 ( 實作案例：[Computing pi](https://hackmd.io/s/rJARexQT) )
+    - [開發紀錄](https://hackmd.io/KYQwjARgZgTArAZgLQgJwAYpICyoMYAmSAHJiEggGzzqQEIDsqYQA===) / [GitHub](https://github.com/oiz5201618/compute-pi)
+- HW3 學習 POSIX Thread Programming 及程式品質分析和相關的開發工具( 實作案例：[mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0) )
+    - [開發紀錄](https://hackmd.io/EzCmBYEMEYGMAYC0BOAZpAbI8BmWkUM9EMATUgDmguACMKBWW2IA) / [GitHub](https://github.com/oiz5201618/mergesort-concurrent)
+- HW5 對 Brainfuck 程式語言進行擴充 ( 實作案例：[JIT compiler](https://hackmd.io/s/SJ7AZJv1e) )
+    - [開發紀錄](https://hackmd.io/s/HJjoxbvke) / [GitHub](https://github.com/oiz5201618/jit-construct)
+
 
 2016 春季班自我評量
 -----------------
@@ -55,3 +65,6 @@ Hua(王紹華)
 還記得第一堂課 jserv 說沒有一個禮拜花 16 小時在課程上的決心，就可以退選了。起初覺得 16 小時這時數也太可怕，但我發現一旦投入其中就算一個禮拜 50 個小時都不成問題，尤其是在下禮拜換自己組別報告的時候。我對於這堂課程的投入，就讓時數去證明就好。而在學習部份，jserv 常說讓學生看清楚自己、幻滅就是成長的開始，在這學期下來，我在眾多作業之中，切身了解 jserv 話語中的涵意，不是本科系學生的我也因此利用更多時間更多努力，去縮短一開始就存在的差距。在這過程中，學習到的越多，就越加了解自己的不足之處，以往的幻想早就幻滅，隨之而來的是看清現實的自己，但了解真相的我並不徬徨，反而清楚地看見自己該前進的方向，在這學期課程的結束，也是更加努力的開始，期望自己在未來能夠跟 jserv 一樣，為了理想，一點一滴改變台灣的現狀。
 
 還要更加努力！
+
+2016 秋季班自我評量
+-----------------
