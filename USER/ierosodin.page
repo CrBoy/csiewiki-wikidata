@@ -1,0 +1,37 @@
+---
+title: 許耕福 (ierosodin)
+categories: User
+...
+
+ierosodin(許耕福)
+==========
+**簡介**
+
+- 成功大學工程科學系 107 級 ( 2014 - 2018 )
+
+**參與計劃**
+
+- 低功耗智慧型運輸系統雛形的開放原始碼實作 / 第十七屆旺宏金矽獎
+
+
+**其他經歷**
+
+- 
+
+聯絡資訊
+=======
+- Email：ierosodin@gmail.com
+- GitHub：[ierosodin](https://github.com/ierosodin)
+
+
+2016 秋季班作業
+-------------
+- HW1 學習透過 AVX SIMD 、 OpenMP 等效能優化策略 ( 實作案例：[Computing pi](https://hackmd.io/s/rJARexQT) )
+    - [開發紀錄](https://hackmd.io/KYQwjARgZgTArAZgLQgJwAYpICyoMYAmSAHJiEggGzzqQEIDsqYQA===) / [GitHub](https://github.com/oiz5201618/compute-pi)
+- HW3 學習 POSIX Thread Programming 及程式品質分析和相關的開發工具( 實作案例：[mergesort-concurrent](https://hackmd.io/s/rJ-GWtJ0) )
+    - [開發紀錄](https://hackmd.io/EzCmBYEMEYGMAYC0BOAZpAbI8BmWkUM9EMATUgDmguACMKBWW2IA) / [GitHub](https://github.com/oiz5201618/mergesort-concurrent)
+- HW5 對 Brainfuck 程式語言進行擴充 ( 實作案例：[JIT compiler](https://hackmd.io/s/SJ7AZJv1e) )
+    - [開發紀錄](https://hackmd.io/s/HJjoxbvke) / [GitHub](https://github.com/oiz5201618/jit-construct)
+
+2016 秋季班自我評量
+-----------------
