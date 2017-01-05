@@ -6,32 +6,42 @@ categories: User
 **簡介**
 ====
 - 林哲亘
-- 台灣台中人
 
 學歷
 ------
 - 國立成功大學 資訊工程研究所(2015年9月~)
 - 國立中正大學 資訊工程系(2011年9月~2015年6月)
-  
-得獎紀錄
+
+經歷
+------
+- 普安科技暑期實習生(2016年7月~2016年8月)
+- 科技部大專學生研究計畫Smart Lab System Design(2014)
+- Nvidia機器人視覺比賽決賽隊伍Awesome Robot Team(2016)
+
+專案合作作品
 -------
-- Smart Lab System Design / 2014科技部大專學生研究計畫
-
-專案作品
--------
-- 智慧電網模擬器
-    * 使用JADE開發多重代理人系統，模擬電網內部發電耗電情形，並設計最佳化演算法降低電網內部用電成本
-
-- Smart Lab System Design
-    * 利用室內外各種環境感測器提供的資訊，提供演算法讓實驗室內的電器用品能有效利用大樓頂端太陽能板所產生的電能，並提供遠端介面讓管理者能監控整個系統
-
-- Cheap買
-    * 一個提供各大商家折扣商品資訊的網站
+- 手勢控制的四軸飛行器： [handGestureQuadcopter](https://github.com/handGestureQuadcopter)
+- 影像處理加速研究： [Image-Processing](https://github.com/kevinbird61/Image-Processing)
+- Nvidia比賽機器人: [AwesomeRobot](https://github.com/AwesomeRobotTeam/ART)
 
 聯絡資訊
 ------
 - email: ``exas60807@gmail.com``
 - github: [https://github.com/CheHsuan](https://github.com/CheHsuan)
+
+**2016秋季班 個人評量**
+========
+作業
+----
+- [homework 1] ()
+    * [hackmd](https://hackmd.io/s/BkbydgVa),[github](https://github.com/CheHsuan/compute-pi)
+    * [hackmd](https://hackmd.io/s/H15sqBYa), [github](https://github.com/CheHsuan/clz-tests)
+- [homework 2] ()
+    * [hackmd](),[github]()
+- [homework 3] ()
+    * [hackmd](),[github]()
+- [homework 4] ()
+    * [hackmd](),[github]()
 
 **2015秋季班 個人評量**
 ========
@@ -55,16 +65,7 @@ categories: User
     * [hackpad](https://embedded2015.hackpad.com/Homework-7-A-gV3d8ZgsZLm), [github](https://github.com/CheHsuan/mini-arm-os)
 - [homework 9](http://wiki.csie.ncku.edu.tw/embedded/2015q3h9)
 
-
-分組報告
-------
-- SPI
-
-期末專案
-------
-- 手勢控制的四軸飛行器
-
-期末自我評分(1-10分)
+2015秋季班期末自我評分(1-10分)
 ------
 在整個課程中，我覺得自己都還蠻認真的在跟上老師課程進度，每個作業都能在時限內完成，但是我覺得有些作業可以更深入的去探討，但是卻因為偷懶而放棄。不過，儘管如此，後面的作業都很有挑戰性，需要閱讀大量資料、消化，才能有辦法去解決問題，因此這堂課真的學到了很多。而期末專案雖然花了很多時間在做，但似乎因為一開始規劃不好，很多問題都是在過程中才發現，導致要去更改之前做的內容，現在進度有點落後，在實作過程當中，也才知道四軸並沒有想像中那麼容易，需要再加油。最後，我給自己評分為8分，扣一分是因為作業偷懶，一分是因為專案與預期進度有落差。
 
