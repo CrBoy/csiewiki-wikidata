@@ -3,7 +3,8 @@ janetwei(魏孜昀)
 **簡介:**
 
 - 成功大學 工程科學系107級(2014-2018)
-
+**參與計畫:**
+- 開放原始碼、針對物聯網裝置的類 Java 執行環境/第十七屆旺宏金矽獎
 
 聯絡資訊:
 =====================
@@ -15,17 +16,27 @@ janetwei(魏孜昀)
 (秋季班)作業及筆記
 ------------------------
 - HW1
- phonebook:[hackMD](https://hackmd.io/s/rkg8MCP6),[github](https://github.com/janetwei/phonebook)
- raytracing:[hackMD](https://hackmd.io/AwFgjArAHAbDYFoBMwzASAhgZhAqAnGAQtpmDAKYQzZgDsMwQA==) ,[github](https://github.com/janetwei/raytracing)
- computing_pi:[hackMD](https://hackmd.io/JwIwHA7ALAbDCmBaWYCGyCMBjATIkWYWiADFAcCRDCRvPEA=) , [github](https://github.com/janetwei/compute-pi) 
- clz:[hackMD](https://hackmd.io/MwJgjARgJgDAhgMwLQFYDGAWZGCmcxITADsKSxMEOYU1OAnMDEA=#)
+    - phonebook:[hackMD](https://hackmd.io/s/rkg8MCP6),[github](https://github.com/janetwei/phonebook)
+    - raytracing:[hackMD](https://hackmd.io/AwFgjArAHAbDYFoBMwzASAhgZhAqAnGAQtpmDAKYQzZgDsMwQA==) ,[github](https://github.com/janetwei/raytracing)
+    - computing_pi:[hackMD](https://hackmd.io/JwIwHA7ALAbDCmBaWYCGyCMBjATIkWYWiADFAcCRDCRvPEA=) , [github](https://github.com/janetwei/compute-pi) 
+    - clz:[hackMD](https://hackmd.io/MwJgjARgJgDAhgMwLQFYDGAWZGCmcxITADsKSxMEOYU1OAnMDEA=#)
 - HW2
- phonebook-concurrent:[hackMD](https://hackmd.io/MYdgDCICYExQtFArAIwQFjGY8CGBmOeGdAM1IA4A2FUgRjqSSA==) / [github](https://github.com/janetwei/phonebook-concurrent)
+    - phonebook-concurrent:[hackMD](https://hackmd.io/MYdgDCICYExQtFArAIwQFjGY8CGBmOeGdAM1IA4A2FUgRjqSSA==) / [github](https://github.com/janetwei/phonebook-concurrent)
 - HW3
- mergesort-concurrent):[hackMD](https://hackmd.io/EwFgrAxmAMCmBsBaA7AQ1QE0SARiYiq88EiAjCAJwbyqUAcI8AZhEA==) /[github](https://github.com/janetwei/mergesort-concurrent)
+    - mergesort-concurrent):[hackMD](https://hackmd.io/EwFgrAxmAMCmBsBaA7AQ1QE0SARiYiq88EiAjCAJwbyqUAcI8AZhEA==) /[github](https://github.com/janetwei/mergesort-concurrent)
 - HW4(Teamwork-1)
- clz:[hackMD](https://hackmd.io/MYBgRgjALATCBmBaK942VMBDRBOXWIi8AHCQCYDM5AplJcAKwhA=) / [gitHub](https://github.com/heathcliffYang/clz-tests) 
+    - clz:[hackMD](https://hackmd.io/MYBgRgjALATCBmBaK942VMBDRBOXWIi8AHCQCYDM5AplJcAKwhA=) / [gitHub](https://github.com/heathcliffYang/clz-tests) 
 - HW5
- jit-compiler:[hackMD](https://hackmd.io/IwZgZgxgJgDAhhAtDARgFgJyM3AHIlAJnAIjimElwFNcQB2IA===?both) / [Github](https://github.com/janetwei/jit-construct) 
+    - jit-compiler:[hackMD](https://hackmd.io/IwZgZgxgJgDAhhAtDARgFgJyM3AHIlAJnAIjimElwFNcQB2IA===?both) / [Github](https://github.com/janetwei/jit-construct) 
 - HW6(Teamwork-2)
- Natural merge sort 在特定硬體的加速:[hackMD](https://hackmd.io/IwIwnAHGDGDsCsBaMYCmxEBYAmBDEi+EmiCqs+AzLnCLkA==)/[github](https://github.com/petermouse/natural-mergesort)/[youtube](https://www.youtube.com/watch?v=NiAH4nSldcs&feature=youtu.be)
+    - Natural merge sort 在特定硬體的加速:[hackMD](https://hackmd.io/IwIwnAHGDGDsCsBaMYCmxEBYAmBDEi+EmiCqs+AzLnCLkA==)/[github](https://github.com/petermouse/natural-mergesort)/[youtube](https://www.youtube.com/watch?v=NiAH4nSldcs&feature=youtu.be)
+
+
+(2016秋季班)所見所聞心得
+------------------------
+第一次上如此有挑戰性的課程，課程內容和機率與統計、計算機組織、作業系統、資料結構、離散數學以及邏輯設計都有關聯，而機率與統計、計算機組織、作業系統是我這學期才接觸的課程，所以在閱讀資料上都有一定的難度，雖然資料結構、離散數學以及邏輯設計我都有修過，但是還是常常需要回去複習觀念，慚愧以前科目沒有念好，深深感受到自己的渺小，程式語言能力還很薄弱，整體上仍有很大的進步空間
+由於對於這個領域可以說是完全不懂，因為過去的課程從沒有碰過linux的作業系統，所以一開始在使用上就有點生疏，而因為每個作業都是不懂的東西，所以也必須要閱讀很多的教材，但是教材大部分是原文的，這時候才領悟到英文的重要性，因為以往的課程也不會自己大量的讀原文書，所以頗後悔沒有在大一大二就培養好閱讀原文書的習慣，不過藉由這堂課現在有點習慣了，但仍需要更努力。
+這幾堂課的作業跟我一開始想的不太一樣，我以為就是一直寫code，但是發現其實寫code的部分其實偏少，反而是分析比較重要，由原始的程式碼去分析效能，進而修改code讓整個效能提升，而分析需要有一定的知識背景才能夠有條理的分析以及得到我的結論，所以需要閱讀大量老師提供的教材，雖然需要花很大量的時間閱讀，但是真的學到滿多基礎的知識，最重要的還是實作練習，過去的課程常常都只是理論上的探討，而這堂課是靠著閱讀教材後，進而去修改程式使效能變好，改善的方式很多，必須靠自己摸索，當然並不一定每次都有成功改善效能，但是只要成功一次就會特別有成就感。
+
+(2016秋季班)自我評量分數 (1 到 50分)
+---------------------------------------
