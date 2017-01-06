@@ -1,0 +1,27 @@
+# SarahCheng(程鈺涵)
+## 簡介
+ -    成功大學資訊工程所 音樂多媒體實驗室(2016-)
+
+# 聯絡資訊:
+ -    email: sarahcheng2016@gmail.com
+
+# 2016 進階電腦系統理論與實作秋季班 個人評量
+
+# 作業及筆記
+-   HW1-1_phonebook [Github](https://github.com/SarahYuHanCheng/phonebook.git) [Hackmd](https://hackmd.io/BwJgbAJgnAhhMFoCmYDGUEBYDsYNSQFZMEBGAMxlJgGYAGEUibQoA===)
+     藉由Phonebook第一次嘗試改進程式的效能,對於perf和如何思考改良程式碼有更多的了解, 也學到資料結構如Hash Table的implementation
+-   HW1-2_raytracing [Github](https://github.com/SarahYuHanCheng/raytracing.git)[Hackmd](https://hackmd.io/CwJgzARmCGCmIFoCMBWAbNBwUA4cJwE4BjCBNEAdh2MJwAZVCUg=)
+     loop unrolling, force inline, openmp
+-   HW1-3_compute-pi[Hackmd](https://hackmd.io/BwQwZmCmBMICwFpIE4DGi7WqhAjZA7AIwICsykpBAzLtNSNcEA==)
+-  HW1-4_clz[HackMD](https://hackmd.io/AwYwpgHALAzAnAEwLQEM5gGxKgIxhVFARizADMUEFhgB2eGFIA==)
+- HW2[HackMD](https://hackmd.io/EwY2FYXBTBGBaAhgBgEYngFlZ6TnDDwDsiAZsAQCbC7EDMQA)
+-   HW3＿mergesort-concurrent [Github](https://github.com/SarahYuHanCheng/mergesort-concurrent.git)[HackMD](https://hackmd.io/OwUwzGCcYCwKwFoDGAmAbADgTSIYI0gBMiEBDIgBgDNrhLgiNQg=)
+-   HW5_jit-compiler [Github](https://github.com/SarahTree/jit-construct.git)[HackMD](https://hackmd.io/MYNgZghgRmAMsFoCsB2YBGBAWLBTATAlPmCNgBwjkDM6AnOflCrkA===)
+-   HW6_rubi [Github](https://github.com/SarahTree/rubi.git)[HackMD](https://hackmd.io/AwRgTARg7FDGCGBaCJ4DNEBYCmA2ArMmmktgJwAcsmAzPPjRGfkA?view)
+# 學習   - 效能之優化
+- 自製腳本語言之改善(IR(intermediate representation) , BNF)
+# 心得
+  這堂課有震撼，有收穫，更深刻體會到自己不夠努力。技術上透過老師的介紹，見到很多世面，但是總覺得遙不可及，最大的收穫就是了解大家怎麼變厲害的，還有同學們對coding的熱情和越挫越勇的續航力，讓我了解到自己恆毅力實在不足。因為過去沒有好好打穩基礎，許多知識囫圇吞棗，得過且過，所以不了解程式基本的運作模式，遇到問題往往鬼打牆了很久，學東西還是很慢，和老師借的書也沒看完。每一次的作業都需要大量的知識、實作能力，和大量的時間研究。
+
+# 自我評量分數:
+-    7級分
