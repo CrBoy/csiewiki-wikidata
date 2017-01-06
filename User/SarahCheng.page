@@ -19,7 +19,7 @@
 -   HW5_TeamProject_jit-compiler [Github](https://github.com/SarahTree/jit-construct.git)/ [HackMD](https://hackmd.io/MYNgZghgRmAMsFoCsB2YBGBAWLBTATAlPmCNgBwjkDM6AnOflCrkA===)
 -   HW6_TeamProject_rubi [Github](https://github.com/SarahTree/rubi.git)/ [HackMD](https://hackmd.io/AwRgTARg7FDGCGBaCJ4DNEBYCmA2ArMmmktgJwAcsmAzPPjRGfkA?view)
 
-# 學習   
+# 主要學習   
 - 效能之優化(Concurrency,Parallelism; POSIX Threads; Thread Pool;Loop unrolling;OpenMP)
 - Compiler
 - Memory Consistency
