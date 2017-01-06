@@ -3,12 +3,14 @@ janetwei(魏孜昀)
 **簡介:**
 
 - 成功大學 工程科學系107級(2014-2018)
+
 **參與計畫:**
 - 開放原始碼、針對物聯網裝置的類 Java 執行環境/第十七屆旺宏金矽獎
 
 聯絡資訊:
 =====================
 - email: ``F61031@gmail.com``
+- Gitgub: ``https://github.com/janetwei``
 
 2016秋季班 個人評量
 =======================
@@ -16,20 +18,20 @@ janetwei(魏孜昀)
 (秋季班)作業及筆記
 ------------------------
 - HW1
-    - phonebook:[hackMD](https://hackmd.io/s/rkg8MCP6),[github](https://github.com/janetwei/phonebook)
-    - raytracing:[hackMD](https://hackmd.io/AwFgjArAHAbDYFoBMwzASAhgZhAqAnGAQtpmDAKYQzZgDsMwQA==) ,[github](https://github.com/janetwei/raytracing)
-    - computing_pi:[hackMD](https://hackmd.io/JwIwHA7ALAbDCmBaWYCGyCMBjATIkWYWiADFAcCRDCRvPEA=) , [github](https://github.com/janetwei/compute-pi) 
-    - clz:[hackMD](https://hackmd.io/MwJgjARgJgDAhgMwLQFYDGAWZGCmcxITADsKSxMEOYU1OAnMDEA=#)
+    - phonebook: [hackMD](https://hackmd.io/s/rkg8MCP6),[github](https://github.com/janetwei/phonebook)
+    - raytracing: [hackMD](https://hackmd.io/AwFgjArAHAbDYFoBMwzASAhgZhAqAnGAQtpmDAKYQzZgDsMwQA==) ,[github](https://github.com/janetwei/raytracing)
+    - computing_pi: [hackMD](https://hackmd.io/JwIwHA7ALAbDCmBaWYCGyCMBjATIkWYWiADFAcCRDCRvPEA=) , [github](https://github.com/janetwei/compute-pi) 
+    - clz: [hackMD](https://hackmd.io/MwJgjARgJgDAhgMwLQFYDGAWZGCmcxITADsKSxMEOYU1OAnMDEA=#)
 - HW2
-    - phonebook-concurrent:[hackMD](https://hackmd.io/MYdgDCICYExQtFArAIwQFjGY8CGBmOeGdAM1IA4A2FUgRjqSSA==) / [github](https://github.com/janetwei/phonebook-concurrent)
+    - phonebook-concurrent: [hackMD](https://hackmd.io/MYdgDCICYExQtFArAIwQFjGY8CGBmOeGdAM1IA4A2FUgRjqSSA==) / [github](https://github.com/janetwei/phonebook-concurrent)
 - HW3
-    - mergesort-concurrent):[hackMD](https://hackmd.io/EwFgrAxmAMCmBsBaA7AQ1QE0SARiYiq88EiAjCAJwbyqUAcI8AZhEA==) /[github](https://github.com/janetwei/mergesort-concurrent)
+    - mergesort-concurrent): [hackMD](https://hackmd.io/EwFgrAxmAMCmBsBaA7AQ1QE0SARiYiq88EiAjCAJwbyqUAcI8AZhEA==) /[github](https://github.com/janetwei/mergesort-concurrent)
 - HW4(Teamwork-1)
-    - clz:[hackMD](https://hackmd.io/MYBgRgjALATCBmBaK942VMBDRBOXWIi8AHCQCYDM5AplJcAKwhA=) / [gitHub](https://github.com/heathcliffYang/clz-tests) 
+    - clz: [hackMD](https://hackmd.io/MYBgRgjALATCBmBaK942VMBDRBOXWIi8AHCQCYDM5AplJcAKwhA=) / [gitHub](https://github.com/heathcliffYang/clz-tests) 
 - HW5
-    - jit-compiler:[hackMD](https://hackmd.io/IwZgZgxgJgDAhhAtDARgFgJyM3AHIlAJnAIjimElwFNcQB2IA===?both) / [Github](https://github.com/janetwei/jit-construct) 
+    - jit-compiler: [hackMD](https://hackmd.io/IwZgZgxgJgDAhhAtDARgFgJyM3AHIlAJnAIjimElwFNcQB2IA===?both) / [Github](https://github.com/janetwei/jit-construct) 
 - HW6(Teamwork-2)
-    - Natural merge sort 在特定硬體的加速:[hackMD](https://hackmd.io/IwIwnAHGDGDsCsBaMYCmxEBYAmBDEi+EmiCqs+AzLnCLkA==)/[github](https://github.com/petermouse/natural-mergesort)/[youtube](https://www.youtube.com/watch?v=NiAH4nSldcs&feature=youtu.be)
+    - Natural merge sort 在特定硬體的加速: [hackMD](https://hackmd.io/IwIwnAHGDGDsCsBaMYCmxEBYAmBDEi+EmiCqs+AzLnCLkA==)/[github](https://github.com/petermouse/natural-mergesort)/[youtube](https://www.youtube.com/watch?v=NiAH4nSldcs&feature=youtu.be)
 
 
 (2016秋季班)所見所聞心得
