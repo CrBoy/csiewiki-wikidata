@@ -1,8 +1,11 @@
 # 進階電腦系統理論與實作 
 
 ## 修課心得 
-　　這次想修這一門課，是因為想要對C語言有更深的了解，而這門課見識到許多，硬體方面，Memory、Cache、Prefetch...，軟體方面，平行化、並行化和數學公式，把在大學時所學的作業系統、計算機組織和離散數學用在實作上，讓我對最佳化有個入門。
-　　第一周，一開始就有四個作業和灌雙系統，
+　　這次想修這一門課，是因為想要對C語言有更深的了解，而這門課見識到許多，硬體方面，Memory、Cache、Prefetch...，軟體方面，平行化、並行化和數學公式，把在大學時所學的作業系統、計算機組織和離散數學用在實作上，讓我對最佳化有個入門。</br>
+　　第一周，一開始就有四個作業和灌雙系統，在第一周我學習到了github、如何用linux看自己寫的程式的效能，以及進一步如何做最佳化和它的效能變化，有一種成就感，雖然只有做老師所要求的基本，希望下次選修老師的課會朝進階題目來實做。由於這門課都是利用已寫好的程式來改寫，所以對於快速看懂程式和程式重構的很要求。</br>
+　　第二周，將第一周所做的phonebook來做並行化，一開始有聽說並行化會因為編譯器所做最佳化而影響，所以了解一下編譯器會有的最佳化的行為，還有C語言配置記憶體的函式，一開始其實對寫共筆沒有到很上心，直到被老師說只有貼介紹網址是沒有效益時，開始就注意到要用自己的話寫下一篇共筆所擁有的意義，因此我也去找了一下C語言的SPEC，有C99、C11、C89/90。這次我對於功課的解法是採用對於CPU綁定想提高效能，但之後老師上課回故作業的時候，發現Thread還有許多可以增進效能或者是更有效存取記憶體的方式，像似memory pool等。</br>
+　　第五周，是做一個編譯器，範例是rubi使用dynasm來做，一開始以為dynasm主要是用組合語言來加快編譯器的效能，後來聽老師說其實還有一個主要原因就是用來整合組合語言+C語言做的編譯器。製作一個編譯器是我覺得所學到最多的，因為大學的時候沒有修過編譯器的課程，光看懂程式碼就花了很久的時間，且沒有甚麼方向，後來了解了函式定義、變數定義、運算元優先權、函式對於stack的關係還有遞迴。更後來我們想要重新寫一個編譯器時，其實還需要了解AST、BNF等等，最後也拍了個影片。
+
 
 ## 作業 
 
@@ -19,9 +22,7 @@
 1.Phonebook-concurrent : [Hackmd](https://hackmd.io/OzCGAYGYCYBMEYC0A2Z4DGiAsAjUXEdJiVwsBTcWLATlnWUiA===#) / [GitHub](https://github.com/shouchengH/phonebook-concurrent)
 
 ### 第三周 
-1.mergesort-concurrent : [Hackmd](https://hackmd.io/BwUwrARgjAxghiAtAEwAwyogLATmRROOYVRAMwHYA2AZhpBogqgCYQg=#)
-
-2.software-pipelining : [Hackmd](https://hackmd.io/KYMw7ATBBsAmDGBaAHM+SAs9gcQIw1gGZFh4BDABgE4BWI4YPOIA#) / [GitHub](https://github.com/shouchengH/prefetcher)
+1.software-pipelining : [Hackmd](https://hackmd.io/KYMw7ATBBsAmDGBaAHM+SAs9gcQIw1gGZFh4BDABgE4BWI4YPOIA#) / [GitHub](https://github.com/shouchengH/prefetcher)
 
 ### 第五周 
 分組報告 :
