@@ -10,16 +10,25 @@ categories: User
 2016秋季班 個人評量
 ===================
 
-Homework1:
-- phonebook [hackMD](https://hackmd.io/s/SJEbssma)/[github](https://github.com/petermouse/phonebook)
-- raytracing [hackMD](https://hackmd.io/s/BkcRGkvp)/[github](https://github.com/petermouse/raytracing)
-- compute_pi [hackMD](https://hackmd.io/s/Hk2DSIYp)/[github](https://github.com/petermouse/compute-pi)
-- clz [hackMD](https://hackmd.io/s/SkXvS556)
-
 (2016秋季班) 作業與筆記
 -----------------------
 
-
+- Homework 1
+    - phonebook / [hackMD](https://hackmd.io/s/SJEbssma) / [github](https://github.com/petermouse/phonebook)
+    - raytracing / [hackMD](https://hackmd.io/s/BkcRGkvp) / [github](https://github.com/petermouse/raytracing)
+    - compute_pi / [hackMD](https://hackmd.io/s/Hk2DSIYp) / [github](https://github.com/petermouse/compute-pi)
+    - clz / [hackMD](https://hackmd.io/s/SkXvS556)
+- Homework 2
+    - phonebook-concurrent / [hackMD](https://hackmd.io/s/HJO4s2-C) / [github](https://github.com/petermouse/phonebook-concurrent)
+- Homework 3
+    - mergesort-concurrent / [hackMD](https://hackmd.io/s/rJSd2AsR) / [github](https://github.com/petermouse/mergesort-concurrent)
+    - software-pipelining / [hackMD](https://hackmd.io/s/BJM_lNw0)
+- Homework 4
+    - jit-complier
+    - rubi
+    - (teamwork) mergesort + branch prediction / [hackMD](https://hackmd.io/s/HJUFIeg1g) / [github](https://github.com/petermouse/mergesort-branch)
+- Homework 5
+    - (teamwork) Natural merge sort 在特定硬體的加速 / [hackMD](https://hackmd.io/s/B1_V03Vlg) / [github](https://github.com/petermouse/natural-mergesort) / [youtube](https://youtu.be/NiAH4nSldcs)
 
 (2016秋季班) 所見所聞心得
 -------------------------
