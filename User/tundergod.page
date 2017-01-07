@@ -33,43 +33,52 @@ tundergod(林文盛)
 ==============================
 作業及筆記
 ---------
-- HW1 : phonebook
+- HW1 : phonebook：
 [Github](https://github.com/tundergod/phonebook-1)
 [Hackmd](https://hackmd.io/KwI2AYBYCYA5gLQGZxIOwMgRjZBIA2aAYwQBNhjjdYBOcMtcIA==#)
 [Youtube](https://www.youtube.com/watch?v=-YUmbPYK-mk)
 
-- HW2 : raytracing
+- HW2 : raytracing：
 [Github](https://github.com/tundergod/raytracing-1)
 [Hackmd](https://hackmd.io/CYVgxgpiEEbAtAJgAwwGzwCzLAZngIYCMyI8A7IgTObcgJy4EFA=#)
 [Youtube](https://www.youtube.com/watch?v=jlJXB-I0u0c)
 
-- HW3 : compute-pi
+- HW3 : compute-pi：
 [Github](https://github.com/tundergod/compute-pi)
 [Hackmd](https://hackmd.io/MYFgHAJgDAjBCcBaAbAIwKZkeESzoHZhEBDYE9ECAJnjHAGYg===#)
 [Youtube](https://www.youtube.com/watch?v=nBScHin4mOM)
 
-- HW4 : clz
+- HW4 : clz：
 [Github](https://github.com/tundergod/clz-tests)
 [Hackmd](https://hackmd.io/KYIwxgzATAhsBsBaeBGNiAsAOGLE5ADNEIsxgMwB2ABjHpiA#)
 [Youtube](https://www.youtube.com/watch?v=Y_aFR_k2fgE)
 
-- HW5 : phonebook-concurrent
+- HW5 : phonebook-concurrent：
 [Github](https://github.com/tundergod/phonebook-concurrent)
 [Hackmd](https://hackmd.io/GbCGBN2AWBjBaARgBlse0DMA2T9QHLwCm2s2wyAjABzSJWJA#)
 
-- HW6 : mergesort-concurrent
+- HW6 : mergesort-concurrent：
 [Github](https://github.com/tundergod/mergesort-concurrent)
 [Hackmd](https://hackmd.io/IwZgLARgJgxghgMwLQAYEHYxLDArHJATggCYQkEEA2dKsYOCBXXIA===#)
 
-- HW7 : software-pipelining
+- HW7 : software-pipelining：
 [Hackmd](https://hackmd.io/MYDgpgTAjBCcIFoCGATMAGBAWKA2LCIEAZprEgKzkDsAzFrbUrkA#)
 
-- HW8 : 針對多執行緒環境設計的 Memory allocator
+- HW8 : 針對多執行緒環境設計的 Memory allocator：
 [Hackmd](https://hackmd.io/MbAMHYEME5gFgLQCZwBMBsC7oKYFYEAOPOARgUj1AGZCAjAM1EgdRyA=)
 
-- HW9 : 開發紀錄(jit-compiler)
+- HW9 : jit-compiler：
 [Github](https://github.com/tundergod/jit-construct)
 [Hackmd](https://hackmd.io/MYJgRgLADApgnMAtCAzBCiIEMAcA2RLYXRKKXKELAEwEYa4g#)
 
-- HW10 : Supermalloc
+- HW10 : Supermalloc：
 [Hackmd](https://hackmd.io/MbAMHYEME5gFgLQCZwBMBsC7oKYFYEAOPOARgUj1AGZCAjAM1EgdRyA=)
+
+所見所聞心得
+------------------------
+這學期延續了上學期的一些作業和學習內容，讓我更深入的了解一些進階和相關知識。第一周的4份作業之後，老師專注於concurrency等效能提升方法，之中的研究和作業也讓我理解基層電腦知識是多重要，程式的設計和運用差了幾行的code效能就會相差非常的多。
+這學期第一次深入閱讀了論文，才發現這些論文的研究有多難，即使讓我們以小組方式進行閱讀和討論都不能非常順利的理解和完成，之後我也會多找有興趣的論文進行研究和閱讀增加自己的知識。
+
+自我評量分數 (1 到 10 級分)
+------------------------
+我給自己8級分，雖然在上課的9個星期非常用功的在寫作業，但是之後的分組作業上因爲課業泰國與忙碌不能非常有效的分配時間及非常好的完成。希望之後還有機會修類似的課程並有更多的時間研究和完全老師給的作業。
