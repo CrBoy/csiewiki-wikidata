@@ -31,3 +31,45 @@ tundergod(林文盛)
 
 進階電腦系統理論與實作 (Fall 2016)
 ==============================
+作業及筆記
+---------
+- HW1 : phonebook
+[Github](https://github.com/tundergod/phonebook-1)
+[Hackmd](https://hackmd.io/KwI2AYBYCYA5gLQGZxIOwMgRjZBIA2aAYwQBNhjjdYBOcMtcIA==#)
+[Youtube](https://www.youtube.com/watch?v=-YUmbPYK-mk)
+
+- HW2 : raytracing
+[Github](https://github.com/tundergod/raytracing-1)
+[Hackmd](https://hackmd.io/CYVgxgpiEEbAtAJgAwwGzwCzLAZngIYCMyI8A7IgTObcgJy4EFA=#)
+[Youtube](https://www.youtube.com/watch?v=jlJXB-I0u0c)
+
+- HW3 : compute-pi
+[Github](https://github.com/tundergod/compute-pi)
+[Hackmd](https://hackmd.io/MYFgHAJgDAjBCcBaAbAIwKZkeESzoHZhEBDYE9ECAJnjHAGYg===#)
+[Youtube](https://www.youtube.com/watch?v=nBScHin4mOM)
+
+- HW4 : clz
+[Github](https://github.com/tundergod/clz-tests)
+[Hackmd](https://hackmd.io/KYIwxgzATAhsBsBaeBGNiAsAOGLE5ADNEIsxgMwB2ABjHpiA#)
+[Youtube](https://www.youtube.com/watch?v=Y_aFR_k2fgE)
+
+- HW5 : phonebook-concurrent
+[Github](https://github.com/tundergod/phonebook-concurrent)
+[Hackmd](https://hackmd.io/GbCGBN2AWBjBaARgBlse0DMA2T9QHLwCm2s2wyAjABzSJWJA#)
+
+- HW6 : mergesort-concurrent
+[Github](https://github.com/tundergod/mergesort-concurrent)
+[Hackmd](https://hackmd.io/IwZgLARgJgxghgMwLQAYEHYxLDArHJATggCYQkEEA2dKsYOCBXXIA===#)
+
+- HW7 : software-pipelining
+[Hackmd](https://hackmd.io/MYDgpgTAjBCcIFoCGATMAGBAWKA2LCIEAZprEgKzkDsAzFrbUrkA#)
+
+- HW8 : 針對多執行緒環境設計的 Memory allocator
+[Hackmd](https://hackmd.io/MbAMHYEME5gFgLQCZwBMBsC7oKYFYEAOPOARgUj1AGZCAjAM1EgdRyA=)
+
+- HW9 : 開發紀錄(jit-compiler)
+[Github](https://github.com/tundergod/jit-construct)
+[Hackmd](https://hackmd.io/MYJgRgLADApgnMAtCAzBCiIEMAcA2RLYXRKKXKELAEwEYa4g#)
+
+- HW10 : Supermalloc
+[Hackmd](https://hackmd.io/MbAMHYEME5gFgLQCZwBMBsC7oKYFYEAOPOARgUj1AGZCAjAM1EgdRyA=)
