@@ -1,0 +1,47 @@
+Fzzzz(陳易)
+------------------
+**簡介:**
+
+- 成功大學 資訊工程系105級(2012-2017)
+
+聯絡資訊:
+=====================
+- email: ``ddchen030930@gmail.com``
+
+2016秋季班 個人評量
+=======================
+
+2016(秋季班)作業及筆記
+------------------------
+HW1 
+
+- phonebook:  [筆記](https://hackmd.io/MYNgHAJgnArAjAdgLQGYwFMBGSAsOBm6SAhnAExRL6IoKboAM++IxQA=?view)/[Github](https://github.com/FZzzz/phonebook)
+- raytracing:  [筆記](https://hackmd.io/OwYwRmDMCskKYFoCGA2YAzBAWaSzIA4BOABgQEYSUT11oUATAgJnKA==?view#)/[Github](https://github.com/FZzzz/raytracing)
+- copmute-pi:  [筆記](https://hackmd.io/KwUwLCAmBsYIwFoAcwCGBjBZICYDMyOkSCADEqgOwBmSIAnAEak5hA==?view)/[Github](https://github.com/FZzzz/compute-pi)
+- clz:  [筆記](https://hackmd.io/AwYwnAbALAZgJlAtCEdiKgU2BRAOAJmDEUzBigCMBGAdj2oEM5Mg?view)/[Github](https://github.com/FZzzz/clz)
+
+HW2
+
+- phonebook-concurrent:  [筆記](https://hackmd.io/GYZmBYGNwRgIwLTACYwBwKgNnAghsGjAsgJwgCskcVAprakA)/[Github](https://github.com/FZzzz/phonebook-concurrent)
+
+HW3
+
+- mergesort-concurrent:  [筆記](https://hackmd.io/s/SJfa8wFR)/[Github](https://github.com/FZzzz/mergesort-concurrent)
+- software-pipelining:  [筆記](https://hackmd.io/s/SyTYqRR7x)/[Github](https://github.com/FZzzz/prefetcher)
+第一次分組
+
+- Mergesort 效能分析:  [筆記](https://hackmd.io/s/HyR_SEzkg)/[Github](https://github.com/FZzzz/mergesort-concurrent)
+- rubi:  [筆記](https://hackmd.io/BwRgDAbMBMDswFoDGBOFSEBZMGZEENocBTBYzYoyCMHfWIA=?view)/[Github](https://github.com/FZzzz/rubi)
+第二次分組
+
+- mapreduce:  [筆記](https://hackmd.io/s/Hkb-lXkyg)/[Github](https://github.com/HaoTse/mapreduce)/[Youtube](https://www.youtube.com/playlist?list=PLThZjqHQRYOPtiajE8d9nqzod45ojDXdx)
+
+
+2016(秋季班)所見所聞心得
+------------------------
+原本會修這堂課的原因是因為我想要學習到更多的最佳化的技巧，希望能將這些技術應用在遊戲產業上。剛上課的第一周可以說是一個十足的震撼教育，那是第一次讓我在成大資工系有機會體驗到天天寫作業還寫不完的窘境。從一開始的 linux 環境設置、學習使用許多開源的工具、以及論文的閱讀和數學上的運算。每一周都帶來給我很多驚喜，也確實讓我體會到過去學的學科是真的有用的知識，而且我也真的都沒學好。在上這堂課的前九周，我藉由學習系統軟體，更進一步地理解到自己所嚮往的遊戲產業，實際上在每年的成品裡面，都有著相當高技術成分的系統軟體技術存在。包含了多執行緒程式設計，記憶體資源管理，SIMD 等許多優化上的技巧。在修這堂課以前，我就只是知道這些名詞而已，而當他成為作業要求時，我才發現到，那些技術不僅僅只是呼叫函式就能解決的東西，是需要去做深度思考以及許多評估，才能使程式的效能達到最佳化。身為一個延畢生，能在自己的最後一個修習並盡力去完成前九周的進度，總算是讓我沒有留下任何遺憾在成大。也很感謝老師能在百忙之間抽時間出來看一個吊車尾延畢生的作業及筆記。雖然我未來並不會選擇成大的資訊系所，但我相信這些知識會跟著我到下一個階段去的。
+
+2016(秋季班)自我評量分數 (1 到 10 級分)
+---------------------------
+7級分。
+前面九周，我確實地過得很紮實，也學習到很多東西，但因為後來種種因素的關係，我變得越來越不認真，更甚至是達不到一周花至少１６小時在作業上的要求。算一算達不成的天數，大概是三成左右，所以在這裡給自己一個七級分。
