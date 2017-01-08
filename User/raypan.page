@@ -1,0 +1,51 @@
+raypan(潘祈睿)
+===
+**簡介:**
+
+- 國立臺北大學通訊工程系(2012-2016)
+- 國立成功大學電腦與通信工程研究所-高速網路實驗室碩一(2016~)
+
+聯絡資訊
+===
+- ray727035@gmail.com
+
+進階電腦系統理論與實作(Fall 2016)作業及筆記
+===
+- 1.Phonebook:[Hackmd](https://hackmd.io/JzAcHZwIwBgQwLQQKzIQFgMxQKYLgMYAmATAjsDAGwBmwJ4m6UJQA===),[Github](https://github.com/raypan7/phonebook-1),[Youtube](https://www.youtube.com/watch?v=oSbkOVUxcbc)
+- 2.Raytracing:[Hackmd](https://hackmd.io/EYZgLAZgxhDsAmBaAjATjAVkWZHmOByQCZYMJUA2AU2DoA5Ug===),[Github](https://github.com/raypan7/raytracing)
+- 3.Compute-Pi:[Hackmd](https://hackmd.io/KwFgJgHAZlYIwFoAMAmAhgYwSEaoIiSmAThACNy0dgBmDDOIA===),[Github](https://github.com/raypan7/compute-pi)
+- 4.Clz:[Hackmd](https://hackmd.io/EwQwDAxiCmAc0FpgDYwgQFgGYHYCMCIIyAJpnrCVrBgKz54ZA===),[Github](https://github.com/raypan7/clz-tests)
+- 5.Phonebook_Concurrent:[Hackmd](https://hackmd.io/CYIw7ADAphwKwFoBmcAcqEBYoCYBsCIewAnAiSBcJmFAMz4DGQA=),[Github](https://github.com/raypan7/phonebook-concurrent)
+- 6.Mergesort_Concurrent:[Hackmd](https://hackmd.io/AwDgrApgTAzAJgTgLQwQdgGxICzAMZRIIBmAjCEmRnFBGNnthHEA?view),[Github](https://github.com/raypan7/mergesort-concurrent)
+- 7.software-pipelining [未完成]
+- 分組報告(Concurrent_Linked_List):[Hackmd](https://hackmd.io/s/rkhBeeZyx),[Github](https://github.com/a530788140/mergesort-concurrent)
+
+修課心得
+===
+- 由於大學課程偏向通訊系統方面，數學理論較多，機率、線性代數、通訊原理等等，程式能力的訓練相對匱乏。
+經過實驗室學長推薦，Jserv老師的課程訓練扎實，雖然loading很大、很重，但對程式能力、思考邏輯、讀書方法有很大的幫助，所以就不自量力的選修了。
+剛開始由於基礎不如人，學習起來相當吃力，花非常多的時間在讀文件、參考別人的共筆，深刻體會老師說的:「不是這門課程很操，是你過去欺騙了自己」
+- 老師的每個作業都像是以前大學一門課的Final Project一樣不容易，寫作業常常熬夜到1點、2點，甚至不時都會到老師辦公室請益，很感謝老師願意花時間陪我們，雖然問很笨的問題會被酸，但老師最後也是很有耐心、很仔細的講解。
+- 我想這門課最大的幫助不在於教了我多少寫程式技巧，而是訓練快速讀文件、培養獨立思考的能力，顛覆從國小到大學過多的填鴨式學習，讓自己重新學習，學習不應當欺騙自己、為了分數得過且過。
+
+自評分數
+===
+
+- 7分(滿分10分)
+- 從一開始找老師常常被酸，到後來某次找老師時，老師說我們進步很多，其實這個過程蠻讓人回味的
+雖然仍不及很多高手的實力，但這也是一個很大的鼓勵
+給自己7分的原因是到最後忙於實驗室計畫以及其他科目的期末考試、期末Project
+以致一項作業未完成以及分組報告部分仍未debug完成，自認有些可惜。
+但對於自己努力撐到最後沒退選，給予剛好及格分數。
+期許自己未來繼續去旁聽Jserv老師的課程，跟著老師的腳步持續進步。
+
+
+
+
+
+
+
+
+
+
+
