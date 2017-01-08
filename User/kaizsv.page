@@ -11,6 +11,25 @@ categories: User
 
 - 我不是資訊系畢業，過去在資訊領域的背景空白，而這堂嵌入式課程的質量讓我可以「快速」提升自己的能力。課程的開放教材也警惕我了解自己與其它同學的差距為何，我若要在資訊業立足必須調整自己的步調及對未來的規劃。
 
+# 個人專題
+- [五子棋AI](https://github.com/kaizsv/GoMoKu)
+    - 閱讀AlphaGo原始文章及參考資料，使用 Reinforcement Learning 訓練可以對奕的五子棋AI。目前還在調整中。
+
+# 2016 系統軟體課程 秋季班
+- [作業一](https://hackmd.io/s/H1B7-hGp)
+	* [開發紀錄(phonebook)](https://hackmd.io/s/S1h221Ba) / [github](https://github.com/kaizsv/phonebook-1) / [youtube link](https://www.youtube.com/watch?v=3cNmgpLoB7o)
+	* [開發紀錄(raytracing)](https://hackmd.io/s/HJez1RxPT) / [github](https://github.com/kaizsv/raytracing) / [youtube link](https://www.youtube.com/watch?v=2WB1rDCrWlk)
+	* [開發紀錄(computing_pi)](https://hackmd.io/s/rJIFNnO6) / [github](https://github.com/kaizsv/compute-pi) / [youtube link](https://youtu.be/nLP0vrVpy50)
+	* [開發紀錄(clz)](https://hackmd.io/s/S1yCPGFT) / [github](https://github.com/kaizsv/clz_test) / [youtube link](https://youtu.be/PWt5hWW09aA)
+
+- [作業二]
+- [作業三]
+- [作業四]
+- [作業五]
+
+# 2016 秋季班 自我評量
+這次我給自己7分，沒有做第九周後的專題，而作業五的貢獻也比原本的兩位同學少，會比去年多1分在於，作業有些重覆的部份，再做一次有更多心得，且這學期參加了幾次老師的分享會，了解到職場上可能面臨的問題及應對技巧。
+
 # 2015 嵌入式課程 秋季班
 - [期未專題](https://hgqnckuembedded2015.hackpad.com/Team-13-Mv2lFR3g7Kv) : 手勢控制的四軸飛行器
 - [作業4](http://wiki.csie.ncku.edu.tw/embedded/2015q3h4) / [hackpad](https://embedded2015.hackpad.com/Homework-4-B-Jm6jxbaiz3z) / [github](https://github.com/kaizsv/jit-construct)
