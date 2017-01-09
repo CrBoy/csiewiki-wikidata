@@ -35,7 +35,18 @@ litsnow(簡伯丞)
 作業與筆記
 ---------------------------------
 - homework1
-    -phonebook[HackMd](https://hackmd.io/KwDghgJgzCxgtAMygIyvALGAjABnmtokgOwoa4YS4kBMUYQA#)/[Github](https://github.com/LitSnow/phonebook)
-    -raytracing[HackMd](https://hackmd.io/GYDgpgnAbARmDMBaAhs+AmRAWGUqIgHZgBGRGQ8MLdYYAVjAAYg=)/[Github](https://github.com/LitSnow/raytracing)
-    -compute-pi[HackMd](https://hackmd.io/EwRghgzBAsCcsFpoBMDGykAZUA4ECMRN8DMRpoRkBWWuIA==)/[Github](https://github.com/LitSnow/compute-pi)
+    - phonebook:[HackMD](https://hackmd.io/KwDghgJgzCxgtAMygIyvALGAjABnmtokgOwoa4YS4kBMUYQA#)/[Github](https://github.com/LitSnow/phonebook)
+    - raytracing:[HackMD](https://hackmd.io/GYDgpgnAbARmDMBaAhs+AmRAWGUqIgHZgBGRGQ8MLdYYAVjAAYg=)/[Github](https://github.com/LitSnow/raytracing)
+    - compute-pi:[HackMD](https://hackmd.io/EwRghgzBAsCcsFpoBMDGykAZUA4ECMRN8DMRpoRkBWWuIA==)/[Github](https://github.com/LitSnow/compute-pi)
+
+- homework2
+    - phonebook-concurrent: [HackMD](https://hackmd.io/OwNgzCAcBGBmAMBaAJveAWR6CGBjMiAnLgKYBMiwwhyw8y08sY6QA===)/[Github](https://github.com/LitSnow/phonebook-concurrent)
+
+- homework3
+    - mergesort-concurrent: [HackMD](https://hackmd.io/BzDsGYE4BYFMAYC0BjAbAIwIaOqATACaLoCM84x88weomesJ+QA=)
+
+- 隨堂測驗
+   
+    - [week1](https://hackmd.io/s/r13u0Af6) : [HackMD](https://hackmd.io/MwRgbArAhgLADADgLRwEwGMBmSboEYCcSBwEcS6cA7HHGFQQCZRiNA==?both)
+    - [week2](https://hackmd.io/s/Sk29RMbC) : [HackMD](https://hackmd.io/MYFghgnAHApg7AVgLRgExykk0AmKE4hJRwCMwYOEwMADAMw5A===?both)/[Github](https://github.com/LitSnow/W2-QA)
     
