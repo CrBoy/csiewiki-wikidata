@@ -28,10 +28,12 @@ HW3
 
 - mergesort-concurrent:  [筆記](https://hackmd.io/s/SJfa8wFR)/[Github](https://github.com/FZzzz/mergesort-concurrent)
 - software-pipelining:  [筆記](https://hackmd.io/s/SyTYqRR7x)/[Github](https://github.com/FZzzz/prefetcher)
+
 第一次分組
 
 - Mergesort 效能分析:  [筆記](https://hackmd.io/s/HyR_SEzkg)/[Github](https://github.com/FZzzz/mergesort-concurrent)
 - rubi:  [筆記](https://hackmd.io/BwRgDAbMBMDswFoDGBOFSEBZMGZEENocBTBYzYoyCMHfWIA=?view)/[Github](https://github.com/FZzzz/rubi)
+
 第二次分組
 
 - mapreduce:  [筆記](https://hackmd.io/s/Hkb-lXkyg)/[Github](https://github.com/HaoTse/mapreduce)/[Youtube](https://www.youtube.com/playlist?list=PLThZjqHQRYOPtiajE8d9nqzod45ojDXdx)
