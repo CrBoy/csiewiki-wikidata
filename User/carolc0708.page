@@ -1,0 +1,42 @@
+## carolc0708(陳柔安)
+
+**簡介:**
+
+* 臺灣師範大學 資訊工程學系(2012~2016)  
+* 成功大學 工程科學所 資訊工程與應用組(2016~)
+
+## 聯絡資訊:
+
+* email: `carolc830708@gmail.com`
+
+## 2016 秋季班 個人評量
+
+### (秋季班)作業與筆記
+
+* HW 1:  
+(phonebook) [Github](https://github.com/carolc0708/phonebook), [Hackmd](https://hackmd.io/s/HyHkYk8a)  
+(raytracing) [Github](https://github.com/carolc0708/raytracing), [Hackmd](https://hackmd.io/s/H1HTg8vp)  
+(compute-pi) [Github](https://github.com/carolc0708/compute-pi), [Hackmd](https://hackmd.io/s/B1Pk2jPT)  
+(clz) [Github](https://github.com/carolc0708/clz-tests), [Hackmd](https://hackmd.io/s/H1EkbFDT)
+      
+* HW 2:  
+(phonebook-concurrent) [Github](https://github.com/carolc0708/phonebook-concurrent), [Hackmd](https://hackmd.io/s/rJVMNG6T)
+  
+* HW 3:  
+(mergesort-concurrent) [Github](https://github.com/carolc0708/mergesort-concurrent), [Hackmd](https://hackmd.io/s/ByuPnVFR)  
+(software-pipelining) [Github](https://github.com/carolc0708/prefetcher), [Hackmd](https://hackmd.io/s/B1lDZtO0)  
+  
+* 分組 HW 4:  
+(software-pipelining cont.) [Github](https://github.com/carolc0708/prefetcher), [Hackmd](https://hackmd.io/s/rk8ivCT0)  
+(rubi) [Github](https://github.com/carolc0708/rubi), [Hackmd](https://hackmd.io/s/r1WwkHq1x)  
+  
+* 分組 HW 5 & 期末:  
+(透過 SIMD 加速高斯模糊運算) [Github](https://github.com/kevinbird61/Image-Processing), [Hackmd](https://hackmd.io/s/BJOTYoHge)
+
+### (秋季班)所見所聞心得
+
+第一次修這堂課，從很多資訊理論的基礎觀念應用與實作，看到自己過去沒學好的地方。作業系統、計算機概論、計算機組織與結構、C語言等等大學時候很重的必修課，當中有很多細節之處自己並不是完全透徹的了解。尤其是作業系統中，程式的平行以及並行設計，大學在學習的時候都是把程式範例與理論背起來，對於這些像是 thread、mutex 等實際上的應用與實作完全沒有概念。能在這堂課程重新檢視自己學習的觀念真的是非常寶貴的經驗，更重要是可以從厲害的同學們做的內容學到很多延伸的想法以及可以探討的問題。上老師的課也是不斷聽到一些以前完全沒聽過的新東西，就是不斷的閱讀大量資料以及整理，每天都有學到很多東西很開心很充實的感覺。
+
+### (秋季班)自我評量分數(1 到 10 級分)
+
+我給自己 8 級分。從學期初開始，除了實驗室的工作，其他時間皆投入在這堂課程的資料閱讀以及實作。雖然作業還有很多覺得不足的地方，像是看到其他同學用了一些方法，都還想要親自實驗看看來改進自己的作業，但是以自己目前能力可及覺得比剛開始的徬徨無助還要進步許多了。給自己這個分數期待自己能夠透過繼續深入鑽研，看到自己比別人不足的地方，多花點時間與心思好好加強自己的能力。
