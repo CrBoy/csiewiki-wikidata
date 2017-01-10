@@ -3,7 +3,7 @@
 **簡介:**
 
 - 高雄應用科技大學 電子工程系資訊應用組(2012-2016)
-- 成功大學 工程科學所 資訊組(2016~ ) [黃悅民教授](https://sites.google.com/site/huangpage/home)的學生
+- 成功大學 工程科學所 資訊工程與應用組(2016~ ) 
 
 **工作經歷:**
 
@@ -18,13 +18,28 @@
 =======================
 (2016秋季班-進階電腦系統理論與實作)作業及筆記
 --------------------------
-- HW1-phonebook:[Github](https://github.com/jeff60907/phonebook-2),[Hackmd](https://hackmd.io/GYNg7AJghgLApgIwLQTgTgMZJgBg1JKMGADiQGYQJgco7yAmYYIA)
-- HW1-raytracing:[Github](https://github.com/jeff60907/raytracing-1),[Hackmd](https://hackmd.io/CYIwzADAxuCsC0kAsBGeSoTPAhgNggE54AzWWJPJAdghJCgA4g==)
-- HW1-computepi:[Github](https://github.com/jeff60907/compute-pi-1),[Hackmd](https://hackmd.io/EYUwxgrAjAbAZgZgLQA4DsEZICwCYIAmSwUccSaBcYUB29wcIQA=)
-- HW1-clz-test:[Github](https://github.com/jeff60907/clz-tests),[Hackmd](https://hackmd.io/EYVgnGAsBmbAtADmAY0vSAmADAdnmJgMzrTQCMiR02AhinbUA===)
-- HW2-phonebook-concurrent:[Github](https://github.com/jeff60907/phonebook-concurrent), [Hackmd](https://hackmd.io/AwDgnAhsCmIEwFoQHZkFYEBYTQIwInkQDZow1dSQBmEAI2CA)
-- HW3-mergesort-concurrent:[Github](https://github.com/jeff60907/mergesort-concurrent), [Hackmd](https://hackmd.io/IYDgnAzALAjFEFoBGIIwVeSFiQVjAQhACYxNgA2AUygHZqg=)
-- HW5-jit-construct:[Github](https://github.com/jeff60907/jit-construct), [Hackmd](https://hackmd.io/GYNgDAHAzATMDGBaAhvAJgdkQFilArCmvgJyJgCmARiRFRAIzIXYlA==)
+**HW 1**
+
+-  phonebook:[Github](https://github.com/jeff60907/phonebook-2),[Hackmd](https://hackmd.io/GYNg7AJghgLApgIwLQTgTgMZJgBg1JKMGADiQGYQJgco7yAmYYIA)
+-  raytracing:[Github](https://github.com/jeff60907/raytracing-1),[Hackmd](https://hackmd.io/CYIwzADAxuCsC0kAsBGeSoTPAhgNggE54AzWWJPJAdghJCgA4g==)
+-  computepi:[Github](https://github.com/jeff60907/compute-pi-1),[Hackmd](https://hackmd.io/EYUwxgrAjAbAZgZgLQA4DsEZICwCYIAmSwUccSaBcYUB29wcIQA=)
+-  clz-test:[Github](https://github.com/jeff60907/clz-tests),[Hackmd](https://hackmd.io/EYVgnGAsBmbAtADmAY0vSAmADAdnmJgMzrTQCMiR02AhinbUA===)
+
+**HW 2**
+
+-  phonebook-concurrent:[Github](https://github.com/jeff60907/phonebook-concurrent), [Hackmd](https://hackmd.io/AwDgnAhsCmIEwFoQHZkFYEBYTQIwInkQDZow1dSQBmEAI2CA)
+
+**HW 3**
+
+- mergesort-concurrent:[Github](https://github.com/jeff60907/mergesort-concurrent), [Hackmd](https://hackmd.io/IYDgnAzALAjFEFoBGIIwVeSFiQVjAQhACYxNgA2AUygHZqg=)
+
+**HW 5**
+
+- 以concurrent Linked List 實做 merge sort:[Github](https://github.com/jeff60907/mergesort-concurrent), [Hackmd](https://hackmd.io/BwNgJgjArATADAZgLRQKYCMDGSAsOwCcS6AZuqksPtGHGDsAIaZA?view)
+- jit-construct:[Github](https://github.com/jeff60907/jit-construct), [Hackmd](https://hackmd.io/GYNgDAHAzATMDGBaAhvAJgdkQFilArCmvgJyJgCmARiRFRAIzIXYlA==)
+
+**期末**
+
 - 針對多執行緒環境設計的 Memory allocator: [Github](), [Hackmd](https://hackmd.io/MbAMHYEME5gFgLQCZwBMBsC7oKYFYEAOPOARgUj1AGZCAjAM1EgdRyA=)
 
 
