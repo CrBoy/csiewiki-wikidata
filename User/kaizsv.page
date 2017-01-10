@@ -22,10 +22,15 @@ categories: User
 	* [開發紀錄(computing_pi)](https://hackmd.io/s/rJIFNnO6) / [github](https://github.com/kaizsv/compute-pi) / [youtube link](https://youtu.be/nLP0vrVpy50)
 	* [開發紀錄(clz)](https://hackmd.io/s/S1yCPGFT) / [github](https://github.com/kaizsv/clz_test) / [youtube link](https://youtu.be/PWt5hWW09aA)
 
-- [作業二]
-- [作業三]
+- [作業二](https://github.com/kaizsv)
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/HkXsBMeR) / [github](https://github.com/kaizsv/phonebook-concurrent) / [youtube link]
+- [作業三](https://github.com/kaizsv)
+    * [開發記錄(mergesort-concurrent)] / [github] / [youtube link]
+    * [開發記錄(software-pipelining)](https://hackmd.io/s/r1IWtb9R) / [github](https://github.com/kaizsv/prefetcher) / [youtube link]
 - [作業四]
-- [作業五]
+    * [比較不同 prefetch distance 的影響](https://hackmd.io/s/r1IWtb9R) / [github](https://github.com/kaizsv/prefetcher)
+- [作業五](分組）
+    * [以 SIMD 加速矩陣乘法](https://hackmd.io/s/Hk-llHEyx) / [github](https://github.com/0140454/matrix-multiplication) / [youtube](https://www.youtube.com/watch?v=3rU6BX7w8Tk&list=PLKT8ER2pEV3umVSMwd06LY_eSIX-DnU6A)
 
 # 2016 秋季班 自我評量
 這次我給自己7分，沒有做第九周後的專題，而作業五的貢獻也比原本的兩位同學少，會比去年多1分在於，作業有些重覆的部份，再做一次有更多心得，且這學期參加了幾次老師的分享會，了解到職場上可能面臨的問題及應對技巧。
