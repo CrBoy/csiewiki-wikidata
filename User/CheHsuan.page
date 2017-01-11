@@ -33,15 +33,24 @@ categories: User
 ========
 作業
 ----
-- [homework 1] ()
-    * [hackmd](https://hackmd.io/s/BkbydgVa),[github](https://github.com/CheHsuan/compute-pi)
-    * [hackmd](https://hackmd.io/s/H15sqBYa), [github](https://github.com/CheHsuan/clz-tests)
-- [homework 2] ()
-    * [hackmd](),[github]()
-- [homework 3] ()
-    * [hackmd](),[github]()
-- [homework 4] ()
-    * [hackmd](),[github]()
+- [homework 1] 
+    * [compute-pi](https://hackmd.io/s/BkbydgVa),[github](https://github.com/CheHsuan/compute-pi)
+    * [clz](https://hackmd.io/s/H15sqBYa), [github](https://github.com/CheHsuan/clz-tests)
+- [homework 2] 
+    * [phonebook-concurrent](https://hackmd.io/s/rJPYFYRa),[github](https://github.com/CheHsuan/phonebook-concurrent)
+- [homework 3] 
+    * [mergesort-concurrent](https://hackmd.io/s/ry24aKiA),[github](https://github.com/CheHsuan/mergesort-concurrent)
+    * [software-pipelining](https://hackmd.io/s/BysScpk1l)
+- [homework 5] 
+    * [jit-compiler](https://hackmd.io/s/rJfTbua1l),[github](https://github.com/CheHsuan/jit-construct-1)
+
+分組報告
+----
+[透過 SIMD 加速高斯模糊運算](https://hackmd.io/s/BJOTYoHge), [github](https://github.com/kevinbird61/Image-Processing)
+
+2016秋季班期末自我評分(1-10分)
+----
+在這次的課堂當中，對自己的評分是7分，基本上作業都有繳交，也比以往更注重效能分析，會去設計實驗來分析程式效能，並提出改進方法，不過對於實驗結果，有時還是無法找出合理的解釋，這是該檢討的部份。除了作業之外，分組報告的表現上，我並沒有發揮全部時間在上面，雖然有盡力完成自己的部份，不過相對於小組內另一位同伴，還是做的比較少，有點不好意思，不過整體來說，還是在這次小專案中學到了很多，先是找方向做研究實作，然後遇到困難，再嘗試解決問題，慢慢的有在成長，我覺得這種做中學的方式很棒，過程中犯錯也沒關係，學會如何修正才是做重要的。
 
 **2015秋季班 個人評量**
 ========
