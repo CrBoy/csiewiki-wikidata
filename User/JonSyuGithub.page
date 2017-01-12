@@ -30,8 +30,9 @@ server-framework [hackmd](https://hackmd.io/s/B1s8hX1yg)
 
 所見所聞心得
 ------------------------
+- 我覺得我從一開始慢慢看懂makefile並嘗試修改，以及使用GDB、gnuplot、perf工具，讓我深刻體會到實際上程式執行時間並不是僅僅以複雜度BigO來評比，相同程式複雜度，但是不同資料結構就大大影響catch miss，進而影響變數存取時間。雖然在分組Project並未改善，但是從trace程式碼，發現到很多程式的設計方法，像是API Gateway將相關API的位址放在struct，之後可以透過struct存取到API，也因為小組server-framework因此了解Reactor pattern。
 - 修完課後更認清自己不足之處，因此更知道哪些部份需要加強，謝謝老師。
 
 自我評量分數 (1 到 10 級分)
 ---------------------------
-- 7級分。我覺得我從一開始慢慢看懂makefile並嘗試修改，以及使用GDB、gnuplot、perf工具，讓我深刻體會到實際上程式執行時間並不是僅僅以複雜度BigO來評比，相同程式複雜度，但是不同資料結構就大大影響catch miss，進而影響變數存取時間。雖然在分組Project並未改善，但是從trace程式碼，發現到很多程式的設計方法，像是API Gateway將相關API的位址放在struct，之後可以透過struct存取到API，也因為小組server-framework因此了解Reactor pattern。
+- 7級分。
