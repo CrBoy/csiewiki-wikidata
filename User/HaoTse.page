@@ -1,3 +1,48 @@
-# 鄭皓澤 (Hao-Tse Cheng)
-------------------------
+---
+title: 鄭皓澤 (Hao-Tse Cheng)
+categories: User
+...
 
+**簡介**
+===
+
+Contact Information
+---
+- e-mail: ``top30339@gmail.com``
+- github: <a href="https://github.com/HaoTse" target="_blank">https://github.com/HaoTse</a>
+
+Education
+---
+- National Cheng Kung University, 國立成功大學 (2013.09 - 2017.06)
+    * Bachelor of Computer Science and Information Engineering, 資訊工程學系
+
+**2016秋季班 個人評量**
+===
+- Homework 1
+   * [開發紀錄(phonebook)](https://hackmd.io/s/HJFN1B8T) / [github](https://github.com/HaoTse/phonebook) / [youtube link](https://www.youtube.com/watch?v=K6ZmAlLhPMo)::: Reviewed by<`jkrvivian`>
+   * [開發紀錄(raytracing)](https://hackmd.io/s/HyAo_2Da) / [github](https://github.com/HaoTse/raytracing) / [youtube link](https://www.youtube.com/watch?v=6gE6ZPQqPLM) ::: Reviewed by <`shelly4132`>
+   * [開發紀錄(computing_pi)](https://hackmd.io/s/ryHY0T_T) / [github](https://github.com/HaoTse/compute-pi) / [youtube link](https://youtu.be/vfeVa_8r2po)
+   * [開發紀錄(clz)](https://hackmd.io/s/rJk6ticp) / [github](https://github.com/HaoTse/clz-tests) / [youtube link](https://youtu.be/6izNFVUl2l4)
+
+- Homework 2
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/Bk-rtQGR) / [github](https://github.com/HaoTse/phonebook-concurrent)
+
+- Homework 3
+    *	[開發記錄(mergesort-concurrent)](https://hackmd.io/s/r12ELo3C) / [github](https://github.com/HaoTse/mergesort-concurrent)
+
+- Homework 4 (分組)
+    * [開發紀錄(madreduce)](https://hackmd.io/s/Hkb-lXkyg) / [GitHub連結](https://github.com/HaoTse/mapreduce)
+        * 研究給定的 MapReduce 程式碼，思考 thread pool 設計的驗證和效能分析，提出改善機制
+        * 找出 MapReduce 的應用，將其中具體而微的案例，在給定的程式碼基礎上重新實作
+    * [開發紀錄(jit-compiler)](https://hackmd.io/s/Sknf8sJgl) / [GitHub連結](https://github.com/HaoTse/jit-construct)
+
+心得
+---
+這是我大學以來覺得最充實的一堂課，也讓我對我以前的學習態度感到慚愧，在這學期的課程中複習了很多過去課堂曾上過的內容，也做了很多我過去完全不懂的事情。一開始我會修這堂課的原因是同學拉我來一起修的，在第1堂課就得知這學期要9週完成過去一學期的作業量，更在第一個禮拜就有4個作業，這讓我萌生了退選之意，擔心自己負擔不來，但是我很慶幸我有堅持到最後，如果沒有修過這堂課，沒有被老師羞辱過，我根本不知道我過去學習的東西跟沒學一樣。一學期前我連 linux 環境怎麼操作不懂，只知道寫寫作業應付課堂要求，但這學期我學到了各種寫程式的技巧，真正了解了程式不是寫出來能跑就好，尤其在最後的分組作業中要去優化 mapreduce 架構，我第一次接觸到分散式架構，也第一次深入操作 pthread，學到了各種技巧，但仍然有許多不足，mapreduce 的作業也還沒完成，需更加努力。
+
+自我評量分數 (1 到 10 級分)
+-------
+- 8 級分
+- 在前面的作業中大部份都有完成到一定的程度，並投入一定的時間與努力
+- 在分組作業中也參遇了大部份
+- 但在第9周之後，開始忙於其他課程與大四專題，在分組作業上面懈怠了，接下來需努力補上進度
