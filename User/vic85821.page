@@ -11,15 +11,21 @@ vic85821(張友誠)
 
 作業[共筆/Github]
 ------------------------
-- Hw1_phonebook [HackMD](https://hackmd.io/IYRhA4CYHYFZgLTGgNlggLCAxgTgeAGbTQIoBGG0ADACbmTaS2RA) / [Github](https://github.com/vic85821/phonebook/tree/master)
-- Hw1_raytracing [HackMD](https://hackmd.io/KwTg7AxgRgHBCGBaAZmGxEBYJgIyPgCYBmGRGAE1wAZ4RMZDM8g=) / [Github](https://github.com/vic85821/raytracing)
-- Hw1_compute_pi [HackMD](https://hackmd.io/CYQwxgzAbFAcAsBaCAmAnARkfYB2CiauasiusGIIADBBhGrUA===) / [Github](https://github.com/vic85821/compute-pi)
-- Hw1_clz [HackMD](https://hackmd.io/EwNgHAZgRiDMsFoAMATJAWB64QVCKApggIxTpQCGkY68lQA=) / [Github](https://github.com/vic85821/clz-tests)
-- Hw2_phonebook_concurrent [HackMD](https://hackmd.io/GwZgJgjARgnADAJgLRgMYA4CsSAs6rIwwSpKoDsUUqImcYCmqQA=) / [Github](https://github.com/vic85821/phonebook-concurrent)
-- Hw3_mergesort_concurrent [HackMD](https://hackmd.io/KwRgDAzAnCwBwFo4CM4HYEBYBMmoKgBMxkFkBTANhADM1Ng1DMwg) / [Github](https://github.com/vic85821/mergesort-concurrent)
+- Hw1 phonebook [HackMD](https://hackmd.io/IYRhA4CYHYFZgLTGgNlggLCAxgTgeAGbTQIoBGG0ADACbmTaS2RA) / [Github](https://github.com/vic85821/phonebook/tree/master)
+- Hw1 raytracing [HackMD](https://hackmd.io/KwTg7AxgRgHBCGBaAZmGxEBYJgIyPgCYBmGRGAE1wAZ4RMZDM8g=) / [Github](https://github.com/vic85821/raytracing)
+- Hw1 compute_pi [HackMD](https://hackmd.io/CYQwxgzAbFAcAsBaCAmAnARkfYB2CiauasiusGIIADBBhGrUA===) / [Github](https://github.com/vic85821/compute-pi)
+- Hw1 clz [HackMD](https://hackmd.io/EwNgHAZgRiDMsFoAMATJAWB64QVCKApggIxTpQCGkY68lQA=) / [Github](https://github.com/vic85821/clz-tests)
+- Hw2 phonebook_concurrent [HackMD](https://hackmd.io/GwZgJgjARgnADAJgLRgMYA4CsSAs6rIwwSpKoDsUUqImcYCmqQA=) / [Github](https://github.com/vic85821/phonebook-concurrent)
+- Hw3 mergesort_concurrent [HackMD](https://hackmd.io/KwRgDAzAnCwBwFo4CM4HYEBYBMmoKgBMxkFkBTANhADM1Ng1DMwg) / [Github](https://github.com/vic85821/mergesort-concurrent)
+- 分組 Mergesort_with_thread_pool [HackMD](https://hackmd.io/CwZgrAnAZgHDAMBaMAmUjgoEYFNExGAENEUJoUisBGKXCIA=?view) / [Github](https://github.com/vic85821/mergesort-concurrent)
+- 分組 bpluss tree [HackMD](https://hackmd.io/EYTgJiCs4AwLQDZgDNJwCwEYCG24gGMBmYOYAdmQQXWAuDAKA===) / [Github](https://github.com/sysprog-Concurrent-BTree/bplus-tree)
 
 所見所聞心得
 ------------------------
+這學期是第一次修課，接觸到很多從來沒有想過的題目。學期初的作業量真的蠻大的，還記得在第一次的作業，體驗了颱風天留在系館coding、連續幾個晚上的熬夜，即使投入很多的時間與心力，但是卻沒有對作業的效能改善顯著的提升。過程中，學習了很多效能評估與繪圖呈現的工具，了解到許多在效能層面上的議題。誠實的面對自己的不足，慢慢的花心思去填坑。
+
+第二次分組的題目是-研究B+tree實作的小型資料庫，是我第一次接觸到真正有強度的實作題目，並且與生活上接觸到的相似。與組員一起研究B+tree的架構、如何套用到DB、減少lock時間以增進效能、摹擬SQL語法等。對我來說最困難的地方是，整個程式碼的量非常龐大，因此要先弄懂架構才能夠繼續鑽研與改善。
+
 
 自我評量分數(1到10分)
 ------------------------
