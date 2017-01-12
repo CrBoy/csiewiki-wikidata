@@ -1,0 +1,55 @@
+---
+title: HuangWenChen(陳鍠文)
+categories: User
+...
+
+簡介
+====
+- 高雄應用科技大學 資訊工程系102級(2012 ~ 2016)
+
+工作經歷
+=======
+- 數位無限軟體(Infinities) - 測試實習生
+
+聯絡資訊
+=======
+- email: ``cbt0009212 @ gmail.com``
+
+2016秋季班 個人評量
+===================
+
+(秋季班)作業及筆記
+-----------------
+**HW1**
+
+- [隨堂測驗](https://hackmd.io/s/Sk2nUMza) 
+- [開發紀錄(phonebook)](https://hackmd.io/s/B1CjRaQT) / [github](https://github.com/HuangWenChen/phonebook) / [youtube link](https://www.youtube.com/watch?v=xiOalSHZ6Sc)
+- [開發紀錄(raytracing)](https://hackmd.io/s/r1osNDuT) / [github](https://github.com/HuangWenChen/raytracing) / [youtube link](https://www.youtube.com/watch?v=uFvKRGZnRdc)
+
+**HW2**
+
+- [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/ByX4xZZ1l) / [github](https://github.com/HuangWenChen/phonebook-concurrent)
+
+**HW3**
+
+- [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/Bk_1fNpC) / [github](https://github.com/HuangWenChen/mergesort-concurrent)
+
+**第一次分組成果**
+
+- [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/ByX4xZZ1l) / [GitHub連結](https://github.com/HuangWenChen/phonebook-concurrent)
+- [開發紀錄(jit-compiler)](https://hackmd.io/s/ByxfhgAkl) / [GitHub連結](https://github.com/HuangWenChen/jit-construct) 
+
+**第二次分組成果**
+
+- [以 SIMD 加速矩陣乘法](https://hackmd.io/s/Hk-llHEyx) / [GitHub連結](https://github.com/0140454/matrix-multiplication) / [youtube link](https://www.youtube.com/watch?v=3rU6BX7w8Tk&list=PLKT8ER2pEV3umVSMwd06LY_eSIX-DnU6A)
+
+(秋季班)所見所聞心得
+-------------------
+這是我第一次接觸這麼有 GUTS 的課程，特地從高雄跑來臺南來修課。每週最低必須付出 16 小時以上去準備這課程。一開始聽到時覺得非常恐怖，但是我並沒有因此而放棄，誠實面對自己，發現自己根本什麼都不懂，而從頭去學習，盡力做好每一次的作業。看著老師給的程式學習 C 語言，如何使用 Perf 工具觀看效能(cache-miss)、Gprof 工具看各函式效能、Gnuplot 製圖、修改 Makefile，還有各種我所缺乏的知識。雖然課程結束了，但我會繼續學習進步下去。
+
+(秋季班)自我評量分數 (1 到 10 級分)
+---------------------------------
+- 我給自己9分。
+- 雖然有些作業我並沒有做出來，或是每有改出很好效能等等，但是對我來說參與這次的課程讓我收穫良多。
+- 還有很大的進步空間去改進。
+- 接下來還會繼續參與學習。
