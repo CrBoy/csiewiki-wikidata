@@ -34,28 +34,28 @@ TempoJiJi(邱靖吉)
 我給自己7分。我給自己這個分數，主要是因爲自己有堅持下去。再來是除了HW3跟HW4之外，其它作業都有很用心跟花時間研究。但修這堂課的時間有點不對，畢竟這學期有4個必修課撞在一起了，但我還是一路撐過來了。這學期，在所有課程上，我遇到了很多挫折，非常多，甚至差點就要放棄了，而這段時間就在HW3跟HW4之間，所以導致這兩個作業都沒辦法完成。在完成HW2後，我一直在想自己是不是不適合在這裏，自己程度不足跟別人落差太大，要如何跟別人競爭？而且一個很努力的菜鳥，要追上一個很努力的天才，幾乎是不可能的事。自己程度不足確實是事實，但沒有人一開始就什麼都會什麼都很厲害的，所以其實自己並不需要去努力的追上別人，做好自己的本分，把自己應該做的事做好，不足的地方就去補足，認清自我誠實面對自己吧！接下來還有更多的挑戰，感謝這學期的所獲所得，讓我更有信心迎接接下來的挑戰。
 
 
-2016秋季班-進階電腦系統理論與實作 個人評量
+2016秋季班 個人評量
 =======================
-(2016秋季班-進階電腦系統理論與實作)作業及筆記
+(2016秋季班)作業及筆記
 --------------------------
-- HW1-phonebook:[Github](https://github.com/TempoJiJi/phonebook-1),[Hackmd](https://hackmd.io/s/S1I5-CzT)
-- HW1-raytracing:[Github](https://github.com/TempoJiJi/raytracing-1),[Hackmd](https://hackmd.io/s/r1vckLB6)
-- HW1-computepi:[Github](https://github.com/TempoJiJi/compute-pi),[Hackmd](https://hackmd.io/s/Hy7tssw6)
-- HW1-clz-test:[Github](https://github.com/TempoJiJi/clz-tests),[Hackmd](https://hackmd.io/s/ryiig7YT)
+- HW1-phonebook:[Github](https://github.com/TempoJiJi/phonebook-1), [Hackmd](https://hackmd.io/s/S1I5-CzT), [Youtube](https://www.youtube.com/watch?v=DUFEd4jqcXM)
+- HW1-raytracing:[Github](https://github.com/TempoJiJi/raytracing-1), [Hackmd](https://hackmd.io/s/r1vckLB6), [Youtube](https://www.youtube.com/watch?v=Nu2YIouQZ5k)
+- HW1-computepi:[Github](https://github.com/TempoJiJi/compute-pi), [Hackmd](https://hackmd.io/s/Hy7tssw6), [Youtube](https://www.youtube.com/watch?v=yniQjmo3R0A)
+- HW1-clz-test:[Github](https://github.com/TempoJiJi/clz-tests), [Hackmd](https://hackmd.io/s/ryiig7YT), [Youtube](https://www.youtube.com/watch?v=eP8HZvOGLP0)
 - HW2-phonebook-concurrent:[Github](https://github.com/TempoJiJi/phonebook-concurrent), [Hackmd](https://hackmd.io/s/rymKa4aT)
 - HW3-mergesort-concurrent:[Github](https://github.com/TempoJiJi/mergesort-concurrent), [Hackmd](https://hackmd.io/s/B1-Kytv0)
 - HW5-jit-construct:[Github](https://github.com/TempoJiJi/jit-construct), [Hackmd](https://hackmd.io/s/HJDWoN91e)
 - 針對多執行緒環境設計的 Memory allocator: [Github](https://github.com/TempoJiJi/malloc_benchmark), [Hackmd](https://hackmd.io/s/HkICAjeJg)
 
 
-(2016秋季班-進階電腦系統理論與實作)所見所聞心得
+(2016秋季班)所見所聞心得
 --------------------------
 - 在前面的幾個Homework見識到很多，Concurrent方面的知識、ThreadPool的設計、爲了減少每次記憶體分配的成本，可以使用Memory Pool的方法等。
 - 在最後project “Memory allocator”， 讓我充分地理解到linux管理記憶體方面的知識、以及如何分配跟管理記憶體的方法。在這裏也上網也見識到了很多不同的方法，高手寫的程式。
 - 被每一堂課的小考電到很慘，但當晚回家都有再進一步研究小考的內容，數學方面的能力也稍微有點變強了
 - 最後還有理解到程式碼可讀性的重要了，我在經過前幾周的折磨後，現在開始會很注重自己寫的code的可讀性了
 
-(2016秋季班-進階電腦系統理論與實作)自我評量分數 (1 到 10 級分)
+(2016秋季班)自我評量分數 (1 到 10 級分)
 ----------------------------------------------
 我給自己9分！前面9周幾乎把時間都獻給這堂課的作業了，雖然沒什麼貢獻，但對我自己來說收獲還是不少的。老師課堂上給的資料，我回家都有過目，小考不會的題目當晚回家就進行研究，原本想說給自己滿分，但很可惜在進行最後一項project "Memory Allocator" 的時候，遇到了系上各種考試跟專題，在經過一些考量下決定先解決系上的功課跟考試，然後就這樣過了快半學期，真的沒時間繼續進行最後一項project，很抱歉沒有做到什麼貢獻。這學期學到的知識當成基礎，下學期再來一次一定要做出一點貢獻！
 
