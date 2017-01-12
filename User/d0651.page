@@ -1,0 +1,71 @@
+---
+title: 何岱璇
+categories: User
+...
+
+# 何岱璇(d0651)
+
+**Brief Introduction**
+====
+
+Contact Information
+------
+- email: ``diana0651@gmail.com``
+- github: <a href="https://github.com/diana0651" target="_blank">https://github.com/diana0651</a>
+  
+Education
+------
+- National Cheng Kung University, 國立成功大學 
+    * Institute of Computer Science and Information Engineering (2016~)
+    * Interconnection Networks and High-Performance Computation Laboratory
+    * First-year graduate school student 
+- National Taiwan Normal University, 臺灣師範大學
+    * 資訊工程學系 (2012~2016)
+	
+**2016秋季班**
+====
+
+學習成果
+---
+
+Homework
+------
+  * phonebook [hackmd](https://hackmd.io/KzDMBYFME4CMHYC00BmLiPAE1gNkQBzTj4CM4ADAIYDGpBpa9QA=?both) / [github](https://github.com/diana0651/phonebook) 
+  * raytracing [hackmd](https://hackmd.io/GwQwHAJgZm4LQFMwFYRwCwEYBGw4gAZsI5kBmA4YAYwCZgEB2R9IA===?both) / [github](https://github.com/diana0651/raytracing) 
+  * computing_pi [hackmd](https://hackmd.io/MzDsBNgJgY3BaApogRgQ3gFkygrPFcUAM3gAZNRdhcAORUUARjSA?both) / [github](https://github.com/diana0651/compute-pi) 
+  * clz [hackmd](https://hackmd.io/GwTgJgpgjA7ArAIwLQJgQwMxICxTgJiRBimxQGMwEJyQAGNNfBIA?both) / [github](https://github.com/diana0651/clz-tests) 
+  * phonebook-concurrent [hackmd](https://hackmd.io/IwNgZgxgLCAMDsBaMUCmAjRUCGBOEi6AHLGIuBAKzoBM6AJversEA===?both) / [github](https://github.com/diana0651/phonebook-concurrent) 
+  * mergesort-concurrent [hackmd](https://hackmd.io/AwFgHMDswKYgtGGATG8QGMbEQI2BvMgKyQZgCcuM+GAjEA==?both) / [github](https://github.com/diana0651/mergesort-concurrent) 
+  * software-pipelining [hackmd](https://hackmd.io/OwDgDALATGDGDMBaAZmAnAI0RZA2ArIiGsmomvBhAKbWS7zLJA==?both) / [github](https://github.com/diana0651/prefetcher) 
+
+Teamwork
+------
+* teamwork1: Team12
+    * jit-compiler [hackmd](https://hackmd.io/IYdgZgHAbATCDMBaYATAnABkQFgKZQGNkJcBGRMbUggVhALSgmGyA===?both) / [github](https://github.com/f5120125/jit-construct) 
+* teamwork2: Team5
+    * Optimizing Brainfuck JIT Compiler [hackmd](https://hackmd.io/MYEwpg7FBs0LQgEbHgFmgBjHAHARljgGY8cxpEBWECAQzGCA?both) / [github](https://github.com/TotallyWrong/bf-runtime) 
+
+Quiz
+------
+  * [Week1](https://hackmd.io/AwJgzARhAcCmAsBaAjNArNR8DGyBmi0AbLoiBPCLHkdPMNtkA===?both)
+  * [Week2](https://hackmd.io/OwJmGYQDmBGBaALAU2YpBDECrgCbjwBmADOOQKwXBQCc4GQA?both)
+  * [Week4](https://hackmd.io/GwDg7GCGBmCcBGBaeAmaAWR6VmsgDCAIyKT5HjQTr5pA?bothMiquido?both)
+
+
+所見所聞心得
+------
+
+<進階電腦系統理論與實作> 包含關於電腦包羅萬象的知識與實驗，八堂課都以不同的角度切入各種基礎層面的技術問題，讓我從各方向了解自己大學必修欠缺學習的地方。
+計算機組織與結構、作業系統、編譯器、線性代數、機率統計、C語言、資料結構、演算法分析等等，雖然都是大學的必修基礎課程，也經過研究所考試，以為自己還算懂，但是經過這門課每周的上課內容、閱讀資料、隨堂測驗、回家作業，甚至是上課同學分享的概念與實作或回家參考同學的作業筆記與程式碼，才發現其中很多大的概念與小的細節，自己根本不了解。
+原先對自己很失望，覺得實在太多東西需要重新學習，但是每次看到老師或同學在臉書社團或粉絲專頁的分享，覺得大家都很熱血也很熱心，重燃起自己的熱情。每當遇到困難時，都想起老師說過"誠實面對自己"這句箴言，秉持著"不懂就學"的心態，常常巴著實驗室裡的學長請教他很多問題，當中我們討論、查詢網路上的資訊，一起學習。
+真的很開心能夠選修這堂課，除了老師教授的知識，我更學會如何自己查詢問題、閱讀文件、測試實驗。雖然這學期的作業裡，絕大部分都是參考同學們的二手資料和實驗程式，但是從做中學，我覺得在緊湊寫作業的過程中，也越來越能夠自己有一點想法，進而去嘗試，充實自己，更希望未來能夠有能力處理。
+
+自我評量分數 (1 到 10 級分)
+------
+- 7 級分
+- 優
+	- 閱讀每周老師的文件
+	- 每個作業都有完成基本要求
+- 缺
+	- 很多知識和程式都需要參考同學
+	- 不夠積極吸收知識與思考其內涵
