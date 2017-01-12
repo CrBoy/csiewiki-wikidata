@@ -12,8 +12,19 @@ categories: User
 
 進階電腦系統理論與實作 (Fall 2016)
 ====
-1. phonebook
-2. raytracing
-3. compute-pi
-4. clz
-5. phonebook-concurrent
+- 作業筆記區
+homework 1
+    -[phonebook](https://hackmd.io/BwMwnGIEbMC0BjAzJOAWATFApnYGBDERbKAEwQAYA2AVgwEYCEg=?both) / [github]()
+    -[raytracing](https://hackmd.io/CYFgRgzAnADATGAtDAHCCiRWAY0VAUwEYMBWAnANhgLBmDh1KA==?both) / [github]()
+    -[compute-pi](https://hackmd.io/EwVgjADCDsBsDGBaAJrM1EBYCGBOXi2IEmhwu26ARvLBAMzRA===?both) / [github]()
+    -[clz]() / [github]()
+homework 2
+    -[phonebook-concurrent](https://hackmd.io/JwYwLA7AhhLAtGKBGZiBMBWAJvKAGADlwgDYQAjdYCw0zUgUyA==?both) / [github]()
+homework 3
+    -[mergesort-concurrent](](https://hackmd.io/AwY2FMBYCYA4E4C0BGAhiEjLPLRsRZJFgBmSWUgM2uQHZg6g) / [github]()
+homework 4
+    -[JIT-compiler]() / [github]()
+
+- 心得
+
+- 自我評量
