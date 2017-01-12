@@ -1,1 +1,43 @@
-NCKU
+JonSyuGithub(徐仲緯)
+------------------
+**簡介:**
+
+- 成功大學 資訊所104級
+
+**歷年重要作品:**
+
+- 比賽及計畫
+
+    - 嵌入式平台上乙太網控制自動化技術媒體存取控制子層之開發 / 2016產學計畫
+
+聯絡資訊:
+=====================
+- email: ``p76041158@mail.ncku.edu.tw``
+
+2016 進階電腦系統理論與實作 個人評量
+=======================
+
+作業及筆記
+------------------------
+
+- HW1_phonebook [Github](https://gtihub.com/JonSyuGithub/phonebook),[Hackpmd](https://hackmd.io/MwQxA4CYEYAYBMC0BTaBjARogLM2A2REDAVhKPBAWkmBOGmiA===)
+- HW1_raytracing [Hackpmd](https://hackmd.io/GwBghgxgnAzApgEwLR2AFjktB2CyoILZICsMJAHBDDFAIyEBmQA=)
+- HW1_compute-pi [Hackpmd](https://hackmd.io/AwDgZgJiDGDsDMBaaBGATAQ0QFjAUwE5EAjNeYHANjAPmIMoxHliA===)
+
+作業及筆記(小組一)
+------------------------
+server-framework [hackmd](https://hackmd.io/s/B1s8hX1yg)
+
+所見所聞心得
+------------------------
+- 感謝老師這學期多次的耐心指導我們這組，這學期比上次修課比起來，在期末作品有真的實際改到程式
+是比去年進步的地方，再來就是發覺寫編譯還蠻有深度的，最後則是期許未來會努力寫程式。
+自我評量分數 (1 到 10 級分)
+---------------------------
+7級分
+我覺得我比去年還要努力，也謝謝組員們的合作，大家一起成長的感覺真不錯。
+
+
+- 從學期初到現在讓我對linux環境了解了很多，從一開始慢慢看懂makefile，以及使用GDB、gnuplot。還有一個特殊的工具perf讓我體會到實際程式運行的時間比純粹計算時間複雜度來的重要得多，像是要降低catch miss的寫法寫法。
+- 除此之外對於一些電腦的運作方式跟編譯器運作的方式也有了更深的了解，像是去觀察程式碼利用不同的指令架構編譯過後產生的ARM的組合語言，還有模擬器的使用，以及到後期使用SIMD改寫程式也讓我學到了很多。
+- 最後是學期末的分組報告，讓我知道一塊開發版上，會用跟真的懂那些元件的運作方式是有很大的一段距離的，也讓我學到如何去看spec。
