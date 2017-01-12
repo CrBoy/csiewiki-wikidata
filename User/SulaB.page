@@ -5,9 +5,9 @@ categories: User
 
 簡介
 ==
-- 成功大學資訊工程學系104級
+- 成功大學資訊工程學系104級畢業
 - 台灣新竹人, 現居台南市
-
+- 成功大學資訊工程學所107級
 學習成果
 ====
 - 作業
@@ -18,6 +18,33 @@ categories: User
 
 - 期中報告
   - 沒完成
+
+(2016_秋季班)作業及筆記
+====
+
+ -HW1 [開發紀錄(phonebook)](https://hackmd.io/s/HyIVlcPp) / [github](https://github.com/HahaSula/phonebook) / [youtube link]
+ -HW1 [開發紀錄(raytracing)](https://hackmd.io/s/SJwNJMu6) / github / [youtube link]
+在作業一的時候應該就要把測量效能的程式碼先搞懂，後面才來弄已經來不及了
+ -HW2 [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/rk6k0QMA)/ [github] / [youtube link]
+分組
+這邊是第一次接觸到 concurrent這詞跟Parallel做比較，理所當然的也是第一次接觸lock-free
+ -HW3
+這次是計組複習，還有一篇paper沒看，大概的初步知道SIMD的由來，以及操作
+ -HW4
+SERVER-FRAME WORK 這邊跳去跟吳彥寬同學做merge-sort
+稍微看了一下其他組同學的Youtube影片
+ -HW5
+Brainf*ck 第一次接觸到tape形式的語言
+interpreter compiler 或是jit 還需要更多時間去理解與實現
+
+
+分組
+ -HW3 [開發紀錄(Merge-sort-concurrent)](https://hackmd.io/IwIwHAJgpgTGwFoCGBWAxmBAWGwYIE480EBmMANjSgDM1SB2ABiKA===)
+跟著吳彥寬同學的腳步，也被指正說"做"作業的方向有點錯誤。
+
+ -Project [開發紀錄 (Map-Reduce)](https://hackmd.io/s/Hkb-lXkyg)
+中途近來插花map-reduce,大概就是要把原本在cluster上的map-reduce 換成lock-free 的muilthread 來做做看
+看完論文及資料後直接與同組同學討論，不管是map reduce或是lock-free thread的code應該都要再去觀察以及修正才對
 
 學期心得
 ====
@@ -35,3 +62,10 @@ categories: User
 
 期末專題
 ====
+
+(秋季班)自我評量分數 (1 到 10 級分)
+===
+- 5級
+-這是第二次修這門課，這門課程實際上只有9個禮拜，雖然沒有甚麼成果，方向也有點歪掉，不過這九個禮拜內仍然花了大量的時間在閱讀指定資料。剩下的5級分就當作實際時間結束後懶散沒再繼續修改作業的結果好了
+
+-
