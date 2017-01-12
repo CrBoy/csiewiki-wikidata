@@ -22,33 +22,33 @@ categories: User
 (2016_秋季班)作業及筆記
 ====
 
- -HW1 [開發紀錄(phonebook)](https://hackmd.io/s/HyIVlcPp) / [github](https://github.com/HahaSula/phonebook) / [youtube link]
- -HW1 [開發紀錄(raytracing)](https://hackmd.io/s/SJwNJMu6) / github / [youtube link]
+ - HW1 [開發紀錄(phonebook)](https://hackmd.io/s/HyIVlcPp) / [github](https://github.com/HahaSula/phonebook) / [youtube link]
+ - HW1 [開發紀錄(raytracing)](https://hackmd.io/s/SJwNJMu6) / github / [youtube link]
 在作業一的時候應該就要把測量效能的程式碼先搞懂，後面才來弄已經來不及了
- -HW2 [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/rk6k0QMA)/ [github] / [youtube link]
+ - HW2 [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/rk6k0QMA)/ [github] / [youtube link]
 分組
 這邊是第一次接觸到 concurrent這詞跟Parallel做比較，理所當然的也是第一次接觸lock-free
- -HW3
+ - HW3
 這次是計組複習，還有一篇paper沒看，大概的初步知道SIMD的由來，以及操作
- -HW4
+ - HW4
 SERVER-FRAME WORK 這邊跳去跟吳彥寬同學做merge-sort
 稍微看了一下其他組同學的Youtube影片
- -HW5
+ - HW5
 Brainf*ck 第一次接觸到tape形式的語言
 interpreter compiler 或是jit 還需要更多時間去理解與實現
 
 
 分組
- -HW3 [開發紀錄(Merge-sort-concurrent)](https://hackmd.io/IwIwHAJgpgTGwFoCGBWAxmBAWGwYIE480EBmMANjSgDM1SB2ABiKA===)
+ - HW3 [開發紀錄(Merge-sort-concurrent)](https://hackmd.io/IwIwHAJgpgTGwFoCGBWAxmBAWGwYIE480EBmMANjSgDM1SB2ABiKA===)
 跟著吳彥寬同學的腳步，也被指正說"做"作業的方向有點錯誤。
 
- -Project [開發紀錄 (Map-Reduce)](https://hackmd.io/s/Hkb-lXkyg)
+ - Project [開發紀錄 (Map-Reduce)](https://hackmd.io/s/Hkb-lXkyg)
 中途近來插花map-reduce,大概就是要把原本在cluster上的map-reduce 換成lock-free 的muilthread 來做做看
 看完論文及資料後直接與同組同學討論，不管是map reduce或是lock-free thread的code應該都要再去觀察以及修正才對
 
 學期心得
 ====
-- 這堂課程給了許多挑戰，每次的作業甚至每次上課都是很大的挑戰，期初的作業還能順著文件看下去，然後也出現一些沒摸過或是沒摸熟的工具(gnuploy,gdb,objdump等)，開始了一系列的挫折，由於也沒有筆記的習慣，hackpad上記錄也是零零散散。到了作業3要看的文件及code，不知從何下手了，只能看看別人的hackpad依樣畫個葫蘆，對整份code一樣不了解，最後也沒辦法順利完成。來到了期中報告，拿到了一塊硬體，需要做的是了解一個硬體架構跟一個作業系統，一開始花了點時間把韌體燒進去後，就不知道方向了，一開始只好先看點code，只是打開來看也不知道從哪裡開始看起，只能邊上網查資料邊看，除了不知道網路上的資料與自己的東西是不是相同外，也看錯一些設定，導致了解錯誤，即使最後開始有點眉目，進度還是很緩慢。
+ - 這堂課程給了許多挑戰，每次的作業甚至每次上課都是很大的挑戰，期初的作業還能順著文件看下去，然後也出現一些沒摸過或是沒摸熟的工具(gnuploy,gdb,objdump等)，開始了一系列的挫折，由於也沒有筆記的習慣，hackpad上記錄也是零零散散。到了作業3要看的文件及code，不知從何下手了，只能看看別人的hackpad依樣畫個葫蘆，對整份code一樣不了解，最後也沒辦法順利完成。來到了期中報告，拿到了一塊硬體，需要做的是了解一個硬體架構跟一個作業系統，一開始花了點時間把韌體燒進去後，就不知道方向了，一開始只好先看點code，只是打開來看也不知道從哪裡開始看起，只能邊上網查資料邊看，除了不知道網路上的資料與自己的東西是不是相同外，也看錯一些設定，導致了解錯誤，即使最後開始有點眉目，進度還是很緩慢。
 
 - 這堂課老師就給了我們要跟文組有所差別以及對身旁的產物了解的目標，即使如此修完這學期的課程，還是覺得沒什麼差別，或許是自己花在課上的時候還遠遠不夠吧，前幾個禮拜能順著看下去的時候，還能順利的砸時間下去，後來作業越來越難，花的時間缺沒有增加反而減少，對這堂課有點慚愧，也有點抱歉，到了期中報告，即使花了一點時間去研究它，還是沒什麼成果，看著系上某些人跟外系同學不斷打臉，臉的打腫了。這堂課的收穫，除了稍微看了一下作業系統，最大的應該是了解的自己在資工的領域有很大的不足，希望之後能往以資工自稱前進。
 
@@ -58,7 +58,7 @@ interpreter compiler 或是jit 還需要更多時間去理解與實現
 自我評量分數 (1到10級分)
 ===============
 - 2級
-   -在這堂課上，一開始的作業完成率有點低，後來的期中報告，雖然有看了一些資料，卻沒有辦法整理出個所以然，就課程完成率太少了，所以給自己這個分數
+   - 在這堂課上，一開始的作業完成率有點低，後來的期中報告，雖然有看了一些資料，卻沒有辦法整理出個所以然，就課程完成率太少了，所以給自己這個分數
 
 期末專題
 ====
@@ -66,6 +66,6 @@ interpreter compiler 或是jit 還需要更多時間去理解與實現
 (秋季班)自我評量分數 (1 到 10 級分)
 ===
 - 5級
--這是第二次修這門課，這門課程實際上只有9個禮拜，雖然沒有甚麼成果，方向也有點歪掉，不過這九個禮拜內仍然花了大量的時間在閱讀指定資料。剩下的5級分就當作實際時間結束後懶散沒再繼續修改作業的結果好了
+- 這是第二次修這門課，這門課程實際上只有9個禮拜，雖然沒有甚麼成果，方向也有點歪掉，不過這九個禮拜內仍然花了大量的時間在閱讀指定資料。剩下的5級分就當作實際時間結束後懶散沒再繼續修改作業的結果好了
 
 -
