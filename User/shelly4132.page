@@ -1,0 +1,48 @@
+---
+title: 賴劭芊(Shao-Chien Lai)
+categories: User
+...
+
+Contact Information
+------
+- email: ``shelly4132@gmail.com``
+- github: <a href="https://github.com/shelly4132" target="_blank">https://github.com/0140454</a>
+
+Education
+------
+- National Cheng Kung University, 國立成功大學 (2013.09 - now)
+    * Bachelor of Computer Science and Information Engineering, 資訊工程學系
+
+
+**2016秋季班 個人評量**
+====
+- Homework 1
+    * [開發紀錄(phonebook)](https://hackmd.io/AwMwTAnAjAJlBsBaALCA7Ml8IFZECN4dMYBTZADhAEMBmCG20oA=) / [github](https://github.com/shelly4132/phonebook) / [youtube link](https://www.youtube.com/watch?v=qgbJg83wzMA)
+  * [開發紀錄(raytracing)](https://hackmd.io/CYIwbGAcCMAMDsBaArAYwKbUQFgMxUQE4AzeJWAQ2WACZDlCxYRkg===?view#2016q3-homework1-raytracing) / [github](https://github.com/shelly4132/raytracing) / [youtube link](https://www.youtube.com/watch?v=ZXanEZ-hOW4)
+  * [開發紀錄(computing_pi)](https://hackmd.io/AwRgTAnApgHAZmAtCAbCAJogLCArAdkRgGZ8BjI49YldAI3XQyiA?view) / [github](https://github.com/shelly4132/compute-pi) / [youtube link](https://www.youtube.com/watch?v=f5IRzCfY4-Y)
+  * [開發紀錄(clz)](https://hackmd.io/KbBMEYFYGYBZoLQAZgHZUNrAbMBAjAY1QA4FJDJwATGQ6gTmnCA=?view)/ [github](https://github.com/shelly4132/clz-tests) / [youtube link]
+
+- Homework 2
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/OzCcCZQQwZgRgLQBMAsAjUCUGMBmnQAOOQhQwgVnTQDYBTEgBjqA?view) / [github](https://github.com/shelly4132/phonebook-concurrent) / [youtube link]
+
+- Homework 3
+    * [開發記錄(mergesort-concurrent)](https://hackmd.io/MwQwRgpiAcAMBmBaA7MALMxaBsAmArItLsNIgJwjACMI2yu02wEQA===?view) / [github](https://github.com/shelly4132/mergesort-concurrent) / [youtube link]
+
+- Homework 4 (分組)
+    * [開發紀錄(madreduce)](https://hackmd.io/s/Hkb-lXkyg) / [GitHub連結](https://github.com/HaoTse/mapreduce) / [YouTube link]
+        * 研究給定的 MapReduce 程式碼，思考 thread pool 設計的驗證和效能分析，提出改善機制
+        * 找出 MapReduce 的應用，將其中具體而微的案例，在給定的程式碼基礎上重新實作
+
+- Homework 5 (分組)
+    * [開發紀錄(jit-compiler)](https://hackmd.io/s/Sknf8sJgl) / [GitHub連結](https://github.com/HaoTse/jit-construct) /
+
+心得
+-------
+很高興這學期我有鼓起勇氣修這門課，以前的我對於這門課一直是充滿恐懼的，總覺得課程會非常非常的困難，自己一定負荷不來，還好這學期在同學的慫恿之下就修了。不過一開始就面對了一個禮拜要交四份作業、每天都寫作業寫到凌晨3、4點的震撼時，我滿多時候都有心生退縮的念頭，但咬著牙撐下來後就會發現收穫真的很大。不僅對 Linux 和 GitHub 比以往熟悉，還學到了許多關於程式優化和平行化處理的概念。 
+
+自我評量分數 (1 到 10 級分)
+-------
+- 8 級分
+
+- 雖然不是所有作業都有完成，但每週對於作業都有投入一定程度的努力
+- 但後面幾週因為還有其他科目要處理，就稍有怠惰了
