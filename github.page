@@ -171,5 +171,6 @@ Push: 將 Commit 送出去
 若想要熟悉 Git 指令
 ---------------------------
 以下是以 GUI 方式呈現指令所產生結果的網站:
+
 * [LearnGitBranching](http://pcottle.github.io/learnGitBranching/)
 * [Visualizing Git Concepts with D3](http://onlywei.github.io/explain-git-with-d3/)
