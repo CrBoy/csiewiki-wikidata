@@ -1049,6 +1049,7 @@ EXTI 使用前必須：
 GPIO 是讓開發者可藉由改變暫存器特定位置的資料內容，來控制各種周邊的硬體，或者藉由外部的輸入，來改變暫存器內容，讓硬體得知其變化後做反應
 
 在 STM32 的開發板上可以看到許多針腳，一般 STM32F429 的板子有 7 GPIO ports，分別是 Port A, B, C, D, E, F 和 G，每個 port 有自己的暫存器序列如下，各有 32 pins(對應 32 bits)：
+
     * GPIO port mode register (GPIOx_MODER)
     * GPIO port output type register (GPIOx_OTYPER)
     * GPIO port output speed register (GPIOx_OSPEEDR)
@@ -1060,6 +1061,7 @@ GPIO 是讓開發者可藉由改變暫存器特定位置的資料內容，來控
     * GPIO port configuration lock register (GPIOx_LCKR)
     * GPIO alternate function low register (GPIOx_AFRL)
     * GPIO alternate function high register (GPIOx_AFRH)
+
 例如當 GPIOx  的 `x` 是 A 時，表示我們現在存取的是 GPIO Port A 
 
 使用 GPIO 前，必須預先設定行爲和細節，以 stm32f429i_discovery.c 內的 LED 初始作業來看
