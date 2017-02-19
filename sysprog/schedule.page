@@ -6,8 +6,27 @@ toc: no
 
 - Instructor: [Jim Huang](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
     * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這就是專門和學生互動的)
-- 討論區: [https://www.facebook.com/groups/system.software2016/](https://www.facebook.com/groups/system.software2016/)
+- 討論區: [https://www.facebook.com/groups/system.software2017/](https://www.facebook.com/groups/system.software2017/)
 - 課程信箱: `<embedded.master2015@gmail.com>`
+
+作業系統設計與實作 (Spring 2017)
+------------------------------------------------------
+* 第 1 週 (Feb 21): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
+    - [課程簡介和注意須知](https://docs.google.com/presentation/d/1eztX6zH26fTaGS5_c4nydp1rE-7UNzhzkx4EPn26B9c/edit#slide=id.p)
+    - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
+    - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
+    - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
+    - [本學期作業說明](https://hackmd.io/s/B1DmtJfT)
+    - [隨堂測驗](https://hackmd.io/s/r13u0Af6)
+    - [作業](https://hackmd.io/s/H1B7-hGp) (截止日: Mar 4)
+        * [phonebook](https://hackmd.io/s/S1RVdgza), [raytracing](https://hackmd.io/s/B1W5AWza), [compute-pi](https://hackmd.io/s/rJARexQT), [clz](https://hackmd.io/s/B1LHefQ6)
+
+* 第 2 週 (Feb 28): 重新理解電腦結構
+    - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc))
+    - [Modern Microprocessors A 90 Minute Guide!](http://www.lighterra.com/papers/modernmicroprocessors/) (必讀)
+    - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
+    - [在計算機裡頭實踐演算法](https://hackmd.io/s/HyKtIPN0)
+
 
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
