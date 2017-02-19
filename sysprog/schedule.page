@@ -13,7 +13,7 @@ toc: no
 ------------------------------------------------------
 * 第 1 週 (Feb 21): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/1eztX6zH26fTaGS5_c4nydp1rE-7UNzhzkx4EPn26B9c/edit#slide=id.p)
-    - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
+    - [21 世紀的系統軟體](https://hackmd.io/s/BkeL-hLtg): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6)
     - [2017 年秋季作業說明](https://hackmd.io/s/Bk-1zqIte)
