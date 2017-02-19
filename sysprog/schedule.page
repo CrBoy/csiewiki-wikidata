@@ -16,7 +16,7 @@ toc: no
     - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6)
-    - [本學期作業說明](https://hackmd.io/s/Bk-1zqIte)
+    - [2017 年秋季作業說明](https://hackmd.io/s/Bk-1zqIte)
     - [隨堂測驗](https://hackmd.io/s/r13u0Af6)
     - [作業](https://hackmd.io/s/H1B7-hGp) (截止日: Mar 4)
         * [phonebook](https://hackmd.io/s/S1RVdgza), [raytracing](https://hackmd.io/s/B1W5AWza), [compute-pi](https://hackmd.io/s/rJARexQT), [clz](https://hackmd.io/s/B1LHefQ6)
