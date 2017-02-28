@@ -26,6 +26,8 @@ toc: no
     - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://paper.dropbox.com/doc/Computer-Architecture-Notes-NfGP1aZt2pAkgTcFeiEmc))
     - [Modern Microprocessors A 90 Minute Guide!](http://www.lighterra.com/papers/modernmicroprocessors/) (必讀)
         * [重點提示和解說](https://hackmd.io/s/Hk2CscGcl)
+    - 作業
+      * [introspect](https://hackmd.io/s/SyFpOZQqx)
 
 * 第 3 週 (Mar 7): 效能改善，從掌握計算機組織開始
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
