@@ -30,7 +30,7 @@ toc: no
    - [Heap](#Heap)
    - [Slab Allocator](#Slab Allocator)
 * [Device File Systestem](#Device File Systestem)
-   - [RTT的應用層接口實作](#RTT的應用層接口實作)
+   - [RTT的應用層介面實作](#RTT的應用層介面實作)
    - [DFS框架的組成內容](#DFS框架的組成內容)
    - [RTT文件系統初始化過程](#RTT文件系統初始化過程)
 
@@ -613,7 +613,7 @@ rt\_free\_sethook(func);
 Device File System
 ------------------
 
-RTT的應用層接口實作
+RTT的應用層介面實作
 ------------------
 
 提供API給應用層開發者使用，源碼在.\components\dfs\src\dfs_posix.c, 提供的API包括：
@@ -666,7 +666,7 @@ DFS框架的組成內容
         rt_device_t dev_id;  //此FS對應的ID 
   
         char *path;          //此FS的掛載點  
-        const struct dfs_filesystem_operation *ops; //此FS對應的操作接口集，指向filesystem_operation_table對應的表项  
+        const struct dfs_filesystem_operation *ops; //此FS對應的操作介面集，指向filesystem_operation_table對應的表项  
   
         void *data;            //FS的數據
     };  
