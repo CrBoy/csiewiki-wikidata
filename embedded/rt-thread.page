@@ -152,7 +152,7 @@ Running VMM on BeagleBone Black
 
 [編譯錯誤解決方法 - 加入ARM()巨集]
 
-```
+```C
  #if defined(CONFIG_CPU_V6)
         ldr     r0, [sp]
         strex   r1, r2, [sp]                    @ clear the exclusive monitor
@@ -325,8 +325,8 @@ Heap
 
 較簡單的記憶體管理器，使用 free list 串接可用記憶體，並以 first fit
 策略尋找，為了減輕碎片化的問題，加上了最小區塊的限制。
-```
-    #define RT\_MEMHEAP\_MINIALLOC 12
+```C
+#define RT\_MEMHEAP\_MINIALLOC 12
 ```
 
 Slab Allocator
@@ -341,21 +341,21 @@ slab
 
 假設原本產生新的動態物件的流程如下:
 
-```
+```C
        obj = allocate(sizeOfObject);
        construct(obj);
 ```
 
 使用完畢後的清理:
 
-```
+```C
        destruct(obj);
        deallocate(obj);
 ```
 
 Slab Allocator 的作法則是這樣:
 
-```
+```C
        if(there's an object in cache){
            take(); // already constructed
        }else{
@@ -366,7 +366,7 @@ Slab Allocator 的作法則是這樣:
 
 至於清理則是：
 
-```
+```C
        return to cache; // not destructed
 ```
 
@@ -627,7 +627,7 @@ DFS框架的組成內容
 ------------------
 * filesystem_operation_table：每一個table表示一個FS對應的一套操作函數及相關屬性，不管是什麼FS其操作函數的形式是一致的
 
-```
+```C
     /* File system operations struct */  
     struct dfs_filesystem_operation  
     {  
@@ -659,7 +659,7 @@ DFS框架的組成內容
 
 * filesystem_table：此table記錄已掛載的FS，每一個table表示掛載的的一个FS
 
-```
+```C
     /* Mounted file system */  
     struct dfs_filesystem  
     {  
@@ -694,7 +694,7 @@ DFS框架的組成內容
 ------------------
 * DFS架構初始化(最頂層)
 
-```
+```C
     void dfs_init(void)  
     {  
        //清空filesystem_operation_table、filesystem_table、fd_table
@@ -715,7 +715,7 @@ DFS框架的組成內容
 
 * 具體的FS初始化(中間層)，以ELMFAT文件系統爲例：
 
-```
+```C
     int elm_init(void)
     {  
         /* register fatfs file system */  
@@ -775,7 +775,7 @@ rt_sd_init/open/clode/read/write/control，開始可以是空函數(返回類型
 
 * 掛載FS(將各層具體關聯起來)
 
-```
+```C
     /* mount SPI flash as root directory */  
         if (dfs_mount("flash0", "/", "elm", 0, 0) == 0)  //掛載名爲elm的FS，該FS對應的設備名为flash0，掛載點爲/
         {  
