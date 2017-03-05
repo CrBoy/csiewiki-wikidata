@@ -308,14 +308,12 @@ mp\_pool，以便在需要歸還時能夠找到對應的 rt\_mempool。
 -  一個全新的 rt\_mempool 示意圖，其中左邊的 block
    可以是靜態記憶體(rt\_mp\_init)、或是從 heap 中拿取(rt\_mp\_create)，
 
-.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766635817_Reg1-6.png
-   :alt: 
+![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766635817_Reg1-6.png)
 
 -  假設經過幾次 allocate / free 後，中間兩個 block 目前被程式使用中。
 -  因為還有空閒物件，thread\_objects 為空。
 
-.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766694494_Reg1-6.png
-   :alt: 
+![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433766694494_Reg1-6.png)
 
 **對 Real-time 能力的影響**
 
@@ -390,8 +388,7 @@ allocater，也可以針對所有種類的
 一個 "slab" 是一個 page 大小，在這裡指的是 4k：(在 RT-Thread 中則是
 slab\_zone)
 
-.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434029743241_Reg1-6.png
-   :alt: 
+![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434029743241_Reg1-6.png)
 
 其中若 buf 處於 free 的狀態，其最後面一個 word 的空間用來放置指標指向
 free-
@@ -459,8 +456,7 @@ Q: What does line length mean?
 
 -  [ ](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html)_\ http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0198e/Cheeecjc.html
 
-.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737577888_Reg1-6.png
-   :alt: 
+![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1433737577888_Reg1-6.png)
 
 |image0|
 
@@ -568,8 +564,7 @@ zoom\_limit = min( zone\_size / 4 , ZONE\_LIMIT
        < 16384    ->  補到 1024 byte 倍數   |        64 ~ 72
 ```
 
-.. figure:: https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434740946804_slab.png
-   :alt: 
+![](https://hackpad-attachments.s3.amazonaws.com/rt-thread.hackpad.com_PpK8VwT14da_p.378129_1434740946804_slab.png)
 
 **總結**
 
