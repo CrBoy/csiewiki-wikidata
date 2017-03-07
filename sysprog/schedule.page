@@ -32,6 +32,7 @@ toc: no
 * 第 3 週 (Mar 7): 效能改善，從掌握計算機組織開始
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
     - [在計算機裡頭實踐演算法](https://hackmd.io/s/HyKtIPN0)
+    - [論文 When Prefetching Works, When It Doesn’t, and Why 重點提示和解說](https://hackmd.io/s/HJtfT3icx)
 
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
