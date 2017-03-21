@@ -47,6 +47,11 @@ toc: no
     - [作業](https://hackmd.io/s/r1lxtzpOig) (截止日: Mar 27)
         * [phonebook-concurrent](https://hackmd.io/s/rkOExTOoe), [mergesort-concurrent](https://hackmd.io/s/B1xV_p_jl), [microarch](https://hackmd.io/s/r1Olsp_og)
 
+* 第 5 周 (Mar 21): 並行程式設計
+    - 近期活動: [手機裡的 ARM 處理器: 架構和指令集](https://www.facebook.com/events/1913208585629605/)
+    - [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
+    - 預習: [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
+
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
 * 第 1 週 (Sep 23): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
