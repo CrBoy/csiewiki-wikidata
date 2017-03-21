@@ -57,7 +57,7 @@ toc: no
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     - 預習: [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
 ```C
-#include <stdint .h>
+#include <stdint.h>
 #define MAGIC1 0x100                                                            
 #define MAGIC2 "\0\xff" 
 #define IS_XXX (*(uint16_t *) MAGIC2 < MAGIC1)
