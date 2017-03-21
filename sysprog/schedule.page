@@ -48,7 +48,7 @@ toc: no
         * [phonebook-concurrent](https://hackmd.io/s/rkOExTOoe), [mergesort-concurrent](https://hackmd.io/s/B1xV_p_jl), [microarch](https://hackmd.io/s/r1Olsp_og)
 
 * 第 5 周 (Mar 21): 並行程式設計
-    - 近期活動: [手機裡的 ARM 處理器: 架構和指令集](https://www.facebook.com/events/1913208585629605/)
+    - 近期活動: [手機裡的 ARM 處理器: 架構和指令集](https://www.facebook.com/events/1913208585629605/), [作業系統概念: Concurrency 程式設計篇 (2)](https://www.facebook.com/events/428684527477530/)
     - [第 3 週作業回顧](https://hackmd.io/s/HkbFAHRjl)
     - [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
     - 案例分析: [Linaro Cortex String benchmark for ARMv8](https://wiki.linaro.org/WorkingGroups/Kernel/ARMv8/cortex-strings)
