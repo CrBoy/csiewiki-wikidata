@@ -53,6 +53,7 @@ toc: no
     - [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
     - 案例分析: [Linaro Cortex String benchmark for ARMv8](https://wiki.linaro.org/WorkingGroups/Kernel/ARMv8/cortex-strings)
         * [ssvb/tinymembench](https://github.com/ssvb/tinymembench); [hglm/test-arm-kernel-memcpy](https://github.com/hglm/test-arm-kernel-memcpy)
+    - [inline assembly 中文解說](https://hackmd.io/s/S1-0Ymqsg)
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     - 預習: [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
 
