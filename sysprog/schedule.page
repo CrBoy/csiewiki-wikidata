@@ -34,7 +34,7 @@ toc: no
     - [SIMD Programming Introduction](https://goo.gl/Rc8xPE)
     - [在計算機裡頭實踐演算法](https://hackmd.io/s/HyKtIPN0)
     - [論文 When Prefetching Works, When It Doesn’t, and Why 重點提示和解說](https://hackmd.io/s/HJtfT3icx)
-    - [Code Review: Week1](https://hackmd.io/OwYwjALARiDMCGBaAbMZAzRECmykA4p8RFsQIx1UAGWATmiA)
+    - [Code Review: Homework1](https://hackmd.io/OwYwjALARiDMCGBaAbMZAzRECmykA4p8RFsQIx1UAGWATmiA)
     - [作業](https://hackmd.io/s/HkYlSCJil) (截止日: Mar 20)
         * [software-pipelining](https://hackmd.io/s/rks62p1sl)
 
@@ -49,6 +49,7 @@ toc: no
 
 * 第 5 周 (Mar 21): 並行程式設計
     - 近期活動: [手機裡的 ARM 處理器: 架構和指令集](https://www.facebook.com/events/1913208585629605/)
+    - [第 3 週作業回顧](https://hackmd.io/s/HkbFAHRjl)
     - [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
     - 案例分析: [Linaro Cortex String benchmark for ARMv8](https://wiki.linaro.org/WorkingGroups/Kernel/ARMv8/cortex-strings)
         * [ssvb/tinymembench](https://github.com/ssvb/tinymembench); [hglm/test-arm-kernel-memcpy](https://github.com/hglm/test-arm-kernel-memcpy)
