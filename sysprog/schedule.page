@@ -63,6 +63,7 @@ toc: no
 #define IS_XXX (*(uint16_t *) MAGIC2 < MAGIC1)
 ```
     - [作業](https://hackmd.io/s/ryPKJUm2l) (截止日: Apr 8)
+        * [matrix](https://hackmd.io/s/rkrrpHm2e)
 
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
