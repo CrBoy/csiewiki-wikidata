@@ -70,8 +70,7 @@ Task state
 
 include/nuttx/sched.h
 
-.. code-block:: c
-
+```
  enum tstate_e
  {
      TSTATE_TASK_INVALID    = 0, /* INVALID      - The TCB is uninitialized */
@@ -92,7 +91,7 @@ include/nuttx/sched.h
   #endif
      NUM_TASK_STATES             /* Must be last */
  };
-
+```
 
 Register
 ---------
@@ -109,8 +108,8 @@ Communication
  | sem_wait
  | sem_wait的主程式碼分為兩個部份，如果counter > 0，代表semaphore可以被hold，sem_wait會將task加入holder list
  | 否則sem_wait會block task，等待sem_hold unblock task，然後sem_wait再將task加入holder list
-.. code-block:: c
 
+```
  if (sem->semcount > 0)
  {
  	sem->semcount--;
@@ -118,7 +117,6 @@ Communication
  	rtcb->waitsem = NULL;
  	ret = OK;
  }
- 
  else
  {
  	sem->semcount--;
@@ -132,15 +130,14 @@ Communication
  		ret = OK;
  	}
  }
- 
+``` 
 
 ------------------------------------------------------------
 
  | sem_post
  | 一般而言，sem_post會在一個task要離開critical section的時候被呼叫
  | 它會先呼叫sem_releaseholder，然後檢查counter是否<= 0，若是，代表還有task在等semaphore，sem_post會找到waiting list的下一個task，unblock它
-.. code-block:: c
-
+```
  if (sem)
  {
  	sem_releaseholder(sem);
@@ -155,7 +152,8 @@ Communication
  		}
  	}
   }
- 
+```
+
 ----------------------------------------------------------
 
  | Mutex
@@ -168,8 +166,7 @@ Communication
  |
  | pthread_mutexinit.c
  
-.. code-block:: c
-
+```
   int pthread_mutex_init(FAR pthread_mutex_t *mutex, FAR pthread_mutexattr_t *attr)
   {
   	:
@@ -178,14 +175,13 @@ Communication
   	:
   	:
   }
-
+```
 
 ------------------------------------------------
 
  | phread_mutexlock.c
 
-.. code-block:: c
-
+```
  int pthread_mutex_lock(FAR pthread_mutex_t *mutex)
  {
  	:
@@ -197,13 +193,13 @@ Communication
          	mutex->pid    = mypid;
         }
  }
+```
 
 -------------------------------------------------
 
  | pthread_initalize.c
 
-.. code-block:: c
-
+```
  int pthread_takesemaphore(sem_t *sem)
  {
  	if (sem)
@@ -218,9 +214,9 @@ Communication
  	}
  
  }
+```
 
-.. code-block:: c
-
+```
  int pthread_givesemaphore(sem_t *sem)
  {
  	if (sem)
@@ -241,13 +237,13 @@ Communication
  		return ERROR;
  	}
  }
+```
 
 ---------------------------------------------------------
 
  | pthread_mutexunlock.c
 
-.. code-block:: c
-
+```
  int pthread_mutex_unlock(FAR pthread_mutex_t *mutex)
  {
  	:
@@ -265,15 +261,13 @@ Communication
  	}
  	return ret;
  }
+```
 
- 
- 
+
 Scheduling
 ----------------
 include/sys/types.h
-
-.. code-block:: c 
-
+```
  /* HPUX-like MIN/MAX value */
  
  #define PRIOR_RR_MIN      0
@@ -290,7 +284,8 @@ include/sys/types.h
  #define SCHED_PRIORITY_DEFAULT 100
  #define SCHED_PRIORITY_MIN       1
  #define SCHED_PRIORITY_IDLE      0
- 
+```
+
 | 1. RR 時間間隔是 20 ticks 做一次 context switch。
 | 觀看每個設定time slice的相關檔案其運算是皆為 timeslice = CONFIG_RR_INTERVAL / MSEC_PER_TICK 
 | 在 nuttx/include/nuttx/config.h 中
@@ -317,8 +312,7 @@ Processor Exceptions (vectors 0-15)
 
 包括Internal和Software Interrupts，設定在nuttx/arch/arm/src/chip/stm32_irq.c:void up_irqinitialize(void)
 
-.. code-block:: c
-
+```
  //nuttx/arch/arm/include/stm32/irq.h
  #define STM32_IRQ_RESERVED       (0) /* Reserved vector (only used with CONFIG_DEBUG) */
                                       /* Vector  0: Reset stack pointer value */
@@ -333,13 +327,12 @@ Processor Exceptions (vectors 0-15)
                                      /* Vector 13: Reserved */
  #define STM32_IRQ_PENDSV        (14) /* Vector 14: Pendable system service request */
  #define STM32_IRQ_SYSTICK       (15) /* Vector 15: System tick */
+```
  
 External interrupts (vectors >= 16) 
 
 外部中斷，設定在nuttx/arch/arm/src/stm32/chip/stm32f40xxx_vectors.h
-
-.. code-block:: c
-
+```
  //nuttx/arch/arm/include/stm32/stm32f40xxx_irq.h
  #define STM32_IRQ_WWDG        (STM32_IRQ_INTERRUPTS+0)  /* 0:  Window Watchdog interrupt */
  #define STM32_IRQ_PVD         (STM32_IRQ_INTERRUPTS+1)  /* 1:  PVD through EXTI Line detection interrupt */
@@ -348,13 +341,10 @@ External interrupts (vectors >= 16)
  #define STM32_IRQ_RTC_WKUP    (STM32_IRQ_INTERRUPTS+3)  /* 3:  RTC global interrupt */
  #define STM32_IRQ_FLASH       (STM32_IRQ_INTERRUPTS+4)  /* 4:  Flash global interrupt */
  .
- .
- .
+```
 
 如何設定Interrupt Handler?
-
-.. code-block:: c
-
+```
  //irq_attach(STM32_IRQ_SVCALL, up_svcall); //System Call
 
  //nuttx/sched/irq_attach.c
@@ -370,7 +360,7 @@ External interrupts (vectors >= 16)
    irqrestore(state);
    ret = ok;
  }
-
+```
 
 Interrupt Handling的分層架構
 
@@ -382,8 +372,7 @@ Interrupt Handling的分層架構
 
 STM32_IRQ_SYSTICK
 
-.. code-block:: c
-
+```
  //(void)irq_attach(STM32_IRQ_SYSTICK, (xcpt_t)up_timerisr);
  //up_exception.S -> up_doirq(int irq, uint32_t *regs)-> irq_dispatch(int irq, FAR void *context) -> up_timerisr(int irq, uint32_t *regs) -> sched_process_timer(void) -> sched_process_timeslice()
  static void sched_process_timeslice(void)
@@ -407,6 +396,7 @@ STM32_IRQ_SYSTICK
  		}
  	}
   }
+```
 
 Configuring High Priority Interrupts
 
@@ -414,8 +404,7 @@ How do you specify a high priority interrupt? if CONFIG_ARCH_RAMVECTORS=y, then 
 
 int up_ramvec_attach(int irq, up_vector_t vector). That interface can be used to attach your C interrupt handler to the vector at run time.
 
-.. code-block:: c
-
+```
  //up_vector_t g_ram_vectors[ARMV7M_VECTAB_SIZE]  __attribute__((section(".ram_vectors"))); //Using a RAM-based vector table
  //void up_ramvec_initialize(void) //Copy vectors to RAM an configure the NVIC to use the RAM vectors.
  int up_ramvec_attach(int irq, up_vector_t vector) //Configure the ram vector table so that IRQ number 'irq' will be dipatched by hardware to 'vector'
@@ -436,7 +425,7 @@ int up_ramvec_attach(int irq, up_vector_t vector). That interface can be used to
  	}
  	return ret;
  }
-
+```
 
 
 FPU
@@ -444,8 +433,7 @@ FPU
 | arch/arm/src/armv7-m/up_fpu.S
 | 儲存 fpu 的 context switch
 
-.. code-block:: c
-
+```
  up_savefpu:
  
  	add		r1, r0, #(4*REG_S0)		/* R1=Address of FP register storage */
@@ -529,14 +517,10 @@ FPU
  	bx		lr
  
  	.size	up_savefpu, .-up_savefpu
+```
 
-
-
- 
 | 載回 fpu 的 context switch 
-
-.. code-block:: c
-
+```
  up_restorefpu:
  
  	add		r1, r0, #(4*REG_S0)		/* R1=Address of FP register storage */
@@ -625,7 +609,7 @@ FPU
  
  	.size	up_restorefpu, .-up_restorefpu
  #endif /* CONFIG_ARCH_FPU */
- 
+``` 
 
 | /nuttx/arch/arm/include/armv7-m/irq.h
 | struct xcptcontext
