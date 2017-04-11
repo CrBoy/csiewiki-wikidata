@@ -11,3 +11,10 @@ toc: no
 4. 在華人世界唯一的開源操作系統研討會 OS2ATC 2016 (12 月/北京) 發表新的 IoT 作業系統 (呂紹榕)
 5. 在 FOSDEM 2017 (歐洲乃至於世界上最大的自由軟體/開放原始碼會議) 發表嶄新的 IoT 作業系統核心 (呂紹榕)
 6. 在 Linux Foundation 舉辦的 Embedded Linux Conference 2017 發表即時 Linux 效能分析工具並提出改善方案 (楊宗凡)
+
+# 新的開放原始碼專案
+1. [Puyuma](https://github.com/Puyuma): 低價低功耗完全開放原始程式碼的無人車解決方案
+2. [F9 microkernel](https://github.com/f9micro): 兼顧安全和效能的 IoT 作業系統核心
+3. [mini-arm-os](https://github.com/jserv/mini-arm-os): 具體而微的教學用作業系統核心
+4. [AMaCC](https://github.com/jserv/amacc): 世界最小用於 C 語言的 ARM 編譯器
+5. [Dozen Cloud](http://dozencloud.org/): 適用於 ARM 的 OpenStack 基礎建設
