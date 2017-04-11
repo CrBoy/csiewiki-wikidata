@@ -8,6 +8,7 @@ toc: no
 
 # 參加頂尖的技術研討會，並發表開源成果
 1. 在 Linux Foundation 舉辦的 [OpenIoT Summit 2016](http://events.linuxfoundation.org/events/archive/2016/openiot-summit) (4 月/加州) 發表 uVisor 成果 (張家榮)
+    * 講題: [uVisor Debugging Facility Improvements for ARM mbed](https://events.linuxfoundation.org/sites/events/files/slides/mbed-uvisor.pdf)
 2. 在 Linux Foundation 舉辦的 [LinuxCon Japan 2016](http://events.linuxfoundation.org/events/archive/2016/linuxcon-japan) (7 月/日本) 發表 Linux container 成果 (高魁良)
 3. 在開源機器人領域最頂級的研討會 ROScon 2016 (10 月/韓國) 發表低成本自走車 (鄭聖文等人)
 4. 在華人世界唯一的開源操作系統研討會 OS2ATC 2016 (12 月/北京) 發表新的 IoT 作業系統 (呂紹榕)
