@@ -10,10 +10,14 @@ toc: no
 1. 在 Linux Foundation 舉辦的 [OpenIoT Summit 2016](http://events.linuxfoundation.org/events/archive/2016/openiot-summit) (4 月/加州) 發表 uVisor 成果 (張家榮)
     * 講題: [uVisor Debugging Facility Improvements for ARM mbed](https://events.linuxfoundation.org/sites/events/files/slides/mbed-uvisor.pdf)
 2. 在 Linux Foundation 舉辦的 [LinuxCon Japan 2016](http://events.linuxfoundation.org/events/archive/2016/linuxcon-japan) (7 月/日本) 發表 Linux container 成果 (高魁良)
+    * 講題: [Dynamically Hacking the Kernel with Containers](https://events.linuxfoundation.org/sites/events/files/slides/talk_7.pdf)
 3. 在開源機器人領域最頂級的研討會 ROScon 2016 (10 月/韓國) 發表低成本自走車 (鄭聖文等人)
 4. 在華人世界唯一的開源操作系統研討會 OS2ATC 2016 (12 月/北京) 發表新的 IoT 作業系統 (呂紹榕)
+    * 講題: [BitSec: Secure Microkernel](http://soft.cs.tsinghua.edu.cn/os2atc2016/ppt/hjq.pdf)
 5. 在 FOSDEM 2017 (歐洲乃至於世界上最大的自由軟體/開放原始碼會議) 發表嶄新的 IoT 作業系統核心 (呂紹榕)
+    * 講題: [Secure Microkernel for Deeply Embedded Devices](https://fosdem.org/2017/schedule/event/microkernel_microkernel_for_embedded_devices/)
 6. 在 Linux Foundation 舉辦的 Embedded Linux Conference 2017 發表即時 Linux 效能分析工具並提出改善方案 (楊宗凡)
+    * 講題: [Effectively Measure and Reduce Kernel Latencies for Real-time Constraints](https://events.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf)
 
 # 新的開放原始碼專案
 1. [Puyuma](https://github.com/Puyuma): 低價低功耗完全開放原始程式碼的無人車解決方案
