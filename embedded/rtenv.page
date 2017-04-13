@@ -171,8 +171,7 @@ task
 ==========
 rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
 
- .. code-block:: c
-
+```C
     struct task_control_block {
         struct user_thread_stack *stack;  // 指到記憶體中 stack 的位置
         int pid; //記錄目前 task 的 pid
@@ -189,7 +188,7 @@ rtenv-plus 中的 task 以 ``task_control_block`` 來呈現其資訊。
     #define TASK_WAIT_WRITE 2
     #define TASK_WAIT_INTR  3
     #define TASK_WAIT_TIME  4
-    
+```
 
 - ``struct task_control_block *current_tcb``：
   此 global variable 用來指向當前執行的 task 的 tcb 的頭（struct user_thread_stack *stack），
@@ -202,8 +201,7 @@ init_task
 
 - 運作：
 
- .. code-block:: c
-
+```C
     /* 傳入的參數為：欲初始化的 stack pointer, 與初始的 function 位置 */
     unsigned int *init_task(unsigned int *stack, void (*start)())
     {
@@ -226,6 +224,7 @@ init_task
         /* 回傳新的 sp 給該 task */
         return stack;
     }
+```
 
 POSIX thread
 =============
@@ -236,8 +235,7 @@ pthread -> task -> kernel
 
 - ``void task_exit(void* ptr)``
  
-.. code-block:: c
-
+```C
     _disable_irq();  //利用將 current_tcb 的 list 從 ready list 移除，並且將現在的 tcb 的 inuse設為0表示task 為沒使用的狀態，最後進到while(1) 等待下一次systick exception 作context switch 後將永遠不會再選到這個 task。
     list_remove(&current_tcb->list);         
     /*  Never context switch here   */
@@ -246,7 +244,7 @@ pthread -> task -> kernel
     _enable_irq();
         
     while(1);
-
+```
 
 建立與執行task
 =============
@@ -288,26 +286,25 @@ list
 - Macro：
   - ``list_entry``：取得該 list node 所屬的 structure 或 union variable 的位址。
 
-  .. code-block:: c
-
+```C
     #define list_entry(list, type, member) \
         (container_of((list), type, member))
     #define container_of(ptr, type, member) \
         ((type *)(((void *)ptr) - offsetof(type, member)))
+```
 
   Macro ``offsetof( type, member )`` 會以 bytes 的形式回傳指定 member 在 type 指定的 structure 或 union 的位置。如：
 
-  .. code-block:: c
-
+```C
     struct foo {
         int a;
         int b;
     };
+```
 
-  則 offsetof( foo, a ) 會回傳 0，offsetof( foo, b ) 會回傳 4。看到 TCB 的設計:
+則 offsetof( foo, a ) 會回傳 0，offsetof( foo, b ) 會回傳 4。看到 TCB 的設計:
 
-  .. code-block:: c
-
+```C
     struct task_control_block {
         struct user_thread_stack *stack;
         int pid;
@@ -317,6 +314,7 @@ list
     
         struct list list;
     };
+```
 
   使用 ``task = list_entry(curr, struct task_control_block, list);`` 傳入 list node 的位址減去 list node 在 structure 中的 byte 位置，就會得到該 structure 第一個元素的起始位址，同時也是該 structure 變數的位址。
 
@@ -327,9 +325,9 @@ scheduler
 ==========
 rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler 的資料結構，``ready_list`` 的每一個元素都對應到不同優先權。
 
-  .. code-block:: c
-
+```C
     struct list ready_list[PRIORITY_LIMIT + 1];
+```
 
   ![](/embedded/rtenv-plus/ready_list_array.png)
 
@@ -346,9 +344,9 @@ rtenv-plus maintain 一個 global 的 list 陣列 ``ready_list``，為 scheduler
 
   - ``SysTick_Handler``：STM32F4 系統時鐘預設為 168MHz
 
-  .. code-block:: c
-
+```C
     SysTick_Config(configCPU_CLOCK_HZ / configTICK_RATE_HZ);
+```
 
 configCPU_CLOCK_HZ 為 72MHz，
 configTICK_RATE_HZ 為 100，
@@ -360,21 +358,21 @@ configTICK_RATE_HZ 為 100，
 當 rtenv-plus 分配給 task 的執行時間到了，且正在執行的 task 之優先權所對應到的 ``ready_list`` 元素，最前端為正在執行的 task，
 則將該 task 放到 ``ready_list`` 元素的最末端，讓其他有相同優先權的 task 能夠被執行。
 
-  .. code-block:: c
-
+```C
     task = &tasks[current_task];
     if (timeup && ready_list[task->priority].next == &task->list)
         list_push(&ready_list[task->priority], &tasks[current_task].list);
+```
 
 每次 scheduler 在選擇下一個要執行的 task，會從 ``ready_list`` 中尋找優先權最大且最前端的 task。
 
-  .. code-block:: c
-
+```C
     for (i = 0; list_empty(&ready_list[i]); i++); // 尋找非空的 ready_list。
     
     list = ready_list[i].next; // 將 list 指到 ready_list[i].next 所指的 `struct list`，這個 list 會指到某一個 struct task 裡頭的 struct list。
     task = list_entry(list, struct task_control_block, list); // 將 task 指到上面講的 struct task
     current_task = task->pid; // 記錄這個 task 的 pid
+```
 
 由上述可知道 rtenv-plus 是一個使用 round-robin 排程的 preemptive 作業系統
 
@@ -409,8 +407,7 @@ PendSV實作
 
 當要call PendSV前，要先使PendSV pending，藉由設定ICSR (Interrupt Control and State Register)。
 
-  .. code-block:: c
-
+```C
     void __attribute__((naked)) set_pendsv()
     {
     __asm volatile(
@@ -421,12 +418,12 @@ PendSV實作
         "bx lr                  \n"
     );   
     }
+```
 
 當所有exception handler都exception return後 (意即沒有active的exception)，此時處於pending的
 PendSV會開始執行其hadler:
 
-  .. code-block:: c
-
+```C
     PendSV_Handler:
       // 必須先關閉所有interrupt避免context switch途中遭中斷。                                                                                                      
       cpsid i
@@ -455,7 +452,7 @@ PendSV會開始執行其hadler:
       cpsie i
       // exception return
       bx lr
-
+```
 
 System Call
 ============
@@ -620,29 +617,27 @@ File Descriptor
 
 - file_request：task 對於 fd 的請求，或是 fd 對 fd 的請求
 
-  .. code-block:: c
-
+```C
     struct file_request {
         struct task_control_block *task;
         char *buf;        // 請求所需的資料，可以是 buffer 或是 其他 request 的資料結構
         int size;         // *buf 的大小
         int whence;       // 用於 lseek，標記 lseek 的請求類型
     };
-
+```
 
 - file：file descriptor 的 fd number 以及所屬的處理函式
 
-  .. code-block:: c
-
+```C
     struct file {
         int fd;          // 獨特的 fd number
         struct file_operations *ops;     // 指向所屬的處理函式結構
     };
+```
 
 - file_operations：利用 pointer to function 來設置處理函式
 
-  .. code-block:: c
-
+```C
     struct file_operations {
         int (*readable)(struct file*, struct file_request*, struct event_monitor *);
         int (*writable)(struct file*, struct file_request*, struct event_monitor *);
@@ -651,7 +646,7 @@ File Descriptor
         int (*lseekable)(struct file*, struct file_request*, struct event_monitor *);
         int (*lseek)(struct file*, struct file_request*, struct event_monitor *);
     };
-
+```
 
 **file descriptor 關係**
 
@@ -665,8 +660,7 @@ File Descriptor
 - IPC 的實作方式之一。
 - 資料結構
 
-  .. code-block:: c
-
+```C
     struct pipe_ringbuffer {
         struct file file;      // 所屬的 fd 以及 file operations
         int start;             // ring buffer 目前的讀寫起點
@@ -675,6 +669,7 @@ File Descriptor
         int write_event;       // 該 fd 所屬的 write event ID
         char data[PIPE_BUF];   // pipe 的 buffer，ring buffer
     };
+```
 
 - Event Handler
   - ``int pipe_read_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``：
@@ -741,8 +736,7 @@ File Descriptor
 - 特性：資料的讀寫以 block 為單位，大小不定，小至1，大至 fd 所提供的 buffer 大小。當需要從硬體讀取資料時，會將一整塊資料放入緩衝區裡，系統在從緩衝區裡取得資料；寫回時也會先將資料放在緩衝區，直到資料滿了在一次寫進硬體中。[#]_
 - 資料結構
 
-  .. code-block:: c
-
+```C
     struct block {
         struct file file;           // 所屬的 fd 以及 block file operations
         int driver_pid;              // 所屬 driver ( 就是將此 fd 註冊為 S_IFBLK 的 task ) 的 pid
@@ -766,6 +760,7 @@ File Descriptor
         int size;      // lseek 為指定的讀寫起點；read 和 write 則為讀寫大小
         int pos;       // 詳見 block_request_****able 條目
     };
+```
 
 - Event Handler: ``block_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
 
@@ -790,13 +785,12 @@ File Descriptor
 
 - ``block_response``：將指定資料傳送到指定的 block file descriptor，透過這些資訊 file descriptor 可以從 block file 取得資料。
 
-  .. code-block:: c
-
+```C
     struct block_response response = {
         .transfer_len = len,  // 請求讀取的長度
         .buf = buf            // 請求資料的起點
     };
-
+```
 
 以下將以對 block file 執行 lseek、write、read 指令所牽涉的過程來探討：
 
@@ -804,14 +798,14 @@ File Descriptor
   1. ``void lseek(int fd, int offset, int whence);``： **fd** 為對象 file descriptor 的 ID；**offset** 為距離檔案起點的位置( in bytes )；**whence** 可以指定使用哪一種設置方式( SEEK_SET, SEEK_CUR, SEEK_END )。
   2. 透過 system call 將請求資訊放到 file_request，並傳送給對象 fd。
 
-  .. code-block:: c
-
+```C
     struct file_request {
         struct task_control_block *task;   // 為請求的 task
         char *buf;     // NULL
         int size;      // offset
         int whence;    // whence：SEEK_SET、SEEK_CUR、SEEK_END
     };
+```
 
   3. 由於請求的 task 非 driver，所以進行 block_request_lseekable。由於是第一次請求，所以透過 IPC 向 driver 送出 block_request ( 包在 file_request 中 )，並等待 driver 的處理。
 
@@ -821,14 +815,14 @@ File Descriptor
     + SEEK_END：將讀寫頭設定在 block file 結尾 (EOF) 後 ``offset`` bytes 的位置
     + SEEK_CUR：將讀寫頭設定在 block file 的目前讀寫頭後 ``offset`` bytes 的位置
 
-  .. code-block:: c
-
+```C
     struct file_request {
         struct task_control_block *task;   // driver
         char *buf;     // NULL
         int size;      // 相對於 block file 起點的位置
         int whence;    // SEEK_SET
     };
+```
 
   5. 現在是由 driver 發出 lseek 的請求，也確認此 fd 正有請求要處理後，執行 ``block_driver_lseek``。block_driver_lseek 會將欲設定讀寫頭的位置存在此 fd 的 transfer_len 欄位，並將 buzy 設回 0，確認處理外部 task 對此 block fd 的請求。送出 block event pending，讓等待處理的 task 繼續執行。
   6. ``event_monitor_serve`` 處理 block event pending 會執行 ``block_event_release``，透過 ``block_event_release`` 使得請求此 fd 的 task 再次 lseek 發出請求。
@@ -858,18 +852,16 @@ File Descriptor
 - 透過 ``romfs_server()`` 註冊的檔案，類型為 S_IFREG ，皆由 ``romfs_server()`` 來管理。亦是一種 block file descriptor，從 block file 讀取資料。
 - 資料結構：
 
-  .. code-block:: c
-
+```C
     struct romfs_file {
         int fd;         // fd number
         int device;     // 該檔案資料所在的 fd number
         int start;      // 在檔案資料中的資料起點
         size_t len;     // 在檔案資料中的長度
     };        
+```
 
-
-  .. code-block:: c
-
+```C
     struct regfile {
         struct file file;           // 所屬的 fd number 以及 regfile operations
         int driver_pid;              // 所屬 driver ( 註冊此 fd 的 task ) 的 pid
@@ -885,6 +877,7 @@ File Descriptor
         /* response */
         int transfer_len;           // 
     };
+```
 
 - Event Handler: ``int regfile_event_release(struct event_monitor *monitor, int event, struct task_control_block *task, void *data)``
 
@@ -910,13 +903,12 @@ File Descriptor
 
 - ``regfile_response``：將指定資料傳送到指定的 register file descriptor，透過這些資訊 file descriptor 可以從 block device 取得資料。
 
-  .. code-block:: c
-
+```C
     struct regfile_response response {
         int transfer_len;  // 請求讀取的長度
         char *buf;         // 請求資料的起點
     };
-
+```
 
 - **lseek**：``void lseek(int fd, int offset, int whence);``：設定檔案讀寫頭的位置，回傳：讀寫頭的新位置
   1. 由外部 task 發出請求，第一次請求存取 regfile fd。``regfile_request_lseekable`` 透過 IPC 將 fs_request 傳送到 ``romfs_server()``，task 會被 push 到 event list 上，進入 TASK_WAIT_WRITE 狀態，等待 driver 的處理。
@@ -961,8 +953,7 @@ File System
 
 檔頭資訊的資料結構
 
-.. code-block:: c
-
+```C
     struct romfs_entry {
         uint32_t parent;         // parent file entry 的 offset
         uint32_t prev;           // 同一個 parent 的前一個 child file entry 的 offset
@@ -971,29 +962,27 @@ File System
         uint32_t len;            // 檔頭後面屬於此檔案的資料長度
         uint8_t name[PATH_MAX];  // 檔案名稱
     };
+```
 
 在 gdb 中可以藉由建立 marco 來取得 block file 所紀錄的資料：
 
-.. code-block:: 
-
+```C
     (gdb) define xxd
     >dump binary memory dump.bin $arg0 $arg1
     >shell xxd dump.bin
     >end
     (gdb) xxd &_sromdev &_eromdev 
-
+```
 
 marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb 上
 
-
-.. code-block:: 
-
+```C
     (gdb) define get_entry_at
     >set memcpy( &entry, &_sromdev+$arg0, sizeof(entry) )
     >print entry
     >end
     (gdb) get_entry_at  # arg0 為 offset
-
+```
 
 檔頭資訊與內容的關係如下圖：
 
@@ -1016,14 +1005,14 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 
 4. 如果有尋找到檔案，則將檔按路徑註冊到 ``pathserver()``，並且將其 file descriptor 設置為 S_IFREG，設置其在 block device 的讀寫起點，以及可讀取的資料範圍 ( 檔頭中 len 欄位所指的資料長度 )，並回傳該 register fd 的 fd number 給最初呼叫的 task。
 
-  .. code-block:: c
-
+```C
     struct romfs_file {
         int fd;         // fd number
         int device;     // 該檔案資料所在的 fd ( block device ) number
         int start;      // 檔頭所表記的資料起點 ( offset )
         size_t len;     // 檔頭所標記的長度
     };
+```
 
 5. 第一次開啟檔案後，會將路徑存到 ``pathserver()``，讓第二次之後的開檔可以直接在 ``pathserver()`` 中找到並回傳 fd number，節省尋找時間。且第二次作 lseek 是透過 ``romfs_server()`` 而非 ``romdev_driver()``。
 
@@ -1042,47 +1031,44 @@ marco ``get_entry_at`` 可以從 block file 讀取檔頭資訊並顯示到 gdb �
 建立環境
 ---------------
 
-.. code-block:: prettyprint
-
-    sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
+```shell
+    $ sudo apt-get install build-essential git zlib1g-dev libsdl1.2-dev libglib2.0-dev "automake*" "autoconf*" libtool libpixman-1-dev
+```
 
 - 若 Ubuntu 使用 **64bit 版本** ，請額外安裝 lib32gcc1 之套件
-
-.. code-block:: prettyprint
-
-    sudo apt-get install lib32gcc1 lib32ncurses5
+```shell
+    $ sudo apt-get install lib32gcc1 lib32ncurses5
+```
 
 - 取得 GNU Toolchain: [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded) ，或用 apt-get 取得，操作如下
 
-.. code-block:: prettyprint
-
-    sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf qemu-user qemu-system-arm
-
+```shell
+    $ sudo apt-get install gcc-arm-none-eabi libnewlib-arm-none-eabi gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf qemu-user qemu-system-arm
+```
 
 STM32 on QEMU 環境建立與測試
 --------------------------
 
-.. code-block:: prettyprint
+```shell
+    $ mkdir -p workspace
+    $ cd workspace
+    $ git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
+    $ git clone git://github.com/beckus/qemu_stm32.git || git clone https://github.com/beckus/qemu_stm32.git
 
-    mkdir -p workspace
-    cd workspace
-    git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
-    git clone git://github.com/beckus/qemu_stm32.git || git clone https://github.com/beckus/qemu_stm32.git
-
-    cd qemu_stm32
+    $ cd qemu_stm32
     git submodule update --init dtc || sudo apt-get install libfdt-dev
     ./configure --disable-werror --enable-debug \
         --target-list="arm-softmmu" \
         --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
         --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
         --disable-gtk
-    make
-    cd ../stm32_p103_demos
-    make all
-    make blink_flash_QEMURUN
-    make button_QEMURUN
-    make uart_echo_QEMURUN
-
+    $ make
+    $ cd ../stm32_p103_demos
+    $ make all
+    $ make blink_flash_QEMURUN
+    $ make button_QEMURUN
+    $ make uart_echo_QEMURUN
+```
 
 測試方式
 --------------------------
@@ -1144,8 +1130,6 @@ http://mikrocontroller.bplaced.net/wordpress/wp-content/uploads/2013/10/Pinbeleg
 gdb
 ---------
 
-
-
 1. 如欲使用 gdb ，先安裝 arm toolchain
 
 ``sudo apt-get install gcc-arm-none-eabi gdb-arm-none-eabi``
@@ -1162,8 +1146,6 @@ gdb
 4. 設定 gdb 目標
 
  ``(gdb) target ext :4242``
-
-
 
 
 效能表現
