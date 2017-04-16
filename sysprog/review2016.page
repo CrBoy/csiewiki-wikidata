@@ -6,6 +6,12 @@ toc: no
 
 主持人: [jserv](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
 
+![](http://i.imgur.com/SEeLoCj.png)
+一套健全的資訊科技產業中，需要著大量系統軟體(OS、資料庫、編譯器)的基礎與支持，然而在台灣，這方面的投入長期以來可說是參與有限；雖然由於開放課程、開放原始碼等等風氣的成熟與流行，這些技術不再被反鎖於大企業、高等教育的象牙塔中，但其實還是存在著許多限制，進入的門檻極高。
+
+所以我們希望從參與時間較長、自學能力佳的學生族群著手，帶領不同學校，不同科系，不同年齡的同學，給予其足夠的資源，讓其可以得到國際交流的機會，並接觸該領域的一流人才，最終再以開源的方式，讓這些資源回到台灣這塊土地，為台灣的資訊產業寫下故事的序。
+
+
 # 參加頂尖的技術研討會，並發表開源成果
 1. 在 [Linux Foundation](https://www.linuxfoundation.org/) 舉辦的 [OpenIoT Summit 2016](http://events.linuxfoundation.org/events/archive/2016/openiot-summit) (4 月/加州) 發表 uVisor 成果 (張家榮)
     * 講題: [uVisor Debugging Facility Improvements for ARM mbed](https://events.linuxfoundation.org/sites/events/files/slides/mbed-uvisor.pdf)
