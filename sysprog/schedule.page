@@ -90,9 +90,15 @@ toc: no
 
 * 第 10 週 (4 月 25 日)
     - [2017 年春季班第一次分組表](https://hackmd.io/s/Hkxl2Zcpx)
+
 * 第 11 週 (5 月 2 日)
     - [2017 年春季班第二次分組表](https://hackmd.io/s/BJRio2rJb)
     - Quiz: [Bubble sort in ARM assembly](https://github.com/jserv/bubble-sort-arm)
+
+* 第 12 週 (5 月 9 日)
+    - [淺談 Semaphore 與 Mutex](https://drive.google.com/file/d/0B-q4G2qfuMOGaDhiSlF1YzBURkU/view)
+    - [練習題](https://docs.google.com/document/d/1HYrW8gzn87ekAhntmrr5Dd00PN0WuRLblxFqvuNlUNg/edit#heading=h.jj4ulvjrppuw)
+    - [The Little Book of Semaphores](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf)
 
 進階電腦系統理論與實作 (Fall 2016)
 ------------------------------------------------------
