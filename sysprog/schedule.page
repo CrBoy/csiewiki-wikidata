@@ -98,7 +98,8 @@ toc: no
 * 第 12 週 (5 月 9 日)
     - [軟體缺失導致的危害](https://hackmd.io/s/B1eo44C1-)
     - [淺談 Semaphore 與 Mutex](https://drive.google.com/file/d/0B-q4G2qfuMOGaDhiSlF1YzBURkU/view)
-    - [練習題](https://docs.google.com/document/d/1HYrW8gzn87ekAhntmrr5Dd00PN0WuRLblxFqvuNlUNg/edit#heading=h.jj4ulvjrppuw)
+        * 錄影: [淺談 Semaphore 與 Mutex](https://www.youtube.com/watch?v=JEXwO_EoyZo)
+        * [練習題](https://docs.google.com/document/d/1HYrW8gzn87ekAhntmrr5Dd00PN0WuRLblxFqvuNlUNg/edit#heading=h.jj4ulvjrppuw)
     - [The Little Book of Semaphores](http://greenteapress.com/semaphores/LittleBookOfSemaphores.pdf)
 
 進階電腦系統理論與實作 (Fall 2016)
