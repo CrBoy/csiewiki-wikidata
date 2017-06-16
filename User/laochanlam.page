@@ -11,23 +11,24 @@ Github: [laochanlam](https://github.com/laochanlam)
 
 2017 春季班
 ===========
-作業
--------------
+ 作業
+-----------
 - HW1
 
     - [開發紀錄(phonebook)](https://hackmd.io/s/ryyLx-cKl#) / [GitHub](https://github.com/laochanlam/phonebook)
     - [開發紀錄(raytracing)](https://hackmd.io/s/B1hlfxl9e#) / [GitHub](https://github.com/laochanlam/raytracing)
     - [開發紀錄(computing_pi)](https://hackmd.io/s/H1TUAblqg#) / [GitHub](https://github.com/laochanlam/compute-pi)
     - [開發紀錄(clz)](https://hackmd.io/s/HyKilAfcx) / [GitHub](https://github.com/laochanlam/clz-tests)
-
 - HW3
 
     - [開發紀錄(software-pipelining)](https://hackmd.io/s/HJKw_Qejl) / [GitHub](https://github.com/laochanlam/prefetcher)
 
+
 - HW4
 
-    - [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/HkQ8_sy3e#) / [github](https://github.com/laochanlam/phonebook-concurrent)
-    - [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/S1p3JZH3g) / [github](https://github.com/laochanlam/mergesort-concurrent)
+    - [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/HkQ8_sy3e#) / [GitHub](https://github.com/laochanlam/phonebook-concurrent)
+    - [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/S1p3JZH3g) / [GitHub](https://github.com/laochanlam/mergesort-concurrent)
+
 
 - 分組報告
 
@@ -35,7 +36,27 @@ Github: [laochanlam](https://github.com/laochanlam)
 
 心得感想
 ---------------
+這門課終於進入尾聲了，與其說心總結，倒不如直接來談談本學期的收獲：
 
+1. 學會使用 Perf, Gnuplot, 程式碼及 Commit 的撰寫風格。
+2. 學習並實作了各種效能優化的方法
+3. 對加密應用有了更進一步的認識 ( Const time, carryless multiplication 等 )
+4. 效率不高 = 能力不高
+5. 各種神奇的計算機組織知識
+6. 誠實面對自己
+
+還記得第一周，因為有事仍未回到台灣，但已經每天晚上寫作業。
+
+那段時間雖然每晚守候，可是出來的成果還是強差人意，使自己深深感到能力不足。
+
+但亦因如此，更要比別人花更多的時間，每個作業在開始看學長姐的筆記時，感覺是一堆亂碼，但直到每每開始去翻閱資料，理解，轉化為自己共筆上的文字之後，又感覺追上大家了，但仍然不夠！
+
+而在分組作業中，我們組被分配到的主題為 carryless multiplication 的應用，看著自己和得揚大大的共筆從零到略見價值，由閱讀資料到設計實驗，完全由我們組一手包辦，在每次的討論中調整方向，分工發揮各自所長，產出最後的成果，而又正因為該題材的資料十分有限，最後找資料發現報告共筆出現在 google 第一頁的感覺，不言而喻。
+
+加油！
 
 自我評量（1~50分）
 ---------------
+40分
+
+自問還不夠努力！
