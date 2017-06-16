@@ -1,0 +1,40 @@
+---
+title: 洪得揚 (etc276)
+categories: User
+...
+
+簡介
+===========
+國立成功大學資訊工程學系 108 級
+
+Github: [etc276](https://github.com/etc276)
+
+2017 春季班
+===========
+作業
+-------------
+-HW1
+    - [開發紀錄(phonebook)](https://hackmd.io/s/H12bIgQ5e) / [GitHub](https://github.com/etc276/phonebook)
+    - [開發紀錄(raytracing)](https://hackmd.io/s/SJc57k8ce) / [GitHub](https://github.com/etc276/raytracing)
+    - [開發紀錄(computing_pi)](https://hackmd.io/s/S1iCq-vcg) / [GitHub](https://github.com/etc276/compute-pi)
+
+-HW3
+    - [開發紀錄(software-pipelining)](https://hackmd.io/s/By6T26Uie) / [GitHub](https://github.com/etc276/prefetcher)
+
+-HW4
+    - [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/r1ZJ0Fmne)
+
+-分組報告
+    - [開發紀錄(carryless multiplication)](https://hackmd.io/s/HkQfalnpe) / [GitHub](https://github.com/laochanlam/Carryless-Multiplication) / [YouTube](https://www.youtube.com/watch?v=tt3vQsrMrDQ)
+
+心得感想
+---------------
+
+大二這年，跟同學硬著頭皮修了 jserv 老師的課，整間教室都是比自己厲害的人，我知道自己可以在這學到很多東西。一開始看老師說每周要花25小時在這堂課上還不太相信，後來發現25小時要完成"基本"要求都是一件難事了，原本以為自己大一有拿書卷就算不錯了，修了這堂課才發現自己其實稱不上一個資訊系的學生。從開學考滿分240我只拿了38分，到第一周的四個作業，天天熬夜趕工還是只寫了三個(而且僅只於基本要求或不到...慚愧)，也是第一次看了論文並重現部分的實驗。因為還正在修計算機組織的關係，某次小考的data path 完全看不懂，一開始也只是在網路上胡亂找資料，之後才明白老師說的，google 搜尋或是 stackoverflow 的問答，很多時候也不能幫你解決問題(詩人寫詩都要翻字典了，工程師寫code怎麼不用翻規格書)。直到分組作業，我們分配到了 carryless mutiplication ，因為中文的資料實在是太有限，而就算改成英文搜尋，也沒有多少較簡易的說明，就只能去看 intel 的 white papper，看指令怎麼用，為什麼他這樣設計，數學不好就繼續去翻其他資料，應用方面更只剩下專利或是論文可以看，也要想著怎麼設計實驗，最後重新整理架構，終於生出一份文件，而看到 google 搜尋相關的關鍵字，自己的 hackmd 都在第一頁的感覺真的很特別。我在這堂課不只學到了 perf 或是 gnuplot 等工具怎麼用，也了解"正確"只是基本中的基本，安全、可讀、優雅才是21世紀的及格標準，而這些對我來說只是個開始，我會更努力地成為一個資訊系的學生，寫出很多人可以用的程式碼。
+
+
+自我評量（1~50分）
+---------------
+40分。
+就像這堂課第一周的標題："誠實面對自己：不是這門課程很操，是你過去欺騙了自己"，我開始正視自己的不足，所以就只能努力跟上大家(其他科花的時間都沒有這科多吧)，比較可惜的是期中的時候自己的外務太多，放掉了一個作業，這也是我沒有給自己滿分的原因，因為我還不夠努力。而後面的分組報告常常一開就是十幾個分頁，為了弄懂論文或是技術文件中，自己不懂的一個概念，然後隨著參考資料越來越多，自己也終於生出了一份在 google 搜尋名列前茅的文件，也在每一次上台被老師電的過程中慢慢改進，成為一個言之有物的成大學生。我認為我在這堂課中有了更多自學的能力，也是第一次開始看論文、技術文件等之前不會想碰的東西，但相對的我學到的也很多，也希望自己將來產出更優秀的報告。
+
