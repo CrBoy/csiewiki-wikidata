@@ -1,0 +1,47 @@
+---
+title: 廖其忻 (Cayonliow)
+categories: User
+...
+
+簡介
+===========
+國立成功大學資訊工程學系 108 級
+
+Github: [Cayonliow](https://github.com/Cayonliow)
+
+經歷： 參與 ARM 2017 安謀思創
+
+2017 春季班
+===========
+作業
+-------------
+-HW1
+    - [開發紀錄(phonebook)](https://hackmd.io/s/r1i2_OhFx#) / [GitHub](https://github.com/Cayonliow/phonebook)
+    - [開發紀錄(raytracing)](https://hackmd.io/s/ryfp_OZqx#) / [GitHub](https://github.com/Cayonliow/raytracing)
+    - [開發紀錄(computing_pi)](https://hackmd.io/s/B1pNFkLql#) / [GitHub](https://github.com/Cayonliow/compute-pi)
+    - [開發紀錄(clz)](https://hackmd.io/s/BJ-GnFU9x#) / [GitHub](https://github.com/Cayonliow/clz-tests)
+
+-HW3
+    - [開發紀錄(software-pipelining)](https://hackmd.io/s/BkH7gkDsg#) / [GitHub](https://github.com/Cayonliow/prefetcher)
+
+-HW4
+    - [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/HyWZKfb2g#) / [GitHub](https://github.com/Cayonliow/phonebook-concurrent)
+
+-HW5
+    - [開發紀錄(matrix)](https://hackmd.io/s/SyXav-ETe#) / [GitHub](https://github.com/Cayonliow/matrix_oo)
+
+-第一次分組（Team 8）
+    - [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/BycMwEs6l#) / [GitHub](https://github.com/sysprog2017team8/phonebook-concurrent) / [YouTube](https://www.youtube.com/watch?v=yPdjzWUlizk) / [YouTube](https://www.youtube.com/watch?v=F9hKspTdSQ0&feature=youtu.be)
+
+-第二次分組（Team 3）
+    - [開發紀錄(SuperMalloc) ](https://hackmd.io/s/SkfLN5j0e#) / [GitHub](https://github.com/ierosodin/phonebook-concurrent) / [YouTube()rpmalloc](https://www.youtube.com/watch?v=j1mc-4Hqd68) / [YouTube（lock-free malloc）](https://www.youtube.com/watch?v=xjwAa-IO6UM)
+
+心得感想
+---------------
+
+今年大二，一開始是抱着想試試看修 Jserv 老師的課而選了這門課。在第一堂課，教室都坐滿了人，開學測驗我連要搜尋什麼關鍵字來回答題目都不知道。可是就一直沒有退選，也就硬着頭皮寫作業。在寫作業的時候，就覺得這真的是我的作業嗎？與此同時，我也發現了很多我在課堂上所不知道的，我才正正覺得我身處資訊系，正如老師之前說的，不是這門課程很操，是你過去欺騙了自己。在第4周裏的[測驗](https://hackmd.io/s/H1LYz4Box#),老師說這是計組的基本常識，可是！可是！我還沒有學到，應該是說老師還沒有教到，我就回答了 "I don't know ". 當我學會了 pipeline 以後，就覺得這一個測驗沒有這麼難，一切的知識一開始都是看起來很嚇人的， 重點是自己有沒有勇氣把它學會。雖然現在課堂上的內容我還是不太了解， 可是我相信我總有一天會看懂的。 在課堂上看到了很多很厲害的人，一直無法成爲想他們一樣厲害的人，可是這也是我前進的動力。
+
+
+自我評量（1~50分）
+---------------
+我給自己40分，這是一個很高的分數，我之所以會給自己這麼高的分數是因爲我覺得我的學習曲線的斜率比我以往都來的高。在資訊系，自學才是最重要的，在沒有考試跟老師授課的推動下，自己到底可以學會多少。正因爲在這堂課裏，厲害的人太多了，真的覺得自己一無是處，所以要不斷努力才能成爲一個對得起自己的有用的人。
