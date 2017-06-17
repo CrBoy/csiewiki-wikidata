@@ -2,7 +2,8 @@ yangyang(翁瑞陽)
 ------------------
 **簡介:**
 
--成功大學 機械工程學系106級(2013-2017)
+- 成功大學 機械工程學系106級(2013-2017)
+- 成功大學 電機工程學系 電機設計與驅動產業碩士專班(2017-)
 
 聯絡資訊
 =====================
@@ -11,3 +12,21 @@ yangyang(翁瑞陽)
 
 2017系統軟體春季班 個人評量
 =======================
+
+(春季班)作業及筆記
+------------------------
+- Homework1 
+    - phonebook: [github](https://github.com/yangyang95/phonebook), [筆記](https://hackmd.io/s/HJ2c_XYKx)
+    - raytracing: [github](https://github.com/yangyang95/raytracing), [筆記](https://hackmd.io/s/HJJ2QTaYl)  
+    - clz-tests: [github](https://github.com/yangyang95/clz-tests), [筆記](https://hackmd.io/s/SyTK1p89e)
+    - compute_pi: [github](https://github.com/yangyang95/compute-pi), [筆記](https://hackmd.io/s/SJyj7HV5e)
+
+- Homework3 
+    - software-pipelining: [github](https://github.com/yangyang95/prefetcher), [筆記](https://hackmd.io/s/SyoAiMNie)
+
+- Homework4
+    - phonebook-concurrent: [github](https://github.com/yangyang95/phonebook-concurrent), [筆記](https://hackmd.io/s/rJ3Svb-hg)
+    - mergesort-concurrent: [github](https://github.com/yangyang95/mergesort-concurrent), [筆記](https://hackmd.io/s/BJAXnPine)
+
+- Homework5
+    - matrix: [github](https://github.com/yangyang95/matrix_oo), [筆記](https://hackmd.io/s/Sy1FXhNpx)
