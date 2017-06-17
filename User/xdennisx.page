@@ -1,0 +1,41 @@
+xdennisx(徐銘宏)
+-----------------------
+**簡介:**
+
+- 成功大學 資訊工程系106級(2013-2017)
+
+
+聯絡資訊:
+=======================
+- email: ``denlee0125@gmail.com``
+- github: <a href="https://github.com/xdennisx" target="_blank">https://github.com/xdennisx</a>
+
+2017春季班 個人評量
+=======================
+
+(秋季班)作業及筆記
+-----------------------
+- Homework1
+    * [開發紀錄(phonebook)](https://hackmd.io/s/r1bluXnYe#) / [github](https://github.com/xdennisx/phonebook) ::: Reviewed by <`baimao8437`>
+    * [開發紀錄(raytracing)](https://hackmd.io/s/rJWZ7z15x#) / [github](https://github.com/xdennisx/raytracing) ::: Reviewed by <`PeterTing`>
+    * [開發紀錄(compute-pi)](https://hackmd.io/s/By-W1PZcl#) / [github](https://github.com/xdennisx/compute-pi) ::: Reviewed by <`baimao8437`>
+    * [開發紀錄(clz)](https://hackmd.io/s/HkL-2Lr9g) / [github](https://github.com/xdennisx/clz-tests)
+- Homework2
+    * [開發紀錄(software-pipelining)](https://hackmd.io/AwRgZgxiwEzAtLCBTeAWAbAEwBzx1shvGAIYBGWKOYA7CMiEA===?view) / [github](https://github.com/xdennisx/prefetcher)
+- Homework3
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/EwMwnMAcCsAMYFpoFNYDYEBYTQwI2jwzBE2AENhk8BmPIoA=) / [github](https://github.com/xdennisx/phonebook-concurrent)
+    * [開發紀錄(mergesort-concurrent)](https://hackmd.io/GYRgJgnGBsCGAcBaEBWCAmRAWeKkCMIAGfbacCaAUxXPnyA=) / [github](https://github.com/xdennisx/mergesort-concurrent)
+- Homework4
+    * [開發紀錄(matrix)](https://hackmd.io/s/r1Gl4DEpe) / [github](https://github.com/xdennisx/matrix_oo)
+- 第一次分組
+    * [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/BkI3vnS0l) / [github](https://github.com/baimao8437/mergesort-concurrent) / [youtube](https://youtu.be/lmZVWZ-fQgA) (8 min)
+- 第二次分組
+    * [開發紀錄(MapReduce)](https://hackmd.io/s/HJNu64sJZ) / [github](https://github.com/Sean1127/mapreduce) / [youtube](https://youtu.be/5rdmHQElADY) (45 min)
+
+(春季班)所見所聞心得
+-----------------------
+這堂課是我大學四年來遇過最艱辛的一堂課，因為有其他同學之前有修過，都認為是大學四年中很值得修的一堂課，本應全心投入課程中學習，但我在這學期沒有把時間作好好分配，不只修了太多學分，還有各種打工跟家教，記得開學初老師有說一個禮拜要花 25 小時以上才算及格，我大概只有開學前幾周有做到，到後面都是應付心態，覺得浪費了這學期這堂課的最大效益。這堂課最大的震撼就是，每次上完三小時的課，都覺得我離這個世紀好像真的有點遠，資訊產業真的進步太迅速而我大一大二大三時卻沒有把基礎打好，到了大四才把之前的東西再拿出來複習，尤其是作業系統的東西，例如：cache-miss、lock、mutex 等等，之前學都只是學皮毛，在這堂課有實際的實作與檢討，才發現自己所學的有多麼不足。在這堂課我也學到了一個很重要的觀念，因為我是準碩士生，還要再讀兩年才會畢業，那兩年後我會擁有甚麼技能，現在很紅大家都會的就不必特地去鑽研了，像 machine-learning，要學會的是有技術性而且沒什麼人在研究的，這樣才能展現自己的競爭力，而不是人云亦云。
+
+(春季班)自我評量分數
+-----------------------
+我給自己35分，因為前面的作業我認為有投入相當的時間與努力，但是後面因為外務繁忙就有荒廢一點，希望未來有機會能夠在修一次，將時間做最適當的分配。
