@@ -8,6 +8,7 @@ yangyang(翁瑞陽)
 聯絡資訊
 =====================
 - email: `yangyang.weng@gmail.com`
+- github: [`https://github.com/yangyang95`](https://github.com/yangyang95)
 - blog: [`https://yangyang95.github.io/Blog/`](https://yangyang95.github.io/Blog/)
 
 2017系統軟體春季班 個人評量
@@ -30,3 +31,27 @@ yangyang(翁瑞陽)
 
 - Homework5
     - matrix: [github](https://github.com/yangyang95/matrix_oo), [筆記](https://hackmd.io/s/Sy1FXhNpx)
+
+(春季班)分組報告
+--------------------------
+比照 [B06: software-pipelining](https://hackmd.io/s/rks62p1sl) 要求，需要善用 perf stat 的 raw counter 命令
+
+[開發紀錄(software-pipelining)](https://hackmd.io/s/S1fZ1m6pe) / [github](https://github.com/yangyang95/prefetcher) / [youtube](https://youtu.be/DJb7d_artUg) (31 min)
+
+組員： 翁瑞陽、[張圜華](http://wiki.csie.ncku.edu.tw/User/<changyuanhua>)
+
+(春季班)所見所聞心得
+------------------------
+本身並非資工系，之前對資料結構、計算機組織、作業系統...等等的課程也沒有學習過，在修課之前一直擔心會跟不上進度。
+
+課程剛開始老師考的期初考試也給了我很大的挫折，前幾週老師又給我們大量的作業來練習，都是很大的挑戰。幸好，在修課之前我有先確認自己會有一些空閒的時間能夠來完成這些練習。之前就一直想來修老師的課，為了確保有足夠的時間，直到大四比較沒課才敢來修。而結果也證明我是對的，的確有足夠的時間會有所幫助，畢竟一週需要的時間十六小時只是基本而已，有太多太多的知識需要學習。
+
+這學期在寫程式的能力上也有所精進，git工具的掌握度也有提升、如何好好的寫 commit message、makefile 的寫法、C 語言的物件導向技巧...等等都學習到很多，每次看到老師提供的程式碼都比自己以往寫的還要更好(儘管已經是故意寫的比較差的版本)，從這就可以看出自己還需要進步多少。就像老師說的一樣現在寫軟體的門檻已經非常的高，如何讓自己寫的東西能夠好到讓很多人可以使用，我還有許多要加強的地方。
+
+學期中開始進行分組的報告，有機會跟資工系的學妹[張圜華](http://wiki.csie.ncku.edu.tw/User/<changyuanhua>)一組，看到她的執行力著實讓我嚇了一跳，能夠很快速的把實驗實作出來，也讓我有所學習。在[報告](https://hackmd.io/s/S1fZ1m6pe)中我們針對 cache 元件的效能進行探討，整合了作業三中同學之中不錯的實作，也設計了一些實驗進行分析，更有向成大資工畢業的 Champ 學長詢問 cache 相關的問題，雖然總是沒辦法完整的回答 Champ 學長的提問，但也讓我知道自己思慮不周的地方。
+
+(春季班)自我評量分數 (1 到 10 級分)
+----------------------------------------------
+- 我給自己9級分。
+
+- 原因: 在這學期裡我有大量的學習和成長，大部分的作業我都有認真的去練習(只有一份沒有完成)，學期中也達成了給自己設立的小目標 - 獲得 Jserv 送的書(拿了兩次XD)，練習作業的過程中程式的技巧更進一步，還缺的一級分是我還有很大的進步空間可以前進。
