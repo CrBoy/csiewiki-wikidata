@@ -1,0 +1,55 @@
+---
+title:徐偉庭
+categories: User
+...
+
+**Brief Introduction**
+===
+- 徐偉庭, Wei-Ting Xu
+- from Chiayi, Taiwan
+
+Contact Information
+------
+- Email : ``vtim99077@gmail.com``
+- Github : <a href="https://github.com/vtim9907" target="_blank">https://github.com/vtim9907</a>
+
+Education
+------
+- National Cheng Kung University, 國立成功大學 (2014.09 - now)
+    * Bachelor of Computer Science and Information Engineering, 資訊工程學系
+    * Quantum Information and Network Security Laboratory, [黃宗立教授](http://www.csie.ncku.edu.tw/ncku_csie/depmember/teacherdetail/id/4)專題生
+
+**2017春季班 個人評量**
+===
+
+- Homework 1
+    * Phonebook : [Github](https://github.com/vtim9907/phonebook) / [Hackmd](https://hackmd.io/s/r1YyTRqFe)
+    * Raytracing : [Github](https://github.com/vtim9907/raytracing) / [Hackmd](https://hackmd.io/s/Syu0ulAtl)
+    * Compute-pi : [Github](https://github.com/vtim9907/compute-pi) / [Hackmd](https://hackmd.io/s/Hy0dDpb9e)
+    * Clz : [Hackmd](https://hackmd.io/s/ByaeKCvqg)
+- Homework 3
+    * Software-pipelining : [Github](https://github.com/vtim9907/prefetcher) / [Hackmd](https://hackmd.io/s/BkuRcZQjx)
+- Homework 4
+    * Phonebook-concurrent : [Github](https://github.com/vtim9907/phonebook-concurrent) / [Hackmd](https://hackmd.io/s/HyjWtpehx)
+    * Mergesort-concurrent : 未完成
+    * Microarch : [Hackmd](https://hackmd.io/s/rJ-VL8I2e)
+- Homework 5
+    * Matrix : [Github](https://github.com/vtim9907/matrix_oo) / [Hackmd](https://hackmd.io/s/BJct_mbpx)
+- 第一次分組
+    * Matrix : [Hackmd](https://hackmd.io/s/r11wlGWRe) / [Youtube](https://www.youtube.com/watch?v=wp7RvK_A7uI)
+- 第二次分組
+    * MathEX : [Hackmd](https://hackmd.io/s/rkb7am0JZ) / [Youtube](https://www.youtube.com/watch?v=uEFS_ETxJe4&feature=youtu.be)
+
+心得
+------
+我著實在這堂課學到了不少東西，主要我覺得可以分為三大類：
+
+- 第一類為系統軟體的理論與實做，由其實做所佔的比例比我修過的其他課還高很多，而實做就包含在作業裡，通常作業都會給個程式碼當作基底，讓我們很方便的有個目標可以改善，在改善效能的期間，就可以運用上我曾經只學過理論的各種演算法和優化系統的手段，比如使用 SIMD 的指令集去加速程式中數學運算的部份；在實做過後，對於理論也會有更深一層的了解，獲益良多！
+- 第二類為 Coding 習慣與技巧，在寫作的過程或是結束的 review 時，老師會完全不吝色的指出作業的程式碼中有哪些地方寫得很糟糕、習慣很差，並給予修改的建議，我覺得這是給像我這種經驗淺薄的學生一個相當寶貴的訓練機會，一般課程只要程式碼跑得動，交差了事就好，但這樣無形中會給自己帶來很大的劣勢，因為寫出來的程式碼不好看，甚至因為冗廢導致額外的效能浪費，就很難跟別人合作，我想在未來著重合作的時代，並不適合這樣的工程師；所幸，老師會告訴我們「事實」，讓我們有機會去改進！
+- 第三類為大方向的概念，對我來說這算是最重要的一部分，老師會告訴我們這個世界實際上是怎樣在運作的，怎樣做才有機會讓自己跟上這個世界的腳步，如果不行，那就趕快轉行！並且告訴我們該給自己怎樣的標準才是這個世界所需要的；然而這些也是我在學期初對課程的期望，希望知道這世界的前半段都在做什麼，擴展自己的視野，才不會落到「 大家做什麼我就做什麼 」的地步。
+
+自我評量分數 (1 到 10 級分)
+-------
+
+- 7 級分
+- 前期的個人作業我有盡可能努力完成，但由於學期中後半段比較繁忙，而且分組報告的題目較難，所以沒能達到水平產出，實在慚愧。但這也讓我更看清自己，對於某些領域的掌握度實在不高，也才能有機會在日後補齊完成。
