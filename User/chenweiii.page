@@ -1,0 +1,42 @@
+chenweiii (魏禛)
+------------------
+**簡介:**
+
+- 成功大學 交通管理科學系105級 (2012-2017)
+
+聯絡資訊:
+=====================
+- email: ``c.weiii94@gmail.com``
+
+2017春季班 個人評量
+=======================
+
+春季班作業及筆記
+------------------------
+- HW1(a) phonebook [Github](https://github.com/chenweiii/phonebook),[HackMD](https://hackmd.io/s/rkXMD7oYe)
+- HW1(b) raytracing [Github](https://github.com/chenweiii/raytracing),[HackMD](https://hackmd.io/s/HJYYwKlqx)
+- HW3 software-pipelining [Github](https://github.com/chenweiii/prefetcher),[HackMD](https://hackmd.io/s/BJShAV8hg)
+- HW5 matrix [Github](https://github.com/chenweiii/matrix_oo),[HackMD](https://hackmd.io/s/BktmK0V6l)
+
+Project
+------------------------
+- Toward Concurrency [HackMD](https://hackmd.io/s/Sy1x0XiAe)
+- MapReduce [Github](https://github.com/Sean1127/mapreduce),[HackMD](https://hackmd.io/s/HJNu64sJZ)
+
+(春季班) 所見所聞心得
+---------------------------
+這是一堂我仰慕許久的課程，從誤打勿撞申請加入 ``2014 年嵌入式作業系統設計與實作`` 臉書社團以來，一直默默觀望著 jserv 老師在社團裡的每一篇貼文，儘管大部份都看不太懂，但仍能隱隱約約嗅出其中的技術深度。
+
+這學期我把很多老師指定的文章都有看完，也獲益良多，以前不敢碰的 pthread，或是只在課本上看到的 SIMD，更是透過作業熟悉不少。老師雖然沒有直接在課堂上教該如何撰寫程式碼，但我認為光看作業的程式碼就獲益良多，不管是程式碼開發的風格、或是 Makefile 使用方法。以前 git 我真的只會 push, commit 跟 clone，也不懂這東西到底好用在哪，但老師給了 git 文件及分組報告的機會，我終於了解到工具的強大，及其他繁多 git 指令的需求。
+
+儘管 C 語言的能力提升地不多，但在做完老師很多的作業後，開始能感受到我有能力去閱讀網路上的開源專案 (ex. cloudwu/coroutine)，理解老師派的 MapReduce 的程式碼也不是很困難的一件事情。近期目標，希望能把 jserv 老師的 C 語言講座重新看一次，應該又會受益良多。
+
+(春季班) 自我評量分數 (1 到 10 級分)
+---------------------------
+7級分。
+為了這門課，我課前準備真的很久，只為了上課不想被老師電，
+但實際到上了這門課，我不僅作業沒有全寫，
+也沒有每一周都有達到 20 小時的標準，實在感到很慚愧，
+但在寫了許多作業跟閱讀很多文章，有感覺自己似乎有多理解了一些東西，
+也嘗試碰了許多以前不敢接觸的東西 (ex. pthread, coroutine)
+希望之後還能回來跟大家一起寫作業。
