@@ -1,0 +1,63 @@
+king1224(洪正皇)
+------------------
+**簡介:**
+
+- 成功大學 資訊工程學系107級(2014-2018)
+
+**歷年重要作品:**
+
+- 比賽
+
+    - 2017-05-23 CPE 13名次
+
+    - 2016-03-22 CPE 20名次
+
+    - 2017 google code jam 前3000名次
+
+- 作品
+
+    - LEGO tetrix programming control with Lejos
+
+**其他經驗:**
+
+- 成功大學魔術社
+- 成功大學飲品社
+- 成功大學數學系系會體育幹部
+- 成功大學數學系營隊活動長
+
+聯絡資訊:
+=====================
+- email: ``a0987856762@gmail.com``
+
+作業系統設計與實作 (Spring 2017) 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1 
+    - phonebook [Github](https://github.com/king1224/phonebook),[HackMD](https://hackmd.io/s/HJgqJGe5e#)
+    - raytracing [Github](https://github.com/king1224/raytracing),[HackMD](https://hackmd.io/s/H1TBwR7cg)
+    - compute-pi [Github](https://github.com/king1224/compute-pi),[HackMD](https://hackmd.io/s/rJm6IoIce)
+    - clz [HackMD](https://hackmd.io/s/HJ3osE_qe)
+- HW3 
+    - software-pipelining [Github](https://github.com/king1224/prefetcher),[HackMD](https://hackmd.io/s/Skis5BHsx)
+- HW4 
+    - phonebook-concurrent [Github](https://github.com/king1224/phonebook-concurrent),[HackMD](https://hackmd.io/s/r1g70_Lne)
+    - microarch [HackMD](https://hackmd.io/s/BJzBed7nx)
+- 第一次分組
+    - phonebook-concurrent [Github](https://github.com/sysprog2017team8/phonebook-concurrent),[HackMD](https://hackmd.io/s/BycMwEs6l)
+- 第二次分組
+    - SuperMalloc [HackMD](https://hackmd.io/s/SkfLN5j0e)
+
+修課心得
+------------------------
+- 修課第一周，懵懵懂懂的灌完雙系統，從這時開始，我才算是真正開始了解、學習 Linux 系統吧。
+- 一開始老師說要從我們的 coding 習慣開始改變，為了團隊合作，coding style、github 與開發紀錄都是需要練習的部分，有別於以往使用 github 時，只要成功將檔案傳上去交差，在課程中老師對我們的要求，讓我學習到 github 更多的功能，在 coding 與紀錄部分也都更加的注重可讀性與排版。
+- 前幾周的課程與作業，許多前所未見的知識讓我驚呆了，但不能這樣就被打敗，努力將一篇接一篇的參考資料看過，發現了很多以前未知的領域，這堂課將很多堂課學到的東西加以應用，且也教會了我很多以前不曾接觸過的知識。
+- Concurrency List 算是我印象最深一份作業，先前的作業都有很多學長姊的 github 可以參考，所以學習的速度可以很快，而 concurrence list 的參考資料較少，雖然有 jserv 老師給的範例程式碼，但為了要移植到我們作業中，需要對這程式碼有充分的理解，不能只是依樣畫葫蘆，在完成的那一刻有很大的成就感。
+- 修課的過程中，雖然遇到了很多困難，但現在回想過去種種，這堂課改變了我很多的觀念與態度。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8級分。<br>
+越接近學期末，就越像一根鬆掉的發條，後面幾周分配給這堂課的時間有點少。
