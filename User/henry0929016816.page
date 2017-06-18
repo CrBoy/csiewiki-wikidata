@@ -1,0 +1,62 @@
+---
+title: henry0929016816 (林彥亨)
+categories: User
+...
+
+簡介
+====
+- 成功大學 資訊工程系 107級(2014~)
+
+2017春季班 個人評量
+===================
+
+(2017春季班) 作業與筆記
+-----------------------
+
+- Homework 1
+    * Phonebook : [Github](https://github.com/henry0929016816/phonebook) / [Hackmd](https://hackmd.io/s/BkqqSCcFe#)
+    * Raytracing : [Github](https://github.com/henry0929016816/raytracing) / [Hackmd](https://hackmd.io/s/BJOaAQxcx#)
+    * Compute-pi : [Github](https://github.com/henry0929016816/compute-pi) / [Hackmd](https://hackmd.io/s/BJWw5XPcx#)
+    * Clz : 未完成
+- Homework 3
+    * Software-pipelining : 未完成 / [Hackmd](https://hackmd.io/s/rJ-ZkDYog#)
+- Homework 4
+    * Phonebook-concurrent : 未完成/ [Hackmd](https://hackmd.io/s/rJ-ZkDYog#)
+    * Mergesort-concurrent : 未完成
+    * Microarch : 未完成
+- Homework 5
+    * Matrix : [Github](https://github.com/henry0929016816/matrix_oo) / [Hackmd](https://hackmd.io/s/Syzmgashe#)
+- 第一次分組
+    * Matrix : [Hackmd](https://hackmd.io/s/r11wlGWRe) / [Youtube](https://www.youtube.com/watch?v=wp7RvK_A7uI)
+- 第二次分組
+    * MathEX : [Hackmd](https://hackmd.io/s/rkb7am0JZ) / [Youtube](https://www.youtube.com/watch?v=uEFS_ETxJe4&feature=youtu.be)
+
+(2017春季班) 所見所聞心得
+-------------------------
+
+* 程式執行的效能:
+覺得自己真的是太晚修這堂課了，第一次的功課 phonebook 就讓我體認到，原來自己不曾注意過的事，例如程式碼的執行效能，竟然是如此需要去注意的一件事，總是認為程式能執行就是好的，卻忽略了執行需要付出的代價究竟有多高，而使用者會不會因為代價太高而選擇放棄你寫出的程式，就是我們這些工程師需要注意的，就像老師常常在講:｢你寫的程式要有能給幾十億人用的覺悟，不然你幹嘛當工程師」，而這句話對我來說真的是當頭棒喝，原來工程師真的不能自以為程式寫好就行了，還需要為了使用者著想才行，所以這門課教了很多跟程式執行效能有關的實驗，例如 SIMD 的實作 ,thread pool ,prefetch，都在研究如何讓程式執行得更快。
+
+* 良好的 code:
+除了效能外，還必須要為自己寫的 code 美不美觀負責任，因為未來有可能會跟別人一起合作，所以我們應該要將 code 寫的美觀，讓人能一眼就能看出 code 要如何修改跟使用，所以老師教我們 refector 跟 物件導向的概念，真的覺得太酷了，原來任何語言包括 assembly code 都能用物件導向的概念去編寫，以前認為物件導向是這個某個語言的特性，例如:c++,java ,但是經過這門課，才知道原來只要你願意，任何語言都能用物件導向的概念去寫，所以我們還學了 function point
+
+* 觀看別人的優缺點:
+雖然老師教得很多，但可惜的是自己常常無法吸收所有的資料，所幸上課的時候可以聽到一些強者的研究成果，讓我覺得很好，通過聽聞這些強者遇到的困難跟研究的結果，讓我也能學到一點，並且大家都會將自己的成果寫成 hackmd ，讓我可以在還沒讀完英文論文時就能知道整篇論文的重點和概念，是我覺得這堂課很棒的一點。
+
+* 和世界接軌:
+每周上課也會聽聞一些資訊系上沒講，但是卻是這個世界正在發生的事，很感謝這堂課讓我知道自己跟這個社會的差距有多大，不會等到出了社會像個井底之蛙一樣，甚麼都不知道，雖然自己還是沒有像那些強者一樣，但是希望自己未來能將這門課所學讀個精通，成為還可以用的工程師。
+ 
+
+
+(2017春季班) 自我評量分數
+-------------------------
+
+我給自己 5級分
+
+我覺得自己的英文能力真的很差，而常常很多資料都是英文的，所以時常無法將全部的資料讀完，總是只能完成一半的功課而已，後期的分組報告，也因為自己課業繁重而只付出一半的心力而已，有點慚愧，所以我給自己一半的分數，希望未來還可以的話能將另一半我沒學好的學起來。
+
+聯絡資訊
+========
+
+- Email: ``henry0929016816@gmail.com``
+- Github: ``https://github.com/henry0929016816``
