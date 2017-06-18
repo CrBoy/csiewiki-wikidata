@@ -1,0 +1,33 @@
+PeterTing(丁榮主)
+-------------------------
+**簡介:**
+
+* 成功大學工業與資訊管理系107級(2014~)
+
+聯絡資訊
+--------------------------
+
+email : ``a0917209079@gmail.com``
+
+2017秋季班 個人評量
+=======================
+* HW1 - [phonebook](https://hackmd.io/s/rke0mSsFe#) / [github](https://github.com/PeterTing/phonebook)
+* HW1 - [raytracing](https://hackmd.io/s/SkvWBRH5l) / [github](https://github.com/PeterTing/raytracing)
+* HW1 - [computepi](https://hackmd.io/GwYwLA7ADAJgHAQwLTAIxwKZLGArATiQCMR8wk4QAzDImIgZjgagiA==?edit) / [github](https://github.com/PeterTing/compute-pi)
+* HW3 - [software-pipelining](https://hackmd.io/OwJgzAhhAM0QtAYwKwDZXwCwFMIBN4AjAMzAIE5o9s9kJzhzjMg=?both) / [github](https://github.com/PeterTing/prefetcher)
+* HW5 - [phonebook-concurrent](https://hackmd.io/s/HyHAQ_Gnl#) / [github](https://github.com/PeterTing/phonebook-concurrent)
+* 第一次分組報告 - [microarch](https://hackmd.io/s/SJCDl8mAl)
+* final - [clz](https://hackmd.io/s/HkQfalnpe) / [github](https://github.com/laochanlam/AES-GCM)
+
+(春季班)所見所聞心得
+-----------------------------
+    這門課對我來說難度真的很高，因為沒有資工的背景，對於硬體方面完全不熟，也不太會用linux，頂多只知道怎麼安裝到電腦裡以及如何安裝套件。
+    第一次上課就馬上來個開學考，一看立馬覺得完蛋gg，什麼都不會，就算有電腦在旁邊可以查可是還是不會，因為根本不知道題目在說什麼。而且第一個禮拜就馬上出了四個小作業，回去看題目之後，剛開始真的是完全沒有頭緒，就這樣開始了慢慢摸索的旅程。（一個禮拜有時候花了不止25小時）
+    到了差不多第四個禮拜開始萌生了退選的念頭，不過內心的聲音告訴我，放棄就前功盡棄了，雖然撐到學期末也不一定會過，但是至少可以學到許多東西。也是因為這樣，就算再怎麼累，還是會盡量把作業做完，不過也因為如此，即使有些作業沒有寫得很好，不過還是學到了很多東西，像是如何使用instrincs、cache如何運作、如何用c實作物件導向以及linux實用的工具 - 用perf來做效能分析等等，還有再做第一次分組報告時，念了很多跟計組有關的東西，對於硬體方面真的是認識了不少。
+    英文也因為這堂課所變強不少，因為找資料時大部分都是用英文所寫的，因此在閱讀方面真的是進步了很多。還記得有一次作業要先看一篇論文才能寫，為了看完全部大概花了不知道多少時間，不過看完後抓重點的能力增進了不少。
+    上了這堂課後，才知道自己會的東西真的太少了，老師上課時說了很多目前的最新科技，像是區塊鍊，以及老師在研發的火箭系統，真的是擴增了不少視野，之後一定還會繼續努力，之後希望能達到跟老師差不多的高度。
+
+(春季班)自我評量分數(1 到 10 級分)
+---------------------------------------------------
+    我給自己8分，之所以給自己這個分數，是因為我把80%的心力都放在這裡，即使在段考前，還是會把大部分的時間花在寫這堂課的作業，或是看老師所提供的資料或影片。並且從這堂課中，學到了很多新穎的觀念，是學校程式設計以及其他課程所沒有教的，我相信這些東西對未來都很有幫助，而且現在真的超愛c語言。
+    下學期應該還會再來修一次課，因為這學期的我實在太弱了，我相信下次再上時一定會學到更多的東西，並且能將之融會貫通。
