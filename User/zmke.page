@@ -1,0 +1,48 @@
+---
+title: zmke (柯宗銘)
+categories: User
+...
+
+簡介
+====
+- 成功大學 資訊工程系 107級(2014~)
+
+2017春季班 個人評量
+===================
+
+(2017春季班) 作業與筆記
+-----------------------
+
+- Homework 1
+    * Phonebook : [Github](https://github.com/zmke/phonebook) / [Hackmd](https://hackmd.io/s/Sy4SdnKte)
+    * Raytracing : [Github](https://github.com/zmke/raytracing) / [Hackmd](https://hackmd.io/s/ByeJGx1cx)
+    * Compute-pi : [Github](https://github.com/zmke/compute-pi) / [Hackmd](https://hackmd.io/s/SJabaHN9x)
+    * Clz : 未完成 / [Hackmd](https://hackmd.io/s/B18-QM_5g)
+- Homework 3
+    * Software-pipelining : 未完成 / [Hackmd](https://hackmd.io/s/BkqWt1rol)
+- Homework 4
+    * Phonebook-concurrent : 未完成 / [Hackmd](https://hackmd.io/s/rJ-ZkDYog#)
+    * Mergesort-concurrent : 未完成
+    * Microarch : 未完成 / [Hackmd](https://hackmd.io/s/rkBsUjRjx)
+- 第一次分組
+    * mergesort-concurrent : [Github](https://github.com/zmke/mergesort-concurrent) / [Hackmd](https://hackmd.io/s/BkZnq2gAg#) / [Youtube](https://youtu.be/_YgoaNHSzmU) / [Youtube2](https://youtu.be/9UMsqhpohQA)
+- 第二次分組
+    * mergesort-concurrent : [Github](https://github.com/zmke/mergesort-concurrent) / [Hackmd](https://hackmd.io/s/r12FM-MeW) / [Youtube](https://youtu.be/eW-ppOXKQY4)
+
+(2017春季班) 所見所聞心得
+-------------------------
+- 以前寫程式只會在意正確性，修了這門課才理解到效能的重要性，學習如何降低 cache-miss 和實做 SIMD 、 thread pool 到最後分組報告的 lock-free 都是以前沒有思考過的方法，透過實驗來印證結果，學習理工科系應該有的態度。
+
+- 體會到 coding style 的重要性，以往寫程式不會特別注意 coding style ，第一次交作業發現 coding style 不好的話連作業都沒辦法交，良好的 coding style 是和他人一起合作的基礎，連註解和 commit message 的用字都要特別注意是否精準。
+
+- 你所不知道的 c 語言系列，看了才發現自己根本不會寫 c ，從來沒想過 c 還可以寫物件導向，物件導向是一種態度。
+
+- 以前學過的 OS 、計算機組織、資料結構、離散數學等等在這門課都有用到，不過更多的是課本以外的知識，發現資訊領域比自己想像中的更大更複雜而且充滿挑戰，以往對自己的要求完全達不到這個世界的最低標準。
+
+- 自己的數學真的很爛，每次論文後面的證明都看不懂，不過老師說證明才是精華，為了看懂這些精華應該把數學重新學好。
+
+(2017春季班) 自我評量分數
+-------------------------
+
+- 5級分
+- 前半學期完全投入在這門課的作業，期中後時間的分配沒有掌握好，作業產出很少。受限於英文能力，每週的教材都看不完，常常有看沒有懂。給自己一半的分數，另外一半的分數用來期許自己成為更好的人。
