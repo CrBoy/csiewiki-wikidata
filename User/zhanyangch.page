@@ -2,25 +2,43 @@
 title: zhanyangch(陳展揚)
 categories: User
 ...
+
 簡介
 ====
 - 成功大學 工程科學系 107級(2014~)
+- Email: ``zhanyangch@gmail.com``
+- Github: ``https://github.com/zhanyangch``
+
 (2017春季班) 作業與筆記
 -----------------------
 - Homework 1
-  * [開發紀錄(phonebook)](https://hackmd.io/s/r1PXiPtFl) / [github](https://github.com/zhanyangch/phonebook-1) 
-  * [開發紀錄(raytracing)](https://hackmd.io/s/ryxO-Blcx#) / [github](https://github.com/zhanyangch/raytracing-1) 
-  * [開發紀錄(compute-pi)](https://hackmd.io/s/HkvrP2D9l#) / [github](https://github.com/zhanyangch/compute-pi) 
-  * [開發紀錄(clz)](https://hackmd.io/s/SJMaZTP5l) / [github](https://github.com/zhanyangch/clz-tests)
+    * [開發紀錄(phonebook)](https://hackmd.io/s/r1PXiPtFl) / [github](https://github.com/zhanyangch/phonebook-1) 
+    * [開發紀錄(raytracing)](https://hackmd.io/s/ryxO-Blcx#) / [github](https://github.com/zhanyangch/raytracing-1) 
+    * [開發紀錄(compute-pi)](https://hackmd.io/s/HkvrP2D9l#) / [github](https://github.com/zhanyangch/compute-pi) 
+    * [開發紀錄(clz)](https://hackmd.io/s/SJMaZTP5l) / [github](https://github.com/zhanyangch/clz-tests)
 - Homework 3
-  * [開發紀錄(software-pipelining)](https://hackmd.io/s/BynJ7-Eol) / [github](https://github.com/zhanyangch/prefetcher)
+    * [開發紀錄(software-pipelining)](https://hackmd.io/s/BynJ7-Eol) / [github](https://github.com/zhanyangch/prefetcher)
 - Homework 4
-   * [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/BJaMd8m3e#) / [github](https://github.com/zhanyangch/phonebook-concurrent)
-   * [開發紀錄(microarch)](https://hackmd.io/s/SySJHBMhl)
-   mergesort-concurrent:未完成
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/s/BJaMd8m3e#) / [github](https://github.com/zhanyangch/phonebook-concurrent)
+    * [開發紀錄(microarch)](https://hackmd.io/s/SySJHBMhl)
+    * mergesort-concurrent:未完成
 - Homework 5
-   *  [開發紀錄(matrix)](https://hackmd.io/s/ryyyp5Mpe#) / [github](https://github.com/zhanyangch/matrix_oo)
+    *  [開發紀錄(matrix)](https://hackmd.io/s/ryyyp5Mpe#) / [github](https://github.com/zhanyangch/matrix_oo)
 - 第一次及第二次分組
-   * [開發紀錄(raytracing)](https://hackmd.io/s/HkifAKiae) / [github](https://github.com/yanang/raytracing_simd) /[youtube1](https://youtu.be/WEK_3FlDB1U) / [youtube2](https://youtu.be/8Vw6oX6lZPg)
+    * [開發紀錄(raytracing)](https://hackmd.io/s/HkifAKiae) / [github](https://github.com/yanang/raytracing_simd) /[youtube1](https://youtu.be/WEK_3FlDB1U) / [youtube2](https://youtu.be/8Vw6oX6lZPg)
+
+(2017春季班) 所見所聞心得
+-------------------------
+這學期講到講到許多分散式的系統的技巧，這些方法可以用在區塊鍊等需大量運算的地方，此外也學習
+到如何使用效能分析、統一的 coding style，而讓我印象最深刻的是每次看程式的語法，都讓我覺得自
+己好像沒學過C語言，之前的我只會看課本上的範例程式，但實際上在新的規格中有很多方便又有效率的
+程式寫法，讓我學習到許多。
+
+(2017春季班) 自我評量分數
+-------------------------
+6/10 分
+雖然知道很多新知識，卻沒有花費足夠的時間去深入的學習與實作，特別對於分組作業，表現的特別不足，還需多努力。
+
+
 
 
