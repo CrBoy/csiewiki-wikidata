@@ -1,0 +1,40 @@
+# 許雅雯(tina0405)
+
+**簡介**
+   * 國立成功大學工程科學系106級 (2013~2017)
+   * 國立成功大學電腦通訊研究所 (2017~)
+
+# 聯絡資訊
+
+   * Gmail : tina423424@gmail.com
+   * Github : [tina0405](tina0405 "https://github.com/tina0405")
+
+# 作業系統設計與實作
+
+##作業及筆記##
+
+* HW1
+   * [開發紀錄(phonebook)](https://hackmd.io/s/r1lUGhD5x) / [github](https://github.com/tina0405/phonebook)
+* HW2(互評)
+* HW3
+   * [開發紀錄(software-pipelining)](https://hackmd.io/s/B1DidaGol#) / [github](https://github.com/tina0405/prefetcher/commits/master)
+*HW4
+   * [開發紀錄(phonebook-concurrent)](https://hackmd.io/CYDg7ApgRgzALGAtAYwIZWYuwwCZGoBmUSAnFITAIyFxVwQBswQA#) / [github](https://github.com/tina0405/phonebook-concurrent)
+   * [開發紀錄(mergesort-concurrent)](https://hackmd.io/JwVgDARgTAbAHAZgLQFM4zEgLIuSICGAxikjCsFGHAGYJZhEFA==?view) / [github](https://github.com/tina0405/mergesort-concurrent)
+* HW5
+   * [開發紀錄(matrix)](https://hackmd.io/s/ryHxlbnhx#) / [github](https://github.com/tina0405/matrix_oo)
+*第一次分組報告
+   * [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/S1Zrwcopx) / [github](https://github.com/heathcliffYang/mergesort-concurrent) / [youtube](https://www.youtube.com/watch?v=f_BuLTfwJZQ&list=PLAp9YQsljMlHoYIhL51426GTsvHrR0iFg)
+*第二次分組報告
+   * [開發紀錄(mergesort-concurrent)](https://hackmd.io/s/r12FM-MeW) / [github](https://github.com/zmke/mergesort-concurrent) / [youtube](https://youtu.be/eW-ppOXKQY4) (36 min)
+
+##課堂心得##
+雖然第一個禮拜去畢旅沒有，但後來的時間都有好好把握去讀資料，只可惜寫程式的能力還是太弱，但真的學到很多東西，從作業3開始設計實驗去證明一些我們在論文上看到的知識是否正確，也嘗試利用 perf 去看效能，還嘗試寫了 memory pool ,利用找 mutex 的小工具去看哪裡出錯。以前雖然寫過雙執行緒，但卻沒有像最後一次分組報告一樣，同時分配好幾個獨立的工作給 thread 彼此不互相干擾，也嘗試去猜測錯誤，利用數據來證實我們的想法，我想這堂課最大的收穫就是能夠認知到原來以前學習時，從來沒想過要證實猜想，一昧的接受別人或網路上的知識吧！ 
+  
+
+##自評分數##
+
+   * 我給自己6分
+   * 給自己6分的原因，總覺得想法很多但寫程式的能力太薄弱，很多實驗都還沒來的及做到想要的樣子就結束，但還是很喜歡這堂課學到的小工具及各方面的想法刺激。
+
+    
