@@ -1,0 +1,37 @@
+---
+title: 李孟儒 (refleex)
+categories: User
+...
+
+**簡介**
+
+- 成功大學工程科學系 107 級 ( 2014 - 2018 )
+
+
+聯絡資訊
+=======
+- Email：momo19967123@gmail.com
+
+
+2017 春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1
+    * [開發紀錄(phonebook)](https://hackmd.io/s/HynmZT9Kx) / [Github](https://github.com/refleex/phonebook)
+    * [開發紀錄(raytracing)](https://hackmd.io/s/SysVtcGqx#) / [Github](https://github.com/refleex/raytracing)
+- HW2 
+    * [開發紀錄(software-pipelining)](https://hackmd.io/MYRgLCBMAcAMwFoCsBTAZihZhLAgnEgEYgIgCGaIKK5AJrEfiEA=) / [github](https://github.com/refleex/prefetcher)(phonebook-concurrent) 
+- HW3
+    * [開發紀錄(phonebook-concurrent)](https://hackmd.io/JwZgHAbCAMDGCMBaAZtYxEBZ7AEaLwEMMB2AVl1zl0JOHgiA) / [github](https://github.com/refleex/phonebook-concurrent)
+- 第一次及第二次團體分組報告
+    * [開發紀錄super malloc](https://hackmd.io/KwZgDA7ATAhgxgRgLQPlJAWMNhJgMwCNcBOfEwkgE1QDYYwQg===)
+
+所見所聞心得
+------------------------
+上學期看著原本寫程式能力差不多的同學去修了jserv的秋季班的課，我竟然完全聽不懂他們在說甚麼了，於是這學期我也抱著響遍強的決心來選課，雖然早就知道作業很硬，但畢竟這是未來我要走的方向，所以我毫不猶豫地選了這堂課。來自工科系的我，系上本身資訊領域的課程都是淺嘗即止(其實各領域都是)，因此要選擇自己未來的方向，有很大步粉必須靠自主學習，而我想這就是jserv交給我最寶貴的東西。自主學習的能力實在是太重要，不管是現在的修課還是出職場後的進修都是。這學期也是我第一次深入接觸到linux，以及完全戳破我自以為懂C語言的小泡泡，光是一個malloc時的segment fault就把我搞到天昏地暗了。不過這也讓我了解到自己有多不足，以前的我有多麼井底之蛙了，我會帶著這份自知以及培樣自主學習的習慣，繼續在資訊領域的路上前進的。
+
+自我評量分數
+------------------------
+6分/ 這學期一開始是保著可以學到很多東西的熱誠來，然而我卻高估了自己的能耐。到學期中之後，一開始說每個禮拜至少20小時的信誓旦旦已經後繼無力，但還是真的學到很多東西，然而後繼無力虎頭蛇尾，還是有很多進步跟努力的空間。
