@@ -21,7 +21,7 @@ toc: no
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
     - [重新理解數值](https://hackmd.io/s/BkRKhQGae): 2 進位, 3 進位 (?!), 數值表達方式和阿貝爾群, integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; 算術和數位邏輯的關聯
         * 對應 [CS:APP3e](http://csapp.cs.cmu.edu/) 的第 2 章: 2.3 整數運算, 2.4.2 IEEE 浮點數表示, 2.4.5 浮點運算
-    - [Programming Small](https://hackmd.io/s/SkfffA-jZ)
+    - [Programming Small](https://hackmd.io/s/SkfffA-jZ): 對應 [CS:APP3e](http://csapp.cs.cmu.edu/) 的第 5 章: 5.13 效能提高技術
         * 案例探討: [bit-reverse](https://hackmd.io/s/ByzoiggIb)
         * 案例探討: [multiplier](https://hackmd.io/s/r1Z_zPx8-)
     - [2017 年秋季作業說明](https://hackmd.io/s/B17yi6WoW)
