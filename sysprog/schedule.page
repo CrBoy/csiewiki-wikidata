@@ -21,7 +21,7 @@ toc: no
     - [重新理解數值](https://hackmd.io/s/BkRKhQGae): 2 進位, 3 進位 (?!), 數值表達方式和阿貝爾群, integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; 算術和數位邏輯的關聯
     - [Programming Small](https://hackmd.io/s/SkfffA-jZ)
         * 案例探討: [bit-reverse](https://hackmd.io/s/ByzoiggIb)
-        * [multiplier](https://hackmd.io/s/r1Z_zPx8-)
+        * 案例探討: [multiplier](https://hackmd.io/s/r1Z_zPx8-)
     - [2017 年秋季作業說明](https://hackmd.io/s/B17yi6WoW)
     - 選修/旁聽的學生請協助填寫 [課程表單](https://docs.google.com/forms/d/e/1FAIpQLScf9CcJ3_ETZQ8CJvE970Q1bSKUisKxdg8C5k-DTqFwoBLbsQ/viewform)
     - [作業](https://hackmd.io/s/HyxQTaZj-) (截止日: Oct 7)
