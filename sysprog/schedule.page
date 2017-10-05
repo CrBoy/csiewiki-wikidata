@@ -35,7 +35,10 @@ toc: no
     - 總分 300 分，全部是程式設計題目 (主要用 C 語言)，只要能得 60 分以上，就具備本學期課程所需要的基礎
     - [期初測驗試題](http://wiki.csie.ncku.edu.tw/sysprog/exam-2017fall.pdf)
 
-* 第 3 週 (Oct 6)
+* 第 3 週 (Oct 6): 計算機組織與結構
+    - [Computer Architecture](https://hackmd.io/s/H1sZHv4R) ([NOTE](https://hackmd.io/s/rkloHgHcx))
+    - [Modern Microprocessors (A 90-Minute Guide!) 重點提示和解說](https://hackmd.io/s/Hk2CscGcl)
+        * 錄影: [現代處理器原理和關鍵特徵 (上)](https://www.youtube.com/watch?v=OdjXtm_d6jE) / [現代處理器原理和關鍵特徵 (下)](https://www.youtube.com/watch?v=QpOHVfg4DKw)
 
 
 作業系統設計與實作 (Spring 2017)
