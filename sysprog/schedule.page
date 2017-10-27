@@ -58,7 +58,7 @@ toc: no
 * 第 6 週 (Oct 27): 
     - [第 1 週作業回顧](https://hackmd.io/s/H1crfllC-)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
-    - [現代處理器設計](http://hackfoldr.org/cpu)
+    - [現代處理器設計](http://hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
     - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 5)
 
 作業系統設計與實作 (Spring 2017)
