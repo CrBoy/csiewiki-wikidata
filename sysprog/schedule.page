@@ -59,7 +59,7 @@ toc: no
     - [第 1 週作業回顧](https://hackmd.io/s/H1crfllC-)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
     - [現代處理器設計](http://hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
-    - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 5)
+    - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 9)
         * [simulator](https://hackmd.io/s/BkQgqpe0Z)
 
 * 第 7 週 (Nov 3): 
@@ -73,6 +73,18 @@ toc: no
         - [加密貨幣硬體錢包公司 Ledger 與 Intel 合作, 將 SGX 技術整合進產品中](http://blockcast.it/2017/10/25/intel-partners-with-ledger-to-integrate-bitcoin-wallet-software-and-sgx-tech/)
         - [jslinux](https://bellard.org/jslinux/)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
+
+* 第 8 週 (Nov 10):
+    - [隔離執行環境的建構與應用](https://hackmd.io/s/Hk9HLRbkf): 加密貨幣領域的系統軟體
+        * Trusted Execution Environment (TEE)
+        * Trusted Platform Module (TPM)
+        * Moxie 處理器架構
+        * Ledger 公司推出 BOLOS (Blockchain Open Ledger Operating System) 作為區塊鏈處理的作業系統
+        * Ledger 公司透過特製的 Moxie 虛擬機器，作為 TEE 的基礎
+        * Intel 的 Software Guard Extensions (SGX)
+        * 採用 Moxie 架構一來確保極小的處理器和 ISA 實作，二來又保證 GNU Toolchain 的支援
+        * 使用 GNU profiler 来提高程式碼執行速度
+        * 支援遠端除錯
 
 
 作業系統設計與實作 (Spring 2017)
