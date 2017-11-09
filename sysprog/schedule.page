@@ -68,7 +68,7 @@ toc: no
     - [How Merkle trees enable the decentralized Web](https://taravancil.com/blog/how-merkle-trees-enable-decentralized-web/)
     - [虛擬機器設計與實作](https://hackmd.io/s/SkBsZoReb)
         - [Dalvik Implementation](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxudHVhbmRyb2lkMjAxNHxneDoxN2RmZjEyNDQ2YTg1MTli)
-        - [st9007a: simulator)](https://hackmd.io/s/Hkf6pkPAb)
+        - [st9007a: simulator](https://hackmd.io/s/Hkf6pkPAb)
         - [Ledger launches moxie-based secure VM technology for blockchain applications](http://moxielogic.org/blog/introducing-bolos.html)
         - [加密貨幣硬體錢包公司 Ledger 與 Intel 合作, 將 SGX 技術整合進產品中](http://blockcast.it/2017/10/25/intel-partners-with-ledger-to-integrate-bitcoin-wallet-software-and-sgx-tech/)
         - [jslinux](https://bellard.org/jslinux/)
