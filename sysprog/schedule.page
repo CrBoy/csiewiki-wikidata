@@ -87,6 +87,10 @@ toc: no
         * 支援遠端除錯
     - [形式化驗證](https://hackmd.io/s/H1xxp3pF0)
         * [形式化驗證與 cbmc](https://hackmd.io/s/Hk4lYmzkf)
+        * [程式漏洞導致虛擬貨幣被駭客無限制提領](https://technews.tw/2016/06/21/etheriumdao-hack-that-cloud-get-unlimit-refund/)
+        * [DAO 遭駭事件](https://technews.tw/2016/06/21/etheriumdao-hack-that-cloud-get-unlimit-refund/)
+            - 詳情: [Analysis of the DAO exploit](http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/), [The DAO, The Hack, The Soft Fork and The Hard Fork](https://www.cryptocompare.com/coins/guides/the-dao-the-hack-the-soft-fork-and-the-hard-fork/)
+
     - [第 6 週作業回顧](https://hackmd.io/s/BJR9BTlRW)
 
 
