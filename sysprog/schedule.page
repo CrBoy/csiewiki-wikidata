@@ -85,6 +85,7 @@ toc: no
         * 採用 Moxie 架構一來確保極小的處理器和 ISA 實作，二來又保證 GNU Toolchain 的支援
         * 使用 GNU profiler 来提高程式碼執行速度
         * 支援遠端除錯
+    - [第 6 週作業回顧](https://hackmd.io/s/BJR9BTlRW)
 
 
 作業系統設計與實作 (Spring 2017)
