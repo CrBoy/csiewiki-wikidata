@@ -76,6 +76,10 @@ toc: no
 
 * 第 8 週 (Nov 10):
     - 注意: 請在 11:10AM 前完成 [分組登錄](https://hackmd.io/OwDghgTALGDGsFpYFZYDMFQEZoCYIE4UAGBSARmWCmWSmFwFMg==?view)
+    - 若你沒打算退選，請在 11 月 15 日前發信到 `<jserv.tw@gmail.com>`，標題是 [sysprog] 你的姓名" (中間有空格)，說明以下:
+        * 自我評價前 8 週的學習狀況
+        * 導致學習進度落後的因素
+        * 預計補救的措施
     - [隔離執行環境的建構與應用](https://hackmd.io/s/Hk9HLRbkf): 加密貨幣領域的系統軟體
         * Trusted Execution Environment (TEE)
         * Trusted Platform Module (TPM)
