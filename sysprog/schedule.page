@@ -46,6 +46,7 @@ toc: no
 * 第 4 週 (Oct 13): Code Review
     - [Homework 1 講評](https://hackmd.io/s/HyxQTaZj-)
         * [Implementation of Binary Search on a Singly Linked List Using Dual Pointers](http://www.ijcsit.com/docs/Volume%205/vol5issue02/ijcsit20140502215.pdf)
+        * 對應 [CS:APP3e](http://csapp.cs.cmu.edu/) 的第 5 章: 5.6
     - 作業: [introspect](https://hackmd.io/s/B1aMNkXa-) (截止日: Oct 26)
 
 * 第 5 週 (Oct 20): Code Review
@@ -59,6 +60,7 @@ toc: no
     - [第 1 週作業回顧](https://hackmd.io/s/H1crfllC-)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
     - [現代處理器設計](http://hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
+        * 對應 [CS:APP3e](http://csapp.cs.cmu.edu/) 的第 4 章
     - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 9)
         * [simulator](https://hackmd.io/s/BkQgqpe0Z)
 
