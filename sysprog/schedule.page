@@ -56,7 +56,7 @@ toc: no
         * video: [The Poisson Distribution: Mathematically Deriving the Mean and Variance](https://www.youtube.com/watch?v=65n_v92JZeE)
     - [Homework 1 講評](https://hackmd.io/s/HyxQTaZj-) / [Homework 2 講評](https://hackmd.io/s/HkVvxOD2-)
 
-* 第 6 週 (Oct 27): 
+* 第 6 週 (Oct 27): 現代處理器設計
     - [第 1 週作業回顧](https://hackmd.io/s/H1crfllC-)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
     - [現代處理器設計](http://hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
@@ -64,7 +64,7 @@ toc: no
     - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 9)
         * [simulator](https://hackmd.io/s/BkQgqpe0Z)
 
-* 第 7 週 (Nov 3): 
+* 第 7 週 (Nov 3): Blockchain & Sandboxing
     - [Don Tapscott 闡述為何區塊鏈是改變現有生態的關鍵技術](https://www.ted.com/talks/don_tapscott_how_the_blockchain_is_changing_money_and_business) [有繁體中文字幕]
         * Don Tapscott 著有 "Blockchain Revolution : How the Technology Behind Bitcon Is Changing Money, Business and the World" 一書，在這個時間點，區塊鏈 + 數位內容 + 共享經濟平台疊合的效應不容小覷，革命性地跳脫中間抽成和交易成本
     - [How Merkle trees enable the decentralized Web](https://taravancil.com/blog/how-merkle-trees-enable-decentralized-web/)
@@ -76,7 +76,7 @@ toc: no
         - [jslinux](https://bellard.org/jslinux/)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
 
-* 第 8 週 (Nov 10):
+* 第 8 週 (Nov 10): Sandboxing & Formal Verification
     - 注意: 請在 11:10AM 前完成 [分組登錄](https://hackmd.io/OwDghgTALGDGsFpYFZYDMFQEZoCYIE4UAGBSARmWCmWSmFwFMg==?view)
     - 若你沒打算退選，請在 11 月 15 日前發信到 `<jserv.tw@gmail.com>`，標題是 `[sysprog] 你的姓名` (中間有空格)，說明以下:
         * 自我評價前 8 週的學習狀況
@@ -97,10 +97,11 @@ toc: no
         * [程式漏洞導致虛擬貨幣被駭客無限制提領](https://technews.tw/2016/06/21/etheriumdao-hack-that-cloud-get-unlimit-refund/)
         * [DAO 遭駭事件](https://technews.tw/2016/06/21/etheriumdao-hack-that-cloud-get-unlimit-refund/)
             - 詳情: [Analysis of the DAO exploit](http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/), [The DAO, The Hack, The Soft Fork and The Hard Fork](https://www.cryptocompare.com/coins/guides/the-dao-the-hack-the-soft-fork-and-the-hard-fork/)
-
     - [第 6 週作業回顧](https://hackmd.io/s/BJR9BTlRW)
     - [作業](https://hackmd.io/s/rk7xxIGkf) (截止日: Nov 23)
         * [sandbox](https://hackmd.io/s/BJpTWUM1f)
+
+* 第 9 週 (Nov 17): CS:APP
 
 
 作業系統設計與實作 (Spring 2017)
