@@ -105,6 +105,11 @@ toc: no
     - [CS:APP 學習指引 (1)](https://hackmd.io/s/SJ7V-qikG)
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
 
+* 第 10 週 (Nov 24)
+    - nand2tetris: 運用數位邏輯的概念，使用基本閘組出一台電腦
+        * [用十分鐘向 nand2tetris 學會設計處理器](https://www.slideshare.net/ccckmit/nand2tetris)
+        * [Shimon Schocken 的 TED 演說](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course?language=zh-tw)
+
 
 作業系統設計與實作 (Spring 2017)
 ------------------------------------------------------
