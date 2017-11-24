@@ -106,6 +106,7 @@ toc: no
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
 
 * 第 10 週 (Nov 24)
+    - 近期活動：[半導體製造的第一手資訊](https://headtoengineer.kktix.cc/events/7c90b8a0-5a5191-9487-copy-2)
     - nand2tetris: 運用數位邏輯的概念，使用基本閘組出一台電腦
         * [用十分鐘向 nand2tetris 學會設計處理器](https://www.slideshare.net/ccckmit/nand2tetris)
         * [Shimon Schocken 的 TED 演說](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course?language=zh-tw)
