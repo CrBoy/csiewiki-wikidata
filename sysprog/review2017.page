@@ -1,0 +1,45 @@
+---
+title: 「系統軟體走向國際」2017 年成果回顧
+categories: system programming, linux, OCF, 2017
+toc: no
+...
+
+主持人: [jserv](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
+
+
+![](http://i.imgur.com/JP53fis.png)
+
+# 參加頂尖的技術研討會，並發表開源成果
+1. 在 [FOSDEM 2017](https://fosdem.org/2017/) (2 月/比利時。歐洲乃至於世界上最大的自由軟體/開放原始碼會議) 發表嶄新的 IoT 作業系統核心 (呂紹榕)
+    * 講題: [Secure Microkernel for Deeply Embedded Devices](https://fosdem.org/2017/schedule/event/microkernel_microkernel_for_embedded_devices/)
+2. 在 [Linux Foundation](https://www.linuxfoundation.org/) 舉辦的 [Embedded Linux Conference 2017](http://events.linuxfoundation.org/events/archive/2017/embedded-linux-conference/) (2 月/美國) 發表即時 Linux 效能分析工具並提出改善方案 (楊宗凡)
+    * 講題: [Effectively Measure and Reduce Kernel Latencies for Real-time Constraints](https://events.linuxfoundation.org/sites/events/files/slides/ELC2017-%20Effectively%20Measure%20and%20Reduce%20Kernel%20Latencies%20for%20Real-time%20Constraints%20%281%29.pdf)
+3. 在 [Linux Foundation](https://www.linuxfoundation.org/) 舉辦的 [Embedded Linux Conference 2017](http://events.linuxfoundation.org/events/archive/2017/open-source-summit-north-america) (9 月/美國)
+
+# 開發新的開放原始碼專案
+1. [Piko-RT](https://github.com/Piko-RT/pikoRT): 基於 ARM Cortex-M 的輕量化即時 Linux-like 核心
+2. [Puyuma](https://github.com/Puyuma): 低價低功耗完全開放原始程式碼的無人車解決方案
+    * 展示影片: [Lane following](https://www.youtube.com/watch?v=84MXc0_F61o) ; [Lane visualization](https://www.youtube.com/watch?v=XK602hzbORY)
+3. [Dozen Cloud](http://dozencloud.org/): 適用於 ARM 的 OpenStack 基礎建設
+
+# 貢獻到上游開放原始碼專案
+* [Chewing](https://github.com/chewing): 新酷音輸入法計畫，全球區指可數依循中華民國(台灣)教育部規範的中文輸入法系統，多款 Linux 發行套件內建的繁體中文輸入法程式。Chrome OS 內建。
+
+# 國內/外華人工程師經驗分享
+|分享者  |隸屬公司     |經驗分享日期|
+|:----|:----|:----|
+| YC | Google | 2017 年 1 月 6 日 |
+| 莊偉赳 | Cloudera | 2017 年 9 月 27 日 |
+| 林詩凱 | TSMC | 2017 年 12 月 1 日 |
+
+
+
+# 公開的線上講座
+1. [你所不知道的 C 語言](http://hackfoldr.org/dykc)
+2. [作業系統概念和文藝復興](http://hackfoldr.org/oscar)
+3. [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
+4. [現代處理器設計](http://hackfoldr.org/cpu)
+
+# 實體公開課程
+1. [冬季短期課程](https://hackmd.io/s/H1KTTZP8l): 2017 年 1 月 / 台南
+2. [夏季短期課程](https://hackmd.io/s/BJRtkreHW): 2017 年 7 月 / 台北
