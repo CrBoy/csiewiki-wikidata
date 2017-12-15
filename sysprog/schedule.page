@@ -110,13 +110,17 @@ toc: no
     - nand2tetris: 運用數位邏輯的概念，使用基本閘組出一台電腦
         * [用十分鐘向 nand2tetris 學會設計處理器](https://www.slideshare.net/ccckmit/nand2tetris)
         * [Shimon Schocken 的 TED 演說](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course?language=zh-tw)
-    - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     - [CS:APP 學習指引 (1)](https://hackmd.io/s/SJ7V-qikG)
     - [第 8 週作業回顧](https://hackmd.io/s/rk7xxIGkf) 
 
 * 第 11 週 (Dec 1): SPS IPC Drives 展覽，停課一次
 
 * 第 12 週 (Dec 8): [分組報告](https://hackmd.io/s/rk7xxIGkf)
+
+* 第 13 週 (Dec 15)
+    - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
+    - [分組報告](https://hackmd.io/s/rk7xxIGkf)
+
 
 作業系統設計與實作 (Spring 2017)
 ------------------------------------------------------
