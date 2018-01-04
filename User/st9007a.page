@@ -1,0 +1,43 @@
+st9007a(吳哲銘)
+------------------
+**簡介:**
+
+- 成功大學電機工程學系(2013 - 2017)
+- 成功大學電機所戊組(2017 - )
+
+**作品**
+
+- deep-learning-framework : [github](https://github.com/st9007a/deep-learning-framework)
+
+聯絡資訊:
+=====================
+- email: ``st9007a@gmail.com``
+
+2017秋季班 個人評量
+=======================
+
+(秋季班)作業及筆記
+------------------------
+- HW1 [開發紀錄(ternary)](https://hackmd.io/s/rJv_CTmsb) / [github](https://github.com/st9007a/balanced-ternary)
+- HW1 [開發紀錄(phonebook)](https://hackmd.io/s/BJvNXiEib) / [github](https://github.com/st9007a/phonebook/)
+- HW1 [開發紀錄(clz)](https://hackmd.io/s/rywfL4tj-) / [github](https://github.com/st9007a/clz-tests)
+- HW2 [開發紀錄 (prefix-search)](https://hackmd.io/s/SkeKQEq3Z) / [github](https://github.com/st9007a/prefix-search)
+- HW2 [開發紀錄 (software-piplining)](https://hackmd.io/s/Hyl9P0CnW) / [github](https://github.com/st9007a/prefetcher)
+- HW3 [開發紀錄 (simulator)](https://hackmd.io/s/Hkf6pkPAb) / [github](https://github.com/st9007a/full-stack-hello)
+
+ (秋季班)小組作業
+------------------------
+- Project1 [開發紀錄(sandbox)](https://hackmd.io/s/S1mVVIxlf) / [GitHub](https://github.com/ian910297/moxiebox) / [YouTube](https://www.youtube.com/watch?v=QiYbO6cnHdw)
+- Project2 [開發紀錄(MathEX)](https://hackmd.io/s/SJjU_TzWG) / [Github](https://github.com/st9007a/MathEX) / [Youtube](https://youtu.be/VNdovxyfrM8)
+
+(秋季班)所見所聞心得
+------------------------
+之前在大學時期就已經時有耳聞這門課 , 也抱著試試看的心態去修課 , 不過當時心態沒有調適好 , 所以修了一個禮拜就退選了 , 這次抱著打死不退選的心態來再次修課 , 很高興當初有繼續修下去 , 這門課所探討的議題非常廣泛 , 也讓我了解到自己不管是背景知識或是程式實作 , 其實都相當的不足 , 同時也見識到了所謂真正有強度的專案 , 我在這門課除了學到了軟體設計上的許多議題 , 同時也了解到基本功的重要性 , 有些後悔當初大學有許多東西沒學好 , 今後我會試著補上這些不足的部分
+
+由於我所屬的研究室是屬於機器學習領域 , 再加上老師上課罵學生時有時候會嘴一下機器學習 , 所以這門課也讓我開始思考機器學習與系統軟體的關聯性 , 為了更深入了解自己的研究領域 , 我嘗試用 C 語言打造的一個專門給 C 語言使用的深度學習框架 , 也就是上述的作品 deep-learning-framework , 這也是我第一次自己從零開始寫 C 語言專案 , 還在緩慢開發中 , 效能還有許多改進空間 , 我想用這個專案來當作這門課的後續自學
+ 
+(秋季班)自我評量分數 (1 到 10 級分)
+---------------------------
+10級分
+
+我完成了這門課大部分的作業 , 學到了許多以前從不曾想過的軟體相關議題 , 對 C 語言有更進一步的認識 , 最重要的是 , 我想 , 我是勇於接受挑戰的
