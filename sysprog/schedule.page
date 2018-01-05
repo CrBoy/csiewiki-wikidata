@@ -146,7 +146,7 @@ void *thread(void *vargp) {
 ```
 
 * 第 16 週 (Jan 5):
-    - Virtual Memory
+    - Virtual Memory: [Making Virtual Memory Fast](https://www.youtube.com/watch?v=uyrSn3qbZ8U), [TLB example](https://www.youtube.com/watch?v=95QpHJX55bM)
 
 作業系統設計與實作 (Spring 2017)
 ------------------------------------------------------
