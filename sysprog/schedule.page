@@ -155,6 +155,8 @@ void *thread(void *vargp) {
         * [Reactions to Meltdown and Spectre exploits](https://twitter.com/CommitStrip/status/948985234837639169)
         * ["Exploiting Speculative Execution via Javascript" is possibly one of the most terrifying lines of text I've ever seen, especially since this implies DUMPING KERNEL MEMORY from JAVASCRIPT.](https://twitter.com/blackhole0173/status/948687448053182464)
         * [P5 microarchitecture. That means ORIGINAL PENTIUM, not PENTIUM PRO, which is P6. Pentium II and later are all P6 CPUs, and are vulnerable.](https://twitter.com/Foone/status/948634015090728960)
+        * [Using #Meltdown to steal passwords in real time](https://twitter.com/misc0110/status/948706387491786752)
+        * [not an Intel problem but an entire chipmaker design problem](https://twitter.com/nicoleperlroth/status/948684376249962496)
 
 
 作業系統設計與實作 (Spring 2017)
