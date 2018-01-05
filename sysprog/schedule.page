@@ -147,6 +147,11 @@ void *thread(void *vargp) {
 
 * 第 16 週 (Jan 5):
     - Virtual Memory: [Making Virtual Memory Fast](https://www.youtube.com/watch?v=uyrSn3qbZ8U), [TLB example](https://www.youtube.com/watch?v=95QpHJX55bM)
+    - [Kernel-memory-leaking Intel processor design flaw forces Linux, Windows redesign](https://www.theregister.co.uk/2018/01/02/intel_cpu_design_flaw/)
+        * [Reading privileged memory with a side-channel](https://googleprojectzero.blogspot.tw/2018/01/reading-privileged-memory-with-side.html), Project Zero, Google Inc.
+        * [KASLR is Dead: Long Live KASLR](https://gruss.cc/files/kaiser.pdf), TU Graz
+        * [Vulnerability of Speculative Processors to Cache Timing Side-Channel Mechanism](https://developer.arm.com/support/security-update), Arm
+
 
 作業系統設計與實作 (Spring 2017)
 ------------------------------------------------------
