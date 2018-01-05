@@ -151,6 +151,10 @@ void *thread(void *vargp) {
         * [Reading privileged memory with a side-channel](https://googleprojectzero.blogspot.tw/2018/01/reading-privileged-memory-with-side.html), Project Zero, Google Inc.
         * [KASLR is Dead: Long Live KASLR](https://gruss.cc/files/kaiser.pdf), TU Graz
         * [Vulnerability of Speculative Processors to Cache Timing Side-Channel Mechanism](https://developer.arm.com/support/security-update), Arm
+    - Twitter 上的討論
+        * [Reactions to Meltdown and Spectre exploits](https://twitter.com/CommitStrip/status/948985234837639169)
+        * ["Exploiting Speculative Execution via Javascript" is possibly one of the most terrifying lines of text I've ever seen, especially since this implies DUMPING KERNEL MEMORY from JAVASCRIPT.](https://twitter.com/blackhole0173/status/948687448053182464)
+        * [P5 microarchitecture. That means ORIGINAL PENTIUM, not PENTIUM PRO, which is P6. Pentium II and later are all P6 CPUs, and are vulnerable.](https://twitter.com/Foone/status/948634015090728960)
 
 
 作業系統設計與實作 (Spring 2017)
