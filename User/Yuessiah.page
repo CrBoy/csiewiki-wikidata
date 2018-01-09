@@ -1,0 +1,47 @@
+---
+title: yuessiah (陳冠昊)
+categories: User
+...
+
+簡介
+=
+* 成功大學資訊工程系 108 級
+* 成大電腦與網路愛好社 105 學年 社長
+* SITCON 2018 議程組 組員
+
+聯絡方式
+-
+* E-mail address: ``yuessiah@ccns.ncku.edu.tw``
+
+2017q3 進階電腦系統理論與實作秋季班
+=
+* [課程內容](http://wiki.csie.ncku.edu.tw/sysprog/schedule)
+
+作業及筆記
+-
+* Homework1
+	* [開發紀錄(ternary)](https://hackmd.io/s/r1IWnMKoW) / [GitHub](https://github.com/yuessiah/balanced-ternary)
+	* [開發紀錄(phonebook)](https://hackmd.io/s/Sk9PXlio-) / [GitHub](https://github.com/yuessiah/phonebook)
+	* [開發紀錄(clz)](https://hackmd.io/s/BJPsDklhb) / [GitHub](https://github.com/yuessiah/clz-tests)
+* Homework2
+	* [開發紀錄(prefix-search)](https://hackmd.io/s/SkSOAGn3Z) / [GitHub](https://github.com/yuessiah/prefix-search)
+* Homework3
+	* [開發紀錄(simulator)](https://hackmd.io/s/BJ86uiY0W) / [GitHub](https://github.com/yuessiah/full-stack-hello)
+* 分組報告
+	* [開發紀錄(改善 clz)](https://hackmd.io/s/Bk-uxCYxz) / [GitHub](https://github.com/HexRabbit/clz-tests) / [YouTube](https://youtu.be/al1-swdsdNU)
+
+修課心得
+-
+本來就對於硬體的細節就不太有興趣，但知道咱們成大有位大神 Jserv 來教書，CP 值絕對高過絕大部分的資訊系所課程，於是我就和朋友來修了；
+
+但如 Jserv 所說，__根本沒有所謂的純軟__，想要造出好的軟體，硬體知識是必不可少！課程並非風評所說的硬，硬不硬都在於個人，老師給的作業非常彈性，硬 其實只是自我要求高一點，所以大約前半學期我覺得很硬，後半學期就不硬了...(
+
+後半學期在忙一些競技程式相關的訓練，所以也就無心力花費在課堂上，但老師引導了許多方向可走(還有留存的教學錄影)，即使現在忙不過來，未來也要找出時間好好學習。
+
+因為這門課的關係，開始也寫些筆記和想法整理公開在網路上，希望能幫助更多學習者。
+
+自我評分
+-
+__得分： 5 分 (滿分 10 分)__
+
+用比較的方式來看，我覺得可以拿這個分數；其意義就是我認為我做出的貢獻是在平均水準的，但總修課人數前 20% 的大神們貢獻量實在巨大...
