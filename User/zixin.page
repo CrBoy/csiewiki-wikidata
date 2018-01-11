@@ -26,12 +26,19 @@
 - software-pipeline [Github](https://github.com/ZixinYang/prefetcher),[Hackmd](https://hackmd.io/s/ryx3pubab)
 - simulator [Github](https://github.com/ZixinYang/full-stack-hello),[Hackmd](https://hackmd.io/s/Hymn4S2CW)
 - sandbox [Github](https://github.com/ZixinYang/moxiebox),[Hackmd](https://hackmd.io/s/rk-hhSNlf)
-- natural mergesort [Github](https://github.com/ZixinYang/natural-mergesort),[Hackmd](https://hackmd.io/s/rJNb845xf), [Youtube](https://www.youtube.com/watch?v=fJymMkXIrpc&feature=youtu.be)
+- natural mergesort [Github](https://github.com/ZixinYang/natural-mergesort),[Hackmd](https://hackmd.io/s/rJNb845xf),[Youtube](https://www.youtube.com/watch?v=fJymMkXIrpc&feature=youtu.be)
 
 
 (秋季班)所見所聞心得
 ------------------------
+從這堂課所學主要分成幾個要點:
 
+- 學習開源協作: 以前沒有開源專案的經驗, 所以這個機會讓我們熟悉用 github 管理專案, 以及養成好的 code style
+- 養成作筆記的習慣: 接觸 Hackmd 後, 開始習慣用該平台做筆記, 可以快速記錄想法也方便分享資訊
+- 練習獨立思考, 做實驗, 並闡述想法, 而不是仰賴搜尋引擎: 以前習慣遇到不懂的就 google, 但老師出的作業都 google 不到, 然後也漸漸發現搜到的也有很多是錯誤的資訊
+- 學習效能評估套件: 修這堂課之前不太在意硬體效能, 也不知道怎麼評估效能, 但現在知道可以如何去查看硬體的執行狀況
+- 複習計算機背景知識: 求學至今, 課本的知識長在課本上, 實作時還是什麼也用不上, 但老師十分重視實際的例子, 要我們去思考演算法的實際應用場景, 才開始慢慢覺得以前學習的時候因為用不到很快就忘記了, 實在不是很好的學習狀況
 
 (秋季班)自我評量分數 (1 到 10 級分)
 ---------------------------
+我給自己 8 級分, 前半學期作業很多的時候, 常常花了整個週末理解題目, 補足背景知識, 嘗試改善程式碼, 再做實驗。 老師給了很多參考資料, 我也都嘗試吸收理解, 把可以理解, 可以做的記錄在共筆當中。 雖然沒有什麼厲害的成果, 但感覺自己慢慢在進步, 至少比半年前的自己強了。
