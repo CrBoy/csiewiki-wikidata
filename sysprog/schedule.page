@@ -161,6 +161,12 @@ void *thread(void *vargp) {
 * 第 17 週 (Jan 12):
     * [Meltdown 的攻擊方式](https://blog.gslin.org/archives/2018/01/07/8030/), [Meltdown 與 Spectre 都有用到的 FLUSH+RELOAD](https://blog.gslin.org/archives/2018/01/05/8028/)
     * [Why Raspberry Pi isn't Vulnerable to Spectre or Meldown](https://www.raspberrypi.org/blog/why-raspberry-pi-isnt-vulnerable-to-spectre-or-meltdown/)
+```C
+#include <stdint.h>
+#define MAGIC1 0x100                                                            
+#define MAGIC2 "\0\xff" 
+#define IS_XXX (*(uint16_t *) MAGIC2 < MAGIC1)
+```
 
 
 作業系統設計與實作 (Spring 2017)
@@ -209,12 +215,6 @@ void *thread(void *vargp) {
     - [inline assembly 中文解說](https://hackmd.io/s/S1-0Ymqsg)
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     - 預習: [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
-```C
-#include <stdint.h>
-#define MAGIC1 0x100                                                            
-#define MAGIC2 "\0\xff" 
-#define IS_XXX (*(uint16_t *) MAGIC2 < MAGIC1)
-```
     - [作業](https://hackmd.io/s/ryPKJUm2l) (截止日: Apr 8)
         * [matrix](https://hackmd.io/s/rkrrpHm2e)
 
