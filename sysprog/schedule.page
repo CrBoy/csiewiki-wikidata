@@ -158,6 +158,10 @@ void *thread(void *vargp) {
         * [Using #Meltdown to steal passwords in real time](https://twitter.com/misc0110/status/948706387491786752)
         * [not an Intel problem but an entire chipmaker design problem](https://twitter.com/nicoleperlroth/status/948684376249962496)
 
+* 第 17 週 (Jan 12):
+    * [Meltdown 的攻擊方式](https://blog.gslin.org/archives/2018/01/07/8030/), [Meltdown 與 Spectre 都有用到的 FLUSH+RELOAD](https://blog.gslin.org/archives/2018/01/05/8028/)
+    * [Why Raspberry Pi isn't Vulnerable to Spectre or Meldown](https://www.raspberrypi.org/blog/why-raspberry-pi-isnt-vulnerable-to-spectre-or-meltdown/)
+
 
 作業系統設計與實作 (Spring 2017)
 ------------------------------------------------------
