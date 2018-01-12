@@ -161,6 +161,7 @@ void *thread(void *vargp) {
 * 第 17 週 (Jan 12):
     * [Meltdown 的攻擊方式](https://blog.gslin.org/archives/2018/01/07/8030/), [Meltdown 與 Spectre 都有用到的 FLUSH+RELOAD](https://blog.gslin.org/archives/2018/01/05/8028/)
     * [Why Raspberry Pi isn't Vulnerable to Spectre or Meldown](https://www.raspberrypi.org/blog/why-raspberry-pi-isnt-vulnerable-to-spectre-or-meltdown/)
+    * 延伸閱讀: [The Last MileAn Empirical Study of Timing Channels on seL4](http://research.davidcock.fastmail.fm/papers/Cock_GMH_14.pdf)
 ```C
 #include <stdint.h>
 #define MAGIC1 0x100                                                            
