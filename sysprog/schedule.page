@@ -167,6 +167,7 @@ void *thread(void *vargp) {
 #define MAGIC2 "\0\xff" 
 #define IS_XXX (*(uint16_t *) MAGIC2 < MAGIC1)
 ```
+    - Quiz: [Bubble sort in ARM assembly](https://github.com/jserv/bubble-sort-arm)
 
 
 作業系統設計與實作 (Spring 2017)
