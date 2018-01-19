@@ -1,0 +1,41 @@
+shanshow(邵子軒)
+------------------
+**簡介:**
+
+聯絡資訊:
+=====================
+- email: ``showdiango@gmail.com``
+
+2017秋季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- ternary [Github](https://github.com/shanshow/balanced-ternary),[Hackmd](https://hackmd.io/AzDMDMCYHYCNILQE5bgCYICwEMCMwFZc1sEAOAUzOkjIGMlpg7sg?view)
+
+- phonebook [Github](https://github.com/shanshow/phonebook),[Hackmd](https://hackmd.io/GwUwhgZgHA7MEFooBYZQcgzMgDAsARjgMYIgCcmAJsATAKyUEFA=?view)
+
+- clz [Github](https://github.com/shanshow/clz-tests)
+
+- prefix-search [Github](https://github.com/shanshow/prefix-search),[Hackmd](https://hackmd.io/OwDhGYQEyhTBaARgYwEyPgFk+c8CG4ADEfOMDCAIwCsmAZqqskA=)
+
+- 深入理解計算機系統作業練習 [Hackmd](https://hackmd.io/KYBghuBMoLQGYHY4BYbJATgCYwEaWQGYYtNIMBjCgVi3ISA=?view)
+
+- ternary(分組報告版本) [Hackmd](https://hackmd.io/MwFhA4EME4FMCMC0BWAxgBmIkAzEB2RaVcVRANmQCZlThUBGWBkIA===?view)
+
+(秋季班)所見所聞心得
+------------------------
+我印象最深的一點是，開學第二周就有考試，而題目可說是我以前完全沒有接觸過的，這讓我體會到自己的渺小，但是也讓我找到前進的方向。
+每周老師會依據當周所發生的資訊相關事件而及時調整課程內容，近期發生的事件便是 spectre 與 meltdown ，這些即時性的資訊補充讓我養成了自己隨時會去注意相關消息的習慣。
+每周的作業雖然壓力十分巨大，我也無法全部完成，但是在閱讀強者同學的筆記以及作業提示的引導中，我也依稀學到了一點東西，如 git 的使用以及關於 git commit 中描述檔案更改的用詞該如何精確表達。
+雖然目前我在實驗上所使用的程式語言與 C 語言有點不同(遊戲引擎以及網頁部分使用的是 C# )，但是一旦理解了 C 語言的邏輯，相信對於未來我使用其他種類的程式語言也有相當的幫助。
+感謝老師與助教這半年來的用心指導，希望未來的我能夠精益求精，更上層樓。
+
+
+(秋季班)自我評量分數 (1 到 50 分)
+---------------------------
+40分。
+其實這個分數算是高估我自己了，應該說上了這堂課後，感覺自己從不畏虎的幼犢變成理解自己渺小的青蛙。
+打這個自評分數並不只是為了讓我比較不會被當，也包含了一點我為自己的未來所打的可能性。
+現在終於找到一條能夠精進自己的道路，至少先把 csapp 3e 念完，追上別人大一程度的程式能力。
+感謝老師與助教在課堂上分享許多有關電腦的知識，我也因此養成了隨時尋找最新的電腦資訊與隨時與同學討論程式題目的習慣。
