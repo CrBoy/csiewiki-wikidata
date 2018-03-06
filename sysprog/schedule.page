@@ -12,7 +12,7 @@ toc: no
 
 作業系統設計與實作 (Spring 2018)
 ------------------------------------------------------
-* 第 1 週 (Sep 22): 誠實面對自己
+* 第 1 週 (Feb 27): 誠實面對自己
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/143asQtaklIxV_3PGZ1EIM_2DrFfOX7Qblt9xZorQXYg/edit?usp=sharing)
         * [錄影解說](https://www.youtube.com/watch?v=XXiPPUzld84)
     - [Bit-wise operations](https://hackmd.io/s/HkMAwkzdf)
@@ -26,6 +26,10 @@ toc: no
         * 課後學習: [你所不知道的C語言：數值系統篇](https://hackmd.io/s/BkRKhQGae), [你所不知道的C語言：指標篇](https://hackmd.io/s/HyBPr9WGl), [你所不知道的C語言：遞迴呼叫篇](https://hackmd.io/s/rJ8BOjGGl)
     - [課程基本資料表單](https://goo.gl/forms/0ImbCMH1VMG0jyKg2)
     - Week1 隨堂測驗: [題目](https://drive.google.com/open?id=0Bz1QkuJoCR2tNlZtaVBQNW9hM3hPNWJPeEVYQU9WNWJ5WWxJ) / [作答表單](https://goo.gl/forms/alrwn5w6WT0VHfeM2)
+
+* 第 2 週 (Mar 6): 數值系統
+    * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
+    * [Bitwise Algorithms](https://www.geeksforgeeks.org/bitwise-algorithms/), [bit-reverse](https://hackmd.io/s/ByzoiggIb), [multiplier](https://hackmd.io/s/r1Z_zPx8-)
 
 
 進階電腦系統理論與實作 (Fall 2017)
