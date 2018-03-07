@@ -20,8 +20,8 @@ Perf 可取樣的事件非常多，可以分析 Hardware event，如 cpu-cycles�
 
 參考的環境是 Ubuntu 14.04，kernel 版本 3.16.0。有兩種方法可以安裝
 
-1.  前面講到，perf 是 Linux 內建支持的效能優化工具，在 2.6.31 版本之後，我們可以直接進到 `/usr/src/<kernel version>/tools/perf` ，然後 `make` 和 `make install` 來安裝 。
-我沒試過，但應該沒什麼問題，我採用的是第二種方法。
+1.  前面講到，perf 是 Linux 內建支持的效能優化工具，在 2.6.31 版本之後，我們可以直接到 [Linux Kernel Archives](https://www.kernel.org/) 下載對應版本的程式碼，解壓縮後到 `tools/perf` 裡面去編譯，通常過程中會有相依的套件需要安裝，依指示完成安裝後，編譯即可成功，最後再把編譯完成的 perf 移至 `/usr/bin` 中就可以使用了。 
+這種方法通常適用於更新過 kernel 的使用者，因為更新過 kernel 後會造成 distribution package 與 kernel version 不相符。一般使用者採用第二種方法即可。
 
 
 2. 使用 apt-get 進行安裝。 
