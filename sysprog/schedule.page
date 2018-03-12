@@ -35,7 +35,7 @@ toc: no
 
 * 第 3 週 (Mar 13): 數值運算
     * [從根號 2 的運算談浮點數](https://hackmd.io/s/ryOLwrVtz)
-        + 對應 [CS:APP 3/e](http://csapp.cs.cmu.edu/) 的 ==2.3.6== (Page 70-74), ==2.4.5== (Page 85-87)
+        + 對應 [CS:APP 3/e](http://csapp.cs.cmu.edu/) 的 **2.3.6** (Page 70-74), **2.4.5** (Page 85-87)
     * [你所不知道的C語言: linked list 和非連續記憶體操作](https://hackmd.io/s/SkE33UTHf)
         * 千萬不要小看 [Linux 核心的 linked list 實作](https://github.com/torvalds/linux/blob/master/include/linux/list.h) (不到 800 行)，很多人下載 Linux 核心程式碼後，就急著閱讀 `kernel/` 和 `drivers/` 目錄，沒多久就被各種「偉大」的程式碼嚇跑
             + 這些人不懂 C 語言和掌握 Linux 核心的設計概念
