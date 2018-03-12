@@ -40,6 +40,8 @@ toc: no
         * 千萬不要小看 [Linux 核心的 linked list 實作](https://github.com/torvalds/linux/blob/master/include/linux/list.h) (不到 800 行)，很多人下載 Linux 核心程式碼後，就急著閱讀 `kernel/` 和 `drivers/` 目錄，沒多久就被各種「偉大」的程式碼嚇跑
             + 這些人不懂 C 語言和掌握 Linux 核心的設計概念
             + 無法掌握關鍵資料結構，如 linked list
+    * 作業: (截止日: Mar 26)
+        + 課後預習: [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl), [現代處理器設計: Cache 原理和實際影響](https://hackmd.io/s/HkW3Dr1Rb)
     * Week3 隨堂測驗: 題目 / 作答表單
 
 進階電腦系統理論與實作 (Fall 2017)
