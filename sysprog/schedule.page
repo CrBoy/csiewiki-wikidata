@@ -5,10 +5,9 @@ toc: no
 ...
 
 - Instructor: [Jim Huang](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
-    * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這就是專門和學生互動的)
+    * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這專門用來和學生互動，可預約一對一討論)
 - 討論區: [https://www.facebook.com/groups/system.software2018/](https://www.facebook.com/groups/system.software2018/)
 - 課程信箱: `<embedded.master2015@gmail.com>`
-- [行事曆](https://calendar.google.com/calendar/embed?src=4mp6h7b77t2tqkveavtgqaple0%40group.calendar.google.com&ctz=Asia%2FTaipei): 可預約一對一討論
 
 作業系統設計與實作 (Spring 2018)
 ------------------------------------------------------
@@ -41,6 +40,7 @@ toc: no
             + 這些人不懂 C 語言和掌握 Linux 核心的設計概念
             + 無法掌握關鍵資料結構，如 linked list
     * 作業: (截止日: Mar 26)
+        + [introspect](https://hackmd.io/s/SJvojkBtG), 
         + 課後預習: [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl), [現代處理器設計: Cache 原理和實際影響](https://hackmd.io/s/HkW3Dr1Rb)
     * Week3 隨堂測驗: 題目 / 作答表單
 
