@@ -45,10 +45,12 @@ toc: no
     * Week3 隨堂測驗: [題目](https://drive.google.com/file/d/1kR5I9HbxEP15Xr7iA3APaOLqyZpFzUCp/view?usp=sharing) / [作答表單](https://goo.gl/forms/0b4FW4RhOCU46ldK2)
 
 * 第 4 週 (Mar 20): 協同開發和計算機結構
+    * 公告: Apr 3 配合校際活動週暫時實體授課，當天用 YouTube 補課，當週也會有對應的作業，請留意
     * Git commits 案例探討: [dcurl](https://github.com/chenwei-tw/dcurl) // [趣聞](https://www.facebook.com/photo.php?fbid=10156207653132389&set=a.484920257388.262658.541762388)
         + [SITCON 2018 簡報](https://www.slideshare.net/ChenWei15/sitcon2018-analysis-and-improvement-of-iota-pow-implementation)
         + [reddit 討論](https://www.reddit.com/r/Iota/comments/85bxsv/dcurl_multithreaded_curl_implementation/)
         + 指導原則: [Commit Often, Perfect Later, Publish Once](https://sethrobertson.github.io/GitBestPractices/)
+    * 作業: (截止日: Apr 2)
 
 
 進階電腦系統理論與實作 (Fall 2017)
