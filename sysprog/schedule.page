@@ -44,6 +44,12 @@ toc: no
         + 課後預習: [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl), [現代處理器設計: Cache 原理和實際影響](https://hackmd.io/s/HkW3Dr1Rb)
     * Week3 隨堂測驗: [題目](https://drive.google.com/file/d/1kR5I9HbxEP15Xr7iA3APaOLqyZpFzUCp/view?usp=sharing) / [作答表單](https://goo.gl/forms/0b4FW4RhOCU46ldK2)
 
+* 第 4 週 (Mar 20): 協同開發和計算機結構
+    * Git commits 案例探討: [dcurl](https://github.com/chenwei-tw/dcurl)
+        + [SITCON 2018 簡報](https://www.slideshare.net/ChenWei15/sitcon2018-analysis-and-improvement-of-iota-pow-implementation)
+        + [reddit 討論](https://www.reddit.com/r/Iota/comments/85bxsv/dcurl_multithreaded_curl_implementation/)
+
+
 進階電腦系統理論與實作 (Fall 2017)
 ------------------------------------------------------
 * 第 1 週 (Sep 22): 誠實面對自己
