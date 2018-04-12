@@ -83,6 +83,7 @@ toc: no
 * 第 8 週 (Apr 17): Memory hierarchy
     * [Effect of CPU caches](https://medium.com/@minimarcel/effect-of-cpu-caches-57db81490a7f)
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper (前任 GNU glibc 維護人)
+        - 「[有沒有 glibc 的八卦？](https://news.ycombinator.com/item?id=7953771)」: 比較 Linus Torvalds (Linux 核心) 和 Ulrich Drepper (glibc) 管理風格的差異，不能把開放原始碼專案當作「單一文化」看待
 
 
 進階電腦系統理論與實作 (Fall 2017)
