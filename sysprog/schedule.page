@@ -81,6 +81,7 @@ toc: no
         - [Binary Search Is a Pathological Case for Caches](https://www.pvk.ca/Blog/2012/07/30/binary-search-is-a-pathological-case-for-caches/)
 
 * 第 8 週 (Apr 17): Memory hierarchy
+    * [淺談 Microkernel 設計和真實世界中的應用](https://hackmd.io/s/SJ55y7fR)
     * [Effect of CPU caches](https://medium.com/@minimarcel/effect-of-cpu-caches-57db81490a7f)
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper (前任 GNU glibc 維護人)
         - 「[有沒有 glibc 的八卦？](https://news.ycombinator.com/item?id=7953771)」: 比較 Linus Torvalds (Linux 核心) 和 Ulrich Drepper (glibc) 管理風格的差異，不能把開放原始碼專案當作「單一文化」看待
