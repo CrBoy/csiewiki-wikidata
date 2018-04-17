@@ -86,7 +86,7 @@ toc: no
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper (前任 GNU glibc 維護人)
         - 「[有沒有 glibc 的八卦？](https://news.ycombinator.com/item?id=7953771)」: 比較 Linus Torvalds (Linux 核心) 和 Ulrich Drepper (glibc) 管理風格的差異，不能把開放原始碼專案當作「單一文化」看待
     * [software pipelining](https://hackmd.io/s/BJWcEb3xM), [現代處理器設計: Cache 原理和實際影響](https://hackmd.io/s/HkW3Dr1Rb)
-    * Week8 隨堂測驗: [題目](https://drive.google.com/open?id=1R37mDXI05Yc8mNjRICyK6cJVFz4CBczI) / [作答表單](https://goo.gl/forms/UtKuFEgEcKEBhL2l1)
+    * Week8 隨堂測驗: [題目](https://hackmd.io/s/Hknr4Rx3z) / [作答表單](https://goo.gl/forms/UtKuFEgEcKEBhL2l1)
     * 填寫 [分組表](https://hackmd.io/MDIXcaHRTTK-SpAHLNYGTQ)
 
 
