@@ -93,6 +93,8 @@ toc: no
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
     * intrusive vs. non-intrusive data structure
+        - [intrusive/non-intrusive data collection](https://medium.com/fcamels-notes/intrusive-non-intrusive-data-collection-2b937f3c0c0b)
+        - 示範: [intrusive-ds](https://github.com/sysprog21/intrusive-ds)
         - [Intrusive Lists in Doom 3](https://gpfault.net/posts/intrusive-lists-doom3.txt.html)
         - [DOOM 3 BFG Technical Note](http://fabiensanglard.net/doom3_documentation/DOOM-3-BFG-Technical-Note.pdf) (Page 7-9)
 
