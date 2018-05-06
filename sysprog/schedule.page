@@ -107,6 +107,12 @@ toc: no
         * 錄影: [淺談 Semaphore 與 Mutex](https://www.youtube.com/watch?v=JEXwO_EoyZo)
         * [練習題](https://docs.google.com/document/d/1HYrW8gzn87ekAhntmrr5Dd00PN0WuRLblxFqvuNlUNg/edit#heading=h.jj4ulvjrppuw)
 
+* 第 11 週 (May 8)
+    * Linux 原始程式碼總是充斥大量背景知識
+        + [Variable-length arrays and the max() mess](https://lwn.net/Articles/749064/)
+        + [The joy of max()](https://lwn.net/Articles/750306/)
+        + [__is_constexpr](https://qiita.com/tomabou/items/a3d2b7436b3c7da8fc9f)
+
 
 進階電腦系統理論與實作 (Fall 2017)
 ------------------------------------------------------
