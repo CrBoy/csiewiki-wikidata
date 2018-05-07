@@ -1065,14 +1065,6 @@ After download, compile the qemu_stm32 by:
     $ cd && mkdir -p workspace
     $ cd workspace
     $ git clone git://github.com/beckus/stm32_p103_demos.git || git clone https://github.com/beckus/stm32_p103_demos.git 
-    $ cd qemu_stm32
-    git submodule update --init dtc || sudo apt-get install libfdt-dev
-    ./configure --disable-werror --enable-debug \
-        --target-list="arm-softmmu" \
-        --extra-cflags=-DSTM32_UART_NO_BAUD_DELAY \
-        --extra-cflags=-DSTM32_UART_ENABLE_OVERRUN \
-        --disable-gtk
-    $ make
     $ cd ../stm32_p103_demos
     $ make all
     $ make blink_flash_QEMURUN
