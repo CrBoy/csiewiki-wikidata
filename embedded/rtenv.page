@@ -1051,7 +1051,7 @@ STM32 on QEMU 環境建立與測試
 
 ```shell
 You will need to prepare QEMU STM32 emulator from: QEMU STM32 v0.1.3
-
+  >> https://github.com/beckus/qemu_stm32/releases
 After download, compile the qemu_stm32 by:
 
     $ ./configure --disable-werror --enable-debug \
