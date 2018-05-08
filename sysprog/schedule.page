@@ -114,7 +114,7 @@ toc: no
         + [__is_constexpr](https://qiita.com/tomabou/items/a3d2b7436b3c7da8fc9f)
     * [CS:APP 3/e 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
     * [CS:APP 3/e 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
-    * Synchronization
+    * Synchronization: 搭配學習 [Toward Concurrency](https://hackmd.io/s/Skh_AaVix) (有錄影)
         + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
         + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
         + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
