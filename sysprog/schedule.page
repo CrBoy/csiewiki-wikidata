@@ -125,12 +125,9 @@ toc: no
         + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
         + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
     * Week11 隨堂測驗:
-<<<<<<< edited
         + [題目(上)](https://drive.google.com/open?id=1qoPE8sYNrfXxKK8AuAH9E6lnijoyg4Is) / [作答表單](https://goo.gl/forms/CIto7U908L5K0UGz2)
         + [題目(下)](https://drive.google.com/open?id=12uS572RubKZ9qxjXSeovQADZGdcoNZ13) / [作答表單](https://goo.gl/forms/ca2b4Qx9EZK6wuOT2)
-=======
-        + [題目(上)](https://hackmd.io/s/r1zL9gnaf) / [作答表單](https://goo.gl/forms/CIto7U908L5K0UGz2)
->>>>>>> 8797ddd73f04666d49983f5b08028252bda714c0
+
 
 
 進階電腦系統理論與實作 (Fall 2017)
