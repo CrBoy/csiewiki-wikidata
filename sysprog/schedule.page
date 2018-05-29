@@ -138,6 +138,10 @@ toc: no
     * Week13 隨堂測驗: [題目](https://hackmd.io/s/HJV0SEW1Q) / [作答表單](https://goo.gl/forms/JbFclzK4quwHkSyH3)
 
 * 第 14 週 (May 29): Linux 執行單元和同步機制
+    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
+    * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
+    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/)
+    * [Concurrency in glibc](https://sourceware.org/glibc/wiki/Concurrency)
 
 
 進階電腦系統理論與實作 (Fall 2017)
