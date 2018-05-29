@@ -141,6 +141,7 @@ toc: no
     * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/)
+        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
     * [Concurrency in glibc](https://sourceware.org/glibc/wiki/Concurrency)
     * 公告: 及早預約補考和一對一討論，發訊息到 [jserv 與他愉快的小夥伴](https://www.facebook.com/JservFans/)
         + 5 月 29 日 19:30-, 5 月 30 日 10:00-15:00 + 18:00-20:00
