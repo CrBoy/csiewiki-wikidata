@@ -115,6 +115,29 @@ toc: no
     * [CS:APP 3/e 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
     * [CS:APP 3/e 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * Synchronization: 搭配學習 [Toward Concurrency](https://hackmd.io/s/Skh_AaVix) (有錄影)
+    * Week11 隨堂測驗:
+        + [題目(上)](https://hackmd.io/s/r1zL9gnaf) / [作答表單](https://goo.gl/forms/CIto7U908L5K0UGz2)
+        + [題目(下)](https://hackmd.io/s/Hyo1gcC6M) / [作答表單](https://goo.gl/forms/ca2b4Qx9EZK6wuOT2)
+
+* 第 12 週 (May 15): 停課一次
+
+* 第 13 週 (May 22): Linux 執行單元和同步機制
+    * [如何貢獻開源專案？](https://shinglyu.github.io/web/2018/05/12/how-to-contribute-to-open-source.html)
+    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
+    * Week13 隨堂測驗: [題目](https://hackmd.io/s/HJV0SEW1Q) / [作答表單](https://goo.gl/forms/JbFclzK4quwHkSyH3)
+
+* 第 14 週 (May 29): Linux 執行單元和同步機制
+    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
+    * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
+    * [Concurrency in glibc](https://sourceware.org/glibc/wiki/Concurrency)
+    * 公告: 及早預約補考和一對一討論，發訊息到 [jserv 與他愉快的小夥伴](https://www.facebook.com/JservFans/)
+        + 5 月 29 日 19:30-, 5 月 30 日 10:00-15:00 + 18:00-20:00
+    * Week14 隨堂測驗: [題目](https://drive.google.com/open?id=1SS5EUoWoYtGgXq-pN9Gzv2bUnZ-jgNpY) / [作答表單](https://goo.gl/forms/ReDP1Oy2KKSzbcwG3)
+* 第 15 週 (Jun 5): Linux 執行單元和同步機制
+    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
+    * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
+    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/)
+        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
         + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
         + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
         + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
@@ -124,28 +147,9 @@ toc: no
         + [Part 7: The Reader Writer Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-7:-The-Reader-Writer-Problem)
         + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
         + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
-    * Week11 隨堂測驗:
-        + [題目(上)](https://hackmd.io/s/r1zL9gnaf) / [作答表單](https://goo.gl/forms/CIto7U908L5K0UGz2)
-        + [題目(下)](https://hackmd.io/s/Hyo1gcC6M) / [作答表單](https://goo.gl/forms/ca2b4Qx9EZK6wuOT2)
-
-* 第 12 週 (May 15): 停課一次
-
-* 第 13 週 (May 22): Linux 執行單元和同步機制
     * 公告: 及早預約補考和一對一討論，發訊息到 [jserv 與他愉快的小夥伴](https://www.facebook.com/JservFans/)
-        + 5 月 22 日 19:30-, 5 月 23 日 10:00-15:00 + 18:00-20:00
-    * [如何貢獻開源專案？](https://shinglyu.github.io/web/2018/05/12/how-to-contribute-to-open-source.html)
-    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
-    * Week13 隨堂測驗: [題目](https://hackmd.io/s/HJV0SEW1Q) / [作答表單](https://goo.gl/forms/JbFclzK4quwHkSyH3)
+        + 6 月 5 日 19:30-
 
-* 第 14 週 (May 29): Linux 執行單元和同步機制
-    * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
-    * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
-    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/)
-        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
-    * [Concurrency in glibc](https://sourceware.org/glibc/wiki/Concurrency)
-    * 公告: 及早預約補考和一對一討論，發訊息到 [jserv 與他愉快的小夥伴](https://www.facebook.com/JservFans/)
-        + 5 月 29 日 19:30-, 5 月 30 日 10:00-15:00 + 18:00-20:00
-    * Week14 隨堂測驗: [題目](https://drive.google.com/open?id=1SS5EUoWoYtGgXq-pN9Gzv2bUnZ-jgNpY) / [作答表單](https://goo.gl/forms/ReDP1Oy2KKSzbcwG3)
 
 進階電腦系統理論與實作 (Fall 2017)
 ------------------------------------------------------
