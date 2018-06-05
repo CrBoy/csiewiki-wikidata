@@ -138,7 +138,7 @@ toc: no
     * [5 bullet-points of IOTA Qubic](https://www.tangleblog.com/2018/06/04/five-bullet-points-of-iota-qubic-and-its-insane-implications-and-consequences-interpreted/)
     * [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
-    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/)
+    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
         * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
         + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
         + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
