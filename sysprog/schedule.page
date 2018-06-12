@@ -154,7 +154,10 @@ toc: no
     * Week15 隨堂測驗: [題目](https://hackmd.io/s/HyQnpsXgX) / [作答表單](https://goo.gl/forms/YuBqt5R8x0WKAr1s2)
 
 * 第 16 週 (Jun 12): Linux 排程
-   * [Effectively Measure and Reduce Kernel Latencyfor Real-time Constraints](https://elinux.org/images/a/a9/ELC2017-_Effectively_Measure_and_Reduce_Kernel_Latencies_for_Real-time_Constraints_%281%29.pdf)
+   * [Introduction to Kernel Programming](https://www.slideshare.net/linuxawy/introduction-to-kernel-programming)
+   * [Effectively Measure and Reduce Kernel Latency for Real-time Constraints](https://elinux.org/images/a/a9/ELC2017-_Effectively_Measure_and_Reduce_Kernel_Latencies_for_Real-time_Constraints_%281%29.pdf)
+   * [Linux Locking Mechanisms](https://www.slideshare.net/kerneltlv/linux-locking-mechanisms)
+   * [Deterministic Memory Allocation For Mission Critical Linux](http://schd.ws/hosted_files/ossna2017/cf/Deterministic%20Memory%20Allocation%20for%20Mission-Critical%20Linux.pdf)
 
 
 進階電腦系統理論與實作 (Fall 2017)
