@@ -1,0 +1,38 @@
+---
+title: HexRabbit(陳冠廷)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 資訊工程系 109 級(2016-2020)
+
+聯絡資訊
+======================
+- email: ``mikuqb8718@gmail.com``
+- github: ``HexRabbit``
+
+2018 春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1: phonebook [Github](https://github.com/HexRabbit/phonebook),[Hackmd](https://hackmd.io/s/r1qMdqji-)
+- HW2(A): prefix-search [Github](https://github.com/HexRabbit/prefix-search),[Hackmd](https://hackmd.io/s/S1bax6MR2b)
+- HW2(B): assessment [Hackmd](https://hackmd.io/s/BkMaaAmcM)
+- HW3: list [Hackmd](https://hackmd.io/s/Hkv67K13z)
+- HW4: mini-arm-os [Hackmd](https://hackmd.io/s/Hk1705phM)
+
+所見所聞心得
+------------------------
+因為上學期有旁聽過課程，所以這個學期相對比較習慣這們課程的步調，
+老實說最大的斬獲和最可惜的點都是在 mini-arm-os 上，透過這個相對簡單的 os 實作，
+讓我從以往的紙上談兵 -- 知道有 context-switch 卻不瞭解箇中原理，
+轉為切切實實的理解一個簡單的 os 究竟是怎麼運作的。但最可惜的點就在於努力理解之後
+我沒有辦法將 rtenv+ 的 shell、檔案系統移植過來，老實說一部分原因是自己期末時
+因其他課程的作業眾多而不夠努力，實在是對不起 jserv 老師的教導，所以我期望自己能夠在暑假時持續研究。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+7 級分，期初-期中時我認為可以拿 8 級分，而期末時只能拿到 6 級分。
+再次感謝 jserv 的教導，每週二的課後的討論時間真的解決了我不少疑惑。
