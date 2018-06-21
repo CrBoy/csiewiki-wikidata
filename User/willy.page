@@ -1,0 +1,45 @@
+---
+title: willy(邱劭威)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 資訊工程系107級(2014-2018)
+
+聯絡資訊
+======================
+- email: [lowfamily204@gmail.com](mailto:lowfamily204@gmail.com)
+- github: [rwe0214](https://github.com/rwe0214)
+- LinkIn: [Willy Chiu](www.linkedin.com/in/willy-chiu)
+
+2018春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1: [phonebook](https://hackmd.io/s/SykZ8IMOf) 
+    - [開發紀錄 ( phonebook )](https://hackmd.io/s/H1N0muKdM) / [github](https://github.com/rwe0214/phonebook)
+- HW2(A): [assessment](https://hackmd.io/s/BJ0v7eBFz)
+    - [開發紀錄 ( assessment )](https://hackmd.io/s/Sy-u9XG9z)
+- HW2(B): [prefix-search](https://hackmd.io/s/ByFWoR_tz)
+    - [開發紀錄 ( prefix-search )](https://hackmd.io/s/BkGyRrXqG) / [github](https://github.com/rwe0214/prefix-search)
+- HW3(A): [list](https://hackmd.io/s/HkxZbJzif)
+    - [開發紀錄 ( list )](https://hackmd.io/s/ByXoh_3oz#) / [github](https://github.com/rwe0214/linux-list)
+- HW3(B): [c-review](https://hackmd.io/s/ByDzIZzjf)
+- HW4: server-framework 
+    - [開發紀錄 ( server-framework )](https://hackmd.io/s/HJY7Bzspf#) / [github](https://github.com/rwe0214/server-framework)
+
+所見所聞心得
+------------------------
+其實當時在選修這堂課的理由很簡單，就是想變強而已。
+
+這門課應該是我在大學四年以來，覺得最硬但也最充實的一堂課。課程中老師會不斷提供海量的資訊，以及網路上的資源，甚至是自錄影片來介紹 c 語言和作業系統，經過前面幾周 ( 應該說幾天 ) 的洗禮，便深深認知到自己以前所學實在是太少太少了，從 c 語言的指標到作業系統的 Concurrency 問題等等，從前都認為『就那樣阿』，但不知道經過指標和寫法的變化，可以讓程式碼更簡潔甚至更有效率等等，老師也在中間介紹了 Linux 所使用的 linked list 風格，而隨堂考試的題目常常也在這部份做變化，另外，也讓我對 Linux 系統有了更進一步的認識，並且使我對作業系統的開發研究燃起了興趣。
+
+修完了這門課，也認知到自己仍有很多很多的東西需要學習，以便成為一名高強度的工程師。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+在這堂課表現上，只能用虎頭蛇尾來形容，學期前中期，幾乎都把時間灌住在這堂課上，舉凡投影片、youtube 影片都有認真閱讀。但是到了中後期，付出的時間卻越來越少，現在回想真的很不應該，除了作業缺交一次，期末的報告也做不完全，這部份我一定會在之後的時間把它補齊的！
+
+基於以上的原因，我給我自己評分為 6.5 級分，最後，謝謝 jserv 老師這一整個學期的指導！
