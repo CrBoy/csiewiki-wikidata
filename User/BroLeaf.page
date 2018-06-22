@@ -1,0 +1,44 @@
+---
+title: BroLeaf(葉芷勳)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 資訊工程系108級
+
+聯絡資訊
+======================
+- email: dj3vu6zp@gmail.com
+- github: [broleaf](https://github.com/BroLeaf)
+
+2018 春季班 個人評量
+=======================
+
+作業
+------------------------
+- HW1 (phonebook)   [Hackmd](https://hackmd.io/s/SkHgvUU_f) / [Github](https://github.com/BroLeaf/phonebook)
+- HW2 (assessment)    [Hackmd](https://hackmd.io/s/B1QbUVz9G)
+- HW2 (prefix-search) [Hackmd](https://hackmd.io/s/H18K2899f) /  [Github](https://github.com/BroLeaf/prefix-search)
+- HW3 (list)                    [Hackmd](https://hackmd.io/s/rJXviUcsf)
+- HW3 (c-review)          [Hackmd](https://hackmd.io/s/Sk2fD9Pjz) / [Github](https://github.com/ggary9424/web-server-cgi),
+
+分組報告
+---
+[quiz1](https://hackmd.io/s/S1f0tSyTG), [quiz2](https://hackmd.io/s/BkM4w2Gaf), [quiz3](https://hackmd.io/s/r1mnwM5aG) / [Youtube](https://www.youtube.com/playlist?list=PLwOoG0YkUk9NObYaCDy93TiB_-sOhvoOa)
+
+Userspace TCP/IP stack for Linux : [nstack](https://hackmd.io/s/ryfvFmZ0f) /  [github](https://github.com/BroLeaf/nstack)
+
+
+心得
+------------------------
+從一升上大二就已經聽說過這堂課了，聽一了年多老師的各種名聲，也讓我萌生想上這堂課的種種意願，最主要的原因還是因為我覺得自己不夠強，強者走在路上隨便就看得見，我也有想變成強者的憧憬，聽了第一次的這堂課，才知道各種強者根本不是說當就當的，每周都叫你自己回去看 6 ~ 9 小時的教學影片，看不懂的地方還要回去重看，每一次一次的累積自己的基礎知識，這些東西都不是在網路上隨隨便便都找得到有人幫你整理的，每次看到的都是自己不知道、沒有接觸過的領域，讓我根本收穫滿滿。
+
+再來是從作業中，學習了 gnuplot 繪圖、perf 的各種測效能， Makefile 、 Latex 語法，學習上手了以後學得會這些東西根本就只是基本而已，我以前都連這些東西都不會，怎麼還敢說會寫程式，而且每一份作業在開始之前，都要先有大量的背景知識，這點就讓我有點吃不消，吸收完背景知識，還不知道要怎麼寫作業，就先去理解別人寫了什麼，又花上大量時間，雖然基本上都能通順了解作業內容，但是我覺得現在讓我重寫一遍作業，我一定可以更加發揮學習過的知識。
+
+最後是我自己覺得收獲最大的就是如何表得自己腦袋中的東西了，分組報告拍了好幾次影片，每次拍都會發現，其實怎麼樣說會比較清楚，開發紀錄上打的是一回事，可以打得很清楚明瞭，但是說出來又是另外一回事了，我想這些東西不是那麼容易可以訓練的，很感謝老師讓我意會到這件事。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+9 級分，我覺得我花在這堂課上面大量的時間都是有回報的，這大概是我目前在大學的一門課上花最多時間的吧。
+雖然接近期末的時候一大堆 project 、meeting 堆積而來，讓我把 nstack 的開發給暫緩下來，所以我給自己扣一分，但是我覺得這是一個非常棒，我也希望老師能繼續指導我開發這個專案，不過要先等我把老師的 pull request 的要求完成QQ
