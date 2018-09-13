@@ -9,6 +9,17 @@ toc: no
 - 討論區: [https://www.facebook.com/groups/system.software2018/](https://www.facebook.com/groups/system.software2018/)
 - 課程信箱: `<embedded.master2015@gmail.com>`
 
+進階電腦系統理論與實作 (Fall 2018)
+------------------------------------------------------
+* 第 1 週 (Sep 14): 誠實面對自己
+    - [課程簡介和注意須知](https://docs.google.com/presentation/d/1Iuyh_ctWxBgV69S-qZej0oIVaufeoz5S_-rvehCab38/edit)
+    - 注意: 第週均安排測驗，取出其中最高分的 6 次採計
+    - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck)
+    - [21 世紀的系統軟體](https://hackmd.io/s/H1oxJ0Wo-): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設
+    - [軟體缺失導致的危害](https://hackmd.io/s/B1eo44C1-)
+    - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
+
+
 作業系統設計與實作 (Spring 2018)
 ------------------------------------------------------
 * 第 1 週 (Feb 27): 誠實面對自己
