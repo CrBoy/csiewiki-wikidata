@@ -18,6 +18,7 @@ toc: no
     - [21 世紀的系統軟體](https://hackmd.io/s/H1oxJ0Wo-): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設
     - [軟體缺失導致的危害](https://hackmd.io/s/B1eo44C1-)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
+    - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ)
 
 
 作業系統設計與實作 (Spring 2018)
