@@ -37,6 +37,8 @@ toc: no
 * 第 3 週 (Sep 28): C 程式設計效能
     - [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
     - [對 Linked List 進行氣泡排序](https://hackmd.io/s/BklGm1MhZ)
+    - [Count Leading Zero (clz) 的實作](https://hackmd.io/s/Skq6P9bpz)
+        * [clz 應用](https://hackmd.io/s/Bk-uxCYxz), [clz 分析](https://hackmd.io/s/Hyl9-PrjW)
     - 作業 (截止日: Oct 14)
     - Week3 隨堂測驗: 題目
 
