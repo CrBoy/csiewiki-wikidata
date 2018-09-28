@@ -41,6 +41,11 @@ toc: no
         * [clz 應用](https://hackmd.io/s/Bk-uxCYxz), [clz 分析](https://hackmd.io/s/Hyl9-PrjW)
     - [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
+    - 課後閱讀: [What comes after Moore's Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore's Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
+        * Ephemeral applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
+        * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
+        * Cloud platforms: 對於雲端應用而言，使用者不會在意它是在哪種處理器與加速器上運作的;
+        * Open source software: 主要在於特定的軟體開發商因人力與成本而減少支援硬體的範圍，開放原始碼軟體這時能夠作為考慮方案。儘管無法消弭對硬體的相依性，但不像軟體開發商對硬體平台支援或不支援的要求;
     - 作業 (截止日: Oct 14)
     - Week3 隨堂測驗: [題目](https://hackmd.io/s/BkyQskjK7#) / [作答表單](https://goo.gl/forms/fpLWdyDckGZSQAcC2)
 
