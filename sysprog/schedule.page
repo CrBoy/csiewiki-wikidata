@@ -40,6 +40,7 @@ toc: no
     - [Count Leading Zero (clz) 的實作](https://hackmd.io/s/Skq6P9bpz)
         * [clz 應用](https://hackmd.io/s/Bk-uxCYxz), [clz 分析](https://hackmd.io/s/Hyl9-PrjW)
     - [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)
+        * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
     - 作業 (截止日: Oct 14)
     - Week3 隨堂測驗: 題目
 
