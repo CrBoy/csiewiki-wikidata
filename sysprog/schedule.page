@@ -52,6 +52,8 @@ toc: no
 
 * 第 4 週 (Oct 5): code review
     - 回顧 [Homework1](https://hackmd.io/s/SkWIb_O_X), [Homework2](https://hackmd.io/s/rJwiDHGKQ)
+    - [作業](https://hackmd.io/s/r1Yp07Uqm)
+        * [assessment](https://hackmd.io/s/HJ236XI57)
     - Week4 隨堂測驗
         * 上: [題目](https://hackmd.io/s/HyyxpJE5X#) / [作答表單](https://goo.gl/forms/QUp3OrcmXCKzCjoZ2)
         * 中: [題目](https://hackmd.io/s/Syl6me49Q) / [作答表單](https://goo.gl/forms/rwmVkXkeyjh5clLH3)
@@ -555,17 +557,3 @@ void *thread(void *vargp) {
     - [學期評分須知](https://hackmd.io/s/rkfCYai-x)
     - [新的專案題目](https://hackmd.io/s/Hy4g26jbg) (選擇性)
     - [第二次分組成果回顧](https://hackmd.io/s/r1-e1Jgll)
-
-## Computer Systems: A Programmer's Perspective
-
-*   [CMU 官方網站](http://csapp.cs.cmu.edu/)
-*   推薦閱讀: (和本課程高度相關)
-    - [Machine-Level Representation of Programs](http://csapp.cs.cmu.edu/2e/ch3-preview.pdf)
-    - [Processor Architecture](http://csapp.cs.cmu.edu/2e/ch4-preview.pdf)
-    - [Optimizing Program Performance](http://csapp.cs.cmu.edu/2e/ch5-preview.pdf)
-    - [The Memory Hierarchy](http://csapp.cs.cmu.edu/2e/ch6-preview.pdf)
-    - [Linking](http://csapp.cs.cmu.edu/2e/ch7-preview.pdf)
-    - [Exceptional Control Flow](http://csapp.cs.cmu.edu/2e/ch8-preview.pdf)
-    - [Virtual Memory](http://csapp.cs.cmu.edu/2e/ch9-preview.pdf)
-    - [System-Level I/O](http://csapp.cs.cmu.edu/2e/ch10-preview.pdf)
-    - [Concurrent Programming](http://csapp.cs.cmu.edu/2e/ch12-preview.pdf)
