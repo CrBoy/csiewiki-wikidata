@@ -86,11 +86,11 @@ toc: no
     * 人工智慧涉及大量運算，和底層計算機結構及數值表示法高度相關: [Making floating point math highly efficient for AI hardware](https://code.fb.com/ai-research/floating-point-math/), [bfloat16 floating-point format](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP 第 4 章重點提示](https://hackmd.io/s/ByKFm4CFz)
+    * Week9 隨堂測驗(上)： [題目](https://hackmd.io/s/BJ3iW7GaQ#) / [作答表單](https://goo.gl/forms/VAotwuQB6XOYOmin1)
 
 * 第 10 週 (Nov 16): Computer Architecture
     * [CS:APP 第 3 章重點提示](https://hackmd.io/s/HJDRfVCFG)
-    * Week10 隨堂測驗(上)： [題目](https://hackmd.io/s/BJ3iW7GaQ#) / [作答表單](https://goo.gl/forms/VAotwuQB6XOYOmin1)
-
+    
 
 作業系統設計與實作 (Spring 2018)
 ------------------------------------------------------
