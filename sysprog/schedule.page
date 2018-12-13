@@ -113,7 +113,9 @@ toc: no
     * 2018 年 11 月 16 日新版國際單位制通過，新的公斤定義將改以物理學的普朗克常數為標準 (WTF?!)
         * 世界上所有的測量結果都可以追溯到「國際單位制」(Système International d'Unités；SI Units)
         * 國際單位制以七個基本單位為基礎，並由此推導出各種可相互換算的測量單位。多年來，測量的定義 —— 安培(ampere)、燭光(candela)、克耳文(kelvin)、公斤(kilogram)、公尺(meter)、莫耳(mole)以及秒(second) —— 都已重新定義
-        * 質量測量的標準源於存放在法國巴黎近郊國際度量衡局的單一物件 —— 國際公斤原器，自 1884 年被鑄造成為公斤的標準以來一直存放在此，[有什麼問題呢？](https://www.eettaiwan.com/news/article/20181123NT01-The-Kilogram-Has-a-New-Definition)
+        * 質量測量的標準源於存放在法國巴黎近郊國際度量衡局的單一物件 —— 國際公斤原器 (IPK)，自 1884 年被鑄造成為公斤的標準以來一直存放在此，[有什麼問題呢？](https://www.eettaiwan.com/news/article/20181123NT01-The-Kilogram-Has-a-New-Definition)
+            - 根據近年的量測顯示，IPK 重量已減少約 50 微克
+            - 經過全球國家度量機構數十年的討論和研究，決定捨棄實體的 IPK，改以普朗克常數重新定義公斤單位，其定義比 IPK 至少穩定 100 萬倍 
         * video: [公斤是如何重新定義？](https://www.youtube.com/watch?v=E-IBVXNHyKc)
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
 
