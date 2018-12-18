@@ -1,14 +1,14 @@
 注意：以下心得適用於PHP7 免安裝(PHP5.2以前請使用安裝版本)
 
-========================================
+----------------------------------------
             Apache Install
-========================================
+----------------------------------------
 ※注意：Apache 32或64位元需與PHP相符合，因在讀取dll檔會需要相容性，且apache 與 php 的編譯VC 須為同一版本
 - PHP5 並沒有完整支援64位元，請使用32位元版本
 - 若PHP沒有編譯，只跑出純文字頁面，可檢查mod_headers.so是否有開啟
 - Unzip the Apache24 folder to c:/Apache24 (that is the ServerRoot in the config).
     Default folder for your your webpages is DocumentRoot "c:/Apache24/htdocs"
-    
+
 1.首先至Apache24/conf/httpd.conf (另外修改conf 後只須重啟服務即可)
     搜尋 Listen 將 80 更改為 ServerName 後的 port 號碼 (若要監聽很多port號時，可以增加多個Listen)
     例如:Listen 有 80 和 8090
@@ -53,15 +53,15 @@
     >cd /d [Apache安裝目錄/bin]
     >httpd.exe -k start 啟動
     >httpd.exe -k shutdown 關閉
-    
+
 
 ★ Install as a service:
     必須先安裝 C++ Redistributable Visual Studio 對應版本
-    (此版本對應C++ Redistributable Visual Studio 2017)        
+    (此版本對應C++ Redistributable Visual Studio 2017)
     >httpd.exe -k install -n "service name" 安裝服務
     >httpd.exe -k uninstall -n "service name" 移除服務
     If the "service name" option is omitted, the service name "Apache2.4" is used as the default name of the service.
-    
+
     windows 之下
     NET START "service name" 啟動服務
     NET STOP "service name" 關閉服務
@@ -78,24 +78,24 @@ SSL module:
 ApacheMonitor:
     Double click ApacheMonitor.exe, or put it in your Startup folder.
 
-========================================
+----------------------------------------
             虛擬目錄設定
-========================================
+----------------------------------------
 1.可以將虛擬的目錄指向特定資料夾
     Alias /virtualfolder "D:/datafolder"
 
-========================================
+----------------------------------------
             Apache Upgrading
-========================================
+----------------------------------------
     - Upgrading from 2.2.x see: httpd.apache.org/docs/2.4/upgrading.html
       and see httpd.apache.org/docs/2.4/new_features_2_4.html .
 
     - Updating from 2.3.x
       copy all the files over, except your changed .conf files.
 
-========================================
+----------------------------------------
         Apache virtual hosts
-========================================
+----------------------------------------
 1.先至httpd.conf 取消Include conf/extra/httpd-vhosts.conf的註解
     # Virtual hosts
     Include conf/extra/httpd-vhosts.conf
@@ -137,9 +137,9 @@ ApacheMonitor:
 
 4.即可至網頁直接輸入網址 http://html_2 開啟頁面
 
-========================================
+----------------------------------------
             安裝openSSL
-========================================
+----------------------------------------
 修改httpd.conf
     #載入模組mod_ssl.so，此模組是啟用SSL功能必須的。
     LoadModule ssl_module modules/mod_ssl.so
@@ -147,7 +147,7 @@ ApacheMonitor:
     LoadModule socache_shmcb_module modules/mod_socache_shmcb.so
     #載入ssl的設定檔案
     Include conf/extra/httpd-ssl.conf
-    
+
 1.產生金鑰
   - 單行產出 key + crt 檔案方法:
     openssl req -new -newkey rsa:2048 -sha256 -days 3650 -nodes -x509 -keyout server.key -out server.crt -config v3.ext -extensions v3_req
@@ -172,7 +172,7 @@ ApacheMonitor:
 
         [alt_names]
         DNS.1=html_12
-    
+
   - 傳統方法：
     產生RSA私鑰當作root CA
     使用CMD輸入
@@ -186,7 +186,7 @@ ApacheMonitor:
         "[Apache安裝目錄]\bin" openssl - genrsa -out server.key 2048
 
     產生簽署需求檔 CSR (un-signed certificate called a CSR or Certificate Signing Request)
-        "[Apache安裝目錄]\bin" openssl req -new -sha256 -key server.key -out server.csr 
+        "[Apache安裝目錄]\bin" openssl req -new -sha256 -key server.key -out server.csr
         使用CMD輸入
             set OPENSSL_CONF=[Apache安裝目錄]\conf\openssl.cnf (否則會找尋不到出錯)
             "[Apache安裝目錄]\bin" openssl.exe req -new -sha256 -key server.key -out server.csr
@@ -212,15 +212,16 @@ ApacheMonitor:
 
 
   - 產生出PEM，無密碼加密的私鑰檔案 (開啟apache 即不須輸入密碼)
-    使用CMD輸入 
+    使用CMD輸入
         "[Apache安裝目錄]\bin" openssl.exe rsa -in server.key -out server.pem
     This key must be protected carefully because it is used in key exchange. If the key is compromised, the system becomes vulnerable to a man in the middle attack
-    
+
 
 2.安裝憑證
   - Copy the server.crt and server.pem into apache\conf directory
     設定 conf\extra\httpd-ssl.conf 修改如下：
 
+```ini
     #   General setup for the virtual host
     DocumentRoot "E:/website-PHP"
     #   主機名稱(或IP)
@@ -229,10 +230,12 @@ ApacheMonitor:
     SSLCertificateFile "[Apache安裝目錄]/conf/server.crt"
     #   私鑰檔
     SSLCertificateKeyFile "[Apache安裝目錄]/conf/server.key"
+```
 
-    若有多個host都要使用ssl協定，則要準備多個證書
+  - 若有多個host都要使用ssl協定，則要準備多個證書
     並且複製以下設定 (此設定為指定html_10的設定)
 
+```conf
     <VirtualHost html_10:443>
 
     DocumentRoot "E:/website-PHP/CRTestEnvirement/html_10"
@@ -260,8 +263,8 @@ ApacheMonitor:
             "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
 
     </VirtualHost>
-
-    修改完成後重新啟動，即可使用https協定瀏覽網站
+```
+  - 修改完成後重新啟動，即可使用https協定瀏覽網站
 
 3.使特定位址或資料夾強迫使用https瀏覽
   - 編輯 [Apache安裝目錄]\conf\httpd.conf
@@ -273,7 +276,7 @@ ApacheMonitor:
         # 代表主機名稱為html_12 才改寫 (若缺少這行改寫所有網頁時，使用HTTP的網頁會出現Mixed Content錯誤)
         RewriteCond %{SERVER_NAME} html_12
         RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
-    
+
     #-----------本機使用端-----------
         RewriteCond %{HTTPS} on
         RewriteCond %{SERVER_NAME} localhost [OR]
@@ -312,15 +315,15 @@ ApacheMonitor:
         SSLCertificateKeyFile "D:/xampp/Apache2.2_win32/conf/server.pem"
 
 ※補充：若出現Access to Font at 'XXX' from origin 'OOO' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-    請取消註解 
+    請取消註解
         LoadModule headers_module modules/mod_headers.so
     並在<Directory> Tag 之內加上
         Header set Access-Control-Allow-Origin "*"
         若加這個報錯 有可能 mod_headers.so 沒有被取消註解
-    
-========================================
+
+----------------------------------------
             PHP Install
-========================================
+----------------------------------------
 - PHP解壓後無需其他安裝，只需修改相關文件即可：
   ★需修改apache內的httpd.conf
     新增至文件LoadModule的部分：
@@ -378,12 +381,12 @@ ApacheMonitor:
 - mysql
   - mysql.trace_mode
     預設不開啟，但在開發者模式會開啟提醒result set 是否有釋放
-    可能會造成include 其他 PHP 報錯  
+    可能會造成include 其他 PHP 報錯
 
 - 安全性
   - allow_url_fopen
     預設開啟，允許fopen URL物件像是開啟檔案，主要提供ftp或http檔案連結使用
-    
+
   - allow_url_include
     5.2新增選項，預設關閉，允許fopen使用以下函數開啟檔案 include, include_once, require, require_once
 
@@ -396,17 +399,17 @@ ApacheMonitor:
     才可以解決此問題
 
   - [5.4後被刪除]register_globals
-    可以不用寫$_GET["變數"]，即可直接用$變數取得資料，但有安全性問題
+    可以不用寫 $_GET["變數"]，即可直接用 $變數 取得資料，但有安全性問題
 
 新增一檔案為php_info.php 內文<?php phpinfo(); ?>，開啟網頁測試是否可以開啟
 
-========================================
+----------------------------------------
         PHP 開發環境 in VSCODE
-========================================
+----------------------------------------
 為啟用 VSCODE PHP DEBUG 功能 請至https://xdebug.org/download.php
 下載符合PHP 版本號 以及是否為 thread-safe(TS)
 將下載的DLL檔案放置至PHP的 ext 之下 (extension_dir = "[PHP安裝路徑]/ext" 必須優先設定好)
-並在php.ini增加 
+並在php.ini增加
     [XDebug]
     zend_extension = php_xdebug-2.5.5-7.1-vc14-x86_64.dll
     xdebug.remote_enable = 1
