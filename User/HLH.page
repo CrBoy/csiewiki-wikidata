@@ -17,6 +17,21 @@ categories: User
 
 作業及筆記
 ------------------------
-- HW1: lab0[Github](https://github.com/jesus255221/lab0-c), [Hackmd](https://hackmd.io/RWotrlZ0RLqarHx59jrP1A)
+- HW1: lab0 [Github](https://github.com/jesus255221/lab0-c), [Hackmd](https://hackmd.io/RWotrlZ0RLqarHx59jrP1A)
 - HW2: 
+1. dict [Github](https://github.com/jesus255221/dict), [Hackmd](https://hackmd.io/LfX4IXgvSWifz7Uz46vPag)
+2. review [Hackmd](https://hackmd.io/BI0uDjdOTXGvltIHYmX6XQ#)
+3. list [Github](https://github.com/jesus255221/lab0-c), [Hackmd](https://hackmd.io/woe6z7qiR-WaDqBp0KkxUQ#)
+- HW3:
+1. clang [Hackmd](https://hackmd.io/c/r1C4ulqjQ/%2Fc370xQpmQDyxabfVe5VGtA)
+2. assessment [Hackmd](https://hackmd.io/YdbQ2ubBRk63apUNpcYdOA#)
+- HW4: bits [Github](https://github.com/jesus255221/datalab), [Hackmd](https://hackmd.io/h4p_VcJyTBm400sAUdvrkA#)
+
+所見所聞心得
+------------------------
+這學期學到很多東西，光是這本 CSAPP 的內容就可以講兩個學期了。CSAPP 裡面包含了對現代電腦系統的深刻理解，再加上老師提供的接近爆炸性多的參考資料，讓我體會到電腦世界的。這堂課的作業也很有趣，大多都是要分析效能，包含 pref, gnuplot, 甚至還有教我們畫 heatmap 等等。此堂課的小考堪稱一絕，你開始會希望程式碼越長越好，有些程式用 bitwise 來優化，甚至到達天書的境界，大開眼界！
+
+自評
+------------------------
+這學期我給自己 8 分，在學期一開始，尤其是第一個禮拜時，的確花了快要 30 個小時在影片上面，吃飯看，搭車看，睡覺也看，好不快活。到後面的 bits 作業也是，起床就開始寫程式，寫到晚上甚至忘記吃晚餐。不過在學期末時我比較專注在自己的專題上，因此，花相對比較少時間在課程的內容上面，這也是我不足的地方。不過，未來一定會花時間把 CSAPP 後面補完。下學期也要修老師的 linux kernel，請老師多多指教！
 
