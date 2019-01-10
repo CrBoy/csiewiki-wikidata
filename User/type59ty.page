@@ -3,7 +3,7 @@ title: type59ty(陳昱霖)
 categories: User
 ...
 
-學歷
+簡介
 ======================
 - 高雄科技大學 資訊管理系 (2014-2018)
 - 成功大學 資訊工程研究所 (2018-)
@@ -11,16 +11,33 @@ categories: User
 聯絡資訊
 ======================
 - email: ``type59ty@gmail.com``
-- github: ``type59ty``
+- github: [`type59ty`](https://github.com/type59ty)
 
-2018春季班 個人評量
+2018 春季班 個人評量
 =======================
 
 作業及筆記
 ------------------------
+- HW1 
+    - hw1 [開發紀錄](https://hackmd.io/c/SkeWbyCdm/https%3A%2F%2Fhackmd.io%2Fs%2FBk7l0WtuX)
+- HW2 
+    - lab0-c [Github](https://github.com/type59ty/lab0-c),[開發紀錄](https://hackmd.io/s/HJeJWPitX)
+- HW3
+    - list   [Github](https://github.com/type59ty/lab0-c),[開發紀錄](https://hackmd.io/s/BycpinY5Q)
+    - review [開發紀錄](https://hackmd.io/s/SJ2p3nt9m)
+    - dict   [Github](https://github.com/type59ty/dict),[開發紀錄](https://hackmd.io/s/SJQJThK97)
+- HW4 
+    - clang [開發紀錄](https://hackmd.io/c/SkeWbyCdm/https%3A%2F%2Fhackmd.io%2Fs%2FBk7l0WtuX)
+    - assessment [開發紀錄](https://hackmd.io/s/B1gN1hBoX)
+- HW5 bits [Github](https://github.com/type59ty/datalab),[開發紀錄](https://hackmd.io/s/HJhIYhaiQ)
 
-心得
+- 分組作業
+    - 1 [Github](),[開發紀錄](https://hackmd.io/s/By5KCaZam)
+    - 2 [Github](),[開發紀錄](https://hackmd.io/s/ryQcBljWE)
+
+所見所聞心得
 ------------------------
+來修這堂課之前知道這是堂硬課，甚至有學長說，修了這堂課就不用修其他課了，果然沒有讓我失望，前六週就出了5個作業，幾乎是每個禮拜一個，真的就像老師說的：要習慣剛開學就開始熬夜，不過也因為修了這堂課，讓我知道以前學的c語言都不是c語言！有太多議題是以前寫程式時未曾考慮過的，
 
 自我評量分數 (1 到 10 級分)
 ---------------------------
