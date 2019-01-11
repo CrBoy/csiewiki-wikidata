@@ -148,6 +148,7 @@ toc: no
 * 第 18 週 (Jan 11): Concurrency + 課程回顧
     * [隱藏的傅立葉分析](https://hackmd.io/s/S1jR0mHfN)
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
+    * Linux: [多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4), [RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
 
 
 作業系統設計與實作 (Spring 2018)
