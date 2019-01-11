@@ -5,4 +5,12 @@
 Email: chen.ishi@gmail.com <br>
 Phone: 0910635509
 
-## 2018上學期 進階電腦系統理論與實作
+## 2018秋季班 個人評量
+* (秋季班)作業及筆記
+* 所見所聞心得
+    * 開了很多新的坑，想研究但是一直沒有補
+    無論是在上課時/聽講座時聽到一些感覺可以研究的議題，像是
+        1. 之前在 Leetcode 上看到一題 "Add two number" 利用 tree 的資料結構以儲存變數，這樣就可以避免掉 int_max 這樣極值的問題，同時聽說 python 的變數實作也是根據這個概念，想說可以整理成一份共筆
+        2. [ISO C90 與 ISO C99 之間的差異在那？](https://hackmd.io/s/Hy_oBnIsX) 事實上有很多種標準的 C 可以分析，包含 ANSI C, GNU C, C99, C11 等等可比較
+        3. Integer Compression,
+* 自我評量分數(1 到 10 級分)
