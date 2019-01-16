@@ -1,0 +1,46 @@
+---
+title: happyincent (陳冠升)
+categories: User
+...
+
+GitHub: [``happyincent``](https://GitHub.com/happyincent)
+
+Email: ![](https://itlab.ee.ncku.edu.tw/image/email/ddl.png)
+
+------------------
+
+簡介
+======================
+- 中山大學 資訊工程學系 106 級 (2013-2017)
+    - [CDPA](http://www.cdpa.nsysu.edu.tw/) (2014-2017)
+- 成功大學 電腦與通信工程研究所 資訊與系統組 (2018-)
+
+進階電腦系統理論與實作 (Fall 2018) 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1
+    - [你所不知道的 C 語言](https://hackmd.io/c/r16d0OgYX/https%3A%2F%2Fhackmd.io%2Fs%2FB1y8LYgKm)
+- HW2
+    - [開發記錄(lab0)](https://hackmd.io/s/HJ05Gfk9X) / [GitHub](https://github.com/happyincent/lab-list/tree/hw2)
+- HW3
+    - [開發紀錄(review)](https://hackmd.io/s/BJ6bLXv57)
+    - [開發紀錄(list)](https://hackmd.io/s/Hy8VGz1jQ) / [GitHub](https://github.com/happyincent/lab-list)
+- HW4
+    - [開發紀錄(clang)](https://hackmd.io/c/r16d0OgYX)
+    - [開發紀錄(assessment)](https://hackmd.io/s/SJbn3ewsm)
+- HW5
+    - [開發紀錄(bits)](https://hackmd.io/s/SJyOMu-3Q) / [GitHub](https://github.com/happyincent/datalab)
+- 分組1
+    - [Functional Programming in C](https://hackmd.io/s/HJP-MiFpX) / [GitHub](https://github.com/happyincent/Functional-Programming-in-C)
+- 分組2
+    - [Thread safe linked list](https://hackmd.io/s/S1tTvrc-V) / [GitHub](https://github.com/happyincent/ll)
+
+所見所聞心得
+------------------------
+上研究所前最後一次寫 C 是在四下的修課作業，間隔了一年，我在課餘玩了 Swift, Django , Docker, Kotlin 和幾個小型 CTF。2018/09/09 在 [系統軟體短期課程：台南場](https://hackmd.io/s/rkJfYQLvX) 中，我連基本的 bit 操作都算不出來，痛定思痛後選擇了誠實面對自己。在緊湊的課堂中，除了 CS:APP 外，老師提到許多我還沒理解的演算法、社會上有趣的淺規則並提供帶大量的開放資源，而隨堂小考也讓我提早接觸畢業後面試可能遇到的題目。每周作業中閱讀 C99 規格書和不斷刺激腦袋發育的程式作業，都讓我對 C 有更進一步的認識，而始終陪伴著我的 Linked list 更讓我一次次感受到自己 debug 能力的不足。這學期修課除了強迫自己學習、了解和面對自己的實力，也讓我在 CRUD 的研究生活中保持對寫程式的熱情。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+除了複習過去資工系所學，我學到了 gdb 基本操作、bitwise 和記憶體操作、釐清 Makefile 語法、一層又一層美妙的 functional programming、如何測試執行大量 thread 時結果的正確性。因為即將邁入學生生涯最後一個學期，學分對我而言十分的重要，因此我給自己 **9** 分。
