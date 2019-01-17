@@ -1,0 +1,51 @@
+Lawrence(紀鈞能)
+------------------
+**自我介紹 Introduction**
+
+- 成大電機所 (National ChengKung University, Department of Electrical Engineering)
+- LinkedIn：[```JYUN-NENG JI``` ](https://www.linkedin.com/in/jyun-neng-ji-5536aa9b/)
+- GitHub：[```Jyun-Neng```](https://github.com/Jyun-Neng)
+- Email：```jyunnengji@gmail.com```
+
+進階電腦系統理論與實作 2018 秋季班 個人評量
+=======================
+作業筆記
+--------
+- HW1: 你所不知道的 C 語言
+     - [學習筆記](https://hackmd.io/c/HyUtZvJKQ)
+- HW2: Implementation of Queue
+     - 記憶體配置基礎
+     - 字串處理
+     - [開發紀錄](https://hackmd.io/s/By4USu7Ym) / [github](https://github.com/Jyun-Neng/lab0-c)
+- HW3-1: Ternary Search Tree
+     - TST 原理
+     - gnuplot 及 perf 工具使用
+     - [開發紀錄(dict)](https://hackmd.io/s/ByoHx_go7) / [github](https://github.com/Jyun-Neng/dict)
+- HW3-2: 測驗檢討
+     - [學習筆記](https://hackmd.io/s/HJEsYXz5m)
+- HW3-3: Linux 風格的 linked list
+     - [學習筆記](https://hackmd.io/s/SJGkkHDqX)
+- HW4: 測驗檢討
+     - [學習筆記](https://hackmd.io/s/S1NT-cHjQ)
+- HW5: Data Lab
+     - 使用位元操作完成算數運算
+     - [開發紀錄(bits)](https://hackmd.io/s/HJywpnMnX) / [github](https://github.com/Jyun-Neng/datalab)
+- HW6: 
+     - 貢獻者: Jyun-Neng (紀鈞能), LiuJuiHung (劉睿宏)
+     - 繪製 heatmap 分析程式執行效能
+     - 觀察 memory access 狀況
+     - [共筆](https://hackmd.io/s/S1BHLdF2m) / [GitHub](https://github.com/Jyun-Neng/sysprog_hw06) / [GitHub(LiuJuiHung)](https://github.com/LiuJuiHung/sysprog_quiz8_num2) / [Youtube](https://youtu.be/P0vfFxXegFY)
+- HW7: Malloc Lab
+     - 貢獻者: Jyun-Neng (紀鈞能), LiuJuiHung (劉睿宏)
+     - 了解分配器(allocator)原理並實作
+     - 完成 malloc, free, realloc 函式
+     - [共筆](https://hackmd.io/s/SkCiB4QGN) / [github](https://github.com/Jyun-Neng/malloclab)
+
+心得及自我評量 (1 ~ 10)
+----------
+整學期，一字以敝之，曰『久』。
+科技日新月異，技術快速地前進從不等人，身處於 21 世紀，廣泛且持之以恆的學習勢在必行 -- 持久力，不僅僅男人需要，工程師也需具備。這門課我所瞭解到的不僅僅是自己薄弱 C 語言基礎 -- 從沒好好的讀過 C 語言規格書，更甚的是不懂的將以前學過的知識融會貫通運用在程式設計上。修過計算機組織，卻不曾在寫程式的時候思考記憶體存取的問題。學過邏輯設計、計算機概論，卻不曾想過運用位元操作來優化算數運算。在見識到自己的不足外，這門課給我更多的是實際將所學應用於研究之中，效能分析工具的使用、SIMD、位元操作的技巧等。這門課所提供的閱讀材料非常的多，很可惜的由於這學期在研究上寫論文有些壓力，我還有很多都沒讀完。但學習並非以一門課的結束而完結，在這門課上得到了很多學習材料，不僅僅是上課老師提供的，同學們的共筆也都是很好的資料，在作業上很多時候我也都是閱讀很多同學的共筆來了解該怎麼做，持續精進自己的基本功，這是之後仍需繼續做的事。
+
+所以綜觀的來說，我對於自己在這門課上的學習給予了 9 分的評價，這是我在經過這學期的洗禮後確實進步的證明即便仍有許多不足，剩餘的 1 分是勉勵自己繼續的學習。但為了不讓自己的成績過於難看影響了未來有可能只看成績的情況，對於實際顯示於成績單上的評分我評分為 10 分。
+
+所以以這兩種評分情況取平均，(9 + 10) / 2 = 9.5，四捨五入後自我評分為 10 分。
