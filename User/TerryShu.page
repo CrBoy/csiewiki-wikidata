@@ -1,7 +1,35 @@
-TerryShu
 ---
+title: TerryShu(舒一修)
+categories: User
+...
 
-* 舒一修
-* 成功大學工科所
+自我介紹
+===========================
+- 中原大學 資訊工程學系107級
+- 成功大學 工程科學研究所(2018~)
 
----
+聯絡資訊
+===========================
+- email: ``wind850101@gmail.com``
+- github: ``TerryShu``
+
+2018秋季班 個人評量
+===========================
+
+作業及筆記
+---------------------------
+- HW1: 你所不知道的C語言 [Hackmd](https://hackmd.io/s/rkw7yVXK7)
+- HW2: lab-0 [Hackmd](https://hackmd.io/P-sJ7fgVSwuq2UVx5AJ3Vg), [Github](https://github.com/TerryShu/lab0-c)
+- HW3(a): dict [Hackmd](https://hackmd.io/h9yVPHgsT8SnjdUOdcYWBQ), [Github](https://github.com/TerryShu/dict)
+- Team7: Huffman coding [Hackmd](https://hackmd.io/s/S1Cm3xPTQ), [GitHub](https://github.com/TerryShu/Improve_Huffman), [Youtube](https://youtu.be/Gn_ZixygLVM)
+- Team7: Tiny web server [Hackmd](https://hackmd.io/s/S1OZ7bGb4), [Github](https://github.com/TerryShu/csapp_webserve), [Youtube](https://www.youtube.com/watch?v=T3MAcBRV-30)
+
+所見所聞心得
+---------------------------
+我想這堂課讓我最印象深刻的就是 bit operator 的操作了，一開始我真的天真的以為 bit operator 這種東西只會在邏輯電路設計才會使用到，真正在寫程式的時候會用更高階(?的方式寫，但開始上這門課我真的深深的震撼了，我從來沒有想到還有這樣的用法，開始瞭解到 bit operator 的強大之處。而我也有幸加入嵌入式系統的實驗室，在實驗室的學習過程中看到了 bit operator 的真實應用，用在 Linux kernel 中取得 driver 的 major/minor num 的 mask 中，也因為修習了這門課讓我能在上台講授課程時能夠侃侃而談，此處為甚麼需要 OR/AND/XOR，雖然在最後的幾堂課講解 FizzBuzz 時我又徹底知道自己對 bit operator 還是不夠熟練，當老師說著「挖多美的程式碼阿」，我的腦中只有滿滿的 WTF 還有這種操作阿，真的很感謝 Jserv 老師在這學期的教導。
+
+另外特別感謝我的隊友 ofAlpaca 紹賢 包容我有時候拖延，也會跟我討論我提出的一些天馬行空想法，並將其轉換成可行的程式碼，若沒有其幫助我可能很多作業皆無法完成!
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8分，我認為的這堂課的學習流程應該是 : 看完 → 讀懂 → 寫出 ，但我有幾次作業皆只做到看完(甚至只看到一半ORZ)，沒有完全讀懂，寫出的程式碼也相當的混亂，希望下次再修老師的課時可以毫不猶豫的幫自己打9甚至是滿分10分的分數。
