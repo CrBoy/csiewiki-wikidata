@@ -1,1 +1,52 @@
-apple pen
+---
+title: p61402(林晉昇)
+categories: User
+...
+
+簡介
+======================
+- 國立臺南大學 資訊工程學系(2014-2018)
+- 國立成功大學 資訊工程研究所(2018-2020)
+
+聯絡資訊
+======================
+- email: ``p61402@gmail.com``
+- github: ``https://github.com/p61402``
+
+2018秋季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1
+    * 你所不知道的C語言：[共筆](https://hackmd.io/c/SkPlCKyYm)
+- HW2
+    * lab0：[共筆](https://hackmd.io/s/SkYxkH9Y7)/[Github](https://github.com/p61402/lab0-c)
+- HW3
+    * dict：[共筆](https://hackmd.io/s/r1DouI4oX)/[Github](https://github.com/p61402/dict)
+    * list：[共筆](https://hackmd.io/s/SJXSmT957)/[Github](https://github.com/p61402/lab0-c)
+    * review：[共筆](https://hackmd.io/s/B16SishFm)/[Github](https://github.com/p61402/sorted_linked_list)
+- HW4
+    * assessment：[共筆](https://hackmd.io/s/SkReFgs9m)
+    * clang：[共筆](https://hackmd.io/c/SkPlCKyYm)
+- HW5
+    * bits：[共筆](https://hackmd.io/s/ry9127AsX)/[Github](https://github.com/p61402/datalab)
+- 分組作業
+    * 研讀 Exploring C Semantics and Pointer Provenance，摘錄重點並重現實驗：[共筆](https://hackmd.io/c/rybf7oxeV/)
+    * RNNoise: 用深度學習抑制雜訊：[共筆](https://hackmd.io/s/HJaYKOtG4)
+
+所見所聞心得
+------------------------
+當初會想要修這門課，是因為聽說這門課超級硬，想要來朝聖一下，果不其然這是我修過作業量最多的課沒有之一。
+
+這門課讓我學到最多的地方，就是讓我重新審視了自己曾經以為已經學會的C語言以及計算機組織。從開始閱讀C語言規格書開始，老師讓我們了解到閱讀第一手資料的重要性，並且讓我重新理解了許多基礎，包括指標觀念、位元操作、數值運算等等，提醒我們要寫出有強度的程式碼就要從細節做起。
+
+老師最讓我印象深刻的地方是一直強調CMU與學店的差別，還有台灣在只要會CRUD就可以當RD，以及對專有名詞稱呼的堅持(例如：指標的指標≠雙重指標、NULL的英文念法)，真的非常有趣。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+前半學期我真的是大部分的時間都在寫作業，也可能是自己基礎不好，所以每週花的時間肯定超過老師預計的30+小時，看在自己這麼努力的份上，我給自己前半學期9級分。
+
+但是後半學期由於作業量減少，因此重心就開始轉往其他地方，花在這門課的時間也就相對少了很多，只能勉強給自己一個7級分。
+
+平均一下，整學期來說我給自己的評分為8級分。最後感謝老師一學期的指導，時常看到老師上課的教材都是前一天晚上熬夜準備的，希望老師身體健康XD。
