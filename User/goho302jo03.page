@@ -1,0 +1,32 @@
+---
+title: goho302jo03(黃建勛)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 電機所107級(2018-2020)
+
+聯絡資訊
+======================
+- email: ``goho302jo03@gmail.com``
+- github: ``goho302jo03``
+
+2018秋季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW2: lab0 [Github](https://github.com/goho302jo03/lab0),[Hackpad](https://hackmd.io/s/S1lPgMqKm)
+- HW3(review): [Github](https://hackmd.io/s/SkJbKd1c7),[Hackpad](https://hackmd.io/s/r1OKM-yo7)
+- HW5: bits [Github](https://github.com/goho302jo03/datalab),[Hackpad](https://hackmd.io/s/Bkv672g27)
+- HW6: FloadAdd & MergeSort [Github](https://github.com/posutsai/EmbSysProject),[Hackpad](https://hackmd.io/s/B1EfoDZ6Q)
+- HW7: Bomb lab [Hackpad](https://hackmd.io/s/SyNzl72f4)
+
+所見所聞心得
+------------------------
+之前有旁聽過幾堂課，這學期終於鼓起勇氣來修課，從第一個作業開始看了很多影片來熟悉 c 語言；lab0 這個作業中算是我第一次撰寫 c 語言，非常深入的去了解 linked list，也意識到需要去考慮很多突發狀況例如 malloc 回傳 null 時該怎麼處理之類，透過觀察評分系統也能懂得怎麼測試自己寫的 code；bit lab 算是我覺得最神奇的一個領域，僅透過一些 bit operator 而不使用 for、if 就能完成很多運算；分組後第一個作業是 FloatAdd 及 MergeSort，讓我開始重視資源會不夠的這件事情，如何有效解少每次 recursive 時所使用的 stack 變得很重要，也深入的了解 IEEE754 規範中 normalize 及 denormalize 的設計原因及處理方式；分組後的第二個作業為 bomb lab，由於作業需求，開始比較深入接觸到了 assembly code，對於不同的指令集也能去了解它背後設計的原因，利用 gdb 中的 disassemble 可以一步步的了解在組合語言這個層級時，程式是如何運作的，也透過這個作業認識了 qemu。這一整個學期下來聽到的新名詞太多了，只能一個一個慢慢去釐清，也感謝 jserv 願意開這堂課教導大家。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+9級分。學期初的時候有點跟不太上進度，感覺許多背景知識都還不太夠，也因此看了很多的資料，然後又有更多的東西需要去理解，因此前幾次作業完成度都不是很高，分組過後我們的題目分別是 FloatAdd、MergeSort 以及 bomb lab，在分組後為了怕雷到組員，我也蠻認真的在做，而最後作業的完成度也還蠻高的，也感謝組員指導了我很多東西，所以綜評整個學期的話，我給了自己這個分數。
