@@ -21,6 +21,7 @@ categories: User
     - [共筆](https://hackmd.io/s/rJbZ6gXhQ#)
     - [Github](https://github.com/ChingChieh/datalab)
 - dict
+    - 探討 memory pool 和每當需要時才 malloc 那個發生 cache miss 機率較高，以及哪個執行速度較快 
 - 期中分組作業
     - 了解 bit field 的 variable 不能對其取址
     - 重新複習 big & little endian 差異以及 union 特性
@@ -31,7 +32,7 @@ categories: User
     - 複習多執行緒的程式以及 mutex ，測試有 mutex lock 的程式在多執行緒的情況下的正確性
     - 了解 lockfree 在多執行緒的情況下如何實作
     - [共筆](https://hackmd.io/SGK9Q1A1Rnep8XqKYy0rSg)
-
+   
 
 
 期末自評(1-10)
