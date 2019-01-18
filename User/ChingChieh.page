@@ -58,6 +58,8 @@ pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要
     - 假設傳進來的數叫 a 先 b = a >> 63，然後 return (a ^ b) - b
 - 知道如何用 bitwise operator 實作出沒有分支的 FizzBuzz 程式嗎？
     - 參考老師的 [Github](https://github.com/jserv/fizzbuzz/blob/master/bitwise.c)
+- 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
+    - 在 dict 作業裡面有用到，Bloom Filter 就是利用一個 n bits 的 table，不走訪資料結構就能透過這個 table 預測字串是不是在這個資料結構內。而這樣時間複雜度就變為 𝑂(1)。
 
 期末自評(1-10)
 ===
