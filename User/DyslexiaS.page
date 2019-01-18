@@ -46,8 +46,8 @@ c) 知道通訊領域中如何應用 parity bit 嗎？
 在通訊的時候，如果包含校正位奇數的個數發生改變，表示傳輸過程有錯誤，但無法找出錯誤的位置，因此當錯誤發生，只能重新傳輸。
 
 d) 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
-	1. signal 是個有兩個參數的函式，第一個參數是 int sig，另一個為 function pointer handler，handler return void 並且傳入一個參數 int 。
-	2. signal return 一個指向 function 的 function pointer，此函式 return void 並且傳入一個參數 int 。
+- signal 是個有兩個參數的函式，第一個參數是 int sig，另一個為 function pointer handler，handler return void 並且傳入一個參數 int 。
+- signal return 一個指向 function 的 function pointer，此函式 return void 並且傳入一個參數 int 。
 
 e) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
 list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);
@@ -59,12 +59,15 @@ f) 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，
 
 
 g) 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
-h) 知道 memory misalignment 對程式正確性和效能的影響嗎？能否舉出 Linux 核心對應的處理機制？
 
+h) 知道 memory misalignment 對程式正確性和效能的影響嗎？能否舉出 Linux 核心對應的處理機制？
+* 沒有做 memory aligment ，在存取資料時，可能會需要額外計算 bitshifting
 
 i) 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？
+使用類似二分法的概念去計算
 
 j) 知道 C 語言規格書中如何定義 object 的生命週期嗎？能否舉出至少兩相對應的 CVE 呢？
+* C99 6.2.4 For the objects that are declared with automatic, static, and thread storage duration, lifetime equals their storage duration (note the difference between non-VLA and VLA automatic storage duration).
 
 k) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
 #include <stdint.h>
@@ -78,35 +81,53 @@ l) 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 
 
 
 m) 知道 page fault 嗎？Segmentation fault 的訊息是如何顯示出來，請以 GNU/Linux 為例解說
-1. 程式在存取記憶體時產生錯誤
+a.程式在存取記憶體時產生錯誤
      多出現在 
 * 修改 string literal
 * Access 已經 free 的空間
 * Dereference 越界的指標
-2. 發生 page fault 時， CPU 會發出 interrupt 給作業系統，像是傳送 signal   會由一個函式來處理。
+b.發生 page fault 時， CPU 會發出 interrupt 給作業系統，像是傳送 signal   會由一個函式來處理。
 
 n) 知道 CVE/CWE 嘛？你對資訊安全有什麼認知嗎？
 
 o) 知道 fixed point 嗎？相較於 floating point，這樣的機制有何優缺點呢？知道真實世界如何運用嗎？
+- Fixed 較不佔容量
+- 運算上需要的資源較少
+- 用於音訊轉換
 
 p) 知道中國剩餘定理和 RSA 加密演算的關聯嗎？你知道哪些開放原始程式碼用到中國剩餘定理嗎？
+使用RSA演算法在解密的計算時會需要較多時間，可以利用中國剩餘定理來加速
 
 q) 知道 Poisson distribution 在本學期的課程主題中，出現在哪？以及為何工程議題需要考慮機率統計，能舉例嗎？
-r) 知道 pipeline hazard 該如何消除嗎？有什麼議題須考慮？
-s) 知道一個 singly-linked list 的新增節點操作，該如何用 Y86-64 組合語言實作嗎？
-t) 知道 LRU replacement policy 對程式碼效能的影響嗎？如何撰寫程式去驗證某個處理器的 cache 行為呢？
-u) 看懂 CS:APP 第 9 章講虛擬記憶體的描述嗎？知道 Linux 如何處理嗎？
-v) 知道傅立葉分析在通訊領域的應用嗎？舉例說明
-1. 
 
-w) 知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求值程式嗎？做了這樣的最佳化，預期在
-x86_64 上可省下多少 cycle 呢？
+r) 知道 pipeline hazard 該如何消除嗎？有什麼議題須考慮？
+- structural hazard:把 function unit 切的更小，讓硬體資源夠用
+- data hazard：forwarding 或是把指令順序調換
+- control hazard：delay, 硬體技術消除
+
+s) 知道一個 singly-linked list 的新增節點操作，該如何用 Y86-64 組合語言實作嗎？
+
+t) 知道 LRU replacement policy 對程式碼效能的影響嗎？如何撰寫程式去驗證某個處理器的 cache 行為呢？
+
+u) 看懂 CS:APP 第 9 章講虛擬記憶體的描述嗎？知道 Linux 如何處理嗎？
+
+v) 知道傅立葉分析在通訊領域的應用嗎？舉例說明
+- 傳輸前利用傅立葉轉換來壓縮數據，再經由反傅立葉轉換得到原始資料
+
+w) 知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求值程式嗎？做了這樣的最佳化，預期在 x86_64 上可省下多少 cycle 呢？
 
 x) 知道如何用 bitwise operator 實作出沒有分支的 FizzBuzz 程式嗎？
-老師提供的
+https://github.com/jserv/fizzbuzz/blob/master/bitwise.c
+
 y) 知道如何實作無失真資料壓縮嗎？你知道有哪些相關演算法？
-1. 產生出現頻率的統計模型
-2. 利用統計模型，將出現頻率高的用較小的位元數表示，反之亦然
-3. 位元序列編碼的演算法可使用霍夫曼編碼
+- 產生出現頻率的統計模型
+- 利用統計模型，將出現頻率高的用較小的位元數表示，反之亦然
+- 位元序列編碼的演算法可使用霍夫曼編碼
 
 z) 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
+-  Bloom filter 為空間效率極高，將資料分類的演算法
+
+
+
+
+
