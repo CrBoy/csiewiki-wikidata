@@ -1,0 +1,44 @@
+---
+title: siahuat0727 (陳聲發)
+categories: User
+...
+
+簡介
+====
+- 成功大學資訊工程系 109 級
+- email: ``tansiahuat@gmail.com``
+
+2018秋季班 個人評量
+====
+
+作業及筆記
+---------------------------
+- [Homework 1](https://hackmd.io/s/SkWIb_O_X)
+    - [學習歷程](https://hackmd.io/c/S1d1F5A_Q/)
+
+- [Homework 2](https://hackmd.io/s/rJwiDHGKQ)
+    - [lab0](https://hackmd.io/s/Sy1bKGYY7)
+
+- [Homework 3](https://hackmd.io/s/SkJbKd1c7)
+    - [dict](https://hackmd.io/s/HJElcrA9Q)
+    - [review](https://hackmd.io/s/HycubY4qQ)
+    - [list](https://hackmd.io/pm5VCE-9SA6coN98_TvJUg)
+
+- [Homework 4](https://hackmd.io/s/r1Yp07Uqm)
+    - [assessment](https://hackmd.io/s/BkO0ruYs7)
+
+- [Homework 5](https://hackmd.io/s/S1CRTc8jX)
+    - [bits](https://hackmd.io/s/Bkf4Ei0oQ)
+
+- [分组](https://hackmd.io/s/SydiC6Ism#)
+    - [quiz 4](https://hackmd.io/1BFNi_UpTOmG3yvpyq0_hg)
+    - [Matrix Multiplication](https://hackmd.io/s/HJscCbWgV) / [GitHub](https://github.com/siahuat0727/matrix-multiplication)
+
+所見所聞心得
+---------------------------
+一開始複習和加強 c 語言，明白了很多之前含糊帶過的細節，還有一些很有用的技巧。後來的作業中學會基本的 perf 工具的使用方式，找到造成兩種不同機制效能差異的真正原因，也瞭解了 gcc 在進行 TCO 上的一些限制，很美妙的 bit 操作技巧等等。分組合作的部分也學到了 git 的一些進階操作，更瞭解 Makefile 語法以及基本的 gnuplot 語法。另外我覺得最最重要的知道了更多的資源，對將來進一步學習有很大的幫助。最後分享這學期這堂課最喜歡的一篇文章[解讀計算機編碼](https://hackmd.io/s/rylUqXLsm)。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8 級分
+期初非常認真也確實學習到很多很多，期中之後作業給的比較少，其他事情也比較多，覺得自己自主學習的能力和動力還不夠，這部分需要再加強。
