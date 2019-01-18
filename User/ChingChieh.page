@@ -13,9 +13,11 @@ categories: User
 作業 Lab
 ===
 - lab0:
+    - 重新複習 linked-list 實作，以及了解自動評分系統如何偵測 malloc 的記憶體空間是否有正確釋放
     - [共筆](https://hackmd.io/s/HJv5mIct7#)
     - [Github](https://github.com/ChingChieh/lab0-c)
 - datalab: 
+    - 學習利用 bitwise operation 代替 conditional branch 來完成各個 function 所需要的功能
     - [共筆](https://hackmd.io/s/rJbZ6gXhQ#)
     - [Github](https://github.com/ChingChieh/datalab)
 - dict
