@@ -37,7 +37,19 @@ categories: User
     - 學習利用 valgrind 來 debug 多執行緒的程式
     - [共筆](https://hackmd.io/SGK9Q1A1Rnep8XqKYy0rSg)
    
-
+回顧
+=== 
+- 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？
+    - 假設 x = 1, y = INT_MIN 那便不成立了
+- 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+    - 規格書寫到 postfix increment 是對 operand 相加一個單位
+    - 而 ptr++ 則是對 ptr 的資料型態相加一個對應的 byte ， *ptr++ 則是對 *ptr 的值相加一個對應的單位
+- 知道通訊領域中如何應用 parity bit 嗎？
+- 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
+    - signal 這個 function 吃兩個參數，分別是一個 integer 和一個 handler 這個 function pointer 指向吃一個 integer 的參數且沒有回傳值的 function ，而這個 signal 會回傳一個 function pointer 指向吃一個 integer 的參數且沒有回傳值的 function
+- 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
+list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);
+pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
 
 期末自評(1-10)
 ===
