@@ -8,30 +8,42 @@ categories: User
 - 中央大學 資訊工程學系107級(2014-2018)
 - 成功大學 資訊工程研究所(2018~ )
 
-聯絡資訊
+相關資訊
 =====================
-- email: ``betty.wtlin@gmail.com``
+- Email：``betty.wtlin@gmail.com``
+- GitHub：``https://github.com/letticee)``
 
-2018秋季班 個人評量
+進階電腦系統理論與實作 2018秋季班 個人評量
 =======================
 
 作業及筆記
 ---------------------------
-- HW1: 你所不知道的C語言 [Hackmd](https://hackmd.io/s/HJMByFAOQ)
-- HW2: lab-0 [Hackmd](https://hackmd.io/s/H1jqgwqYQ), [Github](https://github.com/letticee/lab0-c)
-- HW3(a): dict [Hackmd], [Github]
-- HW3(b): list [Hackmd](https://hackmd.io/s/H1BkHUJiX), [Github]
-- HW3(c): review [Hackmd](https://hackmd.io/s/HkRCyS9q7)
-- HW4(a): clang [Hackmd](https://hackmd.io/c/rJF9jfIsQ/https%3A%2F%2Fhackmd.io%2Fs%2FBJ2baGLi7)
-- HW4(b): assessment [Hackmd](https://hackmd.io/s/BygivPui7)
-- HW5: bits [Hackmd](https://hackmd.io/s/SJ4dvAShm), [Github](https://github.com/letticee/datalab)
-- Team12: 重做 quiz2，並完成延伸題目 [Hackmd](https://hackmd.io/c/BkhLeMZ67/https%3A%2F%2Fhackmd.io%2FNW4itFjKTfOmBX72Nn_-Jw), [Youtube]
+- HW1：你所不知道的C語言
+    - [Hackmd](https://hackmd.io/s/HJMByFAOQ)
+- HW2：lab-0
+    - [Hackmd](https://hackmd.io/s/H1jqgwqYQ) / [Github](https://github.com/letticee/lab0-c)
+- HW3
+    - Hackmd(dict) / Github
+    - [Hackmd(list)](https://hackmd.io/s/H1BkHUJiX) / Github
+    - [Hackmd(review)](https://hackmd.io/s/HkRCyS9q7)
+- HW4
+    - [Hackmd(clang)](https://hackmd.io/c/rJF9jfIsQ/https%3A%2F%2Fhackmd.io%2Fs%2FBJ2baGLi7)
+    - [Hackmd(assessment)](https://hackmd.io/s/BygivPui7)
+- HW5
+    - [Hackmd(bits)](https://hackmd.io/s/SJ4dvAShm) / [Github](https://github.com/letticee/datalab)
+- 分組
+    - Team12：重做 quiz2，並完成延伸題目 
+        - [Hackmd](https://hackmd.io/c/BkhLeMZ67/https%3A%2F%2Fhackmd.io%2FNW4itFjKTfOmBX72Nn_-Jw) / Youtube
 
 所見所聞心得
 ---------------------------
+C++ 是我第一個學的語言，原本以為學過 C++，C 語言應該可以輕鬆上手。修了這堂課後，發現事實並不是如此。首先， C++ 跟 C 差很多，並且這堂課的重點，是從系統的層級去看程式碼。"要了解底層的運作原理，才能完全掌握自己寫的程式碼" 這是我學習到的一個點。另外，這堂課除了要了解課程的知識、完成作業還要撰寫開發日誌，自己也從中發現在表達能力和設計實驗方面的不足。
+
+- 邏輯設計/位元運算暫時還是個我摸不透的課題
 
 自我評量分數 (1 到 10 級分)
 ---------------------------
-
+- 7.5級分
+- 在前半學期老師給的推薦教材幾乎都有看，學習了不少 linux 核心的程式碼設計、GDB 等 linux 工具的用法、位元運算的技巧，和最基本的 git 和共筆技巧。但這堂課還有些內容是我未吸收的，而且在期中之後跟之前比起來心也比較不在這堂課上面，因此我給自己 2.5 級分的進步空間。
 
 
