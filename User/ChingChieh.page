@@ -36,6 +36,8 @@ categories: User
     - 了解 lockfree 在多執行緒的情況下如何實作
     - 學習利用 valgrind 來 debug 多執行緒的程式
     - [共筆](https://hackmd.io/SGK9Q1A1Rnep8XqKYy0rSg)
+- 知道如何用 bitwise operator 實作出沒有分支的 FizzBuzz 程式嗎？
+    - 參考老師的 [Github](https://github.com/jserv/fizzbuzz/blob/master/bitwise.c)
    
 回顧
 === 
