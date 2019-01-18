@@ -1,0 +1,37 @@
+# aben20807(黃柏瑄)
+
+## 學歷
+* 國立成功大學 資訊工程學系 108 級 (2015-2019)
+
+## 聯絡資訊
+* email: `aben20807@gmail.com`
+* github: [`aben20807`](https://github.com/aben20807)
+
+## 2018秋季班 個人評量
+
+### (秋季班)作業及筆記
+* hw1
+    * [學習歷程](https://hackmd.io/c/SkKmpWbYm)
+* hw2
+    * [開發紀錄(lab0)](https://hackmd.io/s/Bk_oVbiKm) / [github](https://github.com/aben20807/lab0-c)
+* hw3
+    * [開發紀錄(dict)](https://hackmd.io/s/rJfrIPgEQ) / [github](https://github.com/aben20807/dict)
+    * [開發紀錄(review)](https://hackmd.io/s/HJj7Wd75Q) / github
+    * 開發紀錄(list) / github
+* hw4
+    * [開發紀錄(clang)](https://hackmd.io/c/ryO1TidiQ/%2Fs%2Fryh81f-tm)
+    * [開發紀錄(assessment)](https://hackmd.io/s/BJoajjOiX)
+* hw5
+    * [開發紀錄(bits)](https://hackmd.io/s/ryjRI8J3Q) / [github](https://github.com/aben20807/datalab)
+* 分組
+    * **Team13**: performance-5-18
+        * CS:APP 3/e Assign 5.18 `Page 395`，注意需要考慮到現代處理器的特徵
+        * 貢獻者: aben20807 (黃柏瑄), krimson8 (謝永家)
+        * [開發紀錄](https://hackmd.io/s/rkdzvWJTX) / [Github](https://github.com/aben20807/assign_5_18) / [Youtube](https://youtu.be/jC3jnC1dsAg)
+    * **Team 13+15**: cache
+        * 將第 6 章導讀的 [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z) 和 [software-pipelining](https://hackmd.io/s/HkbPkW86f) 重新以 HackMD Book Mode 整理，並依據 [CPU caches](https://lwn.net/Articles/252125/) 文章脈絡調整。重現裡頭的實驗並且答覆之前學生未完成的部分
+        * 貢獻者: allenchen8210(陳家年), dange0 (林殿智), flawless0714 (馮會鈞)#, aben20807 (黃柏瑄), krimson8 (謝永家)
+        * [共筆](https://hackmd.io/c/SkDKqf7b4)
+
+### (秋季班)所見所聞心得
+### (秋季班)自我評量分數 (1 到 10 級分)
