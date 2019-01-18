@@ -10,14 +10,17 @@ LiuJuiHung(劉睿宏)
 
 作業及筆記
 ------------------------
+- HW1(你所不知道的 C 語言) [學習歷程](https://hackmd.io/s/HkZA_MLtQ)
 - HW2(lab0) [Github](https://github.com/LiuJuiHung/lab0-c) / [開發紀錄(lab0)](https://hackmd.io/s/rJARjql5m)
 - HW3(dict) [Github](https://github.com/LiuJuiHung/dict) / [開發紀錄(dict)](https://hackmd.io/s/HkKsxq_5m)
 - HW5(bits) [Github](https://github.com/LiuJuiHung/datalab) / [開發紀錄(bits)](https://hackmd.io/s/HkwzQWjfN)
 - HW6(分組_重做 quiz8 的第 1 到第 6 題) [GitHub(Jyun-Neng)](https://github.com/Jyun-Neng/sysprog_hw06) / [GitHub(LiuJuiHung)](https://github.com/LiuJuiHung/sysprog_quiz8_num2) / [共筆](https://hackmd.io/s/S1BHLdF2m) / [Youtube](https://youtu.be/P0vfFxXegFY)
-- HW7(分組_Malloc Lab) [github](https://github.com/Jyun-Neng/malloclab) / [共筆](https://hackmd.io/s/SkCiB4QGN)
+- HW7(分組_Malloc Lab) [Github](https://github.com/Jyun-Neng/malloclab) / [共筆](https://hackmd.io/s/SkCiB4QGN)
 
-課程心得
+所見所聞心得
 ------------------------
+第一次上到這堂非常有挑戰性的課程，雖然我之前不是資工資訊的，但有學過C語言，可是作業系統、資料結構等等課程完全沒修過及學習過，所以這堂課對我來說是非常有壓力的，但老師說過要誠實面對自己，所以我留下來了；這堂課光是一開始的影片我就看不完，也知道自己需要比別人花更多的心力及時間理解，當老師在講解 CS:APP 第二章時才知道原來二進制的運算是那麼的有學問，所以我重新學習了第二章的觀念；在作業上，像 queue 我就花了將近一個月的時間去理解及修改程式碼，雖然我花的時間比別人久，但我有學習到東西，每個作業我也嘗試去讀去理解，雖然很多作業都沒完成，但我從中知道了我以前都沒接觸過的知識，儘管我的產出很少，但那些是我從不會到有一些觀念所產出的東西，所以在這堂課我雖然不是進步很多，但我有誠實面對自己的問題並積極地去解決。
 
-自我評分(1-20)
+自我評分(1-10)
 ------------------------
+我給自己8級分，原因是上面心得大致描述了這學期的歷程，雖然我沒有甚麼太特殊的成果及產出，但每週都得花30小時以上的時間在補足我欠缺的東西及了解作業內容及撰寫作業，以及老師給的大量教材中，即使我看了不是很懂，但我都會看完，訓練我快速閱讀及英文的能力，雖然我現在比多數人弱，但我會持續地把欠缺的東西徹底的補足及了解，之後遇到問題也會誠實面對，不逃避。
