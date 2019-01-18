@@ -33,7 +33,7 @@ categories: User
     - [影片](https://www.youtube.com/watch?v=_aaj9jgEswM&t=789s)
 - 期末分組作業
     - 複習多執行緒的程式以及 mutex ，測試有 mutex lock 的程式在多執行緒的情況下的正確性
-    - 了解 lockfree 在多執行緒的情況下如何實作
+    - 看了老師的 [concurrent-ll](https://github.com/jserv/concurrent-ll) 了解 lockfree 在多執行緒的情況下如何實作
     - 學習利用 valgrind 來 debug 多執行緒的程式
     - [共筆](https://hackmd.io/SGK9Q1A1Rnep8XqKYy0rSg)
 
