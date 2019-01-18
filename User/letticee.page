@@ -18,20 +18,20 @@ categories: User
 
 作業及筆記
 ---------------------------
-- HW1：你所不知道的C語言
+- [HW1：你所不知道的C語言](https://hackmd.io/s/SkWIb_O_X)
     - [Hackmd](https://hackmd.io/s/HJMByFAOQ)
-- HW2：lab-0
+- [HW2：lab-0](https://hackmd.io/s/rJwiDHGKQ)
     - [Hackmd](https://hackmd.io/s/H1jqgwqYQ) / [Github](https://github.com/letticee/lab0-c)
-- HW3
+- [HW3](https://hackmd.io/s/SkJbKd1c7)
     - Hackmd(dict) / Github
     - [Hackmd(list)](https://hackmd.io/s/H1BkHUJiX) / Github
     - [Hackmd(review)](https://hackmd.io/s/HkRCyS9q7)
-- HW4
+- [HW4](https://hackmd.io/s/r1Yp07Uqm)
     - [Hackmd(clang)](https://hackmd.io/c/rJF9jfIsQ/https%3A%2F%2Fhackmd.io%2Fs%2FBJ2baGLi7)
     - [Hackmd(assessment)](https://hackmd.io/s/BygivPui7)
-- HW5
+- [HW5](https://hackmd.io/s/S1CRTc8jX)
     - [Hackmd(bits)](https://hackmd.io/s/SJ4dvAShm) / [Github](https://github.com/letticee/datalab)
-- 分組
+- [分組](https://hackmd.io/s/SydiC6Ism)
     - Team12：重做 quiz2，並完成延伸題目 
         - [Hackmd](https://hackmd.io/c/BkhLeMZ67/https%3A%2F%2Fhackmd.io%2FNW4itFjKTfOmBX72Nn_-Jw) / Youtube
 
@@ -46,4 +46,3 @@ C++ 是我第一個學的語言，原本以為學過 C++，C 語言應該可以�
 ---------------------------
 - 8 級分
 - 在前半學期老師給的推薦教材幾乎都有看，從 0 開始學習 linux 核心的程式碼設計、GDB 等 linux 工具的用法、位元運算的技巧，和最基本的 git 和共筆技巧，並發現自己在設計實驗和分析上的不足。這堂課的內容涵蓋範圍非常廣，還有些是我未吸收的，而且在期中之後跟之前比起來心也比較不在這堂課上面，我覺得自己應該可以做到更好，因此我給自己 2 級分的進步空間。
-
