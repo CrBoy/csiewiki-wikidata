@@ -22,6 +22,9 @@ categories: User
     - [Github](https://github.com/ChingChieh/datalab)
 - dict
     - 探討 memory pool 和每當需要時才 malloc 那個發生 cache miss 機率較高，以及哪個執行速度較快 
+    - 學習使用 perf 工具來分析程式效能
+    - 學習使用 linux 畫圖工具 gnuplot
+    - [共筆](https://hackmd.io/s/rJbZ6gXhQ#)
 - 期中分組作業
     - 了解 bit field 的 variable 不能對其取址
     - 重新複習 big & little endian 差異以及 union 特性
