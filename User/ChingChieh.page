@@ -22,6 +22,9 @@ categories: User
     - [Github](https://github.com/ChingChieh/datalab)
 - dict
 - 期中分組作業
+    - 了解 bit field 的 variable 不能對其取址
+    - 重新複習 big & little endian 差異以及 union 特性
+    - 學習使用 SIMD 來改寫 parity function
     - [共筆](https://hackmd.io/VYD7-xDaS8ObS5-zdjlBxw)
     - [影片](https://www.youtube.com/watch?v=_aaj9jgEswM&t=789s)
 - 期末分組作業
