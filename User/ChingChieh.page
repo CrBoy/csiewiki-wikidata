@@ -50,6 +50,7 @@ categories: User
 - 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
 list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);
 pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
+    - 這個 macro 是反方向走訪整個 list ， head 使用時要加小括號是因為 macro 會把傳來的東西直接展開，所以有時候可能會因為 precedence 的問題讓後面的 -> 先做了而出錯
 
 期末自評(1-10)
 ===
