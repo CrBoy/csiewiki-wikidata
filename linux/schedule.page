@@ -18,6 +18,15 @@ Linux 核心設計 (Spring 2019)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
     - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書
     - [Bit-wise operations](https://hackmd.io/s/By0MltO_m)
+    - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
+        * Ephemeral applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
+        * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
+        * Cloud platforms: 對於雲端應用而言，使用者不會在意它是在哪種處理器與加速器上運作的;
+        * Open source software: 主要在於特定的軟體開發商因人力與成本而減少支援硬體的範圍，開放原始碼軟體這時能夠作為考慮方案。儘管無法消弭對硬體的相依性，但不像軟體開發商對硬體平台支援或不支援的要求;
+    - [The Era of General Purpose Computers is Ending](https://www.nextplatform.com/2019/02/05/the-era-of-general-purpose-computers-is-ending/): 過往是研究員和從業者就設計瓶頸與發熱問題來說明困境，這篇則由製程發展與已發生的現象，討論以下變遷:
+        * 能追上最先進製程的晶圓廠商越來越少
+        * [TOP 500](https://www.top500.org/) 中使用特殊晶片比例不斷上升
+        * 特殊化處理器各方面變得更為經濟實惠
 * 第 2 週 (Feb 26)
 * 第 3 週 (Mar 5)
 * 第 4 週 (Mar 12)
