@@ -16,7 +16,7 @@ Linux 核心設計 (Spring 2019)
     - 學期評分方式: 隨堂測驗 (25%) + 個人作業 (25%) + 分組報告及專題 (25%) + 自我評分 (25%)
     - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
-    - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書
+    - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書 (第 2 週可向助教購書)
     - [Bit-wise operations](https://hackmd.io/s/By0MltO_m) / [bit-wise 的應用](https://hackmd.io/s/ByzoiggIb) / [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
         * [Ephemeral](https://www.dictionary.com/browse/ephemeral) applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
@@ -29,7 +29,16 @@ Linux 核心設計 (Spring 2019)
         * 特殊化處理器各方面變得更為經濟實惠
     - [linked list 和非連續記憶體操作](https://hackmd.io/s/rk2RO0cYX) / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)
 
-* 第 2 週 (Feb 26)
+* 第 2 週 (Feb 26): C 語言程式設計
+    * [為什麼要深入學習 C 語言？](https://hackmd.io/s/HJpiYaZfl)
+    * [解讀計算機編碼](https://hackmd.io/s/rylUqXLsm) / [重新理解數值](https://hackmd.io/s/BkRKhQGae)
+    * [基於 C 語言標準研究與系統程式安全議題](https://hackmd.io/s/S15o_K3cQ)
+    * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)
+        * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
+    * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)
+    * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)
+    * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)
+
 * 第 3 週 (Mar 5)
 * 第 4 週 (Mar 12)
 * 第 5 週 (Mar 19)
