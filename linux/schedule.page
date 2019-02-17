@@ -19,7 +19,7 @@ Linux 核心設計 (Spring 2019)
     - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書
     - [Bit-wise operations](https://hackmd.io/s/By0MltO_m) / [bit-wise 的應用](https://hackmd.io/s/ByzoiggIb) / [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
-        * Ephemeral applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
+        * [Ephemeral](https://www.dictionary.com/browse/ephemeral) applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
         * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
         * Cloud platforms: 對於雲端應用而言，使用者不會在意它是在哪種處理器與加速器上運作的;
         * Open source software: 主要在於特定的軟體開發商因人力與成本而減少支援硬體的範圍，開放原始碼軟體這時能夠作為考慮方案。儘管無法消弭對硬體的相依性，但不像軟體開發商對硬體平台支援或不支援的要求;
@@ -27,6 +27,8 @@ Linux 核心設計 (Spring 2019)
         * 能追上最先進製程的晶圓廠商越來越少
         * [TOP 500](https://www.top500.org/) 中使用特殊晶片比例不斷上升
         * 特殊化處理器各方面變得更為經濟實惠
+    - [linked list 和非連續記憶體操作](https://hackmd.io/s/rk2RO0cYX) / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)
+
 * 第 2 週 (Feb 26)
 * 第 3 週 (Mar 5)
 * 第 4 週 (Mar 12)
