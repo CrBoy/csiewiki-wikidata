@@ -12,8 +12,9 @@ toc: no
 Linux 核心設計 (Spring 2019)
 ------------------------------------------------------
 * 第 1 週 (Feb 19): 誠實面對自己
-    - 注意: 每週均安排隨堂測驗，採計其中最高分的 8 次
-    - 學期評分方式: 隨堂測驗 (25%) + 個人作業 (25%) + 分組報告及專題 (25%) + 自我評分 (25%)
+    - [課程簡介和注意須知](https://docs.google.com/presentation/d/1gGqQ5mx-40pdXrqwYUtz_LieRmVZbK7eWVEQib7ssNI/edit?usp=sharing)
+        * 每週均安排隨堂測驗，採計其中最高分的 8 次
+        * 學期評分方式: 隨堂測驗 (25%) + 個人作業 (25%) + 分組報告及專題 (25%) + 自我評分 (25%)
     - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck)
     - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
