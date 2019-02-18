@@ -39,7 +39,17 @@ Linux 核心設計 (Spring 2019)
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)
 
-* 第 3 週 (Mar 5)
+* 第 3 週 (Mar 5): 編譯器和連結器
+    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm)
+    * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
+    * C 語言: 連結器與程式行為
+    * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)
+    * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)
+    * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)
+    * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)
+    * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
+    * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
+
 * 第 4 週 (Mar 12)
 * 第 5 週 (Mar 19)
 * 第 6 週 (Mar 26)
