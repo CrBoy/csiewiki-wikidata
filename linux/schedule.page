@@ -95,7 +95,12 @@ Linux 核心設計 (Spring 2019)
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
     * Linux: 記憶體管理機制
 
-* 第 10 週 (Apr 23)
+* 第 10 週 (Apr 23): I/O 與例外處理
+    * [C 語言: Stream I/O 和 EOF](https://hackmd.io/s/Sy8pJ0x9G)
+    * CS:APP 第 8 章重點提示
+    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)
+    * Linux: 檔案系統
+
 * 第 11 週 (Apr 30)
 * 第 12 週 (May 7)
 * 第 13 週 (May 14)
