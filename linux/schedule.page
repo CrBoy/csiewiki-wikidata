@@ -83,8 +83,17 @@ Linux 核心設計 (Spring 2019)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
 
 * 第 7 週 (Apr 2): 停課一次
-* 第 8 週 (Apr 9)
-* 第 9 週 (Apr 16)
+* 第 8 週 (Apr 9): 記憶體階層
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
+    * [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z)
+    * [software-pipelining](https://hackmd.io/s/HkbPkW86f)
+    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
+    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)
+
+* 第 9 週 (Apr 16): 虛擬記憶體
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
+    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
+
 * 第 10 週 (Apr 23)
 * 第 11 週 (Apr 30)
 * 第 12 週 (May 7)
