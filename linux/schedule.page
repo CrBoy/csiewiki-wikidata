@@ -126,6 +126,10 @@ Linux 核心設計 (Spring 2019)
     * Flash memory
     * Linux: F2FS
 
-* 第 16 週 (Jun 4)
+* 第 16 週 (Jun 4): 多處理器架構和時鐘管理
+    * Linux: Timer 及其管理機制
+    * Mul1processor Hardware
+    * Linux: Optimization for Scalability
+
 * 第 17 週 (Jun 11)
 * 第 18 週 (Jun 18)     
