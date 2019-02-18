@@ -139,7 +139,7 @@ Linux 核心設計 (Spring 2019)
 
 * 第 16 週 (Jun 4): 多處理器架構和時鐘管理
     * Linux: Timer 及其管理機制
-    * Mul1processor Hardware
+    * Multiprocessor Hardware
     * Linux: Optimization for Scalability
     * Memory Barrier
 
