@@ -56,7 +56,7 @@ Linux 核心設計 (Spring 2019)
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
 
 * 第 4 週 (Mar 12): 計算機架構
-     [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
+    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)
     * [Arm 處理器](https://hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
