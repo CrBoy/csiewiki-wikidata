@@ -113,8 +113,13 @@ Linux 核心設計 (Spring 2019)
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
     * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
 
-* 第 13 週 (May 14)
-* 第 14 週 (May 21)
+* 第 13 週 (May 14): 排程和 Scalability
+    * Linux: 排程
+
+* 第 14 週 (May 21): 裝置驅動程式模型
+    * Linux: 裝置驅動程式介面和模型
+    * Linux: Device Tree
+
 * 第 15 週 (May 28)
 * 第 16 週 (Jun 4)
 * 第 17 週 (Jun 11)
