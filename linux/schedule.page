@@ -73,7 +73,14 @@ Linux 核心設計 (Spring 2019)
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
 
-* 第 6 週 (Mar 26)
+* 第 6 週 (Mar 26): 軟體最佳化和數學原理
+    * video: [為什麼要學數學？](https://www.youtube.com/watch?v=9uqq2ottHnw)
+        - [倖存者偏差](https://en.wikipedia.org/wiki/Survivorship_bias): 只考慮到偏頗的統計數據
+        - 用線性思維來思考所有事物導致的謬誤
+        - 黑天鵝事件
+        - 萬物都有對應的數學模型，而掌握數學就是掌握一種認知的工具，得以更清晰地認識世界
+
+
 * 第 7 週 (Apr 2): 停課一次
 * 第 8 週 (Apr 9)
 * 第 9 週 (Apr 16)
