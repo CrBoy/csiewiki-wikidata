@@ -104,6 +104,7 @@ Linux 核心設計 (Spring 2019)
 * 第 11 週 (Apr 30): 資料結構
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
     * [Object-oriented design patterns in the kernel, part 1](https://lwn.net/Articles/444910/) / [Object-oriented design patterns in the kernel, part 2](https://lwn.net/Articles/446317/)
+    * Linux: linked list, Queues, Maps, Binary Trees
 
 * 第 12 週 (May 7)
 * 第 13 週 (May 14)
