@@ -106,7 +106,13 @@ Linux 核心設計 (Spring 2019)
     * [Object-oriented design patterns in the kernel, part 1](https://lwn.net/Articles/444910/) / [Object-oriented design patterns in the kernel, part 2](https://lwn.net/Articles/446317/)
     * Linux: linked list, Queues, Maps, Binary Trees
 
-* 第 12 週 (May 7)
+* 第 12 週 (May 7): 同步機制
+    * CS:APP 第 12 章重點提示
+    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
+    * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
+    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
+    * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
+
 * 第 13 週 (May 14)
 * 第 14 週 (May 21)
 * 第 15 週 (May 28)
