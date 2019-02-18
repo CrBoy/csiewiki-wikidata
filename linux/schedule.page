@@ -61,6 +61,7 @@ Linux 核心設計 (Spring 2019)
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
     * [虛擬機器設計與實作](https://hackmd.io/s/SkBsZoReb)
+    * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)
 
 * 第 5 週 (Mar 19)
 * 第 6 週 (Mar 26)
