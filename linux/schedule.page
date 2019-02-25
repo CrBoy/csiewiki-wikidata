@@ -52,7 +52,7 @@ Linux 核心設計 (Spring 2019)
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)
     * 作業
-        - [fibdrv], [kcalc](https://hackmd.io/s/SyC9V0gUE)
+        - [fibdrv](https://hackmd.io/s/SJ2DKLZ8E), [kcalc](https://hackmd.io/s/SyC9V0gUE)
 
 * 第 3 週 (Mar 5): 編譯器和連結器
     * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
