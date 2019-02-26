@@ -38,6 +38,7 @@ Linux 核心設計 (Spring 2019)
     - Week1 隨堂測驗: [題目](https://hackmd.io/s/SyrZMGYr4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLScd0aNqnWZNE-3MsiCOmWWZoDcg6wsccmlXj6R3ekoLkYONMA/viewform?usp=pp_url)
 
 * 第 2 週 (Feb 26): C 語言程式設計
+    * [第 1 週發展回顧](https://hackmd.io/s/B1RmWVGUE)
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
     * [為什麼要深入學習 C 語言？](https://hackmd.io/s/HJFyt37Mx)
         - C 語言發明者 Dennis M. Ritchie 說：「C 很彆扭又缺陷重重，卻異常成功。固然有歷史的巧合推波助瀾，可也的確是因為它能滿足於系統軟體實作的程式語言期待：既有相當的效率來取代組合語言，又可充分達到抽象且流暢，能用於描述在多樣環境的演算法。」
