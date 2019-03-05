@@ -58,6 +58,9 @@ Linux 核心設計 (Spring 2019)
     * Week2 隨堂測驗: [題目](https://hackmd.io/s/H1Pik8M8E#) / [作答表單](https://goo.gl/forms/JvN9RGdxDMVTPqp93)
 
 * 第 3 週 (Mar 5): 編譯器和連結器
+    * 核心開發者當然要熟悉編譯器行為
+        - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
+        - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
     * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
     * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
     * [C 語言: 連結器與程式行為](https://hackmd.io/s/SysiUkgUV)
