@@ -56,6 +56,7 @@ Linux 核心設計 (Spring 2019)
     * [作業](https://hackmd.io/s/rygjaEK8V)
         - [fibdrv](https://hackmd.io/s/SJ2DKLZ8E), [kcalc](https://hackmd.io/s/SyC9V0gUE)
     * Week2 隨堂測驗: [題目](https://hackmd.io/s/H1Pik8M8E#) / [作答表單](https://goo.gl/forms/JvN9RGdxDMVTPqp93)
+
 * 第 3 週 (Mar 5): 編譯器和連結器
     * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
     * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
@@ -66,6 +67,9 @@ Linux 核心設計 (Spring 2019)
     * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)
     * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
+    * Week3 隨堂測驗:
+        - 題目(上) / 作答表單
+        - 題目(下) / 作答表單
 
 * 第 4 週 (Mar 12): 計算機架構
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
