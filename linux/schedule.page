@@ -100,6 +100,8 @@ Linux 核心設計 (Spring 2019)
         - 探討 Linux 核心設計的特有思維，像是如何透過 LWP 和 NPTL 實作執行緒，又如何透過行程建立記憶體管理的一種抽象層，再者回顧行程間的 context switch 及排程機制，搭配 signal 處理
     * [Linux: 不只挑選任務的排程器](https://hackmd.io/s/rJbcHS5LE)
     * [Linux 核心設計: 第 5 週課堂互動工作區](https://hackmd.io/RECt5fMzSKaH-YmNwfHBBA?view)
+    * 作業
+        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
 * 第 6 週 (Mar 26): 軟體最佳化和數學原理
     * video: [為什麼要學數學？](https://www.youtube.com/watch?v=9uqq2ottHnw)
