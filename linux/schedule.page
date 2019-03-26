@@ -111,7 +111,10 @@ Linux 核心設計 (Spring 2019)
         - 用線性思維來思考所有事物導致的謬誤
         - 黑天鵝事件
         - 萬物都有對應的數學模型，而掌握數學就是掌握一種認知的工具，得以更清晰地認識世界
-    * 為何要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
+    * 為何要掌握數學？
+        - 即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
+        - [隱藏在字典裡的數學](https://hackmd.io/s/BkE3uSvdN)
+        - Linux: [Add Policy Engine Algorithmic Bloom Filter Entries Register](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=418089a850c751ada5e3535d0e71c3312fe3c432)
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
