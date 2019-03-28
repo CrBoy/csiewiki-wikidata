@@ -2191,3 +2191,4 @@ FreeRTOS 透過一個 pxCurrentTCB 的指標來存取目前指向的 task 基本
 
 * [Study of an operating system: FreeRTOS](/embedded/FreeRTOS_Melot.pdf)
 * [FreeRTOS 即時核心實用指南](/embedded/FreeRTOS-manual-zh.pdf)
+* [FreeRTOS STM32F429 Driver API](https://hackmd.io/c/Sy9H-nKuV)
