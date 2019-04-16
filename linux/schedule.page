@@ -131,6 +131,14 @@ Linux 核心設計 (Spring 2019)
 * 第 9 週 (Apr 16): 虛擬記憶體
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
+    * GC
+        - [透過 hashmap 用以加速 linked list 的存取](https://hackmd.io/s/rkAXl--tV)
+        - [mark & sweep collector](https://hackmd.io/s/BkF_dAeFE)
+        - [指出 ogc 實作的缺失](https://hackmd.io/s/ry2RNqgtE)
+    * bitops
+        - [BUG_ON 巨集](https://hackmd.io/s/SkMuYvYSN)
+        - [亂數產生器](https://hackmd.io/s/SyMDeXJFV)
+        - [參考實作](https://hackmd.io/s/Hk0OvtxF4)
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
     * 作業
