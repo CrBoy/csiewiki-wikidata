@@ -120,6 +120,8 @@ Linux 核心設計 (Spring 2019)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
 
 * 第 7 週 (Apr 2): 停課一次
+    * [測驗題(上)](https://hackmd.io/s/HJyj0rxKE)
+    * [測驗題(下)](https://hackmd.io/s/Hy8aBIgYV)
 
 * 第 8 週 (Apr 9): 記憶體階層
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
