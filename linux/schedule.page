@@ -149,7 +149,7 @@ Linux 核心設計 (Spring 2019)
 * 第 10 週 (Apr 23): I/O 與例外處理
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
-    * CS:APP 第 8 章重點提示 / [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
+    * CS:APP 第 8 章重點提示: [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
     * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)
 
