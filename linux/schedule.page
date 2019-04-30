@@ -157,6 +157,9 @@ Linux 核心設計 (Spring 2019)
 
 * 第 11 週 (Apr 30): 資料結構
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
+    * [Functional Programming 風格的 C 語言實作](https://hackmd.io/s/HyS-9S6OE)
+        - 是種 programming paradigm (開發典範)，不是 design pattern 也不是 framework，更不是 language。簡單來說，FP 是種以數學函數為中心的「思考方式」與「程式風格」;
+        - 透過 C 語言程式提供若干案例，如列舉數值、(不需要動態配置記憶體的) 反轉 linked list 元素、對 Linked List 元素進行合併排序;
     * [An Introduction to Cache-Oblivious Data Structures](https://rcoh.me/posts/cache-oblivious-datastructures/)
         - 「自動快取資料結構」，特性是無視硬體特定的快取大小，可能達到接近最優化快取的效能;
         - 在現代 CPU 多層多種大小的快取架構下，它的理論宣稱其能自動優化在所有層的快取的存儲效率。傳統上電腦科學做偏理論的不太重視實作上的效能，而做實作或硬體優化的則不太重視理論分析。這個學門卻是橫跨了相當理論的演算法分析（需要相當多的進階數學工具），以及相當低階的硬體效能理解;
