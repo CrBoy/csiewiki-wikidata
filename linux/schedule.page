@@ -179,7 +179,7 @@ Linux 核心設計 (Spring 2019)
         - [ringbuffer](https://hackmd.io/s/SkYLI9CiN), [skiplist](https://hackmd.io/s/rkl7BqCi4), [buddy](https://hackmd.io/s/SyPmY90jV)
 
 * 第 12 週 (May 7): 同步機制
-    [Announcing WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/)
+    * [Announcing WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/)
         - WSL (Windows Subsystem for Linux) 是 Microsoft 提供可免費下載和使用的軟體，可讓您直接在 MS-Windows 上執行原生 Linux 命令列工具與傳統 Windows 桌面，而不需要額外的虛擬機器;
         - 現在為了強化相容性，WSL 2 乾脆附上真的可執行的 Linux 核心 (!) 並透過虛擬化技術，高效率地執行，目前公佈的材料指出，檔案系統方面的效能提升了 20 倍，而且 Docker 一類的容器可更好地運作;
         - 這項變更預計隨著 Windows Update 釋出，預計會有全新 Windows Terminal，並且開放原始碼，關鍵特徵包含支援 Tab 和透過 GPU 加速文字描繪處理
