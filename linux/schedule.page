@@ -178,10 +178,10 @@ Linux 核心設計 (Spring 2019)
 
 * 第 12 週 (May 7): 同步機制
     * CS:APP 第 12 章
-        - [Concurrency](https://www.cs.cmu.edu/~213/lectures/23-concprog.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cefa5fc5-2de5-4cb6-a4d7-aa1d00f3d6a0)
-        - [Synchronization: Basic](https://www.cs.cmu.edu/~213/lectures/24-sync-basic.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c4aaee71-48c6-43e1-a6b5-aa1d00f3f4fc)
-        - [Synchronization: Advanced](https://www.cs.cmu.edu/~213/lectures/25-sync-advanced.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab4b1758-8b69-451b-a7fc-aa1d00f41a2b)
-        - [Thread-Level Parallelism](https://www.cs.cmu.edu/~213/lectures/26-parallelism.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8123e040-dd1b-4115-8c81-aa1d00f461fe)
+        - [Concurrency](https://www.cs.cmu.edu/~213/lectures/23-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
+        - [Synchronization: Basic](https://www.cs.cmu.edu/~213/lectures/24-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
+        - [Synchronization: Advanced](https://www.cs.cmu.edu/~213/lectures/25-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
+        - [Thread-Level Parallelism](https://www.cs.cmu.edu/~213/lectures/26-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
     * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
