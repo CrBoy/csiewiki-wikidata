@@ -176,9 +176,12 @@ Linux 核心設計 (Spring 2019)
         - [題目(中)](https://hackmd.io/s/BkFJPHriE) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSfax5semqVw2zlOjJ8EjlTmV_nRc2EeaR_i6j5PXkXD_sgwvQ/viewform?usp=sf_link)
         - [題目(下)](https://hackmd.io/s/HkM11driV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSdEzqHRdGWR1-bRIlAZ8VkI50rlM9_YjaPzzn01e1T3BfDvug/viewform?usp=sf_link)
 
-
 * 第 12 週 (May 7): 同步機制
-    * CS:APP 第 12 章重點提示
+    * CS:APP 第 12 章
+        - [Concurrency](https://www.cs.cmu.edu/~213/lectures/23-concprog.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=cefa5fc5-2de5-4cb6-a4d7-aa1d00f3d6a0)
+        - [Synchronization: Basic](https://www.cs.cmu.edu/~213/lectures/24-sync-basic.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c4aaee71-48c6-43e1-a6b5-aa1d00f3f4fc)
+        - [Synchronization: Advanced](https://www.cs.cmu.edu/~213/lectures/25-sync-advanced.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ab4b1758-8b69-451b-a7fc-aa1d00f41a2b)
+        - [Thread-Level Parallelism](https://www.cs.cmu.edu/~213/lectures/26-parallelism.pdf) / [錄影](https://scs.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8123e040-dd1b-4115-8c81-aa1d00f461fe)
     * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
