@@ -204,13 +204,13 @@ Linux 核心設計 (Spring 2019)
         + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
         + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
 
-* 第 13 週 (May 14): 排程和 Scalability
-    * Linux: 排程
-
-* 第 14 週 (May 21): 裝置驅動程式模型
+* 第 13 週 (May 14): 電腦網路和裝置驅動程式模型
+    * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * Linux: 裝置驅動程式介面和模型
     * Linux: Device Tree
-    * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
+
+* 第 14 週 (May 21): 排程和 Scalability
+    * Linux: 排程
 
 * 第 15 週 (May 28): 檔案系統
     * Linux: 檔案系統和虛擬檔案系統設計
