@@ -205,6 +205,7 @@ Linux 核心設計 (Spring 2019)
         + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
 
 * 第 13 週 (May 14): 電腦網路和裝置驅動程式模型
+    * video: [How TCP/IP Works](https://www.youtube.com/watch?v=HOaIqQAeaik)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * Linux: 裝置驅動程式介面和模型
     * Linux: Device Tree
