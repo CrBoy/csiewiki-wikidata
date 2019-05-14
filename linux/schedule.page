@@ -207,6 +207,16 @@ Linux 核心設計 (Spring 2019)
 * 第 13 週 (May 14): 電腦網路和裝置驅動程式模型
     * video: [How TCP/IP Works](https://www.youtube.com/watch?v=HOaIqQAeaik)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
+    * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)
+        - Linux 核心中各式 C 語言程式設計的安全和正確議題
+        - Variable Length Arrays are bad and slow
+        - Explicit switch case fall-through
+        - Always-initialized automatic variables
+        - Arithmetic overflow detection
+        - Hope for bounds checking
+        - Control Flow Integrity: forward edges
+        - Control Flow Integrity: backward edges
+        - 也提供了 gcc/clang 相關的編譯參數
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74) by [Greg Kroah-Hartman](https://github.com/gregkh)
     * [How to avoid writing device driversfor embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)
