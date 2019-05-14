@@ -208,6 +208,7 @@ Linux 核心設計 (Spring 2019)
     * video: [How TCP/IP Works](https://www.youtube.com/watch?v=HOaIqQAeaik)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74) by [Greg Kroah-Hartman](https://github.com/gregkh)
+    * [How to avoid writing device driversfor embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)
     * Linux: Device Tree
 
 * 第 14 週 (May 21): 排程和 Scalability
