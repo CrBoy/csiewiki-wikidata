@@ -233,9 +233,9 @@ Linux 核心設計 (Spring 2019)
     * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
 
 * 第 15 週 (May 28): 檔案系統
-    * Linux: 檔案系統和虛擬檔案系統設計
-    * Flash memory
-    * Linux: F2FS
+    * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)
+    * [Drive your NAND within Linux](https://bootlin.com/pub/conferences/2018/elc/raynal-exec-op/raynal-understand-and-drive-your-nand.pdf) / [錄影](https://www.youtube.com/watch?v=3PROYAbwCmY)
+    * [Flash-Friendly File System (F2FS)](https://elinux.org/images/1/12/Elc2013_Hwang.pdf) / [錄影](https://www.youtube.com/watch?v=t_4_Ba7PSg4)
 
 * 第 16 週 (Jun 4): 多處理器架構和時鐘管理
     * Linux: Timer 及其管理機制
