@@ -242,6 +242,8 @@ Linux 核心設計 (Spring 2019)
     * [PACKET_MMAP](https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt)
         - Binding the socket to your network interface is mandatory (with zero copy) to know the header size of frames used in the circular buffer.
     * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
+    * Week 13 隨堂測驗:
+        - [題目](https://hackmd.io/s/B15ZI8caV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSe0SPZYtcp4N5oT9bJfuKY8w2dgps4gwSre3SamNSLTryxsbQ/viewform?usp=sf_link)
 
 * 第 16 週 (Jun 4): 多處理器架構和時鐘管理
     * Linux: Timer 及其管理機制
