@@ -246,8 +246,8 @@ Linux 核心設計 (Spring 2019)
         - [題目](https://hackmd.io/s/B15ZI8caV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSe0SPZYtcp4N5oT9bJfuKY8w2dgps4gwSre3SamNSLTryxsbQ/viewform?usp=sf_link)
 
 * 第 16 週 (Jun 4): 多處理器架構和 Scalability
-    * Multiprocessor Hardware
     * [Linux: Optimization for Scalability](/linux/10-linux.pdf)
+   * [Multiprocessor OS](/11-smp_os.pdf)
 
 * 第 17 週 (Jun 11): 多核處理器和時鐘管理
     * Memory Barrier
