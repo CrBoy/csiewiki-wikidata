@@ -251,8 +251,11 @@ Linux 核心設計 (Spring 2019)
     * [分組表](https://hackmd.io/81K-D1SXRBibhBofW6Z-qQ)
     * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
  
-* 第 17 週 (Jun 11): 多核處理器和時鐘管理
+* 第 17 週 (Jun 11): 多處理器架構和 Real-time
+    * [Linux: Optimization for Scalability](/linux/10-linux.pdf)
+    * [Multiprocessor OS](/11-smp_os.pdf)
+    * [PREEMPT_RT 作為邁向硬即時作業系統](https://hackmd.io/s/BJ2Fy-ye-)
+
+* 第 18 週 (Jun 18): 多核處理器和時鐘管理
     * Memory Barrier
     * Linux: Timer 及其管理機制
-
-* 第 18 週 (Jun 18): 分組討論
