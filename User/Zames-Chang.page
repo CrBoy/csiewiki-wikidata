@@ -1,1 +1,35 @@
-abc
+---
+title: Zames-Chang(張景雲)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 資訊工程系109級(2015-2020)
+
+聯絡資訊
+======================
+- email: ``z5254215560@gmail.com``
+- github: ``Zames-Chang``
+
+2019春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1(A)1: linux linked list(merge sort) [Github](https://github.com/Zames-Chang/lab0-c),[hackmd](https://hackmd.io/s/S2ce7HZhT7O3M7wltUvsIA)
+- HW1(B): linux linked list(implement linked list) [Github](https://github.com/Zames-Chang/lab0-c),[hackmd](https://hackmd.io/s/qVXOqAavTLiGBvZbMaU9Hw)
+- HW2: fibdrv [Github](https://github.com/Zames-Chang/fibdrv),[hackmd](https://hackmd.io/s/J0VudaHPS_2VcBXzDXOsfQ)
+- HW3: review [hackmd](https://hackmd.io/@jDYl_bAwQ5WqQu5Smms4dw/HJ6SVmRIN?type=view)
+- 期中考試 [hackmd](https://hackmd.io/s/ia8p3iprQvCGNJ96DW2c6Q)
+- 補考: 補考 [hackmd](https://hackmd.io/s/xXTihxN-TuCgeYegZYdLAg)
+- final project: kcalc [hackmd](https://hackmd.io/s/D13RM7RhSIqLMVD6l6qQGA)
+改善同學的kcalc，解決overflow和數值計算結果錯誤等問題。
+
+所見所聞心得
+------------------------
+這是我第一次修jserv老師的課，只是抱著反正沒什麼特別的事就來修了，原本我對於 overflow，或是 edge case 的處理沒有特別處理，也不是很在意，但透過上課可以知道這是一個多大的問題，也理解到linux中花多少心力在處理這些問題，學到很多系統設計的技巧，那一種設計的觀念或是想法，我覺得都很有趣
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8級分。學期初有認真的做，但後面各種期中阿報告阿，偶爾偷懶啊，好像就沒有特別多時間可以做後面的東西，不過這堂課讓我覺得自我其實很缺乏，其實讓我更體認到自己要培養無可取代性的重要，也因此對我原本直接出去工作的規劃變成去讀研究所進修。
