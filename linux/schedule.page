@@ -257,5 +257,5 @@ Linux 核心設計 (Spring 2019)
     * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
 
 * 第 18 週 (Jun 18): 多核處理器和時鐘管理
+    * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
     * Memory Barrier
-    * Linux: Timer 及其管理機制
