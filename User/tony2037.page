@@ -13,6 +13,9 @@ tony2037(劉宥辰)
 - 研究
 
     - 自動停車系統
+        - Semantic segmentation model (base on de-convolutional network)
+        - Simulator (base on unity)
+        - Controller (base on reinforcement learning)
 
 **其他經驗:**
 
@@ -31,4 +34,3 @@ Review
 
 自我評量分數 (1 到 10 級分)
 ---------------------------
-10級分。
