@@ -5,18 +5,23 @@ afcidk(洪培軒)
 * Github: [https://github.com/afcidk](https://github.com/afcidk)
 * Email: [afcidk@gmail.com](mailto:afcidk@gmail.com)
 
+## 專案推銷
+* [HackMDir](https://chrome.google.com/webstore/detail/hackmdir/mpkcjcncagplbnlkcnplogaiiabhieon) / [Github](https://github.com/afcidk/HackMDir)
+
+2019 年國立成功大學資訊工程學系程式語言期末專案，這個專案希望透過一個使用者友善的介面與便利的批次處理按鈕來整理 HackMD 的筆記
+
 
 2018 年春季班 個人評量
 ========
 
 ## 作業及筆記
 * Hw1
-    * phonebook [HackMD](https://hackmd.io/s/HJpd6KXdG#)/[Github](https://github.com/afcidk/phonebook)
+    * phonebook [HackMD](https://hackmd.io/s/HJpd6KXdG#) / [Github](https://github.com/afcidk/phonebook)
 * Hw2 
     * assessment [HackMD](https://hackmd.io/s/ByLoR3LKz#)
-    * prefix-search [HackMD](https://hackmd.io/s/HynvxMxcM#)/[Github](https://github.com/afcidk/prefix-search)
+    * prefix-search [HackMD](https://hackmd.io/s/HynvxMxcM#) / [Github](https://github.com/afcidk/prefix-search)
 * Hw3 
-    * list [HackMD](https://hackmd.io/s/Hk75lsjjM)/[Github](https://hackmd.io/s/S1iCyyziG)
+    * list [HackMD](https://hackmd.io/s/Hk75lsjjM) / [Github](https://hackmd.io/s/S1iCyyziG)
     * c-review [HackMD](https://hackmd.io/s/SkS7PeXsf)
 * 分組報告
     * Bomb Lab [HackMD](https://hackmd.io/s/r1pQi7JTf)
@@ -35,10 +40,10 @@ afcidk(洪培軒)
 2019 年春季班 個人評量
 ========
 ## 作業及筆記
-* [Homework 1(lab0)](https://hackmd.io/@afcidk/ry4VZS9SN?type=view)/[Github](https://github.com/afcidk/lab0-c)
-* [F02: list](https://hackmd.io/@afcidk/r1PQ-eZUV?type=view)/[Github](https://github.com/afcidk/linux-list)
-* [F03: fibdrv](https://hackmd.io/@afcidk/r1ginnn8N?type=view)/[Github](https://github.com/afcidk/fibdrv)
-* [F04: kcalc](https://hackmd.io/@afcidk/r1sIzeLvE?type=view)/[Github](https://github.com/afcidk/kcalc)
+* [Homework 1(lab0)](https://hackmd.io/@afcidk/ry4VZS9SN?type=view) / [Github](https://github.com/afcidk/lab0-c)
+* [F02: list](https://hackmd.io/@afcidk/r1PQ-eZUV?type=view) / [Github](https://github.com/afcidk/linux-list)
+* [F03: fibdrv](https://hackmd.io/@afcidk/r1ginnn8N?type=view) / [Github](https://github.com/afcidk/fibdrv)
+* [F04: kcalc](https://hackmd.io/@afcidk/r1sIzeLvE?type=view) / [Github](https://github.com/afcidk/kcalc)
 * [F05: review](https://hackmd.io/@afcidk/H1qAnVQuN?type=view)
 * [2019q1 Homework4 (riscv)](https://hackmd.io/@afcidk/rytHtN8t4?type=view)
 * [2019q1 Homework5 (daemon)](https://hackmd.io/@afcidk/Hyqa6tLoE?type=view)
