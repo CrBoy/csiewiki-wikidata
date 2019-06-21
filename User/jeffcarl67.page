@@ -1,0 +1,41 @@
+---
+title: jeffcarl67(王建程)
+categories: User
+...
+
+學歷
+======================
+- 成功大學 交通管理科學系108級(2015~)
+
+聯絡資訊
+======================
+- email: ``jeffcarljeffcarl@gmail.com``
+- github: ``jeffcarl67``
+
+2019春季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- HW1: lab0 [Github](https://github.com/jeffcarl67/lab0-c),[HackMd](https://hackmd.io/s/Sk1wCofU4)
+- HW1: list [Github](https://github.com/jeffcarl67/linux-list),[HackMd](https://hackmd.io/s/HyNqJivUN)
+- HW2: fibdrv [Github](https://github.com/jeffcarl67/fibdrv),[HackpMd](https://hackmd.io/s/H1vRlaVDE)
+- HW2: kcalc [Github](https://github.com/jeffcarl67/kcalc),[HackMd](https://hackmd.io/s/rJBUiapvN)
+- HW3: review [HackMd](https://hackmd.io/s/Hyk66VwdN/)
+- HW4: riscv [Github](https://github.com/jeffcarl67/riscv-emu-buildroot),[HackMd](https://hackmd.io/s/ByBh2p3FV)
+- HW5: daemon [Github](https://github.com/jeffcarl67/kecho),[HackMd](https://hackmd.io/s/H1gtPnSh4)
+- HW6: gc [HackMd](https://hackmd.io/s/H1IA1bgT4)
+
+期末專題
+------------------------
+- 任務: 重做 skiplist，符合所有指定要求
+- [Github](https://github.com/jeffcarl67/unrolled_linked_list)
+- [HackMd](https://hackmd.io/BaZozw3mSYCLbkbumv3XxQ?type=view)
+
+所見所聞心得
+------------------------
+因緣際會下聽聞了 jserv 老師的名號，雖然就讀於管理學院，仍然希望能有機會體驗 jserv 老師的言傳身教。時間來到了大四下，正好沒有衝堂於是便選修了 jserv 老師開設的課程。在修課前只有些許程式開發的經驗，遇到第一個作業後立刻遭受重大打擊，僅僅查閱資料就花了許多時間而且一個看似簡單的 merge sort 也花了一整個早上才寫出了可以運作的版本。在之後由於基礎知識不足以及其他課程分散了精力感覺寫作業時欲發力不從心。雖然學習成果不太好但依然很高興能在課程中領略真實世界中實際面對的議題，這些都是以往未曾聽聞的知識，大大開闊了眼界。感謝 jserv 老師的用心讓我理解了自己的渺小與不足，明確了之後努力的方向。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8 分。雖然學習狀況不甚理想，許多作業也都沒有完成，但我認為自己有掙扎著把力所能及的部份完成。雖然對 linux 核心的整體理解依然不甚清楚，但相比過去至少已經多理解了一點皮毛，希望這幾個月的經歷能化為之後探索 linux 核心的種子，在未來督促自己更深入的研究核心中各種有趣的議題。
