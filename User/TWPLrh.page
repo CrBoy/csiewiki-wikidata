@@ -17,13 +17,17 @@ categories: User
 
 作業及筆記
 ------------------------
-- HW1: phonebook [Github](https://github.com/ggary9424/phonebook),[Hackpad](https://embedded2016.hackpad.com/2016q1-Homework1-utBhpkDFVMh)
-
+- HW1: [lab0](https://hackmd.io/s/Syo3UBbIN) / [github](https://github.com/TWPLrh/lab0-c)
+- HW2: [fibdrv](https://hackmd.io/s/BkF_90jIE)
+- Report: [重作gc](https://hackmd.io/CBCiqVI_QQq4lTiZE6aiaQ?both) / [github](https://github.com/TWPLrh/ogc)
 
 所見所聞心得
 ------------------------
+早在大一就聽聞 Jserv 的傳奇故事，一直想找時間來修看看這門課，最後終於在大四下修到了，
+老師上課其實也不像傳說中的壓力這麼大，而且會在課堂中講一些滿有趣的實例，讓我瞭解到一些
+原本不知道怎麼應用在 Coding 中的技巧，這門課加強了我對 Linux Kernel 的架構概念，對
 
 
 自我評量分數 (1 到 10 級分)
 ---------------------------
-
+10 級分,
