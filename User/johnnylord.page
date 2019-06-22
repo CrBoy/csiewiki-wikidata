@@ -1,1 +1,37 @@
-TO BE CONTINUE
+---
+title: johnnylord (劉正仁)
+categories: User
+...
+
+# 個人資料
+## 聯絡資訊
+* email : `johnnylord7410@gmail.com`
+* Github : `johnnylord`
+
+## 學歷
+* 成功大學資訊工程學系 108 級
+* 台北市立成功高級中學
+
+## 學習筆記
+* [Master Linux System](https://hackmd.io/@johnnylord/ryhE3Q_2V/%2FO1sRXAC2Ruiwr97-5G2wWg)
+
+# 2019 春季班 個人評量
+## 平時作業
+* [開發紀錄 (lab0)](https://hackmd.io/@johnnylord/B1A5CO5HN) / [GitHub](https://github.com/johnnylord/lab0-c)
+* [開發紀錄 (list)](https://hackmd.io/@johnnylord/rk7xJhVIN) / [GitHub](https://github.com/johnnylord/linux-list)
+* [開發紀錄 (fibdrv)](https://hackmd.io/@johnnylord/rkLAuRs8V) / [GitHub](https://github.com/johnnylord/fibdrv)
+* [開發紀錄 (review)](https://hackmd.io/@johnnylord/ByxDd2NuE)
+* [開發紀錄 (kcalc)](https://hackmd.io/@johnnylord/SJyiQ13wV)
+* [開發紀錄 (riscv)](https://hackmd.io/gOVBW0jQQ1C26A77b9IgUw)
+* [開發紀錄 (ringbuffer)](https://hackmd.io/@johnnylord/H10GaG56E) 
+
+## 分組報告
+* [Riscv with Tinyemu](https://hackmd.io/@johnnylord/HkeMrEARE)
+
+## 心得
+大學四年終於鼓起勇氣修 jserv 老師的課，回顧這學期上課的方式和教學內容，我個人認為學到最多的是看事物的角度，和學習的心態。從學習心態開始講，老師常說的『誠實面對自己，不要舉燭』，雖然課程每份作業的問題，和要做的實驗都很多，但是我自認為有誠實的面對自己，在回答問題前，都會廣泛的閱讀資料，交叉比對正確性，並都盡可能地搭配實驗，所以只要我有回答的問題，我都有一定的信心。再來是看事物的角度，老師說我們在大學要盡可能的去看難一點的東西，做別人沒做的事情; 老師舉出 Linux 核心版本一直在變，安全和網路相關的補丁一直被討論，但是大部分的人卻講不出半點還這些相關的知識（真正的高手該在意的事情）。我過去就像只會 CRUD 的這類人，只做潮流的事，光看問題表象，沒有什麼深度可言，但是這門課漸漸的改變我看事物的眼光，會探討事物問題的歷史，為什麼會有這樣的需求，要怎麼解決，雖然過程累又很挫折（常常看不懂==），但是那才是現在科技真正的在意地問題和未來的門檻。
+
+過去 Linux 核心對我來說是一個非常非常難的議題（現在還是很難），想碰但又很挫折，但是現在看核心或是一些核心中用到的一些技術就稍為有一點感覺。最後就是對於 jserv 老師的改觀，過去聽別人常說老師很嗆，很會ㄉㄧㄤ人（事實就是ＸＤ），不過相處的過程能看到老師對學生的用心，不是胡亂嗆人，而是真的該嗆，直指出大部分學生的缺點（也是我的缺點），所以很謝謝老師願意花時間和口水來教導學生。
+
+## 自我評分 (1~10 分)
+整體來說，我給自己 8 分。前半段的課程我很努力的跟進，CSAPP 的線上課程也都全部看完，作業也都有努力完成，但是期中後其他課程的外務，導致有一兩週的時間，沒很投入在課堂和作業上，課後也沒有達到所謂最低 18 小時的投入。
