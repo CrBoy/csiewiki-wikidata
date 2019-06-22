@@ -5,7 +5,7 @@ categories: User
 
 學歷
 ======================
-- 成功大學 土木工程系106級
+- 國立成功大學 土木工程系106級
 
 聯絡資訊
 ======================
@@ -17,13 +17,38 @@ categories: User
 
 作業及筆記
 ------------------------
--HW1: lab0 [GitHub](https://github.com/LiunuXXX/lab0-c),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/Hyq1pVGUV?type=view)
--HW1: list [GitHub](https://github.com/LiunuXXX/linux-list),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/BklasEokr)
--HW2: fibdrv [GitHub](https://github.com/LiunuXXX/fibdrv),[HackMD](https://hackmd.io/RruqeZGgTJqp2m5DajC01w?view)
--HW2: kcalc [GitHub](https://github.com/LiunuXXX/kcalc),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/rkIdcIjkr)
+-HW1(A): lab0 [GitHub](https://github.com/LiunuXXX/lab0-c),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/Hyq1pVGUV?type=view)
+
+-HW1(B): list [GitHub](https://github.com/LiunuXXX/linux-list),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/BklasEokr)
+
+-HW2(A): fibdrv [GitHub](https://github.com/LiunuXXX/fibdrv),[HackMD](https://hackmd.io/RruqeZGgTJqp2m5DajC01w?view)
+
+-HW2(B): kcalc [GitHub](https://github.com/LiunuXXX/kcalc),[HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/rkIdcIjkr)
+
 -HW3: review [HackMD](https://hackmd.io/@Vy_ZuZdnSo-Wv4jSWgNmLw/ByTIGwoyH)
 
 期末分組報告
 ------------------------
-- HW7: skiplist [GitHub](https://github.com/jeffcarl67/unrolled_linked_list),[HackMD](https://hackmd.io/BaZozw3mSYCLbkbumv3XxQ?type=view)
+- HW7: skiplist [GitHub](https://github.com/j，effcarl67/unrolled_linked_list),[HackMD](https://hackmd.io/BaZozw3mSYCLbkbumv3XxQ?type=view)
 
+所見所聞心得
+------------------------
+最初是我一個很會寫程式的朋友推薦我來上 jserv 老師的課，甚至我在土木系的同學也有很多認識老師，自己查了一下發現老師的資歷驚為天人，能夠在業界強到被學校請來當特聘教授，肯定是個狠角色，因為要轉資工領域，剛好想訓練自己的實作能力，另外也得知很多成大畢業生到知名大公司工作都是老師帶的，二話不說在去年 (2018) 年就來旁修了這門課，但發現是完全不同的次元，以前在本系的計算機概論，雖然老師用 C 語言教過程式的基礎，但第一堂課的小考我幾乎有九成都看不懂，在拿了三次零分之後沮喪的退選了。
+
+然而，我除了對研究所考科的內容略有了解之外，對於資訊領域可以說是一竅不通，就算我考上了資工所，要花數倍於本科系學生的時間去補足需要的知識，又不會寫程式的話，未來的路肯定是困難重重，於是今年我決定再來挑戰一次，並且下定決心，不管這次死得多慘都要撐到最後。
+
+這門課對我來說真的是非常特別的體驗，除了認識到 C 語言可以多高深以外，也是第一次知道 git 版本控制的概念，以前計概的程式作業都是從 moodle 上下載，依照要求獨立寫個一兩百行程式碼，再上傳回 moodle ，根本不需要什麼版本控制，也不需要用到 terminal 做什麼操作，除此之外也學習到好用的共筆工具 HackMD 以及 GNU Plot、perf 等分析工具。
+
+學習系統真的是檢視自己基礎一個非常好的方式，除了要對在研究 linux kernel 時要對 C 語言有一定的掌握，系統和裝置的互動都考驗你對 computer 的了解，也正是因為這樣我才發現自己根本什麼都不懂，也認識到了你學過資料結構不一定懂，懂也不見得寫得出來，更遑論是應用在解決 "真實世界的問題" 時如何去改進，上課時常常聽到在作業系統書上聽到的概念，但在看 linux kernel 相關應用的程式碼卻想不到其背後的動機及目的，也更讓我了解到，從書上學到觀念到有能力實作有多大一段差距。
+
+此外，老師也常常提到，分析一個問題不應該只是去 google 找資料，做一些翻譯和換句話說的工作，其實這也是我以前一直在做的事，想想我何德何能稱自己是理組呢?
+正確的做法是要能夠舉實際的程式碼來說明，甚至可以自己設計實驗去驗證，這才是一個專業的工程師應該要有的態度，我想這大概是我最大的收穫吧，因為我想這個觀念不管我做任何工作都非常受用。
+
+另外，也分享課程中學到的一個觀念，在資訊工程的領域，你很難說自己已經 "做完" 了什麼工作，因為我們永遠都有更好的方法去改進，就和人生一樣，不該滿足於現在，要持續的精進自己。
+
+最後，感謝老師在我程度這麼差的情況下還這麼耐心的教導，也感謝強大的同學們的共筆也讓我學到很多，以及期末報告同組的王建程同學給予的幫忙與指教，這是我大學收穫最多的一門課，將來若還有機會，我一定要再接受老師的指導。
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+8 級分。
+雖然我的程度不好，對於小考及作業的掌握度不高，我認為比起剛上這們課時，已經成長了很多，當然，能進步的空間也無法言語說明，但是這門課對我人生的價值卻是分數無法衡量的，除了了解到和其他強者同學的差距，也讓我對努力的方向更明確，更重要的是，我是非常享受學習的過程了，最後再次感謝老師對我的教導，對成大的付出，希望將來有一天能成為和老師一樣了不起的人。
