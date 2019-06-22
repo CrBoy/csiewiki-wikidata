@@ -1,0 +1,32 @@
+---
+title: Laurora (陳虹衣)
+categories: User
+...
+
+# 個人資料
+## 學歷
+* 成功大學工程科學系 108 級
+
+## 聯絡資訊
+* email : `e94041181@gs.ncku.edu.tw`
+* Github : `Laurora`
+
+# 2019 春季班 個人評量
+## 平時作業
+* [開發紀錄(lab0)](https://hackmd.io/s/B17YLKRSN) / [github](https://github.com/Laurora/lab0-c)
+* [開發紀錄(list)](https://hackmd.io/s/rku_8WxU4) / [github](https://github.com/Laurora/linux-list)
+* [開發紀錄(fibdrv)](https://hackmd.io/s/BkBpxL9LV) / [gitHub](https://github.com/Laurora/fibdrv) 
+* [開發紀錄(review)](https://hackmd.io/s/S1ceEtg_N)
+* [開發紀錄(skiplist)](https://hackmd.io/s/HJFGIkk24)
+
+## 分組報告
+* [ringbuffer](https://hackmd.io/@1az9eaZgQwG38Qx2YiKXDw/rkeJGSwRN)
+
+# 心得
+當初會決定選這門課是因為在 ptt 上看到老師的宣傳，想要知道自己對程式的能力到什麼程度，修了之後才發現自己真的什麼都不太會，平常在學校學的作業系統、計算機組織等，都是比較抽象的概念，甚至不太能連結這兩個科目的關係，或是對整個電腦有什麼影響。作業系統也不僅僅只是從軟體的角度去解決問題，有時候從硬體的角度或許可以找到更好的解決方法。
+讓我印象最深刻的是，老師一再強調第一手資料的重要性，作業也總是需要閱讀大量的英文材料，一開始是真的很不習慣，也很害怕自己看不懂，但嘗試看了幾篇之後也就慢慢懂得這種「字典」應該如何查詢了。
+
+
+# 自我評分 (1~10 分)
+我給自己 7.5 分。
+剛開始作業還不多而且比較容易的時候還勉強可以跟上，後面做起來真的有點吃力了，也許是先備知識不足的關係吧，希望這個暑假能把不足的地方補起來。
