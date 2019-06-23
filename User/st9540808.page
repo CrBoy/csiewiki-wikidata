@@ -1,0 +1,28 @@
+# st9540808 郭泰佑
+
+## 自我介紹
+* 成功大學資訊工程學系 108 級
+* GitHub：https://github.com/st9540808
+* Email：st9540808@gmail.com
+
+## 作業
+- [Howmeork1(lab0)](https://hackmd.io/_i0VQO_gSGmvNtEwVedWfQ)
+- [Howmeork1(list)](https://hackmd.io/G7YFir_WRve2nFDpe4Yxeg)
+- [Howmeork2(fibdrv)](https://hackmd.io/AKdqcyb2RHCYxOYxeiFe-g)
+- [Howmeork3(review)](https://hackmd.io/aU6s85btTg-WXSlTSUELcw)
+- [Howmeork5(deamon)](https://hackmd.io/ge0YskEkTKeQJQrWgCEaEw)
+- [Howmeork7(riscv)](https://hackmd.io/L0drdEicTcahKtiIoNCjdQ)
+- [2019q1W7上](https://hackmd.io/fryGHDymQl6Zgo-DF2fx9g)
+- [2019q1W7下](https://hackmd.io/V_jKVYaxRGGuoTdAIyXOlA)
+- [期末(smallsys)](https://hackmd.io/TdiSiewZToydsj47aaUMtA)
+
+## 自我評量
+
+終於到大學最後一個學期了，大學中一定選修一次老師的課程一直是我對自己的期許，雖然大三下曾嘗試修嵌入式的課程，但最後因為其他課的壓力還是退了，因此這次要求自己一定要待到最後。
+
+課程中比較印象深刻的是老師分享在業界的經驗，像是處理多核相關的議題，如 lock、lock-free acquire-release、Memory consistency models、Memory coherence，這些東西不但會造成效能衝擊，更重要的是也會影響 scalability，對於幾乎所有處理器都是多核的現代，重要性就非常高了。
+
+在課程作業上，比起實際寫程式碼，我發現我花了更多時間在閱讀相關文件，為了加強基本知識，又回去閱讀 CSAPP，整本雖然只看完四個章節，但還是有很多地方需要加強，加上這堂課主要就是理解 Linux，同時我也閱讀 Linux Kernel Developement 和 LDD3。在作業中有許多要求你理解工具運作原理的問題，像是研究 test suite、debug 的原理，不能夠只知道怎麼使用，是我覺得這是跟其他課程最大的不同。
+另外修課堂課的同時，我也同時去許多公司面試，很多東西就應用得上，例如在高通的白板題我就被問到 population count，這題剛好在我們的 Quiz 中，完全不愧對老師的苦心，當下不到一分鐘就寫出來了。
+
+這學期我給自己的分數是 8 分，我認為我還有很多地方需要加強，如時間分配、閱讀文件的速度，或擷取重點的技巧。
