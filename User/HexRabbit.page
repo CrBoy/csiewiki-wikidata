@@ -36,3 +36,17 @@ categories: User
 ---------------------------
 7 級分，期初-期中時我認為可以拿 8 級分，而期末時只能拿到 6 級分。
 再次感謝 jserv 的教導，每週二的課後的討論時間真的解決了我不少疑惑。
+
+2019 linux 個人評量
+=======================
+
+所見所聞心得
+-------------------------
+若要說這學期的課程中我的最大收穫那一定是：開始閱讀 linux kernel 原始碼，
+並且利用在 [smallsys](https://github.com/cirosantilli/linux-kernel-module-cheat) 中學到的技巧和工具來單步執行 read, execve syscall，終於搞懂一支程式是如何在 kernel 內被跑起來的，此外因為我本身打 CTF 時，主要負責 binary exploitation 的題型，所以可以說是一石二鳥。
+此外，期末專題是分析 spectre attack，我也藉此機會閱讀 meltdown 和之前很紅的 spoiler side-channel attack 的論文並且透過實驗分析試著搞懂 PoC 的運作原理，可以說是相當充實，不過可惜的是還沒有完成一個能夠惡意讀取其他 process 的 PoC，希望在暑假中能夠寫出來XD
+
+自我評量分數 (1 到 10 級分)
+----------------------------
+這次我給自己 7 級分，雖然期末的幾項課程作業有點跟丟，
+但是我覺得我在探索 linux kernel 和研究 side-channel 的實驗中學到了不少，經過了這門課程真的覺得自己變強了。
