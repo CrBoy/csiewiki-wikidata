@@ -58,6 +58,16 @@ categories: User
 * [xv6-x86_64](https://github.com/jserv/xv6-x86_64): 將 MIT [Xv6](http://pdos.csail.mit.edu/6.828/2014/xv6.html) 移植到 x86_64 架構並重新整理程式碼，允許更多功能和效能提升
 * [Codezero microkernel](https://github.com/jserv/codezero): 依循 [L4 microkernel](https://en.wikipedia.org/wiki/L4_microkernel_family) 設計原則，實作短小精悍的作業系統核心，支援 ARMv5 架構 [2011 年商業應用]
 
+科普筆記
+=======
+* [解讀計算機編碼](https://hackmd.io/@sysprog/rylUqXLsm)
+    - 人們對數學的加減運算可輕易在腦中辨識符號並理解其結果，但電腦做任何事都受限於實體資料儲存及操作方式，換言之，電腦硬體實際只認得 0 和 1，卻不知道符號 + 和 - 在數學及應用場域的意義，於是工程人員引入「補數」以表達人們認知上的正負數
+    - 您有沒有想過，為何「二補數」(2’s complement) 被電腦廣泛採用呢？背後的設計考量是什麼？本文嘗試從數學觀點去解讀編碼背後的原理
+* [圖解傅立葉分析](https://hackmd.io/@sysprog/S1M6kQgiZ)
+    - 傅立葉 (Fourier) 分析不僅是個數學工具，更是種徹底顛覆一個人以前世界觀的思維模式
+    - 不幸的是，傅立葉分析的公式看起來太復雜，以至於很多人囫圇吞棗，並從此對它深惡痛絕
+    - 本文在不需要特別熟悉數學工具的狀況下，讓讀者體會到藉由傅立葉分析看到世界的另一個樣貌
+
 過往在成大
 =========
 - 成大夢之大地 BBS 站長
