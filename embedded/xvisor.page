@@ -43,7 +43,7 @@ Hypervisor (Virtual Machine Monitor, VMM)
         - 老舊過時的軟硬體透過虛擬化移植到新的硬體或OS上
 
     ![](/embedded/legacy_software.png)
-        - APP運行於不同kernel上，可透過KVM (Kernel-based Virtual Machine)整合並切換kernel來運行app，為Bare-Metal概念
+    - APP運行於不同kernel上，可透過KVM (Kernel-based Virtual Machine)整合並切換kernel來運行app，為Bare-Metal概念
 
     ![](/embedded/legacy_software1.png)
     - 啟用多核 (Multicore Enablement)
