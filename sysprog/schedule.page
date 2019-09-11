@@ -42,6 +42,11 @@ toc: no
         - 透過除錯器追蹤程式碼實際運行的狀況，了解其運作原理;
         - 取材自 dangling pointer, CWE-416 Use After Free, CVE-2017-16943 以及 integer overflow 的議題;
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)
+        - 解讀 C 語言規格書的 “object”
+        - 重讀 “type” 的定義，並且理解 incomplete type 的意義
+        - 三位一體: Array, function, pointer types: 都歸類於 derived declarator types
+        - `void *` 的設計考量
+        - C-style string
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
         * [Ephemeral](https://www.dictionary.com/browse/ephemeral) applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
         * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
