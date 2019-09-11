@@ -46,14 +46,10 @@ toc: no
         * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
         * Cloud platforms: 對於雲端應用而言，使用者不會在意它是在哪種處理器與加速器上運作的;
         * Open source software: 主要在於特定的軟體開發商因人力與成本而減少支援硬體的範圍，開放原始碼軟體這時能夠作為考慮方案。儘管無法消弭對硬體的相依性，但不像軟體開發商對硬體平台支援或不支援的要求;
-    - [作業](https://hackmd.io/s/SkJbKd1c7) (截止日: Oct 17)
-        * [dict](https://hackmd.io/s/B1Bq5Jat7), [review](https://hackmd.io/s/rywcBOy9Q), [list](https://hackmd.io/s/SyVPDd1cX)
     - Week3 隨堂測驗: [題目](https://hackmd.io/s/BkyQskjK7#) / [作答表單](https://goo.gl/forms/fpLWdyDckGZSQAcC2)
 
 * 第 4 週 (Oct 3): code review
     - 回顧 [Homework1](https://hackmd.io/s/SkWIb_O_X), [Homework2](https://hackmd.io/s/rJwiDHGKQ)
-    - [作業](https://hackmd.io/s/r1Yp07Uqm) (截止日: Oct 21)
-        * [assessment](https://hackmd.io/s/HJ236XI57), [clang](https://hackmd.io/s/rk2uXEU57)
     - Week4 隨堂測驗
         * 上: [題目](https://hackmd.io/s/HyyxpJE5X) / [作答表單](https://goo.gl/forms/QUp3OrcmXCKzCjoZ2)
         * 中: [題目](https://hackmd.io/s/Syl6me49Q) / [作答表單](https://goo.gl/forms/rwmVkXkeyjh5clLH3)
@@ -62,52 +58,39 @@ toc: no
 * 第 5 週 (Oct 10): CS:APP
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [基於 C 語言標準研究與系統程式安全議題](https://hackmd.io/s/S15o_K3cQ)
-    * Week5 隨堂測驗: [題目](https://hackmd.io/s/B1pWKvp97#) / [作答表單](https://goo.gl/forms/8yHW8Z3gBBqpIPlz2)
 
 * 第 6 週 (Oct 17): Code Review
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [解讀計算機編碼](https://hackmd.io/s/rylUqXLsm)
     * [從餘數運算到 RSA 加密演算](https://hackmd.io/s/SyBXfc8i7)
     * Week6 隨堂測驗: [題目](https://hackmd.io/s/S1azdiUiX#) / [作答表單](https://goo.gl/forms/3DbVpeeksrWN2Zcm1)
-    * [作業](https://hackmd.io/s/S1CRTc8jX) (截止日: Oct 31)
-        - [bits](https://hackmd.io/s/r14wRqUjQ)
 
-* 第 7 週 (Oct 24): 測驗 + 分組
-    * 填寫[分組表](https://hackmd.io/s/SydiC6Ism#)
-    * Week7 紙筆測驗: [題目](https://drive.google.com/open?id=1wnbLLZfTF2qBNUinmpIvmyJ3OGd0e2eG)
+* 第 7 週 (Oct 24): ?
 
 * 第 8 週 (Oct 31): 程式碼最佳化
     * 為何你要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP 第 4 章重點提示](https://hackmd.io/s/ByKFm4CFz)
-    * 任務分配: [分組表](https://hackmd.io/s/SydiC6Ism)
 
 * 第 9 週 (Nov 7): Computer Architecture
     * 人工智慧涉及大量運算，和底層計算機結構及數值表示法高度相關: [Making floating point math highly efficient for AI hardware](https://code.fb.com/ai-research/floating-point-math/), [bfloat16 floating-point format](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
-    * Week9 隨堂測驗(上)： [題目](https://hackmd.io/s/BJ3iW7GaQ#) / [作答表單](https://goo.gl/forms/VAotwuQB6XOYOmin1)
 
 * 第 10 週 (Nov 14): Computer Architecture
     * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
-    *  Week9 隨堂測驗(中)： [題目](https://hackmd.io/s/SyEo8mMpm) / [作答表單](https://goo.gl/forms/ttcrNJs7boQ5r8RZ2)
-    *  Week9 隨堂測驗(下)： [題目](https://hackmd.io/s/ryiEzUzTm) / [作答表單](https://goo.gl/forms/dJ8EjxkAAXwPk5ZG3)
 
 * 第 11 週 (Nov 21): 分組討論
     * 李飛飛教授的 TED 演說 [How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs)
         - [ImageNet: A Large-Scale Hierarchical Image Database](http://www.image-net.org/papers/imagenet_cvpr09.pdf)
         - [Now anyone can train Imagenet in 18 minutes](https://www.fast.ai/2018/08/10/fastai-diu-imagenet/)
-    * [分組討論](https://hackmd.io/s/SydiC6Ism)
     * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
 
 * 第 12 週 (Nov 28): Machine Language
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
-    * [分組討論](https://hackmd.io/s/SydiC6Ism)
-    * Week12 隨堂測驗：[題目](https://hackmd.io/s/ByYwBWCC7) / [作答表單](https://goo.gl/forms/hfW7FhT04E9aeSpy2)
 
 * 第 13 週 (Dec 5): Memory Hierarchy
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
-    * Week13 隨堂測驗：[題目](https://hackmd.io/s/SyE-NHvyE#) / [作答表單](https://goo.gl/forms/8ll7n4xsVQEQtGx32)
 
 * 第 14 週 (Dec 12): Memory Hierarchy
     * 2018 年 11 月 16 日新版國際單位制通過，新的公斤定義將改以物理學的普朗克常數為標準 (WTF?!)
@@ -120,20 +103,14 @@ toc: no
             - 目前的公斤質量是指以地心引力施加特定的力，修訂後的定義改用電磁力取代機械力進行測量
             - 未來改以基布爾秤（Kibble balance）測量，後者以電磁力精準量測物體質量，可測量出多少電流產生的電磁力，才等同於作用在給定質量上的力。
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
-    * [分組討論](https://hackmd.io/s/SydiC6Ism)
 
 * 第 15 週 (Dec 19): Virtual Memory
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
-    * Week15 隨堂測驗： [題目](https://hackmd.io/s/HkhzU3KeV) / [作答表單](https://goo.gl/forms/HofqIsNureFFXc283) 
 
 * 第 16 週 (Dec 26): Virtual Memory + 傅立葉分析
-    * 公告:
-        - 本學期最後一次上課時間為 2019 年 1 月 11 日;
-        - 分組報告應在 2019 年 1 月 18 日前更新共筆並準備解說錄影 (放在 YouTube 上，設定為公開存取以利評分)，預計 1 月 20 日遞交學期評分
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
     * [CS:APP Assign5.18](https://hackmd.io/s/rkdzvWJTX)
-    * [分組討論](https://hackmd.io/s/SydiC6Ism)
 
 * 第 17 週 (Jan 2): 
     * [在網頁瀏覽器裡頭執行 MS-DOS 和毀滅戰士遊戲](https://js-dos.com/DOOM/)
@@ -141,9 +118,6 @@ toc: no
         - [其他示範](https://github.com/kripken/emscripten/wiki/Porting-Examples-and-Demos)
     * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
-    * Week17 隨堂測驗
-        * 上：[題目](https://hackmd.io/s/Byt68jObE#) / [作答表單](https://goo.gl/forms/p1W1FL89GIS6TaAB2)
-        * 下：[題目](https://hackmd.io/s/r1nwUX3Z4#) / [作答表單](https://goo.gl/forms/hvRhu9PzsCZU5eZr1)
 
 * 第 18 週 (Jan 9): Concurrency + 課程回顧
     * [隱藏的傅立葉分析](https://hackmd.io/s/S1jR0mHfN)
