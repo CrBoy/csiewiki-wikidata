@@ -20,6 +20,16 @@ toc: no
     - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
     - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書 (第 2 週可向助教購書)
+    - [軟體缺失導致的危害](https://hackmd.io/@sysprog/B1eo44C1-)
+        * 1970 年代推出的首款廣體民航客機波音 747 軟體由大約 40 萬行程式碼構成，而 2011 年引進的波音 787 的軟體規模則是波音 747 的 16 倍，約 650 萬行程式碼。換言之，你我的性命緊繫於一系列極為複雜的軟體系統之中，能不花點時間了解嗎？
+        * 軟體開發的安全性設計和測試驗證應獲得更高的重視
+    - [解讀計算機編碼](https://hackmd.io/@sysprog/rylUqXLsm)
+        * 人們對數學的加減運算可輕易在腦中辨識符號並理解其結果，但電腦做任何事都受限於實體資料儲存及操作方式，換言之，電腦硬體實際只認得 0 和 1，卻不知道符號 + 和 - 在數學及應用場域的意義，於是工程人員引入「補數」以表達人們認知上的正負數
+        * 您有沒有想過，為何「二補數」(2’s complement) 被電腦廣泛採用呢？背後的設計考量是什麼？本文嘗試從數學觀點去解讀編碼背後的原理
+    - [圖解傅立葉分析](https://hackmd.io/@sysprog/S1M6kQgiZ)
+        * 傅立葉 (Fourier) 分析不僅是個數學工具，更是種徹底顛覆一個人以前世界觀的思維模式
+        * 不幸的是，傅立葉分析的公式看起來太復雜，以至於很多人囫圇吞棗，並從此對它深惡痛絕
+        * 本文在不需要特別熟悉數學工具的狀況下，讓讀者體會到藉由傅立葉分析看到世界的另一個樣貌
     - [Bit-wise operations](https://hackmd.io/s/By0MltO_m) / [bit-wise 的應用](https://hackmd.io/s/ByzoiggIb)
     - [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
