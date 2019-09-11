@@ -37,6 +37,11 @@ toc: no
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
     * [C 語言: 數值系統](https://hackmd.io/s/BkRKhQGae)
+    * [基於 C 語言標準研究與系統程式安全議題](https://hackmd.io/s/S15o_K3cQ)
+        - 藉由研讀漏洞程式碼及 C 語言標準，討論系統程式的安全議題
+        - 透過除錯器追蹤程式碼實際運行的狀況，了解其運作原理;
+        - 取材自 dangling pointer, CWE-416 Use After Free, CVE-2017-16943 以及 integer overflow 的議題;
+    * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
         * [Ephemeral](https://www.dictionary.com/browse/ephemeral) applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
         * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
@@ -46,6 +51,7 @@ toc: no
         * 能追上最先進製程的晶圓廠商越來越少
         * [TOP 500](https://www.top500.org/) 中使用特殊晶片比例不斷上升
         * 特殊化處理器各方面變得更為經濟實惠
+    - Week1 隨堂測驗: 上 / 下
 
 * 第 2 週 (Sep 19): 課堂測驗 (3 小時)
 
