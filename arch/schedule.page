@@ -17,7 +17,8 @@ Computer Architecture (Fall 2019)
         * [Article](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext), [note](https://cyyeh.github.io/new-golden-age-for-computer-architecture/)
     - [Great Ideas in Computer Architecture, Intro](https://drive.google.com/open?id=1Y4yUaw9vryZcdc4Xu0RQxHfqjVbeHJLF) / [video](https://youtu.be/u_hXH5-tbM4)
     - [Number Representation](https://drive.google.com/drive/folders/1_Zbt8KdwieLsqRdfc6aNBOa2_hEmFkxR)
-    - [Floating Point](https://drive.google.com/drive/folders/147xm_DhklkevG6602mH4yoGuVMw-3GQZ?usp=sharing)
+        * [解讀計算機編碼](https://hackmd.io/@sysprog/rylUqXLsm), [基於 C 語言標準研究與系統程式安全議題](https://hackmd.io/@sysprog/S15o_K3cQ)
+    - [Floating Point](https://drive.google.com/drive/folders/147xm_DhklkevG6602mH4yoGuVMw-3GQZ?usp=sharing) / [C 語言: 數值系統](https://hackmd.io/s/BkRKhQGae)
     - [C Memory Management](https://drive.google.com/drive/folders/1pHpHRvjEg5TdidIp_fkOrh6TvMlYl5Yj?usp=sharing) / [video](https://youtu.be/fhEE4J4QCps)
 
 * Week 2 (Sep 19): Quiz
