@@ -69,13 +69,16 @@ toc: no
     - [作業](https://hackmd.io/@sysprog/BkZ4h5xPB)
         * [lab0](https://hackmd.io/@sysprog/HyFQpqgPB), [quiz2](https://hackmd.io/@sysprog/rJn1C5xDS)
 
-* 第 3 週 (Sep 26): C 程式設計效能
+* 第 3 週 (Sep 26): C 語言程式設計
     - [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
     - [對 Linked List 進行氣泡排序](https://hackmd.io/s/BklGm1MhZ)
     - [Count Leading Zero (clz) 的實作](https://hackmd.io/s/Skq6P9bpz)
         * [clz 應用](https://hackmd.io/s/Bk-uxCYxz), [clz 分析](https://hackmd.io/s/Hyl9-PrjW)
-    - [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)
-        * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
+    * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)
+    * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)
+    * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)
+    * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)
+    * [C語言：技巧篇](https://hackmd.io/@sysprog/HyIdoLnjl)
 
 * 第 4 週 (Oct 3): code review
     - 回顧 [Homework1](https://hackmd.io/s/SkWIb_O_X), [Homework2](https://hackmd.io/s/rJwiDHGKQ)
