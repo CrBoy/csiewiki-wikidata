@@ -30,6 +30,7 @@ Computer Architecture (Fall 2019)
 * Week 4 (Oct 3): RISC-V
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://drive.google.com/drive/folders/1dtSqX4RlLlfXk2jN8J1vvior35z_5QfZ)
+        * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf), [RV32I](https://tclin914.github.io/16df19b4/)
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
     - [RISC-V Decisions II](https://drive.google.com/drive/folders/16-usv7Hk1XmIE4HP-nTzFKtkvuSlFCg8?usp=sharing)
     - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
