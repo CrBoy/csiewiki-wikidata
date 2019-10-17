@@ -100,6 +100,17 @@ toc: no
     * [題目](https://hackmd.io/@sysprog/BJvfgm2_B) / [作答表單](https://forms.gle/hjHiqqYspQZbWY1T7) (測驗時間 15:00 - 23:50 Oct 10)
 
 * 第 6 週 (Oct 17): Code Review
+    * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)
+        - Linux 核心中各式 C 語言程式設計的安全和正確議題
+        - Variable Length Arrays are bad and slow
+        - Explicit switch case fall-through
+        - Always-initialized automatic variables
+        - Arithmetic overflow detection
+        - Hope for bounds checking
+        - Control Flow Integrity: forward edges
+        - Control Flow Integrity: backward edges
+        - 也提供了 gcc/clang 相關的編譯參數
+        - [解說1](https://news.ycombinator.com/item?id=19006025), [解說2](https://www.reddit.com/r/linux/comments/ajztr3/making_c_less_dangerous_in_the_linux_kernel_by/)
     * 回顧 Homework 3 / 4
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [從餘數運算到 RSA 加密演算](https://hackmd.io/s/SyBXfc8i7)
