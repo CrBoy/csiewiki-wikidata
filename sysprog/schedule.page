@@ -118,6 +118,13 @@ toc: no
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [從餘數運算到 RSA 加密演算](https://hackmd.io/s/SyBXfc8i7)
     * [回顧 Homework 3 / 4](https://hackmd.io/@sysprog/Sy4WU9HFH)
+    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
+    * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
+    * [C 語言: 連結器與程式行為](https://hackmd.io/s/SysiUkgUV)
+    * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)
+    * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)
+    * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
+    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
 
 * 第 8 週 (Oct 31): 程式碼最佳化
     * 為何你要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
