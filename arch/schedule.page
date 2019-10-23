@@ -49,4 +49,8 @@ Computer Architecture (Fall 2019)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
 
 * Week 7 (Oct 24): RISC-V
+    - [RISC-V Procedures](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
     - Practice: [RISC-V Control Flow](https://cs61c.org/disc/disc4sol.pdf), [CALL, RISC-V Procedures](https://cs61c.org/disc/disc05sol.pdf)
+    - Practice: [CS 152 Computer Architecture and Engineering - Midterm #1](https://inst.eecs.berkeley.edu/~cs152/sp19/handouts/sp19/sp19-midterm-1-sol.pdf)
+        + Problem 2: Microcoding: writing microcode for a bus-based implementation of the RISC-V machine
+        + Problem 3: 5-Stage Pipelines
