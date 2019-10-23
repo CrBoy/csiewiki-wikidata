@@ -127,6 +127,8 @@ toc: no
     * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)
     * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
     * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
+    * [作業](https://hackmd.io/@sysprog/rkw3RV0YS)
+        - [dict](https://hackmd.io/@sysprog/S1Nn_ECYS), [quiz5](https://hackmd.io/@sysprog/HkXxerRFS)
 
 * 第 8 週 (Oct 31): 程式碼最佳化
     * 為何你要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
