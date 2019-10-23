@@ -118,6 +118,7 @@ toc: no
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [從餘數運算到 RSA 加密演算](https://hackmd.io/s/SyBXfc8i7)
+    * [隱藏在字典裡的數學](https://hackmd.io/@sysprog/BkE3uSvdN)
     * [回顧 Homework 3 / 4](https://hackmd.io/@sysprog/Sy4WU9HFH)
     * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
     * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
