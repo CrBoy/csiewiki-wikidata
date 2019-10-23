@@ -54,3 +54,5 @@ Computer Architecture (Fall 2019)
     - Practice: [CS 152 Computer Architecture and Engineering - Midterm #1](https://inst.eecs.berkeley.edu/~cs152/sp19/handouts/sp19/sp19-midterm-1-sol.pdf)
         + Problem 2: Microcoding: writing microcode for a bus-based implementation of the RISC-V machine
         + Problem 3: 5-Stage Pipelines
+    - [Intro to Synchronous Digital Systems](https://drive.google.com/drive/folders/1UgD80q-fC-7VU4Kxs3eX6izDGv-YStUX) / [video](https://youtu.be/w1EHBcj9NmM?t=149)
+        * [handout](https://cs61c.org/assets/resources/sds.pdf)
