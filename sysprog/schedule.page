@@ -137,6 +137,9 @@ toc: no
         - [從 CPU cache coherence 談 Linux spinlock 可擴展能力議題](https://hackmd.io/@sysprog/BJ8djgdnm)
         - [Linux 核心設計: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
         - [Linux 核心設計: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
+        - [Linux 核心設計: Scalability 議題](https://hackmd.io/@sysprog/HkfDtLnbH)
+        - [Reed-Solomon Library Programming Interface](https://github.com/torvalds/linux/blob/master/Documentation/core-api/librs.rst): Flash ECC
+        - [MTD NAND Driver Programming Interface](https://github.com/torvalds/linux/blob/master/Documentation/driver-api/mtdnand.rst): ECC, 參見 [錯誤更正碼簡介](https://w3.math.sinica.edu.tw/math_media/d184/18404.pdf) / [抽象代數的實務應用](https://www.math.sinica.edu.tw/www/file_upload/summer/crypt2017/data/2017/%E4%B8%8A%E8%AA%B2%E8%AC%9B%E7%BE%A9/[20170710][%E6%8A%BD%E8%B1%A1%E4%BB%A3%E6%95%B8%E7%9A%84%E5%AF%A6%E5%8B%99%E6%87%89%E7%94%A8].pdf)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP 第 4 章重點提示](https://hackmd.io/s/ByKFm4CFz)
 
