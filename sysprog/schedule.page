@@ -134,7 +134,7 @@ toc: no
 
 
 * 第 8 週 (Oct 31): 程式碼最佳化
-    * 為何你要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
+    * 為何你要掌握數學？即使 Linux 核心內部也大量可見: [從 CPU cache coherence 談 Linux spinlock 可擴展能力議題](https://hackmd.io/@sysprog/BJ8djgdnm)
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP 第 4 章重點提示](https://hackmd.io/s/ByKFm4CFz)
 
