@@ -133,6 +133,9 @@ toc: no
         - [題目](https://hackmd.io/@sysprog/BkavHnFFS) / [作答表單](https://forms.gle/6peGUaUcEtT48FD16)
 
 * 第 8 週 (Oct 31): 程式碼最佳化
+    * [Snap: a Microkernel Approach to Host Networking](https://ai.google/research/pubs/pub48630/)
+        - 來自 Google 的研究成果，發佈於 [SOSP 2019](https://sosp19.rcs.uwaterloo.ca/) / [Hacker News 討論](https://news.ycombinator.com/item?id=21374204)
+        - Google's user land networking system achieves "over 3x Gbps/core improvement for RPC workloads, RDMA-like perf of up to 5M IOPS/- core."
     * 為何你要掌握數學？即使 Linux 核心內部也大量可見:
         - [從 CPU cache coherence 談 Linux spinlock 可擴展能力議題](https://hackmd.io/@sysprog/BJ8djgdnm)
         - [Linux 核心設計: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
