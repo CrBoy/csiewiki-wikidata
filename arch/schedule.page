@@ -63,7 +63,7 @@ Computer Architecture (Fall 2019)
     - [Combinational Logic Blocks](https://drive.google.com/drive/folders/1qZBfSlfpKvgdO-_hMX6nszaaKWZbNyQV) / [video](https://youtu.be/RCgPysqIcWM)
     - Practice: [Logic](https://cs61c.org/disc/disc06sol.pdf)
 
-* Week 8 (Oct 31):
+* Week 8 (Oct 31): Datapath
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [Single-Cycle CPU Datapath I](https://drive.google.com/drive/folders/1bPhEZJhqMB66nA3vLsC_BOCXJUgyiwrD)
     - [Single-Cycle CPU Datapath II](https://drive.google.com/drive/folders/1VpDK9M0zHao0w0ImfGxMFh03iWHZJqpf)
@@ -71,7 +71,8 @@ Computer Architecture (Fall 2019)
     - [Quiz](https://hackmd.io/@sysprog/r1yNy2PcH)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/@jserv/SJs--6vcH)  (Due: Nov 13, 2019)
 
-* Week 9 (Nov 7):
+* Week 9 (Nov 7): Pipeline
+    - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining), [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
         * [Lectures and Recitations](https://6004.mit.edu/web/fall19/resources/lectures)
     - Practice: [RISC-V Single Cycle Datapath](https://cs61c.org/disc/disc07sol.pdf)
