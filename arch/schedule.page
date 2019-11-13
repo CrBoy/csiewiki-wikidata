@@ -73,7 +73,11 @@ Computer Architecture (Fall 2019)
 
 * Week 9 (Nov 7): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
-    - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining), [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
+    - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining)
         * [Lectures and Recitations](https://6004.mit.edu/web/fall19/resources/lectures)
     - Practice: [RISC-V Single Cycle Datapath](https://cs61c.org/disc/disc07sol.pdf)
     - [IEET Questionnaire Survey](http://ieet.csie.ncku.edu.tw/)
+
+* Week 10 (Nov 13):
+    - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
+    - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
