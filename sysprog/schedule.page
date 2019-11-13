@@ -157,17 +157,19 @@ toc: no
     * Week 9 隨堂測驗:
         - [題目](https://hackmd.io/@sysprog/B10_EnxoS) / [作答表單](https://forms.gle/CkPAiVtcPBc8SDUL6)
 
-* 第 10 週 (Nov 14): Computer Architecture
-    * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
+* 第 10 週 (Nov 14): Memory Hierarchy
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
+    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
+    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
 
-* 第 11 週 (Nov 21): 分組討論
+* 第 11 週 (Nov 21): Memory Hierarchy + Virtual Memory
     * 李飛飛教授的 TED 演說 [How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs)
         - [ImageNet: A Large-Scale Hierarchical Image Database](http://www.image-net.org/papers/imagenet_cvpr09.pdf)
         - [Now anyone can train Imagenet in 18 minutes](https://www.fast.ai/2018/08/10/fastai-diu-imagenet/)
-    * [CS:APP 第 4 章重點提示和練習](https://hackmd.io/s/ByKFm4CFz)
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
 
-* 第 12 週 (Nov 28): Machine Language
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
+* 第 12 週 (Nov 28): 分組討論
 
 * 第 13 週 (Dec 5): Memory Hierarchy
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
