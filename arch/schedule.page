@@ -79,6 +79,7 @@ Computer Architecture (Fall 2019)
     - [IEET Questionnaire Survey](http://ieet.csie.ncku.edu.tw/)
 
 * Week 10 (Nov 13):
+    - News: [Next Generation of On-Device Vision Models: MobileNetV3 and MobileNetEdgeTPU](https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html)
     - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
     - Practice: [Pipelining](https://6004.mit.edu/web/_static/fall19/resources/lectures/L12.ws_solutions.pdf)
