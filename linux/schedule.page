@@ -206,7 +206,7 @@ Linux 核心設計 (Spring 2019)
 
 * 第 13 週 (May 14): 電腦網路和裝置驅動程式模型
     * [填寫分組表格](https://hackmd.io/81K-D1SXRBibhBofW6Z-qQ)
-    * video: [How TCP/IP Works](https://www.youtube.com/watch?v=HOaIqQAeaik)
+    * video: [How TCP/IP Works](https://www.youtube.com/watch?v=9VPQd23_HHs)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)
         - Linux 核心中各式 C 語言程式設計的安全和正確議題
