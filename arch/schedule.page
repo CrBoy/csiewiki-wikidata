@@ -69,7 +69,7 @@ Computer Architecture (Fall 2019)
     - [Single-Cycle CPU Datapath II](https://drive.google.com/drive/folders/1VpDK9M0zHao0w0ImfGxMFh03iWHZJqpf)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - [Quiz](https://hackmd.io/@sysprog/r1yNy2PcH)
-    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@jserv/SJs--6vcH)  (Due: Nov 13, 2019)
+    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@jserv/SJs--6vcH)  (Due: Nov 20, 2019)
 
 * Week 9 (Nov 7): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
@@ -78,10 +78,12 @@ Computer Architecture (Fall 2019)
     - Practice: [RISC-V Single Cycle Datapath](https://cs61c.org/disc/disc07sol.pdf)
     - [IEET Questionnaire Survey](http://ieet.csie.ncku.edu.tw/)
 
-* Week 10 (Nov 13):
+* Week 10 (Nov 13): Pipelined Proccesors
     - News: [Next Generation of On-Device Vision Models: MobileNetV3 and MobileNetEdgeTPU](https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html)
     - [RISC-V: Why the ISA battles are not over yet](https://hackaday.com/2019/11/12/risc-v-why-the-isa-battles-arent-over-yet)
     - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
     - Practice: [Pipelining](https://6004.mit.edu/web/_static/fall19/resources/lectures/L12.ws_solutions.pdf), [RISC-V Pipelining and Hazards](https://cs61c.org/disc/disc08sol.pdf)
     - [Quiz](https://hackmd.io/@sysprog/SkJr779oS)
+
+* Week 11 (Nov 20)
