@@ -186,6 +186,7 @@ toc: no
         - [ImageNet: A Large-Scale Hierarchical Image Database](http://www.image-net.org/papers/imagenet_cvpr09.pdf)
         - [Now anyone can train Imagenet in 18 minutes](https://www.fast.ai/2018/08/10/fastai-diu-imagenet/)
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
+    * UNIX 作業系統裡頭 fork/exec 的前世今生
 
 * 第 13 週 (Dec 5): Memory Hierarchy
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
