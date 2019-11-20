@@ -162,7 +162,7 @@ toc: no
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
 
-* 第 11 週 (Nov 21): Memory Hierarchy + Virtual Memory
+* 第 11 週 (Nov 21): Virtual Memory
     * 佳句偶得：「寫程式就可以讓機器做事，當你會使用機器的時候，你就不用把人當機器用。但學校偏偏是個把學生訓練成機器的地方。」([出處](https://twitter.com/zonble/status/1170927028305944576))
     * 最佳化來自對系統的掌握
         - [Clang-format tanks performance](https://travisdowns.github.io/blog/2019/11/19/toupper.html)
@@ -181,7 +181,6 @@ toc: no
     * 李飛飛教授的 TED 演說 [How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs)
         - [ImageNet: A Large-Scale Hierarchical Image Database](http://www.image-net.org/papers/imagenet_cvpr09.pdf)
         - [Now anyone can train Imagenet in 18 minutes](https://www.fast.ai/2018/08/10/fastai-diu-imagenet/)
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
 
 * 第 12 週 (Nov 28): 
