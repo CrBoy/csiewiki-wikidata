@@ -163,6 +163,7 @@ toc: no
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
 
 * 第 11 週 (Nov 21): Memory Hierarchy + Virtual Memory
+    * 佳句偶得：「寫程式就可以讓機器做事，當你會使用機器的時候，你就不用把人當機器用。但學校偏偏是個把學生訓練成機器的地方。」([出處](https://twitter.com/zonble/status/1170927028305944576))
     * 最佳化來自對系統的掌握
         - [Clang-format tanks performance](https://travisdowns.github.io/blog/2019/11/19/toupper.html)
             * Slow:
