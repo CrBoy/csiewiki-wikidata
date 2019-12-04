@@ -192,6 +192,9 @@ toc: no
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
 
 * 第 13 週 (Dec 5): 重新探討 Process
+    * [5G 晶片大廠新品對決](https://tw.appledaily.com/new/realtime/20191204/1672429)
+        - 有好規格就有話語權
+        - 「高通推出最新旗艦款處理器 S865 晶片需外掛數據晶片，整套開出 120-150 美元，符合市場價格，但今年特別的是，針對中高階的 5G 單晶片，聯發科天璣 1000仰賴台積電 7 奈米奧援，以無敵貴的 75 美元至 80 美元，硬是比高通 5G S765 70 美元還來的高」
     * [Linux: 不僅是個執行單元的 Process](https://hackmd.io/@sysprog/r1ojuBGgE)
     * [Linux: 不只挑選任務的排程器](https://hackmd.io/@sysprog/rJbcHS5LE)
     * [UNIX 作業系統裡頭 fork/exec 的前世今生](https://hackmd.io/@sysprog/SJMxX4cUB)
