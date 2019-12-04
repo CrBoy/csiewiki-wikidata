@@ -183,17 +183,18 @@ toc: no
         - [題目](https://hackmd.io/@sysprog/Hymc9MmhS) / [作答表單](https://forms.gle/uf6nTe4VzkLbcVMaA)
     * [分組表](https://hackmd.io/@sysprog/B1sHrRQhr): 請在 12 月 3 日前執行選定的任務
 
-* 第 12 週 (Nov 28):
+* 第 12 週 (Nov 28): 記憶體管理
     - 確認 [分組表](https://hackmd.io/@sysprog/B1sHrRQhr)
     - [The golden age of ever-changing computer architecture](https://hackaday.com/2019/11/27/the-golden-age-of-ever-changing-computer-architecture/) 
     * 李飛飛教授的 TED 演說 [How we teach computers to understand pictures](https://www.youtube.com/watch?v=40riCqvRoMs)
         - [ImageNet: A Large-Scale Hierarchical Image Database](http://www.image-net.org/papers/imagenet_cvpr09.pdf)
         - [Now anyone can train Imagenet in 18 minutes](https://www.fast.ai/2018/08/10/fastai-diu-imagenet/)
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
-    * UNIX 作業系統裡頭 fork/exec 的前世今生
 
-* 第 13 週 (Dec 5): Memory Hierarchy
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
+* 第 13 週 (Dec 5): 重新探討 Process
+    * [Linux: 不僅是個執行單元的 Process](https://hackmd.io/@sysprog/r1ojuBGgE)
+    * [Linux: 不只挑選任務的排程器](https://hackmd.io/@sysprog/rJbcHS5LE)
+    * [UNIX 作業系統裡頭 fork/exec 的前世今生](https://hackmd.io/@sysprog/SJMxX4cUB)
 
 * 第 14 週 (Dec 12): Memory Hierarchy
     * 2018 年 11 月 16 日新版國際單位制通過，新的公斤定義將改以物理學的普朗克常數為標準 (WTF?!)
