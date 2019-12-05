@@ -97,7 +97,7 @@ Computer Architecture (Fall 2019)
         * [Practice: Virtual Memory](https://6004.mit.edu/web/_static/fall19/resources/lectures/L18.ws_solutions.pdf)
     - [Quiz](https://hackmd.io/H1usNc33S)
 
-* Week13 (Dec 5)
+* Week13 (Dec 5): [State-of-the-Art mobile computing](https://www.dictionary.com/browse/state-of-the-art) & Synchronization
     - Processors in 5G era: Cortex-A77 + Cortex-A55
         * Mediatek: [Bringing 5G to Everyone](https://i.mediatek.com/mediatek-5g), [聯發科技首款5G系統單晶片天璣 1000擁有高運算與連網性能](https://news.xfastest.com/interview/73109/)
         * [Qualcomm Introduces the World’s Most Advanced 5G Mobile Platform](https://www.qualcomm.com/news/releases/2019/12/04/qualcomm-introduces-worlds-most-advanced-5g-mobile-platform), [高通在 Snapdragon 865 上進一步增強了拍攝和遊戲特性](https://chinese.engadget.com/2019/12/04/snapdragon-865-gigapixel-camera-5g-ai-specs-availability/)
@@ -112,3 +112,5 @@ Computer Architecture (Fall 2019)
         * Analyze [spu32](https://github.com/maikmerten/spu32) with Yosys open synthesis suite. Explain how it works and validate it.
         * Analyze [VexRiscv](https://github.com/SpinalHDL/VexRiscv). Explain how it works and validate it.
         * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step) and Zephyr RTOS.
+    - [Synchronization](https://6004.mit.edu/web/_static/fall19/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
+        * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L22-Synch.pdf)
