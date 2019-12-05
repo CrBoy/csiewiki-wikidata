@@ -78,7 +78,7 @@ Computer Architecture (Fall 2019)
     - Practice: [RISC-V Single Cycle Datapath](https://cs61c.org/disc/disc07sol.pdf)
     - [IEET Questionnaire Survey](http://ieet.csie.ncku.edu.tw/)
 
-* Week 10 (Nov 13): Pipelined Proccesors
+* Week 10 (Nov 14): Pipelined Proccesors
     - News: [Next Generation of On-Device Vision Models: MobileNetV3 and MobileNetEdgeTPU](https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html)
     - [RISC-V: Why the ISA battles are not over yet](https://hackaday.com/2019/11/12/risc-v-why-the-isa-battles-arent-over-yet)
     - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
