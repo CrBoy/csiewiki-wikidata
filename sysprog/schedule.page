@@ -200,6 +200,7 @@ toc: no
     * [UNIX 作業系統裡頭 fork/exec 的前世今生](https://hackmd.io/@sysprog/SJMxX4cUB)
         - [Creating new processes with fork()](https://youtu.be/ss1-REMJ9GA)
         - [Bash fork bomb](https://kerneltalks.com/scripts/bash-fork-bomb-how-it-works/)
+    * [Malloc Bootcamp](http://www.cs.cmu.edu/~213/activities/mallocbootcamp-f19.pdf)
     * Week 13 隨堂測驗:
         - [題目](https://hackmd.io/@sysprog/B1k4cfU6S) / [作答表單](https://forms.gle/9zcWKa1uaPL6ZPBr7)
 
