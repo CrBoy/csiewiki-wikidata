@@ -106,8 +106,9 @@ Computer Architecture (Fall 2019)
     - Term projects (due date: Jan 5, 2020)
         * [explore the workings of virtual memory, specifically the TLB and the Page Table](https://cs61c.org/labs/lab10/)
         * Implement [RISC-V Compressed Instruction Set](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-209.pdf) on [rv32emu](https://github.com/sysprog21/rv32emu)
-        * Implement [RISC-V Compressed Instruction Set](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-209.pdf) for [Reindeer](https://github.com/PulseRain/Reindeer), based on pull request [RV32C support](https://github.com/PulseRain/Reindeer/pull/25)
+        * Implement [RISC-V Compressed Instruction Set](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-209.pdf) for [Reindeer](https://github.com/PulseRain/Reindeer), based on pull request [RV32C support](https://github.com/PulseRain/Reindeer/pull/25). must be validated on Step CYC10 FPGA board.
         * Contribute to [Ripes](https://github.com/mortbopet/Ripes/issues): pick up pending issues, work on them, and finally send pull request(s).
         * Prepare practical tutorials for [VSRTL](https://github.com/mortbopet/VSRTL/tree/master/docs), thus people can follow the instructions for implementing minimal RISC-V core such as [minrv32](https://github.com/arghhhh/minrv32).
         * Analyze [spu32](https://github.com/maikmerten/spu32) with Yosys open synthesis suite. Explain how it works and validate it.
+        * Analyze [VexRiscv](https://github.com/SpinalHDL/VexRiscv). Explain how it works and validate it.
         * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step)
