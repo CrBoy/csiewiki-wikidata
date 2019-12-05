@@ -111,4 +111,4 @@ Computer Architecture (Fall 2019)
         * Prepare practical tutorials for [VSRTL](https://github.com/mortbopet/VSRTL/tree/master/docs), thus people can follow the instructions for implementing minimal RISC-V core such as [minrv32](https://github.com/arghhhh/minrv32).
         * Analyze [spu32](https://github.com/maikmerten/spu32) with Yosys open synthesis suite. Explain how it works and validate it.
         * Analyze [VexRiscv](https://github.com/SpinalHDL/VexRiscv). Explain how it works and validate it.
-        * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step)
+        * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step) and Zephyr RTOS.
