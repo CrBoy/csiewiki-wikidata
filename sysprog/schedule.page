@@ -201,7 +201,7 @@ toc: no
         - [Creating new processes with fork()](https://youtu.be/ss1-REMJ9GA)
         - [Bash fork bomb](https://kerneltalks.com/scripts/bash-fork-bomb-how-it-works/)
     * Week 13 隨堂測驗:
-        - [題目]() / [作答表單]()
+        - [題目](https://hackmd.io/@sysprog/B1k4cfU6S) / [作答表單](https://forms.gle/9zcWKa1uaPL6ZPBr7)
 
 * 第 14 週 (Dec 12): Memory Hierarchy
     * 2018 年 11 月 16 日新版國際單位制通過，新的公斤定義將改以物理學的普朗克常數為標準 (WTF?!)
