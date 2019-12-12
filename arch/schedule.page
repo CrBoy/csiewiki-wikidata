@@ -114,10 +114,10 @@ Computer Architecture (Fall 2019)
         * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step) and Zephyr RTOS.
     - [Synchronization](https://6004.mit.edu/web/_static/fall19/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
 
-* Week14 (Dec 5): Synchronization
+* Week14 (Dec 12): Synchronization
     - [Intel’s SGX coughs up crypto keys when scientists tweak CPU voltage](https://arstechnica.com/information-technology/2019/12/scientists-pluck-crypto-keys-from-intels-sgx-by-tweaking-cpu-voltage/) / [部分英特爾CPU存在Plundervolt漏洞，駭客可透過操縱電壓來偷取敏感資料](https://www.ithome.com.tw/news/134758)
     - [Attacking the ARM's TrustZone](https://blog.quarkslab.com/attacking-the-arms-trustzone.html) / video: [ARM TrustZone for dummies](https://youtu.be/ecBByjwny3s)
     - [Synchronization](https://6004.mit.edu/web/_static/fall19/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
         * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L22-Synch.pdf)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
-   - Quiz
+    - Quiz
