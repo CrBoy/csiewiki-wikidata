@@ -204,7 +204,7 @@ toc: no
     * Week 13 隨堂測驗:
         - [題目](https://hackmd.io/@sysprog/B1k4cfU6S) / [作答表單](https://forms.gle/9zcWKa1uaPL6ZPBr7)
 
-* 第 14 週 (Dec 12): Memory Hierarchy
+* 第 14 週 (Dec 12): 數學基礎 + 分組報告重點提示
     * 2018 年 11 月 16 日新版國際單位制通過，新的公斤定義將改以物理學的普朗克常數為標準 (WTF?!)
         * 世界上所有的測量結果都可以追溯到「國際單位制」(Système International d'Unités；SI Units)
         * 國際單位制以七個基本單位為基礎，並由此推導出各種可相互換算的測量單位。多年來，測量的定義 —— 安培(ampere)、燭光(candela)、克耳文(kelvin)、公斤(kilogram)、公尺(meter)、莫耳(mole)以及秒(second) —— 都已重新定義
@@ -215,7 +215,7 @@ toc: no
             - 目前的公斤質量是指以地心引力施加特定的力，修訂後的定義改用電磁力取代機械力進行測量
             - 未來改以基布爾秤（Kibble balance）測量，後者以電磁力精準量測物體質量，可測量出多少電流產生的電磁力，才等同於作用在給定質量上的力。
     * [Week9 提過碎形](https://hackmd.io/@sysprog/B10_EnxoS)，現在來思考 [希爾伯特曲線與豪斯多夫維度](https://youtu.be/WCZRRw_0Fa0)
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
+    * [分組報告重點提示](https://hackmd.io/@sysprog/B1sHrRQhr)
 
 * 第 15 週 (Dec 19): Virtual Memory
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
