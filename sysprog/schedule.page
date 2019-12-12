@@ -216,6 +216,15 @@ toc: no
             - 未來改以基布爾秤（Kibble balance）測量，後者以電磁力精準量測物體質量，可測量出多少電流產生的電磁力，才等同於作用在給定質量上的力。
     * [Week9 提過碎形](https://hackmd.io/@sysprog/B10_EnxoS)，現在來思考 [希爾伯特曲線與豪斯多夫維度](https://youtu.be/WCZRRw_0Fa0)
     * [分組報告重點提示](https://hackmd.io/@sysprog/B1sHrRQhr)
+    * [Linked list comparison](https://github.com/WojciechMula/toys/tree/master/linearsearch)
+        ```
+        # Intel(R) Xeon(R) CPU E5-2620 0 @ 2.00GHz, 24 cores
+        list                          :      0.534s, speedup  1.00
+        array list (4)                :      0.293s, speedup  1.82
+        array list (8)                :      0.160s, speedup  3.33
+        SIMD array list (4)           :      0.263s, speedup  2.03
+        SIMD array list (8)           :      0.140s, speedup  3.80
+        ```
 
 * 第 15 週 (Dec 19): Virtual Memory
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
