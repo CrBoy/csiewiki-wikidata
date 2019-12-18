@@ -123,6 +123,7 @@ Computer Architecture (Fall 2019)
     - [Quiz](https://hackmd.io/@sysprog/S1kq5T0pH)
 
 * Week15 (Dec 19):
+    - Announce: Last quiz on Dec 26, Review final project on Jan 2
     - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q)
         * Traps/Interrupts/Exceptions
         * Trap Handling in 5-Stage Pipeline
