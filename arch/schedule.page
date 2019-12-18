@@ -121,3 +121,9 @@ Computer Architecture (Fall 2019)
         * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L22-Synch.pdf)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
     - [Quiz](https://hackmd.io/@sysprog/S1kq5T0pH)
+
+* Week15 (Dec 19):
+    - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q)
+        * Traps/Interrupts/Exceptions
+        * Trap Handling in 5-Stage Pipeline
+    - [
