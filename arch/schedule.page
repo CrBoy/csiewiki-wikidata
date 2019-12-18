@@ -126,4 +126,6 @@ Computer Architecture (Fall 2019)
     - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q)
         * Traps/Interrupts/Exceptions
         * Trap Handling in 5-Stage Pipeline
-    - [
+    - [Cache Coherence](https://6004.mit.edu/web/_static/fall19/resources/lectures/L22.pdf) / [video](https://youtu.be/vxrok3KKuGQ)
+        * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
+        * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
