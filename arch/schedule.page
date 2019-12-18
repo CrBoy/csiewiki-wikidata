@@ -129,3 +129,4 @@ Computer Architecture (Fall 2019)
     - [Cache Coherence](https://6004.mit.edu/web/_static/fall19/resources/lectures/L22.pdf) / [video](https://youtu.be/vxrok3KKuGQ)
         * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
         * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
+    - [Modern Processor Architecture](https://6004.mit.edu/web/_static/fall19/resources/lectures/L23.pdf) / [video](https://youtu.be/sbGtFtxqkkg)
