@@ -226,8 +226,20 @@ toc: no
         SIMD array list (8)           :      0.140s, speedup  3.80
         ```
 
-* 第 15 週 (Dec 19): Virtual Memory
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
+* 第 15 週 (Dec 19): I/O 和開發典範
+    * CS:APP 第 8 章重點提示: [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
+    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
+    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)
+    * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
+    * [Functional Programming 風格的 C 語言實作](https://hackmd.io/@sysprog/HyS-9S6OE)
+        - 是種 programming paradigm (開發典範)，不是 design pattern 也不是 framework，更不是 language。簡單來說，FP 是種以數學函數為中心的「思考方式」與「程式風格」;
+        - 透過 C 語言程式提供若干案例，如列舉數值、(不需要動態配置記憶體的) 反轉 linked list 元素、對 Linked List 元素進行合併排序;
+    * [An Introduction to Cache-Oblivious Data Structures](https://rcoh.me/posts/cache-oblivious-datastructures/)
+        - 「自動快取資料結構」，特性是無視硬體特定的快取大小，可能達到接近最優化快取的效能;
+        - 在現代 CPU 多層多種大小的快取架構下，它的理論宣稱其能自動優化在所有層的快取的存儲效率。傳統上電腦科學做偏理論的不太重視實作上的效能，而做實作或硬體優化的則不太重視理論分析。這個學門卻是橫跨了相當理論的演算法分析（需要相當多的進階數學工具），以及相當低階的硬體效能理解;
+        - 影片: [Memory Hierarchy Models](https://www.youtube.com/watch?v=V3omVLzI0WE)
+        - Google Research 強者的心得: [關於變強這檔事（九）](https://medium.com/@fchern/%E9%97%9C%E6%96%BC%E8%AE%8A%E5%BC%B7%E9%80%99%E6%AA%94%E4%BA%8B-%E4%B9%9D-3fd36c986313)
+        - [Skip List](http://en.wikipedia.org/wiki/Skip_list): 置放大量數字並進行排序的資料結構。不用樹狀結構，而改用高度不同的 List 來連接資料。資料結構在概念上可以表示成 Left Child-Right Sibling Binary Tree 的模式。是 Cache-oblivious Algorithm 的經典範例，時間複雜度與空間複雜度與 Binary Search Tree 皆相同，但是實際運作效率比 Binary Search Tree 還要好。
 
 * 第 16 週 (Dec 26): Virtual Memory + 傅立葉分析
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
