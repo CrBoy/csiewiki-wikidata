@@ -135,3 +135,4 @@ Computer Architecture (Fall 2019)
 * Week16 (Dec 26): Review and Branch Prediction
     - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
     - Quiz
+    - [Introduction to Dynamic Branch Prediction](https://youtu.be/PFmx2p6NA0A), [Advanced Branch Prediction](https://youtu.be/avp3bDqCXYM), [Tournament Predictors and Branch Prediction Accuracy](https://youtu.be/-T8yDJ8vTuI), [Hardware Based Speculation](https://youtu.be/mFtX28lH4O8)
