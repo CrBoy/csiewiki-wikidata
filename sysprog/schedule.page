@@ -241,16 +241,11 @@ toc: no
         - Google Research 強者的心得: [關於變強這檔事（九）](https://medium.com/@fchern/%E9%97%9C%E6%96%BC%E8%AE%8A%E5%BC%B7%E9%80%99%E6%AA%94%E4%BA%8B-%E4%B9%9D-3fd36c986313)
         - [Skip List](http://en.wikipedia.org/wiki/Skip_list): 置放大量數字並進行排序的資料結構。不用樹狀結構，而改用高度不同的 List 來連接資料。資料結構在概念上可以表示成 Left Child-Right Sibling Binary Tree 的模式。是 Cache-oblivious Algorithm 的經典範例，時間複雜度與空間複雜度與 Binary Search Tree 皆相同，但是實際運作效率比 Binary Search Tree 還要好。
 
-* 第 16 週 (Dec 26): Virtual Memory + 傅立葉分析
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
-    * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
-    * [CS:APP Assign5.18](https://hackmd.io/s/rkdzvWJTX)
+* 第 16 週 (Dec 26): Networking
+    * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
+    * [分組表](https://hackmd.io/@sysprog/B1sHrRQhr)
 
 * 第 17 週 (Jan 2): 
-    * [在網頁瀏覽器裡頭執行 MS-DOS 和毀滅戰士遊戲](https://js-dos.com/DOOM/)
-        - [HackerNews 討論](https://news.ycombinator.com/item?id=18817278)
-        - [其他示範](https://github.com/kripken/emscripten/wiki/Porting-Examples-and-Demos)
-    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
 
 * 第 18 週 (Jan 9): Concurrency + 課程回顧
