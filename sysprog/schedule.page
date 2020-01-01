@@ -249,6 +249,7 @@ toc: no
 
 * 第 17 週 (Jan 2): 
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
-    * [隱藏的傅立葉分析](https://hackmd.io/s/S1jR0mHfN)
+    * [Xor Filters: Faster and Smaller Than Bloom Filters](https://lemire.me/blog/2019/12/19/xor-filters-faster-and-smaller-than-bloom-filters/)
+        - [xf8](https://github.com/skeeto/xf8): 用 Ubuntu Linux 系統內的 `/usr/share/dict/american-english` 來測試，後者約有 10 萬筆紀錄，透過 8-bit Xor Filter 建立的表格約佔 123 KB
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     * Linux: [多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4), [淺談同步機制](https://hackmd.io/s/SJpp-bN0m), [RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
