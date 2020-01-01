@@ -251,4 +251,4 @@ toc: no
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [隱藏的傅立葉分析](https://hackmd.io/s/S1jR0mHfN)
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
-    * Linux: [多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4), [RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
+    * Linux: [多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4), [淺談同步機制](https://hackmd.io/s/SJpp-bN0m), [RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
