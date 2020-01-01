@@ -250,6 +250,7 @@ toc: no
 * 第 17 週 (Jan 2): 
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [Xor Filters: Faster and Smaller Than Bloom Filters](https://lemire.me/blog/2019/12/19/xor-filters-faster-and-smaller-than-bloom-filters/)
+        - 應用案例: 你可能有個希望屏蔽的 Web 地址列表，當有人輸入新的網址時，你可能需要檢查一下它是否位列你的黑名單之中。或者，也許你有份包含大量已用過密碼的清單，而你希望核對建議的新密碼是否屬於此洩露密碼之列;
         - [xf8](https://github.com/skeeto/xf8): 用 Ubuntu Linux 系統內的 `/usr/share/dict/american-english` 來測試，後者約有 10 萬筆紀錄，透過 8-bit Xor Filter 建立的表格約佔 123 KB
     * [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
     * Linux: [多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4), [淺談同步機制](https://hackmd.io/s/SJpp-bN0m), [RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
