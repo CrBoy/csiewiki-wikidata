@@ -1,0 +1,48 @@
+---
+title: YenHengLin (林彥亨)
+categories: User
+...
+
+簡介
+====
+- 成功大學 資訊工程系 107級(2014~2018)
+- 成功大學 人工智慧所 108級(2019~)
+
+聯絡資訊
+========
+
+- Email: ``henry0929016816@gmail.com``
+- Github: ``https://github.com/YenHengLin``
+
+
+2019 進階電腦系統理論與實作 個人評量
+===================
+
+(2019q3) 作業與筆記
+-----------------------
+
+- 2019q3 Homework1
+    * [開發紀錄(review)](https://hackmd.io/@YenHengLin/2019q3Homework1)
+- 2019q3 Homework2
+    * [開發紀錄(lab0)](https://hackmd.io/@YenHengLin/lab0-c) / [github](https://github.com/YenHengLin/lab0-c)
+- 2019q3 Homework3
+    * [開發紀錄(list)](https://hackmd.io/@YenHengLin/list) / [github](https://github.com/YenHengLin/linux-list)
+- 2019q3 Homework5
+    * [開發紀錄(dict)](https://hackmd.io/@YenHengLin/hw5_dict) / [GitHub](https://github.com/YenHengLin/dict)
+- 分組
+    * G05: quiz3 [開發紀錄](https://hackmd.io/@YenHengLin/SkFDTEMpS) / [Github](https://github.com/xl86305955/mnist)
+
+(2019q3) 所見所聞心得
+-------------------------
+* 關於 bitwise:本學期學到了很多有關 bitwise 的操作技巧，原來程式除了要能運作之外也要考慮到執行的效能，以及安全性，透過 bitwise 操作，我們可以讓 if else 所產生的運行時差消失防止被別人破解密碼，或是在 linux 系統裡面很多的數學函式也都有用到 bitwise 的技巧，如果不熟悉的話，很可能會導致使用函式的結果跟我們的預期有落差，而在學習 bitwise 的過程中感覺腦袋也獲得了很大的啟發。
+* 關於 CSAPP:這本書真的是有夠厚的，而每一章的資料量都很豐富，提供了大量的電腦基礎的知識，只是他唯一的缺點就是有時候他名詞旁邊都不附上英文名詞，而看大陸的翻譯有時候又跟台灣翻譯不太一樣，導致閱讀上要花一點心思才能了解，喔原來他說的是這個東西。
+* 關於課堂小考:每一次的課堂小考都在考驗著看 code 的能力，看 code 不一定要整份 code 都看而是要挑重點看，而每次的小考就是考驗著這樣的能力，我有時候都是先用感覺去找最接近的答案，然後在對答時如果答對了就會很有成就感，也更確信了自己的猜想。
+ 
+
+
+(2019q3) 自我評量分數(1~10級分)
+-------------------------
+
+我給自己 7級分
+
+這學期的前半段時間我滿努力在吸收老師給的資料，但是由於我動手的速度比別人還要慢，常常要先想很久才開始做實驗，所以完成的功課比較少，而後半段時間課業變重之後完程度就更少了，我覺得滿可惜的，老師給的題目都很有趣，可是我卻都只完成了一半，所以我只能給自己 7 級分，如果之後有時間我在完成未完成的部分。
