@@ -259,5 +259,5 @@ Linux 核心設計 (Spring 2019)
 * 第 18 週 (Jun 18): 多核處理器和時鐘管理
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
     * Memory Barrier
-        - [Memory Barriers in the Linux Kernel: Semantics and Practices](https://elinux.org/images/a/ab/Bueso.pdf) / [video](https://www.youtube.com/watch?v=Ykk_U7LX_jA)
+        - [Memory Barriers in the Linux Kernel: Semantics and Practices](https://elinux.org/images/a/ab/Bueso.pdf)
         - [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://events17.linuxfoundation.org/sites/events/files/slides/LinuxMM.2016.09.19a.LCE_.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)
