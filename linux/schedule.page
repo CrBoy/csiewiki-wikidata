@@ -184,10 +184,10 @@ Linux 核心設計 (Spring 2019)
         - 現在為了強化相容性，WSL 2 乾脆附上真的可執行的 Linux 核心 (!) 並透過虛擬化技術，高效率地執行，目前公佈的材料指出，檔案系統方面的效能提升了 20 倍，而且 Docker 一類的容器可更好地運作;
         - 這項變更預計隨著 Windows Update 釋出，預計會有全新 Windows Terminal，並且開放原始碼，關鍵特徵包含支援 Tab 和透過 GPU 加速文字描繪處理
     * CS:APP 第 12 章
-        - [Concurrency](https://www.cs.cmu.edu/~213/lectures/23-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
-        - [Synchronization: Basic](https://www.cs.cmu.edu/~213/lectures/24-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
-        - [Synchronization: Advanced](https://www.cs.cmu.edu/~213/lectures/25-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
-        - [Thread-Level Parallelism](https://www.cs.cmu.edu/~213/lectures/26-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
+        - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
+        - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
+        - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
+        - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
     * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
