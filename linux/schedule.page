@@ -233,7 +233,7 @@ Linux 核心設計 (Spring 2019)
     * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
 
 * 第 15 週 (May 28): 檔案系統
-    * video: [Introduction to Memory Management in Linux](https://www.youtube.com/watch?v=EWwfMM2AW9g)
+    * video: [Introduction to Memory Management in Linux](https://www.youtube.com/watch?v=0OvQfEcEp-U)
         - [slides](https://events.static.linuxfound.org/sites/events/files/slides/elc_2016_mem.pdf) 任職於 SoftIron (銷售 64-bit ARM 伺服器的公司，提供豐富的軟體支援) 的 Alan Ott 以 "Introduction to Memory Management in Linux" 為題，在 ELC 發表演說，非常精實，一口氣回顧計算機組織結構 (根本就是真人版本的「十分鐘理解記憶體管理」)，並深入淺出地探討 Linux 的各項設計
 涵蓋 CONFIG_PAGE_OFFSET 的切割、swap, page fault, mmap/brk/sbrk, kmalloc()/vmalloc(), DMA 等等。
     * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)
