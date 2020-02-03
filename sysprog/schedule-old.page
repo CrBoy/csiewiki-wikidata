@@ -205,7 +205,7 @@ toc: no
 
 * 第 5 週 (Mar 27): 計算機結構
     * [CS:APP 第 4 章重點提示](https://hackmd.io/s/ByKFm4CFz)
-    * 課後預習: [手機裡頭的 ARM 處理器](http://hackfoldr.org/arm/) 的「系列講座導論」、「架構和指令集」和「基礎指令和開發環境」
+    * 課後預習: [手機裡頭的 ARM 處理器](https://beta.hackfoldr.org/arm/) 的「系列講座導論」、「架構和指令集」和「基礎指令和開發環境」
     * Week5 隨堂測驗: 
         * 上：[題目](https://hackmd.io/s/SynmEVIqG) / [作答表單](https://goo.gl/forms/EurRIrnorTrDq86A3)
         * 中：[題目](https://hackmd.io/s/HkQjgqI5G) / [作答表單](https://goo.gl/forms/7KlPfjP1cH2U6apf2)
@@ -360,7 +360,7 @@ toc: no
 * 第 6 週 (Oct 27): 現代處理器設計
     - [第 1 週作業回顧](https://hackmd.io/s/H1crfllC-)
     - [第 2 週作業回顧](https://hackmd.io/s/HJfSRge0Z)
-    - [現代處理器設計](http://hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
+    - [現代處理器設計](https://beta.hackfoldr.org/cpu) (原理和關鍵特徵, cache 原理和多核心議題, 虛擬機器設計與實作)
         * 對應 [CS:APP3e](http://csapp.cs.cmu.edu/) 的第 4 章
     - [作業](https://hackmd.io/s/BJR9BTlRW) (截止日: Nov 9)
         * [simulator](https://hackmd.io/s/BkQgqpe0Z)
@@ -519,7 +519,7 @@ void *thread(void *vargp) {
         * [ssvb/tinymembench](https://github.com/ssvb/tinymembench); [hglm/test-arm-kernel-memcpy](https://github.com/hglm/test-arm-kernel-memcpy)
     - [inline assembly 中文解說](https://hackmd.io/s/S1-0Ymqsg)
     - [Toward Concurrency](https://hackmd.io/s/Skh_AaVix)
-    - 預習: [手機裡的 ARM 處理器](http://hackfoldr.org/arm)
+    - 預習: [手機裡的 ARM 處理器](https://beta.hackfoldr.org/arm)
     - [作業](https://hackmd.io/s/ryPKJUm2l) (截止日: Apr 8)
         * [matrix](https://hackmd.io/s/rkrrpHm2e)
 
@@ -542,7 +542,7 @@ void *thread(void *vargp) {
         * [為何資訊科技公司急欲發射人造衛星？](https://kknews.cc/tech/a9lgb6.html)
     - [深入理解 CPU 和異質運算核心](https://mp.weixin.qq.com/s/ieNYIhGDmBqY_urmH7O3TA)
     - [AI 晶片如何降低功耗？](https://zhuanlan.zhihu.com/p/25382177)
-    - ARM: [聯發科手機晶片面臨的挑戰](https://richard-rrb.blogspot.tw/2017/04/20173.html) / [手機裡的 ARM 處理器](http://hackfoldr.org/arm) (有 8 份錄影)
+    - ARM: [聯發科手機晶片面臨的挑戰](https://richard-rrb.blogspot.tw/2017/04/20173.html) / [手機裡的 ARM 處理器](https://beta.hackfoldr.org/arm) (有 8 份錄影)
     - [以 Linux 為分析對象](https://hackmd.io/s/B19wKV70x)
     - [案例分析: server-framework](https://hackmd.io/s/B1s8hX1yg)
 
@@ -581,7 +581,7 @@ void *thread(void *vargp) {
 * 第 1 週 (Sep 23): 誠實面對自己：不是這門課程很操，是你過去欺騙了自己
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/15F6sTm9WN6Efc5pjP8HkUVCfNbjqK859-7vYJy81kAc/edit#slide=id.p)
     - [21 世紀的系統軟體](https://hackmd.io/s/r1srX7Za): 「需求」層次: 正確 → 安全 → 可讀 → 優雅 → 利他; Benchmark / Profiling; 運算模式的巨變; Deep Learning 背後的資訊建設: GPU; 軟體品質和安全議題
-    - [你所不知道的 C 語言](http://hackfoldr.org/dykc/): 本週進度為「指標篇」和「物件導向程式設計篇」
+    - [你所不知道的 C 語言](https://hackmd.io/@sysprog/c-prog/): 本週進度為「指標篇」和「物件導向程式設計篇」
     - [重新理解數值](https://hackmd.io/s/SkKZBXZT): integer overflow; 邏輯和算術的差異; 運用 bit-wise operator; Count Leading Zero
     - [Programming Small](https://hackmd.io/s/S1rbwmZ6): 在小處下功夫，不放棄整體改善的機會
     - [本學期作業說明](https://hackmd.io/s/B1DmtJfT)
