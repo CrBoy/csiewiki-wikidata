@@ -1,25 +1,25 @@
 ---
-title: Linux 核心設計
+title: Linux 核心設計 (The design of Linux Kernel)
 categories: linux, performance, security, compiler, kernel, rtos
 toc: no
 ...
 
 - Instructor: [Jim Huang](/User/jserv) (黃敬群) `<jserv.tw@gmail.com>`
-    * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這專門用來和學生互動，可預約一對一討論)
-- 討論區: [https://www.facebook.com/groups/system.software2020/](https://www.facebook.com/groups/system.software2020/)
-- 課程信箱: `<embedded.master2015@gmail.com>`, [往年課程進度](/linux/schedule-old)
+    * [Facebook 粉絲專頁](https://www.facebook.com/JservFans) (不要擔心提了笨問題，這專門用來和學生互動，可預約一對一討論) (Forum for general computer science questions)
+- 討論區: [https://www.facebook.com/groups/system.software2020/](https://www.facebook.com/groups/system.software2020/) (Forum for this class)
+- 課程信箱: `<embedded.master2015@gmail.com>`, [往年課程進度](/linux/schedule-old) (mailbox for this class)
 
 Linux 核心設計 (Spring 2020)
 ------------------------------------------------------
-* 第 1 週 (Feb 19): 誠實面對自己
+* 第 1 週 (Feb 19): 誠實面對自己 (self-integrity)
     - [課程簡介和注意須知](https://docs.google.com/presentation/d/1gGqQ5mx-40pdXrqwYUtz_LieRmVZbK7eWVEQib7ssNI/edit?usp=sharing)
-        * [完整解說錄影](https://youtu.be/tf6mpd4z4b8) (3 小時)
-        * 每週均安排隨堂測驗，採計其中最高分的 8 次
-        * 學期評分方式: 隨堂測驗 (25%) + 個人作業 (25%) + 分組報告及專題 (25%) + 自我評分 (25%)
-    - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck)
-    - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor)
-    - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
-    - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書 (第 2 週可向助教購書)
+        * [完整解說錄影](https://youtu.be/tf6mpd4z4b8) (3 小時) (video of the introduce on this class)
+        * 每週均安排隨堂測驗，採計其中最高分的 8 次 (quiz every week, top 8 scopes amount all quizzes will be counted in final scope below)
+        * 學期評分方式: 隨堂測驗 (25%) + 個人作業 (25%) + 分組報告及專題 (25%) + 自我評分 (25%) (final scope = 25% quiz scope + 25% homework + 25% team project + 25% self evaluation)
+    - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck) (class review by previous students)
+    - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor) (examples of team project)
+    - [GNU/Linux 開發工具共筆](https://hackmd.io/c/rJKbX1pFZ): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot (You need to know how to use those tools by yourself before the beginning this class)
+    - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本學期教科書 (第 2 週可向助教購書) (textbook of this term, you can purchase textbook via teacher assistant)
     - [Bit-wise operations](https://hackmd.io/s/By0MltO_m) / [bit-wise 的應用](https://hackmd.io/s/ByzoiggIb) / [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
     - [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
@@ -32,10 +32,10 @@ Linux 核心設計 (Spring 2020)
         * [TOP 500](https://www.top500.org/) 中使用特殊晶片比例不斷上升
         * 特殊化處理器各方面變得更為經濟實惠
     - [linked list 和非連續記憶體操作](https://hackmd.io/s/SkE33UTHf) / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)
-    - [作業](https://hackmd.io/s/SJ4kPZYS4)
+    - [作業](https://hackmd.io/s/SJ4kPZYS4) (homework of this week)
         * [lab0](https://hackmd.io/s/BJA8EgFB4), [list](https://hackmd.io/s/S12jCWKHN)
-    - [課程基本資料表單](https://docs.google.com/forms/d/e/1FAIpQLSckrat5PryUUaX2s5W8XKe5xJj9oW9ilL3Jy_KN-K4fgZ-Sog/viewform?usp=pp_url) **務必填寫，以接收課程資訊**
-    - Week1 隨堂測驗: [題目](https://hackmd.io/s/SyrZMGYr4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLScd0aNqnWZNE-3MsiCOmWWZoDcg6wsccmlXj6R3ekoLkYONMA/viewform?usp=pp_url)
+    - [課程基本資料表單](https://docs.google.com/forms/d/e/1FAIpQLSckrat5PryUUaX2s5W8XKe5xJj9oW9ilL3Jy_KN-K4fgZ-Sog/viewform?usp=pp_url) **務必填寫，以接收課程資訊** (Please post your personal contact info with the form of URL in case teacher assistant need to keep you posted)
+    - Week1 隨堂測驗: [題目](https://hackmd.io/s/SyrZMGYr4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLScd0aNqnWZNE-3MsiCOmWWZoDcg6wsccmlXj6R3ekoLkYONMA/viewform?usp=pp_url) (Please answer the quiz of this week with the form of URL)
 
 * 第 2 週 (Feb 26): C 語言程式設計
     * [第 1 週發展回顧](https://hackmd.io/s/B1RmWVGUE)
