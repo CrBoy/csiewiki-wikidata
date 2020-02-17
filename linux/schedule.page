@@ -20,15 +20,12 @@ Linux 核心設計 (Spring 2020)
     - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor)
     - [GNU/Linux 開發工具共筆](https://hackmd.io/@sysprog/gnu-linux-dev/): 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
     - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ): 本課程指定的教科書 (請及早購買: [天瓏書店](https://www.tenlong.com.tw/products/9787111544937))
-    - [What comes after Moore’s Law?](https://enterprisersproject.com/article/2018/9/what-comes-after-moores-law): 隨著 Moore’s Law 時代的結束, 通用化硬體效能不再如以往快速進步, 因此軟硬體也必須因應如此的變化, 這篇點出 4 個面向:
-        * [Ephemeral](https://www.dictionary.com/browse/ephemeral) applications (短暫的軟體): 這點是以企業軟體來談，許多組織的觀點認為軟體壽命比運作其的硬體來得長久。在許多大企業依然如此，然而後續將大量導入 mobile, web, analytics 與其他軟體，更趨向快速轉變以符合客戶與市場所需;
-        * New workloads, such as machine learning: 呼應諸多計算架構大師所說的 Domain-Specific Architecture (DSA);
-        * Cloud platforms: 對於雲端應用而言，使用者不會在意它是在哪種處理器與加速器上運作的;
-        * Open source software: 主要在於特定的軟體開發商因人力與成本而減少支援硬體的範圍，開放原始碼軟體這時能夠作為考慮方案。儘管無法消弭對硬體的相依性，但不像軟體開發商對硬體平台支援或不支援的要求;
-    - [The Era of General Purpose Computers is Ending](https://www.nextplatform.com/2019/02/05/the-era-of-general-purpose-computers-is-ending/): 過往是研究員和從業者就設計瓶頸與發熱問題來說明困境，這篇則由製程發展與已發生的現象，討論以下變遷:
-        * 能追上最先進製程的晶圓廠商越來越少
-        * [TOP 500](https://www.top500.org/) 中使用特殊晶片比例不斷上升
-        * 特殊化處理器各方面變得更為經濟實惠
+    - [軟體缺失導致的危害](https://hackmd.io/@sysprog/B1eo44C1-)
+        * 1970 年代推出的首款廣體民航客機波音 747 軟體由大約 40 萬行程式碼構成，而 2011 年引進的波音 787 的軟體規模則是波音 747 的 16 倍，約 650 萬行程式碼。換言之，你我的性命緊繫於一系列極為複雜的軟體系統之中，能不花點時間了解嗎？
+        * 軟體開發的安全性設計和測試驗證應獲得更高的重視
+    - [解讀計算機編碼](https://hackmd.io/@sysprog/rylUqXLsm)
+        * 人們對數學的加減運算可輕易在腦中辨識符號並理解其結果，但電腦做任何事都受限於實體資料儲存及操作方式，換言之，電腦硬體實際只認得 0 和 1，卻不知道符號 + 和 - 在數學及應用場域的意義，於是工程人員引入「補數」以表達人們認知上的正負數
+        * 您有沒有想過，為何「二補數」(2’s complement) 被電腦廣泛採用呢？背後的設計考量是什麼？本文嘗試從數學觀點去解讀編碼背後的原理
     - [linked list 和非連續記憶體操作](https://hackmd.io/s/SkE33UTHf) / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)
     - [作業](https://hackmd.io/s/SJ4kPZYS4)
         * [lab0](https://hackmd.io/@sysprog/linux2020-lab0)
