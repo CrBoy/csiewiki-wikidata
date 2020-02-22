@@ -33,7 +33,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz1) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSf2ujBrZ87K_cN-iFEziq2FR44kt8XlCkB2x3aZx7NehUDtNg/viewform) (此次不計分，熱身用)
 
 * 第 2 週 (Feb 25): C 語言程式設計
-    - [Bit-wise operations](https://hackmd.io/s/By0MltO_m) / [bit-wise 的應用](https://hackmd.io/s/ByzoiggIb) / [以位元駕馭能量](https://hackmd.io/s/rk2RO0cYX)
+    - [C 語言: Bitwise 操作](https://hackmd.io/@sysprog/c-bitwise)
     - [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
     * [為什麼要深入學習 C 語言？](https://hackmd.io/s/HJFyt37Mx)
