@@ -33,27 +33,25 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz1) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSf2ujBrZ87K_cN-iFEziq2FR44kt8XlCkB2x3aZx7NehUDtNg/viewform) (此次不計分，熱身用)
 
 * 第 2 週 (Feb 25): C 語言程式設計
-    - [C 語言: Bitwise 操作](https://hackmd.io/@sysprog/c-bitwise)`*`
-    - [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
+    - [C 語言: 數值系統](https://hackmd.io/@sysprog/c-numerics)
+    - [C 語言: Bitwise 操作](https://hackmd.io/@sysprog/c-bitwise)`*`
     * [為什麼要深入學習 C 語言？](https://hackmd.io/@sysprog/c-standards)`*`
         - C 語言發明者 Dennis M. Ritchie 說：「C 很彆扭又缺陷重重，卻異常成功。固然有歷史的巧合推波助瀾，可也的確是因為它能滿足於系統軟體實作的程式語言期待：既有相當的效率來取代組合語言，又可充分達到抽象且流暢，能用於描述在多樣環境的演算法。」
-    * [重新理解數值](https://hackmd.io/s/BkRKhQGae) / [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
     * [基於 C 語言標準研究與系統程式安全議題](https://hackmd.io/s/S15o_K3cQ)
         - 藉由研讀漏洞程式碼及 C 語言標準，討論系統程式的安全議題
         - 透過除錯器追蹤程式碼實際運行的狀況，了解其運作原理;
         - 取材自 dangling pointer, CWE-416 Use After Free, CVE-2017-16943 以及 integer overflow 的議題;
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
+    * Week2 隨堂測驗: 題目 / 作答表單
+
+* 第 3 週 (Mar 3): 編譯器和連結器
+    * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
+    * [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
-    * [課堂互動工作區](https://hackmd.io/S--LjRPXQJyhMbOI6ELJZQ)
-    * [作業](https://hackmd.io/s/rygjaEK8V)
-        - [fibdrv](https://hackmd.io/s/SJ2DKLZ8E), [kcalc](https://hackmd.io/s/SyC9V0gUE)
-    * Week2 隨堂測驗: [題目](https://hackmd.io/s/H1Pik8M8E#) / [作答表單](https://goo.gl/forms/JvN9RGdxDMVTPqp93)
-
-* 第 3 週 (Mar 3): 編譯器和連結器
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
         - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
@@ -67,6 +65,8 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
     * [課堂互動工作區](https://hackmd.io/s/Hye8s2sI4)
+    * [作業](https://hackmd.io/s/rygjaEK8V)
+        - [fibdrv](https://hackmd.io/s/SJ2DKLZ8E), [kcalc](https://hackmd.io/s/SyC9V0gUE)
     * Week3 隨堂測驗:
         - [題目(上)](https://hackmd.io/s/S1weT4iLE) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSeqIpgwFgl7up3rdtv9ScHpa2c7if8rT5sD8cRXpb7ptXfdfA/viewform?usp=sf_link)
         - [題目(下)](https://hackmd.io/s/SkrVSKiU4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLScqDeVqNQN5t4DgkcOgIp3HHNtrJnXS3XSWVuRD4vxNpBgB8w/viewform?usp=sf_link)
