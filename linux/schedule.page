@@ -45,7 +45,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
-    * Week2 隨堂測驗: 題目 / 作答表單
+    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSd9atj32rAoPKC2vLbCFLggonxoSlvnBEdH_yhbfneJgd2pCQ/viewform) (此次不計分，熱身用)
 
 * 第 3 週 (Mar 3): 編譯器和連結器
     * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
