@@ -47,23 +47,13 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSd9atj32rAoPKC2vLbCFLggonxoSlvnBEdH_yhbfneJgd2pCQ/viewform) (此次不計分，熱身用)
 
-* 第 3 週 (Mar 3): 編譯器和連結器
+* 第 3 週 (Mar 3): C 語言程式設計
     * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
-    * [bit-field](https://hackmd.io/s/SJ8y82ZYQ)
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
-    * 核心開發者當然要熟悉編譯器行為
-        - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
-        - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
-    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
-    * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
-    * [C 語言: 連結器與程式行為](https://hackmd.io/s/SysiUkgUV)
-    * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)
-    * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)
     * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)
     * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)
-    * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)
     * [課堂互動工作區](https://hackmd.io/s/Hye8s2sI4)
     * [作業](https://hackmd.io/s/rygjaEK8V)
@@ -72,8 +62,16 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [題目(上)](https://hackmd.io/s/S1weT4iLE) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSeqIpgwFgl7up3rdtv9ScHpa2c7if8rT5sD8cRXpb7ptXfdfA/viewform?usp=sf_link)
         - [題目(下)](https://hackmd.io/s/SkrVSKiU4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLScqDeVqNQN5t4DgkcOgIp3HHNtrJnXS3XSWVuRD4vxNpBgB8w/viewform?usp=sf_link)
 
-* 第 4 週 (Mar 10): 計算機架構
-    * 重要事項宣達: [Homework2](https://hackmd.io/s/rygjaEK8V) 繳交截止時間調整為 3 月 19 日中午
+* 第 4 週 (Mar 10): 計算機架構 / 編譯器和連結器
+    * 核心開發者當然要熟悉編譯器行為
+        - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
+        - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
+    * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)
+    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm): C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
+    * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)
+    * [C 語言: 連結器與程式行為](https://hackmd.io/s/SysiUkgUV)
+    * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)
+    * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)
     * [Linux-based RTOS Experimental Platform for Constructing Self-driving Vehicles](https://osseu18.sched.com/event/FxWG/linux-based-rtos-experimental-platform-for-constructing-self-driving-vehicles-jim-huang-biilabs-shao-hua-wang-national-cheng-kung-university)
         - [video1](https://youtu.be/GNDWEvK4M8s), [video2](https://youtu.be/0C8th6bjIKg)
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
