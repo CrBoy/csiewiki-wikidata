@@ -83,7 +83,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - 規模：無論是使用者規模還是機房的規模、機器的數量都處於快速增長的時代;
         - 複雜度：業務邏輯越來越複雜，運作的軟體也變得越來越複雜，我們知道它會分成很多很多層次，包括作業系統核心和其上各種系統軟體，像資料庫和網頁伺服器，再往上有腳本語言或者其他高階語言的虛擬機器或執行環境，更上面是應用層面的各種業務邏輯的抽象層次和很多複雜的程式邏輯。
     * [作業](https://hackmd.io/s/BJgx6jav4)
-        - [review](https://hackmd.io/s/S1-wcjavN), [introspect](https://hackmd.io/s/Sk6uRiaw4)
+        - [kcalc](https://hackmd.io/s/SyC9V0gUE), [review](https://hackmd.io/s/S1-wcjavN), [introspect](https://hackmd.io/s/Sk6uRiaw4)
     * Week4 隨堂測驗:
         - [題目(上)](https://hackmd.io/s/H1KLoTEv4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSfwX3dV1kZssRD6X-pQoLSoljqTVwtAWK6WMWESMAR0Ld28BQ/viewform?usp=sf_link)
         - [題目(下)](https://hackmd.io/s/BJKk1ANv4) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSfQ6xVV90DMJyA2ZkVQxoSZ8msECs3NzvgvABsUiZ7WlRNI1A/viewform?usp=sf_link)
