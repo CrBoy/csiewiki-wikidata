@@ -30,7 +30,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     - [linked list 和非連續記憶體操作](https://hackmd.io/s/SkE33UTHf)`*` / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)`*`
     - [作業](https://hackmd.io/@sysprog/linux2020-homework1): 3 月 2 日截止繳交，不列入學期評分但後續作業和課程用得到，仍請投入心思進行
         * [lab0](https://hackmd.io/@sysprog/linux2020-lab0)
-    - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz1) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSf2ujBrZ87K_cN-iFEziq2FR44kt8XlCkB2x3aZx7NehUDtNg/viewform) (此次不計分，熱身用) / [參考題解](https://hackmd.io/@Ryspon/HJVH8B0XU)
+    - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz1) (內含作答表單) (此次不計分，熱身用) / [參考題解](https://hackmd.io/@Ryspon/HJVH8B0XU)
 
 * 第 2 週 (Feb 25): C 語言程式設計
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
@@ -45,7 +45,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
-    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSd9atj32rAoPKC2vLbCFLggonxoSlvnBEdH_yhbfneJgd2pCQ/viewform) (此次不計分，熱身用)
+    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單) (此次不計分，熱身用)
 
 * 第 3 週 (Mar 3): C 語言程式設計
     * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
@@ -57,7 +57,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)`*`
     * [作業](https://hackmd.io/@sysprog/linux2020-homework2): 3 月 21 日截止繳交，作業份量相當可觀，務必及早開始
         - [review](https://hackmd.io/@sysprog/linux2020-review), [fibdrv](https://hackmd.io/@sysprog/linux2020-fibdrv), [quiz2](https://hackmd.io/@sysprog/BJXNYx5NL)
-    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) / 作答表單
+    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) (內含作答表單)
 
 * 第 4 週 (Mar 10): 計算機架構 / 編譯器和連結器
     * 核心開發者當然要熟悉編譯器行為
