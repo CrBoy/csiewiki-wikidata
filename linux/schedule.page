@@ -72,6 +72,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [課程基本資料表單](https://forms.gle/r4Nc1QUeCKcCWocN9): **務必填寫，以接收課程資訊**
 
 * 第 4 週 (Mar 10): 計算機架構 / 編譯器和連結器
+    * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
     * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
