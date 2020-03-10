@@ -73,7 +73,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 
 * 第 4 週 (Mar 10): 編譯器和連結器
     * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
-    * [浮點數運算和定點數操作](https://hackmd.io/s/H1SVhbETQ)
+    * [浮點數運算](https://hackmd.io/@sysprog/c-floating-point): 工程領域往往是一系列的取捨結果，浮點數更是如此，在軟體發開發有太多失誤案例源自工程人員對浮點數運算的掌握不足，本議程希望藉由探討真實世界的血淋淋案例，帶著學員思考 IEEE 754 規格和相關軟硬體考量點，最後也會探討在深度學習領域為了改善資料處理效率，而引入的 [BFloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format) 這樣的新標準
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
         - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
