@@ -100,7 +100,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 * 第 5 週 (Mar 17): 作業回顧 + code review
     * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
 
-* 第 6 週 (Mar 24): 軟體最佳化和數學原理
+* 第 6 週 (Mar 24): 處理器架構
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)
     * [Arm 處理器](https://beta.hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
