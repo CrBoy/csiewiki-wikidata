@@ -72,7 +72,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [課程基本資料表單](https://forms.gle/r4Nc1QUeCKcCWocN9): **務必填寫，以接收課程資訊**
 
 * 第 4 週 (Mar 10): 浮點數 + 編譯器和連結器
-    * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
     * [浮點數運算](https://hackmd.io/@sysprog/c-floating-point): 工程領域往往是一系列的取捨結果，浮點數更是如此，在軟體發開發有太多失誤案例源自工程人員對浮點數運算的掌握不足，本議程希望藉由探討真實世界的血淋淋案例，帶著學員思考 IEEE 754 規格和相關軟硬體考量點，最後也會探討在深度學習領域為了改善資料處理效率，而引入的 [BFloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format) 這樣的新標準
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
@@ -98,7 +97,10 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         * quiz3, quiz4
     * Week4 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz4) (內含作答表單)
 
-* 第 5 週 (Mar 17): 現代處理器架構 + Linux Process/Thread
+* 第 5 週 (Mar 17): 作業回顧 + code review
+    * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
+
+* 第 6 週 (Mar 24): 軟體最佳化和數學原理
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)
     * [Arm 處理器](https://beta.hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
@@ -115,7 +117,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [作業](https://hackmd.io/s/r1bJyiauV)
         - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
-* 第 6 週 (Mar 24): 軟體最佳化和數學原理
+* 第 7 週 (Mar 31): 軟體最佳化和數學原理
     * video: [為什麼要學數學？](https://www.bilibili.com/video/av16815905)
         - [倖存者偏差](https://en.wikipedia.org/wiki/Survivorship_bias): 只考慮到偏頗的統計數據
         - 用線性思維來思考所有事物導致的謬誤
@@ -128,8 +130,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
-
-* 第 7 週 (Mar 31): 
 
 * 第 8 週 (Apr 7): 記憶體階層
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
