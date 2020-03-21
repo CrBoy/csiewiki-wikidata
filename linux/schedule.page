@@ -99,6 +99,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 
 * 第 5 週 (Mar 17): 作業回顧 + code review
     * 提升程式可讀性之實務技巧: [(1)](https://blog.niclin.tw/2020/02/29/readable-code-1/), [(2)](https://blog.niclin.tw/2020/02/29/readable-code-2/), [(3)](https://blog.niclin.tw/2020/02/29/readable-code-3/)
+    * 針對 [Homework1](https://hackmd.io/@sysprog/linux2020-homework1) 的 [Code Review 解說](https://youtu.be/3k_tJa-f_4M)`*`
     * Week5 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz5) (內含作答表單)
 
 * 第 6 週 (Mar 24): 處理器架構
