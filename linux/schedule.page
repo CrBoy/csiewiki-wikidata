@@ -109,9 +109,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Linux: 不僅是個執行單元的 Process](https://hackmd.io/s/r1ojuBGgE)`*`: Linux 核心對於 UNIX Process 的實作相當複雜，不僅蘊含歷史意義 (幾乎每個欄位都值得講古)，更是反映出資訊科技產業的變遷，核心程式碼的 `task_struct` 結構體更是一絕，廣泛涵蓋 process 狀態、處理器、檔案系統、signal 處理、底層追蹤機制等等資訊，更甚者，還很曖昧地保存著 thread 的必要欄位，好似這兩者天生就脫不了干係
         - 探討 Linux 核心設計的特有思維，像是如何透過 LWP 和 NPTL 實作執行緒，又如何透過行程建立記憶體管理的一種抽象層，再者回顧行程間的 context switch 及排程機制，搭配 signal 處理
     * [Linux: 不只挑選任務的排程器](https://hackmd.io/s/rJbcHS5LE)`*`
-    * [Linux 核心設計: 第 5 週課堂互動工作區](https://hackmd.io/RECt5fMzSKaH-YmNwfHBBA?view)
-    * [作業](https://hackmd.io/s/r1bJyiauV)
-        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
 * 第 7 週 (Mar 31): 處理器架構, 軟體最佳化和數學原理
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
@@ -119,7 +116,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Arm 處理器](https://beta.hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
-
     * video: [為什麼要學數學？](https://www.bilibili.com/video/av16815905)
         - [倖存者偏差](https://en.wikipedia.org/wiki/Survivorship_bias): 只考慮到偏頗的統計數據
         - 用線性思維來思考所有事物導致的謬誤
@@ -132,6 +128,8 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
+    * [作業](https://hackmd.io/s/r1bJyiauV)
+        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
 * 第 8 週 (Apr 7): 記憶體階層
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
