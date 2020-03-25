@@ -284,7 +284,7 @@ $ perf stat --repeat 5 -e cache-misses,cache-references,instructions,cycles ./pe
 cache-references 從 `128,483,262`下降到 `2,414,202`，差了五十幾倍，執行時間也縮短為原來的三分之一！
 
 ###perf record & perf report
-有別於 stat，reocrd 可以針對函式級別進行 event 統計，方便我們對程序「熱點」作更精細的分析和優化。
+有別於 stat，record 可以針對函式級別進行 event 統計，方便我們對程序「熱點」作更精細的分析和優化。
 我們來對以下程式，使用 perf record 進行 branch 情況分析
 ```c
 #define N 5000000
