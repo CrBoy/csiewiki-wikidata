@@ -115,9 +115,29 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [kcalc](https://hackmd.io/@sysprog/linux2020-kcalc), [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
     * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz6)
 
-* 第 7 週 (Mar 31): 處理器架構, 軟體最佳化和數學原理
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
+* 第 7 週 (Mar 31): 處理器架構和並行處理
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)
+    * CS:APP 第 12 章
+        - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
+        - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
+        - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
+        - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
+    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
+    * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
+    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
+        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
+        + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
+        + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
+        + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
+        + [Part 4: The Critical Section Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-4:-The-Critical-Section-Problem)
+        + [Part 5: Condition Variables](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-5:-Condition-Variables)
+        + [Part 6: Implementing a barrier](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-6:-Implementing-a-barrier)
+        + [Part 7: The Reader Writer Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-7:-The-Reader-Writer-Problem)
+        + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
+        + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
+
+* 第 8 週 (Apr 7): 記憶體階層
+    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [Arm 處理器](https://beta.hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
@@ -135,8 +155,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
     * [作業](https://hackmd.io/s/r1bJyiauV)
         - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
-
-* 第 8 週 (Apr 7): 記憶體階層
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
     * [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z)
@@ -196,26 +214,8 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - WSL (Windows Subsystem for Linux) 是 Microsoft 提供可免費下載和使用的軟體，可讓您直接在 MS-Windows 上執行原生 Linux 命令列工具與傳統 Windows 桌面，而不需要額外的虛擬機器;
         - 現在為了強化相容性，WSL 2 乾脆附上真的可執行的 Linux 核心 (!) 並透過虛擬化技術，高效率地執行，目前公佈的材料指出，檔案系統方面的效能提升了 20 倍，而且 Docker 一類的容器可更好地運作;
         - 這項變更預計隨著 Windows Update 釋出，預計會有全新 Windows Terminal，並且開放原始碼，關鍵特徵包含支援 Tab 和透過 GPU 加速文字描繪處理
-    * CS:APP 第 12 章
-        - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
-        - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
-        - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
-        - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
-    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
-    * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
-    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
     * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
-    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
-        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
-        + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
-        + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
-        + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
-        + [Part 4: The Critical Section Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-4:-The-Critical-Section-Problem)
-        + [Part 5: Condition Variables](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-5:-Condition-Variables)
-        + [Part 6: Implementing a barrier](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-6:-Implementing-a-barrier)
-        + [Part 7: The Reader Writer Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-7:-The-Reader-Writer-Problem)
-        + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
-        + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
+    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers]
 
 * 第 13 週 (May 12): 電腦網路和裝置驅動程式模型
     * [填寫分組表格](https://hackmd.io/81K-D1SXRBibhBofW6Z-qQ)
