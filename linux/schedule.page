@@ -116,15 +116,15 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz6)
 
 * 第 7 週 (Mar 31): 處理器架構和並行處理
-    * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)
+    * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * CS:APP 第 12 章
         - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
         - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
         - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
         - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
-    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)
-    * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)
-    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)
+    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)`*`
+    * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)`*`
+    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)`*`
         * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
         + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
         + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
