@@ -118,10 +118,10 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 * 第 7 週 (Mar 31): 處理器架構和並行處理
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * CS:APP 第 12 章
-        - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)
-        - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)
-        - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)
-        - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)
+        - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)`*`
+        - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)`*`
+        - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)`*`
+        - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)`*`
     * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)`*`
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)`*`
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)`*`
@@ -140,7 +140,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz7) (內含作答表單)
 
 * 第 8 週 (Apr 7): 執行緒實作機制
-    * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [video](https://youtu.be/KXuZi9aeGTw)
+    * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [video](https://youtu.be/KXuZi9aeGTw)`*`
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
 
 * 第 9 週 (Apr 14): 虛擬記憶體
