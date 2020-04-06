@@ -263,7 +263,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [題目](https://hackmd.io/s/B15ZI8caV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSe0SPZYtcp4N5oT9bJfuKY8w2dgps4gwSre3SamNSLTryxsbQ/viewform?usp=sf_link)
 
 * 第 16 週 (Jun 2): 多處理器架構和 Scalability
-    * [為什麼台灣沒做出作業系統？](https://www.ptt.cc/man/Gossiping/D315/DBC0/DC08/M.1506928662.A.20C.html)
     * [Linux: Optimization for Scalability](/linux/10-linux.pdf)
     * [Multiprocessor OS](/11-smp_os.pdf)
  
