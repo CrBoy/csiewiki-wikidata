@@ -142,8 +142,9 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 * 第 8 週 (Apr 7): 執行緒實作機制, timer 和 signal
     * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [video](https://youtu.be/KXuZi9aeGTw)`*`
         - [Some quick notes on threading models](https://code.lardcave.net/2016/12/15/1/), [Implementation of FlexSC on Linux Kernel v5.0+ and Performance Analysis](https://github.com/foxhoundsk/FlexSC)
-    * [中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
-    * [Timer 及其管理機制](https://hackmd.io/@sysprog/linux-timer)`*`
+    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
+    * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/linux-timer)`*`
+    * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)`*`
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
 
 * 第 9 週 (Apr 14): 虛擬記憶體
