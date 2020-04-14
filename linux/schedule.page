@@ -167,6 +167,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
+    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device): 整理中
     * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz9) (內含作答表單)
 
 * 第 10 週 (Apr 21): I/O 與例外處理
