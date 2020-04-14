@@ -164,8 +164,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*
-    * [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z)`*`
-    * [software-pipelining](https://hackmd.io/s/HkbPkW86f)`*`
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
