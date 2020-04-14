@@ -158,7 +158,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
     * 為何要掌握數學？
-        - 即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
+        - 即使 Linux 核心內部也大量可見: [從 CPU cache coherence 談 Linux spinlock 可擴展能力議題](https://hackmd.io/@sysprog/linux-spinlock-scalability)
         - [隱藏在字典裡的數學](https://hackmd.io/s/BkE3uSvdN)
         - Linux: [Add Policy Engine Algorithmic Bloom Filter Entries Register](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=418089a850c751ada5e3535d0e71c3312fe3c432)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
