@@ -153,7 +153,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
 
 * 第 9 週 (Apr 14): 組合語言 + 微處理器 + 虛擬記憶體
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`
+    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`: 閱讀 Linux 核心原始程式碼的過程，我們無可避免會面對各式硬體架構的組合語言程式碼，至少應有基本認知，本課程採用 CS:APP 第 3 章的材料
     * [Arm 處理器](https://beta.hackfoldr.org/arm/)`*`: 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
