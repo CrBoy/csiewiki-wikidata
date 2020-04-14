@@ -163,7 +163,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - Linux: [Add Policy Engine Algorithmic Bloom Filter Entries Register](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=418089a850c751ada5e3535d0e71c3312fe3c432)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*`
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
