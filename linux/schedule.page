@@ -152,23 +152,26 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd), [fiber](https://hackmd.io/@sysprog/linux2020-fiber)
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
 
-* 第 9 週 (Apr 14): 虛擬記憶體
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
-    * [Arm 處理器](https://beta.hackfoldr.org/arm/): 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
+* 第 9 週 (Apr 14): 組合語言 + 微處理器 + 虛擬記憶體
+    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`
+    * [Arm 處理器](https://beta.hackfoldr.org/arm/)`*`: 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
         - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
-    * video: [為什麼要學數學？](https://www.bilibili.com/video/av16815905)
-        - [倖存者偏差](https://en.wikipedia.org/wiki/Survivorship_bias): 只考慮到偏頗的統計數據
-        - 用線性思維來思考所有事物導致的謬誤
-        - 黑天鵝事件
-        - 萬物都有對應的數學模型，而掌握數學就是掌握一種認知的工具，得以更清晰地認識世界
     * 為何要掌握數學？
         - 即使 Linux 核心內部也大量可見: [從 CPU cache 一致性的角度看 Linux spinlock 的 non-scalable](https://hackmd.io/s/BJ8djgdnm)
         - [隱藏在字典裡的數學](https://hackmd.io/s/BkE3uSvdN)
         - Linux: [Add Policy Engine Algorithmic Bloom Filter Entries Register](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=418089a850c751ada5e3535d0e71c3312fe3c432)
-    * [CS:APP 第 2 章重點提示和練習](https://hackmd.io/s/rJoxSsiuG)
     * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
         - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*
+    * [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z)`*`
+    * [software-pipelining](https://hackmd.io/s/HkbPkW86f)`*`
+    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
+    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
+    * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz9) (內含作答表單)
+
+* 第 10 週 (Apr 21): I/O 與例外處理
     * [作業](https://hackmd.io/s/r1bJyiauV)
         - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
@@ -189,8 +192,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
     * [作業](https://hackmd.io/s/SkLygcAiV)
         - [daemon](https://hackmd.io/s/r14Qu9hYV)
-
-* 第 10 週 (Apr 21): I/O 與例外處理
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
     * 回顧 [Homework4](https://hackmd.io/s/r1bJyiauV)
