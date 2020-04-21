@@ -171,14 +171,15 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz9) (內含作答表單)
 
 * 第 10 週 (Apr 21): I/O 與例外處理
-    * [作業](https://hackmd.io/s/r1bJyiauV)
-        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)
-    * [Cache 原理和實際影響](https://hackmd.io/s/HkyscQn2z)
-    * [software-pipelining](https://hackmd.io/s/HkbPkW86f)
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
+    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
+    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
+    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
+    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)`*`
+    * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
+
+* 第 11 週 (Apr 28): 資料結構
     * GC
         - [透過 hashmap 用以加速 linked list 的存取](https://hackmd.io/s/rkAXl--tV)
         - [mark & sweep collector](https://hackmd.io/s/BkF_dAeFE)
@@ -201,7 +202,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [作業](https://hackmd.io/s/S1Syl5RiV)
         - [gc](https://hackmd.io/s/SkZpf5HiE)
 
-* 第 11 週 (Apr 28): 資料結構
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
     * [Functional Programming 風格的 C 語言實作](https://hackmd.io/s/HyS-9S6OE)
         - 是種 programming paradigm (開發典範)，不是 design pattern 也不是 framework，更不是 language。簡單來說，FP 是種以數學函數為中心的「思考方式」與「程式風格」;
@@ -221,6 +221,8 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - [題目(下)](https://hackmd.io/s/HkM11driV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSdEzqHRdGWR1-bRIlAZ8VkI50rlM9_YjaPzzn01e1T3BfDvug/viewform?usp=sf_link)
     * [作業](https://hackmd.io/s/S1xQB5RsV)
         - [ringbuffer](https://hackmd.io/s/SkYLI9CiN), [skiplist](https://hackmd.io/s/rkl7BqCi4), [buddy](https://hackmd.io/s/SyPmY90jV)
+    * [作業](https://hackmd.io/s/r1bJyiauV)
+        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
 * 第 12 週 (May 5): 同步機制
     * [Announcing WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/)
