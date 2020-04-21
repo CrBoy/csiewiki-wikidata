@@ -179,6 +179,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)`*`
     * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
+    * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz10) (內含作答表單)
 
 * 第 11 週 (Apr 28): 資料結構
     * GC
