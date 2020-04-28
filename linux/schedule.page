@@ -181,33 +181,11 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
     * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz10) (內含作答表單)
 
-* 第 11 週 (Apr 28): 資料結構
-    * GC
-        - [透過 hashmap 用以加速 linked list 的存取](https://hackmd.io/s/rkAXl--tV)
-        - [mark & sweep collector](https://hackmd.io/s/BkF_dAeFE)
-        - [指出 ogc 實作的缺失](https://hackmd.io/s/ry2RNqgtE)
-    * bitops
-        - [BUG_ON 巨集](https://hackmd.io/s/SkMuYvYSN)
-        - [亂數產生器](https://hackmd.io/s/SyMDeXJFV)
-        - [參考實作](https://hackmd.io/s/Hk0OvtxF4)
+* 第 11 週 (Apr 28): 共享記憶體 + 系統呼叫 + 資料結構
+    * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/)
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
-    * [作業](https://hackmd.io/s/SkLygcAiV)
-        - [daemon](https://hackmd.io/s/r14Qu9hYV)
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
-    * 回顧 [Homework4](https://hackmd.io/s/r1bJyiauV)
-    * CS:APP 第 8 章重點提示: [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)
-    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)
-    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)
-    * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
-    * [作業](https://hackmd.io/s/S1Syl5RiV)
-        - [gc](https://hackmd.io/s/SkZpf5HiE)
-
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
-    * [Functional Programming 風格的 C 語言實作](https://hackmd.io/s/HyS-9S6OE)
-        - 是種 programming paradigm (開發典範)，不是 design pattern 也不是 framework，更不是 language。簡單來說，FP 是種以數學函數為中心的「思考方式」與「程式風格」;
-        - 透過 C 語言程式提供若干案例，如列舉數值、(不需要動態配置記憶體的) 反轉 linked list 元素、對 Linked List 元素進行合併排序;
     * [An Introduction to Cache-Oblivious Data Structures](https://rcoh.me/posts/cache-oblivious-datastructures/)
         - 「自動快取資料結構」，特性是無視硬體特定的快取大小，可能達到接近最優化快取的效能;
         - 在現代 CPU 多層多種大小的快取架構下，它的理論宣稱其能自動優化在所有層的快取的存儲效率。傳統上電腦科學做偏理論的不太重視實作上的效能，而做實作或硬體優化的則不太重視理論分析。這個學門卻是橫跨了相當理論的演算法分析（需要相當多的進階數學工具），以及相當低階的硬體效能理解;
@@ -218,15 +196,10 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Object-oriented design patterns in the kernel, part 1](https://lwn.net/Articles/444910/) / [Object-oriented design patterns in the kernel, part 2](https://lwn.net/Articles/446317/)
     * Linux: linked list, Queues, Maps, Binary Trees: [錄影](https://www.youtube.com/watch?v=7ZQNb7Fu_A4) / [共筆](https://docs.google.com/document/d/1n31QMPyvdAkS2uxM5AyKu_DD3uRu6-zoRukAitDwPvA/edit#)
     * Week 11 隨堂測驗:
-        - [題目(上)](https://hackmd.io/s/HypUB7HjV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSfFhQ5rclCZjw_NR4KdCpR9FHW4XwcGRv2Qplix5k96UAwwnQ/viewform?usp=sf_link)
-        - [題目(中)](https://hackmd.io/s/BkFJPHriE) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSfax5semqVw2zlOjJ8EjlTmV_nRc2EeaR_i6j5PXkXD_sgwvQ/viewform?usp=sf_link)
-        - [題目(下)](https://hackmd.io/s/HkM11driV) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSdEzqHRdGWR1-bRIlAZ8VkI50rlM9_YjaPzzn01e1T3BfDvug/viewform?usp=sf_link)
-    * [作業](https://hackmd.io/s/S1xQB5RsV)
-        - [ringbuffer](https://hackmd.io/s/SkYLI9CiN), [skiplist](https://hackmd.io/s/rkl7BqCi4), [buddy](https://hackmd.io/s/SyPmY90jV)
-    * [作業](https://hackmd.io/s/r1bJyiauV)
-        - [riscv](https://hackmd.io/s/ryHaBkrOE), [smallsys](https://hackmd.io/s/BkhVVlHu4)
 
 * 第 12 週 (May 5): 同步機制
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
     * [Announcing WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/)
         - WSL (Windows Subsystem for Linux) 是 Microsoft 提供可免費下載和使用的軟體，可讓您直接在 MS-Windows 上執行原生 Linux 命令列工具與傳統 Windows 桌面，而不需要額外的虛擬機器;
         - 現在為了強化相容性，WSL 2 乾脆附上真的可執行的 Linux 核心 (!) 並透過虛擬化技術，高效率地執行，目前公佈的材料指出，檔案系統方面的效能提升了 20 倍，而且 Docker 一類的容器可更好地運作;
