@@ -182,7 +182,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz10) (內含作答表單)
 
 * 第 11 週 (Apr 28): 共享記憶體 + 系統呼叫 + 資料結構
-    * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/)
+    * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
