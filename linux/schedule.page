@@ -183,9 +183,9 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 
 * 第 11 週 (Apr 28): 共享記憶體 + 系統呼叫 + 資料結構
     * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
-    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)
-    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)
-    * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)
+    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)`*`
+    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
+    * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)`*`
     * [An Introduction to Cache-Oblivious Data Structures](https://rcoh.me/posts/cache-oblivious-datastructures/)
         - 「自動快取資料結構」，特性是無視硬體特定的快取大小，可能達到接近最優化快取的效能;
         - 在現代 CPU 多層多種大小的快取架構下，它的理論宣稱其能自動優化在所有層的快取的存儲效率。傳統上電腦科學做偏理論的不太重視實作上的效能，而做實作或硬體優化的則不太重視理論分析。這個學門卻是橫跨了相當理論的演算法分析（需要相當多的進階數學工具），以及相當低階的硬體效能理解;
