@@ -197,18 +197,14 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Linux: linked list, Queues, Maps, Binary Trees: [錄影](https://www.youtube.com/watch?v=7ZQNb7Fu_A4) / [共筆](https://docs.google.com/document/d/1n31QMPyvdAkS2uxM5AyKu_DD3uRu6-zoRukAitDwPvA/edit#)
     * Week11 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz11) (內含作答表單)
 
-* 第 12 週 (May 5): 同步機制
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
-    * [Announcing WSL 2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/)
-        - WSL (Windows Subsystem for Linux) 是 Microsoft 提供可免費下載和使用的軟體，可讓您直接在 MS-Windows 上執行原生 Linux 命令列工具與傳統 Windows 桌面，而不需要額外的虛擬機器;
-        - 現在為了強化相容性，WSL 2 乾脆附上真的可執行的 Linux 核心 (!) 並透過虛擬化技術，高效率地執行，目前公佈的材料指出，檔案系統方面的效能提升了 20 倍，而且 Docker 一類的容器可更好地運作;
-        - 這項變更預計隨著 Windows Update 釋出，預計會有全新 Windows Terminal，並且開放原始碼，關鍵特徵包含支援 Tab 和透過 GPU 加速文字描繪處理
+* 第 12 週 (May 5): 共享記憶體 + 同步機制
+    * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
     * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
     * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
 
 * 第 13 週 (May 12): 電腦網路和裝置驅動程式模型
-    * [填寫分組表格](https://hackmd.io/81K-D1SXRBibhBofW6Z-qQ)
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
     * video: [How TCP/IP Works](https://www.youtube.com/watch?v=9VPQd23_HHs)
     * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)
