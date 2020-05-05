@@ -199,7 +199,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
 
 * 第 12 週 (May 5): 共享記憶體 + 同步機制
     * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
-    * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)
+    * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)`*`
     * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
 
 * 第 13 週 (May 12): 電腦網路和裝置驅動程式模型
