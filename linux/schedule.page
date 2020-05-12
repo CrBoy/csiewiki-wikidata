@@ -204,11 +204,9 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [課程期末專題](https://hackmd.io/@sysprog/linux2020-projects)
     * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz12) (內含作答表單)
 
-* 第 13 週 (May 12): 電腦網路和裝置驅動程式模型
+* 第 13 週 (May 12): 裝置驅動程式模型
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)
-    * video: [How TCP/IP Works](https://www.youtube.com/watch?v=9VPQd23_HHs)
-    * [CS:APP 第 11 章重點提示](https://hackmd.io/s/ByPlLNaTG)
     * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)
         - Linux 核心中各式 C 語言程式設計的安全和正確議題
         - Variable Length Arrays are bad and slow
@@ -223,8 +221,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74) by [Greg Kroah-Hartman](https://github.com/gregkh)
     * [How to avoid writing device driversfor embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)
-    * Week 13 隨堂測驗:
-        - [題目](https://hackmd.io/s/ryMAG6D2N) / [作答表單](https://docs.google.com/forms/d/e/1FAIpQLSf_JelXY3x3Y5oPQ73Sjebk717KyQYvCergklte6OG5A5X6Og/viewform?usp=sf_link)
+    * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz13) (內含作答表單)
 
 * 第 14 週 (May 19): 作業回顧
     * video: [The kernel report 2018](https://www.youtube.com/watch?v=yt29BKVfI0I): 對應於 v4.20
