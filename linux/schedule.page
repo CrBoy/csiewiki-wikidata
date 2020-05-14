@@ -220,7 +220,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - 也提供了 gcc/clang 相關的編譯參數
         - [解說1](https://news.ycombinator.com/item?id=19006025), [解說2](https://www.reddit.com/r/linux/comments/ajztr3/making_c_less_dangerous_in_the_linux_kernel_by/)
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74) by [Greg Kroah-Hartman](https://github.com/gregkh)
-    * [How to avoid writing device driversfor embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)
+    * [How to avoid writing device drivers for embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz13) (內含作答表單)
 
