@@ -224,7 +224,8 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)`*`
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz13) (內含作答表單)
 
-* 第 14 週 (May 19): 作業回顧
+* 第 14 週 (May 19): Linux 核心發展回顧 + 網路封包處理
+    * [Linux kernel – Solving big problems in small steps for more than 20 years](https://fosdem.org/2020/schedule/event/linux_kernel/attachments/slides/3890/export/events/attachments/linux_kernel/slides/3890/Fosdem_Leemhuis_Kernel_Steps.pdf) / [錄影](https://youtu.be/WsktXXMOg1k)
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
     * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
     * [PACKET_MMAP](https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt)
