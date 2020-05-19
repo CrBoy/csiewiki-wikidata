@@ -225,11 +225,12 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz13) (內含作答表單)
 
 * 第 14 週 (May 19): 作業回顧
-    * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)
-    * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)
+    * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
+    * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
     * [PACKET_MMAP](https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt)
         - `PACKET_MMAP` 在核心空間內配置一塊核心緩衝區，一旦使用者層級的應用程式呼叫 mmap 將前述緩衝區映射到使用者層級時，接收到的 skb 會直接在該核心緩衝區，從而讓應用程式得以直接捕捉封包
         - 若沒有啟用 `PACKET_MMAP`，就只能使用低效率的 `AF_PACKET`，不但有緩衝區空間的限制，而且每次捕捉封包就要一次系統呼叫。反之，`PACKET_MMAP` 多數時候不需要呼叫系統呼叫，也能實作出 zero-copy
+        - [圖解 Linux tcpdump](https://jgsun.github.io/2019/01/21/linux-tcpdump/)
     * Week14 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz14) (內含作答表單)
 
 * 第 15 週 (May 26): 檔案系統
