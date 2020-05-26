@@ -237,6 +237,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
         - 即日起到 6 月 30 日中午請每位學員進行 [課程期末專題](https://hackmd.io/@sysprog/linux2020-projects)
         - 預計 6 月 30 日 15:00，授課教師會繳交學期成績，在這之前都有補救空間
     * Linux 不成文的設計哲學: "Everything is a file descriptor" - [eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html), [timerfd](http://man7.org/linux/man-pages/man2/timerfd_settime.2.html), [signalfd](http://man7.org/linux/man-pages/man2/signalfd.2.html)
+        - [透過 timerfd 處理週期性任務](https://hackmd.io/@sysprog/linux-timerfd)
     * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)`*`
     * [Drive your NAND within Linux](https://bootlin.com/pub/conferences/2018/elc/raynal-exec-op/raynal-understand-and-drive-your-nand.pdf) / [錄影](https://www.youtube.com/watch?v=3PROYAbwCmY)`*`
     * [Flash-Friendly File System (F2FS)](https://elinux.org/images/1/12/Elc2013_Hwang.pdf) / [錄影](https://www.youtube.com/watch?v=t_4_Ba7PSg4)`*`
