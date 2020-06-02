@@ -250,7 +250,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [A tour of the ARM architecture and its Linux support](https://youtu.be/NNol7fRGo2E)`*`
     * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://www.rdrop.com/users/paulmck/scalability/paper/LinuxMM.2017.04.08b.Barcamp.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
     * [Multiprocessor OS](/11-smp_os.pdf)
-    * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz15) (內含作答表單)
+    * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz16) (內含作答表單)
  
 * 第 17 週 (Jun 9): 多處理器架構和 Real-time
     * [Multiprocessor OS](/11-smp_os.pdf)
