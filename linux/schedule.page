@@ -248,18 +248,15 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Multi-Core in Linux](https://youtu.be/UNI6Mbqryv0)`*`
     * [What is NUMA?](https://youtu.be/M-Q02b5uvfY)`*`
     * [A tour of the ARM architecture and its Linux support](https://youtu.be/NNol7fRGo2E)`*`
-    * [Linux: Optimization for Scalability](/linux/10-linux.pdf)
+    * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://events17.linuxfoundation.org/sites/events/files/slides/LinuxMM.2016.09.19a.LCE_.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
     * [Multiprocessor OS](/11-smp_os.pdf)
  
 * 第 17 週 (Jun 9): 多處理器架構和 Real-time
-    * [Linux: Optimization for Scalability](/linux/10-linux.pdf)
     * [Multiprocessor OS](/11-smp_os.pdf)
+    * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)
     * [PREEMPT_RT 作為邁向硬即時作業系統](https://hackmd.io/s/BJ2Fy-ye-)
-    * [分組表](https://hackmd.io/81K-D1SXRBibhBofW6Z-qQ)
-    * [課堂互動區](https://hackmd.io/c5zTkYGRQTuXNvCylhrt1w)
 
 * 第 18 週 (Jun 16): 多核處理器和時鐘管理
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
     * Memory Barrier
         - [Memory Barriers in the Linux Kernel: Semantics and Practices](https://elinux.org/images/a/ab/Bueso.pdf)
-        - [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://events17.linuxfoundation.org/sites/events/files/slides/LinuxMM.2016.09.19a.LCE_.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)
