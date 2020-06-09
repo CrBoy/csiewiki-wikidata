@@ -248,7 +248,6 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Multi-Core in Linux](https://youtu.be/UNI6Mbqryv0)`*`
     * [What is NUMA?](https://youtu.be/M-Q02b5uvfY)`*`
     * [A tour of the ARM architecture and its Linux support](https://youtu.be/NNol7fRGo2E)`*`
-    * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://www.rdrop.com/users/paulmck/scalability/paper/LinuxMM.2017.04.08b.Barcamp.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
     * [Multiprocessor OS](/11-smp_os.pdf)
     * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz16) (內含作答表單)
  
@@ -256,6 +255,7 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Lock-free 程式設計議題](https://hackmd.io/@sysprog/lock-free-prog)
     * [Multiprocessor OS](/11-smp_os.pdf)
     * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)
+    * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://www.rdrop.com/users/paulmck/scalability/paper/LinuxMM.2017.04.08b.Barcamp.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
     * Week17 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz17) (內含作答表單)
 
 * 第 18 週 (Jun 16): 多核處理器, 時鐘管理, Real-time
