@@ -252,12 +252,14 @@ Linux 核心設計 (Spring 2020) 課程進度表暨線上資源
     * [Multiprocessor OS](/11-smp_os.pdf)
     * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz16) (內含作答表單)
  
-* 第 17 週 (Jun 9): 多處理器架構和 Real-time
+* 第 17 週 (Jun 9): 多處理器架構
+    * [Lock-free 程式設計議題](https://hackmd.io/@sysprog/lock-free-prog)
     * [Multiprocessor OS](/11-smp_os.pdf)
     * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)
-    * [PREEMPT_RT 作為邁向硬即時作業系統](https://hackmd.io/s/BJ2Fy-ye-)
+    * Week17 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz17) (內含作答表單)
 
-* 第 18 週 (Jun 16): 多核處理器和時鐘管理
+* 第 18 週 (Jun 16): 多核處理器, 時鐘管理, Real-time
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
     * Memory Barrier
         - [Memory Barriers in the Linux Kernel: Semantics and Practices](https://elinux.org/images/a/ab/Bueso.pdf)
+    * [PREEMPT_RT 作為邁向硬即時作業系統](https://hackmd.io/s/BJ2Fy-ye-)
