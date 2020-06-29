@@ -11,17 +11,17 @@ categories: User
 
 2020 linux 核心設計 春季班 學習成果
 -----------
-- lab0-c [hackmd](https://hackmd.io/@jwang0306/lab0-c)
-- fibdrv [hackmd](https://hackmd.io/@jwang0306/fibdrv)
-- xor linked list [hackmd](https://hackmd.io/@jwang0306/quiz3)
-- khttpd [hackmd](https://hackmd.io/@jwang0306/khttpd)
-- sehttpd [hackmd](https://hackmd.io/@jwang0306/sehttpd)
+- lab0-c ([hackmd](https://hackmd.io/@jwang0306/lab0-c))
+- fibdrv ([hackmd](https://hackmd.io/@jwang0306/fibdrv))
+- xor linked list ([hackmd](https://hackmd.io/@jwang0306/quiz3))
+- khttpd ([hackmd](https://hackmd.io/@jwang0306/khttpd))
+- sehttpd ([hackmd](https://hackmd.io/@jwang0306/sehttpd))
 
 學習心得
 ----------
-我應該早點修 jserv 老師的課的，實屬相見恨晚。非常用心的老師、無比紮實的內容，非常硬但收穫很多，是堂付出與收穫成正比的課，我不僅溫習了作業系統的知識，也接觸了不曾接觸的工具，更加深了對 linux kernel 的理解。老師在每次教課時所展現的熱情感染了我，讓我也燃起興趣，決定未來要繼續在這方面精進，畢竟太多領域都與 linux kernel 相輔相成。
+我應該早點修 jserv 老師的課的，實屬相見恨晚。非常用心的老師、無比紮實的內容，非常硬但收穫很多，是堂付出與收穫成正比的課，我不僅接觸了不曾接觸的工具 (如 valgrind, perf)，也加深了對 linux kernel 的理解 (如 epoll, 各種 fd)。老師在每次教課時所展現的熱情感染了我，讓我也燃起興趣，決定未來要繼續在這方面精進，畢竟太多領域都與 linux kernel 相輔相成。老師也會認真批改每次的作業，常常半夜兩點在寫共筆時，赫然發現老師在線上看著 XD ，認真指出每一個錯誤，力求每一處細節，也引導進一步的方向，有值得分享的成果還會貼在社團與大家分享，有幾次被貼出來的時候我都覺得自己稍微進步了那麼一點，更加有學習的動力！
 
 自我評量 (1~10)
 ----------
 我給自己 8 分。
-雖然我很菜，但也有努力了一把，我給自己的努力 10 分；但也是因為太菜所以作業都花比較多時間，因此我並沒有寫到每一個作業，期末專題也沒有做完與老師討論的每個要求、沒有達到我自己想完成的樣子，這裡大概只有 6 分。
+雖然我很菜，但也有努力了一把，我給自己的努力 10 分；但也是因為太菜所以作業都花比較多時間（我想把它們寫好，真正學到東西），因此我並沒有寫到每一個作業，期末專題也沒有做完與老師討論的每個要求、沒有達到我自己想完成的樣子，這裡大概只有 6 分。
