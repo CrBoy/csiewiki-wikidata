@@ -1,0 +1,54 @@
+# IepIweidieng(葉威呈) #
+
+## 個人資料 ##
+
+- ~~國立成功大學醫學檢驗生物技術學系 110 級~~ (2017–2018)
+- 國立成功大學資訊工程學系 110 級 (2018–)
+- GitHub: <https://github.com/IepIweidieng>
+
+## Linux 核心設計 2020q1 自我評量 ##
+
+### 指派作業 ###
+
+- Homework1—lab0: [HackMD](https://hackmd.io/@IID/2020q1-Homework1-lab0) / [GitHub](https://github.com/IepIweidieng/lab0-c)
+
+### 隨堂測驗分析 ###
+
+- quiz6: [HackMD](https://hackmd.io/@IID/r1Xfo8wLL)
+
+### 期末專題 ###
+
+- Homework8—khttpd: [HackMD](https://hackmd.io/@IID/2020q1-Homework8-khttpd) / [GitHub](https://127.0.0.1/還沒好)
+
+### 認知回顧 ###
+
+- 對 GNU Toolchain 的掌握度: 是否知曉 `gcc` 編譯和連結的流程？是否使用過 `gdb` 來追蹤程式？
+- 使用 `perf` 工具: 是否已透過 `perf` 來分析程式執行時期的行為？知曉透過 `perf` 來分析 cache miss 及執行的指令數量？
+- 計算機編碼: 為何現代的電腦架構採用 two's complement 呢？能否舉出 two's complement 和
+bitwise 操作搭配的案例？Linux 核心原始程式碼中有哪些 bitwise 操作令你印象深刻？
+- Linked list: 如何對 singly-linked list 進行排序？如何評估 linked list 的 cache
+locality 呢？如何改善 linked list 的 locality 表現？(如 unrolled linked list 及
+splist) Linux 核心原始程式碼的 linked list 有何特別之處？
+- C 語言: 是否翻閱過 C99/C11 規格書？現實中有不少案例是因開發者對於 C
+語言規格的掌握不足，致使資訊安全議題，能否舉例說明？Alignment 對於程式正確性和效率的影響為何？在 Linux 核心可見到的
+`__attribute__((packed))` 作用為何？bit field 的作用和應用為何？指標的指標 (a pointer to a
+pointer) 的使用場景為何？函式呼叫對應的 ABI (application binary interface)
+有何考量？能否舉例說明 Linux 核心的原始程式碼裡頭用到遞迴函式呼叫的案例？舉例說明 Linux 核心對於 preprocessor
+的使用案例？能否舉例說明善用 `goto` 達到更簡潔且正確釋放資源的程式案例？C 語言為何存在 undefined
+behavior？undefined behavior 的存在對於編譯器最佳化的效益為何？C 編譯器和連結器的互動為何？
+- 浮點數運算: 能否舉出因為不正確進行浮點數運算，釀造的軟體缺失案例？Linux 核心內部是否可使用浮點數運算？如果不能，替代方案為何？
+- Process: Linux 核心程式碼的 `task_struct` 結構有哪些欄位令你印象深刻？Linux 核心中 process 和
+thread 透過哪些系統呼叫建立？process 和 thread 對應到 `task_struct` 結構的關聯為何？`fork`
+系統呼叫所建立的 child process，會在什麼時間點進行排程？
+- Scheduler: Linux 核心的 $O(1)$ scheduler 是指哪些操作的時間複雜度為 $O(1)$ 呢？排程器和
+scalability 的關聯為何？從單核到多核處理器，scheduler 有哪些考慮議題？
+- Linux Kernel Module (LKM): 能否解釋 `insmod` 的運作流程？`lsmod` 輸出結果中的 "Used by"
+代表什麼意思？lsmod 的 reference count 如何實作？你開發過哪些 LKM 呢？請說明令你印象最深刻的 LKM 開發經驗
+- Concurrency: Linux: 核心內部有哪些同步機制？semaphore 和 mutex 的差異為何？RCU 的使用時機為何？
+- Thread: User-level threads 的實作考量有哪些？Linux 的 NPTL 屬於何種 threading
+model 呢？`clone` 系統呼叫能建立 process 和 thread 嗎？若是，兩者有何區隔？thread 和 SMP
+之間有何關聯？thread 和 process 排程的考量點為何？
+- 系統呼叫: 能否解釋 `sendfile`, `splice`, `epoll` 等系統呼叫對於高效率 web 伺服器的作用？在 Linux
+核心中，"Everything is a file descriptor." 如何解讀？`epoll` 的工作原理為何？
+- 記憶體管理: Linux 核心中 `kmalloc` 和 `slab` 配置的記憶體有何特性？從 `slab` 到 `slub` 有何考量點？`mmap`
+的運作原理為何？為何 `packet_mmap` 能達到 zero-copy 呢？
