@@ -28,10 +28,10 @@
 - 對 GNU Toolchain 的掌握度:
 
     是否知曉 `gcc` 編譯和連結的流程？
-    - Preprocessing (`gcc -E`), compilation (`gcc -S`), assembling (`gcc -c`), linking (`gcc`).
+    - Preprocessing (`cpp`/`gcc -E`), compilation (`gcc -S`), assembling (`gcc -c`), linking (`ld`/`gcc`).
 
     是否使用過 `gdb` 來追蹤程式？
-    - 是
+    - 是。
 
 - 使用 `perf` 工具:
 
@@ -60,10 +60,20 @@
 - C 語言:
 
     是否翻閱過 C99/C11 規格書？
-    - 翻閱過內容相當於正式版的草稿版本。
+    - 翻閱過內容相當於正式版的草稿版本。\
+        正式版本有版權，要使用貨幣購買。
 
     現實中有不少案例是因開發者對於 C 語言規格的掌握不足，致使資訊安全議題，能否舉例說明？
-    - ……
+    - 去年初，我遇到了在夢之大地 BBS 閱讀某些看板時會斷線的問題。\
+      這是存在已久的問題，久遠得影響到了其它 _MapleBBS 3_ 系列的 BBS 系統。而 2018 年時已有人使用 `gdb` 研究過這個問題：<https://gist.github.com/holishing/a4ee1582947d0adea7e29c8ba01c6ecc>。\
+      結論是閱讀紀錄因為不明原因而壞了。
+
+          最後我使用 `valgrind` 找到了問題的來源。\
+      因為處理閱讀紀錄的程式，對資料中的重疊的記憶體範圍使用了 `memcpy`，造成了 undefined behavior。而 glibc 2.13 (2010 年釋出) 時對 `memcpy` 進行了優化，會導致複製來源與目的重疊時可能出現複製錯誤，所以閱讀紀錄才會壞。\
+      在重疊的記憶體範圍間複製資料時，應該使用 `memmove`，不該使用 `memcpy`。\
+      當時發現的問題點：<https://github.com/ccns/dreambbs/commit/bc67fbb2200d2071aa78d5c6ffc6576b34fe12b5>\
+      而且不只一處：<https://github.com/ccns/dreambbs/commit/2f649415299378805bd3ab4931ec07797efc72ca>\
+      除了閱讀紀錄以外，還發現了另外 5 處相同的問題點：<https://github.com/ccns/dreambbs/commit/e7e99d4161a58658c06e1c2797ba895da48a7366>
 
     Alignment 對於程式正確性和效率的影響為何？
 
@@ -116,7 +126,7 @@
     - Throughput
 
     從單核到多核處理器，scheduler 有哪些考慮議題？
-    - 不同核心的工作分配、……
+    - 不同核心的工作分配、race condition……
 
 - Linux Kernel Module (LKM):
 
