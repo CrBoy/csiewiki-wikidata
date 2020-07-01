@@ -1,13 +1,19 @@
 # IepIweidieng (葉威呈) #
 
 - ~~國立成功大學醫學檢驗生物技術學系 110 級~~ (2017–2018)
-- 國立成功大學資訊工程學系 110 級 (2018–)
+- 國立成功大學資訊工程學系 110 級 (2018–2025)
 - GitHub: <https://github.com/IepIweidieng>
 
 ## 近期專案 ##
 
 - bbslua.lua—在原生 LuaJIT 上執行 BBS-Lua 的平臺 (Lua): <https://github.com/IepIweidieng/bbslua.lua>
+    - 具有 BBS-Lua 0.201 中的所有函式的完整實作。BBS-Lua 原是在 BBS 站臺 Ptt2 上引入的平臺，可見該站 (<https://term.ptt2.cc>) 的 BBSLua 板。
+    - 利用 LuaJIT 的 ffi library 達成對系統的 C library 的呼叫。
+    - 使用 `select`、`clock_gettime`、`ioctl`、`struct termios` 等系統 API 而不使用外部 library。
+    - 實作了 keyboard escape code 的 parser，支援 `ctrl`、`shift`、`alt` 與方向鍵、功能鍵等特殊按鍵的組合。
 - IID-Heap-Style—在 HackMD 上製作的部落格網頁版面樣式 (CSS3): <https://hackmd.io/@IID/IID-Heap>
+    - 使用原有的書本模式側邊欄，模擬出了網頁標題欄、側邊底欄等元素。
+    - 使用回應式設計，可隨畫面大小改變網頁排版配置。
 
 ## Linux 核心設計 2020q1 自我評量 ##
 
