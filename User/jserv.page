@@ -64,6 +64,7 @@ categories: User
 ========
 * [AMaCC](https://github.com/jserv/amacc): 用 1500 行 C 程式打造出能夠[編譯自己](https://en.wikipedia.org/wiki/Self-hosting_(compilers))並支援 ARMv7-A 架構的 C 語言編譯器，可輸出 ELF 執行檔或者 JIT 編譯執行
 * [MazuCC](https://github.com/jserv/MazuCC): 支援部分 C99 規格的 C 語言編譯器，可輸出 x86_64 組合語言
+* [shecc](https://github.com/jserv/shecc): 針對 ARMv7-A 架構的 C 語言編譯器，可[編譯自己](https://en.wikipedia.org/wiki/Self-hosting_(compilers))並輸出 Linux ELF 執行檔
 * [rubi](https://github.com/sysprog21/rubi): 類似 Ruby 程式語言的精簡實作，可由 JIT 編譯執行，原始程式碼相當精簡
 
 科普筆記
