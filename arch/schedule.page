@@ -14,7 +14,7 @@ Computer Architecture (Fall 2020)
 ------------------------------------------------------
 * Week 1 (Sep 8)
     - David Patterson: [A New Golden Age for Computer Architecture: History, Challenges and Opportunities](https://content.riscv.org/wp-content/uploads/2018/12/A-New-Golden-Age-for-Computer-Architecture-History-Challenges-and-Opportunities-David-Patterson-.pdf) / [video](https://youtu.be/uyc_pDBJotI)
-        * [Article](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext), [note](https://cyyeh.github.io/new-golden-age-for-computer-architecture/)
+        * [Article](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext), [note](https://github.com/cristiean/notes/blob/4c4ceb291ba68c55659ab0d4571385c8cccacd21/a-new-golden-age-for-computer-architecture.md)
         * [From Mainframe CPUs to Neural-Network TPUs and Open RISC-V](https://youtu.be/eH9_ygsio3I)
     - [Great Ideas in Computer Architecture, Intro](https://drive.google.com/open?id=1Y4yUaw9vryZcdc4Xu0RQxHfqjVbeHJLF) / [video](https://youtu.be/u_hXH5-tbM4)
     - [Number Representation](https://drive.google.com/drive/folders/1_Zbt8KdwieLsqRdfc6aNBOa2_hEmFkxR)
