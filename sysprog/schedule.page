@@ -19,7 +19,6 @@ toc: no
         * 在 Dcard 的[課程問答](https://www.dcard.tw/f/ncku/p/234365647)，歡迎匿名指教
     - 歷屆修課學生心得: [張家榮](/User/JaredCJR), [陳品睿](/User/ggary9424), [蕭奕凱](/User/Veck), [方鈺學](/User/JulianATA)
     - 分組報告示範: [ARM-Linux](/embedded/arm-linux), [Xvisor](/embedded/xvisor)
-    - [Linux 核心設計 (線上講座)](https://hackmd.io/@sysprog/linux-kernel-internal)`*`
     - [GNU/Linux 開發工具共筆](https://hackmd.io/@sysprog/gnu-linux-dev/)`*`: 務必 *自主* 學習 Linux 操作, Git, HackMD, LaTeX 語法 (特別是數學式), GNU make, perf, gnuplot
     - [透過 Computer Systems: A Programmer’s Perspective 學習系統軟體](https://hackmd.io/c/S1vGugaDQ)`*`: 本課程指定的教科書 (請及早購買: [天瓏書店](https://www.tenlong.com.tw/products/9787111544937))
     - [軟體缺失導致的危害](https://hackmd.io/@sysprog/B1eo44C1-)
