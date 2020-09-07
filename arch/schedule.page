@@ -34,7 +34,7 @@ Computer Architecture (Fall 2020)
     - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
     - [Lab1: R32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
     - Practice: [Floating Point + RISC-V Intro](https://cs61c.org/disc/disc3sol.pdf)
-    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/ZHsZ-7HBTvqtH8SoDHxQoQ) (Due: Oct 16, 2019)
+    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/ZHsZ-7HBTvqtH8SoDHxQoQ) (Due: ?)
 
 * Week 5 (Oct 6): 
 
@@ -42,7 +42,7 @@ Computer Architecture (Fall 2020)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
     - RISC-V Instruction Formats I / [video](https://youtu.be/ZQFcqLUduEY)
     - [Compilation, Assembly, Linking, Loading](https://drive.google.com/drive/folders/1oJIZ_c88oJVuXPE1JqgdvyoIlRFJ20hI?usp=sharing)
-    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/FzhnlsLVQNybzn3QenEcgw) (Due: Oct 30, 2019)
+    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/FzhnlsLVQNybzn3QenEcgw) (Due: ?)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
 
 * Week 7 (Oct 20): RISC-V and Digital Systems
@@ -66,7 +66,7 @@ Computer Architecture (Fall 2020)
     - [Single-Cycle CPU Datapath II](https://drive.google.com/drive/folders/1VpDK9M0zHao0w0ImfGxMFh03iWHZJqpf)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - [Quiz](https://hackmd.io/@sysprog/r1yNy2PcH)
-    - Assignment: [Homework3: SoftCPU](https://hackmd.io/SJs--6vcH)  (Due: Nov 20, 2019)
+    - Assignment: [Homework3: SoftCPU](https://hackmd.io/SJs--6vcH)  (Due: ?)
 
 * Week 9 (Nov 3): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
