@@ -37,7 +37,7 @@ toc: no
         * [題目2](https://hackmd.io/@sysprog/linux2020-quiz1) (內含作答表單) / [參考題解1](https://hackmd.io/@Ryspon/HJVH8B0XU), [參考題解2](https://hackmd.io/@chses9440611/Sy5gwE37I)
     - [作業](https://hackmd.io/@sysprog/linux2020-homework1): 9 月 20 日截止繳交
         * [lab0](https://hackmd.io/@sysprog/linux2020-lab0)
-    - 第 1 週隨堂測驗: 
+    - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/sysprog2020-quiz1) (內含作答表單)
 
 * 第 2 週 (Sep 15): C 語言程式設計
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
@@ -58,7 +58,7 @@ toc: no
         * 探討 heap (動態配置產生，系統會存放在另外一塊空間)、data alignment，和 malloc 實作機制等議題。這些都是理解 Linux 核心運作的關鍵概念。
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
         - bit field 是 C 語言一個很被忽略的特徵，但在 Linux 和 gcc 這類系統軟體很常出現，不僅是精準規範每個 bit 的作用，甚至用來「擴充」C 語言
-    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單) (此次不計分，熱身用)
+    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單)
 
 * 第 3 週 (Sep 22): C 語言程式設計
     * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
