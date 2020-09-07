@@ -35,7 +35,7 @@ toc: no
             + 無論是作業系統核心、C 語言函式庫內部、應用程式框架，到應用程式，都不難見到 linked list 的身影，包含多種針對效能和安全議題所做的 linked list 變形，又還要考慮到應用程式的泛用性 (generic programming)，是很好的進階題材
         * [題目 1 + 分析](https://hackmd.io/@sysprog/linked-list-quiz)`*`
         * [題目2](https://hackmd.io/@sysprog/linux2020-quiz1) (內含作答表單) / [參考題解1](https://hackmd.io/@Ryspon/HJVH8B0XU), [參考題解2](https://hackmd.io/@chses9440611/Sy5gwE37I)
-    - [作業](https://hackmd.io/@sysprog/linux2020-homework1): 9 月 20 日截止繳交
+    - [作業](https://hackmd.io/@sysprog/sysprog2020-homework1): 9 月 20 日截止繳交
         * [lab0](https://hackmd.io/@sysprog/linux2020-lab0)
     - 第 1 週隨堂測驗: [題目](https://hackmd.io/@sysprog/sysprog2020-quiz1) (內含作答表單)
 
