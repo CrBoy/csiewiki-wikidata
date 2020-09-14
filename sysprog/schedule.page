@@ -56,7 +56,7 @@ toc: no
         - 取材自 dangling pointer, CWE-416 Use After Free, CVE-2017-16943 以及 integer overflow 的議題;
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
         - bit field 是 C 語言一個很被忽略的特徵，但在 Linux 和 gcc 這類系統軟體很常出現，不僅是精準規範每個 bit 的作用，甚至用來「擴充」C 語言
-    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單)
+    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz2) (內含作答表單)
 
 * 第 3 週 (Sep 22): C 語言程式設計
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
