@@ -23,19 +23,19 @@ Computer Architecture (Fall 2020)
 
 * Week 2 (Sep 15): Quiz (C programming, bit-wise operations, number representation, floating-point)
     - News: [NVIDIA to Acquire Arm for $40 Billion, Creating World’s Premier Computing Company for the Age of AI](https://nvidianews.nvidia.com/news/nvidia-to-acquire-arm-for-40-billion-creating-worlds-premier-computing-company-for-the-age-of-ai)
-
-* Week 3 (Sep 22): RISC-V
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://drive.google.com/drive/folders/1dtSqX4RlLlfXk2jN8J1vvior35z_5QfZ)
-        * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf), [RV32I](https://tclin914.github.io/16df19b4/)
+        * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
 
-* Week 4 (Sep 29): RISC-V
+* Week 3 (Sep 22): RISC-V
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
     - [RISC-V Decisions II](https://drive.google.com/drive/folders/16-usv7Hk1XmIE4HP-nTzFKtkvuSlFCg8?usp=sharing)
     - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
     - [Lab1: R32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
     - Practice: [Floating Point + RISC-V Intro](https://cs61c.org/disc/disc3sol.pdf)
     - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/ZHsZ-7HBTvqtH8SoDHxQoQ) (Due: ?)
+
+* Week 4 (Sep 29): RISC-V
 
 * Week 5 (Oct 6): 
 
