@@ -26,6 +26,7 @@ Computer Architecture (Fall 2020)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://drive.google.com/drive/folders/1dtSqX4RlLlfXk2jN8J1vvior35z_5QfZ)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
+    - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
 
 * Week 3 (Sep 22): RISC-V
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
