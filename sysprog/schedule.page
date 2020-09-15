@@ -59,6 +59,7 @@ toc: no
     - [作業](https://hackmd.io/@sysprog/2020-homework2): 9 月 27 日截止繳交
         * [quiz2](https://hackmd.io/@sysprog/B1zAbkAEP)
     * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz2) (內含作答表單)
+    * [課程基本資料表單](https://forms.gle/b7NNuzkEJEgvfk7Q6): **務必填寫，以接收課程資訊**
 
 * 第 3 週 (Sep 22): C 語言程式設計
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
@@ -80,7 +81,6 @@ toc: no
     * [作業](https://hackmd.io/@sysprog/linux2020-homework2): 9 月 21 日截止繳交，作業份量相當可觀，務必及早開始
         - [review](https://hackmd.io/@sysprog/linux2020-review), [fibdrv](https://hackmd.io/@sysprog/linux2020-fibdrv), [quiz2](https://hackmd.io/@sysprog/BJXNYx5NL)
     * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) (內含作答表單), [參考題解](https://hackmd.io/@Hsuhaoxiang/2020q3)
-    * [課程基本資料表單](https://forms.gle/r4Nc1QUeCKcCWocN9): **務必填寫，以接收課程資訊**
 
 * 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
     * [浮點數運算](https://hackmd.io/@sysprog/c-floating-point): 工程領域往往是一系列的取捨結果，浮點數更是如此，在軟體發開發有太多失誤案例源自工程人員對浮點數運算的掌握不足，本議程希望藉由探討真實世界的血淋淋案例，帶著學員思考 IEEE 754 規格和相關軟硬體考量點，最後也會探討在深度學習領域為了改善資料處理效率，而引入的 [BFloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format) 這樣的新標準
