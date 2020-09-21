@@ -37,8 +37,8 @@ Computer Architecture (Fall 2020)
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
     - [RISC-V Decisions II](https://drive.google.com/drive/folders/16-usv7Hk1XmIE4HP-nTzFKtkvuSlFCg8?usp=sharing)
     - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
-    - [Lab1: R32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
-    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/ZHsZ-7HBTvqtH8SoDHxQoQ) (Due: ?)
+    - [Lab1: RV32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
+    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/ZHsZ-7HBTvqtH8SoDHxQoQ) (Due: Oct 5)
 
 * Week 4 (Sep 29): RISC-V
 
