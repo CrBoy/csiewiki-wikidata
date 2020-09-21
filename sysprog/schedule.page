@@ -59,9 +59,11 @@ toc: no
     - [作業](https://hackmd.io/@sysprog/2020-homework2): 9 月 27 日截止繳交
         * [quiz2](https://hackmd.io/@sysprog/B1zAbkAEP)
     * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz2) (內含作答表單)
-    * [課程基本資料表單](https://forms.gle/b7NNuzkEJEgvfk7Q6): **務必填寫，以接收課程資訊**
 
 * 第 3 週 (Sep 22): C 語言程式設計
+    * 公告
+        - [徵求課程助教](https://www.facebook.com/groups/system.software2020/permalink/454673215466883/)
+        - [課程基本資料表單](https://forms.gle/b7NNuzkEJEgvfk7Q6): **務必填寫，以接收課程資訊**
     * [C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/s/BkuMDQ9K7)`*`
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
         * 從虛擬記憶體談起，歸納出現代銀行和虛擬記憶體兩者高度相似: malloc 給出 valid pointer 不要太高興，等你要開始用的時候搞不好作業系統給個 OOM ——簡單來說就是一張支票，能不能拿來開等到兌現才知道。
