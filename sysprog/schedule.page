@@ -72,7 +72,7 @@ toc: no
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
         - 或許跟你想像中不同，Linux 核心的原始程式碼裡頭也用到遞迴函式呼叫，特別在較複雜的實作，例如檔案系統，善用遞迴可大幅縮減程式碼，但這也導致追蹤程式運作的難度大增
-    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) (內含作答表單), [參考題解](https://hackmd.io/@Hsuhaoxiang/2020q3)
+    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz3) (內含作答表單)
 
 * 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
     * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
