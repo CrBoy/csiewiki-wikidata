@@ -66,18 +66,19 @@ toc: no
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
         * 從虛擬記憶體談起，歸納出現代銀行和虛擬記憶體兩者高度相似: malloc 給出 valid pointer 不要太高興，等你要開始用的時候搞不好作業系統給個 OOM ——簡單來說就是一張支票，能不能拿來開等到兌現才知道。
         * 探討 heap (動態配置產生，系統會存放在另外一塊空間)、data alignment，和 malloc 實作機制等議題。這些都是理解 Linux 核心運作的關鍵概念。
+    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm)`*`: C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
+    * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)`*`
+        - C 語言之所以不需要時常發佈新的語言特徵又可以保持活力，前置處理器 (preprocessor) 是很重要的因素，有心者可逕行「擴充」C 語言
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
         - 應可體會為何走訪 linked list 節點的程式碼要這樣寫: `struct list **lpp; for (lpp = &list; *lpp != NULL; lpp = &(*lpp)->next)`
+    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz3) (內含作答表單)
+
+* 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
         - 或許跟你想像中不同，Linux 核心的原始程式碼裡頭也用到遞迴函式呼叫，特別在較複雜的實作，例如檔案系統，善用遞迴可大幅縮減程式碼，但這也導致追蹤程式運作的難度大增
-    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz3) (內含作答表單)
-
-* 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
     * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
-    * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)`*`
-        - C 語言之所以不需要時常發佈新的語言特徵又可以保持活力，前置處理器 (preprocessor) 是很重要的因素，有心者可逕行「擴充」C 語言
     * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)`*`
         - goto 在 C 語言被某些人看做是妖魔般的存在，不過實在不用這樣看待，至少在 Linux 核心原始程式碼中，goto 是大量存在 (跟你想像中不同吧)。有時不用 goto 會寫出更可怕的程式碼
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)`*`
@@ -97,7 +98,6 @@ toc: no
     ```
     這段程式碼在 gcc 開啟/關閉編譯器最佳化，會有截然不同的返回值 (`-O0` 編譯會得到 `0`; `-O1` 或更高等級編譯會得到 `1`)，為何？C 語言標準並未定義像 a, b 在記憶體中的配置，因此比較其記憶體位置屬於未定義行為，當最佳化未開啟時，GCC 不檢查程式行為是否符合 C 規範，才會去比較其內容，而在最佳化啟動後，推論這樣的未定義行為而略去記憶體操作。
     * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)`*`
-    * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm)`*`: C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
     * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)`*`
     * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)`*`
     * [C 語言: 連結器和執行檔資訊](https://hackmd.io/s/SysiUkgUV)`*`
