@@ -66,13 +66,16 @@ toc: no
         * 搭配閱讀: [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)
         * 從虛擬記憶體談起，歸納出現代銀行和虛擬記憶體兩者高度相似: malloc 給出 valid pointer 不要太高興，等你要開始用的時候搞不好作業系統給個 OOM ——簡單來說就是一張支票，能不能拿來開等到兌現才知道。
         * 探討 heap (動態配置產生，系統會存放在另外一塊空間)、data alignment，和 malloc 實作機制等議題。這些都是理解 Linux 核心運作的關鍵概念。
-    * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
         - 應可體會為何走訪 linked list 節點的程式碼要這樣寫: `struct list **lpp; for (lpp = &list; *lpp != NULL; lpp = &(*lpp)->next)`
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
         - 或許跟你想像中不同，Linux 核心的原始程式碼裡頭也用到遞迴函式呼叫，特別在較複雜的實作，例如檔案系統，善用遞迴可大幅縮減程式碼，但這也導致追蹤程式運作的難度大增
+    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) (內含作答表單), [參考題解](https://hackmd.io/@Hsuhaoxiang/2020q3)
+
+* 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
+    * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
     * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)`*`
         - C 語言之所以不需要時常發佈新的語言特徵又可以保持活力，前置處理器 (preprocessor) 是很重要的因素，有心者可逕行「擴充」C 語言
     * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)`*`
@@ -80,9 +83,6 @@ toc: no
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)`*`
     * [作業](https://hackmd.io/@sysprog/linux2020-homework2): 9 月 21 日截止繳交，作業份量相當可觀，務必及早開始
         - [review](https://hackmd.io/@sysprog/linux2020-review), [fibdrv](https://hackmd.io/@sysprog/linux2020-fibdrv), [quiz2](https://hackmd.io/@sysprog/BJXNYx5NL)
-    * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz3) (內含作答表單), [參考題解](https://hackmd.io/@Hsuhaoxiang/2020q3)
-
-* 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
     * [浮點數運算](https://hackmd.io/@sysprog/c-floating-point): 工程領域往往是一系列的取捨結果，浮點數更是如此，在軟體發開發有太多失誤案例源自工程人員對浮點數運算的掌握不足，本議程希望藉由探討真實世界的血淋淋案例，帶著學員思考 IEEE 754 規格和相關軟硬體考量點，最後也會探討在深度學習領域為了改善資料處理效率，而引入的 [BFloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format) 這樣的新標準
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
