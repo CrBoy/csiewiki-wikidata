@@ -69,6 +69,7 @@ toc: no
         * 從虛擬記憶體談起，歸納出現代銀行和虛擬記憶體兩者高度相似: malloc 給出 valid pointer 不要太高興，等你要開始用的時候搞不好作業系統給個 OOM ——簡單來說就是一張支票，能不能拿來開等到兌現才知道。
         * 探討 heap (動態配置產生，系統會存放在另外一塊空間)、data alignment，和 malloc 實作機制等議題。這些都是理解 Linux 核心運作的關鍵概念。
     * [C 語言: 未定義行為](https://hackmd.io/s/Skr9vGiQm)`*`: C 語言最初為了開發 UNIX 和系統軟體而生，本質是低階的程式語言，在語言規範層級存在 undefined behavior，可允許編譯器引入更多最佳化
+    * [Greatest Common Divisor 特性和實作考量](https://hackmd.io/@sysprog/gcd-impl): 探討最大公因數 (GCD) 特性，考慮微處理器架構實作帶來的效能衝擊。考慮到 binary GCD 及其最佳化。
     * [C 語言: 前置處理器應用](https://hackmd.io/s/S1maxCXMl)`*`
         - C 語言之所以不需要時常發佈新的語言特徵又可以保持活力，前置處理器 (preprocessor) 是很重要的因素，有心者可逕行「擴充」C 語言
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
