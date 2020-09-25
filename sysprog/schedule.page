@@ -74,6 +74,8 @@ toc: no
         - C 語言之所以不需要時常發佈新的語言特徵又可以保持活力，前置處理器 (preprocessor) 是很重要的因素，有心者可逕行「擴充」C 語言
     * [C 語言: 指標](https://hackmd.io/s/HyBPr9WGl)`*`
         - 應可體會為何走訪 linked list 節點的程式碼要這樣寫: `struct list **lpp; for (lpp = &list; *lpp != NULL; lpp = &(*lpp)->next)`
+    - [作業](https://hackmd.io/@sysprog/2020-homework2): 10 月 7 日截止繳交
+        * [dict](https://hackmd.io/@sysprog/2020-dict), [quiz3](https://hackmd.io/@sysprog/B12ftyoBD)
     * Week3 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz3) (內含作答表單)
 
 * 第 4 週 (Sep 29): 浮點數 + 編譯器和連結器
