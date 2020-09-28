@@ -24,7 +24,7 @@ Computer Architecture (Fall 2020)
     - [C Memory Management](https://drive.google.com/drive/folders/1pHpHRvjEg5TdidIp_fkOrh6TvMlYl5Yj?usp=sharing) / [video](https://youtu.be/fhEE4J4QCps)
 
 * Week 2 (Sep 15): Quiz + RISC-V
-    - [Quiz](/arch/arch2020-quiz1.pdf): C programming, bit-wise operations, number representation, floating-point / [Solution](/arch/2020-quiz1-sol.pdf)
+    - [Quiz1](/arch/arch2020-quiz1.pdf): C programming, bit-wise operations, number representation, floating-point / [Solution](/arch/2020-quiz1-sol.pdf)
     - News: [NVIDIA to Acquire Arm for $40 Billion, Creating World’s Premier Computing Company for the Age of AI](https://nvidianews.nvidia.com/news/nvidia-to-acquire-arm-for-40-billion-creating-worlds-premier-computing-company-for-the-age-of-ai)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://drive.google.com/drive/folders/1dtSqX4RlLlfXk2jN8J1vvior35z_5QfZ)
@@ -41,12 +41,14 @@ Computer Architecture (Fall 2020)
 
 * Week 4 (Sep 29): RISC-V
     - Announcement: quiz rescheduled to Oct 6
+    - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
     - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
-    - RISC-V Instruction Formats I / [video](https://youtu.be/ZQFcqLUduEY)
     - [Compilation, Assembly, Linking, Loading](https://drive.google.com/drive/folders/1oJIZ_c88oJVuXPE1JqgdvyoIlRFJ20hI?usp=sharing)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
 
 * Week 5 (Oct 6): 
+    - Quiz2
+    - RISC-V Instruction Formats I / [video](https://youtu.be/ZQFcqLUduEY)
 
 * Week 6 (Oct 13): RISC-V and Toolchain
     - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/FzhnlsLVQNybzn3QenEcgw) (Due: ?)
