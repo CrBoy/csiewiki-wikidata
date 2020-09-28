@@ -42,7 +42,7 @@ Computer Architecture (Fall 2020)
 * Week 4 (Sep 29): RISC-V
     - Announcement: quiz rescheduled to Oct 6
     - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
-    - [RISC-V Procedure](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
+    - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
     - [Compilation, Assembly, Linking, Loading](https://drive.google.com/drive/folders/1oJIZ_c88oJVuXPE1JqgdvyoIlRFJ20hI?usp=sharing)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
 
