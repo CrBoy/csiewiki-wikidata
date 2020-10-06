@@ -86,7 +86,7 @@ toc: no
         * [quiz4](https://hackmd.io/@sysprog/r1z0WPWLD)
     * Week4 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz4) (內含作答表單)
 
-* 第 5 週 (Oct 6): C 語言
+* 第 5 週 (Oct 6): Code Review + C 語言
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
@@ -95,7 +95,7 @@ toc: no
     * [C 語言: goto 和流程控制](https://hackmd.io/s/B1e2AUZeM)`*`
         - goto 在 C 語言被某些人看做是妖魔般的存在，不過實在不用這樣看待，至少在 Linux 核心原始程式碼中，goto 是大量存在 (跟你想像中不同吧)。有時不用 goto 會寫出更可怕的程式碼
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)`*`
-    * 作業
+    * 作業: 10 月 27 日截止繳交
         - render, calc, quiz5
     * Week5 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz5) (內含作答表單)
 
