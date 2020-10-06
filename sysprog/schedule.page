@@ -86,7 +86,8 @@ toc: no
         * [quiz4](https://hackmd.io/@sysprog/r1z0WPWLD)
     * Week4 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz4) (內含作答表單)
 
-* 第 5 週 (Oct 6): Code Review + C 語言
+* 第 5 週 (Oct 6): Fixed-Point + Code Review + C 語言
+    * [浮點數運算和定點數操作](https://hackmd.io/@NwaynhhKTK6joWHmoUxc7Q/H1SVhbETQ)`*`
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
