@@ -45,7 +45,6 @@ Computer Architecture (Fall 2020)
         + Code Review for Homework 1 on Oct 6
     - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
     - [Compiler, Assembler, Linker, Loader](https://cs61c.org/su20/lectures/?file=lec09.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aoprCVNj3PG1kx7DTm3Qs6q)
-    - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
 
 * Week 5 (Oct 6): Quiz + Code Review
     - [Quiz2](https://hackmd.io/@sysprog/arch2020-quiz2)
@@ -54,6 +53,8 @@ Computer Architecture (Fall 2020)
     - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
 * Week 6 (Oct 13): RISC-V and Toolchain
+    - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1)
+    - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
     - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/FzhnlsLVQNybzn3QenEcgw) (Due: ?)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
 
