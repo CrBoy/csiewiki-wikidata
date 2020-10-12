@@ -50,13 +50,13 @@ Computer Architecture (Fall 2020)
     - [Quiz2](https://hackmd.io/@sysprog/arch2020-quiz2)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz2-sol)
     - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1)
-    - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
 * Week 6 (Oct 13): RISC-V and Toolchain
     - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
-    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/FzhnlsLVQNybzn3QenEcgw) (Due: ?)
+    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/@sysprog/2020-arch-homework2) (Due: Oct 26)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
+    - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
 * Week 7 (Oct 20): RISC-V and Digital Systems
     - [RISC-V Procedures](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
