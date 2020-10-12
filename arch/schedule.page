@@ -58,19 +58,10 @@ Computer Architecture (Fall 2020)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
     - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
-* Week 7 (Oct 20): RISC-V and Digital Systems
-    - [RISC-V Procedures](https://drive.google.com/drive/folders/1cfEGzvxlVuSPuY-vN9YR-XlkJwfL2Ana)
-    - Practice: [RISC-V Control Flow](https://cs61c.org/disc/disc4sol.pdf), [CALL, RISC-V Procedures](https://cs61c.org/disc/disc05sol.pdf)
-    - Practice: [CS 152 Computer Architecture and Engineering - Midterm #1](https://inst.eecs.berkeley.edu/~cs152/sp19/handouts/sp19/sp19-midterm-1-sol.pdf)
-        + Problem 2: Microcoding: writing microcode for a bus-based implementation of the RISC-V machine
-        + Problem 3: 5-Stage Pipelines
-    - [Intro to Synchronous Digital Systems](https://drive.google.com/drive/folders/1UgD80q-fC-7VU4Kxs3eX6izDGv-YStUX) / [video](https://youtu.be/w1EHBcj9NmM?t=149)
-        * [handout](https://cs61c.org/assets/resources/sds.pdf)
-        * [nand2tetris](https://www.nand2tetris.org/)
-    - [State](https://drive.google.com/drive/folders/191hgpogLZeeHtHD7ItfU5Er6ercTuqM5)
-    - [Combinational Logic](https://drive.google.com/drive/folders/12eeJc-QN72OulGnzR3Bp468n09abAbCZ)
-    - [Combinational Logic Blocks](https://drive.google.com/drive/folders/1qZBfSlfpKvgdO-_hMX6nszaaKWZbNyQV) / [video](https://youtu.be/RCgPysqIcWM)
-    - Practice: [Logic](https://cs61c.org/disc/disc06sol.pdf)
+* Week 7 (Oct 20): Digital Systems
+    * [nand2tetris](https://www.nand2tetris.org/)
+    - [Combinational Digital Logic](https://cs61c.org/su20/lectures?file=lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
+    - [Sequential Digital Logic](https://cs61c.org/su20/lectures?file=lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
 
 * Week 8 (Oct 27): Datapath
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
