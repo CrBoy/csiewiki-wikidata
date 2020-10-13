@@ -97,10 +97,17 @@ toc: no
         - goto 在 C 語言被某些人看做是妖魔般的存在，不過實在不用這樣看待，至少在 Linux 核心原始程式碼中，goto 是大量存在 (跟你想像中不同吧)。有時不用 goto 會寫出更可怕的程式碼
     * [C 語言程式設計技巧](https://hackmd.io/s/HyIdoLnjl)`*`
     * 作業: 10 月 27 日截止繳交
-        - render, calc, quiz5
+        - render, quiz5
     * Week5 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz5) (內含作答表單)
 
 * 第 6 週 (Oct 13): Linux Process
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
+    * 作業: 11 月 2 日截止繳交
+        - kcalc, quiz6
+    * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz6) (內含作答表單)
+
+* 第 7 週 (Oct 20): 處理器架構和並行處理
     * 核心開發者當然要熟悉編譯器行為
         - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
         - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
@@ -127,11 +134,6 @@ toc: no
         - 探討 Linux 核心設計的特有思維，像是如何透過 LWP 和 NPTL 實作執行緒，又如何透過行程建立記憶體管理的一種抽象層，再者回顧行程間的 context switch 及排程機制，搭配 signal 處理
     * [Linux: 不只挑選任務的排程器](https://hackmd.io/s/rJbcHS5LE)`*`: 排程器 (scheduler) 是任何一個多工作業系統核心都具備的機制，但彼此落差極大，考量點不僅是演算法，還有當應用規模提昇時 (所謂的 scalability) 和涉及即時處理之際，會招致不可預知的狀況 (non-determinism)，不僅即時系統在意，任何建構在 Linux 核心之上的大型服務都會深受衝擊。是此，Linux 核心的排程器經歷多次變革，需要留意的是，排程的難度不在於挑選下一個可執行的行程 (process)，而是讓執行完的行程得以安插到合適的位置，使得 runqueue 依然依據符合預期的順序。
     * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
-    * [作業](https://hackmd.io/@sysprog/linux2020-homework4)
-        - [kcalc](https://hackmd.io/@sysprog/linux2020-kcalc), [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
-    * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz6) (內含作答表單)
-
-* 第 7 週 (Oct 20): 處理器架構和並行處理
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * CS:APP 第 12 章
         - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)`*`
@@ -220,8 +222,6 @@ toc: no
     * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz12) (內含作答表單)
 
 * 第 13 週 (Dec 1): 最佳化 + 安全和正確性 + 裝置驅動程式模型
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)`*`
         - Linux 核心中各式 C 語言程式設計的安全和正確議題
         - Variable Length Arrays are bad and slow
