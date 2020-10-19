@@ -62,6 +62,7 @@ Computer Architecture (Fall 2020)
 
 * Week 7 (Oct 20): Digital Systems
     * [nand2tetris](https://www.nand2tetris.org/) / [TED Talk](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course)
+    * Next generation of rv32emu: [sysprog21/rv32emu-next](https://github.com/sysprog21/rv32emu-next)
     - [Combinational Digital Logic](https://cs61c.org/su20/lectures?file=lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
     - [Sequential Digital Logic](https://cs61c.org/su20/lectures?file=lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
 
