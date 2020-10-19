@@ -105,28 +105,18 @@ toc: no
         - [video0](https://youtu.be/1-Ro5QXyIik), [video1](https://youtu.be/GNDWEvK4M8s), [video2](https://youtu.be/0C8th6bjIKg)
     * [C 編譯器原理和案例分析](https://hackmd.io/s/H1ZzeiCIQ)`*`
     * [C 語言: 編譯器和最佳化原理](https://hackmd.io/s/Hy72937Me)`*`
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * 作業: 11 月 2 日截止繳交
         - kcalc, quiz6
     * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz6) (內含作答表單)
 
-* 第 7 週 (Oct 20): 處理器架構和並行處理
-    * 核心開發者當然要熟悉編譯器行為
-        - [Linus Torvalds 教你分析 gcc 行為](https://lkml.org/lkml/2019/2/25/1092)
-        - [Pointers are more abstract than you might expect in C](https://hownot2code.com/2018/09/07/pointers-are-more-abstract-than-you-might-expect-in-c/)
-    ```c
-    int main(void) {
-        int a, b;
-        int *p = &a;
-        int *q = &b + 1;
-        return p == q;
-    }
-    ```
-    這段程式碼在 gcc 開啟/關閉編譯器最佳化，會有截然不同的返回值 (`-O0` 編譯會得到 `0`; `-O1` 或更高等級編譯會得到 `1`)，為何？C 語言標準並未定義像 a, b 在記憶體中的配置，因此比較其記憶體位置屬於未定義行為，當最佳化未開啟時，GCC 不檢查程式行為是否符合 C 規範，才會去比較其內容，而在最佳化啟動後，推論這樣的未定義行為而略去記憶體操作。
+* 第 7 週 (Oct 20): 最佳化概念
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [C 語言: 動態連結器](https://hackmd.io/s/HkK7Uf4Ml)`*`
     * [C 語言: 連結器和執行檔資訊](https://hackmd.io/s/SysiUkgUV)`*`
     * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)`*`
+
+* 第 8 週 (Oct 27): 執行緒實作機制, timer 和 signal
     * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)`*`: 動態追蹤技術（dynamic tracing）是現代軟體的進階除錯和追蹤機制，讓工程師以非常低的成本，在非常短的時間內，克服一些不是顯而易見的問題。它興起和繁榮的一個大背景是，我們正處在一個快速增長的網路互連異質運算環境，工程人員面臨著兩大方面的挑戰：
         - 規模：無論是使用者規模還是機房的規模、機器的數量都處於快速增長的時代;
         - 複雜度：業務邏輯越來越複雜，運作的軟體也變得越來越複雜，我們知道它會分成很多很多層次，包括作業系統核心和其上各種系統軟體，像資料庫和網頁伺服器，再往上有腳本語言或者其他高階語言的虛擬機器或執行環境，更上面是應用層面的各種業務邏輯的抽象層次和很多複雜的程式邏輯。
@@ -156,8 +146,6 @@ toc: no
     * [作業](https://hackmd.io/@sysprog/linux2020-homework5)
         - [kecho](https://hackmd.io/@sysprog/linux2020-kecho)
     * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz7) (內含作答表單)
-
-* 第 8 週 (Oct 27): 執行緒實作機制, timer 和 signal
     * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [錄影](https://youtu.be/KXuZi9aeGTw)`*`
         - [Some quick notes on threading models](https://code.lardcave.net/2016/12/15/1/), [Implementation of FlexSC on Linux Kernel v5.0+ and Performance Analysis](https://github.com/foxhoundsk/FlexSC)
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
