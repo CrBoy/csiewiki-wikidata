@@ -74,12 +74,10 @@ Computer Architecture (Fall 2020)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/SJs--6vcH)  (Due: ?)
 
-* Week 9 (Nov 3): Datapath + Pipeline
+* Week 9 (Nov 3): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining)
         * [Lectures and Recitations](https://6004.mit.edu/web/fall20/resources/fa19)
-    - Practice: [RISC-V Single Cycle Datapath](https://cs61c.org/disc/disc07sol.pdf)
-    - [IEET Questionnaire Survey](http://ieet.csie.ncku.edu.tw/)
 
 * Week 10 (Nov 10): Pipelined Processors
     - News: [Next Generation of On-Device Vision Models: MobileNetV3 and MobileNetEdgeTPU](https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html)
