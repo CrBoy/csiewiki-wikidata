@@ -67,6 +67,8 @@ Computer Architecture (Fall 2020)
     - [Sequential Digital Logic](https://cs61c.org/su20/lectures?file=lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
 
 * Week 8 (Oct 27): Datapath
+    - [Quiz3](https://hackmd.io/@sysprog/arch2020-quiz3)
+         * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [Single-Cycle CPU Datapath I](https://drive.google.com/drive/folders/1bPhEZJhqMB66nA3vLsC_BOCXJUgyiwrD)
     - [Single-Cycle CPU Datapath II](https://drive.google.com/drive/folders/1VpDK9M0zHao0w0ImfGxMFh03iWHZJqpf)
