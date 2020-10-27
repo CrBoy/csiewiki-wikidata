@@ -72,7 +72,7 @@ Computer Architecture (Fall 2020)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [RISC-V CPU Datapath, Control Intro](https://cs61c.org/su20/lectures/?file=lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
-    - Assignment: [Homework3: SoftCPU](https://hackmd.io/SJs--6vcH)  (Due: ?)
+    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: Nov 16)
 
 * Week 9 (Nov 3): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
