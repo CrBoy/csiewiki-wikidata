@@ -120,7 +120,7 @@ toc: no
 * 第 8 週 (Oct 27): ROS + Dynamic Programming + Code Review
     * [建構在 ROS(Robot Operating System) 之上的自動駕駛技術](https://hackmd.io/@sysprog/ros-autonomous-vehicle)`*`
     * Code Review: [課堂互動](https://hackmd.io/@sysprog/SkYTGNH_D)
-    * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
+    * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz8) (內含作答表單)
 
 * 第 9 週 (Nov 3): 組合語言 + 微處理器 + 虛擬記憶體
     * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)`*`: 動態追蹤技術（dynamic tracing）是現代軟體的進階除錯和追蹤機制，讓工程師以非常低的成本，在非常短的時間內，克服一些不是顯而易見的問題。它興起和繁榮的一個大背景是，我們正處在一個快速增長的網路互連異質運算環境，工程人員面臨著兩大方面的挑戰：
