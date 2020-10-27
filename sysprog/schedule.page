@@ -117,7 +117,11 @@ toc: no
     * [C 語言: 執行階段程式庫 (CRT)](https://hackmd.io/s/Hkcr5cn97)`*`
     * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz7) (內含作答表單)
 
-* 第 8 週 (Oct 27): 執行緒實作機制, timer 和 signal
+* 第 8 週 (Oct 27): Dynamic Programming + Code Review
+    * Code Review: [課堂互動](https://hackmd.io/@sysprog/SkYTGNH_D)
+    * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
+
+* 第 9 週 (Nov 3): 組合語言 + 微處理器 + 虛擬記憶體
     * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)`*`: 動態追蹤技術（dynamic tracing）是現代軟體的進階除錯和追蹤機制，讓工程師以非常低的成本，在非常短的時間內，克服一些不是顯而易見的問題。它興起和繁榮的一個大背景是，我們正處在一個快速增長的網路互連異質運算環境，工程人員面臨著兩大方面的挑戰：
         - 規模：無論是使用者規模還是機房的規模、機器的數量都處於快速增長的時代;
         - 複雜度：業務邏輯越來越複雜，運作的軟體也變得越來越複雜，我們知道它會分成很多很多層次，包括作業系統核心和其上各種系統軟體，像資料庫和網頁伺服器，再往上有腳本語言或者其他高階語言的虛擬機器或執行環境，更上面是應用層面的各種業務邏輯的抽象層次和很多複雜的程式邏輯。
@@ -146,7 +150,6 @@ toc: no
         + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
     * [作業](https://hackmd.io/@sysprog/linux2020-homework5)
         - [kecho](https://hackmd.io/@sysprog/linux2020-kecho)
-    * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz7) (內含作答表單)
     * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [錄影](https://youtu.be/KXuZi9aeGTw)`*`
         - [Some quick notes on threading models](https://code.lardcave.net/2016/12/15/1/), [Implementation of FlexSC on Linux Kernel v5.0+ and Performance Analysis](https://github.com/foxhoundsk/FlexSC)
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
@@ -157,9 +160,6 @@ toc: no
     * [建構 User-Mode Linux 的實驗環境](https://hackmd.io/@sysprog/user-mode-linux-env)`*`
     * [作業](https://hackmd.io/@sysprog/linux2020-homework6)
         - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd), [fiber](https://hackmd.io/@sysprog/linux2020-fiber)
-    * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
-
-* 第 9 週 (Nov 3): 組合語言 + 微處理器 + 虛擬記憶體
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`: 閱讀 Linux 核心原始程式碼的過程，我們無可避免會面對各式硬體架構的組合語言程式碼，至少應有基本認知，本課程採用 CS:APP 第 3 章的材料
     * [Arm 處理器](https://beta.hackfoldr.org/arm/)`*`: 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
