@@ -71,11 +71,11 @@ Computer Architecture (Fall 2020)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [RISC-V CPU Datapath, Control Intro](https://cs61c.org/su20/lectures/?file=lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
-    - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: Nov 16)
 
-* Week 9 (Nov 3): Pipeline
+* Week 9 (Nov 3): Control, Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
+    - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining)
 
 * Week 10 (Nov 10): Pipelined Processors
