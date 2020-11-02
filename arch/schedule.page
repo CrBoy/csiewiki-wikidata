@@ -74,6 +74,7 @@ Computer Architecture (Fall 2020)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: Nov 16)
 
 * Week 9 (Nov 3): Control, Pipeline
+    - Announcement: next quiz on Nov17: CPU datapath, control, pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining)
