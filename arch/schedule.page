@@ -77,7 +77,6 @@ Computer Architecture (Fall 2020)
 * Week 9 (Nov 3): Pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](L17: Implementing Pipelining)
-        * [Lectures and Recitations](https://6004.mit.edu/web/fall20/resources/fa19)
 
 * Week 10 (Nov 10): Pipelined Processors
     - News: [Next Generation of On-Device Vision Models: MobileNetV3 and MobileNetEdgeTPU](https://ai.googleblog.com/2019/11/introducing-next-generation-on-device.html)
