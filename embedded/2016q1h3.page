@@ -159,6 +159,7 @@ Total:       3621 3879 177.2   3998    4001
     - [Reactor Pattern](https://en.wikipedia.org/wiki/Reactor_pattern)
     - [pipe system call](http://www2.cs.uregina.ca/~hamilton/courses/330/notes/unix/pipes/pipes.html)
     - [Sockets Tutorial](http://www.linuxhowtos.org/C_C++/socket.htm)
+    - [Sockets Tutorial](https://madanswer.com/C+Plus+Plus)
 * 研讀[第 5 週課程](https://embedded2016.hackpad.com/ep/pad/static/CH64GFFiviW)的物件導向程式設計參考資料，也一併紀錄問題於共筆上
 * 分析 `httpd` 程式執行效能，指出效能低落的原因，並且提出改進方案
     - 需要實際去改寫程式碼！
