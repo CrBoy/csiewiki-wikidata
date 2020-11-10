@@ -130,6 +130,16 @@ toc: no
     * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz9) (內含作答表單)
 
 * 第 10 週 (Nov 10): 虛擬記憶體 + I/O + 例外處理
+    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*`
+    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
+    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
+    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
+    * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz10) (內含作答表單)
+
+* 第 11 週 (Nov 17): 共享記憶體 + 系統呼叫 + 資料結構
+    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
+    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
     * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
     * CS:APP 第 12 章
         - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)`*`
@@ -138,38 +148,8 @@ toc: no
         - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)`*`
     * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)`*`
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)`*`
-    * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)`*`
-        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
-        + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
-        + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
-        + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
-        + [Part 4: The Critical Section Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-4:-The-Critical-Section-Problem)
-        + [Part 5: Condition Variables](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-5:-Condition-Variables)
-        + [Part 6: Implementing a barrier](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-6:-Implementing-a-barrier)
-        + [Part 7: The Reader Writer Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-7:-The-Reader-Writer-Problem)
-        + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
-        + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
     * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * [User-Level Thread Library](https://www.hacks.moe/posts/1/A_BareBones_UserLevel_Thread_Library) / [threads](https://github.com/kissen/threads)
-    * [作業](https://hackmd.io/@sysprog/linux2020-homework6)
-        - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd), [fiber](https://hackmd.io/@sysprog/linux2020-fiber)
-    * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*`
-    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
-    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
-    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device): 整理中
-
-    * [以 sendfile 和 splice 系統呼叫達到 Zero-Copy](https://hackmd.io/@sysprog/linux2020-zerocopy)
-    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
-    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
-    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
-    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
-    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)`*`
-    * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
-    * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz10) (內含作答表單)
-
-* 第 11 週 (Nov 17): 共享記憶體 + 系統呼叫 + 資料結構
     * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
