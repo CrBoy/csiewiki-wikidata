@@ -85,6 +85,7 @@ Computer Architecture (Fall 2020)
     - [0 to ASIC](https://docs.google.com/presentation/d/14npvuiGxsS3C-yo2vOsbZpNKGehwTtIYRFN6k3ZVR4M/edit#slide=id.p)
     - [RISC-V: Why the ISA battles are not over yet](https://hackaday.com/2019/11/12/risc-v-why-the-isa-battles-arent-over-yet)
     - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
+    - [RISC-V 5-Stage Pipeline / Hazards](https://cs61c.org/su20/lectures?file=lec14.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aq-xpoKcmd7X9w-l6KHiNMa)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
 
 * Week 11 (Nov 17): Cache
