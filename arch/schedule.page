@@ -91,6 +91,8 @@ Computer Architecture (Fall 2020)
 * Week 11 (Nov 17): Quiz + Homework Review
     - [Quiz4](https://hackmd.io/@sysprog/arch2020-quiz4)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz4-sol)
+    - [13-Year-Old, Nicholas Sharkey, Creates a RISC-V Core](https://riscv.org/blog/2020/11/13-year-old-nicholas-sharkey-creates-a-risc-v-core/)
+    - [ARM1 vs. Apple M1](https://twitter.com/kenshirriff/status/1327021630636212224)
 
 * Week 12 (Nov 24): Cache + Virtual Memory
     - [Caches– Direct-mapped, set-associative](https://cs61c.org/su20/lectures?file=lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
