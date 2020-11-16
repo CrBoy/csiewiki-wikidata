@@ -88,12 +88,13 @@ Computer Architecture (Fall 2020)
     - [RISC-V 5-Stage Pipeline / Hazards](https://cs61c.org/su20/lectures?file=lec14.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aq-xpoKcmd7X9w-l6KHiNMa)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
 
-* Week 11 (Nov 17): Cache
+* Week 11 (Nov 17): Quiz + Homework Review
     - [Quiz4](https://hackmd.io/@sysprog/arch2020-quiz4)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz4-sol)
-    - [Caches– Direct-mapped, set-associative](https://cs61c.org/su20/lectures?file=lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
 
-* Week 12 (Nov 24): Virtual Memory
+* Week 12 (Nov 24): Cache + Virtual Memory
+    - [Caches– Direct-mapped, set-associative](https://cs61c.org/su20/lectures?file=lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
+    - [Mutilevel Caches, Cache Questions](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
     - [The golden age of ever-changing computer architecture](https://hackaday.com/2019/11/27/the-golden-age-of-ever-changing-computer-architecture/)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall19/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
         * [Practice: Virtual Memory](https://6004.mit.edu/web/_static/fall19/resources/lectures/L18.ws_solutions.pdf)
