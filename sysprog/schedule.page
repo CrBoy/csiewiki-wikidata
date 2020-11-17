@@ -136,6 +136,7 @@ toc: no
     * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz10) (內含作答表單)
 
 * 第 11 週 (Nov 17): 虛擬記憶體 + 系統呼叫
+    * 注意: [分組和課程專題](https://hackmd.io/h80aIpi9TFWSQR9Br8MyWQ) 請在本日 17:10 前更新
     * [CS:APP 第 9 章重點提示](https://hackmd.io/@sysprog/CSAPP-ch9)`*`
     * [Linux: 記憶體管理](https://hackmd.io/@sysprog/linux-memory)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構, slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
     * [C 語言: 物件導向程式設計](https://hackmd.io/@sysprog/c-oop)`*`
