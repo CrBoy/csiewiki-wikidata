@@ -147,9 +147,7 @@ toc: no
 
 * 第 12 週 (Nov 24): 共享記憶體 + 同步機制
     * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
-    * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)`*`
-    * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
-    * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz12) (內含作答表單)
+    * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz12) (內含作答表單)
 
 * 第 13 週 (Dec 1): 最佳化 + 安全和正確性 + 裝置驅動程式模型
     * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)`*`
