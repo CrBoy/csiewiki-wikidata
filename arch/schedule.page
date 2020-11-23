@@ -96,10 +96,9 @@ Computer Architecture (Fall 2020)
 
 * Week 12 (Nov 24): Cache + Virtual Memory
     - [Caches– Direct-mapped, set-associative](https://cs61c.org/su20/lectures?file=lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
-    - [Mutilevel Caches, Cache Questions](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
+    - [Mutilevel Caches, Cache Questions](https://cs61c.org/su20/lectures?file=lec17.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
     - [The golden age of ever-changing computer architecture](https://hackaday.com/2019/11/27/the-golden-age-of-ever-changing-computer-architecture/)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall19/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
-        * [Practice: Virtual Memory](https://6004.mit.edu/web/_static/fall19/resources/lectures/L18.ws_solutions.pdf)
  
 * Week13 (Dec 1): [State-of-the-Art mobile computing](https://www.dictionary.com/browse/state-of-the-art) & Synchronization
     - Processors in 5G era: Cortex-A77 + Cortex-A55
