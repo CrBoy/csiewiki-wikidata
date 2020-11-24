@@ -145,8 +145,9 @@ toc: no
     * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * Week11 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz11) (內含作答表單)
 
-* 第 12 週 (Nov 24): 共享記憶體 + 同步機制
+* 第 12 週 (Nov 24): 共享記憶體
     * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
+    * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)`*`
     * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz12) (內含作答表單)
 
 * 第 13 週 (Dec 1): 最佳化 + 安全和正確性 + 裝置驅動程式模型
