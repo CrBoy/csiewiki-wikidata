@@ -102,8 +102,8 @@ Computer Architecture (Fall 2020)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
  
 * Week13 (Dec 1): Quiz + Virtual Memory
-    - [Quiz5](https://hackmd.io/@sysprog/arch2020-quiz4)
-         * [solution](https://hackmd.io/@sysprog/arch2020-quiz4-sol)
+    - [Quiz5](https://hackmd.io/@sysprog/arch2020-quiz5)
+         * [solution](https://hackmd.io/@sysprog/arch2020-quiz5-sol)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
     - [Term projects 2019](https://hackmd.io/@wsp50317/H1Qa8hVk8)
         * Implement [RISC-V Compressed Instruction Set](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-209.pdf) on [rv32emu](https://github.com/sysprog21/rv32emu)
