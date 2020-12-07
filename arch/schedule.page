@@ -104,8 +104,6 @@ Computer Architecture (Fall 2020)
 * Week13 (Dec 1): Quiz + Virtual Memory
     - [Quiz5](https://hackmd.io/@sysprog/arch2020-quiz5)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz5-sol)
-    - [Lab4: Cache](https://cs61c.org/fa20/labs/lab08/)
-        + [Reference work](https://hackmd.io/@Lt35rTMeTi22rWqrBgSQzg/SkXXQ_LJ8)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
     - [Term projects 2019](https://hackmd.io/@wsp50317/H1Qa8hVk8)
         * Implement [RISC-V Compressed Instruction Set](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2015/EECS-2015-209.pdf) on [rv32emu](https://github.com/sysprog21/rv32emu)
@@ -117,12 +115,11 @@ Computer Architecture (Fall 2020)
         * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step) and Zephyr RTOS.
 
 * Week14 (Dec 8): Synchronization
-    - [Intel’s SGX coughs up crypto keys when scientists tweak CPU voltage](https://arstechnica.com/information-technology/2019/12/scientists-pluck-crypto-keys-from-intels-sgx-by-tweaking-cpu-voltage/)
-    - [Attacking the ARM's TrustZone](https://blog.quarkslab.com/attacking-the-arms-trustzone.html) / video: [ARM TrustZone for dummies](https://youtu.be/ecBByjwny3s)
+    - [Lab4: Cache](https://cs61c.org/fa20/labs/lab08/)
+        + [Reference work](https://hackmd.io/@Lt35rTMeTi22rWqrBgSQzg/SkXXQ_LJ8)
     - [Synchronization](https://6004.mit.edu/web/_static/fall19/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
         * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L22-Synch.pdf)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
-    - [Quiz](https://hackmd.io/@sysprog/S1kq5T0pH)
 
 * Week15 (Dec 15): I/O and Cache Coherence
     - Announce: Last quiz on Dec 26, Review final project on Jan 2
