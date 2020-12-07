@@ -113,10 +113,10 @@ Computer Architecture (Fall 2020)
         * Analyze [spu32](https://github.com/maikmerten/spu32) with Yosys open synthesis suite. Explain how it works and validate it.
         * Analyze [VexRiscv](https://github.com/SpinalHDL/VexRiscv). Explain how it works and validate it.
         * Modify [Reindeer](https://github.com/PulseRain/Reindeer) to allow non-trial interactive games on Step CYC10 FPGA board, based on [Reindeer_Step](https://github.com/PulseRain/Reindeer_Step) and Zephyr RTOS.
-
-* Week14 (Dec 8): Synchronization
     - [Lab4: Cache](https://cs61c.org/fa20/labs/lab08/)
         + [Reference work](https://hackmd.io/@Lt35rTMeTi22rWqrBgSQzg/SkXXQ_LJ8)
+
+* Week14 (Dec 8): Synchronization
     - [Synchronization](https://6004.mit.edu/web/_static/fall19/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
         * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L22-Synch.pdf)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
