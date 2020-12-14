@@ -124,7 +124,8 @@ Computer Architecture (Fall 2020)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
 
 * Week15 (Dec 15): Operating System and RISC-V
-    - [Advanced topics on Synchronization](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
+    - [Advanced topics on Synchronization - 1](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L19-MCM.pdf)
+    - [Advanced topics on Synchronization - 2](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
     - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
 
 * Week16 (Dec 22): I/O, cache coherence
