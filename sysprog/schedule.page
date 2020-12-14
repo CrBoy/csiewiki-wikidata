@@ -171,14 +171,9 @@ toc: no
     * [分組和課程專題](https://hackmd.io/h80aIpi9TFWSQR9Br8MyWQ)
     * Week14 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz14) (內含作答表單)
 
-* 第 15 週 (Dec 15): FD 和 檔案系統
-    * Linux 不成文的設計哲學: "Everything is a file descriptor" - [eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html), [timerfd](http://man7.org/linux/man-pages/man2/timerfd_settime.2.html), [signalfd](http://man7.org/linux/man-pages/man2/signalfd.2.html)
-        - [透過 timerfd 處理週期性任務](https://hackmd.io/@sysprog/linux-timerfd)
-        - [signalfd is useless](https://ldpreload.com/blog/signalfd-is-useless)
-    * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)`*`
-    * [Drive your NAND within Linux](https://bootlin.com/pub/conferences/2018/elc/raynal-exec-op/raynal-understand-and-drive-your-nand.pdf) / [錄影](https://www.youtube.com/watch?v=3PROYAbwCmY)`*`
-    * [Flash-Friendly File System (F2FS)](https://elinux.org/images/1/12/Elc2013_Hwang.pdf) / [錄影](https://www.youtube.com/watch?v=t_4_Ba7PSg4)`*`
-    * Week15 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz15) (內含作答表單)
+* 第 15 週 (Dec 15): 電腦網路 / 專題討論
+    * [CS:APP 第 11 章: 電腦網路](https://hackmd.io/@sysprog/CSAPP-ch11)
+    * Week15 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz15) (內含作答表單)
 
 * 第 16 週 (Dec 22): 多核處理器架構
     * [Multi-Core in Linux](https://youtu.be/UNI6Mbqryv0)`*`
