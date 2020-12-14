@@ -121,10 +121,13 @@ Computer Architecture (Fall 2020)
     - Assignment: [Homework4: Cache](https://hackmd.io/@sysprog/2020-arch-homework4)  (Due: Dec 26)
     - [Operating Systems](https://cs61c.org/su20/lectures?file=lec18.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arq3vh2gcLvr5isLK4CuK3B)
     - [Synchronization](https://6004.mit.edu/web/_static/fall20/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
-        * [Advanced topics](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
 
-* Week15 (Dec 15): I/O and Cache Coherence
+* Week15 (Dec 15): Operating System and RISC-V
+    - [Advanced topics on Synchronization](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
+    - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
+
+* Week16 (Dec 22): I/O, cache coherence
     - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q)
         * Traps/Interrupts/Exceptions
         * Trap Handling in 5-Stage Pipeline
@@ -132,9 +135,6 @@ Computer Architecture (Fall 2020)
         * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
         * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
     - [Modern Processor Architecture](https://6004.mit.edu/web/_static/fall20/resources/lectures/L23.pdf) / [video](https://youtu.be/sbGtFtxqkkg)
-
-* Week16 (Dec 22): Review and Branch Prediction
-    - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
     - [Introduction to Dynamic Branch Prediction](https://youtu.be/PFmx2p6NA0A), [Advanced Branch Prediction](https://youtu.be/avp3bDqCXYM), [Tournament Predictors and Branch Prediction Accuracy](https://youtu.be/-T8yDJ8vTuI), [Hardware Based Speculation](https://youtu.be/mFtX28lH4O8)
     - [quiz](https://hackmd.io/@sysprog/Sya-GLW18)
     - [Table for Term Project](https://hackmd.io/YNOELNJ_RyCMHs81uMz6xA)
