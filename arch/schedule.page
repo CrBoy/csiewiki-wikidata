@@ -127,6 +127,8 @@ Computer Architecture (Fall 2020)
     - [Advanced topics on Synchronization - 1](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L19-MCM.pdf)
     - [Advanced topics on Synchronization - 2](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
     - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
+    - [Term projects 2020](https://hackmd.io/@sysprog/arch2020-projects)
+        * You must provide the materials and demonstrate to the lecturer before Jan 18, 2021
 
 * Week16 (Dec 22): I/O, cache coherence
     - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q)
