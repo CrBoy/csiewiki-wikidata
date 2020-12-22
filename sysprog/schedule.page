@@ -184,7 +184,7 @@ toc: no
     * [What is NUMA?](https://youtu.be/M-Q02b5uvfY)`*`
     * [A tour of the ARM architecture and its Linux support](https://youtu.be/NNol7fRGo2E)`*`
     * [Multiprocessor OS](/11-smp_os.pdf)
-    * [Linux 核心設計: 多核處理器和 spinlock](https://hackmd.io/@sysprog/multicore-locks)
+    * [Linux 核心設計: 多核處理器和 spinlock](https://hackmd.io/@sysprog/multicore-locks)`*`
     * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz16) (內含作答表單)
  
 * 第 17 週 (Dec 29): 多處理器架構
