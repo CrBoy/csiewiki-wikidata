@@ -139,10 +139,10 @@ Computer Architecture (Fall 2020)
     - [Cache Coherence](https://6004.mit.edu/web/_static/fall20/resources/lectures/L22.pdf) / [video](https://youtu.be/vxrok3KKuGQ)
         * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
         * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
-    - [Modern Processor Architecture](https://6004.mit.edu/web/_static/fall20/resources/lectures/L23.pdf) / [video](https://youtu.be/sbGtFtxqkkg)
-    - [Introduction to Dynamic Branch Prediction](https://youtu.be/PFmx2p6NA0A), [Advanced Branch Prediction](https://youtu.be/avp3bDqCXYM), [Tournament Predictors and Branch Prediction Accuracy](https://youtu.be/-T8yDJ8vTuI), [Hardware Based Speculation](https://youtu.be/mFtX28lH4O8)
+(https://youtu.be/avp3bDqCXYM), [Tournament Predictors and Branch Prediction Accuracy](https://youtu.be/-T8yDJ8vTuI), [Hardware Based Speculation](https://youtu.be/mFtX28lH4O8)
  
-* Week17 (Dec 29): Term Project Review
-    - [Datacenters & Cloud Computing](https://drive.google.com/drive/folders/1IOvNP6d7-Ja-QKRR6l1yYxsQbNCUBzk8)
-        * video: [Inside a Google data center](https://youtu.be/XZmGGAbHqa0), [Inside Facebook's Oregon data center](https://youtu.be/4A_A-CmrqpQ)
-    - [Term Project Table](https://hackmd.io/@wsp50317/H1Qa8hVk8)
+* Week17 (Dec 29): class will be suspended
+
+* Week18 (Jan 5)
+    - [Modern Processor Architecture](https://6004.mit.edu/web/_static/fall20/resources/lectures/L23.pdf) / [video](https://youtu.be/sbGtFtxqkkg)
+    - [Introduction to Dynamic Branch Prediction](https://youtu.be/PFmx2p6NA0A), [Advanced Branch Prediction]
