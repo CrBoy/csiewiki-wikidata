@@ -187,14 +187,14 @@ toc: no
     * [Linux 核心設計: 多核處理器和 spinlock](https://hackmd.io/@sysprog/multicore-locks)`*`
     * Week16 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz16) (內含作答表單)
  
-* 第 17 週 (Dec 29): 多處理器架構
-    * [Lock-free 程式設計議題](https://hackmd.io/@sysprog/lock-free-prog)
-    * [Multiprocessor OS](/11-smp_os.pdf)
+* 第 17 週 (Dec 29): Scalability + Regular expression
     * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)
-    * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://www.rdrop.com/users/paulmck/scalability/paper/LinuxMM.2017.04.08b.Barcamp.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
-    * Week17 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz17) (內含作答表單)
+    * [How Do Regular Expressions Really Work?](https://youtu.be/u01jb8YN2Lw)`*`
+    * Week17 隨堂測驗: [題目](https://hackmd.io/@sysprog/2020-quiz17) (內含作答表單)
 
 * 第 18 週 (Jan 5): 多核處理器, 時鐘管理, Real-time
+    * [Linux-Kernel Memory Ordering: Help Arrives At Last!](http://www.rdrop.com/users/paulmck/scalability/paper/LinuxMM.2017.04.08b.Barcamp.pdf) / [video](https://www.youtube.com/watch?v=ULFytshTvIY)`*`
+    * [Lock-free 程式設計議題](https://hackmd.io/@sysprog/lock-free-prog)
     * [atomic 和 memory order](https://medium.com/fcamels-notes/%E7%B0%A1%E4%BB%8B-c-11-memory-model-b3f4ed81fea6), [memory barrier 的實作和效果](https://medium.com/fcamels-notes/%E5%BE%9E%E7%A1%AC%E9%AB%94%E8%A7%80%E9%BB%9E%E4%BA%86%E8%A7%A3-memry-barrier-%E7%9A%84%E5%AF%A6%E4%BD%9C%E5%92%8C%E6%95%88%E6%9E%9C-416ff0a64fc1)
         - [Memory barriers in C](https://mariadb.org/wp-content/uploads/2017/11/2017-11-Memory-barriers.pdf)
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
