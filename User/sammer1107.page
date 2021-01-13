@@ -1,28 +1,47 @@
-林育任
-------------------
-**簡介:**
+# 林育任
+## 簡介
 
 - 成功大學 工程科學系110級
 
-聯絡資訊:
-=====================
+## 聯絡資訊
 - email: ``qscesz871107@gmail.com``
 
-2020秋季班 個人評量
-=======================
+# 2020秋季班 個人評量
 
-(秋季班) 作業及筆記
-------------------------
+## 作業筆記
+- [lab0](https://hackmd.io/@sammer1107/HJE9Ml94v)
+- [quiz1](https://hackmd.io/@sammer1107/Bk5wuGI4P)
+- [quiz2](https://hackmd.io/@sammer1107/ryHs1sESP)
+- [quiz3](https://hackmd.io/@sammer1107/SylBB8irv)
+- [quiz4](https://hackmd.io/@sammer1107/rJV6Qev8P)
+- [quiz5](https://hackmd.io/@sammer1107/sysprog_hw5_quiz5)
+- [render](https://hackmd.io/@sammer1107/hw5_render)
+- [quiz6](https://hackmd.io/@sammer1107/sysprog_hw6_quiz6)
+- [kcalc](https://hackmd.io/@sammer1107/sysprog_hw6_kcalc)
+- [期末project - rv32emu-next](https://hackmd.io/@sysprog/HJOpsvFqP)
 
+## 心得
+### 工具的使用 (Makefile, perf, valgrind)
+如果要說這堂課給我最實用的影響是什麼，那應該就是學會 Makefile 怎麼寫。雖然之前就知道這個東西，但是一直都沒能把這東西弄熟。由於這堂課的作業幾乎都會使用到 make，在整學期下來我發現已經能夠熟悉基本的語法，並在自己開發 c 程式的時候都能享受到 makefile 的便利。Makefile 真的是好用的東西，雖然有很多不太好讀的特殊符號。
 
-(秋季班) 心得
-------------------------
+另外 perf 及 valgrind 也是因為這堂課才學會使用的工具。在自己開發 c 程式的時候，valgrind 是檢查 memory leak 或是檢查存取到不該存取的記憶體很好用的工具。perf 則是做效能分析很好的工具，雖然目前我會使用的功能只有冰山一角。
 
+### 代數 & bitwise magic
+除了工具的使用之外，把群論套用在二補數的觀念也讓我印象深刻。剛好這學期到數學系修了代數，能夠馬上和 computer science 做點聯結還蠻有趣的。再來同樣讓我覺得有趣的是各種的 bitwise 魔法以及數值運算魔法，包含取絕對值、取餘數或是 leet code 的 [single number](https://leetcode.com/problems/single-number/) 等等的，這些都讓我覺得特別有趣。
 
-(秋季班) 自我評量分數 (1 到 10 級分)
----------------------------
+### 養成看 c 標準的習慣
+我第一次看 c 語言的標準應該是因為這堂課，這才發現想要真的理解一個語言真的得看標準。有太多神奇的行為如果不看標準還真的不會完全理解。
 
+### RISC-V
+這次的期末 project 討論的是 rv32emu-next，而這是我第一次接觸模擬器的實作。當初會選這個題目就是因為覺得「電腦上可以模擬電腦」的點子實在很酷。
+作業內容主要是理解 direct threading 應用在模擬器的 main loop 的技巧，以及整合 riscv-compliance 來驗證模擬器的正確性。
 
+Direct threading 讓我體會到儘管我們有了「程式語言」作為 programmer 和機器的介面，但是如果想要發揮機器最大效能，還是得真正了解機器運作機制（如 caching、branch prediction），這也是這堂課有多次提到的主題。
+
+riscv-compliance 則是讓我蠻有成就感的部份。因為要整合得要先學會編譯 riscv gnu toochain，然後看懂 compliance 內有點複雜的 Makefile 運作機制，還得要看懂各種 assembly 的 macro，時不時也要參考 riscv 的標準。所以成功整合之後還蠻開心的。
+
+## 自我評量分數 (1 到 10 級分)
+我給自己這學期的課堂參與 8.9 分。雖然已經學到不少東西，但是期末因為準備考試的關係沒辦法在期末 project 做比較深算是可惜之處。
 
 
 
