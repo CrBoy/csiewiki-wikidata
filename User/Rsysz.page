@@ -23,3 +23,28 @@ Rsysz(顏通宏)
     - [開發紀錄 (dict)](https://hackmd.io/@Rsysz/dict) / [GitHub](https://github.com/Rsysz/dict)
     - [開發紀錄 (quiz3)](https://hackmd.io/@Rsysz/quiz3)
 - W4
+    - [開發紀錄 (quiz4)](https://hackmd.io/@Rsysz/quiz4)
+- W5
+    - [開發紀錄 (render)](https://hackmd.io/@Rsysz/render) / [GitHub](https://github.com/Rsysz/raycaster)
+    - [開發紀錄 (quiz5)](https://hackmd.io/@Rsysz/quiz5)
+- W6
+    - [開發紀錄 (kcalc)](https://hackmd.io/@Rsysz/kcalc)
+    - [開發紀錄 (quiz6)](https://hackmd.io/@Rsysz/quiz6)
+* Team 5
+    - 成員: Rsysz
+    - 題目: Game Boy 模擬器
+    - [開發紀錄](https://hackmd.io/@sysprog/BJvOWzFqv)
+
+個人心得
+---
+
+  一開始聽我們教授說老師的課很硬，不過很紮實，上完整學期的課後不得不說，認真的程度決定課程的硬度，比起死背東西的考試，實作才是硬道理。\
+老師的課讓我了解到什麼才是說到做到，我是電機系出身，以前讀電子學，手上算的 `MOS` 電容電桿電阻，`FPGA` 寫得 `Verilog`，再到 `VLSI`住在 `LAB` 畫 `layout`，硬體的世界迭代太慢，多的是經驗累積出的成果，是用時間換來的良率。\
+  上過四年大學的課程後，還是發現我比較適合走軟體的路，老師的課讓我深深的了解到自己有多菜，菜的一逼，在老師的課我學到很多，雖然多數來自於影片而不是上課時間，但工程師要的就是自學能力，而每次遇到問題丟 `Google` 的時候總會在老師的教材裡找到對應的方向，此外很幸運的是今年修課遇到的大神 `RinHizakura`，他的報告讓我學到很多，實在是人外有人，天外有天，菜逼八如我，仍須努力。\
+  最後是在做課程專題時，老師點醒了我，讓我了解到協作的重要性，未來職場上多數的時間都是在溝通與 `Code Review`，趁早學好 `Git` 才是王道，最後的最後我要說一下
+其實我 `kcalc` 有撰寫程式 `Github` 也有 `Fork`，但是實驗室的那台伺服器故障了，我也來不及 `Push` 了。\
+
+自我評量分數(1~10)
+---
+10
+    
