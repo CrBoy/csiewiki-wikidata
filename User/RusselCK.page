@@ -16,20 +16,35 @@ Russel 邱俊傑
 
 **其他經驗**
 
-- 彰化師範大學 白沙管樂社 (小號部)
+- 彰化師範大學 白沙管樂社 (🎺小號部)
     - 管理 [白沙管樂社 粉絲專頁](https://www.facebook.com/NCUEwindband) 並首度加入 Chatbot 功能
     - 全國學生音樂比賽 管樂合奏
     - 成果發表
-- 成功大學管弦樂社 (小號部)
+- 成功大學 管弦樂社 (🎺小號部)
     - 全國學生音樂比賽 管樂合奏
     - 成果發表
 
 2020 秋季班 個人評量
 =======================
 
-筆記
+講座筆記
 ------------------------
+
 - 你所不知道的 C 語言 系列
     - [數值系統、Bitwise 操作、浮點數運算、定點數操作 筆記](https://hackmd.io/@RusselCK/Bkxl1dDSw)
     - [記憶體管理、未定義行為 筆記](https://hackmd.io/@RusselCK/Bkw8sfeIw)
     - [函式呼叫、遞迴呼叫 筆記](https://hackmd.io/@RusselCK/SJ3rL9BOD)
+    - [指標、goto與流程控制、程式設計技巧 筆記](https://hackmd.io/@RusselCK/H1ORyJPPP)
+    - [編譯器與最佳化原理、案例分析 筆記](https://hackmd.io/@RusselCK/Bk3Xj8ldv)
+    - [動態連結器、連結器和執行檔資訊、執行階段程式庫 (CRT) 筆記](https://hackmd.io/@RusselCK/rJdVP-I5v)
+    - [前置處理器、物件導向程式設計 筆記](https://hackmd.io/@RusselCK/HyWOGiYuw)
+
+- Linux 核心設計 系列
+    - [作業系統術語及概念 筆記](https://hackmd.io/@RusselCK/HJrzb2t_P)
+
+- ARM 架構 系列
+    - [系列講座導論、架構與指令集 筆記](https://hackmd.io/@RusselCK/rkbA1gy3D)
+    - [基礎指令和開發環境 筆記](https://hackmd.io/@RusselCK/B1CKpNE3v)
+
+作業共筆
+------------------------
