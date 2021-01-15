@@ -24,5 +24,14 @@ categories: User
 =======================
 [高效能網頁伺服器環境](https://hackmd.io/@YLowy/HJMWDDs9v)
 [lwan 的 Hello World](https://hackmd.io/@YLowy/rJBWnxejD)
-[lwan 的 bench test](https://hackmd.io/@YLowy/SkXbU4fTP)
+[lwan's bench test](https://hackmd.io/@YLowy/SkXbU4fTP)
 [lwan’s clock](https://hackmd.io/@YLowy/r12Ew1-CD)
+
+心得
+=======================
+寫作業常常覺得怎麼時間都不夠用，如今回顧驚覺想不到撐過一學期了。這是我第一次修老師的課，修課之前早有耳聞這堂課的難度以及所需要的時間，不過還是毅然決然不顧其他人反對(? 選下去了，感謝老師最後還願意幫我加簽，我想如果我以旁聽生角度上課可能一半作業都繳不出來。當初為自己設定目標為每次作業都要繳出來，很高興這項目標完成了，從開始到結束每星期都擠超過25小時出來做這件事。期末專題 lwan 對我而言應該是探討技巧如何延伸至實作，包含 multi-thread, epoll, coroutine, web bench test, https/http protocol, gif 原理...，為此額外研讀 csapp 第 2, 9章此專題相關應用內容。並與 lwan 原作者信件討論到實作與理念不同，程式中一些原先希望增加rps之技巧反而得到反效果。總之這堂課讓我懂得誠實面對自己不足之處，並更加了解世界一點，一學期說長不長說短不短的，我想對我而言這是一個很好的開始，誠如第一堂課所提及該有做什麼像什麼，並對任何事物抱持興趣與熱忱。
+
+自我評量分數 (1 到 10 級分)
+=======================
+ 10 級分
+這堂課帶給我太多知識與經驗，
