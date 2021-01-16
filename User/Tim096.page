@@ -1,0 +1,81 @@
+---
+title: Tim096 (曾鈜寬)
+categories: User
+...
+
+
+簡介 Introduction
+=======================
+
+
+- 成功大學 資訊工程系碩士班-高速網路實驗室 (2020- )
+- GitHub：[https://github.com/Tim096 ](https://github.com/Tim096)
+- Email：P76091014@gs.ncku.edu.tw
+
+**人生經歷**
+
+- 2017 車客松比賽佳作
+    - 題目：[Smart Glass](https://www.youtube.com/watch?v=wVC871GDlVw&ab_channel=Tim096)
+        - 藉由 AR 的技術將導航結果顯示於眼鏡中，讓駕駛者不用另外低頭看導航。
+- 106級 資訊系系學會公關長
+    - 主辦過多場活動，其中最大一場的超過百人參加，從活動企劃到人員配置由自己管理以及分配工作。
+- 股癌 [Gooaye.com 金融科技系列文章作者](https://gooaye.com/author/tim096/)
+    - 其中的文章的流量大部份為官網中的常駐第一名。
+- 股票機器學習
+    - 藉由 Python 向證交所爬蟲，並且使用多種機器學習模型結合來判斷，股票的排名。
+- 大學專題-[智慧型自走車](https://www.youtube.com/watch?v=DaDS_ZPjAhQ&ab_channel=Tim096)
+    - 使用 Arduino 配合手機，用影像識別來達到無人駕駛車系統，其中可以自動剎車、跟車轉彎、自動導航等功能。
+- [2020全國大專院校AI金融科技創新創意競賽](https://aifinpitchtw.com/index)
+    - 參加實作組，判斷貸款人違約率預測，正確率達到0.8929，最後排名第 10 名。
+
+2020 秋季班 個人評量
+=======================
+
+作業共筆
+------------------------
+
+- Homework1 : [quiz1](https://hackmd.io/@Tim096/rk2Nv_h4w)、[Lab0](https://hackmd.io/@Tim096/S1ywYCH4P) / [Github](https://github.com/Tim096/lab0-c)
+- Homework2 : [quiz2](https://hackmd.io/@Tim096/BkqL2XLSD)
+- Homework3 : [quiz3](https://hackmd.io/@Tim096/ByYU-b7Iv)
+- Homework4 : [quiz4](https://hackmd.io/@Tim096/ByxglMPUD)
+- Homework5 : [quiz5](https://hackmd.io/@Tim096/HkuOk6QOD)
+- Homework6 : [quiz6](https://hackmd.io/@Tim096/BkQhBTCvP) 
+- Homework7 : [quiz7]()沒寫完
+- Homework8 : [quiz8]()沒寫完
+- Homework10 : [quiz10]()沒寫完
+
+所見所聞心得 Review
+------------------------
+
+**加入課程之前**
+
+
+
+**課堂上的所見所聞**
+
+
+**關於 (小考) 作業**
+
+
+**心得**
+
+我覺得在這門課程中，額外花時間看講座影片是很重要的，如同課程一開始的介紹，這門課就是對資工系學生的一個總複習，只要在課程上遇到的困難點，就是學生不足的地方。
+
+經過了一學期的時間，我補足了一些部分: 
+
+- 在 C 語言的使用，從 Bitwise operation 和 built-in function 開始體會到高手是怎麼寫程式的，還有從講座中了解 Compiler 和 Linker 的運作，以及對 pointer、物件導向程式設計有更清楚的了解。
+- 作業系統與 C 語言 的發展歷史
+- 認識 ARM 架構的歷史和指令集
+
+**課程之後**
+
+雖然學期已經結束，但透過這門課的啟發，之後會有一些規劃:
+
+- 在寒假繼續看完 你所不知道的 C 語言、CS:APP、ARM 架構、Linux 核心設計 系列講座
+- 逐步完成這學期沒參與到和未完成的作業
+- 準備自己的履歷，試著投遞實習
+
+自我評量分數 (1 到 10 級分) Self-assessment
+---------------------------
+7.5 級分。
+
