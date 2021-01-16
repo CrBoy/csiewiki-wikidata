@@ -18,16 +18,24 @@ categories: User
 
 作業及筆記
 ------------------------
-- lab0-c [Github](https://github.com/dalaoqi/lab0-c), [HackMD](https://hackmd.io/@dalaoqi/2020q3-lab0)
-- HW1: quiz1 [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz1)
-- HW2: quiz2 [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz2)
+- lab0-c: [Github](https://github.com/dalaoqi/lab0-c), [HackMD](https://hackmd.io/@dalaoqi/2020q3-lab0)
+- HW1: quiz1 [Github](https://github.com/dalaoqi/linked-list), [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz1)
+- HW2: quiz2 [Github](https://github.com/dalaoqi/NCKU-sysprog2020-quiz2), [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz2)
 - HW4: quiz4 [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz4)
 - HW5: quiz5 [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz5)
 - HW6: quiz6 [HackMD](https://hackmd.io/@dalaoqi/2020q3-quiz6)
-- Faceboo"C" [Github](https://github.com/dalaoqi/facebooc), [HackMD](https://hackmd.io/@sysprog/S13nROKcw)
 
-自我評量(1~10)
+期末專題
 ------------------------
+- [Github](https://github.com/dalaoqi/facebooc)
+- [Faceboo"C" - 事前準備](https://hackmd.io/L2EL4xKmSO2Z1zoDzVxESQ)
+- [Faceboo"C" - 正確性驗證](https://hackmd.io/-ZxS0h-dRS6tYEV6gYFj_g)
+- [Faceboo"C" - web server & web application](https://hackmd.io/@sysprog/S13nROKcw)
 
 心得
 ------------------------
+這門課和過去修的課很不一樣，每個星期的課程材料和作業所要看的資料真的很多，要完成每星期的進度都要花大量的時間。這學期的課程也告一段落了，從這門課學到了一些以前不會用的東西，用 valgrind 檢查程式的記憶體使用情形，使用 clang-format 對程式碼進行排版，用 curl 和 ApacheBench 來對網站伺服器進行壓力測試及效能分析，用 Hackmd 和 Github 來記錄自己學習的過程，還有小考常出現的各種 bit operation 以及期末專題 Faceboo"C" 的 Select 、Epoll 及 Kqueue 等。整個學期下來沒聽過的東西太多了，也發覺自己還有很多需要學習的地方，慶幸當初有選修這門課。
+
+自我評量(1~10)
+------------------------
+我給自己 8 分，學期初時投入了很多的時間和精神在這門課，不過有了論文的壓力後，投入的時間就不再像一開始一樣，有很多資料沒有看完，只完成最基本的作業需求，直到期末專題才又多花一點時間在專題身上，還有許多要努力的地方，期望未來能把這 2 分拿到，感謝 Jserv 老師這學期的指導。
