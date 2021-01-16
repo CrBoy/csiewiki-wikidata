@@ -1,0 +1,22 @@
+#李昀澤
+##聯絡
+- email : `p76091292@gs.ncku.edu.tw`
+
+- GitHub : `grb72t3yde`
+
+##2020春季班之個人評量
+
+###作業開發共筆
+- [lab0](https://hackmd.io/@grb72t3yde/sysprog_2020q3_lab0-c)
+- [quiz1](https://hackmd.io/@grb72t3yde/sysprog_2020q3_quiz1)
+- [quiz2](https://hackmd.io/@grb72t3yde/sysprog_2020q3_quiz2)
+- [dict] 更改為期末專題內容, 探討 bloom filter 在其他開源專案中的應用
+- [quiz3](https://hackmd.io/@grb72t3yde/2020_sysprog_quiz3)
+- [quiz4](https://hackmd.io/@grb72t3yde/2020_sysprog_quiz4)
+- [期末專題 - LevelDB之研究](https://hackmd.io/@grb72t3yde/sysprog_project_levelDB)
+
+###修課心得
+剛來到成大的這個學期，也是我剛開始比較深入接觸系統軟體的時候。我很感謝這門課讓我透過實作來練習許多以前沒有學好的工具(例如 perf, eBPF 等等)，同時也再次看到了系統軟體的博大精深之處。Jserv老師在課堂上的準備十分用心，我也很感謝老師能夠在期末專題上讓我選擇我自己一直以來的興趣。
+
+### 自我評量分數 (1 到 10 級分)
+六級分。在這學期，同時進行其他嵌入式系統開發專案以及計畫的同時，我顯得手忙腳亂。然而這也讓我體認到，我必須正視自己在實力上以及時間規劃上的不足。而我期許自己在2021年能夠把本課堂未能順利完成的課題陸續補上。尤其是高效能 web server 是我另一個十分有興趣的題目。
