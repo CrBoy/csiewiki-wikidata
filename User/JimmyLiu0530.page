@@ -1,0 +1,63 @@
+---
+title: JimmyLiu0530 (劉晉瑋)
+categories: User
+...
+
+簡介 Introduction
+========================
+
+- 中央大學 資訊工程系 (2016-2020)
+- 成功大學 資訊工程系碩士班 (2020- )
+- Github：[https://github.com/JimmyLiu0530](https://github.com/JimmyLiu0530)
+- Email：jimmy021016@gmail.com
+
+**其他經驗**
+- 中央大學 107學年度高雄屏東校友會 會長
+
+2020 秋季班 個人評量
+======================
+
+作業及筆記
+---------------------
+
+- Homework1：[quiz1](https://hackmd.io/@JimmyLiu0530/quiz1)、[lab0](https://hackmd.io/@JimmyLiu0530/lab0) / [github](https://github.com/JimmyLiu0530/lab0-c)
+- Homework2：[quiz2](https://hackmd.io/@JimmyLiu0530/quiz2)
+- Homework3：[quiz3](https://hackmd.io/@JimmyLiu0530/quiz3)
+- Homework4：[quiz4](https://hackmd.io/@JimmyLiu0530/quiz4)
+- Homework5：[quiz5](https://hackmd.io/@JimmyLiu0530/quiz5)
+- Homework6：[quiz6](https://hackmd.io/@JimmyLiu0530/quiz6)
+- Homework7：[quiz7](https://hackmd.io/@JimmyLiu0530/quiz7)
+- Homework8：[quiz8](https://hackmd.io/@JimmyLiu0530/quiz8)
+- Homework9：[quiz9](https://hackmd.io/@JimmyLiu0530/quiz9)
+- Homework10：[quiz10](https://hackmd.io/@JimmyLiu0530/quiz10)
+- Homework11：[quiz11](https://hackmd.io/@JimmyLiu0530/quiz11)
+- Homework12：[quiz12](https://hackmd.io/@JimmyLiu0530/quiz12)
+- Homework13：[quiz13](https://hackmd.io/@JimmyLiu0530/quiz13)
+- Homework14：[quiz14](https://hackmd.io/@JimmyLiu0530/quiz14) / [github](https://github.com/JimmyLiu0530/NCKU-sysprog2020q3-quiz14)
+
+
+心得 Review
+------------------
+
+** 加入此課程前的掙扎 **
+現在回想起當初加入此課程之前掙扎了一兩天就覺得好笑，幸好當時做了這個正確決定! 我原先禮拜二下午已另一堂課，但是實驗室的同學給我看了一篇老師在 ptt (還是 dcard)介紹該課程的文章後內心開始動搖，因為被內文一句話給打動:「至於選課有什麼條件呢？只要基本的 C 語言程式設計和英文讀寫沒太多障礙，重點是有 GUTS 即可。」我寄予自己在研究所兩年的希望正是 「兩年拚四年」，以補足在大學時期的不用功，這堂課豈不是給了我這樣的機會嗎?! 經過幾天的思考後，便毅然決然的退選原本的課，修這門課。
+
+** 修課期間 **
+我永遠忘不了第一個作業的篇幅，畫面右邊的滾軸可以說是小到不能再小，心想: 該不會往後的每個作業都是如此吧...不過沒辦法，這是我自己選的課 (誤上賊船XD)，跪著也要走完! 起初每周至少需要花接近兩天的時間訂正課堂小考，不過在訂正的過程中，我也著實有了成長。
+
+在課堂上，老師總會把這周要講的主題列出來。一開始也會這個量給嚇到，三個小時要講完這些內容真的要很拚，結果才知道有些主題老師已有錄好的影片可以看，課堂上主要還是點出重點，以便我們回家看影片時能抓到重點。其實換個角度想，不是內容多而是我會的太少。
+
+在修課期間，我把一些有關 C 語言的觀念、實作技巧以及分析工具弄清楚，像是 
+(1) ptr++ 和 *ptr++ 行為的差異: 前者將此指標指向下一個元素；後者則是取出目前指標所指的內容後，再將指標指向下一個元素。
+(2) Tail Call Optimization (TCO): 大多的尾呼叫程式都能進行此優化，不過仍有尾呼叫程式不能進行優化的例子，請見 quiz7 [測驗2](https://hackmd.io/fBmfYEw3SLiasXalllPwsg?view#%E6%B8%AC%E9%A9%97%E4%BA%8C-Tail-Call-Optimization)。
+(3) 尤其是 bit operation 讓我印象最深刻。不管是用在狀態壓縮來節省記憶體開銷，還是用在有限制的情況下的操作 (e.g., 取絕對值)，都是很實用的方法。
+(4) Valgrind、GDB、Perf 等工具的利用，以便能找出程式的弱點，並予以優化。
+
+** 修完課之後 **
+這學期感覺過的很快，不知道是每天過得很充實還是甚麼原因，不過我是不後悔選了這門課就是了。至於還有一些主題以及作業礙於時間不足還沒有看跟訂正，打算趁寒假這段時間把它補齊，繼續提升實力。在此也感謝老師這一學期的指導以及提點!
+
+自我評量分數 (1 到 10 級分) Self-assessment
+----------------------------------------------
+8.5 級分
+
+這裡我不想用一個禮拜花多少時間來評估自己該得到多高的分數，而是用從投入的時間裡真正學到什麼新知，了解自己還有哪裡不足並努力去改善，我想這才有意義。像是這陣子在整理之前寫的共筆，發現不管是表達能力還是編排組織能力都有大幅的進步，這也是我之前所欠缺的能力，當然還有很多這學期學到的知識尚未列出。總之比起學期初的我，真的進步了不少，綜合這些後我給了自己 8.5 級分，至於那 1.5 級分就當作是鞭策我努力、變得更強的動力。
