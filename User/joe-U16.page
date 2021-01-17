@@ -36,7 +36,8 @@ categories: User
 題目：
 -----------------------
 a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
-* Ans: 前者使用減法，可能造成整數溢位，導致兩者行為不一致。
+
+Ans: 前者使用減法，可能造成整數溢位，導致兩者行為不一致。
 
 e.g.
 ```
@@ -46,7 +47,16 @@ $1 = 0
 $2 = 1
 ```
 
+c) 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
 
+Ans: 
+
+1. signal is a pointer to a function that takes two parameters:
+
+    1. sig is a parameter to an int and
+    2. handler is a pointer parameter takes int to void
+2. and takes int
+3. and returns to void
 
 
 
