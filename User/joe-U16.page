@@ -33,6 +33,23 @@ categories: User
 - [kcalc](https://hackmd.io/@joe-U16/rJwLELO3P) / 
 [GitHub](https://github.com/joe-U16/kcalc-fixed)
 
+題目：
+-----------------------
+a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+* Ans: 前者使用減法，可能造成整數溢位，導致兩者行為不一致。
+
+e.g.
+```
+>>> print 0U-1<0
+$1 = 0
+>>> print 0U < 1
+$2 = 1
+```
+
+
+
+
+
 (秋季班)心得
 -----------------------
 
