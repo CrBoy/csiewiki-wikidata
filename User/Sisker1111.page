@@ -38,8 +38,7 @@ Sisker1111 (范皓翔)
 (a). 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
 Ans: 雖然在數學上，x - y < 0 和 x < y 是等價的，但在數值系統中每個型態的數值的上下界的，因此在做 x - y 的運算時有可能產生 overflow 的問題，這樣會使得結果不如預期而導致錯誤發生.
 
-(b). 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
-Ans: 
+(b). 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？ Ans : 規格書寫到 postfix increment 是對 operand 相加一個單位，因此 ptr++ 則是對 ptr 的資料型態相加一個對應的 byte ， *ptr++ 則是取 *ptr 的值之後再對 ptr 加上一個對應的單位.
 
 (c). 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？ Ans: 
 
@@ -72,8 +71,9 @@ Ans: [參考資料](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%
 clz: 每次都對 x shift不同的變量來算出首位 1 左邊有幾個 0 [參考資料](https://hackmd.io/@sysprog/c-numerics)，CTZ 可以通過把 x 的每個 Bits 反轉，在實施 CLZ，或者使用 bit-mask 的方式，詳見[hackmd](https://hackmd.io/@Sisker11111111/CLZ_CTZ)。
 
 (k). 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 來說，什麼樣的遞迴程式可做TCO，又有什麼樣的遞迴程式無法呢？Ans:
-tail call optimization 指的是一個函數裡的最後一個動作是返回一個函式的呼叫結果的情形，即最後一步新呼叫的返回值直接被當成當前函式的返回結果。
+tail call optimization 指的是一個函數裡的最後一個動作是回傳另一個函式的呼叫結果的情形，即最後一步新呼叫的回傳值直接被當成當前函式的回傳結果。
 幾例來說: return funcB(i - 1); 就是一個 TCO ，而 return 5 * funcA(i - 1); 則不是。
+其好處是，TOC是函數的最後一步操作，所以不需要保留外層函數的使用記錄，因為回傳位址與其內部變數等資訊都不會再用到了，只要直接用內層函數的使用記錄，取代外層函數的使用記錄就可以了。
 
 (q). 知道傅立葉分析在通訊領域的應用嗎？舉例說明
 Ans:
