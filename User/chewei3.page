@@ -38,9 +38,15 @@ a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
 因為可能會造成 Overflow:
 x = 2b'1...1, y = 2b'01...1，因此 (x - y < 0) == false，但是 (x < y) == True  
 
-b) 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+b) 知道 C 語言規格書如何解釋 ptr++ 和 \*ptr++ 行為的差異嗎？
+*    [C spec 6.5.2.4](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf)
 
-c) 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
+```c= The result of the postfix ++ operator is the value of the operand.```
+
+*   ptr++ 是 ptr 加上對應的資料型態大小，\*ptr++ 是將 ptr dereference 後，再做 ptr++
+c) 知道 ```
+void (*signal(int sig, void (*handler)(int))) (int); 
+```這樣的宣告該如何解讀嗎？
 *    signal is a pointer to a function that takes two parameters:
     *    an int named sig. 
     *    a pointer to a function that takes an int as a parameter named handler
@@ -53,7 +59,9 @@ d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
 從 head->prev 走訪整個 link list，加小括號是因為帶入的 head 有可能是 *ptr 的型態，若沒有加小括號會變成 pos = *head->prev，因為 -> 的 precedence 大於 *，所以會出錯
 
 e) 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，又如何透過 SIMD 進行最佳化嗎？
-```cpp=bw = (uint32_t) (r * 0.299 + g * 0.587 + b * 0.114);```，可事先建立表格減少浮點數運算，用 offset 取代bitwise operation
+
+```c= bw = (uint32_t) (r * 0.299 + g * 0.587 + b * 0.114);```
+可事先建立表格減少浮點數運算，用 offset 取代bitwise operation
 [參考](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%2Fs%2FrykYKYXjg)
 f) 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
 [程式碼參考](https://hackmd.io/aJBnYSM2QLSdc7CgjsoBoQ)
