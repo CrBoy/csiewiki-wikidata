@@ -38,9 +38,9 @@ Sisker1111 (范皓翔)
 (a). 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
 Ans: 雖然在數學上，x - y < 0 和 x < y 是等價的，但在數值系統中每個型態的數值的上下界的，因此在做 x - y 的運算時有可能產生 overflow 的問題，這樣會使得結果不如預期而導致錯誤發生.
 
-(b). 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？ Ans : 規格書寫到 postfix increment 是對 operand 相加一個單位，因此 ptr++ 則是對 ptr 的資料型態相加一個對應的 byte ， *ptr++ 則是取 *ptr 的值之後再對 ptr 加上一個對應的單位.
+(b). 知道 C 語言規格書如何解釋 ptr++ 和 \*ptr++ 行為的差異嗎？ Ans : 規格書寫到 postfix increment 是對 operand 相加一個單位，因此 ptr++ 則是對 ptr 的資料型態相加一個對應的 byte ， \*ptr++ 則是取 \*ptr 的值之後再對 ptr 加上一個對應的單位.
 
-(c). 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？ Ans: 
+(c). 知道 void (\*signal(int sig, void (\*handler)(int))) (int); 這樣的宣告該如何解讀嗎？ Ans: 
 
 signal is a pointer to a funtion that takes two parameters: 
 
@@ -55,9 +55,9 @@ and signal returning a pointer to a function taking an int parameter and returni
 由定義可以知道是在走訪整個link-list，pos為一個指標並指向最後一個項目(head->prev)，以此為起點一路反著訪問下去，終止條件是當pos指向head時，代表已經走訪完一圈了。
 2. head 使用時需要加小括號?
 
-考慮 head 帶入到巨集 list_for_each_prev 的輸入可能是 *ptr 的形式，然後就會致使 *ptr->prev 成為被處理的程式碼，會發生以下錯誤:
+考慮 head 帶入到巨集 list_for_each_prev 的輸入可能是 \*ptr 的形式，然後就會致使 \*ptr->prev 成為被處理的程式碼，會發生以下錯誤:
 
-若是沒有小括號的話 for loop 起始條件會變成 pos = *ptr->prev，根據 C operator precedence 可以知道會先執行 arrow operator 再作 dereference，而這和我們所希望表現的行為就不一樣了。
+若是沒有小括號的話 for loop 起始條件會變成 pos = \*ptr->prev，根據 C operator precedence 可以知道會先執行 arrow operator 再作 dereference，而這和我們所希望表現的行為就不一樣了。
 
 (e). 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，又如何透過 SIMD 進行最佳化嗎？
 Ans: [參考資料](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%2Fs%2FrykYKYXjg)
