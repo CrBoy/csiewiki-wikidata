@@ -1,0 +1,98 @@
+---
+title: chewei3(李哲緯)
+categories: User
+...
+
+學歷
+======================
+-  成功大學資訊工程系碩士班108級(2019-2021)
+
+聯絡資訊
+======================
+- email: [soem46654@gmail.com](mailto:soem46654@gmail.com)
+- github: [chewei3](https://github.com/chewei3)
+
+2020冬季班 個人評量
+=======================
+
+作業及筆記
+------------------------
+- lab0: Queue [Github](https://github.com/chewei3/lab0-c), [HackMD](https://hackmd.io/aJBnYSM2QLSdc7CgjsoBoQ)
+- quiz1: Linked-list [HackMD](https://hackmd.io/iFbp7syiSXuWFFiW9huhJQ?view)
+- quiz2: 數值系統及 Bitwise operation [HackMD](https://hackmd.io/IoCC8G1PT-WEKyapP_gQQQ?view)
+- quiz3: [HackMD](https://hackmd.io/llWAbIXsQ-6YFFWC_-oxWQ)
+- quiz4: [HackMD](https://hackmd.io/OKbRPalfRvWPSIOMrtLGsQ)
+- Render: [Github](https://github.com/chewei3/raycaster), [HackMD](https://hackmd.io/mueD9GLaQ7y4yNFHQGjIaw?view)
+
+期末專題 Final Project
+------------------------
+- 主題 Topic：Render [Github](https://github.com/chewei3/raycaster), [HackMD](https://hackmd.io/mueD9GLaQ7y4yNFHQGjIaw?view)
+- 工作 Work：整合同學的成果，並繼續深入研究其相關議題，並更新、補充與改善內容.
+- 成果 Presentation：
+
+自我評量分數 (1 到 10 級分)
+---------------------------
+9級分。學期剛開始的時候會花時間寫作業，以及研究每周的教材及小考。期中之後將時間花在論文以及其他雜事，花費在這堂課的心力也大幅減少，但是也只能說是自己的決心不夠，儘管如此還是從這堂課中充分認識自己，以及了解自己許多不足之處，所以之後還是會繼續閱讀教材。我心裡給自己的分數是 2 分，但是為了我的學分費，只能給自己 9 分了。
+
+a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+因為可能會造成 Overflow:
+x = 2b'1...1, y = 2b'01...1，因此 (x - y < 0) == false，但是 (x < y) == True  
+
+b) 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+
+c) 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
+*    signal is a pointer to a function that takes two parameters:
+    *    an int named sig. 
+    *    a pointer to a function that takes an int as a parameter named handler
+    *    and returning void.
+*    and returning void.
+
+d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
+    list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);
+    pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
+從 head->prev 走訪整個 link list，加小括號是因為帶入的 head 有可能是 *ptr 的型態，若沒有加小括號會變成 pos = *head->prev，因為 -> 的 precedence 大於 *，所以會出錯
+
+e) 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，又如何透過 SIMD 進行最佳化嗎？
+```cpp=bw = (uint32_t) (r * 0.299 + g * 0.587 + b * 0.114);```，可事先建立表格減少浮點數運算，用 offset 取代bitwise operation
+[參考](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%2Fs%2FrykYKYXjg)
+f) 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
+[程式碼參考](https://hackmd.io/aJBnYSM2QLSdc7CgjsoBoQ)
+
+g) 知道 memory misalignment 對程式正確性和效能的影響嗎？
+h) 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？
+[參考](https://hackmd.io/KJOz0OfcTmCPtEWS5qM5WQ?view)
+i) 知道 C 語言規格書中如何定義 object 的生命週期嗎？能否舉出至少兩相對應的 CVE 呢？
+
+j) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
+k) 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 來說，什麼樣的遞迴程式可做
+    TCO，又有什麼樣的遞迴程式無法呢？
+```c=
+foo:
+  call B
+  call A
+  ret
+```
+TCO:
+```c=
+ foo:
+  call B
+  jmp  A
+```
+l) 知道 page fault 嗎？Segmentation fault 的訊息是如何顯示出來，請以 GNU/Linux 為例解說
+m) 知道 fixed point 嗎？相較於 floating point，這樣的機制有何優缺點呢？知道真實世界如何運用嗎？
+n) 知道 Poisson distribution 在本學期的課程主題中，出現在哪？以及為何工程議題需要考慮機率統計，能舉例嗎？
+o) 知道 LRU replacement policy 對程式碼效能的影響嗎？如何撰寫程式去驗證某個處理器的 cache 行為呢？
+p) 看懂 CS:APP 第 9 章講虛擬記憶體的描述嗎？知道 Linux 如何處理嗎？
+q) 知道傅立葉分析在通訊領域的應用嗎？舉例說明
+r) 知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求值程式嗎？做了這樣的最佳化，預期在
+    x86_64 上可省下多少 cycle 呢？
+
+將判斷偶數的部分改寫為`int shift = min(__builtin_ctz(u), __builtin_ctz(v));
+    u >>= shift; v>>= shift;`
+[quiz3 的測驗 4](https://hackmd.io/llWAbIXsQ-6YFFWC_-oxWQ?both)
+
+t) 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
+Bloom filter 為一個 n-bits table，將一個元素從 k 個 hash function 獲得的 k 個 table index 設為 1，用於O(1)查找元素是否存在於集合中，因為多個元素可能會共用一個 bit，所以查找存在 false-positive，且無法刪除元素 [程式碼參考](https://github.com/sysprog21/dict/blob/master/bloom.c)
+v) 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
+發現自己對於 C 語言的認知還是不夠深入，尤其是 bitwise operation 以及浮點數 
+w) 知道  locality of reference 嗎？請以本學期教材或作業的程式碼，說明 locality 對於 cache 的影響  
