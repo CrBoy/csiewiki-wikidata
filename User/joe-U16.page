@@ -16,7 +16,7 @@ categories: User
 2020秋季班 個人評量
 =======================
 
-(秋季班)作業及筆記
+作業及筆記
 -----------------------
 - [lab0](https://hackmd.io/@joe-U16/rJa33IG4P) /
 [GitHub](https://github.com/joe-U16/lab0-c)
@@ -32,6 +32,9 @@ categories: User
 - [quiz6](https://hackmd.io/@joe-U16/rJrCMFVjD)
 - [kcalc](https://hackmd.io/@joe-U16/rJwLELO3P) / 
 [GitHub](https://github.com/joe-U16/kcalc-fixed)
+
+心得
+-----------------------
 
 題目：
 -----------------------
@@ -58,8 +61,23 @@ Ans:
 2. and takes int
 3. and returns to void
 
-
-
-(秋季班)心得
+學會的工具：
 -----------------------
+Ubuntu, HackMd, Git, LaTex 數學式語法, Makefile, Bash Script, Visual Studio Code, Vim
+
+用過 ubuntu 後就知道可以把 windows 刪掉了，總覺得在 windows 寫 C 特別彆扭，還有學會怎麼寫  markdown後，在寫筆記或文件都很方便，還可以搭配 LaTex 寫數學式，根本是做筆記神器，這堂課的作業都要用 hackmd 寫作業，這種把想法寫下來的方式真的對釐清想法很有幫助，而且在期末時還可以看到自己的產出。
+
+增進對 C 語言的理解
+-----------------------
+在第一次的作業 lab0 ，我第一次知道 struct 結構可以長這樣，用 struct 來定義鏈結串列的結構，也因為這次作業大量的使用到指標操作，所以也學會了指標的使用。
+再來是認知到了數值系統的重要性，bitwise的用法，巨集的使用，都讓我驚嘆為什麼大家都那麼厲害。
+
+自評（1-10）：
+-----------------------
+10分，這是我花最多時間、最認真還有寫最多作業的一堂課了，
+
+
+
+
+
 
