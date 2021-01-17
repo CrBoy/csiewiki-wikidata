@@ -15,8 +15,7 @@ Sisker1111 (范皓翔)
 ============
 作業及筆記
 ------------------------
-- Lab0:
-- HW1: Queue[Github](https://github.com/Sisker1111/lab0-c),[Hackmd](https://hackmd.io/@Sisker11111111/2020q3-lab0)
+- Lab0: Queue[Github](https://github.com/Sisker1111/lab0-c),[Hackmd](https://hackmd.io/@Sisker11111111/2020q3-lab0)
 - Quiz1: Link-list [Github](https://github.com/Sisker1111/lab0-c),[Hackmd](https://hackmd.io/@Sisker11111111/2020q3-quiz1)
 - Quiz2: Bit-wise [Hackmd](https://hackmd.io/@Sisker11111111/quiz2)
 - Hw3: dict [Github](https://github.com/Sisker1111/dict) [Hackmd](https://hackmd.io/@Sisker11111111/dict)
@@ -28,23 +27,77 @@ Sisker1111 (范皓翔)
 
 期末專題 Final Project
 ======================
-- 主題 Topic：dict [Github](https://github.com/Sisker1111/dict) [Hackmd](https://hackmd.io/@Sisker11111111/dict)
+- 主題 Topic：dict
 - 工作 Work：整合 Hw3 同學的成果，並繼續深入研究其相關議題，並更新、補充與改善內容.
 - 成果 Presentation：
+[Github](https://github.com/Sisker1111/dict) [Hackmd](https://hackmd.io/@Sisker11111111/dict)
+
+學期回顧 :
+=================================
+
+(a). 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+Ans: 雖然在數學上，x - y < 0 和 x < y 是等價的，但在數值系統中每個型態的數值的上下界的，因此在做 x - y 的運算時有可能產生 overflow 的問題，這樣會使得結果不如預期而導致錯誤發生.
+
+(b). 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+Ans: 
+
+(c). 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？ Ans: 
+
+signal is a pointer to a funtion that takes two parameters: 
+
+1. a parameter named sig of type int.
+2. a parameter named handler which is a pointer to a function taking an int parameter and returning void.
+
+and signal returning a pointer to a function taking an int parameter and returning void.
+
+(d). 知道 Linux 核心 < include/linux/list.h> 裡頭 #define list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？Ans:
+
+1. 巨集到底在做什麼?
+由定義可以知道是在走訪整個link-list，pos為一個指標並指向最後一個項目(head->prev)，以此為起點一路反著訪問下去，終止條件是當pos指向head時，代表已經走訪完一圈了。
+2. head 使用時需要加小括號?
+
+考慮 head 帶入到巨集 list_for_each_prev 的輸入可能是 *ptr 的形式，然後就會致使 *ptr->prev 成為被處理的程式碼，會發生以下錯誤:
+
+若是沒有小括號的話 for loop 起始條件會變成 pos = *ptr->prev，根據 C operator precedence 可以知道會先執行 arrow operator 再作 dereference，而這和我們所希望表現的行為就不一樣了。
+
+(e). 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，又如何透過 SIMD 進行最佳化嗎？
+Ans: [參考資料](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%2Fs%2FrykYKYXjg)
+
+(f).知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？Ans:  linked-list merge sort 的程式可以放在[lab0](https://hackmd.io/@Sisker11111111/2020q3-lab0)
+
+
+(g). 知道 memory misalignment 對程式正確性和效能的影響嗎？Ans: CPU通常一次會抓取 4 byte、8 byte的資料，並且是按照順序取的，如果今天沒有對齊，那麼本來只需存取一次記憶體的操作就可能需要存取 2 個不同的 WORD，然後各自做bit shift再組合起來，才有辦法得到想要的值，原本只要存取記憶體一次的，結果現在要兩次，還有額外計算bitshifting的開銷。這是很嚴重的問題，在某些架構上可以造成兩倍以上的效能差異。另外，對於有些RISC架構，例如ARM和MIPS，如果存取未對齊的記憶體處理器會產生alignment fault。
+
+(h). 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？Ans:
+clz: 每次都對 x shift不同的變量來算出首位 1 左邊有幾個 0 [參考資料](https://hackmd.io/@sysprog/c-numerics)，CTZ 可以通過把 x 的每個 Bits 反轉，在實施 CLZ，或者使用 bit-mask 的方式，詳見[hackmd](https://hackmd.io/@Sisker11111111/CLZ_CTZ)。
+
+(k). 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 來說，什麼樣的遞迴程式可做TCO，又有什麼樣的遞迴程式無法呢？Ans:
+tail call optimization 指的是一個函數裡的最後一個動作是返回一個函式的呼叫結果的情形，即最後一步新呼叫的返回值直接被當成當前函式的返回結果。
+幾例來說: return funcB(i - 1); 就是一個 TCO ，而 return 5 * funcA(i - 1); 則不是。
+
+(q). 知道傅立葉分析在通訊領域的應用嗎？舉例說明
+Ans:
+傅立葉轉換就是要將一個時域訊號，轉換到頻域上去。不管這個訊號是以時域的方式表現(波形, waveform)，還是以頻域的方式表現出來(頻譜, spectrum)，指的都是同一個訊號.
+[參考資料](https://hackmd.io/@sysprog/fourier-transform#%E5%9C%96%E8%A7%A3%E5%82%85%E7%AB%8B%E8%91%89%E5%88%86%E6%9E%90)
+
+(r). 知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求值程式嗎？做了這樣的最佳化，預期在
+    x86_64 上可省下多少 cycle 呢?
+Ans: 可以用 min(__builtin_ctz(u), __builtin_ctz(v)) 找出可以同時將兩數除以幾次 2，程式碼參考如下: [Quiz3](https://hackmd.io/PWKR8gZHTW-XmCzBKa2hlA?view)
+
+(t). 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
+Ans: Bloom filter可以讓我們快速查找一個元素是否在一個集合裡面，因為程式會將輸入的 Key value 通過多個 hash function 轉換到所對應的 Table 上做紀錄，查詢時只要確定這 K 個 hash 後取得的值都是 1 即可確定該元素存在集合中，缺點是 Bloom filter 會有 false positive(因為有可能多個 Key hash 到一樣的值)以及無法 Delete 的問題.
+
+(v). 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
+Ans.1:Float point number、pointer 操作。
+Ans.2:我原本覺得我自己在這個領域還行，後來發現原來是爛到不行。
 
 自我評量 (1 ~ 10) Self-assessment
 =================================
+學期剛開始的時候我認為自己還算有點認真，每周都有花一定的時間在專研作業、對小考的code及做一些追蹤及改進，也有確實學到不少觀念及實作，不過還是離jserv本來的原本的預期目標有一些距離就是了。期中之後，不僅開始忙論文的東西，也花很多時間幫實驗室老師撰寫計畫書，讓我空閒之餘都只想好好放鬆，越來越沒花時間在這門課上，說來慚愧，不過這還是因為我自己決心不夠所導致，但我還是想通過這門課不然會白花學分費，所以我還是想給自己好一點的分數，我希望之後我也能鞭策自己透過線上參與的方式再來旁聽老師的課，把以前沒學好的部分一點一點補回來.
 
-我覺得我需要針對期中前與期中後的兩個階段進行評價：
-
-    - 期中前：9 分，學期剛開始的時候我認為自己還算有點認真，每周都有花一定的時間在專研作業、對小考的code及做一些追蹤及改進，
-    - 期中後：8 分：期中之後，我在論文上實作的部份開始加緊腳步，這導致我花的時間相對期中前少了許多，最重要的是專題的部份，我相信我在我們這組的專題進度上不論是繼續完成 wiki 的增修，或是最後 porting FreeRTOS 的部份，還有統整問題與整理討論結果都是貢獻最多的，然而也許是投入的時間不夠多，或是沒有掌控好組員能力與負擔，導致期末報告進度很差，沒有很完整的一個應用，只有勉強的討論出測量 context switch 的時間、porting 新版 FreeRTOS 與應用到 STM32F429 Discovery 如此而已，我對於期末報告的表現感到失望，因此我給自己勉強及格的 6 分
-
-所以整體來說，我覺得我應得的分數是 (9 + 6)/2 = 7 分
+總評: 我給自己的分數為 9 分.
 
 心得 Review
 =============
-
-期初考完的那一週，學弟李奇霖跟我說到他對我期初考答題方式感到很驚訝，這讓我對自己的學習成果有所肯定(我還欠一個期初考筆記一定會給，已在工程中)，老師時常在課堂上強調的很多事情，我都很認同，期中有一個問題是我很待改善的，也就是你的實力有沒有辦法解決問題的能力？jserv 說如果你說你會 C 語言，但是一點『工程強度』都沒有，你就等於是不會，最直接體驗到這兩點是在期中報告時老師提點到應該要深入去 trace code 與思考為什麼要這樣設計程式，我覺得分析和思考設計方法很有趣。
-
-我得承認有點虎頭蛇尾，但我不想讓我來成大的這十幾次車票浪費，因此即便期中後沒有像期中前投入那麼多的時間，我卻也是盡量設定好目標並持續學習，我未來會繼續研讀 FreeRTOS、STM32F4、ARM-CM4，持續更新 wiki 資料與 GitHub 實驗，畢竟這是相較於 Linux、Windows、Minix 等作業系統來說，我已經有投入時間並且相較起來 kernel 較小的 RTOS，雖然跌跌撞撞，但持續前進。
+這是我第一次修jserv老師的課，當初就是因為大家說這堂課很硬、能學到很多東西就來了，因為我想成為一個比較有競爭力的工程師。首先，這門課給我最大的啟發就是:"發現我自己原來爛的一蹋糊塗"，我覺得這對我而言是很有意義的，因為這能使我更踏實的成長。而本學期的課程主要著重於效能上的提升，這使我們必須更熟悉各種工具的應用來分析出效能瓶頸。不只這些，當一個作業下來，所要查的東西是看也看不完的，更讓我體會到自己離這個資訊世界還非常遙遠，最後，我很慶幸有來修這門課，雖然通過這門課我學會的知識
+可能只是全部的冰山一角，但確實讓我成長不少。
