@@ -75,6 +75,32 @@ tail call optimization 指的是一個函數裡的最後一個動作是回傳另
 幾例來說: return funcB(i - 1); 就是一個 TCO ，而 return 5 * funcA(i - 1); 則不是。
 其好處是，TOC是函數的最後一步操作，所以不需要保留外層函數的使用記錄，因為回傳位址與其內部變數等資訊都不會再用到了，只要直接用內層函數的使用記錄，取代外層函數的使用記錄就可以了。
 
+考慮測試 C 編譯器 (TCO) 能力的程式 [tco-test](https://github.com/Sisker1111/tco-test)，在 gcc-9.3.0 中抑制最佳化 (也就是 -O0 編譯選項) 進行編譯，得到以下執行結果:
+
+```
+$ gcc -Wall -Wextra -Wno-unused-parameter -O0 main.c first.c second.c -o chaining
+$ ./chaining
+No arguments:                                no TCO
+One argument:                                no TCO
+Additional int argument:                     no TCO
+Dropped int argument:                        no TCO
+char return to int:                          no TCO
+int return to char:                          no TCO
+int return to void:                          no TCO
+```
+而在開啟最佳化 (這裡用 -O2 等級) 編譯，會得到以下執行結果:
+
+```
+$ gcc -Wall -Wextra -Wno-unused-parameter -O2 main.c first.c second.c -o chaining
+$ ./chaining
+No arguments:                                TCO
+One argument:                                TCO
+Additional int argument:                     TCO
+Dropped int argument:                        TCO
+char return to int:                          no TCO
+int return to char:                          no TCO
+int return to void:                          TCO
+```
 (q). 知道傅立葉分析在通訊領域的應用嗎？舉例說明
 Ans:
 傅立葉轉換就是要將一個時域訊號，轉換到頻域上去。不管這個訊號是以時域的方式表現(波形, waveform)，還是以頻域的方式表現出來(頻譜, spectrum)，指的都是同一個訊號.
