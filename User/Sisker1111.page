@@ -88,8 +88,7 @@ Ans: 可以用 min(__builtin_ctz(u), __builtin_ctz(v)) 找出可以同時將兩�
 Ans: Bloom filter可以讓我們快速查找一個元素是否在一個集合裡面，因為程式會將輸入的 Key value 通過多個 hash function 轉換到所對應的 Table 上做紀錄，查詢時只要確定這 K 個 hash 後取得的值都是 1 即可確定該元素存在集合中，缺點是 Bloom filter 會有 false positive(因為有可能多個 Key hash 到一樣的值)以及無法 Delete 的問題.
 
 (v). 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
-Ans.1:Float point number、pointer 操作。
-Ans.2:我原本覺得我自己在這個領域還行，後來發現原來是爛到不行。
+Ans.1:數值系統、pointer 操作、處理器架構等等。
 
 自我評量 (1 ~ 10) Self-assessment
 =================================
