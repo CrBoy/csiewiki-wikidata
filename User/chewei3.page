@@ -35,6 +35,7 @@ categories: User
 9級分。學期剛開始的時候會花時間寫作業，以及研究每周的教材及小考。期中之後將時間花在論文以及其他雜事，花費在這堂課的心力也大幅減少，但是也只能說是自己的決心不夠，儘管如此還是從這堂課中充分認識自己，以及了解自己許多不足之處，所以之後還是會繼續閱讀教材。我心裡給自己的分數是 2 分，但是為了我的學分費，只能給自己 9 分了。
 
 a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+
 因為可能會造成 Overflow:
 x = 2b'1...1, y = 2b'01...1，因此 (x - y < 0) == false，但是 (x < y) == True  
 
@@ -45,8 +46,9 @@ b) 知道 C 語言規格書如何解釋 ptr++ 和 \*ptr++ 行為的差異嗎？
 
 *   ptr++ 是 ptr 加上對應的資料型態大小，\*ptr++ 是將 ptr dereference 後，再做 ptr++
 c) 知道 ```
-void (*signal(int sig, void (*handler)(int))) (int); 
+void (\*signal(int sig, void (\*handler)(int))) (int); 
 ```這樣的宣告該如何解讀嗎？
+
 *    signal is a pointer to a function that takes two parameters:
     *    an int named sig. 
     *    a pointer to a function that takes an int as a parameter named handler
@@ -56,19 +58,23 @@ void (*signal(int sig, void (*handler)(int))) (int);
 d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define
     list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head);
     pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
-從 head->prev 走訪整個 link list，加小括號是因為帶入的 head 有可能是 *ptr 的型態，若沒有加小括號會變成 pos = *head->prev，因為 -> 的 precedence 大於 *，所以會出錯
+
+從 head->prev 走訪整個 link list，加小括號是因為帶入的 head 有可能是 \*ptr 的型態，若沒有加小括號會變成 pos = \*head->prev，因為 -> 的 precedence 大於 \*，所以會出錯
 
 e) 知道從 color space RGBA8888 轉換為 8-bit 灰階的程式如何撰寫，又如何透過 SIMD 進行最佳化嗎？
 
-```c= bw = (uint32_t) (r * 0.299 + g * 0.587 + b * 0.114);```
+```c= bw = (uint32_t) (r \* 0.299 + g \* 0.587 + b \* 0.114);```
 可事先建立表格減少浮點數運算，用 offset 取代bitwise operation
 [參考](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%2Fs%2FrykYKYXjg)
+
 f) 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
 [程式碼參考](https://hackmd.io/aJBnYSM2QLSdc7CgjsoBoQ)
 
 g) 知道 memory misalignment 對程式正確性和效能的影響嗎？
 h) 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？
+
 [參考](https://hackmd.io/KJOz0OfcTmCPtEWS5qM5WQ?view)
+
 i) 知道 C 語言規格書中如何定義 object 的生命週期嗎？能否舉出至少兩相對應的 CVE 呢？
 
 j) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
@@ -86,6 +92,32 @@ TCO:
   call B
   jmp  A
 ```
+gcc 9.3.0 執行 [tco-test](https://github.com/sysprog21/tco-test)
+
+```
+$ gcc -Wall -Wextra -Wno-unused-parameter -O0 main.c first.c second.c -o chaining
+$ ./chaining
+No arguments:                                no TCO
+One argument:                                no TCO
+Additional int argument:                     no TCO
+Dropped int argument:                        no TCO
+char return to int:                          no TCO
+int return to char:                          no TCO
+int return to void:                          no TCO
+```
+開啟最佳化 (-O2)編譯，得到以下執行結果
+```
+$ gcc -Wall -Wextra -Wno-unused-parameter -O2 main.c first.c second.c -o chaining
+$ ./chaining
+No arguments:                                TCO
+One argument:                                TCO
+Additional int argument:                     TCO
+Dropped int argument:                        TCO
+char return to int:                          no TCO
+int return to char:                          no TCO
+int return to void:                          TCO
+```
+
 l) 知道 page fault 嗎？Segmentation fault 的訊息是如何顯示出來，請以 GNU/Linux 為例解說
 m) 知道 fixed point 嗎？相較於 floating point，這樣的機制有何優缺點呢？知道真實世界如何運用嗎？
 n) 知道 Poisson distribution 在本學期的課程主題中，出現在哪？以及為何工程議題需要考慮機率統計，能舉例嗎？
@@ -101,6 +133,7 @@ r) 知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求�
 
 t) 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
 Bloom filter 為一個 n-bits table，將一個元素從 k 個 hash function 獲得的 k 個 table index 設為 1，用於O(1)查找元素是否存在於集合中，因為多個元素可能會共用一個 bit，所以查找存在 false-positive，且無法刪除元素 [程式碼參考](https://github.com/sysprog21/dict/blob/master/bloom.c)
+
 v) 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
 發現自己對於 C 語言的認知還是不夠深入，尤其是 bitwise operation 以及浮點數 
 w) 知道  locality of reference 嗎？請以本學期教材或作業的程式碼，說明 locality 對於 cache 的影響  
