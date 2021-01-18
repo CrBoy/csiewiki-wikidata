@@ -6,6 +6,8 @@ categories: User
 # 簡介
 * 國立成功大學 資訊工程學系 111 級 (2018 ~ 2022)
 
+* 2020 年開源人年會 COSCUP 講者。講題「[KTLS — Linux 核心內部的 TLS 實作]((https://coscup.org/2020/zh-TW/agenda/JGX8JN))」
+
 * GitHub: [`OscarShiang`](https://github.com/OscarShiang)
 * HackMD: [`oscarshiang`](https://hackmd.io/@oscarshiang)
 
@@ -32,6 +34,7 @@ categories: User
 * KTLS: [HackMD](https://hackmd.io/@oscarshiang/linux_ktls)
 
 ## 修課心得
+
 一開始在計畫要上這堂課的時候就發現課程的材料真的很多，估計要花上好幾小時才能完成每個星期的進度，而實際上這學期走過這門課也真的學了不少東西，不管是作圖用的 gnuplot，檢查記憶體使用情況的 valgrind 或是檢查格式的 clang-format，也才發現自己在 HackMD 跟 GitHub 好像也沒有用過很多的功能，頂多就是偶爾打開寫寫投影片，或是把最近寫的作業等等程式碼上傳上去而已。
 
 就如同老師在學期初所講的，這堂課雖然說是 Linux 核心設計，但課程的範圍囊括了資訊系許多必修課與選修課的內容，而且內容不但豐富，也相當的深入。因為我在修這堂課的時候是大二下，在這之前並沒有學習過計算機組織的知識，還好老師已經準備好了許多相關的教材，讓我不至於不知道要怎麼處理這方面的議題，而且在上計算機組織的時候也對 cache, virtual memory 這樣的議題更有認知。
@@ -39,5 +42,47 @@ categories: User
 上這堂課還有另外一項好處，可以知道目前電腦、科技領域的發展脈絡，讓我們在學習核心實作的知識時，也可以了解我們現在所學的這些技能，將來可以用在哪裡，真的是收穫滿滿。
 
 ## 自我評量 (1 ~ 10)
+
 我給自己 8 分
+
 學期初的時候真的是投入的大量的時間和精神在這堂課上，雖然仍有許多的教材還來不及看完，但至少在作業以及隨堂考的部分，我都有盡量做好。到了期末的時候，各科的期末考以及期末 Project 還是讓我有點忙不過來，導致有好幾週的教材到現在還只是看過而已，而沒有真正的看懂。這也表示我還有許多的地方可以繼續努力加油。謝謝老師這一學期以來的指導，老師您辛苦了。
+
+# 2020 進階電腦系統理論與實作 秋季班 自我評量
+## 作業共筆
+
+* lab0-c: [GitHub](https://github.com/OscarShiang/lab0-c) / [HackMD](https://hackmd.io/@oscarshiang/sysprog_lab0-c)
+* render: [GitHub](https://github.com/OscarShiang/raycaster) / [HackMD](https://hackmd.io/@oscarshiang/sysprog_raycaster)
+
+## 測驗共筆
+
+* quiz1: [HackMD](https://hackmd.io/@oscarshiang/sysprog_quiz1)
+* quiz2: [HackMD](https://hackmd.io/@oscarshiang/sysprog_quiz2)
+* quiz3: [HackMD](https://hackmd.io/@oscarshiang/sysprog_quiz3)
+* quiz4: [HackMD](https://hackmd.io/@oscarshiang/sysprog_quiz4)
+* quiz5: [HackMD](https://hackmd.io/@oscarshiang/sysprog_quiz5)
+
+## 期末專題
+
+* ARMMultiTasking: 
+    - [GitHub](https://github.com/DavidSpickett/ARMMultiTasking)
+    - [HackMD](https://hackmd.io/@sysprog/arm-multitasking)
+    - [AMT demos](https://hackmd.io/@oscarshiang/amt_demos)
+
+## 修課心得
+
+這是我第二次修習老師的課，不同於前一個學期圍繞在 Linux 核心周邊的各式議題，這學期的課用更廣泛的視角討論作業系統在實作上的考量以及取捨。在這學期中，我嘗試從硬體設定，註冊 interrupt，開啟載入作業系統後要執行程序，到系統呼叫實作的機制等等面相來學習。
+
+過程中我參與 ARMMultiTasking 專案的開發了，除了瞭解了許多 ARM 硬體架構下的概念與相關設定之外，也學習到了許多作業系統的實作上的細節，像是 message passing 可能會使用到 ring buffer 的結構，context switch 時應該要保存的資訊，或甚至是檢查 stack overflow/underflow 的做法。這些在恐龍書上看不到的細節，但對於開發作業系統來說卻都是相當重要的一環。
+
+除了觀察這些程式碼的運作之外，我也嘗試撰寫相關的技術文件，開始下筆之後才明白老師之前說的：「工程師除了寫程式、改程式之外，也需要具備描述問題現象與現象的能力」這句話。因為這牽涉我們是不是真的有把我們想要描述的議題想懂看懂，並不是胡亂的拼湊就可以。
+
+在這學期間雖然經常碰壁，也謝謝老師過程中的提點。回頭看這段軌跡，真是一段相當充實的時光啊！
+
+## 自我評量 (1 ~ 10)
+
+我給自己 8 分。
+
+雖然很多的材料在上學期已經多少有看過了，但是經過了這學期的洗禮之後依然發現有許多的部分是自己以前沒有注意過的議題，或甚至是之前誤會的部分。
+但是在隨堂測驗的部分因為經過了一學期的磨練，感覺自己在閱讀題目與答題上有了不同的感受，這或許就是成長的感覺吧（？
+
+不過學期末受到各種考試跟 project 的轟炸，導致我在期末 project 的部分還是有許多的缺失與不足，這也表示我接下來還有很多地方可以繼續努力。
