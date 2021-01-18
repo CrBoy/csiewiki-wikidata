@@ -41,11 +41,11 @@ Side projects
 1. 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
 * Res:
 2. 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
-* Res:
+* Res: 
 3. 知道傅立葉分析在通訊領域的應用嗎？舉例說明
-* Res:
+* Res: 可以應用於抗噪耳機，或是去除通話中的噪音。
 4. 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
-* Res:
+* Res: 知道，這學期有實做 key-value database，當中有運用到 Bloom filter。由於資料庫相當龐大，而且取得資料可能需要進行檔案存取，因此引進 Bloom filter 將能大幅降低在資料庫搜尋的時間。
 
 學會的工具
 ------------
