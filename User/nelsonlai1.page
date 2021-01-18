@@ -14,6 +14,31 @@ categories : User
 
 2020 秋季班 心得
 ===
+在選修這堂課之前，早有耳聞這堂課不容易，而第一次上課後更是有深刻的體悟。不過也因為如此，這堂課是我覺得大學以來收穫最多的課之一，經過了前幾周的作業以及小考，學到了以前在上計算機概論時只有概念而沒有實際做過的指標和 linked list，還有透過位元運算寫出看起來很神奇的程式碼，達到很好的效能等內容。我認為這堂課是投注越多心力跟時間就能學到越多東西的一堂課。
+不過可惜的是過了學期中之後，因為事情變多加上期中後會出現的惰性，投注在上面的時間變短了，上課也常常恍神。期末專題的部分也因為題目本身困難加上前面寫的狀況，沒有完成讓我滿意的成果，只能在最後的幾天盡量讓成果多一點。
 
 自我評量(1 ~ 10)
 ===
+我給自己 10 分，因為我需要那個酷酷的分數，雖然我很想這樣講，但為了對得起良心回答一點信件中的問題。
+
+- 知道如何對 linked list 進行 merge sort 嗎？
+
+這題是 lab0 中的 q_sort
+
+- 知道 memory misalignment 對程式正確性和效能的影響嗎？
+
+這題在 [你所不知道的 C 語言：記憶體管理、對齊及硬體特性](https://hackmd.io/@sysprog/c-memory?type=view#data-alignment) 有提到，會造成存取速度降低，連累效能。
+
+- 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？
+
+這題在 [The Aggregate Magic Algorithms](http://aggregate.org/MAGIC/) 中有答案
+
+- 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？
+
+這題在第二周的內容，正好老師不久之前有提過。((n >> 63) ^ n) - (n >> 63)
+
+-  知道如何用 gcc 內建的 __builtin_ctz 改寫 GCD (最大公因數) 求值程式嗎？做了這樣的最佳化，預期在 x86_64 上可省下多少 cycle 呢？
+
+這題是 quiz3 中第四題的延伸問題
+
+另外補充一個 quiz6 第四題的另一個解法，這是我在 youtube 上意外看到的，利用 Floyd's cycle detection (龜兔賽跑) 來解題，因為很有趣於是寫了下來。詳細內容可見[Floyd's cycle detection](https://hackmd.io/@nelsonlai1/SkV2LB7AD)
