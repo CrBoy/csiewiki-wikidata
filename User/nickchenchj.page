@@ -38,7 +38,14 @@ Side projects
 
 題目
 ------------
-
+1. 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+* Res:
+2. 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
+* Res:
+3. 知道傅立葉分析在通訊領域的應用嗎？舉例說明
+* Res:
+4. 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
+* Res:
 
 學會的工具
 ------------
@@ -49,3 +56,4 @@ Git, Perf, Valgrind, Markdown, Makefile, Bash script, gnuplot, etc.
 
 自我評量分數 (1 到 10 級分)
 ------------------------
+
