@@ -1,1 +1,41 @@
-init
+WeiCheng14159(鄭惟)
+------------------
+**簡介:**
+
+- 成功大學 資訊工程研究所(2020~)
+
+**歷年重要作品:**
+
+- 研究
+    - 大學專題 [The performance optimization on TensorFlow framework on Mobile GPU devices using OpenCL](https://drive.google.com/file/d/1oLFb-np2rcLhmWdvOd8N6B1bq_X5md5R/view?usp=sharing) [Github](https://github.com/WeiCheng14159/TensorflowOpenCL-GPU)
+
+- 開放原始碼專案貢獻(正在進行中)
+    - [srv32 Github](https://github.com/kuopinghsu/srv32) 
+        - [Notes](https://hackmd.io/@WeiCheng14159/HkNvemOpD)
+    - [ria-jit Github](https://github.com/ria-jit/ria-jit) 
+        - [Notes](https://hackmd.io/@WeiCheng14159/ryZZBM3tw)
+
+2020秋季班 個人評量
+=======================
+
+(秋季班)作業及筆記
+------------------------
+- [lab0](https://hackmd.io/@WeiCheng14159/HyAa0RTVP)
+- [quiz1](https://hackmd.io/@WeiCheng14159/SJwuvtyHw)
+- [quiz2](https://hackmd.io/@WeiCheng14159/HkesfMvBP)
+- [quiz3](https://hackmd.io/@WeiCheng14159/ByEoxgMIv)
+- [quiz4](https://hackmd.io/@WeiCheng14159/BkiRTKdUP)
+- [Homework5](https://hackmd.io/@WeiCheng14159/BJvtRiF_w)
+- [RISC-V 模擬器 w/ JIT](https://hackmd.io/@WeiCheng14159/ryZZBM3tw)
+
+(秋季班)心得
+------------------------
+這堂課過得非常充實，每一週的測驗題都讓我收穫滿滿。跟很多同學一樣，我也是上了這堂課之後才發現自己原來不會寫C，以前從來不知道要看規格書，殊不知那是使用語言的根本。因為這學期寫作業和測驗遇到很多困難，所以我花了一星期把 CMU CS:APP 的每堂課都聽完，剩下課堂作業還沒完成，作為碩士班學生，我很慚愧看到CMU大學部學生程度還比我好，希望能迎頭趕上。為了更好的了解C語言，我買了C語言的經典教科書"C程式設計語言"，搭配老師上課的教材，我終於比較了解C語言一點點了。
+
+當初選擇 RISC-V 模擬器 w/ JIT 作為專題是因為我大學就上過計算機結構，加上這學期修了老師開在星期二早上的計結，所以對 RISC-V 指令比較有信心，除此之外我也對 JIT 要如何實做很感興趣。殊不知課堂上教的內容跟 RV64 的世界有很大的差距，實際做一個 RISC-V 模擬器是一件很有挑戰性的事情。除了正確性還要兼顧效能，要善用各種 JIT 技巧讓轉譯加速。我最有成就感的貢獻是利用 riscv-compliance test 驗證 ria-jit 實作的正確性。原以為 ria-jit 已經做的很完整，compliance test 應該能毫無玄念地通過。結果出乎我的意料，ria-jit 在使用 DIVW 指令除以零的結果跟預期的結果不同，這個 bug 只有在除以零的狀況下會出現，再次呼應了老師在第一堂課"軟體缺失導致的危害"提到的數值溢位的問題。
+
+這學期因為基礎不好所以花的很多時間在彌補，加上這學期課太多了，沒有完成所有測驗及作業。期末專題也沒有完整的探討 JIT 的細節，覺得還有努力的空間。感謝老師花那多時間準備這豐富的教材。
+
+(秋季班)自我評量分數 (1 到 10 級分)
+---------------------------
+8級分。
