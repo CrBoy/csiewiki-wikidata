@@ -8,6 +8,14 @@ categories: User
 
 ## 2020 秋季班 自我評量
 
+a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+需要考慮 overflow 的狀況，例如在 int32 下 2147483647 - (-1) < 0 ，但是 2147483647 > -1 
+b) 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+在第 40 頁中 *p++ 實際上會被視為 *(p++) ，也就是 *ptr++ 會回傳對 ptr 的取值，然後將 ptr 指向該型態的下個位址；而 ptr++ 則單純回傳 ptr 然後指向該型態的下個位址。
+s) 知道如何實作無失真資料壓縮嗎？你知道有哪些相關演算法？
+1. wiki: 產生輸入資料的統計模型，利用這個統計模型將較常出現的資料用較短的位元序列表示，較不常出現的資料用較長的位元序列表示
+2. Huffman coding, Run-Length coding, Golomb-Rice coding
+
 ### 作業
 
 - lab0: [hackmd](https://hackmd.io/@blueskyson/Syc7wgGBv)
