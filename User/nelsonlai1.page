@@ -1,12 +1,12 @@
 ---
-title : nelsonlai1(賴郁升)
+title : nelsonlai1 (賴郁升)
 categories : User
 ---
 2020 秋季班 作業
 ===
-- Homework 1 : [lab0](https://hackmd.io/@nelsonlai1/2020q3_lab0)/[quiz1](https://hackmd.io/@nelsonlai1/2020q3_quiz1)
+- Homework 1 : [lab0](https://hackmd.io/@nelsonlai1/2020q3_lab0) / [quiz1](https://hackmd.io/@nelsonlai1/2020q3_quiz1)
 - Homework 2 : [quiz2](https://hackmd.io/@nelsonlai1/2020q3_quiz2)
-- Homework 3 : [quiz3](https://hackmd.io/@nelsonlai1/2020q3_quiz3)/[dict](https://hackmd.io/@nelsonlai1/2020q3_dict)
+- Homework 3 : [quiz3](https://hackmd.io/@nelsonlai1/2020q3_quiz3) / [dict](https://hackmd.io/@nelsonlai1/2020q3_dict)
 - Homework 4 : [quiz4](https://hackmd.io/@nelsonlai1/2020q3_quiz4)
 - Homework 5 : [quiz5](https://hackmd.io/@nelsonlai1/2020q3_quiz5)
 - Homework 6 : [quiz6](https://hackmd.io/@nelsonlai1/2020q3_quiz6)
@@ -15,6 +15,7 @@ categories : User
 2020 秋季班 心得
 ===
 在選修這堂課之前，早有耳聞這堂課不容易，而第一次上課後更是有深刻的體悟。不過也因為如此，這堂課是我覺得大學以來收穫最多的課之一，經過了前幾周的作業以及小考，學到了以前在上計算機概論時只有概念而沒有實際做過的指標和 linked list，還有透過位元運算寫出看起來很神奇的程式碼，達到很好的效能等內容。我認為這堂課是投注越多心力跟時間就能學到越多東西的一堂課。
+
 不過可惜的是過了學期中之後，因為事情變多加上期中後會出現的惰性，投注在上面的時間變短了，上課也常常恍神。期末專題的部分也因為題目本身困難加上前面寫的狀況，沒有完成讓我滿意的成果，只能在最後的幾天盡量讓成果多一點。
 
 自我評量(1 ~ 10)
@@ -41,4 +42,4 @@ categories : User
 
 這題是 quiz3 中第四題的延伸問題
 
-另外補充一個 quiz6 第四題的另一個解法，這是我在 youtube 上意外看到的，利用 Floyd's cycle detection (龜兔賽跑) 來解題，因為很有趣於是寫了下來。詳細內容可見[Floyd's cycle detection](https://hackmd.io/@nelsonlai1/SkV2LB7AD)
+另外補充一個 quiz6 第四題的另一個解法，這是我在 youtube 上意外看到的，利用 Floyd's cycle detection (龜兔賽跑) 來解題，因為很有趣於是寫了下來。詳細內容可見 [Floyd's cycle detection](https://hackmd.io/@nelsonlai1/SkV2LB7AD)
