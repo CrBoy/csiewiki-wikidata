@@ -2,13 +2,16 @@ ZhuMon(林郁翔)
 ------------------
 **Information:**
 
-- 成功大學 資訊工程學系109級
+- 成功大學 環境工程系 2016~2017
+- 成功大學 資訊工程系 2017~2020
+- 成功大學 資訊工程所 2020~
 
 Github: https://github.com/ZhuMon
 
 2020 linux 核心設計 春季班 自我評量
-=======================
-作業共筆:
+=================================
+作業共筆
+--------
 
 - lab0-c [hackmd](https://hackmd.io/@ZhuMon/lab0-c)
 
@@ -18,15 +21,41 @@ Github: https://github.com/ZhuMon
 
 - khttpd [hackmd](https://hackmd.io/@ZhuMon/khttpd)
 
-額外共筆：
-
+額外共筆
+--------
 - Create Ubuntu Server on macOS with QEMU [hackmd](https://hackmd.io/@ZhuMon/r1ObVNFQ8)
 
-期末專題：
-
+期末專題
+--------
 - 透過 Netfilter 自動過濾廣告 [hackmd](https://hackmd.io/@ZhuMon/2020q1_final_project)
 
 
 自我評量 (1 ~ 10) Self-assessment
-=================================
+--------------------
 5級分。一開始的確投入很多時間，但是會偷懶不看教材，所以也跳過了許多。後半段時間因為其他科目的繁重，也比較少花心思在上面。
+
+2020 進階電腦系統理論與實作 秋季班 自我評量
+=======================
+
+作業共筆
+----
+
+- quiz1 [hackmd](https://hackmd.io/@ZhuMon/sysprog2020_quiz1)
+
+- quiz2 [hackmd](https://hackmd.io/@ZhuMon/sysprog2020_quiz2)
+
+- dict [hackmd](https://hackmd.io/@ZhuMon/dict)
+
+期末專題
+----
+
+- 透過 Netfilter 自動過濾廣告 [hackmd](https://hackmd.io/@ZhuMon/2020q1_final_project)
+
+期末回顧
+----
+這學期升上研究所，本來以為可以有更多的時間可以好好的修這堂課，但沒想到光是實驗室的事情就消耗了我大量的精力，不得不將這堂課的比重配低。同時，因為 quiz 2 解題的挫敗感，想了很久、看了很多同學的解答，卻還是搞不清楚，而且每次寫解析總會要求自己要寫得明確一點，進而花費大量時間在畫圖、想更好的解釋，導致對於小考作業的不耐煩，更導致對其他作業興致缺缺，沒有去深入研究其他作業。
+
+自我評量 （0~50)
+----
+給自己35分。這學期雖然不是很認真，但是看到一些回顧問題，竟然有些有點印象，因此選擇幾項回答。
+像是 bloom filter 在找尋物件是否存在時，極為方便，使用不同的 hash function 將字串或數字 hash 成多個數字，並且在 array 相對應的 index 上標記，如此一來只要比對 array 的數個 index 便可以確認該字串或數字是否存在，當然只能夠確定一定不存在，不能確定一定存在。而在 data set 夠分散的情況下，bloom filter 的 hash function 發生碰撞的機會越小，bloom filter 則越準確、實用。曾以 bloom filter 作為防火牆紀錄 ip 的方式，能夠確保連線是由內部網路所發出，當連線由外部網路發出，因為該封包的來源 IP 未記錄過，因此便能夠捨棄。
