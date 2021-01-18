@@ -39,9 +39,9 @@ Side projects
 題目
 ------------
 1. 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
-* Res:
+* Res: 如果 x = 1U, y = 2U，則 (x - y < 0) 永遠為 false (overflow)，但 (x < y) 將會是 true。
 2. 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
-* Res: 
+* Res: signal 是一個回傳 pointer to function 的 function，signal 的參數是一個 int 和一個叫做 handler、參數為 int、且回傳型態為 void 的 function。signal 所回傳的 pointer to function 指向參數為 int、回傳型態為 void 的 function。參考: [Understanding typedefs for function pointers in C](https://stackoverflow.com/a/1591492), [cdecl: C gibberish ↔ English](https://cdecl.org/)
 3. 知道傅立葉分析在通訊領域的應用嗎？舉例說明
 * Res: 可以應用於抗噪耳機，或是去除通話中的噪音。
 4. 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
