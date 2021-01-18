@@ -7,13 +7,22 @@ categories: User
 - 成功大學 資訊工程系 111 級 (2018~2022)
 
 ## 2020 秋季班 自我評量
+<<<<<<< edited
+
+### 作業
+=======
 作業
+>>>>>>> 99bceead6b4692cf1b550d8b72c5717420b1e045
 
 - lab0: [hackmd](https://hackmd.io/@blueskyson/Syc7wgGBv)
 - dict: [hackmd](https://hackmd.io/@blueskyson/SJr_5S58D)
 - render: [hackmd](https://hackmd.io/@blueskyson/ByJ6R9Zdw)
 
+<<<<<<< edited
+### 小考
+=======
 小考
+>>>>>>> 99bceead6b4692cf1b550d8b72c5717420b1e045
 
 - quiz1: [hackmd](https://hackmd.io/@blueskyson/BySB2oEBD)
 - quiz2: [hackmd](https://hackmd.io/@blueskyson/B1NLpOvrw)
@@ -21,5 +30,8 @@ categories: User
 - quiz4: [hackmd](https://hackmd.io/@blueskyson/HJiOA7evv)
 - quiz5: [hackmd](https://hackmd.io/@blueskyson/BJOVmRUYv)
 
-期末專題: 以 exp-golomb code 說明 clz ，並改進 x-compressor
+### 期末專題
+
+以 exp-golomb code 說明 clz ，並改進 x-compressor
+
 - [hackmd](https://hackmd.io/@blueskyson/Skh0XRBhw), [exp-golomb code](https://github.com/blueskyson/Exponential-Golomb-coding)
