@@ -25,9 +25,16 @@ categories: User
 + 早上下午的兩堂課共兩個專題，分別是 RISC-V Emulator 的 C-Extension (壓縮指令擴充) 的實做以及類 Leetcode 的系統設計 (?)，目前前者到了 PR 階段，後者就...不好說了。由於希望可以做出一個不單純測量時間及記憶體是用量，更可以在題目上有多變的限制 (branchless 等等) 目前是以 PAPI 進行 CPU Cycle 及 branch 等等詳細資訊的測量，但是進度緩慢。由於是個有興趣的 Topic，同樣它也是個我想再學期結束後繼續進行的 Project。
 + "What The Funny" 還滿不錯的。雖然習慣 "Frick" 啦。
 
+課程作業
+------------------------------
+Lab0 - [GiHub](https://github.com/Uduru0522/lab0-c)
+Quiz1 - [HackMD](https://hackmd.io/@Uduru0522/HJjaFRaND)
+Quiz4 - [HackMD](https://hackmd.io/@Uduru0522/2020q3_Homework4_quiz4)
+Quiz6 - [HackMD](https://hackmd.io/@Uduru0522/sysprog-quiz6)
+
 課後問答
 ------------------------------
-排版習慣問題，寫在[這裡 (HackMD)](https://hackmd.io/@Uduru0522/HyW0QszJu)
+排版習慣問題，寫在[這裡 (HackMD)](https://hackmd.io/@Uduru0522/HyW0QszJu)，預計全部解答
 
 自我評分
 ------------------------------
