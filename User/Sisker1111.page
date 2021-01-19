@@ -70,6 +70,9 @@ Ans: [參考資料](https://hackmd.io/@owlfox/Bkcen7LeL/https%3A%2F%2Fhackmd.io%
 (h). 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？Ans:
 clz: 每次都對 x shift不同的變量來算出首位 1 左邊有幾個 0 [參考資料](https://hackmd.io/@sysprog/c-numerics)，CTZ 可以通過把 x 的每個 Bits 反轉，在實施 CLZ，或者使用 bit-mask 的方式，詳見[hackmd](https://hackmd.io/@Sisker11111111/CLZ_CTZ)。
 
+(i).知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？Ans:
+假設傳進來的數叫 a 先 b = a >> 63，然後 return (a ^ b) - b
+
 (k). 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 來說，什麼樣的遞迴程式可做TCO，又有什麼樣的遞迴程式無法呢？Ans:
 tail call optimization 指的是一個函數裡的最後一個動作是回傳另一個函式的呼叫結果的情形，即最後一步新呼叫的回傳值直接被當成當前函式的回傳結果。
 幾例來說: return funcB(i - 1); 就是一個 TCO ，而 return 5 * funcA(i - 1); 則不是。
