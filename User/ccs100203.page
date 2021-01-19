@@ -1,0 +1,60 @@
+---
+title: ccs100203(洪邵澤)
+categories: User
+...
+
+學歷
+==============================
+- 成功大學 資訊工程系110級(2017-)
+
+聯絡資訊
+==============================
+- email: ``ccs100203@gmail.com``
+- github: ``ccs100203``
+
+2020秋季班 個人評量
+==============================
+
+作業
+------------------------------
+- Homework1
+    - [lab0](https://hackmd.io/@cccccs100203/linux2020-lab0) / [github](https://github.com/ccs100203/lab0-c)
+    - [quiz1](https://hackmd.io/@cccccs100203/linux2020-quiz1)
+- Homework2
+    - [quiz2](https://hackmd.io/@cccccs100203/linux2020-quiz2)
+- Homework3
+    - [quiz3](https://hackmd.io/@cccccs100203/linux2020-quiz3)
+- Homework4
+    - [quiz4](https://hackmd.io/@cccccs100203/linux2020-quiz4)
+- Homework5
+    - [quiz5](https://hackmd.io/@cccccs100203/linux2020-quiz5)
+    - [render](https://hackmd.io/@cccccs100203/linux2020-render) / [github](https://github.com/ccs100203/raycaster)
+- Homework6
+    - [quiz6](https://hackmd.io/@cccccs100203/linux2020-quiz6)
+- Others
+    - [quiz7](https://hackmd.io/@cccccs100203/linux2020-quiz7)
+- Final Project
+    - [rv32emu-next](https://github.com/ccs100203/rv32emu-next)
+
+
+修課心得
+------------------------------
+在剛開始上課時，老師總會告訴我們「不要說你學會 C，要誠實面對自己」。在一開始的幾堂課我就體悟到自己深深的不足，這段時間翻閱了很多 C 語言系列講座的教材，也查閱了一些資料，希望能加強自己對 C 語言的認識，直到現在還是有很多不足的地方，像是物件導向的部分就還沒好好理解。而每次的作業都讓我投入了大量的時間研究，雖然老師這次給的作業量比之前少，但還是非常費工。
+
+老師的授課給了我很多的啟發，很多時候是在傳達自身的經驗與想法，要我們好好思考自己的未來，要成為怎麼樣的人、做怎麼樣的事情。要慶幸世界上有如此多的缺陷，我們這些工程師才有存在的必要。
+
+這堂課最有趣的部份除了老師的笑話之外，應該就是 bitwise 與數值的操作。像是 power of 4, abs, multiplication, popcount, clz 等，各種 mask 的運用讓我時時驚嘆不已。還有之前講授的 XOR linked list，也是第一次知道 linked list 可以這樣子做。在理解其背後原理後我都開心的把他學起來。
+
+這次老師在課堂上講授了很多 Leetcode 的題目，學習靈活運用 GNU extension 幫助解題，但是後面很多 Dynamic Programming 的題目都理解的不好，還要多多練習。而一些實際運用像是 Socket, mmap, gap buffer, epoll 之類的題目都很有趣，我希望能多學一些。
+
+學期末在做 Project 時遭遇了許多困難，老師總會熱心的給予幫助，但是自己的努力還是不足，只做出了計算機結構的期末專題。
+
+課後問答
+------------------------------
+由於篇幅過長與格式問題，附上[課後問答](https://hackmd.io/@cccccs100203/linux2020-self-evaluation)連結。
+
+自我評量 (1~10)
+------------------------------
+
+雖然我認為自己投入了不少時間在這堂課，但顯然還不夠多，我需要再加深自己對課堂議題的理解與認識，很多議題像是並行、scability 到現在還只是了解到皮毛。覺得自己還有很多需要改進的地方，但又想拿到分數，最後決定給自己 ? 分。
+
