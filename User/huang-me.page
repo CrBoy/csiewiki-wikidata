@@ -41,3 +41,47 @@ categories: User
 自我評量分數（1-10級分）
 ===
 8分。學初出以及學期末幾乎所有的時間都獻給了進階電腦系統理論與實作，雖然因為自己本來的能力太差使得每次作業都必須要先花大部分的時間在看懂先備知識，不過我確實的發現自己進步了不少。儘管期中因為其他課有幾個比賽花費了比較少的時間在這堂課上，不過之後寒假一定會把跳過的 Lab 全部補齊。
+
+- 課程回顧問題:
+    - 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ \
+**Ans:** 因為 x - y 的計算有可能 overflow ，不過單純的比較大小就不會有這個問題，進而造成兩個算式在某些值域計算之後的值並不相同。
+    - 知道 Linux 核心 < include/linux/list.h> 裡頭 \
+    ```#define list_for_each_prev(pos, head) 
+             for (pos = (head)->prev; pos != (head); pos = pos->prev) ``` \
+    這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？ \
+**Ans:** 這個巨集的功能是從 list 的尾部往前遞迴，直到探索過所有的 list node 為止。
+之所以需要小括號是因為在 c 語言中 -> 的 precedence 是最高的，然而使用者給予的 head 有可能包含其他的 operator 就可能因此產生錯誤，加上括號即可避免這個問題。
+    - 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
+**Ans:** 將原本的 linked list 切割為兩份，並且分別做 merge sort，再將小 linked list 中的所有 node 依序做比較並且組合成一個新的 linked list。 \
+因為 merge sort 的 worst case 還是可以保持 O(nlogn) 的時間複雜度，因此如果希望可以有比較好的效能表現我們就可以使用 merge sort。另外， merge sort 只需要一份數據即可，只需要對記憶體位置做處理即可，因此不僅時間複雜度低，也不需要複製檔案可以節省記憶體。
+    - 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？ \
+**Ans:** \
+
+    ~~~ {.c }
+    int clz(int x){
+        int n = 32;
+        unsigned y;
+
+        y = x >>16; if (y != 0) { n = n -16; x = y; }
+        y = x >> 8; if (y != 0) { n = n - 8; x = y; }
+        y = x >> 4; if (y != 0) { n = n - 4; x = y; }
+        y = x >> 2; if (y != 0) { n = n - 2; x = y; }
+        y = x >> 1; if (y != 0) return n - 2;
+        return n - x;
+    }
+
+    int ctz(int x) {
+       int n = 0;
+       unsigned y;
+
+       y = x & 0x0000ffff; if (y == 0) { n += 16; x >>= 16; }
+       y = x & 0x000000ff; if (y == 0) { n +=  8; x >>=  8; }
+       y = x & 0x0000000f; if (y == 0) { n +=  4; x >>=  4; }
+       y = x & 0x00000003; if (y == 0) { n +=  2; x >>=  2; }
+       y = x & 0x00000001; if (y == 0) return n + 1;
+       return n;
+    }
+    ~~~                                                        
+
+    - 知道 C 語言編譯器如何做 Tail Call Optimization (TCO) 嗎？以 gcc 來說，什麼樣的遞迴程式可做 TCO ，又有什麼樣的遞迴程式無法呢？ \
+**Ans:** 在 function 最後呼叫自己的 function 可以做 Tail Call Optimization ，如果除了呼叫以外還有做任何其他動作的遞迴程式沒有辦法再做 Tail Call Optimization。
