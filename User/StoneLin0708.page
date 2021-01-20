@@ -27,4 +27,42 @@
 * email jason840708@gmail.com
 
 
+# Homework
+
+----
+
+* [lab0-c](https://hackmd.io/@stonelin/2020q3-lab0-c)
+* [render](https://hackmd.io/@stonelin/2020q3_render)
+* [quiz1](https://hackmd.io/@stonelin/2020q3-quiz1)
+* [quiz2](https://hackmd.io/@stonelin/2020q3-quiz2)
+* [quiz3](https://hackmd.io/@stonelin/2020q3-quiz3)
+* [quiz4](https://hackmd.io/@stonelin/2020q3-quiz4)
+* [quiz5](https://hackmd.io/@stonelin/2020q3_quiz5)
+* [quiz6](https://hackmd.io/@stonelin/2020q3-quiz6)
+
+# Test
+
+a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+    x - y 可能會涉及有號無號數型態，以及overflow的問題，導致兩式不等價
+
+m) 知道 fixed point 嗎？相較於 floating point，這樣的機制有何優缺點呢？知道真實世界如何運用嗎？
+   fixed point 可節省記憶體和計算資源，在數值範圍落差較小的問題或是資源有限的微型處理器上可以運用，缺點是數值表達範圍預先被限制，精度也可能下降。
+
+v) 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
+   軟體缺失造成各種毀滅性影響的嚴重性，系統驗證需要耗費的資源以及必要性是以前沒有想過的。
+
+# 心得和自我評分
+
+----
+
+幾年前在ptt上時常看到老師的發文，了解到自己還有非常多不懂的地方，想不到有天會能親自參與課程。
+課程安排非常緊湊，當時看到老師沿用CMU教材還鬆了口氣，以為自己因為考試看過一遍已經了解不少，
+想不到其實那只是教材的一部分，老師的延伸題目，作業內容都相當多樣兒且具有深度，這樣的安排讓我在跟上課程和作業上很吃力，
+期初花比較多時間，隨著其他課程以及實驗室安排漸漸分身乏術，所以比較選擇性的完成作業，
+自己的目標改設定成了解資訊產業以及培養對電腦裡面各種陷阱的警覺心和知識。
+
+給自己努力程度3分，課程完成度2分，沒退選的勇氣1分，再多1分讓老師不要太難打分數
+
+總計**7**分，謝謝老師指導
+
 2020
