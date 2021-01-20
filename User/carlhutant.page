@@ -1,11 +1,24 @@
-carlhutant(徐偉峰)
-簡介:成大人工智慧科技碩士學位學程 碩一
-作業:lab0:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/B1wAdbXrD
-     quiz1:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ByqVmcDVD
-     quiz2:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ryOW1udBP
-     quiz3:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ryFJF17Uw
-     quiz4:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/SyMAJ41wP
-     quiz5:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/H1NnBEUFP
-     quiz6:https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/rkFydN8tv
-心得:
-    
+#carlhutant(徐偉峰)
+##學歷
+- 國立交通大學 資訊工程學士(2015~2019)
+- 國立成功大學 人工智慧科技碩士學位學程(2020~)
+
+##聯絡
+- email : `carlhutant@gmail.com`
+
+- GitHub : `carlhutant`
+##作業
+- [lab0](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/B1wAdbXrD)
+- [quiz1](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ByqVmcDVD)
+- [quiz2](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ryOW1udBP)
+- [quiz3](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/ryFJF17Uw)
+- [quiz4](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/SyMAJ41wP)
+- [quiz5](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/H1NnBEUFP)
+- [quiz6](https://hackmd.io/@_S0qePpJR3KdeNNCSCYtrg/rkFydN8tv)
+
+##心得
+過去課程學到的知識，對於程式效能的改進專注在複雜度的改良，這門課讓我從新的角度來看待這件事，考慮進不同的硬體架構，善用支援的指令集，靈活的使用 bitwise 操作來達到目標
+另外也讓我了解自己與優秀的學生的差距，過去一直很納悶他們是如何學習課本外的技術，現在才了解到有許多的文章網頁可以利用
+
+##自我評量分數 (1 到 10 級分)
+10級分。我了解到自己最大的問題在於投入時間不足，我需要花更多時間閱讀規格書、教學筆記，更重要的是要動手實作並分析成果。
