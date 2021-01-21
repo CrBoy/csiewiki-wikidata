@@ -1,0 +1,53 @@
+---
+title: ddj5523fa(王登立)
+categories: User
+---
+
+學歷
+================
+- 臺灣師範大學 資訊工程學系 （2015-2019)
+- 成功大學 資訊工程研究所 （2020-)
+
+聯絡資訊
+================
+- email: ``ddj5523fa@gmail.com``
+- github: [ddj5523fa](https://github.com/ddj5523fa)
+
+2020 秋季班 個人評量
+================
+
+作業及筆記
+-----------------------
+-GitHub(包含quiz2 3 4)
+    * [quiz](https://github.com/ddj5523fa/Homework-quiz-)
+- Homework2 
+    * [開發紀錄(quiz2)](https://hackmd.io/@oNSi9vXoTV2RugiGWyCY6A/ddj5523fa)
+- Homework3 
+    * [開發紀錄(quiz3)](https://hackmd.io/@oNSi9vXoTV2RugiGWyCY6A/BJhvFIYUv)
+- Homework4 
+    * [開發紀錄(quiz4)](https://hackmd.io/rO0YgCbERy-SysopfaZsLg)
+-期末
+    * [開發紀錄](https://hackmd.io/@oNSi9vXoTV2RugiGWyCY6A/rkh0gDWkd)
+    * 期末GitHub連結在開發紀錄中。
+心得
+-----------------------
+- 這堂課程無論是內容量、或是老師上課時有時提到的經驗談都是讓我覺得我非常迫切需要重新審視自己對上研究所課程的態度。剛進來時或許我因為想趕緊修完學分，選了不少課；但是現在我想，還是應該真正盡力去學到東西、有興趣的、亦或是培養出興趣，總之，宜精不宜多。也需要每一次好好規劃好時間才行，這學期真的過得很忙亂。
+
+問題回答
+-----------------------
+- 1.知道 x - y < 0 敘述為何不能寫為 x < y 嗎？
+    - 沒有說明的情況下，用32 bits 表示 int 並將 y 用 INT_MIN 代入，-y 跟 y 的 bit representation 相同，因此 x - y 相當於 x + y ，將 x 用 1 代入，會得到 x - y = x + y < 0, 但 x > y。   =>(CS:APP 第 2 章) 
+
+- 2.知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
+    - 若要求 abs(x)，令 tmp = x >> 63 ，return (x^tmp)-tmp。
+- 3.知道 fixed point 嗎？相較於 floating point，這樣的機制有何優缺點呢？知道真實世界如何運用嗎？
+    - fixed point number 是定點數=>用固定位數表示小數點後的值。 fixed point number 可以視為整數，因此可以在沒有 FPU 的處理器上執行。由於是使用固定位數表示精度，因此遇到某些函數在邊界會無法正確表示數值。EX : 三角函數 tan X 。
+- 4. 知道 C 語言規格書中如何定義 object 的生命週期嗎？能否舉出至少兩相對應的 CVE 呢？
+    - 區域變數:起始於變數宣告，結束於宣告敘述所在的區塊的大右括號；
+    - 全域變數:在程式執行到程式結束期間都會暫用記憶體
+    - 靜態變數:在程式執行到程式結束期間都會暫用記憶體。
+    -CVE-2019-5786、
+
+自我評量分數 (1 到 10 級分）
+-----------------------
+-  10 級；課程上東西實在很多，課程結束卻還有不少youtube可以回顧還能持續在學習與釐清，所以內容卻是還沒結束的。
