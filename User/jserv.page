@@ -31,11 +31,12 @@ categories: User
 - [Kaffe Virtual Machine](http://www.kaffe.org/)
 - [GCC](http://gcc.gnu.org/) / GCJ (GCC for Java)
 - [LXDE](http://lxde.org/)
+- [SSE2NEON](https://github.com/DLTcollab/sse2neon)
 
 課程和講座資訊
 ============
 - [演講行程和公告](https://github.com/jserv/talks)
-- 「[進階電腦系統理論與實作](/sysprog/schedule)」課程 (成功大學; 2016-)
+- 「[進階電腦系統理論與實作](/sysprog/schedule)」課程 (成功大學; 2016-2020)
 - 「[計算機結構](/arch/schedule)」課程 (成功大學; 2019-)
 - 「[Linux 核心設計](http://wiki.csie.ncku.edu.tw/linux/schedule)」 (成功大學; 2019-)
 - 「[Linux 核心設計](https://beta.hackfoldr.org/linux)」系列講座 (線上)
