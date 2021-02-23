@@ -27,8 +27,16 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     - [解讀計算機編碼](https://hackmd.io/@sysprog/rylUqXLsm)
         * 人們對數學的加減運算可輕易在腦中辨識符號並理解其結果，但電腦做任何事都受限於實體資料儲存及操作方式，換言之，電腦硬體實際只認得 0 和 1，卻不知道符號 + 和 - 在數學及應用場域的意義，於是工程人員引入「補數」以表達人們認知上的正負數
         * 您有沒有想過，為何「二補數」(2’s complement) 被電腦廣泛採用呢？背後的設計考量是什麼？本文嘗試從數學觀點去解讀編碼背後的原理
-    - [你所不知道的C語言：指標篇](https://hackmd.io/@sysprog/c-pointer)
-    - [linked list 和非連續記憶體操作](https://hackmd.io/s/SkE33UTHf)`*` / [linked list 題目分析](https://hackmd.io/s/HyELy5bTz)`*`
+    - [你所不知道的 C 語言：指標篇](https://hackmd.io/@sysprog/c-pointer)`*`
+    - [linked list 和非連續記憶體操作](https://hackmd.io/@sysprog/c-linked-list)`*`
+        * 安排 linked list 作為第一份作業及隨堂測驗的考量點:
+            + 檢驗學員對於 C 語言指標操作的熟悉程度 (附帶思考：對於 Java 程式語言來說，該如何實作 linked list 呢？)
+            + linked list 本質上就是對非連續記憶體的操作，乍看僅是一種單純的資料結構，但對應的演算法變化多端，像是「如何偵測 linked list 是否存在環狀結構？」和「如何對 linked list 排序並確保空間複雜度為 O(1) 呢？」
+            + linked list 的操作，例如走訪 (traverse) 所有節點，反映出 Locality of reference (cache 用語) 的表現和記憶體階層架構 (memory hierarchy) 高度相關，學員很容易從實驗得知系統的行為，從而思考其衝擊和效能改進方案
+            + 無論是作業系統核心、C 語言函式庫內部、應用程式框架，到應用程式，都不難見到 linked list 的身影，包含多種針對效能和安全議題所做的 linked list 變形，又還要考慮到應用程式的泛用性 (generic programming)，是很好的進階題材
+        * [題目 1 + 分析](https://hackmd.io/@sysprog/linked-list-quiz)`*`
+        * [題目2](https://hackmd.io/@sysprog/linux2020-quiz1) (內含作答表單) / [參考題解1](https://hackmd.io/@Ryspon/HJVH8B0XU), [參考題解2](https://hackmd.io/@chses9440611/Sy5gwE37I)
+
     - [作業](https://hackmd.io/@sysprog/linux2021-homework1): 3 月 7 日截止繳交
         * [lab0](https://hackmd.io/@sysprog/linux2021-lab0)
         * quiz1
