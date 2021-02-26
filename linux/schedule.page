@@ -46,6 +46,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     - [課堂問答簡記](https://hackmd.io/@sysprog/rk9fG7zG_)
 
 * 第 2 週 (Mar 2): C 語言程式設計
+    * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
     * [系統軟體開發思維](https://hackmd.io/s/B1KnHcwBN)
     - [C 語言: 數值系統](https://hackmd.io/@sysprog/c-numerics)`*`
         - 儘管數值系統並非 C 語言所特有，但在 Linux 核心大量存在 u8/u16/u32/u64 這樣透過 typedef 所定義的型態，伴隨著各式 alignment 存取，若學員對數值系統的認知不夠充分，可能立即就被阻擋在探索 Linux 核心之外 —— 畢竟你完全搞不清楚，為何在 Linux 核心存取特定資料需要繞一大圈。
@@ -64,10 +65,9 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         * 探討 heap (動態配置產生，系統會存放在另外一塊空間)、data alignment，和 malloc 實作機制等議題。這些都是理解 Linux 核心運作的關鍵概念。
     * [C 語言: bit-field](https://hackmd.io/s/SJ8y82ZYQ)
         - bit field 是 C 語言一個很被忽略的特徵，但在 Linux 和 gcc 這類系統軟體很常出現，不僅是精準規範每個 bit 的作用，甚至用來「擴充」C 語言
-    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單) (此次不計分，熱身用)
+    * Week2 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz2) (內含作答表單)
 
 * 第 3 週 (Mar 9): C 語言程式設計
-    * [Linux: 作業系統術語及概念](https://hackmd.io/@sysprog/linux-concepts)`*`
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
