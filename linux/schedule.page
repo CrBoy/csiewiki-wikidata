@@ -73,7 +73,8 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     - 第 2 週隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz2) (內含作答表單)
     - [課堂問答簡記](https://hackmd.io/@sysprog/rk9fG7zG_)
 
-* 第 3 週 (Mar 9): C 語言程式設計
+* 第 3 週 (Mar 9): 並行和 C 語言程式設計
+    * [並行和多執行緒程式設計](https://hackmd.io/@sysprog/concurrency/)`*`: 應涵蓋 Part 1 到 Part 4
     * [C 語言: 函式呼叫](https://hackmd.io/s/SJ6hRj-zg)`*`
         - 著重在計算機架構對應的支援和行為分析
     * [C 語言: 遞迴呼叫](https://hackmd.io/s/rJ8BOjGGl)`*`
