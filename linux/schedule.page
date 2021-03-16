@@ -114,6 +114,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [作業](https://hackmd.io/@sysprog/linux2021-homework4): 4 月 5 日截止繳交
         * ?
     * Week4 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz4) (內含作答表單)
+    - [課堂問答簡記](https://hackmd.io/@sysprog/rk9fG7zG_)
 
 * 第 5 週 (Mar 23): 作業回顧 + code review
     * [Linux: 不僅是個執行單元的 Process](https://hackmd.io/s/r1ojuBGgE)`*`: Linux 核心對於 UNIX Process 的實作相當複雜，不僅蘊含歷史意義 (幾乎每個欄位都值得講古)，更是反映出資訊科技產業的變遷，核心程式碼的 `task_struct` 結構體更是一絕，廣泛涵蓋 process 狀態、處理器、檔案系統、signal 處理、底層追蹤機制等等資訊，更甚者，還很曖昧地保存著 thread 的必要欄位，好似這兩者天生就脫不了干係
