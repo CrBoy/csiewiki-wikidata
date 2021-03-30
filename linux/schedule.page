@@ -128,14 +128,16 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
 
 * 第 6 週 (Mar 30): Linux Process
+    * [Linux: 不只挑選任務的排程器](https://hackmd.io/s/rJbcHS5LE)`*`: 排程器 (scheduler) 是任何一個多工作業系統核心都具備的機制，但彼此落差極大，考量點不僅是演算法，還有當應用規模提昇時 (所謂的 scalability) 和涉及即時處理之際，會招致不可預知的狀況 (non-determinism)，不僅即時系統在意，任何建構在 Linux 核心之上的大型服務都會深受衝擊。是此，Linux 核心的排程器經歷多次變革，需要留意的是，排程的難度不在於挑選下一個可執行的行程 (process)，而是讓執行完的行程得以安插到合適的位置，使得 runqueue 依然依據符合預期的順序。
+    * [作業](https://hackmd.io/@sysprog/linux2021-homework6): 4 月 10 日截止繳交
+
+* 第 7 週 (Apr 6): 處理器架構和並行處理
     * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)`*`: 動態追蹤技術（dynamic tracing）是現代軟體的進階除錯和追蹤機制，讓工程師以非常低的成本，在非常短的時間內，克服一些不是顯而易見的問題。它興起和繁榮的一個大背景是，我們正處在一個快速增長的網路互連異質運算環境，工程人員面臨著兩大方面的挑戰：
         - 規模：無論是使用者規模還是機房的規模、機器的數量都處於快速增長的時代;
         - 複雜度：業務邏輯越來越複雜，運作的軟體也變得越來越複雜，我們知道它會分成很多很多層次，包括作業系統核心和其上各種系統軟體，像資料庫和網頁伺服器，再往上有腳本語言或者其他高階語言的虛擬機器或執行環境，更上面是應用層面的各種業務邏輯的抽象層次和很多複雜的程式邏輯。
     * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
     * [作業](https://hackmd.io/@sysprog/linux2020-homework4)
         - [kcalc](https://hackmd.io/@sysprog/linux2020-kcalc), [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
-
-* 第 7 週 (Apr 6): 處理器架構和並行處理
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * CS:APP 第 12 章
         - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)`*`
