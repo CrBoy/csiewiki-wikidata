@@ -134,45 +134,34 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week6 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz6) (內含作答表單)
     - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
 
-* 第 7 週 (Apr 6): 處理器架構和並行處理
+* 第 7 週 (Apr 6): 並行和多執行緒
+    * [並行和多執行緒程式設計](https://hackmd.io/@sysprog/concurrency/)`*`: 應涵蓋 Part 5 到 Part 7
     * [Linux: 透過 eBPF 觀察作業系統行為](https://hackmd.io/s/SJTuuG9a7)`*`: 動態追蹤技術（dynamic tracing）是現代軟體的進階除錯和追蹤機制，讓工程師以非常低的成本，在非常短的時間內，克服一些不是顯而易見的問題。它興起和繁榮的一個大背景是，我們正處在一個快速增長的網路互連異質運算環境，工程人員面臨著兩大方面的挑戰：
         - 規模：無論是使用者規模還是機房的規模、機器的數量都處於快速增長的時代;
         - 複雜度：業務邏輯越來越複雜，運作的軟體也變得越來越複雜，我們知道它會分成很多很多層次，包括作業系統核心和其上各種系統軟體，像資料庫和網頁伺服器，再往上有腳本語言或者其他高階語言的虛擬機器或執行環境，更上面是應用層面的各種業務邏輯的抽象層次和很多複雜的程式邏輯。
-    * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
-    * [作業](https://hackmd.io/@sysprog/linux2020-homework4)
-        - [kcalc](https://hackmd.io/@sysprog/linux2020-kcalc), [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
-    * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * CS:APP 第 12 章
         - [Concurrency](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/24-concprog.pdf) / [錄影](https://youtu.be/UgODVfi689c)`*`
         - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)`*`
         - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)`*`
         - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)`*`
-    * [Concurrent Programming (並行程式設計)](https://hackmd.io/s/Skh_AaVix)`*`
+    * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)`*`
+
+* 第 8 週 (Apr 13): 處理器架構和並行處理, 執行緒實作機制, timer 和 signal
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)`*`
-        * [Toward a Better Use of C11 Atomics: Part 1](https://developers.redhat.com/blog/2016/01/14/toward-a-better-use-of-c11-atomics-part-1/), [Part 2](https://developers.redhat.com/blog/2016/01/19/toward-a-better-use-of-c11-atomics-part-2/)
-        + [Part 1: Mutex Locks](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-1:-Mutex-Locks)
-        + [Part 2: Counting Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-2:-Counting-Semaphores)
-        + [Part 3: Working with Mutexes And Semaphores](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-3:-Working-with-Mutexes-And-Semaphores)
-        + [Part 4: The Critical Section Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-4:-The-Critical-Section-Problem)
-        + [Part 5: Condition Variables](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-5:-Condition-Variables)
-        + [Part 6: Implementing a barrier](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-6:-Implementing-a-barrier)
-        + [Part 7: The Reader Writer Problem](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-7:-The-Reader-Writer-Problem)
-        + [Part 8: Ring Buffer Example](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example)
-        + [Part 9: Synchronization Across Processes](https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-9:-Synchronization-Across-Processes)
     * [作業](https://hackmd.io/@sysprog/linux2020-homework5)
         - [kecho](https://hackmd.io/@sysprog/linux2020-kecho)
     * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz7) (內含作答表單)
-
-* 第 8 週 (Apr 13): 執行緒實作機制, timer 和 signal
+    * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
+    * [作業](https://hackmd.io/@sysprog/linux2020-homework4)
+        - [kcalc](https://hackmd.io/@sysprog/linux2020-kcalc), [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
+    * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * [User-level threads](http://pdxplumbers.osuosl.org/2013/ocw//system/presentations/1653/original/LPC%20-%20User%20Threading.pdf) / [錄影](https://youtu.be/KXuZi9aeGTw)`*`
         - [Some quick notes on threading models](https://code.lardcave.net/2016/12/15/1/), [Implementation of FlexSC on Linux Kernel v5.0+ and Performance Analysis](https://github.com/foxhoundsk/FlexSC)
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/linux-timer)`*`
     * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)`*`
-    * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * [User-Level Thread Library](https://www.hacks.moe/posts/1/A_BareBones_UserLevel_Thread_Library) / [threads](https://github.com/kissen/threads)
-    * [建構 User-Mode Linux 的實驗環境](https://hackmd.io/@sysprog/user-mode-linux-env)`*`
     * [作業](https://hackmd.io/@sysprog/linux2020-homework6)
         - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd), [fiber](https://hackmd.io/@sysprog/linux2020-fiber)
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz8) (內含作答表單)
