@@ -164,7 +164,11 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week8 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz8) (內含作答表單)
     - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
 
-* 第 9 週 (Apr 20): 組合語言 + 微處理器 + 虛擬記憶體
+* 第 9 週 (Apr 20): 作業和隨堂測驗回顧
+    * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz9) (內含作答表單)
+    - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
+
+* 第 10 週 (Apr 27): 虛擬記憶體 + I/O + 例外處理
     * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`: 閱讀 Linux 核心原始程式碼的過程，我們無可避免會面對各式硬體架構的組合語言程式碼，至少應有基本認知，本課程採用 CS:APP 第 3 章的材料
     * [Arm 處理器](https://beta.hackfoldr.org/arm/)`*`: 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
         - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
@@ -180,9 +184,6 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
     * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device): 整理中
-    * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz9) (內含作答表單)
-
-* 第 10 週 (Apr 27): 虛擬記憶體 + I/O + 例外處理
     * [以 sendfile 和 splice 系統呼叫達到 Zero-Copy](https://hackmd.io/@sysprog/linux2020-zerocopy)
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
