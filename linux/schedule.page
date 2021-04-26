@@ -178,9 +178,6 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
     * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device)
     * [以 sendfile 和 splice 系統呼叫達到 Zero-Copy](https://hackmd.io/@sysprog/linux2020-zerocopy)
-    * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
-    * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
-    * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
     * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz10) (內含作答表單)
 
 * 第 11 週 (May 4): 共享記憶體 + 系統呼叫 + 資料結構
