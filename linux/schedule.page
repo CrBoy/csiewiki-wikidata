@@ -168,33 +168,24 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week9 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz9) (內含作答表單)
     - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
 
-* 第 10 週 (Apr 27): 虛擬記憶體 + I/O + 例外處理
-    * [CS:APP 第 3 章重點提示和練習](https://hackmd.io/s/HJDRfVCFG)`*`: 閱讀 Linux 核心原始程式碼的過程，我們無可避免會面對各式硬體架構的組合語言程式碼，至少應有基本認知，本課程採用 CS:APP 第 3 章的材料
-    * [Arm 處理器](https://beta.hackfoldr.org/arm/)`*`: 系列講座導論, 架構和指令集, 基礎指令和開發環境, 虛擬化技術和應用
-        - 你可曾想過，就算選修了電機資訊相關科系大部份的課程，自己仍對每天用的手機，完全沒概念，是不是很沮喪呢？裡頭運作 ARM 處理器，但你知道裡面的 CPU pipeline 如何運作？裡頭的 cache 如何運作？四核心、八核心到底又如何運作？CPU 和 GPU 之間如何通訊？
-        - 系列講座預計涵蓋 ARMv7-A/M, ARMv8-A/M, virtualization extension, 以及對應的系統軟體技術，像是 big.LITTLE, hypervisor, 和 TEE 的概念介紹
-    * 為何要掌握數學？
-        - 即使 Linux 核心內部也大量可見: [從 CPU cache coherence 談 Linux spinlock 可擴展能力議題](https://hackmd.io/@sysprog/linux-spinlock-scalability)
-        - [隱藏在字典裡的數學](https://hackmd.io/s/BkE3uSvdN)
-        - Linux: [Add Policy Engine Algorithmic Bloom Filter Entries Register](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=418089a850c751ada5e3535d0e71c3312fe3c432)
-    * [圖解傅立葉分析](https://hackmd.io/s/S1M6kQgiZ)
-        - [Linux 核心中 Atheros Communications Inc. 無線網路裝置驅動程式的原始程式碼用到 FFT](https://android.googlesource.com/kernel/msm.git/+/android-msm-angler-3.10-marshmallow-dr/drivers/net/wireless/ath/ath9k/ani.c)
+* 第 10 週 (Apr 27): 記憶體管理
+    * 公告: [Linux 核心設計課程期末專題](https://hackmd.io/@sysprog/linux2021-projects)
+        - 選課的學生: 若沒有出現你的 GitHub 帳號，請[聯繫授課教師](https://www.facebook.com/JservFans)
+        - 旁聽的學生: 只要你有決心投入 (至少到五月底)，也歡迎挑戰這些題目，進行前請[聯繫授課教師](https://www.facebook.com/JservFans)
     * [CS:APP 第 6 章重點提示](https://hackmd.io/s/H1vQ3vu2z)`*`
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
-    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device): 整理中
+    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device)
     * [以 sendfile 和 splice 系統呼叫達到 Zero-Copy](https://hackmd.io/@sysprog/linux2020-zerocopy)
     * [CPU caches](https://lwn.net/Articles/252125/) by Ulrich Drepper
     * [CS:APP 第 9 章重點提示](https://hackmd.io/s/SkCLi8YgN)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
-    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
-    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
-    * [Linux: 中斷處理和現代架構考量](https://hackmd.io/s/S1WKTCFM4)`*`
-    * [Learn where some of the network sysctl variables fit into the Linux/Kernel network flow](https://github.com/leandromoreira/linux-network-performance-parameters)
-    * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz10) (內含作答表單)
+    * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz10) (內含作答表單)
 
 * 第 11 週 (May 4): 共享記憶體 + 系統呼叫 + 資料結構
+    * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
+    * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
     * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
     * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)`*`
     * [Linux: 記憶體管理](https://hackmd.io/s/rJBXOchtE)`*`
