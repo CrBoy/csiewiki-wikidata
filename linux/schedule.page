@@ -202,24 +202,13 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Object-oriented design patterns in the kernel, part 1](https://lwn.net/Articles/444910/) / [Object-oriented design patterns in the kernel, part 2](https://lwn.net/Articles/446317/)
     * [C 語言: Stream I/O, EOF 和例外處理](https://hackmd.io/s/Sy8pJ0x9G)`*`
     * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
+    * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz12) (內含作答表單)
+
+* 第 13 週 (May 18): 最佳化 + 裝置驅動程式模型
     * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)`*`
     * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
-    * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz12) (內含作答表單)
-
-* 第 13 週 (May 18): 最佳化 + 安全和正確性 + 裝置驅動程式模型
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
-    * [Making C Less Dangerous in the Linux Kernel](https://outflux.net/slides/2019/lca/danger.pdf) / [錄影](https://www.youtube.com/watch?v=FY9SbqTO5GQ)`*`
-        - Linux 核心中各式 C 語言程式設計的安全和正確議題
-        - Variable Length Arrays are bad and slow
-        - Explicit switch case fall-through
-        - Always-initialized automatic variables
-        - Arithmetic overflow detection
-        - Hope for bounds checking
-        - Control Flow Integrity: forward edges
-        - Control Flow Integrity: backward edges
-        - 也提供了 gcc/clang 相關的編譯參數
-        - [解說1](https://news.ycombinator.com/item?id=19006025), [解說2](https://www.reddit.com/r/linux/comments/ajztr3/making_c_less_dangerous_in_the_linux_kernel_by/)
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74)`*` by [Greg Kroah-Hartman](https://github.com/gregkh)
     * [How to avoid writing device drivers for embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)`*`
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)`*`
