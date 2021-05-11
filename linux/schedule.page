@@ -179,13 +179,8 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week10 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz10) (內含作答表單)
     - [課堂問答簡記](https://hackmd.io/@sysprog/HJeFPfP4u)
 
-* 第 11 週 (May 4): 記憶體管理 + 系統呼叫 + 資料結構
+* 第 11 週 (May 4): timerfd + 資料結構
     * [透過 timerfd 處理週期性任務](https://hackmd.io/@sysprog/linux-timerfd)
-    * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
-    * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
-    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)`*`
-    * [Linux: 記憶體管理](https://hackmd.io/@sysprog/linux-memory)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
-    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device)
     * [An Introduction to Cache-Oblivious Data Structures](https://rcoh.me/posts/cache-oblivious-datastructures/)
         - 「自動快取資料結構」，特性是無視硬體特定的快取大小，可能達到接近最優化快取的效能;
         - 在現代 CPU 多層多種大小的快取架構下，它的理論宣稱其能自動優化在所有層的快取的存取效率。傳統上電腦科學做偏理論的人不重視實作的效能表現，而實作或硬體優化的從業人員往往不重視理論分析。這個學門卻是橫跨相當理論的演算法分析（需要相當多的進階數學工具），及相當低階的硬體效能理解;
@@ -197,6 +192,11 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week11 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz11) (內含作答表單)
 
 * 第 12 週 (May 11): 共享記憶體 + 同步機制
+    * [POSIX Shared Memory](http://logan.tw/posts/2018/01/07/posix-shared-memory/): 在 Linux 中要實作出共享記憶體 (shared memory) 的機制很多，例如: 1) SysV shared memory; POSIX shared memory; 3) 以 mmap 對檔案進行記憶體映射; 4) 以 memfd_create() 實作跨越行程存取; 本文章探討 POSIX shared memory 的使用，並提供完整應用案例，最後探討相關的同步議題。
+    * [解析 Linux 共享記憶體機制](https://hackmd.io/@sysprog/linux-shared-memory)
+    * [Linux: 賦予應用程式生命的系統呼叫](https://hackmd.io/s/HyNbWoD1V)`*`
+    * [Linux: 記憶體管理](https://hackmd.io/@sysprog/linux-memory)`*`: 記憶體管理是 Linux 核心裡頭最複雜的部分，涉及到對計算機結構、slob/slab/slub 記憶體配置器、行程和執行檔樣貌、虛擬記憶體對應的例外處理、記憶體映射, UMA vs. NUMA 等等議題。
+    * [Linux 核心的 /dev/mem 裝置](https://hackmd.io/@sysprog/linux-mem-device)
     * [以 sendfile 和 splice 系統呼叫達到 Zero-Copy](https://hackmd.io/@sysprog/linux2020-zerocopy)
     * [C 語言: 物件導向程式設計](https://hackmd.io/s/HJLyQaQMl)`*`
     * [Object-oriented design patterns in the kernel, part 1](https://lwn.net/Articles/444910/) / [Object-oriented design patterns in the kernel, part 2](https://lwn.net/Articles/446317/)
