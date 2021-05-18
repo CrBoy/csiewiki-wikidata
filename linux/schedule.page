@@ -204,17 +204,17 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [CS:APP 第 10 章重點提示](https://hackmd.io/s/H1TtmVTTz)`*`
     * Week12 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz12) (內含作答表單)
 
-* 第 13 週 (May 18): 最佳化 + 裝置驅動程式模型
+* 第 13 週 (May 18): 同步機制 + 裝置驅動程式模型
     * [Linux: RCU 同步機制](https://hackmd.io/s/H19V4eyfV)`*`
     * [C11 atomic variables and the kernel](https://lwn.net/Articles/586838/) / [Linux Documentation: Circular Buffers](https://www.kernel.org/doc/Documentation/circular-buffers.txt)
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [Linux: 裝置驅動程式介面和模型](https://github.com/gregkh/presentation-driver-model) / [錄影](https://www.youtube.com/watch?v=AdPxeGHIZ74)`*` by [Greg Kroah-Hartman](https://github.com/gregkh)
     * [How to avoid writing device drivers for embedded Linux](http://2net.co.uk/slides/ew2016-userspace-drivers-slides.pdf) / [錄影](https://www.youtube.com/watch?v=QIO2pJqMxjE)`*`
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)`*`
-    * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz13) (內含作答表單)
+    * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz13) (內含作答表單)
 
 * 第 14 週 (May 25): Linux 核心發展回顧 + 網路封包處理
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
     * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
