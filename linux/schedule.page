@@ -157,7 +157,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Linux: 多核處理器和 spinlock](https://hackmd.io/s/rJbXgzz-4)`*`
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/linux-timer)`*`
     * [Linux: Scalability 議題](https://hackmd.io/@sysprog/linux-scalability)`*`
-    * [作業](https://hackmd.io/@sysprog/linux2021-homework8)
+    * 練習題
         - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd)
         - [kecho](https://hackmd.io/@sysprog/linux2020-kecho)
         - [khttpd](https://hackmd.io/@sysprog/linux2020-khttpd)
