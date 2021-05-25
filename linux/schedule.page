@@ -218,7 +218,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         - 展現 [event-driven, non-blocking I/O Multiplexing](https://hackmd.io/@sysprog/fast-web-server) (主要是 [epoll](https://man7.org/linux/man-pages/man7/epoll.7.html)), shared memory, processor affinity, coroutine, context switch, UNIX signal, [dynamic linking](https://hackmd.io/@sysprog/c-dynamic-linkage), circular buffer, hash table, red-black tree, atomic operations 等議題的實際應用
         - 可視為 [seHTTPd](https://hackmd.io/@sysprog/linux2020-sehttpd) 的後繼改進實作
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
-    * [Memory Externalization With userfaultfd](http://ftp.ntu.edu.tw/pub/linux/kernel/people/andrea/userfaultfd/userfaultfd-LSFMM-2015.pdf) / [錄影](https://youtu.be/pC8cWWRVSPw)`*`
+    * [Memory Externalization With userfaultfd](http://ftp.ntu.edu.tw/pub/linux/kernel/people/andrea/userfaultfd/userfaultfd-LSFMM-2015.pdf) / [錄影](https://youtu.be/pC8cWWRVSPw)`*` / [kernel documentation: userfaults](https://www.kernel.org/doc/html/latest/admin-guide/mm/userfaultfd.html)
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
     * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
     * [PACKET_MMAP](https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt)
