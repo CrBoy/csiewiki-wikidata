@@ -225,7 +225,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         - `PACKET_MMAP` 在核心空間內配置一塊核心緩衝區，一旦使用者層級的應用程式呼叫 mmap 將前述緩衝區映射到使用者層級時，接收到的 skb 會直接在該核心緩衝區，從而讓應用程式得以直接捕捉封包
         - 若沒有啟用 `PACKET_MMAP`，就只能使用低效率的 `AF_PACKET`，不但有緩衝區空間的限制，而且每次捕捉封包就要一次系統呼叫。反之，`PACKET_MMAP` 多數時候不需要呼叫系統呼叫，也能實作出 zero-copy
         - [圖解 Linux tcpdump](https://jgsun.github.io/2019/01/21/linux-tcpdump/)
-    * Week14 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz14) (內含作答表單)
+    * Week14 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz14) (內含作答表單)
 
 * 第 15 週 (Jun 1): FD 和 檔案系統
     * 公告:
