@@ -216,6 +216,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [討論區回顧](https://m.facebook.com/groups/system.software2021)
     * **[cserv](https://github.com/sysprog21/cserv)** is an event-driven and non-blocking web server.
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
+    * [Memory Externalization With userfaultfd](http://ftp.ntu.edu.tw/pub/linux/kernel/people/andrea/userfaultfd/userfaultfd-LSFMM-2015.pdf) / [錄影](https://youtu.be/pC8cWWRVSPw)`*`
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
     * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
     * [PACKET_MMAP](https://www.kernel.org/doc/Documentation/networking/packet_mmap.txt)
