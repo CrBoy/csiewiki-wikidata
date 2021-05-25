@@ -144,13 +144,13 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         - [Synchronization: Basic](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/25-sync-basic.pdf) / [錄影](https://youtu.be/SU32c_wSNrs)`*`
         - [Synchronization: Advanced](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/26-sync-advanced.pdf) / [錄影](https://youtu.be/vBoOcVwCZ4U)`*`
         - [Thread-Level Parallelism](https://www.cs.cmu.edu/afs/cs/academic/class/15213-f19/www/lectures/27-parallelism.pdf) / [錄影](https://youtu.be/QIzIK4mFCf8)`*`
-    * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
+    * [高效率 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * [Linux: 淺談同步機制](https://hackmd.io/s/SJpp-bN0m)`*`
     * Week7 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz7) (內含作答表單)
 
 * 第 8 週 (Apr 13): 處理器架構和 Web 伺服器開發
     * [近期 Facebook 討論區回顧](https://m.facebook.com/groups/system.software2021)
-    * [高效能 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
+    * [高效率 Web 伺服器開發](https://hackmd.io/@sysprog/fast-web-server)
     * [in-kernel HTTP server](https://hackmd.io/@sysprog/kernel-web-server)`*`
     * [現代處理器設計：原理和關鍵特徵](https://hackmd.io/s/Hk2CscGcl)`*`
     * [Linux: 中斷處理和現代架構考量](https://hackmd.io/@sysprog/linux-interrupt)`*`
