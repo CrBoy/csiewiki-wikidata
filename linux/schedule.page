@@ -212,7 +212,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)`*`
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz13) (內含作答表單)
 
-* 第 14 週 (May 25): Linux 核心發展回顧 + 網路封包處理
+* 第 14 週 (May 25): 最佳化 + Linux 核心發展回顧 + 網路封包處理
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
