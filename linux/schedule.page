@@ -213,6 +213,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz13) (內含作答表單)
 
 * 第 14 週 (May 25): Linux 核心發展回顧 + 網路封包處理
+    * [討論區回顧](https://m.facebook.com/groups/system.software2021)
     * **[cserv](https://github.com/sysprog21/cserv)** is an event-driven and non-blocking web server.
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
