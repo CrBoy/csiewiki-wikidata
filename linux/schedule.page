@@ -215,6 +215,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
 * 第 14 週 (May 25): Linux 核心發展回顧 + 網路封包處理
     * [討論區回顧](https://m.facebook.com/groups/system.software2021)
     * **[cserv](https://github.com/sysprog21/cserv)** is an event-driven and non-blocking web server.
+        - 展現 event-driven, non-blocking I/O Multiplexing (主要是 epoll), shared memory, processor affinity, coroutine, context switch, UNIX signal, dynamic linking, circular buffer, hash table, red-black tree, atomic operations 等議題的實際應用
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
     * [Memory Externalization With userfaultfd](http://ftp.ntu.edu.tw/pub/linux/kernel/people/andrea/userfaultfd/userfaultfd-LSFMM-2015.pdf) / [錄影](https://youtu.be/pC8cWWRVSPw)`*`
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
