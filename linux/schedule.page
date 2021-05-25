@@ -212,10 +212,8 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Linux: Device Tree](https://events.static.linuxfound.org/sites/events/files/slides/petazzoni-device-tree-dummies.pdf) / [錄影](https://www.youtube.com/watch?v=m_NyYEBxfn8)`*`
     * Week13 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz13) (內含作答表單)
 
-* 第 14 週 (May 25): 最佳化 + Linux 核心發展回顧 + 網路封包處理
-    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
-    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
-    * [cserv](https://github.com/sysprog21/cserv) is an event-driven and non-blocking web server.
+* 第 14 週 (May 25): Linux 核心發展回顧 + 網路封包處理
+    * **[cserv](https://github.com/sysprog21/cserv)** is an event-driven and non-blocking web server.
     * [Linux: 發展動態回顧](https://hackmd.io/@sysprog/linux-dev-review)`*`
     * [How Linux Processes Your Network Packet](https://www.slideshare.net/DevopsCon/how-linux-processes-your-network-packet-elazar-leibovich) / [錄影](https://youtu.be/3Ij0aZRsw9w)`*`
     * [Kernel packet capture technologies](https://www.slideshare.net/ennael/kernel-recipes-2015-kernel-packet-capture-technologies) / [錄影](https://youtu.be/5gEWyCW-qx8)`*`
@@ -227,12 +225,10 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
 
 * 第 15 週 (Jun 1): FD 和 檔案系統
     * 公告:
-        - 即日起到 6 月 30 日中午請每位學員進行 [課程期末專題](https://hackmd.io/@sysprog/linux2020-projects)
-        - 預計 6 月 30 日 15:00，授課教師會繳交學期成績，在這之前都有補救空間
-    * Linux 不成文的設計哲學: "Everything is a file descriptor" - [eventfd](http://man7.org/linux/man-pages/man2/eventfd.2.html), [timerfd](http://man7.org/linux/man-pages/man2/timerfd_settime.2.html), [signalfd](http://man7.org/linux/man-pages/man2/signalfd.2.html)
-        - [透過 timerfd 處理週期性任務](https://hackmd.io/@sysprog/linux-timerfd)
-        - [signalfd is useless](https://ldpreload.com/blog/signalfd-is-useless)
-    * [Linux: 檔案系統和虛擬檔案系統設計](https://hackmd.io/s/BypqEyF6N)`*`
+        - 請學員及早進行 [課程期末專題](https://hackmd.io/@sysprog/linux2021-projects) 並預約一對一討論
+        - 預計 6 月 30 日 12:00，授課教師會繳交學期成績，在這之前都有補救空間
+    * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
+    * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
     * [Drive your NAND within Linux](https://bootlin.com/pub/conferences/2018/elc/raynal-exec-op/raynal-understand-and-drive-your-nand.pdf) / [錄影](https://www.youtube.com/watch?v=3PROYAbwCmY)`*`
     * [Flash-Friendly File System (F2FS)](https://elinux.org/images/1/12/Elc2013_Hwang.pdf) / [錄影](https://www.youtube.com/watch?v=t_4_Ba7PSg4)`*`
     * Week15 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2020-quiz15) (內含作答表單)
