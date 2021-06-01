@@ -227,7 +227,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         - [圖解 Linux tcpdump](https://jgsun.github.io/2019/01/21/linux-tcpdump/)
     * Week14 隨堂測驗: [題目](https://hackmd.io/@sysprog/linux2021-quiz14) (內含作答表單)
 
-* 第 15 週 (Jun 1): 多核處理器架構 + Linux 同步處理機制
+* 第 15 週 (Jun 1): 多核處理器架構 + Linux 同步處理機制 + 程式碼最佳化概念
     * 公告:
         - 請學員及早進行 [課程期末專題](https://hackmd.io/@sysprog/linux2021-projects) 並預約一對一討論
         - 預計 6 月 30 日 15:00，授課教師會繳交學期成績，在這之前都有補救空間
