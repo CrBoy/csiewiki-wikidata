@@ -233,6 +233,9 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
         - 預計 6 月 30 日 15:00，授課教師會繳交學期成績，在這之前都有補救空間
     * [Multi-Core in Linux](https://youtu.be/UNI6Mbqryv0)`*`
     * [並行程式設計: Lock-Free Programming](https://hackmd.io/@sysprog/concurrency-lockfree)`*`
+    * [A Deep dive into (implicit) Thread Local Storage](https://chao-tic.github.io/blog/2018/12/25/tls)
+        - 允許執行緒擁有私自的資料。對於每個執行緒來說，TLS 是獨一無二，不會相互影響
+        - `__thread`, [pthread_key_create](https://linux.die.net/man/3/pthread_key_create)
     * [RCU 同步機制](https://hackmd.io/@sysprog/linux-rcu)`*`
     * [CS:APP 第 5 章重點提示和練習](https://hackmd.io/s/SyL8m4Lnm)`*`
     * [CS:APP Assign 5.18](https://hackmd.io/s/rkdzvWJTX)`*`
