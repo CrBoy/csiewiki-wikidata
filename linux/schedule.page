@@ -247,6 +247,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [A tour of the ARM architecture and its Linux support](https://youtu.be/NNol7fRGo2E)`*`
     * [Multiprocessor OS](/11-smp_os.pdf)
     * [How Reliable Are Modern CPUs?](https://hardware.slashdot.org/story/21/06/05/1648225/how-reliable-are-modern-cpus)`*`
+        - 近年 Google 與 Facebook 注意到 CPU 會在不同的情況下不預期地計算出錯誤的結果，在一些資料中心上出錯的頻率明顯增加。研究人員認為這並非架構設計的步驟錯誤，這些問題也並沒有在生產時的測試中被偵測出來。
     * 隨堂測驗回顧:
         - [第 11 週測驗題](https://hackmd.io/@sysprog/linux2021-quiz11) / [討論](https://hackmd.io/@Julian-Chu/2021q1-quiz11)
         - [第 12 週測驗題](https://hackmd.io/@sysprog/linux2021-quiz12)
