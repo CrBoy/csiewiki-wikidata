@@ -265,6 +265,7 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
 
 * 第 18 週 (Jun 22): 多核處理器, 時鐘管理, Real-time
     * 隨堂測驗回顧:
+        - [第 4 週測驗題](https://hackmd.io/@93i7xo2/sysprog2021q1-hw4-quiz4)
         - [第 15 週測驗題](https://hackmd.io/@sysprog/linux2021-quiz15)
         - [第 16 週測驗題](https://hackmd.io/@sysprog/linux2021-quiz16)
     * Rust 程式語言
