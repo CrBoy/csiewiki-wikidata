@@ -1,11 +1,25 @@
 # XDEv11 (陳舜寧)
 
-## 個人簡介
+# 個人簡介
 
-## Linux Kernel Internals 2021 春季班
+- 國立成功大學資訊工程學系學士班(2018~)
 
-### 問題選答(回顧內容)
+# Linux Kernel Internals 2021 春季班
 
-### 課程專題
+## 問題選答(回顧內容)
 
-### 自我評量分數
+- (a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+
+- (d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head); pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
+
+- (h) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
+
+## 課程專題
+
+- [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd)
+- [共筆](https://hackmd.io/@XDEv11/sehttpd-project)
+
+## 自我評量分數
+
+**43 / 50**
+
