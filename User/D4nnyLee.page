@@ -17,4 +17,37 @@
 
 由這個反例可以知道 x - y < 0 和 x < y 可能會得到不同的結果，因此不可以將兩個敘述劃上等號。
 
+### d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head); pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
+
+#### 巨集功能
+
+list_for_each_prev(pos, head) 的作用為反向迭代 head 這個 linked list 上的元素。
+
+pos 為用於迭代的指標，pos 和 head 的型別預期都是 struct list_head * 。
+
+#### 為何需要小括號
+
+為了避免因為 operator 優先順序的關係而造成非預期的行為。
+
+在巨集裡面可以看到 pos != (head) 這段敘述，這邊就用 != 這個 operator 來舉例。
+
+定義一個巨集 different(x, y) ，預期在 x 和 y 不相等的時候會回傳 true ，否則就回傳 false 。
+
+```{.cpp}
+#define different(x, y) (x != y)
+```
+
+如果只寫這樣的話如果呼叫 different() 時是寫 differernt(x, y = 3) ，巨集展開後就會變成 (x != y = 3)。
+
+因為 != 會比 = 先執行，所以執行到 = 的時候左邊是 != 的結果，而這個結果並不是一個 [lvalue](https://en.cppreference.com/w/cpp/language/value_category)。
+最後就會因為對非 [lvalue](https://en.cppreference.com/w/cpp/language/value_category) 賦值而造成編譯錯誤。
+
+要修正這個錯誤就要將定義改成
+
+```{.cpp}
+#define different(x, y) ((x) != (y))
+```
+
+這樣展開之後就會變成 ((x) != (y = 3))，因為括號內的敘述會先被執行，所以 = 會先被執行，然後才是 != ，因此得到的結果就是預期的 != 的回傳值。
+
 ## 心得
