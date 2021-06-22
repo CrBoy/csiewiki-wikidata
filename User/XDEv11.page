@@ -10,7 +10,13 @@
 
 - (a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
 
-- (d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head); pos = pos->prev) 這樣的巨集到底在做什麼？以及 head 使用時需要加小括號，為何？
+    - x - y 有可能會發生整數溢位，前後者結果並不一定相等。
+
+- (d) 知道 Linux 核心 < include/linux/list.h> 裡頭 #define list_for_each_prev(pos, head) for (pos = (head)->prev; pos != (head); pos = pos->prev) 這樣的巨集到底在做什麼？以及 `head` 使用時需要加小括號，為何？
+
+    - Linux list 是一個雙向鏈結串列，給定一個位置當起始點 (`head`)，會從起始點的前一個位置一直繞一圈。
+
+    - `head` 有可能不只是一個變數，因為 `list_for_each_prev` 為巨集，為了確保 `head` 先被計算，所以加上小括號。
 
 - (h) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
 
