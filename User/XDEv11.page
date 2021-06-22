@@ -20,6 +20,21 @@
 
 - (h) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
 
+    - x 為負數時，進行算術位移往右 63 位元，得到二進位階為 1 的數字 (-1)，透過 bitwise XOR (^)，可將 x 反轉，(~x + 1) 即為正數。
+
+    - x 為正數時，沒有任何影響。
+
+    - 沒有分支的實作，可以避免旁路攻擊 (side-channel attack)。
+
+~~~
+long long abs64(long long x)
+{
+    long long m = x >> 63;
+    return (x ^ m) - m;
+}
+~~~
+
+
 ## 課程專題
 
 - [sehttpd](https://hackmd.io/@sysprog/linux2020-sehttpd)
