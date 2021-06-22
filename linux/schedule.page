@@ -278,4 +278,3 @@ Linux 核心設計 (Spring 2021) 課程進度表暨線上資源
     * [Linux: Timer 及其管理機制](https://hackmd.io/@sysprog/HJElbeHkr)
     * Memory Barrier
         - [Memory Barriers in the Linux Kernel: Semantics and Practices](https://elinux.org/images/a/ab/Bueso.pdf)
-    * Rust!
