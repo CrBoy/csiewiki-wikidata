@@ -7,10 +7,22 @@ yellow951321(黃致豪)
 Github: https://github.com/yellow951321 
 
 2021 linux 核心設計 春季班 自我評量
-=======================
+================================
 期末專題：
 - quiz3 - SSO/CoW [hackmd](https://hackmd.io/i24l0X5wQLmE1U4a0myROg?view)
+
+學期回顧 
+================================
+a) 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
+由課程講義的 [CS:APP 第 2 章重點提示和練習](https://hackmd.io/@sysprog/CSAPP-ch2) 可知道，當有號數和無號數在做比較時，有號數負會被轉換成 2 補數，反而正值大於負值。但 x - y 則不會發生此錯誤，因此可能會造成前者和後者的結果不同的情況。
+
+b) 知道 C 語言規格書如何解釋 ptr++ 和 *ptr++ 行為的差異嗎？
+在 ISO/IEC 9899 中提到
+* ISO/IEC 9899:1999 [6.5.6-8] Additive operators
+    > When an expression that has integer type is added to or subtracted from a pointer, the result has the type of the pointer operand. If the pointer operand points to an element of an array object, and the array is large enough, the result points to an element offset from the original element such that the difference of the subscripts of the resulting and original array elements equals the integer expression.
+因此，前者是對地址做運算。而後者 *ptr 會是 arithmetic type ，對裡面的數值做運算。
 
 
 自我評量 (1 ~ 10) Self-assessment
 =================================
+這學期是我離開大學前的最後一學期，去年在聽過第一堂課的說明後就退選了，因此今年回來至少想把整學期的課程完整地聽完。起初的前兩周，
