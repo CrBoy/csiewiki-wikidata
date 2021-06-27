@@ -34,6 +34,7 @@ xxiex123(黃凱陽)
 
 f) 知道如何用 bit-wise operator 實作 clz / ctz (count leading/tailing zero) 嗎？
    以下是最常用的方式，這種方式特點是計算次數只需 log（bits）次，例如 32 位元的 int 只需做 log 32 = 5次。
+   
    int n = 32;
    unsigned y;
 
