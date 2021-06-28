@@ -7,8 +7,19 @@
 
 # 2021春季班 個人評量
 ## 作業及筆記
+* HW1(quiz1): [共筆](https://hackmd.io/@Chiehen/linux2021-quiz1)/[Github](https://github.com/chiehen/linux2021-quiz1)
+* HW1(lab0): [共筆](https://hackmd.io/@Chiehen/linux2021-lab0)
+* HW2: [共筆](https://hackmd.io/@Chiehen/linux2021-quiz2)/[Github](https://github.com/chiehen/linux2021-quiz2)
+* HW3: [共筆](https://hackmd.io/@Chiehen/linux2021-quiz3)/[Github](https://github.com/chiehen/linux2021-quiz3)
+* HW4: [共筆](https://hackmd.io/@Chiehen/linux2021-quiz4)/[Github](https://github.com/chiehen/linux2021-quiz4)
+* HW7(期末): [共筆](https://hackmd.io/@Chiehen/quiz7c)/[Github](https://github.com/chiehen/linux2021-quiz7C)
 
 ## 所見所聞心得
+* 當初是聽到同學的推薦，因此對這堂課感到好奇，雖然自知自己的實力很不足，但還是抱持著希望自己能有所進步的期待修了這堂課。
+* 我覺得在這堂課上覺得最有收穫之一的點是，會知道在作業系統、演算法、以及資料結構所教的程式，他們在實務上是怎麼被應用和重要性是甚麼，他們怎麼影響效能和空間利用性，以及我們該如何去測試。
+* 在這堂課中主要學習到的是C語言中我之前從未搞懂的部分像是指標、bitwise operation、alignment 之類的
+* 像是透過了解二補數及bitwise操作，若要對64 bit 的 integer(n) 取絕對值，則可以使用無分支的 ((n >> 63) ^ n) - (n >> 63)，這樣以來因為消除了分支，所以在運算時不會因為數值不同而有所不同，因此能對利用時間的安全攻擊進行預防。
+* 而上了這堂課才知道有data alignment 這個議題，因為CPU 抓資料時並不是一個byte一個 byte 抓，而是一次抓4 byte(或在64位元上是8 byte)，因此在如果沒有做 alignment 的話會導致CPU 存取便慢影響效能。此外，因為硬體發展，cache的行為也愈來愈重要，因此像在我所負責的期末專題中的ringbuffer也對ringbuffer的成員進行cache line 的alignment，以在執行時期減少cache miss。
 
 ## 自我評量分數 (1 到 10 級分)
-7級分。
+7級分。在學期初剛開始時有盡力的寫作業和看教材，但隨著教學內容日漸變難，便開始有點逃避，就沒有花同樣多的時間在這堂課，或者有時候只想看教材而不寫作業。因為對於自己來說修這堂課作為想成為工程師的我有很大的收穫，也想鼓勵自己沒有因為這堂課的評價很難就選擇不修有意義的課，所以給自己略高於及格的7分。
