@@ -16,6 +16,40 @@ ilkclord(黃祥瑋)
 
 **作業及專題 : **
 
+- [HW1-lab0](https://hackmd.io/B-DGJjp1QmiVicW7R31Lfg)
+- [quiz1](https://hackmd.io/iziKFS1HSTexF_FLMXgm_A)
+- [quiz2](https://hackmd.io/-K185XU_THijQ-Ro9ZYRtA)
+- [quiz4](https://hackmd.io/5aHjMIxfTSuSmccFNe5TlQ)
+- [期末專題](https://hackmd.io/4MX9lJ_5TQ2lV4s9K5lvig)
+
 **學習心得 : **
 
-**自我評量 : **
+  當初選擇這門課時，我的目的蠻簡單的，就是要變強。雖然大一的時候，程式作業對我而言沒有到十分棘手，但是總感覺好像看的不夠廣，當時我就決定要修一個高度很高的課，來觀摩一下這個領域的高度。一個學期過去後，真的超高的！我看到了有好多值得去鑽研的課題，拓寬視野是修課完後的大收穫之一。
+
+  另外一個大收穫就是能力的提升，我感覺我的實力提昇了許多，從測驗1到測驗18，每個禮拜我能看懂的程式碼都在持續的增加，雖然還沒到全懂，但能一週比一週強就很開心了！喔對，還有Linux系統的操作，和學習裡面內建的function，都是這堂課的收穫之一。
+
+  我也非常喜歡這次的主題-並行程式設計，這個在大一的時候就已經在計畫裡面了，我覺得如果沒有平行運算，那能開發的東西就會少了很多。在我的規劃中，未來我想往量子電腦發展，所以我想如果要開發量子電腦，那現有的一定要先精通才行，這也是會選這門課的原因之一。
+
+**學習成果 : **
+
+- Lock Free 程式
+
+實作 : [queue.h](https://github.com/ilkclord/Map_Reduce/blob/main/MapReduce_pool/queue.h)
+
+Lock free是不依靠 lock (mutex_lock) 來確保並行的程式的正確性的一種設計，最簡單的實作方法是利用 atomic operation ，讓執行動作為一個最小單位。我覺得最好的實作就是 ring buffer，因為ring buffer只需要確保位置的正確性，和進入的buffer數目正確了，上面的 queue.h 是我要拿來當 thread_pool的 jobqueue 的 ring buffer 實作，主要是透過 atomic_fetch_add / atomic_fetch_sub / atomic_load 來達成 lock free 。
+
+- MPMC SPMC SPSC MPSC
+
+這四個在上面的 queue.h 都可以實現，透過增加三個flag來確保讀取和寫入的正確性，在MPMC的情況下以測試過可以正常運作，而第四周的thread pool則是SPMC的實作，相較於MPMC，SPMC的維護較簡單，但由於 quiz4 是利用linking list 來實作 jobqueue 因此在節點的搬移要注意的東西更多。我覺得lock free 的主軸是 jobqueue的data structure，只要使用的jobqueue是lock free的，那延伸出來的程式必定是 lock free 的。
+
+- MapReduce
+
+這次的專題是最顛覆我想像的，那篇論文描繪了一個很大的雲端運算框架，而且是在現實中應用的，不過實作MapReduce前，另外一篇Fast key 的論文要先實作出來，因為MapReduce像是一個thread pool 而Fast key是 algorithm，這兩個都非常的難，而目前在fast key 上的理解還是不太行，未來我會想繼續研究這個主題。
+
+- mmap
+
+mmap完全顛覆了我的想像，我一直以為檔案處理只能慢慢讀，但是在老師介紹完之後，根本不用! mmap 直接幫你指過去他的位址，第一次知道的當下真的覺得很浮誇。
+
+**自我評量 1 ～ 10分**
+
+在學期初HW1我投入了大量的心力和時間，因為要一個禮拜內交，幾乎除了吃飯睡覺就是看資料和打code，在HW4時也投入了大量的精神去把基礎打穩，老實說HW1之後的我對mutex ,pthread , atomic , 甚至是 c 的基礎語法都是一知半解狀態，所以在瘋狂跟進度跟實驗後，才逐漸了解每次測驗的程式碼。但我在期中考週後就有點渙散了，幾乎沒有什麼成果，這是我自己的問題，需要檢討！又到了後來公佈了專題題目後，我才又開始大量投入，看論文跟程式碼，撰寫queue.h（主要） 和 word-count的延伸直到現在。我覺得我在這堂課的表現值7分，雖然我有投入時間跟精神，但是我覺得我沒有到自己預設的目標，所以扣了30％的分數。
