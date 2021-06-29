@@ -43,6 +43,12 @@ int64_t abs64(int64_t x)
 }
 ```
 
+2. 知道 page fault 嗎？Segmentation fault 的訊息是如何顯示出來，請以 GNU/Linux 為例解說
+* Res: page fault 可細分為 3 種，分別為 minor, major, 和 invalid。
+    * minor: 當 process 嘗試存取資料，發現資料已在記憶體裡，但尚未分配給自己。
+    * major: 當 process 嘗試存取資料，但資料不在記憶體裡。
+    * invalid: 當 process 嘗試存取不在 virtual memory space 裡的資料時會觸發 invalid page fault。
+
 學會的工具
 ------------
 Vim
