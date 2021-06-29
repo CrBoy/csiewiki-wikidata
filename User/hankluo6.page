@@ -3,7 +3,7 @@
 
 # 聯絡資訊
 
-github: ```hankluo6```
+github: [hankluo6](https://github.com/hankluo6)
 
 email: ```hankluo6@gmail.com```
 
@@ -38,3 +38,33 @@ email: ```hankluo6@gmail.com```
 ### 自我評量 (1-10)
 
 10 分，對於自己的目標都有達到，作業也都盡量趕出來，雖然還有很多地方要改進，但覺得這學期有盡力完成所有要求。
+
+# 2021 春季班 個人評量
+
+### 作業 Lab
+
+* Homework 1:
+[lab0](https://hackmd.io/@hankluo6/2021q1-lab0),
+[quiz1](https://hackmd.io/@hankluo6/2021q1quiz1)
+* Homework 2:
+[quiz2](https://hackmd.io/@hankluo6/2021q1quiz2)
+* Homework 3:
+[fibdrv](https://hackmd.io/@hankluo6/fibdrv),
+[quiz3](https://hackmd.io/@hankluo6/2021q1quiz3)
+* Homework 4:
+[quiz4](https://hackmd.io/@hankluo6/2021q1quiz4)
+* Homework 5:
+[sort](https://hackmd.io/@hankluo6/2021q5sort),
+[quiz5](https://hackmd.io/@hankluo6/2021quiz5)
+
+### 期末專題
+
+* mimalloc: [原始碼分析](https://hackmd.io/@hankluo6/mimalloc_source) / [開發紀錄](https://hackmd.io/@hankluo6/mimalloc) / [Github](https://github.com/hankluo6/mimalloc)
+
+### 心得
+
+因為是第二次修課，所以不像上學期一樣需要花大量時間去看課程影片，花了更多時間在寫作業。另外也學到了關於 Lock-free, Atomic, Cache Coherence 這些上學期比較沒涉略到的議題。上完課才發現這些與恐龍書的內容相差甚大，像是 memory barrier 這些恐龍書好像都沒有提到？以前 OS 學的東西跟 Linux 內部的機制幾乎都不一樣。另外也經歷到自己發 PR 到 open source 的過程，讓其他人使用自己寫的程式碼這種成就感是以前單純寫程式交作業無法體會的。
+
+### 自我評量 (1-10)
+
+10 分，雖然這學期有專題還有許多面試，但每周都有強迫抽出一部分時間完成作業
