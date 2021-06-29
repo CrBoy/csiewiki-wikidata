@@ -33,11 +33,12 @@ categories: User
 #include <stdint.h>
 int64_t abs64(int64_t x)
 {
-        /* y is -1 if x is negative, otherwise y is 0. */
+        /* The following code works for both arithmetic shift and logical shift.
+         * y is -1 (all ones) if x is negative, and y is 0 if x is non-negative. */
         int64_t y = ~(((x >> 63) & 1) - 1);
 
-        /* XORing with all ones inverts all the bits of (x + y), 
-         * while XORing with all zeros keeps the original value */
+        /* XORing with all ones (-1) inverts all the bits of (x + y), 
+         * while XORing with all zeros (0) keeps the original value */
         return (x + y) ^ y;
 }
 ```
