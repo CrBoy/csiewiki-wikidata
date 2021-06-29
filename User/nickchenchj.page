@@ -51,7 +51,7 @@ int64_t abs64(int64_t x)
 
 學會的工具
 ------------
-Vim
+Vim, find, grep, sed, awk, wc, du...
 
 心得
 ------------
