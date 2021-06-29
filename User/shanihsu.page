@@ -38,7 +38,7 @@ email: ``shani21516344@gmail.com``
 
 * 知道如何對 linked list 進行 merge sort 嗎？真實世界中的應用場景為何？
 
-以 2:1 的比例進行 merge sort ，如果有 3 * 2^k^ 個元均在 cache 中，則不斷將兩個 size 同為 2^k^ 的 list 合併成一個 size 2^k+1^ 的 list ，這個新的 list 跟剩下的 2^k^ 元素再做合併，可避免 cache thrashing 。 
+以 2:1 的比例進行 merge sort ，如果有 3 * 2^k^ 個元素均在 cache 中，則不斷將兩個 size 同為 2^k^ 的 list 合併成一個 size 2^k+1^ 的 list ，這個新的 list 跟剩下的 2^k^ 元素再做合併，可避免 cache thrashing 。 
 
 * 本學期課程內容中，讓你印象最深刻、顛覆過往認知的部分是什麼？請舉例說明
 
