@@ -30,21 +30,48 @@ categories: User
 自我評量分數 (1 到 10 級分)
 ---------------------------
 
-題目
-------------
-(a)
-(b)
-(c)
-(d)
-(e)
-(f)
-(g)
-(j)
-(m)
-(n)
-(p)
-(v) 
 
+題目：
+
+a. 因為 `x-y` 可能會有 overflow 的問題。
+
+b. `*ptr++` 等價於 `*(ptr++)`，意味著先對該 `ptr` 指向的地址加一，在對其 dereference 取值。`ptr++` 則是 `ptr` 指向的地址加一，加「一」的大小取決於 pointer 的資料型別。
+
+c. `signal` 是一個 function，其中有個 argument 是 `int` 型別，該 function 會回傳一個 pointer，該 pointer 會指向另一個 function 其型態會長得像 `func2(int sig, void (*handler)(int))`，`func2()` 中的 argument 一個是 `int` 型別，另一個 argument 是 pointer to a function，而該 pointer to function 其 function 也有一個 argument 型別為 `int`。
+
+d. 
+(1) 因為該 linked list 為 doubly circular linked list，所以該 function 的行為是從 `(head)->prev` 為起點，往前 (prev) 走訪整個 circular list。
+(2) 因為 operator 之間的 precedence 的關係，例如，如果傳入的 `head` 的 argument 為 `*ptr` (假設 `ptr` 為一個 pointer to pointer)，則針對 `pos = head->prev` 來說，行為會是先做 `ptr->prev` 在對其 dereference，而有加上 `()` 的 `pos = (head)->prev` 的行為才會是我們預期想要的到的結果。
+
+e.
+(1) 對 linked list 做 merge sort 可以讓兩個指向該 linked list 的指標在同一個起點用賽跑的方式，(一個的速度為另一個的兩倍)找到要 partition 的點，之後可以遞迴回來將 partition 後的 list 接上。實作細節可以參考 quiz2。
+(2) 真實世界的應用其中就是開學的作業， lab0 的直譯器，以及 linux 中對 cache 友善的 linked list merge sort。
+
+f. 以 count leading zero 來說，實作上可以類似 binary search，對於輸入的數值，向右位移 2 的整數次方遞減，這樣可以檢查逐個 bit，最後取得偏差值之後就可以確定 leading 0 的個數，除此之外實作可以透過建立 table 提升效能。
+
+g. 
+(1) 簡而言之，object 的生命週期存在於程式的執行時期，生命週期會因為 object 的 storage duration 而有所差別 (C99 6.2.4 Storage durations of objects)，當程式執行時期於一 object 生命週期之外對該 object 存取或是操作其值，該行為為 undefined behavior。
+(2) 其中一個 CVE 是 heap use after free 發生在 [google chrome](https://bugs.chromium.org/p/chromium/issues/detail?id=936448) 上，另一個 CVE 有關於 linux，在 RCU 同步機制上與有 [object lifetime CVE](https://bugs.chromium.org/p/project-zero/issues/detail?id=1903)。
+
+j.
+(1) page fault 是在 virtual page number 轉換到 physical memory 的過程中，沒有在 main memory 找到對應的 physical page number，也就是 DRAM cache "miss" 的情況下就會出現 page fault (TLB, Page table miss)。
+
+m.
+(1) LRU replacement 因為是 Least Recently Used，通常可以減少 miss rate，對於 cache 來說，可以提升 cache 的 hit rate，藉此可以提升程式執行效能。
+
+n. 
+(1) 有看了一部份。看到 memory mapping 附近。
+
+p.
+有分 Temporal locality 跟 Spatial locality，舉例來說：
+for(i = 0; i < 100; i++)
+    A[i+1] = A[i] + 1;
+
+i is referenced frequently ---> Temporal locality 
+A[i+1], A[i] are nearby ---> Spatial locality
+cache 對於這兩種行為會 tend to be referenced again soon，所以 cache friendly 提升效能。
+
+v. 本學期最印象深刻的、顛覆我過往認知的是並行程式設計(畢竟整學期都在探討這個議題)。從前寫程式從來沒有思考過會有這種程式設計思維，所以這是我第一次接觸到這類議題。在本學期到達第四週之後，那段時間經常思考著並行程式設計的原理，以及如何能夠實作，semophore 跟 mutex，POSIX thread API 的使用方式，到之後如何能達成 Lock-free 提升效能。有時候想著想著一整個下午就不見了，過程中十分掙扎，很難以理解這類型的思維，也嘗試過做小型的實驗測試看看 mutex lock 的運作行為，稍微能理解了的時候往往又被程式碼所 "overwhelmed"。直到有一天自己拿起筆開始畫出生產者消費者，Threadpool 的流程圖，才大致摸到一點頭緒。除去前三週外，第四週之後上課總是離不開多執行緒，而最後自己的期末報告也正巧是第四週的作業題目，因此並行程式設計相關議題就是這學期最人印象深刻的部分。
 
 學習成果
 ------------
