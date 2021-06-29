@@ -47,7 +47,8 @@ int64_t abs64(int64_t x)
 * page fault 可細分為 3 種，分別為 minor, major, 和 invalid。
     * minor: 當 process 嘗試存取資料，發現資料已在記憶體裡，但尚未分配給自己。
     * major: 當 process 嘗試存取資料，但資料不在記憶體裡。
-    * invalid: 當 process 嘗試存取不在 virtual memory space 裡的資料時會觸發 invalid page fault。
+    * invalid: 當 process 嘗試存取不在 virtual memory space 裡的資料時會觸發 invalid page fault (segmentation fault)。
+* 當 process 遇到 segmentation fault 時，GNU/Linux 會傳遞 SIGSEGV 的 signal 到該 process，這個 signal 會讓 process 顯示 "segmentation fault" 並且結束執行。
 
 學會的工具
 ------------
