@@ -1,0 +1,51 @@
+---
+title : secminhr(張邑)
+xategories : User
+...
+學歷
+=================
+- 成功大學 資訊工程系113級
+
+聯絡資訊
+=================
+- email : ``secminhrian@gmail.com``
+- github : ``https://github.com/secminhr``
+
+2020春季班 個人評量
+=================
+作業和筆記
+-----------------
+-HW1 : - lab0 [HackMD](https://hackmd.io/@secminhr/2021q1-lab0)/[Github](https://github.com/secminhr/lab0-c)
+
+-HW1 : - quiz1 [HackMD](https://hackmd.io/@secminhr/2021q1-quiz1)/[Github](https://github.com/secminhr/quiz1)
+
+-HW2 : - quiz2 [HackMD](https://hackmd.io/@secminhr/2021q1-quiz2)/[Github](https://github.com/secminhr/quiz2)
+
+-HW4 : - quiz4 [HackMD](https://hackmd.io/@secminhr/2021q1-quiz4)
+
+-HW5 : - quiz5 [HackMD](https://hackmd.io/@secminhr/2021q1-quiz5)
+
+-HW6 : - quiz6 [HackMD](https://hackmd.io/@secminhr/2021q1-quiz6)
+
+-專題 : - quiz7B [HackMD](https://hackmd.io/@limaoxd/B1BINgL2_)/[Github](https://github.com/secminhr/quiz7B)
+
+心得
+-----------------
+剛開始來修這堂課有兩個原因：
+
+1. 想看有沒有可能透過學習 linux 來學習電腦系統
+
+2. 想變得厲害一些，多認識一點東西
+
+第一點顯然不是這堂課的目標，在上完這堂課之後我也認為不太可能，應該先去學習電腦系統等等的知識。（於是決定這個暑假要先看 CS:APP）。
+
+第二是則是第一點的附屬，我覺得可能有厲害一些，但是這個一些實在是有點小。
+
+不過我自己非常喜歡這門課，因為這堂課裡面介紹了太多東西都是沒看過的，這種大開眼界的感覺非常棒。
+
+這堂課對我來說應該算是對這些主題的入門，我在這堂課認識了許多（對我來說的）新主題以及不同的看程式的角度，其中在有興趣的主題裡還有許多的資源可以閱讀，在查詢資料時也有了關鍵字。
+
+自我評分 : 5 / 10
+-----------------
+太多（超過一半）的主題都還沒學會。舉個例子，在做專題的時候還要去查 epoll 怎麼用，這顯然不是學會了的樣子。
+雖然有一些進步，但是幅度太小，而且是跟 c 語言有關係的，這不是課程的重點所在。
