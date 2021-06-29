@@ -28,7 +28,7 @@ categories: User
 題目
 ----
 1) 知道如何寫出時間複雜度和空間複雜度皆為 O(1) 的 abs64 嗎？(沒有分支) 這樣的 abs64 又可用於真實世界哪邊？
-* Res:
+* 
 ```cpp=
 #include <stdint.h>
 int64_t abs64(int64_t x)
@@ -44,7 +44,7 @@ int64_t abs64(int64_t x)
 ```
 
 2. 知道 page fault 嗎？Segmentation fault 的訊息是如何顯示出來，請以 GNU/Linux 為例解說
-* Res: page fault 可細分為 3 種，分別為 minor, major, 和 invalid。
+* page fault 可細分為 3 種，分別為 minor, major, 和 invalid。
     * minor: 當 process 嘗試存取資料，發現資料已在記憶體裡，但尚未分配給自己。
     * major: 當 process 嘗試存取資料，但資料不在記憶體裡。
     * invalid: 當 process 嘗試存取不在 virtual memory space 裡的資料時會觸發 invalid page fault。
@@ -83,13 +83,13 @@ Side projects
 題目
 ------------
 1. 知道 x - y < 0 敘述為何不能寫為 x < y 嗎？ (CS:APP 第 2 章)
-* Res: 如果 x = 1U, y = 2U，則 (x - y < 0) 永遠為 false (overflow)，但 (x < y) 將會是 true。
+* 如果 x = 1U, y = 2U，則 (x - y < 0) 永遠為 false (overflow)，但 (x < y) 將會是 true。
 2. 知道 void (*signal(int sig, void (*handler)(int))) (int); 這樣的宣告該如何解讀嗎？
-* Res: signal 是一個回傳 pointer to function 的 function，signal 的參數是一個 int 和一個叫做 handler、參數為 int、且回傳型態為 void 的 function。signal 所回傳的 pointer to function 指向參數為 int、回傳型態為 void 的 function。參考: [Understanding typedefs for function pointers in C](https://stackoverflow.com/a/1591492), [cdecl: C gibberish ↔ English](https://cdecl.org/)
+* signal 是一個回傳 pointer to function 的 function，signal 的參數是一個 int 和一個叫做 handler、參數為 int、且回傳型態為 void 的 function。signal 所回傳的 pointer to function 指向參數為 int、回傳型態為 void 的 function。參考: [Understanding typedefs for function pointers in C](https://stackoverflow.com/a/1591492), [cdecl: C gibberish ↔ English](https://cdecl.org/)
 3. 知道傅立葉分析在通訊領域的應用嗎？舉例說明
-* Res: 可以應用於抗噪耳機，或是去除通話中的噪音。
+* 可以應用於抗噪耳機，或是去除通話中的噪音。
 4. 知道 Bloom filter 嗎？以你寫過或用過的程式，舉例說明這機制帶來的好處
-* Res: 知道，這學期有實做 key-value database，當中有運用到 Bloom filter。由於資料庫相當龐大，而且取得資料可能需要進行檔案存取，因此引進 Bloom filter 將能大幅降低在資料庫搜尋的時間。
+* 知道，這學期有實做 key-value database，當中有運用到 Bloom filter。由於資料庫相當龐大，而且取得資料可能需要進行檔案存取，因此引進 Bloom filter 將能大幅降低在資料庫搜尋的時間。
 
 學會的工具
 ------------
