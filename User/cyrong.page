@@ -1,1 +1,53 @@
-#User/cyrong
+---
+format: markdown
+categories: User
+toc: yes
+title: cyrong
+...
+
+## 簡介
+* 國立成功大學 資訊工程學系 111級 (2018-)
+* GitHub: [`cyrong`](https://github.com/cyrong)
+* HackMD: [`cyrong`](https://hackmd.io/@codelelouch0)
+
+## 聯絡資訊
+email: ``codelelouch0@gmail.com``
+
+## 2021 Linux 核心設計 春季班 自我評量
+
+### 作業及筆記
+[lab0](https://hackmd.io/lCVccKKZT9mu_MnOddZk0A)
+
+[quiz1](https://hackmd.io/necpCJk-RRWKYsmlhewoMQ)
+
+[quiz2](https://hackmd.io/74Tj3Y4dS76OsZe6ik5gZw)
+
+[quiz3](https://hackmd.io/Brl9E66-Qp6oWzWFum7zSQ)
+
+[quiz4](https://hackmd.io/p20AYhFKRA-xlPIn9LCdSA)
+
+[quiz8-1](https://hackmd.io/wZlWlHknRXWN_4jVKrrg0Q)
+
+###心得
+在 Linux 核心設計課程中，最主要的是學到誠實面對自己，在第一節課老師就有提到這件事，當時其實我並不以為意，覺得說只是知道自己不懂什麼即可，在時間慢慢過去後其實才發現，真正的誠實面對自己是在發現不懂後起身去解決問題。
+
+在這堂課中我體驗最深的是，學習是不會有終點的，只能暫停後再繼續。原本以為老師錄的課程錄影撐下去 3 小時即可，但現實是每個課程錄影中都會再有新的課程要研讀，真的讓我深感震憾。
+
+比較遺憾的是，老師的要求我並沒有做到，雖然前幾周我有認真的投入，但是從學期中開始每週測驗常常拿 0 分，以及看到同學的作業延伸問題都可以作答我卻想了很久都不知如何下手，讓我非常灰心並產生自卑感，之後幾周就開始逃避了，卻又倔強的不願意退選，最後是草率的結束學期。
+
+跟老師一對一討論後，算是有被老師罵醒，之後的課程內容有比較積極投入了，也很感謝老師對學生如此的積極。
+
+###自我評量分數（1-10)
+我給自己 5 分
+雖然沒有達到老師的要求，但我對資訊領域的東西有了更多的了解，也有寫了部份的作業、看了不少老師錄製的課程
+
+* 知道 x - y < 0 敘述為何不能寫成 x < y 嗎？
+CS:APP 第二章中我有看到有關大小比較的敘述，有一項是在說 signed 和 unsigned int 之間用一些 operation 會產生異常的結果
+
+例如:
+-1 < 0U 結果是 0
+2147483647U > -2147483647 - 1 結果是 0
+
+
+
+
