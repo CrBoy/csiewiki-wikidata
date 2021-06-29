@@ -36,7 +36,7 @@ int64_t abs64(int64_t x)
         /* y is -1 if x is negative, otherwise y is 0. */
         int64_t y = ~(((x >> 63) & 1) - 1);
 
-        /* XORing with all ones inverses all the bits of (x + y), 
+        /* XORing with all ones inverts all the bits of (x + y), 
          * while XORing with all zeros keeps the original value */
         return (x + y) ^ y;
 }
