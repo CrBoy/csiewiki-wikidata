@@ -71,7 +71,7 @@ Secondary Clock:
 
 
 - HSE  -  較為耗能， 可以處理像是USB或TV訊號的clock，需要和另一個clock穩定同步。
-- LSI  -  是一個低功耗的clock，可以在停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IMDG)。
+- LSI  -  是一個低功耗的clock，可以在停機或待機模式下保持運行，用在auto-wakeup(簡稱AWU)與 watchdog看門狗(簡稱IWDG)。
 - LSE  -  它是一個低功耗且精準的clock，適合用在時間的精確計算。
 
 
