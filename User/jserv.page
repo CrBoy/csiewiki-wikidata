@@ -83,6 +83,9 @@ categories: User
 * [從 Revolution OS 看作業系統生態變化](https://hackmd.io/@sysprog/revolution-os-note)
     - 2001 年，J. T. S. Moore 以自由軟體和開放原始碼軟體發展為主題，導演了相當可貴的紀錄片《[Revolution OS](https://en.wikipedia.org/wiki/Revolution_OS)》，訪談了若干先鋒者，是理解駭客 (hacker)、 GNU 計畫、自由軟體基金會 (FSF)、Linux 核心、開放原始碼 (open source) 和自由軟體 (free software) 基於不同理念各自發展、Netscape 宣佈 Mozilla 開放原始碼專案、基於 Apache 和一系列開放原始碼技術的公司、在 NASDAQ 上市等等歷程的第一手資訊
     - 因應教學需求，試圖透過共筆，選錄部份內容作資訊更新和補充
+* [看漫畫學 Linux](https://hackmd.io/@sysprog/linux-comic)
+    - Daniel Stori 經營的網站 {turnoff.us} 提供一系列關於資訊技術的漫畫，其中 [inside the linux kernel](https://turnoff.us/geek/inside-the-linux-kernel/) 生動地展現 Linux 核心的部分機制和相關的套件
+    - 漫畫以房屋的側面剖面視角，以房屋為載體，小企鵝、小狗、小丑等成員組為大家庭，各自分工，藉此展現 Linux。由於漫畫針對 Linux 核心的比重不算高，本文標題變更為通用的 Linux 系統，即核心加上關鍵應用程式的組合
 
 過往在成大
 =========
