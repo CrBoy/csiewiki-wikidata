@@ -68,6 +68,10 @@ categories: User
 * [shecc](https://github.com/jserv/shecc): 針對 ARMv7-A 架構的 C 語言編譯器，可[編譯自己](https://en.wikipedia.org/wiki/Self-hosting_(compilers))並輸出 Linux ELF 執行檔
 * [rubi](https://github.com/sysprog21/rubi): 類似 Ruby 程式語言的精簡實作，可由 JIT 編譯執行，原始程式碼相當精簡
 
+編撰的電子書
+==========
+* 《[The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/)》
+
 科普筆記
 =======
 * [軟體缺失導致的危害](https://hackmd.io/@sysprog/software-failure)
