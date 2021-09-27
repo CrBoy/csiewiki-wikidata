@@ -10,7 +10,7 @@ toc: no
 - Course grading
     * Quiz (20%), Homework (40%), Final Project (40%)
 
-Computer Architecture (Fall 2020)
+Computer Architecture (Fall 2021)
 ------------------------------------------------------
 * Week 1 (Sep 28)
     - David Patterson: [A New Golden Age for Computer Architecture: History, Challenges and Opportunities](https://content.riscv.org/wp-content/uploads/2018/12/A-New-Golden-Age-for-Computer-Architecture-History-Challenges-and-Opportunities-David-Patterson-.pdf) / [video](https://youtu.be/uyc_pDBJotI)
@@ -35,7 +35,7 @@ Computer Architecture (Fall 2020)
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
     - [RISC-V Decisions II](https://drive.google.com/drive/folders/16-usv7Hk1XmIE4HP-nTzFKtkvuSlFCg8?usp=sharing)
     - [Lab1: RV32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
-    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1) (Due: Oct 5)
+    - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1) (Due: ?)
 
 * Week 4 (Oct 19): RISC-V
     - Announcement:
@@ -54,7 +54,7 @@ Computer Architecture (Fall 2020)
     - Next week: [digital logic](https://www.ptt.cc/bbs/Soft_Job/M.1587694288.A.3B5.html)
     - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
-    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/@sysprog/2020-arch-homework2) (Due: Oct 26)
+    - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/@sysprog/2020-arch-homework2) (Due: ?)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
     - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
@@ -69,7 +69,7 @@ Computer Architecture (Fall 2020)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [RISC-V CPU Datapath, Control Intro](https://cs61c.org/su20/lectures/?file=lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
-    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: Nov 16)
+    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: ?)
 
 * Week 9 (Nov 16): Control, Pipeline
     - [Collaborative notes](https://hackmd.io/58CYrCJhS56clW7CF9AZeg)
@@ -116,7 +116,7 @@ Computer Architecture (Fall 2020)
 
 * Week14 (Dec 21): Synchronization
     - Announcement: Quiz on Dec 22
-    - Assignment: [Homework4: Cache](https://hackmd.io/@sysprog/2020-arch-homework4)  (Due: Dec 26)
+    - Assignment: [Homework4: Cache](https://hackmd.io/@sysprog/2020-arch-homework4)  (Due: ?)
     - [Operating Systems](https://cs61c.org/su20/lectures?file=lec18.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arq3vh2gcLvr5isLK4CuK3B)
     - [Synchronization](https://6004.mit.edu/web/_static/fall20/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
