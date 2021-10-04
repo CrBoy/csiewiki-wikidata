@@ -24,7 +24,6 @@ Computer Architecture (Fall 2021)
 
 * Week 2 (Oct 5): Quiz + RISC-V / NOTICE: Join the online class via [https://youtu.be/n0CusEdJpsc](https://youtu.be/n0CusEdJpsc)
     - [Quiz1](https://hackmd.io/@sysprog/arch2021-quiz1): C programming, bit-wise operations, number representation, floating-point / [Solution](https://hackmd.io/@sysprog/arch2021-quiz1-sol)
-    - News: [NVIDIA to Acquire Arm for $40 Billion, Creating World’s Premier Computing Company for the Age of AI](https://nvidianews.nvidia.com/news/nvidia-to-acquire-arm-for-40-billion-creating-worlds-premier-computing-company-for-the-age-of-ai)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://drive.google.com/drive/folders/1dtSqX4RlLlfXk2jN8J1vvior35z_5QfZ)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
