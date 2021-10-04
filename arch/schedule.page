@@ -12,7 +12,7 @@ toc: no
 
 Computer Architecture (Fall 2021)
 ------------------------------------------------------
-* Week 1 (Sep 28): NOTICE: Join the online class via [https://youtu.be/h_3ZakOBxTM](https://youtu.be/h_3ZakOBxTM)
+* Week 1 (Sep 28): Introduction
     - **[Course Introduction](https://docs.google.com/presentation/d/1Ar6638recYqDDY_XuH6BRB-X9GHpw8G-KYnERXF6Jw8/edit?usp=sharing)**
     - David Patterson: [A New Golden Age for Computer Architecture: History, Challenges and Opportunities](https://content.riscv.org/wp-content/uploads/2018/12/A-New-Golden-Age-for-Computer-Architecture-History-Challenges-and-Opportunities-David-Patterson-.pdf) / [video](https://youtu.be/uyc_pDBJotI)
         * [Article](https://cacm.acm.org/magazines/2019/2/234352-a-new-golden-age-for-computer-architecture/fulltext), [note](https://github.com/cristiean/notes/blob/4c4ceb291ba68c55659ab0d4571385c8cccacd21/a-new-golden-age-for-computer-architecture.md)
@@ -22,7 +22,7 @@ Computer Architecture (Fall 2021)
     - [Floating Point](https://drive.google.com/drive/folders/147xm_DhklkevG6602mH4yoGuVMw-3GQZ?usp=sharing)
     - [C Memory Management](https://drive.google.com/drive/folders/1pHpHRvjEg5TdidIp_fkOrh6TvMlYl5Yj?usp=sharing) / [video](https://youtu.be/fhEE4J4QCps)
 
-* Week 2 (Oct 5): Quiz + RISC-V
+* Week 2 (Oct 5): Quiz + RISC-V / NOTICE: Join the online class via [https://youtu.be/n0CusEdJpsc](https://youtu.be/n0CusEdJpsc)
     - [Quiz1](/arch/arch2020-quiz1.pdf): C programming, bit-wise operations, number representation, floating-point / [Solution](/arch/2020-quiz1-sol.pdf)
     - News: [NVIDIA to Acquire Arm for $40 Billion, Creating World’s Premier Computing Company for the Age of AI](https://nvidianews.nvidia.com/news/nvidia-to-acquire-arm-for-40-billion-creating-worlds-premier-computing-company-for-the-age-of-ai)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
