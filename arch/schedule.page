@@ -22,14 +22,14 @@ Computer Architecture (Fall 2021)
     - [Floating Point](https://drive.google.com/drive/folders/147xm_DhklkevG6602mH4yoGuVMw-3GQZ?usp=sharing)
     - [C Memory Management](https://drive.google.com/drive/folders/1pHpHRvjEg5TdidIp_fkOrh6TvMlYl5Yj?usp=sharing) / [video](https://youtu.be/fhEE4J4QCps)
 
-* Week 2 (Oct 5): Quiz + RISC-V / NOTICE: Join the online class via [https://youtu.be/n0CusEdJpsc](https://youtu.be/n0CusEdJpsc)
+* Week 2 (Oct 5): Quiz + RISC-V
     - [Quiz1](https://hackmd.io/@sysprog/arch2021-quiz1): C programming, bit-wise operations, number representation, floating-point / [Solution](https://hackmd.io/@sysprog/arch2021-quiz1-sol)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://docs.google.com/presentation/d/1TCuhElbEfMCLvkEJGgELNBR3uQYzzNhe/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
     - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
 
-* Week 3 (Oct 12): RISC-V
+* Week 3 (Oct 12): RISC-V / NOTICE: Join the online class via [https://youtu.be/FO4r-0iI7hQ](https://youtu.be/FO4r-0iI7hQ)
     - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
         * [RISC-V Assembly Programmer's Manual](https://github.com/riscv/riscv-asm-manual/blob/master/riscv-asm.md)
     - [RISC-V lw, sw, Decisions I](https://drive.google.com/open?id=1sPgw8TnaLNvL71uaXLE_vNaXmNrbRHNc) / [video](https://youtu.be/5hwH9ofpNzI)
