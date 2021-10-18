@@ -40,7 +40,8 @@ Computer Architecture (Fall 2021)
 * Week 4 (Oct 19): RISC-V / NOTICE: Join the online class via [https://youtu.be/oNgTEmg3ls4](https://youtu.be/oNgTEmg3ls4)
     - Announcement:
         + Next quiz is scheduled to Oct 26
-        + Code Review for Homework 1 on Oct 26
+        + Code Review for [Homework 1]((https://hackmd.io/@sysprog/2021-arch-homework1)) on Oct 26
+        + We might be in a physical classroom next week. Please check the latest announcement via email.
     - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
     - [Compiler, Assembler, Linker, Loader](https://cs61c.org/su20/lectures/?file=lec09.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aoprCVNj3PG1kx7DTm3Qs6q)
 
