@@ -29,7 +29,7 @@ Computer Architecture (Fall 2021)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
     - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
 
-* Week 3 (Oct 12): RISC-V / NOTICE: Join the online class via [https://youtu.be/FO4r-0iI7hQ](https://youtu.be/FO4r-0iI7hQ)
+* Week 3 (Oct 12): RISC-V
     - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
         * [RISC-V Assembly Programmer's Manual](https://github.com/riscv/riscv-asm-manual/blob/master/riscv-asm.md)
     - [RISC-V lw, sw, Decisions I](https://docs.google.com/presentation/d/18UZBHGbQK9c6Rf7sYtntCp5u8NRNhGF_/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true) / [video](https://youtu.be/5hwH9ofpNzI)
@@ -37,7 +37,7 @@ Computer Architecture (Fall 2021)
     - [Lab1: RV32I Simulator](https://hackmd.io/@sysprog/H1TpVYMdB)
     - Assignment: [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2021-arch-homework1) (Due: Oct 25, 2021)
 
-* Week 4 (Oct 19): RISC-V
+* Week 4 (Oct 19): RISC-V / NOTICE: Join the online class via [https://youtu.be/oNgTEmg3ls4](https://youtu.be/oNgTEmg3ls4)
     - Announcement:
         + Next quiz is rescheduled to Oct 26
         + Code Review for Homework 1 on Oct 26
