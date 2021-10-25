@@ -47,10 +47,11 @@ Computer Architecture (Fall 2021)
         + [Apple Announces M1 Pro & M1 Max: Giant New Arm SoCs with All-Out Performance](https://www.anandtech.com/show/17019/apple-announced-m1-pro-m1-max-giant-new-socs-with-allout-performance)
     - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
     - [Compiler, Assembler, Linker, Loader](https://cs61c.org/su20/lectures/?file=lec09.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aoprCVNj3PG1kx7DTm3Qs6q)
+    - [2020-Quiz2](https://hackmd.io/@sysprog/arch2020-quiz2)
+         * [solution](https://hackmd.io/@sysprog/arch2020-quiz2-sol)
 
 * Week 5 (Oct 26): Quiz + Code Review (Room 4201 at CSIE Building)
-    - [Quiz2](https://hackmd.io/@sysprog/arch2020-quiz2)
-         * [solution](https://hackmd.io/@sysprog/arch2020-quiz2-sol)
+    - [Quiz2](https://hackmd.io/@sysprog/arch2021-quiz2): RISC-V assembly and C programming / [solution](https://hackmd.io/@sysprog/arch2021-quiz2-sol)
     - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2021-arch-homework1)
 
 * Week 6 (Oct 13): RISC-V and Toolchain
