@@ -61,7 +61,7 @@ Computer Architecture (Fall 2021)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
     - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/@sysprog/2021-arch-homework2) (Due: Nov 15)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
-    - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
+    - [RISC-V Instruction Formats](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
 * Week 7 (Nov 9): Digital Systems
     * [nand2tetris](https://www.nand2tetris.org/) / [TED Talk](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course)
