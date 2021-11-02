@@ -28,10 +28,10 @@ Computer Architecture (Fall 2021)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://docs.google.com/presentation/d/1TCuhElbEfMCLvkEJGgELNBR3uQYzzNhe/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
-    - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
+    - [Intro to Assembly Language and RISC-V](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
 
 * Week 3 (Oct 12): RISC-V
-    - [Intro to Assembly Language and RISC-V](https://cs61c.org/su20/lectures/?file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
+    - [Intro to Assembly Language and RISC-V](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
         * [RISC-V Assembly Programmer's Manual](https://github.com/riscv/riscv-asm-manual/blob/master/riscv-asm.md)
     - [RISC-V lw, sw, Decisions I](https://docs.google.com/presentation/d/18UZBHGbQK9c6Rf7sYtntCp5u8NRNhGF_/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true) / [video](https://youtu.be/5hwH9ofpNzI)
     - [RISC-V Decisions II](https://docs.google.com/presentation/d/1cUGL6P4BDPz3eDHZco9qHJXsTc76TBnG/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true)
@@ -46,8 +46,8 @@ Computer Architecture (Fall 2021)
     - Apple M1 Pro/Max
         + [ARM1 (1985) vs. Apple M1 Max (2021)](https://twitter.com/kenshirriff/status/1450179024639049731)
         + [Apple Announces M1 Pro & M1 Max: Giant New Arm SoCs with All-Out Performance](https://www.anandtech.com/show/17019/apple-announced-m1-pro-m1-max-giant-new-socs-with-allout-performance)
-    - [More RISC-V Functions](https://cs61c.org/su20/lectures/?file=lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
-    - [Compiler, Assembler, Linker, Loader](https://cs61c.org/su20/lectures/?file=lec09.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aoprCVNj3PG1kx7DTm3Qs6q)
+    - [More RISC-V Functions](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec07.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apCzwwwJGKn2p57tnhtSIIz)
+    - [Compiler, Assembler, Linker, Loader](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec09.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aoprCVNj3PG1kx7DTm3Qs6q)
     - [2020-Quiz2](https://hackmd.io/@sysprog/arch2020-quiz2)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz2-sol)
 
