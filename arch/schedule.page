@@ -55,35 +55,35 @@ Computer Architecture (Fall 2021)
     - [Quiz2](https://hackmd.io/@sysprog/arch2021-quiz2): RISC-V assembly and C programming / [solution](https://hackmd.io/@sysprog/arch2021-quiz2-sol)
     - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2021-arch-homework1)
 
-* Week 6 (Oct 13): RISC-V + Code Review (Room 4201 (1F) at (old) CSIE Building)
+* Week 6 (Nov 2): RISC-V + Code Review (Room 4201 (1F) at (old) CSIE Building)
     - Next week: [digital logic](https://www.ptt.cc/bbs/Soft_Job/M.1587694288.A.3B5.html)
-    - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2020-arch-homework1)
+    - Code Review on [Homework1: RISC-V Assembly and Instruction Pipeline](https://hackmd.io/@sysprog/2021-arch-homework1)
     - [Lab2: RISC-V RV32I[MA] emulator with ELF support](https://hackmd.io/@sysprog/rJAufgHYS)
     - Assignment: [Homework2: RISC-V Toolchain](https://hackmd.io/@sysprog/2021-arch-homework2) (Due: Nov 15)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
     - [RISC-V Instruction Formats](https://cs61c.org/su20/lectures?file=lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
-* Week 7 (Nov 2): Digital Systems
+* Week 7 (Nov 9): Digital Systems
     * [nand2tetris](https://www.nand2tetris.org/) / [TED Talk](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course)
     * Next generation of rv32emu: [sysprog21/rv32emu-next](https://github.com/sysprog21/rv32emu-next)
     - [Combinational Digital Logic](https://cs61c.org/su20/lectures?file=lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
     - [Sequential Digital Logic](https://cs61c.org/su20/lectures?file=lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
 
-* Week 8 (Nov 9): Datapath
+* Week 8 (Nov 16): Datapath
     - [Quiz3](https://hackmd.io/@sysprog/arch2020-quiz3)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [RISC-V CPU Datapath, Control Intro](https://cs61c.org/su20/lectures/?file=lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: ?)
 
-* Week 9 (Nov 16): Control, Pipeline
+* Week 9 (Nov 23): Control, Pipeline
     - [Collaborative notes](https://hackmd.io/58CYrCJhS56clW7CF9AZeg)
     - Announcement: quiz4 on Nov17: CPU datapath, control, pipeline
     - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](https://youtu.be/Pr3-iFE-nCQ)
 
-* Week 10 (Nov 23): Pipelined Processors
+* Week 10 (Nov 30): Pipelined Processors
     - News: [XuanTie C906 based Allwinner RISC-V processor to power $12+ Linux SBC’s](https://www.cnx-software.com/2020/11/09/xuantie-c906-based-allwinner-risc-v-processor-to-power-12-linux-sbcs/)
     - [0 to ASIC](https://docs.google.com/presentation/d/14npvuiGxsS3C-yo2vOsbZpNKGehwTtIYRFN6k3ZVR4M/edit#slide=id.p)
     - [RISC-V: Why the ISA battles are not over yet](https://hackaday.com/2019/11/12/risc-v-why-the-isa-battles-arent-over-yet)
