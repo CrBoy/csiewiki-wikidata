@@ -28,7 +28,7 @@ Computer Architecture (Fall 2021)
     - [Lab0: Web-based Emulators](https://hackmd.io/@sysprog/SJ7ht_MuS)
     - [Introduction to RISC-V Assembly language : Arithmetic](https://docs.google.com/presentation/d/1TCuhElbEfMCLvkEJGgELNBR3uQYzzNhe/edit?usp=sharing&ouid=113685665535544054506&rtpof=true&sd=true)
         * [The RISC-V Instruction Set Manual: Volume I: Unprivileged ISA](https://content.riscv.org/wp-content/uploads/2019/06/riscv-spec.pdf)
-    - [Intro to Assembly Language and RISC-V](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/file=lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
+    - [Intro to Assembly Language and RISC-V](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
 
 * Week 3 (Oct 12): RISC-V
     - [Intro to Assembly Language and RISC-V](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec06.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqsesqf46rxjtV2mkiwJOmr)
@@ -66,14 +66,14 @@ Computer Architecture (Fall 2021)
 * Week 7 (Nov 9): Digital Systems
     * [nand2tetris](https://www.nand2tetris.org/) / [TED Talk](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course)
     * Next generation of rv32emu: [sysprog21/rv32emu-next](https://github.com/sysprog21/rv32emu-next)
-    - [Combinational Digital Logic](https://cs61c.org/su20/lectures?file=lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
-    - [Sequential Digital Logic](https://cs61c.org/su20/lectures?file=lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
+    - [Combinational Digital Logic](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
+    - [Sequential Digital Logic](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec11.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arH8SCGZilk8Wn_2B45SOpW)
 
 * Week 8 (Nov 16): Datapath
     - [Quiz3](https://hackmd.io/@sysprog/arch2020-quiz3)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
     - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
-    - [RISC-V CPU Datapath, Control Intro](https://cs61c.org/su20/lectures/?file=lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
+    - [RISC-V CPU Datapath, Control Intro](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
     - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: ?)
 
 * Week 9 (Nov 23): Control, Pipeline
@@ -88,7 +88,7 @@ Computer Architecture (Fall 2021)
     - [0 to ASIC](https://docs.google.com/presentation/d/14npvuiGxsS3C-yo2vOsbZpNKGehwTtIYRFN6k3ZVR4M/edit#slide=id.p)
     - [RISC-V: Why the ISA battles are not over yet](https://hackaday.com/2019/11/12/risc-v-why-the-isa-battles-arent-over-yet)
     - [L18: Implementing Pipelined Processors](https://youtu.be/WdbCaCoOgVY)
-    - [RISC-V 5-Stage Pipeline / Hazards](https://cs61c.org/su20/lectures?file=lec14.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aq-xpoKcmd7X9w-l6KHiNMa)
+    - [RISC-V 5-Stage Pipeline / Hazards](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec14.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aq-xpoKcmd7X9w-l6KHiNMa)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
 
 * Week 11 (Nov 30): Quiz + Homework Review
@@ -99,8 +99,8 @@ Computer Architecture (Fall 2021)
 
 * Week 12 (Dec 7): Cache + Virtual Memory
     - Announcement: Quiz on Dec 1 - pipeline, cache and virtual memory
-    - [Caches: Direct-mapped, set-associative](https://cs61c.org/su20/lectures?file=lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
-    - [Multi-level Caches, Cache Questions](https://cs61c.org/su20/lectures?file=lec17.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
+    - [Caches: Direct-mapped, set-associative](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
+    - [Multi-level Caches, Cache Questions](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec17.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
     - [The golden age of ever-changing computer architecture](https://hackaday.com/2019/11/27/the-golden-age-of-ever-changing-computer-architecture/)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
  
@@ -122,7 +122,7 @@ Computer Architecture (Fall 2021)
 * Week14 (Dec 21): Synchronization
     - Announcement: Quiz on Dec 22
     - Assignment: [Homework4: Cache](https://hackmd.io/@sysprog/2020-arch-homework4)  (Due: ?)
-    - [Operating Systems](https://cs61c.org/su20/lectures?file=lec18.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arq3vh2gcLvr5isLK4CuK3B)
+    - [Operating Systems](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec18.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arq3vh2gcLvr5isLK4CuK3B)
     - [Synchronization](https://6004.mit.edu/web/_static/fall20/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
 
@@ -139,7 +139,7 @@ Computer Architecture (Fall 2021)
     - [I/O: Devices, Polling, Interrupts](https://drive.google.com/drive/folders/1NRoyYSbAyarMhmPD5LiY6YEqYpLoZx_s) / [video](https://youtu.be/0dyqcFC_q2Q?t=570)
         * Traps/Interrupts/Exceptions
         * Trap Handling in 5-Stage Pipeline
-    - [Multithreading Issues, Cache Coherency](https://cs61c.org/su20/lectures?file=lec23.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqgj_8Og51XoE7iyAu5yEWZ)
+    - [Multithreading Issues, Cache Coherency](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec23.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqgj_8Og51XoE7iyAu5yEWZ)
     - [Cache Coherence](https://6004.mit.edu/web/_static/fall20/resources/lectures/L22.pdf) / [video](https://youtu.be/vxrok3KKuGQ)
         * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
         * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
