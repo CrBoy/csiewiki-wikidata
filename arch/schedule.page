@@ -63,7 +63,7 @@ Computer Architecture (Fall 2021)
     - Further reading [FPGA design for Software Engineers](https://www.walknsqualk.com/post/014-tiny-fpga-bx/)
     - [RISC-V Instruction Formats](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec08.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apqzuxnUN2fkwt1IGbu3km3)
 
-* Week 7 (Nov 9): Digital Systems
+* Week 7 (Nov 9): Digital Systems / The class is online: [https://youtu.be/gDR7W7cbB7U](https://youtu.be/gDR7W7cbB7U)
     * [nand2tetris](https://www.nand2tetris.org/) / [TED Talk](https://www.ted.com/talks/shimon_schocken_the_self_organizing_computer_course)
     * Next generation of rv32emu: [sysprog21/rv32emu-next](https://github.com/sysprog21/rv32emu-next)
     - [Combinational Digital Logic](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec10.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0ap04XFOxcFT2_Bflnz_RHWU)
