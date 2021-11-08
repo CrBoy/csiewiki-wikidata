@@ -91,20 +91,20 @@ Computer Architecture (Fall 2021)
     - [RISC-V 5-Stage Pipeline / Hazards](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec14.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aq-xpoKcmd7X9w-l6KHiNMa)
     - [Complex Pipelines, Out-of-Order Issue, Register Renaming](https://inst.eecs.berkeley.edu/~cs152/sp19/lectures/L10-ComplexPipes.pdf)
 
-* Week 11 (Nov 30): Quiz + Homework Review
+* Week 11 (Dec 7): Quiz + Homework Review
     - [Quiz4](https://hackmd.io/@sysprog/arch2020-quiz4)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz4-sol)
     - [13-Year-Old, Nicholas Sharkey, Creates a RISC-V Core](https://riscv.org/blog/2020/11/13-year-old-nicholas-sharkey-creates-a-risc-v-core/)
     - [ARM1 vs. Apple M1](https://twitter.com/kenshirriff/status/1327021630636212224)
 
-* Week 12 (Dec 7): Cache + Virtual Memory
+* Week 12 (Dec 14): Cache + Virtual Memory
     - Announcement: Quiz on Dec 1 - pipeline, cache and virtual memory
     - [Caches: Direct-mapped, set-associative](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec16.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0apRiQ2QPjzyq8APGEjnqW1w)
     - [Multi-level Caches, Cache Questions](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec17.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0aqHsuO6U2bIpwDGqO6UAetk)
     - [The golden age of ever-changing computer architecture](https://hackaday.com/2019/11/27/the-golden-age-of-ever-changing-computer-architecture/)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
  
-* Week13 (Dec 14): Quiz + Virtual Memory
+* Week13 (Dec 21): Quiz + Virtual Memory
     - [Quiz5](https://hackmd.io/@sysprog/arch2020-quiz5)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz5-sol)
     - [Virtual Memory](https://6004.mit.edu/web/_static/fall20/resources/lectures/L18.pdf) / [video](https://youtu.be/TsxZlXOrt8U)
@@ -119,20 +119,20 @@ Computer Architecture (Fall 2021)
     - [Lab4: Cache](https://cs61c.org/fa20/labs/lab08/)
         + [Reference work](https://hackmd.io/@Lt35rTMeTi22rWqrBgSQzg/SkXXQ_LJ8)
 
-* Week14 (Dec 21): Synchronization
+* Week14 (Dec 28): Synchronization
     - Announcement: Quiz on Dec 22
     - Assignment: [Homework4: Cache](https://hackmd.io/@sysprog/2020-arch-homework4)  (Due: ?)
     - [Operating Systems](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec18.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arq3vh2gcLvr5isLK4CuK3B)
     - [Synchronization](https://6004.mit.edu/web/_static/fall20/resources/lectures/L21.pdf) / [video](https://youtu.be/r8H_af_dCF0)
     - [Thread-Level Parallelism](https://drive.google.com/drive/folders/1YtT3FEpZAROeZT5gg-uKgxO5hp0N2ii-) / [video](https://youtu.be/QLdN6p7-43U)
 
-* Week15 (Dec 28): Operating System and RISC-V
+* Week15 (Jan 4): Operating System and RISC-V
     - [Term projects 2020](https://hackmd.io/@sysprog/arch2020-projects)
     - video: [The Future of Operating Systems on RISC-V](https://youtu.be/emnN9p4vhzk) / [transcript](https://www.infoq.com/presentations/risc-v-future/)
     - [Advanced topics on Synchronization - 1](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L19-MCM.pdf)
     - [Advanced topics on Synchronization - 2](https://inst.eecs.berkeley.edu/~cs152/sp20/lectures/L22-Synch.pdf)
 
-* Week16 (Jan 4): I/O, cache coherence
+* Week16 (Jan 11): I/O, cache coherence
     - [Term projects 2020](https://hackmd.io/@sysprog/arch2020-projects)
     -  [Quiz6](https://hackmd.io/@sysprog/arch2020-quiz6)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz6-sol)
@@ -144,9 +144,6 @@ Computer Architecture (Fall 2021)
         * Modern microprocessors usually have 2 to 8 cores where each core has a private cache for performance
         * Modified/Shared/Invalid (MSI) Protocol, MESI: An Enhanced MSI protocol to increased performance for private read-write data
 
-* Week17 (Jan 11): Modern Processors
+* Week17 (Jan 18): Modern Processors
     - [Modern Processor Architecture](https://6004.mit.edu/web/_static/fall20/resources/lectures/L23.pdf) / [video](https://youtu.be/sbGtFtxqkkg)
     - [Introduction to Dynamic Branch Prediction](https://youtu.be/PFmx2p6NA0A), [Advanced Branch Prediction](https://youtu.be/avp3bDqCXYM), [Tournament Predictors and Branch Prediction Accuracy](https://youtu.be/-T8yDJ8vTuI), [Hardware Based Speculation](https://youtu.be/mFtX28lH4O8)
-
-* Week18 (Jan 18)
-    - Review
