@@ -72,6 +72,7 @@ Computer Architecture (Fall 2021)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
 
 * Week 8 (Nov 16): Datapath and Control / This class is online: [https://youtu.be/dJ3CSDKRfLo](https://youtu.be/dJ3CSDKRfLo)
+    - Announcement: Due to internal problems of HackMD (pictures were not shown), we would take new scoring method to eliminate the impact. Next week, we have an additional quiz dedicated to Combinational and Sequential Digital Logic.
     - [Quiz3](https://hackmd.io/@sysprog/arch2021-quiz3): RISC-V programming and instruction encoding + Digital systems / [solution](https://hackmd.io/@sysprog/arch2021-quiz3-sol)
     - [RISC-V CPU Datapath, Control Intro](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
