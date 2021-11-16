@@ -71,18 +71,16 @@ Computer Architecture (Fall 2021)
     - [2020-Quiz3](https://hackmd.io/@sysprog/arch2020-quiz3)
          * [solution](https://hackmd.io/@sysprog/arch2020-quiz3-sol)
 
-* Week 8 (Nov 16): Datapath / This class is online: [https://youtu.be/dJ3CSDKRfLo](https://youtu.be/dJ3CSDKRfLo)
+* Week 8 (Nov 16): Datapath and Control / This class is online: [https://youtu.be/dJ3CSDKRfLo](https://youtu.be/dJ3CSDKRfLo)
     - [Quiz3](https://hackmd.io/@sysprog/arch2021-quiz3): RISC-V programming and instruction encoding + Digital systems / [solution](https://hackmd.io/@sysprog/arch2021-quiz3-sol)
-    - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
     - [RISC-V CPU Datapath, Control Intro](https://inst.eecs.berkeley.edu/~cs61c/su20/pdfs/lectures/lec12.pdf) / [video](https://www.youtube.com/playlist?list=PLDoI-XvXO0arQ_gDRnVS4ams3sUajgfEL)
-    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: ?)
-
-* Week 9 (Nov 23): Control, Pipeline
-    - [Collaborative notes](https://hackmd.io/58CYrCJhS56clW7CF9AZeg)
-    - Announcement: quiz4 on Nov17: CPU datapath, control, pipeline
-    - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - [Single-Cycle CPU Control](https://drive.google.com/drive/folders/1QAqqFyQUAu8GE_FvvqGHlF_Nk5VKzleC) / [video](https://youtu.be/0WnPU46zjbA)
+
+* Week 9 (Nov 23): Pipeline
+    - video: [Are Computers Still Getting Faster?](https://youtu.be/IuLxX07isNg)
     - MIT 6.004 [L15: Introduction to Pipelining](https://youtu.be/5NQkhqZe8_8), [L16: Processor Pipelining](https://youtu.be/TMpjvAvQCWA), [L17: Implementing Pipelining](https://youtu.be/Pr3-iFE-nCQ)
+    - [Lab3: Reindeer - RISCV RV32I[M] Soft CPU](https://hackmd.io/@sysprog/rJw2A5DqS)
+    - Assignment: [Homework3: SoftCPU](https://hackmd.io/@sysprog/2020-arch-homework3)  (Due: ?)
 
 * Week 10 (Nov 30): Pipelined Processors
     - News: [XuanTie C906 based Allwinner RISC-V processor to power $12+ Linux SBC’s](https://www.cnx-software.com/2020/11/09/xuantie-c906-based-allwinner-risc-v-processor-to-power-12-linux-sbcs/)
